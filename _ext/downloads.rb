@@ -26,9 +26,15 @@ module JBoss
           #
           # Returns nothing.
           def execute(site)
+            section_name = @directory.delete('_')
+            section_data = {} 
             Dir[File.join(site.dir, @directory, '*.yml')].each do |file|
-              site.engine.load_yaml(file)
+              puts "::DEBUG:: file #{file}"
+              data = YAML.load(File.read(file))
+              name = File.basename(file, '.yml')
+              section_data[name] = site.engine.massage_yaml(data)
             end
+            site.send("#{section_name}=", section_data)
           end
 
           # Internal: Called by the awestruct engine to add directories that 
