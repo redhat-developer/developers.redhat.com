@@ -1,0 +1,26 @@
+= Download YAML Usage
+
+Each YAML file will be used by awestruct for loading download links for each product. It is suggested the name of each
+file be the lowercase hyphenated name of the project category (e.g. development-tools.yml or business-rules.yml).
+
+== Format
+
+Each file is a typical YAML file, information about the data format can be found at http://www.yaml.org. The structure
+of the YAML files must follow the example belew. Multiple download links per category are allowed and supported.
+
+.development-tools.yml
+----
+primary:
+  - name   : JBoss Developer Studio
+    url    : http://...
+    size   : 454mb
+    format : zip
+  - name   : JBoss Web Framework Kit
+    url    : http://...
+    size   : 500mb
+    format : zip
+secondary:
+  - name   : See our upstream development tools
+    url    : http://...
+----
+
