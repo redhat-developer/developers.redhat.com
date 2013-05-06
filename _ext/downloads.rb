@@ -4,16 +4,16 @@ module JBoss
   module Developer
     module Awestruct
       module Extensions
-        # Public: An Awestruct extension to load XML files from a given 
+        # Public: An Awestruct extension to load XML files from a given
         # directory.
         #
         # Examples
         #
-        #   extension JBoss::Developer::Awestruct::Extenions::LoadXmlFile.new('_my_yaml_files')
-        class LoadXmlFile
+        #   extension JBoss::Developer::Awestruct::Extenions::LoadXmlFiles.new('_my_yaml_files')
+        class LoadXmlFiles
           # Public: Initializes the internal state of the extension.
           #
-          # directory - A String specifying the directory containing the XML 
+          # directory - A String specifying the directory containing the XML
           #             files to load. The directory must be relative to the
           #             main site directory.
           # schema_file - A String specifying name of the schema file.
@@ -31,30 +31,29 @@ module JBoss
           # Returns nothing.
           def execute(site)
             section_name = @directory.delete('_')
-            section_data = {} 
+            section_data = {}
             if (@schema_file)
-              xsd = Nokogiri::XML::Schema(File.read(File.join(site.dir, @directory, @schema_file))) 
+              xsd = Nokogiri::XML::Schema(File.read(File.join(site.dir, @directory, @schema_file)))
             end
             Dir[File.join(site.dir, @directory, '*.xml')].each do |file|
               doc = Nokogiri::XML(File.read(file))
-              # Validate the xml document against the schema 
+              # Validate the xml document against the schema
               if (xsd)
                 errors = xsd.validate(doc)
                 unless errors.empty?
                   errors.each do |error|
                     $LOG.info error
                   end
-                  raise 'XML Validation errors (see above)'
+                  raise "XML Validation errors (see above) for file #{file}"
                 end
               end
 
               section_data[File.basename(file, '.xml')] = doc
             end
-            puts "::DEBUG:: #{section_data}"
             site.send("#{section_name}=", section_data)
           end
 
-          # Internal: Called by the awestruct engine to add directories that 
+          # Internal: Called by the awestruct engine to add directories that
           # are being watched for changes.
           #
           # watched_dirs - The list of directories currently being watched.
