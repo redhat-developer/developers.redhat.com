@@ -1,0 +1,23 @@
+= Products XML Usage
+
+Each XML file will be used by awestruct for loading product links for each product. It is suggested the name of each
+file be the lowercase hyphenated name of the product (e.g. jboss-enterprise-application-platform.xml).
+
+== Format
+
+The format of the product xml files must follow the xsd file. Below is an example.
+
+.jboss-enterprise-application-platform.xml
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/home/jporter/projects/jboss/jboss-developer-site/_products/products.xsd" name="jboss-enterprise-application-platform">
+  <uses>
+   <project org="jboss" name="errai"/>
+   <spec org="jcp" name="jsr314"/>
+   <spec org="jcp" name="jsr299"/>
+   <project org="jboss" name="richfaces"/>
+  </uses>
+</product>
+----
+
