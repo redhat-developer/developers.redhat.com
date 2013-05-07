@@ -9,7 +9,7 @@ module JBoss
         #
         # Examples
         #
-        #   extension JBoss::Developer::Awestruct::Extenions::LoadXmlFiles.new('_my_yaml_files')
+        #   extension JBoss::Developer::Awestruct::Extensions::LoadXmlFiles.new('_directory_of_files', 'my_schema.xsd')
         class LoadXmlFiles
           # Public: Initializes the internal state of the extension.
           #
