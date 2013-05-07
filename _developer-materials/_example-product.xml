@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<developerMaterials xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:jboss-developer:developer-materials" xsi:schemaLocation="urn:jboss-developer:developer-materials developer_materials.xsd">
+ 
+    <item name="Helloworld Quickstart" author="Pete Muir" type="Quickstart">
+        <summary>The most basic quickstart</summary>
+        <contributors>
+            <contributor>Burr Sutter</contributor>
+            <contributor>Rafael Benevides</contributor>
+            <contributor>Sande Gilda</contributor>
+        </contributors>
+        <technologies>
+            <keyword>Serlvet</keyword>
+            <keyword>Java EE</keyword>
+        </technologies>
+    </item>
+    
+    <item name="Java EE BOM" author="PShelly McGowan" type="BOM">
+        <summary>The BOM for all Java EE APIs</summary>
+        <contributors>
+            <contributor>Paul Gier</contributor>
+        </contributors>
+        <technologies>
+            <keyword>Java EE</keyword>
+        </technologies>
+    </item>
+    
+    <scan git-url="https://github.com/jboss-jdf/jboss-as-quickstart.git"/>
+    
+</developerMaterials>
