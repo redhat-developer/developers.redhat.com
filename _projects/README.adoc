@@ -10,21 +10,23 @@ The format of the projects xml files must follow the xsd file. Below is an examp
 .red-hat.xml
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<projectList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/home/jporter/projects/jboss/jboss-developer-site/_projects/projects.xsd">
+<projectList 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="urn:jboss-developer:projects"
+        xsi:schemaLocation="urn:jboss-developer:projects projects.xsd">
     <project name="errai" url="http://www.jboss.org/errai">
-       <tagline>The browser as a platform.</tagline>
-       <description>
-          What if you could use Java, CDI, and JPA in your web browser? What if you could use Java without losing 
-          any of the flexibility of HTML5, JavaScript and CSS? The answer is, you can. And that framework is Errai!
-       </description>
+        <tagline>The browser as a platform.</tagline>
+        <description>
+            What if you could use Java, CDI, and JPA in your web browser? What if you could use Java without losing 
+            any of the flexibility of HTML5, JavaScript and CSS? The answer is, you can. And that framework is Errai!
+        </description>
     </project>
     <project name="richfaces" url="http://richfaces.org">
-       <tagline>The next-generation JSF component framework by JBoss!</tagline>
-       <description>
-          The RichFaces project is an advanced UI component framework for easily integrating Ajax 
-          capabilities into business applications using JSF.  
-       </description>
+        <tagline>The next-generation JSF component framework by JBoss!</tagline>
+        <description>
+           The RichFaces project is an advanced UI component framework for easily integrating Ajax 
+           capabilities into business applications using JSF.  
+        </description>
     </project>
 </projectList> 
 ----

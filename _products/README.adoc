@@ -10,14 +10,17 @@ The format of the product xml files must follow the xsd file. Below is an exampl
 .jboss-enterprise-application-platform.xml
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/home/jporter/projects/jboss/jboss-developer-site/_products/products.xsd" name="jboss-enterprise-application-platform">
-  <uses>
-   <project org="jboss" name="errai"/>
-   <spec org="jcp" name="jsr314"/>
-   <spec org="jcp" name="jsr299"/>
-   <project org="jboss" name="richfaces"/>
-  </uses>
+<product 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="urn:jboss-developer:products"
+        xsi:schemaLocation="urn:jboss-developer:products products.xsd"
+        name="jboss-enterprise-application-platform">
+    <uses>
+       <project org="jboss" name="errai"/>
+       <spec org="jcp" name="jsr314"/>
+       <spec org="jcp" name="jsr299"/>
+       <project org="jboss" name="richfaces"/>
+    </uses>
 </product>
 ----
 

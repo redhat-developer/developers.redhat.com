@@ -10,8 +10,11 @@ The format of the download links xml files must follow the xsd file.
 .development-tools.xml
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<downloadLinks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/home/jporter/projects/jboss/jboss-developer-site/_downloads/downloads.xsd">
+<downloadLinks 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="urn:jboss-developer:downloads"
+        xsi:schemaLocation="urn:jboss-developer:downloads downloads.xsd">
+
     <primary>
         <linkText>JBoss Developer Studio</linkText>
         <url>http://access.redhat.com/...</url>

@@ -1,46 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-    <xs:element name="product" type="productType">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:jboss-developer:products"
+    xmlns:products="urn:jboss-developer:products">
+    <xs:element name="product" type="products:productType">
         <xs:annotation>
-            <xs:documentation>
-                A product developed by Red Hat and all the upstream projects and specifications it uses.
-            </xs:documentation>
+            <xs:documentation> A product developed by Red Hat and all the upstream projects and
+                specifications it uses. </xs:documentation>
         </xs:annotation>
     </xs:element>
     <xs:complexType name="productType">
         <xs:sequence>
-            <xs:element name="uses" type="usesType" minOccurs="0" maxOccurs="1">
+            <xs:element name="uses" type="products:usesType" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>
-                        The list of upstream projects and also specifications the product uses.
-                    </xs:documentation>
+                    <xs:documentation> The list of upstream projects and also specifications the
+                        product uses. </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
         <xs:attribute name="name" use="required" type="xs:string">
             <xs:annotation>
-                <xs:documentation>
-                    The name of the product, full name, no abbreviations.
+                <xs:documentation> The name of the product, full name, no abbreviations.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
     <xs:complexType name="usesType">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="project" type="projectRefType">
+            <xs:element name="project" type="products:projectRefType">
                 <xs:annotation>
-                    <xs:documentation>
-                        A reference to the project (contained with an XML file in the _projects directory) used by
-                        this product.
-                    </xs:documentation>
+                    <xs:documentation> A reference to the project (contained with an XML file in the
+                        _projects directory) used by this product. </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="spec" type="specRefType">
+            <xs:element name="spec" type="products:specRefType">
                 <xs:annotation>
-                    <xs:documentation>
-                        A reference to the spec (contained with an XML file in the _projects directory) used by
-                        this product.
-                    </xs:documentation>
+                    <xs:documentation> A reference to the spec (contained with an XML file in the
+                        _projects directory) used by this product. </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:choice>
@@ -48,35 +42,28 @@
     <xs:complexType name="projectRefType">
         <xs:attribute name="org" use="required" type="xs:string">
             <xs:annotation>
-                <xs:documentation>
-                    Organization which creates the project. This must match the name the XML file containing
-                    the project.
-                </xs:documentation>
+                <xs:documentation> Organization which creates the project. This must match the name
+                    the XML file containing the project. </xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="name" use="required" type="xs:string">
             <xs:annotation>
-                <xs:documentation>
-                    The name of the referenced project. This must match the name of the project in the XML file.
-                </xs:documentation>
+                <xs:documentation> The name of the referenced project. This must match the name of
+                    the project in the XML file. </xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
     <xs:complexType name="specRefType">
         <xs:attribute name="org" use="required" type="xs:string">
             <xs:annotation>
-                <xs:documentation>
-                    Organization which creates the specification. This must match the name the XML file containing
-                    the specification.
-                </xs:documentation>
+                <xs:documentation> Organization which creates the specification. This must match the
+                    name the XML file containing the specification. </xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="name" use="required" type="xs:string">
             <xs:annotation>
-                <xs:documentation>
-                    The name of the referenced specification. This must match the name of the specification in
-                    the XML file.
-                </xs:documentation>
+                <xs:documentation> The name of the referenced specification. This must match the
+                    name of the specification in the XML file. </xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>

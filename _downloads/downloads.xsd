@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:jboss-developer:downloads" xmlns:downloads="urn:jboss-developer:downloads">
     <xs:element name="downloadLinks">
         <xs:annotation>
-            <xs:documentation>
-                Each XML file will be used by awestruct for loading download links for each product. It is suggested the name of each
-                file be the lowercase hyphenated name of the project category (e.g. development-tools.xml or business-rules.xml).
+            <xs:documentation> Each XML file will be used by awestruct for loading download links
+                for each product. It is suggested the name of each file be the lowercase hyphenated
+                name of the project category (e.g. development-tools.xml or business-rules.xml).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
-            <xs:group ref="linkGroup"></xs:group>
+            <xs:group ref="downloads:linkGroup"/>
         </xs:complexType>
     </xs:element>
     <xs:group name="linkGroup">
         <xs:sequence>
-            <xs:element name="primary" maxOccurs="unbounded" minOccurs="1" type="linkType">
+            <xs:element name="primary" maxOccurs="unbounded" minOccurs="1" type="downloads:linkType">
                 <xs:annotation>
-                    <xs:documentation>
-                        Primary links are those showcased on the downloads section of the website. They should be the most current version
-                        of the product. Multiple links are supported, but please keep them to a smaller number. A primary link should contain
-                        a size and a format.
-                    </xs:documentation>
+                    <xs:documentation> Primary links are those showcased on the downloads section of
+                        the website. They should be the most current version of the product.
+                        Multiple links are supported, but please keep them to a smaller number. A
+                        primary link should contain a size and a format. </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="secondary" minOccurs="0" maxOccurs="unbounded" type="linkType">
+            <xs:element name="secondary" minOccurs="0" maxOccurs="unbounded"
+                type="downloads:linkType">
                 <xs:annotation>
-                    <xs:documentation>
-                        Secondary links are links that will lead the user to different parts of the site, or to other product pages. Secondary
-                        links have no use for size nor format.
-                    </xs:documentation>
+                    <xs:documentation> Secondary links are links that will lead the user to
+                        different parts of the site, or to other product pages. Secondary links have
+                        no use for size nor format. </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -36,25 +36,24 @@
         <xs:all maxOccurs="1" minOccurs="1">
             <xs:element name="linkText" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>
-                        This will be the text the user will see for this link, it should be short yet descriptive. Typically the product name
-                        will be sufficient.
-                    </xs:documentation>
+                    <xs:documentation> This will be the text the user will see for this link, it
+                        should be short yet descriptive. Typically the product name will be
+                        sufficient. </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="url" type="xs:anyURI" minOccurs="1" maxOccurs="1"></xs:element>
+            <xs:element name="url" type="xs:anyURI" minOccurs="1" maxOccurs="1"/>
             <xs:element name="size" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>
-                        The whole number (rounded up) size of a downloaded file the to which the link points.
-                    </xs:documentation>
+                    <xs:documentation> The whole number (rounded up) size of a downloaded file the
+                        to which the link points. </xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
                     <xs:simpleContent>
                         <xs:extension base="xs:positiveInteger">
                             <xs:attribute name="unit" use="required">
                                 <xs:annotation>
-                                    <xs:documentation>The unit of the size (megabytes, kilobytes, gigabytes)</xs:documentation>
+                                    <xs:documentation>The unit of the size (megabytes, kilobytes,
+                                        gigabytes)</xs:documentation>
                                 </xs:annotation>
                                 <xs:simpleType>
                                     <xs:restriction base="xs:token">
@@ -82,10 +81,9 @@
             </xs:element>
             <xs:element name="format" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>
-                        This should be some meaningful format name (e.g. zip, tar, gz, bzip2) of the type of file the user will be downloading.
-                        It will be displayed next to the download icon.
-                    </xs:documentation>
+                    <xs:documentation> This should be some meaningful format name (e.g. zip, tar,
+                        gz, bzip2) of the type of file the user will be downloading. It will be
+                        displayed next to the download icon. </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:all>
