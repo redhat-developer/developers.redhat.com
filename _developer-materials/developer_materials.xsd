@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="urn:jboss-developer:developer-materials"
+	xmlns:developer="urn:jboss-developer:developer-materials">
 	<xs:element name="developerMaterials">
 		<xs:annotation>
-			<xs:documentation> 
-				Each XML file will be used by awestruct for loading developer
+			<xs:documentation> Each XML file will be used by awestruct for loading developer
 				materials for each product. It is suggested the name of each file be the lowercase
 				hyphenated name of the project category (e.g. development-tools.xml or
-				business-rules.xml). The file can list materials as well as locations to
-				scan.
+				business-rules.xml). The file can list materials as well as locations to scan.
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:choice minOccurs="1" maxOccurs="unbounded">
-				<xs:element type="itemType" name="item"/>
-				<xs:element type="scanType" name="scan"/>
+				<xs:element type="developer:itemType" name="item"/>
+				<xs:element type="developer:scanType" name="scan"/>
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
@@ -27,22 +27,20 @@
 					<xs:documentation>A one or two sentence summary of the item.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element type="contributorsType" name="contributors" minOccurs="0"/>
-			<xs:element type="technologiesType" name="technologies"/>
-			<xs:element type="prerequisitesType" name="prerequisites" minOccurs="0"/>
+			<xs:element type="developer:contributorsType" name="contributors" minOccurs="0"/>
+			<xs:element type="developer:technologiesType" name="technologies"/>
+			<xs:element type="developer:prerequisitesType" name="prerequisites" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="name" use="required" type="xs:string">
 			<xs:annotation>
-				<xs:documentation>
-					A short name for the material, typically no more than 40-50 characters.
-				</xs:documentation>
+				<xs:documentation> A short name for the material, typically no more than 40-50
+					characters. </xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="author" use="required" type="xs:string">
 			<xs:annotation>
-				<xs:documentation>
-					The github id (preferred), email address or name of the author of the item.
-				</xs:documentation>
+				<xs:documentation> The github id (preferred), email address or name of the author of
+					the item. </xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="level">
@@ -58,7 +56,8 @@
 					</xs:enumeration>
 					<xs:enumeration value="Intermediate">
 						<xs:annotation>
-							<xs:documentation>Material aimed at intermediate users.</xs:documentation>
+							<xs:documentation>Material aimed at intermediate
+								users.</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 					<xs:enumeration value="Advanced">
@@ -77,9 +76,8 @@
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="Quickstart">
 						<xs:annotation>
-							<xs:documentation>
-								A quickstart, a simple example showing a single use case or API.
-							</xs:documentation>
+							<xs:documentation> A quickstart, a simple example showing a single use
+								case or API. </xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 					<xs:enumeration value="BOM">
@@ -89,15 +87,13 @@
 					</xs:enumeration>
 					<xs:enumeration value="Showcase">
 						<xs:annotation>
-							<xs:documentation>
-								A showcase example, a complete application.
+							<xs:documentation> A showcase example, a complete application.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
 					<xs:enumeration value="Screencast">
 						<xs:annotation>
-							<xs:documentation>
-								A screencast showing how to achieve a task.
+							<xs:documentation> A screencast showing how to achieve a task.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
@@ -127,26 +123,22 @@
 		<xs:sequence minOccurs="0" maxOccurs="unbounded">
 			<xs:element type="xs:string" name="contributor">
 				<xs:annotation>
-					<xs:documentation>
-						The github id (preferred), email address or name of the contributor to the item. 
-					</xs:documentation>
+					<xs:documentation> The github id (preferred), email address or name of the
+						contributor to the item. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="technologiesType">
 		<xs:annotation>
-			<xs:documentation>
-				A list of technoligies demonstrated by the material, will be used as keywords for searches.
-			</xs:documentation>
+			<xs:documentation> A list of technoligies demonstrated by the material, will be used as
+				keywords for searches. </xs:documentation>
 		</xs:annotation>
 		<xs:sequence minOccurs="1" maxOccurs="unbounded">
 			<xs:element type="xs:string" name="keyword">
 				<xs:annotation>
-					<xs:documentation>
-						A technology demonstrated by the material, e.g. EJB, JSF,
-						JBoss AS etc. The list of keywords is open.
-					</xs:documentation>
+					<xs:documentation> A technology demonstrated by the material, e.g. EJB, JSF,
+						JBoss AS etc. The list of keywords is open. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -158,19 +150,18 @@
 		<xs:sequence minOccurs="0" maxOccurs="unbounded">
 			<xs:element type="xs:string" name="prerequisite">
 				<xs:annotation>
-					<xs:documentation>The name of another item that should be viewed before this one.</xs:documentation>
+					<xs:documentation>The name of another item that should be viewed before this
+						one.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="scanType">
 		<xs:annotation>
-			<xs:documentation>
-				The metadata for much of the developer materials is discovered by
+			<xs:documentation> The metadata for much of the developer materials is discovered by
 				scanning directory structures. Supported formats include Markdown with front matter,
 				Markdown with inline tags (as described at ...), Asciidoc with frontmatter and
-				Asciidoc with Asciidoc metadata. 
-			</xs:documentation>
+				Asciidoc with Asciidoc metadata. </xs:documentation>
 		</xs:annotation>
 		<xs:attribute name="git-url" type="xs:anyURI">
 			<xs:annotation>
