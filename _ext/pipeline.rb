@@ -1,5 +1,6 @@
 require 'load_xml'
 require 'read_xml'
+require 'zurb-foundation'
 
 Awestruct::Extensions::Pipeline.new do
   # load up yaml files for downloads
@@ -8,5 +9,6 @@ Awestruct::Extensions::Pipeline.new do
   extension JBoss::Developer::Awestruct::Extensions::LoadXmlFiles.new('_projects', 'projects.xsd')
   extension JBoss::Developer::Awestruct::Extensions::LoadXmlFiles.new('_products', 'products.xsd')
   extension JBoss::Developer::Awestruct::Extensions::ReadXmlFiles.new('_developer-materials', 'developer_materials.xsd')
+  helper Awestruct::Extensions::Partial
 end
 
