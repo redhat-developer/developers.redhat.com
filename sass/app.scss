@@ -5,6 +5,49 @@
 @import "colours";
 @import "compass";
 
-.row {
+// Setting some defaults
+.row, .top-bar .row {
   max-width:emCalc(1200);
+}
+
+// Form Elements
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+  border-radius:$global-radius;
+  padding:emCalc(10) emCalc(14);
+  font-size: 1em;
+}
+
+// Icons
+i[class*=icon].invert {
+  padding:emCalc(2);
+  background: $grey-5;
+  border-radius:emCalc(2);
+  color:$white;
+  width:emCalc(18);
+}
+
+.wrapper {
+  @include filter-gradient(#ffffff, #e6e7e8, vertical); // IE6-9
+  @include background-image(linear-gradient(top,  #ffffff 0%,#ffffff 43%,#e7e9e9 88%,#e6e7e8 100%));
+  background-size: 100% 100px;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+
+footer {
+  background:$grey-7;
 }
