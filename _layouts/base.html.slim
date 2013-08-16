@@ -16,10 +16,10 @@ head
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
 body
   header.main
-    .row
+    .row.collapse
       .large-4.columns
-        h1 jBoss<strong>Developer</strong>
-      .large-8.columns
+        h1 JBoss<strong>Developer</strong>
+      .large-8.columns.text-right
         h4 The simple, modern, & productive way to build IT apps and infrastructure
         dl.sub-nav
           dd
@@ -48,7 +48,7 @@ body
                   a(href="#") Create account
           dd
             a(href="/register") Register
-          dd.search
+          dd
             /  Search Box
             form.search(action="search" method="POST" name="search")
               input.query(type="text" name="q" placeholder="Search")
@@ -72,19 +72,16 @@ body
         ul.right
           li
             a(href="#")
-              i.icon-rss.icon-2x
+              i.icon-rss
           li
             a(href="#")
-              i.icon-facebook.icon-2x
+              i.icon-facebook
           li
             a(href="#")
-              i.icon-twitter.icon-2x
+              i.icon-twitter
           li
             a(href="#")
-              i.icon-linkedin.icon-2x
-          li
-            a(href="#")
-              i.icon-youtube.icon-2x
+              i.icon-linkedin
   .wrapper
     = content
   footer

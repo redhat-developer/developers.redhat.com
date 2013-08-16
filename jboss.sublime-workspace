@@ -187,19 +187,11 @@
 	},
 	"buffers":
 	[
-		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 94,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/User/node-sass.sublime-build",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 205.0,
 		"selected_items":
 		[
 			[
@@ -400,6 +392,19 @@
 	},
 	"file_history":
 	[
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/sass/_settings.scss",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/sass/colours.scss",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/javascripts/foundation/foundation.js",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/jboss.sublime-project",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/sass/app.scss",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/javascripts/scripts.js",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/_layouts/base.html.slim",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/index.html.slim",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/.gitignore",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/_partials/login.html.slim",
+		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss/_partials/search.slim",
+		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/snippets/emCalc.sublime-snippet",
+		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss-developer-site/sass/colours.scss",
 		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss-developer-site/sass/_settings.scss",
 		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss-developer-site/sass/app.scss",
@@ -420,7 +425,6 @@
 		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss-developer-site/stylesheets/app.css",
 		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/jboss-developer-site/README.md",
 		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/build/SCSS.sublime-build",
-		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/node-sass.sublime-build",
 		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/SublimeOnSaveBuild.sublime-settings",
 		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/SublimeOnSaveBuild/SublimeOnSaveBuild.sublime-settings",
@@ -515,19 +519,7 @@
 		"/Users/wesbos/Library/Caches/Cleanup At Startup/Transmit/6AD8565F-D472-4506-BA30-613FEDC91088/style.css",
 		"/Users/wesbos/Library/Caches/Cleanup At Startup/Transmit/A68A89CC-62D3-47F6-BBFE-EC3E908CBC16/style.css",
 		"/Volumes/Macintosh HD/wesbos/Dropbox/0185-book/demo/book.js",
-		"/Volumes/Macintosh HD/wesbos/Dropbox/0185-book/demo/test.css",
-		"/Volumes/Macintosh HD/wesbos/Dropbox/0185-book/demo/test.jpg",
-		"/Volumes/Macintosh HD/wesbos/Dropbox/0185-book/demo/image-list.html",
-		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-		"/Volumes/Macintosh HD/wesbos/Dropbox/demos/cobalt2/readme.md",
-		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/quotes.sublime-macro",
-		"/Users/wesbos/Library/Application Support/Sublime Text 3/Packages/User/function-semicolon.sublime-macro",
-		"/Users/wesbos/Library/Caches/Cleanup At Startup/Transmit/335C8771-6F74-4046-84B0-EFC5A282C66E/style.css",
-		"/Users/wesbos/Library/Caches/Cleanup At Startup/Transmit/982B81EF-D2DE-4842-B045-BC644F675994/16869492.json",
-		"/Volumes/Macintosh HD/wesbos/Dropbox/0185-book/book.sublime-project",
-		"/Volumes/Macintosh HD/wesbos/Dropbox/0185-book/book.sublime-workspace",
-		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/web-editor/views/partials/filespane.slim",
-		"/Volumes/Macintosh HD/wesbos/Dropbox/redhat/web-editor/assets/javascripts/controllers/awCtrl.js"
+		"/Volumes/Macintosh HD/wesbos/Dropbox/0185-book/demo/test.css"
 	],
 	"find":
 	{
@@ -546,6 +538,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"top-bar",
+			"        li\n          a\n",
+			"global-ra",
+			"vendor",
+			".git",
+			"ignore",
 			"wes ",
 			"max-width",
 			"62.5",
@@ -667,13 +665,7 @@
 			"Õ",
 			"Ó",
 			"guide",
-			"caret",
-			"TODO",
-			"”",
-			"“",
-			"snippet",
-			"line bubbl",
-			"TODO"
+			"caret"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -691,36 +683,13 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": ".gitignore",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 94,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								94,
-								94
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -741,11 +710,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":

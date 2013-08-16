@@ -139,8 +139,8 @@ $include-html-classes: true;
 //
 
 $row-width: emCalc(1200);
-// $column-gutter: emCalc(30);
-// $total-columns: 12;
+$column-gutter: emCalc(32);
+$total-columns: 12;
 
 //
 // Block Grid Variables
@@ -1235,12 +1235,12 @@ $header-font-family: 'Cabin', sans-serif;
 
 // Background color for the top bar
 
-// $topbar-bg: #111;
+$topbar-bg: #fff;
 
 // Height and margin
 
-// $topbar-height: 45px;
-// $topbar-margin-bottom: emCalc(30);
+$topbar-height: auto;
+$topbar-margin-bottom: emCalc(40);
 
 // Control Input height for top bar
 
@@ -1262,11 +1262,11 @@ $header-font-family: 'Cabin', sans-serif;
 
 // Set the link colors and styles for top-level nav
 
-// $topbar-link-color: #fff;
+$topbar-link-color: inherit;
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
 // $topbar-link-weight: bold;
-// $topbar-link-font-size: emCalc(13);
+$topbar-link-font-size: emCalc(24);
 // $topbar-link-hover-lightness: -30%; // Darken by 30%
 // $topbar-link-bg-hover: darken($topbar-bg, 3%);
 // $topbar-link-bg-active: darken($topbar-bg, 3%);

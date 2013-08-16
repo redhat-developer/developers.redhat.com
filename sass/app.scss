@@ -5,11 +5,62 @@
 @import "colours";
 @import "compass";
 
-// Setting some defaults
+// Zurb Foundation Overides
+// These are things that can't be changed in _settings.scss
 .row, .top-bar .row {
   max-width:emCalc(1200);
 }
 
+button, .button {
+  border-radius: $global-radius;
+  @include box-shadow(none);
+  text-transform: uppercase;
+}
+
+// Header
+header.main {
+  h4 {
+    font-style:italic;
+  }
+  .sub-nav {
+    float: right;
+    margin-bottom: 0;
+  }
+}
+
+// search
+.search {
+  input[type=text] {
+    float: right;
+    &:focus {
+      width:250px;
+    }
+  }
+}
+
+// Menus
+.top-bar {
+  border-top: 1px solid $grey-3;
+  border-bottom: 1px solid $grey-3;
+}
+
+.top-bar-section {
+  ul {
+    background: none;
+  }
+  .left {
+    a {
+      text-transform: uppercase;
+      margin-right: emCalc(40);
+    }
+  }
+  .right {
+    a {
+      color:$grey-4;
+      margin-left: emCalc(8);
+    }
+  }
+}
 // Form Elements
 
 input[type="text"],
@@ -50,4 +101,44 @@ i[class*=icon].invert {
 
 footer {
   background:$grey-7;
+}
+
+// Slider
+.slider-wrapper {
+  position: relative;
+  .slider {
+    overflow: hidden;
+    .slide {
+      height:403px;
+    }
+  }
+}
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+}
+
+.slider-controls {
+  a {
+    position: absolute;
+    top:50%;
+    margin-top: -148px;
+    font-size: emCalc(62.5);
+    &.slider-prev {
+      left:-130px;
+    }
+    &.slider-next {
+      right:-130px;
+    }
+  }
 }
