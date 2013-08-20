@@ -4,6 +4,8 @@
 
 @import "colours";
 
+$sans-serif : 'Georgia',sans-serif;
+
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
 $base-font-size: 100% !default;
@@ -590,7 +592,7 @@ $header-font-family: 'Cabin', sans-serif;
 
 // We use these to control the basic form styles input styles
 
-// $custom-form-border-color: #ccc;
+// $custom-form-border-color: $grey-3;
 // $custom-form-border-size: 1px;
 // $custom-form-bg: #fff;
 // $custom-form-bg-disabled: #ddd;
@@ -1024,8 +1026,8 @@ $header-font-family: 'Cabin', sans-serif;
 
 // We use these to set padding and hover factor
 
-// $section-title-padding: emCalc(15);
-// $section-content-padding: emCalc(15);
+$section-title-padding: emCalc(25);
+$section-content-padding: emCalc(64);
 // $section-function-factor: 10%;
 
 // These style the titles
@@ -1041,7 +1043,7 @@ $header-font-family: 'Cabin', sans-serif;
 
 // $section-border-size: 1px;
 // $section-border-style: solid;
-// $section-border-color: #ccc;
+$section-border-color: $grey-3;
 
 // Font controls
 
@@ -1209,7 +1211,7 @@ $header-font-family: 'Cabin', sans-serif;
 // Tooltip Variables
 //
 
-// $has-tip-border-bottom: dotted 1px #ccc;
+// $has-tip-border-bottom: dotted 1px $grey-3;
 // $has-tip-font-weight: bold;
 // $has-tip-font-color: #333;
 // $has-tip-border-bottom-hover: dotted 1px darken($primary-color, 20%);
