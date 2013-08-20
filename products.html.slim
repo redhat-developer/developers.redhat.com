@@ -1,0 +1,43 @@
+---
+layout: base
+---
+.row
+  .banner.panel
+    p This is a great banner!
+.row
+  .section-container.auto(data-section)
+    section
+      p.title.data(data-section-title)
+        a(href="#panel1") Supported Products
+      .content(data-section-content)
+        .large-6.columns
+          - for update in [1,2,3,4]
+            h3 Development Tools
+            - for update in [1,2]
+              .product
+                h4 Red Hat JBoss Developer Studio
+                p Get started using JBoss today with our FREE developer licenses and quickstarts! Projects used are <a href="#">Wildfly, </a> <a href="#">Infinispan</a> <a href="#">Windup</a>
+                div.toolbar
+                  a(href="#" title="Download")
+                    i.icon-download-alt
+                  a(href="#" title="Settings")
+                    i.icon-wrench
+                  a(href="#" title="Docs")
+                    i.icon-file-text-alt
+                  a(href="#" title="Dashboard")
+                    i.icon-briefcase
+                  a(href="#" title="Training Video")
+                    i.icon-play-circle
+
+        .large-6.columns
+          h3 Application Platforms
+    section
+      p.title.data(data-section-title)
+        a(href="#panel2") Upstream Projects
+      .content(data-section-content)
+        p section 2
+    section
+      p.title.data(data-section-title)
+        a(href="#panel2") Solutions
+      .content(data-section-content)
+        p Solutions for everyone!
