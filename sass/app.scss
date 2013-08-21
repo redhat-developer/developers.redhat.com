@@ -10,8 +10,8 @@
 @import "foundation/components/block-grid";
 @import "foundation/components/type";
 @import "foundation/components/buttons";
-// @import "foundation/components/forms"; // *requires components/buttons
-// @import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
+@import "foundation/components/forms"; // *requires components/buttons
+@import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
 // @import "foundation/components/button-groups"; // *requires components/buttons
 // @import "foundation/components/dropdown-buttons"; // *requires components/buttons
 // @import "foundation/components/split-buttons"; // *requires components/buttons
@@ -32,7 +32,7 @@
 // @import "foundation/components/pricing-tables";
 // @import "foundation/components/progress-bars";
 // @import "foundation/components/side-nav";
-// @import "foundation/components/sub-nav";
+@import "foundation/components/sub-nav";
 // @import "foundation/components/switch";
 // @import "foundation/components/magellan";
 // @import "foundation/components/tables";
@@ -44,17 +44,41 @@
 // Import only the compass modules we need
 @import "compass/css3/box-shadow";
 @import "compass/css3/images";
+@import "compass/css3/transform";
 
-// Zurb Foundation Overides
-// These are things that can't be changed in _settings.scss
+
+/*
+
+   Zurb Foundation Overides
+  These are things that can't be changed in _settings.scss
+
+*/ 
 .row, .top-bar .row {
   max-width:emCalc(1200);
+}
+
+a {
+  color:$link;
 }
 
 button, .button {
   border-radius: $global-radius;
   @include box-shadow(none);
   text-transform: uppercase;
+  background: $med-green;
+  text-transform: uppercase;
+  border:0;
+  &:hover {
+    background: $dark-green;
+  }
+  &.shadow {
+    box-shadow:3px 3px 0 $grey-7;
+  }
+}
+
+.row .row {
+  margin-left: -$column-gutter;
+  margin-right: -$column-gutter; // accommodates for larger gutters and nested rows
 }
 
 // Header
@@ -65,6 +89,10 @@ header.main {
   .sub-nav {
     float: right;
     margin-bottom: 10px;
+    a {
+      position: relative;
+      top:5px;
+    }
   }
 }
 
@@ -107,9 +135,41 @@ header.main {
   width:250px;
   max-width:250px;
   border-radius: $global-radius;
-  padding:1em;
+  padding:20px;
+  margin-left: -150px;
+  margin-top: 10px;
+  text-align: left;
+  color:$dark-blue;
+  border:1px solid $grey-3;
+  box-shadow:1px 1px 4px rgba($grey-7,0.3);
+  // arrow nub
+  &:before {
+    left:170px;
+  }
+  &:after {
+    left:169px;
+  }
   .inline-list {
     margin-left: 0;
+    li {
+      line-height: 0.5;
+    }
+    li:first-child {
+      border-right: 1px solid $grey-7;
+    }
+  }
+  h4 {
+    font-style: normal;
+    margin-bottom: 0;
+  }
+}
+p.sign-in-options {
+  color:$grey-7;
+  i {
+    font-size:emCalc(20);
+    margin: 0 2px;
+    position: relative;
+    top:2px;
   }
 }
 
@@ -131,7 +191,19 @@ textarea {
   border-radius:$global-radius;
   padding:emCalc(10) emCalc(14);
   font-size: 1em;
+  &:focus {
+    @include box-shadow(0 0 5px $link);
+    border:1px solid $med-blue;
+  }
 }
+  
+  form {
+    margin: 0; // get rid of the margin 
+  }
+
+  label input[type=checkbox] { // for when we have a checkbox beside some text
+    margin-right: 5px;
+  }
 
 // Icons
 i[class*=icon].invert {
@@ -143,7 +215,10 @@ i[class*=icon].invert {
 }
 
 
-// Layout
+/* 
+  Layout and custom modules
+*/ 
+
 .wrapper {
   @include filter-gradient(#ffffff, #e6e7e8, vertical); // IE6-9
   @include background-image(linear-gradient(top,  #ffffff 0%,#ffffff 43%,#e7e9e9 88%,#e6e7e8 100%));
@@ -151,6 +226,7 @@ i[class*=icon].invert {
   background-repeat: no-repeat;
   background-position: bottom center;
   min-height: 400px;
+  padding-bottom: emCalc(20px);
 }
 
 footer {
@@ -188,12 +264,63 @@ footer {
     top:50%;
     margin-top: -100px;
     font-size: emCalc(40);
+    color:$med-green;
     &.slider-prev {
       left:-100px;
     }
     &.slider-next {
       right:-100px;
     }
+  }
+}
+
+// Updates
+.update {
+  padding-right: 1em;
+  margin-bottom: 20px;
+  p {
+    margin-bottom: 0;
+  }
+  .update-source {
+    font-size:emCalc(13);
+    color:$grey-5;
+  }
+  .update-timestamp {
+    float:right;
+    font-size:emCalc(13);
+    color:$grey-5;
+  }
+  i[class*=icon] {
+    margin-right: 3px;
+  }
+  h5 {
+    margin:0;
+  }
+  &.pinned {
+    padding-left: 2em;
+    &:before {
+      content: "\f08d";
+      font-family: 'FontAwesome';
+      position: absolute;
+      color: #EAC562;
+      font-size: emCalc(25px); 
+      left: 0.7em;
+      // -webkit-transform: rotate(-47deg);
+      @include transform2d(rotate(-45deg));
+
+    }
+  }
+}
+
+// call to action
+.cta {
+  border-radius:$global-radius;
+  background:$grey-2;
+  padding:emCalc(64);
+  width:48%;
+  float: left;
+  &:first-child {
+    margin-right:4%;
   }
 }
 
@@ -216,10 +343,10 @@ footer {
 }
 
 // Section Tabs
-.content {
-  overflow: hidden;
-}
 .section-container.auto {
+  .content {
+    overflow: hidden;
+  }
   section{
     p.title {
       margin-left: emCalc(50);

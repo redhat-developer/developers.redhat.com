@@ -8,7 +8,7 @@ gem 'asciidoctor', '~> 0.1.3'
 gem 'uglifier', '~> 2.0.1'
 gem 'htmlcompressor', '~> 0.0.6'
 gem 'nori', '~> 2.2.0'
-gem 'ZURB-foundation'
+gem "zurb-foundation", "~> 4.3.1"
 
 group :development do
   gem 'rb-inotify', :require => false
