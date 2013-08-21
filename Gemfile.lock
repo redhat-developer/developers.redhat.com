@@ -5,6 +5,8 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
+    ZURB-foundation (2.2.1.4)
+      compass (>= 0.12.1)
     asciidoctor (0.1.3)
     awestruct (0.5.3)
       bootstrap-sass (>= 2.3.1.0)
@@ -77,6 +79,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ZURB-foundation
   asciidoctor (~> 0.1.3)
   awestruct (~> 0.5.3)
   htmlcompressor (~> 0.0.6)
