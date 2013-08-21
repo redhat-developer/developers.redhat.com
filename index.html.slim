@@ -16,30 +16,31 @@ layout: base
 
 / Call to action Panels
 .row
-  .large-6.cta.columns.panel
+  .cta
     h2 Get Started
     p Get started using JBoss today with our free developer licenses and quickstarts!
-    a.button(href="#") Get Started
-  .large-6.cta.columns.panel
+    a.button.shadow(href="#") Get Started
+  .cta
     h2 Exploring JBoss
     p Get started using JBoss today with our free developer licenses and quickstarts!
-    a.button(href="#") Learn More
+    a.button.shadow(href="#") Learn More
 
 / Buzz and Event Updates
 .row.updates
-  .large-8.columns
-    h3 Buzz
-    .row.collapse 
-      .large-6.columns
+  .large-12.columns
+    .row 
+      .large-4.columns
+        h3 Buzz
         / Fake 5 Events
         - for update in [1,2,4,5]
-          .update
-            p Restart of Nexus: 2013-03-28 15:00 UTC. http://t.co/gbssNfb8Zdsddfdfd6z will be shortly unavailable.
+          .update.pinned
+            p Restart of Nexus: 2013-03-28 15:00 UTC. The website http://hi.com will be shortly unavailable.
             a.update-source(href="#")
               i.icon-twitter
               | @jbossorg
             a.update-timestamp(href="#") 09/22/13  09:34PM
-      .large-6.columns
+      .large-4.columns
+        h3 &nbsp;
         / Fake 5 Events
         - for update in [1,2,4,5]
           .update
@@ -50,11 +51,11 @@ layout: base
               i.icon-rss
               | Ray Ploski
             a.update-timestamp(href="#") 09/22/13  09:34PM
-  .large-4.columns
-    h3 Events 
-    - for update in [1,2,3]
-      .update
-        h5
-          a JUDCon2013:Brazil < Register Today!
-        p.update-subtext Sau Paulo Brazil: April 19 & 20
-        p The JBoss Users and Developers Conferences are developer gatherings held around the Globe to give JBoss users the chance to talk to
+      .large-4.columns
+        h3 Events 
+        - for update in [1,2,3]
+          .update
+            h5
+              a JUDCon2013:Brazil < Register Today!
+            p.update-subtext Sau Paulo Brazil: April 19 & 20
+            p The JBoss Users and Developers Conferences are developer gatherings held around the Globe to give JBoss users the chance to talk to
