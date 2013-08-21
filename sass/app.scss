@@ -1,9 +1,49 @@
 @import "settings";
 @import "normalize";
-@import "foundation";
+
 @import "font-awesome";
 @import "colours";
-@import "compass";
+@import "foundation/components/global"; // *always required
+@import "foundation/components/grid";
+
+// @import "foundation/components/visibility";
+@import "foundation/components/block-grid";
+@import "foundation/components/type";
+@import "foundation/components/buttons";
+// @import "foundation/components/forms"; // *requires components/buttons
+// @import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
+// @import "foundation/components/button-groups"; // *requires components/buttons
+// @import "foundation/components/dropdown-buttons"; // *requires components/buttons
+// @import "foundation/components/split-buttons"; // *requires components/buttons
+// @import "foundation/components/flex-video";
+@import "foundation/components/section";
+@import "foundation/components/top-bar";  // *requires components/grid
+// @import "foundation/components/orbit";
+// @import "foundation/components/reveal";
+// @import "foundation/components/joyride";
+// @import "foundation/components/clearing";
+// @import "foundation/components/alert-boxes";
+// @import "foundation/components/breadcrumbs";
+// @import "foundation/components/keystrokes";
+// @import "foundation/components/labels";
+@import "foundation/components/inline-lists";
+// @import "foundation/components/pagination";
+@import "foundation/components/panels";
+// @import "foundation/components/pricing-tables";
+// @import "foundation/components/progress-bars";
+// @import "foundation/components/side-nav";
+// @import "foundation/components/sub-nav";
+// @import "foundation/components/switch";
+// @import "foundation/components/magellan";
+// @import "foundation/components/tables";
+// @import "foundation/components/thumbs";
+// @import "foundation/components/tooltips";
+@import "foundation/components/dropdown";
+
+
+// Import only the compass modules we need
+@import "compass/css3/box-shadow";
+@import "compass/css3/images";
 
 // Zurb Foundation Overides
 // These are things that can't be changed in _settings.scss
@@ -24,7 +64,7 @@ header.main {
   }
   .sub-nav {
     float: right;
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -61,8 +101,19 @@ header.main {
     }
   }
 }
-// Form Elements
 
+// Dropdown
+.f-dropdown.content {
+  width:250px;
+  max-width:250px;
+  border-radius: $global-radius;
+  padding:1em;
+  .inline-list {
+    margin-left: 0;
+  }
+}
+
+// Form Elements
 input[type="text"],
 input[type="password"],
 input[type="date"],
