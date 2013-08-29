@@ -23,7 +23,7 @@
 // @import "foundation/components/joyride";
 // @import "foundation/components/clearing";
 // @import "foundation/components/alert-boxes";
-// @import "foundation/components/breadcrumbs";
+@import "foundation/components/breadcrumbs";
 // @import "foundation/components/keystrokes";
 // @import "foundation/components/labels";
 @import "foundation/components/inline-lists";
@@ -31,7 +31,7 @@
 @import "foundation/components/panels";
 // @import "foundation/components/pricing-tables";
 // @import "foundation/components/progress-bars";
-// @import "foundation/components/side-nav";
+@import "foundation/components/side-nav";
 @import "foundation/components/sub-nav";
 // @import "foundation/components/switch";
 // @import "foundation/components/magellan";
@@ -69,7 +69,7 @@ button, .button {
   text-transform: uppercase;
   border:0;
   &:hover {
-    background: $dark-green;
+    background: $light-green;
   }
   &.shadow {
     box-shadow:3px 3px 0 $grey-7;
@@ -79,6 +79,36 @@ button, .button {
 .row .row {
   margin-left: -$column-gutter;
   margin-right: -$column-gutter; // accommodates for larger gutters and nested rows
+}
+
+.side-nav {
+  border:1px solid $grey-3;
+  padding:0;
+  border-radius:$global-radius;
+  overflow: hidden;
+  li {
+    margin:0;
+    a {
+      border-top:1px solid $grey-3;
+      padding:emCalc(8) 1em;
+      font-size: emCalc(18);
+      position: relative;
+      &:after {
+        content: "\f105";
+        font-family: 'FontAwesome';
+        float: right;
+        font-weight: 600;
+      }
+    }
+    &:first-child a {
+      border-top: 0;
+    }
+    &.active a, &:hover a, &.active a:first-child {
+      color:white;
+      background:$link;
+      border-color:darken($link,5%);
+    }
+  }
 }
 
 // Header
@@ -214,6 +244,25 @@ i[class*=icon].invert {
   width:emCalc(18);
 }
 
+// Breadcrumbs
+.breadcrumbs {
+  background:none;
+  border:0;
+  padding:0;
+  select {
+    width:auto;
+    margin: 0;
+  }
+  & > *:before {
+    content: ">"
+  }
+  a {
+    text-transform: none;
+    font-size: 14px;
+    text-decoration: underline;
+  }
+}
+
 
 /* 
   Layout and custom modules
@@ -312,6 +361,43 @@ footer {
   }
 }
 
+// Navigation
+.top-bar-section {
+  ul li:hover ul.dropdown {
+    display: block;
+    visibility: visible;
+  }
+  ul.dropdown {
+    width:auto;
+    border:1px solid $grey-3;
+    border-top:0;
+    li {
+      a {
+        font-size: emCalc(15);
+        color:$grey-7;
+        padding:1em;
+      }
+    }
+  }
+}
+
+  // Nav open state
+  body.nav-open {
+    overflow-x:hidden;
+    .wrapper {
+      position: relative;
+      left:70%;
+    }
+    nav.top-bar {
+      left: -70%;
+      width: 70%;
+      position: absolute;
+      top: 0;
+      z-index: 99;
+    }
+  }
+
+
 // call to action
 .cta {
   border-radius:$global-radius;
@@ -376,5 +462,19 @@ footer {
         }
       }
     }
+  }
+}
+
+
+// Typography
+.large-title {
+  font-size: emCalc(52);
+  font-weight: normal;
+}
+
+.text-content {
+  h3 {
+    margin-top: 0;
+    color:$grey-6;
   }
 }
