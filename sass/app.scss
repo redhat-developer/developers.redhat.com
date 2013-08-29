@@ -363,9 +363,12 @@ footer {
 
 // Navigation
 .top-bar-section {
-  ul li:hover ul.dropdown {
-    display: block;
-    visibility: visible;
+  ul li:hover {
+    background:blue;
+    ul.dropdown {
+      display: block;
+      visibility: visible;
+    }
   }
   ul.dropdown {
     width:auto;
