@@ -15,16 +15,92 @@ head
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
 body
-  header.main
-    .row
-      .large-4.columns
-        h1 jBoss<strong>Developer</strong>
-        = partial('search.slim')
-      .large-8.columns
-        h4 The simple, modern, & productive way to build IT apps and infrastructure
-  .container
-    = content
-  footer
-    p &copy; Organization #{Date.today.year}
+  .wrapper
+    header.main
+      .row
+        .large-8.columns
+          h1 
+            a(href="#{site.base_url}/#{site.context_url}") JBoss<strong>Developer</strong>
+        .large-16.columns.text-right
+          h4 The simple, modern, & productive way to build IT apps and infrastructure
+          dl.sub-nav
+            dd
+              a(href="#" data-dropdown="login")
+                i.icon-user
+                | Login
+              / Login Dropdown Box
+              div.f-dropdown.content.round#login(data-dropdown-content="true")
+                h4 Login
+                p Log in to access unlimited downloads and contribute to the community.
+                form.login
+                  input(type="text" name="username" placeholder="Username or email")
+                  input(type="password" name="password" placeholder="Password")
+                  label
+                    input(type="checkbox" name="remember")
+                    | Remember Me
+                  input.button(type="submit" value="Login")
+                p.sign-in-options
+                  | Or sign in with:
+                  i.icon-facebook-sign
+                  i.icon-google-plus-sign
+                  i.icon-twitter-sign
+                ul.inline-list.text-center
+                  li
+                    a(href="#") Forgot Password
+                  li
+                    a(href="#") Create account
+            dd
+              a(href="/register") Register
+            dd
+              /  Search Box
+              form.search(action="search" method="POST" name="search")
+                input.query(type="text" name="q" placeholder="Search")
+    nav.top-bar
+      .row.collapse
+        .large-24.columns
+          ul.title-area
+            li.name
+            li(class="toggle-topbar menu-icon")
+              a(href="#")
+                span
+          section.top-bar-section
+            ul.left
+              li
+                a(href="#") Technology
+                ul.dropdown
+                  li: a Dropdown Item
+                  li: a Another dropdown item
+                  li: a Short
+                  li: a Looooooooooooooooooooooooooooooooooongsingleword
+                  li: a A really long item with spaces in it. How long can it go?
+              li: a(href="#") Get Started
+              li: a(href="#") Get Involved
+              li: a(href="#") Download
+            ul.right
+              li
+                a(href="#")
+                  i.icon-rss
+              li
+                a(href="#")
+                  i.icon-facebook
+              li
+                a(href="#")
+                  i.icon-twitter
+              li
+                a(href="#")
+                  i.icon-linkedin
+    .wrapper
+      = content
+    footer
+      .row
+        p &copy; Organization #{Date.today.year}
 
   script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+  / jQuery fallback if CDN fails
+  javascript:
+    window.jQuery || document.write('<script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"><\/script>')
+  script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
+  / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.topbar.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
