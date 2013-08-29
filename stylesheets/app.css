@@ -8006,33 +8006,37 @@ footer {
 }
 
 /* line 366, ../sass/app.scss */
+.top-bar-section ul li:hover {
+  background: blue;
+}
+/* line 368, ../sass/app.scss */
 .top-bar-section ul li:hover ul.dropdown {
   display: block;
   visibility: visible;
 }
-/* line 370, ../sass/app.scss */
+/* line 373, ../sass/app.scss */
 .top-bar-section ul.dropdown {
   width: auto;
   border: 1px solid #d5d5d5;
   border-top: 0;
 }
-/* line 375, ../sass/app.scss */
+/* line 378, ../sass/app.scss */
 .top-bar-section ul.dropdown li a {
   font-size: 0.9375em;
   color: #424242;
   padding: 1em;
 }
 
-/* line 385, ../sass/app.scss */
+/* line 388, ../sass/app.scss */
 body.nav-open {
   overflow-x: hidden;
 }
-/* line 387, ../sass/app.scss */
+/* line 390, ../sass/app.scss */
 body.nav-open .wrapper {
   position: relative;
   left: 70%;
 }
-/* line 391, ../sass/app.scss */
+/* line 394, ../sass/app.scss */
 body.nav-open nav.top-bar {
   left: -70%;
   width: 70%;
@@ -8041,7 +8045,7 @@ body.nav-open nav.top-bar {
   z-index: 99;
 }
 
-/* line 402, ../sass/app.scss */
+/* line 405, ../sass/app.scss */
 .cta {
   border-radius: 5px;
   background: #e6e7e8;
@@ -8049,42 +8053,42 @@ body.nav-open nav.top-bar {
   width: 48%;
   float: left;
 }
-/* line 408, ../sass/app.scss */
+/* line 411, ../sass/app.scss */
 .cta:first-child {
   margin-right: 4%;
 }
 
-/* line 415, ../sass/app.scss */
+/* line 418, ../sass/app.scss */
 .product .toolbar {
   text-align: right;
 }
-/* line 417, ../sass/app.scss */
+/* line 420, ../sass/app.scss */
 .product .toolbar a {
   margin-right: 1em;
 }
-/* line 421, ../sass/app.scss */
+/* line 424, ../sass/app.scss */
 .product p {
   font-family: "Georgia", sans-serif;
   font-style: italic;
 }
-/* line 425, ../sass/app.scss */
+/* line 428, ../sass/app.scss */
 .product h4 {
   margin-bottom: 0;
   font-weight: normal;
 }
 
-/* line 433, ../sass/app.scss */
+/* line 436, ../sass/app.scss */
 .section-container.auto .content {
   overflow: hidden;
 }
-/* line 437, ../sass/app.scss */
+/* line 440, ../sass/app.scss */
 .section-container.auto section p.title {
   margin-left: 3.125em;
   border: 0;
   padding-left: 0.3125em;
   background: none !important;
 }
-/* line 442, ../sass/app.scss */
+/* line 445, ../sass/app.scss */
 .section-container.auto section p.title a {
   border: 1px solid #94aebd;
   background: #94aebd;
@@ -8097,7 +8101,7 @@ body.nav-open nav.top-bar {
   border-radius: 5px 5px 0 0;
   font-weight: 600;
 }
-/* line 457, ../sass/app.scss */
+/* line 460, ../sass/app.scss */
 .section-container.auto section.active p.title a {
   background: white;
   border: 1px solid #d5d5d5;
@@ -8105,13 +8109,13 @@ body.nav-open nav.top-bar {
   border-radius: 0;
 }
 
-/* line 470, ../sass/app.scss */
+/* line 473, ../sass/app.scss */
 .large-title {
   font-size: 3.25em;
   font-weight: normal;
 }
 
-/* line 476, ../sass/app.scss */
+/* line 479, ../sass/app.scss */
 .text-content h3 {
   margin-top: 0;
   color: #656565;
