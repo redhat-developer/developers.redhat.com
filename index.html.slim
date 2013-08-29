@@ -5,9 +5,9 @@ layout: base
 .row.slider-wrapper
   .slider#slider
     .swipe-wrap
-      .panel.large-12.slide Slide 1
-      .panel.large-12.slide Slide 2
-      .panel.large-12.slide Slide 3
+      .panel.large-24.slide Slide 1
+      .panel.large-24.slide Slide 2
+      .panel.large-24.slide Slide 3
   .slider-controls
     a.slider-prev(data-direction="prev")
       i.icon-angle-left.icon-4x
@@ -27,9 +27,9 @@ layout: base
 
 / Buzz and Event Updates
 .row.updates
-  .large-12.columns
+  .large-24.columns
     .row 
-      .large-4.columns
+      .large-8.columns
         h3 Buzz
         / Fake 5 Events
         - for update in [1,2,4,5]
@@ -39,7 +39,7 @@ layout: base
               i.icon-twitter
               | @jbossorg
             a.update-timestamp(href="#") 09/22/13  09:34PM
-      .large-4.columns
+      .large-8.columns
         h3 &nbsp;
         / Fake 5 Events
         - for update in [1,2,4,5]
@@ -51,7 +51,7 @@ layout: base
               i.icon-rss
               | Ray Ploski
             a.update-timestamp(href="#") 09/22/13  09:34PM
-      .large-4.columns
+      .large-8.columns
         h3 Events 
         - for update in [1,2,3]
           .update
