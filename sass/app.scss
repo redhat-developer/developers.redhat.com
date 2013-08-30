@@ -45,6 +45,13 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/images";
 @import "compass/css3/transform";
+@import "compass/css3/transition";
+
+
+// Import Our CSS Modules and mixins
+@import "mq-mixins";
+@import "jboss-mixins";
+@import "navigation";
 
 
 /*
@@ -116,15 +123,9 @@ header.main {
   h4 {
     font-style:italic;
   }
-  .sub-nav {
-    float: right;
-    margin-bottom: 10px;
-    a {
-      position: relative;
-      top:5px;
-    }
-  }
 }
+
+
 
 // search
 .search {
@@ -136,29 +137,7 @@ header.main {
   }
 }
 
-// Menus
-.top-bar {
-  border-top: 1px solid $grey-3;
-  border-bottom: 1px solid $grey-3;
-}
 
-.top-bar-section {
-  ul {
-    background: none;
-  }
-  .left {
-    a {
-      text-transform: uppercase;
-      margin-right: emCalc(40);
-    }
-  }
-  .right {
-    a {
-      color:$grey-4;
-      margin-left: emCalc(8);
-    }
-  }
-}
 
 // Dropdown
 .f-dropdown.content {
@@ -360,46 +339,6 @@ footer {
     }
   }
 }
-
-// Navigation
-.top-bar-section {
-  ul li:hover {
-    background:blue;
-    ul.dropdown {
-      display: block;
-      visibility: visible;
-    }
-  }
-  ul.dropdown {
-    width:auto;
-    border:1px solid $grey-3;
-    border-top:0;
-    li {
-      a {
-        font-size: emCalc(15);
-        color:$grey-7;
-        padding:1em;
-      }
-    }
-  }
-}
-
-  // Nav open state
-  body.nav-open {
-    overflow-x:hidden;
-    .wrapper {
-      position: relative;
-      left:70%;
-    }
-    nav.top-bar {
-      left: -70%;
-      width: 70%;
-      position: absolute;
-      top: 0;
-      z-index: 99;
-    }
-  }
-
 
 // call to action
 .cta {

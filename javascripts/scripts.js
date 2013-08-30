@@ -23,6 +23,21 @@ app.init = function() {
     e.preventDefault();
   })
 
+  /*
+    Toggle mobile Nav
+  */
+  $('.nav-toggle').click(function(){
+    $('body').toggleClass('nav-open');
+  });
+
+  /*
+    Mobile Nav dropdown
+  */ 
+  $('li.has-dropdown').on('click touchend',function(e){
+    $(this).toggleClass('sub-nav-open');
+  });
+
+
 };
 
 $(function() {
