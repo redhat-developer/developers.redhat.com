@@ -136,13 +136,7 @@ body.nav-open {
 .sub-nav {
   float: right;
   margin-bottom: 10px;
-  dd.home-link {
-    display: block;
-    float: left;
-    margin:0;
-    font-size: 25px;
-    width:10%;
-  }
+
   a {
     position: relative;
     top:5px;
@@ -155,7 +149,7 @@ body.nav-open {
 // Footer Nav (this is only shown on mobile)
 
 ul.footer-nav {
-  // display:none;
+  display:none;
   clear:both;
   background:none;
   text-align: right;
@@ -297,6 +291,13 @@ ul.footer-nav {
     padding:emCalc(18);
     padding-bottom: 0;
     margin-bottom: 10px;
+    dd.home-link {
+      display: block;
+      float: left;
+      margin:0;
+      font-size: 25px;
+      width:10%;
+    }
     dd.search-wrapper {
       clear:none;
       width:85%;
@@ -339,5 +340,7 @@ ul.footer-nav {
       }
     }
   }
+
+  ul.footer-nav {display: block;}
 
 }
