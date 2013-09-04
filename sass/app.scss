@@ -122,9 +122,26 @@ button, .button {
 header.main {
   h4 {
     font-style:italic;
+    color:$dark-blue;
+    font-size:emCalc(26);
+    font-weight: normal;
+    padding-top: 9px;
   }
 }
 
+h1.logo {
+  margin-top: 65px;
+  margin-bottom: 5px;
+  font-size: emCalc(52px);
+  a {
+    color:darken($dark-blue,5%);
+    font-weight: 100;
+    letter-spacing:-2px;
+    strong {
+      color:$dark-blue;
+    }
+  }
+}
 
 
 // search
@@ -141,8 +158,8 @@ header.main {
 
 // Dropdown
 .f-dropdown.content {
-  width:250px;
-  max-width:250px;
+  width:300px;
+  max-width:300px;
   border-radius: $global-radius;
   padding:20px;
   margin-left: -150px;
@@ -170,6 +187,17 @@ header.main {
   h4 {
     font-style: normal;
     margin-bottom: 0;
+    color:$dark-blue;
+  }
+  p {
+    margin:0;
+    font-size: emCalc(12);
+  }
+  p.sign-in-options {
+    padding:10px 0;
+  }
+  input[type=submit] {
+    margin-bottom: 10px;
   }
 }
 p.sign-in-options {
@@ -198,8 +226,9 @@ input[type="time"],
 input[type="url"],
 textarea {
   border-radius:$global-radius;
-  padding:emCalc(10) emCalc(14);
+  padding:emCalc(20) emCalc(14);
   font-size: 1em;
+  margin-bottom: 10px;
   &:focus {
     @include box-shadow(0 0 5px $link);
     border:1px solid $med-blue;

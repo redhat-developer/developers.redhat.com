@@ -23,7 +23,7 @@ nav.top-bar {
     li {
       a {
         text-transform: uppercase;
-        padding:20px;
+        padding:16px 20px;
         background:none;
         &:hover {
           background:$dark-blue;
@@ -88,6 +88,24 @@ nav.top-bar {
   dd.home-link {
     display: none;
   }
+  dd.login {
+    border-right:2px solid $dark-blue;
+    padding-right: 20px;
+    margin-right: 10px;
+  }
+  dd.login, dd.register {
+    line-height: 1;
+    a {
+      font-size: 1.2em;
+      color:$dark-blue;
+    }
+  }
+  dd.search-wrapper {
+    position: relative;
+    top:-18px;
+    margin-left: 20px;
+
+  }
   @include tablet-portrait-and-down {
     top:0;
     position: relative;
@@ -136,13 +154,8 @@ body.nav-open {
 .sub-nav {
   float: right;
   margin-bottom: 10px;
-
-  a {
-    position: relative;
-    top:5px;
-  }
   i {
-    margin-right: 2px;
+    margin-right: 6px;
   }
 }
 
@@ -303,6 +316,7 @@ ul.footer-nav {
       width:85%;
       float: right;
       margin:10px 0 20px 0;
+      top:-5px;
       input {
         width:100%;
         background:$grey-6;
@@ -325,6 +339,10 @@ ul.footer-nav {
     dd.login {
       margin-left: 0;
       float: left;
+      border-right:0;
+    }
+    dd.register, dd.login {
+      a {color:white; }
     }
     a {
       font-size: emCalc(20px);
