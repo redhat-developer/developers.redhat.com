@@ -74,6 +74,7 @@ button, .button {
   text-transform: uppercase;
   background: $med-green;
   text-transform: uppercase;
+  text-decoration: none;
   border:0;
   &:hover {
     background: $light-green;
@@ -112,8 +113,8 @@ button, .button {
     }
     &.active a, &:hover a, &.active a:first-child {
       color:white;
-      background:$link;
-      border-color:darken($link,5%);
+      background:$dark-blue;
+      border-color:darken($dark-blue,5%);
     }
   }
 }
@@ -197,6 +198,9 @@ h1.logo {
     padding:10px 0;
   }
   input[type=submit] {
+    font-size: 16px;
+    padding: 2px 17px;
+    height: auto;
     margin-bottom: 10px;
   }
 }
@@ -286,9 +290,14 @@ i[class*=icon].invert {
   padding-bottom: emCalc(20px);
 }
 
-footer {
+footer.bottom {
   background:$grey-7;
+  ul.footer-nav {
+    display: block;
+    margin-bottom: 0;
+  }
 }
+
 
 // Slider
 .slider-wrapper {
@@ -436,6 +445,42 @@ footer {
   }
 }
 
+
+// Widgets
+.widget {
+  margin-bottom: 40px;
+  ul {
+    list-style:none;
+    li {
+    }
+  }
+  a {
+    text-decoration: underline;
+    &.button {
+      text-decoration: none;
+      display: block;
+      width:100%;
+      text-align: center;
+      padding:1em 0; 
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
+   p {
+    font-size:emCalc(13);
+   }
+}
+h3.widget-title {
+  font-size:1em;
+}
+
+.alert {
+  color:$dark-red;
+  i {
+    padding-right:5px;
+  }
+}
 
 // Typography
 .large-title {

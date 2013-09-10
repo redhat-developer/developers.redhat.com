@@ -172,6 +172,15 @@ ul.footer-nav {
     font-size: 12px;
     display:inline;
     margin-right: 2px;
+    &.redhat a {
+      display: block;
+      background:url(../images/redhat_logo.png) center no-repeat;
+      width:77px;
+      height:25px;
+      text-indent: -9999px;
+      display: block;
+      color:transparent;
+    }
     a {
       background:none;
       font-size: 12px;

@@ -99,9 +99,13 @@ body
               li: a Report a problem
     .wrapper
       = content
-    footer
+    footer.bottom
       .row
-        p &copy; Organization #{Date.today.year}
+        ul.footer-nav
+          li.redhat: a Red Hat
+          li Site Help:
+          li: a FAQ
+          li: a Report a problem
 
   script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
   / jQuery fallback if CDN fails
