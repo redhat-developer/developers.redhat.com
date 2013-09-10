@@ -41,7 +41,7 @@
 # Now you're Awestruct with rake!
 
 $use_bundle_exec = true
-$install_gems = ['awestruct -v "~> 0.5.0"', 'rb-inotify -v "~> 0.9.0"']
+$install_gems = ['awestruct -v "~> 0.5.3"', 'rb-inotify -v "~> 0.9.0"']
 $awestruct_cmd = nil
 task :default => :preview
 
@@ -92,51 +92,25 @@ task :preview => :check do
   run_awestruct '-d'
 end
 
-desc 'Generate the site using the development profile'
-task :gen => :check do
-  run_awestruct '-P development -g --force'
+desc 'Generate the site using the defined profile, or development if none is given'
+task :gen, [:profile] => :check do |task, args|
+  run_awestruct "-P #{args[:profile] || 'development'} -g --force"
 end
 
 desc 'Push local commits to origin/master'
 task :push do
-  system 'git push origin master'
+  system 'git push --tags origin master'
 end
 
-#desc 'Generate the site and deploy to production'
-# TODO: This will need to be tweaked a bit for our site, we may need to shell out to a system command
-#task :deploy => [:check, :push] do
-  #run_awestruct '-P production -g --force --deploy'
-#end
+desc 'Tag the source files'
+task :tag, :tag_name do |task, args|
+  system "git tag #{args[:tag_name]}"
+end
 
-#desc 'Generate site from Travis CI and, if not a pull request, publish site to production (GitHub Pages)'
-#task :travis => :check do
-  ## if this is a pull request, do a simple build of the site and stop
-  #if ENV['TRAVIS_PULL_REQUEST'] == '1' || ENV['TRAVIS_PULL_REQUEST'] == 'true'
-    #run_awestruct '-P production -g'
-    #next
-  #end
-
-  #require 'yaml'
-
-  ## TODO use the Git library for these commands rather than system
-  #repo = %x(git config remote.origin.url).gsub(/^git:/, 'https:')
-  #system "git remote set-url --push origin #{repo}"
-  #system 'git remote set-branches --add origin master'
-  #system 'git fetch -q'
-  ##git_user = YAML.load_file('_config/git.yml')
-  ##system "git config user.name '#{git_user['name']}'"
-  ##system "git config user.email '#{git_user['email']}'"
-  #system "git config user.name '#{ENV['GIT_NAME']}'"
-  #system "git config user.email '#{ENV['GIT_EMAIL']}'"
-  #system 'git config credential.helper "store --file=.git/credentials"'
-  ## CREDENTIALS assigned by a Travis CI Secure Environment Variable
-  ## see http://about.travis-ci.org/docs/user/build-configuration/#Secure-environment-variables for details
-  #File.open('.git/credentials', 'w') {|f| f.write("https://#{ENV['GH_TOKEN']}:@github.com") }
-  #set_pub_dates 'develop'
-  #system 'git branch master origin/master'
-  #run_awestruct '-P production -g --deploy'
-  #File.delete '.git/credentials'
-#end
+desc 'Generate the site and deploy using the given profile'
+task :deploy, [:tag_name, :profile] => [:check, :tag, :push] do |task, args|
+  run_awestruct "-P #{args[:profile]} -g --force --deploy"
+end
 
 desc 'Clean out generated site and temporary files'
 task :clean, :spec do |task, args|
