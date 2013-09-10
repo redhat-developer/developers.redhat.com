@@ -25,7 +25,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="namespace" minOccures="1" maxOccures="unbounded" type="xs:string">
+      <xs:element name="namespace" minOccurs="1" maxOccurs="unbounded" type="xs:string">
         <xs:annotation>
           <xs:documentation>
             A Java package, namespace or unique naming convention exported from the project.
