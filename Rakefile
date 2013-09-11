@@ -119,12 +119,11 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   path = Shellwords.escape(deploy_config['path'])
   site_path = '_site' # HACK!!
 
-  cmd = "scp -C -r #{site_path}/* #{host}:#{path}"
+  cmd = "rsync -Pqacz --chmod=Dg+sx,ug+rw --protocol=28 --delete #{site_path}/ #{host}:#{path}"
 
-  msg 'Deploying website via scp'
+  msg 'Deploying website via rsync'
 
-  Open3.popen3( cmd ) do |stdin, stdout, stderr|
-    stdin.close
+  Open3.popen3( cmd ) do |_, stdout, stderr|
     threads = []
     threads << Thread.new(stdout) do |i|
       while ( ! i.eof? )
