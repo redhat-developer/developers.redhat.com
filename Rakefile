@@ -104,11 +104,11 @@ end
 
 desc 'Tag the source files'
 task :tag, :tag_name do |task, args|
-  system "git tag #{args[:tag_name]}"
+  system "git tag #{args[:tag_name]}" unless args[:tag_name].nil?
 end
 
 desc 'Generate the site and deploy using the given profile'
-task :deploy, [:tag_name, :profile] => [:check, :tag, :push] do |task, args|
+task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   run_awestruct "-P #{args[:profile]} -g --force --deploy"
 end
 
