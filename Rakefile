@@ -109,7 +109,35 @@ end
 
 desc 'Generate the site and deploy using the given profile'
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
-  run_awestruct "-P #{args[:profile]} -g --force --deploy"
+  run_awestruct "-P #{args[:profile]} -g --force"
+  require 'yaml'
+  require 'open3'
+  require 'shellwords'
+
+  deploy_config = YAML.load_file('_config/site.yml')['profiles'][args[:profile]]['deploy']
+  host = Shellwords.escape(deploy_config['host'])
+  path = Shellwords.escape(deploy_config['path'])
+  site_path = '_site' # HACK!!
+
+  cmd = "scp -C -r #{site_path}/* #{host}:#{path}"
+
+  msg 'Deploying website via scp'
+
+  Open3.popen3( cmd ) do |stdin, stdout, stderr|
+    stdin.close
+    threads = []
+    threads << Thread.new(stdout) do |i|
+      while ( ! i.eof? )
+        msg i.readline
+      end
+    end
+    threads << Thread.new(stderr) do |i|
+      while ( ! i.eof? )
+        msg i.readline, :error
+      end
+    end
+    threads.each{|t|t.join}
+  end 
 end
 
 desc 'Clean out generated site and temporary files'

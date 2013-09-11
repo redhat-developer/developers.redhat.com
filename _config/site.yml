@@ -1,6 +1,11 @@
 profiles:
   development:
   staging:
+    base_url: http://www-stg.jboss.org
+    deploy:
+      host: www@filemgmt.jboss.org
+      path: /stg_htdocs/www-stg
+      uncommitted: true
   production:
   wes:
     site_url: http://test.com:4242
