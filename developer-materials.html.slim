@@ -1,0 +1,179 @@
+---
+layout: base
+---
+.row
+  .large-23.columns
+    h2.large-title Developer Materials
+    ul.breadcrumbs
+      li
+        a href="" Getting Started
+      li
+        a href="" Developer Materials
+      / li
+      /   select
+      /     option JBoss Enterprise Application Platform
+      /     option Wes Bos Enterprise Application Platform
+      /     option Tony Danza Enterprise Application Platform
+.row
+  .large-6.columns
+    ul.side-nav
+      li
+        a(href="#") Overview
+      li.active
+        a(href="#") Developer Materials
+      li
+        a(href="#") Community
+      li
+        a(href="#") Download EAP
+
+    form.filters(method="GET" action="")
+      h4
+        | Filters
+        a.filters-clear(href="#") Clear All Filters
+      input(type="text" placeholder="Filter by keyword" name="filter-text")
+
+      .filter-block
+        h5 Rating
+        label(for="filter-rating")
+          input(type="radio" name="filter-rating" value="1")
+        label(for="filter-rating")
+          input(type="radio" name="filter-rating" value="2")
+        label(for="filter-rating")
+          input(type="radio" name="filter-rating" value="3")
+        label(for="filter-rating")
+          input(type="radio" name="filter-rating" value="4")
+        label(for="filter-rating")
+          input(type="radio" name="filter-rating" value="5")
+
+      .filter-block
+        select(name="filter-products")
+          option(value="") Products
+          option(value="") Another Product
+          option(value="") A Third!
+          option(value="") Keep it going
+          option(value="") Wes Bos
+
+        select(name="filter-projects")
+          option(value="") Projects
+          option(value="") Another project
+          option(value="") A Third!
+          option(value="") Keep it going
+          option(value="") Wes Bos
+
+      .filter-block
+        h5 Topics (34)
+        label
+          input(type="checkbox" name="filter-topic[]" value="EJBs")
+          | EJBs (10)
+        label
+          input(type="checkbox" name="filter-topic[]" value="CDI")
+          | CDI (10)
+        label
+          input(type="checkbox" name="filter-topic[]" value="OSGI")
+          | OSGI (10)
+        label
+          input(type="checkbox" name="filter-topic[]" value="Testing")
+          | Testing (10)
+
+      .filter-block
+        h5 Format(60)
+        label
+          input(type="checkbox" name="filter-format" value="")
+          | Archetypes(10)
+        label
+          input(type="checkbox" name="filter-format" value="")
+          | BOM(10)
+        label
+          input(type="checkbox" name="filter-format" value="")
+          | Quickstarts(10)
+        label
+          input(type="checkbox" name="filter-format" value="")
+          | Sandbox (unsupported)(10)
+        label
+          input(type="checkbox" name="filter-format" value="")
+          | Stacks(10)
+        label
+          input(type="checkbox" name="filter-format" value="")
+          | Video(10)
+
+      .filter-block
+        h5 Skill Level
+        input(type="range" name="filter-skill" onchange="this.setAttribute('value', this.value);" value="0" step="50" data-labels="Beginner,Intermediate,Advanced")
+        span.skill-display Beginner
+
+      .filter-block
+        h5 Publish Date (30)
+        label
+          input(type="checkbox" name="filter-publish-date" value="")
+          | All(10)
+        label
+          input(type="checkbox" name="filter-publish-date" value="")
+          | Last 24 Hours(10)
+        label
+          input(type="checkbox" name="filter-publish-date" value="")
+          | Last 7 days(10)
+        label
+          input(type="checkbox" name="filter-publish-date" value="")
+          | Last 30 days(10)
+        label
+          input(type="checkbox" name="filter-publish-date" value="")
+          | Last 365 days(10)
+
+      .filter-block
+        h5 Time Commitment
+        input(type="range" name="filter-time-commitment" onchange="this.setAttribute('value', this.value);" value="0" data-labels="1 Month, 3 Months, 6 Months, 9 Months, 1 Year, 1+ Year" step="20")
+        span.skill-display 1 Month 
+
+  .large-13.columns.text-content
+    h3 Featured 
+    .slider-wrapper
+      .slider#slider
+        .swipe-wrap
+          .slide
+            img(src="#{site.base_url}/#{site.context_url}/images/slider-image1.jpg")
+            .slider-label
+              h3: a This is the slider Title 1
+              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
+          .slide
+            img(src="#{site.base_url}/#{site.context_url}/images/slider-image2.jpg")
+            .slider-label
+              h3: a This is the slider Title 2
+              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
+
+          .slide
+            img(src="#{site.base_url}/#{site.context_url}/images/slider-image3.jpg")
+            .slider-label
+              h3: a This is the slider Title
+              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
+      .slider-pager
+    h3 JBoss Enterprises Application Platform (EAP)
+    
+
+  .large-4.columns.text-content
+    .widget
+      h3.widget-title EAP for Developers
+      a.button.shadow(href="#")
+        | Download
+        i.icon-download  
+    .widget
+      h3.widget-title Supported Solutions
+      ul
+        li: a(href="#") Contact Sales
+        li: a(href="#") Consulting Solutions
+        li: a(href="#") Get Support
+    .widget
+      h3.widget-title Product Name Training 
+      ul
+        li: a(href="#") Demo Title
+    .widget
+      h3.widget-title Featured Webinar Title
+      p.widget-description Lorem ipsum redhat rocks, conseume adispicse leium.
+      a.button.shadow(href="#")
+        | Register Now
+        i.icon-angle-right
+    .widget
+      h3.widget-title Report a Problem
+      p.widget-description Found a security vulnerability?
+      a.alert
+        i.icon-warning-sign 
+        | Report it here &rarr;

@@ -94,6 +94,7 @@ button, .button {
   padding:0;
   border-radius:$global-radius;
   overflow: hidden;
+  margin-bottom: 20px;
   li {
     margin:0;
     a {
@@ -305,7 +306,44 @@ footer.bottom {
   .slider {
     overflow: hidden;
     .slide {
-      height:403px;
+      position: relative;
+    }
+  }
+
+  .slider-label {
+    position: absolute;
+    background:#000;
+    background:rgba(0,0,0,0.5);
+    bottom:0;
+    padding:10px;
+    color:white;
+    padding-right: 150px;
+    h3 {
+      font-size: emCalc(18);
+      margin-bottom: 0;
+      a {
+        color:white;
+      }
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .slider-pager {
+    position: absolute;
+    right:15px;
+    bottom:15px;
+    a {
+      display: inline-block;
+      background:$grey-7;
+      width: 10px;
+      height: 10px;
+      text-indent: -9999px;
+      margin:4px;
+      border-radius: 50%;
+      &.slider-pager-active {
+        background:white;
+      }
     }
   }
 }
@@ -492,5 +530,115 @@ h3.widget-title {
   h3 {
     margin-top: 0;
     color:$grey-6;
+  }
+}
+
+// Form Elements
+input[type=checkbox],input[type=radio] {
+  margin:0 0 5px 0;
+}
+
+// Range
+
+input[type=range] {
+    position: relative;
+    -webkit-appearance: none;
+    width: 200px;
+    height:12px;
+    border:1px solid #d5d5d5;
+    border-radius:9px;
+    background: #eeeeee; /* Old browsers */
+    background-color: #ffffff; // Old browsers
+    @include filter-gradient(#ffffff, #ececec, vertical); // IE6-9
+    @include background-image(linear-gradient(top,  #ffffff 0%,#fcfcfc 33%,#f9f9f9 33%,#f9f9f9 44%,#f6f6f6 45%,#f4f4f4 67%,#f1f1f1 67%,#f1f1f1 78%,#eeeeee 78%,#ececec 100%));
+}
+
+
+// These pseudo selectors cannot be in the same selector so we need to output it 4 times
+$prefixes : -webkit-slider-thumb -moz-slider-thumb -ms-slider-thumb slider-thumb;
+
+@each $prefix in $prefixes {
+  input[type="range"]::#{$prefix} {
+       -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius:50%;
+      background:#336799;
+      position: relative;
+      z-index: 2;
+  }
+}
+
+input[type=range]:focus, input[type=range]:active {outline:0;}
+
+input[type=range]:before {
+    content : '';
+    display:block;
+    background:#d5d5d5;
+    position:absolute;
+    height:12px;
+    left:0;
+    border-radius:9px;
+}
+
+@for $i from 0 through 100 {
+    input[type=range][value="#{$i}"]:before {
+      width: $i * 1%;
+    }
+}
+
+span.skill-display {
+  display: block;
+  width:100%;
+  clear: both;
+  font-size: 11px;
+  padding-top: 10px;
+}
+
+label[for="filter-rating"] {
+  display: block;
+  float: left;
+  width:20px;
+  height:20px;
+  position: relative;
+  &:hover {
+    color:#eac84c;
+    cursor:pointer;
+  }
+  &:before {
+    position: absolute;
+    content: "\f006";
+    font-family: 'FontAwesome';
+  }
+  &.filter-rating-active:before {
+    color:#eac84c;
+    content: "\f005";
+  }
+  input[type=radio] {
+    display: block;
+    width:20px;
+    height:20px;
+    z-index: 99;
+    position: relative;
+    opacity:0;
+  }
+}
+
+form.filters {
+  h5 {
+    margin-bottom: 5px;
+  }
+  .filter-block {
+    margin-bottom: 20px;
+  }
+  input[type=text] {
+    padding:6px;
+  }
+  a.filters-clear {
+    font-size: 14px;
+    text-decoration: underline;
+    padding-left: 5px;
+    position: relative;
+    top:-2px;
   }
 }
