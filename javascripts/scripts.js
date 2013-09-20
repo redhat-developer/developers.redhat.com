@@ -17,7 +17,7 @@ app.init = function() {
   */
   
     app.slider = Swipe(document.getElementById('slider'), {
-      auto : 3000,
+      auto : 0,
       transitionEnd : function() {
         var idx = app.slider.getPos();
         $('.slider-pager-active').removeClass('slider-pager-active');

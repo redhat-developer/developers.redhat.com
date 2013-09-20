@@ -125,7 +125,7 @@ layout: base
         span.skill-display 1 Month 
 
   .large-13.columns.text-content
-    h3 Featured 
+    h3.divider Featured 
     .slider-wrapper
       .slider#slider
         .swipe-wrap
@@ -146,7 +146,33 @@ layout: base
               h3: a This is the slider Title
               p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
       .slider-pager
-    h3 JBoss Enterprises Application Platform (EAP)
+    
+    h3.divider JBoss Enterprises Application Platform (EAP)
+    ul.small-block-grid-2.large-block-grid-3
+      |
+      - for material in [video,sandbox,video,archetype,archetype,sandbox,video,video]
+        li.material
+          a(href="#")
+            img(src="/images/materials-thumb1.jpg")
+          span.label.material-duration 04:54
+          span.label.material-level-beginner Beginner
+          h4: a(href="#") JBoss EAP 6 Administration 
+          p.author
+            | Author: 
+            a(href="#") John Smith
+          p.material-datestamp Added 28 2014 9:15pm
+          p.rating
+            | Video
+            i.icon-star
+            i.icon-star
+            i.icon-star
+            i.icon-star-half-empty
+            i.icon-star-empty
+          .body
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
+
+
+
     
 
   .large-4.columns.text-content
