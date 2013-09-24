@@ -5,9 +5,12 @@ layout: base
 .row.slider-wrapper
   .slider#slider
     .swipe-wrap
-      .panel.large-24.slide Slide 1
-      .panel.large-24.slide Slide 2
-      .panel.large-24.slide Slide 3
+      .large-24.slide
+        img(src="/images/home_slide1.png")
+      .large-24.slide
+        img(src="/images/home_slide1.png")
+      .large-24.slide
+        img(src="/images/home_slide1.png")
   .slider-controls
     a.slider-prev(data-direction="prev")
       i.icon-angle-left.icon-4x
@@ -32,30 +35,95 @@ layout: base
       .large-8.columns
         h3 Buzz
         / Fake 5 Events
-        - for update in [1,2,4,5]
+        - for update in [1,2,3]
           .update.pinned
-            p Restart of Nexus: 2013-03-28 15:00 UTC. The website http://hi.com will be shortly unavailable.
-            a.update-source(href="#")
-              i.icon-twitter
-              | @jbossorg
-            a.update-timestamp(href="#") 09/22/13  09:34PM
+            .update-meta
+              a.update-timestamp(href="#") 09/22/13  09:34PM
+              a.update-source(href="#")
+                i.icon-twitter
+                | @jbossorg said:
+            .update-body
+              p
+                - if update == 2
+                  img.avatar(src="https://si0.twimg.com/profile_images/378800000448728494/78825ea3f5e00da1a7e1b1c746a50dde_bigger.jpeg")
+                | Restart of Nexus: 2013-03-28 15:00 UTC. The website http://hi.com will be shortly unavailable.
+            .update-meta
+              - if update == 3
+                .update-comment-count
+                  a(href="#") 3 Comments
+              .update-get-social
+                a(href="#")
+                  |
+                  i.icon-facebook
+                a(href="#")
+                  |
+                  i.icon-twitter
+                a(href="#")
+                  |
+                  i.icon-linkedin
+                a(href="#")
+                  |
+                  i.icon-google-plus
       .large-8.columns
         h3 &nbsp;
         / Fake 5 Events
-        - for update in [1,2,4,5]
+        - for update in [1,2,3]
           .update
-            h5
-              a jBoss EAP 6.1.0 Alpha is Out!
-            p JBoss EAP 6.1.0 has been released under the new $0 subscription model to allow more…
-            a.update-source(href="#")
-              i.icon-rss
-              | Ray Ploski
-            a.update-timestamp(href="#") 09/22/13  09:34PM
+            .update-meta
+              a.update-timestamp(href="#") 09/22/13  09:34PM
+              a.update-source(href="#")
+                i.icon-twitter
+                | @jbossorg said:
+            .update-body
+              - if update == 2
+                h5: a Red Hat JBoss Data Grid is now at version 3.1
+              p
+                - if update == 1
+                  img.avatar(src="https://si0.twimg.com/profile_images/378800000448728494/78825ea3f5e00da1a7e1b1c746a50dde_bigger.jpeg")
+                | JBoss EAP 6.1.0 has been released under the new $0 subscription released under the new $0 subscription model to allow model.
+            .update-meta
+              - if update == 3
+                .update-comment-count
+                  a(href="#") 3 Comments
+              .update-get-social
+                a(href="#")
+                  |
+                  i.icon-facebook
+                a(href="#")
+                  |
+                  i.icon-twitter
+                a(href="#")
+                  |
+                  i.icon-linkedin
+                a(href="#")
+                  |
+                  i.icon-google-plus
       .large-8.columns
         h3 Events 
         - for update in [1,2,3]
           .update
+            .update-date
+              span.month Sep
+              -if update == 1
+                span.day 19 
+              - else
+                span.days 25-29
             h5
-              a JUDCon2013:Brazil < Register Today!
+              a JUDCon2013:Brazil
             p.update-subtext Sau Paulo Brazil: April 19 & 20
-            p The JBoss Users and Developers Conferences are developer gatherings held around the Globe to give JBoss users the chance to talk to
+            .update-body
+              p The JBoss Users and Developers Conferences are developer gatherings held around the Globe to give JBoss users the chance to talk to
+            .update-meta
+              .update-get-social
+                a(href="#")
+                  |
+                  i.icon-facebook
+                a(href="#")
+                  |
+                  i.icon-twitter
+                a(href="#")
+                  |
+                  i.icon-linkedin
+                a(href="#")
+                  |
+                  i.icon-google-plus

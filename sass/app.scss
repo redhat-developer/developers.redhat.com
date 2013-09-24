@@ -80,7 +80,7 @@ button, .button {
     background: $light-green;
   }
   &.shadow {
-    box-shadow:3px 3px 0 $grey-7;
+    box-shadow:2px 2px 0 $grey-7;
   }
 }
 
@@ -118,6 +118,12 @@ button, .button {
       border-color:darken($dark-blue,5%);
     }
   }
+}
+
+// body
+body {
+  background:url(../images/bg-for-replacement.png) top center no-repeat;
+  background-size:100% auto;
 }
 
 // Header
@@ -307,6 +313,7 @@ footer.bottom {
     overflow: hidden;
     .slide {
       position: relative;
+      background:white;
     }
   }
 
@@ -366,14 +373,19 @@ footer.bottom {
   a {
     position: absolute;
     top:50%;
-    margin-top: -100px;
-    font-size: emCalc(40);
-    color:$med-green;
+    margin-top: -60px;
+    font-size: 2em;
+    color:$light-green;
+    font-weight:600;
+    text-shadow:0 2px 0 $med-green;
     &.slider-prev {
-      left:-100px;
+      left:-75px;
     }
     &.slider-next {
-      right:-100px;
+      right:-75px;
+    }
+    i {
+      font-weight: 600;
     }
   }
 }
@@ -382,17 +394,62 @@ footer.bottom {
 .update {
   padding-right: 1em;
   margin-bottom: 20px;
+  float: left;
+  width:100%;
   p {
     margin-bottom: 0;
   }
   .update-source {
     font-size:emCalc(13);
-    color:$grey-5;
   }
   .update-timestamp {
     float:right;
     font-size:emCalc(13);
     color:$grey-5;
+  }
+  .update-get-social {
+    float: right;
+    a {
+      color:$grey-4;
+      margin:0 3px;
+    }
+  }
+  .update-comment-count {
+    float: left;
+    a {
+      font-size: 11px;
+    }
+  }
+  .update-body {
+    padding-bottom: 10px;
+  }
+  .update-subtext {
+    font-size:13px;
+    color:$grey-5;
+  }
+  .update-date {
+    width:70px;
+    height:70px;
+    background:$light-blue;
+    float:left;
+    text-align: center;
+    color:$med-blue;
+    padding:10px;
+    margin-right:15px;
+    margin-bottom: 5px;
+    span {
+      display: block;
+      clear:both;
+      width:100%;
+      font-size: 20px;
+      &.days {
+        font-size: 18px;
+        padding-top: 10px;
+      }
+      &.day {
+        font-size: 32px;
+      }
+    }
   }
   i[class*=icon] {
     margin-right: 3px;
@@ -414,17 +471,43 @@ footer.bottom {
 
     }
   }
+  img.avatar {
+    float: left;
+    margin-right: 10px;
+  }
+  .update-meta:first-child {
+    margin-bottom: 10px;
+  }
 }
 
 // call to action
 .cta {
   border-radius:$global-radius;
   background:$grey-2;
-  padding:emCalc(64);
+  color:$grey-7;
+  padding:3% 4%;
   width:48%;
   float: left;
+  margin-bottom: 20px;
   &:first-child {
     margin-right:4%;
+  }
+  h2 {
+    margin: 0;
+    font-size: emCalc(50);
+    color:$grey-7;
+    font-weight: normal;
+  }
+  p {
+    font-size: emCalc(32);
+    color:$grey-6;
+    font-style: italic;
+    margin: 0;
+  }
+  .button {
+    float: right;
+    background:$med-blue;
+    box-shadow: inherit inherit inherit #000;
   }
 }
 
@@ -534,6 +617,8 @@ h3.widget-title {
 }
 
 h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+  color:$grey-7;
   &.divider {
     border-bottom: 1px solid $grey-3;
     margin-bottom: 20px;
