@@ -136,6 +136,13 @@ app.init = function() {
     // Make the slider for this overlay work
     app.createSlider(overlay.find('.slider'));
 
+    // Bind to close it
+    $('body').on('click','.fn-close-overlay',function(e) {
+      e.preventDefault();
+      $('.solution-overlays').hide();
+      $('.solution-open').removeClass('solution-open');
+    });
+
   })
 
 };
