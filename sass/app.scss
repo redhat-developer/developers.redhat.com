@@ -123,6 +123,8 @@ button, .button {
   }
 }
 
+.col {float:left}
+
 // body
 body {
   background:url(../images/bg-for-replacement.png) top center no-repeat;
@@ -972,7 +974,14 @@ $arrow-size : 20px;
   color: #000;
 }
 
-
+// Upstream Projects
+li.upstream {
+  a.image-link {
+    img {
+      border:1px solid $grey-5;
+    }
+  }
+}
 
 // Mobile!
 @import "mobile";

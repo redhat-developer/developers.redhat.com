@@ -1,0 +1,34 @@
+---
+layout: base
+---
+.row
+  .large-24.columns.panel
+    p banner!
+.row
+  ul.large-block-grid-4.small-block-grid-2.block-nav
+    li: a.large-6.small-12 Supported Products
+    li: a.current-page.large-6.small-12 Upstream Projects
+    li: a.large-6.small-12 Solutions
+    li: a.large-6.small-12 Community Powered Innovation
+.row
+  .large-6.col
+    p HI
+  .large-18.col
+    h2.section-header
+      | All Projects
+      span.label.rounded 42
+    ul.large-block-grid-4.small-block-grid-2
+      - for solution in [1,2,3,4,5,6,7,8] 
+        li.upstream(data-open-solution="#{solution}")
+          a.image-link: img(src="#{site.base_url}/#{site.context_url}/images/solution-#{solution}.png")
+           a.solution-name-link(href="#")
+            h3.solution-name Solution # #{solution}
+          span.update-date Last Update: August 13, 2013
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu.
+          a.upstream-download
+            i.icon-download-alt
+            | Download
+          a.upstream-view-more(href="#")
+            | View More
+            i.icon-plus-sign-alt
+
