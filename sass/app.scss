@@ -630,6 +630,7 @@ h3.widget-title {
   font-weight: normal;
 }
 
+
 .text-content {
   h3 {
     margin-top: 0;
@@ -645,6 +646,10 @@ h1,h2,h3,h4,h5,h6 {
     margin-bottom: 20px;
     padding-bottom: 5px;
     font-weight: 100;
+  }
+  span.label {
+    border-radius: $global-radius;
+    margin-left: 10px;
   }
 }
 
@@ -976,10 +981,46 @@ $arrow-size : 20px;
 
 // Upstream Projects
 li.upstream {
+    font-size: emCalc(13);
   a.image-link {
     img {
       border:1px solid $grey-5;
     }
+  }
+  a.upstream-toggle-more {
+    display: block;
+    clear:both;
+    margin-top: 5px;
+    span.view-less { display: none; }
+    &.upstream-toggle-open {
+      span.view-less { display: inline; }
+      span.view-more { display: none; }
+    }
+    i {
+      margin-left: 5px;
+    }
+  }
+  .upstream-more-content {
+    display: none;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+  h3 {
+    color:$link;
+    font-weight: 600;
+    font-size: emCalc(24);
+    margin:10px 0;
+  }
+}
+
+ul.external-links {
+  list-style:none;
+  margin:0;
+  li a:after {
+    content: "\f08e";
+    font-family: FontAwesome;
+    margin-left: 4px;
   }
 }
 

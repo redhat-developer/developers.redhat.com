@@ -31,7 +31,7 @@ app.init = function() {
 
       for (var i = 0; i < numSlides; i++) {
         pagerHtml+="<a href='#"+i+"'>"+(i+1)+"</a>";
-      };
+      }
 
       $('.slider-pager').html(pagerHtml);
       $('.slider-pager a:first').addClass('slider-pager-active');
@@ -145,6 +145,18 @@ app.init = function() {
 
   })
 
+
+  /*
+    Upstream Solutions
+  */
+  $('.upstream-toggle-more').on('click',function(e){
+    e.preventDefault();
+    var el = $(this);
+
+    el.toggleClass('upstream-toggle-open');
+    el.prev('.upstream-more-content').slideToggle();
+  });
+
 };
 
 
@@ -159,7 +171,7 @@ app.clearFilters = function($el) {
   });
   $('form.filters input:checked').removeAttr('checked');
   $('.filter-rating-active').removeClass('filter-rating-active');
-}
+};
 
 app.createSlider = function($el) {
   var slider = Swipe($el[0], {
@@ -187,7 +199,7 @@ app.createSlider = function($el) {
 
 
   return slider;
-}
+};
 
 $(function() {
   app.init();

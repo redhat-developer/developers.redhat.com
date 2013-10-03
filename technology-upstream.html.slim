@@ -2,21 +2,47 @@
 layout: base
 ---
 .row
-  .large-24.columns.panel
+  .large-24.column
     p banner!
 .row
-  ul.large-block-grid-4.small-block-grid-2.block-nav
-    li: a.large-6.small-12 Supported Products
-    li: a.current-page.large-6.small-12 Upstream Projects
-    li: a.large-6.small-12 Solutions
-    li: a.large-6.small-12 Community Powered Innovation
+  .large-24.column
+    ul.large-block-grid-4.small-block-grid-2.block-nav
+      li: a.large-6.small-12 Supported Products
+      li: a.current-page.large-6.small-12 Upstream Projects
+      li: a.large-6.small-12 Solutions
+      li: a.large-6.small-12 Community Powered Innovation
 .row
-  .large-6.col
-    p HI
-  .large-18.col
-    h2.section-header
+  .large-6.column
+    form.filters(method="GET" action="")
+      h4
+        | Filters
+        a.filters-clear(href="#") Clear All Filters
+      input(type="text" placeholder="Filter by keyword" name="filter-text")
+
+      .filter-block
+        
+        h5 Show Me
+        .styled-select
+          select(name="filter-showme")
+            option(value="") All
+            option(value="") Another Product
+            option(value="") A Third!
+            option(value="") Keep it going
+            option(value="") Wes Bos
+
+        h5 Included In
+        .styled-select
+          select(name="filter-products")
+            option(value="") Projects
+            option(value="") Another project
+            option(value="") A Third!
+            option(value="") Keep it going
+            option(value="") Wes Bos
+
+  .large-18.column
+    h2.divider
       | All Projects
-      span.label.rounded 42
+      span.label 42
     ul.large-block-grid-4.small-block-grid-2
       - for solution in [1,2,3,4,5,6,7,8] 
         li.upstream(data-open-solution="#{solution}")
@@ -27,8 +53,21 @@ layout: base
           p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu.
           a.upstream-download
             i.icon-download-alt
-            | Download
-          a.upstream-view-more(href="#")
-            | View More
-            i.icon-plus-sign-alt
+            |  Download
+          .upstream-more-content
+            p.product-links
+              | Included in Product(s) <br>
+              a(href="#") RedHat JBoss Enterprise Application Server
+              a(href="#") RedHat JBoss Data Visualization
+            ul.external-links
+              - for link in [1,2,3,4,5,6,7,8] 
+                li: a(href="#") Link #{link}
+          a.upstream-toggle-more(href="#")
+            span.view-more
+              | View More
+              i.icon-plus-sign-alt
+            span.view-less
+              | View Less
+              i.icon-minus-sign-alt
+
 
