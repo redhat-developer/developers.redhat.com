@@ -9412,70 +9412,112 @@ form.filters a.filters-clear {
   top: -2px;
 }
 
+/* line 766, ../sass/app.scss */
+.styled-select {
+  background: #fff;
+  border: 1px solid #afb1b2;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+}
+/* line 772, ../sass/app.scss */
+.styled-select:after {
+  border-left: 1px solid #afb1b2;
+  content: "\f0d7";
+  font-family: 'FontAwesome';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 10px;
+  z-index: 1;
+}
+/* line 782, ../sass/app.scss */
+.styled-select select {
+  background: transparent;
+  font-size: 16px;
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  padding: 7px;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  /* Hacks to style dropdown */
+  -webkit-appearance: none;
+  -moz-appearance: window;
+}
+/* line 795, ../sass/app.scss */
+.styled-select select:focus, .styled-select select:active {
+  outline: 0;
+  border: 0;
+  outline: 1px solid white;
+  outline-offset: -2px;
+}
+
 /* Material Page */
-/* line 770, ../sass/app.scss */
+/* line 808, ../sass/app.scss */
 .material img {
   padding: 5px;
   box-shadow: 0 0 5px #ccc;
   border: 1px solid #d5d5d5;
   margin-bottom: 7px;
 }
-/* line 776, ../sass/app.scss */
+/* line 814, ../sass/app.scss */
 .material .label {
   float: right;
   margin-left: 10px;
   border-radius: 5px;
   line-height: 1.3;
 }
-/* line 781, ../sass/app.scss */
+/* line 819, ../sass/app.scss */
 .material .label.material-level-beginner {
   background: #a5aa4d;
 }
-/* line 782, ../sass/app.scss */
+/* line 820, ../sass/app.scss */
 .material .label.material-level-intermediate {
   background: #94aebd;
 }
-/* line 783, ../sass/app.scss */
+/* line 821, ../sass/app.scss */
 .material .label.material-level-advanced {
   background: #7b1e1e;
 }
-/* line 785, ../sass/app.scss */
+/* line 823, ../sass/app.scss */
 .material h4 {
   clear: both;
 }
-/* line 788, ../sass/app.scss */
+/* line 826, ../sass/app.scss */
 .material p {
   margin: 0;
   font-size: 0.875em;
 }
-/* line 792, ../sass/app.scss */
+/* line 830, ../sass/app.scss */
 .material p.author a {
   text-decoration: underline;
 }
-/* line 796, ../sass/app.scss */
+/* line 834, ../sass/app.scss */
 .material p.material-datestamp {
   font-size: 0.6875em;
 }
-/* line 799, ../sass/app.scss */
+/* line 837, ../sass/app.scss */
 .material p.rating {
   text-transform: uppercase;
   color: #000;
   margin: 5px 0;
 }
-/* line 803, ../sass/app.scss */
+/* line 841, ../sass/app.scss */
 .material p.rating i:first-child {
   margin-left: 5px;
 }
-/* line 808, ../sass/app.scss */
+/* line 846, ../sass/app.scss */
 .material i {
   color: #afb1b2;
 }
-/* line 811, ../sass/app.scss */
+/* line 849, ../sass/app.scss */
 .material i.icon-star, .material i.icon-star-half-empty {
   color: #eac663;
 }
 
-/* line 816, ../sass/app.scss */
+/* line 854, ../sass/app.scss */
 .label {
   background: #afb1b2;
   color: white;
@@ -9483,11 +9525,11 @@ form.filters a.filters-clear {
   font-size: 0.75em;
 }
 
-/* line 825, ../sass/app.scss */
+/* line 863, ../sass/app.scss */
 .block-nav li {
   display: table;
 }
-/* line 828, ../sass/app.scss */
+/* line 866, ../sass/app.scss */
 .block-nav a {
   display: block;
   -webkit-transition: all 0.2s;
@@ -9508,18 +9550,18 @@ form.filters a.filters-clear {
   height: 120px;
   text-transform: uppercase;
 }
-/* line 844, ../sass/app.scss */
+/* line 882, ../sass/app.scss */
 .block-nav a:hover, .block-nav a.current-page {
   background-color: #94aebd;
   border-color: #94aebd;
 }
 
-/* line 852, ../sass/app.scss */
+/* line 890, ../sass/app.scss */
 .solution {
   margin-bottom: 20px;
   position: relative;
 }
-/* line 855, ../sass/app.scss */
+/* line 893, ../sass/app.scss */
 .solution img {
   width: 100%;
   -webkit-transition: all 0.7s;
@@ -9527,13 +9569,13 @@ form.filters a.filters-clear {
   -o-transition: all 0.7s;
   transition: all 0.7s;
 }
-/* line 859, ../sass/app.scss */
+/* line 897, ../sass/app.scss */
 .solution a.image-link {
   float: left;
   width: 100%;
   overflow: hidden;
 }
-/* line 864, ../sass/app.scss */
+/* line 902, ../sass/app.scss */
 .solution .solution-name {
   width: 100%;
   text-align: center;
@@ -9547,11 +9589,11 @@ form.filters a.filters-clear {
   z-index: 999;
   clear: both;
 }
-/* line 876, ../sass/app.scss */
+/* line 914, ../sass/app.scss */
 .solution .solution-name a {
   color: white;
 }
-/* line 880, ../sass/app.scss */
+/* line 918, ../sass/app.scss */
 .solution:hover img {
   -webkit-transform: rotate(-3deg) scale(1.3);
   -moz-transform: rotate(-3deg) scale(1.3);
@@ -9559,7 +9601,7 @@ form.filters a.filters-clear {
   -o-transform: rotate(-3deg) scale(1.3);
   transform: rotate(-3deg) scale(1.3);
 }
-/* line 886, ../sass/app.scss */
+/* line 924, ../sass/app.scss */
 .solution.solution-open .solution-name-link {
   position: absolute;
   padding-left: 0.625em;
@@ -9572,7 +9614,7 @@ form.filters a.filters-clear {
   top: 0;
   right: 0;
 }
-/* line 898, ../sass/app.scss */
+/* line 936, ../sass/app.scss */
 .solution.solution-open .solution-name {
   margin: 0;
   background: rgba(74, 93, 117, 0.76);
@@ -9586,12 +9628,12 @@ form.filters a.filters-clear {
   transition: all 0.4s;
 }
 
-/* line 911, ../sass/app.scss */
+/* line 949, ../sass/app.scss */
 .solutions-row {
   position: relative;
 }
 
-/* line 914, ../sass/app.scss */
+/* line 952, ../sass/app.scss */
 .solution-overlays {
   display: none;
   position: absolute;
@@ -9602,7 +9644,7 @@ form.filters a.filters-clear {
   -o-transition: all 0.4s;
   transition: all 0.4s;
 }
-/* line 920, ../sass/app.scss */
+/* line 958, ../sass/app.scss */
 .solution-overlays span.arrow {
   display: block;
   width: 0;
@@ -9619,7 +9661,7 @@ form.filters a.filters-clear {
   -o-transition: left 0.4s;
   transition: left 0.4s;
 }
-/* line 932, ../sass/app.scss */
+/* line 970, ../sass/app.scss */
 .solution-overlays span.arrow:before {
   display: block;
   content: '';
@@ -9633,7 +9675,7 @@ form.filters a.filters-clear {
   z-index: 2;
 }
 
-/* line 946, ../sass/app.scss */
+/* line 984, ../sass/app.scss */
 .solution-overlay {
   width: 95%;
   border: 1px solid black;
@@ -9641,30 +9683,30 @@ form.filters a.filters-clear {
   background: white;
   position: relative;
 }
-/* line 952, ../sass/app.scss */
+/* line 990, ../sass/app.scss */
 .solution-overlay .solution-meta {
   margin: 0;
   font-weight: 600;
 }
 
-/* line 958, ../sass/app.scss */
+/* line 996, ../sass/app.scss */
 .solutions-slider-controls {
   margin-top: 10px;
   font-size: 1.25em;
 }
-/* line 961, ../sass/app.scss */
+/* line 999, ../sass/app.scss */
 .solutions-slider-controls i {
   font-size: 30px;
   margin: 0 5px;
   position: relative;
   top: 3px;
 }
-/* line 967, ../sass/app.scss */
+/* line 1005, ../sass/app.scss */
 .solutions-slider-controls span {
   margin: 0 3px;
 }
 
-/* line 972, ../sass/app.scss */
+/* line 1010, ../sass/app.scss */
 .fn-close-overlay {
   position: absolute;
   top: -12px;
@@ -9675,45 +9717,45 @@ form.filters a.filters-clear {
   color: #000;
 }
 
-/* line 983, ../sass/app.scss */
+/* line 1021, ../sass/app.scss */
 li.upstream {
   font-size: 0.8125em;
 }
-/* line 986, ../sass/app.scss */
+/* line 1024, ../sass/app.scss */
 li.upstream a.image-link img {
   border: 1px solid #8c8f91;
 }
-/* line 990, ../sass/app.scss */
+/* line 1028, ../sass/app.scss */
 li.upstream a.upstream-toggle-more {
   display: block;
   clear: both;
   margin-top: 5px;
 }
-/* line 994, ../sass/app.scss */
+/* line 1032, ../sass/app.scss */
 li.upstream a.upstream-toggle-more span.view-less {
   display: none;
 }
-/* line 996, ../sass/app.scss */
+/* line 1034, ../sass/app.scss */
 li.upstream a.upstream-toggle-more.upstream-toggle-open span.view-less {
   display: inline;
 }
-/* line 997, ../sass/app.scss */
+/* line 1035, ../sass/app.scss */
 li.upstream a.upstream-toggle-more.upstream-toggle-open span.view-more {
   display: none;
 }
-/* line 999, ../sass/app.scss */
+/* line 1037, ../sass/app.scss */
 li.upstream a.upstream-toggle-more i {
   margin-left: 5px;
 }
-/* line 1003, ../sass/app.scss */
+/* line 1041, ../sass/app.scss */
 li.upstream .upstream-more-content {
   display: none;
 }
-/* line 1006, ../sass/app.scss */
+/* line 1044, ../sass/app.scss */
 li.upstream p {
   margin-bottom: 10px;
 }
-/* line 1009, ../sass/app.scss */
+/* line 1047, ../sass/app.scss */
 li.upstream h3 {
   color: #326895;
   font-weight: 600;
@@ -9721,12 +9763,12 @@ li.upstream h3 {
   margin: 10px 0;
 }
 
-/* line 1017, ../sass/app.scss */
+/* line 1055, ../sass/app.scss */
 ul.external-links {
   list-style: none;
   margin: 0;
 }
-/* line 1020, ../sass/app.scss */
+/* line 1058, ../sass/app.scss */
 ul.external-links li a:after {
   content: "\f08e";
   font-family: FontAwesome;

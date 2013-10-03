@@ -763,6 +763,44 @@ form.filters {
   }
 }
 
+.styled-select {
+  background:#fff;
+  border:1px solid $grey-4;
+  border-radius:$global-radius;
+  position: relative;
+  cursor:pointer;
+  &:after {
+    border-left: 1px solid $grey-4;;
+    content: "\f0d7";
+    font-family:'FontAwesome';
+    position: absolute;
+    top:0;
+    right:0;
+    padding: 7px 10px;
+    z-index: 1;
+  }
+  select {
+    background: transparent;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    padding:7px;
+    margin:0;
+    position: relative;
+    z-index: 2;
+    /* Hacks to style dropdown */
+    -webkit-appearance: none;
+    -moz-appearance: window;
+    &:focus, &:active {
+      outline:0;
+      border:0;
+      outline: 1px solid white;
+      outline-offset: -2px;
+    }
+  }
+}
+
 
 /* Material Page */
 
