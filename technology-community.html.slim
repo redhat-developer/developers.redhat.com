@@ -1,0 +1,94 @@
+---
+layout: base
+---
+.row
+  .large-23.columns
+    h2.large-title Red Hat Enterprise Application Platform
+    ul.breadcrumbs
+      li: a href="" Technology
+      li: a href="" Supported Products
+      li: a href="" JBoss Enterprise Application Platform
+      li: a href="" Resources
+.row.content
+  .large-6.columns
+    ul.side-nav
+      li: a(href="technology-overview.html") Overview
+      li: a(href="technology-resources.html") Resources
+      li: a(href="developer-materials.html") Developer Materials
+      li.active: a(href="technology-community.html") Community
+      li: a(href="download-eap-html") Download EAP
+  .large-13.columns.text-content
+    h2.divider Community
+    
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed felis vel mauris consectetur pretium. Vivamus semper nulla at risus laoreet blandit. Morbi at sapien at risus scelerisque luctus. Etiam pharetra est nec mi euismod, a faucibus nulla convallis. Nam non venenatis mi. Suspendisse ornare auctor velit vitae faucibus. Sed laoreet euismod odio sed euismod. Maecenas et diam ligula. Vestibulum congue metus odio, et euismod nulla lobortis sed. Duis ac sapien ac ipsum pulvinar consectetur a a nibh. Maecenas in facilisis neque, vitae eleifend erat. Nullam viverra sagittis pharetra.
+
+    a.ctaText(href="#")
+      | Learn More About Contributing 
+      i.icon-double-angle-right
+
+    h3.divider Forums
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed felis vel mauris consectetur pretium. Vivamus semper nulla at risus laoreet blandit. Morbi at sapien at risus scelerisque luctus. Etiam pharetra est nec mi euismod, a faucibus nulla convallis. Nam non venenatis mi. Suspendisse ornare auctor velit vitae faucibus. Sed laoreet euismod odio sed euismod. Maecenas et diam ligula. Vestibulum congue metus odio, et euismod nulla lobortis sed. Duis ac sapien ac ipsum pulvinar consectetur a a nibh. Maecenas in facilisis neque, vitae eleifend erat. Nullam viverra sagittis pharetra.
+
+    a.ctaText(href="#")
+      | Visit EAP Forums 
+      i.icon-double-angle-right
+
+  
+
+    h3.divider Projects and Standards included in EAP
+    ul.large-block-grid-3.small-block-grid-2
+      - for solution in [1,2,3,4,5,6,7,8] 
+        li.upstream(data-open-solution="#{solution}")
+          a.image-link: img(src="#{site.base_url}/#{site.context_url}/images/solution-#{solution}.png")
+           a.solution-name-link(href="#")
+            h3.solution-name Solution # #{solution}
+          span.update-date Last Update: August 13, 2013
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu.
+          a.upstream-download
+            i.icon-download-alt
+            |  Download
+          .upstream-more-content
+            p.product-links
+              | Included in Product(s) <br>
+              a(href="#") RedHat JBoss Enterprise Application Server
+              a(href="#") RedHat JBoss Data Visualization
+            ul.external-links
+              - for link in [1,2,3,4,5,6,7,8] 
+                li: a(href="#") Link #{link}
+          a.upstream-toggle-more(href="#")
+            span.view-more
+              | View More
+              i.icon-plus-sign-alt
+            span.view-less
+              | View Less
+              i.icon-minus-sign-alt
+    
+
+  .large-5.columns
+      .widget
+        h3.widget-title EAP for Developers
+        a.button.shadow.large(href="#")
+          | Download
+          i.icon-download  
+      .widget
+        h3.widget-title Supported Solutions
+        ul
+          li: a(href="#") Contact Sales
+          li: a(href="#") Consulting Solutions
+          li: a(href="#") Get Support
+      .widget
+        h3.widget-title Product Name Training 
+        ul
+          li: a(href="#") Demo Title
+      .widget
+        h3.widget-title Featured Webinar Title
+        p.widget-description Lorem ipsum redhat rocks, conseume adispicse leium.
+        a.button.shadow(href="#")
+          | Register Now
+          i.icon-angle-right
+      .widget
+        h3.widget-title Report a Problem
+        p.widget-description Found a security vulnerability?
+        a.alert
+          i.icon-warning-sign 
+          | Report it here &rarr;

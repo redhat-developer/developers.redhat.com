@@ -926,6 +926,12 @@ form.filters {
   font-size: emCalc(12);
 }
 
+ul[class*=block-grid] {
+  li {
+    &:before {display: none;} // take off the ul bullet
+  }
+}
+
 // Technology Solutions
 .block-nav {
   li {
