@@ -35,7 +35,7 @@
 @import "foundation/components/sub-nav";
 // @import "foundation/components/switch";
 // @import "foundation/components/magellan";
-// @import "foundation/components/tables";
+@import "foundation/components/tables";
 // @import "foundation/components/thumbs";
 // @import "foundation/components/tooltips";
 @import "foundation/components/dropdown";
@@ -61,8 +61,8 @@
 /*
    Zurb Foundation Overides
   These are things that can't be changed in _settings.scss
-
 */ 
+
 .row, .top-bar .row {
   max-width:emCalc(1200);
 }
@@ -98,6 +98,31 @@ button, .button {
 .row .row {
   margin-left: -$column-gutter;
   margin-right: -$column-gutter; // accommodates for larger gutters and nested rows
+}
+
+/* Tables */
+table {
+  border-radius: $global-radius;
+  overflow: hidden;
+  border:1px double transparent;
+  background:$grey-3;
+  tbody tr {
+    background:#f5f5f6;
+  }
+  td {
+    border: 1px solid $grey-2;
+  }
+  td.linkList {
+    a {
+      border-right:1px solid;
+      padding-right: 10px;
+      margin-right: 10px;
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+
 }
 
 .side-nav {
@@ -292,8 +317,12 @@ i[class*=icon].invert {
   a {
     text-transform: none;
     font-size: 14px;
-    // text-decoration: underline;
+    text-decoration: underline;
   }
+  li:last-child a {
+   font-weight: 600; // bold the last item
+  }
+
 }
 
 
@@ -637,6 +666,7 @@ h3.widget-title {
 .large-title {
   font-size: emCalc(52);
   font-weight: normal;
+  color: #000;
 }
 
 
@@ -828,9 +858,10 @@ form.filters {
 }
 
 
-/* Material Page */
+/* Materials */
 
 .material {
+  &:before {display: none;} // take off the ul bullet
   img {
     padding:5px;
     box-shadow:0 0 5px #ccc;
