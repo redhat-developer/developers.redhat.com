@@ -131,6 +131,7 @@ table {
   border-radius:$global-radius;
   overflow: hidden;
   margin-bottom: 20px;
+  background:white;
   li {
     margin:0;
     a {
@@ -696,6 +697,7 @@ h3.widget-title {
 
 h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
+  font-weight: 600;
   color:$grey-6;
   &.divider {
     border-bottom: 1px solid $grey-3;
@@ -806,6 +808,7 @@ form.filters {
   }
   .filter-block {
     margin-bottom: 20px;
+    clear: both;
   }
   input[type=text] {
     padding:6px;
@@ -861,6 +864,7 @@ form.filters {
 /* Materials */
 
 .material {
+  position: relative;
   &:before {display: none;} // take off the ul bullet
   img {
     padding:5px;
@@ -905,6 +909,13 @@ form.filters {
   }
   i.icon-star,i.icon-star-half-empty {
     color:$light-orange;
+  }
+
+  span.banner {
+    display: block;
+    background:red;
+    width:100%;
+    position: absolute;
   }
 }
 
