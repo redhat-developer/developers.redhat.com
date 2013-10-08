@@ -14,7 +14,7 @@ layout: base
       /     option JBoss Enterprise Application Platform
       /     option Wes Bos Enterprise Application Platform
       /     option Tony Danza Enterprise Application Platform
-.row
+.row.content
   .large-6.columns
     ul.side-nav
       li.active
@@ -26,7 +26,7 @@ layout: base
       li
         a(href="#") Download EAP
   .large-13.columns.text-content
-    h3 Overview
+    h2.divider Overview
     
     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed felis vel mauris consectetur pretium. Vivamus semper nulla at risus laoreet blandit. Morbi at sapien at risus scelerisque luctus. Etiam pharetra est nec mi euismod, a faucibus nulla convallis. Nam non venenatis mi. Suspendisse ornare auctor velit vitae faucibus. Sed laoreet euismod odio sed euismod. Maecenas et diam ligula. Vestibulum congue metus odio, et euismod nulla lobortis sed. Duis ac sapien ac ipsum pulvinar consectetur a a nibh. Maecenas in facilisis neque, vitae eleifend erat. Nullam viverra sagittis pharetra.
 
@@ -34,26 +34,32 @@ layout: base
     
     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed felis vel mauris consectetur pretium. Vivamus semper nulla at risus laoreet blandit. Morbi at sapien at risus scelerisque luctus. Etiam pharetra est nec mi euismod, a faucibus nulla convallis. Nam non venenatis mi. Suspendisse ornare auctor velit vitae faucibus. Sed laoreet euismod odio sed euismod. Maecenas et diam ligula. 
 
-    h3 Resources
+    h3.divider Resources
     ul
       li Material name and description go here  
       li Material name and description go here
       li Material name and description go here
       li Material name and description go here
+    
+    a(href="#")
+      | View More Resources 
+      i.icon-double-angle-right
 
-    h3 Blog Posts and Articles
+    h3.divider Blog Posts and Articles
     - for i in [1,2,3]
       .update
         h5
           a(href="#") Red Hat JBoss Middleware Webinar — Are You Ready to Rumble with JBoss Integration & BPM
-        p.update-subtext June 28, 2013 9:31 AM by Eric D. Schabell
+        p.update-subtext
+          | June 28, 2013 9:31 AM by 
+          a(href="#") Eric D. Schabell
         p There will be an interesting webinar on July 23, 2013 that will take you on a tour of integration and business process management. This will feature ...
 
 
-  .large-4.columns.text-content
+  .large-4.columns
     .widget
       h3.widget-title EAP for Developers
-      a.button.shadow(href="#")
+      a.button.shadow.large(href="#")
         | Download
         i.icon-download  
     .widget

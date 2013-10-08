@@ -67,6 +67,11 @@
   max-width:emCalc(1200);
 }
 
+.content {
+  background:#fff;
+  padding:1em 0;
+}
+
 a {
   color:$link;
 }
@@ -84,6 +89,9 @@ button, .button {
   }
   &.shadow {
     box-shadow:2px 2px 0 $grey-7;
+  }
+  &.large {
+
   }
 }
 
@@ -105,6 +113,7 @@ button, .button {
       padding:emCalc(8) 1em;
       font-size: emCalc(18);
       position: relative;
+      color:$grey-5;
       &:after {
         content: "\f105";
         font-family: 'FontAwesome';
@@ -143,7 +152,7 @@ header.main {
 }
 
 h1.logo {
-  margin-top: 65px;
+  // margin-top: 65px;
   margin-bottom: 5px;
   font-size: emCalc(52px);
   a {
@@ -283,7 +292,7 @@ i[class*=icon].invert {
   a {
     text-transform: none;
     font-size: 14px;
-    text-decoration: underline;
+    // text-decoration: underline;
   }
 }
 
@@ -597,7 +606,6 @@ footer.bottom {
     }
   }
   a {
-    text-decoration: underline;
     &.button {
       text-decoration: none;
       display: block;
@@ -615,6 +623,7 @@ footer.bottom {
 }
 h3.widget-title {
   font-size:1em;
+  font-weight: 600;
 }
 
 .alert {
@@ -631,16 +640,33 @@ h3.widget-title {
 }
 
 
+/*
+  Text Content is for styling body content such as blog posts or information pages
+*/
 .text-content {
   h3 {
     margin-top: 0;
     color:$grey-6;
   }
+  ul {
+    // margin-left:20px;
+    li {
+      list-style:none;
+      &:before {
+        content: "\f056";
+        font-family:'FontAwesome';
+        padding-right:7px;
+        color:$grey-4;
+        position: relative;
+        top:1px;
+      }
+    }
+  }
 }
 
 h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
-  color:$grey-7;
+  color:$grey-6;
   &.divider {
     border-bottom: 1px solid $grey-3;
     margin-bottom: 20px;
@@ -765,12 +791,12 @@ form.filters {
 
 .styled-select {
   background:#fff;
-  border:1px solid $grey-4;
+  border:1px solid $grey-3;
   border-radius:$global-radius;
   position: relative;
   cursor:pointer;
   &:after {
-    border-left: 1px solid $grey-4;;
+    border-left: 1px solid $grey-3;;
     content: "\f0d7";
     font-family:'FontAwesome';
     position: absolute;
@@ -828,7 +854,7 @@ form.filters {
     font-size: emCalc(14);
     &.author {
       a {
-        text-decoration: underline;
+        // text-decoration: underline;
       }
     }
     &.material-datestamp {
