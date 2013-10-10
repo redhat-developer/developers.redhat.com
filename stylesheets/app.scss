@@ -74,6 +74,9 @@
 
 a {
   color:$link;
+  &:hover {
+    color:$linkhover;
+  }
 }
 
 button, .button {
@@ -178,9 +181,8 @@ header.main {
 }
 
 h1.logo {
-  // margin-top: 65px;
-  margin-bottom: 5px;
-  font-size: emCalc(52px);
+  margin-bottom: 3px;
+  font-size: 2.75em;
   a {
     color:darken($dark-blue,5%);
     font-weight: 100;
@@ -911,11 +913,23 @@ form.filters {
     color:$light-orange;
   }
 
-  span.banner {
+  a.banner {
     display: block;
-    background:red;
     width:100%;
     position: absolute;
+    text-indent: -9999px;
+    &.premium {
+      background:url(../images/icon-premium.png) top left no-repeat;
+      height:25px;
+      top:20px
+
+    }
+    &.experimental {
+      background:url(../images/icon-experimental.png) top left no-repeat;
+      height: 120px;
+      width: 130px;
+      right: 0px;
+    }
   }
 }
 

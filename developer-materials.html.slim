@@ -2,29 +2,22 @@
 layout: base
 ---
 .row
-  .large-23.columns
-    h2.large-title Developer Materials
+  h2.large-title Developer Materials
+.row.content
+  .large-24.columns
     ul.breadcrumbs
       li
         a href="" Getting Started
       li
         a href="" Developer Materials
-      / li
-      /   select
-      /     option JBoss Enterprise Application Platform
-      /     option Wes Bos Enterprise Application Platform
-      /     option Tony Danza Enterprise Application Platform
-.row.content
-  .large-6.columns
+
+  .large-6.column
     ul.side-nav
-      li
-        a(href="#") Overview
-      li.active
-        a(href="#") Developer Materials
-      li
-        a(href="#") Community
-      li
-        a(href="#") Download EAP
+      li: a(href="technology-overview.html") Overview
+      li: a(href="technology-resources.html") Resources
+      li.active: a(href="developer-materials.html") Developer Materials
+      li: a(href="technology-community.html") Community
+      li: a(href="download-eap-html") Download EAP
 
     form.filters(method="GET" action="")
       h4
@@ -138,9 +131,9 @@ layout: base
       - for material in [1,2,3,4,5,6]
         li.material
           - if material === 5
-            span.banner.experimental Experimental
+            a.banner.experimental(href="#") Experimental
           - if material === 1
-            span.banner.premium Premium 
+            a.banner.premium(href="#") Premium 
           a(href="#")
             img(src="/images/materials-thumb1.jpg")
           span.label.material-duration 04:54
