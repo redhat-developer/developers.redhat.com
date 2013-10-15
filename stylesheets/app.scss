@@ -95,7 +95,6 @@ button, .button {
   }
   &.large {
     padding: 0.6em 0.9em;
-    
   }
 }
 
@@ -1196,8 +1195,31 @@ body.login {
 }
 
 form.login {
+  width:70%;
   input[type=text],input[type=email],input[type=password] {
-    width:50%;
+    width:70%;
+  }
+  .login-button-wrapper {
+    background:$grey-2;
+    padding:0.5em 0.5em  0.55em 0.5em;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius:$global-radius;
+    input{
+      float: left;
+      width:30%;
+      margin:0;
+      margin-right: 20px;
+    }
+    p {
+      font-size: 12px;
+      line-height: 1.2;
+      margin:0;
+    }
+    i {
+      color:$red;
+      margin-right: 5px;
+    }
   }
 }
 

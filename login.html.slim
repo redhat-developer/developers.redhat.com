@@ -25,9 +25,15 @@ layout: base
       label(for="rememberMe")
         input(type="checkbox" checked="true")
         | Remember Me
-    input.button.large.shadow(type="submit" value="Login") 
-    .link-list
-      a(href="#") Forgot Password
-      a(href="#") Create Account
+      .login-button-wrapper
+        input.button.large.shadow(type="submit" value="Login") 
+        p.login-error
+          i.icon-warning-sign
+          | Error  <br>
+          | Incorrect credentials supplied.<br>
+          | Please check your credentials and try again.
+      .link-list
+        a(href="#") Forgot Password
+        a(href="#") Create Account
 
-  
+    
