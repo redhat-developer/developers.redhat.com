@@ -14,7 +14,8 @@ head
   /[if lt IE 9]
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
-body
+- template = (page.url.gsub('/','').split('.').first || 'home')
+body(class="#{template}")
   .site-wrapper
     header.main
       .row
@@ -23,8 +24,8 @@ body
             a(href="#{site.base_url}/#{site.context_url}") JBoss<strong>Developer</strong>
           i.nav-toggle.nav-toggle-open
           / i.nav-toggle.nav-toggle-close &times;
-        / .large-17.columns.text-right
-        /   h4 The simple, modern, & productive way to build IT apps & infrastructure
+        .large-17.columns.text-right
+          h4 The simple, modern, & productive way to build IT apps & infrastructure
 
     nav.top-bar
       .row.collapse
@@ -39,6 +40,7 @@ body
           dd.register
             a(href="/register") Register
           dd.login
+            a.logged-in-name(href="#")
             a(href="#" data-dropdown="login")
               i.icon-user
               | Login
@@ -112,6 +114,8 @@ body
   javascript:
     window.jQuery || document.write('<script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"><\/script>')
   script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
+  /[if lt IE 9]
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
   / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.topbar.js"
   script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
   script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"

@@ -91,6 +91,14 @@ nav.top-bar {
   dd.home-link {
     display: none;
   }
+  a.logged-in-name {
+    display: none;
+    img {
+      position: relative;
+      margin-right: 5px;
+      top:-2px;
+    }
+  }
   dd.login {
     border-right:2px solid $dark-blue;
     padding-right: 20px;

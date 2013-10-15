@@ -165,8 +165,7 @@ table {
 
 // body
 body {
-  background:url(../images/bg-for-replacement.png) top center no-repeat;
-  background-size:100% auto;
+  background:url(../images/theme-light/background-short.jpg) top center repeat-x;
 }
 
 // Header
@@ -177,8 +176,18 @@ header.main {
     font-size:emCalc(26);
     font-weight: normal;
     padding-top: 9px;
+    padding-bottom: 50px;
+    display: none;
   }
 }
+
+// Specific Home Styles
+body.home {
+  background-image:url(../images/theme-light/background-tall.jpg);
+  header.main h4 { display: block; }
+  h1.logo {margin-top: 40px; }
+}
+
 
 h1.logo {
   margin-bottom: 3px;
