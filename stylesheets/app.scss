@@ -94,7 +94,8 @@ button, .button {
     box-shadow:2px 2px 0 $grey-7;
   }
   &.large {
-
+    padding: 0.6em 0.9em;
+    
   }
 }
 
@@ -1156,6 +1157,47 @@ ul.external-links {
     content: "\f08e";
     font-family: FontAwesome;
     margin-left: 4px;
+  }
+}
+
+/* little css module to create inline links with dividers */
+.link-list > * {
+  border-left:1px solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  &:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+// Login Page
+body.login {
+  background:#fff;
+  nav.top-bar {
+    border-top: 0;
+    * {
+      display: none;
+    }
+  }
+  h2.large-title {
+    line-height: 1.2;
+  }
+}
+.sign-in-options {
+  font-size: 18px;
+  a {
+    margin:0 5px;
+  }
+  i.icon-twitter:before { color:#00aee7; }
+  i.icon-facebook:before { color:#3b5998; }
+  i.icon-github:before { color:#000; }
+  i.icon-google-plus:before { color:#dd483d; }
+}
+
+form.login {
+  input[type=text],input[type=email],input[type=password] {
+    width:50%;
   }
 }
 

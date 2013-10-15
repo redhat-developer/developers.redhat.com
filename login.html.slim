@@ -1,19 +1,33 @@
 ---
 layout: base
 ---
-.row
-  h2.large-title Developer Materials
 .row.content
-  .large-12.columns
-    h2 Community<br>Powered<br>Innovation
+  .large-8.columns
+    h2.large-title Community<br>Powered<br>Innovation
     h3 Build app, collaborate, write documentation, improve the codebase
     p
       | Need a fully supported solution? <br>
       a(href="#") Sign up for a Red Hat Subscription
   .large-12.columns
-    h3.divider
+    h2.divider
       | Login 
       span.sign-in-options
         | or sign in with
+        a: i.icon-redhat
+        a: i.icon-twitter
+        a: i.icon-facebook
+        a: i.icon-github
+        a: i.icon-google-plus
+    p Login to access unlimited downloads and contribute to the community.
+    form.login
+      input(type="text" placeholder="Username" name="username")
+      input(type="password" placeholder="Password" name="password")
+      label(for="rememberMe")
+        input(type="checkbox" checked="true")
+        | Remember Me
+    input.button.large.shadow(type="submit" value="Login") 
+    .link-list
+      a(href="#") Forgot Password
+      a(href="#") Create Account
 
   

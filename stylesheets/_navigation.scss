@@ -96,7 +96,8 @@ nav.top-bar {
     img {
       position: relative;
       margin-right: 5px;
-      top:-2px;
+      margin-top: -6px;
+      top: -2px;
     }
   }
   dd.login {
@@ -122,6 +123,15 @@ nav.top-bar {
     top:0;
     position: relative;
   }
+}
+
+// Custom icons
+i.icon-redhat:before {
+  content:"R";
+  position: relative;
+  background:url(../images/icon-redhat.png) center no-repeat;
+  color:transparent;
+  width:20px;
 }
 
 // Mobile Slide out
