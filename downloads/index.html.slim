@@ -1,0 +1,56 @@
+---
+layout: base
+---
+.row
+  .large-24.column
+    h2.divider Downloads
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien. Fusce vehicula aliquet neque, in cursus tellus venenatis eget. Pellentesque in magna nisl, vel dapibus dolor. Nullam a ante vel libero vehicula aliquet et sit amet mauris. Morbi dapibus pellentesque nisi sit amet sagittis. Aenean mollis porttitor neque. Aenean cursus convallis feugiat. Quisque et nisi sed lectus mattis auctor non at eros.
+.row
+  .large-12.column
+    - for type in ["Development","Business Rules", "Integration", "Presentation"]
+      .download-list
+        h3 #{type}
+        ul
+          li
+            h4 Red Hat JBoss Developer Studio
+            p.download
+              | Get the latest: 
+              span.link-list
+                a: i.icon-download-alt 
+                  | (324 MB zip)
+                a See more…
+          li
+            h4 Red Hat JBoss Web Framework Kit
+            p.download
+              | Get the latest: 
+              span.link-list
+                a: i.icon-download-alt 
+                  | (324 MB zip)
+                a See more…
+        a(href="#")
+          i.icon-circle-arrow-right
+          | See our upstream #{type}
+  .large-12.column
+    - for type in ["Application Platforms","Messaging", "Data Integration"]
+      .download-list
+        h3 #{type}
+        ul
+          li
+            h4 Red Hat JBoss Developer Studio
+            p.download
+              | Get the latest: 
+              span.link-list
+                a: i.icon-download-alt 
+                  | (324 MB zip)
+                a See more…
+          li
+            h4 Red Hat JBoss Web Framework Kit
+            p.download
+              | Get the latest: 
+              span.link-list
+                a: i.icon-download-alt 
+                  | (324 MB zip)
+                a See more…
+        a(href="#")
+          i.icon-circle-arrow-right
+          | See our upstream #{type}

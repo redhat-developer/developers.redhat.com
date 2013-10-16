@@ -737,15 +737,15 @@ h3.widget-title {
   ul {
     // margin-left:20px;
     li {
-      list-style:none;
-      &:before {
-        content: "\f056";
-        font-family:'FontAwesome';
-        padding-right:7px;
-        color:$grey-4;
-        position: relative;
-        top:1px;
-      }
+      list-style:disc;
+      // &:before {
+      //   content: "\f056";
+      //   font-family:'FontAwesome';
+      //   padding-right:7px;
+      //   color:$grey-4;
+      //   position: relative;
+      //   top:1px;
+      // }
     }
   }
 }
@@ -1264,6 +1264,38 @@ form.login {
       color:$red;
       margin-right: 5px;
     }
+  }
+}
+
+// Downloads list
+.download-list {
+  padding-bottom: 30px;
+  h3 {
+    color: #000;
+  }
+  ul {
+    border-bottom: 1px solid $grey-3;
+    list-style-type: none;
+    li {
+      border-top: 1px solid $grey-3;
+      padding: 5px;
+      p {
+        margin:0;
+        &.download {
+          font-size: emCalc(13);
+        }
+      }
+      h4 {
+        font-weight: normal;
+        margin:0;
+      }
+    }
+  }
+  .link-list {
+    margin-left: 5px;
+  }
+  i {
+    margin-right: 5px;
   }
 }
 
