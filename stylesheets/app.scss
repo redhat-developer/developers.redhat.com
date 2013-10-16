@@ -46,6 +46,7 @@
 @import "compass/css3/images";
 @import "compass/css3/transform";
 @import "compass/css3/transition";
+@import "compass/css3/columns";
 
 
 // Import Our CSS Modules and mixins
@@ -349,7 +350,7 @@ i[class*=icon].invert {
   background-repeat: no-repeat;
   background-position: bottom center;
   min-height: 400px;
-  padding-bottom: emCalc(20px);
+  padding-bottom: emCalc(100px);
 }
 
 footer.bottom {
@@ -366,6 +367,10 @@ footer.bottom {
   position: relative;
   .slider {
     overflow: hidden;
+    &.rounded {
+      border-radius:$global-radius;
+      overflow: hidden;
+    }
     .slide {
       position: relative;
       background:white;
@@ -380,9 +385,11 @@ footer.bottom {
     padding:10px;
     color:white;
     padding-right: 150px;
+    width:100%;
     h3 {
       font-size: emCalc(18);
       margin-bottom: 0;
+      color:white;
       a {
         color:white;
       }
@@ -582,6 +589,40 @@ footer.bottom {
   }
 }
 
+// Call to action blocks
+.cta-blocks {
+  margin-bottom: 30px;
+  & > li {
+    a {
+      color:white;
+      text-align: center;
+      background:$dark-blue;
+      color:white;
+      display: block;
+      width:100%;
+      padding:30px;
+      box-shadow:3px 3px 0 $med-blue;
+    }
+    i { // icons
+      font-size: 35px;
+    }
+    h3 {
+      color:white;
+    }
+    p {
+      font-size: 20px;
+      color:$light-blue;
+      margin:0;
+      min-height: 60px;
+    }
+  }
+}
+
+// columns of text
+.two-col {
+  @include columns(20em 2);
+}
+
 // Products
 .product {
   .toolbar {
@@ -681,6 +722,9 @@ h3.widget-title {
   color: #000;
 }
 
+.large-type {
+  font-size: 1.3em;
+}
 
 /*
   Text Content is for styling body content such as blog posts or information pages
