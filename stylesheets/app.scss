@@ -88,11 +88,9 @@ button, .button {
   text-transform: uppercase;
   text-decoration: none;
   border:0;
+  box-shadow:2px 2px 0 $grey-7;
   &:hover {
     background: $light-green;
-  }
-  &.shadow {
-    box-shadow:2px 2px 0 $grey-7;
   }
   &.large {
     padding: 0.6em 0.9em;
@@ -171,6 +169,7 @@ body {
 
 // Header
 header.main {
+  background:rgba(255, 255, 255, 0.7);
   h4 {
     font-style:italic;
     color:$dark-blue;
@@ -759,6 +758,12 @@ h1,h2,h3,h4,h5,h6 {
     margin-bottom: 20px;
     padding-bottom: 5px;
     font-weight: 100;
+  }
+  &.promo-headline {
+    font-size:emCalc(80);
+    font-weight: normal;
+    margin:0;
+    line-height: 1;
   }
   span.label {
     border-radius: $global-radius;
