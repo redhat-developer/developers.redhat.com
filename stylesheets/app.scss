@@ -1299,5 +1299,20 @@ form.login {
   }
 }
 
+// Terms and Conditons
+.terms-and-conditons-accept {
+  text-align: right;
+  float:right;
+  .styled-select {
+    margin:20px;
+    display: inline-block;
+  }
+}
+span.asterisk {
+  color:$red;
+  font-size: 35px;
+  font-weight: 600;
+}
+
 // Mobile!
 @import "mobile";
