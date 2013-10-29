@@ -71,16 +71,15 @@ body(class="#{template}")
           section.top-bar-section
             ul.left.main-menu
               li.has-dropdown
-                a(href="#") Technology
+                a(href="#{site.base_url}/technology") Technology
                 ul.dropdown
-                  li: a Overview
-                  li.current-item: a Supported Products
-                  li: a Upstream Projects
-                  li: a Solutions
-                  li: a Community &amp; Enterprise
-              li: a(href="#") Get Started
-              li.current-item: a(href="#") Get Involved
-              li: a(href="#") Download
+                  li.current-item: a(href="#{site.base_url}/products") Supported Products
+                  li: a(href="#{site.base_url}/projects") Upstream Projects
+                  li: a(href="#{site.base_url}/solutions") Solutions
+                  li: a(href="#{site.base_url}/community-powered-innovation") Community Powered Innovation
+              li: a(href="#{site.base_url}/get-started") Get Started
+              li.current-item: a(href="#{site.base_url}/get-involved") Get Involved
+              li: a(href="#{site.base_url}/download") Download
             ul.right.social
               li
                 a(href="#")
