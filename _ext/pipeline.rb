@@ -9,6 +9,10 @@ Awestruct::Extensions::Pipeline.new do
   extension JBoss::Developer::Awestruct::Extensions::LoadXmlFiles.new('_projects', 'projects.xsd')
   extension JBoss::Developer::Awestruct::Extensions::LoadXmlFiles.new('_products', 'products.xsd')
   extension JBoss::Developer::Awestruct::Extensions::ReadXmlFiles.new('_developer-materials', 'developer_materials.xsd')
+
+  # Load indexifier
+  extension Awestruct::Extensions::Indexifier.new
+
   helper Awestruct::Extensions::Partial
 end
 
