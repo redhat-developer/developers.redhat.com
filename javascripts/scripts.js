@@ -1,5 +1,4 @@
 var app = window.app = {};
-
 /* 
   Website Cache
 */
@@ -201,7 +200,34 @@ app.init = function() {
     app.equalizeBottoms($('.event-body'));
   }
 
-};
+  /*
+    Isotope
+  */
+  $(window).load(function() {
+    $container = $('.buzz-items');
+    $container.isotope({
+      itemSelector: '.buzz-item'
+    });
+
+    // Filtering
+    $('.sort-icons a').click(function(){
+      $('.buzz-filter-active').removeClass('buzz-filter-active');
+      $(this).addClass('buzz-filter-active');
+      var filterType = ".buzz-item-"+$(this).data('filter');
+      if(filterType == '.buzz-item-all') {
+        filterType = ".buzz-item";
+      }
+      $container.isotope({ filter: filterType });
+    });
+
+    // text filtering
+    $('input[name="buzz-filter-text"]').keyup(function() {
+      var text = $(this).val();
+      $container.isotope({ filter: '.buzz-item:Contains('+text+')' });
+    });
+  });
+
+}; /* End app.init() */
 
 /*
   Clear All Filters
@@ -358,5 +384,15 @@ $(function() {
   app.init();
   app.sso();
   app.faq();
+});
+
+/*
+  jQuery Extensions
+*/
+
+jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+    };
 });
 
