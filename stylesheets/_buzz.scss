@@ -6,9 +6,18 @@
     border:1px solid $grey-5;
     box-shadow:2px 2px 0 $med-blue;
     background:$grey-2;
+    word-wrap:break-word;
   }
   h3,p {
-    padding:5px;
+    padding:10px;
+    font-weight: 100;
+    margin:0;
+  }
+  h3 + p {
+    padding-top:0;
+  }
+  img {
+    width: 100%;
   }
 }
 
@@ -28,14 +37,15 @@
     display: inline;
     position: relative;
     margin:3px;
-    &:first-child {
+    &.sortBy {
       padding-right:10px;
+      position: relative;
+      top:-6px;
     }
     a {
-      font-size: 25px;
-      padding:15px;
-      width:25px;
-      height:25px;
+      font-size: 35px;
+      padding: 5px 10px;
+      color:$med-blue;
       &:after {
         content :'';
         width:10px;
@@ -46,7 +56,7 @@
         display: block;
         position: absolute;
         @include transform(rotate(45deg));
-        top:30px;
+        top:24px;
         display: none;
       }
       &:hover, &.buzz-filter-active {
@@ -105,4 +115,40 @@
       -ms-transition-duration: 0s;
        -o-transition-duration: 0s;
           transition-duration: 0s;
+}
+
+input[type=text][name="buzz-filter-text"] {
+  width:200px;
+  position: relative;
+  margin-bottom:-42px;
+}
+
+/* Mq */
+
+@include tablet-portrait-and-down {
+  .buzz-item {
+    width:49%;
+  }
+  .sort-icons  {
+    li {
+      margin:0;
+      a {
+        font-size: 20px;
+        &:after {
+          top:20px;
+        }
+      }
+    }
+  }
+  input[type="text"][name="buzz-filter-text"] {
+    width:100%;
+    margin-bottom: 20px;
+  }
+
+}
+
+@include mobile-landscape-and-down {
+  .buzz-item {
+    width:98%;
+  }
 }

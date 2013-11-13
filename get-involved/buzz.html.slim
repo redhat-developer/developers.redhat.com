@@ -14,7 +14,7 @@ layout: base
   .large-24.buzz-filters
     input(type="text" name="buzz-filter-text" placeholder="Filter by Keyword")
     ul.sort-icons 
-      li Sort By:
+      li.sortBy Sort By:
       li: a(data-filter="all")
         i.icon-home
       li: a(data-filter="twitter")
@@ -36,8 +36,8 @@ layout: base
       div(class="buzz-item buzz-item-#{type}")
         .buzz-item-inner
           .buzz-header: i(class="icon-#{type}")
-          / img(src="#{site.base_url}/#{site.context_url}/images/solution-#{rand(8) + 1}.png")
-          img(src="http://lorempixel.com/300/#{rand(500)}")
+          img(src="#{site.base_url}/#{site.context_url}/images/solution-#{rand(8) + 1}.png")
+          / img(src="http://lorempixel.com/300/#{rand(500)}")
           h3 #{titles[rand(4)]}
           p #{bodies[rand(4)]}
 
