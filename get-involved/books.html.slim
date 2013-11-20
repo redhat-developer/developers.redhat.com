@@ -20,7 +20,6 @@ layout: base
         h4 Book #{item}
         p Author: <a href="#">Author Name</a>
         p.date-added Added June 28, 2012  
-        p dadsLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
         .rating
           label(for="filter-rating")
             input(type="radio" name="filter-rating" value="1")
@@ -32,6 +31,8 @@ layout: base
             input(type="radio" name="filter-rating" value="4")
           label(for="filter-rating")
             input(type="radio" name="filter-rating" value="5")
+        p.desc dadsLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
+        a.button Purchase
 .row.books.large-24
   ul.small-block-grid-2.large-block-grid-5
     - for item in (1..10).to_a
@@ -41,7 +42,6 @@ layout: base
         h4 Book #{item}
         p Author: <a href="#">Author Name</a>
         p.date-added Added June 28, 2012  
-        p dadsLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
         .rating
           label(for="filter-rating")
             input(type="radio" name="filter-rating" value="1")
@@ -53,3 +53,5 @@ layout: base
             input(type="radio" name="filter-rating" value="4")
           label(for="filter-rating")
             input(type="radio" name="filter-rating" value="5")
+        p.desc dadsLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
+        a.button Purchase
