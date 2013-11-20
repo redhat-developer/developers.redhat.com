@@ -78,8 +78,19 @@ body(class="#{template}")
                   li: a(href="#{site.base_url}/solutions") Solutions
                   li: a(href="#{site.base_url}/community-powered-innovation") Community Powered Innovation
               li: a(href="#{site.base_url}/get-started") Get Started
-              li.current-item: a(href="#{site.base_url}/get-involved") Get Involved
-              li: a(href="#{site.base_url}/download") Download
+              li.current-item.has-dropdown
+                a(href="#{site.base_url}/get-involved") Get Involved
+                ul.dropdown
+                  li: a(href="#{site.base_url}/get-involved/events/") Events
+                  li: a(href="#{site.base_url}/get-involved/buzz/") Buzz
+                  li: a(href="#{site.base_url}/get-involved/contribute/") Contribute
+                  li: a(href="#{site.base_url}/get-involved/books/") Books
+
+              li.has-dropdown
+                a(href="#{site.base_url}/downloads") Downloads
+                ul.dropdown
+                  li: a(href="#{site.base_url}/downloads/promotional-download") Promotional Download
+                  li: a(href="#{site.base_url}/downloads/terms-and-conditions") Terms & Conditions
             ul.right.social
               li
                 a(href="#")
