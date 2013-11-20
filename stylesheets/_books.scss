@@ -1,0 +1,50 @@
+.book {
+  padding-right:10px !important;
+  position: relative;
+  a.book-preview {
+    position: absolute;
+    background:$grey-7;
+    color:white;
+    display:block;
+    width:60%;
+    padding:5px;
+    text-align: center;
+    left:20%;
+    text-transform: uppercase;
+    top:130px;
+    opacity:0;
+    @include transition(all 0.3s);
+  }
+  &:hover a.book-preview {
+    opacity:1;
+  }
+  img {
+    width:100%;
+    padding:5px;
+    border:1px solid $grey-3;
+    background:white;
+  }
+  h4 {
+    margin-bottom: 0;
+  }
+  p {
+    margin:3px 0;
+    font-size: emCalc(12px);
+  }
+}
+
+.books {
+  padding:20px;
+}
+
+.featured-books {
+  background:$grey-2;
+  border-radius:$global-radius;
+  h3 {
+    color:black;
+    margin-top:0;
+  }
+  .book {
+    padding-bottom: 0;
+  }
+}

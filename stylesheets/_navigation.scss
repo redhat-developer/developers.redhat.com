@@ -136,10 +136,12 @@ i.icon-redhat:before {
 
 // Mobile Slide out
 body.nav-open {
+
   @include tablet-portrait-and-down {
     overflow-x:hidden;
     .site-wrapper {
-      left:85%;
+      // left: 85%;
+      @include transform(translateX(85%) translateZ(0)); 
     }
     i.nav-toggle {
       right:auto;
@@ -167,7 +169,7 @@ body.nav-open {
 }
 
 .site-wrapper {
-  @include transition(left 0.3s);
+  @include transition(all 0.3s);
   position: relative;
   left:0%;
 }
