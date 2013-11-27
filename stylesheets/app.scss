@@ -56,6 +56,7 @@
 @import "buzz";
 @import "faq";
 @import "books";
+@import "get-started";
 @import "picker";
 
 .clearfix:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; } .clearfix {display: inline-block; } html[xmlns] .clearfix {display: block; } * html .clearfix {height: 1%; }
@@ -125,7 +126,9 @@ table {
       }
     }
   }
-
+  p {
+    margin:0;
+  }
 }
 
 .side-nav {
@@ -771,6 +774,9 @@ footer.bottom {
     margin-top: 0;
     color:$grey-6;
   }
+  .divider:first-child {
+    margin-top: 0;
+  }
   ul {
     // margin-left:20px;
     li {
@@ -1344,6 +1350,22 @@ form.login {
   }
   i {
     margin-right: 5px;
+  }
+}
+
+// Downloads links
+
+a.view-older-downloads {
+  font-size: emCalc(18);
+  margin-bottom: 20px;
+  float:left;
+  display: block;
+  width: 100%;
+  i {
+    padding-left: 10px;
+  }
+  &+table {
+    display: none; // hide it initially
   }
 }
 

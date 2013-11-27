@@ -1,0 +1,31 @@
+.get-started-items {
+  position: relative;
+  background:url(../images/get-started-bg.png) bottom center no-repeat;
+    min-height:250px;
+  span.line {
+    display: block;
+    width: 100%;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 600;
+    text-align: center;
+    background:url(../images/greypx.png) center repeat-x;
+    span {
+      background:white;
+      padding:0 10px;
+      color:$grey-5;
+    }
+  }
+  h4 {
+    text-transform: uppercase;
+    color:$med-green;
+    text-align: center;
+  }
+  &>div {
+    text-align: center;
+  }
+}
+
+.get-started-content {
+  padding-top: 20px;
+}

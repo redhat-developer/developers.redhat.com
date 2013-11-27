@@ -236,7 +236,18 @@ app.init = function() {
         itemSelector: '.buzz-item'
       });
     });
+
 };
+
+  // Show more downloads table
+  var moreDownloadsLink = $('.view-older-downloads');
+  if(moreDownloadsLink.length) {
+    // moreDownloadsLink.next('table').hide();
+    moreDownloadsLink.on('click touchstart',function(e) {
+      e.preventDefault();
+      moreDownloadsLink.next('table').toggle();
+    })
+  }
 
 }; /* End app.init() */
 
