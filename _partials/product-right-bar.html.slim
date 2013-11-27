@@ -1,0 +1,23 @@
+/ The standard right bar for the product pages
+/ Note that you must pass in a reference to the parent page, as the param 'parent'
+.widget
+  h3.widget-title #{page.parent.product.abbreviated_name} for Developers
+  a.button.shadow.large(href="#")
+    | Download
+    i.icon-download  
+.widget
+  h3.widget-title Supported Solutions
+  ul
+    li: a(href="#") Contact Sales
+    li: a(href="#") Consulting Solutions
+    li: a(href="#") Get Support
+.widget
+  = page.parent.featured_training.content
+.widget
+  = page.parent.featured_webinar.content
+.widget
+  h3.widget-title Report a Problem
+  p.widget-description Found a security vulnerability?
+  a.alert
+    i.icon-warning-sign 
+    | Report it here &rarr;

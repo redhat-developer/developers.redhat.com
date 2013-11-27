@@ -1,0 +1,84 @@
+form.filters(method="GET" action="")
+  h4
+    | Filters
+    a.filters-clear(href="#") Clear All Filters
+  input(type="text" placeholder="Filter by keyword" name="filter-text")
+
+  .filter-block
+    h5 Rating
+    label(for="filter-rating")
+      input(type="radio" name="filter-rating" value="1")
+    label(for="filter-rating")
+      input(type="radio" name="filter-rating" value="2")
+    label(for="filter-rating")
+      input(type="radio" name="filter-rating" value="3")
+    label(for="filter-rating")
+      input(type="radio" name="filter-rating" value="4")
+    label(for="filter-rating")
+      input(type="radio" name="filter-rating" value="5")
+
+
+  .filter-block
+    h5 Topics
+    label
+      input(type="checkbox" name="filter-topic[]" value="EJBs")
+      | EJBs (10)
+    label
+      input(type="checkbox" name="filter-topic[]" value="CDI")
+      | CDI (10)
+    label
+      input(type="checkbox" name="filter-topic[]" value="OSGI")
+      | OSGI (10)
+    label
+      input(type="checkbox" name="filter-topic[]" value="Testing")
+      | Testing (10)
+
+  .filter-block
+    h5 Format
+    label
+      input(type="checkbox" name="filter-format" value="")
+      | Archetypes(10)
+    label
+      input(type="checkbox" name="filter-format" value="")
+      | BOM(10)
+    label
+      input(type="checkbox" name="filter-format" value="")
+      | Quickstarts(10)
+    label
+      input(type="checkbox" name="filter-format" value="")
+      | Sandbox (unsupported)(10)
+    label
+      input(type="checkbox" name="filter-format" value="")
+      | Stacks(10)
+    label
+      input(type="checkbox" name="filter-format" value="")
+      | Video(10)
+
+  .filter-block
+    h5 Skill Level
+    input(type="range" name="filter-skill" onchange="this.setAttribute('value', this.value);" value="0" step="50" data-labels="Beginner,Intermediate,Advanced")
+    span.skill-display Beginner
+
+  .filter-block
+    h5 Publish Date
+    label
+      input(type="checkbox" name="filter-publish-date" value="")
+      | All(10)
+    label
+      input(type="checkbox" name="filter-publish-date" value="")
+      | Last 24 Hours(10)
+    label
+      input(type="checkbox" name="filter-publish-date" value="")
+      | Last 7 days(10)
+    label
+      input(type="checkbox" name="filter-publish-date" value="")
+      | Last 30 days(10)
+    label
+      input(type="checkbox" name="filter-publish-date" value="")
+      | Last 365 days(10)
+
+  .filter-block
+    h5 Time Commitment
+    input(type="range" name="filter-time-commitment" onchange="this.setAttribute('value', this.value);" value="0" data-labels="1 Month, 3 Months, 6 Months, 9 Months, 1 Year, 1+ Year" step="20")
+    span.skill-display 1 Month 
+
