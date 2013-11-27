@@ -680,6 +680,23 @@ footer.bottom {
   }
 }
 
+.quick-start-buttons {
+  float: left;
+  clear:both;
+  width:100%;
+  .button {
+    background:$med-blue;
+    font-weight: normal;
+    float:left;
+    margin-right: 60px;
+    &.large {
+      padding: 72px 0.9em 72px 0.9em;
+      margin-right: 10px;
+      clear:none;
+    }
+  }
+}
+
 // Section Tabs
 .section-container.auto {
   .content {
@@ -795,7 +812,7 @@ footer.bottom {
 
 h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
-  font-weight: 600;
+  // font-weight: 600;
   color:$grey-6;
   &.divider {
     border-bottom: 1px solid $grey-3;
@@ -813,6 +830,16 @@ h1,h2,h3,h4,h5,h6 {
     border-radius: $global-radius;
     margin-left: 10px;
   }
+}
+
+// Pre tags
+
+pre {
+  padding:10px;
+  background:$grey-1;
+  border:1px solid $grey-3;
+  border-radius:$global-radius;
+  font-weight: 600;
 }
 
 // Form Elements

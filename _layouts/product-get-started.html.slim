@@ -1,0 +1,60 @@
+---
+layout: product
+---
+
+h2 Get Started
+
+h3.divider Download for Development Use
+
+= page._overview
+
+h3.divider Instructions for Installation
+
+= page._installation
+
+
+h3.divider Getting Started Materials
+= page._getting_started_materials
+
+
+.quick-start-buttons
+  a.button.large Ticket Monster
+  a.button Hello World
+  a.button Kitchen Sink
+  a.button Featured QS
+
+p: a(href="#") More Quickstarts and Material for jBoss EAP >>
+
+h3.divider Watch Some Demos
+= page._demos
+
+ul.small-block-grid-2.large-block-grid-3
+  |
+  - for material in [1,2,3,4,5,6]
+    li.material
+      - if material === 5
+        a.banner.experimental(href="#") Experimental
+      - if material === 1
+        a.banner.premium(href="#") Premium 
+      a(href="#")
+        img(src="/images/materials-thumb1.jpg")
+      span.label.material-duration 04:54
+      span.label.material-level-beginner Beginner
+      h4: a(href="#") JBoss EAP 6 Administration 
+      p.author
+        | Author: 
+        a(href="#") John Smith
+      p.material-datestamp Added 28 2014 9:15pm
+      p.rating
+        | Video
+        i.icon-star
+        i.icon-star
+        i.icon-star
+        i.icon-star-half-empty
+        i.icon-star-empty
+      .body
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
+
+
+h3.divider More Questions
+= page._questions
