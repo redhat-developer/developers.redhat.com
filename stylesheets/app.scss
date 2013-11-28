@@ -697,6 +697,45 @@ footer.bottom {
   }
 }
 
+.development-tools {
+  h2 {
+    clear: both;
+  }
+}
+
+.development-tool-category {
+  .development-tool:nth-child(even) {
+    width:49%;
+    margin-right:1%;
+  }
+  .development-tool:nth-child(odd) {
+    width:49%;
+    margin-left:1%;
+  }
+}
+.development-tool {
+  width:50%; // leave 50% on for older browsers who ignore nth-child
+  float:left;
+  background:$grey-2;
+  padding:20px;
+  h2,h3 {
+    text-transform: uppercase;
+    font-weight: 600;
+    color:$grey-7;
+    margin:0;
+  }
+  p.features {
+    font-size: 12px;
+    margin-bottom: 5px;
+    a {
+      padding:0 5px;
+      text-transform: uppercase;
+      color:$grey-7;
+      font-weight: 600;
+    }
+  }
+}
+
 // Section Tabs
 .section-container.auto {
   .content {
