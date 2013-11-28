@@ -2,7 +2,7 @@
 / Note that you must pass in a reference to the parent page, as the param 'parent'
 /Define left navigation items for the products. Maybe this should move to a yml file?
 - page.product_subsection = page.output_path[/^\/products\/[a-z]+\/([^\/]+)/, 1]
-- page.nav_items = {"overview" => "Overview", "get-started" => "Get Started", "resources" => "Resources", "developer-materials" => "Developer Materials", "community" => "Community", "download" => "Download " + page.parent.product.acronym }
+- page.nav_items = {"overview" => "Overview", "get-started" => "Get Started", "resources" => "Resources", "developer-materials" => "Developer Materials", "community" => "Community", "download" => "Download " + page.parent.product.abbreviated_name }
 
 /The menu items, created by iterating over the array defined above
 ul.side-nav
