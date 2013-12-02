@@ -708,6 +708,7 @@ footer.bottom {
   .development-tool:nth-child(even) {
     width:49%;
     margin-right:1%;
+    clear: left;
   }
   .development-tool:nth-child(odd) {
     width:49%;
@@ -719,6 +720,7 @@ footer.bottom {
   float:left;
   background:$grey-2;
   padding:20px;
+  margin-bottom: 40px;
   h2,h3 {
     text-transform: uppercase;
     font-weight: 600;
