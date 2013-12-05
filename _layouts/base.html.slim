@@ -16,6 +16,9 @@ head
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
+  / tabzilla
+  .dropup
+      a(class="tabnav-closed" href="https://www.jboss.org" id="tab") Red Hat
   .site-wrapper
     header.main
       .row
@@ -24,9 +27,7 @@ body(class="#{template}")
             a(href="#{site.base_url}/#{site.context_url}") JBoss<strong>Developer</strong>
           i.nav-toggle.nav-toggle-open
           / i.nav-toggle.nav-toggle-close &times;
-        .large-17.columns.text-right
-          h4 The simple, modern, & productive way to build IT apps & infrastructure
-
+        
     nav.top-bar
       .row.collapse
         dl.sub-nav
@@ -135,6 +136,7 @@ body(class="#{template}")
   script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
   script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.isotope.min.js"
   script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/jbossorg-tabzilla.js"
   / Async G+
   javascript:
     (function() {
