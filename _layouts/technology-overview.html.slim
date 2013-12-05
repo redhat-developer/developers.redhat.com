@@ -2,42 +2,30 @@
 layout: base
 ---
 .row
-  .banner.panel
-    p This is a great banner!
-.row
-  .section-container.auto(data-section)
-    section
-      p.title.data(data-section-title)
-        a(href="#panel1") Supported Products
-      .content(data-section-content)
-        .large-6.columns
-          - for update in [1,2,3,4]
-            h3 Development Tools
-            - for update in [1,2]
-              .product
-                h4 Red Hat JBoss Developer Studio
-                p Get started using JBoss today with our FREE developer licenses and quickstarts! Projects used are <a href="#">Wildfly, </a> <a href="#">Infinispan</a> <a href="#">Windup</a>
-                div.toolbar
-                  a(href="#" title="Download")
-                    i.icon-download-alt
-                  a(href="#" title="Settings")
-                    i.icon-wrench
-                  a(href="#" title="Docs")
-                    i.icon-file-text-alt
-                  a(href="#" title="Dashboard")
-                    i.icon-briefcase
-                  a(href="#" title="Training Video")
-                    i.icon-play-circle
+  h2.divider Technology
+  = page._overview
 
-        .large-6.columns
-          h3 Application Platforms
-    section
-      p.title.data(data-section-title)
-        a(href="#panel2") Upstream Projects
-      .content(data-section-content)
-        p section 2
-    section
-      p.title.data(data-section-title)
-        a(href="#panel2") Solutions
-      .content(data-section-content)
-        p Solutions for everyone!
+.row.technology-blocks
+  ul.large-block-grid-2.small-block-grid-1
+    - for i in ["Supported Projects","Upstream Projects","Solutions","Community Powered Innovation"]
+      li
+        .technology-item
+          h3 #{i}
+          .technology-item-inside
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien. Fusce vehicula aliquet neque, in cursus tellus venenatis eget. Pellentesque in magna nisl, vel dapibus dolor. Nullam a ante vel libero vehicula aliquet et sit amet mauris. Morbi dapibus pellentesque nisi sit amet sagittis. Aenean mollis porttitor neque. Aenean cursus convallis feugiat. Quisque et nisi sed lectus mattis auctor non at eros.
+            a.learn-more Learn More
+            .embedded-media
+              h4 Title for video #{i}
+              iframe width="100%" height="315" src="//www.youtube.com/embed/oxMSU8AYxvg" frameborder="0" allowfullscreen
+              .follow-links
+                span.title Follow Craig
+                a: i.icon-rss
+                a: i.icon-facebook
+                a: i.icon-twitter
+                a: i.icon-linkedin
+              .follow-links
+                span.title Follow Pete
+                a: i.icon-rss
+                a: i.icon-facebook
+                a: i.icon-twitter
+                a: i.icon-linkedin
