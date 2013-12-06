@@ -27,6 +27,61 @@
 }
 
 .get-started-content {
+  padding-top: 40px;
+  p {
+    margin:0;
+  }
+  .button {
+    font-size: emCalc(28);
+    font-weight: 100;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
+
+  }
+}
+
+a.get-started-example {
+  display: block;
+  width:37.5%;
+  // margin: 0 7.5%;
+  float:left;
+  border:3px solid white;
+  font-weight: 600;
+  padding:4px;
+  background:url(../images/bg-squares.png);
+  background-size:cover;
+  padding:20px 10px;
+  line-height: 2;
+  text-align: center;
+  color:white;
+  &:first-child {
+    margin:0 2.5% 0 10%;
+  }
+  &:last-child {
+    margin:0 10% 0 2.5%;
+  }
+  &:hover {
+    color:white;
+  }
+}
+
+
+a.get-started-quickstart.button {
+  font-size: emCalc(14);
+  background:$med-blue;
+  width:50%;
+  margin:0 auto;
+  padding:10px;
+  margin-bottom: 10px;
+  display: block;
+  clear:both;
+}
+
+.get-started-item {
+  h3 {
+    margin: 0;
+  }
   padding-top: 20px;
 }
 
