@@ -397,3 +397,23 @@ ul.footer-nav {
   ul.footer-nav {display: block;}
 
 }
+
+.inline-nav {
+  li {
+    display: inline;
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right:2px solid $grey-5;
+    &:last-child {
+      border-right:0;
+    }
+    a {
+      color:$grey-5;
+      text-transform: uppercase;
+      font-size: emCalc(20);
+      &:hover, &.current-page {
+        color:$dark-blue;
+      }
+    }
+  }
+}
