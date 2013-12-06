@@ -35,13 +35,13 @@
 }
 #tabnav {
   background-color: #FFF;
-  padding: 0 25px;
+  // padding: 0 25px;
   margin: 0px auto;
   display: block;
   font-family: "Lucida Sans", "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
   font-size: 13.5px;
   height: 100%;
-  max-width: 1180px;
+  // max-width: 1180px;
   text-align: left;
 }
 #tabnav .tabcontent {
@@ -49,10 +49,8 @@
   background: linear-gradient(to bottom, #e1eef4 0%, #ffffff 60%) no-repeat scroll 0 0 transparent;
   height: 100%;
   clear: both;
-  margin: 0px 5px;
-  padding: 20px 25px;
+  padding: 20px 15%;
   overflow: hidden;
-  border: 1px solid #E1EEF4;
 }
 #tabnav .tabcontent .overview {
   padding-bottom: 30px;
