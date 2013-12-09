@@ -2,4 +2,70 @@
 layout: base
 ---
 .row
-  h2.large-title BOM Title
+  h2.large-title Developer Materials
+.row
+  .large-24.columns
+    ul.breadcrumbs
+      li
+        a href="" Get Started
+      li
+        a href="" Developer Materials
+      li
+        a href="" Developer Materials
+.row.content
+  .column.large-20
+    h2.divider BOM Title
+    .gsi-meta
+      ul
+        li
+          strong Author:
+          a Wes Bos
+
+        li
+          strong Contributors:
+          a Wes Bos
+          a Wesley Bos
+          a Westley Bose
+          a Lestly Los
+        li
+          strong Last Update:
+          | Dec 31, 2013
+        li
+          strong Level:
+          | Beginner
+        li
+          strong Technologies:
+          | JPA, Bean Validation
+        li
+          strong Target Product:
+          | Red Hat jBoss Enterprise Application   Server 
+
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien. Fusce vehicula aliquet neque, in cursus tellus venenatis eget. Pellentesque in magna nisl, vel dapibus dolor. Nullam a ante vel libero vehicula aliquet et sit amet mauris. Morbi dapibus pellentesque nisi sit amet sagittis. Aenean mollis porttitor neque. Aenean cursus convallis feugiat. Quisque et nisi sed lectus mattis auctor non at eros.
+
+    h3 Important Code
+
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien. Fusce vehicula aliquet neque, in cursus tellus venenatis eget. Pellentesque in magna nisl, vel dapibus dolor. Nullam a ante vel libero vehicula aliquet et sit amet mauris. Morbi dapibus pellentesque nisi sit amet sagittis. Aenean mollis porttitor neque. Aenean cursus convallis feugiat. Quisque et nisi sed lectus mattis auctor non at eros.
+
+    asciidoc:
+      [source,javascript]
+      ----
+      app.slider = Swipe(document.getElementById('slider'), {
+        auto : 0,
+        transitionEnd : function() {
+          var idx = app.slider.getPos();
+          $('.slider-pager-active').removeClass('slider-pager-active');
+          $('.slider-pager a:eq('+idx+')').addClass('slider-pager-active');
+        }
+      });
+      ----
+    h3.divider Resources
+    ul
+      li Material name an desc go here
+      li Material name an desc go here
+      li Material name an desc go here
+      li Material name an desc go here
+      li Material name an desc go here
+    h4: a View more Resources >>
+
+  .column.large-4
+    p sidebar

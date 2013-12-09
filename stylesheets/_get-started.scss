@@ -29,3 +29,29 @@
 .get-started-content {
   padding-top: 20px;
 }
+
+
+
+// Get Started Individual Pages (For BOM, Archetype, Quickstarts....)
+
+.gsi-meta {
+  background:$grey-1;
+  padding:12px;
+  border:1px solid $grey-2;
+  border-radius: $global-radius;
+  overflow: hidden;
+  margin-bottom: 20px;
+  ul {
+    li {
+      width:33.33%;
+      float:left;
+      list-style:none;
+      strong {
+        margin-right: 3px;
+      }
+      a + a {
+        margin-left: 5px;
+      }
+    }
+  }
+}
