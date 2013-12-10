@@ -1,7 +1,8 @@
 require 'zurb-foundation'
 require 'sections'
-require 'common_dir.rb'
+require 'common_dir'
 require 'aweplug/extensions/kramdown_quickstart'
+require 'jboss_developer'
 
 Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
@@ -15,5 +16,6 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::CommonDir.new
 
   helper Awestruct::Extensions::Partial
+  helper JBoss::Developer::Utilities
 end
 

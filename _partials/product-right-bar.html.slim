@@ -2,7 +2,7 @@
 / Note that you must pass in a reference to the parent page, as the param 'parent'
 .widget
   h3.widget-title #{page.parent.product.abbreviated_name} for Developers
-  a.button.shadow.large(href="#")
+  a.button.shadow.large(href="#{download_manager_path(page.parent.parent_dir, page.parent.product.current_version)}")
     | Download
     i.icon-download  
 .widget
