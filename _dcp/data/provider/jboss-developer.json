@@ -1,0 +1,54 @@
+{
+  "name": "jboss-developer",
+  "description": "Provider used by the JBoss Developer website process to push content generated during website baking",
+  "contact_email": "pmuir@redhat.com",
+  "super_provider": false,
+  "pwd_hash": "037acec3e7b3f74e8f85310b5b1077b8a451696a",
+  "type": {
+    "jbossdeveloper_quickstart": {
+      "description":"Readmes from JBoss Developer",
+      "sys_type":"jbossdeveloper_quickstart_readme",
+      "sys_content_content-type" : "text/html",
+      "input_preprocessors": [
+        {
+          "name"     : "Projects mapper",
+          "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings" : {
+            "index_name"       : "sys_projects",
+            "index_type"       : "project",
+            "source_field"     : "target_product",
+            "idx_search_field" : "type_specific_code.jbossdeveloper_quickstart",
+            "result_mapping"   : [
+            {
+              "idx_result_field" : "code",
+              "target_field"     : "sys_project"
+            },{
+              "idx_result_field" : "name",
+              "target_field"     : "sys_project_name"
+            }
+            ]
+          }
+        },{
+          "name"     : "Contributors mapper",
+          "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings" : {
+            "index_name"       : "sys_contributors",
+            "index_type"       : "contributor",
+            "source_field"     : "contributors",
+            "idx_search_field" : "contributors",
+            "result_mapping"   : [{
+              "idx_result_field" : "code",
+              "target_field"     : "sys_contributor",
+              "value_default"    : "{contributors}"
+            }],
+            "source_bases"     : ["contributors"]
+          }
+        }
+      ],
+      "index": {
+        "name":"data_jbossdeveloper_quickstart",
+        "type":"jbossdeveloper_quickstart_readme"
+      }
+    }
+  }
+}
