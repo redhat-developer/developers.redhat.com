@@ -4,62 +4,26 @@ layout: product
 
 h2 Get Started
 
-h3.divider Download for Development Use
+h3.divider: Download #{page.product.abbreviated_name} #{page.product.current_version} #{page.product.has_installer ? 'with Installer' : ''}
 
-h4: a(href="#{download_manager_path(page.parent_dir, page.product.current_version)}")#{page.product.abbreviated_name} #{page.product.current_version} #{page.product.has_installer ? 'with Installer' : ''}
+p
+  a(href="#{download_manager_path(page.parent_dir, page.product.current_version)}") Download
+  span<> |
+  a(href="../downloads") See all downloads
 
 h3.divider Instructions for Installation
 
 = page._installation
 
-
-h3.divider Getting Started Materials
-
-h4 Install the Apache&trade; Maven Repo
+h3.divider Install the Apache&trade; Maven Repo
  
 = partial "maven_repository_instructions.adoc"
  
-h4 Try our #{page.product.abbreviated_name} Quickstarts 
+h3.divider Try a quickstart or example. Watch a video
 
-p Download our quickstarts to show you how to get up and running quickly with #{page.product.abbreviated_name}.
+= partial 'developer-materials-featured.html.slim'
 
-h4 Try Our Comprehensive Example or Other Quickstarts
-
-.quick-start-buttons
-  a.button.large Ticket Monster
-  a.button Hello World
-  a.button Kitchen Sink
-  a.button Featured QS
+= partial 'developer-materials-results.html.slim', {'max_results' => 3}
 
 p: a(href="#") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
-
-h3.divider Watch Some Demos
-= page._demos
-
-ul.small-block-grid-2.large-block-grid-3
-  |
-  - for material in [1,2,3,4,5,6]
-    li.material
-      - if material === 5
-        a.banner.experimental(href="#") Experimental
-      - if material === 1
-        a.banner.premium(href="#") Premium 
-      a(href="#")
-        img(src="/images/materials-thumb1.jpg")
-      span.label.material-duration 04:54
-      span.label.material-level-beginner Beginner
-      h4: a(href="#") JBoss EAP 6 Administration 
-      p.author
-        | Author: 
-        a(href="#") John Smith
-      p.material-datestamp Added 28 2014 9:15pm
-      p.rating
-        | Video
-        i.icon-star
-        i.icon-star
-        i.icon-star
-        i.icon-star-half-empty
-        i.icon-star-empty
-      .body
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
 

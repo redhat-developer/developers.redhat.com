@@ -1,7 +1,7 @@
-h3.divider Results 
 ul.small-block-grid-2.large-block-grid-3
   |
-  - for material in [1,2,3,4,5,6]
+  - page.max_results ||= 6
+  - page.max_results.times do |material|
     li.material
       - if material === 5
         a.banner.experimental(href="#") Experimental
