@@ -1,11 +1,3 @@
-PATH
-  remote: ~/projects/ruby/aweplug
-  specs:
-    aweplug (1.0.0.a3)
-      faraday (>= 0.8.7)
-      faraday_middleware (>= 0.9.0)
-      octokit (>= 1.24.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -15,6 +7,10 @@ GEM
     Platform (0.4.0)
     addressable (2.3.5)
     asciidoctor (0.1.4)
+    aweplug (1.0.0.a4)
+      faraday (>= 0.8.7)
+      faraday_middleware (>= 0.9.0)
+      octokit (>= 1.24.0)
     awestruct (0.5.4.rc3)
       bootstrap-sass (>= 2.3.1.0)
       compass (>= 0.12.1)
@@ -97,7 +93,7 @@ PLATFORMS
 
 DEPENDENCIES
   asciidoctor (~> 0.1.4)
-  aweplug!
+  aweplug (~> 1.0.0a4)
   awestruct (~> 0.5.4.rc3)
   htmlcompressor (~> 0.0.6)
   kramdown (~> 1.0.1)
