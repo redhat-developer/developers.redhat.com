@@ -12,26 +12,39 @@ module Awestruct
         # Locate all _common (or other, as specified) directories
         common_dirs = File.join(site.dir, "**", @data_dir )
         dir_map = {}
+        common_map = {}
         # Iterate over all _common directories (e.g./products/eap/_common)
         Dir[ common_dirs ].each do |entry|
           if ( File.directory?( entry ) )
             parent_dir = /^#{site.dir}\/(.*)\/#{@data_dir}$/.match(entry)[1]
             # identify their relative path from the root of the app (e.g /products/eap)
-            var_map = {}
-            dir_map[parent_dir] = var_map
+            
+            # create the overall map for _site
+            t = common_map
+            parent_dir.split(/\//).each do |dir|
+              t[dir] ||= {}
+              t = t[dir]
+              t['parent_dir'] = dir
+            end
+
+            # create a temporary map, indexed by path, for use when we attach to a page
+            dir_map[parent_dir] = t
+
             # Iterate over each file in the _common directory
             Dir[ "#{entry}/*" ].each do |chunk|
               File.basename( chunk ) =~ /^([^\.]+)/
               key = $1.to_sym
               if chunk =~ /ya?ml$/
                 # If it's a yaml file, load it, and store it in the map for later attachment to pages. The top level variable name is the file name                
-                var_map[key] = YAML.load_file chunk
+                t[key] = YAML.load_file chunk
               else
                 # Otherwise, use awestruct to load the page
-                var_map[key] = site.engine.load_page( chunk )
+                t[key] = site.engine.load_page( chunk )
               end
             end
+
           end
+          
 
           # Iterate over all pages
           site.pages.each do |page|
@@ -46,6 +59,7 @@ module Awestruct
             end
           end
         end
+        site['_common'] = common_map
       end
 
     end
