@@ -1,32 +1,37 @@
 ---
 layout: base
 ---
-/ Main Slider
-.row.slider-wrapper
-  .slider#slider
-    .swipe-wrap
-      .large-24.slide
-        img(src="/images/home_slide1.png")
-      .large-24.slide
-        img(src="/images/home_slide1.png")
-      .large-24.slide
-        img(src="/images/home_slide1.png")
-  .slider-controls
-    a.slider-prev(data-direction="prev")
-      i.icon-angle-left.icon-4x
-    a.slider-next(data-direction="next")
-      i.icon-angle-right.icon-4x
+/ Introduction
+.row.intro.panel
+  h2 JBoss is the simple, modern & Productive way to build apps and infrastructure.
+  .large-12.column
+    h3 Get Started
+    p Get started using JBoss today with our free developer licenses and quickstarts! 
+    a.button Get Started
+  .large-12.column
+    h3 Exploring jBoss
+    p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    a.button Learn More
 
-/ Call to action Panels
-.row
-  .cta
-    h2 Get Started
-    p Get started using JBoss today with our free developer licenses and quickstarts!
-    a.button.shadow(href="#") Get Started
-  .cta
-    h2 Exploring JBoss
-    p Get started using JBoss today with our free developer licenses and quickstarts!
-    a.button.shadow(href="#") Learn More
+/ Hero
+.row.hero
+  a: img(src="/images/home_slide1.png")
+  
+/ Main Slider
+/ .row.slider-wrapper
+/   .slider#slider
+/     .swipe-wrap
+/       .large-24.slide
+/         img(src="/images/home_slide1.png")
+/       .large-24.slide
+/         img(src="/images/home_slide1.png")
+/       .large-24.slide
+/         img(src="/images/home_slide1.png")
+/   .slider-controls
+/     a.slider-prev(data-direction="prev")
+/       i.icon-angle-left.icon-4x
+/     a.slider-next(data-direction="next")
+/       i.icon-angle-right.icon-4x
 
 / Buzz and Event Updates
 .row.updates
@@ -51,19 +56,19 @@ layout: base
               - if update == 3
                 .update-comment-count
                   a(href="#") 3 Comments
-              .update-get-social
-                a(href="#")
-                  |
-                  i.icon-facebook
-                a(href="#")
-                  |
-                  i.icon-twitter
-                a(href="#")
-                  |
-                  i.icon-linkedin
-                a(href="#")
-                  |
-                  i.icon-google-plus
+              .share-this
+                p
+                  i.icon-share-alt
+                  | Share This
+                .share-this-buttons
+                  a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
+                  span.facebook-share-button
+                    a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
+                      | Share
+                    span.facebook-share-button-count(data-shares="0")
+                  div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
+                  script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
+
       .large-8.columns
         h3 &nbsp;
         / Fake 5 Events
@@ -85,19 +90,19 @@ layout: base
               - if update == 3
                 .update-comment-count
                   a(href="#") 3 Comments
-              .update-get-social
-                a(href="#")
-                  |
-                  i.icon-facebook
-                a(href="#")
-                  |
-                  i.icon-twitter
-                a(href="#")
-                  |
-                  i.icon-linkedin
-                a(href="#")
-                  |
-                  i.icon-google-plus
+              .share-this
+                p
+                  i.icon-share-alt
+                  | Share This
+                .share-this-buttons
+                  a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
+                  span.facebook-share-button
+                    a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
+                      | Share
+                    span.facebook-share-button-count(data-shares="0")
+                  div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
+                  script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
+
       .large-8.columns
         h3 Events 
         - for update in [1,2,3]
@@ -114,17 +119,16 @@ layout: base
             .update-body
               p The JBoss Users and Developers Conferences are developer gatherings held around the Globe to give JBoss users the chance to talk to
             .update-meta
-              .update-get-social
-                a(href="#")
-                  |
-                  i.icon-facebook
-                a(href="#")
-                  |
-                  i.icon-twitter
-                a(href="#")
-                  |
-                  i.icon-linkedin
-                a(href="#")
-                  |
-                  i.icon-google-plus
+              .share-this
+                p
+                  i.icon-share-alt
+                  | Share This
+                .share-this-buttons
+                  a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
+                  span.facebook-share-button
+                    a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
+                      | Share
+                    span.facebook-share-button-count(data-shares="0")
+                  div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
+                  script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
 

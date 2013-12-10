@@ -508,6 +508,41 @@ footer.bottom {
 }
 
 
+// Hero Module
+.hero {
+  border:1px solid black;
+  border-radius:$global-radius;
+  margin-bottom: 20px;
+}
+
+// Introduction Module
+
+.intro {
+  text-align: center;
+  background: $dark-blue;
+  border:0;
+  color:white;
+  border-radius:$global-radius;
+  padding:emCalc(25);
+  h2 {
+    color:white;
+    font-size: emCalc(30);
+  }
+  h3 {
+    color:$medium-orange;
+    text-transform: uppercase;
+    font-size: emCalc(20);
+  }
+  p {
+    max-width:320px;
+    font-style: italic;
+    color:white;
+    margin:0 auto;
+    margin-bottom: 20px;
+    font-size: emCalc(20);
+  }
+}
+
 // Updates
 .update {
   padding-right: 1em;
@@ -595,6 +630,15 @@ footer.bottom {
   }
   .update-meta:first-child {
     margin-bottom: 10px;
+  }
+  .update-meta {
+    .share-this {
+      padding:0 5px;
+      p {
+        background:white;
+        padding-left:0;
+      }
+    }
   }
 }
 
@@ -1460,6 +1504,7 @@ span.asterisk {
   overflow: hidden;
   position: relative;
   padding: 6px 8px 0 8px;
+  clear: both;
   &:hover {
     p {
       display: none;
@@ -1489,6 +1534,7 @@ span.asterisk {
   float: left;
   margin-bottom: 5px;
   width:50% !important;
+  height:25px;
   &:nth-child(odd) {
     float: left !important;
     text-align: left !important;
