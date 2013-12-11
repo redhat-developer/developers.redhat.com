@@ -4,18 +4,15 @@ layout: product
 
 h2 Get Started
 
-h3.divider: Download #{page.product.abbreviated_name} #{page.product.current_version} #{page.product.has_installer ? 'with Installer' : ''}
-
-p
-  a(href="#{download_manager_path(page.parent_dir, page.product.current_version)}") Download
-  span<> |
-  a(href="../downloads") See all downloads
 
 h3.divider Instructions for Installation
 
+asciidoc:
+  1. link:#{download_manager_path(page.parent_dir, page.product.current_version)}[Download #{page.product.abbreviated_name} #{page.product.current_version} #{page.product.has_installer ? 'with Installer' : ''}]. Or link:../downloads[See all downloads].
+
 = page._installation
 
-h3.divider Install the Apache&trade; Maven Repo
+h3.divider Configure Apache&trade; Maven
  
 = partial "maven_repository_instructions.adoc"
  
@@ -25,5 +22,5 @@ h3.divider Try a quickstart or example. Watch a video
 
 = partial 'developer-materials-results.html.slim', {'max_results' => 3}
 
-p: a(href="#") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
+p: a(href="../developer-materials") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
 
