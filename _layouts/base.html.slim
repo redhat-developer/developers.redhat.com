@@ -72,10 +72,8 @@ body(class="#{template}")
             li.name
           section.top-bar-section
             ul.left.main-menu
-              li: a(href="#{site.base_url}/technology") Technology
-              li: a(href="#{site.base_url}/get-started") Get Started
-              li: a(href="#{site.base_url}/get-involved") Get Involved
-              li: a(href="#{site.base_url}/downloads") Downloads
+              - site.nav.each do |k, v|
+                li: a(href="#{v.url}") #{v.label}
             ul.right.social
               li
                 a(href="#")

@@ -3,8 +3,8 @@ layout: base
 ---
 .row.tertiary-nav
   ul.inline-nav
-    - for i in ["Supported Projects","Upstream Projects","Solutions","Community Powered Innovation"]
-      li: a(href="#") #{i}
+    - site.nav['technology'].children.each do |k, v|
+      li: a(href="#{v.url}") #{v.label}
 
 =content
 
