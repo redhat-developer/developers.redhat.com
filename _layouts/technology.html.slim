@@ -7,15 +7,15 @@ layout: technology-base
 
 .row.technology-blocks
   ul.large-block-grid-2.small-block-grid-1
-    - for i in ["Supported Projects","Upstream Projects","Solutions","Community Powered Innovation"]
+    - site.nav['technology'].children.each do |k,v|
       li
         .technology-item
-          h3 #{i}
+          h3 #{v.label}
           .technology-item-inside
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien. Fusce vehicula aliquet neque, in cursus tellus venenatis eget. Pellentesque in magna nisl, vel dapibus dolor. Nullam a ante vel libero vehicula aliquet et sit amet mauris. Morbi dapibus pellentesque nisi sit amet sagittis. Aenean mollis porttitor neque. Aenean cursus convallis feugiat. Quisque et nisi sed lectus mattis auctor non at eros.
-            a.learn-more Learn More
+            = page["_" + k.sub(/-/, "_")]
+            a.learn-more(href="#{v.url}") Learn More
             .embedded-media
-              h4 Title for video #{i}
+              h4 Title for video #{v.label}
               iframe width="100%" height="315" src="//www.youtube.com/embed/oxMSU8AYxvg" frameborder="0" allowfullscreen
               .follow-links
                 span.title Follow Craig
