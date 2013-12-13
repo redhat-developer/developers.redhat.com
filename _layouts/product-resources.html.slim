@@ -3,7 +3,8 @@ layout: product
 ---
 h2.divider Resources
 
-= page._overview
+asciidoc:
+  There are many resources available for #{page.product.name}, here on JBoss Developer, on the https://access.redhat.com/site/products/JBoss/[Red Hat Customer Portal], and https://www.google.co.uk/search?q=#{page.product.abbreviated_name.sub(/ /, '+')}[on the internet]. On this page, we highlight our pick of those resources.
 
 h3.divider Documentation
 table.large-24.small-24
@@ -20,7 +21,7 @@ table.large-24.small-24
           a(href="#") HTML-SINGLE
           a(href="#") PDF
           a(href="#") EPUB
-a(href="#")
+a(href="#{product_documentation_url(page.parent_dir)}")
   | See More Documentation 
   i.icon-external-link
 
