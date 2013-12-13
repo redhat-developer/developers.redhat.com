@@ -4,23 +4,27 @@ layout: product
 h2.divider Community
 asciidoc:
 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed felis vel mauris consectetur pretium. Vivamus semper nulla at risus laoreet blandit. Morbi at sapien at risus scelerisque luctus. Etiam pharetra est nec mi euismod, a faucibus nulla convallis. Nam non venenatis mi. Suspendisse ornare auctor velit vitae faucibus. Sed laoreet euismod odio sed euismod. Maecenas et diam ligula. Vestibulum congue metus odio, et euismod nulla lobortis sed. Duis ac sapien ac ipsum pulvinar consectetur a a nibh. Maecenas in facilisis neque, vitae eleifend erat. Nullam viverra sagittis pharetra.
+  Using #{page.product.abbreviated_name} is a great way to build real-world enterprise applications based on the latest technologies. But what if you find something that needs fixing or have a new feature to suggest? By getting involved with the #{page.product.abbreviated_name} community you can give feedback, improve the docs, review code and discuss and propose new features whenever they're needed. Answering user questions or taking part in development discussions is also a great way to build a reputation for collaboration and expertise in your field.
 
-a.ctaText(href="#")
+  No matter what your skill level, contributing to #{page.product.abbreviated_name} can be very rewarding and a great learning experience. You'll meet lots of smart, passionate developers who are all driven to create the best middleware possible in open source! You don't have to be an expert to get involved and it doesn't have to take a lot of time.
+
+a.ctaText(href="#{site.base_url}/get-involved")
   | Learn More About Contributing 
   i.icon-double-angle-right
 
 h3.divider Forums
 asciidoc:
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed felis vel mauris consectetur pretium. Vivamus semper nulla at risus laoreet blandit. Morbi at sapien at risus scelerisque luctus. Etiam pharetra est nec mi euismod, a faucibus nulla convallis. Nam non venenatis mi. Suspendisse ornare auctor velit vitae faucibus. Sed laoreet euismod odio sed euismod. Maecenas et diam ligula. Vestibulum congue metus odio, et euismod nulla lobortis sed. Duis ac sapien ac ipsum pulvinar consectetur a a nibh. Maecenas in facilisis neque, vitae eleifend erat. Nullam viverra sagittis pharetra.
+  Providing support to users is a great way to collaborate and give back to the community. Lots of questions are asked and answered each day in the link:#{product_forum_url(page.parent_dir)}[forum].
 
-a.ctaText(href="#")
-  | Visit EAP Forums 
+  If you're using #{page.product.abbreviated_name} and want to have a say in its future development you can talk with the product team in the link:#{product_forum_url(page.parent_dir)}[forum] to have your voice heard.
+
+a.ctaText(href="#{product_forum_url(page.parent_dir)}")
+  | Visit the #{page.product.abbreviated_name} Forums 
   i.icon-double-angle-right
 
 
 
-h3.divider Projects and Standards included in EAP
+h3.divider Projects and Standards included in #{page.product.abbreviated_name}
 ul.large-block-grid-3.small-block-grid-2
   - for solution in [1,2,3,4,5,6,7,8] 
     li.upstream(data-open-solution="#{solution}")
