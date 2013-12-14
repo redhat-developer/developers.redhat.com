@@ -17,10 +17,12 @@ layout: base
     h2.divider #{page.metadata[:title]}
     .gsi-meta
       ul
+      - if page.metadata[:author]
         li
           strong 
             | Author:
             a href='' #{page.metadata[:author]}
+      - if page.metadata[:commits]
         li
           strong 
             | Contributors:
@@ -30,12 +32,15 @@ layout: base
           strong 
             | Last Update:
               #{page.metadata[:commits].collect { |c| DateTime.parse c[:date] }.first.strftime('%b %d, %Y')}
+      - if page.metadata[:level]
         li: strong 
           | Level:
             #{page.metadata[:level]}
+      - if page.metadata[:technologies]
         li: strong 
           | Technologies:
             #{page.metadata[:technologies]}
+      - if page.metadata[:target_product]
         li: strong 
           | Target Product:
             #{page.metadata[:target_product]} 

@@ -5,12 +5,16 @@ product_documentation_base_url: https://access.redhat.com/site/documentation/
 product_forum_base_url: https://community.jboss.org/en/
 profiles:
   development:
+    dcp_base_url: http://localhost:8080
   staging:
     base_url: http://www-stg.jboss.org
+    dcp_base_url:
     deploy:
       host: www@filemgmt.jboss.org
       path: /stg_htdocs/www-stg
       uncommitted: true
   production:
+    dcp_base_url:
   wes:
     site_url: http://test.com:4242
+    dcp_base_url:

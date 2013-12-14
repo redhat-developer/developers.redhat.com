@@ -8,7 +8,7 @@ gem 'asciidoctor', '~> 0.1.4'
 gem 'uglifier', '~> 2.0.1'
 gem 'htmlcompressor', '~> 0.0.6'
 gem "zurb-foundation", "~> 4.3.1"
-gem 'aweplug', '~> 1.0.0a4'
+gem 'aweplug', '~> 1.0.0a5'
 #gem 'aweplug', :path => '~/projects/ruby/aweplug'
 
 group :development do
@@ -16,5 +16,7 @@ group :development do
   gem 'rb-fsevent', :require => false
   gem 'rb-fchange', :require => false
   gem 'rake', '~> 10.0.4'
+  gem 'pry', :require => false
+  gem 'pry-nav', :require => false
 end
 
