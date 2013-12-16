@@ -869,6 +869,7 @@ footer.bottom {
   font-size: emCalc(52);
   font-weight: normal;
   color: #000;
+  margin-bottom: 0;
 }
 
 .large-type {
@@ -887,20 +888,33 @@ footer.bottom {
     margin-top: 0;
   }
   ul {
-    // margin-left:20px;
     li {
-      list-style:disc;
-      // &:before {
-      //   content: "\f056";
-      //   font-family:'FontAwesome';
-      //   padding-right:7px;
-      //   color:$grey-4;
-      //   position: relative;
-      //   top:1px;
-      // }
+      list-style: none;
+      &:before {
+        content: "\f111";
+        font-family: 'FontAwesome';
+        float: left;
+        color:$grey-4;
+        font-size: 11px;
+        padding-right: 7px;
+        position: relative;
+        top: 5px;
+      }
+      p {
+        margin:0;
+      }
+
     }
   }
 }
+
+// Account for when a section isn't finished with a paragraph
+a, span  {
+   & + .divider {
+    margin-top: 1.25em;
+  }
+}
+
 
 h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
