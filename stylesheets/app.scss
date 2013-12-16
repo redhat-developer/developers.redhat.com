@@ -347,6 +347,12 @@ i[class*=icon].invert {
   Layout and custom modules
 */ 
 
+.content-wrapper {
+  background:white;
+  max-width:1200px;
+  padding:10px 10px 10px 10px;
+  margin: 0 auto;
+}
 .wrapper {
   @include filter-gradient(#ffffff, #e6e7e8, vertical); // IE6-9
   @include background-image(linear-gradient(top,  #ffffff 0%,#ffffff 43%,#e7e9e9 88%,#e6e7e8 100%));

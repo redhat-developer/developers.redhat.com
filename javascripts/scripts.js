@@ -239,7 +239,10 @@ app.init = function() {
 
 };
 
-  // Show more downloads table
+  /*
+     Show more downloads table
+  */
+
   var moreDownloadsLink = $('.view-older-downloads');
   if(moreDownloadsLink.length) {
     // moreDownloadsLink.next('table').hide();
@@ -248,6 +251,15 @@ app.init = function() {
       moreDownloadsLink.next('table').toggle();
     })
   }
+
+  /* 
+    Equalize bottoms on development tools
+  */
+  var devTools = $('.development-tool');
+  if(devTools.length) {
+    app.developmentTools();
+  }
+
 
 }; /* End app.init() */
 
@@ -398,6 +410,27 @@ app.faq = function() {
 
 
 }
+
+/*
+  Development Tools even bottoms
+*/
+app.developmentTools = function(){
+
+    $('.development-tool-category').each(function() {
+      console.log(this);
+      var items = $(this).find('.development-tool:even');
+      $(items).each(function(i,el) {
+        var that = $(this),
+            max = Math.max(that.outerHeight(), that.next().outerHeight());
+            that.css('height',max);
+            that.next().css('height',max);
+        
+        
+      });
+    });
+
+  };
+
 
 /*
   Date Pickers
