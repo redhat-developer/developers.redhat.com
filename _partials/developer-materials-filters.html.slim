@@ -2,7 +2,9 @@ form.filters(method="GET" action="")
   h4
     | Filters
     a.filters-clear(href="#") Clear All Filters
-  input(type="text" placeholder="Filter by keyword" name="filter-text")
+  
+  .filter-block
+    input(type="text" placeholder="Filter by keyword" name="filter-text")
 
   .filter-block
     h5 Rating
