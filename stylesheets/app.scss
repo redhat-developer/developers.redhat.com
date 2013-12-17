@@ -132,6 +132,28 @@ table {
   }
 }
 
+// Download link
+
+.download-link {
+  h4 {
+    a {
+      &:before {
+          font-family: 'FontAwesome';
+          content: "\f01a";
+          padding-right:3px;
+      }
+    }
+  }
+}
+
+a.download-link {
+  &:before {
+      font-family: 'FontAwesome';
+      content: "\f01a";
+      padding-right:3px;
+  }
+}
+
 .side-nav {
   border:1px solid $grey-3;
   padding:0;
@@ -832,7 +854,12 @@ footer.bottom {
   margin-bottom: 40px;
   ul {
     list-style:none;
+    margin: 0;
     li {
+      margin-bottom: 5px;
+    }
+    p {
+      margin: 0;
     }
   }
   a {
@@ -848,7 +875,7 @@ footer.bottom {
     }
   }
    p {
-    font-size:emCalc(13);
+    // font-size:emCalc(13);
    }
   // widget title
   h3 {
@@ -888,6 +915,7 @@ footer.bottom {
     margin-top: 0;
   }
   ul {
+    margin:0;
     li {
       list-style: none;
       &:before {
@@ -913,6 +941,10 @@ a, span  {
    & + .divider {
     margin-top: 1.25em;
   }
+}
+
+.ulist + .divider {
+  margin-top: 0.75em;
 }
 
 
@@ -1675,6 +1707,7 @@ background: $red;
 text-align: center;
 padding:0;
 border:0;
+margin: 0; 
   p {
     color:white;
   }
