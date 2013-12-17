@@ -9,22 +9,21 @@ layout: base
     h4 Get jBoss Developer Studio
     .get-started-content
       p jBoss Developer Studio
-      a.button
+      a.button(href="#{download_manager_path("developer-studio", site._common.products['developer-studio'].product.current_version)}")
         | Download 
         i.icon-download
   .large-9.columns
     span.line: span Then
     h4 Walk Through Examples
     .get-started-content
-      a.get-started-example Ticket Monster<br>Demo
-      a.get-started-example Toy Story<br>Demo
+      a.get-started-example(href="../ticket-monster") Ticket Monster<br>Demo
   .large-7.columns
     span.line: span Or
     h4 Try a Quickstart
     .get-started-content
-      a.button.get-started-quickstart Hello World
-      a.button.get-started-quickstart Kitchen Sink
-      a.button.get-started-quickstart Featured QS
+      a.button.get-started-quickstart(href="../quickstarts/hello-world") Hello World
+      a.button.get-started-quickstart(href="../quickstarts/kitchensink-html5-mobile") Kitchensink (JQuery Mobile)
+      a.button.get-started-quickstart(href="../quickstarts/kitchensink-angularjs") Kitchensink (AngularJS)
 
 .row
   h2.divider Looking to learn more about jBoss?
