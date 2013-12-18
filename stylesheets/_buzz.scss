@@ -3,7 +3,7 @@
   float:left;
   padding:10px;
   .buzz-item-inner {
-    border:1px solid $grey-5;
+    border:1px solid $grey-3;
     box-shadow:2px 2px 0 $med-blue;
     background:$grey-2;
     word-wrap:break-word;
@@ -12,6 +12,7 @@
     padding:10px;
     font-weight: 100;
     margin:0;
+    color:$grey-6;
   }
   h3 + p {
     padding-top:0;
@@ -121,6 +122,12 @@ input[type=text][name="buzz-filter-text"] {
   width:200px;
   position: relative;
   margin-bottom:-42px;
+}
+
+h4.buzz-message.divider {
+  float:left;
+  width:100%;
+  margin:20px 0 40px 0;
 }
 
 /* Mq */

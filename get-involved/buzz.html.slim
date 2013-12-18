@@ -11,6 +11,8 @@ layout: base
       li
         a href="/get-involved/buzz/" Buzz
   
+  .large-24
+    h4.divider.buzz-message Marketing message about what kind of content users can find here and details on how to subscribe.
   .large-24.buzz-filters
     input(type="text" name="buzz-filter-text" placeholder="Filter by Keyword")
     ul.sort-icons 
@@ -40,6 +42,7 @@ layout: base
           / img(src="http://lorempixel.com/300/#{rand(500)}")
           h3 #{titles[rand(4)]}
           p #{bodies[rand(4)]}
+          = partial 'share.html.slim'
 
     
     
