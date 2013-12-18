@@ -1,11 +1,34 @@
 {
-  "jbossdeveloper_quickstart_message": {
-    "_all": {
-      "enabled": false
-    },
+  "jbossdeveloper_quickstart": {
     "properties": {
       "level": {
-        "type": "string"
+        "type": "string",
+        "include_in_all": true
+      },
+      "tags": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.5
+      },
+      "contributors": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.2
+      },
+      "sys_description": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.7
+      },
+      "target_product": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.6
+      },
+      "sys_title": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.5
       }
     }
   }
