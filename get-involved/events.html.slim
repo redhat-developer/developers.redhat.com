@@ -39,7 +39,7 @@ layout: base
         a.slider-next(data-direction="next")
           i.icon-angle-right.icon-4x
     
-    h2 Find webinars and events within the industry, community or sponsored by Red Hat.
+    h4.divider.events-header Find webinars and events within the industry, community or sponsored by Red Hat.
 
     .events-control.large-10
       form.events-filter
@@ -71,7 +71,7 @@ layout: base
               div.event-date
                 span.month #{month}
                 span.day 25
-              h3 JBoss One Day Talk 2013
+              h3: a(href="#") JBoss One Day Talk 2013
               - if month == "Mar"
                 p.red-hat-event
                   i.icon-redhat
@@ -104,7 +104,7 @@ layout: base
               div.event-date
                 span.month #{month}
                 span.days 02-15
-              h3 Event name that is slightly longer than most 
+              h3: a(href="#") Event name that is slightly longer than most 
               - if month == "May"
                 p.red-hat-event
                   i.icon-redhat
