@@ -1,6 +1,7 @@
 .faq-nav-fixed {
   position: fixed;
   top:0;
+  padding-top: 20px;
 }
 
 .faq-nav a.past-block:last-child {
@@ -10,6 +11,7 @@
 .faq-nav {
   li {
     list-style:none;
+    padding-bottom:10px;
     a {
       &:after {
         content: "\f054";
@@ -27,5 +29,29 @@
     margin-bottom: 20px;
     padding-bottom: 5px;
     font-weight: 100;
+  }
+  .olist {
+    ol {
+      counter-reset: section; 
+    }
+    li {
+      list-style-type: none;
+    }
+    li:before {
+      counter-increment: section;
+      content: counters(section, ".") " "; 
+      display:inline;
+      background:$grey-3;
+      color: #FFF;
+      float: left;
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-size: 19px;
+      font-weight: 600;
+      margin-right: 10px;
+    }
+  }
+  & > div {
+    margin-bottom: 40px;
   }
 }
