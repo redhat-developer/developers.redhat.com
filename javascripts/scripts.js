@@ -181,7 +181,6 @@ app.init = function() {
           shareTab = el.find('.facebook-share-button-count'),
           url = shareButton.data('url'),
           shares = shareButton.data('shares');
-          console.log(shares);
       if(typeof shares == 'undefined') { // could possibly be zero
         shareButton.data('shares',0); // temporarily set to zero
         $.getJSON('http://api.facebook.com/restserver.php?method=links.getStats&format=json&urls='+encodeURIComponent(url),function(data){
@@ -417,7 +416,6 @@ app.faq = function() {
 app.developmentTools = function(){
 
     $('.development-tool-category').each(function() {
-      console.log(this);
       var items = $(this).find('.development-tool:even');
       $(items).each(function(i,el) {
         var that = $(this),
@@ -431,6 +429,21 @@ app.developmentTools = function(){
 
   };
 
+/*
+  Sticky Footers
+*/
+app.stickyFooter = function() {
+  var bodyHeight = $('body').height(),
+      windowHeight = $(window).height(),
+      wrapper = $('.wrapper');
+  if(bodyHeight < windowHeight) {
+    var headerHeight = $('header.main').outerHeight(),
+        footerHeight = $('footer.bottom').outerHeight(),
+        devHeight = $('.under-development').outerHeight(),
+        wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
+    wrapper.css('min-height',wrapperHeight);
+  }
+}
 
 /*
   Date Pickers
@@ -441,6 +454,7 @@ $(function() {
   app.init();
   app.sso();
   app.faq();
+  app.stickyFooter();
 });
 
 /*

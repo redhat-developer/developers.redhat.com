@@ -1457,6 +1457,9 @@ ul.external-links {
     padding-left: 0;
     border-left: 0;
   }
+  &:hover {
+    border-color:inherit;
+  }
 }
 
 // Login Page
@@ -1481,6 +1484,12 @@ body.login {
   i.icon-facebook:before { color:#3b5998; }
   i.icon-github:before { color:#000; }
   i.icon-google-plus:before { color:#dd483d; }
+}
+span.sign-in-options {
+  padding-left: 5px;
+  a:first-child {
+    padding-left: 10px;
+  }
 }
 
 form.login {
