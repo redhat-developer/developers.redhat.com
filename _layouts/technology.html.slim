@@ -12,7 +12,7 @@ layout: technology-base
         .technology-item
           h3 #{v.label}
           .technology-item-inside
-            = page["_" + k.sub(/-/, "_")]
+            = page["_" + k.gsub(/-/, "_")]
             a.learn-more(href="#{v.url}") Learn More
             .embedded-media
               h4 Title for video #{v.label}
