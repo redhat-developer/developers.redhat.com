@@ -58,6 +58,7 @@
 @import "books";
 @import "get-started";
 @import "picker";
+@import "forms";
 @import "tabzilla";
 
 .clearfix:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; } .clearfix {display: inline-block; } html[xmlns] .clearfix {display: block; } * html .clearfix {height: 1%; }
@@ -97,6 +98,15 @@ button, .button {
   }
   &.large {
     padding: 0.6em 0.9em;
+  }
+  & + button, & + .button {
+    margin-left: 20px;
+  }
+  &.blue {
+    background:$med-blue;
+    &:hover {
+      background: lighten($med-blue,10%);
+    }
   }
 }
 
@@ -881,6 +891,16 @@ footer.bottom {
   h3 {
     font-size:1em;
     font-weight: 600;
+  }
+  &.dark {
+    background:$grey-2;
+    border-radius:$global-radius;
+    padding:25px 30px;
+    h3 {
+      color:$grey-7;
+      font-size: emCalc(20);
+      margin-top: 0;
+    }
   }
 }
 
