@@ -49,6 +49,58 @@
         "name":"data_jbossdeveloper_quickstart",
         "type":"jbossdeveloper_quickstart_readme"
       }
+    },
+    "jbossdeveloper_bom": {
+      "description":"Bill of Materials POM from JBoss Developer",
+      "sys_type":"jbossdeveloper_bom",
+      "input_preprocessors": [
+        {
+          "name"     : "Contributors mapper",
+          "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings" : {
+            "index_name"       : "sys_contributors",
+            "index_type"       : "contributor",
+            "source_field"     : "contributors",
+            "idx_search_field" : "contributors",
+            "result_mapping"   : [{
+              "idx_result_field" : "code",
+              "target_field"     : "sys_contributor",
+              "value_default"    : "{contributors}"
+            }],
+            "source_bases"     : ["contributors"]
+          }
+        }
+      ],
+      "index": {
+        "name":"data_jbossdeveloper_bom",
+        "type":"jbossdeveloper_bom"
+      }
+    },
+    "jbossdeveloper_archetype": {
+      "description":"Maven Archetypes from JBoss Developer",
+      "sys_type":"jbossdeveloper_archetype",
+      "input_preprocessors": [
+        {
+          "name"     : "Contributors mapper",
+          "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings" : {
+            "index_name"       : "sys_contributors",
+            "index_type"       : "contributor",
+            "source_field"     : "contributors",
+            "idx_search_field" : "contributors",
+            "result_mapping"   : [{
+              "idx_result_field" : "code",
+              "target_field"     : "sys_contributor",
+              "value_default"    : "{contributors}"
+            }],
+            "source_bases"     : ["contributors"]
+          }
+        }
+      ],
+      "index": {
+        "name":"data_jbossdeveloper_archetype",
+        "type":"jbossdeveloper_archetype"
+      }
     }
   }
 }

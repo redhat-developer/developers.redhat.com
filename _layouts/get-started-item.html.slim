@@ -23,9 +23,10 @@ layout: base
             a href='' #{page.metadata[:author]}
         li
           strong 
-            | Contributors:
+            ' Contributors:
             - for contributor in page.metadata[:commits].collect { |c| c[:author] }.uniq
-              a href='' #{contributor}
+              a href=''
+                ' #{contributor}
         li
           strong 
             | Last Update:
