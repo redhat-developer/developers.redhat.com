@@ -12,7 +12,7 @@ Awestruct::Extensions::Pipeline.new do
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new '_eap-quickstarts', 'get-started-item', '/quickstarts/eap'
 
-  extension JBoss::Developer::Extensions::Stacks.new File.new('_jdf-stack/stacks.yaml'), 'get-started-item'
+  extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
 
   # Load indexifier
   extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]

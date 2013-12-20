@@ -1,5 +1,5 @@
 
-module Awestruct
+module JBoss::Developer
   module Extensions
     class Nav
 
