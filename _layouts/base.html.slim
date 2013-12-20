@@ -22,11 +22,11 @@ body(class="#{template}")
       a(class="tabnav-closed" href="https://www.jboss.org" id="tab") Red Hat
   .site-wrapper
     header.main
+      i.nav-toggle.nav-toggle-open
       .row
         .large-7.columns
           h1.logo
             a(href="#{site.base_url}/#{site.context_url}") JBoss<strong>Developer</strong>
-          i.nav-toggle.nav-toggle-open
           / i.nav-toggle.nav-toggle-close &times;
         
     nav.top-bar
@@ -87,11 +87,6 @@ body(class="#{template}")
               li
                 a(href="#")
                   i.icon-linkedin
-            ul.footer-nav
-              li.redhat: a Red Hat
-              li Site Help:
-              li: a FAQ
-              li: a Report a problem
     .wrapper
       .content-wrapper
         = content

@@ -147,12 +147,25 @@ body.nav-open {
     }
     i.nav-toggle {
       right:auto;
-      left:20px;
+      // left:45px;
+      left: 15%;
+      margin-left: -43px;
+      top:1px !important;
       &:before {
         content: '×';
         font-size: 4em;
         line-height: 0.6em;
       }
+    }
+    nav.top-bar {
+      // This allows for a consistent close button area
+      // regardless of device width
+      // margin-left: -60px;
+      // padding-left: 60px;
+      // width:100%;
+    }
+    .sub-nav {
+      top:0;
     }
   }
 }
@@ -233,12 +246,17 @@ ul.footer-nav {
     }
     h1 {
       text-align: center;
+      &.logo {
+        font-size: 1.75em;
+        padding-left: 20px;
+      }
     }
     i.nav-toggle {
       position: absolute;
       top:5px;
-      right: 10px;
+      right: 1px;
       display: block;
+      z-index: 999;
     }
   }
 
