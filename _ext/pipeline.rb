@@ -12,7 +12,7 @@ Awestruct::Extensions::Pipeline.new do
   extension Aweplug::Extensions::Kramdown::Quickstart.new '_eap-quickstarts', 'get-started-item','/quickstarts'
 
   # Load indexifier
-  extension Awestruct::Extensions::Indexifier.new
+  extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]
 
   extension Awestruct::Extensions::Nav.new
  
