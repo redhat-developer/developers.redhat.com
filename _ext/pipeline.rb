@@ -21,6 +21,9 @@ Awestruct::Extensions::Pipeline.new do
  
   extension JBoss::Developer::Extensions::CommonDir.new
 
+  # Generate a sitemap.xml
+  extension Awestruct::Extensions::Sitemap.new
+
   helper Awestruct::Extensions::Partial
   helper JBoss::Developer::Utilities
 end
