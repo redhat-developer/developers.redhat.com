@@ -2,6 +2,7 @@ require 'zurb-foundation'
 require 'common_dir'
 require 'aweplug/extensions/kramdown_quickstart'
 require 'aweplug/extensions/sections'
+require 'aweplug/extensions/asciidoc_example'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
@@ -13,6 +14,9 @@ Awestruct::Extensions::Pipeline.new do
   extension Aweplug::Extensions::Kramdown::Quickstart.new '_eap-quickstarts', 'get-started-item', '/quickstarts/eap'
 
   extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
+  
+  extension Aweplug::Extensions::AsciidocExample.new '_ticket-monster', 'tutorial', 'get-started-item', 'ticket-monster',
+                                                     ['ticket-monster.asciidoc']
 
   # Load indexifier
   extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]
