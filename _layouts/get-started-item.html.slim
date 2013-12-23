@@ -19,32 +19,32 @@ layout: base
       ul
         - if page.metadata[:author]
           li
-            strong 
+            strong
               ' Author:
               a href='' #{page.metadata[:author]}
         - if page.metadata[:commits]
           li
-            strong 
+            strong
               ' Contributors:
               - for contributor in page.metadata[:commits].collect { |c| c[:author] }.uniq
                 a href=''
                   ' #{contributor}
           li
-            strong 
+            strong
               ' Last Update:
                 #{DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')}
         - if page.metadata[:level]
-          li: strong 
+          li: strong
             | Level:
               #{page.metadata[:level]}
         - if page.metadata[:technologies]
-          li: strong 
+          li: strong
             | Technologies:
               #{page.metadata[:technologies]}
         - if page.metadata[:target_product]
-          li: strong 
+          li: strong
             | Target Product:
-              #{page.metadata[:target_product]} 
+              #{page.metadata[:target_product]}
   .row.content
     .column.large-24
       .column.large-4
@@ -54,19 +54,19 @@ layout: base
               - for link in page.metadata[:toc]
                 li: a href="##{link[:id]}" #{link[:text]}
       .column.large-16
-        = page.content 
+        = page.content
 
         / TODO: Share Knowledge, comments go here
-        h3.divider Recent Changelog 
+        h3.divider Recent Changelog
         ul.commit-log
           - for commit in page.metadata[:commits].take(10)
-            li 
+            li
               / TODO: fix up the links
-              a href="##{commit[:hash]}" 
+              a href="##{commit[:hash]}"
                 '#{DateTime.parse(commit[:date]).strftime('%b %e, %Y')}
               | (
               a href="#" #{commit[:author]}
-              '): #{commit[:subject].gsub(/\-/,' ')} 
+              '): #{commit[:subject].gsub(/\-/,' ')}
         h3.divider Resources
         ul
           li Material name an desc go here
