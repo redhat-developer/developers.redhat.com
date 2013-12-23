@@ -14,18 +14,4 @@ layout: technology-base
           .technology-item-inside
             = page["_" + k.gsub(/-/, "_")]
             a.learn-more(href="#{v.url}") Learn More
-            .embedded-media
-              h4 Title for video #{v.label}
-              iframe width="100%" height="315" src="//www.youtube.com/embed/oxMSU8AYxvg" frameborder="0" allowfullscreen
-              .follow-links
-                span.title Follow Craig
-                a: i.icon-rss
-                a: i.icon-facebook
-                a: i.icon-twitter
-                a: i.icon-linkedin
-              .follow-links
-                span.title Follow Pete
-                a: i.icon-rss
-                a: i.icon-facebook
-                a: i.icon-twitter
-                a: i.icon-linkedin
+            = vimeo(v.video)

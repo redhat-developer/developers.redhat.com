@@ -21,7 +21,7 @@ module JBoss::Developer
         if Hash === object
           r['children'] = {}
           object.each do |key, value|
-            if key.to_s == 'label' || key.to_s == 'url' || key.to_s == 'description'
+            if key.to_s == 'label' || key.to_s == 'url' || key.to_s == 'description' || key.to_s == 'video'
               r[key] = value
             else
               r['children'][key] = build(value, key, site)

@@ -7,6 +7,7 @@ require 'aweplug/extensions/asciidoc_example'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
+require 'vimeo'
 
 Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
@@ -33,5 +34,6 @@ Awestruct::Extensions::Pipeline.new do
 
   helper Awestruct::Extensions::Partial
   helper JBoss::Developer::Utilities
+  helper JBoss::Developer::Vimeo
 end
 
