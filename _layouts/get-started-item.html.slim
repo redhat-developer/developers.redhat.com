@@ -12,45 +12,69 @@ layout: base
         a href="" Developer Materials
       li
         a href="" #{page.metadata[:title]}
-.row.content
-  .column.large-20
+.row
+  .column.large-24
     h2.divider #{page.metadata[:title]}
     .gsi-meta
       ul
-        li
-          strong 
-            | Author:
-            a href='' #{page.metadata[:author]}
-        li
-          strong 
-            ' Contributors:
-            - for contributor in page.metadata[:commits].collect { |c| c[:author] }.uniq
-              a href=''
-                ' #{contributor}
-        li
-          strong 
-            | Last Update:
-              #{page.metadata[:commits].collect { |c| DateTime.parse c[:date] }.first.strftime('%b %d, %Y')}
-        li: strong 
-          | Level:
-            #{page.metadata[:level]}
-        li: strong 
-          | Technologies:
-            #{page.metadata[:technologies]}
-        li: strong 
-          | Target Product:
-            #{page.metadata[:target_product]} 
+        - if page.metadata[:author]
+          li
+            strong 
+              ' Author:
+              a href='' #{page.metadata[:author]}
+        - if page.metadata[:commits]
+          li
+            strong 
+              ' Contributors:
+              - for contributor in page.metadata[:commits].collect { |c| c[:author] }.uniq
+                a href=''
+                  ' #{contributor}
+          li
+            strong 
+              ' Last Update:
+                #{DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')}
+        - if page.metadata[:level]
+          li: strong 
+            | Level:
+              #{page.metadata[:level]}
+        - if page.metadata[:technologies]
+          li: strong 
+            | Technologies:
+              #{page.metadata[:technologies]}
+        - if page.metadata[:target_product]
+          li: strong 
+            | Target Product:
+              #{page.metadata[:target_product]} 
+  .row.content
+    .column.large-24
+      .column.large-4
+        .gsi-nav
+          ul.toc
+            - if page.metadata[:toc]
+              - for link in page.metadata[:toc]
+                li: a href="##{link[:id]}" #{link[:text]}
+      .column.large-16
+        = page.content 
 
-    = page.content 
+        / TODO: Share Knowledge, comments go here
+        h3.divider Recent Changelog 
+        ul.commit-log
+          - for commit in page.metadata[:commits].take(10)
+            li 
+              / TODO: fix up the links
+              a href="##{commit[:hash]}" 
+                '#{DateTime.parse(commit[:date]).strftime('%b %e, %Y')}
+              | (
+              a href="#" #{commit[:author]}
+              '): #{commit[:subject].gsub(/\-/,' ')} 
+        h3.divider Resources
+        ul
+          li Material name an desc go here
+          li Material name an desc go here
+          li Material name an desc go here
+          li Material name an desc go here
+          li Material name an desc go here
+        h4: a View more Resources >>
 
-    h3.divider Resources
-    ul
-      li Material name an desc go here
-      li Material name an desc go here
-      li Material name an desc go here
-      li Material name an desc go here
-      li Material name an desc go here
-    h4: a View more Resources >>
-
-  .column.large-4
-    p sidebar
+      .column.large-4
+        p sidebar

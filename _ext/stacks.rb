@@ -87,7 +87,7 @@ module JBoss::Developer::Extensions
         bom_page = ::Awestruct::Page.new(site,
                      ::Awestruct::Handlers::LayoutHandler.new(site,
                        ::Awestruct::Handlers::TiltHandler.new(site,
-                         ::Aweplug::Handlers::SyntheticHandler.new(site, 'p.test Hello World!',
+                         ::Aweplug::Handlers::SyntheticHandler.new(site, bom_page_content,
                                                                    "/products/#{product}/boms.html.slim"))))
         bom_page.layout = @layout
         bom_page.output_path = "/boms/#{product}/#{bom['bom']['id']}/index.html"

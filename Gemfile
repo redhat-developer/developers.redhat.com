@@ -8,7 +8,7 @@ gem 'asciidoctor', '~> 0.1.4'
 gem 'uglifier', '~> 2.0.1'
 gem 'htmlcompressor', '~> 0.0.6'
 gem "zurb-foundation", "~> 4.3.1"
-gem 'aweplug', '~> 1.0.0a7'
+gem 'aweplug', '~> 1.0.0a8'
 #gem 'aweplug', :path => '~/projects/ruby/aweplug'
 
 group :development do
