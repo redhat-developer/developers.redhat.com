@@ -101,6 +101,32 @@
         "name":"data_jbossdeveloper_archetype",
         "type":"jbossdeveloper_archetype"
       }
+    },
+    "jbossdeveloper_example": {
+      "description":"Examples from JBoss Developer",
+      "sys_type":"jbossdeveloper_example",
+      "input_preprocessors": [
+        {
+          "name"     : "Contributors mapper",
+          "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings" : {
+            "index_name"       : "sys_contributors",
+            "index_type"       : "contributor",
+            "source_field"     : "contributors",
+            "idx_search_field" : "contributors",
+            "result_mapping"   : [{
+              "idx_result_field" : "code",
+              "target_field"     : "sys_contributor",
+              "value_default"    : "{contributors}"
+            }],
+            "source_bases"     : ["contributors"]
+          }
+        }
+      ],
+      "index": {
+        "name":"data_jbossdeveloper_example",
+        "type":"jbossdeveloper_example"
+      }
     }
   }
 }
