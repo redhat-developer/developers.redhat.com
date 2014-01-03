@@ -1,5 +1,6 @@
 require 'zurb-foundation'
 require 'common_dir'
+require 'upstream_projects'
 require 'aweplug/extensions/kramdown_quickstart'
 require 'aweplug/extensions/sections'
 require 'aweplug/extensions/asciidoc_example'
@@ -10,6 +11,8 @@ require 'stacks'
 Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
   extension Aweplug::Extensions::Sections.new
+
+  extension JBoss::Developer::Extensions::UpstreamProjects.new
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new '_eap-quickstarts', 'get-started-item', '/quickstarts/eap'
 

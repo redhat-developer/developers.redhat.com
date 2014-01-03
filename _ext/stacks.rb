@@ -14,13 +14,6 @@ module JBoss::Developer::Extensions
 
     attr_reader :yml
 
-    SYNTHETIC_HANDLER_CHAIN = ::Awestruct::HandlerChain.new(
-      ::Awestruct::Handlers::NonInterpolatingTiltMatcher.new(),
-      ::Aweplug::Handlers::SyntheticHandler,
-      ::Awestruct::Handlers::TiltHandler,
-      ::Awestruct::Handlers::LayoutHandler
-    )
-
     def initialize stacks, layout, repo
       @yml = YAML.load_file File.join(repo, stacks) 
       @layout = layout
