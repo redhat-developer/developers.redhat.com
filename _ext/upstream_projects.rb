@@ -7,14 +7,14 @@ require 'awestruct/handlers/tilt_handler'
 require 'awestruct/handler_chain'
 
 module JBoss::Developer::Extensions
-  class UpstreamProjects 
+  class UpstreamProjects
     def execute site
       searchisko = Aweplug::Helpers::Searchisko.new({:base_url => site.dcp_base_url,
                                                      :authenticate => true,
                                                      :searchisko_username => ENV['dcp_user'],
                                                      :searchisko_password => ENV['dcp_password'],
                                                      :logger => site.profile == 'developement'})
-      content = 
+      content =
 %q!ul.large-block-grid-3.small-block-grid-2
   - for project in page.projects
     li.upstream.solution
