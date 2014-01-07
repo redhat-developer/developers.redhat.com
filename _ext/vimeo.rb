@@ -6,10 +6,10 @@ module JBoss
 
       def vimeo(url)
         id = video_id(url)
-        info = video_info(id)
+        title = video_title(id)
         out = "<div class=\"embedded-media\">" +
-        "<h4>#{info.title}</h4>" +
-        "<iframe src=\"//player.vimeo.com/video/#{info.id}\?title=0&byline=0&portrait=0&badge=0&color=2664A2\" width=\"500\" height=\"313\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen}></iframe>"
+        "<h4>#{title}</h4>" +
+        "<iframe src=\"//player.vimeo.com/video/#{id}\?title=0&byline=0&portrait=0&badge=0&color=2664A2\" width=\"500\" height=\"313\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen}></iframe>"
         cast = video_cast(id)
         cast.each do |c|
           out += "<div class=\"follow-links\">" +
@@ -31,23 +31,31 @@ module JBoss
         url.match(/^.*\/(\d*)$/)[1]
       end
 
-      def video_info(video_id)
+      def video_title(video_id)
         body = exec_method "vimeo.videos.getInfo", video_id
-        OpenStruct.new(JSON.parse(body)["video"][0])
+        if body 
+          JSON.parse(body)["video"][0]["title"]
+        else
+          "Unable to fetch video info from vimeo"
+        end
       end
 
       def video_cast(video_id)
         body = exec_method "vimeo.videos.getCast", video_id
         cast = []
-        JSON.parse(body)["cast"]["member"].each do |c|
-          cast << OpenStruct.new(c)
+        if body
+          JSON.parse(body)["cast"]["member"].each do |c|
+            cast << OpenStruct.new(c)
+          end
         end
         cast
       end
 
       def exec_method(method, video_id)
-        query = "http://vimeo.com/api/rest/v2?method=#{method}&video_id=#{video_id}&format=json"
-        access_token.get(query).body
+        if access_token
+          query = "http://vimeo.com/api/rest/v2?method=#{method}&video_id=#{video_id}&format=json"
+          access_token.get(query).body
+        end
       end
 
       # Exchange your oauth_token and oauth_token_secret for an AccessToken instance.
