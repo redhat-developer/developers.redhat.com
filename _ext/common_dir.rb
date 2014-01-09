@@ -60,7 +60,6 @@ module JBoss
               end
             end
           end
-          site['_common'] = common_map
         end
 
       end

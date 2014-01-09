@@ -8,6 +8,7 @@ require 'jboss_developer'
 require 'nav'
 require 'stacks'
 require 'aweplug/helpers/vimeo'
+require 'product'
 
 Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
@@ -28,6 +29,8 @@ Awestruct::Extensions::Pipeline.new do
   extension JBoss::Developer::Extensions::Nav.new
  
   extension JBoss::Developer::Extensions::CommonDir.new
+  # Must be loaded after CommonDir
+  extension JBoss::Developer::Extensions::Product.new
 
   # Generate a sitemap.xml
   extension Awestruct::Extensions::Sitemap.new

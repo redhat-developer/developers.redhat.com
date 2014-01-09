@@ -13,15 +13,13 @@ table.large-24.small-24
       th Documentation
       th Available Formats
   tbody
-    - for row in [1,2,3,4,5,6]
+    - page.product.guides.each do |guide|
       tr
-        td: a(href="#") Document # #{row}
+        td: #{guide.name}
         td.linkList
-          a(href="#") HTML
-          a(href="#") HTML-SINGLE
-          a(href="#") PDF
-          a(href="#") EPUB
-a(href="#{product_documentation_url(page.parent_dir)}")
+          - guide.formats.each do |format|
+            a.guide-format-link(href="#{format.url}") #{format.name}
+a(href="#{page.product.documentation_url}")
   | See More Documentation 
   i.icon-external-link
 

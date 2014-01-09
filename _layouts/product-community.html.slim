@@ -14,11 +14,11 @@ a.ctaText(href="#{site.base_url}/get-involved")
 
 h3.divider Forums
 asciidoc:
-  Providing support to users is a great way to collaborate and give back to the community. Lots of questions are asked and answered each day in the link:#{product_forum_url(page.parent_dir)}[forum].
+  Providing support to users is a great way to collaborate and give back to the community. Lots of questions are asked and answered each day in the link:#{page.product.forum_url}[forum].
 
-  If you're using #{page.product.abbreviated_name} and want to have a say in its future development you can talk with the product team in the link:#{product_forum_url(page.parent_dir)}[forum] to have your voice heard.
+  If you're using #{page.product.abbreviated_name} and want to have a say in its future development you can talk with the product team in the link:#{page.product.forum_url}[forum] to have your voice heard.
 
-a.ctaText(href="#{product_forum_url(page.parent_dir)}")
+a.ctaText(href="#{page.product.forum_url}")
   | Visit the #{page.product.abbreviated_name} Forums 
   i.icon-double-angle-right
 
