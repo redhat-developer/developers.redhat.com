@@ -27,8 +27,8 @@ module JBoss::Developer::Extensions
               product.current_minor_version = product.current_version[/^([0-9]*\.[0-9]*)/, 1]
             end
             # Process the guides declared for the product
+            a = []
             if product.guides
-              a = []
               product.guides.each do |k, v|
                 guide = OpenStruct.new(v)
                 guide.name ||= k.gsub(/_/, ' ')
@@ -49,9 +49,8 @@ module JBoss::Developer::Extensions
                 guide.formats = b
                 a << guide
               end
-              product.guides = a
             end
-
+            product.guides = a
             # Store the product in the global product map
             site.products[product.id] = product
           end
