@@ -7,75 +7,60 @@ h3.divider Download for Development Use
 asciidoc:
   To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the JBoss Developer Program which provides $0 subscriptions for development use only. link:#[Read more] about the JBoss Developer Program.
 
-  [".download-link"]
-  ==== link:http://jboss.org[Enterprise Application Platform 6.1.0 with Installer]
+h4.download-link: a(href="#"): #{page.product.abbreviated_name} #{page.product.current_version}
 
-  [options="header"]
-  |=======================
-  |Version  |Description      |Release Date   | Download
-    
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-   
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
+- if page.product.current_download
+  table
+    colgroup
+      col(style="width:25%")
+      col(style="width:25%")
+      col(style="width:25%")
+      col(style="width:25%")
+    thead
+      tr
+        th Version
+        th Description
+        th Release Date
+        th Download
+    tbody
+      tr
+        td #{page.product.current_download.version}
+        td #{page.product.current_download.description}
+        td #{page.product.current_download.release_date}
+        td.asset-list
+          - page.product.current_download.assets.each do |asset|
+            span.item: a(href="#{asset.url}") #{asset.name} #{asset.size ? "(" + asset.size + ")" : ""} 
 
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-  |=======================
+  - if page.product.older_downloads
+    a.view-older-downloads(href="#")
+      | View Older Downloads
+      i.icon-caret-down
 
+    table
+      colgroup
+        col(style="width:25%")
+        col(style="width:25%")
+        col(style="width:25%")
+        col(style="width:25%")
+      thead
+        tr
+          th Version
+          th Description
+          th Release Date
+          th Download
+      tbody
+        - page.product.downloads.each do |k, download|
+          - if page.product.current_download != download
+            tr
+              td #{download.version}
+              td #{download.description}
+              td #{download.release_date}
+              td.asset-list
+                - download.assets.each do |asset|
+                  span.item: a(href="#{asset.url}") #{asset.name} #{asset.size ? "(" + asset.size + ")" : ""}
 
-a.view-older-downloads(href="#")
-  | View Older Downloads
-  i.icon-caret-down
-
-asciidoc:
-  |=======================
-  |Version  |Description      |Release Date   | Download
-
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-
-    | http://jboss.org[6.1.0 Final]
-    | http://jboss.org[EAP build from AS 7.2]
-    | 12/12/2012 
-    | link:d.zip[Zip] (220mb) link:sha.html[SHA] link:md5.html[MD5] link:notes.html[Release Notes] link:source.html[Source](26mb)
-
-  |=======================
-
+- else
+  p No downloads available
 
 h3.divider Ready to use #{page.product.abbreviated_name} in Production?
 

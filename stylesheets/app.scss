@@ -826,6 +826,12 @@ footer.bottom {
   }
 }
 
+.asset-list  {
+  .item + .item::before {
+    content: " | ";
+  }
+}
+
 // Section Tabs
 .section-container.auto {
   .content {
