@@ -12,37 +12,9 @@ module JBoss::Developer::Extensions
       searchisko = Aweplug::Helpers::Searchisko.new({:base_url => site.dcp_base_url,
                                                      :authenticate => false,
                                                      :logger => site.profile == 'developement'})
-      content =
-%q!ul.large-block-grid-3.small-block-grid-2
-  - for project in page.projects
-    li.upstream.solution
-      a.image-link href='#'
-        img src=''
-      a.solution-name-link href='#'
-        h3.solution-name =project['data']['name']
-      span.update-date =project['id']
-      p =page['code']
-      a.upstream-download href='#'
-        i.upstream-download-alt Download
-      .upstream-more-content
-        p.product-links
-        ul.external-links
-      a.upstream-toggle-more href='#'
-        span.view-more
-          | View More
-          i.icon-plus-sign-alt
-        span.view-less
-          | View Less
-          i.icon-minus-sign-alt
-!
+      page = site.pages.find {|p| p.relative_source_path =~ /projects\.html\.slim/}
 
-      upstream_page = ::Awestruct::Page.new(site, ::Awestruct::Handlers::LayoutHandler.new(site,
-                         ::Awestruct::Handlers::TiltHandler.new(site,
-                           ::Aweplug::Handlers::SyntheticHandler.new(site, content, '/projects/upstream.html.slim'))))
-      upstream_page.layout = 'base'
-      upstream_page.output_path = '/projects/upstream/index.html'
-      upstream_page.send('projects=', JSON.load(searchisko.get('project').body)['hits'])
-      site.pages << upstream_page
+      page.send('projects=', JSON.load(searchisko.get('project').body)['hits'])
     end
   end
 end

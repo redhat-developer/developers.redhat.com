@@ -33,23 +33,25 @@ layout: technology-base
   .large-18.column
     h2.divider
       | All Projects
-      span.label 42
+      span.label = page.projects.size
     ul.large-block-grid-4.small-block-grid-2
-      - for solution in [1,2,3,4,5,6,7,8] 
-        li.upstream(data-open-solution="#{solution}")
-          a.image-link: img(src="#{site.base_url}/#{site.context_url}/images/solution-#{solution}.png")
+      - for solution in page.projects
+        li.upstream(data-open-solution="#{solution['id']}")
+          a.image-link: img(src="#{site.base_url}/#{site.context_url}/images/solution-#{solution['id']}.png")
            a.solution-name-link(href="#")
-            h3.solution-name Solution # #{solution}
-          span.update-date Last Update: August 13, 2013
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu.
+            h3.solution-name = solution['data']['name']
+          span.update-date
+            | Last Update: #{solution['id']}
+          p = solution['data']['description']
           a.upstream-download
             i.icon-download-alt
             |  Download
           .upstream-more-content
             p.product-links
               | Included in Product(s) <br>
-              a(href="#") RedHat JBoss Enterprise Application Server
-              a(href="#") RedHat JBoss Data Visualization
+              /
+                a(href="#") RedHat JBoss Enterprise Application Server
+                a(href="#") RedHat JBoss Data Visualization
             ul.external-links
               - for link in [1,2,3,4,5,6,7,8] 
                 li: a(href="#") Link #{link}
