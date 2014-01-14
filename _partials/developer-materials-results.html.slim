@@ -1,28 +1,55 @@
+script(type="text/template" id="cardTemplate")
+  li.material
+    a(href="{0}")
+      img(src="/images/materials-thumb1.jpg")
+    span.label.material-duration
+      | {1}
+    span(class="material-level-{2} label")
+      | {2}
+    h4: a(href="{0}")
+      | {3}
+    p.author
+      | Author: 
+      a(href="{0}")
+        | {4}
+    p.material-datestamp
+      | Added {5}
+    p.rating
+      | Video
+      | {6}
+    .body
+      p
+        | {7}
+
 ul.results.small-block-grid-2.large-block-grid-3
-  |
-  - page.max_results ||= 6
-  - page.max_results.times do |material|
-    li.material
-      - if material === 5
-        a.banner.experimental(href="#") Experimental
-      - if material === 1
-        a.banner.premium(href="#") Premium 
-      a(href="#")
-        img(src="/images/materials-thumb1.jpg")
-      span.label.material-duration 04:54
-      span.label.material-level-beginner Beginner
-      h4: a(href="#") JBoss EAP 6 Administration 
-      p.author
-        | Author: 
-        a(href="#") John Smith
-      p.material-datestamp Added 28 2014 9:15pm
-      p.rating
-        | Video
-        i.icon-star
-        i.icon-star
-        i.icon-star
-        i.icon-star-half-empty
-        i.icon-star-empty
-      .body
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
+  / Results will be placed here via JS
+
+/ Layout — Keep this for reference
+/ ul.results.small-block-grid-2.large-block-grid-3
+/   |
+/   - page.max_results ||= 6
+/   - page.max_results.times do |material|
+/     li.material
+/       - if material === 5
+/         a.banner.experimental(href="#") Experimental
+/       - if material === 1
+/         a.banner.premium(href="#") Premium 
+/       a(href="#")
+/         img(src="/images/materials-thumb1.jpg")
+/       span.label.material-duration 04:54
+/       span.label.material-level-beginner Beginner
+/       h4: a(href="#") JBoss EAP 6 Administration 
+/       p.author
+/         | Author: 
+/         a(href="#") John Smith
+/       p.material-datestamp Added 28 2014 9:15pm
+/       p.rating
+/         | Video
+/         i.icon-star
+/         i.icon-star
+/         i.icon-star
+/         i.icon-star-half-empty
+/         i.icon-star-empty
+/       .body
+/         p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
 

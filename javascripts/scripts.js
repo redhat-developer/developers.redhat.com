@@ -466,4 +466,5 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
         return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
     };
 });
+jQuery.ajaxSettings.traditional = true;
 

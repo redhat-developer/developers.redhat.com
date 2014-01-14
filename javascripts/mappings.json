@@ -1,0 +1,4360 @@
+{
+  "stats_jbossorg_jira_river": {
+    "jira_river_indexupdate": {
+      "properties": {
+        "project_key": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "result": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "update_type": {
+          "type": "string",
+          "analyzer": "keyword"
+        }
+      }
+    }
+  },
+  "stats_api_search": {
+    "search": {
+      "properties": {
+        "date": {
+          "type": "date",
+          "format": "dateOptionalTime"
+        },
+        "exception": {
+          "type": "boolean"
+        },
+        "exception_detailed_message": {
+          "type": "string"
+        },
+        "exception_most_specific_cause": {
+          "type": "string"
+        },
+        "filters_activity_date_from": {
+          "type": "date",
+          "format": "dateOptionalTime"
+        },
+        "filters_activity_date_interval": {
+          "type": "string"
+        },
+        "filters_activity_date_to": {
+          "type": "date",
+          "format": "dateOptionalTime"
+        },
+        "filters_content_type": {
+          "type": "string"
+        },
+        "filters_sys_types": {
+          "type": "string"
+        },
+        "filters_tags": {
+          "type": "string"
+        },
+        "hits_id": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "max_score": {
+          "type": "double"
+        },
+        "query_fields": {
+          "type": "string"
+        },
+        "query_highlight": {
+          "type": "boolean"
+        },
+        "query_string": {
+          "type": "string"
+        },
+        "response_uuid": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "returned_hits": {
+          "type": "long"
+        },
+        "shards_failed": {
+          "type": "long"
+        },
+        "shards_successful": {
+          "type": "long"
+        },
+        "status": {
+          "type": "string"
+        },
+        "timed_out": {
+          "type": "boolean"
+        },
+        "took": {
+          "type": "long"
+        },
+        "total_hits": {
+          "type": "long"
+        },
+        "type": {
+          "type": "string",
+          "analyzer": "keyword"
+        }
+      }
+    }
+  },
+  "data_jbossorg_sbs_forum": {
+    "jbossorg_sbs_forum": {
+      "include_in_all": false,
+      "_all": {
+        "enabled": false
+      },
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "authors": {
+          "include_in_all": false,
+          "properties": {
+            "display_name": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "email_address": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "sys_contributor": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            }
+          }
+        },
+        "source": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "space_key": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "display_name": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                },
+                "email_address": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                },
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "tags": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        }
+      }
+    },
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    }
+  },
+  "sys_contributors": {
+    "contributor": {
+      "_all": {
+        "enabled": false
+      },
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "code": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "email": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "type_specific_code": {
+          "properties": {
+            "github_username": {
+              "type": "string",
+              "analyzer": "keyword"
+            },
+            "jbossorg_blog": {
+              "type": "string",
+              "analyzer": "keyword"
+            },
+            "jbossorg_username": {
+              "type": "string",
+              "analyzer": "keyword"
+            }
+          }
+        }
+      }
+    }
+  },
+  "data_jbossorg_sbs_article": {
+    "jbossorg_sbs_article": {
+      "include_in_all": false,
+      "_all": {
+        "enabled": false
+      },
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "authors": {
+          "include_in_all": false,
+          "properties": {
+            "display_name": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "email_address": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "sys_contributor": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            }
+          }
+        },
+        "source": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "space_key": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "display_name": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                },
+                "email_address": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                },
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "tags": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        }
+      }
+    },
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    }
+  },
+  "data_project_info": {
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    },
+    "jbossorg_project_info": {
+      "include_in_all": false,
+      "_all": {
+        "enabled": false
+      },
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "anonymousGitLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "anonymousLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "archived": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "blogLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "buildLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "chatLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "commiterLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "committerGitLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "communityLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "description": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "devForumLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "docsLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "downloadsLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "excludeInProjectMatrix": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "fisheyeLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "githubLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "homePage": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "hudsonLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "issueTrackerLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "jiraLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "knowledgeBaseLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "license": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "mailingListLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "nodePath": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "projectName": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "specialIcon": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "srcLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "subProjects": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "multi_field",
+          "fields": {
+            "sys_project_name": {
+              "type": "string",
+              "store": true,
+              "analyzer": "sys_project_name",
+              "include_in_all": false
+            },
+            "edgengram": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "analyzer": "edgengram",
+              "include_in_all": false
+            },
+            "ngram": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "analyzer": "ngram",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "twitterLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "userForumLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "viewvcLink": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        }
+      }
+    }
+  },
+  "data_jbossorg_jira": {
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    },
+    "jbossorg_jira_issue": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "assignee": {
+          "include_in_all": false,
+          "properties": {
+            "display_name": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "email_address": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "sys_contributor": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            }
+          }
+        },
+        "components": {
+          "include_in_all": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": true
+            }
+          }
+        },
+        "fix_versions": {
+          "include_in_all": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": true
+            }
+          }
+        },
+        "issue_type": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "project_key": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "project_name": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "reporter": {
+          "include_in_all": false,
+          "properties": {
+            "display_name": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "email_address": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "sys_contributor": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            }
+          }
+        },
+        "resolutiondate": {
+          "type": "date",
+          "index": "no",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "source": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "status": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "summary": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "display_name": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                },
+                "email_address": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                },
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "display_name": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                },
+                "email_address": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                },
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_issue_status": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": true
+        },
+        "sys_issue_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": true
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "tags": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "updated": {
+          "type": "date",
+          "index": "no",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        }
+      }
+    }
+  },
+  "data_jbossorg_blog": {
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    },
+    "jbossorg_blogpost": {
+      "include_in_all": false,
+      "_all": {
+        "enabled": false
+      },
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "author": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "avatar_link": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "modified": {
+          "type": "date",
+          "index": "no",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "tags": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        }
+      }
+    }
+  },
+  "data_jbossdeveloper_quickstart": {
+    "jbossdeveloper_quickstart_message": {
+      "include_in_all": false,
+      "_all": {
+        "enabled": false
+      },
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "level": {
+          "type": "string",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    },
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    },
+    "jbossdeveloper_quickstart_readme": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "level": {
+          "type": "string",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "tags": {
+          "type": "string",
+          "include_in_all": false
+        },
+        "target_product": {
+          "type": "string",
+          "include_in_all": false
+        }
+      }
+    },
+    "jbossdeveloper_quickstart": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "contributors": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "level": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": true
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": true
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "tags": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "target_product": {
+          "type": "string",
+          "include_in_all": true
+        }
+      }
+    }
+  },
+  "data_jbossdeveloper_archetype": {
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    },
+    "jbossdeveloper_archetype": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "artifactId": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "contributors": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "groupId": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "recommendedVersion": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": true
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": true
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "versions": {
+          "type": "string",
+          "include_in_all": true
+        }
+      }
+    }
+  },
+  "stats_api_feed": {
+    "feed": {
+      "properties": {
+        "date": {
+          "type": "date",
+          "format": "dateOptionalTime"
+        },
+        "filters_from": {
+          "type": "long"
+        },
+        "filters_size": {
+          "type": "long"
+        },
+        "hits_id": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "max_score": {
+          "type": "string"
+        },
+        "query_fields": {
+          "type": "string"
+        },
+        "query_sortBy": {
+          "type": "string"
+        },
+        "response_uuid": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "returned_hits": {
+          "type": "long"
+        },
+        "shards_failed": {
+          "type": "long"
+        },
+        "shards_successful": {
+          "type": "long"
+        },
+        "status": {
+          "type": "string"
+        },
+        "timed_out": {
+          "type": "boolean"
+        },
+        "took": {
+          "type": "long"
+        },
+        "total_hits": {
+          "type": "long"
+        },
+        "type": {
+          "type": "string",
+          "analyzer": "keyword"
+        }
+      }
+    }
+  },
+  "stats_api_search_hit_used": {
+    "search_hit_used": {
+      "properties": {
+        "hits_id": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "response_uuid": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "session": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "type": {
+          "type": "string",
+          "analyzer": "keyword"
+        }
+      }
+    }
+  },
+  "data_jbossorg_mailing_list": {
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    },
+    "jbossorg_mailing_list_message": {
+      "include_in_all": false,
+      "_all": {
+        "enabled": false
+      },
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "author": {
+          "type": "string",
+          "include_in_all": false
+        },
+        "date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "first_html_message": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "first_text_message": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "first_text_message_without_quotes": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "html_messages": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "html_messages_cnt": {
+          "type": "integer",
+          "include_in_all": false
+        },
+        "in_reply_to": {
+          "type": "string",
+          "index": "not_analyzed",
+          "store": true,
+          "omit_norms": true,
+          "index_options": "docs",
+          "include_in_all": false
+        },
+        "mail_list": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "message_attachments": {
+          "include_in_all": false,
+          "properties": {
+            "content": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "content_type": {
+              "type": "string",
+              "include_in_all": false
+            },
+            "filename": {
+              "type": "string",
+              "include_in_all": false
+            }
+          }
+        },
+        "message_attachments_cnt": {
+          "type": "integer",
+          "include_in_all": false
+        },
+        "message_id": {
+          "type": "string",
+          "index": "not_analyzed",
+          "store": true,
+          "omit_norms": true,
+          "index_options": "docs",
+          "include_in_all": false
+        },
+        "message_id_original": {
+          "type": "string",
+          "index": "not_analyzed",
+          "store": true,
+          "omit_norms": true,
+          "index_options": "docs",
+          "include_in_all": false
+        },
+        "message_snippet": {
+          "type": "string",
+          "index": "no",
+          "store": true,
+          "include_in_all": false
+        },
+        "project": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "references": {
+          "type": "string",
+          "index": "not_analyzed",
+          "store": true,
+          "omit_norms": true,
+          "index_options": "docs",
+          "include_in_all": false
+        },
+        "subject": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "subject_original": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "text_messages": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "text_messages_cnt": {
+          "type": "integer",
+          "include_in_all": false
+        },
+        "to": {
+          "type": "string",
+          "include_in_all": false
+        }
+      }
+    }
+  },
+  "sys_projects": {
+    "project": {
+      "_all": {
+        "enabled": false
+      },
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "code": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "description": {
+          "type": "string",
+          "index": "no"
+        },
+        "name": {
+          "type": "string",
+          "index": "no"
+        },
+        "type_specific_code": {
+          "properties": {
+            "jbossorg_blog": {
+              "type": "string",
+              "analyzer": "keyword"
+            },
+            "jbossorg_jira": {
+              "type": "string",
+              "analyzer": "keyword"
+            },
+            "jbossorg_mailing_list": {
+              "type": "string",
+              "analyzer": "keyword"
+            },
+            "jbossorg_project_info": {
+              "type": "string",
+              "analyzer": "keyword"
+            },
+            "jbossorg_sbs": {
+              "type": "string",
+              "analyzer": "keyword"
+            }
+          }
+        }
+      }
+    }
+  },
+  "stats_jbossorg_sbs_forum_river": {
+    "remote_river_indexupdate": {
+      "properties": {
+        "result": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "space_key": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "update_type": {
+          "type": "string",
+          "analyzer": "keyword"
+        }
+      }
+    }
+  },
+  "data_jbossdeveloper_bom": {
+    "jbossdeveloper_bom": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "artifactId": {
+          "type": "string",
+          "include_in_all": false
+        },
+        "contributors": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "groupId": {
+          "type": "string",
+          "include_in_all": false
+        },
+        "level": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "recommendedVersion": {
+          "type": "string",
+          "include_in_all": false
+        },
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": true
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": true
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        },
+        "tags": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "target_product": {
+          "type": "string",
+          "include_in_all": true
+        },
+        "versions": {
+          "type": "string",
+          "include_in_all": false
+        }
+      }
+    },
+    "_default_": {
+      "include_in_all": false,
+      "_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "sys_activity_dates": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_comments": {
+          "include_in_all": false,
+          "properties": {
+            "comment_author": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            },
+            "comment_body": {
+              "type": "string",
+              "store": true,
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            },
+            "comment_created": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_id": {
+              "type": "string",
+              "index": "no",
+              "include_in_all": false
+            },
+            "comment_updated": {
+              "type": "date",
+              "index": "no",
+              "format": "dateOptionalTime",
+              "include_in_all": false
+            },
+            "comment_updater": {
+              "include_in_all": false,
+              "properties": {
+                "sys_contributor": {
+                  "type": "string",
+                  "index": "no",
+                  "include_in_all": false
+                }
+              }
+            }
+          }
+        },
+        "sys_content": {
+          "type": "string",
+          "index": "no",
+          "include_in_all": false
+        },
+        "sys_content_content-type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_plaintext": {
+          "type": "string",
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_content_provider": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_content_type": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_contributors": {
+          "type": "multi_field",
+          "fields": {
+            "sys_contributors": {
+              "type": "string",
+              "store": true,
+              "analyzer": "keyword",
+              "include_in_all": false
+            },
+            "fulltext": {
+              "type": "string",
+              "term_vector": "with_positions_offsets",
+              "include_in_all": false
+            }
+          }
+        },
+        "sys_created": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_description": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_last_activity_date": {
+          "type": "date",
+          "store": true,
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_project": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_project_name": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_project_name",
+          "include_in_all": false
+        },
+        "sys_tags": {
+          "type": "string",
+          "store": true,
+          "analyzer": "sys_tags",
+          "include_in_all": false
+        },
+        "sys_title": {
+          "type": "string",
+          "store": true,
+          "term_vector": "with_positions_offsets",
+          "include_in_all": false
+        },
+        "sys_type": {
+          "type": "string",
+          "store": true,
+          "analyzer": "keyword",
+          "include_in_all": false
+        },
+        "sys_updated": {
+          "type": "date",
+          "format": "dateOptionalTime",
+          "include_in_all": false
+        },
+        "sys_url_view": {
+          "type": "string",
+          "store": true,
+          "include_in_all": false
+        }
+      }
+    }
+  }
+}
