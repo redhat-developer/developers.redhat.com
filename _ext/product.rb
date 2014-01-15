@@ -59,7 +59,12 @@ module JBoss::Developer::Extensions
           a[download.version] = download
         end
         product.downloads = Hash[a.sort_by{|k, v| v.release_date}.reverse]
-        product.current_download = product.downloads[product.current_version]
+        if product.current_version
+          product.current_download = product.downloads[product.current_version]
+        elsif product.downloads.size > 0 
+          product.current_download = product.downloads.values[0]
+          product.current_version = product.current_download.version
+        end
         product.older_downloads = product.downloads.clone
         product.older_downloads.delete(product.current_version)
       end
