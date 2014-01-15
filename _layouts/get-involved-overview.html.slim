@@ -1,0 +1,147 @@
+---
+layout: base
+---
+
+.get-involved-banner
+  h2 Get Involved
+  h3 Work alongside smart, motivated people to apply your skills toward a bigger effort.
+  a.button(href="#")
+    | ASK HOW IN OUR FORUMS 
+    i.icon-chevron-right
+
+ul.small-block-grid-1.large-block-grid-4
+  li.get-involved-person
+    img(src="/images/get-started-person.jpg")
+    div.get-involved-label
+      p.title Social Influencer
+      p.name Dimitris Andreadis
+    blockquote Pull quote from Dimitris Andreadis saying really something wonderful about how he enjoys contributing and what it means to him.
+
+    p Earlier this month we talked to Dimitris Andreadis about his role as a social influencer in the JBoss community.
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum tortor ligula.
+    p: a(href="#")
+      | Read the transcript
+      i.icon-chevron-right
+    hr
+    .recommended-links
+      p: strong Recommended by Dimitris Andreadis 
+      a(href="#")
+        | Contribute to JBoss Developer 
+        i.icon-film
+      br
+      a
+        | Ways to contribute 
+        i.icon-facetime-video
+
+    p: strong Follow Dimitris
+    a: i.icon-google-plus-sign
+    a: i.icon-facetime-video
+  li.get-involved-person
+    img(src="/images/get-started-person.jpg")
+    div.get-involved-label
+      p.title Social Influencer
+      p.name Dimitris Andreadis
+    blockquote Pull quote from Dimitris Andreadis saying really something wonderful about how he enjoys contributing and what it means to him.
+
+    p Earlier this month we talked to Dimitris Andreadis about his role as a social influencer in the JBoss community.
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum tortor ligula.
+    p: a(href="#")
+      | Read the transcript
+      i.icon-chevron-right
+    hr
+    .recommended-links
+      p: strong Recommended by Dimitris Andreadis 
+      a(href="#")
+        | Contribute to JBoss Developer 
+        i.icon-film
+      br
+      a
+        | Ways to contribute 
+        i.icon-facetime-video
+
+    p: strong Follow Dimitris
+    a: i.icon-google-plus-sign
+    a: i.icon-facetime-video
+  li.get-involved-person
+    img(src="/images/get-started-person.jpg")
+    div.get-involved-label
+      p.title Social Influencer
+      p.name Dimitris Andreadis
+    blockquote Pull quote from Dimitris Andreadis saying really something wonderful about how he enjoys contributing and what it means to him.
+
+    p Earlier this month we talked to Dimitris Andreadis about his role as a social influencer in the JBoss community.
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum tortor ligula.
+    p: a(href="#")
+      | Read the transcript
+      i.icon-chevron-right
+    hr
+    .recommended-links
+      p: strong Recommended by Dimitris Andreadis 
+      a(href="#")
+        | Contribute to JBoss Developer 
+        i.icon-film
+      br
+      a
+        | Ways to contribute 
+        i.icon-facetime-video
+
+    p: strong Follow Dimitris
+    a: i.icon-google-plus-sign
+    a: i.icon-facetime-video
+  li.get-involved-person
+    img(src="/images/get-started-person.jpg")
+    div.get-involved-label
+      p.title Social Influencer
+      p.name Dimitris Andreadis
+    blockquote Pull quote from Dimitris Andreadis saying really something wonderful about how he enjoys contributing and what it means to him.
+
+    p Earlier this month we talked to Dimitris Andreadis about his role as a social influencer in the JBoss community.
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum tortor ligula.
+    p: a(href="#")
+      | Read the transcript
+      i.icon-chevron-right
+    hr
+    .recommended-links
+      p: strong Recommended by Dimitris Andreadis 
+      a(href="#")
+        | Contribute to JBoss Developer 
+        i.icon-film
+      br
+      a
+        | Ways to contribute 
+        i.icon-facetime-video
+
+    p: strong Follow Dimitris
+    a: i.icon-google-plus-sign
+    a: i.icon-facetime-video    
+
+h2.divider Community Pulse
+
+.large-24.buzz-filters
+  input(type="text" name="buzz-filter-text" placeholder="Filter by Keyword")
+  ul.sort-icons 
+    li.sortBy Sort By:
+    li: a(data-filter="all")
+      i.icon-home
+    li: a(data-filter="github")
+      i.icon-github
+    li: a(data-filter="jira")
+      i.icon-github
+
+.large-24.buzz-items
+  - types = ["linkedin","twitter","facebook","google-plus"]
+  - titles = ["Great article by @ZDNet's @sjvn on the work we're doing to bring @JBoss to @OpenShift http://ow.ly/paYpZ   #paas #cloud", "At #JavaOne?", "5 Minutes to Mobile","Medium sized title two lines"]
+  - bodies = ["You know you should test. You know that testing forces you to consider API design...","","Opening: Middleware Data Specialist http://bit.ly/1fn0DxP","Learn the ABCs of Integration Testing from @ALRubinger and @AslakKnutsen in 10 min at Hilton - Continental Ballroom 5."]
+  - for item in (1..4).to_a
+    - rand = rand(4);
+    - type = types[rand]
+    div(class="buzz-item buzz-item-#{type}")
+      .buzz-item-inner
+        .buzz-header: i(class="icon-#{type}")
+        img(src="#{site.base_url}/#{site.context_url}/images/solution-#{rand(8) + 1}.png")
+        / img(src="http://lorempixel.com/300/#{rand(500)}")
+        h3 #{titles[rand(4)]}
+        p #{bodies[rand(4)]}
+        = partial 'share.html.slim'
+
+  
