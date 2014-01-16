@@ -52,7 +52,7 @@ app.init = function() {
   /*
     Toggle mobile Nav
   */
-  $('.nav-toggle').click(function(){
+  $('.nav-toggle').on('click touchstart',function(){
     $('body').toggleClass('nav-open');
   });
 

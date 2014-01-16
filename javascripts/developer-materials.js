@@ -187,6 +187,7 @@ app.dm = {
           , moment(hits[i].fields.sys_created).fromNow()           // 5 - timestamp
           , roundHalf(hits[i]._score)                         // 6 - rating
           , hits[i].fields.sys_description         // 7 - description
+          , hits[i].fields.sys_content_type        // 8 - Content type
         );
 
         // Append template to HTML

@@ -52,3 +52,13 @@ p.desc {
   clear:both;
   margin-bottom: 5px;
 }
+
+
+@include mobile-landscape-and-down {
+  li.book {
+    width:100%;
+    margin:0;
+    padding:0;
+    margin-bottom: 10px;
+  }
+}

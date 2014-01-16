@@ -10,6 +10,8 @@
     font-weight: 600;
     text-align: center;
     background:url(../images/greypx.png) center repeat-x;
+    margin-top:10px;
+    margin-bottom:10px;
     span {
       background:white;
       padding:0 10px;
@@ -107,6 +109,30 @@ a.get-started-quickstart.button {
       }
       a + a {
         margin-left: 5px;
+      }
+    }
+  }
+}
+
+
+
+
+@include tablet-landscape-and-down {
+  .get-started-items {
+    background:none;
+    a.get-started-example {
+      width: 100%;
+    }
+  }
+}
+
+@include mobile-landscape-and-down {
+  ul.cta-blocks {
+    li {
+      width:100%;
+      padding:15px;
+      p {
+        min-height:0;
       }
     }
   }

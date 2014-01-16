@@ -55,3 +55,11 @@
     margin-bottom: 40px;
   }
 }
+
+
+@include tablet-portrait-and-down {
+  .faq-nav-fixed {
+    position: relative; // on mobile we don't want a fixed nav
+  }
+
+}

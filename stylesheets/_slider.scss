@@ -1,0 +1,158 @@
+/*
+  Slider Module
+  This CSS styles all sliders on the site, variants are coded near the end
+*/
+.slider-wrapper {
+  position: relative;
+  .slider {
+    overflow: hidden;
+    max-height:405px;
+    overflow: hidden;
+    &.rounded {
+      border-radius:$global-radius;
+      overflow: hidden;
+    }
+    .slide {
+      position: relative;
+      background:white;
+    }
+  }
+
+  .slider-label {
+    position: absolute;
+    background:#000;
+    background:rgba(0,0,0,0.5);
+    bottom:0;
+    padding:10px;
+    color:white;
+    padding-right: 150px;
+    width:100%;
+    h3 {
+      font-size: emCalc(18);
+      margin-bottom: 0;
+      color:white;
+      a {
+        color:white;
+      }
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .slider-pager {
+    position: absolute;
+    right:15px;
+    bottom:15px;
+    a {
+      display: inline-block;
+      background:$grey-7;
+      width: 10px;
+      height: 10px;
+      text-indent: -9999px;
+      margin:4px;
+      border-radius: 50%;
+      &.slider-pager-active {
+        background:white;
+      }
+    }
+  }
+}
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+}
+
+.slider-controls {
+  a {
+    position: absolute;
+    top:50%;
+    margin-top: -60px;
+    font-size: 2em;
+    color:$light-green;
+    font-weight:600;
+    text-shadow:0 2px 0 $med-green;
+    &.slider-prev {
+      left:-75px;
+    }
+    &.slider-next {
+      right:-75px;
+    }
+    i {
+      font-weight: 600;
+    }
+  }
+
+
+  @media all and (max-width: 1350px) {
+    a {
+      background:black;
+      font-size: 16px;
+      padding: 0 10px 5px 10px;
+      border-radius: 5px;
+      text-shadow:none;
+      &.slider-prev {
+        left:10px;
+      }
+      &.slider-next {
+        right:10px;
+      }
+    }
+  }
+}
+
+// Side by side slider design
+.slider.slider-side-by-side {
+  overflow: hidden;
+  border-radius:$global-radius;
+  background-clip: padding-box;
+  overflow: hidden;
+  .slide {
+    border-radius:$global-radius;
+    background-clip: padding-box;
+    overflow: hidden;
+  }
+  .slider-label {
+    width:40%;
+    max-width:400px;
+    top:0;
+    padding:45px;
+    text-shadow:1px 1px 0px #000;
+    h4 {
+      color:$med-green;
+    }
+    h2 {
+      margin:0;
+    }
+    a {
+      color:white;
+    }
+  }
+}
+
+
+@include tablet-portrait-and-down {
+  .slider-wrapper {
+    .slider, .slider.slider-side-by-side {
+      .slider-label {
+        position: relative;
+        padding-right: 70px;
+        background:black;
+        width:100%;
+        max-width: none;
+      }
+    }
+  }
+  .slider-controls a {
+    top:20%;
+  }
+}

@@ -52,6 +52,8 @@
 @import "mq-mixins";
 @import "jboss-mixins";
 @import "navigation";
+@import "slider";
+@import "solutions";
 @import "events";
 @import "buzz";
 @import "faq";
@@ -410,146 +412,6 @@ footer.bottom {
 }
 
 
-/*
-  Slider Module
-  This CSS styles all sliders on the site, variants are coded near the end
-*/
-.slider-wrapper {
-  position: relative;
-  .slider {
-    overflow: hidden;
-    max-height:405px;
-    overflow: hidden;
-    &.rounded {
-      border-radius:$global-radius;
-      overflow: hidden;
-    }
-    .slide {
-      position: relative;
-      background:white;
-    }
-  }
-
-  .slider-label {
-    position: absolute;
-    background:#000;
-    background:rgba(0,0,0,0.5);
-    bottom:0;
-    padding:10px;
-    color:white;
-    padding-right: 150px;
-    width:100%;
-    h3 {
-      font-size: emCalc(18);
-      margin-bottom: 0;
-      color:white;
-      a {
-        color:white;
-      }
-    }
-    p {
-      margin-bottom: 0;
-    }
-  }
-  .slider-pager {
-    position: absolute;
-    right:15px;
-    bottom:15px;
-    a {
-      display: inline-block;
-      background:$grey-7;
-      width: 10px;
-      height: 10px;
-      text-indent: -9999px;
-      margin:4px;
-      border-radius: 50%;
-      &.slider-pager-active {
-        background:white;
-      }
-    }
-  }
-}
-.swipe {
-  overflow: hidden;
-  visibility: hidden;
-  position: relative;
-}
-.swipe-wrap {
-  overflow: hidden;
-  position: relative;
-}
-.swipe-wrap > div {
-  float:left;
-  width:100%;
-  position: relative;
-}
-
-.slider-controls {
-  a {
-    position: absolute;
-    top:50%;
-    margin-top: -60px;
-    font-size: 2em;
-    color:$light-green;
-    font-weight:600;
-    text-shadow:0 2px 0 $med-green;
-    &.slider-prev {
-      left:-75px;
-    }
-    &.slider-next {
-      right:-75px;
-    }
-    i {
-      font-weight: 600;
-    }
-  }
-
-
-  @media all and (max-width: 1350px) {
-    a {
-      background:black;
-      font-size: 16px;
-      padding: 0 10px 5px 10px;
-      border-radius: 5px;
-      text-shadow:none;
-      &.slider-prev {
-        left:10px;
-      }
-      &.slider-next {
-        right:10px;
-      }
-    }
-  }
-}
-
-// Side by side slider design
-.slider.slider-side-by-side {
-  overflow: hidden;
-  border-radius:$global-radius;
-  background-clip: padding-box;
-  overflow: hidden;
-  .slide {
-    border-radius:$global-radius;
-    background-clip: padding-box;
-    overflow: hidden;
-  }
-  .slider-label {
-    width:40%;
-    max-width:400px;
-    top:0;
-    padding:45px;
-    text-shadow:1px 1px 0px #000;
-    h4 {
-      color:$med-green;
-    }
-    h2 {
-      margin:0;
-    }
-    a {
-      color:white;
-    }
-  }
-}
 
 
 // Hero Module
@@ -1288,141 +1150,6 @@ ul[class*=block-grid] {
   }
 }
 
-// Solutions Grid
-.solution {
-  margin-bottom: 20px;
-  position: relative;
-  img {
-    width:100%;
-    @include transition(all 0.7s);
-  }
-  a.image-link {
-    float: left;
-    width:100%;
-    overflow: hidden;
-  }
-  .solution-name {
-    width:100%;
-    text-align: center;
-    background:$dark-blue;
-    color:white;
-    font-size:emCalc(26);
-    margin: 0;
-    margin-top: -50px;
-    position: relative;
-    padding: 10px;
-    z-index: 999;
-    clear: both;
-    a {
-      color:white
-    }
-  }
-  &.solution-open img {
-    @include transform( rotate(-3deg) scale(1.3) );
-  }
-
-  // Open State
-  &.solution-open {
-    .solution-name-link {
-      position: absolute;
-      padding-left:0.625em;
-      padding-right:0.625em;
-      padding-bottom: 1.25em;
-      display: block;
-      width:100%;
-      left:0;
-      bottom:0;
-      top:0;
-      right:0;
-    }
-    .solution-name {
-      margin:0;
-      background: rgba(74, 93, 117, 0.76);
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding-top: 18%;
-      @include transition(all 0.4s);
-    }
-  }
-}
-
-$arrow-size : 20px;
-.solutions-row {
-  position: relative;
-}
-.solution-overlays {
-  display: none;
-  position: absolute;
-  z-index: 999;
-  width:100%;
-  @include transition(all 0.4s);
-  span.arrow {
-    display: block;
-    width: 0;
-    height: 0;
-    border-right:$arrow-size solid transparent;
-    border-left:$arrow-size solid transparent;
-    border-top:$arrow-size solid transparent;
-    border-bottom:$arrow-size solid black;
-    position: absolute;
-    top:($arrow-size * 2) * -1;
-    z-index: 3;
-    @include transition(left 0.4s);
-    &:before {
-      display: block;
-      content : '';
-      border-right:$arrow-size solid transparent;
-      border-left:$arrow-size solid transparent;
-      border-top:$arrow-size solid transparent;
-      border-bottom:$arrow-size solid white;
-      position: absolute;
-      top: ($arrow-size - 1) * -1;
-      left: -$arrow-size;
-      z-index: 2;
-    }
-  }
-}
-.solution-overlay {
-  width:95%;
-  border:1px solid black;
-  padding:20px;
-  background:white;
-  position: relative;
-  .solution-meta {
-    margin: 0;
-    font-weight: 600;
-  }
-  .slide {
-    img {
-      width:100%;
-    }
-  }
-}
-
-.solutions-slider-controls {
-  margin-top: 10px;
-  font-size:emCalc(20);
-  i {
-    font-size:30px;
-    margin:0 5px;
-    position: relative;
-    top:3px;
-  }
-  span {
-    margin:0 3px;
-  }
-}
-
-.fn-close-overlay {
-  position: absolute;
-  top: -20px;
-  right: -15px;
-  font-size: 50px;
-  font-weight: 100;
-  line-height: 30px;
-  color:#000;
-}
 
 // Upstream Projects
 li.upstream {
@@ -1495,6 +1222,9 @@ body.login {
   }
   h2.large-title {
     line-height: 1.2;
+  }
+  i.nav-toggle {
+    display: none;
   }
 }
 .sign-in-options {

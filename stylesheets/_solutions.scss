@@ -1,0 +1,145 @@
+// Solutions Grid
+.solution {
+  margin-bottom: 20px;
+  position: relative;
+  img {
+    width:100%;
+    @include transition(all 0.7s);
+  }
+  a.image-link {
+    float: left;
+    width:100%;
+    overflow: hidden;
+  }
+  .solution-name {
+    width:100%;
+    text-align: center;
+    background:$dark-blue;
+    color:white;
+    font-size:emCalc(26);
+    margin: 0;
+    margin-top: -50px;
+    position: relative;
+    padding: 10px;
+    z-index: 999;
+    clear: both;
+    a {
+      color:white
+    }
+  }
+  &.solution-open img {
+    @include transform( rotate(-3deg) scale(1.3) );
+  }
+
+  // Open State
+  &.solution-open {
+    .solution-name-link {
+      position: absolute;
+      padding-left:0.625em;
+      padding-right:0.625em;
+      padding-bottom: 1.25em;
+      display: block;
+      width:100%;
+      left:0;
+      bottom:0;
+      top:0;
+      right:0;
+    }
+    .solution-name {
+      margin:0;
+      background: rgba(74, 93, 117, 0.76);
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding-top: 18%;
+      @include transition(all 0.4s);
+    }
+  }
+}
+
+$arrow-size : 20px;
+.solutions-row {
+  position: relative;
+}
+.solution-overlays {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  width:100%;
+  @include transition(all 0.4s);
+  span.arrow {
+    display: block;
+    width: 0;
+    height: 0;
+    border-right:$arrow-size solid transparent;
+    border-left:$arrow-size solid transparent;
+    border-top:$arrow-size solid transparent;
+    border-bottom:$arrow-size solid black;
+    position: absolute;
+    top:($arrow-size * 2) * -1;
+    z-index: 3;
+    @include transition(left 0.4s);
+    &:before {
+      display: block;
+      content : '';
+      border-right:$arrow-size solid transparent;
+      border-left:$arrow-size solid transparent;
+      border-top:$arrow-size solid transparent;
+      border-bottom:$arrow-size solid white;
+      position: absolute;
+      top: ($arrow-size - 1) * -1;
+      left: -$arrow-size;
+      z-index: 2;
+    }
+  }
+}
+.solution-overlay {
+  width:95%;
+  border:1px solid black;
+  padding:20px;
+  background:white;
+  position: relative;
+  .solution-meta {
+    margin: 0;
+    font-weight: 600;
+  }
+  .slide {
+    img {
+      width:100%;
+    }
+  }
+}
+
+.solutions-slider-controls {
+  margin-top: 10px;
+  font-size:emCalc(20);
+  i {
+    font-size:30px;
+    margin:0 5px;
+    position: relative;
+    top:3px;
+  }
+  span {
+    margin:0 3px;
+  }
+}
+
+.fn-close-overlay {
+  position: absolute;
+  top: -20px;
+  right: -15px;
+  font-size: 50px;
+  font-weight: 100;
+  line-height: 30px;
+  color:#000;
+}
+
+
+@include mobile-landscape-and-down {
+  li.solution {
+    width:100%;
+    margin:0;
+    padding:0;
+    margin-bottom: 10px;
+  }
+}

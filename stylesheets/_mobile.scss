@@ -1,14 +1,13 @@
+/* Misc Mobile styles */
+
 @include tablet-portrait-and-down {
-  
   
   // Everything
   .wrapper {
     width:100%;
     padding:5px;
   }
-  // 
-  // Home Page
-  //
+
 
   .cta {
     width:100%;
@@ -18,6 +17,39 @@
       width:100%;
       clear: both;
     }
+  }
+
+  /* Development Tools */
+  div.development-tool-category {
+    div.development-tool {
+      width:100% !important;
+      margin:0 !important;
+      margin-bottom: 20px !important;
+      height:auto !important; // overwrite the inline JS styles
+    }
+  }
+}
+
+
+@include mobile-portrait-and-down {
+  // Material
+  li.material {
+    margin:0;
+    margin-bottom: 20px;
+    padding:0;
+    width:100%;
+    a.thumbnail {
+      display: block;
+      width:100%;
+      img {
+        width:100%;
+      }
+    }
+  }
+
+  // Projects
+  li.upstream {
+    width:100%;
   }
 
 }
