@@ -11,6 +11,7 @@ gem "zurb-foundation", "~> 4.3.1"
 gem 'aweplug', '~> 1.0.0a9'
 gem 'curb', '~> 0.8.5'
 gem 'oauth', '~> 0.3.6'
+gem 'git', '~> 1.2.5'
 #gem 'aweplug', :path => '~/projects/ruby/aweplug'
 
 group :development do

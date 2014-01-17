@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+  - 1.9.3
+branches:
+  only:
+    - master
+script: rake travis
+env:
+  global:
+    - secure: "Dfiu/gopX3rkjQXWHjnHy20dIKLVu9a5p5nMeSWaYJQFtAmdGQxo9wZ9veCssoneYZQn7W5w0pXu1HTwZ44xOZpHPu6iE4X7y6iZMQm6gG1TPsMJsGSwGfKTZwd3uR5WubdbpdFou7rse/4Fh+Bd1NJ9Ts1E0druw1Kf6QR2O+Q="
+    - secure: "kb8y2TfuYLAjjyVc1e2nNtL8xqviegDn2FJ1HXUM8Jrbl+CCCDpilCGFyzJW9DuImAY0BUwhr4Da7aX55rG9zHv7gZDk3cl8+X4m0Pu3EUtjAvIax6RWZV98wpXQhRFdHhjA6gwvLZjjhBkhUk8ltkkIUtI2Ntqa2quGejciJHg="
+    - secure: "JW/AioAYFTHaDnIKEzI3aR8QI5JcufPYCRtDOkODx24RYgH3LgGtwkTrrR2nS7+w0Wwp9sQXatrX/tlqi+RVhix7JGI2Qtqpjz6/pru4SymJv9yneDdbiEJh5OHdHo14aeQiRUM8IPS17oR+fPVPbx5KP92u8xRnPYuSU2cT0qI="
+    - secure: "EaH75mpeLCfumCW0dJHg9UKVzNt/7R2p6OgxtEQXQxZR+gB/DWEyAwPyrOh/DwXyGNrFzetLjjQMu5A1lekfZQEwUg1vFP4FVx2rfAGG4ZyudNvMcWev3kca9WWgg1UQ6Xl6sz6vp1rqnkewWREF8p6O0xgCrv4TBLPxyNVi/G0="
+    - projectId: "www"
+    - deployment_repository_url: https://jbossdev-builder@github.com/jboss-developer/jboss-developer-site-publish.git

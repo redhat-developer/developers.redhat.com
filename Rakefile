@@ -196,6 +196,54 @@ task :check => :init do
   end
 end
 
+desc 'Generate site from Travis CI and publish site.'
+task :travis do
+  # if this is a pull request, do a simple build of the site and stop
+  if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
+    puts 'Pull request detected. Executing build only.'
+    system 'bundle exec awestruct -P production -g'
+    next
+  end
+
+  # Default values
+  profile = 'staging'
+  deploy_branch = ENV['projectId'] + '-staging'
+
+  if ENV['TRAVIS_BRANCH'].to_s.scan(/^production$/).length > 0
+    puts 'Building production branch version.'
+    deploy_branch = ENV['projectId'] + '-production'
+    profile='production'
+  elsif ENV['TRAVIS_BRANCH'].to_s.scan(/^master$/).length > 0
+    puts 'Building staging(master) branch version.'
+    deploy_branch = ENV['projectId'] + '-staging'
+    profile='staging'
+  else
+    puts ENV['TRAVIS_BRANCH'].to_s + ' branch is not configured for Travis builds - skipping.'
+    next
+  end
+
+  # Repositories configuration
+  repo = %x(git config remote.origin.url).gsub(/^git:/, 'https:')
+  system "git remote set-url --push origin #{repo}"
+  system "git remote set-branches --add origin #{deploy_branch}"
+  system 'git fetch -q'
+  system "git config user.name '#{ENV['GIT_NAME']}'"
+  system "git config user.email '#{ENV['GIT_EMAIL']}'"
+  system 'git config credential.helper "store --file=.git/credentials"'
+  File.open('.git/credentials', 'w') do |f|
+    f.write("https://#{ENV['GIT_LOGIN']}:#{ENV['GIT_PASSWORD']}@github.com")
+  end
+
+  # Here we hook remote repository for deployment.
+  system "git remote add -f -t #{deploy_branch} deployment " + ENV['deployment_repository_url']
+  system "git checkout --track deployment/#{deploy_branch}"
+  system "git checkout #{ENV['TRAVIS_BRANCH'].to_s}"
+
+  # Build and deploy
+  system "bundle exec awestruct -P #{profile} -g --deploy"
+  File.delete '.git/credentials'
+end
+
 # Execute Awestruct
 def run_awestruct(args)
   system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}" 
