@@ -1,13 +1,15 @@
 :awestruct-layout: product-get-started
 
 == Installation
+2. Ensure you have Oracle JDK 1.6, 1.7 or OpenJDK 1.6 or 1.7 installed.
+3. In Windows or Mac, you can start the installer by double clicking on the JAR file. In Linux, open a terminal window in the target machine and navigate to where the GUI installer was downloaded. Launch the GUI installer by executing the following command:
 
-1. Make sure you have a JDK of your choice installed. We recommend OpenJDK or Oracle JDK. https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Developer_Studio/7.1/html-single/Installation_Guide/index.html#chap-System_Requirements[Read more...]
-
-2. In Windows or Mac, you can start the installer by double clicking on the JAR file. 
-   In Linux, open a terminal window in the target machine and navigate to where the GUI installer was downloaded.  Launch the GUI installer by executing the following command:
-+ 
- java -jar jbdevstudio-product-universal-7.1.x.build_version.jar
 +
-For more details, view the https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Developer_Studio/7.1/html-single/Installation_Guide/index.html#chap-Install_JBoss_Developer_Studio[Installation Guide]
+ java -jar jboss-eap-{fsw version}.fsw.ci-installer.jar
++
 
+4. Follow the installer prompts to complete the installation process.
+
+5. When the installation is complete, start the server.
+For Unix/Linux:: `cd {install dir}/jboss-eap-{fsw version}/bin` and then run `./standalone.sh`
+For Windows:: `cd {install dir}\jboss-eap-{fsw version}\bin` and then run `standalone.bat`

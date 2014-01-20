@@ -2,17 +2,31 @@
 
 == Overview
 
-JBoss Fuse is an open source Enterprise Service Bus (ESB) with an elastic footprint that supports integration beyond the data center. The lack of license fees and the ability to deploy JBoss Fuse in several different configurations advances intelligent integration to all facets of your business – on premise or in the Cloud.
+An open source service design, development and integration platform that speeds up cloud integration.
 
-JBoss Fuse combines core Enterprise Service Bus capabilities (based on Apache Camel, Apache CXF, Apache ActiveMQ), Apache Karaf and Fuse Fabric in a single integrated distribution.
+JBoss Fuse Service Works is Red Hat's middleware solution for application integration, messaging, SOA, and service governance requirements. It combines the core ESB technology from Fusesource acquisition and technical innovations from popular open source communities like SwitchYard and Overlord.
 
-image::/images/products/fuse/esbtofuse[]
+image::/images/products/fsw/fsw_overview.png[]
 
-Core messaging is provided by Apache ActiveMQ, services framework (SOAP, XML/HTTP, RESTful HTTP) is provided by Apache CXF and integration framework is provided by Apache Camel. Apache Karaf provides a lightweight OSGI-based runtime container. Fuse IDE is available along with JBDS to provide an easy-to-use integration development environment.
+JBoss Fuse Service Works is the next version of Red Hat JBoss SOA Platform with additional capabilities.
 
-We encourage you to download JBoss Fuse, and see for yourself if it meets your needs. 
+Want a services platform to create reusable, changeable, flexible business services that hide the complexity of connecting to different applications? Want the capability to manage the lifecycle of services from design, development through deployment? Require a platform that sets the stage for faster and easier cloud, mobile application and business process application development projects? Try the JBoss Fuse Service Works 6.0 Beta!
 
-== Resources
+JBoss Fuse Service Works Beta is now available! We encourage you to download this beta version, and see for yourself if it meets your requirements.
 
-- https://www.jboss.org/products/fuse/fusebyexample.html[FuseByExample] is a set of examples created by Fuse consultants based on their experience with customers.
+Note: Support for Apache ActiveMQ messaging platform will be available in the JBoss Fuse Service Works GA version. For the Beta version, HornetQ can be used as a messaging platform.
+
+
+What is new in JBoss Fuse Service Works::
+Besides the new name, the latest release (version 6.0) incorporates core ESB technology from the FuseSource acquisition and numerous service management and governance capabilities. New features include
+
+Core ESB based on JBoss Fuse
+
+* Apache Camel – enterprise integration pattern framework
+* Apache CXF – webServices, REST
+* Apache ActiveMQ – robust, high performance messaging
+* Lightweight structured service development Framework
+* Service Governance
+* Business Transaction Monitoring
+
 
