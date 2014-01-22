@@ -72,15 +72,16 @@ module JBoss::Developer::Extensions
 
     def docs(product, site)
       # Set the documentation url to the default value, if not set
-      product.documentation_url ||= site.product_documentation_base_url + "/" + product.abbreviated_name.gsub(/ /, '_')
+      product.documentation_url ||= site.product_documentation_base_url + "/" + product.name.gsub(/ /, '_')
       # Process the guides declared for the product
       a = []
+      product.current_guide_base_url ||= "#{product.documentation_url}/#{product.current_version}"
       if product.guides
         product.guides.each do |k, v|
           guide = OpenStruct.new(v)
           guide.name ||= k.gsub(/_/, ' ')
           # We do some special magic for release notes, to avoid the guide name needing continual updates
-          if k == "Release_Notes"
+          if k == "Release_Notes" && product.current_version
             guide.dir_name = product.current_version[/^([0-9]*\.[0-9]*\.[0-9])/, 1] + "_Release_Notes"
           else
             guide.dir_name = k
@@ -90,7 +91,11 @@ module JBoss::Developer::Extensions
           guide.formats.each do |l, w|
             format = OpenStruct.new(w)
             format.name ||= l
-            format.url ||= "#{product.documentation_url}/#{product.current_minor_version}/#{format.name}/#{guide.dir_name}"
+            if ["pdf", "epub"].include? format.name
+              format.url ||= "#{product.guide_base_url}/#{format.name}/#{guide.dir_name}"
+            else 
+              format.url ||= "#{product.guide_base_url}/#{format.name}/#{guide.dir_name}/#{product.name}-#{product.guide_version}-#{guide.dir_name}.#{format.name}"
+            end
             b << format
           end
           guide.formats = b
