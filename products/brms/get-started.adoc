@@ -2,11 +2,12 @@
 
 == Installation
 
-1. Make sure you have a JDK of your choice installed. We recommend OpenJDK or Oracle JDK. https://access.redhat.com/site/articles/119933[Read more...]
+[start=2]
+. Make sure you have a JDK of your choice installed. We recommend OpenJDK or Oracle JDK. https://access.redhat.com/site/articles/119933[Read more...]
 
-2. Extract the contents of the standalone zip archive to install the server. This creates the *brms-standalone-5.3.0* directory which includes an installation of JBoss Enterprise Application Platform with JBoss Enterprise BRMS Platform deployed.
+. Extract the contents of the standalone zip archive to install the server. This creates the *brms-standalone-5.3.0* directory which includes an installation of JBoss Enterprise Application Platform with JBoss Enterprise BRMS Platform deployed.
 
-3. Enable Users. The default configuration uses the BRMS JAAS application profile. This profile stores user names and passwords in the *brms-standalone-5.3.0/jboss-as/server/default/conf/props/brms-users.properties* file.
+. Enable Users. The default configuration uses the BRMS JAAS application profile. This profile stores user names and passwords in the *brms-standalone-5.3.0/jboss-as/server/default/conf/props/brms-users.properties* file.
    Users are added by adding entries to this file in the format *username=password*. Entries can be commented out by adding a hash character (#) to the beginning of the line.
 + 
  #admin=password
@@ -14,7 +15,7 @@
  tandrews=pp3rrss0nn3ll
 +
 
-4. Start the server from the command line with the run.sh command on a UNIX or Linux system, or run.bat on a Microsoft Windows system.
+. Start the server from the command line with the run.sh command on a UNIX or Linux system, or run.bat on a Microsoft Windows system.
 +
  [localhost ]$ ./run.sh -c default
 +
