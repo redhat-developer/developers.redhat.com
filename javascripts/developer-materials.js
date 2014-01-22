@@ -15,16 +15,6 @@
 // &field=sys_activity_dates
 // &activity_date_interval=year
 
-String.prototype.format = function() {
-  var args = arguments;
-  return this.replace(/{(\d+)}/g, function(match, number) { 
-    return typeof args[number] != 'undefined'
-      ? args[number]
-      : match
-    ;
-  });
-};
-
 function roundHalf(num) {
     var num = Math.round(num*2)/2;
     var html = "";
@@ -127,15 +117,17 @@ app.dm = {
     }
 
     if(currentFilters['rating']) {
-      query.push("rating:>="+rating);
+      // rating disabled, doesn't work on DCP
+      // query.push("_score:>="+rating);
     }
 
     if(currentFilters['topics']) {
-      query.push('topic\*:('+topics+')');
+      query.push('sys_tags:('+topics+')');
     }
 
     if(currentFilters['formats']) {
-      query.push('format\*:('+formats+')');
+      // Formats is not supported with the DCP yet
+      // query.push('format:('+formats+')');
     }
 
     if(currentFilters['skillLevel']) {
@@ -153,8 +145,6 @@ app.dm = {
     }
 
     var query = query.join(" AND ");
-
-    console.log(query);
  
     // append loading class to wrapper
     $("ul.results").addClass('loading');
@@ -195,6 +185,9 @@ app.dm = {
       };
 
       // Inject HTML into the DO<
+      if(!html) {
+        html = "Sorry, no results to display. Please modify your search.";
+      }
       $("ul.results:first").html(html);
       $("ul.results").removeClass('loading');
     });
@@ -204,7 +197,11 @@ app.dm = {
 // Event Listeners 
 
 $(function() {
-  $('form.filters').on('change keyup','input',function(e){
+  $('form.filters').on('change','input',function(e){
     app.dm.filter();
+  });
+
+  $('form.filters').on('submit',function(e) {
+    e.preventDefault();
   });
 });
