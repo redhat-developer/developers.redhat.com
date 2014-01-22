@@ -1,4 +1,4 @@
-before_install: echo "Host filemgmt.jboss.org\n\tStrictHostKeyCheckin no" >> ~/.ssh/config
+before_install: echo "Host *\n\tStrictHostKeyCheckin no" >> ~/.ssh/config
 language: ruby
 rvm:
   - 1.9.3
