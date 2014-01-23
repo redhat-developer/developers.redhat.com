@@ -16,7 +16,8 @@ head
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
-  = partial 'under-development.html.slim'
+  - if site.profile == 'staging' || 'development'
+    = partial 'under-development.html.slim'
   / tabzilla
   .dropup
       a(class="tabnav-closed" href="https://www.jboss.org" id="tab") Red Hat

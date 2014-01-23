@@ -1485,13 +1485,46 @@ span.asterisk {
 // Under development
 
 .under-development {
-background: $red;
-text-align: center;
-padding:0;
-border:0;
-margin: 0; 
+  text-align: center;
+  padding:5px;
+  border:0;
+  margin: 0; 
+  &.status-red {
+    background: $red;
+    border-bottom: 3px solid darken($red, 5%);
+    a {
+      padding:3px 5px;
+      margin-left: 10px;
+      color:white;
+      border-radius:5px;
+      background:darken($red, 5%);
+    }
+  }
+  &.status-yellow {
+    background:#F1CC08;
+    border-bottom: 3px solid darken(#F1CC08, 5%);
+    a {
+      padding:3px 5px;
+      margin-left: 10px;
+      color:white;
+      border-radius:5px;
+      background:darken(#F1CC08, 5%);
+    }
+  } 
+  &.status-green {
+    background:#179B17;
+    border-bottom: 3px solid darken(#179B17, 5%);
+    a {
+      padding:3px 5px;
+      margin-left: 10px;
+      color:white;
+      border-radius:5px;
+      background:darken(#179B17, 5%);
+    }
+  }
   p {
     color:white;
+    text-shadow:1px 1px 0 rgba(0,0,0,0.2);
   }
 }
 
