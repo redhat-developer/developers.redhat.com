@@ -11,6 +11,7 @@ module JBoss::Developer::Extensions
         "md5" => {"name" => "MD5"}, 
         "release_notes" => {"name" => "Release Notes"}, 
         "source" => {"name" => "Source"}}
+      @default_locale = "en_US"
     end
 
 
@@ -71,11 +72,13 @@ module JBoss::Developer::Extensions
     end
 
     def docs(product, site)
+      product.documentation_path ||= product.name.gsub(/ /, "_")
+      product.documentation_minor_version ||= product.current_minor_version
       # Set the documentation url to the default value, if not set
-      product.documentation_url ||= site.product_documentation_base_url + "/" + product.name.gsub(/ /, '_')
+      product.documentation_url ||= site.product_documentation_base_url + "/" + product.documentation_path
       # Process the guides declared for the product
       a = []
-      product.current_guide_base_url ||= "#{product.documentation_url}/#{product.current_version}"
+      product.guide_base_url ||= "#{product.documentation_url}/#{product.documentation_minor_version}"
       if product.guides
         product.guides.each do |k, v|
           guide = OpenStruct.new(v)
@@ -87,14 +90,15 @@ module JBoss::Developer::Extensions
             guide.dir_name = k
           end
           guide.formats ||= @default_guide_formats.clone
+          guide.locale ||= @default_locale
           b = []
           guide.formats.each do |l, w|
             format = OpenStruct.new(w)
             format.name ||= l
             if ["pdf", "epub"].include? format.name
-              format.url ||= "#{product.guide_base_url}/#{format.name}/#{guide.dir_name}"
+              format.url ||= "#{product.guide_base_url}/#{format.name}/#{guide.dir_name}/#{product.documentation_path}-#{product.documentation_minor_version}-#{guide.dir_name}-#{guide.locale.gsub(/_/, "-")}.#{format.name}"
             else 
-              format.url ||= "#{product.guide_base_url}/#{format.name}/#{guide.dir_name}/#{product.name}-#{product.guide_version}-#{guide.dir_name}.#{format.name}"
+              format.url ||= "#{product.guide_base_url}/#{format.name}/#{guide.dir_name}"
             end
             b << format
           end
