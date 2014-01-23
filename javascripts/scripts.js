@@ -52,7 +52,7 @@ app.init = function() {
   /*
     Toggle mobile Nav
   */
-  $('.nav-toggle').on('click touchstart',function(){
+  $('.nav-toggle').on('click',function(){
     $('body').toggleClass('nav-open');
   });
 
@@ -175,7 +175,7 @@ app.init = function() {
     });
 
     // Facebook Share # — Get this number when you hover over the share button
-    $('.share-this').on('mouseover touchstart',function(e){
+    $('.share-this').on('mouseover',function(e){ // mouseover should be triggered on first tap
       var el = $(this),
           shareButton = el.find('.facebook-share-button a'),
           shareTab = el.find('.facebook-share-button-count'),
