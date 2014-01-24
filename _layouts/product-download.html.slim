@@ -31,7 +31,7 @@ h4.download-link: a(href="#"): #{page.product.abbreviated_name} #{page.product.c
           - page.product.current_download.assets.each do |asset|
             span.item: a(href="#{asset.url}") #{asset.name} #{asset.size ? "(" + asset.size + ")" : ""} 
 
-  - if page.product.older_downloads
+  - if page.product.older_downloads && page.product.older_downloads.length > 1
     a.view-older-downloads(href="#")
       | View Older Downloads
       i.icon-caret-down
