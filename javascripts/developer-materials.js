@@ -1,20 +1,3 @@
-//  https://dcp-jbossorgdev.rhcloud.com/v1/rest/search?field=level&field=sys_description&field=sys_title&field=sys_tags&field=sys_url_view&field=contributors&query=EE+AND+level%3AIntermediate&sys_type=jbossdeveloper_quickstart&sys_type=jbossdeveloper_bom&field=sys_tags&field=sys_activity_dates&activity_date_interval=year
-
-
-// https://dcp-jbossorgdev.rhcloud.com/v1/rest/search
-// ?field=level
-// &field=sys_description
-// &field=sys_title
-// &field=sys_tags
-// &field=sys_url_view
-// &field=contributors
-// &query=EE+AND+level:Intermediate
-// &sys_type=jbossdeveloper_quickstart
-// &sys_type=jbossdeveloper_bom
-// &field=sys_tags
-// &field=sys_activity_dates
-// &activity_date_interval=year
-
 function roundHalf(num) {
     var num = Math.round(num*2)/2;
     var html = "";
@@ -90,7 +73,6 @@ app.dm = {
         idx = value / step,
         timeCommitment = labels[idx]; // final value
 
-    // var filters = [keyword, rating, topics, formats, skillLevel, publishDate, timeCommitment];
     var filters = {
       "keyword" : keyword,
       "rating" : rating,
@@ -154,9 +136,7 @@ app.dm = {
       asyn : false,
       data : {
         "field"  : ["artifactId", "contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions"],
-        // "query" : "EE AND level:Intermediate",
         "query" : query,
-        // "sys_type" : ["jbossdeveloper_quickstart","jbossdeveloper_bom"],
         "activity_date_interval" : "year"
       }
     }).done(function(data){
@@ -169,15 +149,15 @@ app.dm = {
 
       for (var i = 0; i < hits.length; i++) {
         var template = cardTemplate.format(
-            hits[i].fields.sys_url_view            // 0 - link
-          , "??:??:??"                         // 1 - duration *
-          , hits[i].fields.level                   // 2 - level
-          , hits[i].fields.sys_title               // 3 - title
-          , hits[i].fields.contributors[0]         // 4 - author * 
-          , moment(hits[i].fields.sys_created).fromNow()           // 5 - timestamp
-          , roundHalf(hits[i]._score)                         // 6 - rating
-          , hits[i].fields.sys_description         // 7 - description
-          , hits[i].fields.sys_content_type        // 8 - Content type
+            hits[i].fields.sys_url_view                     // 0 - link
+          , "??:??:??"                                      // 1 - duration *
+          , hits[i].fields.level                            // 2 - level
+          , hits[i].fields.sys_title                        // 3 - title
+          , hits[i].fields.contributors[0]                  // 4 - author * 
+          , moment(hits[i].fields.sys_created).fromNow()    // 5 - timestamp
+          , roundHalf(hits[i]._score)                       // 6 - rating
+          , hits[i].fields.sys_description                  // 7 - description
+          , hits[i].fields.sys_content_type                 // 8 - Content type
         );
 
         // Append template to HTML
@@ -195,7 +175,6 @@ app.dm = {
 }
 
 // Event Listeners 
-
 $(function() {
   $('form.filters').on('change','input',function(e){
     app.dm.filter();
