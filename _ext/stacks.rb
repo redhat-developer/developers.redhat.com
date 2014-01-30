@@ -1,7 +1,7 @@
 require 'yaml'
 require 'aweplug/handlers/synthetic_handler'
 require 'aweplug/helpers/searchisko'
-require 'aweplug/helpers/git_commit_metadata'
+require 'aweplug/helpers/git_metadata'
 require 'awestruct/page'
 require 'awestruct/handlers/layout_handler'
 require 'awestruct/handlers/tilt_handler'

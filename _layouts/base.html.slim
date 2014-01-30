@@ -16,7 +16,7 @@ head
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
-  - if site.profile == 'staging' || 'development'
+  - if site.profile == 'staging' || site.profile == 'development'
     = partial 'under-development.html.slim'
   / tabzilla
   .dropup
