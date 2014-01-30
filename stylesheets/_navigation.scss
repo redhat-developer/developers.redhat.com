@@ -12,6 +12,7 @@ nav.top-bar {
     z-index: 99;
     background:$grey-7;
     height:100%;
+	padding-top: 20px;
   }
   .row {
     position: relative;
@@ -406,7 +407,8 @@ ul.footer-nav {
 
   ul.social {
     margin-top: 20px;
-    li {
+    padding-left: 13px;
+	li {
       display: inline;
       a {
         display: inline;
