@@ -12,9 +12,12 @@ profiles:
     base_url: http://www-stg.jboss.org
     dcp_base_url: https://dcp-jbossorgdev.rhcloud.com/
     deploy:
-      host: github_pages
-      branch: www-staging
-      repository: deployment
+      host: www@filemgmt.jboss.org
+      path: /stg_htdocs/www-stg
+      uncommitted: true   
+  filemgmt:
+    base_url: http://www-stg2.jboss.org/
+    dcp_base_url: https://dcp-jbossorgdev.rhcloud.com/
   production:
     dcp_base_url:
   wes:

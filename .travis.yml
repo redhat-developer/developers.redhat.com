@@ -1,4 +1,9 @@
-before_install: echo "Host *\n\tStrictHostKeyCheckin no" >> ~/.ssh/config
+before_script:
+  - echo -e "Host *\n\tStrictHostKeyChecking no" >> ~/.ssh/config
+  - openssl aes-256-cbc -k "$password" -in _wwwKey.enc -d -a -out _wwwKey
+  - ssh-add -D
+  - chmod 600 _wwwKey
+  - ssh-add ./_wwwKey
 language: ruby
 rvm:
   - 1.9.3
@@ -8,17 +13,17 @@ branches:
 script: rake travis
 env:
   global:
-    - projectId: "www"
-    - deployment_repository_url: https://jbossdev-builder@github.com/jboss-developer/jboss-developer-site-publish.git
-
-    # GIT credentials
-    - secure: "Dfiu/gopX3rkjQXWHjnHy20dIKLVu9a5p5nMeSWaYJQFtAmdGQxo9wZ9veCssoneYZQn7W5w0pXu1HTwZ44xOZpHPu6iE4X7y6iZMQm6gG1TPsMJsGSwGfKTZwd3uR5WubdbpdFou7rse/4Fh+Bd1NJ9Ts1E0druw1Kf6QR2O+Q="
+    - master_deploy_url: jbossdev-builder@filemgmt.jboss.org:/stg_htdocs/www/
+    - production_deploy_url: jbossdev-builder@filemgmt.jboss.org:/stg_htdocs/www/
 
     # DCP credentials
-    - secure: "kb8y2TfuYLAjjyVc1e2nNtL8xqviegDn2FJ1HXUM8Jrbl+CCCDpilCGFyzJW9DuImAY0BUwhr4Da7aX55rG9zHv7gZDk3cl8+X4m0Pu3EUtjAvIax6RWZV98wpXQhRFdHhjA6gwvLZjjhBkhUk8ltkkIUtI2Ntqa2quGejciJHg="
+    #- secure: "kb8y2TfuYLAjjyVc1e2nNtL8xqviegDn2FJ1HXUM8Jrbl+CCCDpilCGFyzJW9DuImAY0BUwhr4Da7aX55rG9zHv7gZDk3cl8+X4m0Pu3EUtjAvIax6RWZV98wpXQhRFdHhjA6gwvLZjjhBkhUk8ltkkIUtI2Ntqa2quGejciJHg="
 
     # vimeo_access_token_secret variable
     - secure: "JW/AioAYFTHaDnIKEzI3aR8QI5JcufPYCRtDOkODx24RYgH3LgGtwkTrrR2nS7+w0Wwp9sQXatrX/tlqi+RVhix7JGI2Qtqpjz6/pru4SymJv9yneDdbiEJh5OHdHo14aeQiRUM8IPS17oR+fPVPbx5KP92u8xRnPYuSU2cT0qI="
 
     # vimeo_client_secret variable
     - secure: "EaH75mpeLCfumCW0dJHg9UKVzNt/7R2p6OgxtEQXQxZR+gB/DWEyAwPyrOh/DwXyGNrFzetLjjQMu5A1lekfZQEwUg1vFP4FVx2rfAGG4ZyudNvMcWev3kca9WWgg1UQ6Xl6sz6vp1rqnkewWREF8p6O0xgCrv4TBLPxyNVi/G0="
+
+    # Key password
+    - secure: "igTH9Xim/1H5KlvH/rHPrm9EgPg+nsDS3XRMb4NNPoUuBFli8HdfogdTwtabrq07kN8sBL++bKCJ0tw8FeAwrjhkQQeNWJ5iS/DBKmtfAVSqG/f7B8cDJy9EjUZfmjHKSPL0kaLvnuHm6AjoEw7cIIhRGw9G0BTTt1vUHytsnn8="
