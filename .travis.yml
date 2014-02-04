@@ -1,6 +1,6 @@
 before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no" >> ~/.ssh/config
-  - if ! $TRAVIS_PULL_REQUEST ; then
+  - if [ $TRAVIS_PULL_REQUEST="false" ]; then
   - openssl aes-256-cbc -k "$password" -in _wwwKey.enc -d -a -out _wwwKey
   - ssh-add -D
   - chmod 600 _wwwKey
