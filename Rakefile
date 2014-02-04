@@ -198,16 +198,17 @@ end
 
 desc 'Generate site from Travis CI and publish site.'
 task :travis do
-  # if this is a pull request, do a simple build of the site and stop
-  if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
-    puts 'Pull request detected. Executing build only.'
-    system 'bundle exec awestruct -P production -g'
-    next
-  end
 
   # Default values
   profile = 'filemgmt'
   deploy_url=ENV['master_deploy_url'].to_s
+
+  # if this is a pull request, do a simple build of the site and stop
+  if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
+    puts 'Pull request detected. Executing build only.'
+    system "bundle exec awestruct -P #{profile} -g"
+    next
+  end
 
   if ENV['TRAVIS_BRANCH'].to_s.scan(/^production$/).length > 0
 
