@@ -111,6 +111,8 @@ module JBoss::Developer::Extensions
         end
         bom_page.send('metadata=', metadata)
         bom_page.send('bom=', bom)
+        # Add the status and issues
+        bom_page.send('status=', 'red')
       end
     end
 
@@ -181,6 +183,9 @@ module JBoss::Developer::Extensions
         end
         archetype_page.send('metadata=', metadata)
         archetype_page.send('archetype=', archetype)
+
+        # Add the status and issues
+        archetype_page.send('status=', 'red')
         site.pages << archetype_page
       end
     end
