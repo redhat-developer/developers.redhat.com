@@ -665,6 +665,9 @@ footer.bottom {
     width:49%;
     margin-left:1%;
   }
+  .development-tool p {
+    margin-top: 1.25em;
+  }
 }
 .development-tool {
   width:50%; // leave 50% on for older browsers who ignore nth-child
@@ -1481,6 +1484,12 @@ span.asterisk {
 
 // Mobile!
 @import "mobile";
+
+// View More link 
+.moreinfolink {
+	padding-top: 15px;
+	display: inline-block;
+}
 
 
 // Under development
