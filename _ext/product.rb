@@ -5,13 +5,14 @@ module JBoss::Developer::Extensions
     def initialize
       @default_guide_formats = {"html" => {}, "html-single" => {}, "pdf" => {}, "epub" => {}}
       @default_download_assets = {
-        "installer" => {"name" => "Installer"},
-        "zip" => {"name" => "ZIP"}, 
+        "installer" => {"name" => "Installer", "icon" => "icon-download-alt"},
+        "zip" => {"name" => "ZIP", "icon" => "icon-download-alt"}, 
         "sha1" => {"name" => "SHA1"}, 
         "md5" => {"name" => "MD5"}, 
-        "release_notes" => {"name" => "Release Notes"}, 
-        "source" => {"name" => "Source"}}
+        "release_notes" => {"name" => "Release Notes", "icon" => "icon-pencil"}, 
+        "source" => {"name" => "Source", "icon" => "icon-download-alt"}}
       @default_locale = "en_US"
+      @default_download_asset_type = "installer"
     end
 
 
@@ -52,8 +53,26 @@ module JBoss::Developer::Extensions
           b = []
           download.assets.each do |l, w|
             asset = OpenStruct.new(w)
+            asset.key = l
             asset.name ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["name"] : l.gsub(/_/, ' ')
-            asset.url ||= "#{site.download_manager_file_base_url}/#{product.id}/#{download.version}/#{asset.name}"
+            c = []
+            if asset.artifacts
+              asset.artifacts.each do |m, x|
+                artifact = OpenStruct.new(x)
+                artifact.name = @default_download_assets.has_key?(m) ? @default_download_assets[m]["name"] : m.gsub(/_/, ' ')
+                artifact.url ||= "#{site.download_manager_file_base_url}/#{product.id}/#{download.version}/#{artifact.name}"
+                artifact.icon ||= @default_download_assets.has_key?(m) ? @default_download_assets[m]["icon"] : "icon-download-alt"
+                c << artifact
+              end
+            else
+              artifact = OpenStruct.new
+              artifact.url = "#{site.download_manager_file_base_url}/#{product.id}/#{download.version}/#{asset.key}"
+              artifact.size = asset.size
+              artifact.name = asset.name
+              artifact.icon ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["icon"] : "icon-download-alt"
+              c << artifact
+            end
+            asset.artifacts = c
             b << asset 
           end
           download.assets = b
@@ -68,6 +87,12 @@ module JBoss::Developer::Extensions
         end
         product.older_downloads = product.downloads.clone
         product.older_downloads.delete(product.current_version)
+        product.default_download_asset_type ||= 
+        product.current_download.assets.each do |asset|
+          if asset.key == @default_download_asset_type 
+            product.default_download_url ||= asset.artifacts[0].url
+          end
+        end
       end
     end
 

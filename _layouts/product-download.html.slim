@@ -7,7 +7,9 @@ h3.divider Download for Development Use
 asciidoc:
   To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the JBoss Developer Program which provides $0 subscriptions for development use only. link:#[Read more] about the JBoss Developer Program.
 
-h4.download-link: a(href="#"): #{page.product.abbreviated_name} #{page.product.current_version}
+h4.download-link: a(href="#{page.product.default_download_url}")
+  i.icon-download-alt>
+  | Download #{page.product.abbreviated_name} #{page.product.current_version}
 
 - if page.product.current_download
   table
@@ -19,19 +21,28 @@ h4.download-link: a(href="#"): #{page.product.abbreviated_name} #{page.product.c
     thead
       tr
         th Version
-        th Description
         th Release Date
+        th Description
         th Download
     tbody
-      tr
-        td #{page.product.current_download.version}
-        td #{page.product.current_download.description}
-        td #{page.product.current_download.release_date}
-        td.asset-list
-          - page.product.current_download.assets.each do |asset|
-            span.item: a(href="#{asset.url}") #{asset.name} #{asset.size ? "(" + asset.size + ")" : ""} 
+      - for i in 0..(page.product.current_download.assets.length-1)
+        - asset = page.product.current_download.assets[i]
+        tr
+          td 
+            - if i == 0
+              #{page.product.current_download.version}
+          td 
+            - if i == 0
+             #{page.product.current_download.release_date} 
+          td #{asset.name}
+          td.asset-list 
+            - asset.artifacts.each do |artifact|
+              span.item
+                a(href="#{artifact.url}")
+                  i>(class="#{artifact.icon}")
+                  | #{artifact.name} #{artifact.size ? "(" + artifact.size + ")" : ""} 
 
-  - if page.product.older_downloads && page.product.older_downloads.length > 1
+  - if page.product.older_downloads && page.product.older_downloads.length > 0 
     a.view-older-downloads(href="#")
       | View Older Downloads
       i.icon-caret-down
@@ -49,15 +60,23 @@ h4.download-link: a(href="#"): #{page.product.abbreviated_name} #{page.product.c
           th Release Date
           th Download
       tbody
-        - page.product.downloads.each do |k, download|
-          - if page.product.current_download != download
+        - page.product.older_downloads.each do |k, download|
+          - for i in 0..(download.assets.length-1)
+            - asset = download.assets[i]
             tr
-              td #{download.version}
-              td #{download.description}
-              td #{download.release_date}
-              td.asset-list
-                - download.assets.each do |asset|
-                  span.item: a(href="#{asset.url}") #{asset.name} #{asset.size ? "(" + asset.size + ")" : ""}
+              td 
+                - if i == 0
+                  #{download.version}
+              td 
+                - if i == 0
+                 #{download.release_date} 
+              td #{asset.name}
+              td.asset-list 
+                - asset.artifacts.each do |artifact|
+                  span.item
+                    a(href="#{artifact.url}")
+                      i>(class="#{artifact.icon}")
+                      | #{artifact.name} #{artifact.size ? "(" + artifact.size + ")" : ""} 
 
 - else
   p No downloads available
