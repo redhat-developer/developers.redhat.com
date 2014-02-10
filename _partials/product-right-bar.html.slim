@@ -1,10 +1,11 @@
 / The standard right bar for the product pages
 / Note that you must pass in a reference to the parent page, as the param 'parent'
-.widget
-  h3.widget-title #{page.parent.product.abbreviated_name} for Developers
-  a.button.shadow.large(href="#{page.parent.product.default_download_url}")
-    | Download
-    i.icon-download  
+- if page.parent.product.current_download
+  .widget
+    h3.widget-title #{page.parent.product.abbreviated_name} for Developers
+    a.button.shadow.large(href="#{page.parent.product.default_download_artifact.url}")
+      | Download
+      i.icon-download  
 .widget
   h3.widget-title Supported Solutions
   ul

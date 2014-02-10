@@ -2,6 +2,7 @@
 layout: base
 status: yellow
 issues: [DEVELOPER-101]
+
 ---
 .row
   .large-24.column
@@ -11,50 +12,29 @@ issues: [DEVELOPER-101]
 
 .row
   .large-12.column
-    - for type in ["Development","Business Rules", "Integration", "Presentation"]
       .download-list
-        h3 #{type}
+        h3 Application Platforms
         ul
-          li
-            h4 Red Hat JBoss Developer Studio
-            p.download
-              | Get the latest: 
-              span.link-list
-                a: i.icon-download-alt 
-                  | (324 MB zip)
-                a See more…
-          li
-            h4 Red Hat JBoss Web Framework Kit
-            p.download
-              | Get the latest: 
-              span.link-list
-                a: i.icon-download-alt 
-                  | (324 MB zip)
-                a See more…
-        a(href="#")
-          i.icon-circle-arrow-right
-          | See our upstream #{type}
+          = partial 'download_item.html.slim', {'product_id' => 'eap'}
+          = partial 'download_item.html.slim', {'product_id' => 'webserver'}
+          = partial 'download_item.html.slim', {'product_id' => 'datagrid'}
+          = partial 'download_item.html.slim', {'product_id' => 'portal'}
   .large-12.column
-    - for type in ["Application Platforms","Messaging", "Data Integration"]
       .download-list
-        h3 #{type}
+        h3 Integration
         ul
-          li
-            h4 Red Hat JBoss Developer Studio
-            p.download
-              | Get the latest: 
-              span.link-list
-                a: i.icon-download-alt 
-                  | (324 MB zip)
-                a See more…
-          li
-            h4 Red Hat JBoss Web Framework Kit
-            p.download
-              | Get the latest: 
-              span.link-list
-                a: i.icon-download-alt 
-                  | (324 MB zip)
-                a See more…
-        a(href="#")
-          i.icon-circle-arrow-right
-          | See our upstream #{type}
+          = partial 'download_item.html.slim', {'product_id' => 'fsw'}
+          = partial 'download_item.html.slim', {'product_id' => 'datavirt'}
+          = partial 'download_item.html.slim', {'product_id' => 'fuse'}
+          = partial 'download_item.html.slim', {'product_id' => 'amq'}
+  .large-12.column
+      .download-list
+        h3 Automation
+        ul
+          = partial 'download_item.html.slim', {'product_id' => 'brms'}
+  .large-12.column
+      .download-list
+        h3 Development Tools
+        ul
+          = partial 'download_item.html.slim', {'product_id' => 'devstudio'}
+

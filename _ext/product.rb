@@ -12,7 +12,7 @@ module JBoss::Developer::Extensions
         "release_notes" => {"name" => "Release Notes", "icon" => "icon-pencil"}, 
         "source" => {"name" => "Source", "icon" => "icon-download-alt"}}
       @default_locale = "en_US"
-      @default_download_asset_type = "installer"
+      @default_download_artifact_type = "zip"
     end
 
 
@@ -87,10 +87,10 @@ module JBoss::Developer::Extensions
         end
         product.older_downloads = product.downloads.clone
         product.older_downloads.delete(product.current_version)
-        product.default_download_asset_type ||= 
+        product.default_download_artifact_type ||=  @default_download_artifact_type
         product.current_download.assets.each do |asset|
-          if asset.key == @default_download_asset_type 
-            product.default_download_url ||= asset.artifacts[0].url
+          if asset.key == product.default_download_artifact_type
+            product.default_download_artifact ||= asset.artifacts[0]
           end
         end
       end
