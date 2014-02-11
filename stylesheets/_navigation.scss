@@ -20,19 +20,23 @@ nav.top-bar {
 }
 
 // Navigation Drop Downs
+
+/* Hard set of hover state to force background onto social icons */
+.top-bar-section li a:not(.button):hover {
+  background:$dark-blue;
+  color:white;
+}
+
 .top-bar-section {
   // Main Nav Elements
   .main-menu {
     li {
       a {
         text-transform: uppercase;
+		color:$dark-blue;
         padding: 5px 20px;
         background:none;
         font-size: 1.375em;
-        &:hover {
-          background:$dark-blue;
-          color:white;
-        }
       }
     }
     li:hover {

@@ -453,7 +453,7 @@ footer.bottom {
 // Updates
 .update {
   padding-right: 1em;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   float: left;
   width:100%;
   p {
@@ -540,13 +540,22 @@ footer.bottom {
   }
   .update-meta {
     .share-this {
-      padding:0 5px;
+      padding: 10px 10px 0px 10px;
       p {
         background:white;
         padding-left:0;
       }
     }
   }
+}
+
+.viewall {
+  float:right;
+  padding-top: 15px;
+}
+
+.heromobile {
+  display: none;
 }
 
 // call to action
@@ -1343,7 +1352,7 @@ span.asterisk {
 // Social Buttons
 .share-this {
   background:$grey-1;
-  padding:10px;
+  /* padding:10px; */
   overflow: hidden;
   position: relative;
   padding: 6px 8px 0 8px;
@@ -1364,7 +1373,7 @@ span.asterisk {
     background:$grey-1;
     text-transform: uppercase;
     color:$grey-5;
-    padding:20px;
+    padding:10px;
     font-weight: 600;
     i {
       margin-right:10px;

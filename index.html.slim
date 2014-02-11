@@ -18,9 +18,12 @@ issues: [DEVELOPER-160, DEVELOPER-27]
     a.button(href="technology") Learn More
 
 / Hero
-.row.hero
-  a: img(src="/images/home_slide1.png")
+.row.hero.herodesktop
+  a: img(src="/images/hero1_desktop_1175x400.png")
+.row.heromobile
+  a: img(src="/images/hero1_mobile_480x500.png")
   
+    
 / Main Slider
 / .row.slider-wrapper
 /   .slider#slider
@@ -38,14 +41,18 @@ issues: [DEVELOPER-160, DEVELOPER-27]
 /       i.icon-angle-right.icon-4x
 
 / Buzz and Event Updates
-.row.updates
+.row.updates.mobilehome
   .large-24.columns
     .row 
       .large-8.columns
+        h6.viewall
+          a(href="#")
+            | View All Buzz 
+            i.icon-double-angle-right
         h3 Buzz
-        / Fake 5 Events
+        / Fake 5 Posts
         - for update in [1,2,3]
-          .update.pinned
+          .update.pinned.updatemobile
             .update-meta
               a.update-timestamp(href="#") 09/22/13  09:34PM
               a.update-source(href="#")
@@ -74,10 +81,10 @@ issues: [DEVELOPER-160, DEVELOPER-27]
                   script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
 
       .large-8.columns
-        h3 &nbsp;
-        / Fake 5 Events
+        h3.hidden &nbsp;
+        / Fake 5 Posts
         - for update in [1,2,3]
-          .update
+          .update.updatemobile
             .update-meta
               a.update-timestamp(href="#") 09/22/13  09:34PM
               a.update-source(href="#")
@@ -108,6 +115,10 @@ issues: [DEVELOPER-160, DEVELOPER-27]
                   script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
 
       .large-8.columns
+        h6.viewall
+          a(href="#")
+            | View All Events 
+            i.icon-double-angle-right
         h3 Events 
         - for update in [1,2,3]
           .update

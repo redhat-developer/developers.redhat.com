@@ -34,7 +34,6 @@
   }
 }
 
-
 @include mobile-portrait-and-down {
   // Material
   li.material {
@@ -55,5 +54,49 @@
   li.upstream {
     width:100%;
   }
+}
 
+// Home specific mobile styles
+
+@media (max-width: 767px) {
+
+.mobilehome h3 {
+  border-bottom: double $grey-3;
+  }
+
+.updatemobile {
+  border-bottom: 1px solid $grey-3;
+  margin-bottom: 20px;
+  }
+  
+.updatemobile:last-child {
+  border-bottom: none;
+  }
+
+.pinned:last-child  {
+  border-bottom: 1px solid $grey-3;
+  }
+  
+.viewall {
+  padding-top: 5px;
+  }
+  
+.hidden {
+  display:none;
+}
+}
+
+
+// mobile hero swap on home page.
+
+@media (max-width: 480px) {
+
+.herodesktop {
+  display:none;
+}
+
+.heromobile {
+  display:block;
+  padding-bottom: 20px;
+}
 }
