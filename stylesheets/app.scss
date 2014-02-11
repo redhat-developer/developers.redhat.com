@@ -1,7 +1,7 @@
 @import "settings";
 @import "normalize";
 
-@import "font-awesome";
+@import "font-awesome/scss/font-awesome";
 @import "colours";
 @import "foundation/components/global"; // *always required
 @import "foundation/components/grid";
@@ -352,7 +352,7 @@ textarea {
   }
 
 // Icons
-i[class*=icon].invert {
+i[class*=fa].invert {
   padding:emCalc(2);
   background: $grey-5;
   border-radius:emCalc(2);
@@ -511,7 +511,7 @@ footer.bottom {
       }
     }
   }
-  i[class*=icon] {
+  i[class*=fa] {
     margin-right: 3px;
   }
   h5 {
@@ -1098,7 +1098,7 @@ ul.results {
   i {
     color:$grey-4;
   }
-  i.icon-star,i.icon-star-half-empty {
+  i.fa-star,i.fa-star-half-empty {
     color:$light-orange;
   }
 
@@ -1245,10 +1245,10 @@ body.login {
   a {
     margin:0 5px;
   }
-  i.icon-twitter:before { color:#00aee7; }
-  i.icon-facebook:before { color:#3b5998; }
-  i.icon-github:before { color:#000; }
-  i.icon-google-plus:before { color:#dd483d; }
+  i.fa-twitter:before { color:#00aee7; }
+  i.fa-facebook:before { color:#3b5998; }
+  i.fa-github:before { color:#000; }
+  i.fa-google-plus:before { color:#dd483d; }
 }
 span.sign-in-options {
   padding-left: 5px;

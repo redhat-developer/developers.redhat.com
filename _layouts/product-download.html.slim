@@ -10,7 +10,7 @@ layout: product
     To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the JBoss Developer Program which provides $0 subscriptions for development use only. link:#[Read more] about the JBoss Developer Program.
 
   h4.download-link: a(href="#{page.product.default_download_artifact.url}")
-    i.icon-download-alt>
+    i.fa.fa-download>
     | Download #{page.product.abbreviated_name} #{page.product.current_version}
 
   table
@@ -46,7 +46,7 @@ layout: product
   - if page.product.older_downloads && page.product.older_downloads.length > 0 
     a.view-older-downloads(href="#")
       | View Older Downloads
-      i.icon-caret-down
+      i.fa.fa-caret-down
 
     table
       colgroup
@@ -87,7 +87,7 @@ layout: product
     #{page.product.abbreviated_name} is only available through a full Red Hat subscription.  Download #{page.product.abbrevaited_name} by following the link below to log into the Red Hat Customer Portal and download from there.
 
   h4.download-link: a(href="https://access.redhat.com/jbossnetwork/restricted/listSoftware.html")
-    i.icon-download-alt>
+    i.fa.fa-download>
     | Download #{page.product.abbreviated_name} from the Red Hat Customer Portal
 
 h3.divider Ready to use #{page.product.abbreviated_name} in Production?

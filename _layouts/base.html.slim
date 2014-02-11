@@ -35,7 +35,7 @@ body(class="#{template}")
         dl.sub-nav
           dd.home-link
             a(href="#{site.base_url}/#{site.context_url}")
-              i.icon-home
+              i.fa.fa-home
           dd.search-wrapper
             /  Search Box
             form.search(action="search" method="POST" name="search")
@@ -45,7 +45,7 @@ body(class="#{template}")
           dd.login
             a.logged-in-name(href="#")
             a(href="#" data-dropdown="login")
-              i.icon-user
+              i.fa.fa-user
               | Login
             / Login Dropdown Box
             div.f-dropdown.content.round#login(data-dropdown-content="true")
@@ -60,9 +60,9 @@ body(class="#{template}")
                 input.button(type="submit" value="Login")
               p.sign-in-options
                 | Or sign in with:
-                i.icon-facebook-sign
-                i.icon-google-plus-sign
-                i.icon-twitter-sign
+                i.fa.fa-facebook-square
+                i.fa.fa-google-plus-square
+                i.fa.fa-twitter-square
               ul.inline-list.text-center
                 li
                   a(href="#") Forgot Password
@@ -78,25 +78,25 @@ body(class="#{template}")
             ul.right.social
               li
                 a(href="#")
-                  i.icon-envelope
+                  i.fa.fa-envelope
               li
                 a(href="http://planet.jboss.org")
-                  i.icon-rss
+                  i.fa.fa-rss
               li
                 a(href="http://www.facebook.com/jboss")
-                  i.icon-facebook
+                  i.fa.fa-facebook
               li
                 a(href="http://twitter.com/jbossdeveloper")
-                  i.icon-twitter
+                  i.fa.fa-twitter
               li
                 a(href="http://www.linkedin.com/groups?home=&gid=167652")
-                  i.icon-linkedin
+                  i.fa.fa-linkedin
               li
                 a(href="https://plus.google.com/b/117471670409122206659/117471670409122206659/posts")
-                  i.icon-google-plus
+                  i.fa.fa-google-plus
               li
                 a(href="https://vimeo.com/jbossdeveloper")
-                  i.icon-vimeo
+                  i.fa.fa-vimeo-square
     .wrapper
       .content-wrapper
         = content

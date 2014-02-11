@@ -6,7 +6,7 @@ layout: base
   h3 Work alongside smart, motivated people to apply your skills toward a bigger effort.
   a.button(href="#")
     | ASK HOW IN OUR FORUMS
-    i.icon-chevron-right
+    i.fa.fa-chevron-right
 
 ul.small-block-grid-1.large-block-grid-4
   li.get-involved-person
@@ -20,21 +20,21 @@ ul.small-block-grid-1.large-block-grid-4
     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum tortor ligula.
     p: a(href="#")
       | Read the transcript
-      i.icon-chevron-right
+      i.fa.fa-chevron-right
     hr
     .recommended-links
       p: strong Recommended by Dimitris Andreadis
       a(href="#")
         | Contribute to JBoss Developer
-        i.icon-film
+        i.fa.fa-film
       br
       a
         | Ways to contribute
-        i.icon-facetime-video
+        i.fa.fa-video-camera
 
     p: strong Follow Dimitris
-    a: i.icon-google-plus-sign
-    a: i.icon-facetime-video
+    a: i.fa.fa-google-plus-square
+    a: i.fa.fa-video-camera
   li.get-involved-person
     img(src="/images/get-started-person.jpg")
     div.get-involved-label
@@ -46,21 +46,21 @@ ul.small-block-grid-1.large-block-grid-4
     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum tortor ligula.
     p: a(href="#")
       | Read the transcript
-      i.icon-chevron-right
+      i.fa.fa-chevron-right
     hr
     .recommended-links
       p: strong Recommended by Dimitris Andreadis
       a(href="#")
         | Contribute to JBoss Developer
-        i.icon-film
+        i.fa.fa-film
       br
       a
         | Ways to contribute
-        i.icon-facetime-video
+        i.fa.fa-video-camera
 
     p: strong Follow Dimitris
-    a: i.icon-google-plus-sign
-    a: i.icon-facetime-video
+    a: i.fa.fa-google-plus-square
+    a: i.fa.fa-video-camera
   li.get-involved-person
     img(src="/images/get-started-person.jpg")
     div.get-involved-label
@@ -72,21 +72,21 @@ ul.small-block-grid-1.large-block-grid-4
     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum tortor ligula.
     p: a(href="#")
       | Read the transcript
-      i.icon-chevron-right
+      i.fa.fa-chevron-right
     hr
     .recommended-links
       p: strong Recommended by Dimitris Andreadis
       a(href="#")
         | Contribute to JBoss Developer
-        i.icon-film
+        i.fa.fa-film
       br
       a
         | Ways to contribute
-        i.icon-facetime-video
+        i.fa.fa-video-camera
 
     p: strong Follow Dimitris
-    a: i.icon-google-plus-sign
-    a: i.icon-facetime-video
+    a: i.fa.fa-google-plus-square
+    a: i.fa.fa-video-camera
   li.get-involved-person
     img(src="/images/get-started-person.jpg")
     div.get-involved-label
@@ -98,21 +98,21 @@ ul.small-block-grid-1.large-block-grid-4
     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum tortor ligula.
     p: a(href="#")
       | Read the transcript
-      i.icon-chevron-right
+      i.fa.fa-chevron-right
     hr
     .recommended-links
       p: strong Recommended by Dimitris Andreadis
       a(href="#")
         | Contribute to JBoss Developer
-        i.icon-film
+        i.fa.fa-film
       br
       a
         | Ways to contribute
-        i.icon-facetime-video
+        i.fa.fa-video-camera
 
     p: strong Follow Dimitris
-    a: i.icon-google-plus-sign
-    a: i.icon-facetime-video
+    a: i.fa.fa-google-plus-square
+    a: i.fa.fa-video-camera
 
 h2.divider Community Pulse
 
@@ -121,11 +121,11 @@ h2.divider Community Pulse
   ul.sort-icons
     li.sortBy Sort By:
     li: a(data-filter="all")
-      i.icon-home
+      i.fa.fa-home
     li: a(data-filter="github")
-      i.icon-github
+      i.fa.fa-github
     li: a(data-filter="jira")
-      i.icon-github
+      i.fa.fa-github
 
 .large-24.buzz-items
   - types = ["linkedin","twitter","facebook","google-plus"]
@@ -136,7 +136,7 @@ h2.divider Community Pulse
     - type = types[rand]
     div(class="buzz-item buzz-item-#{type}")
       .buzz-item-inner
-        .buzz-header: i(class="icon-#{type}")
+        .buzz-header: i(class="fa-#{type}")
         img(src="#{site.base_url}/#{site.context_url}/images/solution-#{rand(8) + 1}.png")
         / img(src="http://lorempixel.com/300/#{rand(500)}")
         h3 #{titles[rand(4)]}

@@ -3,10 +3,10 @@ function roundHalf(num) {
     var html = "";
     for (var i = num; i >= 0; i--) {
       if(i >= 1) {
-        html += "<i class='icon-star'></i>";
+        html += "<i class='fa fa-star'></i>";
       }
       else if (i > 0) {
-        html += "<i class='icon-star-half-empty'></i>";
+        html += "<i class='fa fa-star-half-empty'></i>";
       }
     };
     return html;

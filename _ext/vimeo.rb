@@ -14,10 +14,10 @@ module JBoss
         cast.each do |c|
           out += "<div class=\"follow-links\">" +
           "<span class=\"title\">Follow #{first_name(c.realname)}</span>" +
-          "<a><i class=\"icon-rss\"></i></a>" +
-          "<a><i class=\"icon-facebook\"></i></a>" +
-          "<a><i class=\"icon-twitter\"></i></a>" +
-          "<a><i class=\"icon-linkedin\"></i></a>" +
+          "<a><i class=\"fa fa-rss\"></i></a>" +
+          "<a><i class=\"fa fa-facebook\"></i></a>" +
+          "<a><i class=\"fa fa-twitter\"></i></a>" +
+          "<a><i class=\"fa fa-linkedin\"></i></a>" +
           "</div>"
         end
         out + "</div>"

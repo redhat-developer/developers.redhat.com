@@ -5,12 +5,12 @@ module JBoss::Developer::Extensions
     def initialize
       @default_guide_formats = {"html" => {}, "html-single" => {}, "pdf" => {}, "epub" => {}}
       @default_download_assets = {
-        "installer" => {"name" => "Installer", "icon" => "icon-download-alt"},
-        "zip" => {"name" => "ZIP", "icon" => "icon-download-alt"}, 
+        "installer" => {"name" => "Installer", "icon" => "fa fa-download"},
+        "zip" => {"name" => "ZIP", "icon" => "fa fa-download"},
         "sha1" => {"name" => "SHA1"}, 
         "md5" => {"name" => "MD5"}, 
-        "release_notes" => {"name" => "Release Notes", "icon" => "icon-pencil"}, 
-        "source" => {"name" => "Source", "icon" => "icon-download-alt"}}
+        "release_notes" => {"name" => "Release Notes", "icon" => "fa fa-pencil"},
+        "source" => {"name" => "Source", "icon" => "fa fa-download"}}
       @default_locale = "en_US"
       @default_download_artifact_type = "zip"
     end
@@ -61,7 +61,7 @@ module JBoss::Developer::Extensions
                 artifact = OpenStruct.new(x)
                 artifact.name = @default_download_assets.has_key?(m) ? @default_download_assets[m]["name"] : m.gsub(/_/, ' ')
                 artifact.url ||= "#{site.download_manager_file_base_url}/#{product.id}/#{download.version}/#{artifact.name}"
-                artifact.icon ||= @default_download_assets.has_key?(m) ? @default_download_assets[m]["icon"] : "icon-download-alt"
+                artifact.icon ||= @default_download_assets.has_key?(m) ? @default_download_assets[m]["icon"] : "fa fa-download"
                 c << artifact
               end
             else
@@ -69,7 +69,7 @@ module JBoss::Developer::Extensions
               artifact.url = "#{site.download_manager_file_base_url}/#{product.id}/#{download.version}/#{asset.key}"
               artifact.size = asset.size
               artifact.name = asset.name
-              artifact.icon ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["icon"] : "icon-download-alt"
+              artifact.icon ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["icon"] : "fa fa-download"
               c << artifact
             end
             asset.artifacts = c
