@@ -16,23 +16,25 @@ downloads:
     description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
     assets:
       zip-cppclient-win32:
-        size: 19mb
-        name: Zip (CPP Client Windows 32bit)
-      zip-cppclient-win64:
-        size: 52mb
-        name: Zip (CPP Client Windows 64bit)
-      zip-cppclient-RHEL6_64:
-        size: 153mb
-        name: Zip (CPP Client RHEL6 64bit)
-      zip-cppclient-RHEL5_64:
-        size: 87mb
-        name: Zip (CPP Client RHEL5 64bit)
+        artifacts:
+          (CPP Client Win32):
+            size: 19mb
+          (CPP Client Win64):
+            size: 52mb
+          (CPP Client RHEL6_64):
+            size: 153mb
+          (CPP Client RHEL5_64):
+            size: 87mb
+        name: CPP Client
       zip-library:
         size: 41mb
         name: Zip (Data Grid Library)
       zip-server:
         size: 133mb
         name: Zip (Data Grid Server)
+      release_notes:
+      source:
+        size: 9mb
   6.1.0.GA:
     release_date: 2013-03-20
     description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
@@ -43,6 +45,10 @@ downloads:
       zip-server:
         size: 68mb
         name: Zip (Data Grid Server)
+      release_notes:
+      source:
+        size: 8mb
+
 #  6.0.1:
 #    release_date: 2012-09-18
 #    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.

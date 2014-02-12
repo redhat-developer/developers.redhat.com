@@ -30,15 +30,15 @@ downloads:
       jar-universal:
         size: 613mb
         name: Jar (Universal Binary with EAP)
-      jar-standalone:
-        size: 487mb
-        name: Jar (Standalone Universal Binary)
-      zip-central:
-        size: 410mb
-        name: Zip (Standalone Universal Binary)
-      zip-update:
-        size: 719mb
-        name: Zip (Standalone Universal Binary)
+      Standalone Universal:
+        artifacts:
+          Standalone Jar:
+            size: 487mb
+          Standalone Zip Central:
+            size: 410mb
+          Standalone Zip Update:
+            size: 719mb
+      release_notes:
       source:
         size: 6mb
   7.0.0.GA:
@@ -48,12 +48,13 @@ downloads:
       jar-universal:
         size: 591mb
         name: Jar (Universal Binary with EAP)
-      jar-standalone:
-        size: 481mb
-        name: Jar (Standalone Universal Binary)
-      zip-update:
-        size: 697mb
-        name: Zip (Standalone Universal Binary)
+      Standalone Universal:
+        artifacts:
+          Standalone Jar:
+            size: 481mb
+          Standalone Zip Update:
+            size: 697mb
+      release_notes:
       source:
         size: 6mb
   6.0.1.GA:
@@ -66,6 +67,7 @@ downloads:
       jar-standalone:
         size: 455mb
         name: Jar (Standalone Universal Binary)
+      release_notes:
       source:
         size: 111mb
   6.0.0.GA:
@@ -78,6 +80,7 @@ downloads:
       jar-standalone:
         size: 454mb
         name: Jar (Standalone Universal Binary)
+      release_notes:
       source:
         size: 3mb
   5.0.0.GA:
@@ -90,6 +93,7 @@ downloads:
       jar-standalone:
         size: 385mb
         name: Jar (Standalone Universal Binary)
+      release_notes:
       source:
         size: 111mb
 

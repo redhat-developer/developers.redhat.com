@@ -39,19 +39,21 @@ downloads:
       zip:
         size: 209mb
         name: Zip (Full Install)
-      ide-macosx:
-        size: 209mb
-        name: Fuse IDE (MacOS X)
-      ide-win32:
-        size: 210mb
-        name: Fuse IDE (Windows 32bit)
-      ide-win32_64:
-        size: 210mb
-        name: Fuse IDE (Windows 64bit)
-      ide-linux:
-        size: 210mb
-        name: Fuse IDE (Linux 32bit)
-      ide-linux_64:
-        size: 210mb
-        name: Fuse IDE (Linux 64bit)
+      Fuse IDE:
+        artifacts:
+          (MacOS X):
+            size: 209mb
+          (Win32):
+            size: 210mb
+          (Win64):
+            size: 210mb
+          (Linux32):
+            size: 210mb
+          (Linux64):
+            size: 210mb
+          sha1:
+          md5:
+      release_notes:
+      source:
+        size: 64mb
 

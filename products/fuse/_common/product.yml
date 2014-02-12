@@ -2,33 +2,35 @@ name: Red Hat JBoss Fuse
 abbreviated_name: JBoss Fuse
 tagline: A small footprint, flexible, open source ESB
 current_version: 6.0.0.GA
-default_download_artifact_type: zip-medium
+default_download_artifact_type: Zip Files
 downloads:
   6.0.0.GA:
     release_date: 2013-04-10
     description: Our small footprint Enterprise Service Bus (ESB) that can be moved into production with a Red Hat subscription.
     assets:
-      zip-full:
-        size: 568mb
-        name: Zip (Full Install)
-      zip-medium:
-        size: 202mb
-        name: Zip (Medium Install)
-      ide-macosx:
-        size: 209mb
-        name: Fuse IDE (MacOS X)
-      ide-win32:
-        size: 210mb
-        name: Fuse IDE (Windows 32bit)
-      ide-win32_64:
-        size: 210mb
-        name: Fuse IDE (Windows 64bit)
-      ide-linux:
-        size: 210mb
-        name: Fuse IDE (Linux 32bit)
-      ide-linux_64:
-        size: 210mb
-        name: Fuse IDE (Linux 64bit)
+      Zip Files:
+        artifacts:
+          (Full Zip):
+            size: 568mb
+          (Medium Zip):
+            size: 202mb
+      Fuse IDE:
+        artifacts:
+          (MacOS X):
+            size: 209mb
+          (Win32):
+            size: 210mb
+          (Win64):
+            size: 210mb
+          (Linux32):
+            size: 210mb
+          (Linux64):
+            size: 210mb
+          sha1:
+          md5:
+      release_notes:
+      source:
+        size: 64mb
 documentation_path: JBoss_Fuse
 guides:
   API_Reference:
