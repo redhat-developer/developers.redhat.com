@@ -13,5 +13,5 @@ layout: technology-base
           h3 #{v.label}
           .technology-item-inside
             = page["_" + k.gsub(/-/, "_")]
-            a.learn-more(href="#{v.url}") Learn More
+            a.button(href="#{v.url}") Learn More
             = vimeo(v.video)
