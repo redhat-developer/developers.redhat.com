@@ -791,6 +791,13 @@ footer.bottom {
   }
 }
 
+// Spacing alignment for the bulleted list
+
+.ulist ul li {
+      text-indent:-1em;
+	  margin-left: 1em;
+}
+
 // Training specific widget
 
 .rightbarbullets {
@@ -852,8 +859,6 @@ footer.bottom {
     margin:0;
     li {
       list-style: none;
-	  text-indent:-1em;
-	  margin-left:1em;
       &:before {
         content: "\f111";
         font-family: 'FontAwesome';
