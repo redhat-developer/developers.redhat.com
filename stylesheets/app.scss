@@ -791,6 +791,33 @@ footer.bottom {
   }
 }
 
+// Training specific widget
+
+.rightbarbullets {
+  ul {
+    list-style:none;
+    li {
+      margin-bottom: 15px;
+	  line-height: 1.25em;
+	  text-indent:-1em;
+	  margin-left: 1em;
+      &:before {
+        content: "\f111";
+        font-family: 'FontAwesome';
+        float: left;
+        color:$grey-5;
+        font-size: 9px;
+        padding-right: 1.8em;
+        position: relative;
+      }
+	 p {
+	  line-height: 1.25em;
+    }
+}
+}
+}
+
+
 .alert {
   color:$dark-red;
   i {
@@ -825,13 +852,15 @@ footer.bottom {
     margin:0;
     li {
       list-style: none;
+	  text-indent:-1em;
+	  margin-left:1em;
       &:before {
         content: "\f111";
         font-family: 'FontAwesome';
         float: left;
         color:$grey-4;
         font-size: 11px;
-        padding-right: 7px;
+        padding-right: 1.4em;
         position: relative;
         top: 5px;
       }
