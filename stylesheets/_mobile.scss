@@ -56,6 +56,18 @@
   }
 }
 
+// Events mobile styles
+
+@media (max-width: 767px) {
+.events-control {
+  input[type] {
+    &.datepicker {
+      width:100%;
+     }
+   }
+ }
+}
+
 // Home specific mobile styles
 
 @media (max-width: 767px) {
