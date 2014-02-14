@@ -1031,7 +1031,7 @@ form.filters {
     margin-bottom: 5px;
   }
   .filter-block {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     clear: both;
     float: left;
     width:100%;
@@ -1055,6 +1055,7 @@ form.filters {
   border-radius:$global-radius;
   position: relative;
   cursor:pointer;
+  margin-bottom: 10px;
   &:after {
     border-left: 1px solid $grey-3;;
     content: "\f0d7";
