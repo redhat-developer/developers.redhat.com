@@ -7,12 +7,11 @@ issues: []
 .row
   .large-24.column
     h2 Stay Informed!
+  .large-16.column.bordered-column
     p Sign up for our newsletter and learn about the latest news for JBoss Developers.
-
-.row
-  .large-16.column
     h4 Example newsletter content
-    img(src="/images/newsletter.png")
+    .material
+      img(src="/images/newsletter.png")
   .large-8.column
     form.search(action="https://secure.eloqua.com/e/f2" method="POST" name="subscribe")
       input(type="hidden" name="elqFormName" value="jbossdevelopernewsletter")
