@@ -16,10 +16,10 @@ issues: []
     form.search(action="https://secure.eloqua.com/e/f2" method="POST" name="subscribe")
       input(type="hidden" name="elqFormName" value="jbossdevelopernewsletter")
       input(type="hidden" name="elqSiteID" value="1795")
-      input(type="email" name="C_EmailAddress" placeholder="Enter your e-mail")
+      input(type="email" name="C_EmailAddress" placeholder="Enter your e-mail" required)
       .styled-select
-        select(name="C_Country")
-          option(selected="true") Choose your country
+        select(name="C_Country" required)
+          option(value="" selected="true") Choose your country
           - site.countries.each do |k, v|
             option(value="#{k}") #{v}
 
