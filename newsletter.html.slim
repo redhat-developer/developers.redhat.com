@@ -7,8 +7,7 @@ issues: []
 .row
   .large-24.column
     h2 Stay Informed!
-    asciidoc:
-      Sign up for our newsletter and learn about the latest news for JBoss Developers.
+    p Sign up for our newsletter and learn about the latest news for JBoss Developers.
 
 .row
   .large-16.column
@@ -16,16 +15,15 @@ issues: []
     img(src="/images/newsletter.png")
   .large-8.column
     form.search(action="https://secure.eloqua.com/e/f2" method="POST" name="subscribe")
-              input(type="hidden" name="elqFormName" value="jbossdevelopernewsletter")
-              input(type="hidden" name="elqSiteID" value="1795")
-              input(type="email" name="C_EmailAddress" placeholder="Enter your e-mail")
-              select.styled-select(name="C_Country")
-                option(selected="true") Choose your country
-                - site.countries.each do |k, v|
-                  option(value="#{k}") #{v}
+      input(type="hidden" name="elqFormName" value="jbossdevelopernewsletter")
+      input(type="hidden" name="elqSiteID" value="1795")
+      input(type="email" name="C_EmailAddress" placeholder="Enter your e-mail")
+      select.styled-select(name="C_Country")
+        option(selected="true") Choose your country
+        - site.countries.each do |k, v|
+          option(value="#{k}") #{v}
 
-              input.button(type="submit" value="Sign me up")
-    asciidoc:
-      Your information will not be shared with any third parties beyond Red Hat. You can unsubscribe from this
+      input.button(type="submit" value="Sign me up")
+    p Your information will not be shared with any third parties beyond Red Hat. You can unsubscribe from this
       newsletter at any time using a link at the bottom of the e-mail you receive.
 
