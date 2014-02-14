@@ -25,29 +25,38 @@ a(href="#{page.product.documentation_url}")
   | See More Documentation 
   i.fa.fa-external-link
 
-h3.divider Featured Videos
-ul.small-block-grid-3.large-block-grid-3
-  |
-  - for material in [video,sandbox,archetype]
-    li.material
-      a(href="#")
-        img(src="/images/materials-thumb1.jpg")
-      span.label.material-duration 04:54
-      span.label.material-level-beginner Beginner
-      h4: a(href="#") JBoss EAP 6 Administration 
-      p.author
-        | Author: 
-        a(href="#") John Smith
-      p.material-datestamp Added 28 2014 9:15pm
-      p.rating
-        | Video
-        i.fa.fa-star
-        i.fa.fa-star
-        i.fa.fa-star
-        i.fa.fa-star-half-empty
-        i.fa.fa-star-empty
-      .body
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
+- if page.product.featured_videos
+  h3.divider Featured Videos
+  ul.small-block-grid-3.large-block-grid-3
+    - for i in 0..2
+      - if page.product.featured_videos.length > i
+        - video = page.product.featured_videos[i]
+        li.material
+          = vimeo_thumb(video)
+- else
+  h3.divider Featured Videos
+  ul.small-block-grid-3.large-block-grid-3
+    |
+    - for material in [video,sandbox,archetype]
+      li.material
+        a(href="#")
+          img(src="/images/materials-thumb1.jpg")
+        span.label.material-duration 04:54
+        span.label.material-level-beginner Beginner
+        h4: a(href="#") JBoss EAP 6 Administration
+        p.author
+          | Author:
+          a(href="#") John Smith
+        p.material-datestamp Added 28 2014 9:15pm
+        p.rating
+          | Video
+          i.fa.fa-star
+          i.fa.fa-star
+          i.fa.fa-star
+          i.fa.fa-star-half-empty
+          i.fa.fa-star-empty
+        .body
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
 
 h3.divider More Resources
 .updates
