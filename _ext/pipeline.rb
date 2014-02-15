@@ -4,11 +4,11 @@ require 'upstream_projects'
 require 'aweplug/extensions/kramdown_quickstart'
 require 'aweplug/extensions/sections'
 require 'aweplug/extensions/asciidoc_example'
+require 'aweplug/helpers/vimeo'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
 require 'product'
-require 'vimeo'
 
 Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
@@ -38,6 +38,6 @@ Awestruct::Extensions::Pipeline.new do
 
   helper Awestruct::Extensions::Partial
   helper JBoss::Developer::Utilities
-  helper JBoss::Developer::Vimeo
+  helper Aweplug::Helpers::Vimeo
 end
 
