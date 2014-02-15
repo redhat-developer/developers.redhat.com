@@ -138,3 +138,41 @@ a.get-started-quickstart.button {
     }
   }
 }
+
+// Getting Started Download Thank you
+
+.downloadthankyou {
+  padding: 2em;
+  color: $grey-6;
+  background-color: $light-blue;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid $med-blue;
+  margin-bottom: 2em;
+  
+  .thankyouclose {
+   float:right;
+   margin-right: -1.75em;
+   margin-top: -1.75em;
+    a {
+	  color: $grey-6;
+      &:before {
+          font-family: 'FontAwesome';
+          content: "\f00d";
+	  }  
+    }
+  }
+
+  h2 {
+  font-size: emCalc(28);
+  font-weight: normal;
+  margin-top: 0;
+  }
+  h3 {
+  font-size: emCalc(20);
+  }
+  p {
+  margin-bottom: 0;
+  }
+}
