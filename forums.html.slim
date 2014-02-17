@@ -1,0 +1,31 @@
+---
+layout: base
+status: green
+issues: [] 
+
+---
+.row
+  .large-16.column
+    h2 JBoss Product Forums
+    p Quick statement of forum guidelines.
+  .large-8.column
+    p Interested in Upstream Project forums?
+    a(href="https://community.jboss.org")
+      button
+        | See all JBoss Forums
+  .large-24.column
+    table.downloads
+      tr
+        th Name
+        th Description
+        th Posts
+        th Monthly Activity
+      - site.forums.each do |k, v|
+        tr
+          td.product-name
+            a(href="#{v.url}") #{v.name}
+          td.description #{v.description}
+          td
+          td
+        
+
