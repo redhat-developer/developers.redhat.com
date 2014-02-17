@@ -69,7 +69,7 @@
 /*
    Zurb Foundation Overides
   These are things that can't be changed in _settings.scss
-*/ 
+*/
 
 .row, .top-bar .row {
   max-width:emCalc(1200);
@@ -342,9 +342,9 @@ textarea {
     border:1px solid $med-blue;
   }
 }
-  
+
   form {
-    margin: 0; // get rid of the margin 
+    margin: 0; // get rid of the margin
   }
 
   label input[type=checkbox] { // for when we have a checkbox beside some text
@@ -384,9 +384,9 @@ i[class*=fa].invert {
 }
 
 
-/* 
+/*
   Layout and custom modules
-*/ 
+*/
 
 .content-wrapper {
   background:white;
@@ -524,7 +524,7 @@ footer.bottom {
       font-family: 'FontAwesome';
       position: absolute;
       color: #EAC562;
-      font-size: emCalc(25px); 
+      font-size: emCalc(25px);
       left: 0.7em;
       // -webkit-transform: rotate(-47deg);
       @include transform2d(rotate(-45deg));
@@ -621,6 +621,20 @@ footer.bottom {
 // columns of text
 .two-col {
   @include columns(20em 2);
+}
+
+
+@media screen and ( min-width: 768px ) {
+  .bordered-column {
+    border-right: 1px solid $grey-2;
+  }
+}
+
+@media screen and ( max-width: 768px ) {
+  .bordered-column {
+    border-bottom: 1px solid $grey-2;
+    padding-bottom: 40px;
+  }
 }
 
 // Products
@@ -765,7 +779,7 @@ footer.bottom {
       display: block;
       width:100%;
       text-align: center;
-      padding:1em 0; 
+      padding:1em 0;
       i {
         margin-left: 5px;
       }
@@ -1320,6 +1334,7 @@ form.login {
   }
 }
 
+
 // Downloads list
 .download-list {
   padding-bottom: 30px;
@@ -1544,7 +1559,7 @@ span.asterisk {
   text-align: center;
   padding:5px;
   border:0;
-  margin: 0; 
+  margin: 0;
   &.status-red {
     background: $red;
     border-bottom: 3px solid darken($red, 5%);
@@ -1566,7 +1581,7 @@ span.asterisk {
       border-radius:5px;
       background:darken(#F1CC08, 5%);
     }
-  } 
+  }
   &.status-green {
     background:#179B17;
     border-bottom: 3px solid darken(#179B17, 5%);
