@@ -7,6 +7,15 @@ h2.divider #{page.product.tagline ? page.product.tagline : 'Overview'}
 
 = page._overview
 
+.panel.features
+  = page._icon1
+  = page._features1
+  = page._icon2
+  = page._features2
+  = page._icon3
+  = page._features3
+
+
 h3.divider Resources
 
 = page._resources
@@ -17,7 +26,7 @@ asciidoc:
   - View the link:#{page.product.documentation_url}[#{page.product.abbreviated_name} Documentation]
 
 a.moreinfolink(href="../resources")
-  | View More Resources 
+  | View More Resources
   i.fa.fa-angle-double-right
 
 h3.divider Blog Posts and Articles
@@ -26,7 +35,7 @@ h3.divider Blog Posts and Articles
     h5
       a(href="#") Red Hat JBoss Middleware Webinar — Are You Ready to Rumble with JBoss Integration & BPM
     p.update-subtext
-      | June 28, 2013 9:31 AM by 
+      | June 28, 2013 9:31 AM by
       a(href="#") Eric D. Schabell
     p There will be an interesting webinar on July 23, 2013 that will take you on a tour of integration and business process management. This will feature ...
 
