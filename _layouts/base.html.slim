@@ -14,6 +14,11 @@ head
   /[if lt IE 9]
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
+  script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+  / jQuery fallback if CDN fails
+  javascript:
+    window.jQuery || document.write('<script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"><\/script>')
+  script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.feeds.js"
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
   - if site.profile == 'staging' || site.profile == 'development'
@@ -109,10 +114,6 @@ body(class="#{template}")
           li: a(href="mailto:help@jboss.org") Report a problem
 
   #fb-root
-  script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-  / jQuery fallback if CDN fails
-  javascript:
-    window.jQuery || document.write('<script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"><\/script>')
   script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
   /[if lt IE 9]
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
