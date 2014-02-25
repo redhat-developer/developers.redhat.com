@@ -53,8 +53,8 @@ status: yellow
 
     .events-control.events-actions.large-14
       a(href="#")
-        | Subscribe to events
-        i.icon-rss
+        | Subscribe to events 
+        i.fa.fa-rss
       .events-actions-buttons
         a.button Add Your Event
         a.button View Past Events
@@ -63,21 +63,27 @@ status: yellow
 
 
     ul.small-block-grid-2.large-block-grid-4.events
-      - for month in ["Jan", "Feb", "Mar", "Apr"]
+      - site.events.each do |v|
         li
           .event 
             .event-header
-              img(src="#{site.base_url}/#{site.context_url}/images/event-minibanner.jpg")
+              img(src="#{site.base_url}/#{site.context_url}#{v.image}")
+              - if "#{v.community}" == "true"
+                p Community Event
             .event-body
               div.event-date
-                span.month #{month}
-                span.day 25
-              h3: a(href="#") JBoss One Day Talk 2013
-              - if month == "Mar"
+                span.month #{v.month}
+                - if "#{v.day}" != "{}"
+                  span.day #{v.day}
+                - else
+                  - if "#{v.days}" != "{}"
+                    span.days #{v.days}
+              h3: a(href="#") #{v.title}
+              - if "#{v.redhat}" == "true"
                 p.red-hat-event
                   i.icon-redhat
                   | Red Hat Event
-              p Join us in Germany for the JBoss OneDay Talk. The conference will take place on 23rd of October 2013 in Germering / Munich. 
+              p #{v.description}
             .event-links
               a(href="#") Learn More
               a(href="#") Add to Calendar
