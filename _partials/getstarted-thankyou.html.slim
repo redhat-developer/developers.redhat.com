@@ -1,6 +1,53 @@
-.downloadthankyou
+.downloadthankyou(id="downloadthankyou")
   .thankyouclose
-    a(href="#")
-  h2 Thank you for downloading Project Name!
-  h3 Problems with the download? Please use this direct link.
-  p By downloading this product you have agreed with our terms and conditions on September 25, 2013. You will be notified again in 364 days after your subscription ends. 
+    a(href="#" onClick="$('div#downloadthankyou').hide('slow');")
+  h2 Thank you for downloading #{page.parent.product.abbreviated_name}!
+  h3 
+    | Problems with the download? Please use this 
+    a(href="#{download_manager_path(page.parent.parent_dir, page.parent.product.current_version)}") direct link
+    |.
+  p 
+    | By downloading this product you have agreed with our 
+    a(href="#{site.base_url}/#{site.context_url}/terms-and-conditions") terms and conditions
+    span(id="acceptance")
+    |.
+
+javascript:
+  function prettyDate(val) { 
+    var d;
+    if (val instanceof Date) {
+      d = val;
+    } else if (typeof val == "number") {
+      d = new Date(val);
+    } else {
+      return "unknown";
+    }
+    
+    var m_names = new Array("Jan", "Feb", "Mar", 
+      "Apr", "May", "Jun", "Jul", "Aug", "Sep", 
+      "Oct", "Nov", "Dec");
+
+    var dy = d.getDate();
+    var mn = d.getMonth();
+    var yr = d.getFullYear();
+    
+    return m_names[mn] + " " + dy + ", " + yr;
+  }
+  
+  function acceptanceMessage(accepted, ts, days) {
+    return accepted ?
+           " on " + prettyDate(ts) + ".  You will be notified again in " + days + 
+           " days after your subscription ends" :
+           "";
+  }
+
+  $(document).ready(function() {
+      $.ajax({
+          type: "GET",
+          url: "https://community-dev.jboss.org/api/custom/v1/account/info",
+          dataType: "jsonp"
+      }).then(function(data) {
+         $('#acceptance').html(
+           acceptanceMessage(data.tac.accepted, data.tac.acceptanceTimestamp, data.tac.daysRemaining));
+      });
+  });
