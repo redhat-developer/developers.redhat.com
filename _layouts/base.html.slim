@@ -19,6 +19,7 @@ head
   javascript:
     window.jQuery || document.write('<script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"><\/script>')
   script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.feeds.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.timeago.js"
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
   - if site.profile == 'staging' || site.profile == 'development'

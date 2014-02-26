@@ -44,75 +44,64 @@ issues: [DEVELOPER-160, DEVELOPER-27]
 .row.updates.mobilehome
   .large-24.columns
     .row 
-      .large-8.columns
+      .large-16.columns
         h6.viewall
           a(href="get-involved/buzz")
             | View All Buzz 
-            i.icon-double-angle-right
+            i.fa.fa-angle-double-right
         h3 Buzz
-        / Fake 5 Posts
-        - for update in [1,2,3]
-          .update.pinned.updatemobile
-            .update-meta
-              a.update-timestamp(href="#") 09/22/13  09:34PM
-              a.update-source(href="#")
-                i.fa.fa-twitter
-                | @jbossorg said:
-            .update-body
-              p
-                - if update == 2
-                  img.avatar(src="https://si0.twimg.com/profile_images/378800000448728494/78825ea3f5e00da1a7e1b1c746a50dde_bigger.jpeg")
-                | Restart of Nexus: 2013-03-28 15:00 UTC. The website http://hi.com will be shortly unavailable.
-            .update-meta
-              - if update == 3
-                .update-comment-count
-                  a(href="#") 3 Comments
-              .share-this
-                p
-                  i.fa.fa-share
-                  | Share This
-                .share-this-buttons
-                  a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
-                  span.facebook-share-button
-                    a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
-                      | Share
-                    span.facebook-share-button-count(data-shares="0")
-                  div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
-                  script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
-
-      .large-8.columns
-        h3.hidden &nbsp;
-        / Fake 5 Posts
-        - for update in [1,2,3]
-          .update.updatemobile
-            .update-meta
-              a.update-timestamp(href="#") 09/22/13  09:34PM
-              a.update-source(href="#")
-                i.fa.fa-twitter
-                | @jbossorg said:
-            .update-body
-              - if update == 2
-                h5: a Red Hat JBoss Data Grid is now at version 3.1
-              p
-                - if update == 1
-                  img.avatar(src="https://si0.twimg.com/profile_images/378800000448728494/78825ea3f5e00da1a7e1b1c746a50dde_bigger.jpeg")
-                | JBoss EAP 6.1.0 has been released under the new $0 subscription released under the new $0 subscription model to allow model.
-            .update-meta
-              - if update == 3
-                .update-comment-count
-                  a(href="#") 3 Comments
-              .share-this
-                p
-                  i.fa.fa-share
-                  | Share This
-                .share-this-buttons
-                  a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
-                  span.facebook-share-button
-                    a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
-                      | Share
-                    span.facebook-share-button-count(data-shares="0")
-                  div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
-                  script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
+        div(id="buzzcontainer")
+      javascript:  
+        var feedTemplate = '<div class="large-12 column">' +
+                           '  <div class="update pinned updatemobile">' +
+                           '    <div class="update-meta">' +
+                           '      <a class="update-timestamp" href="#"><!=publishedDate!></a>' +
+                           '      <a class="update-source" href="<!=link!>">' +
+                           //'        <i class="fa fa-twitter"></i>' +
+                           '        <!=author!> said:' +
+                           '      </a>' +
+                           '    </div>' +
+                           '    <div class="update-body">' +
+                           '      <p>' +
+                           '        <img class="avatar" src=""></img>' +
+                           '        <!=contentSnippet!>' +
+                           '      </p>' +
+                           '    </div>' +
+                           '    <div class="update-meta">' +
+                           '      <div class="update-comment-count">' +
+                           '        <a href="#">0 Comments</a>' +
+                           '      </div>' +
+                           '      <div class="share-this">' +
+                           '        <p>' +
+                           '          <i class="fa fa-share"></i>' +
+                           '          Share This' +
+                           '        </p>' +
+                           '        <div class="share-this-buttons">' +
+                           '          <a href="https://twitter.com/share" class="twitter-share-button" data-text="<!=title!>" data-url="<!=link!>">Tweet</a>' +
+                           '          <span class="facebook-share-button">' +
+                           '            <a href="#" data-title="<!=title!>" data-text="" data-url="<!=link!>">Share</a>' +
+                           '            <span class="facebook-share-button-count" data-shares="0"></span>' +
+                           '          </span>' +
+                           '          <div class="g-plus" data-action="share" href="<!=link!>" data-annotation="bubble"> Share on G+</div>' +
+                           '          <script type="IN/Share" data-url="<!=link!>" data-counter="right"></scr' + 'ipt>' +
+                           '        </div>' +
+                           '      </div>' +
+                           '    </div>' +
+                           '  </div>' +
+                           '</div>';   
+        $(document).ready(function() {
+          $('#buzzcontainer').feeds({
+              feeds: { 
+                buzz: 'http://planet.jboss.org/feeds/buzz' 
+              },
+              preprocess: function(feed) {
+                this.publishedDate = jQuery.timeago(new Date(this.publishedDate));
+              },
+              loadingTemplate: '<p class="feeds-loader">Loading entries ...</p>',
+              max: 6,
+              entryTemplate: feedTemplate
+          });
+        });                                     
 
       .large-8.columns
         h6.viewall
