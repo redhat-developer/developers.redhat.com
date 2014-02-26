@@ -5,7 +5,6 @@
 }
 
 .margin-icon i {
-  font-size: 64px;
   color: $grey-3;
 }
 
@@ -15,6 +14,7 @@
 
 .summary-panel {
   background-color:$grey-2;
+  padding: 1em 2em;
 }
 
 .send-content {
@@ -32,15 +32,44 @@
   margin-bottom: 8px;
 }
 
+.summary-header:first-child {
+  padding-top: 1em;
+}
+
 .summary-link {
   margin-bottom: 12px;
 }
 
 .why-subscribe-footer {
-  margin-top: 48px;
+  margin-top: 2.5em;
   background-color:$grey-2;
+  padding-top: .75em;
+  padding-bottom: .75em;
 }
 
 .why-subscribe-footer h4 {
-  color: $black;
+  color: $grey-7;
+}
+
+@media screen and ( max-width: 768px ) {
+ .margin-icon  {
+  float: none;
+  width: 100%;
+  text-align: center;
+
+  i {
+  font-size: 8em;
+  float: none;
+  margin-bottom: .2em;
+  }
+  }
+  
+  .benefit-paragraph {
+  margin-left: 0px;
+  }
+
+ .why-subscribe-footer {
+  margin-top: 1em;
+  }
+
 }
