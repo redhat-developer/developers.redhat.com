@@ -8,12 +8,18 @@ h2.divider #{page.product.tagline ? page.product.tagline : 'Overview'}
 = page._overview
 
 .panel.features
-  = page._icon1
-  = page._features1
-  = page._icon2
-  = page._features2
-  = page._icon3
-  = page._features3
+  div(class="feature-icon")
+    = page._icon1
+  div(class="feature-text")
+    = page._features1
+  div(class="feature-icon")
+    = page._icon2
+  div(class="feature-text")
+    = page._features2
+  div(class="feature-icon")
+    = page._icon3
+  div(class="feature-text")
+    = page._features3
 
 
 h3.divider Resources
