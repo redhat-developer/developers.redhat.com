@@ -4,9 +4,11 @@ status: green
 issues: [] 
 
 ---
-
+/ This structure for the main page title is important. Please notethe use of the "large-title" class as this give the size and dark color.
 .row
   h2.large-title Why Subscribe to JBoss?
+  
+/ The class of "content" is important for this row as it gives the proper spacing for between the h2 and the content or breadcrumbs below and it adjusts the outside wrapper spacing to make the outside elements align.  
 .row.content
   .large-24.columns
     ul.breadcrumbs
@@ -14,8 +16,8 @@ issues: []
         a href="#{site.base_url}/get-started" Get Started
       li
         a href="#{site.base_url}/why-subscribe" Why Subscribe to JBoss
-
-.row
+		
+.row.content
   .large-16.columns.large-text.text-content
     p 
       | 
@@ -105,7 +107,7 @@ issues: []
     .summary-link 
       a(href="https://www.redhat.com/resourcelibrary/webinars/?portal:componentId=9f1f989c-f322-4db8-bb93-05211ed74970&portal:type=action&portal:isSecure=false&fName=Products&facetValueName=jbossenterprisemiddleware&actionType=addFacetsForProducts&SearchKey=&nestedSearch=false")Webinars
 
-.row.why-subscribe-footer
+.row.why-subscribe-footer.content
   .large-8.column
     h4 Sales
     .summary-link
