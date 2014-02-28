@@ -97,8 +97,3 @@ form.filters(method="GET" action="")
       input(type="checkbox" name="filter-publish-date" value="365days")
       | Last 365 days
 
-  .filter-block
-    h5 Time Commitment
-    input(type="range" name="filter-time-commitment" onchange="this.setAttribute('value', this.value);" value="0" data-labels="1 Month, 3 Months, 6 Months, 9 Months, 1 Year, 1+ Year" step="20")
-    span.skill-display 1 Month 
-

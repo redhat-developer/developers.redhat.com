@@ -62,16 +62,6 @@ app.dm = {
       return this.value;
     }).get(); 
 
-    /*
-      Time commitment
-    */ 
-    var el = $('input[name="filter-time-commitment"]'),
-        step = el.attr('step'),
-        max = el.attr('max') || 100,
-        value = el.val(),
-        labels = el.data('labels').split(','),
-        idx = value / step,
-        timeCommitment = labels[idx]; // final value
 
     var filters = {
       "keyword" : keyword,
@@ -79,8 +69,7 @@ app.dm = {
       "topics" : topics,
       "formats" : formats,
       "skillLevel" : skillLevel,
-      "publishDate" : publishDate,
-      "timeCommitment" : timeCommitment
+      "publishDate" : publishDate
     }
     var currentFilters = {};
 
@@ -121,10 +110,6 @@ app.dm = {
       // query.push('publishDate:'+publishDate);
     }
 
-    if(currentFilters['timeCommitment']) {
-      // THis needs to be wired up
-      // query.push('timeCommitment:'+timeCommitment);
-    }
 
     var query = query.join(" AND ");
  
