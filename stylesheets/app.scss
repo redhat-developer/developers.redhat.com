@@ -77,8 +77,8 @@
 }
 
 .content {
-  background:#fff;
   padding:1em 0;
+  margin: auto -17px;
 }
 
 a {
@@ -882,9 +882,9 @@ footer.bottom {
 
 // Typography
 .large-title {
-  font-size: emCalc(52);
+  font-size: emCalc(44);
   font-weight: normal;
-  color: #000;
+  color: $black;
   margin-bottom: 0;
 }
 
