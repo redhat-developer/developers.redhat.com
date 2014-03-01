@@ -150,24 +150,24 @@ table.downloads {
   border: 0px double transparent;
   background: none;
   width: 100%;
-  
+
   tbody tr {
     background: #ffffff;
     border-bottom: 1px solid $grey-2;
   }
-  
+
   td {
     border: none;
   }
-  
+
   td.product-name {
     white-space: nowrap;
   }
-  
+
   td.description {
     text-align: justify;
   }
-  
+
   th {
     background: #ffffff;
     text-align: left;
@@ -1581,7 +1581,7 @@ span.asterisk {
 // Mobile!
 @import "mobile";
 
-// View More link 
+// View More link
 .moreinfolink {
 	padding-top: 15px;
 	display: inline-block;
@@ -1636,8 +1636,12 @@ span.asterisk {
 
 .feature-icon {
     float: left;
+    p {
+      color: $grey-5;
+    }
 }
 
 .feature-text {
     margin-left: 100px;
+    padding-top: 5px;
 }
