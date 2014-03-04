@@ -364,7 +364,8 @@ input[type="time"],
 input[type="url"],
 textarea {
   border-radius:$global-radius;
-  padding:emCalc(20) emCalc(14);
+/*  padding:emCalc(20) emCalc(14); */
+  height: 2.5em;
   font-size: 1em;
   margin-bottom: 10px;
   &:focus {
