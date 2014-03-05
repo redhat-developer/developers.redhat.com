@@ -15,8 +15,9 @@ function roundHalf(num) {
 app.dm = {
   filter : function(filters) {
     // Get the Filter Items
-    
-    var maxResults = 10;
+
+    //Currently the only way to specify no limit
+    var maxResults = 500;
 
     /*
       Keyword
