@@ -14,7 +14,7 @@ module JBoss::Developer::Extensions
                                                      :logger => site.profile == 'developement'})
       page = site.pages.find {|p| p.relative_source_path =~ /projects\.html\.slim/}
 
-      page.send('projects=', JSON.load(searchisko.get('project').body)['hits'])
+      page.send('projects=', JSON.load(searchisko.get('search?sys_type=project_info&size=500&field=_source').body)['hits'])
     end
   end
 end

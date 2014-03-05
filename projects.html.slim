@@ -14,40 +14,35 @@ issues: [DEVELOPER-58]
       input(type="text" placeholder="Filter by keyword" name="filter-text")
 
       .filter-block
-        
-        h5 Show Me
-        .styled-select
-          select(name="filter-showme")
-            option(value="") All
-            option(value="") Another Product
-            option(value="") A Third!
-            option(value="") Keep it going
-            option(value="") Wes Bos
-
-      .filter-block
         h5 Included In
         .styled-select
           select(name="filter-products")
-            option(value="") Projects
-            option(value="") Another project
-            option(value="") A Third!
-            option(value="") Keep it going
-            option(value="") Wes Bos
+            option(value="") Select Product...
+            option(value="") JBoss Enterprise Application Platform
+            option(value="") JBoss Web Server
+            option(value="") JBoss Data Grid
+            option(value="") JBoss Portal
+            option(value="") JBoss Fuse Service Works
+            option(value="") JBoss Data Virtualization
+            option(value="") JBoss Fuse
+            option(value="") JBoss A-MQ
+            option(value="") JBoss BRMS
+            option(value="") JBoss Developer Studio
 
   .large-18.column
     h2.divider
       | All Projects
-      span.label = page.projects.size
+      span.label = page.projects['hits'].size
     ul.large-block-grid-4.small-block-grid-2
-      - for solution in page.projects
-        li.upstream(data-open-solution="#{solution['id']}")
-          a.image-link: img(src="#{site.base_url}/#{site.context_url}/images/solution-#{solution['id']}.png")
-           a.solution-name-link(href="#")
-            h3.solution-name = solution['data']['name']
+      - for solution in page.projects['hits']
+        li.upstream(data-open-solution="#{solution['_source']['sys_content_id']}")
+          a.image-link: img(src="http://static.jboss.org/#{solution['_source']['sys_content_id']}/images/logo.png")
+           a.solution-name-link(href="#{solution['_source']['communityLink']}")
+            h3.solution-name = solution['_source']['projectName']
           span.update-date
-            | Last Update: #{solution['id']}
-          p = solution['data']['description']
-          a.upstream-download
+            | Last Update: TODO
+          p = solution['_source']['description']
+          a.upstream-download(href="#{solution['_source']['downloadsLink']}")
             i.fa.fa-download
             |  Download
           .upstream-more-content
