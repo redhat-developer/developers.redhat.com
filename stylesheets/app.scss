@@ -27,7 +27,7 @@
 // @import "foundation/components/keystrokes";
 // @import "foundation/components/labels";
 @import "foundation/components/inline-lists";
-// @import "foundation/components/pagination";
+@import "foundation/components/pagination";
 @import "foundation/components/panels";
 // @import "foundation/components/pricing-tables";
 // @import "foundation/components/progress-bars";
@@ -1389,6 +1389,57 @@ form.login {
   }
 }
 
+// Planet
+.planet-avatar {
+  @include block-grid(
+    $per-row: 6,
+    $spacing: 4px,
+    $base-style: true
+  );
+}
+
+.recent-posts-list {
+  padding-bottom: 30px;
+  h3 {
+    color: #000;
+  }
+  ul {
+    border-bottom: 1px solid $grey-3;
+    list-style-type: none;
+    li {
+      border-top: 1px solid $grey-3;
+      padding: 5px;
+      p {
+        margin:0;
+        &.download {
+          font-size: emCalc(13);
+        }
+      }
+      h4 {
+        font-weight: normal;
+        margin:0;
+      }
+    }
+  }
+  .link-list {
+    margin-left: 5px;
+  }
+  i {
+    margin-right: 5px;
+  }
+}
+
+a.filter.button {
+  font-size: emCalc(14);
+  background:$med-blue;
+  width:100%;
+  margin:0 auto;
+  padding:10px;
+  margin-bottom: 10px;
+  display: block;
+  clear:both;
+}
+
 
 // Downloads list
 .download-list {
@@ -1543,10 +1594,8 @@ span.asterisk {
 // Special Callout Panel styles
 
 .light-blue {
-	background-color: $light-blue;
-
-
-	}
+  background-color: $light-blue;
+}
 
 // Technology Overview
 
