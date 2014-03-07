@@ -106,30 +106,34 @@ issues: [DEVELOPER-160, DEVELOPER-27]
             | View All Events 
             i.icon-double-angle-right
         h3 Events 
-        - for update in [1,2,3]
-          .update
-            .update-date
-              span.month Sep
-              -if update == 1
-                span.day 19 
-              - else
-                span.days 25-29
-            h5
-              a JUDCon2013:Brazil
-            p.update-subtext Sau Paulo Brazil: April 19 & 20
-            .update-body
-              p The JBoss Users and Developers Conferences are developer gatherings held around the Globe to give JBoss users the chance to talk to
-            .update-meta
-              .share-this
+        - site.events.each do |v|
+          - if "#{v.homepage}" == "true"
+            .update
+              .update-date
+                span.month #{v.month}
+                - if "#{v.day}" != "{}"
+                  span.day #{v.day}
+                - if "#{v.days}" != "{}"
+                  span.days #{v.days}
+              h5
+                a(href="#{v.link}") #{v.title}
+              -if "#{v.subtext}" != "{}"
+                p.update-subtext #{v.subtext}
+              .update-body
                 p
-                  i.fa.fa-share
-                  | Share This
-                .share-this-buttons
-                  a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
-                  span.facebook-share-button
-                    a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
-                      | Share
-                    span.facebook-share-button-count(data-shares="0")
-                  div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
-                  script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
+                  span
+                    #{v.description[0 .. 180]}
+              .update-meta
+                .share-this
+                  p
+                    i.fa.fa-share
+                    | Share This
+                  .share-this-buttons
+                    a(href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this event I saw on jboss.org" data-url="http://jboss.org") Tweet
+                    span.facebook-share-button
+                      a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
+                        | Share
+                      span.facebook-share-button-count(data-shares="0")
+                    div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
+                    script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
 
