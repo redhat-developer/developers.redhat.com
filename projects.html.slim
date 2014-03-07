@@ -33,11 +33,12 @@ issues: [DEVELOPER-58]
     h2.divider
       | All Projects
       span.label = page.projects['hits'].size
-    ul.large-block-grid-4.small-block-grid-2
+    ul.small-block-grid-2.large-block-grid-4.medium-block-grid-3
       - for solution in page.projects['hits']
         li.upstream(data-open-solution="#{solution['_source']['sys_content_id']}")
-          a.image-link: img(src="http://static.jboss.org/#{solution['_source']['sys_content_id']}/images/logo.png")
-           a.solution-name-link(href="#{solution['_source']['communityLink']}")
+          .defaultprojectimage
+            a.image-link: img(src="http://static.jboss.org/#{solution['_source']['sys_content_id']}/images/#{solution['_source']['sys_content_id']}_200x150.png" onerror="this.style.display='none'")
+          a.solution-name-link(href="#{solution['_source']['communityLink']}")
             h3.solution-name = solution['_source']['projectName']
           span.update-date
             | Last Update: TODO

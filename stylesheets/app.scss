@@ -1261,9 +1261,19 @@ ul[class*=block-grid] {
 li.upstream {
     font-size: emCalc(13);
     padding-bottom: 45px;
+	min-width: 205px;
+	
+.defaultprojectimage {
+    border:1px solid $grey-5;
+	background-image:url(../images/projects/default_200x150.png);
+	background-repeat: no-repeat;
+	height:150px;
+	width: 200px;
+    }
+
   a.image-link {
     img {
-      border:1px solid $grey-5;
+	  background: $white;
     }
   }
   a.upstream-toggle-more {
