@@ -1,0 +1,28 @@
+---
+layout: base
+---
+.row
+  h2.large-title Developer Materials
+.row.content
+  .large-24.columns
+    ul.breadcrumbs
+      li
+        a href="#{site.base_url}/#{site.context_url}/get-started" Get Started
+      li
+        a href="#{site.base_url}/#{site.context_url}/get-started/developer-materials/" Developer Materials
+      li
+        a href="#{site.base_url}/#{site.context_url}/get-started/developer-materials/example-video/" Video Name
+
+.row.content
+  .large-18.columns
+    .embedded-media
+      = page.video.title
+      = partial 'share.html.slim'
+      = vimeo(page.video_url)
+
+  .large-6.columns
+    -# Really not sure what we want to do here... Maybe query the DCP?
+    h4 Related Links
+    = page._relatedlinks
+
+

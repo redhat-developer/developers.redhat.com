@@ -8,7 +8,7 @@ gem 'asciidoctor', '~> 0.1.4'
 gem 'uglifier', '~> 2.0.1'
 gem 'htmlcompressor', '~> 0.0.6'
 gem "zurb-foundation", "~> 4.3.1"
-gem 'aweplug', '~> 1.0.0a16'
+gem 'aweplug', '~> 1.0.0a17'
 gem 'curb', '~> 0.8.5'
 gem 'oauth', '~> 0.3.6'
 gem 'git', '~> 1.2.5'
@@ -21,5 +21,7 @@ group :development do
   gem 'rake', '~> 10.0.4'
   gem 'pry', :require => false
   gem 'pry-nav', :require => false
+  #gem 'pry-stack_explorer', :require => false
+  #gem 'pry-exception_explorer', :require => false
 end
 
