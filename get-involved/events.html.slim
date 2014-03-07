@@ -2,6 +2,9 @@
 layout: base
 status: yellow
 ---
+.reveal-modal.close-reveal-modal.coming-soon#comingSoonModal
+  h3 This Feature Is Not Yet Enabled
+  a.close-reveal-modal &#215
 .row
   h2.large-title Events
 .row.content
@@ -56,9 +59,9 @@ status: yellow
         | Subscribe to events 
         i.fa.fa-rss
       .events-actions-buttons
-        a.button Add Your Event
-        a.button View Past Events
-        a.button Events Blog
+        a.button.reveal data-reveal-id="comingSoonModal" Add Your Event
+        a.button.reveal data-reveal-id="comingSoonModal" View Past Events
+        a.button.reveal data-reveal-id="comingSoonModal" Events Blog
 
 
 
