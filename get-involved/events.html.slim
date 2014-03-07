@@ -19,11 +19,7 @@ status: yellow
       .slider#slider.slider-side-by-side
         .swipe-wrap
           .slide
-            img(src="#{site.base_url}/#{site.context_url}/images/events-slider.jpg")
-            .slider-label
-              h2: a JavaOne 2013
-              h4 Open Shift Primer — get your applications into the Cloud 
-              p Join JBoss at the JavaOne conference which brings Java experts and enthusiasts for an extraordinary week of learning and networking focused entirely on all things Java.
+            img(src="#{site.base_url}/#{site.context_url}/images/hero1_desktop_1175x400.png")
           .slide
             img(src="#{site.base_url}/#{site.context_url}/images/events-slider.jpg")
             .slider-label
@@ -81,14 +77,14 @@ status: yellow
                 - else
                   - if "#{v.days}" != "{}"
                     span.days #{v.days}
-              h3: a(href="#") #{v.title}
+              h3: a(href="#{v.link}") #{v.title}
               - if "#{v.redhat}" == "true"
                 p.red-hat-event
                   i.icon-redhat
                   | Red Hat Event
               p #{v.description}
             .event-links
-              a(href="#") Learn More
+              a(href="#{v.link}") Learn More
               a(href="#") Add to Calendar
             .share-this
               p
