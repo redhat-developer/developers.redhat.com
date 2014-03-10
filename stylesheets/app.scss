@@ -390,6 +390,10 @@ i[class*=fa].invert {
   color:$white;
   width:emCalc(18);
 }
+// Additional Font Awesome styles
+.fa-9x {
+  font-size: 9em;
+}
 
 // Breadcrumbs
 .breadcrumbs {
@@ -848,7 +852,7 @@ footer.bottom {
 // Spacing alignment for the bulleted list
 
 .ulist ul li {
-      text-indent:-1em;
+    // text-indent:-1em;
 	  margin-left: 1em;
 }
 
@@ -1530,8 +1534,8 @@ span.asterisk {
 
 .light-blue {
 	background-color: $light-blue;
-	
-	
+
+
 	}
 
 // Technology Overview
