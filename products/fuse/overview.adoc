@@ -1,5 +1,6 @@
 :awestruct-layout: product-overview
 :awestruct-status: green
+:leveloffset: 1
 
 == Overview
 
@@ -7,34 +8,38 @@ JBoss Fuse is an open source Enterprise Service Bus (ESB) with an elastic footpr
 
 
 == Features1
-Pattern based integration framework
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+=== Pattern based integration framework
 
 Leverage Apache Camel to provide a full-featured, easy-to-use and intuitive framework for quicker integration solutions.
 
 == Icon1
-[.fa .fa-sitemap .fa-5x .fa-fw]#&nbsp;#
 
+[.fa .fa-sitemap .fa-5x .fa-fw]#&nbsp;# 
 
 == Features2
-Dynamic conﬁguration and management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Change conﬁguration while container is running. Easily deploy or update services across nodes while the ESB is running.
+
+=== Dynamic configuration and management
+
+Change configuration while container is running. Easily deploy or update services across nodes while the ESB is running.
 
 == Icon2
+
 [.fa .fa-wrench .fa-5x .fa-fw]#&nbsp;#
 
 
 == Features3
-Multiple connectivity options
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+=== Multiple connectivity options
+
 Connect to external applications with connectors for JDBC, FTP/SFTP, HTTP/HTTPS, ﬁle, SalesForce.com, SAP, Twitter, and more.
 
 == Icon3
+
 [.fa .fa-random .fa-5x .fa-fw]#&nbsp;#
 
-
 == Detail
+
 JBoss Fuse combines several technologies into a single integrated distribution:
 
 [colls="3,1"]
@@ -54,13 +59,11 @@ image::/images/products/fuse/overview.png[]
 
 JBoss Fuse includes industry-standard integration patterns so you can easily configure and manage a network of integration brokers. These patterns, when used with the flexible and low-cost ESB, allow you to deploy and connect customized solutions at every distributor, outlet, and partner, eliminating batch delivery and hub-and-spoke architectures forever.
 
-We encourage you to download JBoss Fuse, and see for yourself if it meets your needs.
-
+We encourage you to download JBoss Fuse, and see for yourself if it meets your needs.  
 
 == Resources
 
 - https://www.jboss.org/products/fuse/fusebyexample.html[FuseByExample] is a set of examples created by Fuse consultants based on their experience with customers.
-
 
 == Articles
 
@@ -72,3 +75,4 @@ http://www.ossmentor.com/2014/02/red-hat-summit-2014-agenda.html[Red Hat Summit 
 
 http://www.ossmentor.com/2014/02/fuse-service-works-v6-is-ga.html[Fuse Service Works v6 is GA!]::
   We are very happy to announce the general availability of JBoss Fuse Service Works (FSW) v6.  It is documented and available for download on the customer support portal...
+
