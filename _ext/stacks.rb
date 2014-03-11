@@ -7,7 +7,6 @@ require 'awestruct/page'
 require 'awestruct/handlers/layout_handler'
 require 'awestruct/handlers/tilt_handler'
 require 'awestruct/handler_chain'
-require 'pry' # debugging
 
 module JBoss::Developer::Extensions
   class Stacks 
