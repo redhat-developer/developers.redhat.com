@@ -3,7 +3,7 @@ layout: base
 ---
 .row
   h2.large-title Developer Materials
-.row
+.row.row.content
   .large-24.columns
     ul.breadcrumbs
       li
@@ -13,7 +13,7 @@ layout: base
       li
         a href="" #{page.metadata[:title]}
 .row
-  .column.large-24
+  .collapse.large-24
     h2.divider #{page.metadata[:title]}
     .gsi-meta
       ul
@@ -53,7 +53,7 @@ layout: base
             - if page.metadata[:toc]
               - for link in page.metadata[:toc]
                 li: a href="##{link[:id]}" #{link[:text]}
-      .column.large-16
+      .column.large-16.gsi-content
         = page.content
 
         / TODO: Share Knowledge, comments go here

@@ -114,6 +114,18 @@ button, .button {
   }
 }
 
+.button-group { 
+  button, .button  {
+    border-radius: 0;
+	border-left: 1px solid $white;
+    margin-left: 0px;
+  }
+  a {
+  color: $white;
+ }
+}
+
+
 .row .row {
   margin-left: -$column-gutter;
   margin-right: -$column-gutter; // accommodates for larger gutters and nested rows

@@ -115,8 +115,29 @@ a.get-started-quickstart.button {
   }
 }
 
+.gsi-nav {
+  li {
+    list-style:none;
+    padding-bottom:10px;
+    a {
+      &:after {
+        content: "\f054";
+        font-size: 10px;
+        margin-left: 5px;
+        font-family: 'FontAwesome';
+      }
+    }
+  }
+}
 
-
+.gsi-content {
+  h3 {
+    border-bottom: 1px solid #d5d5d5;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    font-weight: 100;
+  }
+}
 
 @include tablet-landscape-and-down {
   .get-started-items {
