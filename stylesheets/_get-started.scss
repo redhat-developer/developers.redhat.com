@@ -2,7 +2,7 @@
   margin-bottom: 30px;
   position: relative;
   background:url(../images/get-started-bg.png) bottom center no-repeat;
-    min-height:250px;
+  min-height:250px;
   span.line {
     display: block;
     width: 100%;
@@ -115,10 +115,22 @@ a.get-started-quickstart.button {
   }
 }
 
+.gsi-nav-fixed {
+  position: fixed;
+  top:0;
+  padding-top: 20px;
+  width: 11%;
+}
+
 .gsi-nav {
   li {
     list-style:none;
     padding-bottom:10px;
+
+    a.past-block:last-child {
+      color:#a5ab36;
+    }
+
     a {
       &:after {
         content: "\f054";
@@ -130,7 +142,7 @@ a.get-started-quickstart.button {
   }
 }
 
-.gsi-content {
+.gsi {
   h3 {
     border-bottom: 1px solid #d5d5d5;
     margin-bottom: 20px;
@@ -139,10 +151,17 @@ a.get-started-quickstart.button {
   }
 
 
- ol li, ul li {
-      margin-left: 2em; 
+  ol li, ul li {
+    margin-left: 2em;
+  }
+
 }
-  
+
+@include tablet-portrait-and-down {
+  .gsi-nav-fixed {
+    position: relative; // on mobile we don't want a fixed nav
+  }
+
 }
 
 @include tablet-landscape-and-down {
@@ -177,37 +196,34 @@ a.get-started-quickstart.button {
   border-radius: 3px;
   border: 1px solid $med-blue;
   margin-bottom: 2em;
-  
+
   .thankyouclose {
-   float:right;
-   margin-right: -1.75em;
-   margin-top: -1.75em;
+    float:right;
+    margin-right: -1.75em;
+    margin-top: -1.75em;
     a {
-	  color: $grey-6;
+      color: $grey-6;
       &:before {
-          font-family: 'FontAwesome';
-          content: "\f00d";
-	  }  
+        font-family: 'FontAwesome';
+        content: "\f00d";
+      }
     }
   }
 
   h2 {
-  font-size: emCalc(28);
-  font-weight: normal;
-  margin-top: 0;
+    font-size: emCalc(28);
+    font-weight: normal;
+    margin-top: 0;
   }
   h3 {
-  font-size: emCalc(20);
+    font-size: emCalc(20);
   }
   p {
-  margin-bottom: 0;
+    margin-bottom: 0;
   }
 }
 
-
-// Ticket Monster demo styles
-
-
+// Ticket Monster demo styles 
 .ticket-monster-items {
   margin-bottom: 30px;
   position: relative;
@@ -224,3 +240,4 @@ a.get-started-quickstart.button {
 	text-shadow: 1px 1px 1px $black;
   }
 }
+

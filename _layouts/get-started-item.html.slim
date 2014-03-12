@@ -7,11 +7,11 @@ layout: base
   .large-24.columns
     ul.breadcrumbs
       li
-        a href="" Get Started
+        a href="#{site.base_url}/get-started" Get Started
       li
-        a href="" Developer Materials
+        a href="#{site.base_url}/developer-materials/" Developer Materials
       li
-        a href="" #{page.metadata[:title]}
+        a href="#{site.base_url}#{page.output_path}" #{page.metadata[:title]}
 .row
   .collapse.large-24
     h2.divider #{page.metadata[:title]}
@@ -46,14 +46,14 @@ layout: base
             | Target Product:
               #{page.metadata[:target_product]}
   .row.content
-    .column.large-24
-      .column.large-4
-        .gsi-nav
-          ul.toc
-            - if page.metadata[:toc]
-              - for link in page.metadata[:toc]
-                li: a href="##{link[:id]}" #{link[:text]}
-      .column.large-16.gsi-content
+    .columns.large-24
+      .columns.large-4
+        ul.toc.gsi-nav
+          - if page.metadata[:toc]
+            - for link in page.metadata[:toc]
+              li: a href="##{link[:id]}" #{link[:text]}
+        br
+      .columns.large-16.gsi
         = page.content
 
         / TODO: Share Knowledge, comments go here
@@ -68,7 +68,7 @@ layout: base
               a href="#" #{commit[:author]}
               '): #{commit[:subject].gsub(/\-/,' ')}
 
-      .column.large-4
+      .columns.large-4
         / TODO Add resources 
         / h3.divider Resources
         / ul

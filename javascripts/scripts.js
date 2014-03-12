@@ -364,50 +364,44 @@ app.equalizeBottoms = function($selector) {
 /*
   Faq Sidebar + Scrollspy
 */
-app.faq = function() {
-  var faqNav = $('.faq-nav'),
+// TODO: This should be more flexible, instead of hardcoded
+app.stickyNav = function(className, headerElement) {
+  var nav = $('.' + className + '-nav'),
       win = $(window);
-  if(!faqNav.length) {
+  if(!nav.length) {
     return; // Don't need to go any further, this isn't the faq page
   }
   
   var html = "",
-      top = faqNav.offset().top;
+      top = nav.offset().top;
 
-  $('.faqs h3').each(function(i,el){
+  $('.' + className + ' ' + headerElement).each(function(i,el){
     html += "<li><a href='#"+$(this).attr('id')+"'>"+$(this).text()+"</a></li>";
   });
 
-  faqNav.html(html);
+  nav.html(html);
 
   win.scroll(function() {
     if(win.scrollTop() >= (top)) {
-      faqNav.addClass("faq-nav-fixed");
-    }
-    else {
-      faqNav.removeClass("faq-nav-fixed");
+      nav.addClass(className + "-nav-fixed");
+    } else {
+      nav.removeClass(className + "-nav-fixed");
     }
 
     // Sticky headers on the faqs
-    $('.faqs h3').each(function(i,el){
+    $('.' + className + ' ' + headerElement).each(function(i,el){
       var el = $(this),
           top = el.offset().top,
           id = el.attr('id');
       if(win.scrollTop() >= (el.offset().top - 15)) {
         $('a[href="#'+id+'"]').addClass('past-block');
-      }
-      else {
+      } else {
         $('a[href="#'+id+'"]').removeClass('past-block');
       }
     });
 
     $('.past-block').not(':last').removeClass('past-block');
-
   });
-
-
-
-
 }
 
 /*
@@ -453,7 +447,11 @@ $('.datepicker').pickadate();
 $(function() {
   app.init();
   app.sso();
-  app.faq();
+  // TODO: This should change to a more dynamic way of doing it; thinking a loop over strings passed to the function (rename the function too
+  stickySections = {'faq':'h3', 'gsi': 'h2'};
+  for (var key in stickySections) {
+    app.stickyNav(key, stickySections[key]);
+  }
   app.stickyFooter();
 });
 
