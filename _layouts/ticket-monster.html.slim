@@ -14,11 +14,8 @@ layout: base
         a href="#{site.base_url}/#{site.context_url}/get-started/developer-materials/ticket-monster/" Ticket Monster
 
 .row
-  .large-24.panel.callout.radius
-    .large-16.large-centered.columns
-      .text-center.textcalloutlarge
-        br
-        = page._intro
+  .ticket-monster-items
+    = page._intro
 
 .row
   .large-8.columns.text-center
@@ -35,8 +32,10 @@ br
 br
 
 .row
-  .large-16.columns
+  .large-8.columns.panel.radius
     = page._outline
 
-  .large-8.columns
-    = page._followalong
+  .large-16.columns
+    h3 Follow along with video
+    .flex-video
+      = page._followalong
