@@ -67,8 +67,7 @@ app.dm = {
     */ 
     var publishDate = $('input[name="filter-publish-date"]:checked').map(function () {
       return this.value;
-    }).get(); 
-
+    }).get();
 
     var filters = {
       "keyword" : keyword,
@@ -104,12 +103,15 @@ app.dm = {
     }
 
     if(currentFilters['formats']) {
-      // Formats is not supported with the DCP yet
-      // query.push('format:('+formats+')');
+      query.push('_type:('+formats+')');
+    } else {
+      query.push('_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype jbossdeveloper_video)');
     }
 
     if(currentFilters['skillLevel']) {
-      query.push('level:'+skillLevel);
+      if (skillLevel != 'All') {
+          query.push('level:'+skillLevel);
+      }
     }
 
     if(currentFilters['publishDate']) {
@@ -119,17 +121,18 @@ app.dm = {
 
 
     var query = query.join(" AND ");
- 
+
+
     // append loading class to wrapper
     $("ul.results").addClass('loading');
+
 
     $.ajax({
       url : '#{site.dcp_base_url}v1/rest/search',
       asyn : false,
       data : {
-        "field"  : ["artifactId", "contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions"],
+        "field"  : ["artifactId", "contributors", "sys_contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions"],
         "query" : query,
-        "activity_date_interval" : "year",
         "size" : maxResults
       }
     }).done(function(data){
@@ -141,12 +144,19 @@ app.dm = {
       // loop over every hit
 
       for (var i = 0; i < hits.length; i++) {
+
+        if ('sys_contributors' in hits[i].fields) {
+            var contributors = hits[i].fields.sys_contributors[0];
+        } else {
+            var contributors = hits[i].fields.contributors[0];
+        }
+
         var template = cardTemplate.format(
             hits[i].fields.sys_url_view                     // 0 - link
           , "??:??:??"                                      // 1 - duration *
           , hits[i].fields.level                            // 2 - level
           , hits[i].fields.sys_title                        // 3 - title
-          , hits[i].fields.contributors[0]                  // 4 - author * 
+          , contributors                                    // 4 - author *
           , moment(hits[i].fields.sys_created).fromNow()    // 5 - timestamp
           , roundHalf(hits[i]._score)                       // 6 - rating
           , hits[i].fields.sys_description                  // 7 - description

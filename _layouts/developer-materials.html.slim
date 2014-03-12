@@ -11,3 +11,8 @@ issues: [DEVELOPER-179, DEVELOPER-207, DEVELOPER-209]
   = partial 'developer-materials-featured.html.slim'
   = partial 'developer-materials-results.html.slim'
 .space
+
+javascript:
+  $(document).ready(function() {
+      app.dm.devMatFilter();
+  });

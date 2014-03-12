@@ -6,7 +6,8 @@ form.dev-mat-filters(method="GET" action="")
   .filter-block
     input(type="text" placeholder="Filter by keyword" name="filter-text")
 
-  .filter-block
+  /No content data available in the DCp yet as we don't have the ability to have users set it.
+  /.filter-block
     h5 Rating
     label(for="filter-rating")
       input(type="radio" name="filter-rating" value="1")
@@ -18,6 +19,7 @@ form.dev-mat-filters(method="GET" action="")
       input(type="radio" name="filter-rating" value="4")
     label(for="filter-rating")
       input(type="radio" name="filter-rating" value="5")
+
 
 
   .filter-block
@@ -65,21 +67,17 @@ form.dev-mat-filters(method="GET" action="")
       input(type="checkbox" name="filter-format" value="jbossdeveloper_quickstart")
       | Quickstarts
     label
-      input(type="checkbox" name="filter-format" value="jbossdeveloper_sandbox")
-      | Sandbox (unsupported)
-    label
-      input(type="checkbox" name="filter-format" value="jbossdeveloper_stack")
-      | Stacks
-    label
       input(type="checkbox" name="filter-format" value="jbossdeveloper_video")
       | Video
 
   .filter-block
     h5 Skill Level
-    input(type="range" name="filter-skill" onchange="this.setAttribute('value', this.value);" value="0" step="50" data-labels="Beginner,Intermediate,Advanced")
-    span.skill-display Beginner
+    input(type="range" name="filter-skill" onchange="this.setAttribute('value', this.value);" value="0" step="33" data-labels="All,Beginner,Intermediate,Advanced")
+    span.skill-display All
 
-  .filter-block
+  /The DCP should support this, but we don't have these controls wired up to do the right query.
+  /Also, this would be better as a slider like the "Skill level" as it doesn't make sense to select multiple.
+  /.filter-block
     h5 Publish Date
     label
       input(type="checkbox" name="filter-publish-date" value="all")
@@ -96,4 +94,5 @@ form.dev-mat-filters(method="GET" action="")
     label
       input(type="checkbox" name="filter-publish-date" value="365days")
       | Last 365 days
+       
 
