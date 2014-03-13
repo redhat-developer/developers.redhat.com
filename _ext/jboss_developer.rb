@@ -3,7 +3,7 @@ module JBoss
     module Utilities
 
       def download_manager_path(product, version) 
-        "#{site.download_manager_file_base_url}/#{product}/#{version}"
+        "#{site.download_manager_file_base_url}/#{product}/#{version}/download"
       end
 
     end
