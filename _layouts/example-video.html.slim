@@ -15,10 +15,8 @@ layout: base
 
 .row.content
   .large-18.columns
-    .embedded-media
-      = page.video.title
-      = partial 'share.html.slim'
-      = vimeo(page.video_url)
+    = vimeo(page.video_url)
+    = partial 'share.html.slim'
 
   .large-6.columns
     -# Really not sure what we want to do here... Maybe query the DCP?
