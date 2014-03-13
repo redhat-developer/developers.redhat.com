@@ -1,4 +1,4 @@
-.downloadthankyou(id="downloadthankyou")
+.downloadthankyou(id="downloadthankyou" style="display:none")
   .thankyouclose
     a(href="#" onClick="$('div#downloadthankyou').hide('slow');")
   h2 Thank you for downloading #{page.parent.product.abbreviated_name}!
@@ -8,52 +8,42 @@
     |.
   p 
     | By downloading this product you have agreed with our 
-    a(href="#{site.base_url}/#{site.context_url}/terms-and-conditions") terms and conditions
-    span(id="acceptance")
-    |.
+    a>(href="#{site.base_url}/#{site.context_url}/terms-and-conditions") terms and conditions
+    | on 
+    span(id="tcWhenSigned")
+    |.  You will be notified again in 
+    span(id="tcEndsIn")
+    | after your subscription ends.
 
 javascript:
-  function prettyDate(val) { 
-    var d;
-    if (val instanceof Date) {
-      d = val;
-    } else if (typeof val == "number") {
-      d = new Date(val);
+  $.urlParam = function(name) {
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+      return null;
     } else {
-      return "unknown";
+      return results[1] || 0;
     }
-    
-    var m_names = new Array("Jan", "Feb", "Mar", 
-      "Apr", "May", "Jun", "Jul", "Aug", "Sep", 
-      "Oct", "Nov", "Dec");
-
-    var dy = d.getDate();
-    var mn = d.getMonth();
-    var yr = d.getFullYear();
-    
-    return m_names[mn] + " " + dy + ", " + yr;
   }
   
-  function acceptanceMessage(accepted, ts, days) {
-    return accepted ?
-           " on " + prettyDate(ts) + ".  You will be notified again in " + days + 
-           " days after your subscription ends" :
-           "";
-  }
+  var tcUser = $.urlParam('tcUser');
+  var tcWhenSigned = $.urlParam('tcWhenSigned');
+  var tcEndsIn = $.urlParam('tcEndsIn');
+  var tcDownloadURL = $.urlParam('tcDownloadURL');
+  var tcDownloadFileName = $.urlParam('tcDownloadFileName');
 
-  $.urlParam = function(name){
-      var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-      if (results==null){
-         return null;
-      }
-      else{
-         return results[1] || 0;
-      }
+  if (tcWhenSigned) {
+    $("#tcWhenSigned").html(decodeURIComponent(tcWhenSigned));
+  }
+  
+  if (tcEndsIn) {
+    if (tcEndsIn =="1") {
+      $("#tcEndsIn").html("one day ");
+    } else {
+      $("#tcEndsIn").html(tcEndsIn +" days ");
+    }
   }
 
   function downloadFile() {
-    var tcDownloadFileName = $.urlParam('tcDownloadFileName');
-    var tcDownloadURL = $.urlParam('tcDownloadURL');
     if(tcDownloadURL) {
          tcDownloadURL =  window.location.href.substr(window.location.href.indexOf("tcDownloadURL=")+14);
 
@@ -70,17 +60,9 @@ javascript:
     }
   }
 
-
-  $(document).ready(function() {
-
+  $(document).ready(function() {  
+      if (tcDownloadFileName) {
+        $('div#downloadthankyou').show('slow');
+      }
       downloadFile();
-
-      $.ajax({
-          type: "GET",
-          url: "https://community-dev.jboss.org/api/custom/v1/account/info",
-          dataType: "jsonp"
-      }).then(function(data) {
-         $('#acceptance').html(
-           acceptanceMessage(data.tac.accepted, data.tac.acceptanceTimestamp, data.tac.daysRemaining));
-      });
   });
