@@ -41,7 +41,40 @@ javascript:
            "";
   }
 
+  $.urlParam = function(name){
+      var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      if (results==null){
+         return null;
+      }
+      else{
+         return results[1] || 0;
+      }
+  }
+
+  function downloadFile() {
+    var tcDownloadFileName = $.urlParam('tcDownloadFileName');
+    var tcDownloadURL = $.urlParam('tcDownloadURL');
+    if(tcDownloadURL) {
+         tcDownloadURL =  window.location.href.substr(window.location.href.indexOf("tcDownloadURL=")+14);
+
+       $("a#tcDownloadLink").attr("href",tcDownloadURL);
+       if(tcDownloadFileName) {
+          $("#tcDownloadFileName").html(decodeURIComponent(tcDownloadFileName));
+       }
+
+       var tcRedirect = $.urlParam('tcRedirect');
+       if(tcRedirect) {
+       $("#tcRedirectIn").html(tcRedirect/1000+" seconds");
+          setTimeout("location.href = '"+tcDownloadURL+"';",tcRedirect);
+       }
+    }
+  }
+
+
   $(document).ready(function() {
+
+      downloadFile();
+
       $.ajax({
           type: "GET",
           url: "https://community-dev.jboss.org/api/custom/v1/account/info",
