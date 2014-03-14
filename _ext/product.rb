@@ -62,13 +62,13 @@ module JBoss::Developer::Extensions
               asset.artifacts.each do |m, x|
                 artifact = OpenStruct.new(x)
                 artifact.name = @default_download_assets.has_key?(m) ? @default_download_assets[m]["name"] : m.gsub(/_/, ' ')
-                artifact.url = "#{site.download_manager_file_base_url}/jboss-#{product.id}-#{download.version}-#{artifact.name}/download"
+                artifact.url = "#{site.download_manager_file_base_url}/jboss-#{product.id}-#{download.version}-#{artifact.name.downcase}/download"
                 artifact.icon ||= @default_download_assets.has_key?(m) ? @default_download_assets[m]["icon"] : "fa fa-download"
                 c << artifact
               end
             else
               artifact = OpenStruct.new
-              artifact.url = "#{site.download_manager_file_base_url}/jboss-#{product.id}-#{download.version}-#{asset.name}/download"
+              artifact.url = "#{site.download_manager_file_base_url}/jboss-#{product.id}-#{download.version}-#{asset.key}/download"
               artifact.size = asset.size
               artifact.name = asset.name
               artifact.icon ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["icon"] : "fa fa-download"
