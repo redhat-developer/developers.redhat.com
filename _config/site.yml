@@ -7,17 +7,17 @@ vimeo_client_id: 2589d6592dfd44bfec54f22edf766aedaf0fd5d7
 vimeo_access_token: 1ad6583e71e183c3075a88d46ebb0675
 profiles:
   development:
-    dcp_base_url: http://dcp-stg.jboss.org/
+    dcp_base_url: http://dcp-jbossorgdev.rhcloud.com
   staging:
     base_url: http://www-stg.jboss.org
-    dcp_base_url: http://dcp-stg.jboss.org/
+    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     deploy:
       host: www@filemgmt.jboss.org
       path: /stg_htdocs/www-stg
       uncommitted: true   
   filemgmt:
     base_url: http://www-stg2.jboss.org/
-    dcp_base_url: http://dcp-stg.jboss.org/
+    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
   production:
     dcp_base_url:
   wes:
