@@ -47,9 +47,10 @@ body(class="#{template}")
             form.search(action="search" method="POST" name="search")
               input.query(type="text" name="q" placeholder="Search")
           dd.register
-            a(href="/register") Register
-          dd.login
+            a(href="#{site.register_url}") Register
+          dd.logged-in
             a.logged-in-name(href="#")
+          dd.login
             a(href="#" data-dropdown="login")
               i.fa.fa-user
               | Login

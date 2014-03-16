@@ -329,9 +329,20 @@ app.sso = function() {
         // user is logged in!
         var response = $(data.part1),
             img = response.find('img'),
+            profileUrl = response[2].getAttribute('href'),
             name = response[2].innerText;
-        $('a.logged-in-name').text(name).prepend(img).show();
-        $('[data-dropdown="login"]').hide();
+        $('a.logged-in-name')
+          .text(name)
+          .attr('href', profileUrl)
+          .prepend(img)
+          .show();
+        $('dd.logged-in').show();
+        $('dd.login').hide();
+        $('dd.register').hide();
+      } else {
+        $('dd.login').show();
+        $('dd.register').show();
+        $('dd.logged-in').hide();        
       }
     }
   });
