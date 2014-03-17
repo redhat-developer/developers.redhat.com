@@ -7,7 +7,7 @@ issues: [DEVELOPER-58]
   h2.large-title Upstream Projects
 .row.content
   .large-6.column
-    form.filters(method="GET" action="")
+    form.project-filters(method="GET" action="")
       h4
         | Filters
         a.filters-clear(href="#") Clear All Filters
@@ -32,35 +32,6 @@ issues: [DEVELOPER-58]
   .large-18.column
     h2.divider
       | All Projects
-      span.label = page.projects['hits'].size
-    ul.small-block-grid-2.large-block-grid-4.medium-block-grid-3
-      - for solution in page.projects['hits']
-        li.upstream(data-open-solution="#{solution['_source']['sys_content_id']}")
-          .defaultprojectimage
-            a.image-link: img(src="http://static.jboss.org/#{solution['_source']['sys_content_id']}/images/#{solution['_source']['sys_content_id']}_200x150.png" onerror="this.style.display='none'")
-          a.solution-name-link(href="#{solution['_source']['communityLink']}")
-            h3.solution-name = solution['_source']['projectName']
-          span.update-date
-            | Last Update: TODO
-          p = solution['_source']['description']
-          a.upstream-download(href="#{solution['_source']['downloadsLink']}")
-            i.fa.fa-download
-            |  Download
-          .upstream-more-content
-            p.product-links
-              | Included in Product(s) <br>
-              /
-                a(href="#") RedHat JBoss Enterprise Application Server
-                a(href="#") RedHat JBoss Data Visualization
-            ul.external-links
-              - for link in [1,2,3,4,5,6,7,8] 
-                li: a(href="#") Link #{link}
-          a.upstream-toggle-more(href="#")
-            span.view-more
-              | View More
-              i.fa.fa-plus-square
-            span.view-less
-              | View Less
-              i.fa.fa-minus-square
-
+      span.label#results-label = page.projects['hits'].size
+    ul.small-block-grid-2.large-block-grid-4.medium-block-grid-3.results
 
