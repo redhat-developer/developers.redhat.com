@@ -64,19 +64,21 @@ app.project = {
       for (var i = 0; i < hits.length; i++) {
         var props = hits[i]._source;
 
-        var template = "<li class=\"upstream\"><li class=\"upstream\">"
+        var template = "<li class=\"upstream\">"
           + "<div class=\"defaultprojectimage\">"
-          + "<a class=\"image-link\"><img onerror=\"this.style.display='none'\" src="
+          + "<a class=\"image-link\" href=\"" +
+          + props.sys_url_view
+          + "\"><img onerror=\"this.style.display='none'\" src="
           + "\"http://static.jboss.org/"
           + props.sys_content_id + "/images/"
-          + props.sys_content_id + "\"></a></div>"
+          + props.sys_content_id + "_200x150.png\"></a></div>"
           + "<h3 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
           + props.sys_url_view + "\">"
           + props.projectName + "</a></h3><p></p>";
 
         if (props.downloadsLink) {
           template += "<a class=\"upstream-download\" href=\""
-            + props.downloadsLink + "\">Download</a>";
+            + props.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a>";
         }
         template += "<div class=\"upstream-more-content\">"
           // + "<p class=\"product-links\">Included in Product(s)<br></p>"
@@ -146,7 +148,7 @@ app.project = {
           template += "<li><a href=\"" + getCorrectUrl(props.hudsonLink) + "\">Jenkins</a></li>";
         }
 
-        template += "</ul></div><a class=\"upstream-toggle-more\" href=\"#\"><span class=\"view-more\">View More</span><span class=\"view-less\">View Less</span></a></li>";
+        template += "</ul></div><a class=\"upstream-toggle-more\" href=\"#\"><span class=\"view-more\">View More <i class=\"fa fa-plus-square\"></i></span><span class=\"view-less\">View Less <i class=\"fa fa-minus-square\"></i></span></a></li>";
         // Append template to HTML
         html += template;
       }
@@ -158,6 +160,17 @@ app.project = {
       $("ul.results:first").html(html);
       $("#results-label").html(hits.length);
       $("ul.results").removeClass('loading');
+
+      /*
+         Upstream Solutions
+       */
+      $('.upstream-toggle-more').on('click',function(e){
+        e.preventDefault();
+        var el = $(this);
+
+        el.toggleClass('upstream-toggle-open');
+        el.prev('.upstream-more-content').slideToggle();
+      });
     });
   }
 }
@@ -171,4 +184,7 @@ $(function() {
   $('form.project-filters').on('submit',function(e) {
     e.preventDefault();
   });
+
+  app.project.filter();
 });
+

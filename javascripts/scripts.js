@@ -143,18 +143,6 @@ app.init = function() {
 
   })
 
-
-  /*
-    Upstream Solutions
-  */
-  $('.upstream-toggle-more').on('click',function(e){
-    e.preventDefault();
-    var el = $(this);
-
-    el.toggleClass('upstream-toggle-open');
-    el.prev('.upstream-more-content').slideToggle();
-  });
-
   /* 
     Social Media Share Buttons 
   */
