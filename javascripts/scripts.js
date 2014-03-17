@@ -212,7 +212,7 @@ app.init = function() {
       });
 
       // Filtering
-      $('.sort-icons a').click(function(){
+      /*$('.sort-icons a').click(function(){
         $('.buzz-filter-active').removeClass('buzz-filter-active');
         $(this).addClass('buzz-filter-active');
         var filterType = ".buzz-item-"+$(this).data('filter');
@@ -220,7 +220,7 @@ app.init = function() {
           filterType = ".buzz-item";
         }
         $container.isotope({ filter: filterType });
-      });
+      });*/
 
       // text filtering
       $('input[name="buzz-filter-text"]').keyup(function() {

@@ -121,7 +121,7 @@
 input[type=text][name="buzz-filter-text"] {
   width:200px;
   position: relative;
-  margin-bottom:-42px;
+  /*margin-bottom:-42px; // PLM commented this out as it broke the layout without the sort ul*/
 }
 
 h4.buzz-message.divider {
