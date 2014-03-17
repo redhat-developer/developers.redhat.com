@@ -9,6 +9,12 @@ body.home {
   background-image:url(../images/theme-light/background-tall.jpg);
 }
 
+@media screen and ( max-width: 768px ) {
+  body, body.home {
+    background-image: none;
+  }
+}
+
 // Header
 header.main {
   background:rgba(255, 255, 255, 0.75);
