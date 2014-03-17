@@ -51,30 +51,30 @@ body(class="#{template}")
           dd.logged-in
             a.logged-in-name(href="#")
           dd.login
-            a(href="#" data-dropdown="login")
+            a(href="https://sso.jboss.org/login?service=http://www.jboss.org")
               i.fa.fa-user
               | Login
             / Login Dropdown Box
-            div.f-dropdown.content.round#login(data-dropdown-content="true")
-              h4 Login
-              p Log in to access unlimited downloads and contribute to the community.
-              form.login
-                input(type="text" name="username" placeholder="Username or email")
-                input(type="password" name="password" placeholder="Password")
-                label
-                  input(type="checkbox" name="remember")
-                  | Remember Me
-                input.button(type="submit" value="Login")
-              p.sign-in-options
-                | Or sign in with:
-                i.fa.fa-facebook-square
-                i.fa.fa-google-plus-square
-                i.fa.fa-twitter-square
-              ul.inline-list.text-center
-                li
-                  a(href="#") Forgot Password
-                li
-                  a(href="#") Create account
+            / div.f-dropdown.content.round#login(data-dropdown-content="true")
+            /  h4 Login
+            /  p Log in to access unlimited downloads and contribute to the community.
+            /  form.login
+            /    input(type="text" name="username" placeholder="Username or email")
+            /    input(type="password" name="password" placeholder="Password")
+            /    label
+            /      input(type="checkbox" name="remember")
+            /      | Remember Me
+            /    input.button(type="submit" value="Login")
+            /  p.sign-in-options
+            /    | Or sign in with:
+            /    i.fa.fa-facebook-square
+            /    i.fa.fa-google-plus-square
+            /    i.fa.fa-twitter-square
+            /  ul.inline-list.text-center
+            /    li
+            /      a(href="#") Forgot Password
+            /    li
+            /      a(href="#") Create account
         .large-24.columns
           ul.title-area
             li.name
