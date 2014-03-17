@@ -120,7 +120,7 @@ app.dm = {
     $("ul.results").addClass('loading');
 
     $.ajax({
-      url : 'http://dcp-stg.jboss.org/v1/rest/search',
+      url : 'http://dcpbeta-searchisko.rhcloud.com/v1/rest/search',
       asyn : false,
       data : {
         "field"  : ["artifactId", "contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions"],
