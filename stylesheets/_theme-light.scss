@@ -1,0 +1,70 @@
+// Light Theme - Colors and Images
+// body
+body {
+  background-image:url(../images/theme-light/background-short.jpg);
+}
+
+// Specific Home Styles
+body.home {
+  background-image:url(../images/theme-light/background-tall.jpg);
+}
+
+@media screen and ( max-width: 768px ) {
+  body, body.home {
+    background-image: none;
+  }
+}
+
+// Header
+header.main {
+  background:rgba(255, 255, 255, 0.75);
+}
+
+// Main Nav
+.top-bar {
+  background-color:$white;
+}
+nav.top-bar {
+  border-top: 1px solid $grey-3;
+  border-bottom: 1px solid $grey-3;
+}
+.top-bar-section li a:not(.button) {
+  background: $white;
+}
+.top-bar-section {
+  // Main Nav Elements
+  .main-menu {
+    li {
+      a {
+        color:$dark-blue;
+      }
+    }
+  }
+}
+h1.logo {
+  a {
+    color:darken($dark-blue,5%);
+    strong {
+      color:$dark-blue;
+    }
+  }
+}
+
+// sub Nav
+.sub-nav {
+  dd.login {
+    border-right:2px solid $dark-blue;
+  }
+  dd.login, dd.register {
+    a {
+      color:$dark-blue;
+    }
+  }
+}
+
+// Search Box
+.home {
+  input[type="text"] {
+    background-color: $white;
+  }
+}

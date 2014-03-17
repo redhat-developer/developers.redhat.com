@@ -1,7 +1,125 @@
+// THESE STYLES WERE PREVIOUSLY IN APP.SCSS =============================================
+
+// body
+body {
+  background-position:top center;
+  background-repeat:repeat-x;
+}
+
+// Specific Home Styles
+body.home {
+  header.main h4 { display: block; }
+  // h1.logo {margin-top: 40px; }
+}
+
+h1.logo {
+  margin-bottom: 3px;
+  font-size: 2.75em;
+  padding-left: 5px;
+  a {
+    font-weight: 100;
+    letter-spacing:-2px;
+    strong {
+    }
+  }
+}
+
+// Header
+header.main {
+  h4 {
+    font-style:italic;
+    color:$dark-blue;
+    font-size:emCalc(26);
+    font-weight: normal;
+    padding-top: 9px;
+    padding-bottom: 50px;
+    display: none;
+  }
+}
+
+// Search
+.search {
+  input[type=text] {
+    float: right;
+    &:focus {
+      width:250px;
+    }
+  }
+}
+
+// Dropdown ------------------------- WHAT IS THIS?? DID WE GET RID OF DROP DOWNS????
+.f-dropdown.content {
+  width:300px;
+  max-width:300px;
+  border-radius: $global-radius;
+  padding:20px;
+  margin-left: -150px;
+  margin-top: 10px;
+  text-align: left;
+  color:$dark-blue;
+  border:1px solid $grey-3;
+  box-shadow:1px 1px 4px rgba($grey-7,0.3);
+  // arrow nub
+  &:before {
+    left:170px;
+  }
+  &:after {
+    left:169px;
+  }
+  .inline-list {
+    margin-left: 0;
+    li {
+      line-height: 0.5;
+    }
+    li:first-child {
+      border-right: 1px solid $grey-7;
+    }
+  }
+  h4 {
+    font-style: normal;
+    margin-bottom: 0;
+    color:$dark-blue;
+  }
+  p {
+    margin:0;
+    font-size: emCalc(12);
+  }
+  p.sign-in-options {
+    padding:10px 0;
+  }
+  input[type=submit] {
+    font-size: 16px;
+    padding: 2px 17px;
+    height: auto;
+ /*   margin-bottom: 10px;  Commenting out as this adds space between the fielda end the zurb error message style */
+  }
+}
+p.sign-in-options {
+  color:$grey-7;
+  i {
+    font-size:emCalc(20);
+    margin: 0 2px;
+    position: relative;
+    top:2px;
+  }
+}
+
+
+// Footer
+footer.bottom {
+  background:$grey-7;
+  ul.footer-nav {
+    display: block;
+    margin-bottom: 0;
+  }
+}
+
+
+
+// ============================================ NAVIGATION =============================================
+
 // Main Nav
 nav.top-bar {
-  border-top: 1px solid $grey-3;
-  border-bottom: 1px solid $grey-3;
   margin-bottom: 1.5em;
   margin-bottom: 0;
   @include tablet-portrait-and-down {
@@ -12,14 +130,12 @@ nav.top-bar {
     z-index: 99;
     background:$grey-7;
     height:100%;
-	padding-top: 20px;
+  padding-top: 20px;
   }
   .row {
     position: relative;
   }
 }
-
-// Navigation Drop Downs
 
 /* Hard set of hover state to force background onto social icons */
 .top-bar-section li a:not(.button):hover {
@@ -27,14 +143,15 @@ nav.top-bar {
   color:white;
 }
 
+// Navigation Drop Downs
+
 .top-bar-section {
   // Main Nav Elements
   .main-menu {
     li {
       a {
         text-transform: uppercase;
-		color:$dark-blue;
-        padding: 5px 20px;
+        padding: 5px 20px 4px 20px;
         background:none;
         font-size: 1.375em;
       }
@@ -108,7 +225,6 @@ nav.top-bar {
     }
   }
   dd.login {
-    border-right:2px solid $dark-blue;
     padding-right: 20px;
     margin-right: 10px;
   }
@@ -117,7 +233,6 @@ nav.top-bar {
     a {
       // font-size: 1.2em;
       font-size: 1.1em;
-      color:$dark-blue;
     }
   }
   dd.search-wrapper {
@@ -412,7 +527,7 @@ ul.footer-nav {
   ul.social {
     margin-top: 20px;
     padding-left: 13px;
-	li {
+  li {
       display: inline;
       a {
         display: inline;

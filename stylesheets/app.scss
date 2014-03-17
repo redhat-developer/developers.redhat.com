@@ -50,7 +50,7 @@
 // Import Our CSS Modules and mixins
 @import "mq-mixins";
 @import "jboss-mixins";
-@import "navigation";
+// @import "navigation";
 @import "slider";
 @import "solutions";
 @import "events";
@@ -63,6 +63,10 @@
 @import "tabzilla";
 @import "get-involved";
 @import "why-subscribe";
+@import "global-wrapper";
+@import "theme-light";
+// @import "theme-dark";
+
 
 .clearfix:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; } .clearfix {display: inline-block; } html[xmlns] .clearfix {display: block; } * html .clearfix {height: 1%; }
 
@@ -248,116 +252,12 @@ a.download-link {
 
 .col {float:left}
 
-// body
-body {
-  background:url(../images/theme-light/background-short.jpg) top center repeat-x;
-}
+// body                 (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
+// Header               (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
+// Specific Home Styles (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
+// search               (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
+// Dropdown             (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
 
-// Header
-header.main {
-  background:rgba(255, 255, 255, 0.75);
-  h4 {
-    font-style:italic;
-    color:$dark-blue;
-    font-size:emCalc(26);
-    font-weight: normal;
-    padding-top: 9px;
-    padding-bottom: 50px;
-    display: none;
-  }
-}
-
-// Specific Home Styles
-body.home {
-  background-image:url(../images/theme-light/background-tall.jpg);
-  header.main h4 { display: block; }
-  // h1.logo {margin-top: 40px; }
-}
-
-
-h1.logo {
-  margin-bottom: 3px;
-  font-size: 2.75em;
-  padding-left: 5px;
-  a {
-    color:darken($dark-blue,5%);
-    font-weight: 100;
-    letter-spacing:-2px;
-    strong {
-      color:$dark-blue;
-    }
-  }
-}
-
-
-// search
-.search {
-  input[type=text] {
-    float: right;
-    &:focus {
-      width:250px;
-    }
-  }
-}
-
-
-
-// Dropdown
-.f-dropdown.content {
-  width:300px;
-  max-width:300px;
-  border-radius: $global-radius;
-  padding:20px;
-  margin-left: -150px;
-  margin-top: 10px;
-  text-align: left;
-  color:$dark-blue;
-  border:1px solid $grey-3;
-  box-shadow:1px 1px 4px rgba($grey-7,0.3);
-  // arrow nub
-  &:before {
-    left:170px;
-  }
-  &:after {
-    left:169px;
-  }
-  .inline-list {
-    margin-left: 0;
-    li {
-      line-height: 0.5;
-    }
-    li:first-child {
-      border-right: 1px solid $grey-7;
-    }
-  }
-  h4 {
-    font-style: normal;
-    margin-bottom: 0;
-    color:$dark-blue;
-  }
-  p {
-    margin:0;
-    font-size: emCalc(12);
-  }
-  p.sign-in-options {
-    padding:10px 0;
-  }
-  input[type=submit] {
-    font-size: 16px;
-    padding: 2px 17px;
-    height: auto;
- /*   margin-bottom: 10px;  Commenting out as this adds space between the fielda end the zurb error message style */
-  }
-}
-p.sign-in-options {
-  color:$grey-7;
-  i {
-    font-size:emCalc(20);
-    margin: 0 2px;
-    position: relative;
-    top:2px;
-  }
-}
 
 // Form Elements
 input[type="text"],
@@ -378,7 +278,7 @@ textarea {
 /*  padding:emCalc(20) emCalc(14); */
   height: 2.5em;
   font-size: 1em;
-  margin-bottom: 10px;
+/*   margin-bottom: 10px;  Commenting out as this adds space between the field a end the zurb error message style */
   &:focus {
     @include box-shadow(0 0 5px $link);
     border:1px solid $med-blue;
@@ -450,13 +350,6 @@ i[class*=fa].invert {
   padding-bottom: emCalc(100px);
 }
 
-footer.bottom {
-  background:$grey-7;
-  ul.footer-nav {
-    display: block;
-    margin-bottom: 0;
-  }
-}
 
 // Typography callouts -  Larger text as intro paragraphs to pages
 
