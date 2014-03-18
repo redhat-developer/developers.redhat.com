@@ -21,14 +21,15 @@ layout: base
           li
             strong
               ' Author:
-              a href='' #{page.metadata[:author]}
+              / TODO Missing link to author profile
+              #{page.metadata[:author]}
         - if page.metadata[:commits]
           li
             strong
               ' Contributors:
               - for contributor in page.metadata[:commits].collect { |c| c[:author] }.uniq
-                a href=''
-                  ' #{contributor}
+                / TODO Missing link to contributor profile
+                ' #{contributor}
           li
             strong
               ' Last Update:
@@ -61,12 +62,8 @@ layout: base
         ul.commit-log
           - for commit in page.metadata[:commits].take(10)
             li
-              / TODO: fix up the links
-              a href="##{commit[:hash]}"
-                '#{DateTime.parse(commit[:date]).strftime('%b %e, %Y')}
-              | (
-              a href="#" #{commit[:author]}
-              '): #{commit[:subject].gsub(/\-/,' ')}
+              / TODO: add the links
+              #{DateTime.parse(commit[:date]).strftime('%b %e, %Y')} (#{commit[:author]}): #{commit[:subject].gsub(/\-/,' ')}
 
       .columns.large-4
         / TODO Add resources 
