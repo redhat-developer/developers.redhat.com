@@ -22,7 +22,7 @@ head
   script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.timeago.js"
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
-  - if site.profile == 'staging' || site.profile == 'development'
+  - if site.profile == 'staging' || site.profile == 'development' || site.profile == 'beta'
     = partial 'under-development.html.slim', parent: page
   / tabzilla
   .dropup
