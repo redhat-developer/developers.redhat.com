@@ -15,11 +15,11 @@ table.large-24.small-24
       th Documentation
       th Available Formats
   tbody
-    - page.product.guides.each do |guide|
+    - page.product.guides.each do |k, guide|
       tr
         td: #{guide.name}
         td.linkList
-          - guide.formats.each do |format|
+          - guide.formats.each do |l, format|
             a.guide-format-link(href="#{format.url}") #{format.name}
 a(href="#{page.product.documentation_url}")
   | See More Documentation 

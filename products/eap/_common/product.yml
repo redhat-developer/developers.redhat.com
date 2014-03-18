@@ -17,6 +17,7 @@ guides:
   Installation_Guide:
   Migration_Guide:
   Security_Guide:
+  Getting_Started_Guide:
 # EAP has an installer, we want to default to that
 default_download_artifact_type: installer
 downloads:
@@ -26,7 +27,8 @@ downloads:
     assets:
       installer:
         size: 158mb
-      Zip Files:
+      zip:
+        name: Zip Files
         artifacts: 
           zip:
             size: 34mb
@@ -54,7 +56,8 @@ downloads:
     assets:
       installer:
         size: 150mb
-      Zip Files:
+      zip:
+        name: Zip Files
         artifacts:
           Zip:
             size: 110mb

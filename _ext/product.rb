@@ -7,7 +7,7 @@ module JBoss::Developer::Extensions
     def initialize
       @default_guide_formats = {"html" => {}, "html-single" => {}, "pdf" => {}, "epub" => {}}
       @default_download_assets = {
-        "installer" => {"name" => "Installer", "icon" => "fa fa-download"},
+        "installer" => {"name" => "Installer", "icon" => "fa fa-download", "type" => "jar"},
         "zip" => {"name" => "ZIP", "icon" => "fa fa-download"},
         "sha1" => {"name" => "SHA1"}, 
         "md5" => {"name" => "MD5"}, 
@@ -56,22 +56,26 @@ module JBoss::Developer::Extensions
           download.assets.each do |l, w|
             asset = OpenStruct.new(w)
             asset.key = l
-            asset.name ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["name"] : l.gsub(/_/, ' ')
+            asset.name ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["name"] : key_to_name(l) 
             c = []
             if asset.artifacts
               asset.artifacts.each do |m, x|
                 artifact = OpenStruct.new(x)
-                artifact.name = @default_download_assets.has_key?(m) ? @default_download_assets[m]["name"] : m.gsub(/_/, ' ')
-                artifact.url = "#{site.download_manager_file_base_url}/jboss-#{product.id}-#{download.version}-#{artifact.name.downcase}/download"
+                artifact.type ||= m.downcase
+                artifact.name ||=  @default_download_assets.has_key?(m) ? @default_download_assets[m]["name"] : key_to_name(m)
+                artifact.filename ||= "jboss-#{product.id}-#{download.version}.#{artifact.type}"
+                artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}/download"
                 artifact.icon ||= @default_download_assets.has_key?(m) ? @default_download_assets[m]["icon"] : "fa fa-download"
                 c << artifact
               end
             else
               artifact = OpenStruct.new
-              artifact.url = "#{site.download_manager_file_base_url}/jboss-#{product.id}-#{download.version}-#{asset.key}/download"
               artifact.size = asset.size
+              artifact.type = l.downcase
               artifact.name = asset.name
-              artifact.icon ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["icon"] : "fa fa-download"
+              artifact.filename = "jboss-#{product.id}-#{download.version}.#{artifact.type}"
+              artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}/download"
+              artifact.icon = @default_download_assets.has_key?(l) ? @default_download_assets[l]["icon"] : "fa fa-download"
               c << artifact
             end
             asset.artifacts = c
@@ -98,13 +102,18 @@ module JBoss::Developer::Extensions
       end
     end
 
+
+    def key_to_name(key)
+      key.gsub(/_/, ' ').split.map(&:capitalize).join(' ')
+    end
+
     def docs(product, site)
       product.documentation_path ||= product.name.gsub(/ /, "_")
       product.documentation_minor_version ||= product.current_minor_version
       # Set the documentation url to the default value, if not set
       product.documentation_url ||= site.product_documentation_base_url + "/" + product.documentation_path
       # Process the guides declared for the product
-      a = []
+      a = {} 
       product.guide_base_url ||= "#{product.documentation_url}/#{product.documentation_minor_version}"
       if product.guides
         product.guides.each do |k, v|
@@ -118,7 +127,7 @@ module JBoss::Developer::Extensions
           end
           guide.formats ||= @default_guide_formats.clone
           guide.locale ||= @default_locale
-          b = []
+          b = {}
           guide.formats.each do |l, w|
             format = OpenStruct.new(w)
             format.name ||= l
@@ -127,10 +136,10 @@ module JBoss::Developer::Extensions
             else 
               format.url ||= "#{product.guide_base_url}/#{format.name}/#{guide.dir_name}"
             end
-            b << format
+            b[l] = format
           end
           guide.formats = b
-          a << guide
+          a[k] = guide
         end
       end
       product.guides = a

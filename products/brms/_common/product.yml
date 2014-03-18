@@ -23,17 +23,18 @@ downloads:
     release_date: 2013-12-17
     description: A business process and decision management platform that combines Drools Expert, Drools Guvnor, Drools Fusion and JBoss jBPM in a single integrated distribution.
     assets:
-      zip-supplemental:
+      zip_supplemental:
         size: 19mb
         name: Supplemental Tools
-      zip-planner:
+      zip_planner:
         size: 52mb
         name: Optaplanner
       zip:
         artifacts:
-          Deployable:
+          deployable:
             size: 153mb
-          Deployable-EAP 6.x:
+          deployable_eap_6x:
+            name: Deployable EAP 6.x
             size: 87mb
       release_notes:
       source:
