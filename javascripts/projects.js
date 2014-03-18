@@ -10,7 +10,8 @@ function getCorrectUrl(linkUrl) {
 }
 
 app.project = {
-  filter : function(filters) {
+  projectFilter : function(filters) {
+    console.log('Performing project filter');
     // Get the Filter Items
 
     //Currently the only way to specify no limit
@@ -178,13 +179,15 @@ app.project = {
 // Event Listeners
 $(function() {
   $('form.project-filters').on('change','input',function(e){
-    app.project.filter();
+    app.project.projectFilter();
   });
 
   $('form.project-filters').on('submit',function(e) {
     e.preventDefault();
   });
 
-  app.project.filter();
+  if ($('.project-filters').length) {
+    app.project.projectFilter();
+  }
 });
 

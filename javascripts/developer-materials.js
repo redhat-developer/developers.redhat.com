@@ -16,8 +16,9 @@ function roundHalf(num) {
 }
 
 app.dm = {
-  filter : function(filters) {
+  devMatFilter : function(filters) {
     // Get the Filter Items
+    console.log('Performing dev material search');
 
     //Currently the only way to specify no limit
     var maxResults = 500;
@@ -168,11 +169,15 @@ app.dm = {
 
 // Event Listeners 
 $(function() {
-  $('form.filters').on('change','input',function(e){
-    app.dm.filter();
+  $('form.dev-mat-filters').on('change','input',function(e){
+    app.dm.devMatFilter();
   });
 
-  $('form.filters').on('submit',function(e) {
+  $('form.dev-mat-filters').on('submit',function(e) {
     e.preventDefault();
   });
+
+  if ($('form.dev-mat-filters').length) {
+    app.dm.devMatFilter();
+  }
 });
