@@ -29,7 +29,7 @@ module JBoss::Developer::Extensions
                                                      :searchisko_username => ENV['dcp_user'],
                                                      :searchisko_password => ENV['dcp_password'],
                                                      :cache => site.cache,
-                                                     :logger => site.profile == 'developement'})
+                                                     :logger => site.log_faraday})
       yml['availableRuntimes'].each do |runtime|
         # WARNING Hacks below
         case runtime['labels']['runtime-type']

@@ -9,9 +9,11 @@ register_url: https://community.jboss.org/register.jspa
 profiles:
   development:
     dcp_base_url: http://dcp-jbossorgdev.rhcloud.com/
+    log_faraday: true
   staging:
     base_url: http://www-stg.jboss.org
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
+    log_faraday: true
     deploy:
       host: www@filemgmt.jboss.org
       path: /stg_htdocs/www-stg
