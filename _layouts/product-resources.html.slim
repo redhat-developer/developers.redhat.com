@@ -57,8 +57,8 @@ a(href="#{page.product.documentation_url}")
           i.fa.fa-star-empty
         .body
           p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
-
-h3.divider More Resources
-.updates
-  = page._more_resources
+- unless page._more_resources.empty?
+  h3.divider More Resources
+  .updates
+    = page._more_resources
 
