@@ -66,7 +66,7 @@ app.init = function() {
   /*
     Developer Materials Slider Filter
   */
-  $('form.filters input[type=range]').on('change mousemove',function() {
+  $('form.dev-mat-filters input[type=range]').on('change mousemove',function() {
     // we bind to change and mousemove because Firefox doesn't fire change until mouse is dropped.
     // convert step and total to number of options
     var el = $(this),
@@ -254,12 +254,12 @@ app.init = function() {
   Clear All Filters
 */
 app.clearFilters = function($el) {
-  var form = $('form.filters');
+  var form = $('form.dev-mat-filters');
   form[0].reset();
   form.find('input[type=range]').each(function(i,el){
     $(el).attr('value',0);
   });
-  $('form.filters input:checked').removeAttr('checked');
+  $('form.dev-mat-filters input:checked').removeAttr('checked');
   $('.filter-rating-active').removeClass('filter-rating-active');
 };
 
