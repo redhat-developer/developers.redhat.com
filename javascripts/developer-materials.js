@@ -137,7 +137,6 @@ app.dm = {
       }
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
-      var cardTemplate = $("#cardTemplate").html();
       var html = "";
       window.hits = hits;
       
@@ -151,17 +150,39 @@ app.dm = {
             var contributors = hits[i].fields.contributors[0];
         }
 
-        var template = cardTemplate.format(
-            hits[i].fields.sys_url_view                     // 0 - link
-          , "??:??:??"                                      // 1 - duration *
-          , hits[i].fields.level                            // 2 - level
-          , hits[i].fields.sys_title                        // 3 - title
-          , contributors                                    // 4 - author *
-          , moment(hits[i].fields.sys_created).fromNow()    // 5 - timestamp
-          , roundHalf(hits[i]._score)                       // 6 - rating
-          , hits[i].fields.sys_description                  // 7 - description
-          , hits[i].fields.sys_content_type                 // 8 - Content type
-        );
+        var template = 
+          "<li class=\"material\">" + 
+          "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">" +
+            "<img src=\"/images/placeholder-" + hits[i].fields.sys_content_type  + ".png\" />" +
+          "</a>";
+          if (hits[i].fields.level && hits[i].fields.level.length > 0) {
+            template += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
+              hits[i].fields.level +
+            "</span>";
+          } else {
+            template += "<div class=\"empty-label\"></div>";
+          }
+          template += "<h4>" +
+            "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
+              hits[i].fields.sys_title +
+            "</a>" +
+          "</h4>" +
+          "<p class=\"author\">" +
+            "Author:" + 
+            "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
+              contributors +
+            "</a>" +
+          "</p>" + 
+          "<p class=\"material-datestamp\">" + 
+            "Added " + moment(hits[i].fields.sys_created).fromNow() +
+          "</p>" + 
+          "<div class=\"body\">" +
+            "<p>" +
+              hits[i].fields.sys_description +
+            "</p>" +
+          "</div>" +
+          "</li>";
+
 
         // Append template to HTML
         html += template;
