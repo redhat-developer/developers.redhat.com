@@ -1,0 +1,131 @@
+---
+layout: base
+---
+.row
+  h2.large-title Events
+.row.content
+  .large-24.columns
+    ul.breadcrumbs
+      li
+        a href="" Getting Started
+      li
+        a href="" Events
+  .large-24.columns
+    .slider-wrapper
+      .slider#slider.slider-side-by-side
+        .swipe-wrap
+          .slide
+            img(src="#{site.base_url}/#{site.context_url}/images/events-slider.jpg")
+            .slider-label
+              h2: a JavaOne 2013
+              h4 Open Shift Primer — get your applications into the Cloud 
+              p Join JBoss at the JavaOne conference which brings Java experts and enthusiasts for an extraordinary week of learning and networking focused entirely on all things Java.
+          .slide
+            img(src="#{site.base_url}/#{site.context_url}/images/events-slider.jpg")
+            .slider-label
+              h2: a JavaOne 2013
+              h4 Open Shift Primer — get your applications into the Cloud 
+              p Join JBoss at the JavaOne conference which brings Java experts and enthusiasts for an extraordinary week of learning and networking focused entirely on all things Java.
+          .slide
+            img(src="#{site.base_url}/#{site.context_url}/images/events-slider.jpg")
+            .slider-label
+              h2: a JavaOne 2013
+              h4 Open Shift Primer — get your applications into the Cloud 
+              p Join JBoss at the JavaOne conference which brings Java experts and enthusiasts for an extraordinary week of learning and networking focused entirely on all things Java.
+      .slider-pager
+      .slider-controls
+        a.slider-prev(data-direction="prev")
+          i.icon-angle-left.icon-4x
+        a.slider-next(data-direction="next")
+          i.icon-angle-right.icon-4x
+    
+    h2 Find webinars and events within the industry, community or sponsored by Red Hat.
+
+    .events-control.large-10
+      form.events-filter
+        input(type="text" name="events-filter-name" placeholder="Find An Event")
+        p 
+          | Currently Viewing 
+          input(type="text" name="events-filter-start-date" class="datepicker small")
+          | to
+          input(type="text" name="events-filter-end-date" class="datepicker small")
+
+    .events-control.events-actions.large-14
+      a(href="#")
+        | Subscribe to events
+        i.icon-rss
+      .events-actions-buttons
+        a.button Add Your Event
+        a.button View Past Events
+        a.button Events Blog
+
+
+
+    ul.small-block-grid-2.large-block-grid-4.events
+      - for month in ["Jan", "Feb", "Mar", "Apr"]
+        li
+          .event 
+            .event-header
+              img(src="#{site.base_url}/#{site.context_url}/images/event-minibanner.jpg")
+            .event-body
+              div.event-date
+                span.month #{month}
+                span.day 25
+              h3 JBoss One Day Talk 2013
+              - if month == "Mar"
+                p.red-hat-event
+                  i.icon-redhat
+                  | Red Hat Event
+              p Join us in Germany for the JBoss OneDay Talk. The conference will take place on 23rd of October 2013 in Germering / Munich. 
+            .event-links
+              a(href="#") Learn More
+              a(href="#") Add to Calendar
+            .share-this
+              p
+                i.icon-share-alt
+                | Share This
+              .share-this-buttons
+                a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
+                span.facebook-share-button
+                  a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
+                    | Share
+                  span.facebook-share-button-count(data-shares="0")
+                div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
+                script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
+
+
+      - for month in ["May", "Jun", "Jul", "Aug"]
+        li
+          .event.clearfix
+            .event-header
+              img(src="#{site.base_url}/#{site.context_url}/images/event-bg-1.png")
+              p Community Event
+            .event-body
+              div.event-date
+                span.month #{month}
+                span.days 02-15
+              h3 Event name that is slightly longer than most 
+              - if month == "May"
+                p.red-hat-event
+                  i.icon-redhat
+                  | Red Hat Event
+              p Join us in Germany for the JBoss OneDay Talk. The conference will take place on 23rd of October 2013 in Germering / Munich. 
+            .event-links
+              a(href="#") Register
+              a(href="#") Add to Calendar
+            .share-this
+              p
+                i.icon-share-alt
+                | Share This
+              .share-this-buttons
+                a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
+                span.facebook-share-button
+                  a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
+                    | Share
+                  span.facebook-share-button-count(data-shares="0")
+                div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
+                script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
+
+
+              / http://api.facebook.com/restserver.php?method=links.getStats&urls=http://jboss.org/&format=json
+

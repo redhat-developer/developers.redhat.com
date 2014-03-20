@@ -108,6 +108,7 @@ body(class="#{template}")
           li: a FAQ
           li: a Report a problem
 
+  #fb-root
   script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
   / jQuery fallback if CDN fails
   javascript:
@@ -119,5 +120,20 @@ body(class="#{template}")
   script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
   script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
   script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.resize.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
   script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
+  / Async G+
+  javascript:
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  / Async Twitter
+  javascript:
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  / Linked In
+  script(src="//platform.linkedin.com/in.js")
+   lang: en_US
 

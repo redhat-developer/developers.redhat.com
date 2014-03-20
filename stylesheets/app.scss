@@ -40,7 +40,6 @@
 // @import "foundation/components/tooltips";
 @import "foundation/components/dropdown";
 
-
 // Import only the compass modules we need
 @import "compass/css3/box-shadow";
 @import "compass/css3/images";
@@ -53,9 +52,8 @@
 @import "mq-mixins";
 @import "jboss-mixins";
 @import "navigation";
-
-
-
+@import "events";
+@import "picker";
 
 .clearfix:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; } .clearfix {display: inline-block; } html[xmlns] .clearfix {display: block; } * html .clearfix {height: 1%; }
 
@@ -169,7 +167,7 @@ body {
 
 // Header
 header.main {
-  background:rgba(255, 255, 255, 0.7);
+  background:rgba(255, 255, 255, 0.75);
   h4 {
     font-style:italic;
     color:$dark-blue;
@@ -361,7 +359,10 @@ footer.bottom {
 }
 
 
-// Slider
+/*
+  Slider Module
+  This CSS styles all sliders on the site, variants are coded near the end
+*/
 .slider-wrapper {
   position: relative;
   .slider {
@@ -449,6 +450,8 @@ footer.bottom {
       font-weight: 600;
     }
   }
+
+
   @media all and (max-width: 1350px) {
     a {
       background:black;
@@ -462,6 +465,35 @@ footer.bottom {
       &.slider-next {
         right:10px;
       }
+    }
+  }
+}
+
+// Side by side slider design
+.slider.slider-side-by-side {
+  overflow: hidden;
+  border-radius:$global-radius;
+  background-clip: padding-box;
+  overflow: hidden;
+  .slide {
+    border-radius:$global-radius;
+    background-clip: padding-box;
+    overflow: hidden;
+  }
+  .slider-label {
+    width:40%;
+    max-width:400px;
+    top:0;
+    padding:45px;
+    text-shadow:1px 1px 0px #000;
+    h4 {
+      color:$med-green;
+    }
+    h2 {
+      margin:0;
+    }
+    a {
+      color:white;
     }
   }
 }
@@ -1061,7 +1093,7 @@ ul[class*=block-grid] {
       color:white
     }
   }
-  &:hover img {
+  &.solution-open img {
     @include transform( rotate(-3deg) scale(1.3) );
   }
 
@@ -1137,6 +1169,11 @@ $arrow-size : 20px;
     margin: 0;
     font-weight: 600;
   }
+  .slide {
+    img {
+      width:100%;
+    }
+  }
 }
 
 .solutions-slider-controls {
@@ -1155,12 +1192,12 @@ $arrow-size : 20px;
 
 .fn-close-overlay {
   position: absolute;
-  top: -12px;
-  right: -10px;
-  font-size: 80px;
+  top: -20px;
+  right: -15px;
+  font-size: 50px;
   font-weight: 100;
   line-height: 30px;
-  color: #000;
+  color:#000;
 }
 
 // Upstream Projects
@@ -1319,5 +1356,91 @@ span.asterisk {
   font-weight: 600;
 }
 
+// Social Buttons
+.share-this {
+  background:$grey-1;
+  padding:10px;
+  overflow: hidden;
+  position: relative;
+  padding: 6px 8px 0 8px;
+  &:hover {
+    p {
+      display: none;
+    }
+  }
+  p {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:0;
+    z-index: 99;
+    background:$grey-1;
+    text-transform: uppercase;
+    color:$grey-5;
+    padding:20px;
+    font-weight: 600;
+    i {
+      margin-right:10px;
+    }
+  }
+}
+
+.share-this-buttons > * {
+  // all importants override social network defaults
+  float: left;
+  margin-bottom: 5px;
+  width:50% !important;
+  &:nth-child(odd) {
+    float: left !important;
+    text-align: left !important;
+  }
+  &:nth-child(even) {
+    float: right !important;
+    text-align: right !important;
+  }
+}
+.facebook-share-button {
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
+    font-size: 11px;
+  a {
+    background:#ECEEF5;
+    border:1px solid #CAD4E7;
+    padding:2px 4px 3px;
+    color:#3B5998;
+    border-radius:3px;
+    &:hover {
+      border-color:#9DACCE;
+      color:#3B5998;
+    }
+    &:before {
+      font-family: 'FontAwesome';
+      content: "\f082";
+      font-size: 15px;
+      margin-right: 4px;
+      position: relative;
+      top: 2px;
+      line-height: 11px;
+    }
+  }
+  .facebook-share-button-count {
+    &:before {
+      content:attr(data-shares);
+      display: inline-block;
+      background: url(../images/bubble.png) center no-repeat;
+      // content:"100";
+      font-size: 11px;
+      width: 40px;
+      height: inherit;
+      position: relative;
+      padding: 3px 0 2px 4px;
+      text-align: center;
+    }
+  }
+}
+
+
 // Mobile!
 @import "mobile";
+

@@ -157,6 +157,55 @@ app.init = function() {
     el.prev('.upstream-more-content').slideToggle();
   });
 
+  /* 
+    Social Media Share Buttons 
+  */
+    // Facebook over CORS
+    //http://api.facebook.com/restserver.php?method=links.getStats&urls=http://wesbos.com&format=json
+    $('.facebook-share-button a').click(function(e){
+      e.preventDefault();
+      var el = $(this);
+      // Open the window
+      window.open(
+        'https://www.facebook.com/sharer/sharer.php?s=100&\
+        p[url]='+encodeURIComponent(el.data('url'))
+        +'&p[title]=' + el.data('title')
+        +'&p[summary]=' + el.data('text')
+        , 
+        'facebook-share-dialog', 
+        'width=626,height=436'); 
+    });
+
+    // Facebook Share # — Get this number when you hover over the share button
+    $('.share-this').on('mouseover touchstart',function(e){
+      var el = $(this),
+          shareButton = el.find('.facebook-share-button a'),
+          shareTab = el.find('.facebook-share-button-count'),
+          url = shareButton.data('url'),
+          shares = shareButton.data('shares');
+          console.log(shares);
+      if(typeof shares == 'undefined') { // could possibly be zero
+        shareButton.data('shares',0); // temporarily set to zero
+        $.getJSON('http://api.facebook.com/restserver.php?method=links.getStats&format=json&urls='+encodeURIComponent(url),function(data){
+          shareButton.data('shares',data[0]['share_count']);  
+          shareTab.attr('data-shares',data[0]['share_count']);  // for display
+        });
+
+      }
+    });
+  
+  /*
+    Equalize Bottoms
+  */
+
+  if($('.event-body').length) {
+    app.equalizeBottoms($('.event-body'));
+  }
+
+
+
+
+
 };
 
 
@@ -229,13 +278,42 @@ app.sso = function() {
             name = response[2].innerText;
         $('a.logged-in-name').text(name).prepend(img).show();
         $('[data-dropdown="login"]').hide();
-
       }
     }
   });
-}
+};
+
+
+/*
+  Equalize Bottoms
+*/
+app.equalizeBottoms = function($selector) {
+  // bind the first element on resize
+  $selector.first().on('resize',function(e){
+    // Temporarily reset everything to auto
+    $selector.css('height','auto');
+    // Loop through each event and grab the largest
+    var heights = [];
+    $selector.each(function() {
+      var h = $(this).outerHeight();
+      heights.push(h);
+    });
+
+    var maxHeight = Math.max.apply(Math, heights);
+    $selector.css('height',maxHeight);
+  });
+
+  // trigger a resize event on load
+  $selector.first().trigger('resize');
+};
+
+/*
+  Date Pickers
+*/
+$('.datepicker').pickadate();
 
 $(function() {
   app.init();
   app.sso();
 });
+
