@@ -131,7 +131,7 @@ app.dm = {
       url : '#{site.dcp_base_url}v1/rest/search',
       asyn : false,
       data : {
-        "field"  : ["artifactId", "contributors", "sys_contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions"],
+        "field"  : ["artifactId", "contributors", "sys_contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions", "thumbnail", "duration"],
         "query" : query,
         "size" : maxResults
       }
@@ -152,16 +152,28 @@ app.dm = {
 
         var template = 
           "<li class=\"material\">" + 
-          "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">" +
-            "<img src=\"/images/placeholder-" + hits[i].fields.sys_content_type  + ".png\" />" +
-          "</a>";
+          "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
+          if (hits[i].fields.thumbnail) {
+            template +="<img src=\"" + hits[i].fields.thumbnail + "\" />";
+          } else {
+            template +="<img src=\"/images/placeholder-" + hits[i].fields.sys_content_type  + ".png\" />";
+          }
+          template += "</a>";
+          var labels = "";
+          if (hits[i].fields.duration && hits[i].fields.duration > 0) {
+            labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
+              hits[i].fields.duration.toString().toHHMMSS() +
+            "</span>";
+          }
           if (hits[i].fields.level && hits[i].fields.level.length > 0) {
-            template += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
+            labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
               hits[i].fields.level +
             "</span>";
-          } else {
-            template += "<div class=\"empty-label\"></div>";
           }
+          if (labels.length == 0) {
+            labels += "<div class=\"empty-label\"></div>";
+          }
+          template += labels;
           template += "<h4>" +
             "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
               hits[i].fields.sys_title +
