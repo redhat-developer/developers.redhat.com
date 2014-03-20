@@ -13,6 +13,7 @@ gem 'curb', '~> 0.8.5'
 gem 'oauth', '~> 0.3.6'
 gem 'git', '~> 1.2.5'
 #gem 'aweplug', :path => '~/projects/ruby/aweplug'
+#gem 'aweplug', :path => '../aweplug'
 
 group :development do
   gem 'rb-inotify', :require => false
