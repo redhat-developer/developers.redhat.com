@@ -166,14 +166,16 @@ app.dm = {
             "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
               hits[i].fields.sys_title +
             "</a>" +
-          "</h4>" +
-          "<p class=\"author\">" +
-            "Author:" + 
-            "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
-              contributors +
-            "</a>" +
-          "</p>" + 
-          "<p class=\"material-datestamp\">" + 
+          "</h4>";
+          if (contributors && contributors.length > 0) {
+           template += "<p class=\"author\">" +
+              "Author:" + 
+              "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
+                contributors +
+              "</a>" +
+            "</p>";
+          }
+          template += "<p class=\"material-datestamp\">" + 
             "Added " + moment(hits[i].fields.sys_created).fromNow() +
           "</p>" + 
           "<div class=\"body\">" +
