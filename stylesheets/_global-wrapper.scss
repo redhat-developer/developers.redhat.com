@@ -254,6 +254,7 @@ i.jd-redhat:before {
   background:url(../images/icon-redhat.png) center no-repeat;
   color:transparent;
   width:20px;
+  display: inline-block;
 }
 
 // Mobile Slide out
@@ -265,7 +266,7 @@ body.nav-open {
     overflow-x:hidden;
     .site-wrapper {
       // left: 85%;
-      @include transform(translateX(85%) translateZ(0)); 
+      @include transform(translateX(85%) translateZ(0));
     }
     i.nav-toggle {
       right:auto;
@@ -361,7 +362,7 @@ ul.footer-nav {
 }
 
 @include tablet-portrait-and-down {
-  
+
   header.main {
     h4 {
       display: none;
@@ -392,7 +393,7 @@ ul.footer-nav {
       // @include transition(transform 0.2s);
     }
   }
-  
+
   .top-bar-section {
     .main-menu {
       border-bottom:1px solid $grey-6;
@@ -434,7 +435,7 @@ ul.footer-nav {
       }
       /*
         Down / Active State
-        Disabled because its too jarring of an experience 
+        Disabled because its too jarring of an experience
       */
       // &:active {
       //   li {

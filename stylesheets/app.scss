@@ -117,7 +117,7 @@ button, .button {
   }
 }
 
-.button-group { 
+.button-group {
   button, .button  {
     border-radius: 0;
 	border-left: 1px solid $white;
@@ -252,11 +252,11 @@ a.download-link {
 
 .col {float:left}
 
-// body                 (moved to global-wrapper.scss, theme-light.scss or theme-dark.scss)
-// Header               (moved to global-wrapper.scss, theme-light.scss or theme-dark.scss)
-// Specific Home Styles (moved to global-wrapper.scss, theme-light.scss or theme-dark.scss)
-// search               (moved to global-wrapper.scss, theme-light.scss or theme-dark.scss)
-// Dropdown             (moved to global-wrapper.scss, theme-light.scss or theme-dark.scss)
+// body                 (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
+// Header               (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
+// Specific Home Styles (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
+// search               (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
+// Dropdown             (moved to global-wrapper.scss, theme-light.scss, theme-dark.scss)
 
 
 // Form Elements
@@ -568,6 +568,7 @@ i[class*=fa].invert {
 }
 
 
+
 @media screen and ( min-width: 768px ) {
   .bordered-column {
     border-right: 1px solid $grey-2;
@@ -581,9 +582,7 @@ i[class*=fa].invert {
   }
 }
 
-.bordered-column {
-  border-right: 1px solid $grey-2;
-}
+
 
 // Products
 .product {
@@ -757,7 +756,7 @@ i[class*=fa].invert {
 
 .ulist ul li {
     /* text-indent:-1em; */
-	  margin-left: 1em; 
+	  margin-left: 1em;
 }
 
 // Training specific widget
@@ -797,6 +796,13 @@ i[class*=fa].invert {
 // Typography
 .large-title {
   font-size: emCalc(44);
+  font-weight: normal;
+  color: $black;
+  margin-bottom: 0;
+}
+
+.large-subtitle {
+  font-size: emCalc(32);
   font-weight: normal;
   color: $black;
   margin-bottom: 0;
@@ -1171,7 +1177,7 @@ li.upstream {
     font-size: emCalc(13);
     padding-bottom: 45px;
 	min-width: 205px;
-	
+
 .defaultprojectimage {
     border:1px solid $grey-5;
 	background-image:url(../images/projects/default_200x150.png);
@@ -1503,8 +1509,8 @@ span.asterisk {
 // Special Callout Panel styles
 
 .light-blue {
-  background-color: $light-blue;
-}
+	background-color: $light-blue;
+	}
 
 // Technology Overview
 
