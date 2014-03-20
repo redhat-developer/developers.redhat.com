@@ -49,6 +49,16 @@ app.dm = {
       return this.value;
     }).get(); 
 
+    //Enable sandbox if sandbox filter checked, or if no format filters are checked.
+    var sandboxEnabled = $.inArray('jbossdeveloper_sandbox', formats) != -1 || formats.length == 0;
+    var quickstartsEnabled = $.inArray('jbossdeveloper_quickstart', formats) != -1 || formats.length == 0;
+
+    //remove sandbox if there.
+    var index = formats.indexOf('jbossdeveloper_sandbox');
+    if (index !== -1) {
+        formats[index] = 'jbossdeveloper_quickstart';
+    }
+
     formats = formats.join(" ");
 
     /*
@@ -114,6 +124,19 @@ app.dm = {
       }
     }
 
+    //Handle quickstarts and sandbox quickstarts
+    if ((sandboxEnabled && quickstartsEnabled) || (!sandboxEnabled && !quickstartsEnabled)) {
+        //do nothing, the format filter will take care of this case
+    } else if (!sandboxEnabled && quickstartsEnabled) {
+        //filter out the sandbox quickstarts
+        query.push('-github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
+    } else if (sandboxEnabled && !quickstartsEnabled) {
+        //filter out the regular quickstarts
+        query.push('github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
+    }
+
+
+
     if(currentFilters['publishDate']) {
       // THis needs to be wired up
       // query.push('publishDate:'+publishDate);
@@ -131,9 +154,10 @@ app.dm = {
       url : '#{site.dcp_base_url}v1/rest/search',
       asyn : false,
       data : {
-        "field"  : ["artifactId", "contributors", "sys_contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions", "thumbnail", "duration"],
+        "field"  : ["artifactId", "contributors", "sys_contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions", "thumbnail", "duration", "github_repo_url"],
         "query" : query,
-        "size" : maxResults
+        "size" : maxResults,
+        "content_provider" : 'jboss-developer'
       }
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
