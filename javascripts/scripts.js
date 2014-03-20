@@ -9,7 +9,6 @@ app.cache = {};
   Website Init 
 */ 
 app.init = function() {
-  
   $(document).foundation();
 
   /*
@@ -202,12 +201,7 @@ app.init = function() {
     app.equalizeBottoms($('.event-body'));
   }
 
-
-
-
-
 };
-
 
 /*
   Clear All Filters
@@ -245,7 +239,6 @@ app.createSlider = function($el) {
   // Update text
   $('span.current-slide').text('1');
   $('.total-slides').text(slider.getNumSlides());
-
 
   return slider;
 };
@@ -308,6 +301,55 @@ app.equalizeBottoms = function($selector) {
 };
 
 /*
+  Faq Sidebar + Scrollspy
+*/
+app.faq = function() {
+  var faqNav = $('.faq-nav'),
+      win = $(window);
+  if(!faqNav.length) {
+    return; // Don't need to go any further, this isn't the faq page
+  }
+  
+  var html = "",
+      top = faqNav.offset().top;
+
+  $('.faqs h3').each(function(i,el){
+    html += "<li><a href='#"+$(this).attr('id')+"'>"+$(this).text()+"</a></li>";
+  });
+
+  faqNav.html(html);
+
+  win.scroll(function() {
+    if(win.scrollTop() >= (top)) {
+      faqNav.addClass("faq-nav-fixed");
+    }
+    else {
+      faqNav.removeClass("faq-nav-fixed");
+    }
+
+    // Sticky headers on the faqs
+    $('.faqs h3').each(function(i,el){
+      var el = $(this),
+          top = el.offset().top,
+          id = el.attr('id');
+      if(win.scrollTop() >= (el.offset().top - 15)) {
+        $('a[href="#'+id+'"]').addClass('past-block');
+      }
+      else {
+        $('a[href="#'+id+'"]').removeClass('past-block');
+      }
+    });
+
+    $('.past-block').not(':last').removeClass('past-block');
+
+  });
+
+
+
+
+}
+
+/*
   Date Pickers
 */
 $('.datepicker').pickadate();
@@ -315,5 +357,6 @@ $('.datepicker').pickadate();
 $(function() {
   app.init();
   app.sso();
+  app.faq();
 });
 
