@@ -9,12 +9,6 @@ body.home {
   background-image:url(../images/theme-dark/background-tall.jpg);
 }
 
-@media screen and ( max-width: 768px ) {
-  body, body.home {
-    background-image: none;
-  }
-}
-
 // Header
 header.main {
   background:rgba(0, 0, 0, 0.75);
@@ -68,3 +62,4 @@ h1.logo {
     background-color: $grey-3;
   }
 }
+
