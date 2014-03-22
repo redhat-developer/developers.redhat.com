@@ -5,6 +5,7 @@ require 'aweplug/extensions/sections'
 require 'aweplug/extensions/asciidoc_example'
 require 'aweplug/extensions/vimeo'
 require 'aweplug/helpers/vimeo'
+require 'aweplug/helpers/resources'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
@@ -59,5 +60,6 @@ Awestruct::Extensions::Pipeline.new do
   helper Awestruct::Extensions::Partial
   helper JBoss::Developer::Utilities
   helper Aweplug::Helpers::Vimeo
+  helper Aweplug::Helpers::Resources
 end
 
