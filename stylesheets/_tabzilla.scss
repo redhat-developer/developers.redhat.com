@@ -10,7 +10,7 @@
 .dropup {
   /* display: none;  HIDE IT UNTIL WORKING */
   height: 37px;
-  background-image: url("http://static.jboss.org/common/images/tabzilla/tabzilla-redhat-logo-sprite.png");
+  background-image: cdn("http://static.jboss.org/common/images/tabzilla/tabzilla-redhat-logo-sprite.png");
   background-position: left top;
   width: 112px;
   background-color: transparent;
@@ -189,7 +189,7 @@
   -ms-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   order-radius: 8px;
-  background: url("http://static.jboss.org/common/images/arrow-tabnav-down.png") repeat scroll 0 0 transparent;
+  background: cdn("http://static.jboss.org/common/images/arrow-tabnav-down.png") repeat scroll 0 0 transparent;
   content: "x";
   height: 15px;
   position: absolute;
@@ -252,7 +252,7 @@
   }
   .dropup {
     height: 37px;
-    background-image: url("http://static.jboss.org/common/images/tabzilla/tabzilla-redhat-logo-sprite.png");
+    background-image: cdn("http://static.jboss.org/common/images/tabzilla/tabzilla-redhat-logo-sprite.png");
     background-position: left bottom;
     width: 74px;
     right:auto;

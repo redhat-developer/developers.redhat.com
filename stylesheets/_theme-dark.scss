@@ -1,12 +1,12 @@
 // Dark Theme - Colors and Images
 // body
 body {
-  background-image:url(../images/theme-dark/background-short.jpg);
+  background-image:cdn("../images/theme-dark/background-short.jpg");
 }
 
 // Specific Home Styles
 body.home {
-  background-image:url(../images/theme-dark/background-tall.jpg);
+  background-image:cdn("../images/theme-dark/background-tall.jpg");
 }
 
 @media screen and ( max-width: 768px ) {

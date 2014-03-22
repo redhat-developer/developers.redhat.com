@@ -1049,7 +1049,7 @@ ul.results {
   margin-top: 20px;
   &.loading {
     background:red;
-    background:url(../images/ajax-loader.gif) center 80px no-repeat;
+    background:cdn("../images/ajax-loader.gif") center 80px no-repeat;
     li.material {
       visibility: hidden;
     }
@@ -1117,13 +1117,13 @@ ul.results {
     position: absolute;
     text-indent: -9999px;
     &.premium {
-      background:url(../images/icon-premium.png) top left no-repeat;
+      background:cdn("../images/icon-premium.png") top left no-repeat;
       height:25px;
       top:20px
 
     }
     &.experimental {
-      background:url(../images/icon-experimental.png) top left no-repeat;
+      background:cdn("../images/icon-experimental.png") top left no-repeat;
       height: 120px;
       width: 130px;
       right: 0px;
@@ -1156,7 +1156,7 @@ ul[class*=block-grid] {
     vertical-align: middle;
     width:100%;
     text-align: center;
-    background:$dark-blue url(../images/stripes.png);
+    background:$dark-blue cdn("../images/stripes.png");
     font-size: emCalc(26);
     color:white;
     font-weight: 600;
@@ -1181,7 +1181,7 @@ li.upstream {
 
 .defaultprojectimage {
     border:1px solid $grey-5;
-	background-image:url(../images/projects/default_200x150.png);
+	background-image:cdn("../images/projects/default_200x150.png");
 	background-repeat: no-repeat;
 	height:150px;
 	width: 200px;
@@ -1494,7 +1494,7 @@ span.asterisk {
     &:before {
       content:attr(data-shares);
       display: inline-block;
-      background: url(../images/bubble.png) center no-repeat;
+      background: cdn("../images/bubble.png") center no-repeat;
       // content:"100";
       font-size: 11px;
       width: 40px;

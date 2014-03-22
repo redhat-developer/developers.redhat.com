@@ -251,7 +251,7 @@ nav.top-bar {
 i.jd-redhat:before {
   content:"R";
   position: relative;
-  background:url(../images/icon-redhat.png) center no-repeat;
+  background:cdn("../images/icon-redhat.png") center no-repeat;
   color:transparent;
   width:20px;
   display: inline-block;
@@ -337,7 +337,7 @@ ul.footer-nav {
     margin-right: 2px;
     &.redhat a {
       display: block;
-      background:url(../images/redhat_logo.png) center no-repeat;
+      background:cdn("../images/redhat_logo.png") center no-repeat;
       width:77px;
       height:25px;
       text-indent: -9999px;

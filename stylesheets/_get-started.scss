@@ -1,7 +1,7 @@
 .get-started-items {
   margin-bottom: 30px;
   position: relative;
-  background:url(../images/get-started-bg.png) bottom center no-repeat;
+  background:cdn("../images/get-started-bg.png") bottom center no-repeat;
   min-height:250px;
   span.line {
     display: block;
@@ -10,7 +10,7 @@
     font-style: italic;
     font-weight: 600;
     text-align: center;
-    background:url(../images/greypx.png) center repeat-x;
+    background:cdn("../images/greypx.png") center repeat-x;
     margin-top:10px;
     margin-bottom:10px;
     span {
@@ -52,7 +52,7 @@ a.get-started-example {
   border:3px solid white;
   font-weight: 600;
   padding:4px;
-  background:url(../images/bg-squares.png);
+  background:cdn("../images/bg-squares.png");
   background-size:cover;
   padding:20px 10px;
   line-height: 2;
@@ -227,7 +227,7 @@ a.get-started-quickstart.button {
 .ticket-monster-items {
   margin-bottom: 30px;
   position: relative;
-  background:url(../images/ticket-monster-bg.png) bottom center no-repeat;
+  background:cdn("../images/ticket-monster-bg.png") bottom center no-repeat;
   min-height:200px;
   border-radius: $global-radius;
   padding: 30px;
