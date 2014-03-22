@@ -131,7 +131,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   rsync(local_site_path, site_host, site_path)
 
   # Update the resources on the CDN
-  if config['cdn'] || profile['cdn']
+  if config['cdn_http_base'] || profile['cdn_http_base']
     cdn_host = Shellwords.escape(deploy_config['cdn_host'])
     cdn_path = Shellwords.escape(deploy_config['cdn_path'])
     local_cdn_path = '_tmp/cdn' # HACK!!
