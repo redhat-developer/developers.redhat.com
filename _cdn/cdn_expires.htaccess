@@ -1,0 +1,8 @@
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ############################################
+  ## Add default Expires header
+  ## http://developer.yahoo.com/performance/rules.html#expires
+  ExpiresDefault "access plus 10 year"
+</IfModule>
+
