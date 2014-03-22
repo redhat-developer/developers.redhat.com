@@ -18,6 +18,8 @@ profiles:
       host: www@filemgmt.jboss.org
       path: /stg_htdocs/www-stg
       uncommitted: true
+    scss:
+      :style: :compressed
   beta:
     base_url: http://www-beta.jboss.org
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
@@ -25,6 +27,8 @@ profiles:
       host: www@filemgmt.jboss.org
       path: /stg_htdocs/www-beta
       uncommitted: true
+    scss:
+      :style: :compressed
   filemgmt:
     base_url: http://www-stg2.jboss.org/
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
