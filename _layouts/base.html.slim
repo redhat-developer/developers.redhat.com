@@ -9,17 +9,19 @@ head
   meta charset='utf-8' 
   title JBoss Developer
   meta name='viewport' content='width=device-width, initial-scale=1.0' 
-  link rel='stylesheet' type='text/css' href="#{site.base_url}/#{site.context_url}/stylesheets/app.css" 
-  link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Cabin:400' 
+  == stylesheets "all" do
+    link rel='stylesheet' type='text/css' href="#{site.base_url}/#{site.context_url}/stylesheets/app.css" 
+    link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Cabin:400' 
+  
   /[if lt IE 9]
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
-  script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-  / jQuery fallback if CDN fails
-  javascript:
-    window.jQuery || document.write('<script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"><\/script>')
-  script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.feeds.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.timeago.js"
+
+  == javascripts "top" do
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.feeds.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.timeago.js"
+
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
   - if site.profile == 'staging' || site.profile == 'development' || site.profile == 'beta'
@@ -116,23 +118,27 @@ body(class="#{template}")
           li: a(href="mailto:help@jboss.org") Report a problem
 
   #fb-root
-  script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
+  
   /[if lt IE 9]
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
   / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.topbar.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.reveal.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.resize.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.isotope.min.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/moment.min.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/jbossorg-tabzilla.js"
+  
+  == javascripts "bottom" do
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.reveal.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.resize.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.isotope.min.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/moment.min.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/jbossorg-tabzilla.js"
+
   / Async G+
   javascript:
     (function() {
