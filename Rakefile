@@ -113,35 +113,31 @@ task :tag, :tag_name do |task, args|
 end
 
 desc 'Generate the site and deploy using the given profile'
-task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
+task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args| 
   run_awestruct "-P #{args[:profile]} -g --force"
   require 'yaml'
   require 'open3'
   require 'shellwords'
 
-  deploy_config = YAML.load_file('_config/site.yml')['profiles'][args[:profile]]['deploy']
-  host = Shellwords.escape(deploy_config['host'])
-  path = Shellwords.escape(deploy_config['path'])
-  site_path = '_site' # HACK!!
+  config = YAML.load_file('_config/site.yml')
+  profile = config['profiles'][args[:profile]]
 
-  cmd = "rsync -Pqacz --chmod=Dg+sx,ug+rw --protocol=28 --delete #{site_path}/ #{host}:#{path}"
+  # Deploy the site
+  deploy_config = profile['deploy']
+  site_host = Shellwords.escape(deploy_config['host'])
+  site_path = Shellwords.escape(deploy_config['path'])
+  local_site_path = '_site' # HACK!!
+  
+  rsync(local_site_path, site_host, site_path)
 
-  msg 'Deploying website via rsync'
+  # Update the resources on the CDN
+  if config['cdn'] || profile['cdn']
+    cdn_host = Shellwords.escape(deploy_config['cdn_host'])
+    cdn_path = Shellwords.escape(deploy_config['cdn_path'])
+    local_cdn_path = '_tmp/cdn' # HACK!!
 
-  Open3.popen3( cmd ) do |_, stdout, stderr|
-    threads = []
-    threads << Thread.new(stdout) do |i|
-      while ( ! i.eof? )
-        msg i.readline
-      end
-    end
-    threads << Thread.new(stderr) do |i|
-      while ( ! i.eof? )
-        msg i.readline, :error
-      end
-    end
-    threads.each{|t|t.join}
-  end 
+    rsync(local_cdn_path, cdn_host, cdn_path)
+  end
 end
 
 desc 'Clean out generated site and temporary files'
@@ -274,6 +270,28 @@ def msg(text, level = :info)
     puts "\e[31m#{text}\e[0m"
   else
     puts "\e[33m#{text}\e[0m"
+  end
+end
+
+def rsync(local_path, host, remote_path)
+  msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
+  exec "rsync -Pqacz --chmod=Dg+sx,ug+rw --protocol=28 --delete #{local_path}/ #{host}:#{remote_path}"
+end
+
+def exec(cmd)
+  Open3.popen3( cmd ) do |_, stdout, stderr|
+    threads = []
+    threads << Thread.new(stdout) do |i|
+      while ( ! i.eof? )
+        msg i.readline
+      end
+    end
+    threads << Thread.new(stderr) do |i|
+      while ( ! i.eof? )
+        msg i.readline, :error
+      end
+    end
+    threads.each{|t|t.join}
   end
 end
 

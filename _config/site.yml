@@ -7,16 +7,20 @@ vimeo_client_id: 2589d6592dfd44bfec54f22edf766aedaf0fd5d7
 vimeo_access_token: 1ad6583e71e183c3075a88d46ebb0675
 register_url: https://community.jboss.org/register.jspa
 
-remote_profile: &remote_profile
+deploy_base: &deploy
+  host: www@filemgmt.jboss.org
+  cdn_host: www@filemgmt.jboss.org
+  cdn_path: /static_htdocs/_root/common/www
+  uncommitted: true
+
+profile_base: &profile
   dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
   cdn_http_base: http://static.jboss.org/common/www
   cdn: true
   log_faraday: true
   minify: true
   deploy:
-    host: www@filemgmt.jboss.org
-    cdn_path: /static_htdocs/_root/common/www
-    uncommitted: true
+    <<: *deploy
   scss:
     :style: :compressed
 
@@ -26,15 +30,17 @@ profiles:
     log_faraday: true
 
   staging: 
-    <<: *remote_profile
+    <<: *profile
     base_url: http://www-stg.jboss.org
     deploy:
+      <<: *deploy
       path: /stg_htdocs/www-stg
     
   beta:
-    <<: *remote_profile
+    <<: *profile
     base_url: http://www-beta.jboss.org
     deploy:
+      <<: *deploy
       path: /stg_htdocs/www-beta
 
   filemgmt:
