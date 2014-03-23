@@ -6,3 +6,10 @@
   ExpiresDefault "access plus 10 year"
 </IfModule>
 
+<IfModule mod_deflate.c>
+  ############################################
+  ## GZIP text content
+  ## http://developer.yahoo.com/performance/rules.html#gzip
+  AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
+</IfModule>
+
