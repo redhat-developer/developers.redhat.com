@@ -128,7 +128,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   site_path = Shellwords.escape(deploy_config['path'])
   local_site_path = '_site' # HACK!!
   
-  rsync(local_site_path, site_host, site_path)
+  rsync(local_site_path, site_host, site_path, true)
 
   # Update the resources on the CDN
   if config['cdn_http_base'] || profile['cdn_http_base']
@@ -273,9 +273,9 @@ def msg(text, level = :info)
   end
 end
 
-def rsync(local_path, host, remote_path)
+def rsync(local_path, host, remote_path, delete = false)
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
-  exec "rsync -Pqacz --chmod=Dg+sx,ug+rw --protocol=28 --delete #{local_path}/ #{host}:#{remote_path}"
+  exec "rsync -Pqacz --chmod=Dg+sx,ug+rw --protocol=28 #{delete ? '--delete' : ''} #{local_path}/ #{host}:#{remote_path}"
 end
 
 def exec(cmd)
