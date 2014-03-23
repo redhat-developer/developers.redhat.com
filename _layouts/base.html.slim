@@ -18,8 +18,6 @@ head
 
   == javascripts "top" do
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.feeds.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/jquery.timeago.js"
 
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
@@ -130,6 +128,7 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.resize.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.date.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.isotope.min.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/moment.min.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.feeds.js"
@@ -140,19 +139,9 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/jbossorg-tabzilla.js"
 
-  / Async G+
-  javascript:
-    (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
-  / Async Twitter
-  javascript:
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-  / Linked In
-  script(src="//platform.linkedin.com/in.js")
-   lang: en_US
+  / Disabled, pending reimplementation of Share This functionality
+  /script src="http://platform.linkedin.com/in.js"
+  /script src="http://apis.google.com/js/plusone.js"
+  /script src="http://platform.twitter.com/widgets.js"
 

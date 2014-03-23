@@ -23,7 +23,6 @@ issues: [DEVELOPER-127]
 .row.heromobile
   a: img(src=cdn(site.base_url + "/images/hero1_mobile_480x500.png"))
   
-    
 / Main Slider
 / .row.slider-wrapper
 /   .slider#slider
@@ -50,56 +49,7 @@ issues: [DEVELOPER-127]
             | View All Buzz 
             i.fa.fa-angle-double-right
         h3 Buzz
-        div(id="buzzcontainer")
-      javascript:  
-        var feedTemplate = '<div class="large-12 column">' +
-                           '  <div class="update pinned updatemobile">' +
-                           '    <div class="update-meta">' +
-                           '      <a class="update-timestamp" href="#"><!=publishedDate!></a>' +
-                           '      <a class="update-source" href="<!=link!>">' +
-                           //'        <i class="fa fa-twitter"></i>' +
-                           '        <!=author!> said:' +
-                           '      </a>' +
-                           '    </div>' +
-                           '    <div class="update-body">' +
-                           '      <p>' +
-                           '        <img class="avatar" src=""></img>' +
-                           '        <!=contentSnippet!>' +
-                           '      </p>' +
-                           '    </div>' +
-                           '    <div class="update-meta">' +
-                           '      <div class="share-this">' +
-                           '        <p>' +
-                           '          <i class="fa fa-share"></i>' +
-                           '          Share This' +
-                           '        </p>' +
-                           '        <div class="share-this-buttons">' +
-                           '          <a href="https://twitter.com/share" class="twitter-share-button" data-text="<!=title!>" data-url="<!=link!>">Tweet</a>' +
-                           '          <span class="facebook-share-button">' +
-                           '            <a href="#" data-title="<!=title!>" data-text="" data-url="<!=link!>">Share</a>' +
-                           '            <span class="facebook-share-button-count" data-shares="0"></span>' +
-                           '          </span>' +
-                           '          <div class="g-plus" data-action="share" href="<!=link!>" data-annotation="bubble"> Share on G+</div>' +
-                           '          <script type="IN/Share" data-url="<!=link!>" data-counter="right"></scr' + 'ipt>' +
-                           '        </div>' +
-                           '      </div>' +
-                           '    </div>' +
-                           '  </div>' +
-                           '</div>';   
-        $(document).ready(function() {
-          $('#buzzcontainer').feeds({
-              feeds: { 
-                buzz: 'http://planet.jboss.org/feeds/buzz' 
-              },
-              preprocess: function(feed) {
-                this.publishedDate = jQuery.timeago(new Date(this.publishedDate));
-              },
-              loadingTemplate: '<p class="feeds-loader">Loading entries ...</p>',
-              max: 6,
-              entryTemplate: feedTemplate
-          });
-        });                                     
-
+        .mini-buzz-container
       .large-8.columns
         h6.viewall
           a(href="events")
@@ -124,16 +74,5 @@ issues: [DEVELOPER-127]
                   span
                     #{v.description[0 .. 180]}
               .update-meta
-                .share-this
-                  p
-                    i.fa.fa-share
-                    | Share This
-                  .share-this-buttons
-                    a(href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this event I saw on jboss.org" data-url="http://jboss.org") Tweet
-                    span.facebook-share-button
-                      a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
-                        | Share
-                      span.facebook-share-button-count(data-shares="0")
-                    div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
-                    script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
+                = partial "share.html.slim"
 

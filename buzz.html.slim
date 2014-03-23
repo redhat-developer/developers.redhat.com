@@ -30,36 +30,5 @@ issues: [DEVELOPER-220, DEVELOPER-222, DEVELOPER-221, DEVELOPER-227, DEVELOPER-2
       li: a(data-filter="google-plus")
         i.icon-google-plus
 
-  .large-24.buzz-items(id="feedcontainer")
-  javascript:
-    var feedTemplate = '<div class="buzz-item buzz-item-twitter">' +
-                       '  <div class="buzz-item-inner">' +
-                       '    <div class="buzz-header">' +
-                       '      <i class="icon-twitter"></i>' +
-                       '    </div>' +
-                       '    <img src="#{site.base_url}/#{site.context_url}/images/solution-1.png"></img>' +
-                       '    <h3><!=title!></h3>' +
-                       '    <p><!=contentSnippet!></p>' +
-                       '    <div class="share-this">' +
-                       '      <p><i class="fa fa-share">Share This</i></p>' +
-                       '      <div class="share-this-buttons">' +
-                       '        <a href="https://twitter.com/share" class="twitter-share-button" data-text="<!=title!>" data-url="<!=link!>">Tweet</a>' +
-                       '        <span class="facebook-share-button">' +
-                       '          <a href="#" data-title="<!=title!>" data-text="" data-url="<!=link!>">Share</a>' +
-                       '          <span class="facebook-share-button-count" data-shares="0"></span>' +
-                       '        </span>' +
-                       '        <div class="g-plus" data-action="share" href="<!=link!>" data-annotation="bubble"> Share on G+</div>' +
-                       '        <script type="IN/Share" data-url="<!=link!>" data-counter="right"></scr' + 'ipt>' +
-                       '      </div>' +
-                       '    </div>' +
-                       '  </div>' +
-                       '</div>';                         
-     
-    $(document).ready(function() {
-      $('#feedcontainer').feeds({
-          feeds: { buzz: 'http://planet.jboss.org/feeds/buzz' 
-          },
-          entryTemplate: feedTemplate
-      });
-    });  
+  .large-24.buzz-items.buzz-container
 

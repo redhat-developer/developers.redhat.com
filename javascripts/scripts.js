@@ -4,6 +4,14 @@ var app = window.app = {};
 */
 app.cache = {};
 
+/*
+  JS templates
+*/
+
+app.templates = new Object();
+app.templates.miniBuzzTemplate = '#{partial "mini_buzz_template.html.slim"}';
+app.templates.buzzTemplate = '#{partial "buzz_template.html.slim"}';
+
 /* 
   Website Init 
 */ 
@@ -223,8 +231,45 @@ app.init = function() {
         itemSelector: '.buzz-item'
       });
     });
+  };
+  
+  /* 
+    "Mini" Buzz, for the homepage
+  */
+  var $mbuzz = $('.mini-buzz-container');
 
-};
+  if($mbuzz.length) {
+    $mbuzz.feeds({
+        feeds: { 
+          buzz: 'http://planet.jboss.org/feeds/buzz' 
+        },
+        preprocess: function(feed) {
+          this.publishedDate = jQuery.timeago(new Date(this.publishedDate));
+        },
+        loadingTemplate: '<p class="feeds-loader">Loading entries ...</p>',
+        max: 6,
+        entryTemplate: app.templates.miniBuzzTemplate
+    });
+  };
+
+  /* 
+    Full Buzz, for the buzz page
+  */
+  var $buzz = $('.buzz-container');
+
+  if($buzz.length) {
+    $buzz.feeds({
+        feeds: { 
+          buzz: 'http://planet.jboss.org/feeds/buzz' 
+        },
+        preprocess: function(feed) {
+          this.publishedDate = jQuery.timeago(new Date(this.publishedDate));
+        },
+        loadingTemplate: '<p class="feeds-loader">Loading entries ...</p>',
+        max: 6,
+        entryTemplate: app.templates.buzzTemplate
+    });
+  };
 
   /*
      Show more downloads table
