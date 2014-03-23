@@ -1,0 +1,188 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$product-logos-sprite-base-class: ".product-logos-sprite" !default;
+$product-logos-sprite-dimensions: false !default;
+$product-logos-position: 0% !default;
+$product-logos-spacing: 0 !default;
+$product-logos-repeat: no-repeat !default;
+$product-logos-prefix: '' !default;
+$product-logos-clean-up: true !default;
+$product-logos-layout:vertical !default;
+$product-logos-inline: false !default;
+
+  
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $product-logos-logo-a-mq-position: $product-logos-position !default;
+   $product-logos-logo-a-mq-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-a-mq-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-bpm-suite-position: $product-logos-position !default;
+   $product-logos-logo-bpm-suite-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-bpm-suite-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-brms-position: $product-logos-position !default;
+   $product-logos-logo-brms-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-brms-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-data-grid-position: $product-logos-position !default;
+   $product-logos-logo-data-grid-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-data-grid-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-data-virtualization-position: $product-logos-position !default;
+   $product-logos-logo-data-virtualization-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-data-virtualization-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-developer-studio-position: $product-logos-position !default;
+   $product-logos-logo-developer-studio-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-developer-studio-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-enterprise-app-platform-position: $product-logos-position !default;
+   $product-logos-logo-enterprise-app-platform-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-enterprise-app-platform-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-framework-kit-position: $product-logos-position !default;
+   $product-logos-logo-framework-kit-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-framework-kit-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-fsw-position: $product-logos-position !default;
+   $product-logos-logo-fsw-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-fsw-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-fuse-position: $product-logos-position !default;
+   $product-logos-logo-fuse-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-fuse-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-operationsnetwork-position: $product-logos-position !default;
+   $product-logos-logo-operationsnetwork-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-operationsnetwork-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-portal-position: $product-logos-position !default;
+   $product-logos-logo-portal-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-portal-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-soa-platform-position: $product-logos-position !default;
+   $product-logos-logo-soa-platform-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-soa-platform-repeat:   $product-logos-repeat !default;
+ 
+   $product-logos-logo-web-server-position: $product-logos-position !default;
+   $product-logos-logo-web-server-spacing:  $product-logos-spacing !default;
+   $product-logos-logo-web-server-repeat:   $product-logos-repeat !default;
+ 
+
+ $product-logos-sprites: sprite-map("product-logos/*.png",
+ 
+   $product-logos-logo-a-mq-position: $product-logos-logo-a-mq-position, 
+   $product-logos-logo-a-mq-spacing:  $product-logos-logo-a-mq-spacing, 
+   $product-logos-logo-a-mq-repeat:   $product-logos-logo-a-mq-repeat,
+ 
+   $product-logos-logo-bpm-suite-position: $product-logos-logo-bpm-suite-position, 
+   $product-logos-logo-bpm-suite-spacing:  $product-logos-logo-bpm-suite-spacing, 
+   $product-logos-logo-bpm-suite-repeat:   $product-logos-logo-bpm-suite-repeat,
+ 
+   $product-logos-logo-brms-position: $product-logos-logo-brms-position, 
+   $product-logos-logo-brms-spacing:  $product-logos-logo-brms-spacing, 
+   $product-logos-logo-brms-repeat:   $product-logos-logo-brms-repeat,
+ 
+   $product-logos-logo-data-grid-position: $product-logos-logo-data-grid-position, 
+   $product-logos-logo-data-grid-spacing:  $product-logos-logo-data-grid-spacing, 
+   $product-logos-logo-data-grid-repeat:   $product-logos-logo-data-grid-repeat,
+ 
+   $product-logos-logo-data-virtualization-position: $product-logos-logo-data-virtualization-position, 
+   $product-logos-logo-data-virtualization-spacing:  $product-logos-logo-data-virtualization-spacing, 
+   $product-logos-logo-data-virtualization-repeat:   $product-logos-logo-data-virtualization-repeat,
+ 
+   $product-logos-logo-developer-studio-position: $product-logos-logo-developer-studio-position, 
+   $product-logos-logo-developer-studio-spacing:  $product-logos-logo-developer-studio-spacing, 
+   $product-logos-logo-developer-studio-repeat:   $product-logos-logo-developer-studio-repeat,
+ 
+   $product-logos-logo-enterprise-app-platform-position: $product-logos-logo-enterprise-app-platform-position, 
+   $product-logos-logo-enterprise-app-platform-spacing:  $product-logos-logo-enterprise-app-platform-spacing, 
+   $product-logos-logo-enterprise-app-platform-repeat:   $product-logos-logo-enterprise-app-platform-repeat,
+ 
+   $product-logos-logo-framework-kit-position: $product-logos-logo-framework-kit-position, 
+   $product-logos-logo-framework-kit-spacing:  $product-logos-logo-framework-kit-spacing, 
+   $product-logos-logo-framework-kit-repeat:   $product-logos-logo-framework-kit-repeat,
+ 
+   $product-logos-logo-fsw-position: $product-logos-logo-fsw-position, 
+   $product-logos-logo-fsw-spacing:  $product-logos-logo-fsw-spacing, 
+   $product-logos-logo-fsw-repeat:   $product-logos-logo-fsw-repeat,
+ 
+   $product-logos-logo-fuse-position: $product-logos-logo-fuse-position, 
+   $product-logos-logo-fuse-spacing:  $product-logos-logo-fuse-spacing, 
+   $product-logos-logo-fuse-repeat:   $product-logos-logo-fuse-repeat,
+ 
+   $product-logos-logo-operationsnetwork-position: $product-logos-logo-operationsnetwork-position, 
+   $product-logos-logo-operationsnetwork-spacing:  $product-logos-logo-operationsnetwork-spacing, 
+   $product-logos-logo-operationsnetwork-repeat:   $product-logos-logo-operationsnetwork-repeat,
+ 
+   $product-logos-logo-portal-position: $product-logos-logo-portal-position, 
+   $product-logos-logo-portal-spacing:  $product-logos-logo-portal-spacing, 
+   $product-logos-logo-portal-repeat:   $product-logos-logo-portal-repeat,
+ 
+   $product-logos-logo-soa-platform-position: $product-logos-logo-soa-platform-position, 
+   $product-logos-logo-soa-platform-spacing:  $product-logos-logo-soa-platform-spacing, 
+   $product-logos-logo-soa-platform-repeat:   $product-logos-logo-soa-platform-repeat,
+ 
+   $product-logos-logo-web-server-position: $product-logos-logo-web-server-position, 
+   $product-logos-logo-web-server-spacing:  $product-logos-logo-web-server-spacing, 
+   $product-logos-logo-web-server-repeat:   $product-logos-logo-web-server-repeat,
+ 
+ $layout: $product-logos-layout,
+ $cleanup: $product-logos-clean-up
+ );
+
+
+// All sprites should extend this class
+// The product-logos-sprite mixin will do so for you.
+@if $product-logos-inline {
+  #{$product-logos-sprite-base-class} {
+    background-image: inline-sprite($product-logos-sprites);
+  } 
+} @else {
+  #{$product-logos-sprite-base-class} {
+    background: $product-logos-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function product-logos-sprite-width($name) {
+    $file: sprite_file($product-logos-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function product-logos-sprite-height($name) {
+    $file: sprite_file($product-logos-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin product-logos-sprite-dimensions($name) {
+  @include sprite-dimensions($product-logos-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin product-logos-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($product-logos-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin product-logos-sprite($name, $dimensions: $product-logos-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$product-logos-sprite-base-class};
+  @include sprite($product-logos-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin product-logos-sprites($sprite-names, $dimensions: $product-logos-sprite-dimensions, $prefix: sprite-map-name($product-logos-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($product-logos-sprites, $sprite-names, $product-logos-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-product-logos-sprites($dimensions: $product-logos-sprite-dimensions, $prefix: sprite-map-name($product-logos-sprites), $offset-x: 0, $offset-y: 0) {
+  @include product-logos-sprites(logo-a-mq logo-bpm-suite logo-brms logo-data-grid logo-data-virtualization logo-developer-studio logo-enterprise-app-platform logo-framework-kit logo-fsw logo-fuse logo-operationsnetwork logo-portal logo-soa-platform logo-web-server, $dimensions, $prefix, $offset-x, $offset-y);
+}
