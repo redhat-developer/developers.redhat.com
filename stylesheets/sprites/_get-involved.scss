@@ -1,0 +1,84 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$get-involved-sprite-base-class: ".get-involved-sprite" !default;
+$get-involved-sprite-dimensions: false !default;
+$get-involved-position: 0% !default;
+$get-involved-spacing: 0 !default;
+$get-involved-repeat: no-repeat !default;
+$get-involved-prefix: '' !default;
+$get-involved-clean-up: true !default;
+$get-involved-layout:vertical !default;
+$get-involved-inline: false !default;
+
+  
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $get-involved-bg-position: $get-involved-position !default;
+   $get-involved-bg-spacing:  $get-involved-spacing !default;
+   $get-involved-bg-repeat:   $get-involved-repeat !default;
+ 
+
+ $get-involved-sprites: sprite-map("design/get-involved/*.png",
+ 
+   $get-involved-bg-position: $get-involved-bg-position, 
+   $get-involved-bg-spacing:  $get-involved-bg-spacing, 
+   $get-involved-bg-repeat:   $get-involved-bg-repeat,
+ 
+ $layout: $get-involved-layout,
+ $cleanup: $get-involved-clean-up
+ );
+
+
+// All sprites should extend this class
+// The get-involved-sprite mixin will do so for you.
+@if $get-involved-inline {
+  #{$get-involved-sprite-base-class} {
+    background-image: inline-sprite($get-involved-sprites);
+  } 
+} @else {
+  #{$get-involved-sprite-base-class} {
+    background: $get-involved-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function get-involved-sprite-width($name) {
+    $file: sprite_file($get-involved-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function get-involved-sprite-height($name) {
+    $file: sprite_file($get-involved-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin get-involved-sprite-dimensions($name) {
+  @include sprite-dimensions($get-involved-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin get-involved-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($get-involved-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin get-involved-sprite($name, $dimensions: $get-involved-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$get-involved-sprite-base-class};
+  @include sprite($get-involved-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin get-involved-sprites($sprite-names, $dimensions: $get-involved-sprite-dimensions, $prefix: sprite-map-name($get-involved-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($get-involved-sprites, $sprite-names, $get-involved-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-get-involved-sprites($dimensions: $get-involved-sprite-dimensions, $prefix: sprite-map-name($get-involved-sprites), $offset-x: 0, $offset-y: 0) {
+  @include get-involved-sprites(bg, $dimensions, $prefix, $offset-x, $offset-y);
+}

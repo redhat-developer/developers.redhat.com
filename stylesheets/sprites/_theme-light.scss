@@ -1,0 +1,92 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$theme-light-sprite-base-class: ".theme-light-sprite" !default;
+$theme-light-sprite-dimensions: false !default;
+$theme-light-position: 0% !default;
+$theme-light-spacing: 0 !default;
+$theme-light-repeat: no-repeat !default;
+$theme-light-prefix: '' !default;
+$theme-light-clean-up: true !default;
+$theme-light-layout:vertical !default;
+$theme-light-inline: false !default;
+
+  
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $theme-light-background-short-position: $theme-light-position !default;
+   $theme-light-background-short-spacing:  $theme-light-spacing !default;
+   $theme-light-background-short-repeat:   $theme-light-repeat !default;
+ 
+   $theme-light-background-tall-position: $theme-light-position !default;
+   $theme-light-background-tall-spacing:  $theme-light-spacing !default;
+   $theme-light-background-tall-repeat:   $theme-light-repeat !default;
+ 
+
+ $theme-light-sprites: sprite-map("design/theme-light/*.png",
+ 
+   $theme-light-background-short-position: $theme-light-background-short-position, 
+   $theme-light-background-short-spacing:  $theme-light-background-short-spacing, 
+   $theme-light-background-short-repeat:   $theme-light-background-short-repeat,
+ 
+   $theme-light-background-tall-position: $theme-light-background-tall-position, 
+   $theme-light-background-tall-spacing:  $theme-light-background-tall-spacing, 
+   $theme-light-background-tall-repeat:   $theme-light-background-tall-repeat,
+ 
+ $layout: $theme-light-layout,
+ $cleanup: $theme-light-clean-up
+ );
+
+
+// All sprites should extend this class
+// The theme-light-sprite mixin will do so for you.
+@if $theme-light-inline {
+  #{$theme-light-sprite-base-class} {
+    background-image: inline-sprite($theme-light-sprites);
+  } 
+} @else {
+  #{$theme-light-sprite-base-class} {
+    background: $theme-light-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function theme-light-sprite-width($name) {
+    $file: sprite_file($theme-light-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function theme-light-sprite-height($name) {
+    $file: sprite_file($theme-light-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin theme-light-sprite-dimensions($name) {
+  @include sprite-dimensions($theme-light-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin theme-light-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($theme-light-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin theme-light-sprite($name, $dimensions: $theme-light-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$theme-light-sprite-base-class};
+  @include sprite($theme-light-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin theme-light-sprites($sprite-names, $dimensions: $theme-light-sprite-dimensions, $prefix: sprite-map-name($theme-light-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($theme-light-sprites, $sprite-names, $theme-light-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-theme-light-sprites($dimensions: $theme-light-sprite-dimensions, $prefix: sprite-map-name($theme-light-sprites), $offset-x: 0, $offset-y: 0) {
+  @include theme-light-sprites(background-short background-tall, $dimensions, $prefix, $offset-x, $offset-y);
+}

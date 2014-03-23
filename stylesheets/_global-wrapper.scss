@@ -249,9 +249,9 @@ nav.top-bar {
 
 // Custom icons
 i.jd-redhat:before {
+  @extend .icons-redhat;
   content:"R";
   position: relative;
-  background:cdn("../images/icon-redhat.png") center no-repeat;
   color:transparent;
   width:20px;
   display: inline-block;
@@ -336,8 +336,8 @@ ul.footer-nav {
     display:inline;
     margin-right: 2px;
     &.redhat a {
+      @extend .icons-redhat-logo;
       display: block;
-      background:cdn("../images/redhat_logo.png") center no-repeat;
       width:77px;
       height:25px;
       text-indent: -9999px;

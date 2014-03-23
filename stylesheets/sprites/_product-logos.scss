@@ -16,120 +16,120 @@ $product-logos-inline: false !default;
  // These variables control the generated sprite output
  // You can override them selectively before you import this file.
  
-   $product-logos-logo-a-mq-position: $product-logos-position !default;
-   $product-logos-logo-a-mq-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-a-mq-repeat:   $product-logos-repeat !default;
+   $product-logos-a-mq-position: $product-logos-position !default;
+   $product-logos-a-mq-spacing:  $product-logos-spacing !default;
+   $product-logos-a-mq-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-bpm-suite-position: $product-logos-position !default;
-   $product-logos-logo-bpm-suite-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-bpm-suite-repeat:   $product-logos-repeat !default;
+   $product-logos-bpm-suite-position: $product-logos-position !default;
+   $product-logos-bpm-suite-spacing:  $product-logos-spacing !default;
+   $product-logos-bpm-suite-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-brms-position: $product-logos-position !default;
-   $product-logos-logo-brms-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-brms-repeat:   $product-logos-repeat !default;
+   $product-logos-brms-position: $product-logos-position !default;
+   $product-logos-brms-spacing:  $product-logos-spacing !default;
+   $product-logos-brms-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-data-grid-position: $product-logos-position !default;
-   $product-logos-logo-data-grid-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-data-grid-repeat:   $product-logos-repeat !default;
+   $product-logos-data-grid-position: $product-logos-position !default;
+   $product-logos-data-grid-spacing:  $product-logos-spacing !default;
+   $product-logos-data-grid-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-data-virtualization-position: $product-logos-position !default;
-   $product-logos-logo-data-virtualization-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-data-virtualization-repeat:   $product-logos-repeat !default;
+   $product-logos-data-virtualization-position: $product-logos-position !default;
+   $product-logos-data-virtualization-spacing:  $product-logos-spacing !default;
+   $product-logos-data-virtualization-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-developer-studio-position: $product-logos-position !default;
-   $product-logos-logo-developer-studio-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-developer-studio-repeat:   $product-logos-repeat !default;
+   $product-logos-developer-studio-position: $product-logos-position !default;
+   $product-logos-developer-studio-spacing:  $product-logos-spacing !default;
+   $product-logos-developer-studio-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-enterprise-app-platform-position: $product-logos-position !default;
-   $product-logos-logo-enterprise-app-platform-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-enterprise-app-platform-repeat:   $product-logos-repeat !default;
+   $product-logos-enterprise-app-platform-position: $product-logos-position !default;
+   $product-logos-enterprise-app-platform-spacing:  $product-logos-spacing !default;
+   $product-logos-enterprise-app-platform-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-framework-kit-position: $product-logos-position !default;
-   $product-logos-logo-framework-kit-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-framework-kit-repeat:   $product-logos-repeat !default;
+   $product-logos-framework-kit-position: $product-logos-position !default;
+   $product-logos-framework-kit-spacing:  $product-logos-spacing !default;
+   $product-logos-framework-kit-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-fsw-position: $product-logos-position !default;
-   $product-logos-logo-fsw-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-fsw-repeat:   $product-logos-repeat !default;
+   $product-logos-fsw-position: $product-logos-position !default;
+   $product-logos-fsw-spacing:  $product-logos-spacing !default;
+   $product-logos-fsw-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-fuse-position: $product-logos-position !default;
-   $product-logos-logo-fuse-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-fuse-repeat:   $product-logos-repeat !default;
+   $product-logos-fuse-position: $product-logos-position !default;
+   $product-logos-fuse-spacing:  $product-logos-spacing !default;
+   $product-logos-fuse-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-operationsnetwork-position: $product-logos-position !default;
-   $product-logos-logo-operationsnetwork-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-operationsnetwork-repeat:   $product-logos-repeat !default;
+   $product-logos-operationsnetwork-position: $product-logos-position !default;
+   $product-logos-operationsnetwork-spacing:  $product-logos-spacing !default;
+   $product-logos-operationsnetwork-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-portal-position: $product-logos-position !default;
-   $product-logos-logo-portal-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-portal-repeat:   $product-logos-repeat !default;
+   $product-logos-portal-position: $product-logos-position !default;
+   $product-logos-portal-spacing:  $product-logos-spacing !default;
+   $product-logos-portal-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-soa-platform-position: $product-logos-position !default;
-   $product-logos-logo-soa-platform-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-soa-platform-repeat:   $product-logos-repeat !default;
+   $product-logos-soa-platform-position: $product-logos-position !default;
+   $product-logos-soa-platform-spacing:  $product-logos-spacing !default;
+   $product-logos-soa-platform-repeat:   $product-logos-repeat !default;
  
-   $product-logos-logo-web-server-position: $product-logos-position !default;
-   $product-logos-logo-web-server-spacing:  $product-logos-spacing !default;
-   $product-logos-logo-web-server-repeat:   $product-logos-repeat !default;
+   $product-logos-web-server-position: $product-logos-position !default;
+   $product-logos-web-server-spacing:  $product-logos-spacing !default;
+   $product-logos-web-server-repeat:   $product-logos-repeat !default;
  
 
- $product-logos-sprites: sprite-map("product-logos/*.png",
+ $product-logos-sprites: sprite-map("branding/product-logos/*.png",
  
-   $product-logos-logo-a-mq-position: $product-logos-logo-a-mq-position, 
-   $product-logos-logo-a-mq-spacing:  $product-logos-logo-a-mq-spacing, 
-   $product-logos-logo-a-mq-repeat:   $product-logos-logo-a-mq-repeat,
+   $product-logos-a-mq-position: $product-logos-a-mq-position, 
+   $product-logos-a-mq-spacing:  $product-logos-a-mq-spacing, 
+   $product-logos-a-mq-repeat:   $product-logos-a-mq-repeat,
  
-   $product-logos-logo-bpm-suite-position: $product-logos-logo-bpm-suite-position, 
-   $product-logos-logo-bpm-suite-spacing:  $product-logos-logo-bpm-suite-spacing, 
-   $product-logos-logo-bpm-suite-repeat:   $product-logos-logo-bpm-suite-repeat,
+   $product-logos-bpm-suite-position: $product-logos-bpm-suite-position, 
+   $product-logos-bpm-suite-spacing:  $product-logos-bpm-suite-spacing, 
+   $product-logos-bpm-suite-repeat:   $product-logos-bpm-suite-repeat,
  
-   $product-logos-logo-brms-position: $product-logos-logo-brms-position, 
-   $product-logos-logo-brms-spacing:  $product-logos-logo-brms-spacing, 
-   $product-logos-logo-brms-repeat:   $product-logos-logo-brms-repeat,
+   $product-logos-brms-position: $product-logos-brms-position, 
+   $product-logos-brms-spacing:  $product-logos-brms-spacing, 
+   $product-logos-brms-repeat:   $product-logos-brms-repeat,
  
-   $product-logos-logo-data-grid-position: $product-logos-logo-data-grid-position, 
-   $product-logos-logo-data-grid-spacing:  $product-logos-logo-data-grid-spacing, 
-   $product-logos-logo-data-grid-repeat:   $product-logos-logo-data-grid-repeat,
+   $product-logos-data-grid-position: $product-logos-data-grid-position, 
+   $product-logos-data-grid-spacing:  $product-logos-data-grid-spacing, 
+   $product-logos-data-grid-repeat:   $product-logos-data-grid-repeat,
  
-   $product-logos-logo-data-virtualization-position: $product-logos-logo-data-virtualization-position, 
-   $product-logos-logo-data-virtualization-spacing:  $product-logos-logo-data-virtualization-spacing, 
-   $product-logos-logo-data-virtualization-repeat:   $product-logos-logo-data-virtualization-repeat,
+   $product-logos-data-virtualization-position: $product-logos-data-virtualization-position, 
+   $product-logos-data-virtualization-spacing:  $product-logos-data-virtualization-spacing, 
+   $product-logos-data-virtualization-repeat:   $product-logos-data-virtualization-repeat,
  
-   $product-logos-logo-developer-studio-position: $product-logos-logo-developer-studio-position, 
-   $product-logos-logo-developer-studio-spacing:  $product-logos-logo-developer-studio-spacing, 
-   $product-logos-logo-developer-studio-repeat:   $product-logos-logo-developer-studio-repeat,
+   $product-logos-developer-studio-position: $product-logos-developer-studio-position, 
+   $product-logos-developer-studio-spacing:  $product-logos-developer-studio-spacing, 
+   $product-logos-developer-studio-repeat:   $product-logos-developer-studio-repeat,
  
-   $product-logos-logo-enterprise-app-platform-position: $product-logos-logo-enterprise-app-platform-position, 
-   $product-logos-logo-enterprise-app-platform-spacing:  $product-logos-logo-enterprise-app-platform-spacing, 
-   $product-logos-logo-enterprise-app-platform-repeat:   $product-logos-logo-enterprise-app-platform-repeat,
+   $product-logos-enterprise-app-platform-position: $product-logos-enterprise-app-platform-position, 
+   $product-logos-enterprise-app-platform-spacing:  $product-logos-enterprise-app-platform-spacing, 
+   $product-logos-enterprise-app-platform-repeat:   $product-logos-enterprise-app-platform-repeat,
  
-   $product-logos-logo-framework-kit-position: $product-logos-logo-framework-kit-position, 
-   $product-logos-logo-framework-kit-spacing:  $product-logos-logo-framework-kit-spacing, 
-   $product-logos-logo-framework-kit-repeat:   $product-logos-logo-framework-kit-repeat,
+   $product-logos-framework-kit-position: $product-logos-framework-kit-position, 
+   $product-logos-framework-kit-spacing:  $product-logos-framework-kit-spacing, 
+   $product-logos-framework-kit-repeat:   $product-logos-framework-kit-repeat,
  
-   $product-logos-logo-fsw-position: $product-logos-logo-fsw-position, 
-   $product-logos-logo-fsw-spacing:  $product-logos-logo-fsw-spacing, 
-   $product-logos-logo-fsw-repeat:   $product-logos-logo-fsw-repeat,
+   $product-logos-fsw-position: $product-logos-fsw-position, 
+   $product-logos-fsw-spacing:  $product-logos-fsw-spacing, 
+   $product-logos-fsw-repeat:   $product-logos-fsw-repeat,
  
-   $product-logos-logo-fuse-position: $product-logos-logo-fuse-position, 
-   $product-logos-logo-fuse-spacing:  $product-logos-logo-fuse-spacing, 
-   $product-logos-logo-fuse-repeat:   $product-logos-logo-fuse-repeat,
+   $product-logos-fuse-position: $product-logos-fuse-position, 
+   $product-logos-fuse-spacing:  $product-logos-fuse-spacing, 
+   $product-logos-fuse-repeat:   $product-logos-fuse-repeat,
  
-   $product-logos-logo-operationsnetwork-position: $product-logos-logo-operationsnetwork-position, 
-   $product-logos-logo-operationsnetwork-spacing:  $product-logos-logo-operationsnetwork-spacing, 
-   $product-logos-logo-operationsnetwork-repeat:   $product-logos-logo-operationsnetwork-repeat,
+   $product-logos-operationsnetwork-position: $product-logos-operationsnetwork-position, 
+   $product-logos-operationsnetwork-spacing:  $product-logos-operationsnetwork-spacing, 
+   $product-logos-operationsnetwork-repeat:   $product-logos-operationsnetwork-repeat,
  
-   $product-logos-logo-portal-position: $product-logos-logo-portal-position, 
-   $product-logos-logo-portal-spacing:  $product-logos-logo-portal-spacing, 
-   $product-logos-logo-portal-repeat:   $product-logos-logo-portal-repeat,
+   $product-logos-portal-position: $product-logos-portal-position, 
+   $product-logos-portal-spacing:  $product-logos-portal-spacing, 
+   $product-logos-portal-repeat:   $product-logos-portal-repeat,
  
-   $product-logos-logo-soa-platform-position: $product-logos-logo-soa-platform-position, 
-   $product-logos-logo-soa-platform-spacing:  $product-logos-logo-soa-platform-spacing, 
-   $product-logos-logo-soa-platform-repeat:   $product-logos-logo-soa-platform-repeat,
+   $product-logos-soa-platform-position: $product-logos-soa-platform-position, 
+   $product-logos-soa-platform-spacing:  $product-logos-soa-platform-spacing, 
+   $product-logos-soa-platform-repeat:   $product-logos-soa-platform-repeat,
  
-   $product-logos-logo-web-server-position: $product-logos-logo-web-server-position, 
-   $product-logos-logo-web-server-spacing:  $product-logos-logo-web-server-spacing, 
-   $product-logos-logo-web-server-repeat:   $product-logos-logo-web-server-repeat,
+   $product-logos-web-server-position: $product-logos-web-server-position, 
+   $product-logos-web-server-spacing:  $product-logos-web-server-spacing, 
+   $product-logos-web-server-repeat:   $product-logos-web-server-repeat,
  
  $layout: $product-logos-layout,
  $cleanup: $product-logos-clean-up
@@ -184,5 +184,5 @@ $product-logos-inline: false !default;
 
 // Generates a class for each sprited image.
 @mixin all-product-logos-sprites($dimensions: $product-logos-sprite-dimensions, $prefix: sprite-map-name($product-logos-sprites), $offset-x: 0, $offset-y: 0) {
-  @include product-logos-sprites(logo-a-mq logo-bpm-suite logo-brms logo-data-grid logo-data-virtualization logo-developer-studio logo-enterprise-app-platform logo-framework-kit logo-fsw logo-fuse logo-operationsnetwork logo-portal logo-soa-platform logo-web-server, $dimensions, $prefix, $offset-x, $offset-y);
+  @include product-logos-sprites(a-mq bpm-suite brms data-grid data-virtualization developer-studio enterprise-app-platform framework-kit fsw fuse operationsnetwork portal soa-platform web-server, $dimensions, $prefix, $offset-x, $offset-y);
 }

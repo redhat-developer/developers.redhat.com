@@ -47,7 +47,9 @@
 @import "compass/css3/transition";
 @import "compass/css3/columns";
 
+
 // Import Our CSS Modules and mixins
+@import "sprites";
 @import "mq-mixins";
 @import "jboss-mixins";
 // @import "navigation";
@@ -65,9 +67,9 @@
 @import "why-subscribe";
 @import "global-wrapper";
 @import "theme-light";
-@import "sprites/_product-logos.scss";
 // @import "theme-dark";
-@include all-product-logos-sprites(true);
+
+
 
 
 .clearfix:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; } .clearfix {display: inline-block; } html[xmlns] .clearfix {display: block; } * html .clearfix {height: 1%; }
@@ -1118,13 +1120,13 @@ ul.results {
     position: absolute;
     text-indent: -9999px;
     &.premium {
-      background:cdn("../images/icon-premium.png") top left no-repeat;
+      @extend .icons-premium;
       height:25px;
       top:20px
 
     }
     &.experimental {
-      background:cdn("../images/icon-experimental.png") top left no-repeat;
+      @extend .icons-experimental;
       height: 120px;
       width: 130px;
       right: 0px;
@@ -1493,9 +1495,9 @@ span.asterisk {
   }
   .facebook-share-button-count {
     &:before {
+      @extend .icons-facebook-bubble;
       content:attr(data-shares);
       display: inline-block;
-      background: cdn("../images/bubble.png") center no-repeat;
       // content:"100";
       font-size: 11px;
       width: 40px;

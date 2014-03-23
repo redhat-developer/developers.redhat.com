@@ -1,0 +1,92 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$theme-dark-sprite-base-class: ".theme-dark-sprite" !default;
+$theme-dark-sprite-dimensions: false !default;
+$theme-dark-position: 0% !default;
+$theme-dark-spacing: 0 !default;
+$theme-dark-repeat: no-repeat !default;
+$theme-dark-prefix: '' !default;
+$theme-dark-clean-up: true !default;
+$theme-dark-layout:vertical !default;
+$theme-dark-inline: false !default;
+
+  
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $theme-dark-background-short-position: $theme-dark-position !default;
+   $theme-dark-background-short-spacing:  $theme-dark-spacing !default;
+   $theme-dark-background-short-repeat:   $theme-dark-repeat !default;
+ 
+   $theme-dark-background-tall-position: $theme-dark-position !default;
+   $theme-dark-background-tall-spacing:  $theme-dark-spacing !default;
+   $theme-dark-background-tall-repeat:   $theme-dark-repeat !default;
+ 
+
+ $theme-dark-sprites: sprite-map("design/theme-dark/*.png",
+ 
+   $theme-dark-background-short-position: $theme-dark-background-short-position, 
+   $theme-dark-background-short-spacing:  $theme-dark-background-short-spacing, 
+   $theme-dark-background-short-repeat:   $theme-dark-background-short-repeat,
+ 
+   $theme-dark-background-tall-position: $theme-dark-background-tall-position, 
+   $theme-dark-background-tall-spacing:  $theme-dark-background-tall-spacing, 
+   $theme-dark-background-tall-repeat:   $theme-dark-background-tall-repeat,
+ 
+ $layout: $theme-dark-layout,
+ $cleanup: $theme-dark-clean-up
+ );
+
+
+// All sprites should extend this class
+// The theme-dark-sprite mixin will do so for you.
+@if $theme-dark-inline {
+  #{$theme-dark-sprite-base-class} {
+    background-image: inline-sprite($theme-dark-sprites);
+  } 
+} @else {
+  #{$theme-dark-sprite-base-class} {
+    background: $theme-dark-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function theme-dark-sprite-width($name) {
+    $file: sprite_file($theme-dark-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function theme-dark-sprite-height($name) {
+    $file: sprite_file($theme-dark-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin theme-dark-sprite-dimensions($name) {
+  @include sprite-dimensions($theme-dark-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin theme-dark-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($theme-dark-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin theme-dark-sprite($name, $dimensions: $theme-dark-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$theme-dark-sprite-base-class};
+  @include sprite($theme-dark-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin theme-dark-sprites($sprite-names, $dimensions: $theme-dark-sprite-dimensions, $prefix: sprite-map-name($theme-dark-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($theme-dark-sprites, $sprite-names, $theme-dark-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-theme-dark-sprites($dimensions: $theme-dark-sprite-dimensions, $prefix: sprite-map-name($theme-dark-sprites), $offset-x: 0, $offset-y: 0) {
+  @include theme-dark-sprites(background-short background-tall, $dimensions, $prefix, $offset-x, $offset-y);
+}

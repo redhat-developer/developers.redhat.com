@@ -1,5 +1,5 @@
 .get-involved-banner {
-  background:cdn("../images/get-involved-bg.png") no-repeat;
+  @extend .get-involved-bg;
   background-size:cover;
   color:white;
   padding:20px;

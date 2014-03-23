@@ -1,0 +1,124 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$icons-sprite-base-class: ".icons-sprite" !default;
+$icons-sprite-dimensions: false !default;
+$icons-position: 0% !default;
+$icons-spacing: 0 !default;
+$icons-repeat: no-repeat !default;
+$icons-prefix: '' !default;
+$icons-clean-up: true !default;
+$icons-layout:vertical !default;
+$icons-inline: false !default;
+
+  
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $icons-calendar-position: $icons-position !default;
+   $icons-calendar-spacing:  $icons-spacing !default;
+   $icons-calendar-repeat:   $icons-repeat !default;
+ 
+   $icons-experimental-position: $icons-position !default;
+   $icons-experimental-spacing:  $icons-spacing !default;
+   $icons-experimental-repeat:   $icons-repeat !default;
+ 
+   $icons-facebook-bubble-position: $icons-position !default;
+   $icons-facebook-bubble-spacing:  $icons-spacing !default;
+   $icons-facebook-bubble-repeat:   $icons-repeat !default;
+ 
+   $icons-premium-position: $icons-position !default;
+   $icons-premium-spacing:  $icons-spacing !default;
+   $icons-premium-repeat:   $icons-repeat !default;
+ 
+   $icons-redhat-logo-position: $icons-position !default;
+   $icons-redhat-logo-spacing:  $icons-spacing !default;
+   $icons-redhat-logo-repeat:   $icons-repeat !default;
+ 
+   $icons-redhat-position: $icons-position !default;
+   $icons-redhat-spacing:  $icons-spacing !default;
+   $icons-redhat-repeat:   $icons-repeat !default;
+ 
+
+ $icons-sprites: sprite-map("icons/*.png",
+ 
+   $icons-calendar-position: $icons-calendar-position, 
+   $icons-calendar-spacing:  $icons-calendar-spacing, 
+   $icons-calendar-repeat:   $icons-calendar-repeat,
+ 
+   $icons-experimental-position: $icons-experimental-position, 
+   $icons-experimental-spacing:  $icons-experimental-spacing, 
+   $icons-experimental-repeat:   $icons-experimental-repeat,
+ 
+   $icons-facebook-bubble-position: $icons-facebook-bubble-position, 
+   $icons-facebook-bubble-spacing:  $icons-facebook-bubble-spacing, 
+   $icons-facebook-bubble-repeat:   $icons-facebook-bubble-repeat,
+ 
+   $icons-premium-position: $icons-premium-position, 
+   $icons-premium-spacing:  $icons-premium-spacing, 
+   $icons-premium-repeat:   $icons-premium-repeat,
+ 
+   $icons-redhat-logo-position: $icons-redhat-logo-position, 
+   $icons-redhat-logo-spacing:  $icons-redhat-logo-spacing, 
+   $icons-redhat-logo-repeat:   $icons-redhat-logo-repeat,
+ 
+   $icons-redhat-position: $icons-redhat-position, 
+   $icons-redhat-spacing:  $icons-redhat-spacing, 
+   $icons-redhat-repeat:   $icons-redhat-repeat,
+ 
+ $layout: $icons-layout,
+ $cleanup: $icons-clean-up
+ );
+
+
+// All sprites should extend this class
+// The icons-sprite mixin will do so for you.
+@if $icons-inline {
+  #{$icons-sprite-base-class} {
+    background-image: inline-sprite($icons-sprites);
+  } 
+} @else {
+  #{$icons-sprite-base-class} {
+    background: $icons-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function icons-sprite-width($name) {
+    $file: sprite_file($icons-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function icons-sprite-height($name) {
+    $file: sprite_file($icons-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin icons-sprite-dimensions($name) {
+  @include sprite-dimensions($icons-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin icons-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($icons-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin icons-sprite($name, $dimensions: $icons-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$icons-sprite-base-class};
+  @include sprite($icons-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin icons-sprites($sprite-names, $dimensions: $icons-sprite-dimensions, $prefix: sprite-map-name($icons-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($icons-sprites, $sprite-names, $icons-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-icons-sprites($dimensions: $icons-sprite-dimensions, $prefix: sprite-map-name($icons-sprites), $offset-x: 0, $offset-y: 0) {
+  @include icons-sprites(calendar experimental facebook-bubble premium redhat-logo redhat, $dimensions, $prefix, $offset-x, $offset-y);
+}

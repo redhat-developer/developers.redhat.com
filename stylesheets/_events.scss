@@ -5,10 +5,10 @@
     padding:5px;
     font-size: 13px;
     &.datepicker {
+      @extend .icons-calendar;
       width:177px;
       margin:0 0 0 3px;
       display:inline;
-      background:cdn("../images/icon-calendar.png") right center no-repeat;
       padding-right:10px;
       background-clip: content-box;
       background-origin:content-box;

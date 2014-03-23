@@ -1,0 +1,100 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$get-started-sprite-base-class: ".get-started-sprite" !default;
+$get-started-sprite-dimensions: false !default;
+$get-started-position: 0% !default;
+$get-started-spacing: 0 !default;
+$get-started-repeat: no-repeat !default;
+$get-started-prefix: '' !default;
+$get-started-clean-up: true !default;
+$get-started-layout:vertical !default;
+$get-started-inline: false !default;
+
+  
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $get-started-bg-squares-position: $get-started-position !default;
+   $get-started-bg-squares-spacing:  $get-started-spacing !default;
+   $get-started-bg-squares-repeat:   $get-started-repeat !default;
+ 
+   $get-started-bg-position: $get-started-position !default;
+   $get-started-bg-spacing:  $get-started-spacing !default;
+   $get-started-bg-repeat:   $get-started-repeat !default;
+ 
+   $get-started-ticket-monster-bg-position: $get-started-position !default;
+   $get-started-ticket-monster-bg-spacing:  $get-started-spacing !default;
+   $get-started-ticket-monster-bg-repeat:   $get-started-repeat !default;
+ 
+
+ $get-started-sprites: sprite-map("design/get-started/*.png",
+ 
+   $get-started-bg-squares-position: $get-started-bg-squares-position, 
+   $get-started-bg-squares-spacing:  $get-started-bg-squares-spacing, 
+   $get-started-bg-squares-repeat:   $get-started-bg-squares-repeat,
+ 
+   $get-started-bg-position: $get-started-bg-position, 
+   $get-started-bg-spacing:  $get-started-bg-spacing, 
+   $get-started-bg-repeat:   $get-started-bg-repeat,
+ 
+   $get-started-ticket-monster-bg-position: $get-started-ticket-monster-bg-position, 
+   $get-started-ticket-monster-bg-spacing:  $get-started-ticket-monster-bg-spacing, 
+   $get-started-ticket-monster-bg-repeat:   $get-started-ticket-monster-bg-repeat,
+ 
+ $layout: $get-started-layout,
+ $cleanup: $get-started-clean-up
+ );
+
+
+// All sprites should extend this class
+// The get-started-sprite mixin will do so for you.
+@if $get-started-inline {
+  #{$get-started-sprite-base-class} {
+    background-image: inline-sprite($get-started-sprites);
+  } 
+} @else {
+  #{$get-started-sprite-base-class} {
+    background: $get-started-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function get-started-sprite-width($name) {
+    $file: sprite_file($get-started-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function get-started-sprite-height($name) {
+    $file: sprite_file($get-started-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin get-started-sprite-dimensions($name) {
+  @include sprite-dimensions($get-started-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin get-started-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($get-started-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin get-started-sprite($name, $dimensions: $get-started-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$get-started-sprite-base-class};
+  @include sprite($get-started-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin get-started-sprites($sprite-names, $dimensions: $get-started-sprite-dimensions, $prefix: sprite-map-name($get-started-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($get-started-sprites, $sprite-names, $get-started-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-get-started-sprites($dimensions: $get-started-sprite-dimensions, $prefix: sprite-map-name($get-started-sprites), $offset-x: 0, $offset-y: 0) {
+  @include get-started-sprites(bg-squares bg ticket-monster-bg, $dimensions, $prefix, $offset-x, $offset-y);
+}

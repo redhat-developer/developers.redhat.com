@@ -1,8 +1,4 @@
 .get-started-items {
-  margin-bottom: 30px;
-  position: relative;
-  background:cdn("../images/get-started-bg.png") bottom center no-repeat;
-  min-height:250px;
   span.line {
     display: block;
     width: 100%;
@@ -10,7 +6,7 @@
     font-style: italic;
     font-weight: 600;
     text-align: center;
-    background:cdn("../images/greypx.png") center repeat-x;
+    background:cdn("../images/design/greypx.png") center repeat-x;
     margin-top:10px;
     margin-bottom:10px;
     span {
@@ -26,6 +22,13 @@
   }
   &>div {
     text-align: center;
+  }
+  .flow {
+    @extend .get-started-bg;
+    background-position: sprite-position($get-started-sprites, bg, 0px, -2px);
+    height: get-started-sprite-height(bg) - 3px;
+    margin-bottom: 30px;
+    position: relative;
   }
 }
 
@@ -46,14 +49,13 @@
 }
 
 a.get-started-example {
+  @extend .get-started-bg-squares;
   display: inline-block;
   width:37.5%;
   // margin: 0 7.5%;
   border:3px solid white;
   font-weight: 600;
   padding:4px;
-  background:cdn("../images/bg-squares.png");
-  background-size:cover;
   padding:20px 10px;
   line-height: 2;
   text-align: center;
@@ -225,13 +227,12 @@ a.get-started-quickstart.button {
 
 // Ticket Monster demo styles 
 .ticket-monster-items {
+  @extend .get-started-ticket-monster-bg;
   margin-bottom: 30px;
   position: relative;
-  background:cdn("../images/ticket-monster-bg.png") bottom center no-repeat;
   min-height:200px;
   border-radius: $global-radius;
   padding: 30px;
-  background-size: cover;
   
   p {
 	font-size: 1.5em;

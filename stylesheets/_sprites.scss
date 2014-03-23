@@ -1,0 +1,20 @@
+// Sprites
+
+@import "sprites/_product-logos.scss";
+@include all-product-logos-sprites(true);
+
+@import "sprites/_get-involved.scss";
+@include all-get-involved-sprites;
+
+@import "sprites/_get-started.scss";
+@include all-get-started-sprites(true);
+
+@import "sprites/_theme-light.scss";
+@include all-theme-light-sprites;
+
+@import "sprites/_theme-dark.scss";
+@include all-theme-dark-sprites;
+
+@import "sprites/_icons.scss";
+@include all-icons-sprites;
+
