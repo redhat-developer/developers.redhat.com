@@ -6,6 +6,24 @@ module JBoss
         "#{site.download_manager_file_base_url}/#{product}/#{version}/download"
       end
 
+      class CompassConfigurator
+
+        SPRITES_DIR = "sprites"
+        CDN_SPRITES_DIR = Pathname.new("_tmp").join("cdn", SPRITES_DIR)
+
+        def initialize
+          FileUtils.mkdir_p CDN_SPRITES_DIR
+        end
+
+        def execute(site)
+          if site.cdn_http_base
+            Compass.configuration.generated_images_dir = CDN_SPRITES_DIR.to_s
+            Compass.configuration.http_generated_images_path = "#{site.cdn_http_base}/#{SPRITES_DIR}"
+          end
+        end
+
+      end
+
     end
   end
 end

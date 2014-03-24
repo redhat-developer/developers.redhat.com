@@ -54,6 +54,9 @@ Awestruct::Extensions::Pipeline.new do
   # Must be loaded after CommonDir
   extension JBoss::Developer::Extensions::Product.new
 
+  # Pushes compass: config from site.yml -> compass
+  extension JBoss::Developer::Utilities::CompassConfigurator.new
+
   # Generate a sitemap.xml
   extension Awestruct::Extensions::Sitemap.new
 
