@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: 63253c8565f856d2083b8e0f22666126751d2623
+  revision: b0b54c6419d7b419eedf22348436502da31014fc
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -9,6 +9,8 @@ GIT
       net-http-persistent (~> 2.9.4)
       oauth (~> 0.3.6)
       octokit (>= 1.24.0)
+      sass (~> 3.2)
+      uglifier (~> 2.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -17,7 +19,7 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
-    addressable (2.3.5)
+    addressable (2.3.6)
     asciidoctor (0.1.4)
     awestruct (0.5.4.rc3)
       bootstrap-sass (>= 2.3.1.0)
