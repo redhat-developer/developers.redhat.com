@@ -1,3 +1,5 @@
+require 'aweplug/helpers/cdn'
+
 module JBoss
   module Developer
     module Utilities
@@ -13,6 +15,9 @@ module JBoss
 
         def initialize
           FileUtils.mkdir_p CDN_SPRITES_DIR
+          if File.exists? Aweplug::Helpers::CDN::EXPIRES_FILE
+            FileUtils.cp(Aweplug::Helpers::CDN::EXPIRES_FILE, CDN_SPRITES_DIR.join(".htaccess"))
+          end
         end
 
         def execute(site)
