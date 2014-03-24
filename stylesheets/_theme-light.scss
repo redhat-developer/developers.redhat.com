@@ -2,11 +2,13 @@
 // body
 body {
   @extend .theme-light-background-short;
+  max-height: theme-light-sprite-height(background-short);
 }
 
 // Specific Home Styles
 body.home {
   @extend .theme-light-background-tall;
+  max-height: theme-light-sprite-height(background-tall); 
 }
 
 @media screen and ( max-width: 768px ) {
