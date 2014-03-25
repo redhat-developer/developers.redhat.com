@@ -10,6 +10,7 @@ require 'jboss_developer'
 require 'nav'
 require 'stacks'
 require 'product'
+require 'assets'
 
 Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
@@ -59,6 +60,8 @@ Awestruct::Extensions::Pipeline.new do
 
   # Generate a sitemap.xml
   extension Awestruct::Extensions::Sitemap.new
+  # Generate a assets.yml
+  extension JBoss::Developer::Extensions::Assets.new
 
   helper Awestruct::Extensions::Partial
   helper JBoss::Developer::Utilities
