@@ -57,6 +57,7 @@ app.project = {
       }
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
+      sortJsonArrayByProperty(hits,"_source.sys_title")
       var html = "";
       window.hits = hits;
 
@@ -191,3 +192,24 @@ $(function() {
   }
 });
 
+//functions
+function sortJsonArrayByProperty(objArray, prop, direction){
+    if (arguments.length<2) throw new Error("sortJsonArrayByProp requires 2 arguments");
+    var direct = arguments.length>2 ? arguments[2] : 1; //Default to ascending
+
+    if (objArray && objArray.constructor===Array){
+        var propPath = (prop.constructor===Array) ? prop : prop.split(".");
+        objArray.sort(function(a,b){
+            for (var p in propPath){
+                if (a[propPath[p]] && b[propPath[p]]){
+                    a = a[propPath[p]];
+                    b = b[propPath[p]];
+                }
+            }
+            // convert numeric strings to integers
+            a = a.match(/^\d+$/) ? +a : a.toLowerCase();
+            b = b.toLowerCase().match(/^\d+$/) ? +b : b.toLowerCase();
+            return ( (a < b) ? -1*direct : ((a > b) ? 1*direct : 0) );
+        });
+    }
+}
