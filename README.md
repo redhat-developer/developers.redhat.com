@@ -1,5 +1,28 @@
 # jboss-developer-site
 
+## Getting Started
+This section covers the steps you need to do in order to setup your environment and get the site running for the first time. Further sections cover the details.
+
+_NOTE:_ You must use a version of Ruby installed via RVM.
+
+Install RVM from here http://rvm.io and then install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
+
+    rvm install ruby-2.1.1 --disable-binary
+
+Now checkout and build the site:
+
+    git clone git@github.com:jboss-developer/www.jboss.org.git
+    cd www.jboss.org
+    rake setup
+    rake update
+    export vimeo_access_token_secret=<Contact someone on the JBoss Developer team for this>
+    export vimeo_client_secret=<Contact someone on the JBoss Developer team for this>
+    rake clean preview
+
+_NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
+
+If the build was successful, you should be able to visit the site here: [http://localhost:4242](http://localhost:4242)
+
 
 ## Development
 
