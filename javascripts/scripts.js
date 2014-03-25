@@ -291,6 +291,14 @@ app.init = function() {
   if(devTools.length) {
     app.developmentTools();
   }
+  
+  /*
+   * Call any marketing operations initialization required
+   */
+
+  if (app.mktg_ops) {
+    app.mktg_ops.init();
+  }
 
 
 }; /* End app.init() */

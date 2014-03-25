@@ -18,6 +18,7 @@ profile_base: &profile
   cdn_http_base: &cdn_http_base //static.jboss.org/common/www 
   log_faraday: true
   minify: &minify true 
+  metrics: true
   deploy:
     <<: *deploy
   scss:
