@@ -5,3 +5,11 @@
   AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
 </IfModule>
 
+<IfModule mod_headers.c>
+  ############################################
+  ## Force the keep-alive header to be sent
+  ## PageSpeed tells us this isn't been sent correctly by jboss.org
+  Header set Connection keep-alive 
+</IfModule>
+
+
