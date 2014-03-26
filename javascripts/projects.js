@@ -67,7 +67,7 @@ app.project = {
 
         var template = "<li class=\"upstream\">"
           + "<div class=\"defaultprojectimage\">"
-          + "<a class=\"image-link\" href=\"" +
+          + "<a class=\"image-link\" href=\"" 
           + props.sys_url_view
           + "\"><img onerror=\"this.style.display='none'\" src="
           + "\"http://static.jboss.org/"
