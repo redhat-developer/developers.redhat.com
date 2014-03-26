@@ -77,26 +77,31 @@ app.dm = {
     */ 
     var publishDate = $('input[name="filter-publish-date"]').map(function () {
       var d = new Date();
+      switch(this.value) {
+        case '0':
+          //All
+          d.setFullYear(d.getFullYear() - 100);
+          break;
+        case '25':
+          //Within 1 Year
+          d.setFullYear(d.getFullYear() - 1);
+          break;
+        case '50':
+          //Within 30 days
+          d.setDate(d.getDate() - 30);
+          break;
+        case '75':
+          //Within 7 days
+          d.setDate(d.getDate() - 7);
+          break;
+        case '100':
+          //Within 24 hours
+          d.setDate(d.getDate() - 1);
+          break;
+      }
       var day = d.getDate();
       var month = d.getMonth() + 1; //Months are zero based
       var year = d.getFullYear();
-      switch(this.value) {
-        case '0':
-          year -= 100;
-          break;
-        case '25':
-          year -= 1;
-          break;
-        case '50':
-          month -= 1;
-          break;
-        case '75':
-          day -= 7;
-          break;
-        case '100':
-          day -= 1;
-          break;
-      }
       var createdDate = year + "-" + month + "-" + day;
       console.log('Using ' + createdDate + ' as publish date value');
       return createdDate;
