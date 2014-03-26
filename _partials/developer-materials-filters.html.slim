@@ -80,22 +80,9 @@ form.dev-mat-filters(method="GET" action="")
 
   /The DCP should support this, but we don't have these controls wired up to do the right query.
   /Also, this would be better as a slider like the "Skill level" as it doesn't make sense to select multiple.
-  /.filter-block
+  .filter-block
     h5 Publish Date
-    label
-      input(type="checkbox" name="filter-publish-date" value="all")
-      | All
-    label
-      input(type="checkbox" name="filter-publish-date" value="24hrs")
-      | Last 24 Hours
-    label
-      input(type="checkbox" name="filter-publish-date" value="7days")
-      | Last 7 days
-    label
-      input(type="checkbox" name="filter-publish-date" value="30days")
-      | Last 30 days
-    label
-      input(type="checkbox" name="filter-publish-date" value="365days")
-      | Last 365 days
+    input(type="range" name="filter-publish-date" onchange="this.setAttribute('value', this.value);" value="0" step="25" data-labels="All, Within 1 Year, Within 30 days, Within 7 days, Within 24hrs")
+    span.skill-display All
        
 

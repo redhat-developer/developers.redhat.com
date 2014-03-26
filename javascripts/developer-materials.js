@@ -75,10 +75,33 @@ app.dm = {
     /*
       Publish Date
     */ 
-    var publishDate = $('input[name="filter-publish-date"]:checked').map(function () {
-      return this.value;
+    var publishDate = $('input[name="filter-publish-date"]').map(function () {
+      var d = new Date();
+      var day = d.getDate();
+      var month = d.getMonth() + 1; //Months are zero based
+      var year = d.getFullYear();
+      switch(this.value) {
+        case '0':
+          year -= 100;
+          break;
+        case '25':
+          year -= 1;
+          break;
+        case '50':
+          month -= 1;
+          break;
+        case '75':
+          day -= 7;
+          break;
+        case '100':
+          day -= 1;
+          break;
+      }
+      var createdDate = year + "-" + month + "-" + day;
+      console.log('Using ' + createdDate + ' as publish date value');
+      return createdDate;
     }).get();
-
+    
     var filters = {
       "keyword" : keyword,
       "rating" : rating,
@@ -138,8 +161,7 @@ app.dm = {
 
 
     if(currentFilters['publishDate']) {
-      // THis needs to be wired up
-      // query.push('publishDate:'+publishDate);
+      query.push('sys_created:>='+publishDate);
     }
 
 
