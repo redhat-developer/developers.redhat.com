@@ -1,12 +1,13 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: b0b54c6419d7b419eedf22348436502da31014fc
+  revision: 57b1968ae866b6787975454cb3038c23b5b6f490
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
       faraday (>= 0.8.7, < 0.9.0)
       faraday_middleware (>= 0.9.0)
       net-http-persistent (~> 2.9.4)
+      nokogiri (~> 1.5.10)
       oauth (~> 0.3.6)
       octokit (>= 1.24.0)
       sass (~> 3.2)
@@ -129,7 +130,6 @@ DEPENDENCIES
   git (~> 1.2.5)
   htmlcompressor (~> 0.0.6)
   kramdown (~> 1.0.1)
-  nokogiri (~> 1.5.10)
   oauth (~> 0.3.6)
   pry
   rake (~> 10.0.4)
