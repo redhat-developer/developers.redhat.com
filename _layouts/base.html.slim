@@ -7,16 +7,24 @@ doctype html
 
 head
   meta charset='utf-8' 
-  title JBoss Developer
   meta name='viewport' content='width=device-width, initial-scale=1.0' 
-  == stylesheets "all" do
+  title= page.title || site.title
+  -if page.description
+    meta name="description" content=page.description
+  - if page.author
+    meta name="author" content=page.author
+  - if site.keywords
+    meta name="keywords" content=site.keywords
+  - if site.url
+    link rel="canonical" href=site.url
+  = stylesheets "all" do
     link rel='stylesheet' type='text/css' href="#{site.base_url}/#{site.context_url}/stylesheets/app.css" 
   
   /[if lt IE 9]
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
 
-  == javascripts "top" do
+  = javascripts "top" do
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
 
 - template = (page.url.gsub('/','').split('.').first || 'home')
@@ -120,7 +128,7 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
   / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.topbar.js"
   
-  == javascripts "bottom" do
+  = javascripts "bottom" do
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"

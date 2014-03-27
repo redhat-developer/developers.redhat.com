@@ -2,6 +2,8 @@
 layout: base
 status: yellow
 issues: [DEVELOPER-214, DEVELOPER-249]
+title: Events featuring JBoss
+description: Discover the events and webinars featuring talks about JBoss products and upstream projects.
 ---
 .reveal-modal.close-reveal-modal.coming-soon#comingSoonModal
   h3 This Feature Is Not Yet Enabled
@@ -22,19 +24,6 @@ issues: [DEVELOPER-214, DEVELOPER-249]
         .swipe-wrap
           .slide
             img(src="#{site.base_url}/#{site.context_url}/images/hero1_desktop_1175x400.png")
-          / ######## TODO REMOVE THESE
-          /.slide
-            img(src="#{site.base_url}/#{site.context_url}/images/events-slider.jpg")
-            .slider-label
-              h2: a JavaOne 2013
-              h4 Open Shift Primer — get your applications into the Cloud 
-              p Join JBoss at the JavaOne conference which brings Java experts and enthusiasts for an extraordinary week of learning and networking focused entirely on all things Java.
-          /.slide
-            img(src="#{site.base_url}/#{site.context_url}/images/events-slider.jpg")
-            .slider-label
-              h2: a JavaOne 2013
-              h4 Open Shift Primer — get your applications into the Cloud 
-              p Join JBoss at the JavaOne conference which brings Java experts and enthusiasts for an extraordinary week of learning and networking focused entirely on all things Java.
       .slider-pager
       .slider-controls
         a.slider-prev(data-direction="prev")
@@ -62,17 +51,16 @@ issues: [DEVELOPER-214, DEVELOPER-249]
         a.button.reveal data-reveal-id="comingSoonModal" View Past Events
         a.button.reveal data-reveal-id="comingSoonModal" Events Blog
 
-
-
     ul.small-block-grid-2.large-block-grid-4.events
       - site.events.each do |v|
         li
-          .event 
+          .event(itemtype="http://schema.org/Event" itemscope)
             .event-header
-              img(src="#{site.base_url}/#{site.context_url}#{v.image}")
+              img(itemprop="photo" src="#{site.base_url}/#{site.context_url}#{v.image}")
               - if "#{v.community}" == "true"
-                p Community Event
+                p itemprop="eventType" Community Event
             .event-body
+              / TODO Add schema.org markup for event dates
               div.event-date
                 span.month #{v.month}
                 - if "#{v.day}" != "{}"
@@ -80,11 +68,12 @@ issues: [DEVELOPER-214, DEVELOPER-249]
                 - else
                   - if "#{v.days}" != "{}"
                     span.days #{v.days}
-              h3: a(href="#{v.link}") #{v.title}
+              h3: a(itemprop="url" href="#{v.link}")
+                span itemprop="summary" #{v.title}
               - if "#{v.redhat}" == "true"
                 p.red-hat-event
                   i.icon-redhat
-                  | Red Hat Event
+                  | Red Hat Even:
               p #{v.description}
             .event-links
               a(href="#{v.link}") Learn More
@@ -101,5 +90,4 @@ issues: [DEVELOPER-214, DEVELOPER-249]
                   span.facebook-share-button-count(data-shares="0")
                 div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
                 script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
-
 

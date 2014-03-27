@@ -88,9 +88,18 @@ module JBoss::Developer::Extensions
                                                                    "/products/#{product}/boms.html.slim"))))
         bom_page.layout = @layout
         bom_page.output_path = "/boms/#{product}/#{bom['bom']['id']}/index.html"
-        metadata = {:title => bom['bom']['name'], :commits => @commits, :boms => []}
         site.pages << bom_page
         bom['allVersions'] = yml['availableBomVersions'].select {|b| b['bom']['id'] == bom['bom']['id']}.collect {|b| b['version']}
+        # This is wrong, it's commits for stacks, not the BOM
+        # bom['bom']['contributors'] = @commits.collect {|c| c[:author]}.uniq
+        metadata = {
+          :title => bom['bom']['name'], 
+          :summary=> bom['bom']['description'], 
+          :commits => @commits, 
+          :boms => [],
+          :contributors => bom['bom']['contributors'],
+          :author => bom['bom']['author']
+        }
 
         bom_dcp = {
           :sys_type => 'jbossdeveloper_bom',
@@ -162,8 +171,16 @@ module JBoss::Developer::Extensions
                                                                          "/products/#{product}/boms.html.slim"))))
         archetype_page.layout = @layout
         archetype_page.output_path = "/archetypes/#{product}/#{archetype['archetype']['id']}/index.html"
-        metadata = {:title => archetype['archetype']['name'], :commits => @commits, :boms => []}
         archetype['allVersions'] = yml['availableArchetypeVersions'].select {|b| b['archetype']['id'] == archetype['archetype']['id']}.collect {|b| b['version']}
+        archetype['archetype']['contributors'] = @commits.collect {|c| c[:author]}.uniq
+        metadata = {
+          :title => archetype['archetype']['name'], 
+          :summary=> archetype['archetype']['description'], 
+          :commits => @commits, 
+          :boms => [],
+          :contributors => archetype['archetype']['contributors'],
+          :author => archetype['archetype']['author']
+        }
 
         archetype_dcp = {
           :sys_type => 'jbossdeveloper_archetype',
@@ -171,7 +188,7 @@ module JBoss::Developer::Extensions
           :sys_content_type => 'archetype',
           :sys_content_id => archetype['id'],
           :sys_updated => @commits.collect {|c| DateTime.parse c[:date]}.first,
-          :sys_contributors => @commits.collect {|c| c[:author]}.uniq,
+          :sys_contributors => archetype['archetype']['contributors'],
           :sys_activity_dates => @commits.collect {|c| DateTime.parse c[:date]},
           :sys_created => @commits.collect {|c| DateTime.parse c[:date]}.last,
           :sys_title => archetype['archetype']['name'],

@@ -2,6 +2,8 @@
 layout: base
 status: yellow
 issues: [DEVELOPER-220, DEVELOPER-222, DEVELOPER-221, DEVELOPER-227, DEVELOPER-252, DEVELOPER-261, DEVELOPER-262]
+title: The buzz about JBoss
+description:  Marketing message about what kind of content users can find here and details on how to subscribe.
 ---
 .row
   h2.large-title Buzz
@@ -14,7 +16,7 @@ issues: [DEVELOPER-220, DEVELOPER-222, DEVELOPER-221, DEVELOPER-227, DEVELOPER-2
         a href="#{site.base_url}/buzz/" Buzz
   
   .large-24.columns
-    h4.divider.buzz-message Marketing message about what kind of content users can find here and details on how to subscribe.
+    h4.divider.buzz-message #{page.description}
   .large-24.columns.buzz-filters
     input(type="text" name="buzz-filter-text" placeholder="Filter by Keyword")
   /  ul.sort-icons 

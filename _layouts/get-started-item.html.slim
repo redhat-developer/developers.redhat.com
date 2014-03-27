@@ -3,6 +3,10 @@ layout: base
 status: yellow
 issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
 ---
+- page.title = page.metadata[:title]
+- page.description = page.metadata[:summary]
+- page.author = page.metadata[:author]
+
 .row
   h2.large-title Developer Materials
 .row.row.content
@@ -14,40 +18,39 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
         a href="#{site.base_url}/developer-materials/" Developer Materials
       li
         a href="#{site.base_url}#{page.output_path}" #{page.metadata[:title]}
-.row
+.row itemscope="" itemtype="http://schema.org/Article"
   .collapse.large-24
-    h2.divider #{page.metadata[:title]}
+    h2.divider itemprop="name" #{page.metadata[:title]}
     .gsi-meta
       ul
         - if page.metadata[:author]
           li
             strong
               ' Author:
-              / TODO Missing link to author profile
-              #{page.metadata[:author]}
+              / TODO Change from span to author profile link when we have identity info
+              span itemprop="author" #{page.metadata[:author]}
+        - if page.metadata[:contributors]
+          li: strong
+            ' Contributors:
+            / TODO Change from span to author profile link when we have identity info
+            = page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
         - if page.metadata[:commits]
           li
             strong
-              ' Contributors:
-              - for contributor in page.metadata[:commits].collect { |c| c[:author] }.uniq
-                / TODO Missing link to contributor profile
-                ' #{contributor}
-          li
-            strong
               ' Last Update:
-                #{DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')}
+              span itemprop="dateModified" =DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')
         - if page.metadata[:level]
           li: strong
             | Level:
               #{page.metadata[:level]}
         - if page.metadata[:technologies]
           li: strong
-            | Technologies:
-              #{page.metadata[:technologies]}
+            | Technologies: 
+            = page.metadata[:technologies].collect { |t| %Q{<span itemprop="about">#{t}</span>}}.join(", ")
         - if page.metadata[:target_product]
           li: strong
-            | Target Product:
-              #{page.metadata[:target_product]}
+            | Target Product: 
+            span itemprop="about" =page.metadata[:target_product]
   .row.content
     .columns.large-24
       .columns.large-4
