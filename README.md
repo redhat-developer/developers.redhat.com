@@ -3,21 +3,42 @@
 ## Getting Started
 This section covers the steps you need to do in order to setup your environment and get the site running for the first time. Further sections cover the details.
 
-_NOTE:_ You must use a version of Ruby installed via RVM.
+1. Configure environment variables needed for the site.
+    * Request the following values from the JBoss Developer team:
+    
+            vimeo_access_token_secret
+            vimeo_client_secret
+            dcp_user
+            dcp_password
+    * Export the values in the appropriate startup script. For example:
 
-Install RVM from here http://rvm.io and then install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
+            export vimeo_access_token_secret=<VIMEO_ACCESS_TOKEN_SECRET>
+            export vimeo_client_secret=<VIMEO_CLIENT_SECRET>
+            export dcp_user=<DCP_USER>
+            export dcp_password=<DCP_PASSWORD>
 
-    rvm install ruby-2.1.1 --disable-binary
+2. Configure the software.
+    _NOTE:_ You must use a version of Ruby installed via RVM.
+    * Install RVM from here http://rvm.io and then install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
 
-Now checkout and build the site:
+            rvm install ruby-2.1.1 --disable-binary
+    * Install any required supporting software:
 
-    git clone git@github.com:jboss-developer/www.jboss.org.git
-    cd www.jboss.org
-    rake setup
-    rake update
-    export vimeo_access_token_secret=<Contact someone on the JBoss Developer team for this>
-    export vimeo_client_secret=<Contact someone on the JBoss Developer team for this>
-    rake clean preview
+            sudo yum install -y rubygem-nokogiri
+            sudo yum install -y gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel
+            sudo sysctl fs.inotify.max_user_watches=524288
+            sudo sysctl -p
+3. Fork the project, then clone your fork and add the upstream repository.
+ 
+         git clone git@github.com:YOUR_USER_NAME/www.jboss.org.git    
+         git remote add -f upstream git@github.com:jboss-developer/www.jboss.org.git
+
+4. Checkout and build the site:
+
+        cd www.jboss.org
+        rake setup
+        rake update
+        rake clean preview
 
 _NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
 
