@@ -449,25 +449,6 @@ app.stickyNav = function(className, headerElement) {
 }
 
 /*
-  Development Tools even bottoms
-*/
-app.developmentTools = function(){
-
-    $('.development-tool-category').each(function() {
-      var items = $(this).find('.development-tool:even');
-      $(items).each(function(i,el) {
-        var that = $(this),
-            max = Math.max(that.outerHeight(), that.next().outerHeight());
-            that.css('height',max);
-            that.next().css('height',max);
-        
-        
-      });
-    });
-
-  };
-
-/*
   Sticky Footers
 */
 app.stickyFooter = function() {
@@ -491,7 +472,8 @@ $('.datepicker').pickadate();
 $(function() {
   app.init();
   app.sso();
-  // TODO: This should change to a more dynamic way of doing it; thinking a loop over strings passed to the function (rename the function too
+
+  // Small hack to allow us to specify selectors and children to make sticky (used for TOC on FAQ and dev mats)
   stickySections = {'faq':'h3', 'gsi': 'h2'};
   for (var key in stickySections) {
     app.stickyNav(key, stickySections[key]);

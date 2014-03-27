@@ -649,6 +649,9 @@ i[class*=fa].invert {
   background:$grey-2;
   padding:20px;
   margin-bottom: 40px;
+  height: 270px;
+  max-height: 270px;
+  position: relative;
   h2,h3 {
     text-transform: uppercase;
     font-weight: 600;
@@ -664,6 +667,10 @@ i[class*=fa].invert {
       color:$grey-7;
       font-weight: 600;
     }
+  }
+  a.button {
+    position: absolute;
+    bottom: 0;
   }
 }
 
