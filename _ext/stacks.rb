@@ -17,7 +17,8 @@ module JBoss::Developer::Extensions
     def initialize stacks, layout, repo
       @yml = YAML.load_file File.join(repo, stacks) 
       @layout = layout
-      @commits = commit_info repo, Pathname.new(File.join repo, stacks) 
+      #@commits = commit_info repo, Pathname.new(File.join repo, stacks)  # DEVELOPER-320
+      @commits = []
     end
 
     def execute site

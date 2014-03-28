@@ -21,36 +21,37 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
 .row itemscope="" itemtype="http://schema.org/Article"
   .collapse.large-24
     h2.divider itemprop="name" #{page.metadata[:title]}
-    .gsi-meta
-      ul
-        - if page.metadata[:author]
-          li
-            strong
-              ' Author:
+    - if [:author, :commits, :level, :technologies, :target_product].all? { |k| page.metadata.key? k} && !page.metadata[:commits].empty?
+      .gsi-meta
+        ul
+          - if page.metadata[:author]
+            li
+              strong
+                ' Author:
+                / TODO Change from span to author profile link when we have identity info
+                span itemprop="author" #{page.metadata[:author]}
+          - if page.metadata[:contributors]
+            li: strong
+              ' Contributors:
               / TODO Change from span to author profile link when we have identity info
-              span itemprop="author" #{page.metadata[:author]}
-        - if page.metadata[:contributors]
-          li: strong
-            ' Contributors:
-            / TODO Change from span to author profile link when we have identity info
-            = page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
-        - if page.metadata[:commits]
-          li
-            strong
-              ' Last Update:
-              span itemprop="dateModified" =DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')
-        - if page.metadata[:level]
-          li: strong
-            | Level:
-              #{page.metadata[:level]}
-        - if page.metadata[:technologies]
-          li: strong
-            | Technologies: 
-            = page.metadata[:technologies].collect { |t| %Q{<span itemprop="about">#{t}</span>}}.join(", ")
-        - if page.metadata[:target_product]
-          li: strong
-            | Target Product: 
-            span itemprop="about" =page.metadata[:target_product]
+              = page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
+          - if page.metadata[:commits] && !page.metadata[:commits].empty?
+            li
+              strong
+                ' Last Update:
+                span itemprop="dateModified" =DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')
+          - if page.metadata[:level]
+            li: strong
+              | Level:
+                #{page.metadata[:level]}
+          - if page.metadata[:technologies]
+            li: strong
+              | Technologies: 
+              = page.metadata[:technologies].collect { |t| %Q{<span itemprop="about">#{t}</span>}}.join(", ")
+          - if page.metadata[:target_product]
+            li: strong
+              | Target Product: 
+              span itemprop="about" =page.metadata[:target_product]
   .row.content
     .columns.large-24
       .columns.large-4
@@ -63,12 +64,13 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
         = page.content
 
         / TODO: Share Knowledge, comments go here
-        h3.divider Recent Changelog
-        ul.commit-log
-          - for commit in page.metadata[:commits].take(10)
-            li
-              / TODO: add the links
-              #{DateTime.parse(commit[:date]).strftime('%b %e, %Y')} (#{commit[:author]}): #{commit[:subject].gsub(/\-/,' ')}
+        - if page.metadata[:commits] && !page.metadata[:commits].empty?
+          h3.divider Recent Changelog
+          ul.commit-log
+            - for commit in page.metadata[:commits].take(10)
+              li
+                / TODO: add the links
+                #{DateTime.parse(commit[:date]).strftime('%b %e, %Y')} (#{commit[:author]}): #{commit[:subject].gsub(/\-/,' ')}
 
       .columns.large-4
         / TODO Add resources 
