@@ -19,7 +19,12 @@ This section covers the steps you need to do in order to setup your environment 
 
 2. Configure the software.
     _NOTE:_ You must use a version of Ruby installed via RVM.
-    * Install RVM from here http://rvm.io and then install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
+    * Install RVM from here http://rvm.io if you don't already have it.
+    * Check RVM knows about `ruby-2.1.1`, by running the following command and looking in the `# MRI Rubies` section. If it doesn't, you must [upgrade RVM](http://rvm.io/rvm/upgrading).
+    
+            rvm list known
+
+    * Install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
 
             rvm install ruby-2.1.1 --disable-binary
     * Install any required supporting software. For example, on Fedora you may need to:
