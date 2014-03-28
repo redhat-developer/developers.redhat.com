@@ -27,6 +27,11 @@ This section covers the steps you need to do in order to setup your environment 
     * Install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
 
             rvm install ruby-2.1.1 --disable-binary
+            
+    * If you see the `Error running 'requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl'` error message, you may need to run the following, and then retry the above install command:
+    
+            rvm requirements
+            
     * Install any required supporting software. For example, on Fedora you may need to:
 
             sudo yum install -y rubygem-nokogiri
@@ -35,12 +40,12 @@ This section covers the steps you need to do in order to setup your environment 
             sudo sysctl -p
 3. Fork the project, then clone your fork and add the upstream repository.
  
-         git clone git@github.com:YOUR_USER_NAME/www.jboss.org.git    
+         git clone git@github.com:YOUR_USER_NAME/www.jboss.org.git
+         cd www.jboss.org
          git remote add -f upstream git@github.com:jboss-developer/www.jboss.org.git
 
-4. Checkout and build the site:
+4. Build the site:
 
-        cd www.jboss.org
         rake setup
         rake update
         rake clean preview
