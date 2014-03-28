@@ -15,7 +15,7 @@ require 'assets'
 Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
   extension Aweplug::Extensions::Sections.new
-  extension Aweplug::Extensions::Video::Vimeo.new('vimeo', 'example-video')
+  extension Aweplug::Extensions::Video::Vimeo.new('vimeo', 'video')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts', layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/eap')
