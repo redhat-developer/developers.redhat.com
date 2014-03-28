@@ -45,10 +45,10 @@ module JBoss::Developer
                 id = ($1 == "" ? "_root" : $1.gsub(/\//, "_"))
                 e = yml[id]
                 e["solution_code"] = "JBOSS"
-                e["asset_title"] = entry.title  || "unknown"
-                e["product"]  = entry.target_product || "unknown"
+                e["asset_title"] = entry.title  if e.title
+                e["product"]  = entry.target_product if e.target_product
                 e["lang"] = "en_US"
-                e["description"] = entry.description || ""
+                e["description"] = entry.description if e.description 
                 e["url"] = site.base_url + entry["output_path"]
               end
             end
@@ -67,10 +67,10 @@ module JBoss::Developer
             id = ($1 == "" ? "_root" : $1.gsub(/\//, "_"))
             e = yml[id] ||= {}
             e["solution_code"] = "JBOSS"
-            e["asset_title"] = src.title || "unknown"
-            e["product"] = src.target_product || "unknown"
+            e["asset_title"] = src.title if src.title
+            e["product"] = src.target_product if src.target_product
             e["lang"] = "en_US"
-            e["description"] = src.description || ""
+            e["description"] = src.description if src.description
             e["url"] = src.site.base_url + src.output_path
           end
         end
