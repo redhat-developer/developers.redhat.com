@@ -1,6 +1,12 @@
 ---
 layout: base
 ---
+- video = video(page.video_url); \
+  if !video.fetch_failed; \
+    page.title = video.title; \
+    page.description = video(page.video_url).description \
+  end
+
 .row
   h2.large-title Developer Materials
 .row.content
@@ -15,11 +21,10 @@ layout: base
 
 .row.content
   .large-18.columns
-    = vimeo(page.video_url)
+    = video_player(video)
     = partial 'share.html.slim'
 
   .large-6.columns
     h4 Related Links
     = page._relatedlinks
-
 

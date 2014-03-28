@@ -14,4 +14,4 @@ layout: technology-base
           .technology-item-inside
             = page["_" + k.gsub(/-/, "_")]
             a.button(href="#{v.url}") Learn More
-            = vimeo(v.video)
+            = video_player(video(v.video))

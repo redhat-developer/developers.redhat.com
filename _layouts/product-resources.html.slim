@@ -30,14 +30,14 @@ a(href="#{page.product.documentation_url}")
   ul.small-block-grid-3.large-block-grid-3
     - for i in 0..2
       - if page.product.featured_videos.length > i
-        - video = page.product.featured_videos[i]
+        - url = page.product.featured_videos[i]
         li.material
-          = vimeo_thumb(video)
+          = video_thumb(video(url))
 - else
   h3.divider Featured Videos
   ul.small-block-grid-3.large-block-grid-3
     |
-    - for material in [video,sandbox,archetype]
+    - for material in 0..2 
       li.material
         a(href="#")
           img(src="/images/materials-thumb1.jpg")
