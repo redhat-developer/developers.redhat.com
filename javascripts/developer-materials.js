@@ -201,10 +201,13 @@ app.dm = {
             var contributors = hits[i].fields.contributors[0];
         }
 
-        var repoLength = hits[0].fields.github_repo_url.length;
         var template = "<li class=\"material\">"; 
-          if (hits[0].fields.github_repo_url.substring((repoLength - 25), repoLength) === 'jboss-sandbox-quickstarts') {
-            template += "<a class=\"banner experimental\"></a>";
+          if (hits[0].fields.github_repo_url) {
+            var repo = hits[0].fields.github_repo_url
+            var repoLength = repo.length;
+            if (repo.substring((repoLength - 25), repoLength) === 'jboss-sandbox-quickstarts') {
+              template += "<a class=\"banner experimental\"></a>";
+            }
           }
           template += "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
           if (hits[i].fields.thumbnail) {
