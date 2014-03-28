@@ -515,3 +515,23 @@ String.prototype.toHHMMSS = function () {
     return time;
 }
 
+Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop, direction){
+    if (arguments.length < 1) throw new Error("sortJsonArrayByProperty requires 1 argument");
+    var direct = arguments.length > 2 ? arguments[2] : 1; //Default to ascending
+
+    var propPath = (prop.constructor === Array) ? prop : prop.split(".");
+    this.sort(function(a,b){
+        for (var p in propPath){
+            if (a[propPath[p]] && b[propPath[p]]){
+                a = a[propPath[p]];
+                b = b[propPath[p]];
+            }
+        }
+        // convert numeric strings to integers or to lower case strings
+        a = isNaN(Math.floor(a)) ? a.toLowerCase() : a;
+        b = isNaN(Math.floor(b)) ? b.toLowerCase() : b;
+        return ( (a < b) ? ( -1 * direct ) : ((a > b) ? (1 * direct) : 0) );
+    });
+}
+
+
