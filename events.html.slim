@@ -61,13 +61,10 @@ description: Discover the events and webinars featuring talks about JBoss produc
                 p itemprop="eventType" Community Event
             .event-body
               / TODO Add schema.org markup for event dates
-              div.event-date
-                span.month #{v.month}
-                - if "#{v.day}" != "{}"
-                  span.day #{v.day}
-                - else
-                  - if "#{v.days}" != "{}"
-                    span.days #{v.days}
+              div.event-date itemprop="startDate" content="#{v.start.iso8601}"
+                span.month #{v.start.strftime '%b'}
+                span.day #{v.start.strftime '%d'}
+                span itemProp="endDate" content="#{v.end.iso8601}"
               h3: a(itemprop="url" href="#{v.link}")
                 span itemprop="summary" #{v.title}
               - if "#{v.redhat}" == "true"
