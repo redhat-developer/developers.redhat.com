@@ -2,11 +2,21 @@
   p
     i.fa.fa-share
     | Share This
-  .share-this-buttons
-    a href="https://twitter.com/share" class="twitter-share-button" data-text="<!=sys_title!>" data-url="<!=sys_url_view!>" Tweet
-    span.facebook-share-button
-      a href="#" ata-text="<!=sys_title!>" data-url="<!=sys_url_view!>" Share
-      span.facebook-share-button-count(data-shares="0")
-    div class="g-plus" data-action="share" href="<!=sys_url_view!>" data-annotation="bubble" Share on G+
-    /script type="IN/Share" data-url="<!=link!>" data-counter="right"
+  ul.share-this-buttons.social-buttons.cf
+    li
+      a(href="https://twitter.com/share" class="socialite twitter-share-button" data-text="<!=sys_title!>" data-url="<!=sys_url_view!>" rel="nofollow" target="_blank")
+        span.vhidden
+          | Tweet
+    li
+      a(href="https://plus.google.com/share?url=<!=sys_url_view!>" class="socialite googleplus-one" data-size="medium" data-width="300" data-href="<!=sys_url_view!>" rel="nofollow" target="_blank")
+        span.vhidden
+          | Share on Google+
+    li
+      a(href="http://www.facebook.com/sharer.php?u=<!=sys_url_view!>&t=<!=sys_title!>" class="socialite facebook-share" data-href="<!=sys_url_view!>" data-send="false" data-layout="box_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank")
+        span.vhidden
+          | Share on Facebook
+    li
+      a(href="http://www.linkedin.com/shareArticle?mini=true&url=<!=sys_url_view!>&title=<!=sys_title!>" class="socialite linkedin-share" data-url="<!=sys_url_view!>" data-counter="right" rel="nofollow" target="_blank")
+        span.vhidden
+          | Share on LinkedIn
 

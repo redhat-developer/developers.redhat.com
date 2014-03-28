@@ -69,6 +69,7 @@
 @import "theme-light";
 @import "global-wrapper";
 @import "paginator";
+@import "socialite";
 // @import "theme-dark";
 
 
@@ -493,7 +494,7 @@ i[class*=fa].invert {
   }
   .update-meta {
     .share-this {
-      padding: 10px 10px 0px 10px;
+      padding: 0;
       p {
         background:white;
         padding-left:0;

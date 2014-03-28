@@ -79,12 +79,20 @@ description: Discover the events and webinars featuring talks about JBoss produc
               p
                 i.icon-share-alt
                 | Share This
-              .share-this-buttons
-                a(href="https://twitter.com/share" class="twitter-share-button" data-text="This is the tweet text" data-url="http://jboss.org") Tweet
-                span.facebook-share-button
-                  a(href="#" data-title="This is the title" data-text="This is the tweet text" data-url="http://jboss.org")
-                    | Share
-                  span.facebook-share-button-count(data-shares="0")
-                div(class="g-plus" data-action="share" href="http://jboss.org" data-annotation="bubble") Share on G+
-                script(type="IN/Share" data-url="http://jboss.org" data-counter="right")
-
+              ul.share-this-buttons.social-buttons.cf
+                li
+                  a(href="https://twitter.com/share" class="socialite twitter-share" data-text="#{v.title} #{v.description}" data-url="#{v.link}" rel="nofollow" target="_blank")
+                   span.vhidden
+                     | Tweet
+                li
+                  a(href="https://plus.google.com/share?url=#{v.link}" class="socialite googleplus-one" data-size="medium" data-width="300" data-href="#{v.link}" rel="nofollow" target="_blank")
+                   span.vhidden
+                     | Share on Google+
+                li
+                  a(href="http://www.facebook.com/sharer.php?u=#{v.link}&t=#{v.title}" class="socialite facebook-share" data-href="#{v.link}" data-send="false" data-layout="box_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank")
+                   span.vhidden
+                     | Share on Facebook
+                li
+                  a(href="http://www.linkedin.com/shareArticle?mini=true&url=#{v.link}}&title=#{v.title}" class="socialite linkedin-share" data-url="#{v.title}" data-counter="right" rel="nofollow" target="_blank")
+                   span.vhidden
+                     | Share on LinkedIn

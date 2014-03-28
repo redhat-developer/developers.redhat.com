@@ -162,8 +162,18 @@ app.init = function() {
         'width=626,height=436'); 
     });
 
+    $(document).ready(function()
+    {
+
+        $('.share-this').on('mouseover', function()
+        {
+            Socialite.load($(this)[0]);
+        });
+
+    });
+
     // Facebook Share # — Get this number when you hover over the share button
-    $('.share-this').on('mouseover',function(e){ // mouseover should be triggered on first tap
+    /*$('.share-this').on('mouseover',function(e){ // mouseover should be triggered on first tap
       var el = $(this),
           shareButton = el.find('.facebook-share-button a'),
           shareTab = el.find('.facebook-share-button-count'),
@@ -177,7 +187,7 @@ app.init = function() {
         });
 
       }
-    });
+    });*/
   
   /*
     Equalize Bottoms
