@@ -22,7 +22,7 @@ This section covers the steps you need to do in order to setup your environment 
     * Install RVM from here http://rvm.io and then install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
 
             rvm install ruby-2.1.1 --disable-binary
-    * Install any required supporting software:
+    * Install any required supporting software. For example, on Fedora you may need to:
 
             sudo yum install -y rubygem-nokogiri
             sudo yum install -y gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel
