@@ -78,14 +78,18 @@ task :setup, [:env] => :init do |task, args|
 end
 
 desc 'Update the environment to run Awestruct'
-task :update => [:init, :git_update, :regen_sprites] do
+task :update => [:init, :bundler_update, :git_update, :regen_sprites] do
+  # Don't execute any more tasks, need to reset env
+  exit 0
+end
+
+desc 'Update bundler environment'
+task :bundler_update do
   if File.exist? 'Gemfile'
     system 'bundle update'
   else
     system 'gem update awestruct'
-  end
-  # Don't execute any more tasks, need to reset env
-  exit 0
+  end 
 end
 
 desc 'Update and initialize any git submodules'
