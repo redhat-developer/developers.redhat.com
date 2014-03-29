@@ -17,13 +17,14 @@ profile_base: &profile
   dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
   cdn_http_base: &cdn_http_base //static.jboss.org/common/www 
   log_faraday: true
-  minify: true
+  minify: &minify true 
   deploy:
     <<: *deploy
   scss:
     :style: :compressed
     # Nice big hack:
     :cdn_http_base: *cdn_http_base
+    :minify: *minify
 
 profiles:
   development:

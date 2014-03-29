@@ -1,4 +1,5 @@
 require 'aweplug/helpers/cdn'
+require 'aweplug/helpers/png'
 
 module JBoss
   module Developer
@@ -38,8 +39,11 @@ module JBoss
 
         def execute(site)
           if site.cdn_http_base
+            # Load this late, we don't want to normally require pngquant
             Compass.configuration.generated_images_dir = CDN_SPRITES_PATH.to_s
             Compass.configuration.http_generated_images_path = "#{site.cdn_http_base}/#{SPRITES_DIR}"
+            # Run sprites through pngquant on creation
+            Compass.configuration.on_sprite_saved { |filename| Aweplug::Helpers::PNGFile.new(filename).compress! }
           else
             Compass.configuration.generated_images_dir = SPRITES_PATH.to_s
             Compass.configuration.http_generated_images_path = "#{site.base_url}/#{SPRITES_PATH}"
