@@ -139,7 +139,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   site_path = Shellwords.escape(deploy_config['path'])
   local_site_path = '_site' # HACK!!
   
-  rsync(local_site_path, site_host, site_path, true)
+  rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: true, excludes: ["images/", "javascripts/", "stylesheets/"])
 
   # Update the resources on the CDN
   if config['cdn_http_base'] || profile['cdn_http_base']
@@ -147,7 +147,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
     cdn_path = Shellwords.escape(deploy_config['cdn_path'])
     local_cdn_path = '_tmp/cdn' # HACK!!
 
-    rsync(local_cdn_path, cdn_host, cdn_path)
+    rsync(local_path: local_cdn_path, host: cdn_host, remote_path: cdn_path)
   end
 end
 
@@ -212,26 +212,26 @@ task :travis do
 
   # if this is a pull request, do a simple build of the site and stop
   if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
-    puts 'Pull request detected. Executing build only.'
+    msg 'Pull request detected. Executing build only.'
     system "bundle exec awestruct -P #{profile} -g"
     next
   end
 
   if ENV['TRAVIS_BRANCH'].to_s.scan(/^production$/).length > 0
 
-    puts 'Building production branch build.'
+    msg 'Building production branch build.'
     profile = 'filemgmt'
     deploy_url=ENV['production_deploy_url'].to_s
 
   elsif ENV['TRAVIS_BRANCH'].to_s.scan(/^master$/).length > 0
 
-    puts 'Building staging(master) branch build.'
+    msg 'Building staging(master) branch build.'
     profile = 'filemgmt'
     deploy_url=ENV['master_deploy_url'].to_s
 
   else
 
-    puts ENV['TRAVIS_BRANCH'].to_s + ' branch is not configured for Travis builds - skipping.'
+    msg ENV['TRAVIS_BRANCH'].to_s + ' branch is not configured for Travis builds - skipping.'
     next
 
   end
@@ -240,7 +240,7 @@ task :travis do
   system "bundle exec awestruct -P #{profile} -g"
 
   # Deploying
-  puts "Deploying build result to #{deploy_url}"
+  msg "Deploying build result to #{deploy_url}"
   system "rsync --protocol=29 -r -l -i --no-p --no-g --chmod=Dg+sx,ug+rw _site/* #{deploy_url}"
 end
 
@@ -284,9 +284,10 @@ def msg(text, level = :info)
   end
 end
 
-def rsync(local_path, host, remote_path, delete = false)
+def rsync(local_path:, host:, remote_path:, delete: false, excludes: [])
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
-  open3 "rsync -Pqacz --chmod=Dg+sx,ug+rw --protocol=28 #{delete ? '--delete' : ''} #{local_path}/ #{host}:#{remote_path}"
+  cmd = "rsync -Pqacz --chmod=Dg+sx,ug+rw --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
+  open3 cmd
 end
 
 def sprite(path)
