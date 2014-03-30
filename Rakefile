@@ -133,14 +133,6 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   config = YAML.load_file('_config/site.yml')
   profile = config['profiles'][args[:profile]]
 
-  # Deploy the site
-  deploy_config = profile['deploy']
-  site_host = Shellwords.escape(deploy_config['host'])
-  site_path = Shellwords.escape(deploy_config['path'])
-  local_site_path = '_site' # HACK!!
-  
-  rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: true, excludes: ["images/", "javascripts/", "stylesheets/"])
-
   # Update the resources on the CDN
   if config['cdn_http_base'] || profile['cdn_http_base']
     cdn_host = Shellwords.escape(deploy_config['cdn_host'])
@@ -149,6 +141,15 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
 
     rsync(local_path: local_cdn_path, host: cdn_host, remote_path: cdn_path)
   end
+
+  # Deploy the site
+  deploy_config = profile['deploy']
+  site_host = Shellwords.escape(deploy_config['host'])
+  site_path = Shellwords.escape(deploy_config['path'])
+  local_site_path = '_site' # HACK!!
+  
+  rsync(local_site_path, site_host, site_path, true)
+
 end
 
 desc 'Clean out generated site and temporary files'
