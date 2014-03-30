@@ -534,4 +534,3 @@ Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop,
     });
 }
 
-
