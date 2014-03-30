@@ -10,12 +10,12 @@ register_url: https://community.jboss.org/register.jspa
 deploy_base: &deploy
   host: www@filemgmt.jboss.org
   cdn_host: www@filemgmt.jboss.org
-  cdn_path: /static_htdocs/_root/common/www
+  cdn_path: /static_htdocs/www
   uncommitted: true
 
 profile_base: &profile
   dcp_base_url: http://dcpbeta-searchisko.rhcloud.com
-  cdn_http_base: &cdn_http_base //static.jboss.org/common/www 
+  cdn_http_base: &cdn_http_base //static.jboss.org/www 
   log_faraday: true
   minify: &minify true 
   metrics: true
