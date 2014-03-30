@@ -49,6 +49,7 @@ $resources = ['stylesheets', 'javascripts', 'images']
 $use_bundle_exec = true
 $install_gems = ['awestruct -v "~> 0.5.3"', 'rb-inotify -v "~> 0.9.0"']
 $awestruct_cmd = nil
+$remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
 
 desc 'Setup the environment to run Awestruct'
@@ -119,9 +120,9 @@ task :gen, [:profile] => :check do |task, args|
   run_awestruct "-P #{args[:profile] || 'development'} -g --force"
 end
 
-desc 'Push local commits to origin/master'
-task :push do
-  system 'git push --tags origin master'
+desc "Push local commits to #{$remote}/master"
+task :push => :init do
+  system "git push --tags #{$remote} master"
 end
 
 desc 'Tag the source files'
@@ -131,8 +132,10 @@ task :tag, [:profile, :tag_name] do |task, args|
     msg "Must specify tag_name", :warn
     exit 1
   end
-  msg "Tagging '#{args[:tag_name]}'"
-  system "git tag #{args[:tag_name]}" unless args[:tag_name].nil?
+  if !args[:tag_name].nil?
+    msg "Tagging '#{args[:tag_name]}'"
+    system "git tag #{args[:tag_name]}" 
+  end
 end
 
 desc 'Generate the site and deploy using the given profile'
