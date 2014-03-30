@@ -307,7 +307,7 @@ end
 
 def rsync(local_path:, host:, remote_path:, delete: false, excludes: [])
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
-  cmd = "rsync -Pqacz --chmod=Dg+sx,ug+rw --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
+  cmd = "rsync -PqaczO --chmod=Dg+sx,ug+rw --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
   open3 cmd
 end
 
