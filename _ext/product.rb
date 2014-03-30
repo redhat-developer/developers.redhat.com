@@ -7,12 +7,13 @@ module JBoss::Developer::Extensions
     def initialize
       @default_guide_formats = {"html" => {}, "html-single" => {}, "pdf" => {}, "epub" => {}}
       @default_download_assets = {
-        "installer" => {"name" => "Installer", "icon" => "fa fa-download", "type" => "jar"},
-        "zip" => {"name" => "ZIP", "icon" => "fa fa-download"},
-        "sha1" => {"name" => "SHA1"}, 
-        "md5" => {"name" => "MD5"}, 
-        "release_notes" => {"name" => "Release Notes", "icon" => "fa fa-pencil"},
-        "source" => {"name" => "Source", "icon" => "fa fa-download"}}
+        "installer" => {"type" => "jar"},
+        "zip" => {"name" => "ZIP", },
+        "sha1" => {"name" => "SHA1", "type" => "sha1"},
+        "md5" => {"name" => "MD5", "type" => "md5"}, 
+        "release_notes" => {"name" => "Release Notes", "icon" => "fa fa-pencil", "type" => "txt"},
+        "source" => {}
+      }
       @default_locale = "en_US"
       @default_download_artifact_type = "zip"
     end
@@ -56,26 +57,28 @@ module JBoss::Developer::Extensions
           download.assets.each do |l, w|
             asset = OpenStruct.new(w)
             asset.key = l
-            asset.name ||= @default_download_assets.has_key?(l) ? @default_download_assets[l]["name"] : key_to_name(l) 
+            asset.name ||= artifact_attr l, "name", key_to_name(l) 
             c = []
             if asset.artifacts
               asset.artifacts.each do |m, x|
                 artifact = OpenStruct.new(x)
-                artifact.type ||= m.downcase
-                artifact.name ||=  @default_download_assets.has_key?(m) ? @default_download_assets[m]["name"] : key_to_name(m)
-                artifact.filename ||= "jboss-#{product.id}-#{download.version}.#{artifact.type}"
-                artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}/download"
-                artifact.icon ||= @default_download_assets.has_key?(m) ? @default_download_assets[m]["icon"] : "fa fa-download"
+                artifact.type ||= artifact_attr m, "type", "zip"
+                artifact.classifier ||= artifact_classifier l, m, artifact.type
+                artifact.name ||=  artifact_attr m, "name", key_to_name(m)
+                artifact.filename ||= "jboss-#{product.id}-#{download.version}#{artifact.classifier}.#{artifact.type}"
+                artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}"
+                artifact.icon ||= artifact_attr m, "icon", "fa fa-download"
                 c << artifact
               end
             else
               artifact = OpenStruct.new
               artifact.size = asset.size
-              artifact.type = l.downcase
+              artifact.type = artifact_attr l, "type", "zip"
               artifact.name = asset.name
-              artifact.filename = "jboss-#{product.id}-#{download.version}.#{artifact.type}"
-              artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}/download"
-              artifact.icon = @default_download_assets.has_key?(l) ? @default_download_assets[l]["icon"] : "fa fa-download"
+              artifact.classifier ||= artifact_classifier l, l, artifact.type
+              artifact.filename = "jboss-#{product.id}-#{download.version}#{artifact.classifier}.#{artifact.type}"
+              artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}"
+              artifact.icon = artifact_attr l, "icon", "fa fa-download"
               c << artifact
             end
             asset.artifacts = c
@@ -102,6 +105,34 @@ module JBoss::Developer::Extensions
       end
     end
 
+    def artifact_attr(key, attr, default)
+      if @default_download_assets.has_key?(key) && @default_download_assets[key].has_key?(attr)
+        @default_download_assets[key][attr]
+      else default
+        default
+      end
+    end
+
+    def artifact_classifier c1, c2, type
+      c1 = c1.empty? ? nil : c1
+      c2 = c2.empty? ? nil : c2
+      # Remove classifiers that are identical to the type
+      c1 = c1 == type ? nil : c1
+      c2 = c2 == type ? nil : c2
+
+      if c1 == nil && c2 == nil
+        ""
+      elsif c1 == c2
+        # Only display a classifier once if they are identical
+        "-#{c1.downcase}"
+      elsif c2 == nil
+        "-#{c1.downcase}"
+      elsif c1 == nil
+        "-#{c2.downcase}"
+      else
+        "-#{c1.downcase}-#{c2.downcase}"
+      end
+    end
 
     def key_to_name(key)
       key.gsub(/_/, ' ').split.map(&:capitalize).join(' ')
