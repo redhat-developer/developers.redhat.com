@@ -42,6 +42,7 @@ profiles:
   beta:
     <<: *profile
     base_url: http://www-beta.jboss.org
+    require_tag: true
     deploy:
       <<: *deploy
       path: /stg_htdocs/www-beta

@@ -1,3 +1,7 @@
+require 'yaml'
+require 'awestruct/astruct'
+require 'awestruct/page'
+
 # This file is a rake build file. The purpose of this file is to simplify
 # setting up and using Awestruct. It's not required to use Awestruct, though it
 # does save you time (hopefully). If you don't want to use rake, just ignore or
@@ -41,6 +45,7 @@
 # Now you're Awestruct with rake!
 
 $sprites = ['images/branding/product-logos', 'images/design/get-involved', 'images/design/get-started', 'images/design/theme-dark', 'images/design/theme-light', 'images/icons']
+$resources = ['stylesheets', 'javascripts', 'images']
 $use_bundle_exec = true
 $install_gems = ['awestruct -v "~> 0.5.3"', 'rb-inotify -v "~> 0.9.0"']
 $awestruct_cmd = nil
@@ -120,32 +125,43 @@ task :push do
 end
 
 desc 'Tag the source files'
-task :tag, :tag_name do |task, args|
+task :tag, [:profile, :tag_name] do |task, args|
+  $config ||= config args[:profile]
+  if $config['require_tag'] && args[:tag_name].nil?
+    msg "Must specify tag_name", :warn
+    exit 1
+  end
+  msg "Tagging '#{args[:tag_name]}'"
   system "git tag #{args[:tag_name]}" unless args[:tag_name].nil?
 end
 
 desc 'Generate the site and deploy using the given profile'
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args| 
-  run_awestruct "-P #{args[:profile]} -g --force"
-  require 'yaml'
-  require 'shellwords'
+  #run_awestruct "-P #{args[:profile]} -g --force"
 
-  config = YAML.load_file('_config/site.yml')
-  profile = config['profiles'][args[:profile]]
+  $config ||= config args[:profile]
 
+  LOCAL_CDN_PATH = Pathname.new('_tmp').join('cdn') # HACK!!
+  
+  if args[:tag_name]
+    local_tagged_path = LOCAL_CDN_PATH.join(args[:tag_name])
+    # Collect our resources into a tagged group, for others to use
+    FileUtils.mkdir_p local_tagged_path
+    $resources.each do |r|
+      FileUtils.cp_r Pathname.new(local_site_path).join(r), local_tagged_path
+    end
+  end
+  
   # Update the resources on the CDN
-  if config['cdn_http_base'] || profile['cdn_http_base']
-    cdn_host = Shellwords.escape(deploy_config['cdn_host'])
-    cdn_path = Shellwords.escape(deploy_config['cdn_path'])
-    local_cdn_path = '_tmp/cdn' # HACK!!
-
-    rsync(local_path: local_cdn_path, host: cdn_host, remote_path: cdn_path)
+  if $config['cdn_http_base']
+    cdn_host = $config.deploy.cdn_host
+    cdn_path = $config.deploy.cdn_path
+    rsync(LOCAL_CDN_PATH, cdn_host, cdn_path)
   end
 
   # Deploy the site
-  deploy_config = profile['deploy']
-  site_host = Shellwords.escape(deploy_config['host'])
-  site_path = Shellwords.escape(deploy_config['path'])
+  site_host = $config.deploy.host
+  site_path = $config.deploy.path
   local_site_path = '_site' # HACK!!
   
   rsync(local_site_path, site_host, site_path, true)
@@ -165,7 +181,7 @@ task :clean, :spec do |task, args|
 end
 
 # Perform initialization steps, such as setting up the PATH
-task :init do
+task :init, [:profile] do
   # Detect using gems local to project
   if File.exist? '_bin'
     ENV['PATH'] = "_bin#{File::PATH_SEPARATOR}#{ENV['PATH']}"
@@ -310,6 +326,56 @@ def open3(cmd)
       end
     end
     threads.each{|t|t.join}
+  end
+end
+
+def config(profile = nil)
+  load_site_yaml "_config/site.yml", profile
+end
+
+def load_site_yaml(yaml_path, profile = nil)
+  config = Awestruct::AStruct.new
+  if ( File.exist?( yaml_path ) )
+    data = YAML.load( File.read( yaml_path ) )
+    if ( profile )
+      profile_data = {}
+      data.each do |k,v|
+        if ( ( k == 'profiles' ) && ( ! profile.nil? ) )
+          profile_data = ( v[profile] || {} )
+        else
+          config.send( "#{k}=", merge_data( config.send( "#{k}" ), v ) )
+        end
+      end if data
+      config.profile = profile
+      profile_data.each do |k,v|
+        config.send( "#{k}=", merge_data(config.send( "#{k}" ), v ) )
+      end
+    else
+      data.each do |k,v|
+        config.send( "#{k}=", v )
+      end if data
+    end
+  end
+  config
+end
+
+def merge_data(existing, new)
+  if existing.kind_of? Hash
+    result = existing.inject({}) do |merged, (k,v)|
+      if new.has_key? k
+        if v.kind_of? Hash
+          merged[k] = merge_data(v, new.delete(k))
+        else
+          merged[k] = new.delete(k)
+        end
+      else
+        merged[k] = v
+      end
+      merged
+    end
+    result.merge new
+  else
+    new
   end
 end
 
