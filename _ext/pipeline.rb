@@ -10,7 +10,7 @@ require 'jboss_developer'
 require 'nav'
 require 'stacks'
 require 'product'
-require 'assets'
+require 'mktg_ops'
 
 Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
@@ -61,11 +61,13 @@ Awestruct::Extensions::Pipeline.new do
   # Generate a sitemap.xml
   extension Awestruct::Extensions::Sitemap.new
   # Generate a assets.yml
-  extension JBoss::Developer::Extensions::Assets.new
+  extension JBoss::Developer::MktgOps::Assets.new
 
   helper Awestruct::Extensions::Partial
   helper JBoss::Developer::Utilities
   helper Aweplug::Helpers::Vimeo
   helper Aweplug::Helpers::Resources
+
+  transformer JBoss::Developer::MktgOps::LinkInstrumentation.new
 end
 
