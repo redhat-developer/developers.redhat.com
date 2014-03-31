@@ -1,5 +1,6 @@
 require 'aweplug/helpers/cdn'
 require 'aweplug/helpers/png'
+require 'compass'
 
 module JBoss
   module Developer
