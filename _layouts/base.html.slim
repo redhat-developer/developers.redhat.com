@@ -24,9 +24,6 @@ head
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
     link rel='stylesheet' type='text/css' href="/stylesheets/ie8grid.css" 
 
-  = javascripts "top" do
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
-
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
   - if site.profile == 'staging' || site.profile == 'development' || site.profile == 'beta'
@@ -129,6 +126,7 @@ body(class="#{template}")
   / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.topbar.js"
   
   = javascripts "bottom" do
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
