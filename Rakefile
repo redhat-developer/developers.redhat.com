@@ -140,7 +140,7 @@ end
 
 desc 'Generate the site and deploy using the given profile'
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args| 
-  #run_awestruct "-P #{args[:profile]} -g --force"
+  run_awestruct "-P #{args[:profile]} -g --force"
 
   $config ||= config args[:profile]
 
@@ -159,7 +159,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   if $config['cdn_http_base']
     cdn_host = $config.deploy.cdn_host
     cdn_path = $config.deploy.cdn_path
-    rsync(LOCAL_CDN_PATH, cdn_host, cdn_path)
+    rsync(local_path: LOCAL_CDN_PATH, host: cdn_host, remote_path: cdn_path)
   end
 
   # Deploy the site
@@ -167,7 +167,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   site_path = $config.deploy.path
   local_site_path = '_site' # HACK!!
   
-  rsync(local_site_path, site_host, site_path, true)
+  rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: true, excludes: $resources)
 
 end
 
