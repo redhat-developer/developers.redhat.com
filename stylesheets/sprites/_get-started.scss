@@ -24,6 +24,10 @@ $get-started-inline: false !default;
    $get-started-bg-spacing:  $get-started-spacing !default;
    $get-started-bg-repeat:   $get-started-repeat !default;
  
+   $get-started-placeholder-jbossdeveloper_quickstart-position: $get-started-position !default;
+   $get-started-placeholder-jbossdeveloper_quickstart-spacing:  $get-started-spacing !default;
+   $get-started-placeholder-jbossdeveloper_quickstart-repeat:   $get-started-repeat !default;
+ 
    $get-started-ticket-monster-bg-position: $get-started-position !default;
    $get-started-ticket-monster-bg-spacing:  $get-started-spacing !default;
    $get-started-ticket-monster-bg-repeat:   $get-started-repeat !default;
@@ -38,6 +42,10 @@ $get-started-inline: false !default;
    $get-started-bg-position: $get-started-bg-position, 
    $get-started-bg-spacing:  $get-started-bg-spacing, 
    $get-started-bg-repeat:   $get-started-bg-repeat,
+ 
+   $get-started-placeholder-jbossdeveloper_quickstart-position: $get-started-placeholder-jbossdeveloper_quickstart-position, 
+   $get-started-placeholder-jbossdeveloper_quickstart-spacing:  $get-started-placeholder-jbossdeveloper_quickstart-spacing, 
+   $get-started-placeholder-jbossdeveloper_quickstart-repeat:   $get-started-placeholder-jbossdeveloper_quickstart-repeat,
  
    $get-started-ticket-monster-bg-position: $get-started-ticket-monster-bg-position, 
    $get-started-ticket-monster-bg-spacing:  $get-started-ticket-monster-bg-spacing, 
@@ -96,5 +104,5 @@ $get-started-inline: false !default;
 
 // Generates a class for each sprited image.
 @mixin all-get-started-sprites($dimensions: $get-started-sprite-dimensions, $prefix: sprite-map-name($get-started-sprites), $offset-x: 0, $offset-y: 0) {
-  @include get-started-sprites(bg-squares bg ticket-monster-bg, $dimensions, $prefix, $offset-x, $offset-y);
+  @include get-started-sprites(bg-squares bg placeholder-jbossdeveloper_quickstart ticket-monster-bg, $dimensions, $prefix, $offset-x, $offset-y);
 }

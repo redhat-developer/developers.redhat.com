@@ -202,6 +202,7 @@ app.dm = {
         }
 
         var template = "<li class=\"material\">"; 
+        template += "<div class=\"get-started-placeholder-jbossdeveloper_quickstart\" >";
           if (hits[0].fields.github_repo_url) {
             var repo = hits[0].fields.github_repo_url
             var repoLength = repo.length;
@@ -209,13 +210,11 @@ app.dm = {
               template += "<a class=\"banner experimental\"></a>";
             }
           }
-          template += "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
           if (hits[i].fields.thumbnail) {
-            template +="<img src=\"" + hits[i].fields.thumbnail + "\" />";
-          } else {
-            template +="<img src=\"/images/placeholder-" + hits[i].fields.sys_content_type  + ".png\" />";
+            template += "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
+            template +="<img onerror=\"this.style.display='none'\" src=\"" + hits[i].fields.thumbnail + "\" />";
+            template += "</a>"
           }
-          template += "</a>";
           var labels = "";
           if (hits[i].fields.duration && hits[i].fields.duration > 0) {
             labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
@@ -231,6 +230,7 @@ app.dm = {
             labels += "<div class=\"empty-label\"></div>";
           }
           template += labels;
+          template += "</div>";
           template += "<h4>" +
             "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
               hits[i].fields.sys_title +
