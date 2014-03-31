@@ -3,7 +3,7 @@
   ############################################
   ## Add default Expires header
   ## http://developer.yahoo.com/performance/rules.html#expires
-  ExpiresDefault "access plus 10 year"
+  ExpiresDefault "access plus 1 year"
 </IfModule>
 
 <IfModule mod_deflate.c>
