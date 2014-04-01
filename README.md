@@ -44,9 +44,12 @@ This section covers the steps you need to do in order to setup your environment 
          cd www.jboss.org
          git remote add -f upstream git@github.com:jboss-developer/www.jboss.org.git
 
-4. Build the site:
+4. Bootstrap the gemset:
 
-        rake setup
+        bundle install
+
+5. Build the site:
+
         rake update
         rake clean preview
 
