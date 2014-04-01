@@ -300,6 +300,14 @@ app.init = function() {
     app.mktg_ops.init();
   }
 
+  /*
+   * Populate developer materials results if on developer materials page
+   */
+
+  if ($('.developer-materials').length) {
+     app.dm.devMatFilter();
+  }
+
 
 }; /* End app.init() */
 
