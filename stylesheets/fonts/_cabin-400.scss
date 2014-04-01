@@ -2,5 +2,10 @@
   font-family: 'Cabin';
   font-style: normal;
   font-weight: 400;
-  src: local('Cabin Regular'), local('Cabin-Regular'), cdn("fonts/cabin.v5.ttf") format('truetype');
+  src: local('Cabin Regular'), local('Cabin-Regular');
+  src: cdn('fonts/jboss-org-customcabin.eot');
+  src: cdn('fonts/jboss-org-customcabin.eot?#iefix') format('embedded-opentype'),
+       cdn('fonts/jboss-org-customcabin.woff') format('woff'),
+       cdn('fonts/jboss-org-customcabin.ttf') format('truetype'),
+       cdn('fonts/jboss-org-customcabin.svg#cabinregular') format('svg');
 }
