@@ -42,7 +42,7 @@ profiles:
   beta:
     <<: *profile
     base_url: http://www-beta.jboss.org
-    dcp_base_url: http://dcp.jboss.org
+    dcp_base_url: http://dcp.jboss.org/
     require_tag: true
     deploy:
       <<: *deploy
