@@ -60,7 +60,7 @@ var google_remarketing_only = true;
  * Google Analytics
  */
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount','UA-49376381-1']);
+_gaq.push(['_setAccount','UA-49596258-1']);
 _gaq.push(['_trackPageview']);
 
 (function() {
