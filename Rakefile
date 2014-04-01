@@ -145,7 +145,8 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   $config ||= config args[:profile]
 
   LOCAL_CDN_PATH = Pathname.new('_tmp').join('cdn') # HACK!!
-  
+  local_site_path = '_site' # HACK!!
+
   if args[:tag_name]
     local_tagged_path = LOCAL_CDN_PATH.join(args[:tag_name])
     # Collect our resources into a tagged group, for others to use
@@ -165,7 +166,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   # Deploy the site
   site_host = $config.deploy.host
   site_path = $config.deploy.path
-  local_site_path = '_site' # HACK!!
+  
   
   rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: true, excludes: $resources)
 
