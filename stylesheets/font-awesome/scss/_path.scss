@@ -4,10 +4,10 @@
 @font-face {
   font-family: 'FontAwesome';
   src: cdn('#{$fa-font-path}/fontawesome-webfont.eot');
-  src: cdn('#{$fa-font-path}/fontawesome-webfont.eot') format('embedded-opentype'),
+  src: cdn('#{$fa-font-path}/fontawesome-webfont.eot#iefix') format('embedded-opentype'),
     cdn('#{$fa-font-path}/fontawesome-webfont.woff') format('woff'),
     cdn('#{$fa-font-path}/fontawesome-webfont.ttf') format('truetype'),
-    cdn('#{$fa-font-path}/fontawesome-webfont.svg') format('svg');
+    cdn('#{$fa-font-path}/fontawesome-webfont.svg#cabinregular') format('svg');
   //src: cdn('#{$fa-font-path}/FontAwesome.otf') format('opentype'); // used when developing fonts
   font-weight: normal;
   font-style: normal;
