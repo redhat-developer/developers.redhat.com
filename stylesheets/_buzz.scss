@@ -159,3 +159,14 @@ h4.buzz-message.divider {
     width:98%;
   }
 }
+
+.buzz-loading {
+    background:red;
+    background:cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+    height: 200px;
+    width: 100%;
+    li.material {
+      visibility: hidden;
+    }
+  }
+

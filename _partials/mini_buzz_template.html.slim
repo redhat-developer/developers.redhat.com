@@ -1,14 +1,14 @@
 .large-12.column
   .update.pinned.updatemobile
     .update-meta
-      a.update-timestamp href="#" <!=publishedDate!>
-      a.update-source href="<!=link!>"
+      a.update-timestamp href="#" <!=updatedDate!>
+      a.update-source href="<!=sys_url_view!>"
         /i.fa.fa-twitter
-        <!=author!> said:
+        <!=authorName!> said:
     .update-body
       p
         img.avatar src=""
-        <!=contentSnippet!>
+        <!=content!>
     .update-meta
       = partial "share.html.slim"
 

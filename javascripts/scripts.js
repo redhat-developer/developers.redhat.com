@@ -239,17 +239,7 @@ app.init = function() {
   var $mbuzz = $('.mini-buzz-container');
 
   if($mbuzz.length) {
-    $mbuzz.feeds({
-        feeds: { 
-          buzz: 'http://planet.jboss.org/feeds/buzz' 
-        },
-        preprocess: function(feed) {
-          this.publishedDate = jQuery.timeago(new Date(this.publishedDate));
-        },
-        loadingTemplate: '<p class="feeds-loader">Loading entries ...</p>',
-        max: 6,
-        entryTemplate: app.templates.miniBuzzTemplate
-    });
+    app.loadBuzz(app.templates.miniBuzzTemplate, $mbuzz);
   };
 
   /* 
@@ -258,17 +248,7 @@ app.init = function() {
   var $buzz = $('.buzz-container');
 
   if($buzz.length) {
-    $buzz.feeds({
-        feeds: { 
-          buzz: 'http://planet.jboss.org/feeds/buzz' 
-        },
-        preprocess: function(feed) {
-          this.publishedDate = jQuery.timeago(new Date(this.publishedDate));
-        },
-        loadingTemplate: '<p class="feeds-loader">Loading entries ...</p>',
-        max: 6,
-        entryTemplate: app.templates.buzzTemplate
-    });
+    app.loadBuzz(app.templates.buzzTemplate, $buzz);
   };
 
   /*
@@ -396,6 +376,48 @@ app.sso = function() {
     }
   });
 };
+
+/*
+ * Buzz
+ */
+app.loadBuzz = function(tmpl, container) {
+  $.ajax({
+      url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
+      data : {
+        "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_content", "sys_updated"],
+        "size" : 6,
+        "sys_type" : "blogpost",
+        "sortBy" : "new-create"
+      }
+    }).done(function(data){
+      var hits = data.hits.hits;
+      var html = "";
+      for (var i = 0; i < hits.length; i++) {
+        var d = hits[i].fields;
+        // This regex will parse an email like "John Smith <john.smith@acme.com>", giving you two matches "John Smith" and "john.smith@acme.corp"
+        var pat = /(?:([^"]+))? <?(.*?@[^>,]+)>?,? ?/g;
+        d.authorName = "Unknown";
+        d.authorMail = "";
+        while (m = pat.exec(d.sys_contributors)) {
+          d.authorName = m[1];
+          d.authorMail = m[2];
+        }
+        d.updatedDate = jQuery.timeago(new Date(d.sys_updated));
+        d.content = d.sys_content.stripHTML();
+        if (d.content.length > 150) {
+          d.content = d.content.substr(0, 150) + "...";
+        }
+        html += tmpl.template(d);
+      }
+
+      // Inject HTML into the DOM
+      if(!html) {
+        html = "Sorry, no results to display.";
+      }
+      container.append(html);
+      container.removeClass('buzz-loading');
+    });
+}
 
 
 /*
@@ -529,7 +551,7 @@ String.prototype.toHHMMSS = function () {
     if (seconds < 10) {seconds = "0"+seconds;}
     var time    = hours+':'+minutes+':'+seconds;
     return time;
-}
+};
 
 Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop, direction){
     if (arguments.length < 1) throw new Error("sortJsonArrayByProperty requires 1 argument");
@@ -548,5 +570,50 @@ Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop,
         b = isNaN(Math.floor(b)) ? b.toLowerCase() : b;
         return ( (a < b) ? ( -1 * direct ) : ((a > b) ? (1 * direct) : 0) );
     });
-}
+};
+
+// Simple JavaScript Templating (modified)
+// Original from John Resig - http://ejohn.org/ - MIT Licensed
+// @see http://ejohn.org/blog/javascript-micro-templating/
+// Simple JavaScript Templating
+// John Resig - http://ejohn.org/ - MIT Licensed
+(function(){
+  var cache = {};
+ 
+  String.prototype.template = function (data) {
+    // Figure out if we're getting a template, or if we need to
+    // load the template - and be sure to cache the result.
+    var fn = !/\W/.test(this) ?
+      cache[this] = cache[this] ||
+        tmpl(document.getElementById(this).innerHTML) :
+     
+      // Generate a reusable function that will serve as a template
+      // generator (and which will be cached).
+      new Function("obj",
+        "var p=[],print=function(){p.push.apply(p,arguments);};" +
+       
+        // Introduce the data as local variables using with(){}
+        "with(obj){p.push('" +
+       
+        // Convert the template into pure JavaScript
+        this
+          .replace(/[\r\t\n]/g, " ")
+          .split("<!").join("\t")
+          .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+          .replace(/\t=(.*?)!>/g, "',$1,'")
+          .split("\t").join("');")
+          .split("!>").join("p.push('")
+          .split("\r").join("\\'")
+      + "');}return p.join('');");
+   
+    // Provide some basic currying to the user
+    return data ? fn( data ) : fn;
+  };
+})();
+
+String.prototype.stripHTML = function () {
+   var tmp = document.createElement("DIV");
+   tmp.innerHTML = this;
+   return tmp.textContent || tmp.innerText || "";
+};
 
