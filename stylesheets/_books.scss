@@ -1,6 +1,11 @@
 .book {
   padding-right:20px !important;
   position: relative;
+  float: left;
+  padding-bottom: 20px;
+  // &:nth-child(4n+1) {
+  //   clear:left;
+  // }
   a.book-preview {
     position: absolute;
     background:$grey-7;
@@ -32,9 +37,6 @@
     margin:3px 0;
     font-size: emCalc(12px);
   }
-}
-
-.books {
 }
 
 .featured-books {

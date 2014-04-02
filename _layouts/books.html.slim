@@ -14,7 +14,7 @@ layout: base
         a href="#{site.base_url}/#{site.context_url}/get-involved/books/" Books
 
 script(type="text/template" id="bookTemplate")
-  li.book.large-6(data-isbn="{0}")
+  li.book.columns.large-6(data-isbn="{0}")
     a.book-preview(href="{1}" target="_blank") Preview
     img(src="{2}")
     h4
@@ -27,4 +27,4 @@ script(type="text/template" id="bookTemplate")
     a.button(href="{7}") Purchase
 
 .row.books.large-24 
-  ul.small-block-grid-2.large-block-grid-5
+  ul.book-list.small-block-grid-2.large-block-grid-5

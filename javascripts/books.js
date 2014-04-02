@@ -10,7 +10,13 @@ app.books = {
       var html = "";
       console.log(books, bookTemplate);
       for (var i = 0; i < books.length; i++) {
-        console.log(books[i]['volumeInfo']['title']);
+        
+        var description = books[i]['volumeInfo']['description'] || "";
+        var shortDescription = description.substring(0,475);
+        if(description.length > 475) {
+          shortDescription+="...";
+        }
+
         var template = bookTemplate.format(
           books[i]['volumeInfo']['industryIdentifiers'][0]['identifier']       // 0 - isbn
         , books[i]['volumeInfo']['previewLink']       // 1 - Preview
@@ -18,25 +24,25 @@ app.books = {
         , books[i]['volumeInfo']['title']       // 3 - Title
         , books[i]['volumeInfo']['authors'].join(', ')       // 4 - Author
         , roundHalf(books[i]['volumeInfo']['averageRating'])       // 5 - Rating
-        , books[i]['volumeInfo']['description'] || ""       // 6 - description
+        , shortDescription       // 6 - description
         , 'http://www.amazon.com/dp/' +  books[i]['volumeInfo']['industryIdentifiers'][0]['identifier']       // 7 - Purchase Url
         );
 
         // Append template to HTML
         html += template;
-      };
+      }
 
       // Dump HTML into the document
-      $('.books ul').html(html);
+      $('ul.book-list').html(html);
 
     });
   }
-}
+};
 
 $(function() {
   // if we are on the books page, pull in the ISBN list
   if($('.isbnList').length) {
     var isbns = $('.isbnList').text().split(',');
-    app.books.getBooks(isbns); 
+    app.books.getBooks(isbns);
   }
 });
