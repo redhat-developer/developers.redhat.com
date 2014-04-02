@@ -2,8 +2,9 @@
   .buzz-item-inner
     .buzz-header
       i.icon-twitter
-    img src="#{cdn(site.base_url + "/images/branding/html5-banner.png")}"
-    h3 <!=title!>
+    a href="<!=link!>"
+      img src="#{cdn(site.base_url + "/images/branding/html5-banner.png")}"
+      h3 <!=title!>
     p <!=contentSnippet!>
     = partial "share.html.slim"
 
