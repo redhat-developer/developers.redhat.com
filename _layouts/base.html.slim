@@ -149,6 +149,7 @@ body(class="#{template}")
       script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
       script src="http://www.redhat.com/j/elqNow/elqCfg.js"
       script src="http://www.redhat.com/j/elqNow/elqImg.js"
+      script src="http://www.redhat.com/assets/js/tracking/rh_omni_footer.js"
       script src="http://www.googleadservices.com/pagead/conversion.js"
 
   / Disabled, pending reimplementation of Share This functionality
@@ -158,6 +159,5 @@ body(class="#{template}")
 
   - if site.metrics
     noscript
-      a href="http://www.omniture.com" title="Web Analytics"
-        img src="https://smtrcs.redhat.com/b/ss/redhatjbossorg/1/H.21--NS/0?[AQB]&cdp=3&[AQE]" height="1" width="1" border="0" alt=""
+      img src="https://smtrcs.redhat.com/b/ss/redhatjbossorg/1/H.21--NS/0?[AQB]&cdp=3&[AQE]" height="1" width="1" border="0" alt=""
 
