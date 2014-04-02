@@ -39,7 +39,8 @@ a.moreinfolink(href="../resources")
   | View More Resources
   i.fa.fa-angle-double-right
 
-h3.divider Blog Posts and Articles
+- unless !page.articles || page._articles.empty?
+  h3.divider Blog Posts and Articles
 
-= page._articles
+  = page._articles
 

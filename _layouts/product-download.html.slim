@@ -101,7 +101,7 @@ asciidoc:
   * link:http://www.redhat.com/contact/sales.html[I need a subscription]
   * link:https://access.redhat.com/site/products/JBoss/[Visit the Red Hat Customer Portal for other Product Downloads]
 
-- unless  page._upstream.empty?
+- unless !page._upstream || page._upstream.empty?
   h3.divider Prefer to use the Upstream Product Version?
 
   = page._upstream

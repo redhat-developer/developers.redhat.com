@@ -35,31 +35,8 @@ a(href="#{page.product.documentation_url}")
         - url = page.product.featured_videos[i]
         li.material
           = video_thumb(video(url))
-- else
-  h3.divider Featured Videos
-  ul.small-block-grid-3.large-block-grid-3
-    |
-    - for material in 0..2 
-      li.material
-        a(href="#")
-          img(src="/images/materials-thumb1.jpg")
-        span.label.material-duration 04:54
-        span.label.material-level-beginner Beginner
-        h4: a(href="#") JBoss EAP 6 Administration
-        p.author
-          | Author:
-          a(href="#") John Smith
-        p.material-datestamp Added 28 2014 9:15pm
-        p.rating
-          | Video
-          i.fa.fa-star
-          i.fa.fa-star
-          i.fa.fa-star
-          i.fa.fa-star-half-empty
-          i.fa.fa-star-empty
-        .body
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
-- unless page._more_resources.empty?
+
+- unless !page_more_resources || page._more_resources.empty?
   h3.divider More Resources
   .updates
     = page._more_resources
