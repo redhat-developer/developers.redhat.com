@@ -384,7 +384,7 @@ app.loadBuzz = function(tmpl, container) {
   $.ajax({
       url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
       data : {
-        "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_content", "sys_updated"],
+        "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated"],
         "size" : 6,
         "sys_type" : "blogpost",
         "sortBy" : "new-create"
@@ -403,10 +403,6 @@ app.loadBuzz = function(tmpl, container) {
           d.authorMail = m[2];
         }
         d.updatedDate = jQuery.timeago(new Date(d.sys_updated));
-        d.content = d.sys_content.stripHTML();
-        if (d.content.length > 150) {
-          d.content = d.content.substr(0, 150) + "...";
-        }
         html += tmpl.template(d);
       }
 
