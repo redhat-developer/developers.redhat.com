@@ -288,6 +288,9 @@ app.init = function() {
      app.dm.devMatFilter();
   }
 
+  if ($('.downloadthankyou').length) {
+      app.dl.doDownload();
+  }
 
 }; /* End app.init() */
 
