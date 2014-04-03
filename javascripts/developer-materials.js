@@ -180,7 +180,7 @@ app.dm = {
     $.ajax({
       url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
       data : {
-        "field"  : ["artifactId", "contributors", "sys_contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions", "thumbnail", "duration", "github_repo_url"],
+        "field"  : ["contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail"],
         "query" : query,
         "size" : maxResults,
         "content_provider" : 'jboss-developer'
@@ -188,10 +188,8 @@ app.dm = {
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
       var html = "";
-      window.hits = hits;
       
       // loop over every hit
-
       for (var i = 0; i < hits.length; i++) {
 
         if ('sys_contributors' in hits[i].fields) {
