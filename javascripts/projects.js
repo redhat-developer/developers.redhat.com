@@ -48,7 +48,6 @@ app.project = {
 
     $.ajax({
       url : '#{site.dcp_base_url}v1/rest/search',
-      asyn : false,
       data : {
         "sys_type" : "project_info",
         "field"  : ["_source"],

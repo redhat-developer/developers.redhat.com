@@ -179,7 +179,6 @@ app.dm = {
 
     $.ajax({
       url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
-      asyn : false,
       data : {
         "field"  : ["artifactId", "contributors", "sys_contributors", "groupId", "level", "recommendedVersion", "sys_activity_dates", "sys_comments", "sys_content", "sys_content_content", "sys_content_content-type", "sys_content_id", "sys_content_plaintext", "sys_content_provider", "sys_content_type", "sys_contributors", "sys_created", "sys_description", "sys_id", "sys_last_activity_date", "sys_project", "sys_project_name", "sys_tags", "sys_title", "sys_type", "sys_updated", "sys_url_view", "tags", "target_product", "versions", "thumbnail", "duration", "github_repo_url"],
         "query" : query,
@@ -259,7 +258,7 @@ app.dm = {
         html += template;
       };
 
-      // Inject HTML into the DO<
+      // Inject HTML into the DOM
       if(!html) {
         html = "Sorry, no results to display. Please modify your search.";
       }
