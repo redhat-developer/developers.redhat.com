@@ -6,6 +6,7 @@ require 'aweplug/extensions/asciidoc_example'
 require 'aweplug/extensions/vimeo'
 require 'aweplug/helpers/vimeo'
 require 'aweplug/helpers/resources'
+require 'aweplug/helpers/identity'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
@@ -13,6 +14,10 @@ require 'product'
 require 'mktg_ops'
 
 Awestruct::Extensions::Pipeline.new do
+  
+  # Needs to at the top, to set up site.identity_manager
+  extension Aweplug::Identity::Extension.new
+
   # parse AsciiDoc documents and create page variables out of their sections
   extension Aweplug::Extensions::Sections.new
   extension Aweplug::Extensions::Video::Vimeo.new('vimeo', 'video')
