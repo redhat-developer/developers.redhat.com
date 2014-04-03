@@ -279,5 +279,25 @@ $(function() {
   if ($('form.dev-mat-filters').length) {
     app.dm.devMatFilter();
   }
+
+  // slide toggle on mobile
+  $('.filter-block h5').on('click',function() {
+    if(window.innerWidth <= 768) {
+      var el = $(this);
+      el.toggleClass('filter-block-open');
+      el.next('.filter-block-inputs').slideToggle(300);
+    }
+  });
+
+  // active class on labels
+  $('.filter-block-inputs input[type=checkbox]').on('change',function(){
+    var el = $(this);
+    if(el.is(':checked')) {
+      el.parent().addClass('checked');
+    }
+    else {
+      el.parent().removeClass('checked');
+    }
+  });
 });
 

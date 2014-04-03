@@ -8,70 +8,73 @@ form.dev-mat-filters(method="GET" action="")
 
   /No content data available in the DCp yet as we don't have the ability to have users set it.
   /.filter-block
-    h5 Rating
-    label(for="filter-rating")
-      input(type="radio" name="filter-rating" value="1")
-    label(for="filter-rating")
-      input(type="radio" name="filter-rating" value="2")
-    label(for="filter-rating")
-      input(type="radio" name="filter-rating" value="3")
-    label(for="filter-rating")
-      input(type="radio" name="filter-rating" value="4")
-    label(for="filter-rating")
-      input(type="radio" name="filter-rating" value="5")
+    h5.show-more Rating
+    .filter-block-inputs
+      label(for="filter-rating")
+        input(type="radio" name="filter-rating" value="1")
+      label(for="filter-rating")
+        input(type="radio" name="filter-rating" value="2")
+      label(for="filter-rating")
+        input(type="radio" name="filter-rating" value="3")
+      label(for="filter-rating")
+        input(type="radio" name="filter-rating" value="4")
+      label(for="filter-rating")
+        input(type="radio" name="filter-rating" value="5")
 
 
 
   .filter-block
-    h5 Topics
-    label
-      input(type="checkbox" name="filter-topic[]" value="EJB")
-      | EJB
-    label
-      input(type="checkbox" name="filter-topic[]" value="CDI")
-      | CDI
-    label
-      input(type="checkbox" name="filter-topic[]" value="OSGI")
-      | OSGI
-    label
-      input(type="checkbox" name="filter-topic[]" value="JSF")
-      | JSF
-    label
-      input(type="checkbox" name="filter-topic[]" value="JPA")
-      | JPA
-    label
-      input(type="checkbox" name="filter-topic[]" value="EJB")
-      | EJB
-    label
-      input(type="checkbox" name="filter-topic[]" value="JTA")
-      | JTA
-    label
-      input(type="checkbox" name="filter-topic[]" value="Servlet")
-      | Servlet
-    label
-      input(type="checkbox" name="filter-topic[]" value="JavaMail")
-      | JavaMail
-    label
-      input(type="checkbox" name="filter-topic[]" value="H2")
-      | H2
+    h5.show-more Topics
+    .filter-block-inputs
+      label
+        input(type="checkbox" name="filter-topic[]" value="EJB")
+        | EJB
+      label
+        input(type="checkbox" name="filter-topic[]" value="CDI")
+        | CDI
+      label
+        input(type="checkbox" name="filter-topic[]" value="OSGI")
+        | OSGI
+      label
+        input(type="checkbox" name="filter-topic[]" value="JSF")
+        | JSF
+      label
+        input(type="checkbox" name="filter-topic[]" value="JPA")
+        | JPA
+      label
+        input(type="checkbox" name="filter-topic[]" value="EJB")
+        | EJB
+      label
+        input(type="checkbox" name="filter-topic[]" value="JTA")
+        | JTA
+      label
+        input(type="checkbox" name="filter-topic[]" value="Servlet")
+        | Servlet
+      label
+        input(type="checkbox" name="filter-topic[]" value="JavaMail")
+        | JavaMail
+      label
+        input(type="checkbox" name="filter-topic[]" value="H2")
+        | H2
 
   .filter-block
-    h5 Format
-    label
-      input(type="checkbox" name="filter-format" value="jbossdeveloper_archetype")
-      | Archetype
-    label
-      input(type="checkbox" name="filter-format" value="jbossdeveloper_bom")
-      | BOM
-    label
-      input(type="checkbox" name="filter-format" value="jbossdeveloper_quickstart")
-      | Quickstart
-    label
-      input(type="checkbox" name="filter-format" value="jbossdeveloper_video")
-      | Video
-    label
-      input(type="checkbox" name="filter-format" value="jbossdeveloper_sandbox")
-      | Sandbox (unsupported)
+    h5.show-more Format
+    .filter-block-inputs
+      label
+        input(type="checkbox" name="filter-format" value="jbossdeveloper_archetype")
+        | Archetype
+      label
+        input(type="checkbox" name="filter-format" value="jbossdeveloper_bom")
+        | BOM
+      label
+        input(type="checkbox" name="filter-format" value="jbossdeveloper_quickstart")
+        | Quickstart
+      label
+        input(type="checkbox" name="filter-format" value="jbossdeveloper_video")
+        | Video
+      label
+        input(type="checkbox" name="filter-format" value="jbossdeveloper_sandbox")
+        | Sandbox (unsupported)
 
   .filter-block
     h5 Skill Level
