@@ -919,15 +919,24 @@ input[type=range] {
     background-color: #ffffff; // Old browsers
     @include filter-gradient(#ffffff, #ececec, vertical); // IE6-9
     @include background-image(linear-gradient(top,  #ffffff 0%,#fcfcfc 33%,#f9f9f9 33%,#f9f9f9 44%,#f6f6f6 45%,#f4f4f4 67%,#f1f1f1 67%,#f1f1f1 78%,#eeeeee 78%,#ececec 100%));
+    outline: none;
+    &::-moz-focus-inner {
+      outline:0;
+      border:0;
+    }
+    &:focus,&:active {
+      outline:0;
+      border:0;
+    }
 }
 
 
 // These pseudo selectors cannot be in the same selector so we need to output it 4 times
-$prefixes : -webkit-slider-thumb -moz-slider-thumb -ms-slider-thumb slider-thumb;
+$prefixes : -webkit-slider-thumb -moz-range-thumb -ms-slider-thumb slider-thumb;
 
 @each $prefix in $prefixes {
   input[type="range"]::#{$prefix} {
-       -webkit-appearance: none;
+      -webkit-appearance: none;
       width: 20px;
       height: 20px;
       border-radius:50%;
@@ -935,6 +944,12 @@ $prefixes : -webkit-slider-thumb -moz-slider-thumb -ms-slider-thumb slider-thumb
       position: relative;
       z-index: 2;
   }
+}
+
+::-moz-range-track {
+  background:transparent;
+  outline:0;
+  border:0;
 }
 
 input[type=range]:focus, input[type=range]:active {outline:0;}
