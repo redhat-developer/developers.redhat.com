@@ -244,13 +244,16 @@ a.download-link {
         font-weight: 600;
       }
     }
-    &:first-child a {
-      border-top: 0;
+    &:nth-child(2) a {
+      border-top-width: 0;
     }
     &.active a, &:hover a, &.active a:first-child {
       color:white;
       background:$dark-blue;
       border-color:darken($dark-blue,5%);
+    }
+    &.side-nav-toggle {
+      display: none;
     }
   }
 }

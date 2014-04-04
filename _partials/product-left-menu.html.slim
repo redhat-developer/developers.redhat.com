@@ -6,6 +6,8 @@
 
 /The menu items, created by iterating over the array defined above
 ul.side-nav
+  li.side-nav-toggle
+    a(href="#") Menu
   - page.nav_items.each do |k,v|
     li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") #{v}
 

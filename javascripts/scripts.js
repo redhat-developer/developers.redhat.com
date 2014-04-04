@@ -548,7 +548,21 @@ app.stickyFooter = function() {
         wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
     wrapper.css('min-height',wrapperHeight);
   }
-}
+};
+
+/*
+  3rd level nav
+*/
+// fake add active 
+
+app.sideNav = function() {
+
+  $('.side-nav-toggle a').on('click',function(e) {
+    e.preventDefault();
+    $('.side-nav').toggleClass('side-nav-open');
+  });
+
+};
 
 /*
   Date Pickers
@@ -558,6 +572,7 @@ $('.datepicker').pickadate();
 $(function() {
   app.init();
   app.sso();
+  app.sideNav();
 
   // Small hack to allow us to specify selectors and children to make sticky (used for TOC on FAQ and dev mats)
   stickySections = {'faq':'h3', 'gsi': 'h2'};

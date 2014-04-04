@@ -32,7 +32,37 @@
       height:auto !important; // overwrite the inline JS styles
     }
   }
-}
+
+
+  // 3rd level nav
+
+  .side-nav {
+    li {
+      display: none;
+      &:nth-child(2) a {
+        border-top-width: 1px;
+      }
+      &:first-child a {
+        border-top-width: 0px;
+      }
+      &.side-nav-toggle {
+        display: list-item;
+        a {
+          color:black;
+        }
+      }
+    }
+    &.side-nav-open {
+      li {
+        display: list-item;
+        &.side-nav-toggle a:after {
+          @include transform(rotate(90deg));
+        }
+      }
+    }
+  }
+
+} // end mq
 
 @include mobile-portrait-and-down {
   // Material
