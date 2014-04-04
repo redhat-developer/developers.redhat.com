@@ -100,14 +100,6 @@ app.init = function() {
   });
 
   /*
-    Developer Materials form Reset
-  */
-  $('.filters-clear').on('click',function(e){
-    e.preventDefault();
-    app.clearFilters($(this));
-  });
-
-  /*
     Show Solutions
   */
   $('[data-open-solution]').on('click',function(e){
@@ -293,20 +285,6 @@ app.init = function() {
   }
 
 }; /* End app.init() */
-
-/*
-  Clear All Filters
-*/
-app.clearFilters = function($el) {
-  var form = $('form.dev-mat-filters');
-  form[0].reset();
-  form.find('input[type=range]').each(function(i,el){
-    $(el).attr('value',0);
-  });
-  $('form.dev-mat-filters input:checked').removeAttr('checked');
-  $('.filter-rating-active').removeClass('filter-rating-active');
-  app.dm.devMatFilter();
-};
 
 app.createSlider = function($el) {
   var slider = Swipe($el[0], {

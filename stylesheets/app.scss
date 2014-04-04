@@ -1032,6 +1032,9 @@ form.dev-mat-filters, .project-filters {
     position: relative;
     top:-2px;
   }
+  a.project-filters-clear {
+    @extend a.filters-clear;
+  }
 }
 
 .styled-select {

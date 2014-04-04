@@ -299,6 +299,16 @@ app.dm = {
       });
 
     });
+  },
+  clearFilters: function($el) {
+    var form = $('form.dev-mat-filters');
+    form[0].reset();
+    form.find('input[type=range]').each(function(i,el){
+        $(el).attr('value',0);
+    });
+    $('form.dev-mat-filters input:checked').removeAttr('checked');
+    $('.filter-rating-active').removeClass('filter-rating-active');
+    this.devMatFilter();
   }
 }
 
@@ -310,6 +320,11 @@ $(function() {
 
   $('form.dev-mat-filters').on('submit',function(e) {
     e.preventDefault();
+  });
+
+  $('.filters-clear').on('click',function(e){
+    e.preventDefault();
+    app.dm.clearFilters($(this));
   });
 
   if ($('form.dev-mat-filters').length) {
