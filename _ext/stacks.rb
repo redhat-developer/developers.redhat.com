@@ -14,11 +14,12 @@ module JBoss::Developer::Extensions
 
     attr_reader :yml
 
-    def initialize stacks, layout, repo
+    def initialize stacks, layout, repo, push_to_searchisko = true
       @yml = YAML.load_file File.join(repo, stacks) 
       @layout = layout
       #@commits = commit_info repo, Pathname.new(File.join repo, stacks)  # DEVELOPER-320
       @commits = []
+      @push_to_searchisko = push_to_searchisko
     end
 
     def execute site
@@ -120,7 +121,7 @@ module JBoss::Developer::Extensions
           :versions => bom['allVersions']
         }
         #metadata[:boms] << bom
-        unless site.profile =~ /development/
+        unless !@push_to_searchisko || site.profile =~ /development/
           searchisko.push_content(bom_dcp[:sys_type], bom_dcp[:sys_content_id], bom_dcp.to_json)
         end
         bom_page.send('metadata=', metadata)
@@ -200,7 +201,7 @@ module JBoss::Developer::Extensions
           :recommendedVersion => archetype['archetype']['recommendedVersion'],
           :versions => archetype['allVersions']
         }
-        unless site.profile =~ /development/
+        unless !@push_to_searchisko || site.profile =~ /development/
           searchisko.push_content(archetype_dcp[:sys_type], archetype_dcp[:sys_content_id], archetype_dcp.to_json)
         end
         archetype_page.send('metadata=', metadata)
