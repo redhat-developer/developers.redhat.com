@@ -49,7 +49,7 @@ Awestruct::Extensions::Pipeline.new do
   extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
   
   extension Aweplug::Extensions::AsciidocExample.new(repository: '_ticket-monster', directory: 'tutorial', layout:'get-started-item', 
-                                                     output_dir: 'ticket-monster', additional_excludes: ['ticket-monster.asciidoc'])
+                                                     output_dir: 'ticket-monster', additional_excludes: ['ticket-monster.asciidoc'], push_to_searchisko: false)
 
   # Load indexifier
   extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]
