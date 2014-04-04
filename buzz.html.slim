@@ -18,19 +18,20 @@ description:  Marketing message about what kind of content users can find here a
   .large-24.columns
     h4.divider.buzz-message #{page.description}
   .large-24.columns.buzz-filters
-    input(type="text" name="buzz-filter-text" placeholder="Filter by Keyword")
-  /  ul.sort-icons 
-      li.sortBy Sort By:
-      li: a(data-filter="all")
-        i.icon-home
-      li: a(data-filter="twitter")
-        i.icon-twitter
-      li: a(data-filter="linkedin")
-        i.icon-linkedin
-      li: a(data-filter="facebook")
-        i.icon-facebook
-      li: a(data-filter="google-plus")
-        i.icon-google-plus
+    form.buzz-filters
+      input(type="text" name="buzz-filter-text" placeholder="Filter by Keyword")
+    /  ul.sort-icons 
+        li.sortBy Sort By:
+        li: a(data-filter="all")
+          i.icon-home
+        li: a(data-filter="twitter")
+          i.icon-twitter
+        li: a(data-filter="linkedin")
+          i.icon-linkedin
+        li: a(data-filter="facebook")
+          i.icon-facebook
+        li: a(data-filter="google-plus")
+          i.icon-google-plus
 
   .large-24.columns.buzz-container.loading
     .buzz-items

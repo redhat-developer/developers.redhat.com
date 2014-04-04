@@ -239,7 +239,7 @@ app.init = function() {
   var $mbuzz = $('.mini-buzz-container');
 
   if($mbuzz.length) {
-    app.loadBuzz(app.templates.miniBuzzTemplate, $mbuzz);
+    app.buzz.filter(app.templates.miniBuzzTemplate, $mbuzz);
   };
 
   /* 
@@ -248,7 +248,7 @@ app.init = function() {
   var $buzz = $('.buzz-container');
 
   if($buzz.length) {
-    app.loadBuzz(app.templates.buzzTemplate, $buzz);
+    app.buzz.filter(app.templates.buzzTemplate, $buzz);
   };
 
   /*
@@ -383,40 +383,91 @@ app.sso = function() {
 /*
  * Buzz
  */
-app.loadBuzz = function(tmpl, container) {
-  $.ajax({
-      url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
-      data : {
-        "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated"],
-        "size" : 6,
-        "sys_type" : "blogpost",
-        "sortBy" : "new-create"
+app.buzz = {
+
+  filter : function(tmpl, container) {
+
+    // append loading class to wrapper
+    $("ul.results").addClass('loading');
+    
+    /*
+      Keyword
+    */
+    var keyword = $('input[name="buzz-filter-text"]').val();
+
+    var filters = {
+      "keyword" : keyword
+    }
+    var currentFilters = {};
+
+    $.each(filters, function(key, val) {
+      // if its empty, remove it from the filters
+      if(val.length) {
+        currentFilters[key] = val;
       }
-    }).done(function(data){
-      var hits = data.hits.hits;
-      var html = "";
-      for (var i = 0; i < hits.length; i++) {
-        var d = hits[i].fields;
-        // This regex will parse an email like "John Smith <john.smith@acme.com>", giving you two matches "John Smith" and "john.smith@acme.corp"
-        var pat = /(?:([^"]+))? <?(.*?@[^>,]+)>?,? ?/g;
-        d.authorName = "Unknown";
-        d.authorMail = "";
-        while (m = pat.exec(d.sys_contributors)) {
-          d.authorName = m[1];
-          d.authorMail = m[2];
+    });
+
+    // Prep each filter
+    var query = [];
+    
+    if(currentFilters['keyword']) {
+      query.push(keyword);
+    }
+
+    var query = query.join(" AND ");
+    
+    $.ajax({
+        url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
+        data : {
+          "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated"],
+          "query" : query,
+          "size" : 6,
+          "sys_type" : "blogpost",
+          "sortBy" : "new-create"
         }
-        d.updatedDate = jQuery.timeago(new Date(d.sys_updated));
-        html += tmpl.template(d);
+      }).done(function(data){
+        var hits = data.hits.hits;
+        var html = "";
+        for (var i = 0; i < hits.length; i++) {
+          var d = hits[i].fields;
+          // This regex will parse an email like "John Smith <john.smith@acme.com>", giving you two matches "John Smith" and "john.smith@acme.corp"
+          var pat = /(?:([^"]+))? <?(.*?@[^>,]+)>?,? ?/g;
+          d.authorName = "Unknown";
+          d.authorMail = "";
+          while (m = pat.exec(d.sys_contributors)) {
+            d.authorName = m[1];
+            d.authorMail = m[2];
+          }
+          d.updatedDate = jQuery.timeago(new Date(d.sys_updated));
+          html += tmpl.template(d);
       }
 
       // Inject HTML into the DOM
       if(!html) {
         html = "Sorry, no results to display.";
       }
-      container.append(html);
+      container.html(html);
       container.removeClass('buzz-loading');
     });
+  }
 }
+
+// Event Listeners for Buzz
+$(function() {
+  $('form.buzz-filters').on('change','input',function(e){
+    var $buzz = $('.buzz-container');
+    app.buzz.filter(app.templates.buzzTemplate, $buzz);
+  });
+
+  $('form.buzz-filters').on('submit',function(e) {
+    e.preventDefault();
+  });
+
+  if ($('form.buzz-filters').length) {
+    var $buzz = $('.buzz-container');
+    app.buzz.filter(app.templates.buzzTemplate, $buzz);
+  }
+});
 
 
 /*
@@ -609,10 +660,4 @@ Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop,
     return data ? fn( data ) : fn;
   };
 })();
-
-String.prototype.stripHTML = function () {
-   var tmp = document.createElement("DIV");
-   tmp.innerHTML = this;
-   return tmp.textContent || tmp.innerText || "";
-};
 
