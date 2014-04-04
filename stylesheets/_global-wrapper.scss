@@ -362,7 +362,7 @@ ul.footer-nav {
 }
 
 @include tablet-portrait-and-down {
-
+  
   header.main {
     h4 {
       display: none;
@@ -390,8 +390,11 @@ ul.footer-nav {
       border-color: rgba(255, 255, 255, 1) transparent transparent transparent;
       right:20px;
       top:25px;
-      // @include transition(transform 0.2s);
     }
+  }
+
+  .tertiary-nav {
+    display: none;
   }
 
   .top-bar-section {
