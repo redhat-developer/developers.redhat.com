@@ -305,6 +305,7 @@ app.clearFilters = function($el) {
   });
   $('form.dev-mat-filters input:checked').removeAttr('checked');
   $('.filter-rating-active').removeClass('filter-rating-active');
+  app.dm.devMatFilter();
 };
 
 app.createSlider = function($el) {
