@@ -48,7 +48,15 @@
       &.side-nav-toggle {
         display: list-item;
         a {
-          color:black;
+          &:before {
+            display: block;
+            content:' ';
+            border-right: 1px solid #fff;
+            top: 0;
+            bottom: 0;
+            right: 40px;
+            position: absolute;
+          }
         }
       }
     }

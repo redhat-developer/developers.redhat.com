@@ -557,6 +557,17 @@ app.stickyFooter = function() {
 
 app.sideNav = function() {
 
+  // Hack for active class until we get it working properly on the back end
+  var loc = window.location.href.split('/');
+  loc = loc[loc.length - 2];
+  $('.side-nav a[href*='+loc+']').parent().addClass('active');
+
+  // hide the active one
+  var sideItem = $('.side-nav li.active');
+  sideItem.hide();
+
+  $('.side-nav-toggle a').text(sideItem.text());
+  //
   $('.side-nav-toggle a').on('click',function(e) {
     e.preventDefault();
     $('.side-nav').toggleClass('side-nav-open');

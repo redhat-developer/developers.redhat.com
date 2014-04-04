@@ -247,7 +247,7 @@ a.download-link {
     &:nth-child(2) a {
       border-top-width: 0;
     }
-    &.active a, &:hover a, &.active a:first-child {
+    &.active a, &:hover a, &.active a:first-child, &.side-nav-toggle a {
       color:white;
       background:$dark-blue;
       border-color:darken($dark-blue,5%);
