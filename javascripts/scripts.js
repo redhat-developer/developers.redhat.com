@@ -412,8 +412,8 @@ app.buzz = {
     var currentFilters = {};
 
     $.each(filters, function(key, val) {
-      // if its empty, remove it from the filters
-      if(val.length) {
+      // if its empty, or undefined, remove it from the filters
+      if(val && val.length) {
         currentFilters[key] = val;
       }
     });
