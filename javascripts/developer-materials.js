@@ -18,7 +18,7 @@ function roundHalf(num) {
 app.dm = {
   devMatFilter : function(filters) {
     // Get the Filter Items
-    console.log('Performing dev material search');
+    // console.log('Performing dev material search');
 
     //Currently the only way to specify no limit
     var maxResults = 500;
@@ -103,7 +103,7 @@ app.dm = {
       var month = d.getMonth() + 1; //Months are zero based
       var year = d.getFullYear();
       var createdDate = year + "-" + month + "-" + day;
-      console.log('Using ' + createdDate + ' as publish date value');
+      // console.log('Using ' + createdDate + ' as publish date value');
       return createdDate;
     }).get();
     
@@ -163,27 +163,28 @@ app.dm = {
         query.push('github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
     }
 
-
-
     if(currentFilters['publishDate']) {
       query.push('sys_created:>='+publishDate);
     }
 
-
     var query = query.join(" AND ");
-
 
     // append loading class to wrapper
     $("ul.results").addClass('loading');
 
-
-    $.ajax({
+    app.dm.currentRequest = $.ajax({
       url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
       data : {
         "field"  : ["contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail"],
         "query" : query,
         "size" : maxResults,
         "content_provider" : 'jboss-developer'
+      },
+      beforeSend : function() {
+        // check if there is a previous ajax request to abort
+        if(app.dm.currentRequest && app.dm.currentRequest.readyState != 4) {
+          app.dm.currentRequest.abort();
+        }
       }
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing

@@ -64,7 +64,7 @@ app.init = function() {
 
   /*
     Mobile Nav dropdown
-  */ 
+  */
   $('li.has-dropdown').on('click touchend',function(e){
     $(this).toggleClass('sub-nav-open');
   });
@@ -422,6 +422,12 @@ app.buzz = {
           "size" : 6,
           "sys_type" : "blogpost",
           "sortBy" : "new-create"
+        },
+        beforeSend : function() {
+          // check if there is a previous ajax request to abort
+          if(app.buzz.currentRequest && app.buzz.currentRequest.readyState != 4) {
+            app.buzz.currentRequest.abort();
+          }
         }
       }).done(function(data){
         var hits = data.hits.hits;
