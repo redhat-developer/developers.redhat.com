@@ -1,6 +1,11 @@
 ---
 layout: base
 ---
+.row.tertiary-nav
+  ul.inline-nav
+    - site.nav['get-involved'].children.each do |k, v|
+      li: a(href="#{v.url}") #{v.label}
+
 .get-involved-banner
   h2 Get Involved
   h3 Work alongside smart, motivated people to apply your skills toward a bigger effort.
