@@ -124,9 +124,19 @@ body(class="#{template}")
   /[if lt IE 9]
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
   / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.topbar.js"
-  
+
+  / It's very important that the metrics scripts appear straight after jquery and namespace.
+    This will ensure that the async scripts that they load from remote servers
+    appear in the right spot on the page.
   = javascripts "bottom" do
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/namespace.js"
+    - if site.metrics
+      script src="http://www.redhat.com/j/s_code.js"
+      script src="http://www.redhat.com/j/elqNow/elqCfg.js"
+      script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
+      script src="http://www.redhat.com/assets/js/tracking/rh_omni_footer.js"
+      script src="http://www.googleadservices.com/pagead/conversion.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
@@ -146,13 +156,6 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/download.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
-    - if site.metrics
-      script src="http://www.redhat.com/j/s_code.js"      
-      script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
-      script src="http://www.redhat.com/j/elqNow/elqCfg.js"
-      script src="http://www.redhat.com/j/elqNow/elqImg.js"
-      script src="http://www.redhat.com/assets/js/tracking/rh_omni_footer.js"
-      script src="http://www.googleadservices.com/pagead/conversion.js"
 
   / Disabled, pending reimplementation of Share This functionality
   /script src="http://platform.linkedin.com/in.js"

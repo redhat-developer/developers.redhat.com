@@ -50,11 +50,30 @@ var google_remarketing_only = true;
  */
 
 /**
- * Additional JS files to be loaded AFTER marketing-ops.js:
+ * Additional JS files to be loaded BEFORE marketing-ops.js:
  * 
  * - http://www.redhat.com/j/elqNow/elqCfg.js
- * - http://www.redhat.com/j/elqNow/elqImg.js
  */
+
+/*
+ * Copiued from elqImg.js to avoid loading issues
+ */
+var trackURL = document.URL;
+if (trackURL.indexOf("?") != -1) {
+	trackURL += "&async=true";
+} else {
+	trackURL += "?async=true";
+}
+
+var _elqQ = _elqQ || [];
+_elqQ.push(['elqSetSiteId', '1795']);
+_elqQ.push(['elqTrackPageView', trackURL]);
+
+(function () {
+  var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+  s.src = '//img.en25.com/i/elqCfg.min.js';
+  var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+})();
 
 /** 
  * Google Analytics
