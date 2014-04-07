@@ -564,7 +564,6 @@ app.sideNav = function() {
 
   // hide the active one
   var sideItem = $('.side-nav li.active');
-  sideItem.hide();
 
   $('.side-nav-toggle a').text(sideItem.text());
   //

@@ -45,6 +45,9 @@
       &:first-child a {
         border-top-width: 0px;
       }
+      &.active {
+        display: none;
+      }
       &.side-nav-toggle {
         display: list-item;
         a {
@@ -65,6 +68,9 @@
         display: list-item;
         &.side-nav-toggle a:after {
           @include transform(rotate(90deg));
+        }
+        &.active {
+          display: none;
         }
       }
     }
