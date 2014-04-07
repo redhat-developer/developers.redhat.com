@@ -559,14 +559,8 @@ app.stickyFooter = function() {
 /*
   3rd level nav
 */
-// fake add active 
 
 app.sideNav = function() {
-
-  // Hack for active class until we get it working properly on the back end
-  var loc = window.location.href.split('/');
-  loc = loc[loc.length - 2];
-  $('.side-nav a[href*='+loc+']').parent().addClass('active');
 
   // hide the active one
   var sideItem = $('.side-nav li.active');
