@@ -24,6 +24,8 @@
   ############################################
   ## Force the keep-alive header to be sent
   ## PageSpeed tells us this isn't been sent correctly by jboss.org
-  Header set Connection keep-alive 
+  Header set Connection keep-alive
+  # Google Chrome audit tells us this is missing
+  Header append Cache-Control "public"
 </IfModule>
 
