@@ -20,10 +20,14 @@ description: The simple, modern & productive way to build apps and infrastructur
     a.button(href="technology") Learn More
 
 / Hero
-.row.hero.herodesktop
-  a: img(src=cdn(site.base_url + "/images/branding/devnation1_desktop_1175x400.png"))
-.row.heromobile
-  a: img(src=cdn(site.base_url + "/images/branding/devnation1_mobile_480x500.png"))
+/ Picturefill so we only load what we need on each device
+.row.hero
+  span(data-picture="true" data-alt="Dev Nation")
+    span(data-src=cdn(site.base_url + "/images/branding/devnation1_mobile_480x500.png"))
+    span(data-src=cdn(site.base_url + "/images/branding/devnation1_desktop_1175x400.png") data-media="(min-width: 480px)")
+    / Fallback to the small on on non-js devices
+    noscript
+      img(src=cdn(site.base_url + "/images/branding/devnation1_mobile_480x500.png") alt="Dev Nation")
   
 / Buzz and Event Updates
 .row.updates.mobilehome
