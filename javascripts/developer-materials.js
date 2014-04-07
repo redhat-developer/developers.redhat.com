@@ -80,8 +80,7 @@ app.dm = {
       switch(this.value) {
         case '0':
           //All
-          d.setFullYear(d.getFullYear() - 100);
-          break;
+          return null;
         case '25':
           //Within 1 Year
           d.setFullYear(d.getFullYear() - 1);
@@ -143,7 +142,7 @@ app.dm = {
     if(currentFilters['formats']) {
       query.push('_type:('+formats+')');
     } else {
-      query.push('_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype jbossdeveloper_video)');
+      query.push('_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype jbossdeveloper_video rht_knowledgebase_article rht_knowledgebase_solution)');
     }
 
     if(currentFilters['skillLevel']) {
@@ -167,6 +166,8 @@ app.dm = {
       query.push('sys_created:>='+publishDate);
     }
 
+    query.push("(sys_content_provider:jboss-developer OR sys_content_provider:rht)")
+
     var query = query.join(" AND ");
 
     // append loading class to wrapper
@@ -177,8 +178,7 @@ app.dm = {
       data : {
         "field"  : ["contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail"],
         "query" : query,
-        "size" : maxResults,
-        "content_provider" : 'jboss-developer'
+        "size" : maxResults
       },
       beforeSend : function() {
         // check if there is a previous ajax request to abort
@@ -195,17 +195,24 @@ app.dm = {
 
         if ('sys_contributors' in hits[i].fields) {
             var contributors = hits[i].fields.sys_contributors[0];
-        } else {
+        } else if ('contributors' in hits[i].fields) {
             var contributors = hits[i].fields.contributors[0];
         }
 
         var template = "<li class=\"material\">"; 
         template += "<div class=\"get-started-placeholder-jbossdeveloper_quickstart\" >";
-          if (hits[0].fields.github_repo_url) {
-            var repo = hits[0].fields.github_repo_url
+          if (hits[i].fields.github_repo_url) {
+            var repo = hits[i].fields.github_repo_url;
             var repoLength = repo.length;
             if (repo.substring((repoLength - 25), repoLength) === 'jboss-sandbox-quickstarts') {
               template += "<a class=\"banner experimental\"></a>";
+            }
+          }
+          if (hits[i].fields.sys_url_view) {
+            var url = hits[i].fields.sys_url_view;
+            var premiumPrefix = 'https://access.redhat.com';
+            if (url.substring(0, (premiumPrefix.length)) === premiumPrefix) {
+              template += "<a class=\"banner premium\"></a>";
             }
           }
           if (hits[i].fields.thumbnail) {
