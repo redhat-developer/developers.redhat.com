@@ -109,7 +109,7 @@ module JBoss::Developer::Extensions
           :sys_content_type => 'bom',
           :sys_content_id => bom['id'],
           :sys_updated => @commits.collect {|c| DateTime.parse c[:date]}.first,
-          :sys_contributors => @commits.collect {|c| c[:author]}.uniq,
+          :sys_contributors => @commits.collect {|c| c[:author_email]}.uniq,
           :sys_activity_dates => @commits.collect {|c| DateTime.parse c[:date]},
           :sys_created => @commits.collect {|c| DateTime.parse c[:date]}.last,
           :sys_title => bom['bom']['name'],
@@ -174,7 +174,7 @@ module JBoss::Developer::Extensions
         archetype_page.layout = @layout
         archetype_page.output_path = "/archetypes/#{product}/#{archetype['archetype']['id']}/index.html"
         archetype['allVersions'] = yml['availableArchetypeVersions'].select {|b| b['archetype']['id'] == archetype['archetype']['id']}.collect {|b| b['version']}
-        archetype['archetype']['contributors'] = @commits.collect {|c| c[:author]}.uniq
+        archetype['archetype']['contributors'] = @commits.collect {|c| c[:author_email]}.uniq
         metadata = {
           :title => archetype['archetype']['name'], 
           :summary=> archetype['archetype']['description'], 
