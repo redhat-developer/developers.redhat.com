@@ -1,5 +1,3 @@
-require 'pry'
-
 module JBoss::Developer::Extensions
   # Post-process product metadata from product.yml, applying conventions
   class Product
