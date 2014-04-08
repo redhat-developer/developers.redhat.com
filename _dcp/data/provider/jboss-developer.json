@@ -128,31 +128,69 @@
         "type":"jbossdeveloper_example"
       }
     },
-    "jbossdeveloper_video": {
-      "description":"Videos from JBoss Developer",
-      "sys_type":"jbossdeveloper_video",
-      "input_preprocessors": [
-        {
-          "name"     : "Contributors mapper",
-          "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
-          "settings" : {
-            "index_name"       : "sys_contributors",
-            "index_type"       : "contributor",
-            "source_field"     : "contributors",
-            "idx_search_field" : "contributors",
-            "result_mapping"   : [{
-              "idx_result_field" : "code",
-              "target_field"     : "sys_contributor",
-              "value_default"    : "{contributors}"
-            }],
-            "source_bases"     : ["contributors"]
-          }
+    "jbossdeveloper_vimeo": {
+        "description": "Videos for JBoss Developer from vimeo.com",
+        "sys_type": "video",
+        "input_preprocessors": [
+            {
+                "name": "Author mapper",
+                "class": "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+                "settings": {
+                    "index_name": "sys_contributors",
+                    "index_type": "contributor",
+                    "source_field": "author",
+                    "idx_search_field": "vimeo_username",
+                    "result_mapping": [
+                        {
+                            "idx_result_field": "code",
+                            "target_field": "sys_author"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Contributors mapper",
+                "class": "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+                "settings": {
+                    "index_name": "sys_contributors",
+                    "index_type": "contributor",
+                    "source_field": "contributors",
+                    "idx_search_field": "vimeo_username",
+                    "result_mapping": [
+                        {
+                            "idx_result_field": "code",
+                            "target_field": "sys_contributor"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Contributors collector",
+                "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
+                "settings": {
+                    "target_field": "sys_contributor",
+                    "source_fields": [
+                        "sys_author",
+                        "sys_contributor"
+                    ]
+                }
+            },
+            {
+                "name": "sys_activity_dates collector",
+                "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
+                "settings": {
+                    "target_field": "sys_activity_dates",
+                    "source_fields": [
+                        "sys_created",
+                        "sys_last_activity_date"
+                    ]
+                }
+            }
+        ],
+        "index": {
+            "name": "data_jbossdeveloper_vimeo",
+            "type": "jbossdeveloper_vimeo"
         }
-      ],
-      "index": {
-        "name":"data_jbossdeveloper_video",
-        "type":"jbossdeveloper_video"
-      }
     }
   }
 }
