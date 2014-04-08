@@ -1,7 +1,7 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem 'awestruct', '~> 0.5.4.rc3'
+gem 'awestruct', '= 0.5.4.rc3'
 gem 'slim', '~> 2.0.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 0.1.4'

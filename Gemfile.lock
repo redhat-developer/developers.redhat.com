@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: 9f1353ec41c7e11c0340c3cc77778d526cb6bcbb
+  revision: 4690c47e0af5116d2673cc531a36f5a87c80d323
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -39,10 +39,10 @@ GEM
       sass (~> 3.2)
     chunky_png (1.3.0)
     coderay (1.1.0)
-    compass (0.12.4)
+    compass (0.12.5)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
-      sass (~> 3.2.17)
+      sass (~> 3.2.19)
     compass-960-plugin (0.10.4)
       compass (>= 0.10.0)
     curb (0.8.5)
@@ -100,7 +100,7 @@ GEM
       mime-types (>= 1.16)
     ruby-hmac (0.4.0)
     ruby-s3cmd (0.1.5)
-    sass (3.2.18)
+    sass (3.2.19)
     sawyer (0.5.4)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -127,7 +127,7 @@ PLATFORMS
 DEPENDENCIES
   asciidoctor (~> 0.1.4)
   aweplug!
-  awestruct (~> 0.5.4.rc3)
+  awestruct (= 0.5.4.rc3)
   curb (~> 0.8.5)
   git (~> 1.2.5)
   htmlcompressor (~> 0.0.6)
