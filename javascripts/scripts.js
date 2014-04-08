@@ -1,4 +1,6 @@
-
+---
+interpolate: true
+---
 /*
   Polyfill forms - input range sliders - for IE8 only
 */

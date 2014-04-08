@@ -112,12 +112,12 @@ end
 
 desc 'Build and preview the site locally in development mode'
 task :preview, [:profile] => :check do |task, args|
-  run_awestruct "-P #{args[:profile] || 'development'} -a -s --force"
+  run_awestruct "-P #{args[:profile] || 'development'} -a -s --force -q"
 end
 
 desc 'Generate the site using the defined profile, or development if none is given'
 task :gen, [:profile] => :check do |task, args|
-  run_awestruct "-P #{args[:profile] || 'development'} -g --force"
+  run_awestruct "-P #{args[:profile] || 'development'} -g --force -q"
 end
 
 desc "Push local commits to #{$remote}/master"
@@ -140,7 +140,7 @@ end
 
 desc 'Generate the site and deploy using the given profile'
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args| 
-  run_awestruct "-P #{args[:profile]} -g --force"
+  run_awestruct "-P #{args[:profile]} -g --force -q"
 
   $config ||= config args[:profile]
 
