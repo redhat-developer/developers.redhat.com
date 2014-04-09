@@ -71,7 +71,7 @@ module JBoss::Developer::Extensions
             else
               artifact = OpenStruct.new
               artifact.size = asset.size
-              artifact.type = || artifact_attr l, "type", "zip"
+              artifact.type ||= artifact_attr l, "type", "zip"
               artifact.name = asset.name
               artifact.classifier ||= artifact_classifier l, l, artifact.type
               artifact.filename ||= "jboss-#{product.id}-#{download.version}#{artifact.classifier}.#{artifact.type}"
