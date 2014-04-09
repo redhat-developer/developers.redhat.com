@@ -73,6 +73,21 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
                 #{DateTime.parse(commit[:date]).strftime('%b %e, %Y')} (#{commit[:author]}): #{commit[:subject].gsub(/\-/,' ')}
 
       .columns.large-4
+        - if page.metadata[:product]
+          - if site[:products][page.metadata[:product]]
+            - current_version = site[:products][page.metadata[:product]]['current_version'] || 'HEAD'
+          - else
+            - current_version = 'HEAD'
+          .row
+            .columns.large-24
+              a.button href="#{page.metadata[:github_repo_url]}/archive/#{current_version}.zip"
+                | Download  
+                i.fa.fa-download
+          .row
+            .columns.large-24
+              a(href="#{page.metadata[:github_repo_url]}/tree/#{current_version}") 
+                i.fa.fa-github
+                | &nbsp; View on github  
         / TODO Add resources 
         / h3.divider Resources
         / ul
@@ -82,3 +97,4 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
         /  li Material name an desc go here
         /  li Material name an desc go here
         / h4: a View more Resources >>
+

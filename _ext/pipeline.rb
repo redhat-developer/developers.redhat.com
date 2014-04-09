@@ -24,15 +24,18 @@ Awestruct::Extensions::Pipeline.new do
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts', 
                                                           layout: 'get-started-item', 
-                                                          output_dir: '/quickstarts/eap')
+                                                          output_dir: '/quickstarts/eap',
+                                                          product: 'eap')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_brms-quickstarts', 
                                                           layout: 'get-started-item', 
-                                                          output_dir: '/quickstarts/brms')
+                                                          output_dir: '/quickstarts/brms',
+                                                          product: 'brms')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jdg-quickstarts', 
                                                           layout: 'get-started-item', 
-                                                          output_dir: '/quickstarts/jdg')
+                                                          output_dir: '/quickstarts/jdg',
+                                                          product: 'datagrid')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jon-quickstarts', 
                                                           layout: 'get-started-item', 
@@ -44,7 +47,8 @@ Awestruct::Extensions::Pipeline.new do
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_portal-quickstarts', 
                                                           layout: 'get-started-item', 
-                                                          output_dir: '/quickstarts/portal')
+                                                          output_dir: '/quickstarts/portal',
+                                                          product: 'portal')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_sandbox-quickstarts', 
                                                           layout: 'get-started-item', 
