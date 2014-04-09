@@ -130,7 +130,7 @@ nav.top-bar {
     z-index: 99;
     background:$grey-7;
     height:100%;
-  padding-top: 20px;
+    padding-top: 20px;
   }
   .row {
     position: relative;
@@ -157,8 +157,11 @@ nav.top-bar {
       }
     }
     li:hover {
+      & > a {
+        background:$dark-blue;
+      }
        ul.dropdown {
-        display: block;
+        display: none; // we don't want dropdowns on desktop
         visibility: visible;
       }
     }
@@ -384,12 +387,27 @@ ul.footer-nav {
   }
 
   .top-bar-section {
-    .has-dropdown > a:after {
-      display:block; // hide until mobile
-      border:inset 10px;
-      border-color: rgba(255, 255, 255, 1) transparent transparent transparent;
-      right:20px;
-      top:25px;
+    .has-dropdown {
+      span.drop-down-arrow:after {
+        display:block; // hide until mobile
+        // border:inset 10px;
+        // border-color: rgba(255, 255, 255, 1) transparent transparent transparent;
+        color:white;
+        font-size:30px;
+        right:0;
+        content:'▾';
+        top:0;
+        padding: 0 20px;
+        position: absolute;
+        cursor:pointer;
+      }
+    }
+    .social {
+      li {
+        a {
+          background:none;
+        }
+      }
     }
   }
 
@@ -407,22 +425,28 @@ ul.footer-nav {
             border-left: 5px solid $medium-orange;
           }
         }
-        a {
+        & > a {
           color:white;
           padding:12px 20px;
           line-height: 1;
-          &:hover {
-            background: none;
-          }
+          background: none;
         }
         // Open state
         &.sub-nav-open {
           background:$grey-8;
-          ul.dropdown {
+        ul.dropdown {
             visibility: visible;
             display: block !important;
             height:auto;
             max-height:500px;
+          }
+          &.has-dropdown {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
           }
           // Flip the array
           &.has-dropdown a:after {

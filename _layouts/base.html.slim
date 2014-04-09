@@ -85,7 +85,14 @@ body(class="#{template}")
           section.top-bar-section
             ul.left.main-menu
               - site.nav.each do |k, v|
-                li: a(href="#{v.url}") #{v.label}
+                li(class="#{v.children ? "has-dropdown" : ""}")
+                  a(href="#{v.url}") #{v.label}
+                  - if v.children
+                    span.drop-down-arrow
+                    ul.dropdown
+                      - v.children.each do |l, w|
+                        li
+                          a #{w.label}
             ul.right.social
               li
                 a(href="/newsletter")
