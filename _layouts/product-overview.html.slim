@@ -24,6 +24,8 @@ br
   div(class="feature-text")
     = page._features3
 
+= video_player(video(page.product.intro_video)) if page.product.intro_video
+
 = page._detail
 
 h3.divider Resources
