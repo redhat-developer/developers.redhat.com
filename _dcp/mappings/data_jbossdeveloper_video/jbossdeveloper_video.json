@@ -1,0 +1,35 @@
+{
+  "jbossdeveloper_video": {
+    "properties": {
+      "tags": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.5
+      },
+      "contributors": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.2
+      },
+      "sys_description": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.7
+      },
+      "sys_title": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.5
+      },
+      "duration": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "thumbnail": {
+        "type": "string",
+        "store" : "no",
+        "index" : "not_analyzed"
+      }
+    }
+  }
+}
