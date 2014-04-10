@@ -140,9 +140,9 @@ app.dm = {
     }
 
     if(currentFilters['formats']) {
-      query.push('_type:('+formats+')');
+      query.push('sys_type:('+formats+')');
     } else {
-      query.push('_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype jbossdeveloper_video rht_knowledgebase_article rht_knowledgebase_solution)');
+      query.push('sys_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype video rht_knowledgebase_article rht_knowledgebase_solution)');
     }
 
     if(currentFilters['skillLevel']) {
