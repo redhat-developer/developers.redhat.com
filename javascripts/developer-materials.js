@@ -15,6 +15,8 @@ function roundHalf(num) {
     return html;
 }
 
+
+
 app.dm = {
   devMatFilter : function(filters) {
     // Get the Filter Items
@@ -176,7 +178,7 @@ app.dm = {
     app.dm.currentRequest = $.ajax({
       url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
       data : {
-        "field"  : ["contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail"],
+        "field"  : ["contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail","sys_type"],
         "query" : query,
         "size" : maxResults
       },
@@ -188,7 +190,6 @@ app.dm = {
       }
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
-
       // Create a paginated list
       $('div.paginator').paging(hits.length, {
           format: '[< ncnnn >]',
@@ -207,7 +208,9 @@ app.dm = {
         }
 
         var template = "<li class=\"material\">"; 
-        template += "<div class=\"get-started-placeholder-jbossdeveloper_quickstart\" >";
+        template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
+          template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"'>";
+          // template += "<img src='#{site.base_url}/#{site.context_url}/images/design/get-started/placeholder-" + hits[i].fields.sys_type + ".png' alt=''>";
           if (hits[i].fields.github_repo_url) {
             var repo = hits[i].fields.github_repo_url;
             var repoLength = repo.length;
@@ -309,7 +312,26 @@ app.dm = {
     $('form.dev-mat-filters input:checked').removeAttr('checked');
     $('.filter-rating-active').removeClass('filter-rating-active');
     this.devMatFilter();
+  },
+  thumbnails : {
+    // These correspond with hit[i]._type
+   // jboss
+   "jbossdeveloper_quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
+   "jbossdeveloper_archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
+   "jbossdeveloper_bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
+   "jbossdeveloper_video" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_video.png')}",
+   "jbossdeveloper_sandbox" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_sandbox.png')}",
+   // futurerproof for when jboss goes unprefixed
+   "quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
+   "archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
+   "bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
+   "video" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_video.png')}",
+   "sandbox" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_sandbox.png')}",
+   // redhat
+   "solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
+   "article" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}"
   }
+
 }
 
 // Event Listeners 
