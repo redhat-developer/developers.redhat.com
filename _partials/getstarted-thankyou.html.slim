@@ -4,7 +4,8 @@
   h2 Thank you for downloading #{page.parent.product.abbreviated_name}!
   h3 
     | Problems with the download? Please use this 
-    a(href="#{download_manager_path(page.parent.parent_dir, page.parent.product.current_version)}") direct link
+    /Link url is set by javascript
+    a(id="tcDownloadLink" href="") direct link
     |.
   p 
     | By downloading this product you have agreed with our 
