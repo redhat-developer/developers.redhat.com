@@ -268,7 +268,9 @@ end
 
 # Execute Awestruct
 def run_awestruct(args)
-  system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}" 
+  unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
+    exit 0
+  end
 end
 
 # A cross-platform means of finding an executable in the $PATH.

@@ -61,7 +61,7 @@ Awestruct::Extensions::Pipeline.new do
                                                      layout:'get-started-item', 
                                                      output_dir: 'ticket-monster', 
                                                      additional_excludes: ['ticket-monster.asciidoc'], 
-                                                     push_to_searchisko: true)
+                                                     push_to_searchisko: false)
 
   # Load indexifier
   extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]
