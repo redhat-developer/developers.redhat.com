@@ -11,6 +11,14 @@
       "sys_content_content-type" : "text/html",
       "input_preprocessors": [
         {
+          "name" : "Strip HTML tags in sys_content to plain text in sys_content_plaintext",
+          "class" : "org.jboss.elasticsearch.tools.content.StripHtmlPreprocessor",
+          "settings" : {
+            "source_field"  : "sys_content",
+            "target_field"  : "sys_content_plaintext"
+          }
+        },
+        {
           "name"     : "Projects mapper",
           "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
           "settings" : {
