@@ -319,13 +319,11 @@ app.dm = {
    "jbossdeveloper_quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
    "jbossdeveloper_archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
    "jbossdeveloper_bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
-   "jbossdeveloper_video" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_video.png')}",
    "jbossdeveloper_sandbox" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_sandbox.png')}",
    // futurerproof for when jboss goes unprefixed
    "quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
    "archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
    "bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
-   "video" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_video.png')}",
    "sandbox" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_sandbox.png')}",
    // redhat
    "solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
