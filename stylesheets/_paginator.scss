@@ -1,8 +1,8 @@
-div.paginator {
-  text-align: center;
-  margin: 2em 0;
-}
-
-div.paginator > a {
-  padding: 1em;
+div.pagination-centered {
+  ul.pagination {
+    margin: 2em 0;
+    li {
+      &:before {display: none;}
+    }
+  }
 }
