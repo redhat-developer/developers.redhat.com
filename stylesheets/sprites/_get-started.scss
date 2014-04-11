@@ -16,6 +16,10 @@ $get-started-inline: false !default;
  // These variables control the generated sprite output
  // You can override them selectively before you import this file.
  
+   $get-started-article-position: $get-started-position !default;
+   $get-started-article-spacing:  $get-started-spacing !default;
+   $get-started-article-repeat:   $get-started-repeat !default;
+ 
    $get-started-bg-squares-position: $get-started-position !default;
    $get-started-bg-squares-spacing:  $get-started-spacing !default;
    $get-started-bg-squares-repeat:   $get-started-repeat !default;
@@ -40,12 +44,20 @@ $get-started-inline: false !default;
    $get-started-jbossdeveloper_stacks-spacing:  $get-started-spacing !default;
    $get-started-jbossdeveloper_stacks-repeat:   $get-started-repeat !default;
  
+   $get-started-solution-position: $get-started-position !default;
+   $get-started-solution-spacing:  $get-started-spacing !default;
+   $get-started-solution-repeat:   $get-started-repeat !default;
+ 
    $get-started-ticket-monster-bg-position: $get-started-position !default;
    $get-started-ticket-monster-bg-spacing:  $get-started-spacing !default;
    $get-started-ticket-monster-bg-repeat:   $get-started-repeat !default;
  
 
  $get-started-sprites: sprite-map("design/get-started/*.png",
+ 
+   $get-started-article-position: $get-started-article-position, 
+   $get-started-article-spacing:  $get-started-article-spacing, 
+   $get-started-article-repeat:   $get-started-article-repeat,
  
    $get-started-bg-squares-position: $get-started-bg-squares-position, 
    $get-started-bg-squares-spacing:  $get-started-bg-squares-spacing, 
@@ -70,6 +82,10 @@ $get-started-inline: false !default;
    $get-started-jbossdeveloper_stacks-position: $get-started-jbossdeveloper_stacks-position, 
    $get-started-jbossdeveloper_stacks-spacing:  $get-started-jbossdeveloper_stacks-spacing, 
    $get-started-jbossdeveloper_stacks-repeat:   $get-started-jbossdeveloper_stacks-repeat,
+ 
+   $get-started-solution-position: $get-started-solution-position, 
+   $get-started-solution-spacing:  $get-started-solution-spacing, 
+   $get-started-solution-repeat:   $get-started-solution-repeat,
  
    $get-started-ticket-monster-bg-position: $get-started-ticket-monster-bg-position, 
    $get-started-ticket-monster-bg-spacing:  $get-started-ticket-monster-bg-spacing, 
@@ -128,5 +144,5 @@ $get-started-inline: false !default;
 
 // Generates a class for each sprited image.
 @mixin all-get-started-sprites($dimensions: $get-started-sprite-dimensions, $prefix: sprite-map-name($get-started-sprites), $offset-x: 0, $offset-y: 0) {
-  @include get-started-sprites(bg-squares bg jbossdeveloper_archetype jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_stacks ticket-monster-bg, $dimensions, $prefix, $offset-x, $offset-y);
+  @include get-started-sprites(article bg-squares bg jbossdeveloper_archetype jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_stacks solution ticket-monster-bg, $dimensions, $prefix, $offset-x, $offset-y);
 }
