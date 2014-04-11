@@ -190,7 +190,6 @@ app.dm = {
       }
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
-      console.log(hits);
       // Create a paginated list
       $('div.paginator').paging(hits.length, {
           format: '[< ncnnn >]',
