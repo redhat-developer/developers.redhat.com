@@ -22,7 +22,7 @@ layout: base
 .row.content
   .large-18.columns
     = video_player(video)
-    = partial 'share.html.slim'
+    = partial("share.html.slim", :url => page.video_url, :title => page.description[0 .. 139])
 
   .large-6.columns
     h4 Related Links

@@ -75,24 +75,4 @@ description: Discover the events and webinars featuring talks about JBoss produc
             .event-links
               a(href="#{v.link}") Learn More
               a(href="#") Add to Calendar
-            .share-this
-              p
-                i.icon-share-alt
-                | Share This
-              ul.share-this-buttons.social-buttons.cf
-                li
-                  a(href="https://twitter.com/share" class="socialite twitter-share" data-text="#{v.title} #{v.description}" data-url="#{v.link}" rel="nofollow" target="_blank")
-                   span.vhidden
-                     | Tweet
-                li
-                  a(href="https://plus.google.com/share?url=#{v.link}" class="socialite googleplus-one" data-size="medium" data-width="300" data-href="#{v.link}" rel="nofollow" target="_blank")
-                   span.vhidden
-                     | Share on Google+
-                li
-                  a(href="http://www.facebook.com/sharer.php?u=#{v.link}&t=#{v.title}" class="socialite facebook-share" data-href="#{v.link}" data-send="false" data-layout="box_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank")
-                   span.vhidden
-                     | Share on Facebook
-                li
-                  a(href="http://www.linkedin.com/shareArticle?mini=true&url=#{v.link}}&title=#{v.title}" class="socialite linkedin-share" data-url="#{v.title}" data-counter="right" rel="nofollow" target="_blank")
-                   span.vhidden
-                     | Share on LinkedIn
+            = partial("share.html.slim", :url => v.link, :title => v.description[0 .. 139])

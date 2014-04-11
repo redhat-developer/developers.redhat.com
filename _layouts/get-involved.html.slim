@@ -136,6 +136,7 @@ h2.divider Community Pulse
   - types = ["linkedin","twitter","facebook","google-plus"]
   - titles = ["Great article by @ZDNet's @sjvn on the work we're doing to bring @JBoss to @OpenShift http://ow.ly/paYpZ   #paas #cloud", "At #JavaOne?", "5 Minutes to Mobile","Medium sized title two lines"]
   - bodies = ["You know you should test. You know that testing forces you to consider API design...","","Opening: Middleware Data Specialist http://bit.ly/1fn0DxP","Learn the ABCs of Integration Testing from @ALRubinger and @AslakKnutsen in 10 min at Hilton - Continental Ballroom 5."]
+  - links = ["http://ow.ly/paYpZ", "" , "http://bit.ly/1fn0DxP" ,""]
   - for item in (1..4).to_a
     - rand = rand(4);
     - type = types[rand]
@@ -146,4 +147,4 @@ h2.divider Community Pulse
         / img(src="http://lorempixel.com/300/#{rand(500)}")
         h3 #{titles[rand(4)]}
         p #{bodies[rand(4)]}
-        = partial 'share.html.slim'
+        = partial("share.html.slim", :url => links[rand], :title => titles[rand][0 .. 139])

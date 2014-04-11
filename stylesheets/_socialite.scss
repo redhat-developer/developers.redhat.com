@@ -17,19 +17,19 @@
   display: block;
   list-style: none;
   padding: 0;
-  margin: 20px;
+  margin: 0;
 
   > li {
     display: block;
     margin: 0;
-    padding: 10px;
+    padding: 5px;
     float: left;
   }
 
   .socialite {
     display: block;
     position: relative;
-    background: url('../images/social-sprite.png') 0 0 no-repeat;
+    background: none !important;
   }
 
   .socialite-loaded {

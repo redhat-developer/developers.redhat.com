@@ -146,49 +146,14 @@ app.init = function() {
   /* 
     Social Media Share Buttons 
   */
-    // Facebook over CORS
-    //http://api.facebook.com/restserver.php?method=links.getStats&urls=http://wesbos.com&format=json
-    $('.facebook-share-button a').click(function(e){
-      e.preventDefault();
-      var el = $(this);
-      // Open the window
-      window.open(
-        'https://www.facebook.com/sharer/sharer.php?s=100&\
-        p[url]='+encodeURIComponent(el.data('url'))
-        +'&p[title]=' + el.data('title')
-        +'&p[summary]=' + el.data('text')
-        , 
-        'facebook-share-dialog', 
-        'width=626,height=436'); 
-    });
-
     $(document).ready(function()
     {
-
-        $('.share-this').on('mouseover', function()
+        $('.share-this').on('click mouseover', function()
         {
             Socialite.load($(this)[0]);
         });
-
     });
 
-    // Facebook Share # — Get this number when you hover over the share button
-    /*$('.share-this').on('mouseover',function(e){ // mouseover should be triggered on first tap
-      var el = $(this),
-          shareButton = el.find('.facebook-share-button a'),
-          shareTab = el.find('.facebook-share-button-count'),
-          url = shareButton.data('url'),
-          shares = shareButton.data('shares');
-      if(typeof shares == 'undefined') { // could possibly be zero
-        shareButton.data('shares',0); // temporarily set to zero
-        $.getJSON('http://api.facebook.com/restserver.php?method=links.getStats&format=json&urls='+encodeURIComponent(url),function(data){
-          shareButton.data('shares',data[0]['share_count']);  
-          shareTab.attr('data-shares',data[0]['share_count']);  // for display
-        });
-
-      }
-    });*/
-  
   /*
     Equalize Bottoms
   */
@@ -443,6 +408,9 @@ app.buzz = {
       }
       container.html(html);
       container.removeClass('buzz-loading');
+      $('.share-this').on('click mouseover', function() {
+        Socialite.load($(this)[0]);
+      });
     });
   }
 }
