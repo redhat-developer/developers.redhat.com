@@ -32,8 +32,8 @@ module JBoss::Developer::Extensions
               # Set the product's current major.minor version
               product.current_minor_version = product.current_version[/^([0-9]*\.[0-9]*)/, 1]
             end
-            downloads(product, site)
             docs(product, site)
+            downloads(product, site)
             # Store the product in the global product map
             site.products[product.id] = product
           end
@@ -75,7 +75,12 @@ module JBoss::Developer::Extensions
               artifact.name = asset.name
               artifact.classifier ||= artifact_classifier l, l, artifact.type
               artifact.filename ||= "jboss-#{product.id}-#{download.version}#{artifact.classifier}.#{artifact.type}"
-              artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}"
+              if l == 'release_notes' && product.guides.has_key?('Release_Notes')
+                # Special case for release notes
+                artifact.url = product.guides['Release_Notes'].formats['html'].url
+              else
+                artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}"
+              end
               artifact.icon ||= artifact_attr l, "icon", "fa fa-download"
               c << artifact
             end
