@@ -104,11 +104,7 @@ module JBoss::Developer::Extensions
         }
 
         bom_dcp = {
-          :sys_type => 'jbossdeveloper_bom',
-          :sys_content_provider => 'jboss-developer',
-          :sys_content_type => 'bom',
-          :sys_content_id => bom['id'],
-          :sys_updated => @commits.collect {|c| DateTime.parse c[:date]}.first,
+          :sys_last_activity_date => @commits.collect {|c| DateTime.parse c[:date]}.first,
           :sys_contributors => @commits.collect {|c| c[:author_email]}.uniq,
           :sys_activity_dates => @commits.collect {|c| DateTime.parse c[:date]},
           :sys_created => @commits.collect {|c| DateTime.parse c[:date]}.last,
@@ -122,7 +118,7 @@ module JBoss::Developer::Extensions
         }
         #metadata[:boms] << bom
         unless !@push_to_searchisko || site.profile =~ /development/
-          searchisko.push_content(bom_dcp[:sys_type], bom_dcp[:sys_content_id], bom_dcp.to_json)
+          searchisko.push_content('jbossdeveloper_bom', bom['id'], bom_dcp.to_json)
         end
         bom_page.send('metadata=', metadata)
         bom_page.send('bom=', bom)
@@ -185,11 +181,7 @@ module JBoss::Developer::Extensions
         }
 
         archetype_dcp = {
-          :sys_type => 'jbossdeveloper_archetype',
-          :sys_content_provider => 'jboss-developer',
-          :sys_content_type => 'archetype',
-          :sys_content_id => archetype['id'],
-          :sys_updated => @commits.collect {|c| DateTime.parse c[:date]}.first,
+          :sys_last_activity_date => @commits.collect {|c| DateTime.parse c[:date]}.first,
           :sys_contributors => archetype['archetype']['contributors'],
           :sys_activity_dates => @commits.collect {|c| DateTime.parse c[:date]},
           :sys_created => @commits.collect {|c| DateTime.parse c[:date]}.last,
@@ -202,7 +194,7 @@ module JBoss::Developer::Extensions
           :versions => archetype['allVersions']
         }
         unless !@push_to_searchisko || site.profile =~ /development/
-          searchisko.push_content(archetype_dcp[:sys_type], archetype_dcp[:sys_content_id], archetype_dcp.to_json)
+          searchisko.push_content('jbossdeveloper_archetype', archetype['id'], archetype_dcp.to_json)
         end
         archetype_page.send('metadata=', metadata)
         archetype_page.send('archetype=', archetype)
