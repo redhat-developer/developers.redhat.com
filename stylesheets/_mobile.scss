@@ -76,6 +76,36 @@
     }
   }
 
+  table.forums {
+    tbody {
+      tr {
+        display: block;
+        width:100%;
+        th {
+          display: none;
+        }
+        td {
+          width:100%;
+          display: block;
+          padding-left: 0;
+          padding-right: 0;
+          &.product-name {
+            font-weight: 600;
+            font-size: emCalc(20);
+          }
+          &:nth-child(3):before {
+            content: 'Posts: ';
+            font-weight: 600;
+          }
+          &:nth-child(4):before {
+            content: 'Monthly Activity: ';
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
 } // end mq
 
 @include mobile-portrait-and-down {
