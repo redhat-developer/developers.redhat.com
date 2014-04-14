@@ -65,6 +65,7 @@ Awestruct::Extensions::Pipeline.new do
                                                      layout:'get-started-item', 
                                                      output_dir: 'ticket-monster', 
                                                      additional_excludes: ['ticket-monster.asciidoc'], 
+                                                     additional_metadata_keys: ['thumbnail'],
                                                      push_to_searchisko: true)
 
   # Load indexifier
