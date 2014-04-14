@@ -468,13 +468,18 @@ app.stickyNav = function(className, headerElement) {
   }
   
   var html = "",
-      top = nav.offset().top;
+      top = nav.offset().top,
+      select = $("<select>").append('<option selected value="">Choose a FAQ topic</option>');
 
   $('.' + className + ' ' + headerElement).each(function(i,el){
     html += "<li><a href='#"+$(this).attr('id')+"'>"+$(this).text()+"</a></li>";
+    select.append("<option value='"+$(this).attr('id')+"'>"+$(this).text()+"</option>");
   });
 
+  // select += "</select>";
+
   nav.html(html);
+  nav.after(select);
 
   win.scroll(function() {
     if(win.scrollTop() >= (top)) {
@@ -497,6 +502,15 @@ app.stickyNav = function(className, headerElement) {
 
     $('.past-block').not(':last').removeClass('past-block');
   });
+
+  // bind to select box change
+  $(select).on('change',function() {
+    var header = $(this).find('option:selected').val();
+    window.location.hash = header;
+  }).wrap('<div class="styled-select mobile-selector">');
+
+
+
 }
 
 /*

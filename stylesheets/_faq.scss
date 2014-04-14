@@ -2,6 +2,7 @@
   position: fixed;
   top:0;
   padding-top: 20px;
+  width:18%;
 }
 
 .faq-nav a.past-block:last-child {
@@ -20,6 +21,9 @@
         font-family: 'FontAwesome';
       }
     }
+  }
+  .mobile-selector {
+    display: none;
   }
 }
 
@@ -60,6 +64,16 @@
 @include tablet-portrait-and-down {
   .faq-nav-fixed {
     position: relative; // on mobile we don't want a fixed nav
+    width:100%;
+  }
+
+  ul.faq-nav {
+    display: none;
+  }
+
+  .mobile-selector {
+    display: block;
+    width:100%;
   }
 
 }
