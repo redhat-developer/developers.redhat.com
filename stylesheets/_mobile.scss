@@ -111,6 +111,33 @@
     }
   }
 
+  table.demos {
+    th {
+      display: none;
+    }
+    tbody {
+      tr {
+        display: block;
+        width: 100%;
+        padding:10px;
+        padding-bottom: 0;
+        &.desc {
+          padding-bottom:0;
+          padding-top: 0;
+        }
+        td {
+          width:100%;
+          display: block;
+          padding-left: 0;
+          padding-right: 0;
+          max-width:none !important;
+          &:nth-child(2):before { content : 'Technology: '; font-weight: 600;}
+          &:nth-child(3):before { content : 'Use Case : '; font-weight: 600;}
+        }
+      }
+    }
+  }
+
 } // end mq
 
 @include mobile-portrait-and-down {

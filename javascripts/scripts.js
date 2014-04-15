@@ -265,6 +265,17 @@ app.init = function() {
       app.dl.doDownload();
   }
 
+  /*
+   * Product Page demo toggle
+   */
+  $('table.demos a.view-more').on('click',function(e){
+    e.preventDefault();
+    var el = $(this);
+    el.toggleClass('open');
+    el.parent().parent().next().find('p').slideToggle(); // 'tr.desc'
+
+  });
+
 }; /* End app.init() */
 
 app.createSlider = function($el) {

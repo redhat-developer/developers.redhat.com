@@ -1589,3 +1589,40 @@ span.asterisk {
 	height:1px;
 	clear:both;
 }
+
+table.demos {
+  tbody {
+    tr {
+      background:white;
+      &.desc {
+        border-bottom: 1px solid #E6E7E8;
+        p {
+          display: none;
+        }
+      }
+      td {
+        border:0;
+        &:nth-child(2) { max-width: 120px; }
+        &:nth-child(3) { max-width: 120px; }
+      }
+    }
+  }
+  a.view-more {
+    &:before {
+      content : 'View More ';
+    }
+    &:after {
+      content: "\f196";
+      font-family: FontAwesome;
+    }
+    &.open {
+      &:before {
+        content : 'View Less ';
+      }
+      &:after {
+        content: "\f147";
+        font-family: FontAwesome;
+      }
+    }
+  }
+}
