@@ -656,9 +656,8 @@ i[class*=fa].invert {
   background:$grey-2;
   padding:20px;
   margin-bottom: 40px;
-  height: 270px;
-  max-height: 270px;
   position: relative;
+  min-height:200px;
   h2,h3 {
     text-transform: uppercase;
     font-weight: 600;

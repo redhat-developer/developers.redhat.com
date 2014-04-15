@@ -237,6 +237,12 @@ app.init = function() {
   var devTools = $('.development-tool');
   if(devTools.length) {
     app.developmentTools();
+
+    // run again on window resize
+    $(window).on('scroll',function() {
+      app.developmentTools();
+    });
+
   }
   
   /*
@@ -545,6 +551,25 @@ app.sideNav = function() {
     $('.side-nav').toggleClass('side-nav-open');
   });
 
+};
+
+/*
+   Development Tools even bottoms
+ */
+
+app.developmentTools = function(){
+  $('.development-tool-category').each(function() {
+   var items = $(this).find('.development-tool:even');
+   $(items).each(function(i,el) {
+     var that = $(this);
+     that.height('auto');
+     that.next().height('auto');
+
+     var max = Math.max(that.outerHeight(), that.next().outerHeight()) + 50; // account for the absolute learn more button
+     that.css('height',max);
+     that.next().css('height',max);
+   });
+  });
 };
 
 /*
