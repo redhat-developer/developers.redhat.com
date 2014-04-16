@@ -201,7 +201,6 @@ $(function() {
     app.project.projectFilter();
   }
   if ($('#product-upstream-projects').length) {
-    //console.log(upstream_projects);
     app.project.projectFilter({project: upstream_projects});
   }
 });

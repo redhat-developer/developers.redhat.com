@@ -45,7 +45,6 @@ module JBoss
                 solutions << solutions(product, site)
                 if page.source_path.include? 'community'
                   page.send('upstream_projects=', product['upstream_projects'])
-                  #upstream_projects page, product['upstream_projects']
                 end
                 
                 # Store the product in the global product map
@@ -56,23 +55,6 @@ module JBoss
           File.open(Pathname.new(site.output_dir).join('rht_articles.json'), 'w') { |f| f.write( articles.flatten.reject{ |a| a.nil? }.to_json) }
           File.open(Pathname.new(site.output_dir).join('rht_solutions.json'), 'w') { |f| f.write( solutions.flatten.reject{ |s| s.nil? }.to_json) }
         end
-
-        #def upstream_projects page, upstream_projects
-          #if upstream_projects
-            #site = page.site
-            #if (site.cache.nil?)
-              #site.send('cache=', Aweplug::Cache::YamlFileCache.new)
-            #end
-            #searchisko = Aweplug::Helpers::Searchisko.new({:base_url => site.dcp_base_url,
-                                                           #:authenticate => true,
-                                                           #:searchisko_username => ENV['dcp_user'],
-                                                           #:searchisko_password => ENV['dcp_password'],
-                                                           #:cache => site.cache,
-                                                           #:logger => site.log_faraday}) 
-            #response = searchisko.get 'search', {sys_type: 'project_info', field: '_source', project: upstream_projects}
-            #page.send('upstream_projects=', JSON.parse(response.body)['hits'].first['hits'])
-          #end
-        #end
 
         def articles(product, site)
           product.articles.collect { |a| {'url' => "https://api.access.redhat.com/rs/articles#{a[a.rindex("/"), a.length]}", 'product' => product.id } } unless product.articles.nil?
