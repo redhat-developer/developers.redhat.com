@@ -1,4 +1,8 @@
 .get-started-items {
+  margin-bottom: 30px;
+  position: relative;
+  background:cdn("../images/design/get-started/bg.png") bottom center no-repeat;
+  min-height:250px;
   span.line {
     display: block;
     width: 100%;
@@ -22,13 +26,6 @@
   }
   &>div {
     text-align: center;
-  }
-  .flow {
-    @extend .get-started-bg;
-    background-position: sprite-position($get-started-sprites, bg, 0px, -2px);
-    height: get-started-sprite-height(bg) - 3px;
-    margin-bottom: 30px;
-    position: relative;
   }
 }
 
@@ -171,6 +168,8 @@ a.get-started-quickstart.button {
     background:none;
     a.get-started-example {
       width: 100%;
+      background:cdn("../images/design/get-started/bg-squares.png");
+      background-size:cover;
     }
   }
 }
