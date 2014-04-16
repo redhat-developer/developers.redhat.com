@@ -2,7 +2,7 @@
   float:left;
   margin-bottom: 20px;
   input[type] {
-    padding:5px;
+    padding:8px;
     font-size: 13px;
     &.datepicker {
       @extend .icons-calendar;
@@ -12,6 +12,7 @@
       padding-right:10px;
       background-clip: content-box;
       background-origin:content-box;
+      text-indent: 20px;
       &:first-child {
         margin-right:3px;
       }
