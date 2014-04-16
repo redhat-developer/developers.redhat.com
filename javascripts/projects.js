@@ -22,14 +22,12 @@ app.project = {
     */
     var keyword = $('input[name="filter-text"]').val();
 
-    var filters = {
-      "keyword" : keyword,
-    }
+    var filters = $.extend(filters, {"keyword": keyword});
     var currentFilters = {};
 
     $.each(filters, function(key, val) {
       // if its empty, remove it from the filters
-      if(val.length) {
+      if(val != undefined && val.length) {
         currentFilters[key] = val;
       }
     });
@@ -39,21 +37,24 @@ app.project = {
 
     if(currentFilters['keyword']) {
       query.push(keyword);
+      delete currentFilters['keyword']
     }
 
     var query = query.join(" AND ");
 
     // append loading class to wrapper
     $("ul.results").addClass('loading');
-
-    $.ajax({
-      url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
-      data : {
+    var request_data = {
         "sys_type" : "project_info",
         "field"  : ["_source"],
         "query" : query,
         "size" : maxResults
-      }
+    } 
+    $.extend(request_data, currentFilters);
+
+    $.ajax({
+      url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
+      data : request_data
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
       hits.sortJsonArrayByProperty("_source.sys_title");
@@ -198,6 +199,10 @@ $(function() {
 
   if ($('.project-filters').length) {
     app.project.projectFilter();
+  }
+  if ($('#product-upstream-projects').length) {
+    //console.log(upstream_projects);
+    app.project.projectFilter({project: upstream_projects});
   }
 });
 

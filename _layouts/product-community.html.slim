@@ -25,35 +25,8 @@ asciidoc:
 
 a.ctaText(href="#{page.product.forum_url}")
   | Visit the #{page.product.abbreviated_name} Forums 
-  i.fa.fa-angle-double-right
-
-
-
+  i.fa.fa-angle-double-right 
 h3.divider Projects and Standards included in #{page.product.abbreviated_name}
-ul.large-block-grid-3.small-block-grid-2
-  - for solution in [1,2,3,4,5,6,7,8] 
-    li.upstream(data-open-solution="#{solution}")
-      a.image-link: img(src="#{site.base_url}/#{site.context_url}/images/solution-#{solution}.png")
-       a.solution-name-link(href="#")
-        h3.solution-name Project # #{solution}
-      span.update-date Version: 1.1.0.Final
-      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu.
-      a.upstream-download
-        i.fa.fa-download
-        |  Download
-      .upstream-more-content
-        p.product-links
-          | Included in Product(s) <br>
-          a(href="#") RedHat JBoss Enterprise Application Server
-          a(href="#") RedHat JBoss Data Visualization
-        ul.external-links
-          - for link in [1,2,3,4,5,6,7,8] 
-            li: a(href="#") Link #{link}
-      a.upstream-toggle-more(href="#")
-        span.view-more
-          | View More
-          i.fa.fa-plus-square
-        span.view-less
-          | View Less
-          i.fa.fa-minus-square
-
+ul.large-block-grid-3.small-block-grid-2.results#product-upstream-projects
+javascript:
+  var upstream_projects = #{page.upstream_projects.to_s}
