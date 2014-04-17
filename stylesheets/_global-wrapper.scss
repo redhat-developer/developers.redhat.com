@@ -123,7 +123,7 @@ nav.top-bar {
   margin-bottom: 1.5em;
   margin-bottom: 0;
   @include tablet-portrait-and-down {
-    left:-85%;
+    @include transform(translateX(-100%) translateZ(0));
     width: 85%;
     position: absolute;
     top: 0;
@@ -393,11 +393,11 @@ ul.footer-nav {
         // border:inset 10px;
         // border-color: rgba(255, 255, 255, 1) transparent transparent transparent;
         color:white;
-        font-size:30px;
+        font-size:20px;
         right:0;
-        content:'▾';
+        content:"\25BC";
         top:0;
-        padding: 0 20px;
+        padding: 10px 10px 20px 20px;
         position: absolute;
         cursor:pointer;
       }

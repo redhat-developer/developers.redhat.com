@@ -60,15 +60,28 @@ app.init = function() {
   /*
     Toggle mobile Nav
   */
-  $('.nav-toggle').on('click',function(){
-    $('body').toggleClass('nav-open');
+  $('.nav-toggle').on('click touchstart',function(){
+     if (!app.fastClick) {
+       // we're binding to touchstart and click. If we have a touchstart, don't also run on click
+       app.fastClick = true;
+       setTimeout(function(){ app.fastClick = false; }, 100);
+       $('body').toggleClass('nav-open');
+     }
+    return false
   });
 
   /*
     Mobile Nav dropdown
   */
-  $('li.has-dropdown').on('click touchend',function(e){
-    $(this).toggleClass('sub-nav-open');
+  
+  $('li.has-dropdown').on('click touchstart',function(e){
+      if (!app.fastClick) {
+        // we're binding to touchstart and click. If we have a touchstart, don't also run on click
+        app.fastClick = true;
+        setTimeout(function(){ app.fastClick = false; }, 100);
+        $(this).toggleClass('sub-nav-open');
+      }
+     return false
   });
 
   /*
