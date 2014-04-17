@@ -144,7 +144,7 @@ app.dm = {
     if(currentFilters['formats']) {
       query.push('sys_type:('+formats+')');
     } else {
-      query.push('sys_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype video rht_knowledgebase_article rht_knowledgebase_solution)');
+      query.push('sys_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype video rht_knowledgebase_article rht_knowledgebase_solution jbossdeveloper_example)');
     }
 
     if(currentFilters['skillLevel']) {
@@ -178,7 +178,7 @@ app.dm = {
     app.dm.currentRequest = $.ajax({
       url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
       data : {
-        "field"  : ["contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail","sys_type"],
+        "field"  : ["contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type"],
         "query" : query,
         "size" : maxResults
       },
@@ -190,6 +190,7 @@ app.dm = {
       }
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
+      console.log(hits);
       // Create a paginated list
       $('ul.pagination').paging(hits.length, {
           format: '< (qq-) nncnn (-pp) >',
@@ -209,7 +210,8 @@ app.dm = {
 
                   var template = "<li class=\"material\">"; 
                   template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
-                  if(hits[i].fields.sys_type !== 'video') {
+                  // jbossdeveloper_example and video have thumbnails
+                  if(!hits[i].fields.thumbnail) {
                       template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"'>";
                   }
                   if (hits[i].fields.github_repo_url) {
