@@ -44,6 +44,7 @@
               "index_type": "contributor",
               "source_field": "author",
               "idx_search_field": ["jbossdeveloper_quickstart_author","name"],
+              "result_multiple_ignore" : true,
               "result_mapping": [
                   {
                       "idx_result_field": "code",
