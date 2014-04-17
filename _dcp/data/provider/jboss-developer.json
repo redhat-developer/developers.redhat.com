@@ -9,6 +9,7 @@
       "description":"Readmes from JBoss Developer",
       "sys_type":"jbossdeveloper_quickstart",
       "sys_content_content-type" : "text/html",
+      "persist" : true,
       "input_preprocessors": [
         {
           "name" : "Strip HTML tags in sys_content to plain text in sys_content_plaintext",
@@ -17,8 +18,7 @@
             "source_field"  : "sys_content",
             "target_field"  : "sys_content_plaintext"
           }
-        },
-        {
+        },{
           "name"     : "Projects mapper",
           "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
           "settings" : {
@@ -37,20 +37,53 @@
             ]
           }
         },{
+          "name": "Author mapper",
+          "class": "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings": {
+              "index_name": "sys_contributors",
+              "index_type": "contributor",
+              "source_field": "author",
+              "idx_search_field": ["jbossdeveloper_quickstart_author","name"],
+              "result_mapping": [
+                  {
+                      "idx_result_field": "code",
+                      "target_field": "sys_author"
+                  }
+              ]
+          }
+        },{
           "name"     : "Contributors mapper",
           "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
           "settings" : {
             "index_name"       : "sys_contributors",
             "index_type"       : "contributor",
             "source_field"     : "contributors",
-            "idx_search_field" : "contributors",
+            "idx_search_field" : "email",
             "result_mapping"   : [{
               "idx_result_field" : "code",
-              "target_field"     : "sys_contributor",
-              "value_default"    : "{contributors}"
-            }],
-            "source_bases"     : ["contributors"]
+              "target_field"     : "sys_contributor"
+            }]
           }
+        },{
+            "name": "Contributors collector",
+            "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
+            "settings": {
+                "target_field": "sys_contributor",
+                "source_fields": [
+                    "sys_author",
+                    "sys_contributor"
+                ]
+            }
+        },{
+	        "name": "sys_activity_dates collector",
+	        "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
+	        "settings": {
+	            "target_field": "sys_activity_dates",
+	            "source_fields": [
+	                "sys_created",
+	                "sys_last_activity_date"
+	            ]
+	        }
         }
       ],
       "index": {
@@ -61,6 +94,7 @@
     "jbossdeveloper_bom": {
       "description":"Bill of Materials POM from JBoss Developer",
       "sys_type":"jbossdeveloper_bom",
+      "persist" : true,
       "input_preprocessors": [
         {
           "name"     : "Contributors mapper",
@@ -87,6 +121,7 @@
     "jbossdeveloper_archetype": {
       "description":"Maven Archetypes from JBoss Developer",
       "sys_type":"jbossdeveloper_archetype",
+      "persist" : true,
       "input_preprocessors": [
         {
           "name"     : "Contributors mapper",
@@ -114,6 +149,7 @@
       "description":"Examples from JBoss Developer",
       "sys_type":"jbossdeveloper_example",
       "sys_content_content-type":"text/html",
+      "persist" : true,
       "input_preprocessors": [
         {
           "name" : "Strip HTML tags in sys_content to plain text in sys_content_plaintext",
@@ -148,6 +184,7 @@
     "jbossdeveloper_vimeo": {
         "description": "Videos for JBoss Developer from vimeo.com",
         "sys_type": "video",
+        "persist" : true,
         "input_preprocessors": [
             {
                 "name": "Author mapper",
