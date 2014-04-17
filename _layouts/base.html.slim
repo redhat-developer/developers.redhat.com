@@ -172,6 +172,10 @@ body(class="#{template}")
   /script src="http://apis.google.com/js/plusone.js"
   /script src="http://platform.twitter.com/widgets.js"
 
+  /var upstream_projects = #{site.products.upstream_projects.to_s} 
+  javascript:
+    var products_upstream = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = site.products[product]['upstream_projects']; map; })};
+
   - if site.metrics
     noscript
       img src="https://smtrcs.redhat.com/b/ss/redhatjbossorg/1/H.21--NS/0?[AQB]&cdp=3&[AQE]" height="1" width="1" border="0" alt=""

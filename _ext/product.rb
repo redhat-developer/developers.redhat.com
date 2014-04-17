@@ -43,9 +43,6 @@ module JBoss
                 downloads(product, site)
                 articles << articles(product, site)
                 solutions << solutions(product, site)
-                if page.source_path.include? 'community'
-                  page.send('upstream_projects=', product['upstream_projects'])
-                end
                 
                 # Store the product in the global product map
                 site.products[product.id] = product

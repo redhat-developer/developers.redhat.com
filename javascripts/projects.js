@@ -198,10 +198,27 @@ $(function() {
   });
 
   if ($('.project-filters').length) {
-    app.project.projectFilter();
+    if (window.location.search) {
+      var product_id = getQueryVariable('included-in');
+      app.project.projectFilter({project: products_upstream[product_id]});
+    } else {
+      app.project.projectFilter();
+    }
   }
   if ($('#product-upstream-projects').length) {
-    app.project.projectFilter({project: upstream_projects});
+    app.project.projectFilter({project: products_upstream[product_id]});
+  } 
+
+  // Code pulled from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for(var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (decodeURIComponent(pair[0]) == variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
   }
 });
 
