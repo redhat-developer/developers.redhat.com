@@ -25,6 +25,10 @@ app.project = {
     var filters = $.extend(filters, {"keyword": keyword});
     var currentFilters = {};
 
+    if ($('select[name="filter-products"]').val() !== "") {
+      filters['project'] = products_upstream[$('select[name="filter-products"]').val()];
+    }
+
     $.each(filters, function(key, val) {
       // if its empty, remove it from the filters
       if(val != undefined && val.length) {
@@ -190,6 +194,11 @@ $(function() {
 
   $('form.project-filters').on('submit',function(e) {
     e.preventDefault();
+  });
+
+  $('select[name="filter-products"]').on('change', function(e) {
+    e.preventDefault();
+    app.project.projectFilter(); 
   });
 
   $('.project-filters-clear').on('click',function(e){
