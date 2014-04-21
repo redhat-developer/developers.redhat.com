@@ -1,19 +1,11 @@
 .slider-wrapper
   .slider#slider
     .swipe-wrap
-      .slide
-        img(src="#{site.base_url}/#{site.context_url}/images/slider-image1.jpg")
-        .slider-label
-          h3: a This is the slider Title 1
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
-      .slide
-        img(src="#{site.base_url}/#{site.context_url}/images/slider-image2.jpg")
-        .slider-label
-          h3: a This is the slider Title 2
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
-      .slide
-        img(src="#{site.base_url}/#{site.context_url}/images/slider-image3.jpg")
-        .slider-label
-          h3: a This is the slider Title
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut nulla eget lacus gravida rutrum. Fusce sit amet tellus arcu. Nam in accumsan diam. Etiam quis augue risus, eget molestie sapien.
+      - for item in site.featured_items
+        .slide
+          img(src=item['image_url'])
+          .slider-label
+            h3 = item['title']
+            p = item['text']
   .slider-pager
+
