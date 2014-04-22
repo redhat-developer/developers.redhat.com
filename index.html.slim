@@ -50,11 +50,11 @@ description: The simple, modern & productive way to build apps and infrastructur
           - if "#{v.homepage}" == "true"
             .update
               .update-date
-                span.month #{v.month}
-                - if "#{v.day}" != "{}"
-                  span.day #{v.day}
-                - if "#{v.days}" != "{}"
-                  span.days #{v.days}
+                span.month #{v.start.strftime '%b'}
+                - if "#{v.start}" == "#{v.end}"
+                  span.day #{v.start.strftime '%d'}
+                - if "#{v.start}" != "#{v.end}"
+                  span.days #{v.start.strftime '%d'}-#{v.end.strftime '%d'}
               h5
                 a(href="#{v.link}") #{v.title}
               -if "#{v.subtext}" != "{}"
