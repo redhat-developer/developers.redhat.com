@@ -48,8 +48,10 @@ body(class="#{template}")
               i.fa.fa-home
           dd.search-wrapper
             /  Search Box
-            form.search(action="search" method="POST" name="search")
+            form.search(action="search" method="POST" name="search" autocomplete="off")
               input.query(type="text" name="q" placeholder="Search")
+              span.search-close &times;
+              .searchResults
           dd.register
             a(href="#{site.register_url}") Register
           dd.logged-in
@@ -166,6 +168,7 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/download.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/search.js"
 
   / Disabled, pending reimplementation of Share This functionality
   /script src="http://platform.linkedin.com/in.js"

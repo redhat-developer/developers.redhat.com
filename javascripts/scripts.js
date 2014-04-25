@@ -60,7 +60,7 @@ app.init = function() {
   /*
     Toggle mobile Nav
   */
-  $('.nav-toggle').on('click touchstart',function(){
+  $('.nav-toggle').on('click touchend',function(){
      if (!app.fastClick) {
        // we're binding to touchstart and click. If we have a touchstart, don't also run on click
        app.fastClick = true;
@@ -74,7 +74,7 @@ app.init = function() {
     Mobile Nav dropdown
   */
   
-  $('li.has-dropdown span.drop-down-arrow').on('click touchstart',function(e){
+  $('li.has-dropdown span.drop-down-arrow').on('click touchend',function(e){
       if (!app.fastClick) {
         // we're binding to touchstart and click. If we have a touchstart, don't also run on click
         app.fastClick = true;
