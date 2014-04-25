@@ -74,12 +74,12 @@ app.init = function() {
     Mobile Nav dropdown
   */
   
-  $('li.has-dropdown').on('click touchstart',function(e){
+  $('li.has-dropdown span.drop-down-arrow').on('click touchstart',function(e){
       if (!app.fastClick) {
         // we're binding to touchstart and click. If we have a touchstart, don't also run on click
         app.fastClick = true;
         setTimeout(function(){ app.fastClick = false; }, 100);
-        $(this).toggleClass('sub-nav-open');
+        $(this).parent().toggleClass('sub-nav-open');
       }
      return false
   });
