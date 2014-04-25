@@ -251,6 +251,24 @@
       "description":"JBoss Developer website pages",
       "sys_type":"webpage",
       "input_preprocessors": [
+        { 
+          "name"     : "Projects mapper",
+          "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings" : {
+              "index_name"       : "sys_projects",
+              "index_type"       : "project",
+              "source_field"     : "website_project_code",
+              "idx_search_field" : "type_specific_code.jbossdeveloper_website_code",
+              "result_mapping"   : [{
+                  "idx_result_field" : "code",
+                  "target_field"     : "prep_project"
+                },{
+			            "idx_result_field" : "name",
+			            "target_field"     : "prep_project_name"
+		            }
+              ]
+          } 
+        }
       ],
       "index": {
         "name":"data_jbossdeveloper_website",
