@@ -246,6 +246,20 @@
             "name": "data_jbossdeveloper_vimeo",
             "type": "jbossdeveloper_vimeo"
         }
+    },
+    "jbossdeveloper_website": {
+      "description":"JBoss Developer website pages",
+      "sys_type":"webpage",
+      "input_preprocessors": [
+      ],
+      "index": {
+        "name":"data_jbossdeveloper_website",
+        "type":"jbossdeveloper_website"
+      },
+      "indexer" : {
+        "type" : "elasticsearch-river-remote",
+        "name" : "jbossdeveloper_website"
+      }
     }
   }
 }

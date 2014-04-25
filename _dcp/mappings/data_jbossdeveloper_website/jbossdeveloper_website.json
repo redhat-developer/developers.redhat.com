@@ -1,0 +1,9 @@
+{
+    "jbossdeveloper_website" : {
+        "_all" : {"enabled" : false},
+        "properties" : {
+            "space_key" : {"type" : "string", "analyzer" : "keyword"},
+            "source"    : {"type" : "string", "analyzer" : "keyword"}
+        }
+    }
+}
