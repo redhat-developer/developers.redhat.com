@@ -6,35 +6,35 @@
 @import "foundation/components/global"; // *always required
 @import "foundation/components/grid";
 
-//@import "foundation/components/visibility";
-//@import "foundation/components/block-grid";
-//@import "foundation/components/type";
-//@import "foundation/components/buttons";
-//@import "foundation/components/forms"; // *requires components/buttons
-//@import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
-//@import "foundation/components/button-groups"; // *requires components/buttons
+@import "foundation/components/visibility";
+@import "foundation/components/block-grid";
+@import "foundation/components/type";
+@import "foundation/components/buttons";
+@import "foundation/components/forms"; // *requires components/buttons
+@import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
+@import "foundation/components/button-groups"; // *requires components/buttons
 // @import "foundation/components/dropdown-buttons"; // *requires components/buttons
 // @import "foundation/components/split-buttons"; // *requires components/buttons
-//@import "foundation/components/flex-video";
-//@import "foundation/components/section";
+@import "foundation/components/flex-video";
+@import "foundation/components/section";
 @import "foundation/components/top-bar";  // *requires components/grid
 // @import "foundation/components/orbit";
-//@import "foundation/components/reveal";
+@import "foundation/components/reveal";
 // @import "foundation/components/joyride";
-//@import "foundation/components/alert-boxes";
-//@import "foundation/components/breadcrumbs";
+@import "foundation/components/alert-boxes";
+@import "foundation/components/breadcrumbs";
 // @import "foundation/components/keystrokes";
 // @import "foundation/components/labels";
-//@import "foundation/components/inline-lists";
-//@import "foundation/components/pagination";
-//@import "foundation/components/panels";
+@import "foundation/components/inline-lists";
+@import "foundation/components/pagination";
+@import "foundation/components/panels";
 // @import "foundation/components/pricing-tables";
 // @import "foundation/components/progress-bars";
-//@import "foundation/components/side-nav";
+@import "foundation/components/side-nav";
 @import "foundation/components/sub-nav";
 // @import "foundation/components/switch";
 // @import "foundation/components/magellan";
-//@import "foundation/components/tables";
+@import "foundation/components/tables";
 // @import "foundation/components/thumbs";
 // @import "foundation/components/tooltips";
 @import "foundation/components/dropdown";
@@ -46,8 +46,8 @@
 @import "compass/css3/transition";
 @import "compass/css3/columns";
 
+
 // Import Our CSS Modules and mixins
-@import "sprites";
 @import "mq-mixins";
 @import "jboss-mixins";
 // @import "navigation";
@@ -59,12 +59,284 @@
 //@import "books";
 //@import "get-started";
 //@import "picker";
-//@import "forms";
+@import "forms";
 @import "tabzilla";
-@import "get-involved";
-@import "why-subscribe";
+//@import "get-involved";
+//@import "why-subscribe";
 @import "global-wrapper";
 @import "theme-light";
-// @import "theme-dark";//
+// @import "theme-dark";
+
+
+
+// Styles that interfere with Developer styles and need to be prioritized to ensure consistency
+
+// Tabnav (Full-width everywhere)
+#tab {
+  background-image: none;
+}
+#tabnav {
+  width: 100%;
+  max-width: 100%;
+  ul {
+    padding: 0px;
+    li {
+      width: 100%;
+      a {
+        color: $link;
+        font-weight: normal;
+        padding-left: 0px;
+      }
+      a:hover {
+        color: $linkhover;
+        padding-left: 0px;
+      }
+    }
+  }
+}
+
+// Magnolia Theme (Fixed-width header)
+a:hover {
+  text-decoration: none;
+}
+#wrapper {
+  background-image: none;
+  background-color: transparent;
+  padding-top: 0px;
+  overflow: visible;
+}
+#maincontent-wrapper {
+  margin: 0px;
+}
+#wrapper-2 {
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+.top-bar input[type="text"] {
+  height: 2.5em;
+  border-radius: 5px;
+  font-size: 1em;
+}
+.row, .top-bar .row {
+  max-width: 75em;
+}
+#community {
+  .top-bar {
+    .row {
+      margin: 0px auto;
+    }
+  }
+}
+#rightcolumn.column,
+#leftcolumn.column {
+  width: 270px;
+}
+@media screen and ( max-width: 980px ) {
+  #rightcolumn.column,
+  #leftcolumn.column {
+    width: 100%;
+  }
+}
+.footer {
+  width: auto;
+  height: auto;
+  font-size: 16px;
+  padding: 0px;
+}
+
+
+// Magnolia Content Styles that need to be overwritten
+#top_subnav_branding {
+  box-shadow: none;
+}
+#proj_nav ul li a,
+#sub_nav ul li a {
+  height: 20px;
+  text-shadow: none;
+}
+#tertiary-nav li {
+  margin-left: 0px;
+}
+ul li ul,
+ul li ol {
+  margin-left: 0px;
+}
+
+
+
+// Jive (Full-width header) -- (These are all hinged on unique Jive ID so they don't affect Magnolia)
+#j-header-wrap {
+  .dropup {
+    margin-right: 0px;
+    right: 0px;
+    left: inherit;
+  }
+  @media screen and ( max-width: 768px ) {
+    .dropup {
+      left: 0px;
+    }
+  }
+  .top-bar {
+    .row {
+      margin: 0px;
+      max-width: 100%;
+    }
+  }
+  .row {
+    max-width: 100%;
+  }
+}
+
+
+// Project and Jive Icon SPRITES - used on various platforms
+/*
+**********************************************************************************
+**********************************************************************************
+
+Sprites
+
+**********************************************************************************
+**********************************************************************************
+/*
+
+/* ---------------- Project icons ------------------------------------ */
+/* Generated by
+http://spritegen.website-performance.org/
+with these settings:
+  Horizontal Offset: 5
+  Vertical Offset: 5
+  Class Prefix (optional): nothing
+*/
+.project-icon-med {
+  background: url(../../images/icons/sprite-project-icons-all.png) no-repeat top left;
+  float:left;
+  margin:-1px 4px 0 0;
+  display:block;
+  height:16px;
+  width:16px;
+}
+
+.blank_icon_16x{ background-position:0 0; width: 16px; height: 16px; }
+
+.aerogear_icon_16x { background-position: 0 -1176px; width: 16px; height: 16px; }
+.ashiaro_icon_16x{ background-position: 0 -1316px; width: 16px; height: 16px;}/* last one */
+.apiviz_icon_16x{ background-position: 0 -1077px; width: 16px; height: 16px; }
+.arquillian_icon_16x{ background-position: 0 -42px; width: 16px; height: 16px; }
+.blacktie_icon_16x{ background-position: 0 -21px; width: 16px; height: 16px; }
+.boxgrinder_icon_16x{ background-position: 0 -63px; width: 16px; height: 16px; }
+.byteman_icon_16x{ background-position: 0 -1017px; width: 16px; height: 16px; }
+.capedwarf_icon_16x{ background-position: 0 -1136px; width: 16px; height: 16px;  }
+.ceylon_icon_16x{ background-position: 0 -1156px; width: 16px; height: 16px;  }
+.cirras_icon_16x{ background-position: 0 -84px; width: 16px; height: 16px; }
+.dna_icon_16x{ background-position: 0 -105px; width: 15px; height: 15px; }
+.drools_icon_16x{ background-position: 0 -125px; width: 16px; height: 16px; }
+.embeddedjopr_icon_16x{ background-position: 0 -146px; width: 16px; height: 16px; }
+.errai_icon_16x{ background-position: 0 -167px; width: 16px; height: 16px; }
+.escalante_icon_16x{ background-position: 0 -1256px; width: 16px; height: 16px;}
+.forge_icon_16x { background-position: 0 -1196px; width: 16px; height: 16px; }
+.gatein_icon_16x{ background-position: 0 -188px; width: 16px; height: 16px; }
+.guvnor_icon_16x{ background-position: 0 -209px; width: 15px; height: 14px; }
+.hibernate_icon_16x{ background-position: 0 -228px; width: 16px; height: 16px; }
+.hornetQ_icon_16x{ background-position: 0 -249px; width: 16px; height: 16px; }
+.infinispan_icon_16x{ background-position: 0 -270px; width: 16px; height: 16px; }
+.ironjacamar_icon_16x{ background-position: 0 -291px; width: 16px; height: 16px; }
+.jbossas7_icon_16x, .jbossas_icon_16x { background-position: 0 -1096px; width: 16px; height: 16px; }
+.jbossmc_icon_16x{ background-position: 0 -312px; width: 16px; height: 16px; }
+.jbossportal_icon_16x{ background-position: 0 -333px; width: 16px; height: 16px; }
+.jbpm_icon_16x{ background-position: 0 -354px; width: 16px; height: 16px; }
+.jdf_icon_16x{ background-position: 0 -1216px; width: 16px; height: 16px;}
+.jgroups_icon_16x{ background-position: 0 -375px; width: 16px; height: 16px; }
+.jopr_icon_16x{ background-position: 0 -396px; width: 16px; height: 14px; }
+.jsfunit_icon_16x{ background-position: 0 -1116px; width: 16px; height: 16px; }
+.mass_icon_16x{ background-position: 0 -415px; width: 17px; height: 15px; }
+.mobicents_icon_16x{ background-position: 0 -435px; width: 16px; height: 16px; }
+.modcluster_icon_16x{ background-position: 0 -996px; width: 16px; height: 16px; }
+.modeshape_icon_16x{ background-position: 0 -456px; width: 16px; height: 16px; }
+.narayana_icon_16x{ background-position: 0 -1037px; width: 16px; height: 16px; }
+.netty_icon_16x{ background-position: 0 -1057px; width: 16px; height: 16px; }
+.optaplanner_icon_16x{ background-position: 0 -1236px; width: 16px; height: 16px;}
+.overlord_icon_16x{ background-position: 0 -477px; width: 16px; height: 16px; }
+.papaki_icon_16x{ background-position: 0 -498px; width: 16px; height: 16px; }
+.picketbox_icon_16x{ background-position: 0 -519px; width: 16px; height: 16px; }
+.picketlink_icon_16x{ background-position: 0 -540px; width: 16px; height: 16px; }
+.pressgang_icon_16x{ background-position: 0 -561px; width: 16px; height: 16px; }
+.railo_icon_16x{ background-position: 0 -582px; width: 16px; height: 16px; }
+.resteasy_icon_16x{ background-position: 0 -603px; width: 16px; height: 16px; }
+.reststar_icon_16x{ background-position: 0 -624px; width: 16px; height: 16px; }
+.richfaces_icon_16x{ background-position: 0 -645px; width: 16px; height: 16px; }
+.riftsaw_icon_16x{ background-position: 0 -666px; width: 16px; height: 16px; }
+.sam_icon_16x{ background-position: 0 -687px; width: 16px; height: 16px; }
+.savara_icon_16x{ background-position: 0 -708px; width: 16px; height: 16px; }
+.scribble_icon_16x{ background-position: 0 -729px; width: 16px; height: 16px; }
+.seam_icon_16x{ background-position: 0 -750px; width: 16px; height: 16px; }
+.shrinkwrap_icon_16x{ background-position: 0 -771px; width: 16px; height: 16px; }
+.snowdrop_icon_16x{ background-position: 0 -792px; width: 16px; height: 16px; }
+.switchyard_icon_16x{ background-position: 0 -813px; width: 16px; height: 16px; }
+.tattletale_icon_16x{ background-position: 0 -834px; width: 16px; height: 16px; }
+.teiid_icon_16x{ background-position: 0 -855px; width: 16px; height: 16px; }
+.thermostat_icon_16x{ background-position: 0 -1296px; width: 16px; height: 16px;}
+.tohu_icon_16x{ background-position: 0 -876px; width: 16px; height: 16px; }
+.tools_icon_16x{ background-position: 0 -897px; width: 16px; height: 16px; }
+.torquebox_icon_16x{ background-position: 0 -918px; width: 16px; height: 11px; }
+.weld_icon_16x{ background-position: 0 -934px; width: 16px; height: 15px; }
+.wildfly_icon_16x{ background-position: 0 -1276px; width: 16px; height: 16px;}
+.wise_icon_16x{ background-position: 0 -954px; width: 16px; height: 16px; }
+.xnio_icon_16x{ background-position: 0 -975px; width: 16px; height: 16px; }
+
+
+
+/* ---------------- JIRA icons ------------------------------------ */
+
+/* JIRA Icons Sprite */
+/* Generated by http://spritegen.website-performance.org/ with these settings:
+     Horizontal Offset: 5
+     Vertical Offset: 5
+     Class Prefix (optional): jira-
+     Display width and height (optional): unchecked
+*/
+
+.jira-icon {
+  background: url(../../images/common/jira-icons-sprite.png) no-repeat top left;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  float: left;
+}
+
+.jira-issuetype-1{ background-position: 0 0;  }
+.jira-issuetype-10{ background-position: 0 -21px;  }
+.jira-issuetype-11{ background-position: 0 -42px;  }
+.jira-issuetype-12{ background-position: 0 -71px;  }
+.jira-issuetype-13{ background-position: 0 -100px;  }
+.jira-issuetype-14{ background-position: 0 -121px;  }
+.jira-issuetype-15{ background-position: 0 -142px;  }
+.jira-issuetype-2{ background-position: 0 -163px;  }
+.jira-issuetype-3{ background-position: 0 -184px;  }
+.jira-issuetype-4{ background-position: 0 -205px;  }
+.jira-issuetype-5{ background-position: 0 -226px;  }
+.jira-issuetype-7{ background-position: 0 -247px;  }
+.jira-issuetype-8{ background-position: 0 -268px;  }
+.jira-issuetype-9{ background-position: 0 -289px;  }
+.jira-status-1{ background-position: 0 -310px;  }
+.jira-status-3{ background-position: 0 -331px;  }
+.jira-status-4{ background-position: 0 -352px;  }
+.jira-status-5{ background-position: 0 -373px;  }
+.jira-status-6{ background-position: 0 -394px;  }
+.jira-status-10011{ background-position: 0 -416px;  }
+
+
+
+/* ---------------- Project page specific sprites ------------------------------ */
+
+.projectpage-sprite {
+   background: url(../../images/common/projectpage_sprite.png) no-repeat top left;
+}
+
+.projectpage-sprite-jive-icon-announcement-16x16{ background-position: 0 0; width: 17px; height: 17px; }
+.projectpage-sprite-nextlabel{ background-position: 0 -67px; width: 63px; height: 32px; }
+.projectpage-sprite-prevlabel{ background-position: 0 -149px; width: 63px; height: 32px; }
+.projectpage-sprite-securityimage{ background-position: 0 -231px; width: 244px; height: 75px; clear:both; margin-top: 15px; margin-bottom: 15px; }
+
 
 
