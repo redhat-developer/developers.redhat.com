@@ -56,7 +56,7 @@ description: Discover the events and webinars featuring talks about JBoss produc
         li
           .event(itemtype="http://schema.org/Event" itemscope)
             .event-header
-              img(itemprop="photo" src="#{site.base_url}/#{site.context_url}#{v.image}")
+              img(itemprop="photo" src=cdn(site.base_url + "/#{v.image}"))
               - if "#{v.community}" == "true"
                 p itemprop="eventType" Community Event
             .event-body

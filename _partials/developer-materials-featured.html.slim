@@ -3,7 +3,7 @@
     .swipe-wrap
       - for item in site.featured_items
         .slide
-          img(src=item['image_url'])
+          img(src=cdn(site.base_url + '/' + item['image_url']))
           .slider-label
             h3 = item['title']
             p = item['text']

@@ -168,8 +168,7 @@ h2.divider Community Pulse
     div(class="buzz-item buzz-item-#{type}")
       .buzz-item-inner
         .buzz-header: i(class="fa-#{type}")
-        img(src="#{site.base_url}/#{site.context_url}/images/branding/html5-banner.png")
-        / img(src="http://lorempixel.com/300/#{rand(500)}")
+        img(src=cdn(site.base_url + "/images/branding/html5-banner.png"))
         h3 #{titles[rand(4)]}
         p #{bodies[rand(4)]}
         = partial("share.html.slim", :url => links[rand], :title => titles[rand][0 .. 139])

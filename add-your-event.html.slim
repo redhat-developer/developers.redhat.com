@@ -29,8 +29,8 @@ description: Submit a request to have your event added to the JBoss Developer we
 
   .large-24.column.content
     .large-4.column
-      a.th href="https://svn.jboss.org/repos/design/images/meetup_logo.png"
-        img src="https://svn.jboss.org/repos/design/images/meetup_logo.png"
+      a.th href="https://anonsvn.jboss.org/repos/design/images/meetup_logo.png"
+        img src="https://anonsvn.jboss.org/repos/design/images/meetup_logo.png"
     .large-8.column.bordered-column
       ul
         li
@@ -42,8 +42,8 @@ description: Submit a request to have your event added to the JBoss Developer we
           Get your custom Meetup event URL and paste it below
 
     .large-4.column
-      a.th href="https://svn.jboss.org/repos/design/images/lanyrd_logo.png"
-        img src="https://svn.jboss.org/repos/design/images/lanyrd_logo.png"
+      a.th href="https://anonsvn.jboss.org/repos/design/images/lanyrd_logo.png"
+        img src="https://anonsvn.jboss.org/repos/design/images/lanyrd_logo.png"
     .large-8.column
       ul
         li
@@ -166,7 +166,7 @@ description: Submit a request to have your event added to the JBoss Developer we
       - site.events.each do |v|
         .event
           .event-header
-            img(src="#{site.base_url}/#{site.context_url}#{v.image}")
+            img(src=cdn(site.base_url + "/#{v.image}"))
             - if "#{v.community}" == "true"
               p Community Event
           .event-body

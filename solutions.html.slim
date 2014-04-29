@@ -7,9 +7,9 @@ description: todo
   a.button Share Your Story
 .row.solutions-row
   ul.large-block-grid-3.small-block-grid-2
-    - for solution in [1,2,3,4,5,6,7,8,9] 
+    - for solution in [1,2,3] 
       li.solution.large-8.column(data-open-solution="#{solution}")
-        a.image-link: img(src="#{site.base_url}/#{site.context_url}/images/solution-#{solution}.png")
+        a.image-link: img(src=cdn(site.base_url + "/images/slider-image#{solution}.jpg"))
          a.solution-name-link(href="#")
           h3.solution-name Solution # #{solution}
   .solution-overlays.clearfix
@@ -40,9 +40,9 @@ description: todo
           .slider-wrapper.solution-slider
             .slider
               .swipe-wrap
-                - for img in [1,2,3,4,5]
+                - for img in [1,2,3]
                   .slide
-                    img(src="#{site.base_url}/#{site.context_url}/images/solution-#{img}.png")
+                    img(src=cdn(site.base_url + "/images/slider-image#{img}.jpg"))
           a.fn-close-overlay(href="#") &times;
           .solutions-slider-controls
             a.prev(href="#")
@@ -51,7 +51,5 @@ description: todo
               i.fa.fa-arrow-circle-right
             span.current-slide 1
             span of
-            span.total-slides 0
-
-        
+            span.total-slides 0 
       
