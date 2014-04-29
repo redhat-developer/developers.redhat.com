@@ -1,7 +1,10 @@
 .slider-wrapper
   .slider#slider
     .swipe-wrap
-      - for item in site.featured_items
+      - items = site.featured_items
+      - if self[:page].output_page.product && self[:page].output_page.product['featured_items']
+        - items = self[:page].output_page.product['featured_items']
+      - for item in items
         .slide
           img(src=cdn(site.base_url + '/' + item['image_url']))
           .slider-label

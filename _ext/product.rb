@@ -46,6 +46,7 @@ module JBoss
                 
                 # Store the product in the global product map
                 site.products[product.id] = product
+                page.send('featured_items=', product['featured_items'])
               end
             end
           end
