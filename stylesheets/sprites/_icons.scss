@@ -17,7 +17,7 @@ $icons-inline: false !default;
  // You can override them selectively before you import this file.
  
    $icons-calendar-position: $icons-position !default;
-   $icons-calendar-spacing:  20px;
+   $icons-calendar-spacing:  $icons-spacing !default;
    $icons-calendar-repeat:   $icons-repeat !default;
  
    $icons-experimental-position: $icons-position !default;
