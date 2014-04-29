@@ -115,3 +115,20 @@ To get a list of all tasks, execute:
 `rake -T`
 
 Now you're Awestruct with rake!
+
+## Release Process
+
+For example, to release 1.0.Beta6:
+
+    rake update
+    rake "clean[all]" "deploy[staging]"
+
+The site is now deployed to www-stg.jboss.org. You need to go there and check it looks right. If it is, you can deploy to www-beta.jboss.org:
+    
+    rake "clean[all]" "deploy[beta,1.0.Beta6]"
+    
+Finally, you need to commit the new version of `_cdn/cdn.yml` and push that and the new tag upstream. _NOTE:_ It is very important that you remember to commit+push your changes to cdn.yml.
+
+    git commit -a -m “Updated cdn.yml” _cdn/cdn.yml
+    git push upstream master
+    git push upstream --tags
