@@ -29,19 +29,27 @@ downloads:
   6.0.1.GA:
     release_date: 2014-04-3
     assets:
-      zip_supplemental:
-        size: 19mb
-        name: Supplemental Tools
-      zip_planner:
-        size: 52mb
-        name: Optaplanner
+      installer:
+        size: 312mb
       zip:
         artifacts:
           deployable:
-            size: 153mb
+            size: 304mb
+      maven_repo:
+        size: 280mb
+        name: Maven Repository
+      zip_planner:
+        size: 53mb
+        name: Optaplanner
+      example:
+        size: 7.8mb
+        name: BPM Example
+      zip_supplemental:
+        size: 59mb
+        name: Supplemental Tools
       release_notes:
       source:
-        size: 154mb
+        size: 177mb
 upstream_projects:
   - drools
   - guvnor
