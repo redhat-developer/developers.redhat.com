@@ -3,9 +3,10 @@ layout: base
 status: yellow
 issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
 ---
-- page.title = page.metadata[:title]
-- page.description = page.metadata[:summary]
-- page.author = page.metadata[:author]
+- if page.metadata
+  - page.title = page.metadata[:title]
+  - page.description = page.metadata[:summary]
+  - page.author = page.metadata[:author]
 
 .row
   h2.large-title Developer Materials

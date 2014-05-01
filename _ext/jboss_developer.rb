@@ -1,3 +1,4 @@
+require 'uri'
 require 'aweplug/helpers/cdn'
 require 'aweplug/helpers/png'
 require 'compass'
@@ -53,6 +54,32 @@ module JBoss
 
       end
 
+    end
+  end
+end
+
+# Hack for our own purposes with QuickStarts
+module Kramdown
+  module Parser
+    class QuickStartParser 
+      def add_link(el, href, title, alt_text = nil)
+        if el.type == :a
+          if href =~ /README\.md/
+            el.attr['href'] = '../index.html' + "##{URI.parse(href).fragment}"
+          elsif href =~ /CONTRIBUTING\.md/
+            el.attr['href'] = 'contributing/index.html' + "##{URI.parse(href).fragment}"
+          else
+            el.attr['href'] = href
+          end 
+        else
+          # TODO something needs to be done about images too
+          el.attr['src'] = href
+          el.attr['alt'] = alt_text
+          el.children.clear
+        end
+        el.attr['title'] = title if title
+        @tree.children << el
+      end
     end
   end
 end
