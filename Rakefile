@@ -163,6 +163,10 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
     rsync(local_path: LOCAL_CDN_PATH, host: cdn_host, remote_path: cdn_path)
   end
 
+  if !$config['robots']
+    $resources << 'robots.txt'
+  end
+
   # Deploy the site
   site_host = $config.deploy.host
   site_path = $config.deploy.path
@@ -310,7 +314,8 @@ end
 def rsync(local_path:, host:, remote_path:, delete: false, excludes: [])
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
   cmd = "rsync -PqaczO --chmod=Dg+sx,ug+rw --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
-  open3 cmd
+  puts "cmd: %s" % cmd
+  #open3 cmd
 end
 
 def sprite(path)
