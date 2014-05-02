@@ -18,6 +18,65 @@ function roundHalf(num) {
 
 
 app.dm = {
+  supportsLocalStorage: function() {
+    try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+        return false;
+    }
+  },
+  restoreFilter: function() {
+      /* Restore the form values previously stored in local storage. */
+      if(!this.supportsLocalStorage()) {
+          return;
+      }
+      var filterKeys = [
+          "keyword",
+          "rating",
+          "topics",
+          "formats",
+          "skillLevel",
+          "publishDate"
+      ];
+      $.each(filterKeys, function(idx, key) {
+          var formValue = window.localStorage.getItem("devMatFilter." + key);
+          /*
+           * Restore the value of the form input field.
+           * Where multiple values are present, like for check box groups,
+           * split the original form values, and set the individual input fields.
+           */
+          if(formValue) {
+              switch(key) {
+                  case "keyword" :
+                      $('input[name="filter-text"]').val(formValue);
+                      break;
+                  case "rating" :
+                      if(formValue != 0) {
+                          $('input[name="filter-rating"][value='+ formValue +']').attr('checked', true);
+                      }
+                      break;
+                  case "topics" :
+                      var valArray = formValue.split(" ");
+                      $.each(valArray, function(idx, value){
+                          $('input[name="filter-topic[]"][value=' + value + ']').attr('checked', true);
+                      });
+                      break;
+                  case "formats":
+                      var valArray = formValue.split(" ");
+                      $.each(valArray, function(idx, value){
+                          $('input[name="filter-format"][value=' + value + ']').attr('checked', true);
+                      });
+                      break;
+                  case "skillLevel":
+                      $('input[name="filter-skill"]').val(formValue);
+                      break;
+                  case "publishDate":
+                      $('input[name="filter-publish-date"]').val(formValue);
+                      break;
+              }
+          }
+      });
+  },
   devMatFilter : function(filters) {
     // Get the Filter Items
     // console.log('Performing dev material search');
@@ -66,18 +125,19 @@ app.dm = {
     /*
       Skill Level
     */ 
-    var el = $('input[name="filter-skill"]'),
-        step = el.attr('step'),
-        max = el.attr('max') || 100,
-        value = el.val(),
-        labels = el.data('labels').split(','),
+    var $skill = $('input[name="filter-skill"]'),
+        step = $skill.attr('step'),
+        max = $skill.attr('max') || 100,
+        value = $skill.val(),
+        labels = $skill.data('labels').split(','),
         idx = value / step,
         skillLevel = labels[idx]; // final value
 
     /*
       Publish Date
-    */ 
-    var publishDate = $('input[name="filter-publish-date"]').map(function () {
+    */
+      var $publishDate = $('input[name="filter-publish-date"]');
+      var publishDate = $publishDate.map(function () {
       var d = new Date();
       switch(this.value) {
         case '0':
@@ -115,7 +175,23 @@ app.dm = {
       "formats" : formats,
       "skillLevel" : skillLevel,
       "publishDate" : publishDate
+    };
+
+    /* Store the raw form values in local storage. */
+    var formValues = {
+      "keyword" : keyword,
+      "rating" : rating,
+      "topics" : topics,
+      "formats" : formats,
+      "skillLevel" : $skill.val(),
+      "publishDate" : $publishDate.val()
+    };
+    if(this.supportsLocalStorage()) {
+      $.each(formValues, function (key, val) {
+        window.localStorage.setItem("devMatFilter." + key, val);
+      });
     }
+
     var currentFilters = {};
 
     $.each(filters, function(key, val) {

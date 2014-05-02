@@ -271,6 +271,7 @@ app.init = function() {
    */
 
   if ($('.developer-materials').length) {
+     app.dm.restoreFilter();
      app.dm.devMatFilter();
   }
 
