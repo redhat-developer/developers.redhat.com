@@ -4,6 +4,11 @@ status: red
 issues: [DEVELOPER-243, DEVELOPER-179, DEVELOPER-207, DEVELOPER-281]
 ---
 
+.row.tertiary-nav
+  ul.inline-nav
+    - site.nav['get-started'].children.each do |k, v|
+      li: a(href="#{v.url}") #{v.label}
+
 .developer-materials
   .developer-materials-sidebar
     = partial 'developer-materials-filters.html.slim'

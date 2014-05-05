@@ -6,6 +6,12 @@ title: Why Subscribe to JBoss?
 description: Why should you even consider paying for JBoss Enterprise Middleware?
 
 ---
+
+.row.tertiary-nav
+  ul.inline-nav
+    - site.nav['get-started'].children.each do |k, v|
+      li: a(href="#{v.url}") #{v.label}
+
 / This structure for the main page title is important. Please notethe use of the "large-title" class as this give the size and dark color.
 .row
   h2.large-title Why Subscribe to JBoss?
