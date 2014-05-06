@@ -254,7 +254,7 @@ app.dm = {
     app.dm.currentRequest = $.ajax({
       url : app.dcp.url.search,
       data : {
-        "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type"],
+        "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg"],
         "query" : query,
         "size" : maxResults
       },
@@ -288,6 +288,11 @@ app.dm = {
 
             if ('sys_author' in hits[i].fields) {
               var author = hits[i].fields.sys_author;  
+            }
+
+            if ('sys_rating_num' in hits[i].fields) {
+              var rating_num = hits[i].fields.sys_rating_num;
+              var rating_avg = hits[i].fields.sys_rating_avg;
             }
 
             var template = "<li class=\"material\">"; 
@@ -336,6 +341,9 @@ app.dm = {
                 hits[i].fields.sys_title +
               "</a>" +
             "</h4>";
+            if (rating_avg) {
+              template += "<p class=\"rating\">" + roundHalf(rating_avg) + "(" + rating_num + ")</p>";
+            }
             if (author && author.length > 0) {
               template += "<p class=\"author\">" +
                 "Author: " +
@@ -430,8 +438,8 @@ app.dm = {
               if (this.active)
                 return '<li class="unavailable">...</li>';
               return "";
-            }
           }
+        }
       });
     });
   },
@@ -458,8 +466,12 @@ app.dm = {
    // redhat
    "solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
    "article" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}"
-  }
-
+  },
+  authStatus: $.ajax({
+      type:"GET",
+      url: '#{URI.join site.dcp_base_url, "v1/rest/auth/status"}',
+      xhrFields: {withCredentials: true}
+  })
 }
 
 // Event Listeners 
@@ -507,5 +519,84 @@ $(function() {
       el.parent().removeClass('checked');
     }
   });
+
+  // Change star and cursor
+  $('.rating').on('mouseover', function() {
+    var elm = $(this),
+        rating = $(this).prop('id').split('-')[1];
+    for (var i = 1; i < rating; i++) {
+      $('#rate-' + i).removeClass('fa-star-o');
+      $('#rate-' + i).addClass('fa-star');
+    }
+    elm.removeClass('fa-star-o');
+    elm.addClass('fa-star');
+    elm.css('cursor', 'pointer');
+  });
+  $('.rating').on('mouseout', function() {
+    var elm = $(this),
+        rating = $(this).prop('id').split('-')[1];
+    for (var i = 1; i < rating; i++) {
+      $('#rate-' + i).removeClass('fa-star');
+      $('#rate-' + i).addClass('fa-star-o');
+    }
+    elm.removeClass('fa-star');
+    elm.addClass('fa-star-o');
+    elm.css('cursor', 'auto');
+  });
+  // rate the item
+  $('.rating').on('click', function(event) {
+    app.dm.authStatus.done(function(data) {
+      if (data.authenticated) {
+        var rating = $.ajax({
+          type: "POST",
+          url: '#{URI.join site.dcp_base_url, "v1/rest/rating/"}' + $(event.target).data('searchisko-id'),
+          xhrFields: {withCredentials: true},
+          contentType: "application/json",
+          data: "{\"rating\":\"" + $(event.target).data('rating') + "\"}"
+        });
+        rating.done(function(ratingData) {
+          var elm = $('#your-rating');
+          $('#new-rating').hide();
+          elm.append(roundHalf($(event.target).data('rating') ));
+          elm.show();
+          elm = $('#avg-rating');
+          elm.empty();
+          elm.append('Avg: ' + roundHalf(ratingData.sys_rating_avg)).append('<span>(' + ratingData.sys_rating_num + ')</span>');
+          elm.show();
+        });
+      } else {
+        alert("Please log in to rate.");
+      }
+    });
+  });
+
+  // We're on an item we can rate, set things to either show their rating or to rate
+  if ($('#rating-section').length) {
+    $.get('#{URI.join site.dcp_base_url, "v1/rest/content/"}' + $('#your-rating').data('searchisko-id').split('-').join('/'))
+      .done(function(item) {
+        var elm = $('#avg-rating');
+        elm.append(roundHalf(item.sys_rating_avg)).append('<span>(' + item.sys_rating_num + ')</span>');
+        elm.show();
+      });
+    app.dm.authStatus.done(function(data) {
+      if (data.authenticated) {
+        var user_rating = $.ajax({
+          type: 'GET',
+          url: '#{URI.join site.dcp_base_url, "v1/rest/rating?id="}' + $('#your-rating').data('searchisko-id'),
+          xhrFields:  { withCredentials: true}
+        }).done(function(data) {
+          console.log(data);
+          if (data.rating) {
+            $('#your-rating').append(roundHalf(data));
+            $('#your-rating').show();
+          } else {
+            $('#new-rating').show();
+          }
+        });
+      } else {
+        $('#new-rating').show();
+      }
+    });
+  }
 });
 
