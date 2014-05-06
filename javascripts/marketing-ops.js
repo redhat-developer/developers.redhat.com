@@ -133,12 +133,12 @@ app.mktg_ops.aa.setup = function() {
 
   s.channel = "jboss | developer" // The channel is our top level classification
   s.server = "jboss" // The server is ???
-  s.pageName = "jboss | developer | " + (arr.pop() || "homepage"); // pageName is jboss | developer | {page_name}. {page_name} has index.html removed
+  s.pageName = "jboss | developer | " + (arr[arr.length -1] || "homepage"); // pageName is jboss | developer | {page_name}. {page_name} has index.html removed
   s.prop2 = s.eVar22 = "en"; // prop2/eVar22 is the ISO 639-1 language code
   s.prop4 = s.eVar23 = encodeURI(document.URL); //prop4/eVar23 is the full URL of the page
 
   // Pad the array as needed, so we can shift away later
-  for (var i = arr.length - 1; i < 3; i++) {
+  for (var i = arr.length; i < 3; i++) {
     arr[i] = "";
   }
 
