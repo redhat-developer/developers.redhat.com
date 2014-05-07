@@ -19,6 +19,7 @@ head
     link rel="canonical" href=site.url
   = stylesheets "all" do
     link rel='stylesheet' type='text/css' href="#{site.base_url}/#{site.context_url}/stylesheets/app.css" 
+    link rel='stylesheet' type='text/css' href="#{site.base_url}/#{site.context_url}/stylesheets/magula.css"
   
   /[if lt IE 9]
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
@@ -169,6 +170,7 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/search.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/highlight.min.js"
 
   / Disabled, pending reimplementation of Share This functionality
   /script src="http://platform.linkedin.com/in.js"
@@ -178,6 +180,7 @@ body(class="#{template}")
   /var upstream_projects = #{site.products.upstream_projects.to_s} 
   javascript:
     var products_upstream = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = site.products[product]['upstream_projects']; map; })};
+    hljs.initHighlightingOnLoad();
 
   - if site.metrics
     noscript
