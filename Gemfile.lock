@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/awestruct/aweplug.git
-  revision: 6f676fafc8b646e52e1575aa9bccbaa55a8a7122
+PATH
+  remote: ../aweplug
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -71,7 +70,7 @@ GEM
     formatador (0.2.4)
     fssm (0.2.10)
     git (1.2.6)
-    guard (2.6.0)
+    guard (2.6.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
@@ -88,7 +87,7 @@ GEM
     http_parser.rb (0.6.0)
     http_parser.rb (0.6.0-java)
     kramdown (1.0.2)
-    listen (2.7.3)
+    listen (2.7.4)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
       rb-fsevent (>= 0.9.3)
@@ -96,7 +95,7 @@ GEM
     lumberjack (1.0.5)
     method_source (0.8.2)
     mime-types (2.2)
-    multi_json (1.9.3)
+    multi_json (1.10.0)
     multipart-post (1.2.0)
     net-http-persistent (2.9.4)
     nio4r (1.0.0)
