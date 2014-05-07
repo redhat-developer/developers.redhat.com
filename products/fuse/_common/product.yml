@@ -95,4 +95,74 @@ demos:
     tech: ['Camel', 'ActiveMQ', 'CXF', 'JAXB', 'Blueprint']
     use_case: ['Endpoint', 'Bean', 'Choice', 'When', 'Unmarshal', 'Convertbody', 'SetBody', 'InOnly', 'Transform']
     desc: This example is based on a fictional motorcycle parts business used throughout the Camel in Action book. Orders from customers come in via a webservice or a file based endpoint and are sent to a 'incoming orders' JMS queue. A separate bundle takes the incoming orders and normalizes them from the possible order formats (XML, CSV or CSL) to a POJO format. Processed orders end up in the 'orders' JMS queue.
+  - title: Camel dynamic routing
+    url: https://github.com/FuseByExample/camel-dynamic-routing
+    tech: ['Camel', 'Blueprint', 'Spring', 'Jetty', 'ActiveMQ']
+    use_case: ['Endpoint', 'Log', 'ReciepientList', 'SetBody', 'InOnly', 'Transform']
+    desc: This example shows how to use Apache Camel, and its OSGi integration to dynamically route messages to new or updated OSGi bundles.
+  - title: SMX Bootstraps
+    url: https://github.com/FuseByExample/smx-bootstraps
+    tech: ['Camel', 'Blueprint', 'Jetty']
+    use_case: ['Endpoint', 'Log', 'SetBody']
+    desc: This example contains a set of OSGi bundles that bootstrap the use of JBoss Fuse. It is intended as a starting point for the creation of additional bundles, and as a guide to using Fuse features.
+  - title: Horo app
+    url: https://github.com/FuseByExample/horo-app
+    tech: ['Camel', 'Spring', 'MyBatis', 'H2']
+    use_case: []
+    desc: This example presents a sample app for aggregating and re-presenting horoscopes. It is designed to highlight a number of areas for discussion that are usually overlooked.
+  - title: Camel persistence part 1
+    url: https://github.com/FuseByExample/camel-persistence-part1
+    tech: ['Camel', 'Spring', 'H2', 'HSQL', 'JDBC', 'Camel-Bindy', 'JPA']
+    use_case: ['Endpoint', 'SetBody', 'Split', 'Log', 'ConvertBody', 'Bean']
+    desc: This example illustrates database persistence with Camel from simple to more elaborate. This covers persistence using JDBC drivers and JPA by using the Camel SQL component.
+  - title: Camel persistence part 2
+    url: https://github.com/FuseByExample/camel-persistence-part2
+    tech: ['Camel', 'Spring', 'ActiveMQ', 'H2', 'DBCP', 'OpenJPA', 'Bindy', 'JDBC']
+    use_case: ['Endpoint', 'Bean', 'Aggregate', 'Log', 'IdempotentConsumer', 'Unmarshal', 'Split', 'Transacted', 'Transform', 'Filter', 'Multicast', 'Pipeline', 'ThrowException', 'Choice', 'When', 'Otherwise', 'Try', 'Catch']
+    desc: This example covers transaction management with JBoss Fuse, Camel and persistent EIPs.
+  - title: SMX WS examples
+    url: https://github.com/FuseByExample/smx-ws-examples
+    tech: ['Camel', 'CXF', 'SOAP', 'JAXB', 'Jetty']
+    use_case: ['Endpoint', 'SetHeader', 'Log', 'Transform', 'LoadBalance', 'ConvertBody']
+    desc: This example contains a set of OSGi bundles that demonstrate web services in JBoss Fuse using CXF and Camel.
+  - title: SMX application plugins
+    url: https://github.com/FuseByExample/smx-application-plugins
+    tech: ['Camel', 'Jetty']
+    use_case: ['Endpoint', 'Transform', 'Choice', 'When', 'Otherwise', 'Recipientlist']
+    desc: This example contains a sample integration application that demonstrates how to extend the integration capabilities of a core process at runtime via hot-deployable application level plugins.
+  - title: Servicemix 4 example payment service
+    url: https://github.com/FuseByExample/servicemix4-example-payment-service
+    tech: ['Camel', 'JAXB', 'CXF', 'Spring', 'ActiveMX']
+    use_case: ['Endpoint', 'Unmarshal', 'Marshal', 'Bean', 'Split', 'InOut', 'Transform']
+    desc: This project is an example of using OSGi, Camel, and JBoss Fuse together.
+  - title: Hello Camel
+    url: https://github.com/FuseByExample/HelloCamel
+    tech: ['Camel', 'Spring', 'Jetty']
+    use_case: ['Endpoint', 'Transform']
+    desc: This example demonstrates a minimal Camel project that creates an OSGi bundle, has a unit test and a test client that uses Camel.
+  - title: File batch splitter
+    url: https://github.com/FuseByExample/FileBatchSplitter
+    tech: ['Camel', 'Spring']
+    use_case: ['Endpoint', 'Split', 'SetHeader']
+    desc: This example demonstrates how to consume files from the file system and split the content of the file into multiple messages using Apache Camel.
+  - title: ESB transactions
+    url: https://github.com/FuseByExample/esb-transactions
+    tech: ['Camel', 'ActiveMQ', 'Hibernate', 'JPA']
+    use_case: []
+    desc: This example will show you how to leverage the JTA transaction manager provided by JBoss Fuse when working with JMS or JTA Camel endpoints.
+  - title: Camel Example TCP/IP proxy
+    url: https://github.com/FuseByExample/camel-example-tcpip-proxy
+    tech: ['Camel', 'Spring', 'Mina']
+    use_case: ['Endpoint', 'SetBody', 'Log', 'LoadBalance']
+    desc: This example describes a simple prototype that demonstrates the use of Fuse to manage TCP/IP controller failover.
+  - title: Fabric endpoint testing
+    url: https://github.com/FuseByExample/fabric-endpoint-example
+    tech: ['Camel', 'Blueprint', 'Fabric']
+    use_case: ['Endpoint', 'SetBody', 'Log']
+    desc: This example presents a sample app for the usage of fabric endpoints. It contains a simple client which sends messages to the consumer and logs the conversation.
+  - title: Managing a Deployment using Fuse Fabric
+    url: https://github.com/FuseByExample/docs/blob/master/deploy-using-fabric/README.md
+    tech: []
+    use_case: []
+    desc:
 
