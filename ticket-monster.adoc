@@ -8,63 +8,59 @@ Ticket Monster is a *moderately complex application* that *demonstrates* how to 
 
 == Previewit
 
-http://#.html[PREVIEW IT]
-~~~~~~~~~~~~~~~~~~~~~~~~~
+=== http://ticketmonster-jdf.rhcloud.com/[PREVIEW IT]
+
 See what capabiltiies are built into Ticket Monster with our Openshift instance.
 
 pass:[<span><i class="fa fa-desktop fa-9x fa-fw"></i></span>]
 
 == Followit
-http://#.html[FOLLOW IT]
-~~~~~~~~~~~~~~~~~~~~~~~~
+
+=== link:WhatIsTicketMonster[FOLLOW IT]
+
 Walk through the tutorial to see what Ticket Monster will teach you.
 
 pass:[<span><i class="fa fa-book fa-9x fa-fw"></i></span>]
 
 == Downloadit
-http://#.html[DOWNLOAD IT]
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=== https://github.com/jboss-developer/ticket-monster[DOWNLOAD IT]
+
 Download Ticket Monster and get started with our tutorial. You can also use Ticket Monster as a base to build your own application.
-pass:[<a href="http://#.html" style="float:right; text-align:right;"><i class="fa fa-github">&nbsp;</i>Fork us</a>]
+pass:[<a href="https://github.com/jboss-developer/ticket-monster" style="float:right; text-align:right;"><i class="fa fa-github">&nbsp;</i>Fork us</a>]
 
 pass:[<span><i class="fa fa-download fa-9x fa-fw"></i></span>]
 
 
 == Outline
-Full outline of our Ticket Monster tutorial
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-http://#.html[Preface: What is Ticket Monster?]
 
+=== Full outline of our Ticket Monster tutorial
 
-http://#.html[1. Introduction & Getting Started] +
+link:WhatIsTicketMonster[Preface: What is Ticket Monster?]
+
+link:Introduction[1. Introduction & Getting Started] +
 Setup your project, leveraging Eclipse via JBoss Developer Studio, touching on JPA, JAX-RS, HTML5 and jQuery Mobile to get you started on using Java EE6 and JBoss
 
-http://#.html[2. Building the persistence layer with JPA2 and Bean Validation] +
+link:DataPersistence[2. Building the persistence layer with JPA2 and Bean Validation] +
 Learn how to build the persistence layer for an application, and how to test it
 
-http://#.html[3. Building The Business Services With JAX-RS] +
+link:BusinessLogic[3. Building The Business Services With JAX-RS] +
 Learn how to design and implement the business layer of an application and how to make it usable by various front-ends
 
-http://#.html[4. Building The User UI Using HTML5] +
+link:UserFrontEnd[4. Building The User UI Using HTML5] +
 Learn how to build the user interface in desktop and mobile version
 
-http://#.html[5. Building the Administration UI using Forge] +
+link:AdminHTML5[5. Building the Administration UI using Forge] +
 Leverage JBoss Forge for rapid application development using AngularJS
 
-http://#.html[6. Building The Statistics Dashboard Using HTML5 and JavaScript] +
+link:DashboardHTML5[6. Building The Statistics Dashboard Using HTML5 and JavaScript] +
 JAX-RS, HTML5 and JavaScript are used to create an executive dashboard to monitor business performance - watch ticket sales happen in real-time.
 
-http://#.html[7. Creating hybrid mobile versions of the application with Apache Cordova] +
+link:HybridUI[7. Creating hybrid mobile versions of the application with Apache Cordova] +
 Learn how to create hybrid mobile versions of the application with Apache Cordova
 
-http://#.html[8. Adding a data grid] +
-Learn how to use a data grid in the application with JBoss Data Grid
-
-http://#.html[9. Adding a full-text search engine] +
-Learn how to create full text search capabilities in the application with Hibernate Search
-
-
 == Followalong
+
 ++++
 <iframe src="//player.vimeo.com/video/43452316" width="700" height="424" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 ++++
