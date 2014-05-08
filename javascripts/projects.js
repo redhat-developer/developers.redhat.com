@@ -73,18 +73,18 @@ app.project = {
         var template = "<li class=\"upstream\">"
           + "<div class=\"defaultprojectimage\">"
           + "<a class=\"image-link\" href=\""
-          + props.sys_url_view
+          + getCorrectUrl(props.sys_url_view)
           + "\"><img onerror=\"this.style.display='none'\" src="
           + "\"http://static.jboss.org/"
           + props.sys_project + "/images/"
           + props.sys_project + "_200x150.png\"></a></div>"
           + "<h3 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
-          + props.sys_url_view + "\">"
+          + getCorrectUrl(props.sys_url_view) + "\">"
           + props.projectName + "</a></h3><p></p>";
 
         if (props.downloadsLink) {
           template += "<a class=\"upstream-download\" href=\""
-            + props.downloadsLink + "\"><i class=\"fa fa-download\"></i> Download</a>";
+            + getCorrectUrl(props.downloadsLink) + "\"><i class=\"fa fa-download\"></i> Download</a>";
         }
         template += "<div class=\"upstream-more-content\">"
           // + "<p class=\"product-links\">Included in Product(s)<br></p>"
