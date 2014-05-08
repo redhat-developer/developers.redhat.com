@@ -106,6 +106,7 @@ module JBoss::Developer::Extensions
         bom_dcp = {
           :sys_last_activity_date => @commits.collect {|c| DateTime.parse c[:date]}.first,
           :sys_contributors => @commits.collect {|c| c[:author_email]}.uniq,
+          :author => bom['bom']['author'],
           :sys_activity_dates => @commits.collect {|c| DateTime.parse c[:date]},
           :sys_created => @commits.collect {|c| DateTime.parse c[:date]}.last,
           :sys_title => bom['bom']['name'],
@@ -183,6 +184,7 @@ module JBoss::Developer::Extensions
         archetype_dcp = {
           :sys_last_activity_date => @commits.collect {|c| DateTime.parse c[:date]}.first,
           :sys_contributors => archetype['archetype']['contributors'],
+          :author => archetype['archetype']['author'],
           :sys_activity_dates => @commits.collect {|c| DateTime.parse c[:date]},
           :sys_created => @commits.collect {|c| DateTime.parse c[:date]}.last,
           :sys_title => archetype['archetype']['name'],
@@ -206,3 +208,4 @@ module JBoss::Developer::Extensions
     end
   end
 end
+

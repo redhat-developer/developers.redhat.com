@@ -254,7 +254,7 @@ app.dm = {
     app.dm.currentRequest = $.ajax({
       url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
       data : {
-        "field"  : ["contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type"],
+        "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type"],
         "query" : query,
         "size" : maxResults
       },
@@ -265,8 +265,9 @@ app.dm = {
         }
       }
     }).done(function(data){
-      var hits = data.hits.hits; // first one for testing
-      console.log(hits);
+      var hits = data.hits.hits;
+      console.log(data);
+
       // Create a paginated list
       $('ul.pagination').paging(hits.length, {
           format: '< (qq-) nncnn (-pp) >',
@@ -278,11 +279,9 @@ app.dm = {
               var data = this.slice;
               for (var i = data[0]; i < data[1]; i++) {
 
-                if ('sys_contributors' in hits[i].fields) {
-                    var contributors = hits[i].fields.sys_contributors[0];
-                } else if ('contributors' in hits[i].fields) {
-                    var contributors = hits[i].fields.contributors[0];
-                }
+                  if ('sys_author' in hits[i].fields) {
+                      var author = hits[i].fields.sys_author;  
+                  }
 
                   var template = "<li class=\"material\">"; 
                   template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
@@ -330,13 +329,12 @@ app.dm = {
                       hits[i].fields.sys_title +
                     "</a>" +
                   "</h4>";
-                  if (contributors && contributors.length > 0) {
-                   template += "<p class=\"author\">" +
-                      "Author:" +
-                      "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
-                        contributors +
-                      "</a>" +
-                    "</p>";
+                  if (author && author.length > 0) {
+                   template += "<p class=\"author\" id=\"" + author + "\">" +
+                     "Author:" +
+                         author.substring(0, author.lastIndexOf("<") - 1) +
+                       "</a>";
+                     "</p>";
                   }
                   template += "<p class=\"material-datestamp\">" +
                     "Added " + moment(hits[i].fields.sys_created).fromNow() +
@@ -423,6 +421,44 @@ app.dm = {
                       return "";
               }
           }
+      });
+      
+      var contributors = [];
+      // Resolve authors, so we can perform a batch request to the DCP
+      for (var i = 0; i < hits.length; i++) {
+        if ('sys_author' in hits[i].fields) {
+          contributors.push(hits[i].fields.sys_author);
+        }
+      }
+      // Remove duplicates
+      contributors = contributors.unique();
+
+      app.dm.currentRequest = $.ajax({
+        url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
+        data : {
+          "sys_type" : "contributor_profile",
+          "field"  : ["sys_url_view", "sys_title", "sys_contributors"],
+          "contributor" : contributors,
+          "size" : contributors.length
+        },
+        beforeSend : function() {
+          // check if there is a previous ajax request to abort
+          if(app.dm.currentRequest && app.dm.currentRequest.readyState != 4) {
+            app.dm.currentRequest.abort();
+          }
+        }
+      }).done(function(data){
+        var res = data.hits.hits;
+        console.log(res);
+        for (var i = 0; i < res.length; i++) {
+          $( "p[id='" + res[i].fields.sys_contributors + "']" ).each( function() {
+            $( this ).html(
+              "Author:" +
+              "<a href=\"" + res[i].fields.sys_url_view + "\">" +
+                res[i].fields.sys_title +
+              "</a>");
+          });
+        }
       });
 
     });
