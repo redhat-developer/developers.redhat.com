@@ -1,7 +1,7 @@
 app.books = {
   getBooks : function(isbnArray) {
     var html = "";
-    var chunk = 40;
+    var chunk = 5;
     for (var i = 0, j = isbnArray.length; i < j; i +=  chunk) {
       var query = isbnArray.slice(i,i + chunk).join(' OR isbn:');
       query = query.split(' ').join('+');
@@ -24,14 +24,14 @@ app.books = {
           }
 
           var template = bookTemplate.format(
-            bookItems[k]['volumeInfo']['industryIdentifiers'][0]['identifier']       // 0 - isbn
-            , bookItems[k]['volumeInfo']['previewLink']       // 1 - Preview
-            , thumbnail // 2 - img url
-            , bookItems[k]['volumeInfo']['title']       // 3 - Title
-            , bookItems[k]['volumeInfo']['authors'].join(', ')       // 4 - Author
-            , roundHalf(bookItems[k]['volumeInfo']['averageRating'])       // 5 - Rating
-            , shortDescription       // 6 - description
-            , 'http://www.amazon.com/dp/' +  bookItems[k]['volumeInfo']['industryIdentifiers'][0]['identifier']       // 7 - Purchase Url
+            bookItems[k]['volumeInfo']['industryIdentifiers'][0]['identifier'] // 0 - isbn
+            , bookItems[k]['volumeInfo']['previewLink']                        // 1 - Preview
+            , thumbnail                                                        // 2 - img url
+            , bookItems[k]['volumeInfo']['title']                              // 3 - Title
+            , bookItems[k]['volumeInfo']['authors'].join(', ')                 // 4 - Author
+            , roundHalf(bookItems[k]['volumeInfo']['averageRating'])           // 5 - Rating
+            , shortDescription                                                 // 6 - description
+            , bookItems[k]['volumeInfo']['canonicalVolumeLink']                // 7 - Purchase Url
             );
           // Append template to HTML
           $('ul.book-list').append(template);
