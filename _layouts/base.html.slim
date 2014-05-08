@@ -98,25 +98,25 @@ body(class="#{template}")
                           a #{w.label}
             ul.right.social
               li
-                a(href="/newsletter")
+                a.has-tip(href="/newsletter" data-tooltip="" title="Newsletter" data-options="disable-for-touch:true")
                   i.fa.fa-bullhorn
               li
-                a(href="http://planet.jboss.org")
+                a.has-tip(data-tooltip="" title="Blogs" data-options="disable-for-touch:true" href="http://planet.jboss.org")
                   i.fa.fa-rss
               li
-                a(href="http://www.facebook.com/jboss")
+                a.has-tip(data-tooltip="" title="Facebook" data-options="disable-for-touch:true" href="http://www.facebook.com/jboss")
                   i.fa.fa-facebook
               li
-                a(href="http://twitter.com/jbossdeveloper")
+                a.has-tip(data-tooltip="" title="Twitter" data-options="disable-for-touch:true" href="http://twitter.com/jbossdeveloper")
                   i.fa.fa-twitter
               li
-                a(href="http://www.linkedin.com/groups?home=&gid=167652")
+                a.has-tip(data-tooltip="" title="LinkedIn" data-options="disable-for-touch:true" href="http://www.linkedin.com/groups?home=&gid=167652")
                   i.fa.fa-linkedin
               li
-                a(href="https://plus.google.com/b/117471670409122206659/117471670409122206659/posts")
+                a.has-tip(data-tooltip="" title="Google Plus" data-options="disable-for-touch:true" href="https://plus.google.com/b/117471670409122206659/117471670409122206659/posts")
                   i.fa.fa-google-plus
               li
-                a(href="https://vimeo.com/jbossdeveloper")
+                a.has-tip(data-tooltip="" title="Vimeo" data-options="disable-for-touch:true" href="https://vimeo.com/jbossdeveloper")
                   i.fa.fa-vimeo-square
     .wrapper.clearfix
       .content-wrapper
@@ -151,6 +151,7 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.reveal.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.tooltips.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.resize.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
