@@ -153,6 +153,7 @@ table {
   }
   td {
     border: 1px solid $grey-2;
+    vertical-align: top;
   }
   td.linkList {
     a {
@@ -1052,7 +1053,6 @@ form.dev-mat-filters, .project-filters {
     top:0;
     right:0;
     padding: 7px 10px;
-    z-index: 1;
   }
   select {
     background: transparent;
@@ -1064,6 +1064,7 @@ form.dev-mat-filters, .project-filters {
     margin:0;
     position: relative;
     z-index: 2;
+    padding-right: 30px;
     /* Hacks to style dropdown */
     -webkit-appearance: none;
     -moz-appearance: window;
