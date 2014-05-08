@@ -343,7 +343,7 @@ app.dm = {
                   "</p>" +
                   "<div class=\"body\">" +
                     "<p>" +
-                      hits[i].fields.sys_description +
+                      hits[i].fields.sys_description.slice(0,300).concat(' ...') +
                     "</p>" +
                   "</div>" +
                   "</li>";
