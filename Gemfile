@@ -8,14 +8,14 @@ gem 'asciidoctor', '~> 0.1.4'
 gem 'uglifier', '~> 2.0.1'
 gem 'htmlcompressor', '~> 0.0.6'
 gem "zurb-foundation", "~> 4.3.1"
-#gem 'aweplug', :github => 'awestruct/aweplug'
+gem 'aweplug', :github => 'awestruct/aweplug'
 gem 'curb', '~> 0.8.5'
 gem 'oauth', '~> 0.3.6'
 gem 'git', '~> 1.2.5'
 gem 'oily_png', '~> 1.1.1'
 gem 'nokogiri', '~> 1.5.10'
 #gem 'aweplug', :path => '~/projects/ruby/aweplug'
-gem 'aweplug', :path => '../aweplug'
+#gem 'aweplug', :path => '../aweplug'
 
 group :development do
   gem 'rb-inotify', :require => false
