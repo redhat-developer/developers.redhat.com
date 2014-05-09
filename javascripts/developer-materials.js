@@ -252,7 +252,7 @@ app.dm = {
     $("ul.results").addClass('loading');
 
     app.dm.currentRequest = $.ajax({
-      url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
+      url : app.dcp.url,
       data : {
         "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type"],
         "query" : query,
@@ -266,7 +266,14 @@ app.dm = {
       }
     }).done(function(data){
       var hits = data.hits.hits;
-      console.log(data);
+
+      var contributors = [];
+      // Collect authors, so we can perform a batch request to the DCP
+      for (var i = 0; i < hits.length; i++) {
+        if ('sys_author' in hits[i].fields) {
+          contributors.push(hits[i].fields.sys_author);
+        }
+      }
 
       // Create a paginated list
       $('ul.pagination').paging(hits.length, {
@@ -330,10 +337,11 @@ app.dm = {
                     "</a>" +
                   "</h4>";
                   if (author && author.length > 0) {
-                   template += "<p class=\"author\" id=\"" + author + "\">" +
-                     "Author:" +
-                         author.substring(0, author.lastIndexOf("<") - 1) +
-                       "</a>";
+                   template += "<p class=\"author\">" +
+                     "Author: " +
+                       "<span class=\"contributor\" data-sys-contributor=\"" + author + "\">" +
+                         app.dcp.getNameFromContributor( author ) +
+                       "</span>" +
                      "</p>";
                   }
                   template += "<p class=\"material-datestamp\">" +
@@ -349,6 +357,9 @@ app.dm = {
 
                   // Append template to HTML
                   html += template;
+
+                  // Resolve contributors
+                  app.dcp.resolveContributors(contributors);
               };
 
               // Inject HTML into the DOM
@@ -422,45 +433,6 @@ app.dm = {
               }
           }
       });
-      
-      var contributors = [];
-      // Resolve authors, so we can perform a batch request to the DCP
-      for (var i = 0; i < hits.length; i++) {
-        if ('sys_author' in hits[i].fields) {
-          contributors.push(hits[i].fields.sys_author);
-        }
-      }
-      // Remove duplicates
-      contributors = contributors.unique();
-
-      app.dm.currentRequest = $.ajax({
-        url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
-        data : {
-          "sys_type" : "contributor_profile",
-          "field"  : ["sys_url_view", "sys_title", "sys_contributors"],
-          "contributor" : contributors,
-          "size" : contributors.length
-        },
-        beforeSend : function() {
-          // check if there is a previous ajax request to abort
-          if(app.dm.currentRequest && app.dm.currentRequest.readyState != 4) {
-            app.dm.currentRequest.abort();
-          }
-        }
-      }).done(function(data){
-        var res = data.hits.hits;
-        console.log(res);
-        for (var i = 0; i < res.length; i++) {
-          $( "p[id='" + res[i].fields.sys_contributors + "']" ).each( function() {
-            $( this ).html(
-              "Author:" +
-              "<a href=\"" + res[i].fields.sys_url_view + "\">" +
-                res[i].fields.sys_title +
-              "</a>");
-          });
-        }
-      });
-
     });
   },
   clearFilters: function($el) {
