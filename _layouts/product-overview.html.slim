@@ -32,8 +32,11 @@ h3.divider Resources
 
 = page._resources
 
+/ Horrible hack, couldn't find a better way
+- unless site.forums[page.product.id].nil?
+  asciidoc:
+    - Discuss on the link:#{site.forums[page.product.id]['url']}[#{page.product.abbreviated_name} Forums]
 asciidoc:
-  - Discuss on the link:#{site.forums[page.product.id]['url']}[#{page.product.abbreviated_name} Forums]
   - Get started with one of our many link:../developer-materials?quickstarts[quickstarts].
   - View the link:#{page.product.documentation_url}[#{page.product.abbreviated_name} Documentation]
 

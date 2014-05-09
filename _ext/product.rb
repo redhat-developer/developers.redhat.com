@@ -34,7 +34,11 @@ module JBoss
                 # Set the product id to the parent dir
                 product.id = id
                 # Set the forum url to the default value, if not set
-                product.forum_url = site.forums[product.id]['url']
+                if site.forums[product.id]
+                  product.forum_url = site.forums[product.id]['url']
+                else
+                  product.forum_url = ''
+                end
                 if product.current_version
                   # Set the product's current major.minor version
                   product.current_minor_version = product.current_version[/^([0-9]*\.[0-9]*)/, 1]
