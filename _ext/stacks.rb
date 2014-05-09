@@ -100,7 +100,9 @@ module JBoss::Developer::Extensions
           :commits => @commits, 
           :boms => [],
           :contributors => bom['bom']['contributors'],
-          :author => bom['bom']['author']
+          :author => bom['bom']['author'],
+          :searchisko_type => 'jbossdeveloper_bom',
+          :searchisko_id => bom['id']
         }
 
         bom_dcp = {
@@ -119,7 +121,7 @@ module JBoss::Developer::Extensions
         }
         #metadata[:boms] << bom
         unless !@push_to_searchisko || site.profile =~ /development/
-          searchisko.push_content('jbossdeveloper_bom', bom['id'], bom_dcp.to_json)
+          searchisko.push_content(metadata[:searchisko_type], metadata[:searchisko_id], bom_dcp.to_json)
         end
         bom_page.send('metadata=', metadata)
         bom_page.send('bom=', bom)
@@ -178,7 +180,9 @@ module JBoss::Developer::Extensions
           :commits => @commits, 
           :boms => [],
           :contributors => archetype['archetype']['contributors'],
-          :author => archetype['archetype']['author']
+          :author => archetype['archetype']['author'],
+          :searchisko_type => 'jbossdeveloper_archetype',
+          :searchisko_id => archetype['id']
         }
 
         archetype_dcp = {
@@ -196,7 +200,7 @@ module JBoss::Developer::Extensions
           :versions => archetype['allVersions']
         }
         unless !@push_to_searchisko || site.profile =~ /development/
-          searchisko.push_content('jbossdeveloper_archetype', archetype['id'], archetype_dcp.to_json)
+          searchisko.push_content(metadata[:searchisko_type], metadata[:searchisko_id] , archetype_dcp.to_json)
         end
         archetype_page.send('metadata=', metadata)
         archetype_page.send('archetype=', archetype)

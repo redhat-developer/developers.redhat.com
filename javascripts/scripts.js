@@ -290,6 +290,16 @@ app.init = function() {
 
   });
 
+  /*
+   * Resolve contributors for getting started items
+   */
+  var gsiMeta = $( '.gsi-meta' );
+  if (gsiMeta.length) {
+    var type = gsiMeta.attr( 'data-searchisko-type' );
+    var id = gsiMeta.attr( 'data-searchisko-id' );
+    app.dcp.resolveContributorsForDocument( type, id );
+  }
+
 }; /* End app.init() */
 
 app.createSlider = function($el) {

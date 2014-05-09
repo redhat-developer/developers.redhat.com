@@ -30,5 +30,7 @@ app.fastClick = false;
 */
 
 app.dcp = {};
-app.dcp.url = '#{URI.join site.dcp_base_url, "v1/rest/search"}';
+app.dcp.url = {};
+app.dcp.url.search = '#{URI.join site.dcp_base_url, "v1/rest/search"}';
+app.dcp.url.content = '#{URI.join site.dcp_base_url, "v1/rest/content"}';
 

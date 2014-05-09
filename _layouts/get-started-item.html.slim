@@ -23,19 +23,17 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
   .collapse.large-24
     h2.divider itemprop="name" #{page.metadata[:title]}
     - if [:author, :commits, :level, :technologies, :target_product].all? { |k| page.metadata.key? k} && !page.metadata[:commits].empty?
-      .gsi-meta
+      .gsi-meta data-searchisko-type="#{page.metadata[:searchisko_type]}" data-searchisko-id="#{page.metadata[:searchisko_id]}"
         ul
           - if page.metadata[:author]
             li
               strong
                 ' Author:
-                / TODO Change from span to author profile link when we have identity info
-                span itemprop="author" #{page.metadata[:author]}
+                span.author itemprop="author" #{page.metadata[:author]}
           - if page.metadata[:contributors]
             li: strong
               ' Contributors:
-              / TODO Change from span to author profile link when we have identity info
-              = page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
+              span.contributors= page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
           - if page.metadata[:commits] && !page.metadata[:commits].empty?
             li
               strong
@@ -70,8 +68,11 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
           ul.commit-log
             - for commit in page.metadata[:commits].take(10)
               li
-                / TODO: add the links
-                #{DateTime.parse(commit[:date]).strftime('%b %e, %Y')} (#{commit[:author]}): #{commit[:subject].gsub(/\-/,' ')}
+                = DateTime.parse(commit[:date]).strftime('%b %e, %Y') 
+                | (
+                span.contributor data-sys-contributor="#{commit[:author]} <#{commit[:author_email]}>" #{commit[:author]}
+                | ):
+                = commit[:subject].gsub(/\-/,' ')
 
       .columns.large-4
         - if page.metadata[:product]
