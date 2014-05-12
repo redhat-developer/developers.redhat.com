@@ -140,7 +140,7 @@ module JBoss::Developer::MktgOps
                 :type => 'external_link', 
                 :title => a['title'] 
               })
-              a['onclick'] ||= "" << "app.mktg_ops.track(this);return false;"
+              a['onclick'] ||= "" << "app.mktg_ops.track(this);return true;"
             end
           end
         end

@@ -171,7 +171,7 @@ app.mktg_ops.init = function() {
 
 app.mktg_ops.track = function(src) {
   _gaq.push(['_trackEvent', 'outbound', src.title, src.href]);
-  // Eloqua will track the link and perform a redirect
-  _elq.trackOutboundLink(src);
+  // Eloqua will track the link
+  _elq.trackEvent(src);
 };
 
