@@ -345,7 +345,7 @@ app.dm = {
                      "</p>";
                   }
                   template += "<p class=\"material-datestamp\">" +
-                    "Authored " + moment(hits[i].fields.sys_created).fromNow() +
+                    "Published " + moment(hits[i].fields.sys_created).fromNow() +
                   "</p>" +
                   "<div class=\"body\">" +
                     "<p>" +
