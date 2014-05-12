@@ -178,7 +178,7 @@ app.init = function() {
   /*
     Isotope
   */
-  var $container = $('.buzz-items');
+  var $container = $('.buzz-container');
 
   if($container.length) {
 

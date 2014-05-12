@@ -174,7 +174,7 @@ h2.divider Community Pulse
     - type = types[rand]
     div(class="buzz-item buzz-item-#{type}")
       .buzz-item-inner
-        .buzz-header: i(class="fa-#{type}")
+        / .buzz-header: i(class="fa-#{type}")
         img(src=cdn(site.base_url + "/images/branding/buzzdefault_orange.png"))
         h3 #{titles[rand(4)]}
         p #{bodies[rand(4)]}
