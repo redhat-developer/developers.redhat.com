@@ -94,7 +94,7 @@ module JBoss
                     c << artifact
                   end
                 else
-                  artifact = OpenStruct.new
+                  artifact = OpenStruct.new(w)
                   artifact.size = asset.size
                   artifact.type ||= artifact_attr l, "type", "zip"
                   artifact.name = asset.name
@@ -136,7 +136,7 @@ module JBoss
         def artifact_attr(key, attr, default)
           if @default_download_assets.has_key?(key) && @default_download_assets[key].has_key?(attr)
             @default_download_assets[key][attr]
-          else default
+          else
             default
           end
         end
