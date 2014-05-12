@@ -100,38 +100,137 @@ ul.results {
 
 
 @include tablet-portrait-and-down {
+  body.developer-materials {
+    .content-wrapper, .wrapper, .developer-materials-sidebar {
+      padding:0;
+    }
+  }
+
+  .developer-materials-sidebar {
+    h4 {
+      background:$dark-blue;
+      color:white;
+      padding:10px;
+      text-align: center;
+      border-radius: $global-radius;
+      margin:10px;
+      &:after {
+        content: "\f078";
+        font-family: 'FontAwesome';
+        padding-left: 10px;
+      }
+    }
+    form {
+      display: none;
+    }
+    a.filters-clear {
+      display: none;
+    }
+    &.open {
+      display: block;
+      position: fixed;
+      top:0;
+      bottom:0;
+      background:white;
+      width:100%;
+      z-index: 9999;
+      form {
+        display: block;
+      }
+      h4 {
+        background:$dark-blue;
+        color:white;
+        font-size: 0;
+        padding:20px;
+        cursor:pointer;
+        text-align: left;
+        &:before {
+          content : 'Cancel';
+          font-size: 14px;
+        }
+      }
+      a.filters-clear {
+        font-size: 14px;
+        display: inline;
+        float: right;
+        color:white;
+        text-decoration: none;
+      }
+      .filters-apply {
+        display: inline-block;
+        position: absolute;
+        left:50%;
+        top:0;
+        top: 20px;
+        background:$med-blue;
+        padding:2px 20px;
+        margin-left: -45px;
+      }
+    }
+  }
   .filter-block {
+    border-bottom: 1px solid $grey-3;
+    padding:10px;
     input[type="range"] {
       width:100%;
     }
     h5.show-more {
       cursor:pointer;
       &:after {
-        content:'\f105';
+        content:"\f078";
+        color:$dark-blue;
+        padding-right:10px;
         float: right;
         font-family:'FontAwesome';
         @include transition(all 0.3s);
       }
       &.filter-block-open:after {
-        @include transform(rotate(90deg));
+        @include transform(rotate(-180deg));
       }
     }
   }
-
+  
+  .filter-block-checkboxes {
+    padding:0;
+    h5 {
+      padding-left:10px;
+    }
+  }
   .filter-block-inputs {
     display: none;
+    position: relative;
     label {
-      border:3px solid white;
       padding:3px;
       float: left;
-      width:33.33%;
+      width:100%;
+      margin:0;
+      padding:10px;
+      color:white;
+      background:$dark-blue;
+      border-bottom: 1px solid $grey-5;
+      font-weight: 600;
+      &:after {
+        content : "\f00c";
+        font-family: FontAwesome;
+        color:#5D8097;
+        float: right;
+      }
       &.checked {
-        background:$dark-blue;
+        background:#5D8097;
         color:white;
+        &:after {
+          color:white;
+        }
       }
       input {
         margin:0;
+        display: none;
       }
+    }
+    span.skill-display {
+      position: absolute;
+      top:10px;
+      right:10px;
     }
   }
 }
@@ -139,7 +238,7 @@ ul.results {
 @include mobile-landscape-and-down {
   .filter-block-inputs {
     label {
-      width:50%;
+      // width:50%;
     }
   }
 }

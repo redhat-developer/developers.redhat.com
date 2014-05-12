@@ -490,6 +490,13 @@ $(function() {
     }
   });
 
+  // toggle filters on mobile
+  $('.filter-toggle').on('click',function() {
+    if(window.innerWidth <= 768) {
+      $('.developer-materials-sidebar').toggleClass('open');
+    }
+  });
+
   // active class on labels
   $('.filter-block-inputs input[type=checkbox]').on('change',function(){
     var el = $(this);

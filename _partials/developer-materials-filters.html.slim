@@ -1,8 +1,8 @@
+h4.filter-toggle
+  | Filters
+  a.filters-clear(href="#") Clear All Filters
+button.filters-apply.filter-toggle Apply
 form.dev-mat-filters(method="GET" action="")
-  h4
-    | Filters
-    a.filters-clear(href="#") Clear All Filters
-  
   .filter-block
     input(type="text" placeholder="Filter by keyword" name="filter-text")
 
@@ -23,7 +23,7 @@ form.dev-mat-filters(method="GET" action="")
 
 
 
-  .filter-block
+  .filter-block.filter-block-checkboxes
     h5.show-more Topics
     .filter-block-inputs
       label
@@ -42,6 +42,9 @@ form.dev-mat-filters(method="GET" action="")
         input(type="checkbox" name="filter-topic[]" value="JPA")
         | JPA
       label
+        input(type="checkbox" name="filter-topic[]" value="EJB")
+        | EJB
+      label
         input(type="checkbox" name="filter-topic[]" value="JTA")
         | JTA
       label
@@ -54,7 +57,7 @@ form.dev-mat-filters(method="GET" action="")
         input(type="checkbox" name="filter-topic[]" value="H2")
         | H2
 
-  .filter-block
+  .filter-block.filter-block-checkboxes
     h5.show-more Format
     .filter-block-inputs
       label
@@ -69,9 +72,6 @@ form.dev-mat-filters(method="GET" action="")
       label
         input(type="checkbox" name="filter-format" value="video")
         | Video
-      label
-        input(type="checkbox" name="filter-format" value="jbossdeveloper_example")
-        | Tutorial
       label
         input(type="checkbox" name="filter-format" value="jbossdeveloper_sandbox")
         | Sandbox (unsupported)
@@ -95,4 +95,3 @@ form.dev-mat-filters(method="GET" action="")
     input(type="range" name="filter-publish-date" onchange="this.setAttribute('value', this.value);" value="0" step="25" data-labels="All, Within 1 Year, Within 30 days, Within 7 days, Within 24hrs")
     span.skill-display All
        
-

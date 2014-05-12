@@ -1026,16 +1026,21 @@ form.dev-mat-filters, .project-filters {
     padding:6px;
     margin: 0;
   }
-  a.filters-clear {
-    font-size: 14px;
-    text-decoration: underline;
-    padding-left: 5px;
-    position: relative;
-    top:-2px;
-  }
   a.project-filters-clear {
     @extend a.filters-clear;
   }
+}
+
+a.filters-clear {
+  font-size: 14px;
+  text-decoration: underline;
+  padding-left: 5px;
+  position: relative;
+  top:-2px;
+}
+
+.filters-apply {
+  display: none;
 }
 
 .styled-select {
