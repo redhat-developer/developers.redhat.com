@@ -2,30 +2,32 @@ before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no" >> ~/.ssh/config
   - if [ $TRAVIS_PULL_REQUEST = "false" ]; then
   - openssl aes-256-cbc -k "$password" -in _wwwKey.enc -d -a -out _wwwKey
-  - ssh-add -D
   - chmod 600 _wwwKey
+  - eval $(ssh-agent)
+  - ssh-add -D
   - ssh-add ./_wwwKey
   - fi
 language: ruby
 rvm:
-  - 1.9.3
+  - 2.1.1
 branches:
   only:
     - master
-script: rake travis
+script: bundle exec rake travis
 env:
   global:
-    - master_deploy_url: jbossdev-builder@filemgmt.jboss.org:/stg_htdocs/www/
-    - production_deploy_url: jbossdev-builder@filemgmt.jboss.org:/stg_htdocs/www/
+    - master_deploy_url: jbossdev-builder@filemgmt.jboss.org:/stg_htdocs/www-stg/
+    - production_deploy_url: jbossdev-builder@filemgmt.jboss.org:/stg_htdocs/www-stg/
 
     # DCP credentials
-    #- secure: "kb8y2TfuYLAjjyVc1e2nNtL8xqviegDn2FJ1HXUM8Jrbl+CCCDpilCGFyzJW9DuImAY0BUwhr4Da7aX55rG9zHv7gZDk3cl8+X4m0Pu3EUtjAvIax6RWZV98wpXQhRFdHhjA6gwvLZjjhBkhUk8ltkkIUtI2Ntqa2quGejciJHg="
+    - secure: "0C71rvFLGpeMr13KJp5ijNALB7jFNpYGG3mOdzQDUEPKZ5pY8+4EMDS5D8zG2ToGmIW2kl18YDnadqed8nwEWDZt57jZgI2AxPd1WUaQQ/XXw05JC9+OaGAD5AwOxn2xmj5typuJMd/axH/P5x71KAZkGSolu2wXvdBl+BSd1TE="
 
     # vimeo_access_token_secret variable
-    - secure: "JW/AioAYFTHaDnIKEzI3aR8QI5JcufPYCRtDOkODx24RYgH3LgGtwkTrrR2nS7+w0Wwp9sQXatrX/tlqi+RVhix7JGI2Qtqpjz6/pru4SymJv9yneDdbiEJh5OHdHo14aeQiRUM8IPS17oR+fPVPbx5KP92u8xRnPYuSU2cT0qI="
+    - secure: "SpW7O1dB9LbkLm15FbUVDWFN6aZ3f0FHBk17hJxgrQp4SXVKRTpDVfqKKvZB+b96amSlJHcpWhmBG++3/KfTO7sr+p1C/DyjkoEUuoS8hRbvtL+V9hPImwRRTFXRZhOGVVdT58EPW80XajuF+CRuO0C1XlD25nrYwMqrSAxk+lw="
 
     # vimeo_client_secret variable
-    - secure: "EaH75mpeLCfumCW0dJHg9UKVzNt/7R2p6OgxtEQXQxZR+gB/DWEyAwPyrOh/DwXyGNrFzetLjjQMu5A1lekfZQEwUg1vFP4FVx2rfAGG4ZyudNvMcWev3kca9WWgg1UQ6Xl6sz6vp1rqnkewWREF8p6O0xgCrv4TBLPxyNVi/G0="
+    - secure: "m2X8nSQqwFeqIXqnbda70d01f2NhHDXX8mM7l2KkxA0t9Aj/G5/K4VZOPtNnAM60REMF+2B/ZVwO0DwKfatHfsKW0BHKO71ijPbKmbsP+VcrtSw4lMmgOaYmBooeXd2dxD9LLdJ4PZIaYsjeh82tub02+I7Gm4krTDWY/G3NzPw="
 
     # Key password
-    - secure: "igTH9Xim/1H5KlvH/rHPrm9EgPg+nsDS3XRMb4NNPoUuBFli8HdfogdTwtabrq07kN8sBL++bKCJ0tw8FeAwrjhkQQeNWJ5iS/DBKmtfAVSqG/f7B8cDJy9EjUZfmjHKSPL0kaLvnuHm6AjoEw7cIIhRGw9G0BTTt1vUHytsnn8="
+    - secure: "vN4RBfTEoNrR3ITG1MDaEMOfwzlDX+3YymbcII7SjayofLc5kDV5s5SXqRVEk/RxB3lakD3vcO8JKf88eFsPl4P09k7/CVO7NZQeLTM2x7P0Pd6mtz2Qq2BMUFrld0ZoutTLO8IAsbHVpeBwiTm4ACgRe/ZKMsGKdn6+Y/b/Jxs="
+    
