@@ -1,4 +1,23 @@
+---
+interpolate: true
+---
 app.books = {
+  covers : {
+    "1782161341" : "book_developingjavaEE6applicationsonjbossas7.jpg",
+    "1449345158" : "book_buildingmodularcloudappswithosgi.jpg",
+    "unavailable" : "book_noimageavailable.jpg"
+  },
+  findCover : function(book, isbn) {
+    if (book['volumeInfo'].hasOwnProperty('imageLinks')) {
+      return book['volumeInfo']['imageLinks']['thumbnail'];
+    }
+    else if (app.books.covers[isbn]) {
+      return "#{site.base_url}/#{site.context_url}/images/books/" + app.books.covers[isbn];
+    }
+    else {
+      return "#{site.base_url}/#{site.context_url}/images/books/" + app.books.covers['unavailable'];
+    }
+  },
   getBooks : function(isbnArray) {
     var html = "";
     var chunk = 15;
@@ -44,19 +63,16 @@ app.books = {
       var description = bookItems[k]['volumeInfo']['description'] || "";
       var shortDescription = description.substring(0,475);
       var thumbnail = ''; // TODO: We need an image made for books that don't have an image
+      var isbn = bookItems[k]['volumeInfo']['industryIdentifiers'][0]['identifier'];
 
       if(description.length > 475) {
         shortDescription+="...";
       } 
 
-      if (bookItems[k]['volumeInfo'].hasOwnProperty('imageLinks')) {
-        thumbnail = bookItems[k]['volumeInfo']['imageLinks']['thumbnail'];
-      }
-
       var template = bookTemplate.format(
-        bookItems[k]['volumeInfo']['industryIdentifiers'][0]['identifier'] // 0 - isbn
+        isbn                                                               // 0 - isbn
         , bookItems[k]['volumeInfo']['previewLink']                        // 1 - Preview
-        , thumbnail                                                        // 2 - img url
+        , app.books.findCover(bookItems[k], isbn)                                          // 2 - img url
         , bookItems[k]['volumeInfo']['title']                              // 3 - Title
         , bookItems[k]['volumeInfo']['authors'].join(', ')                 // 4 - Author
         , roundHalf(bookItems[k]['volumeInfo']['averageRating'])           // 5 - Rating
