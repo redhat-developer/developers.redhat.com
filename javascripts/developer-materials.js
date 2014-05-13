@@ -348,7 +348,7 @@ app.dm = {
               template += "<p class=\"author\">" +
                 "Author: " +
                   "<span class=\"contributor\" data-sys-contributor=\"" + author + "\">" +
-                    app.dcp.getNameFromContributor( author ) +
+                    "<a class=\"name\">" + app.dcp.getNameFromContributor( author ) + "</a>" +
                   "</span>" +
                 "</p>";
             }

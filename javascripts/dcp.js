@@ -8,7 +8,15 @@ app.dcp.getNameFromContributor = function( contributor ) {
  * Load a document from the DCP, resolve any contributors, and replace any 
  * span.contributor[data-sys-contributor=<contributor>] elements in the current page
  */
-app.dcp.resolveContributorsForDocument = function( documentType, documentId ) {
+app.dcp.resolveContributorsForBlock = function( documentType, documentId, block, tmpl ) {
+  if (!documentType) {
+    console.error( "No documentType specified" );
+    return;
+  }
+  if (!documentId) {
+    console.error( "No documentId specified" );
+    return;
+  }
   
   app.dcp.currentRequest = $.ajax({
     url : app.dcp.url.content + "/" + documentType + "/" + documentId,
@@ -30,16 +38,18 @@ app.dcp.resolveContributorsForDocument = function( documentType, documentId ) {
       }
 
       // First, we must fix up the page content, with the normalised id from the DCP. This allows us to to differentiate between author and contributors
-      $( "span.author" ).each( function() {
-        $( this ).attr( "data-sys-contributor", author ).addClass( "contributor" ).html( app.dcp.getNameFromContributor( author ) );
-      });
+      if (author) {
+        block.find( "span.author" ).each( function() {
+          $( this ).replaceWith( app.dcp.generateContributorSpan( author ) ).addClass( "author" );
+        });
+      }
 
       if (contributors.length > 0) {
-        $( "span.contributors" ).each( function() {
+        block.find( "span.contributors" ).each( function() {
           // Remove all the contributors originally in the doc, before replacing the content
           var out = [];
           for (var i = 0; i < contributors.length; i++) {
-            out.push( "<span class=\"contributor\" itemprop=\"contributor\" data-sys-contributor=\"" + contributors[i] + "\">" + app.dcp.getNameFromContributor( contributors[i] ) + "</span>" );
+            out.push( app.dcp.generateContributorSpan( tmpl, contributors[i] ) );
           }
           $( this ).html( out.join( ", " ) );
         });
@@ -51,6 +61,13 @@ app.dcp.resolveContributorsForDocument = function( documentType, documentId ) {
       app.dcp.resolveContributors(contributors);
     }
   });
+};
+
+app.dcp.generateContributorSpan = function(tmpl, contributor) {
+  var d = {};
+  d.contributor = contributor;
+  d.contributorName = app.dcp.getNameFromContributor( contributor );
+  return tmpl.template( d );
 };
 
 /*
@@ -66,7 +83,7 @@ app.dcp.resolveContributors = function(sysContributors) {
     url : app.dcp.url.search,
     data : {
       "sys_type" : "contributor_profile",
-      "field"  : ["sys_url_view", "sys_title", "sys_contributors"],
+      "field"  : ["sys_url_view", "sys_title", "sys_contributors", "accounts"],
       "contributor" : contributors,
       "size" : contributors.length
     },
@@ -79,11 +96,53 @@ app.dcp.resolveContributors = function(sysContributors) {
   }).done(function(data){
     var hits = data.hits.hits;
     for (var i = 0; i < hits.length; i++) {
+      var accounts = {};
+      if (hits[i].fields.accounts) {
+        for (var j= 0; j < hits[i].fields.accounts.length; j++) {
+          accounts[hits[i].fields.accounts[j].domain] = hits[i].fields.accounts[j].username;
+        }
+      }
       $( "span.contributor[data-sys-contributor='" + hits[i].fields.sys_contributors + "']" ).each( function() {
-        $( this ).html(
-          "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
-            hits[i].fields.sys_title +
-          "</a>");
+        var followable = false;
+        $( this ).find( 'a.name' ).each( function() {
+          $( this ).html( hits[i].fields.sys_title ).attr( 'href', hits[i].fields.sys_url_view);
+        });
+        $( this ).find( 'a.rss' ).each( function() {
+          if (false) {
+            // TODO work out what field this is
+            $( this ).attr( 'href', '' );
+            followable = true;
+          } else {
+             $( this ).hide();
+          }
+        });
+        $( this ).find( 'a.facebook' ).each( function() {
+          if (accounts['facebook.com']) {
+            $( this ).attr( 'href', 'http://www.facebook.com/' + accounts['facebook.com'] );
+            followable = true;
+          } else {
+             $( this ).hide();
+          }
+        });
+        $( this ).find( 'a.twitter' ).each( function() {
+          if (accounts['twitter.com']) {
+            $( this ).attr( 'href', 'http://www.twitter.com/' + accounts['twitter.com'] );
+            followable = true;
+          } else {
+             $( this ).hide();
+          }
+        });
+        $( this ).find( 'a.linkedin' ).each( function() {
+          if (accounts['linkedin']) {
+            $( this ).attr( 'href', 'http://www.linkedin.com/in/' + accounts['linkedin.com'] );
+            followable = true;
+          } else {
+             $( this ).hide();
+          }
+        });
+        if (!followable) {
+          $( this ).find( 'span.follow' ).hide();
+        }
       });
     }
   });

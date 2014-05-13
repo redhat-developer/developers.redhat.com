@@ -292,13 +292,22 @@ app.init = function() {
   if (gsiMeta.length) {
     var type = gsiMeta.attr( 'data-searchisko-type' );
     var id = gsiMeta.attr( 'data-searchisko-id' );
-    app.dcp.resolveContributorsForDocument( type, id );
+    app.dcp.resolveContributorsForBlock( type, id, $( 'div.content-wrapper' ), app.templates.basicContributorTemplate );
   }
 
   /*
    * Populate referrer for contact page
    */
    $('input[name="referrer"]').val(document.referrer);
+
+  /*
+   * Resolve contributors for videos
+   */
+  $( 'div[itemprop="video"]' ).each( function() {
+    var type = $( this ).attr( 'data-searchisko-type' );
+    var id = $( this ).attr( 'data-searchisko-id' );
+    app.dcp.resolveContributorsForBlock( type, id, $( this ),  app.templates.socialContributorTemplate );
+  });
 
 }; /* End app.init() */
 
