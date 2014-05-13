@@ -34,7 +34,7 @@ profiles:
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com
     log_faraday: true
 
-  staging: &staging
+  staging: 
     <<: *profile
     base_url: http://www-stg.jboss.org
     deploy:
@@ -52,7 +52,8 @@ profiles:
       path: /stg_htdocs/www-beta
 
   filemgmt:
-    <<: *staging
+    base_url: http://www-stg.jboss.org/
+    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
 
   production:
     dcp_base_url:
