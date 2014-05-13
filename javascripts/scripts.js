@@ -199,9 +199,14 @@ app.init = function() {
       });*/
 
       // text filtering
+      // limit it from firing on every keypress and only every 300ms
+      var timeOut;
       $('input[name="buzz-filter-text"]').keyup(function() {
+        clearTimeout(timeOut);
         var text = $(this).val();
-        $container.isotope({ filter: '.buzz-item:Contains('+text+')' });
+        timeOut = setTimeout(function() {
+          $container.isotope({ filter: '.buzz-item:Contains('+text+')' });
+        }, 300);
       });
     });
 
