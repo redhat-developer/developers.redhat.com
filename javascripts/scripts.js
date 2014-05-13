@@ -305,6 +305,11 @@ app.init = function() {
     app.dcp.resolveContributorsForDocument( type, id );
   }
 
+  /*
+   * Populate referrer for contact page
+   */
+   $('input[name="referrer"]').val(document.referrer);
+
 }; /* End app.init() */
 
 app.createSlider = function($el) {
