@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: 5fbbaed56d5b1dfc032047539d6f792a41cc28af
+  revision: b205d600a36f75d8ff15eb9874e30de3d6dc2bdd
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -21,7 +21,7 @@ GEM
       open4
     Platform (0.4.0)
     addressable (2.3.6)
-    asciidoctor (0.1.4)
+    asciidoctor (1.5.0.preview.6)
     awestruct (0.5.5)
       asciidoctor
       bootstrap-sass (~> 3.1.1.0)
@@ -157,7 +157,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  asciidoctor (~> 0.1.4)
+  asciidoctor (~> 1.5.0.preview6)
   aweplug!
   awestruct (~> 0.5.4.rc3)
   curb (~> 0.8.5)

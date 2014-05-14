@@ -40,6 +40,9 @@ profiles:
     deploy:
       <<: *deploy
       path: /stg_htdocs/www-stg
+    asciidoctor:
+      :attributes:
+        imagesdir: *cdn_http_base
     
   beta:
     <<: *profile
@@ -50,6 +53,9 @@ profiles:
     deploy:
       <<: *deploy
       path: /stg_htdocs/www-beta
+    asciidoctor:
+      :attributes:
+        imagesdir: *cdn_http_base
 
   filemgmt:
     base_url: http://www-stg.jboss.org/
@@ -57,4 +63,7 @@ profiles:
 
   production:
     dcp_base_url:
+    asciidoctor:
+      :attributes:
+        imagesdir: *cdn_http_base
 
