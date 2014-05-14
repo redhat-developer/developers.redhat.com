@@ -188,8 +188,12 @@ app.project = {
 
 // Event Listeners
 $(function() {
-  $('form.project-filters').on('change','input',function(e){
-    app.project.projectFilter();
+  var timeOut;
+  $('form.project-filters').on('keyup','input',function(e){
+    clearTimeout(timeOut);
+    timeOut = setTimeout(function() {
+      app.project.projectFilter();
+    }, 300);
   });
 
   $('form.project-filters').on('submit',function(e) {

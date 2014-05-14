@@ -476,8 +476,12 @@ app.dm = {
 
 // Event Listeners 
 $(function() {
-  $('form.dev-mat-filters').on('change','input',function(e){
-    app.dm.devMatFilter();
+  var timeOut;
+  $('form.dev-mat-filters').on('change keyup','input',function(e){
+    clearTimeout(timeOut);
+    timeOut = setTimeout(function() {
+      app.dm.devMatFilter();
+    }, 300);
   });
 
   $('form.dev-mat-filters').on('submit',function(e) {

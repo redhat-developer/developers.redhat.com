@@ -198,16 +198,6 @@ app.init = function() {
         $container.isotope({ filter: filterType });
       });*/
 
-      // text filtering
-      // limit it from firing on every keypress and only every 300ms
-      var timeOut;
-      $('input[name="buzz-filter-text"]').keyup(function() {
-        clearTimeout(timeOut);
-        var text = $(this).val();
-        timeOut = setTimeout(function() {
-          $container.isotope({ filter: '.buzz-item:Contains('+text+')' });
-        }, 300);
-      });
     });
 
     // Bind to window resize
@@ -468,9 +458,16 @@ app.buzz = {
 
 // Event Listeners for Buzz
 $(function() {
-  $('form.buzz-filters').on('change','input',function(e){
-    var $buzz = $('.buzz-container');
-    app.buzz.filter(app.templates.buzzTemplate, $buzz);
+  // When the buzz filter input is changed, search
+  
+  var timeOut;
+  $('form.buzz-filters').on('keyup','input',function(e){
+    clearTimeout(timeOut);
+    // throttle ajax requests
+    timeOut = setTimeout(function() {
+      var $buzz = $('.buzz-container');
+      app.buzz.filter(app.templates.buzzTemplate, $buzz);
+    }, 300);
   });
 
   $('form.buzz-filters').on('submit',function(e) {
@@ -639,11 +636,6 @@ $(function() {
   jQuery Extensions
 */
 
-jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
-    return function( elem ) {
-        return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-    };
-});
 jQuery.ajaxSettings.traditional = true;
 
 String.prototype.format = function() {
