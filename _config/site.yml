@@ -1,11 +1,11 @@
 kramdown:
   :input: 'QuickStartParser'
-download_manager_file_base_url: http://www-beta.jboss.org/download-manager/file
-product_documentation_base_url: https://access.redhat.com/site/documentation/en-US
-product_forum_base_url: https://community.jboss.org
+download_manager_file_base_url: http://www-beta.jboss.org/download-manager/file/
+product_documentation_base_url: https://access.redhat.com/site/documentation/en-US/
+product_forum_base_url: https://community.jboss.org/
 vimeo_client_id: 2589d6592dfd44bfec54f22edf766aedaf0fd5d7
 vimeo_access_token: 1ad6583e71e183c3075a88d46ebb0675
-register_url: https://community.jboss.org/register.jspa
+register_url: https://community.jboss.org/register.jspa/
 change_frequency: daily
 
 deploy_base: &deploy
@@ -15,7 +15,7 @@ deploy_base: &deploy
   uncommitted: true
 
 profile_base: &profile
-  dcp_base_url: http://dcpbeta-searchisko.rhcloud.com
+  dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
   cdn_http_base: &cdn_http_base //static.jboss.org/www 
   log_faraday: true
   minify: &minify true 
@@ -31,12 +31,12 @@ profile_base: &profile
 
 profiles:
   development:
-    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com
+    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     log_faraday: true
 
   staging: 
     <<: *profile
-    base_url: http://www-stg.jboss.org
+    base_url: http://www-stg.jboss.org/
     deploy:
       <<: *deploy
       path: /stg_htdocs/www-stg
@@ -46,8 +46,8 @@ profiles:
     
   beta:
     <<: *profile
-    base_url: http://www-beta.jboss.org
-    dcp_base_url: http://dcp.jboss.org
+    base_url: http://www-beta.jboss.org/
+    dcp_base_url: http://dcp.jboss.org/
     require_tag: true
     robots: false
     deploy:
