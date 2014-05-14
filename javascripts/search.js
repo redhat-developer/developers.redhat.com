@@ -108,6 +108,12 @@ $(function() {
     $('li.active-item').removeClass('active-item');
   });
 
+  // when someone clicks the search result with their mouse
+  $('.searchResults').on('mousedown','a',function() {
+    window.location.assign(this.href);
+  });
+
+  // close the search box on mobile
   $('.search-close').on('click',function(e){
     $('form.search input').val('');
     $('.searchResults').html('');
