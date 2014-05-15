@@ -45,12 +45,10 @@
               "source_field": "author",
               "idx_search_field": ["jbossdeveloper_quickstart_author","name"],
               "result_multiple_ignore" : true,
-              "result_mapping": [
-                  {
-                      "idx_result_field": "code",
-                      "target_field": "sys_author"
-                  }
-              ]
+              "result_mapping": [{
+                "idx_result_field": "code",
+                "target_field": "sys_author"
+              }]
           }
         },{
           "name"     : "Contributors mapper",
@@ -70,20 +68,14 @@
             "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
             "settings": {
                 "target_field": "sys_contributor",
-                "source_fields": [
-                    "sys_author",
-                    "sys_contributor"
-                ]
+                "source_fields": ["sys_author","sys_contributor"]
             }
         },{
 	        "name": "sys_activity_dates collector",
 	        "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
 	        "settings": {
 	            "target_field": "sys_activity_dates",
-	            "source_fields": [
-	                "sys_created",
-	                "sys_last_activity_date"
-	            ]
+	            "source_fields": ["sys_created","sys_last_activity_date"]
 	        }
         }
       ],
@@ -104,13 +96,11 @@
             "index_name"       : "sys_contributors",
             "index_type"       : "contributor",
             "source_field"     : "contributors",
-            "idx_search_field" : "contributors",
+            "idx_search_field" : "email",
             "result_mapping"   : [{
               "idx_result_field" : "code",
-              "target_field"     : "sys_contributor",
-              "value_default"    : "{contributors}"
-            }],
-            "source_bases"     : ["contributors"]
+              "target_field"     : "sys_contributor"
+            }]
           }
         }
       ],
@@ -131,13 +121,11 @@
             "index_name"       : "sys_contributors",
             "index_type"       : "contributor",
             "source_field"     : "contributors",
-            "idx_search_field" : "contributors",
+            "idx_search_field" : "email",
             "result_mapping"   : [{
               "idx_result_field" : "code",
-              "target_field"     : "sys_contributor",
-              "value_default"    : "{contributors}"
-            }],
-            "source_bases"     : ["contributors"]
+              "target_field"     : "sys_contributor"
+            }]
           }
         }
       ],
@@ -159,21 +147,39 @@
             "source_field"  : "sys_content",
             "target_field"  : "sys_content_plaintext"
           }
-        },
-        {
+        },{
+          "name": "Author mapper",
+          "class": "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings": {
+              "index_name": "sys_contributors",
+              "index_type": "contributor",
+              "source_field": "author",
+              "idx_search_field": ["jbossdeveloper_quickstart_author","name"],
+              "result_multiple_ignore" : true,
+              "result_mapping": [{
+                "idx_result_field": "code",
+                "target_field": "sys_author"
+              }]
+          }
+        },{
           "name"     : "Contributors mapper",
           "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
           "settings" : {
             "index_name"       : "sys_contributors",
             "index_type"       : "contributor",
             "source_field"     : "contributors",
-            "idx_search_field" : "contributors",
+            "idx_search_field" : "email",
             "result_mapping"   : [{
               "idx_result_field" : "code",
-              "target_field"     : "sys_contributor",
-              "value_default"    : "{contributors}"
-            }],
-            "source_bases"     : ["contributors"]
+              "target_field"     : "sys_contributor"
+            }]
+          }
+        },{
+          "name": "Contributors collector",
+          "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
+          "settings": {
+            "target_field": "sys_contributor",
+            "source_fields": ["sys_author","sys_contributor"]
           }
         }
       ],
@@ -195,12 +201,10 @@
                     "index_type": "contributor",
                     "source_field": "author",
                     "idx_search_field": "vimeo_username",
-                    "result_mapping": [
-                        {
-                            "idx_result_field": "code",
-                            "target_field": "sys_author"
-                        }
-                    ]
+                    "result_mapping": [{
+                        "idx_result_field": "code",
+                        "target_field": "sys_author"
+                    }]
                 }
             },
             {
@@ -211,12 +215,10 @@
                     "index_type": "contributor",
                     "source_field": "contributors",
                     "idx_search_field": "vimeo_username",
-                    "result_mapping": [
-                        {
-                            "idx_result_field": "code",
-                            "target_field": "sys_contributor"
-                        }
-                    ]
+                    "result_mapping": [{
+                        "idx_result_field": "code",
+                        "target_field": "sys_contributor"
+                    }]
                 }
             },
             {
@@ -224,10 +226,7 @@
                 "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
                 "settings": {
                     "target_field": "sys_contributor",
-                    "source_fields": [
-                        "sys_author",
-                        "sys_contributor"
-                    ]
+                    "source_fields": ["sys_author","sys_contributor"]
                 }
             },
             {
@@ -235,10 +234,7 @@
                 "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
                 "settings": {
                     "target_field": "sys_activity_dates",
-                    "source_fields": [
-                        "sys_created",
-                        "sys_last_activity_date"
-                    ]
+                    "source_fields": ["sys_created","sys_last_activity_date"]
                 }
             }
         ],
