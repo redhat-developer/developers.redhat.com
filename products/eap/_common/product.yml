@@ -1,6 +1,6 @@
 name: Red Hat JBoss Enterprise Application Platform
 abbreviated_name: JBoss EAP
-current_version: 6.2.0.GA
+current_version: 6.3.0.Beta
 has_installer: true
 # EAP is still using an old name for docs on the customer portal
 documentation_path: JBoss_Enterprise_Application_Platform
@@ -63,6 +63,20 @@ guides:
 # EAP has an installer, we want to default to that
 default_download_artifact_type: installer
 downloads:
+  6.3.0.Beta:
+    description: Minor release of JBoss EAP 6.x series
+    release_date: 2014-05-15
+    assets:
+      installer:
+        size: 150mb
+      zip:
+        name: Zip Files
+        artifacts: 
+          zip:
+            size: 37mb
+      release_notes:
+      source:
+        size: 37mb
   6.2.0.GA:
     description: Minor release of JBoss EAP 6.x series
     release_date: 2013-12-04
