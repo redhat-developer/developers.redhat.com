@@ -20,62 +20,62 @@ function roundHalf(num) {
 app.dm = {
   supportsLocalStorage: function() {
     try {
-        return 'localStorage' in window && window['localStorage'] !== null;
+      return 'localStorage' in window && window['localStorage'] !== null;
     } catch (e) {
-        return false;
+      return false;
     }
   },
   restoreFilter: function() {
-      /* Restore the form values previously stored in local storage. */
-      if(!this.supportsLocalStorage()) {
-          return;
+    /* Restore the form values previously stored in local storage. */
+    if(!this.supportsLocalStorage()) {
+      return;
+    }
+    var filterKeys = [
+      "keyword",
+      "rating",
+      "topics",
+      "formats",
+      "skillLevel",
+      "publishDate"
+    ];
+    $.each(filterKeys, function(idx, key) {
+      var formValue = window.localStorage.getItem("devMatFilter." + key);
+      /*
+       * Restore the value of the form input field.
+       * Where multiple values are present, like for check box groups,
+       * split the original form values, and set the individual input fields.
+       */
+      if(formValue) {
+        switch(key) {
+          case "keyword" :
+            $('input[name="filter-text"]').val(formValue);
+            break;
+          case "rating" :
+            if(formValue != 0) {
+              $('input[name="filter-rating"][value='+ formValue +']').attr('checked', true);
+            }
+            break;
+          case "topics" :
+            var valArray = formValue.split(" ");
+            $.each(valArray, function(idx, value){
+              $('input[name="filter-topic[]"][value=' + value + ']').attr('checked', true);
+            });
+            break;
+          case "formats":
+            var valArray = formValue.split(" ");
+            $.each(valArray, function(idx, value){
+              $('input[name="filter-format"][value=' + value + ']').attr('checked', true);
+            });
+            break;
+          case "skillLevel":
+            $('input[name="filter-skill"]').val(formValue);
+            break;
+          case "publishDate":
+            $('input[name="filter-publish-date"]').val(formValue);
+            break;
+        }
       }
-      var filterKeys = [
-          "keyword",
-          "rating",
-          "topics",
-          "formats",
-          "skillLevel",
-          "publishDate"
-      ];
-      $.each(filterKeys, function(idx, key) {
-          var formValue = window.localStorage.getItem("devMatFilter." + key);
-          /*
-           * Restore the value of the form input field.
-           * Where multiple values are present, like for check box groups,
-           * split the original form values, and set the individual input fields.
-           */
-          if(formValue) {
-              switch(key) {
-                  case "keyword" :
-                      $('input[name="filter-text"]').val(formValue);
-                      break;
-                  case "rating" :
-                      if(formValue != 0) {
-                          $('input[name="filter-rating"][value='+ formValue +']').attr('checked', true);
-                      }
-                      break;
-                  case "topics" :
-                      var valArray = formValue.split(" ");
-                      $.each(valArray, function(idx, value){
-                          $('input[name="filter-topic[]"][value=' + value + ']').attr('checked', true);
-                      });
-                      break;
-                  case "formats":
-                      var valArray = formValue.split(" ");
-                      $.each(valArray, function(idx, value){
-                          $('input[name="filter-format"][value=' + value + ']').attr('checked', true);
-                      });
-                      break;
-                  case "skillLevel":
-                      $('input[name="filter-skill"]').val(formValue);
-                      break;
-                  case "publishDate":
-                      $('input[name="filter-publish-date"]').val(formValue);
-                      break;
-              }
-          }
-      });
+    });
   },
   devMatFilter : function(filters) {
     // Get the Filter Items
@@ -117,7 +117,7 @@ app.dm = {
     //remove sandbox if there.
     var index = formats.indexOf('jbossdeveloper_sandbox');
     if (index !== -1) {
-        formats[index] = 'jbossdeveloper_quickstart';
+      formats[index] = 'jbossdeveloper_quickstart';
     }
 
     formats = formats.join(" ");
@@ -126,12 +126,12 @@ app.dm = {
       Skill Level
     */ 
     var $skill = $('input[name="filter-skill"]'),
-        step = $skill.attr('step'),
-        max = $skill.attr('max') || 100,
-        value = $skill.val(),
-        labels = $skill.data('labels').split(','),
-        idx = value / step,
-        skillLevel = labels[idx]; // final value
+      step = $skill.attr('step'),
+      max = $skill.attr('max') || 100,
+      value = $skill.val(),
+      labels = $skill.data('labels').split(','),
+      idx = value / step,
+      skillLevel = labels[idx]; // final value
 
     /*
       Publish Date
@@ -225,19 +225,19 @@ app.dm = {
 
     if(currentFilters['skillLevel']) {
       if (skillLevel != 'All') {
-          query.push('level:'+skillLevel);
+        query.push('level:'+skillLevel);
       }
     }
 
     //Handle quickstarts and sandbox quickstarts
     if ((sandboxEnabled && quickstartsEnabled) || (!sandboxEnabled && !quickstartsEnabled)) {
-        //do nothing, the format filter will take care of this case
+      //do nothing, the format filter will take care of this case
     } else if (!sandboxEnabled && quickstartsEnabled) {
-        //filter out the sandbox quickstarts
-        query.push('-github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
+      //filter out the sandbox quickstarts
+      query.push('-github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
     } else if (sandboxEnabled && !quickstartsEnabled) {
-        //filter out the regular quickstarts
-        query.push('github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
+      //filter out the regular quickstarts
+      query.push('github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
     }
 
     if(currentFilters['publishDate']) {
@@ -277,160 +277,160 @@ app.dm = {
 
       // Create a paginated list
       $('ul.pagination').paging(hits.length, {
-          format: '< (qq-) nncnn (-pp) >',
-          // Display 9 hits in a page
-          perpage: 9,
-          // When a new page in the list of pages is to be displayed
-          onSelect: function(page) {
-              var html = "";
-              var data = this.slice;
-              for (var i = data[0]; i < data[1]; i++) {
+        format: '< (qq-) nncnn (-pp) >',
+        // Display 9 hits in a page
+        perpage: 9,
+        // When a new page in the list of pages is to be displayed
+        onSelect: function(page) {
+          var html = "";
+          var data = this.slice;
+          for (var i = data[0]; i < data[1]; i++) {
 
-                  if ('sys_author' in hits[i].fields) {
-                      var author = hits[i].fields.sys_author;  
-                  }
+            if ('sys_author' in hits[i].fields) {
+              var author = hits[i].fields.sys_author;  
+            }
 
-                  var template = "<li class=\"material\">"; 
-                  template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
-                  // jbossdeveloper_example and video have thumbnails
-                  if(!hits[i].fields.thumbnail) {
-                      template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"'>";
-                  }
-                  if (hits[i].fields.github_repo_url) {
-                    var repo = hits[i].fields.github_repo_url;
-                    var repoLength = repo.length;
-                    if (repo.substring((repoLength - 25), repoLength) === 'jboss-sandbox-quickstarts') {
-                      template += "<a class=\"banner experimental\"></a>";
-                    }
-                  }
-                  if (hits[i].fields.sys_url_view) {
-                    var url = hits[i].fields.sys_url_view;
-                    var premiumPrefix = 'https://access.redhat.com';
-                    if (url.substring(0, (premiumPrefix.length)) === premiumPrefix) {
-                      template += "<a class=\"banner premium\"></a>";
-                    }
-                  }
-                  if (hits[i].fields.thumbnail) {
-                    template += "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
-                    template +="<img onerror=\"this.style.display='none'\" src=\"" + hits[i].fields.thumbnail + "\" />";
-                    template += "</a>"
-                  }
-                  var labels = "";
-                  if (hits[i].fields.duration && hits[i].fields.duration > 0) {
-                    labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
-                      hits[i].fields.duration.toString().toHHMMSS() +
-                    "</span>";
-                  }
-                  if (hits[i].fields.level && hits[i].fields.level.length > 0) {
-                    labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
-                      hits[i].fields.level +
-                    "</span>";
-                  }
-                  if (labels.length == 0) {
-                    labels += "<div class=\"empty-label\"></div>";
-                  }
-                  template += labels;
-                  template += "</div>";
-                  template += "<h4>" +
-                    "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
-                      hits[i].fields.sys_title +
-                    "</a>" +
-                  "</h4>";
-                  if (author && author.length > 0) {
-                   template += "<p class=\"author\">" +
-                     "Author: " +
-                       "<span class=\"contributor\" data-sys-contributor=\"" + author + "\">" +
-                         app.dcp.getNameFromContributor( author ) +
-                       "</span>" +
-                     "</p>";
-                  }
-                  template += "<p class=\"material-datestamp\">" +
-                    "Published " + moment(hits[i].fields.sys_created).fromNow() +
-                  "</p>" +
-                  "<div class=\"body\">" +
-                    "<p>" +
-                      hits[i].fields.sys_description.slice(0,300).concat(' ...') +
-                    "</p>" +
-                  "</div>" +
-                  "</li>";
-
-
-                  // Append template to HTML
-                  html += template;
-
-                  // Resolve contributors
-                  app.dcp.resolveContributors(contributors);
-              };
-
-              // Inject HTML into the DOM
-              if(!html) {
-                  html = "Sorry, no results to display. Please modify your search.";
+            var template = "<li class=\"material\">"; 
+            template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
+            // jbossdeveloper_example and video have thumbnails
+            if(!hits[i].fields.thumbnail) {
+              template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"'>";
+            }
+            if (hits[i].fields.github_repo_url) {
+              var repo = hits[i].fields.github_repo_url;
+              var repoLength = repo.length;
+              if (repo.substring((repoLength - 25), repoLength) === 'jboss-sandbox-quickstarts') {
+                template += "<a class=\"banner experimental\"></a>";
               }
-              $("ul.results > li").remove();
-              $("ul.results").html(html);
-              $("ul.results").removeClass('loading');
-
-              return false; // Don't follow the link!
-          },
-          // Format the paginator
-          onFormat: function(type) {
-              if(hits.length < 1) {
-                  return "";
+            }
+            if (hits[i].fields.sys_url_view) {
+              var url = hits[i].fields.sys_url_view;
+              var premiumPrefix = 'https://access.redhat.com';
+              if (url.substring(0, (premiumPrefix.length)) === premiumPrefix) {
+                template += "<a class=\"banner premium\"></a>";
               }
-              switch (type) {
+            }
+            if (hits[i].fields.thumbnail) {
+              template += "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
+              template +="<img onerror=\"this.style.display='none'\" src=\"" + hits[i].fields.thumbnail + "\" />";
+              template += "</a>"
+            }
+            var labels = "";
+            if (hits[i].fields.duration && hits[i].fields.duration > 0) {
+              labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
+                hits[i].fields.duration.toString().toHHMMSS() +
+              "</span>";
+            }
+            if (hits[i].fields.level && hits[i].fields.level.length > 0) {
+              labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
+                hits[i].fields.level +
+              "</span>";
+            }
+            if (labels.length == 0) {
+              labels += "<div class=\"empty-label\"></div>";
+            }
+            template += labels;
+            template += "</div>";
+            template += "<h4>" +
+              "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
+                hits[i].fields.sys_title +
+              "</a>" +
+            "</h4>";
+            if (author && author.length > 0) {
+              template += "<p class=\"author\">" +
+                "Author: " +
+                  "<span class=\"contributor\" data-sys-contributor=\"" + author + "\">" +
+                    app.dcp.getNameFromContributor( author ) +
+                  "</span>" +
+                "</p>";
+            }
+            template += "<p class=\"material-datestamp\">" +
+              "Published " + moment(hits[i].fields.sys_created).fromNow() +
+            "</p>" +
+            "<div class=\"body\">" +
+              "<p>" +
+                hits[i].fields.sys_description.slice(0,300).concat(' ...') +
+              "</p>" +
+            "</div>" +
+            "</li>";
 
-                  case 'block':
 
-                      if (!this.active)
-                          return '<li class="disabled">' + this.value + '</li>';
-                      else if (this.value != this.page)
-                          return '<li><a href="#' + this.value + '">' + this.value + '</a></li>';
-                      return '<li class="current"><a href="#' + this.value + '">' + this.value + '</a></li>';
+            // Append template to HTML
+            html += template;
 
-                  case 'left':
-                  case 'right':
+            // Resolve contributors
+            app.dcp.resolveContributors(contributors);
+          }
 
-                      if (!this.active) {
-                          return "";
-                      }
-                      return '<li><a href="#' + this.value + '">' + this.value + '</a></li>';
+          // Inject HTML into the DOM
+          if(!html) {
+            html = "Sorry, no results to display. Please modify your search.";
+          }
+          $("ul.results > li").remove();
+          $("ul.results").html(html);
+          $("ul.results").removeClass('loading');
 
-                  case 'next':
+          return false; // Don't follow the link!
+        },
+        // Format the paginator
+        onFormat: function(type) {
+          if(hits.length < 1) {
+            return "";
+          }
+          switch (type) {
 
-                      if (this.active)
-                          return '<li class="next arrow"><a href="#' + this.value + '" class="next">&raquo;</a></li>';
-                      return '<li class="next arrow unavailable"><a href>&raquo;</a></li>';
+            case 'block':
 
-                  case 'prev':
+              if (!this.active)
+                return '<li class="disabled">' + this.value + '</li>';
+              else if (this.value != this.page)
+                return '<li><a href="#' + this.value + '">' + this.value + '</a></li>';
+              return '<li class="current"><a href="#' + this.value + '">' + this.value + '</a></li>';
 
-                      if (this.active)
-                          return '<li class="prev arrow"><a href="#' + this.value + '" class="prev">&laquo;</a></li>';
-                      return '<li class="prev arrow unavailable"><a href>&laquo;</a></li>';
+            case 'left':
+            case 'right':
 
-                  case 'first':
-
-                      if (this.active)
-                          return '<li><a href="#' + this.value + '" class="first">First</a></li>';
-                      return '<li class="disabled">First</li>';
-
-                  case 'last':
-
-                      if (this.active)
-                          return '<li><a href="#' + this.value + '" class="last">Last</a></li>';
-                      return '<li class="disabled">Last</li>';
-
-                  case "leap":
-
-                      if (this.active)
-                          return "   ";
-                      return "";
-
-                  case 'fill':
-
-                      if (this.active)
-                          return '<li class="unavailable">...</li>';
-                      return "";
+              if (!this.active) {
+                return "";
               }
+              return '<li><a href="#' + this.value + '">' + this.value + '</a></li>';
+
+            case 'next':
+
+              if (this.active)
+                return '<li class="next arrow"><a href="#' + this.value + '" class="next">&raquo;</a></li>';
+              return '<li class="next arrow unavailable"><a href>&raquo;</a></li>';
+
+            case 'prev':
+
+              if (this.active)
+                return '<li class="prev arrow"><a href="#' + this.value + '" class="prev">&laquo;</a></li>';
+              return '<li class="prev arrow unavailable"><a href>&laquo;</a></li>';
+
+            case 'first':
+
+              if (this.active)
+                return '<li><a href="#' + this.value + '" class="first">First</a></li>';
+              return '<li class="disabled">First</li>';
+
+            case 'last':
+
+              if (this.active)
+                return '<li><a href="#' + this.value + '" class="last">Last</a></li>';
+              return '<li class="disabled">Last</li>';
+
+            case "leap":
+
+              if (this.active)
+                return "   ";
+              return "";
+
+            case 'fill':
+
+              if (this.active)
+                return '<li class="unavailable">...</li>';
+              return "";
+            }
           }
       });
     });
