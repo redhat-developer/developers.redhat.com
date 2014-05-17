@@ -1,6 +1,6 @@
 name: Red Hat JBoss Enterprise Application Platform
 abbreviated_name: JBoss EAP
-current_version: 6.3.0.Beta
+current_version: 6.2.0.GA
 has_installer: true
 # EAP is still using an old name for docs on the customer portal
 documentation_path: JBoss_Enterprise_Application_Platform
@@ -65,10 +65,9 @@ default_download_artifact_type: installer
 downloads:
   6.3.0.Beta:
     description: Minor release of JBoss EAP 6.x series
+    tag_line: Features some new stuff like unicorns and rainbows. A free pony with every download. You should check it out!
     release_date: 2014-05-15
     assets:
-      installer:
-        size: 150mb
       zip:
         name: Zip Files
         artifacts: 

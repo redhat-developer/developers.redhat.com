@@ -76,7 +76,7 @@ module JBoss
               download.description ||= product.abbreviated_name
               download.release_date = download.release_date ? download.release_date : Date.today
               download.assets ||= @default_download_assets.clone
-              b = []
+              b = {}
               download.assets.each do |l, w|
                 asset = OpenStruct.new(w)
                 asset.key = l
@@ -110,11 +110,12 @@ module JBoss
                   c << artifact
                 end
                 asset.artifacts = c
-                b << asset 
+                b[asset.key] = asset 
               end
               download.assets = b
               a[download.version] = download
             end
+            product.default_download_artifact_type ||=  @default_download_artifact_type
             product.downloads = Hash[a.sort_by{|k, v| v.release_date}.reverse]
             if product.current_version
               product.current_download = product.downloads[product.current_version]
@@ -122,14 +123,30 @@ module JBoss
               product.current_download = product.downloads.values[0]
               product.current_version = product.current_download.version
             end
-            product.older_downloads = product.downloads.clone
-            product.older_downloads.delete(product.current_version)
-            product.default_download_artifact_type ||=  @default_download_artifact_type
             product.current_download.assets.each do |asset|
-              if asset.key == product.default_download_artifact_type
-                product.default_download_artifact ||= asset.artifacts[0]
+              if asset[1].key == product.default_download_artifact_type
+                product.default_download_artifact ||= asset[1].artifacts[0]
               end
             end
+            # Identify any Betas that need highlighting
+            if product.beta_version
+              product.beta_download = product.downloads[product.beta_version]
+            elsif product.downloads.size > 0 && product.current_download
+              candidates = product.downloads.select { |k, v| v.release_date > product.current_download.release_date }
+              if candidates.size > 0
+                product.beta_download = candidates.values[0]
+              end
+            end
+            if product.beta_download
+              product.beta_download.assets.each do |asset|
+                if asset[1].key == product.default_download_artifact_type
+                  product.beta_download_artifact ||= asset[1].artifacts[0]
+                end
+              end
+            end
+            product.older_downloads = product.downloads.clone
+            product.older_downloads.delete(product.current_version)
+            product.older_downloads.delete(product.beta_version)
           end
         end
 

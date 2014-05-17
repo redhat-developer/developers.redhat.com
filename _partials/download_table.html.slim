@@ -1,0 +1,32 @@
+---
+---
+table
+  colgroup
+    col(style="width:25%")
+    col(style="width:25%")
+    col(style="width:25%")
+    col(style="width:25%")
+  thead
+    tr
+      th Version
+      th Release Date
+      th Description
+      th Download
+  tbody
+    - page.downloads.each do |download|
+      - download.assets.values.each_with_index do |asset, i|
+        tr
+          td 
+            - if i == 0
+              #{download.version}
+          td 
+            - if i == 0
+              #{download.release_date} 
+          td #{asset.name}
+          td.asset-list 
+            - asset.artifacts.each do |artifact|
+              span.item
+                a(href="#{artifact.url}")
+                  i>(class="#{artifact.icon}")
+                  | #{artifact.name} #{artifact.size ? "(" + artifact.size + ")" : ""}
+

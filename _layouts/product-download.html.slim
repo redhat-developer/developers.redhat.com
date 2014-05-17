@@ -11,75 +11,25 @@ type: Downloads
   asciidoc:
     To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the JBoss Developer Program which provides $0 subscriptions for development use only. link:../../../faq[Read more] about the JBoss Developer Program.
 
+  - if page.product.beta_download
+    h4.download-link: a(href="#{page.product.beta_download_artifact.url}")
+      i.fa.fa-download>
+      | Download #{page.product.abbreviated_name} #{page.product.beta_download.version}
+
+    = partial("download_table.html.slim", { 'downloads' => [page.product.beta_download] })
+
   h4.download-link: a(href="#{page.product.default_download_artifact.url}")
     i.fa.fa-download>
     | Download #{page.product.abbreviated_name} #{page.product.current_version}
 
-  table
-    colgroup
-      col(style="width:25%")
-      col(style="width:25%")
-      col(style="width:25%")
-      col(style="width:25%")
-    thead
-      tr
-        th Version
-        th Release Date
-        th Description
-        th Download
-    tbody
-      - for i in 0..(page.product.current_download.assets.length-1)
-        - asset = page.product.current_download.assets[i]
-        tr
-          td 
-            - if i == 0
-              #{page.product.current_download.version}
-          td 
-            - if i == 0
-             #{page.product.current_download.release_date} 
-          td #{asset.name}
-          td.asset-list 
-            - asset.artifacts.each do |artifact|
-              span.item
-                a(href="#{artifact.url}")
-                  i>(class="#{artifact.icon}")
-                  | #{artifact.name} #{artifact.size ? "(" + artifact.size + ")" : ""} 
+  = partial("download_table.html.slim", { 'downloads' => [page.product.current_download] })
 
   - if page.product.older_downloads && page.product.older_downloads.length > 0 
     a.view-older-downloads(href="#")
       | View Older Downloads
       i.fa.fa-caret-down
 
-    table
-      colgroup
-        col(style="width:25%")
-        col(style="width:25%")
-        col(style="width:25%")
-        col(style="width:25%")
-      thead
-        tr
-          th Version
-          th Release Date
-          th Description
-          th Download
-      tbody
-        - page.product.older_downloads.each do |k, download|
-          - for i in 0..(download.assets.length-1)
-            - asset = download.assets[i]
-            tr
-              td 
-                - if i == 0
-                  #{download.version}
-              td 
-                - if i == 0
-                 #{download.release_date} 
-              td #{asset.name}
-              td.asset-list 
-                - asset.artifacts.each do |artifact|
-                  span.item
-                    a(href="#{artifact.url}")
-                      i>(class="#{artifact.icon}")
-                      | #{artifact.name} #{artifact.size ? "(" + artifact.size + ")" : ""} 
+    = partial("download_table.html.slim", { 'downloads' => page.product.older_downloads.values })
 
 - else
 
