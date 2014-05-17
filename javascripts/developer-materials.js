@@ -352,10 +352,12 @@ app.dm = {
                   "</span>" +
                 "</p>";
             }
-            template += "<p class=\"material-datestamp\">" +
-              "Published " + moment(hits[i].fields.sys_created).fromNow() +
-            "</p>" +
-            "<div class=\"body\">" +
+            if (hits[i].fields.sys_created) {
+              template += "<p class=\"material-datestamp\">" +
+                "Published " + moment(hits[i].fields.sys_created).fromNow() +
+              "</p>"
+            }
+            template += "<div class=\"body\">" +
               "<p>" +
                 hits[i].fields.sys_description.slice(0,300).concat(' ...') +
               "</p>" +
