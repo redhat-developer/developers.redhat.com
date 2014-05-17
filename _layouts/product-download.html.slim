@@ -42,6 +42,14 @@ type: Downloads
     i.fa.fa-download>
     | Download #{page.product.abbreviated_name} from the Red Hat Customer Portal
 
+- if page.product.xpaas_url
+  h3.divider  JBoss xPaaS Services for OpenShift
+
+  asciidoc:
+    You can also deploy applications using #{page.product.abbreviated_name} on OpenShift, meaning you don't even need to download the bits! Try #{page.product.abbreviated_name} and other middleware products on OpenShift Online to get your applications up and running even faster.
+    
+    * link:#{page.product.xpaas_url}[Use #{page.product.abbreviated_name} on OpenShift]
+
 h3.divider Ready to use #{page.product.abbreviated_name} in Production?
 
 asciidoc:
