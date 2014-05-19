@@ -24,11 +24,11 @@ guides:
   User_Guide:
 downloads:
   6.0.1.GA:
-    release_date: 2014-04-3
+    release_date: 2014-04-03
     description: A business process and decision management platform that combines Drools Expert, Drools Guvnor, Drools Fusion and JBoss jBPM in a single integrated distribution.
     assets:
       installer:
-        size: 284mb
+        size: 272mb
       zip:
         artifacts:
           deployable:
@@ -42,6 +42,23 @@ downloads:
       release_notes:
       source:
         size: 177mb
+        filename: jboss-bpmsuite-6.0.1.GA-source.zip
+  6.0.0.GA:
+    release_date: 2014-02-05
+    description: A business process and decision management platform that combines Drools Expert, Drools Guvnor, Drools Fusion and JBoss jBPM in a single integrated distribution.
+    assets:
+      installer:
+        size: 258mb
+      zip:
+        artifacts:
+          deployable:
+            size: 174mb
+      zip_planner:
+        size: 55mb
+        name: Optaplanner
+      release_notes:
+      source:
+        size: 154mb
         filename: jboss-bpmsuite-6.0.1.GA-source.zip 
 
 #  6.0.0.Beta:
