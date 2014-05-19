@@ -18,6 +18,7 @@ profile_base: &profile
   dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
   cdn_http_base: &cdn_http_base //static.jboss.org/www 
   log_faraday: true
+  push_to_searchisko: true
   minify: &minify true 
   metrics: true
   robots: true
@@ -33,6 +34,7 @@ profiles:
   development:
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     log_faraday: true
+    push_to_searchisko: false
 
   staging: 
     <<: *profile
