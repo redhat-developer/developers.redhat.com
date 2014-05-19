@@ -634,7 +634,7 @@ $(function() {
   app.sideNav();
 
   // Small hack to allow us to specify selectors and children to make sticky (used for TOC on FAQ and dev mats)
-  stickySections = {'faq':'h3', 'gsi': 'h2'};
+  stickySections = {'faq':'h2', 'gsi': 'h2'};
   for (var key in stickySections) {
     app.stickyNav(key, stickySections[key]);
   }
