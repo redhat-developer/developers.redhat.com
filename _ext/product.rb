@@ -89,7 +89,7 @@ module JBoss
                     artifact.classifier ||= artifact_classifier l, m, artifact.type
                     artifact.name ||=  artifact_attr m, "name", key_to_name(m)
                     artifact.filename ||= "jboss-#{product.id}-#{download.version}#{artifact.classifier}.#{artifact.type}"
-                    artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}"
+                    artifact.url = "#{site.download_manager_file_base_url}#{artifact.filename}"
                     artifact.icon ||= artifact_attr m, "icon", "fa fa-download"
                     c << artifact
                   end
@@ -104,7 +104,7 @@ module JBoss
                     # Special case for release notes
                     artifact.url = product.guides['Release_Notes'].formats['html'].url
                   else
-                    artifact.url = "#{site.download_manager_file_base_url}/#{artifact.filename}"
+                    artifact.url = "#{site.download_manager_file_base_url}#{artifact.filename}"
                   end
                   artifact.icon ||= artifact_attr l, "icon", "fa fa-download"
                   c << artifact
@@ -187,7 +187,7 @@ module JBoss
           product.documentation_path ||= product.name.gsub(/ /, "_")
           product.documentation_minor_version ||= product.current_minor_version
           # Set the documentation url to the default value, if not set
-          product.documentation_url ||= site.product_documentation_base_url + "/" + product.documentation_path
+          product.documentation_url ||= site.product_documentation_base_url + product.documentation_path
           # Process the guides declared for the product
           a = {} 
           product.guide_base_url ||= "#{product.documentation_url}/#{product.documentation_minor_version}"
