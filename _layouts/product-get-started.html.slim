@@ -54,13 +54,15 @@ ol
 h3.divider Configure Apache&trade; Maven
  
 = partial "maven_repository_instructions.adoc"
- 
-h3.divider Try a quickstart or example. Watch a video
 
-= partial 'developer-materials-featured.html.slim'
+- if page.product.featured_items
 
-= partial 'developer-materials-results.html.slim', {'max_results' => 3}
+  h3.divider Try a quickstart or example. Watch a video
 
-p: a(href="../developer-materials") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
+  = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
+
+  = partial('developer-materials-results.html.slim', {'max_results' => 3})
+
+  p: a(href="../developer-materials") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
 
 

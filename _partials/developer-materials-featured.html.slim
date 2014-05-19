@@ -1,14 +1,19 @@
 .slider-wrapper
   .slider#slider
     .swipe-wrap
-      - items = site.featured_items
-      - if self[:page].output_page.product && self[:page].output_page.product['featured_items']
-        - items = self[:page].output_page.product['featured_items']
-      - for item in items
+      - for item in page.featured_items
+        - if item.url
+          - if !item.url.start_with?("http")
+            - url = site.base_url + item.url
+          - else
+            - url = item.url
         .slide
-          img(src=cdn(site.base_url + '/' + item['image_url']))
-          .slider-label
-            h3 = item['title']
-            p = item['text']
+          a href=url 
+            img(src=cdn(item.image_url))
+            .slider-label
+              - if item.title
+                h3 = item.title
+              - if item.text
+                p = item.text
   .slider-pager
 

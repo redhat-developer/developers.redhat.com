@@ -14,7 +14,7 @@ issues: [DEVELOPER-243, DEVELOPER-179, DEVELOPER-207, DEVELOPER-281]
     = partial 'developer-materials-filters.html.slim'
   .developer-materials-main.text-content
     h2.divider Featured 
-    = partial 'developer-materials-featured.html.slim'
+    = partial('developer-materials-featured.html.slim', {'featured_items' => site.featured_items})
     = partial 'developer-materials-results.html.slim'
   .space
 
