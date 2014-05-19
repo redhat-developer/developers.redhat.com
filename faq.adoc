@@ -1,26 +1,43 @@
 = JBoss Developer FAQ 
 :awestruct-layout: faq
-:awestruct-status: red
+:awestruct-status: yellow
+:awestruct-issues: [WAY-46]
 :awestruct-description: Answers common questions about JBoss product and project availability and www.jboss.org.
 
-== Accounts and Profiles
+== Overview
 
-=== I've forgotten my password, can you reset it for me?
+=== What is the JBoss Developer Program?
 
-1. Go to the https://community.jboss.org/emailPasswordToken%21input.jspa[Reset Your Password] page.
-2. Enter your user name or email.
-3. We will email you a link you can use to reset your password.
+The purpose of the Red Hat JBoss Developer program is to provide subscribers the best tools, content and assistance so that they can be as productive as possible with Red Hat JBoss middleware technologies.
 
-If you have any problems please contact us with the details and we'll do our best to help.
+Subscribers get access to Red Hat JBoss Enterprise Middleware products, exclusive content and access to product-focused forums.  All of these assets are focused on helping subscribers make applications with JBoss technologies as easy as possible.
 
+=== How do I get a subscription?
 
-=== How do I sign up for an account?
-
-You must have an account in order to download product binaries under the $0 developer subscription, post in the forums, and access some content. In order to register for an account you must provide your name and your email address. We encourage you to provide more information so that others know a bit more about you.
+You must have an account in order to download product binaries under the $0 developer subscription, post in the forums, and access exclusive content. In order to register for an account you will need to provide your name and your email address. We encourage you to provide more information so that others know a bit more about you.  You must also agree to the http://www.jboss.org/developer-program/termsandconditions[terms and conditions] of the program.
 
 1. Click the *Register* link at the top right of this page.
 2. Fill out the form.
 3. You will be sent an email to verify your email address.
+
+=== Will a subscription cost me anything?
+
+The JBoss Developer Program is available for $0.  You will need to register, provide some minimal information and agree to the http://www.jboss.org/developer-program/termsandconditions[terms and conditions] of the program.
+
+=== Are there any restrictions?
+
+The http://www.jboss.org/developer-program/termsandconditions[terms and conditions] describe how the developer program subscription may be used.  The major difference between a full commercial http://www.redhat.com/about/subscription/[Red Hat subscription] and the Developer Program subscription is that the Red Hat JBoss Developer Program is intended for individual *developer-use* only.  Integration, test and production environments will require a paid subscription.
+
+
+=== How do I learn more about Red Hat subscriptions?
+
+Find out more about the value of http://www.redhat.com/about/subscription/[Red Hat subscriptions].  Contact sales via http://www.redhat.com/contact/sales.html[web form] or http://www.redhat.com/resourcelibrary/articles/articles-red-hat-enterprise-linux-renewal-guide[phone] Red Hat or a partner.
+
+=== How do I get started?
+
+1.  Create or update your account.
+2.  Download link:../products/devstudio/overview/[JBoss Developer Studio].
+3.  Check out the many quickstarts and tutorials listed in the link:../get-started[get started] section.
 
 === How do I edit my profile?
 
@@ -38,39 +55,23 @@ If you have a JBoss account, you can create a profile associated with it. On the
 
 Many pages include a comment box at the bottom. This allows you to quickly ask a question about the topic covered by the page.
 
-Alternatively, you may want to post a message in a forum. Each forum contains a series of related topics, allowing users to search for information quickly and easily. Creating a new thread is as simple as choosing a relevant forum and posting a message. Threads are stored in chronological order so that anyone reading them later can follow what was discussed.Replies to threads are nested.
-
-=== Can I be notified to updates threads on the forums?
-
-TODO
-
-=== How do I choose which forum to post in?
-
-Each product has a forum, and you should choose the forum to post to based on the product you need help with. Many projects have forums or mailing lists, and details can be found on the link:../projects[Upstream projects] page. 
+Alternatively, you may want to post a message in a link:../forums[forum]. Each forum contains a series of related topics, allowing users to search for information quickly and easily. Creating a new thread is as simple as choosing a relevant forum and posting a message. Threads are stored in chronological order so that anyone reading them later can follow what was discussed.Replies to threads are nested.
 
 === When should I create a new thread?
 
 If you're thinking about using the forums to ask for help, or to find the answer to a question, then take a moment to have a look and see if somebody else has already created a similar thread or posted a reply with relevant information. This may well save you time!
 
-To perform a search simply TODO. This will present you with a page where you can enter a search query and specify search options.
+If you cannot find a previous thread, then should create a new thread.
 
-If can't find a previous thread, then should create a new thread.
+=== Is there a guide to using the search, markup wiki and other features of community.jboss.org?
 
-=== Do you have a forum policy?
-
-Yes, we do. When you post to the forums, please follow these simple guidelines.
-
-TODO
-
-=== Is there a guide to using the search, markup wiki and other features of http://community.jboss.org?
-
-http://community.jboss.org uses Jive. You can find the user guide for Jive at TODO
+http://community.jboss.org uses Jive. You can find the user guide for Jive link:http://docs.jivesoftware.com/jive/6.0/community_user/index.jsp[here^].
 
 == Reporting issues with JBoss Products and Upstream Projects
 
 === How do I report an issue?
 
-Our issue tracking system is available on http://issues.jboss.org. You may use your jboss.org user account to login this system. To find out how to use the issue tracking system, refer to TODO
+Our issue tracking system is available on http://issues.jboss.org. You may use your jboss.org user account to login this system. To find out how to use the issue tracking system, refer to https://confluence.atlassian.com/display/JIRA/JIRA+Documentation
 
 === What information should I provide when submitting a bug report?
 
@@ -89,3 +90,12 @@ When submitting a request for a new feature make sure to keep it as clear and to
 
 It is very helpful to provide any use cases you may have, to help the person who implements your request understand the motivation.
 
+== Accounts and Profiles
+
+=== I've forgotten my password, can you reset it for me?
+
+1. Go to the https://community.jboss.org/emailPasswordToken%21input.jspa[Reset Your Password] page.
+2. Enter your user name or email.
+3. We will email you a link you can use to reset your password.
+
+If you have any problems please contact us with the details and we'll do our best to help.
