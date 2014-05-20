@@ -138,10 +138,10 @@ module JBoss
               end
             end
             if product.beta_download
-              product.beta_download.assets.each do |asset|
-                if asset[1].key == product.default_download_artifact_type
-                  product.beta_download_artifact ||= asset[1].artifacts[0]
-                end
+              if product.beta_download.assets.has_key? product.default_download_artifact_type
+                product.beta_download_artifact = product.beta_download.assets[product.default_download_artifact_type].artifacts[0]
+              elsif product.beta_download.assets.size > 0
+                product.beta_download_artifact = product.beta_download.assets.values[0].artifacts[0]
               end
             end
             product.older_downloads = product.downloads.clone
