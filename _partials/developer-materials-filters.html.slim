@@ -6,22 +6,19 @@ form.dev-mat-filters(method="GET" action="")
   .filter-block
     input(type="text" placeholder="Filter by keyword" name="filter-text")
 
-  /No content data available in the DCp yet as we don't have the ability to have users set it.
-  /.filter-block
-    h5.show-more Rating
-    .filter-block-inputs
-      label(for="filter-rating")
-        input(type="radio" name="filter-rating" value="1")
-      label(for="filter-rating")
-        input(type="radio" name="filter-rating" value="2")
-      label(for="filter-rating")
-        input(type="radio" name="filter-rating" value="3")
-      label(for="filter-rating")
-        input(type="radio" name="filter-rating" value="4")
-      label(for="filter-rating")
-        input(type="radio" name="filter-rating" value="5")
-
-
+  .filter-block
+   h5.show-more Rating
+   .filter-block-inputs
+     label(for="filter-rating")
+       input(type="radio" name="filter-rating" value="1")
+     label(for="filter-rating")
+       input(type="radio" name="filter-rating" value="2")
+     label(for="filter-rating")
+       input(type="radio" name="filter-rating" value="3")
+     label(for="filter-rating")
+       input(type="radio" name="filter-rating" value="4")
+     label(for="filter-rating")
+       input(type="radio" name="filter-rating" value="5")
 
   .filter-block.filter-block-checkboxes
     h5.show-more Topics
@@ -91,8 +88,6 @@ form.dev-mat-filters(method="GET" action="")
     input(type="range" name="filter-skill" onchange="this.setAttribute('value', this.value);" value="0" step="33" data-labels="All,Beginner,Intermediate,Advanced")
     span.skill-display All
 
-  /The DCP should support this, but we don't have these controls wired up to do the right query.
-  /Also, this would be better as a slider like the "Skill level" as it doesn't make sense to select multiple.
   .filter-block
     h5 Publish Date
     input(type="range" name="filter-publish-date" onchange="this.setAttribute('value', this.value);" value="0" step="25" data-labels="All, Within 1 Year, Within 30 days, Within 7 days, Within 24hrs")

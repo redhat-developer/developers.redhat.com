@@ -9,5 +9,8 @@ ul.side-nav
   li.side-nav-toggle
     a(href="#") Menu
   - page.nav_items.each do |k,v|
-    li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") #{v}
+    - if k == 'developer-materials'
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}/index.html?product=#{page.parent.product.id}") #{v}
+    - else 
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}/index.html") #{v}
 
