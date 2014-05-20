@@ -25,15 +25,15 @@
             "index_name"       : "sys_projects",
             "index_type"       : "project",
             "source_field"     : "target_product",
-            "idx_search_field" : "type_specific_code.jbossdeveloper_quickstart",
+            "idx_search_field" : "type_specific_code.jbossdeveloper_website_code",
             "result_mapping"   : [
-            {
-              "idx_result_field" : "code",
-              "target_field"     : "sys_project"
-            },{
-              "idx_result_field" : "name",
-              "target_field"     : "sys_project_name"
-            }
+	            {
+	              "idx_result_field" : "code",
+	              "target_field"     : "sys_project"
+	            },{
+	              "idx_result_field" : "name",
+	              "target_field"     : "sys_project_name"
+	            }
             ]
           }
         },{
@@ -257,10 +257,10 @@
               "idx_search_field" : "type_specific_code.jbossdeveloper_website_code",
               "result_mapping"   : [{
                   "idx_result_field" : "code",
-                  "target_field"     : "prep_project"
+                  "target_field"     : "sys_project"
                 },{
 			            "idx_result_field" : "name",
-			            "target_field"     : "prep_project_name"
+			            "target_field"     : "sys_project_name"
 		            }
               ]
           } 
