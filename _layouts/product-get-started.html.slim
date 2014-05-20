@@ -62,8 +62,8 @@ h3.divider Configure Apache&trade; Maven
 
   = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
 
-  = partial('developer-materials-results.html.slim', {'max_results' => 3})
+  = partial('developer-materials-results.html.slim', {'max_results' => 3, 'product' => page.product})
 
-  p: a(href="../developer-materials") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
+  p: a(href="../developer-materials/index.html?product=#{page.product.id}") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
 
 

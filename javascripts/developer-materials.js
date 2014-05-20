@@ -82,6 +82,12 @@ app.dm = {
     //Currently the only way to specify no limit
     var maxResults = 500;
 
+    if (filters.max_results) {
+      maxResults = filters.max_results;
+      delete filters['max_results'];
+      console.debug('maxResults:' + maxResults);
+    }
+
     /*
       Keyword
     */
@@ -123,13 +129,15 @@ app.dm = {
     /*
       Skill Level
     */ 
-    var $skill = $('input[name="filter-skill"]'),
-      step = $skill.attr('step'),
-      max = $skill.attr('max') || 100,
-      value = $skill.val(),
-      labels = $skill.data('labels').split(','),
-      idx = value / step,
-      skillLevel = labels[idx]; // final value
+    var $skill = $('input[name="filter-skill"]');
+    if ($skill.length) {
+      var step = $skill.attr('step'),
+        max = $skill.attr('max') || 100,
+        value = $skill.val(),
+        skillLabels = $skill.data('labels').split(','),
+        idx = value / step,
+        skillLevel = skillLabels[idx]; // final value
+    }
 
     /*
       Publish Date
@@ -616,6 +624,8 @@ $(function() {
   var product = app.getQueryVariable('product');
   if (product) {
     app.dm.devMatFilter({'product' : product});
+  } else if (typeof devMatOptions !== 'undefined') { // Feels hacky
+    app.dm.devMatFilter(devMatOptions);
   }
 });
 

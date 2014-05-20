@@ -35,3 +35,6 @@ ul.results.small-block-grid-2.large-block-grid-3
 
 div.pagination-centered
   ul.pagination
+- if !page.product.nil?
+  javascript:
+    var devMatOptions = {'product':'#{page.product.id}','max_results':#{page.max_results}};
