@@ -34,12 +34,13 @@ Awestruct::Extensions::Pipeline.new do
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jdg-quickstarts', 
                                                           layout: 'get-started-item', 
-                                                          output_dir: '/quickstarts/jdg',
+                                                          output_dir: '/quickstarts/datagrid',
                                                           product: 'datagrid')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jon-quickstarts', 
                                                           layout: 'get-started-item', 
-                                                          output_dir: '/quickstarts/jon')
+                                                          output_dir: '/quickstarts/operationsnetwork',
+                                                          product: 'operationsnetwork')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_picketlink-quickstarts', 
                                                           layout: 'get-started-item', 
@@ -56,7 +57,8 @@ Awestruct::Extensions::Pipeline.new do
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_wfk-quickstarts', 
                                                           layout: 'get-started-item', 
-                                                          output_dir: '/quickstarts/wfk')
+                                                          output_dir: '/quickstarts/wfk',
+                                                          product: 'eap')
 
   extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
   
