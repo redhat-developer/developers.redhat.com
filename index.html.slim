@@ -22,12 +22,13 @@ description: The simple, modern & productive way to build apps and infrastructur
 / Hero
 / Picturefill so we only load what we need on each device
 .row.hero
-  span(data-picture="true" data-alt="Dev Nation")
-    span(data-src=cdn(site.base_url + "/images/branding/devnation1_mobile_480x500.png"))
-    span(data-src=cdn(site.base_url + "/images/branding/devnation1_desktop_1175x400.png") data-media="(min-width: 480px)")
-    / Fallback to the small on on non-js devices
-    noscript
-      img(src=cdn(site.base_url + "/images/branding/devnation1_mobile_480x500.png") alt="Dev Nation")
+  a( href="http://blog.devnation.org")
+    span(data-picture="true" data-alt="Dev Nation")
+      span(data-src=cdn("http://design.jboss.org/jbossdeveloper/sitedesign/jbossdeveloper_1_0/makerfiles/images/hero_mobile_480x500_devnationwrap.png"))
+      span(data-src=cdn("http://design.jboss.org/jbossdeveloper/sitedesign/jbossdeveloper_1_0/makerfiles/images/hero_desktop_1175x400_devnationwrap.png") data-media="(min-width: 480px)")
+      / Fallback to the small on on non-js devices
+      noscript
+        img(src=cdn("http://design.jboss.org/jbossdeveloper/sitedesign/jbossdeveloper_1_0/makerfiles/images/hero_mobile_480x500_devnationwrap.png") alt="Dev Nation")
   
 / Buzz and Event Updates
 .row.updates.mobilehome
