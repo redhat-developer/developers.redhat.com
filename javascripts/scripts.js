@@ -262,11 +262,16 @@ app.init = function() {
   }
 
   /*
+   * Restore the Developer Materials Filter from local storage
+   */
+  if ($('.developer-materials-sidebar').length) {
+     app.dm.restoreFilter();
+  }
+
+  /*
    * Populate developer materials results if on developer materials page
    */
-
-  if ($('.developer-materials').length) {
-     app.dm.restoreFilter();
+  if ($('.developer-materials-results').length) {
      app.dm.devMatFilter();
   }
 

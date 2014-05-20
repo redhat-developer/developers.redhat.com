@@ -79,13 +79,17 @@ app.dm = {
     // Set filters to an empty object if it isn't defined
     filters = typeof filters !== 'undefined' ? filters : {};
 
-    //Currently the only way to specify no limit
-    var maxResults = 500;
+    // Load any options configured on the page
+    var developerMaterialsResults = $( '.developer-materials-results' );
+    if (developerMaterialsResults.length) {
+      var product = developerMaterialsResults.data("developer-materials-filter-product");
+      var maxResults = developerMaterialsResults.data("developer-materials-max-results");
+    }
 
-    if (filters.max_results) {
-      maxResults = filters.max_results;
-      delete filters['max_results'];
-      console.debug('maxResults:' + maxResults);
+    // Set the default maxResults
+    if (!maxResults) {
+      //Currently the only way to specify no limit
+      var maxResults = 500;
     }
 
     /*
@@ -179,6 +183,7 @@ app.dm = {
       "topics" : topics,
       "formats" : formats,
       "skillLevel" : skillLevel,
+      "product" : product,
       "publishDate" : publishDate
     });
 
@@ -621,11 +626,5 @@ $(function() {
     });
   }
 
-  var product = app.getQueryVariable('product');
-  if (product) {
-    app.dm.devMatFilter({'product' : product});
-  } else if (typeof devMatOptions !== 'undefined') { // Feels hacky
-    app.dm.devMatFilter(devMatOptions);
-  }
 });
 

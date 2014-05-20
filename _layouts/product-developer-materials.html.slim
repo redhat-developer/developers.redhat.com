@@ -14,7 +14,8 @@ issues: [DEVELOPER-207, DEVELOPER-243, DEVELOPER-179, DEVELOPER-207, DEVELOPER-2
   - if page.product.featured_items
     h2.divider Featured 
     = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
-  = partial 'developer-materials-results.html.slim'
+  .developer-materials-results data-developer-materials-filter-product="#{page.product.id}"
+    = partial 'developer-materials-results.html.slim'
 .large-4.columns
   = partial 'product-right-bar.html.slim', {'parent' => page}
 
