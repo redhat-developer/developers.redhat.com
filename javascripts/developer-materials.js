@@ -276,10 +276,18 @@ app.dm = {
       }
 
       // Create a paginated list
+      var perPage = 9;
+      var pages = hits.length / perPage;
+      $('ul.pagination').removeClass('one-page'); 
+
+      if(pages <= 1) {
+        $('ul.pagination').addClass('one-page');
+      }
+
       $('ul.pagination').paging(hits.length, {
         format: '< (qq-) nncnn (-pp) >',
         // Display 9 hits in a page
-        perpage: 9,
+        perpage: perPage,
         // When a new page in the list of pages is to be displayed
         onSelect: function(page) {
           var html = "";
@@ -442,8 +450,8 @@ app.dm = {
               return "";
           }
         }
-      });
-    });
+      }); // end Paging 
+    }); // end ajax done()
   },
   clearFilters: function($el) {
     var form = $('form.dev-mat-filters');

@@ -4,5 +4,9 @@ div.pagination-centered {
     li {
       &:before {display: none;}
     }
+    &.one-page {
+      visibility: hidden;
+      margin-top: 0;
+    }
   }
 }
