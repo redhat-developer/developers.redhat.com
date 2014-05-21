@@ -61,6 +61,7 @@ Awestruct::Extensions::Pipeline.new do
                                                           product: 'eap')
 
   extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
+  extension JBoss::Developer::Extensions::AsciidoctorExtensionRegister.new
   
   extension Aweplug::Extensions::AsciidocExample.new(repository: '_ticket-monster', 
                                                      directory: 'tutorial', 

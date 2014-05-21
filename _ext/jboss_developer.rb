@@ -1,10 +1,72 @@
 require 'uri'
 require 'aweplug/helpers/cdn'
+require 'aweplug/helpers/resources'
 require 'aweplug/helpers/png'
 require 'compass'
+require 'asciidoctor'
+require 'asciidoctor/extensions'
+require 'pathname'
 
 module JBoss
   module Developer
+    # Setup our Asciidoctor postprocessor for images
+    module Asciidoctor
+      class CdnImagePreprocessor < ::Asciidoctor::Extensions::Preprocessor
+        def initialize site
+          super
+          @site = site
+        end
+
+        def process document, reader
+          lines = []
+          reader.lines.each do |line|
+            if line.include? 'image::'
+              match_data = line.match(/image::(.*?)\[(.*?)\]/)
+              final_path = Pathname.new File.join(document.base_dir, match_data.captures.first)
+              site_base = Pathname.new(@site.dir)
+              # try the timo location
+              if !final_path.exist?
+                final_path = Pathname.new File.join(document.base_dir, '_ticket-monster', 'tutorial', match_data.captures.first) 
+              end
+              resource = Aweplug::Helpers::Resources::SingleResource.new @site.dir, @site.cdn_http_base, @site.minify 
+              lines << "image::#{resource.path(final_path.relative_path_from(site_base).to_s)}[#{match_data.captures.last}]"
+            else
+              lines << line
+            end
+          end
+          ::Asciidoctor::Reader.new lines
+          #output.gsub(/src="(.*?)"/m) do |s|
+            #resource = Aweplug::Helpers::Resources::SingleResource.new @site.dir, @site.cdn_http_base, @site.minify
+            #if should_cdn? $1
+              #final_path = Pathname.new File.join(document.base_dir, $1)
+              #site_base = Pathname.new(@site.dir)
+              ##"src=\"#{resource.path(final_path.relative_path_from site_base)}\"" 
+              #"src=\"#{resource.path(final_path.relative_path_from(site_base).to_s)}\"" 
+            #else
+              #s
+            #end
+          #end
+        end
+      end
+
+      class ExtensionGroup < ::Asciidoctor::Extensions::Group
+        def initialize site
+          @site = site
+        end
+        def activate registry
+          registry.preprocessor CdnImagePreprocessor.new(@site)
+        end
+      end
+    end
+
+    module Extensions
+      class AsciidoctorExtensionRegister
+        def execute site
+          ::Asciidoctor::Extensions.register :jbossdeveloper, ::JBoss::Developer::Asciidoctor::ExtensionGroup.new(site)
+        end
+      end
+    end
+
     module Utilities
 
       def download_manager_path(product, version) 
@@ -82,5 +144,5 @@ module Kramdown
       end
     end
   end
-end
+end 
 
