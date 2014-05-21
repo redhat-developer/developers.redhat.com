@@ -308,6 +308,9 @@ app.dm = {
           var data = this.slice;
           for (var i = data[0]; i < data[1]; i++) {
 
+            // check for a description
+            var sys_description = hits[i].fields.sys_description || "";
+
             if ('sys_author' in hits[i].fields) {
               var author = hits[i].fields.sys_author;  
             }
@@ -381,7 +384,7 @@ app.dm = {
             }
             template += "<div class=\"body\">" +
               "<p>" +
-                hits[i].fields.sys_description.slice(0,300).concat(' ...') +
+                sys_description.slice(0,300).concat(' ...') +
               "</p>" +
             "</div>" +
             "</li>";
