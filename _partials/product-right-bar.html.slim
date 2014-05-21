@@ -10,8 +10,8 @@
   .widget
     h3.widget-title Beta Release
     p.widget-description= page.parent.product.beta_download.tag_line if page.parent.product.beta_download.tag_line
-    b 
-      | Downloads:
+    b
+      | Downloads
     ul
       - page.parent.product.beta_download.assets.values.each do |asset|
         - if asset.artifacts.size > 0
@@ -26,8 +26,8 @@
     li: a(href="http://www.redhat.com/support/customer-portal.html") Get Support
 .widget.rightbarbullets
   h3 Training
-  = page.parent.featured_training.content  
-  ul 
+  = page.parent.featured_training.content
+  ul
     li: a(href="http://www.redhat.com/training/paths/jboss-middleware-2.html") Red Hat JBoss Training courses - Development
     li: a(href="http://www.redhat.com/training/paths/jboss-middleware-1.html") Red Hat JBoss Training courses - Administration
 
