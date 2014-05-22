@@ -266,7 +266,7 @@ app.dm = {
     query.push("(sys_content_provider:jboss-developer OR sys_content_provider:rht)")
 
     if (currentFilters['product']) {
-      query.push('target_product:(' + currentFilters['product'] + ')');
+      query.push('sys_project:(' + currentFilters['product'] + ')');
     }
 
     var query = query.join(" AND ");
