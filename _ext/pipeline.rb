@@ -12,6 +12,8 @@ require 'nav'
 require 'stacks'
 require 'product'
 require 'mktg_ops'
+require 'disqus'
+require 'disqus_more'
 
 Awestruct::Extensions::Pipeline.new do
   
@@ -87,6 +89,8 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::Sitemap.new
   # Generate a assets.yml
   extension JBoss::Developer::MktgOps::Assets.new
+
+  extension Awestruct::Extensions::Disqus.new
 
   helper Awestruct::Extensions::Partial
   helper JBoss::Developer::Utilities
