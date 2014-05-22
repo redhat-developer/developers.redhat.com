@@ -714,6 +714,14 @@ Array.prototype.unique = function() {
     return r;
 };
 
+app.utils = {};
+
+app.utils.getParameterByName = function (name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
 // Simple JavaScript Templating (modified)
 // Original from John Resig - http://ejohn.org/ - MIT Licensed
 // @see http://ejohn.org/blog/javascript-micro-templating/

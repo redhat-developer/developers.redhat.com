@@ -74,6 +74,18 @@ app.dm = {
         }
       }
     });
+    var qsFormat = app.utils.getParameterByName("format");
+    // A hack for now
+    if (qsFormat == "archetype" || qsFormat == "bom" || qsFormat == "quickstart" || qsFormat == "example" || qsFormat == "sandbox") {
+      qsFormat = "jbossdeveloper_" + qsFormat;
+    }
+    if (qsFormat.length > 0) {
+      $('input[name="filter-format"][value=' + qsFormat + ']').attr('checked', true);
+    }
+    var qsText = app.utils.getParameterByName("keywords");
+    if (qsText.length > 0) {
+      $('input[name="filter-text"]').val(qsText);
+    }
   },
   devMatFilter : function(filters) {
     // Set filters to an empty object if it isn't defined
