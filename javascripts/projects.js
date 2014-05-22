@@ -9,6 +9,8 @@ function getCorrectUrl(linkUrl) {
   }
 }
 
+app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects']}; map; })}
+
 app.project = {
   projectFilter : function(filters) {
     console.log('Performing project filter');
@@ -25,8 +27,8 @@ app.project = {
     var filters = $.extend(filters, {"keyword": keyword});
     var currentFilters = {};
 
-    if ($('select[name="filter-products"]').val() !== "") {
-      filters['project'] = products_upstream[$('select[name="filter-products"]').val()];
+    if ($('select[name="filter-products"]').length && $('select[name="filter-products"]').val() !== "") {
+      filters['project'] = app.products[$('select[name="filter-products"]').val()]['upstream'];
     }
 
     $.each(filters, function(key, val) {
@@ -213,13 +215,13 @@ $(function() {
   if ($('.project-filters').length) {
     if (window.location.search) {
       var product_id = app.getQueryVariable('included-in');
-      app.project.projectFilter({project: products_upstream[product_id]});
+      app.project.projectFilter({project: app.products[product_id]['upstream']});
     } else {
       app.project.projectFilter();
     }
   }
-  if ($('#product-upstream-projects').length) {
-    app.project.projectFilter({project: products_upstream[product_id]});
+  if ($('.community-projects').length) {
+    app.project.projectFilter({project: app.products[$('.community-projects').data('product-id')]['upstream']});
   } 
 });
 
