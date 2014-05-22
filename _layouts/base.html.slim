@@ -179,9 +179,7 @@ body(class="#{template}")
   /script src="http://apis.google.com/js/plusone.js"
   /script src="http://platform.twitter.com/widgets.js"
 
-  /var upstream_projects = #{site.products.upstream_projects.to_s} 
   javascript:
-    var products_upstream = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = site.products[product]['upstream_projects']; map; })};
     hljs.initHighlightingOnLoad();
 
   - if site.metrics

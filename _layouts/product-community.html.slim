@@ -26,6 +26,7 @@ a.ctaText(href="#{page.product.forum_url}")
   | Visit the #{page.product.abbreviated_name} Forums 
   i.fa.fa-angle-double-right 
 h3.divider Projects and Standards included in #{page.product.abbreviated_name}
-ul.large-block-grid-3.small-block-grid-2.results#product-upstream-projects
-javascript:
-  var product_id = '#{page.product[:id]}';
+
+.community-projects(data-product-id="#{page.product[:id]}")
+  ul.large-block-grid-3.small-block-grid-2.results#product-upstream-projects
+
