@@ -74,15 +74,18 @@ app.dm = {
         }
       }
     });
-    var qsFormat = app.utils.getParameterByName("format");
+    var qsFormat = app.utils.getFragmentParameterByName("format") || app.utils.getParameterByName("format");
     // A hack for now
     if (qsFormat == "archetype" || qsFormat == "bom" || qsFormat == "quickstart" || qsFormat == "example" || qsFormat == "sandbox") {
       qsFormat = "jbossdeveloper_" + qsFormat;
     }
+    if (qsFormat.charAt(qsFormat.length -1) == 's') {
+      qsFormat = qsFormat.substr(0, qsFormat.length - 1);
+    }
     if (qsFormat.length > 0) {
       $('input[name="filter-format"][value=' + qsFormat + ']').attr('checked', true);
     }
-    var qsText = app.utils.getParameterByName("keywords");
+    var qsText = app.utils.getFragmentParameterByName("keywords") || app.utils.getParameterByName("keywords");
     if (qsText.length > 0) {
       $('input[name="filter-text"]').val(qsText);
     }
