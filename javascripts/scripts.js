@@ -722,6 +722,12 @@ app.utils.getParameterByName = function (name) {
   return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 };
 
+app.utils.getFragmentParameterByName = function (name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\!&]" + name + "=([^&?]*)"), results = regex.exec(location.hash);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
 // Simple JavaScript Templating (modified)
 // Original from John Resig - http://ejohn.org/ - MIT Licensed
 // @see http://ejohn.org/blog/javascript-micro-templating/
