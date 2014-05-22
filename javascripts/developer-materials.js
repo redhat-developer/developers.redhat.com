@@ -83,6 +83,9 @@ app.dm = {
     var developerMaterialsResults = $( '.developer-materials-results' );
     if (developerMaterialsResults.length) {
       var product = developerMaterialsResults.data("developer-materials-filter-product");
+      // Hidden keyword allows us to insert additional keywords to the filter that the user doesn't set.
+      // It's not stored in local storage
+      var hidden_keyword = developerMaterialsResults.data("developer-materials-filter-hidden-keyword")
       var maxResults = developerMaterialsResults.data("developer-materials-max-results");
     }
 
@@ -179,6 +182,7 @@ app.dm = {
     
     $.extend(filters, {
       "keyword" : keyword,
+      "hidden_keyword" : hidden_keyword,
       "rating" : rating,
       "topics" : topics,
       "formats" : formats,
@@ -217,6 +221,11 @@ app.dm = {
     if(currentFilters['keyword']) {
       query.push(keyword);
     }
+
+    if(currentFilters['hidden_keyword']) {
+      query.push(hidden_keyword);
+    }
+
 
     if(currentFilters['rating']) {
       // rating disabled, doesn't work on DCP
