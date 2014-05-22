@@ -1,6 +1,3 @@
----
-interpolate: true
----
 function getCorrectUrl(linkUrl) {
   if (linkUrl.indexOf("/") > 0) {
     return linkUrl;
@@ -8,8 +5,6 @@ function getCorrectUrl(linkUrl) {
     return "https://jboss.org" + linkUrl;
   }
 }
-
-app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects']}; map; })}
 
 app.project = {
   projectFilter : function(filters) {
@@ -59,7 +54,7 @@ app.project = {
     $.extend(request_data, currentFilters);
 
     $.ajax({
-      url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
+      url : app.dcp.url.search,
       data : request_data
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing

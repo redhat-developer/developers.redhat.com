@@ -35,3 +35,9 @@ app.dcp.url = {};
 app.dcp.url.search = '#{URI.join site.dcp_base_url, "v1/rest/search"}';
 app.dcp.url.content = '#{URI.join site.dcp_base_url, "v1/rest/content"}';
 
+/*
+  Products
+*/
+
+app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects']}; map; })}
+
