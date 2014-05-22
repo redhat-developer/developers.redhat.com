@@ -73,6 +73,8 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
                 span.contributor data-sys-contributor="#{commit[:author]} <#{commit[:author_email]}>" #{commit[:author]}
                 | ):
                 = commit[:subject].gsub(/\-/,' ')
+        - if site.disqus
+          = page.disqus_comments
 
       .columns.large-4
         - if page.metadata[:product]
