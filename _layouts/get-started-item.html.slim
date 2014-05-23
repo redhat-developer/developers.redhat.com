@@ -7,6 +7,8 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
   - page.title = page.metadata[:title]
   - page.description = page.metadata[:summary]
   - page.author = page.metadata[:author]
+  - if page.metadata[:product] && site[:products][page.metadata[:product]]
+    - page.product = site[:products][page.metadata[:product]]
 
 .row
   h2.large-title Developer Materials
@@ -77,33 +79,32 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
           = page.disqus_comments
 
       .columns.large-4
-        - if page.metadata[:product]
-          - if site[:products][page.metadata[:product]]
-            - current_version = site[:products][page.metadata[:product]]['current_version'] || 'HEAD'
-          - else
-            - current_version = 'HEAD'
-          .row
-            .columns.large-24
-              a.button href="#{page.metadata[:github_repo_url]}/archive/#{current_version}.zip"
-                | Download  
-                i.fa.fa-download
-          .row
-            .columns.large-24
-              a(href="#{page.metadata[:github_repo_url]}/tree/#{current_version}") 
-                i.fa.fa-github
-                | &nbsp; View on github
-                br
-          .row
-            .columns.large-24
-              #rating-section
-                #avg-rating
-                  | Avg:
-                #new-rating
-                  | Rate:
-                  - for i in (1..5)
-                    i.fa.fa-star-o.rating[id="rate-#{i}" data-searchisko-id="#{page.metadata[:searchisko_type]}-#{page.metadata[:searchisko_id]}" data-rating="#{i}"]
-                #your-rating data-searchisko-id="#{page.metadata[:searchisko_type]}-#{page.metadata[:searchisko_id]}"
-                  | Your Rating:
+        - unless page.metadata[:current_branch] == 'HEAD'
+          - git_ref = page.metadata[:current_branch]
+        -else
+          - git_ref = page.metadata[:current_tag] || 'HEAD'
+        .row
+          .columns.large-24
+            a.button href="#{page.metadata[:github_repo_url]}/archive/#{git_ref}.zip"
+              | Download  
+              i.fa.fa-download
+        .row
+          .columns.large-24
+            a(href="#{page.metadata[:github_repo_url]}/tree/#{git_ref}")
+              i.fa.fa-github
+              | &nbsp; View on github
+              br
+        .row
+          .columns.large-24
+            #rating-section
+              #avg-rating
+                | Avg:
+              #new-rating
+                | Rate:
+                - for i in (1..5)
+                  i.fa.fa-star-o.rating[id="rate-#{i}" data-searchisko-id="#{page.metadata[:searchisko_type]}-#{page.metadata[:searchisko_id]}" data-rating="#{i}"]
+              #your-rating data-searchisko-id="#{page.metadata[:searchisko_type]}-#{page.metadata[:searchisko_id]}"
+                | Your Rating:
         / TODO Add resources 
         / h3.divider Resources
         / ul
