@@ -73,6 +73,7 @@ module JBoss
             product.downloads.each do |k, v|
               download = OpenStruct.new(v)
               download.version ||= k.gsub(/_/, ' ').to_s
+              download.minor_version = download.version[/^([0-9]*\.[0-9]*)/, 1]
               download.description ||= product.abbreviated_name
               download.release_date = download.release_date ? download.release_date : Date.today
               download.assets ||= @default_download_assets.clone
@@ -102,9 +103,9 @@ module JBoss
                   artifact.filename ||= "jboss-#{product.id}-#{download.version}#{artifact.classifier}.#{artifact.type}"
                   if l == 'release_notes' && product.guides.has_key?('Release_Notes')
                     # Special case for release notes
-                    artifact.url = product.guides['Release_Notes'].formats['html'].url
+                    artifact.url ||= "#{product.documentation_url}/#{download.minor_version}/html/#{release_notes_dir_name(download.version)}"
                   else
-                    artifact.url = "#{site.download_manager_file_base_url}#{artifact.filename}"
+                    artifact.url ||= "#{site.download_manager_file_base_url}#{artifact.filename}"
                   end
                   artifact.icon ||= artifact_attr l, "icon", "fa fa-download"
                   c << artifact
@@ -183,6 +184,10 @@ module JBoss
           key.gsub(/_/, ' ').split.map(&:capitalize).join(' ')
         end
 
+        def release_notes_dir_name(version)
+          version[/^([0-9]*\.[0-9]*\.[0-9])/, 1] + "_Release_Notes"
+        end
+
         def docs(product, site)
           product.documentation_path ||= product.name.gsub(/ /, "_")
           product.documentation_minor_version ||= product.current_minor_version
@@ -197,7 +202,7 @@ module JBoss
               guide.name ||= k.gsub(/_/, ' ')
               # We do some special magic for release notes, to avoid the guide name needing continual updates
               if k == "Release_Notes" && product.current_version
-                guide.dir_name = product.current_version[/^([0-9]*\.[0-9]*\.[0-9])/, 1] + "_Release_Notes"
+                guide.dir_name = release_notes_dir_name(product.current_version)
               else
                 guide.dir_name = k
               end
