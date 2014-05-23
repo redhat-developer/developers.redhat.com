@@ -543,7 +543,7 @@ app.stickyNav = function(className, headerElement) {
   
   var html = "",
       top = nav.offset().top,
-      select = $("<select>").append('<option selected value="">Choose a FAQ topic</option>');
+      select = $("<select>").append('<option selected value="">Choose a section</option>');
 
   $('.' + className + ' ' + headerElement).each(function(i,el){
     html += "<li><a href='#"+$(this).attr('id')+"'>"+$(this).text()+"</a></li>";
