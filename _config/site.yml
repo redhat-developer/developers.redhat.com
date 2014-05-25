@@ -54,6 +54,16 @@ profiles:
       <<: *deploy
       path: /stg_htdocs/www-beta
 
+  production:
+    <<: *profile
+    base_url: http://www.jboss.org/
+    dcp_base_url: http://dcp.jboss.org/
+    require_tag: true
+    robots: false
+    deploy:
+      <<: *deploy
+      path: /www_htdocs/www
+
   filemgmt:
     base_url: http://www-stg.jboss.org/
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
