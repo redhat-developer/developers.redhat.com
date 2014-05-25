@@ -52,7 +52,7 @@ This section covers the steps you need to do in order to setup your environment 
 
 5. Build the site:
 
-        rake update
+        rake setup
         rake clean preview
 
 _NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
