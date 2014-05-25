@@ -49,7 +49,12 @@ $remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
 
 desc 'Setup the environment to run Awestruct'
-task :setup, [:env] => :init do |task, args|
+task :setup, [:env] => [:init, :bundler_install, :git_setup, :regen_sprites] do |task, args|
+  # Don't execute any more tasks, need to reset env
+  exit 0
+end
+
+task :bundler_install, [:env] do |task, args|
   next if !which('awestruct').nil?
 
   if File.exist? 'Gemfile'
@@ -74,13 +79,10 @@ task :setup, [:env] => :init do |task, args|
       end
     end
   end
-  msg 'Run awestruct using `awestruct` or `rake`'
-  # Don't execute any more tasks, need to reset env
-  exit 0
 end
 
 desc 'Update the environment to run Awestruct'
-task :update => [:init, :bundler_update, :git_update, :regen_sprites] do
+task :update => [:init, :bundler_update, :git_setup, :regen_sprites] do
   # Don't execute any more tasks, need to reset env
   exit 0
 end
@@ -94,8 +96,8 @@ task :bundler_update do
   end 
 end
 
-desc 'Update and initialize any git submodules'
-task :git_update do
+desc 'Initialize any git submodules'
+task :git_setup do
   system 'git submodule update --init'
 end
 
