@@ -1,7 +1,3 @@
-require 'yaml'
-require 'awestruct/astruct'
-require 'awestruct/page'
-
 # This file is a rake build file. The purpose of this file is to simplify
 # setting up and using Awestruct. It's not required to use Awestruct, though it
 # does save you time (hopefully). If you don't want to use rake, just ignore or
@@ -344,8 +340,11 @@ def config(profile = nil)
 end
 
 def load_site_yaml(yaml_path, profile = nil)
+  require 'awestruct/astruct'
+  require 'awestruct/page'
   config = Awestruct::AStruct.new
   if ( File.exist?( yaml_path ) )
+    require 'yaml'    
     data = YAML.load( File.read( yaml_path ) )
     if ( profile )
       profile_data = {}

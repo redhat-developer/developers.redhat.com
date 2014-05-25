@@ -46,18 +46,16 @@ This section covers the steps you need to do in order to setup your environment 
          cd www.jboss.org
          git remote add -f upstream git@github.com:jboss-developer/www.jboss.org.git
 
-4. Bootstrap the gemset:
-
-        bundle install
-
-5. Build the site:
+4. Configure the enviornment:
 
         rake setup
+
+5. Build the site for display at <http://localhost:4242>
         rake clean preview
 
 _NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
 
-If the build was successful, you should be able to visit the site here: [http://localhost:4242](http://localhost:4242)
+If the build was successful, you should be able to visit the site here: <http://localhost:4242>
 
 
 ## Development
