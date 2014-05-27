@@ -141,57 +141,5 @@ Builds occur automatically when pull requests are submitted, and builds, and dep
 
 The CI build is configured in 3 files: `.travis.yml`, `_config/site.yml` and `Rakefile`.
 
-#### `.travis.yml` - <https://github.com/jboss-developer/www.jboss.org/blob/master/.travis.yml>
-
-The Travis docs describe all the options - see <http://docs.travis-ci.com/user/build-configuration/>.
-
-We define:
-
-* `before_script` which decodes SSH key needed for uploading build results to filemgmt.jboss.org.
-* Ruby as the source language
-* `rvm`, which in turn defines the Ruby version
-* `branches`, which in turn defines which branches to build or not to build
-* `script`, which defines what command should be executed
-* `env`, which in turn defines all variables which are used by Rake. Some of those are encoded for security reasons and will be automatically decoded by Travis before the build starts.
-
-#### `_config/site.yml` - <https://github.com/jboss-developer/www.jboss.org/blob/master/_config/site.yml>
-
-The main configuration for Awestruct, and defines the host to deploy to.
-
-#### `Rakefile` - <https://github.com/jboss-developer/www.jboss.org/blob/master/Rakefile>
-
-The Rakefile defines the `:travis` task which is executed on each Push to master, and each Pull Request being opened against ‘master’ (as defined in .travis.yml). It is also ready to build and deploy when a push to the ‘production’ branch occurs, but this is not enabled at the moment.
-
-Using the environment variables from `.travis.yml`, and those provided by default by Travis-CI (see <http://docs.travis-ci.com/user/ci-environment/#Environment-variables>), the script identifies whether this is Pull Request build or Push build, executes the build itself and if it was a Push with successful build result, it uploads the files using rsync command to filemgmt.jboss.org.
-
-Although Pull Requests builds cannot be deployed anywhere due to lack of access to secure variables from .travis.yml, they are still important because they display information in GitHub Pull Request page whether the build went successfully or not.
-
-### Encoding variables for `.travis.yml`
-
-The general process for encoding sensitive data is described in this document <http://docs.travis-ci.com/user/encryption-keys/>. Note that there is a limitation on the length of the content which makes it impossible to encode whole files such as an SSH key, but there is a workaround for this issue available.
-
-First, install the `travis` gem. 
-
-Now, navigate to the root of the git repository clone, and execute:
-
-* `travis encrypt vimeo_client_secret="..."`
-* `travis encrypt vimeo_access_token_secret="..."`
-* `travis encrypt dcp_password="..." dcp_user="..."`
-
-and add the values to the `.travis.yml` file.
-
-Note that you must be in the root of the git repository clone when you execute the `travis encrypt ...` commands as they are encoded using the repository key. This means that they can be only decoded in builds done on this specific repository and nowhere else.
-
-#### SSH key encoding
-
-The workaround for encoding a file is to generate a random key string, encode the file using `openssl aes-256-cbc` with this string as a key and then encode the key string itself using the standard ‘travis encrypt’ command. Decoding of the key happens in `before_script` as defined in `.travis.yml`.
-
-Here are steps to encode the key. First, execute:
-
-* ``password=`cat /dev/urandom | head -c 10000 | openssl sha1```
-* ``password=`echo $password | sed s/\(stdin\)=\ //```
-* `travis encrypt password="$password"`
-* `openssl aes-256-cbc -k "$password" -in _wwwKey -out _wwwKey.enc -a`
-
-and then add the encoded key to the repository in the `_wwwKey.enc` file, and add the encoded password to `.travis.yml`
+TODO
 
