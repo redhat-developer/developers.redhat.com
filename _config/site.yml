@@ -44,16 +44,6 @@ profiles:
       <<: *deploy
       path: /stg_htdocs/www-stg
     
-  beta:
-    <<: *profile
-    base_url: http://www-beta.jboss.org/
-    dcp_base_url: http://dcp.jboss.org/
-    require_tag: true
-    robots: false
-    deploy:
-      <<: *deploy
-      path: /stg_htdocs/www-beta
-
   production:
     <<: *profile
     base_url: http://www.jboss.org/
