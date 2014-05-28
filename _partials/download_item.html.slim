@@ -5,7 +5,8 @@
     p.download
       | Get the latest: 
       span.link-list
-        a(href="#{page.product.default_download_artifact.url}"): i(class="#{page.product.default_download_artifact.icon}")
+        a(href="#{page.product.default_download_artifact.url}")
+          i(class="#{page.product.default_download_artifact.icon}")
           | (#{page.product.default_download_artifact.size} #{page.product.default_download_artifact.name})
         a(href="#{site.base_url}/products/#{page.product.id}/download") See more...
     p.download

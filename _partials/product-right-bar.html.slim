@@ -19,7 +19,8 @@
       - page.parent.product.beta_download.assets.values.each do |asset|
         - if asset.artifacts.size > 0
           li: a(href="#{asset.artifacts[0].url}")
-            i>(class="#{asset.artifacts[0].icon}") #{asset.name}
+            i>(class="#{asset.artifacts[0].icon}")
+            | #{asset.name}
 
 .widget
   h3.widget-title Supported Solutions
