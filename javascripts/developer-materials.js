@@ -520,7 +520,7 @@ app.dm = {
   },
   authStatus: $.ajax({
       type:"GET",
-      url: '#{URI.join site.dcp_base_url, "v1/rest/auth/status"}',
+      url: app.dcp.url.auth_status,
       xhrFields: {withCredentials: true}
   })
 }
@@ -604,7 +604,7 @@ $(function() {
       if (data.authenticated) {
         var rating = $.ajax({
           type: "POST",
-          url: '#{URI.join site.dcp_base_url, "v1/rest/rating/"}' + $(event.target).data('searchisko-id'),
+          url: app.dcp.url.rating + $(event.target).data('searchisko-id'),
           xhrFields: {withCredentials: true},
           contentType: "application/json",
           data: "{\"rating\":\"" + $(event.target).data('rating') + "\"}"
@@ -627,7 +627,7 @@ $(function() {
 
   // We're on an item we can rate, set things to either show their rating or to rate
   if ($('#rating-section').length) {
-    $.get('#{URI.join site.dcp_base_url, "v1/rest/content/"}' + $('#your-rating').data('searchisko-id').split('-').join('/'))
+    $.get(app.dcp.url.content + $('#your-rating').data('searchisko-id').split('-').join('/'))
       .done(function(item) {
         var elm = $('#avg-rating');
         elm.append(roundHalf(item.sys_rating_avg)).append('<span>(' + item.sys_rating_num + ')</span>');
@@ -637,7 +637,7 @@ $(function() {
       if (data.authenticated) {
         var user_rating = $.ajax({
           type: 'GET',
-          url: '#{URI.join site.dcp_base_url, "v1/rest/rating?id="}' + $('#your-rating').data('searchisko-id'),
+          url: app.dcp.url.rating + '?id=' + $('#your-rating').data('searchisko-id'),
           xhrFields:  { withCredentials: true}
         }).done(function(data) {
           if (data.rating) {

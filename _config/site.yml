@@ -16,7 +16,6 @@ deploy_base: &deploy
   uncommitted: true
 
 profile_base: &profile
-  dcp_base_url: //dcpbeta-searchisko.rhcloud.com/
   cdn_http_base: &cdn_http_base //static.jboss.org/www 
   log_faraday: true
   push_to_searchisko: true
@@ -33,12 +32,15 @@ profile_base: &profile
 
 profiles:
   development:
-    dcp_base_url: //dcpbeta-searchisko.rhcloud.com/
+    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     log_faraday: true
     push_to_searchisko: false
 
   staging: 
     <<: *profile
+    dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
+    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     base_url: http://www-stg.jboss.org/
     deploy:
       <<: *deploy
@@ -47,7 +49,8 @@ profiles:
   production:
     <<: *profile
     base_url: http://www.jboss.org/
-    dcp_base_url: //dcp.jboss.org/
+    dcp_base_protocol_relative_url: //dcp.jboss.org/
+    dcp_base_url: http://dcp.jboss.org/
     require_tag: true
     robots: false
     deploy:
