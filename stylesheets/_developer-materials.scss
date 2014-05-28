@@ -19,6 +19,7 @@ ul.results {
 }
 .material {
   position: relative;
+  word-wrap: break-word;
   &:before {display: none;} // take off the ul bullet
   p {
     word-wrap: break-word;
