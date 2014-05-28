@@ -5,7 +5,7 @@ interpolate: true
   Polyfill forms - input range sliders - for IE8 only
 */
 
-$.webshims.setOptions('basePath', 'http://static.jboss.org/www/vendor/web-shims-1.12.5/');
+$.webshims.setOptions('basePath', '//static.jboss.org/www/vendor/web-shims-1.12.5/');
 $.webshims.polyfill('forms forms-ext');
 
 /* 
@@ -426,7 +426,7 @@ app.buzz = {
     var query = query.join(" AND ");
     
     $.ajax({
-        url : '#{URI.join site.dcp_base_url, "v1/rest/search"}',
+        url : app.dcp.url.search,
         data : {
           "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated"],
           "query" : query,
