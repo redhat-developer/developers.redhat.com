@@ -20,32 +20,31 @@ module JBoss
         def process document, reader
           lines = []
           reader.lines.each do |line|
-            if line.include? 'image::'
-              match_data = line.match(/image::(.*?)\[(.*?)\]/)
-              final_path = Pathname.new File.join(document.base_dir, match_data.captures.first)
-              site_base = Pathname.new(@site.dir)
-              # try the timo location
-              if !final_path.exist?
-                final_path = Pathname.new File.join(document.base_dir, '_ticket-monster', 'tutorial', match_data.captures.first) 
+            if line.include? 'image:'
+              match_data = line.match(/image([:]+)(.*?)\[(.*?)\]/)
+              if match_data.captures[1].start_with? 'http' # looking for urls
+                lines << line
+                next
+              else
+                final_path = Pathname.new File.join(document.base_dir, match_data.captures[1])
+                site_base = Pathname.new(@site.dir)
+                # try the timo location
+                if !final_path.exist?
+                  final_path = Pathname.new File.join(document.base_dir, '_ticket-monster', 'tutorial', match_data.captures[1])
+                end
+                if !final_path.exist? # Can't find it, just use whatever is there
+                  lines << line
+                  next
+                end
+                final_location = final_path.relative_path_from(site_base).to_s
               end
               resource = Aweplug::Helpers::Resources::SingleResource.new @site.dir, @site.cdn_http_base, @site.minify 
-              lines << "image::#{resource.path(final_path.relative_path_from(site_base).to_s)}[#{match_data.captures.last}]"
+              lines << "image#{match_data.captures.first}#{resource.path(final_location)}[#{match_data.captures.last}]"
             else
               lines << line
             end
           end
           ::Asciidoctor::Reader.new lines
-          #output.gsub(/src="(.*?)"/m) do |s|
-            #resource = Aweplug::Helpers::Resources::SingleResource.new @site.dir, @site.cdn_http_base, @site.minify
-            #if should_cdn? $1
-              #final_path = Pathname.new File.join(document.base_dir, $1)
-              #site_base = Pathname.new(@site.dir)
-              ##"src=\"#{resource.path(final_path.relative_path_from site_base)}\"" 
-              #"src=\"#{resource.path(final_path.relative_path_from(site_base).to_s)}\"" 
-            #else
-              #s
-            #end
-          #end
         end
       end
 

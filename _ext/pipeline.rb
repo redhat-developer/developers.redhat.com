@@ -7,6 +7,7 @@ require 'aweplug/extensions/vimeo'
 require 'aweplug/helpers/vimeo'
 require 'aweplug/helpers/resources'
 require 'aweplug/helpers/identity'
+require 'aweplug/transformers/asciidoc_cdn_transformer'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
@@ -98,5 +99,6 @@ Awestruct::Extensions::Pipeline.new do
   helper Aweplug::Helpers::Resources
 
   transformer JBoss::Developer::MktgOps::LinkInstrumentation.new
+  transformer Aweplug::Transformer::AsciidocCdnTransformer.new
 end
 
