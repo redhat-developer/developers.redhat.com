@@ -447,10 +447,10 @@ app.buzz = {
           var d = hits[i].fields;
           // This regex will parse an email like "John Smith <john.smith@acme.com>", giving you two matches "John Smith" and "john.smith@acme.corp"
           var pat = /(?:([^"]+))? <?(.*?@[^>,]+)>?,? ?/g;
-          d.authorName = "Unknown";
+          d.authorSaid = " ";
           d.authorMail = "";
           while (m = pat.exec(d.sys_contributors)) {
-            d.authorName = m[1];
+            d.authorSaid = m[1] + " said:";
             d.authorMail = m[2];
           }
           d.updatedDate = jQuery.timeago(new Date(d.sys_updated));
