@@ -210,6 +210,7 @@ $(function() {
   if ($('.project-filters').length) {
     if (window.location.search) {
       var product_id = app.getQueryVariable('included-in');
+      $('option[value="'+product_id+'"]').attr('selected','selected');
       app.project.projectFilter({project: app.products[product_id]['upstream']});
     } else {
       app.project.projectFilter();
