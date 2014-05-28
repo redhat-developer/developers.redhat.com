@@ -1,14 +1,12 @@
 // Light Theme - Colors and Images
 // body
 body {
-  @extend .theme-light-background-short;
-  max-height: theme-light-sprite-height(background-short);
+  background:cdn("../images/design/theme-light/background-short.png") top center repeat-x;
 }
 
 // Specific Home Styles
 body.home {
-  @extend .theme-light-background-tall;
-  max-height: theme-light-sprite-height(background-tall); 
+  background:cdn("../images/design/theme-light/background-tall.png") top center repeat-x;
 }
 
 @media screen and ( max-width: 768px ) {
