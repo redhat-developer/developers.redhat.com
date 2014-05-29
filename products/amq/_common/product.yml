@@ -81,4 +81,31 @@ downloads:
       source:
         size: 64mb
 upstream_projects:
+demos:
+  - title: Getting started with ActiveMQ
+    url: https://github.com/FuseByExample/getting_started_with_activemq
+    tech: ['ActiveMQ', 'Spring']
+    use_case: []
+    desc: "This project includes a number of example configurations showing various ActiveMQ High Availability scenarios. These include: Master-Slave, Network of Brokers, and Network of Master-Slave Brokers. This project also includes a simple JMS Queue (point to point) message producer and message consumer."
+  - title: Websocket ActiveMQ Camel
+    url: https://github.com/FuseByExample/websocket-activemq-camel
+    tech: ['Camel', 'ActiveMQ', 'Spring', 'Jackson']
+    use_case: ['Endpoint', 'Bean', 'Transform', 'Log', 'Delay']
+    desc: This example shows how to use WebSocket HTML 5 with JBoss A-MQ and Camel. There are two webapps contained in this example. A stock and a news app. The news app also has a secured version over ssl. Both apps use a camel route that delivers message trough a websocket from their queue. Feeders are implemented to feed these queues.
+  - title: ActiveMQ AMQP Example
+    url: https://github.com/FuseByExample/activemq-amqp-example
+    tech: ['ActiveMQ', 'AMQP', 'Qpid']
+    use_case: []
+    desc: This is an example of using Apache ActiveMQ's AMQP protocol with the Apache Qpid JMS client. It consists of a broker, producer and consumer who exchange some predefined messages. Each message will be logged by the consumer
+  - title: External MQ fabric client
+    url: https://github.com/FuseByExample/external-mq-fabric-client
+    tech: ['Camel', 'ActiveMQ', 'Spring', 'Fabric', 'ZooKeeper']
+    use_case: ['Endpoint', 'SetBody', 'Log']
+    desc: This project shows how to connect to JBoss A-MQ message brokers running in Fuse Fabric from JMS clients running outside of Fuse Fabric (i.e. when the JMS client is not running within a Fabric-enabled Fuse container).
+
+
+
+
+
+
 
