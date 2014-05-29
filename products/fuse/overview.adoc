@@ -4,7 +4,7 @@
 
 == Overview
 
-A small footprint, flexible, open source ESB.
+An open source Enterprise Service Bus (ESB).
 
 JBoss Fuse is an open source Enterprise Service Bus (ESB) with an elastic footprint that supports integration beyond the data center. The ability to deploy JBoss Fuse in several different configurations enables intelligent integration to all facets of your business – on premise or in the Cloud.
 
@@ -42,7 +42,9 @@ Connect to external applications with connectors for JDBC, FTP/SFTP, HTTP/HTTPS,
 
 == Detail
 
-JBoss Fuse combines several technologies into a single integrated distribution:
+JBoss Fuse combines several technologies like core Enterprise Service Bus capabilities (based on Apache Camel, Apache CXF, Apache ActiveMQ), Apache Karaf and Fuse Fabric in a single integrated distribution.
+
+image::/images/products/fuse/Fuse_Builtfromdiagram_02.png[]
 
 [colls="3,1"]
 |====
@@ -55,11 +57,20 @@ JBoss Fuse combines several technologies into a single integrated distribution:
 
 Fuse IDE is available to provide an easy-to-use integration development environment built on Eclipse.
 
+=== New Features
+
+Try the exciting new features:
+
+* Full support of AMQP 1.0 - provides wire-level compatibility across connections
+* Vast library of connectors - over 150+ out-of-the-box-connectors via Apache Camel
+* Managed integration routes - start, stop, measure and trace Camel routes on-premise or in the Cloud
+* Improved high availability (HA) - embedded message store for shared-nothing HA
+
 === Integration Everywhere
 
 image::images/products/fuse/overview.png[]
 
-JBoss Fuse includes industry-standard integration patterns so you can easily configure and manage a network of integration brokers. These patterns, when used with the flexible and low-cost ESB, allow you to deploy and connect customized solutions at every distributor, outlet, and partner, eliminating batch delivery and hub-and-spoke architectures forever.
+JBoss Fuse includes industry-standard integration patterns so you can easily configure and manage a network of integration brokers. These patterns, when used with the flexible and cost-effective ESB, allow you to deploy and connect customized solutions at every distributor, outlet, and partner, eliminating batch delivery and hub-and-spoke architectures forever.
 
 We encourage you to download JBoss Fuse, and see for yourself if it meets your needs.  
 
