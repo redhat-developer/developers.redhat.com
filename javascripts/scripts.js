@@ -431,7 +431,7 @@ app.buzz = {
         url : app.dcp.url.search,
         dataType: 'json',
         data : {
-          "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated"],
+          "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated", "author"],
           "query" : query,
           "size" : 6,
           "sys_type" : "blogpost",
@@ -450,11 +450,14 @@ app.buzz = {
           var d = hits[i].fields;
           // This regex will parse an email like "John Smith <john.smith@acme.com>", giving you two matches "John Smith" and "john.smith@acme.corp"
           var pat = /(?:([^"]+))? <?(.*?@[^>,]+)>?,? ?/g;
-          d.authorSaid = " ";
+          d.authorName = "";
           d.authorMail = "";
           while (m = pat.exec(d.sys_contributors)) {
-            d.authorSaid = m[1] + " said:";
+            d.authorName = m[1];
             d.authorMail = m[2];
+          }
+          if(!d.authorName) {
+            d.authorName = d.author;
           }
           d.updatedDate = jQuery.timeago(new Date(d.sys_updated));
           html += tmpl.template(d);
