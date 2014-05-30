@@ -96,15 +96,13 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
               br
         .row
           .columns.large-24
-            #rating-section
+            #rating-section data-searchisko-id="#{page.metadata[:searchisko_type]}-#{page.metadata[:searchisko_id]}"
               #avg-rating
                 | Avg:
-              #new-rating
-                | Rate:
-                - for i in (1..5)
-                  i.fa.fa-star-o.rating[id="rate-#{i}" data-searchisko-id="#{page.metadata[:searchisko_type]}-#{page.metadata[:searchisko_id]}" data-rating="#{i}"]
-              #your-rating data-searchisko-id="#{page.metadata[:searchisko_type]}-#{page.metadata[:searchisko_id]}"
+              #your-rating
                 | Your Rating:
+                - for i in (1..5)
+                  i.fa.fa-star-o.rating[id="rate-#{i}" data-rating="#{i}"]
         / TODO Add resources 
         / h3.divider Resources
         / ul
