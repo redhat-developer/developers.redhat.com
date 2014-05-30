@@ -54,7 +54,7 @@ task :setup, [:env] => [:init, :bundler_install, :git_setup, :regen_sprites] do 
   exit 0
 end
 
-task :bundler_install, [:env] do |task, args|
+task :bundle_install, [:env] do |task, args|
   next if !which('awestruct').nil?
 
   if File.exist? 'Gemfile'
@@ -88,7 +88,7 @@ task :update => [:init, :bundler_update, :git_setup, :regen_sprites] do
 end
 
 desc 'Update bundler environment'
-task :bundler_update do
+task :bundle_update do
   if File.exist? 'Gemfile'
     system 'bundle update'
   else
