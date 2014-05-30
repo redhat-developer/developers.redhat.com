@@ -23,3 +23,8 @@ rake bundle_install regen_sprites
 # Run the build
 rake deploy[staging]
 
+## Commit back CDN changes
+git add _cdn/cdn.yml
+git commit -m "Update cdn.yml"
+git push origin HEAD
+
