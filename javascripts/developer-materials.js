@@ -290,6 +290,7 @@ app.dm = {
     $("ul.results").addClass('loading');
 
     app.dm.currentRequest = $.ajax({
+      dataType: 'json',
       url : app.dcp.url.search,
       data : {
         "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg"],
