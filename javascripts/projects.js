@@ -55,6 +55,7 @@ app.project = {
 
     $.ajax({
       url : app.dcp.url.search,
+      dataType: 'json',
       data : request_data
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing

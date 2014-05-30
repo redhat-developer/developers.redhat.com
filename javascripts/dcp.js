@@ -20,6 +20,7 @@ app.dcp.resolveContributorsForBlock = function( documentType, documentId, block,
   
   app.dcp.currentRequest = $.ajax({
     url : app.dcp.url.content + "/" + documentType + "/" + documentId,
+    dataType: 'json',
     beforeSend : function() {
       // check if there is a previous ajax request to abort
       if(app.dcp.currentRequest && app.dcp.currentRequest.readyState != 4) {

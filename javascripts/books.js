@@ -60,9 +60,6 @@ app.books = {
             } else if (ids[1].type === "ISBN_13") {
               bookItemsHash[ids[1].identifier] = books.items[i];
               books.items[i].volumeInfo.isbn = ids[1].identifier;
-            } else {
-              console.log('can not find ISBN_13');
-              console.log(books.items[i]);
             }
           }
 
@@ -75,7 +72,6 @@ app.books = {
                 bookItems.push(bookItemsHash[key]);
               }
             } 
-            console.log(bookItems);
 
             // Make sure all the books are sorted by desc date
             bookItems.sort(function(a,b) {

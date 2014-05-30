@@ -16,6 +16,7 @@ app.search = {
     // perform ajax request
     $.ajax({
       url : app.dcp.url.search,
+      dataType: 'json',
       data : {
         "field"  : ["sys_title", "sys_url_view"],
         "type" : "jbossdeveloper_website",
