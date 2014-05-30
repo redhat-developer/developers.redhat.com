@@ -518,11 +518,13 @@ app.dm = {
    "solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
    "article" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}"
   },
-  authStatus: $.ajax({
+  authStatus: function() {
+    return $.ajax({
       type:"GET",
       url: app.dcp.url.auth_status,
       xhrFields: {withCredentials: true}
-  })
+    });
+  }
 }
 
 // Event Listeners 
@@ -600,11 +602,11 @@ $(function() {
   });
   // rate the item
   $('.rating').on('click', function(event) {
-    app.dm.authStatus.done(function(data) {
+    app.dm.authStatus().done(function(data) {
       if (data.authenticated) {
         var rating = $.ajax({
           type: "POST",
-          url: app.dcp.url.rating + $(event.target).data('searchisko-id'),
+          url: app.dcp.url.rating + '/' + $(event.target).data('searchisko-id'),
           xhrFields: {withCredentials: true},
           contentType: "application/json",
           data: "{\"rating\":\"" + $(event.target).data('rating') + "\"}"
@@ -627,13 +629,13 @@ $(function() {
 
   // We're on an item we can rate, set things to either show their rating or to rate
   if ($('#rating-section').length) {
-    $.get(app.dcp.url.content + $('#your-rating').data('searchisko-id').split('-').join('/'))
+    $.get(app.dcp.url.content +'/' + $('#your-rating').data('searchisko-id').split('-').join('/'))
       .done(function(item) {
         var elm = $('#avg-rating');
         elm.append(roundHalf(item.sys_rating_avg)).append('<span>(' + item.sys_rating_num + ')</span>');
         elm.show();
       });
-    app.dm.authStatus.done(function(data) {
+    app.dm.authStatus().done(function(data) {
       if (data.authenticated) {
         var user_rating = $.ajax({
           type: 'GET',
