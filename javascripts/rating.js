@@ -20,8 +20,10 @@ app.rating = {
         }).done(function(data) {
           if (data[app.rating.searchiskoId] && data[app.rating.searchiskoId].rating) {
             app.rating.your = data[app.rating.searchiskoId].rating;
-            app.rating.displayYour(data[app.rating.searchiskoId].rating);
+          } else {
+            app.rating.your = 0;
           }
+          app.rating.displayYour();
         });
       }
     });
@@ -36,7 +38,9 @@ app.rating = {
     if ($('#rating-section').length) {
       $.get(app.dcp.url.content +'/' + app.rating.searchiskoId.split('-').join('/'))
         .done(function(item) {
-          app.rating.displayAvg(item.sys_rating_avg, item.sys_rating_num);
+          if (item.sys_rating_avg) {
+            app.rating.displayAvg(item.sys_rating_avg, item.sys_rating_num);
+          }
       });
     }
   },
