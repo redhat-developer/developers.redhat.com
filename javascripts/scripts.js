@@ -16,9 +16,7 @@ app.init = function() {
     Initialize foundation JS
   */
 
-  if(!!window.foundation) {
-    $(document).foundation();
-  }
+  $(document).foundation();
 
   /*
     initialize All sliders
