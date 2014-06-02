@@ -49,7 +49,7 @@ $remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
 
 desc 'Setup the environment to run Awestruct'
-task :setup, [:env] => [:init, :bundler_install, :git_setup, :regen_sprites] do |task, args|
+task :setup, [:env] => [:init, :bundle_install, :git_setup, :regen_sprites] do |task, args|
   # Don't execute any more tasks, need to reset env
   exit 0
 end
@@ -82,7 +82,7 @@ task :bundle_install, [:env] do |task, args|
 end
 
 desc 'Update the environment to run Awestruct'
-task :update => [:init, :bundler_update, :git_setup, :regen_sprites] do
+task :update => [:init, :bundle_update, :git_setup, :regen_sprites] do
   # Don't execute any more tasks, need to reset env
   exit 0
 end

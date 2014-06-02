@@ -83,17 +83,18 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
           - git_ref = page.metadata[:current_branch]
         -else
           - git_ref = page.metadata[:current_tag] || 'HEAD'
-        .row
-          .columns.large-24
-            a.button href="#{page.metadata[:github_repo_url]}/archive/#{git_ref}.zip"
-              | Download  
-              i.fa.fa-download
-        .row
-          .columns.large-24
-            a(href="#{page.metadata[:github_repo_url]}/tree/#{git_ref}")
-              i.fa.fa-github
-              | &nbsp; View on github
-              br
+        - unless page.archetype || page.bom
+          .row
+            .columns.large-24
+              a.button href="#{page.metadata[:github_repo_url]}/archive/#{git_ref}.zip"
+                | Download  
+                i.fa.fa-download
+          .row
+            .columns.large-24
+              a(href="#{page.metadata[:github_repo_url]}/tree/#{git_ref}")
+                i.fa.fa-github
+                | &nbsp; View on github
+                br
         .row
           .columns.large-24
             #rating-section data-searchisko-id="#{page.metadata[:searchisko_type]}-#{page.metadata[:searchisko_id]}"
