@@ -16,8 +16,9 @@ rvm_install_on_use_flag=1 rvm --create use ${ruby_version}@${ruby_gemset}
 rvm ${ruby_version}@${ruby_gemset} do gem install rake --no-document
 
 ## Build setup
-# Configure the environment. Note that we assume that Jenkins will update submodules for us directly
-rake bundle_install regen_sprites
+# Configure the environment. Must run bundle install to bootstrap the env 
+bundle install
+rake setup 
 
 ## Build execution
 # Run the build
