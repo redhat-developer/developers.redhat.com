@@ -11,4 +11,4 @@ if ! type "optipng" > /dev/null; then
 fi
 
 curl http://curl.haxx.se/ca/cacert.pem > cacert.pem
-export SSL_CERT_FILE=`pwd`/cacert.pem
+
