@@ -17,6 +17,7 @@ rvm ${ruby_version}@${ruby_gemset} do gem install rake --no-document
 
 ## Build setup
 # Configure the environment. Note that we assume that Jenkins will update submodules for us directly
+bundle install
 rake bundle_install regen_sprites
 
 ## Build execution
