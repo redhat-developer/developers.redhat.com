@@ -10,5 +10,5 @@ if ! type "optipng" > /dev/null; then
   brew install optipng
 fi
 
-wget http://curl.haxx.se/ca/cacert.pem
+curl http://curl.haxx.se/ca/cacert.pem > cacert.pem
 export SSL_CERT_FILE=`pwd`/cacert.pem
