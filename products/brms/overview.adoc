@@ -1,5 +1,6 @@
 :awestruct-layout: product-overview
 :leveloffset: 1
+:awestruct-interpolate: true
 
 == Overview
 
@@ -54,7 +55,7 @@ Detect, correlate and respond to events across multiple real-time data sources w
 
 Create complete business applications with ease using comprehensive Browser-based modeling tools for business rules and decision tables.
 
-image:http://howtojboss.files.wordpress.com/2013/01/screenshot2013-01-15at11-23-26am.png["BRMS Screenshot", width="90%", link="http://howtojboss.files.wordpress.com/2013/01/screenshot2013-01-15at11-23-26am.png"]
+image:#{cdn('http://howtojboss.files.wordpress.com/2013/01/screenshot2013-01-15at11-23-26am.png')}["BRMS Screenshot", width="90%", link="http://howtojboss.files.wordpress.com/2013/01/screenshot2013-01-15at11-23-26am.png"]
 
 Download JBoss BRMS and explore the tools for authoring business rules, provided as both standalone web applications and plug-ins for JBoss Developer Studio.
 

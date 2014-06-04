@@ -1,5 +1,6 @@
 :awestruct-layout: product-overview
 :awestruct-status: green
+:awestruct-interpolate: true
 :leveloffset: 1
 
 == Overview
@@ -15,7 +16,7 @@ Combines the world's most deployed web server (Apache) with the top servlet engi
 
 == Icon1
 
-image:/images/products/webserver/icon-apache.png["Apache"]#&nbsp;#
+image:#{cdn(site.base_url + '/images/products/webserver/icon-apache.png')}["Apache"]#&nbsp;#
 
 == Features2
 

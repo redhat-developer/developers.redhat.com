@@ -1,5 +1,6 @@
 :awestruct-layout: product-overview
 :awestruct-status: green
+:awestruct-interpolate: true
 :leveloffset: 1
 
 == Overview
@@ -68,7 +69,7 @@ Try the exciting new features:
 
 === Integration Everywhere
 
-image::/images/products/fuse/overview.png[]
+image::#{cdn(site.base_url + '/images/products/fuse/overview.png')}[]
 
 JBoss Fuse includes industry-standard integration patterns so you can easily configure and manage a network of integration brokers. These patterns, when used with the flexible and cost-effective ESB, allow you to deploy and connect customized solutions at every distributor, outlet, and partner, eliminating batch delivery and hub-and-spoke architectures forever.
 
