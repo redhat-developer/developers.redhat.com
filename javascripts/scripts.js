@@ -314,6 +314,9 @@ app.init = function() {
     app.dcp.resolveContributorsForBlock( type, id, $( this ),  app.templates.socialContributorTemplate );
   });
 
+  /* Init Highlightjs */
+  hljs.initHighlightingOnLoad();
+
 }; /* End app.init() */
 
 app.createSlider = function($el) {
