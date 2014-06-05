@@ -28,39 +28,47 @@ Awestruct::Extensions::Pipeline.new do
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/eap',
+                                                          excludes: ['_eap-quickstarts/template'],
                                                           product: 'eap')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_brms-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/brms',
+                                                          excludes: ['_brms-quickstarts/template'],
                                                           product: 'brms')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jdg-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/datagrid',
+                                                          excludes: ['_jdg-quickstarts/template'],
                                                           product: 'datagrid')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jon-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/operationsnetwork',
+                                                          excludes: ['_jon-quickstarts/template'],
                                                           product: 'operationsnetwork')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_picketlink-quickstarts', 
                                                           layout: 'get-started-item', 
+                                                          excludes: ['_picketlink-quickstarts/template'],
                                                           output_dir: '/quickstarts/picketlink')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_portal-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/portal',
+                                                          excludes: ['_portal-quickstarts/template'],
                                                           product: 'portal')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_sandbox-quickstarts', 
                                                           layout: 'get-started-item', 
+                                                          excludes: ['_sandbox-quickstarts/template'],
                                                           output_dir: '/quickstarts/sandbox')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_wfk-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/wfk',
+                                                          excludes: ['_wfk-quickstarts/template'],
                                                           product: 'wfk')
 
   extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
