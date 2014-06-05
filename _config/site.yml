@@ -17,6 +17,8 @@ deploy_base: &deploy
 
 profile_base: &profile
   cdn_http_base: &cdn_http_base //static.jboss.org/www 
+  cdn_out_dir: &cdn_out_dir _tmp
+  cdn_version: &cdn_version true
   log_faraday: true
   push_to_searchisko: true
   minify: &minify true 
@@ -28,7 +30,9 @@ profile_base: &profile
     :style: :compressed
     # Nice big hack:
     :cdn_http_base: *cdn_http_base
+    :cdn_out_dir: *cdn_out_dir
     :minify: *minify
+    :cdn_version: *cdn_version
 
 profiles:
   development:
@@ -36,6 +40,14 @@ profiles:
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     log_faraday: true
     push_to_searchisko: false
+    cdn_http_base: &dev_cdn_http_base http://localhost:4242/cdn
+    cdn_out_dir: &dev_cdn_out_dir _site
+    cdn_version: &dev_cdn_version false
+    scss:
+      # Nice big hack:
+      :cdn_http_base: *dev_cdn_http_base
+      :cdn_out_dir: *dev_cdn_out_dir
+      :cdn_version: *dev_cdn_version
 
   staging: 
     <<: *profile
