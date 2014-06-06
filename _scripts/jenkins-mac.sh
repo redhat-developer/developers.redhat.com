@@ -10,5 +10,3 @@ if ! type "optipng" > /dev/null; then
   brew install optipng
 fi
 
-curl http://curl.haxx.se/ca/cacert.pem > cacert.pem
-
