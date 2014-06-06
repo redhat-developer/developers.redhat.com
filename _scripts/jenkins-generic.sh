@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 ## Environment setup
 # Read the ruby environment to use from the checkout
