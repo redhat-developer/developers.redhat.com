@@ -467,12 +467,14 @@ app.buzz = {
       }
       container.html(html);
 
-      // run isotope only once they have been embedded into the dom AND images are loaded
-      $(window).load(function() {
-        container.isotope({
-          itemSelector: '.buzz-item'
+      if (container.hasClass('isotoped')) {
+        // run isotope only once they have been embedded into the dom AND images are loaded
+        $(window).load(function() {
+          container.isotope({
+            itemSelector: '.buzz-item'
+          });
         });
-      });
+      }
 
       container.removeClass('buzz-loading');
       $('.share-this').on('click mouseover', function() {
