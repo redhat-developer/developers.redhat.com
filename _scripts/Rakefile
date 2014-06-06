@@ -1,0 +1,110 @@
+require 'net/http'
+require 'uri'
+require 'json'
+
+desc 'Comment to any mentioned JIRA issues that the changes can now be viewed. Close the issue'
+task :comment_and_close_jiras, [:view, :job, :build_number, :deploy_url] do |task, args|
+  jenkins = Jenkins.new
+  jira = JIRA.new
+
+  # Read the changes
+  changes = jenkins.read_changes(args[:view], args[:job], args[:build_number])
+
+  # Comment on any JIRAs
+  jira.comment_issues(changes[:issues], "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
+  jira.close_issues(changes[:issues])
+end
+
+class Jenkins
+
+  def initialize
+    @jenkins_base_url = ENV['jenkins_base_url'] || 'https://jenkins.mw.lab.eng.bos.redhat.com/hudson/'
+    unless ENV['jenkins_username'] && ENV['jenkins_password']
+    end
+  end
+
+  def read_changes(view, job, build_number)
+    url = @jenkins_base_url
+    url << "view/#{view}/" unless view.nil?
+    url << "job/#{job}/#{build_number}/api/json?wrapper=changes"
+    uri = URI.parse(url)
+    req = Net::HTTP::Get.new(uri.path)
+    if ENV['jenkins_username'] && ENV['jenkins_password']
+      req.basic_auth ENV['jenkins_username'], ENV['jenkins_password']
+    end
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    resp = http.request(req)
+    issues = []
+    commits = []
+    if resp.is_a?(Net::HTTPSuccess) 
+        json = JSON.parse(resp.body)
+        json['changeSet']['items'].each do |item|
+          commits << item['commitId']
+          issues << item['comment'].scan(/(?:\s|^)([A-Z]+-[0-9]+)(?=\s|$)/)
+        end
+    else
+      puts "Error loading changes from Jenkins using #{url}. Status code #{resp.code}. Error message #{resp.body}"
+    end
+    # There can be multiple comments per issue
+    issues.flatten!
+    {:issues => issues, :commits => commits}
+  end
+
+end
+
+class JIRA
+
+  def initialize
+    @jira_base_url = ENV['jira_base_url'] || 'https://issues.jboss.org/'
+    @jira_issue_base_url = "#{@jira_base_url}rest/api/2/issue/"
+    unless ENV['jira_username'] && ENV['jira_password']
+      abort 'Must provide jira_username and jira_password environment variables'
+    end
+  end
+  
+  def comment_issues(issues, comment)  
+    issues.each do |k|
+      url = "#{@jira_issue_base_url}#{k}/comment"
+      resp = post(url, %Q{{ "body": "#{comment}"}})
+      if resp.is_a?(Net::HTTPSuccess)
+        puts "Successfully commenting on #{k}"
+      else
+        puts "Error commenting on #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+        puts "Request body: #{body}"
+      end
+    end
+  end
+
+  def post(url, body)
+    uri = URI.parse(url)
+    req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
+    req.basic_auth ENV['jira_username'], ENV['jira_password']
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    req.body = body
+    http.request(req)
+  end
+
+  def close_issues(issues)
+   issues.each do |k|
+      url = "#{@jira_issue_base_url}#{k}/transitions"
+      body = %Q{
+{
+    "transition": {
+        "id": "51"
+    }
+}
+      }
+      resp = post(url, body)
+      if resp.is_a?(Net::HTTPSuccess)
+        puts "Successfully closed #{k}"
+      else
+        puts "Error closing #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+        puts "Request body: #{body}"
+      end
+    end 
+  end
+end
+
