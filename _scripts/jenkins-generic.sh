@@ -1,4 +1,6 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -e
 
 ## Environment setup
 # Read the ruby environment to use from the checkout
@@ -22,7 +24,7 @@ rake setup
 
 ## Build execution
 # Run the build
-rake deploy[staging]
+rake clean[all] deploy[staging]
 
 ## Commit back CDN changes
 git add _cdn/cdn.yml
