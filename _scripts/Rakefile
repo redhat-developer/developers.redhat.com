@@ -3,12 +3,12 @@ require 'uri'
 require 'json'
 
 desc 'Comment to any mentioned JIRA issues that the changes can now be viewed. Close the issue'
-task :comment_and_close_jiras, [:view, :job, :build_number, :deploy_url] do |task, args|
+task :comment_and_close_jiras, [:job, :build_number, :deploy_url] do |task, args|
   jenkins = Jenkins.new
   jira = JIRA.new
 
   # Read the changes
-  changes = jenkins.read_changes(args[:view], args[:job], args[:build_number])
+  changes = jenkins.read_changes(args[:job], args[:build_number])
 
   # Comment on any JIRAs
   jira.comment_issues(changes[:issues], "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
@@ -23,9 +23,8 @@ class Jenkins
     end
   end
 
-  def read_changes(view, job, build_number)
+  def read_changes(job, build_number)
     url = @jenkins_base_url
-    url << "view/#{view}/" unless view.nil?
     url << "job/#{job}/#{build_number}/api/json?wrapper=changes"
     uri = URI.parse(url)
     req = Net::HTTP::Get.new(uri.path)
