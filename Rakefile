@@ -154,7 +154,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
     end
   end
   
-  # Update the resources on the CDN
+  # Update the resources on the CDN.
   if $config['cdn_http_base']
     cdn_host = $config.deploy.cdn_host
     cdn_path = $config.deploy.cdn_path
@@ -166,12 +166,14 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   end
 
   # Deploy the site
+  # If we are running a non-site root build (e.g. Pull Request) we alter where the site is copied too
+  if ENV['site_path_suffix']
+    site_path = $config.deploy.path + ENV['site_path_suffix'] 
+  else
+    site_path = $config.deploy.path
+  end
   site_host = $config.deploy.host
-  site_path = $config.deploy.path
-  
-  
   rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: true, excludes: $resources)
-
 end
 
 desc 'Clean out generated site and temporary files'
