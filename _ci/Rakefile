@@ -32,8 +32,10 @@ class Jenkins
       req.basic_auth ENV['jenkins_username'], ENV['jenkins_password']
     end
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    if uri.scheme == 'https'
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
     resp = http.request(req)
     issues = []
     commits = []
@@ -109,7 +111,9 @@ class JIRA
     req = Net::HTTP::Get.new(uri.path, initheader = {'Content-Type' =>'application/json'})
     req.basic_auth ENV['jira_username'], ENV['jira_password']
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if uri.scheme == 'https'
+      http.use_ssl = true
+    end
     http.request(req)
   end
 
