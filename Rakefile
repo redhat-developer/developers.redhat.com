@@ -166,14 +166,16 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   end
 
   # Deploy the site
-  # If we are running a non-site root build (e.g. Pull Request) we alter where the site is copied too
+  # If we are running a non-site root build (e.g. Pull Request) we alter where the site is copied too, and we don't delete
   if ENV['site_path_suffix']
     site_path = $config.deploy.path + ENV['site_path_suffix'] 
+    delete = false
   else
     site_path = $config.deploy.path
+    delete = true
   end
   site_host = $config.deploy.host
-  rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: true, excludes: $resources)
+  rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: delete, excludes: $resources)
 end
 
 desc 'Clean out generated site and temporary files'
@@ -269,6 +271,58 @@ task :travis do
   system "rsync --protocol=29 -r -l -i --no-p --no-g --chmod=Dg+sx,ug+rw _site/* #{deploy_url}"
 end
 
+desc 'Comment to any mentioned JIRA issues that the changes can now be viewed. Close the issue, if it is in the resolved state already.'
+task :comment_and_close_jiras, [:job, :build_number, :deploy_url] do |task, args|
+  jenkins = Jenkins.new
+  jira = JIRA.new
+
+  # Read the changes
+  changes = jenkins.read_changes(args[:job], args[:build_number])
+
+  # Comment on any JIRAs
+  jira.comment_issues(changes[:issues], "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
+  jira.close_issues_if_resolved(changes[:issues])
+end
+
+desc 'Comment to any mentioned JIRA issues that the changes can now be viewed.'
+task :comment_jiras, [:job, :build_number, :deploy_url] do |task, args|
+  jenkins = Jenkins.new
+  jira = JIRA.new
+
+  # Read the changes
+  changes = jenkins.read_changes(args[:job], args[:build_number])
+
+  # Comment on any JIRAs
+  jira.comment_issues(changes[:issues], "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
+end
+
+desc 'Link pull requests to JIRAs.'
+task :link_pull_requests, [:job, :build_number, :pull_request] do |task, args|
+  jenkins = Jenkins.new
+  jira = JIRA.new
+
+  # Read the changes
+  changes = jenkins.read_changes(args[:job], args[:build_number])
+
+  # Comment on any JIRAs
+  jira.link_pull_requests_if_unlinked(changes[:issues], args[:pull_request])
+end
+
+desc 'Remove staged pull builds for pulls closed more than 7 days ago'
+task :reap_old_pulls, [:pr_prefix] do |task, args|
+  github = GitHub.new
+  reap = github.list_closed_pulls('jboss-developer', 'www.jboss.org', DateTime.now - 7)
+  $staging_config ||= config 'staging'
+  Dir.mktmpdir do |empty_dir|
+    reap.each do |p|
+      puts "Reaping staging and cdn for Pull ##{p}"
+      # Clear the path on the html staging server
+      rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{args[:pr_prefix]}/#{p}", delete: true, ignore_non_existing: true)
+      # Clear the path on the cdn
+      rsync(local_path: empty_dir, host: $staging_config.deploy.cdn_host, remote_path: "#{$staging_config.deploy.cdn_path}/#{args[:pr_prefix]}/#{p}", delete: true, ignore_non_existing: true)
+    end
+  end
+end
 
 # Execute Awestruct
 def run_awestruct(args)
@@ -311,9 +365,10 @@ def msg(text, level = :info)
   end
 end
 
-def rsync(local_path:, host:, remote_path:, delete: false, excludes: [])
+def rsync(local_path:, host:, remote_path:, delete: false, excludes: [], dry_run: false, verbose: false, ignore_non_existing: false)
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
-  cmd = "rsync -PqaczO --chmod=Dg+sx,ug+rw --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
+  cmd = "rsync --partial --archive --checksum --compress --from0 #{'--quiet' unless verbose} #{'--verbose' if verbose} #{'--dry-run' if dry_run} #{'--ignore-non-existing' if ignore_non_existing} --chmod=Dg+sx,ug+rw --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
+  puts "Rsync command: #{cmd}" if verbose
   open3 cmd
 end
 
@@ -391,4 +446,229 @@ def merge_data(existing, new)
     new
   end
 end
+
+require 'net/http'
+require 'uri'
+require 'json'
+require 'date'
+require 'tmpdir'
+
+class GitHub 
+  def initialize
+    @github_base_url = 'https://api.github.com/'
+  end
+
+  def list_closed_pulls(org, repo, older_than)
+    pulls = []
+    pulls << _list_closed_pulls("#{@github_base_url}repos/#{org}/#{repo}/pulls?state=closed&sort=updated", older_than)
+    pulls.flatten!
+  end
+
+  def _list_closed_pulls(url, older_than)
+    resp = get(url)
+    pulls = []
+    if resp.is_a?(Net::HTTPSuccess)
+      json = JSON.parse(resp.body)
+      json.each do |p|
+        pulls << p['number'] unless DateTime.parse(p['closed_at']) > older_than
+      end
+      if resp.key? 'Link'
+        links = {}
+        resp['Link'].split(',').collect do |s|
+          a = s.split(';')
+          k = a[1][6..-2]
+          links[k] = a[0][(a[0].index('<') + 1)..(a[0].rindex('>') - 1)]
+        end
+        if links['next']
+          pulls << _list_closed_pulls(links['next'], older_than)
+        end
+      end
+    else
+      puts "Error requesting cosed pulls from github. Status code #{resp.code}. Error message #{resp.body}"
+    end
+    pulls
+  end
+
+  def get(url)
+    uri = URI.parse(url)
+    req = Net::HTTP::Get.new uri
+    http = Net::HTTP.new(uri.host, uri.port)
+    if uri.scheme == 'https'
+      http.use_ssl = true
+    end
+    http.request(req)
+  end
+
+end
+
+class Jenkins
+
+  def initialize
+    @jenkins_base_url = ENV['jenkins_base_url'] || 'http://jenkins.mw.lab.eng.bos.redhat.com/hudson/'
+    unless ENV['jenkins_username'] && ENV['jenkins_password']
+    end
+  end
+
+  def read_changes(job, build_number)
+    url = @jenkins_base_url
+    url << "job/#{job}/#{build_number}/api/json?wrapper=changes"
+    uri = URI.parse(url)
+    req = Net::HTTP::Get.new(uri.path)
+    if ENV['jenkins_username'] && ENV['jenkins_password']
+      req.basic_auth ENV['jenkins_username'], ENV['jenkins_password']
+    end
+    http = Net::HTTP.new(uri.host, uri.port)
+    if uri.scheme == 'https'
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
+    resp = http.request(req)
+    issues = []
+    commits = []
+    if resp.is_a?(Net::HTTPSuccess) 
+        json = JSON.parse(resp.body)
+        json['changeSet']['items'].each do |item|
+          commits << item['commitId']
+          issues << item['comment'].scan(/(?:\s|^)([A-Z]+-[0-9]+)(?=\s|$)/)
+        end
+    else
+      puts "Error loading changes from Jenkins using #{url}. Status code #{resp.code}. Error message #{resp.body}"
+    end
+    # There can be multiple comments per issue
+    issues.flatten!
+    {:issues => issues, :commits => commits}
+  end
+
+end
+
+class JIRA
+
+  def initialize
+    @jira_base_url = ENV['jira_base_url'] || 'https://issues.jboss.org/'
+    @jira_issue_base_url = "#{@jira_base_url}rest/api/2/issue/"
+    unless ENV['jira_username'] && ENV['jira_password']
+      abort 'Must provide jira_username and jira_password environment variables'
+    end
+  end
+  
+  def comment_issues(issues, comment)  
+    issues.each do |k|
+      url = "#{@jira_issue_base_url}#{k}/comment"
+      resp = post(url, %Q{{ "body": "#{comment}"}})
+      if resp.is_a?(Net::HTTPSuccess)
+        puts "Successfully commented on #{k}"
+      else
+        puts "Error commenting on #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+        puts "Request body: #{body}"
+      end
+    end
+  end
+
+  def issue_status(issue)
+    url = "#{@jira_issue_base_url}#{issue}?fields=status"
+    resp = get(url)
+    if resp.is_a?(Net::HTTPSuccess)
+      json = JSON.parse(resp.body)
+      if json['fields'] && json['fields']['status'] && json['fields']['status']['name']
+        json['fields']['status']['name']
+      else
+        puts "Error fetching status of #{issue} from JIRA. Status field not present"
+        -1
+      end
+    else
+      puts "Error fetching status of #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
+      -1
+    end
+  end
+
+  def linked_pull_request(issue)
+    url = "#{@jira_issue_base_url}#{issue}?fields=customfield_12310220"
+    resp = get(url)
+    if resp.is_a?(Net::HTTPSuccess)
+      json = JSON.parse(resp.body)
+      if json['fields'] && json['fields']['customfield_12310220']
+        json['fields']['customfield_12310220']
+      end
+    else
+      puts "Error fetching linked pull request for #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
+      -1
+    end
+  end
+
+  def post(url, body)
+    uri = URI.parse(url)
+    req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
+    req.basic_auth ENV['jira_username'], ENV['jira_password']
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    req.body = body
+    http.request(req)
+  end
+
+  def get(url)
+    uri = URI.parse(url)
+    req = Net::HTTP::Get.new(uri.path, initheader = {'Content-Type' =>'application/json'})
+    req.basic_auth ENV['jira_username'], ENV['jira_password']
+    http = Net::HTTP.new(uri.host, uri.port)
+    if uri.scheme == 'https'
+      http.use_ssl = true
+    end
+    http.request(req)
+  end
+
+  def close_issues_if_resolved(issues)
+    issues.each do |k|
+      status = issue_status k
+      if status == "Resolved"
+        url = "#{@jira_issue_base_url}#{k}/transitions"
+        body = %Q{
+          {
+            "transition": {
+              "id": "51"
+            }
+          }
+        }
+        resp = post(url, body)
+        if resp.is_a?(Net::HTTPSuccess)
+          puts "Successfully closed #{k}"
+        else
+          puts "Error closing #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+          puts "Request body: #{body}"
+        end
+      end
+    end 
+  end
+
+  def link_pull_requests_if_unlinked(issues, pull_request)
+    issues.each do |k|
+      pr = linked_pull_request k
+      if pr.nil?
+        url = "#{@jira_issue_base_url}#{k}/transitions"
+        body = %Q{
+          {
+            "update": {
+              "customfield_12310220": [
+                {
+                  "set": "https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request}"
+                }
+              ]
+            },
+            "transition": {
+              "id": "61"
+            }
+          }
+        }
+        resp = post(url, body)
+        if resp.is_a?(Net::HTTPSuccess)
+          puts "Successfully linked https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request} to #{k}"
+        else
+          puts "Error linking https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+          puts "Request body: #{body}"
+        end
+      end
+    end
+  end
+end
+
+
 
