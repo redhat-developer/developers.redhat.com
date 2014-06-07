@@ -22,7 +22,3 @@ rvm ${ruby_version}@${ruby_gemset} do gem install rake --no-document
 bundle install
 rake setup 
 
-## Build execution
-# Run the build
-rake clean[all] deploy[staging]
-
