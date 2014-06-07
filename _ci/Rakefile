@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-desc 'Comment to any mentioned JIRA issues that the changes can now be viewed. Close the issue'
+desc 'Comment to any mentioned JIRA issues that the changes can now be viewed. Close the issue, if it is in the resolved state already.'
 task :comment_and_close_jiras, [:job, :build_number, :deploy_url] do |task, args|
   jenkins = Jenkins.new
   jira = JIRA.new
@@ -14,6 +14,31 @@ task :comment_and_close_jiras, [:job, :build_number, :deploy_url] do |task, args
   jira.comment_issues(changes[:issues], "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
   jira.close_issues_if_resolved(changes[:issues])
 end
+
+desc 'Comment to any mentioned JIRA issues that the changes can now be viewed.'
+task :comment_jiras, [:job, :build_number, :deploy_url] do |task, args|
+  jenkins = Jenkins.new
+  jira = JIRA.new
+
+  # Read the changes
+  changes = jenkins.read_changes(args[:job], args[:build_number])
+
+  # Comment on any JIRAs
+  jira.comment_issues(changes[:issues], "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
+end
+
+desc 'Link pull requests to JIRAs.'
+task :link_pull_requests, [:job, :build_number, :pull_request] do |task, args|
+  jenkins = Jenkins.new
+  jira = JIRA.new
+
+  # Read the changes
+  changes = jenkins.read_changes(args[:job], args[:build_number])
+
+  # Comment on any JIRAs
+  jira.link_pull_requests_if_unlinked(changes[:issues], args[:pull_request])
+end
+
 
 class Jenkins
 
@@ -96,6 +121,24 @@ class JIRA
     end
   end
 
+  def linked_pull_request(issue)
+    url = "#{@jira_issue_base_url}#{issue}?fields=customfield_12310220"
+    resp = get(url)
+    if resp.is_a?(Net::HTTPSuccess)
+      json = JSON.parse(resp.body)
+      if json['fields'] && json['fields']['customfield_12310220']
+        json['fields']['customfield_12310220']
+      else
+        puts json
+        puts "Error fetching linked pull request for #{issue} from JIRA. Field not present"
+        -1
+      end
+    else
+      puts "Error fetching linked pull request for #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
+      -1
+    end
+  end
+
   def post(url, body)
     uri = URI.parse(url)
     req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
@@ -123,12 +166,12 @@ class JIRA
       if status == "Resolved"
         url = "#{@jira_issue_base_url}#{k}/transitions"
         body = %Q{
-{
-    "transition": {
-        "id": "51"
-    }
-}
-      }
+          {
+            "transition": {
+              "id": "51"
+            }
+          }
+        }
         resp = post(url, body)
         if resp.is_a?(Net::HTTPSuccess)
           puts "Successfully closed #{k}"
@@ -138,6 +181,34 @@ class JIRA
         end
       end
     end 
+  end
+
+  def link_pull_requests_if_unlinked(issues, pull_request)
+    issues.each do |k|
+      pr = linked_pull_request k
+      if pr.nil?
+        url = "#{@jira_issue_base_url}#{k}/transitions"
+        body = %Q{
+          {
+            "fields": {
+              "customfield_12310220": {
+                "name": "https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request}"
+              }
+            },
+            "transition": {
+              "id": "61"
+            }
+          }
+        }
+        resp = post(url, body)
+        if resp.is_a?(Net::HTTPSuccess)
+          puts "Successfully closed #{k}"
+        else
+          puts "Error closing #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+          puts "Request body: #{body}"
+        end
+      end
+    end
   end
 end
 
