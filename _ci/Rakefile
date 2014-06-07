@@ -18,7 +18,7 @@ end
 class Jenkins
 
   def initialize
-    @jenkins_base_url = ENV['jenkins_base_url'] || 'https://jenkins.mw.lab.eng.bos.redhat.com/hudson/'
+    @jenkins_base_url = ENV['jenkins_base_url'] || 'http://jenkins.mw.lab.eng.bos.redhat.com/hudson/'
     unless ENV['jenkins_username'] && ENV['jenkins_password']
     end
   end
