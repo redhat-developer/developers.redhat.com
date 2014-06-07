@@ -111,7 +111,6 @@ class JIRA
       if json['fields'] && json['fields']['status'] && json['fields']['status']['name']
         json['fields']['status']['name']
       else
-        puts json
         puts "Error fetching status of #{issue} from JIRA. Status field not present"
         -1
       end
@@ -128,10 +127,6 @@ class JIRA
       json = JSON.parse(resp.body)
       if json['fields'] && json['fields']['customfield_12310220']
         json['fields']['customfield_12310220']
-      else
-        puts json
-        puts "Error fetching linked pull request for #{issue} from JIRA. Field not present"
-        -1
       end
     else
       puts "Error fetching linked pull request for #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
@@ -190,10 +185,12 @@ class JIRA
         url = "#{@jira_issue_base_url}#{k}/transitions"
         body = %Q{
           {
-            "fields": {
-              "customfield_12310220": {
-                "name": "https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request}"
-              }
+            "update": {
+              "customfield_12310220": [
+                {
+                  "set": "https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request}"
+                }
+              ]
             },
             "transition": {
               "id": "61"
@@ -202,9 +199,9 @@ class JIRA
         }
         resp = post(url, body)
         if resp.is_a?(Net::HTTPSuccess)
-          puts "Successfully closed #{k}"
+          puts "Successfully linked https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request} to #{k}"
         else
-          puts "Error closing #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+          puts "Error linking https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
           puts "Request body: #{body}"
         end
       end
