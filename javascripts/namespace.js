@@ -42,5 +42,5 @@ app.dcp.url.rating = '#{site.dcp_base_protocol_relative_url}v1/rest/rating';
   Products
 */
 
-app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects']}; map; })}
+app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'] || '_none'}; map; })}
 
