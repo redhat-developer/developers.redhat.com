@@ -41,6 +41,11 @@ downloads:
       zip:
         size: 393mb
         name: Jar (Installer)
+      docker:
+        name: Docker (Unsupported)
+        artifacts:
+          docker-src:
+            url: https://github.com/JBoss-Dockerfiles/FSW600Base
   6.0.0.Beta:
     release_date: 2013-10-21
     description: A service design, development and integration platform enabling organizations to transition to open hybrid cloud.
