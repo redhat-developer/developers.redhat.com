@@ -7,7 +7,7 @@ description: The simple, modern & productive way to build apps and infrastructur
 ---
 / Introduction
 .row.intro.panel
-  h2 The simple, modern & productive way to build apps and infrastructure.
+  h2#introduction The simple, modern & productive way to build apps and infrastructure.
   .large-12.column
     h3 Get Started
     asciidoc:
@@ -39,14 +39,14 @@ description: The simple, modern & productive way to build apps and infrastructur
           a(href="#{site.base_url}/buzz")
             | View All Buzz 
             i.fa.fa-angle-double-right
-        h3 Buzz
+        h3#buzz Buzz
         .mini-buzz-container.buzz-loading
       .large-8.columns
         h6.viewall
           a(href="events")
             | View All Events 
             i.icon-double-angle-right
-        h3 Events 
+        h3#events Events
         - site.events.each do |v|
           - if "#{v.homepage}" == "true"
             .update

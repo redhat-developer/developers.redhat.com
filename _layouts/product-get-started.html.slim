@@ -6,9 +6,9 @@ type: Get Started
 - page.description = "Learn how to install and start using #{page.product.abbreviated_name}."
 = partial 'getstarted-thankyou.html.slim', {'parent' => page}
 
-h2 Get Started
+h2#get-started Get Started
 
-h3.divider Instructions for Installation
+h3.divider#installation-instructions Instructions for Installation
 
 ol
   - if page.product.default_download_artifact
@@ -52,13 +52,13 @@ ol
         a href="#{page.product.documentation_url}" Product Documentation
         | .
 
-h3.divider Configure Apache&trade; Maven
+h3.divider#configure-maven Configure Apache&trade; Maven
  
 = partial "maven_repository_instructions.adoc"
 
 - if page.product.featured_items
 
-  h3.divider Try a quickstart or example. Watch a video
+  h3.divider#try-quickstart Try a quickstart or example. Watch a video
 
   = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
   .developer-materials-results data-developer-materials-max-results="3" data-developer-materials-filter-hidden-keyword="#{page.product.abbreviated_name}" 

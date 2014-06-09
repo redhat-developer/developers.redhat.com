@@ -12,7 +12,7 @@ issues: [DEVELOPER-207, DEVELOPER-243, DEVELOPER-179, DEVELOPER-207, DEVELOPER-2
   = partial 'developer-materials-filters.html.slim'
 .large-13.columns.text-content
   - if page.product.featured_items
-    h2.divider Featured 
+    h2.divider#featured Featured
     = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
   .developer-materials-results data-developer-materials-filter-hidden-keyword="#{page.product.abbreviated_name}"
     = partial 'developer-materials-results.html.slim'

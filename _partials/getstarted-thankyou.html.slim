@@ -1,8 +1,8 @@
 .downloadthankyou(id="downloadthankyou" style="display:none")
   .thankyouclose
     a(href="#" onClick="$('div#downloadthankyou').hide('slow');")
-  h2 Thank you for downloading #{page.parent.product.abbreviated_name}!
-  h3 
+  h2#thank-you Thank you for downloading #{page.parent.product.abbreviated_name}!
+  h3#download-problems
     | Problems with the download? Please use this 
     /Link url is set by javascript
     a(id="tcDownloadLink" href="") direct link

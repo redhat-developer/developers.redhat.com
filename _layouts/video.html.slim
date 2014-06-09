@@ -8,7 +8,7 @@ layout: base
   end
 
 .row
-  h2.large-title Developer Materials
+  h2.large-title#developer-materials Developer Materials
 .row.content
   .large-24.columns
     ul.breadcrumbs
@@ -25,6 +25,6 @@ layout: base
     = partial("share.html.slim", :url => page.video_url, :title => page.description[0 .. 139])
 
   .large-6.columns
-    h4 Related Links
+    h4#related-links Related Links
     = page._relatedlinks
 
