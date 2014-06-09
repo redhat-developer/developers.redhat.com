@@ -37,6 +37,15 @@ downloads:
         name: Jar (Installer)
       source:
         size: 67mb
+      docker:
+        artifacts:
+          docker-tar:
+            size: 1095mb
+            url: https://drive.google.com/file/d/0B5kKwcd4kOq9bTdsTWxjSVcyc2c/edit?usp=sharing
+          docker-src:
+            url: https://github.com/JBoss-Dockerfiles/DV600Base
+          docker-readme:
+            url: https://drive.google.com/file/d/0B5kKwcd4kOq9bkQ0OVY1b0xoSkE/edit?usp=sharing
   6.0.0.Beta:
     release_date: 2013-10-09
     description: Accesses and transforms data from one or more heterogeneous sources into logical, business-friendly data models.
