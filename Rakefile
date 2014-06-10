@@ -168,7 +168,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   # Deploy the site
   # If we are running a non-site root build (e.g. Pull Request) we alter where the site is copied too, and we don't delete
   if ENV['site_path_suffix']
-    site_path = $config.deploy.path + ENV['site_path_suffix'] 
+    site_path = "#{$config.deploy.path}/#{ENV['site_path_suffix']}"
     delete = false
   else
     site_path = $config.deploy.path
