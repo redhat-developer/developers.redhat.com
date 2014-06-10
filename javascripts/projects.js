@@ -56,7 +56,10 @@ app.project = {
     $.ajax({
       url : app.dcp.url.search,
       dataType: 'json',
-      data : request_data
+      data : request_data,
+      error : function() {
+        $('ul.results').html(app.dcp.error_message);
+      }
     }).done(function(data){
       var hits = data.hits.hits; // first one for testing
       hits.sortJsonArrayByProperty("_source.sys_title");

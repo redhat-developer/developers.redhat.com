@@ -440,6 +440,11 @@ app.buzz = {
           if(app.buzz.currentRequest && app.buzz.currentRequest.readyState != 4) {
             app.buzz.currentRequest.abort();
           }
+        },
+        error : function() {
+          $('.buzz-filters').html(app.dcp.error_message);
+          $('.mini-buzz-container').html(app.dcp.error_message);
+          $('.buzz-loading').removeClass('buzz-loading');
         }
       }).done(function(data){
         var hits = data.hits.hits;

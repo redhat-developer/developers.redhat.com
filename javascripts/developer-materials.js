@@ -302,6 +302,9 @@ app.dm = {
         if(app.dm.currentRequest && app.dm.currentRequest.readyState != 4) {
           app.dm.currentRequest.abort();
         }
+      },
+      error : function() {
+        $("ul.results").html(app.dcp.error_message);
       }
     }).done(function(data){
       var hits = data.hits.hits;

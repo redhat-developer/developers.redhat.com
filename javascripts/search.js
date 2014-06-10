@@ -28,6 +28,9 @@ app.search = {
       },
       success : function(data) {
         app.search.format(query, data.hits.hits);
+      },
+      error : function() {
+        $('.searchResults').html("<ul>" + app.dcp.error_message + "</ul>");
       }
     });
 
