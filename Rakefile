@@ -324,6 +324,15 @@ task :reap_old_pulls, [:pr_prefix] do |task, args|
   end
 end
 
+desc 'Make sure Pull Request dirs exist'
+task :create_pr_dirs, [:pr_prefix] do |task, args|
+  $staging_config ||= config 'staging'
+  Dir.mktmpdir do |empty_dir|
+    rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{args[:pr_prefix]}")
+    rsync(local_path: empty_dir, host: $staging_config.deploy.cdn_host, remote_path: "#{$staging_config.deploy.cdn_path}/#{args[:pr_prefix]}")
+  end
+end
+
 # Execute Awestruct
 def run_awestruct(args)
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
