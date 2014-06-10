@@ -284,6 +284,16 @@ task :comment_and_close_jiras, [:job, :build_number, :deploy_url] do |task, args
   jira.close_issues_if_resolved(changes[:issues])
 end
 
+desc 'Comment to any mentioned JIRA issues that the changes can now be viewed. Close the issue, if it is in the resolved state already.'
+task :list_jiras, [:job, :build_number] do |task, args|
+  jenkins = Jenkins.new
+
+  # Read the changes
+  changes = jenkins.read_changes(args[:job], args[:build_number])
+
+  puts changes[:issues]
+end
+
 desc 'Comment to any mentioned JIRA issues that the changes can now be viewed.'
 task :comment_jiras, [:job, :build_number, :deploy_url] do |task, args|
   jenkins = Jenkins.new
