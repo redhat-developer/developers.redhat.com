@@ -15,10 +15,7 @@ module JBoss
             "sha1" => {"name" => "SHA1", "type" => "sha1"},
             "md5" => {"name" => "MD5", "type" => "md5"}, 
             "release_notes" => {"name" => "Release Notes", "icon" => "fa fa-pencil", "type" => "txt"},
-            "source" => {},
-            "docker-tar" => {"icon" => "fa fa-docker", "type" => "tar", "name" => "Docker tar image"},
-            "docker-src" => {"icon" => "fa fa-docker", "name" => "Docker file"},
-            "docker-readme" => {"name" => "Docker image README", "icon" => "fa fa-pencil", "type" => "txt"}
+            "source" => {}
           }
           @default_locale = "en_US"
           @default_download_artifact_type = "zip"
@@ -93,7 +90,7 @@ module JBoss
                     artifact.classifier ||= artifact_classifier l, m, artifact.type
                     artifact.name ||=  artifact_attr m, "name", key_to_name(m)
                     artifact.filename ||= "jboss-#{product.id}-#{download.version}#{artifact.classifier}.#{artifact.type}"
-                    artifact.url ||= "#{site.download_manager_file_base_url}#{artifact.filename}"
+                    artifact.url = "#{site.download_manager_file_base_url}#{artifact.filename}"
                     artifact.icon ||= artifact_attr m, "icon", "fa fa-download"
                     c << artifact
                   end
