@@ -548,7 +548,7 @@ class Jenkins
         json = JSON.parse(resp.body)
         json['changeSet']['items'].each do |item|
           commits << item['commitId']
-          issues << item['comment'].scan(/(?:\s|^)([A-Z]+-[0-9]+)(?=\s|$)/)
+          issues << item['comment'].scan(JIRA::KEY_PATTERN)
         end
     else
       puts "Error loading changes from Jenkins using #{url}. Status code #{resp.code}. Error message #{resp.body}"
@@ -561,6 +561,8 @@ class Jenkins
 end
 
 class JIRA
+
+  KEY_PATTERN = /(?:\s|^)([A-Z]+-[0-9]+)(?=\s|$)/
 
   def initialize
     @jira_base_url = ENV['jira_base_url'] || 'https://issues.jboss.org/'
