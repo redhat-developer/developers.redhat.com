@@ -295,27 +295,21 @@ task :list_jiras, [:job, :build_number] do |task, args|
 end
 
 desc 'Comment to any mentioned JIRA issues that the changes can now be viewed.'
-task :comment_jiras, [:job, :build_number, :deploy_url] do |task, args|
-  jenkins = Jenkins.new
+task :comment_jiras_from_git_log, [:deploy_url, :not_on] do |task, args|
   jira = JIRA.new
-
-  # Read the changes
-  changes = jenkins.read_changes(args[:job], args[:build_number])
+  git = Git.new
 
   # Comment on any JIRAs
-  jira.comment_issues(changes[:issues], "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
+  jira.comment_issues(git.extract_issues('HEAD', args[:not_on]), "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
 end
 
 desc 'Link pull requests to JIRAs.'
-task :link_pull_requests, [:job, :build_number, :pull_request] do |task, args|
-  jenkins = Jenkins.new
+task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   jira = JIRA.new
-
-  # Read the changes
-  changes = jenkins.read_changes(args[:job], args[:build_number])
+  git = Git.new
 
   # Comment on any JIRAs
-  jira.link_pull_requests_if_unlinked(changes[:issues], args[:pull_request])
+  jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
 end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
@@ -471,6 +465,14 @@ require 'uri'
 require 'json'
 require 'date'
 require 'tmpdir'
+
+class Git
+  def extract_issues(branch, not_on)
+    # Read the changes
+    changes = `git --no-pager log #{branch} --not #{not_on}`
+    changes.scan(JIRA::KEY_PATTERN).flatten!
+  end
+end
 
 class GitHub 
   def initialize
