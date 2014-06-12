@@ -11,7 +11,7 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
     - page.product = site[:products][page.metadata[:product]]
 
 .row
-  h2.large-title Developer Materials
+  h2.large-title#developer-materials Developer Materials
 .row.row.content
   .large-24.columns
     ul.breadcrumbs
@@ -23,7 +23,7 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
         a href="#{site.base_url}#{page.output_path}" #{page.metadata[:title]}
 .row itemscope="" itemtype="http://schema.org/Article"
   .collapse.large-24
-    h2.divider itemprop="name" #{page.metadata[:title]}
+    h2.divider#start itemprop="name" #{page.metadata[:title]}
     - if [:author, :commits, :level, :technologies, :target_product].all? { |k| page.metadata.key? k} && !page.metadata[:commits].empty?
       .gsi-meta data-searchisko-type="#{page.metadata[:searchisko_type]}" data-searchisko-id="#{page.metadata[:searchisko_id]}"
         ul
@@ -66,7 +66,7 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
 
         / TODO: Share Knowledge, comments go here
         - if page.metadata[:commits] && !page.metadata[:commits].empty?
-          h3.divider Recent Changelog
+          h3.divider#changelog Recent Changelog
           ul.commit-log
             - for commit in page.metadata[:commits].take(10)
               li

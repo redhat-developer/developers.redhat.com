@@ -6,14 +6,14 @@ title: Downloads available from JBoss
 description: Discover the product downloads available from JBoss, and locate the upstream projects they are based on.
 ---
 .row
-  h2.large-title.divider Downloads
+  h2.large-title.divider#downloads Downloads
   asciidoc:
     Registration is required. Downloads require accepting the terms and conditions of the JBoss Developer Program which provides $0 subscriptions for development use only. If you have a Red Hat commercial subscription, visit http://access.redhat.com[the customer portal] for more downloads.
 
 .row
   .large-12.column
       .download-list
-        h3 Application Platforms
+        h3#application-platforms Application Platforms
         ul
           = partial 'download_item.html.slim', {'product_id' => 'eap'}
           = partial 'download_item.html.slim', {'product_id' => 'webserver'}
@@ -21,7 +21,7 @@ description: Discover the product downloads available from JBoss, and locate the
           = partial 'download_item.html.slim', {'product_id' => 'portal'}
   .large-12.column
       .download-list
-        h3 Integration
+        h3#integration Integration
         ul
           = partial 'download_item.html.slim', {'product_id' => 'fsw'}
           = partial 'download_item.html.slim', {'product_id' => 'datavirt'}
@@ -29,13 +29,13 @@ description: Discover the product downloads available from JBoss, and locate the
           = partial 'download_item.html.slim', {'product_id' => 'amq'}
   .large-12.column
       .download-list
-        h3 Automation
+        h3#automation Automation
         ul
           = partial 'download_item.html.slim', {'product_id' => 'brms'}
           = partial 'download_item.html.slim', {'product_id' => 'bpmsuite'}
   .large-12.column
       .download-list
-        h3 Development Tools
+        h3#developement-tools Development Tools
         ul
           = partial 'download_item.html.slim', {'product_id' => 'devstudio'}
 

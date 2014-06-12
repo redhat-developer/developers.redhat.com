@@ -4,12 +4,12 @@ status: green
 type: Resources
 ---
 - page.description = "Find documentation, videos, articles, and other resources available for #{page.product.abbreviated_name}."
-h2.divider Resources
+h2.divider#resources Resources
 
 asciidoc:
   There are many resources available for #{page.product.name}, here on JBoss Developer, on the https://access.redhat.com/site/products/JBoss/[Red Hat Customer Portal], and https://www.google.co.uk/search?q=#{page.product.abbreviated_name.sub(/ /, '+')}[on the internet]. On this page, we highlight our pick of those resources.
 
-h3.divider Documentation
+h3.divider#documentation Documentation
 table.large-24.small-24
   thead
     tr
@@ -27,7 +27,7 @@ a(href="#{page.product.documentation_url}")
   i.fa.fa-external-link
 
 - if page.product.featured_videos
-  h3.divider Featured Videos
+  h3.divider#featured-videos Featured Videos
   ul.small-block-grid-3.large-block-grid-3
     - for i in 0..2
       - if page.product.featured_videos.length > i
@@ -36,7 +36,7 @@ a(href="#{page.product.documentation_url}")
           = video_thumb(video(url))
 
 - unless !page_more_resources || page._more_resources.empty?
-  h3.divider More Resources
+  h3.divider#more-resources More Resources
   .updates
     = page._more_resources
 - if page.product.demos

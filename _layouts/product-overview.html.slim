@@ -5,7 +5,7 @@ type: Overview
 ---
 - page.description ||= truncate_para(page._overview, 150)
 
-h2.divider Overview
+h2.divider#overview Overview
 
 = page._overview
 
@@ -30,7 +30,7 @@ br
 
 = video_player(video(page.product.intro_video_2)) if page.product.intro_video_2
 
-h3.divider Resources
+h3.divider#resources Resources
 
 = page._resources
 
@@ -47,7 +47,7 @@ a.moreinfolink(href="../resources")
   i.fa.fa-angle-double-right
 
 - unless !page.articles || page._articles.empty?
-  h3.divider Blog Posts and Articles
+  h3.divider#blog-posts Blog Posts and Articles
 
   = page._articles
 
