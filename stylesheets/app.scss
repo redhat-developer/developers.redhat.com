@@ -1677,8 +1677,12 @@ table.demos {
 }
 
 // hack for asciidoctor and older font-awesome content when asciidoctor #955 is merged this can go away
-.icon {
+td.icon {
   vertical-align: middle;
+}
+
+.icon {
+  @extend .fa;
   .icon-warning {
     @extend .fa-warning;
     @extend .fa-2x;
