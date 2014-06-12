@@ -470,7 +470,7 @@ class Git
   def extract_issues(branch, not_on)
     # Read the changes
     changes = `git --no-pager log #{branch} --not #{not_on}`
-    changes.scan(JIRA::KEY_PATTERN).flatten!
+    changes.scan(JIRA::KEY_PATTERN).flatten!.uniq!
   end
 end
 
@@ -482,7 +482,7 @@ class GitHub
   def list_closed_pulls(org, repo, older_than)
     pulls = []
     pulls << _list_closed_pulls("#{@github_base_url}repos/#{org}/#{repo}/pulls?state=closed&sort=updated", older_than)
-    pulls.flatten!
+    pulls.flatten!.uniq!
   end
 
   def _list_closed_pulls(url, older_than)
@@ -556,7 +556,7 @@ class Jenkins
       puts "Error loading changes from Jenkins using #{url}. Status code #{resp.code}. Error message #{resp.body}"
     end
     # There can be multiple comments per issue
-    issues.flatten!
+    issues.flatten!.uniq!
     {:issues => issues, :commits => commits}
   end
 
