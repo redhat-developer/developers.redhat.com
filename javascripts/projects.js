@@ -34,7 +34,7 @@ app.project = {
     });
 
     // Prep each filter
-    var query = [];
+    var query = ['NOT archived:true'];
 
     if(currentFilters['keyword']) {
       query.push(keyword);
