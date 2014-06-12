@@ -431,7 +431,7 @@ app.buzz = {
         data : {
           "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated", "author"],
           "query" : query,
-          "size" : 6,
+          "size" : 8,
           "sys_type" : "blogpost",
           "sortBy" : "new-create"
         },
@@ -463,6 +463,7 @@ app.buzz = {
             d.authorName = d.author;
           }
           d.updatedDate = jQuery.timeago(new Date(d.sys_updated));
+          d.sys_description = d.sys_description.substr(0,200);
           html += tmpl.template(d);
       }
 
