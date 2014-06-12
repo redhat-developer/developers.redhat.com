@@ -56,7 +56,6 @@ profiles:
     <<: *profile
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
-    base_url: http://www-stg.jboss.org/
     deploy:
       <<: *deploy
       path: /stg_htdocs/www-stg

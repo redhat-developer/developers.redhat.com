@@ -339,6 +339,12 @@ end
 
 # Execute Awestruct
 def run_awestruct(args)
+  if ENV['site_base_path']
+    base_url = ENV['site_base_path']
+    base_url = "#{base_url}/#{ENV['site_path_suffix']}" if ENV['site_path_suffix']
+  end
+  args ||= "" # Make sure that args is initialized
+  args << " --url " + base_url if base_url 
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
     exit 0
   end
