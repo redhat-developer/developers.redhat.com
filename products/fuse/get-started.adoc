@@ -1,2 +1,34 @@
 :awestruct-layout: product-get-started
 
+## Extra installation instructions
+
+[start=4]
+. Start JBoss Fuse.
++
+For Linux or Mac
+   
+      cd jboss-fuse-6.1.0.redhat-379
+      bin/fuse
++
+For Windows
+
+    cd jboss-fuse-6.1.0.redhat-379
+    bin\fuse.bat
++
+. The first time JBoss Fuse is started you must configure an `administrator` user. In the Fuse shell execute the following command:
+
+      esb:create-admin-user
++
+And type in a username and password.
++
+. Create a new fabric (optional). 
+  JBoss Fuse comes with Fuse Fabric which can be created by executing the following command from the Fuse shell:
+
+      fabric:create
++
+For more information about https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Fabric_Guide/files/front.html[Fuse Fabric view the Fabric Guide]
+. Using the web console
+  Open a web browser and visit http://localhost:8181[http://localhost:8181]. Login using the `adminstrator` user you created.
+
+## Configure Apache Maven
+

@@ -43,7 +43,7 @@ Connect to external applications with connectors for JDBC, FTP/SFTP, HTTP/HTTPS,
 
 == Detail
 
-JBoss Fuse combines several technologies like core Enterprise Service Bus capabilities (based on Apache Camel, Apache CXF, Apache ActiveMQ), Apache Karaf and Fuse Fabric in a single integrated distribution.
+JBoss Fuse combines several technologies like core Enterprise Service Bus capabilities (based on Apache Camel, Apache CXF, Apache ActiveMQ), Apache Karaf and Fabric8 in a single integrated distribution.
 
 image::images/products/fuse/Fuse_Builtfromdiagram_02.png[]
 
@@ -53,10 +53,13 @@ image::images/products/fuse/Fuse_Builtfromdiagram_02.png[]
 |Apache CXF|Integrate applications with SOAP, XML/HTTP and RESTful HTTP.
 |Apache ActiveMQ|Provides core messaging within the ESB and for integrating with other applications.
 |Apache Karaf|Offers a lightweight OSGI-based runtime container for managing the components that compose your applications.
-|Fuse Fabric|Makes it simple to manage large and distributed, JBoss Fuse deployments from a central location.
+|Fabric8|Makes it simple to manage large and distributed, JBoss Fuse deployments from a central location.
 |====
 
-Fuse IDE is available to provide an easy-to-use integration development environment built on Eclipse.
+link:../../devstudio[JBoss Developer Studio] provides an easy-to-use integration development environment built on Eclipse. The https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Developer_Studio/7.1/html/Integration_Stack_Guide/chap-Introduction_to_Red_Hat_JBoss_Developer_Studio_Integration_Stack.html[JBoss Developer Studio Integration Stack] provides tooling for developing, configuring and deploying Fuse applications.
+
+Fuse Management Console is based on the http://hawt.io[hawtio] web console. You can now start, stop, measure and trace Camel routes on-premise or in the cloud.
+
 
 === New Features
 
