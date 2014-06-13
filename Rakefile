@@ -329,11 +329,15 @@ task :reap_old_pulls, [:pr_prefix] do |task, args|
 end
 
 desc 'Make sure Pull Request dirs exist'
-task :create_pr_dirs, [:pr_prefix] do |task, args|
+task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
     rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{args[:pr_prefix]}")
+    rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{args[:pr_prefix]}/#{args[:pull]}")
+    rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{args[:pr_prefix]}/#{args[:pull]}/#{args[:build_prefix]}")
     rsync(local_path: empty_dir, host: $staging_config.deploy.cdn_host, remote_path: "#{$staging_config.deploy.cdn_path}/#{args[:pr_prefix]}")
+    rsync(local_path: empty_dir, host: $staging_config.deploy.cdn_host, remote_path: "#{$staging_config.deploy.cdn_path}/#{args[:pr_prefix]}/#{args[:pull]}")
+    rsync(local_path: empty_dir, host: $staging_config.deploy.cdn_host, remote_path: "#{$staging_config.deploy.cdn_path}/#{args[:pr_prefix]}/#{args[:pull]}/#{args[:build_prefix]}")
   end
 end
 
