@@ -339,15 +339,6 @@ app.dm = {
             // check for a description
             var sys_description = hits[i].fields.sys_description || "";
 
-            if ('sys_author' in hits[i].fields) {
-              var author = hits[i].fields.sys_author;  
-            }
-
-            if ('sys_rating_num' in hits[i].fields) {
-              var rating_num = hits[i].fields.sys_rating_num;
-              var rating_avg = hits[i].fields.sys_rating_avg;
-            }
-
             var template = "<li class=\"material\">"; 
             template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
             // jbossdeveloper_example and video have thumbnails
@@ -394,10 +385,11 @@ app.dm = {
                 hits[i].fields.sys_title +
               "</a>" +
             "</h4>";
-            if (rating_avg) {
-              template += "<p class=\"rating\">" + roundHalf(rating_avg) + "(" + rating_num + ")</p>";
+            if ('sys_rating_num' in hits[i].fields && 'rating_avg' in hits[i].fields) {
+              template += "<p class=\"rating\">" + roundHalf(hits[i].fields.sys_rating_avg) + "(" + hits[i].fields.sys_rating_num + ")</p>";
             }
-            if (author && author.length > 0) {
+            if ('sys_author' in hits[i].fields && hits[i].fields['sys_author'].length > 0) {
+              var author = hits[i].fields['sys_author'];
               template += "<p class=\"author\">" +
                 "Author: " +
                   "<span class=\"contributor\" data-sys-contributor=\"" + author + "\">" +
