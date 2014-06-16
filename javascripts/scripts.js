@@ -472,20 +472,28 @@ app.buzz = {
       }
       container.html(html);
 
-      if (container.hasClass('isotoped')) {
-        // run isotope only once they have been embedded into the dom AND images are loaded
-        $(window).load(function() {
-          container.isotope({
-            itemSelector: '.buzz-item'
-          });
-        });
-      }
+      // run isotope only once they have been embedded into the dom AND images are loaded
+      $('.buzz-item img').load(function() {
+        // container.isotope({
+        //   itemSelector: '.buzz-item'
+        // });
+        $('.results').isotope('reloadItems').isotope();
+      });
+
+      // relayout fallback
+      window.setTimeout(function() {
+        // container.isotope({
+        //   itemSelector: '.buzz-item'
+        // });
+        $('.results').isotope('reloadItems').isotope();
+      }, 1000);
 
       container.removeClass('buzz-loading');
       $('.share-this').on('click mouseover', function() {
         Socialite.load($(this)[0]);
       });
-    });
+
+    }); // end ajax done
   }
 }
 
