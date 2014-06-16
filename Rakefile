@@ -145,19 +145,27 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   LOCAL_CDN_PATH = Pathname.new('_tmp').join('cdn') # HACK!!
   local_site_path = '_site' # HACK!!
 
-  if args[:tag_name]
-    local_tagged_path = LOCAL_CDN_PATH.join(args[:tag_name])
-    # Collect our resources into a tagged group, for others to use
-    FileUtils.mkdir_p local_tagged_path
-    $resources.each do |r|
-      FileUtils.cp_r Pathname.new(local_site_path).join(r), local_tagged_path
-    end
-  end
-  
   # Update the resources on the CDN.
   if $config['cdn_http_base']
     cdn_host = $config.deploy.cdn_host
     cdn_path = $config.deploy.cdn_path
+    
+    if args[:tag_name]
+      local_originals_path = LOCAL_CDN_PATH.join(args[:tag_name])
+    else
+      if ENV['site_path_suffix']
+        local_originals_path = LOCAL_CDN_PATH.join("#{ENV['site_path_suffix']}").join("originals")
+      else
+        local_originals_path = LOCAL_CDN_PATH.join("originals")
+      end
+    end
+
+    # Collect our original resources, for others to use
+    FileUtils.mkdir_p local_originals_path
+    $resources.each do |r|
+      FileUtils.cp_r Pathname.new(local_site_path).join(r), local_originals_path
+    end
+
     rsync(local_path: LOCAL_CDN_PATH, host: cdn_host, remote_path: cdn_path)
   end
 
