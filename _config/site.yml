@@ -38,11 +38,14 @@ profile_base: &profile
     :cdn_version: *cdn_version
 
 profiles:
-  development:
+  development: &development
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     log_faraday: true
     push_to_searchisko: false
+  
+  development_cdn: 
+    <<: *development
     cdn_http_base: &dev_cdn_http_base http://localhost:4242/cdn
     cdn_out_dir: &dev_cdn_out_dir _site
     cdn_version: &dev_cdn_version false
