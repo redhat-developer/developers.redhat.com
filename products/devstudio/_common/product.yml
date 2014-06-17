@@ -37,18 +37,19 @@ downloads:
         size: 613mb
         name: Installer Jar (with EAP)
         type: jar
-      standalone_universal:
-        artifacts:
-          standalone_jar:
-            name: Installer Jar (Stand-alone)
-            size: 487mb
-            type: jar
-          standalone_zip_update:
-            name: Update Site Zip
-            size: 725mb
-          standalone_zip_central:
-            name: JBoss Central Zip
-            size: 420mb
+      standalone_jar:
+        name: Installer Jar (Stand-alone)
+        size: 487mb
+        type: jar
+        url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta1-standalone_universal-standalone_jar.jar
+      standalone_zip_update:
+        name: Update Site Zip
+        size: 725mb
+        url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta1-standalone_universal-standalone_zip_update.zip
+      standalone_zip_central:
+        name: JBoss Central Zip
+        size: 420mb
+        url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta1-standalone_universal-standalone_zip_central.zip
       source:
         size: 6mb
   7.1.1.GA:
@@ -59,18 +60,19 @@ downloads:
         size: 609mb
         name: Installer Jar (with EAP)
         type: jar
-      standalone_universal:
-        artifacts:
-          standalone_jar:
-            name: Installer Jar (Stand-alone)
-            size: 482mb
-            type: jar
-          standalone_zip_update:
-            name: Update Site Zip
-            size: 713mb
-          standalone_zip_central:
-            name: JBoss Central Zip
-            size: 410mb
+      standalone_jar:
+        name: Installer Jar (Stand-alone)
+        size: 482mb
+        type: jar
+        url: https://www.jboss.org/download-manager/file/jboss-devstudio-7.1.1.GA-standalone_universal-standalone_jar.jar
+      standalone_zip_update:
+        name: Update Site Zip
+        size: 713mb
+        url: https://www.jboss.org/download-manager/file/jboss-devstudio-7.1.1.GA-standalone_universal-standalone_zip_update.zip
+      standalone_zip_central:
+        name: JBoss Central Zip
+        size: 410mb
+        url: https://www.jboss.org/download-manager/file/jboss-devstudio-7.1.1.GA-standalone_universal-standalone_zip_central.zip
       source:
         size: 6mb
 #   7.1.0.GA:
