@@ -472,12 +472,14 @@ app.buzz = {
       }
       container.html(html);
 
-      container.imagesLoaded(function(){
-        console.log("Images loaded");
-        container.isotope({
-          itemSelector: '.buzz-item'
+      if (container.hasClass('isotoped')) {
+        container.imagesLoaded(function(){
+          console.log("Images loaded");
+          container.isotope({
+            itemSelector: '.buzz-item'
+          });
         });
-      });
+      }
 
       container.removeClass('buzz-loading');
 
