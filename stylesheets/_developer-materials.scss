@@ -12,6 +12,7 @@ ul.results {
   margin-top: 20px;
   &.loading {
     background:cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+    min-height:250px;
     li.material {
       visibility: hidden;
     }

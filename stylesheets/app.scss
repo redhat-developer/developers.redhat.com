@@ -1676,6 +1676,12 @@ table.demos {
   border-radius: 10px;
 }
 
+.loading, .buzz-loading {
+  .dcp-error-message {
+    display: none;
+  }
+}
+
 // hack for asciidoctor and older font-awesome content when asciidoctor #955 is merged this can go away
 td.icon {
   vertical-align: middle;
