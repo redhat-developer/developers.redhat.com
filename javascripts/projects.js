@@ -8,7 +8,6 @@ function getCorrectUrl(linkUrl) {
 
 app.project = {
   projectFilter : function(filters) {
-    console.log('Performing project filter');
     // Get the Filter Items
 
     //Currently the only way to specify no limit
@@ -192,8 +191,10 @@ $(function() {
   var timeOut;
   $('form.project-filters').on('keyup','input',function(e){
     clearTimeout(timeOut);
+    var el = $(this);
     timeOut = setTimeout(function() {
       app.project.projectFilter();
+      app.utils.updatePageHash(el);
     }, 300);
   });
 
@@ -203,7 +204,9 @@ $(function() {
 
   $('select[name="filter-products"]').on('change', function(e) {
     e.preventDefault();
+    var el = $(this);
     app.project.projectFilter(); 
+    app.utils.updatePageHash(el);
   });
 
   $('.project-filters-clear').on('click',function(e){

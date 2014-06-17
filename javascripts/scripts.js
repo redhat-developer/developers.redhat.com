@@ -269,20 +269,6 @@ app.init = function() {
     app.mktg_ops.init();
   }
 
-  /*
-   * Restore the Developer Materials Filter from local storage
-   */
-  if ($('.developer-materials-sidebar').length) {
-     app.dm.restoreFilter();
-  }
-
-  /*
-   * Populate developer materials results if on developer materials page
-   */
-  if ($('.developer-materials-results').length) {
-     app.dm.devMatFilter();
-  }
-
   if ($('.downloadthankyou').length) {
       app.dl.doDownload();
   }
@@ -494,7 +480,6 @@ app.buzz = {
 
       if (container.hasClass('isotoped')) {
         container.imagesLoaded(function(){
-          console.log("Images loaded");
           container.isotope({
             itemSelector: '.buzz-item'
           });
@@ -525,6 +510,7 @@ app.getQueryVariable = function (variable) {
 
 // Event Listeners for Buzz
 $(function() {
+
   // When the buzz filter input is changed, search
   
   var timeOut;
@@ -532,14 +518,13 @@ $(function() {
   $('form.buzz-filters').on('keyup','input',function(e){
     var el = $(this);
     clearTimeout(timeOut);
+    var el = $(this);
     // throttle ajax requests
     timeOut = setTimeout(function() {
       var $buzz = $('.buzz-container');
-      var currentSearch = el.val();
-      if(currentSearch != lastSearch) {
-        app.buzz.filter(app.templates.buzzTemplate, $buzz);
-        lastSearch = currentSearch;
-      }
+
+      app.buzz.filter(app.templates.buzzTemplate, $buzz);
+      app.utils.updatePageHash(el);
     }, 300);
   });
 
@@ -703,6 +688,29 @@ $(function() {
     app.stickyNav(key, stickySections[key]);
   }
   app.stickyFooter();
+
+  // When the page is loaded, loop through query params and apply them
+  if($('[data-set]').length) {
+    // 1. Check for data-set-* attributes
+    app.utils.parseDataAttributes();
+  }
+  else if(window.location.search && !!window.location.search.match(/_escaped_fragment/)) {
+    // 2. Check for a query string 
+    var hashParams = app.utils.getParametersFromHash();
+    app.utils.restoreFromHash();
+    app.dm.restoreFilter(hashParams);
+  }
+  else if(window.location.hash) {
+    // 3. check for a hash fragment
+    app.utils.restoreFromHash();
+    app.dm.restoreFilter();
+  }
+  else {
+    // 4. Check for localstorage
+    app.dm.restoreFilter();
+  }
+
+
 });
 
 /*
@@ -773,6 +781,77 @@ app.utils.getFragmentParameterByName = function (name) {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
   var regex = new RegExp("[\\!&]" + name + "=([^&?]*)"), results = regex.exec(location.hash);
   return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
+app.utils.getParametersFromHash = function() {
+  var match,
+      pl     = /\+/g,  // Regex for replacing addition symbol with a space
+      search = /([^&\!#=]+)=?([^&]*)/g,
+      decode = function (s) {
+        return decodeURIComponent(s.replace(pl, " "));
+      },
+      query = window.location.hash || (window.location.search.match(/\?_escaped_fragment_/gi) ? window.location.search.replace('?_escaped_fragment_=','#') : ""),
+      urlParams = {};
+
+
+  
+  while (match = search.exec(query)) {
+     urlParams[decode(match[1])] = decode(match[2]);
+  }
+  return urlParams;
+};
+
+app.utils.convertParametersToHash = function(urlParams) {
+  var hashArray = [];
+  for(k in urlParams){
+    // only push params that are actually set
+    if(urlParams[k]) {
+      hashArray.push(k + "=" + encodeURIComponent(urlParams[k]));
+    }
+  }
+  return hashArray.join("&");
+};
+
+app.utils.updatePageHash = function(el) {
+  var urlParams = app.utils.getParametersFromHash();
+  var name = el.attr('name');
+  urlParams[name] = el.val();
+  window.location.hash = "!" + app.utils.convertParametersToHash(urlParams);
+  // if there is an existing query param, remove it and refresh the page
+  if(!!window.location.search) {
+    window.location = window.location.href.replace(window.location.search,'');
+  }
+};
+
+app.utils.restoreFromHash = function(urlParams) {
+  var urlParams = urlParams || app.utils.getParametersFromHash();
+  for(k in urlParams) {
+    var input = $('[name="'+k+'"]');
+    var tagName = input.prop('tagName');
+    // check if a select box
+    if(tagName === "SELECT") {
+      input.find('option[value="'+urlParams[k]+'"]').attr('selected','selected').trigger('change');
+    }
+    else {
+      input.val(urlParams[k]).trigger('keyup');
+    }
+  }
+};
+
+app.utils.parseDataAttributes = function() {
+  var values = {};
+  $('[data-set]').each(function(i,el){
+    var el = $(this);
+    var data = el.data();
+    for(key in data) {
+      if(key.match(/^set[A-Z]/g)) {
+        var attr = key.replace('set','').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+        values[attr] = data[key];
+      }
+    }
+  });
+  app.dm.restoreFilter(values);
+  app.utils.restoreFromHash(values);
 };
 
 // Simple JavaScript Templating (modified)
