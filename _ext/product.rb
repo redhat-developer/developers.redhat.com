@@ -149,8 +149,8 @@ module JBoss
               end
             end
             product.older_downloads = product.downloads.clone
-            product.older_downloads.delete(product.current_version)
-            product.older_downloads.delete(product.beta_version)
+            product.older_downloads.delete(product.current_download.version) unless product.current_download.nil?
+            product.older_downloads.delete(product.beta_download.version) unless product.beta_download.nil?
           end
         end
 
