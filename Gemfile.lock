@@ -85,6 +85,7 @@ GEM
     http_parser.rb (0.6.0)
     http_parser.rb (0.6.0-java)
     kramdown (1.0.2)
+    libv8 (3.16.14.3)
     listen (2.7.7)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -120,6 +121,7 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ruby-hmac (0.4.0)
@@ -135,6 +137,9 @@ GEM
     spoon (0.0.4)
       ffi
     temple (0.6.7)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.1)
     tilt (2.0.1)
     timers (1.1.0)
@@ -167,5 +172,6 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   slim (~> 2.0.0)
+  therubyracer
   uglifier (~> 2.0.1)
   zurb-foundation (~> 4.3.1)
