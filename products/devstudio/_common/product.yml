@@ -34,27 +34,30 @@ downloads:
     description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4 Luna M7.
     assets:
       jar_universal:
-        size: 676mb
         name: Installer With EAP
+        size: 676mb
         type: jar
+        url: http://www.redhat.com/j/elqNow/elqRedir.htm?ref=http://www.jboss.org/download-manager/content/origin/files/sha256/41/41bbfb910533778ac059a5fceafd814b06cc7e0b34086ef76c302cbddc687f0f/jboss-devstudio-8.0.0.Beta2-v20140617-2058-B166-installer-eap.jar
       standalone_jar:
         name: Stand-alone Installer
         size: 550mb
         type: jar
-        # TODO set correct URL for actual file
-        # url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta2-standalone_universal-standalone_jar.jar
+        url: http://www.redhat.com/j/elqNow/elqRedir.htm?ref=http://www.jboss.org/download-manager/content/origin/files/sha256/3c/3c4508c0c43f9aae305c289b946cfc963b8be01678dc9d538b9847872fa80ef6/jboss-devstudio-8.0.0.Beta2-v20140617-2058-B166-installer-standalone.jar
       standalone_zip_update:
         name: Update Site
         size: 830mb
-        # TODO set correct URL for actual file
-        # url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta2-standalone_universal-standalone_zip_update.zip
+        type: zip
+        url: http://www.redhat.com/j/elqNow/elqRedir.htm?ref=http://www.jboss.org/download-manager/content/origin/files/sha256/9d/9da04d293283afcff48c85d382e4f57dccce181382aa556e9b44d38f5cadf94a/jboss-devstudio-8.0.0.Beta2-v20140617-2058-B166-updatesite-core.zip
       standalone_zip_central:
         name: JBoss Central
         size: 115mb
-        # TODO set correct URL for actual file
-        # url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta2-standalone_universal-standalone_zip_central.zip
+        type: zip
+        url: http://www.redhat.com/j/elqNow/elqRedir.htm?ref=http://www.jboss.org/download-manager/content/origin/files/sha256/cc/cc7feb4dc63baa27ff37aeedb2a1afc13a0d41370cf12a3692e6cbb13799047d/jboss-devstudio-8.0.0.Beta2-v20140617-2058-B166-updatesite-central.zip
       source:
+        name: Source
         size: 6.4mb
+        type: zip
+        url: http://www.redhat.com/j/elqNow/elqRedir.htm?ref=http://www.jboss.org/download-manager/content/origin/files/sha256/d8/d809489dbb45c1a0a1187c5fec3aa15cd4efd6da1aa1d07e0ab105759854f817/jboss-devstudio-8.0.0.Beta2-v20140617-2058-B166-installer-src.zip
   8.0.0.Beta1:
     release_date: 2014-04-11
     description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4 Luna M6.
