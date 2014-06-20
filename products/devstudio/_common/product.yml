@@ -29,25 +29,49 @@ guides:
   Visual_Web_Tools_Reference_Guide:
 default_download_artifact_type: jar_universal
 downloads:
+  8.0.0.Beta2:
+    release_date: 2014-06-20
+    description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4 Luna M7.
+    assets:
+      jar_universal:
+        name: Installer With EAP
+        size: 676mb
+        type: jar
+      standalone_jar:
+        name: Stand-alone Installer
+        size: 550mb
+        type: jar
+      standalone_zip_update:
+        name: Update Site
+        size: 830mb
+        type: zip
+      standalone_zip_central:
+        name: JBoss Central
+        size: 115mb
+        type: zip
+      source:
+        name: Source
+        size: 6.4mb
+        type: zip
   8.0.0.Beta1:
     release_date: 2014-04-11
-    description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4 Luna.
+    description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4 Luna M6.
     assets:
       jar_universal:
         size: 613mb
-        name: Installer Jar (with EAP)
+        name: Installer With EAP
         type: jar
       standalone_jar:
-        name: Installer Jar (Stand-alone)
+        name: Stand-alone Installer
         size: 487mb
         type: jar
         url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta1-standalone_universal-standalone_jar.jar
       standalone_zip_update:
-        name: Update Site Zip
+        name: Update Site
         size: 725mb
         url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta1-standalone_universal-standalone_zip_update.zip
       standalone_zip_central:
-        name: JBoss Central Zip
+        name: JBoss Central
         size: 420mb
         url: https://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.Beta1-standalone_universal-standalone_zip_central.zip
       source:
