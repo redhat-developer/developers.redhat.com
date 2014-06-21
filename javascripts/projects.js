@@ -77,8 +77,8 @@ app.project = {
           + getCorrectUrl(props.sys_url_view)
           + "\"><img onerror=\"this.style.display='none'\" src="
           + "\"http://static.jboss.org/"
-          + props.sys_project + "/images/"
-          + props.sys_project + "_200x150.png\"></a></div>"
+          + (props.specialIcon || props.sys_project) + "/images/"
+          + (props.specialIcon || props.sys_project) + "_200x150.png\"></a></div>"
           + "<h3 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
           + getCorrectUrl(props.sys_url_view) + "\">"
           + props.projectName + "</a></h3><p></p>";
