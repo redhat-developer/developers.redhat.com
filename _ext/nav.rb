@@ -23,7 +23,7 @@ module JBoss::Developer
         if Hash === object
           r['children'] = {}
           object.each do |key, value|
-            if key.to_s == 'label' || key.to_s == 'url' || key.to_s == 'description' || key.to_s == 'video'
+            if key.to_s == 'label' || key.to_s == 'path' || key.to_s == 'url' || key.to_s == 'description' || key.to_s == 'video'
               r[key] = value
             else
               r['children'][key] = build(value, key, site)
@@ -31,10 +31,8 @@ module JBoss::Developer
           end
         end
         s = OpenStruct.new(r)
-        s.url ||= "/" + parent
-        if s.url !~ /^http:\/\//
-          s.url = site.base_url + s.url
-        end 
+        s.path ||= "/" + parent
+        s.url ||= site.base_url + s.path
         s.label ||= parent.to_s.split('-').each{|word| word.capitalize!}.join(' ')
         s
       end
