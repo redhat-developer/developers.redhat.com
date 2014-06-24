@@ -50,7 +50,8 @@ module JBoss
                 downloads(product, site)
                 articles << articles(product, site)
                 solutions << solutions(product, site)
-                
+                product.buzz_tags ||= product.id
+
                 # Store the product in the global product map
                 site.products[product.id] = product
                 page.send('featured_items=', product['featured_items'])
