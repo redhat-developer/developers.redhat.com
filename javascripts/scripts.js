@@ -223,6 +223,17 @@ app.init = function() {
     app.buzz.filter(app.templates.buzzTemplate, $buzz);
   };
 
+  /* 
+    Product Page Buzz by tag
+  */
+  var $pbuzz = $('.product-buzz-container');
+
+  if($pbuzz.length) {
+    app.buzz.filter(app.templates.productBuzzTemplate, $pbuzz);
+  };  
+
+
+
   /*
      Show more downloads table
   */
@@ -423,13 +434,18 @@ app.buzz = {
       query.push(keyword);
     }
 
+    var tags = container.data('tags');
+
+    if(tags){
+      query.push("sys_tags:"+tags);
+    }
     var query = query.join(" AND ");
-    
+
     $.ajax({
         url : app.dcp.url.search,
         dataType: 'json',
         data : {
-          "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated", "author"],
+          "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated", "author", "sys_tags"],
           "query" : query,
           "size" : 8,
           "sys_type" : "blogpost",
