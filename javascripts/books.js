@@ -81,6 +81,7 @@ app.books = {
               if (date_a < date_b) return 1;    
               return 0;
             });
+            app.books.bookItems = bookItems; // store for later filtering
             app.books.formatBooks(bookItems);
           }
         });
@@ -90,24 +91,43 @@ app.books = {
 
     }
   },
-  formatBooks : function(bookItems) {
+  formatBooks : function(bookItems, filterQuery) {
     var bookTemplate = $("#bookTemplate").html();
+    $('ul.book-list').empty();
+
+    if(!filterQuery || filterQuery === " ") {
+      filterQuery = "";
+    }
+
     for (var k = 0; k < bookItems.length; k++) {
 
       var description = bookItems[k]['volumeInfo']['description'] || "";
       var shortDescription = description.substring(0,475);
       var thumbnail = ''; 
       var isbn = bookItems[k]['volumeInfo']['isbn']; 
+      var title = bookItems[k]['volumeInfo']['title'];
+      var filterMatch = new RegExp("("+filterQuery+")","gi");
 
       if(description.length > 475) {
         shortDescription+="...";
-      } 
+      }
+
+      // if there is no match on the title or desc, move onto the next
+      if(!title.match(filterMatch) && !description.match(filterMatch)) {
+        console.log("no match, skip it");
+        continue;
+      }
+
+      if(filterQuery && filterQuery.length) {
+        shortDescription = shortDescription.replace(filterMatch,'<span class="highlight">$1</span>');
+        title = title.replace(filterMatch,'<span class="highlight">$1</span>');
+      }
 
       var template = bookTemplate.format(
         isbn                                                               // 0 - isbn
         , bookItems[k]['volumeInfo']['previewLink']                        // 1 - Preview
         , app.books.findCover(bookItems[k], isbn)                          // 2 - img url
-        , bookItems[k]['volumeInfo']['title']                              // 3 - Title
+        , title                                                            // 3 - Title
         , bookItems[k]['volumeInfo']['authors'].join(', ')                 // 4 - Author
         , roundHalf(bookItems[k]['volumeInfo']['averageRating'])           // 5 - Rating
         , shortDescription                                                 // 6 - description
@@ -125,4 +145,15 @@ $(function() {
     var isbns = $('.isbnList').text().trim().split(',');
     app.books.getBooks(isbns);
   }
+
+  $('input[name=book-filter]').on('keyup',function() {
+    var el = $(this);
+    var val = el.val();
+    var re = new RegExp(val,"gi");
+
+    app.books.formatBooks(app.books.bookItems,val);
+
+  });
+
+
 });

@@ -7,6 +7,7 @@ layout: base
       li: a(href="#{v.url}") #{v.label}
 .row
   h2.large-title#books Books
+  input(type="text" name="book-filter" placeholder="Filter Books")
   div.isbnList
     #{page._isbns}
 .row.content
