@@ -53,7 +53,9 @@ module JBoss
           @site = site
         end
         def activate registry
-          registry.preprocessor CdnImagePreprocessor.new(@site)
+          if @site.cdn_http_base
+            registry.preprocessor CdnImagePreprocessor.new(@site)
+          end
         end
       end
     end
@@ -96,12 +98,12 @@ module JBoss
         end
 
         def execute(site)
-          cdn = Aweplug::Helpers::CDN.new(SPRITES_DIR, site.cdn_out_dir, site.version)
-          if File.exists? Aweplug::Helpers::CDN::EXPIRES_FILE
-            FileUtils.cp(Aweplug::Helpers::CDN::EXPIRES_FILE, cdn.tmp_dir.join(".htaccess"))
-          end
-          FileUtils.mkdir_p cdn.tmp_dir
           if site.cdn_http_base
+            cdn = Aweplug::Helpers::CDN.new(SPRITES_DIR, site.cdn_out_dir, site.version)
+            if File.exists? Aweplug::Helpers::CDN::EXPIRES_FILE
+              FileUtils.cp(Aweplug::Helpers::CDN::EXPIRES_FILE, cdn.tmp_dir.join(".htaccess"))
+            end
+            FileUtils.mkdir_p cdn.tmp_dir
             # Load this late, we don't want to normally require pngquant
             Compass.configuration.generated_images_dir = cdn.tmp_dir.to_s
             Compass.configuration.http_generated_images_path = "#{site.cdn_http_base}/#{SPRITES_DIR}"

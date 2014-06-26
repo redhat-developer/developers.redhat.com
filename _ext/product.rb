@@ -33,11 +33,11 @@ module JBoss
             if page.product
               product = page.product
               id = page.parent_dir
-              if not site.products[id] 
+              if not site.products.has_key? id
                 # Set the product id to the parent dir
                 product.id = id
                 # Set the forum url to the default value, if not set
-                if site.forums[product.id]
+                if site.forums.has_key? product.id
                   product.forum_url = site.forums[product.id]['url']
                 else
                   product.forum_url = ''
@@ -185,6 +185,7 @@ module JBoss
         end
 
         def key_to_name(key)
+          key = key['name'] if not key.instance_of? String # Hack to deal with regen issues
           key.gsub(/_/, ' ').split.map(&:capitalize).join(' ')
         end
 
