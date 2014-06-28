@@ -1,3 +1,7 @@
+input[name="book-filter"] {
+  width:25%;
+}
+
 .book {
   padding-right:20px !important;
   position: relative;
@@ -6,6 +10,12 @@
   // &:nth-child(4n+1) {
   //   clear:left;
   // }
+  span.highlight {
+    font-weight:600;
+    background:#FFFFD6;
+    padding:0 2px;
+    border-radius:2px;
+  }
   a.book-preview {
     position: absolute;
     background:$grey-7;
@@ -55,6 +65,11 @@ p.desc {
   margin-bottom: 5px;
 }
 
+@include tablet-landscape-and-down {
+  input[name="book-filter"] {
+    width:100%;
+  }
+}
 
 @include mobile-landscape-and-down {
 
@@ -63,8 +78,6 @@ p.desc {
  }
   li.book {
     width:100%;
-/*    margin:0;
-    padding:0; */
     margin-bottom: 10px;
   }
 }
@@ -72,3 +85,4 @@ p.desc {
 .isbnList {
   display: none;
 }
+
