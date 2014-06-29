@@ -42,3 +42,8 @@ group :development do
   #gem 'pry-exception_explorer', :require => false
 end
 
+group :vdiff do
+  #gem 'wraith', '~> 1.2.0'
+  gem 'wraith', :github => 'pmuir/wraith'
+end
+

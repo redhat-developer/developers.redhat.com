@@ -365,6 +365,40 @@ task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
   end
 end
 
+desc 'Generate a wraith config file'
+task :generate_wraith_config, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
+  require 'yaml/store'
+  
+  cfg = '_wraith/configs/config.yaml'
+  FileUtils.cp '_wraith/configs/template_config.yaml', cfg
+  config = YAML::Store.new(cfg)
+
+  new_path = "#{args[:new]}/#{args[:pr_prefix]}/#{args[:pull]}/#{args[:build_prefix]}/#{args[:build]}"
+
+  config.transaction do
+    config['domains']['production'] = args[:old]
+    config['domains']['pull-request'] = new_path
+    config['sitemap'] = "#{new_path}/sitemap.xml"
+  end
+end
+
+desc 'Run wraith'
+task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generate_wraith_config do |task, args|
+  $staging_config ||= config 'staging'
+  Dir.chdir("_wraith")
+  unless system "wraith capture config"
+    exit 1
+  end
+  wraith_base_path = "#{args[:pr_prefix]}/#{args[:pull]}/wraith"
+  wraith_path = "#{wraith_base_path}/#{args[:build]}"
+  Dir.mktmpdir do |empty_dir|
+    rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_base_path}")
+  end
+  rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
+  github = GitHub.new
+  github.comment_on_pull('jboss-developer', 'www.jboss.org', args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
+end
+
 # Execute Awestruct
 def run_awestruct(args)
   if ENV['site_base_path']
