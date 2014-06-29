@@ -358,7 +358,7 @@ def run_awestruct(args)
   args ||= "" # Make sure that args is initialized
   args << " --url " + base_url if base_url 
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
-    exit 0
+    exit 1
   end
 end
 
