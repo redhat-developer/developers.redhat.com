@@ -315,9 +315,12 @@ desc 'Link pull requests to JIRAs.'
 task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   jira = JIRA.new
   git = Git.new
+  github = GitHub.new
 
-  # Comment on any JIRAs
-  jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
+  # Link pull requests to JIRA
+  linked_issues = jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
+  # Add links to JIRA to pull requests
+  github.link_issues('jboss-developer', 'www.jboss.org', args[:pull_request], linked_issues)
 end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
@@ -528,6 +531,25 @@ class GitHub
     pulls
   end
 
+  def link_issues(org, repo, pull, issues)
+    if issues.length > 0
+      issue_list = issues.collect {|i| %Q{<a href="https://issues.jboss.org/browse/} + i + %Q{">} + i + %Q{</a>}}.join(", ")
+      comment_on_pull(org, repo, pull, "Related issue#{issues.length > 1 ? 's' : ''}: #{issue_list}")
+      puts "Successfully commented JIRA issue list on https://github.com/jboss-developer/www.jboss.org/pull/#{pull}"
+    end
+  end
+
+  def comment_on_pull(org, repo, pull, comment)
+    uri = URI.parse("#{@github_base_url}repos/#{org}/#{repo}/issues/#{pull}/comments")
+    req = Net::HTTP::Post.new uri
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    req['Authorization'] = "token #{ENV['github_token']}"
+    req.body = {:body => comment}.to_json
+    http.request(req)
+  end
+
   def get(url)
     uri = URI.parse(url)
     req = Net::HTTP::Get.new uri
@@ -582,7 +604,7 @@ end
 
 class JIRA
 
-  KEY_PATTERN = /(?:\s|^)([A-Z]+-[0-9]+)(?=\s|$)/
+  KEY_PATTERN = /(?:[[:punct:]]|\s|^)([A-Z]+-[0-9]+)(?=[[:punct:]]|\s|$)/
 
   def initialize
     @jira_base_url = ENV['jira_base_url'] || 'https://issues.jboss.org/'
@@ -681,6 +703,7 @@ class JIRA
   end
 
   def link_pull_requests_if_unlinked(issues, pull_request)
+    linked_issues = []
     issues.each do |k|
       pr = linked_pull_request k
       if pr.nil?
@@ -706,8 +729,10 @@ class JIRA
           puts "Error linking https://github.com/jboss-developer/www.jboss.org/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
           puts "Request body: #{body}"
         end
+        linked_issues << k
       end
     end
+    linked_issues
   end
 end
 
