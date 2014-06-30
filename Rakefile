@@ -137,8 +137,18 @@ task :tag, [:profile, :tag_name] do |task, args|
 end
 
 desc 'Generate the site and deploy using the given profile'
-task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args| 
-  run_awestruct "-P #{args[:profile]} -g --force -q"
+task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
+  # Delay awestruct failing the build until after we rsync files, if we are staging.
+  # Allows errors to be viewed
+  begin
+    run_awestruct "-P #{args[:profile]} -g --force -q"
+  rescue
+    if args[:profile] != 'production'
+      awestruct_failed = true
+    else
+      exit 1
+    end
+  end
 
   $config ||= config args[:profile]
 
@@ -184,6 +194,9 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   end
   site_host = $config.deploy.host
   rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: delete, excludes: $resources)
+  if awestruct_failed
+    exit 1
+  end
 end
 
 desc 'Clean out generated site and temporary files'
@@ -358,7 +371,7 @@ def run_awestruct(args)
   args ||= "" # Make sure that args is initialized
   args << " --url " + base_url if base_url 
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
-    exit 1
+    raise "Error executing awestruct"
   end
 end
 
