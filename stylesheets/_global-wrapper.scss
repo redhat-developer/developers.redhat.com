@@ -111,6 +111,9 @@ footer.bottom {
   ul.footer-nav {
     display: block;
     margin-bottom: 0;
+    li.security {
+      margin-right: 20px;
+    }
   }
 }
 
@@ -360,6 +363,19 @@ ul.footer-nav {
       float: left;
       a {
         text-decoration: none;
+      }
+    }
+  }
+  @include tablet-portrait-and-down {
+    text-align: center;
+    li.redhat, li.security {
+      margin: 0;
+      text-align: center;
+      display: block;
+      width:100%;
+      float: none;
+      a {
+        display: inline-block;
       }
     }
   }
