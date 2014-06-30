@@ -595,7 +595,8 @@ class JIRA
   def comment_issues(issues, comment)  
     issues.each do |k|
       url = "#{@jira_issue_base_url}#{k}/comment"
-      resp = post(url, %Q{{ "body": "#{comment}"}})
+      body = %Q{{ "body": "#{comment}"}}
+      resp = post(url, body)
       if resp.is_a?(Net::HTTPSuccess)
         puts "Successfully commented on #{k}"
       else
