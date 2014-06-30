@@ -464,6 +464,9 @@ app.buzz = {
         }
       }).done(function(data){
         var hits = data.hits.hits;
+        if(keyword && keyword.length) {
+          app.search.format(keyword,hits, $('.buzz-filters .searchResults'));
+        }
         var html = "";
         for (var i = 0; i < hits.length; i++) {
           var d = hits[i].fields;
@@ -525,12 +528,18 @@ $(function() {
   // When the buzz filter input is changed, search
   
   var timeOut;
+  var lastSearch = "";
   $('form.buzz-filters').on('keyup','input',function(e){
+    var el = $(this);
     clearTimeout(timeOut);
     // throttle ajax requests
     timeOut = setTimeout(function() {
       var $buzz = $('.buzz-container');
-      app.buzz.filter(app.templates.buzzTemplate, $buzz);
+      var currentSearch = el.val();
+      if(currentSearch != lastSearch) {
+        app.buzz.filter(app.templates.buzzTemplate, $buzz);
+        lastSearch = currentSearch;
+      }
     }, 300);
   });
 

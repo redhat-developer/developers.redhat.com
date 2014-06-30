@@ -31,7 +31,6 @@ form.search {
   background:white;
   z-index: 999;
   border-radius: 0 0 $global-radius $global-radius;
-  border:1px solid $grey-3;
   top:42px;
   display: none;
   span.highlight {
@@ -44,6 +43,14 @@ form.search {
     display: block;
     width:100%;
     margin:0;
+    border-left:1px solid $grey-3;
+    border-right:1px solid $grey-3;
+    &:first-child {
+      border-top:1px solid $grey-3;
+    }
+    &:last-child {
+      border-bottom:1px solid $grey-3;
+    }
     a {
       padding:10px;;
       display: block;
@@ -74,3 +81,4 @@ form.search {
     border:0;
   }
 }
+
