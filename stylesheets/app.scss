@@ -1699,3 +1699,41 @@ td.content {
   padding: inherit;
   margin: inherit;
 }
+
+// Operating System Selector 
+ul.os-selector {
+  margin: 0;
+  display: inline-block;
+  border:1px solid $grey-3;
+  border-radius: $global-radius;
+  margin-bottom: 20px;
+  overflow: hidden;
+  &.hidden {
+    display: none;
+  }
+  input {
+    display: none;
+    &:checked + label {
+      background:$dark-blue;
+      color:white;
+      border-color:darken($dark-blue,5%);
+    }
+  }
+  label {
+    display: inline-block;
+    padding: 10px;
+    margin: 0;
+    border-right:1px solid $grey-3;
+    &:last-child {
+      border-right: 0;
+    }
+    &:hover {
+      background:$dark-blue;
+      color:white;
+      border-color:darken($dark-blue,5%);
+    }
+    i.fa {
+      margin-right: 10px;
+    }
+  }
+}
