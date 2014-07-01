@@ -123,10 +123,11 @@ body(class="#{template}")
     footer.bottom
       .row
         ul.footer-nav
-          li.redhat: a href="https://www.redhat.com" Red Hat
+          li.redhat: a(href="https://www.redhat.com") Red Hat
+          li.security: a(href="https://access.redhat.com/site/security/team/contact/") Report a security problem
           li Site Help:
           li: a(href="#{site.base_url}/faq") FAQ
-          li: a(href="mailto:help@jboss.org") Report a problem
+          li: a(href="mailto:help@jboss.org" target="_blank") Report a website problem
 
   #fb-root
   
