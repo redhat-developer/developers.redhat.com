@@ -29,6 +29,10 @@
         "type": "string",
         "include_in_all": true,
         "_boost": 1.5
+      },
+      "experimental": {
+        "type": "boolean",
+        "null_value": false
       }
     }
   }
