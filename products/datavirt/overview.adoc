@@ -3,13 +3,13 @@
 
 == Overview
 
-JBoss Data Virtualization is a lean, virtual data integration solution that turns fragmented data into actionable information at business speed. It aggregates data spread across physically diverse systems, such as multiple databases, XML files, and Hadoop systems, and makes them appear as a set of tables in a local database.
+JBoss Data Virtualization is a data integration solution that sits in front of multiple data sources and allows them to be treated as a single source, delivering the right data, in the required form, at the right time to any application and/or user.
 
 == Features1
 
-=== Build Virtual Database Stores
+=== Agile Development
 
-Complete data provisioning, federation, integration, and management through the creation of virtual logical data models.
+Rapid ways to deliver reusable and loosely coupled unified data views and data services using graphical tools. Hide data integration complexity from data consuming application developers and business users. Decouple consuming applications and data sources. Allow reuse and extension of logical data models, views and services.
 
 == Icon1
 
@@ -17,9 +17,9 @@ Complete data provisioning, federation, integration, and management through the 
 
 == Features2
 
-=== Access via Standard Means
+=== Secure Virtual Data Layer
 
-Developers can use JBoss Developer Studio, DDL based Virtual Database deﬁnitions, and native queries to access data.
+Builds powerful transformations and relationships using an integrated modeling and execution environment to transform and combine relate data across heterogeneous source types using common metadata and semantics. Apply role based data access, security and auditing policies regardless of data source types like a data firewall.
 
 == Icon2
 
@@ -27,12 +27,26 @@ Developers can use JBoss Developer Studio, DDL based Virtual Database deﬁnitio
 
 == Features3
 
-=== Supports Most Database Types
+=== Real-time Data Access and Provisioning
 
-Support for Apache Hadoop, NoSQL, JBoss Data Grid, MongoDB as well as a variety of data services like SAP and Salesforce.com.
+Read/write from any source or data type including Legacy, NoSQL and Cloud. Expose the combined information as reusable Data Views & Data Services in multiple formats and supporting hybrid delivery modes (on-demand, cache, and materialized) to consuming applications. 
+Lean Integration: Reduce data sprawl by avoiding compulsory data copying and minimize cost and risk of unnecessary data duplication, storage and management.
 
 == Icon3
 
 [.fa .fa-tint .fa-5x .fa-fw]#&nbsp;#
+
+
+== Detail
+
+image::images/products/datavirt/red-hat-jboss-datavirt.png[]
+
+JBoss Data Virtualization offers comprehensive data abstraction, federation, integration, transformation, and delivery capabilities to combine data from one or multiple sources into reusable and unified logical data models accessible thru standard SQL (JDBC, ODBC, Hibernate) and/or web services (REST, OData, SOAP) interfaces for agile data utilization and sharing. It enables agile data utilization by providing following functionality:
+
+1. Connect: Access data from multiple, heterogeneous data sources.
+2. Compose: Easily combine and transform data into reusable, business-friendly virtual data models and views.
+3. Consume: Make unified data easily consumable through open standards interfaces.
+
+JBoss Data Virtualization implements all three steps internally; hiding the technical complexities of knowing physical data locations, storage structures, APIs, access and/or merge logic, thus making it easy for developers and users to work with data.
 
 == Resources 
