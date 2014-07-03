@@ -1,0 +1,50 @@
+- name: WildFly
+  description: WildFly is a flexible, lightweight, managed application runtime and implementation of the Java Enterprise Edition 7 Platform specifications that helps you build amazing applications.
+  url: http://wildfly.org/
+  image_url: http://static.jboss.org/wildfly/images/wildfly_200x150.png
+  images:
+    - name: jboss/wildfly
+      path: wildfly
+      description: Image containing the latest WildFly release. It is configured to boot the standalone mode by default but you can easily run it in domain mode. Please refer to the README on how to switch the modes and how to deploy applications.
+
+- name: Keycloak
+  description: Integrated SSO and IDM for browser apps and RESTful web services. Built on top of the OAuth 2.0, Open ID Connect and JSON Web Token (JWT) specifications (with plans to support SAML).
+  url: http://keycloak.jboss.org/
+  image_url: http://static.jboss.org/keycloak/images/keycloak_200x150.png
+  images:
+    - name: jboss/keycloak
+      path: keycloak/server
+      description: Builds on top of <code>jboss/keycloak-adapter-wildfly</code>, adding the <code>auth-server.war</code> to it, as well as its dependencies
+    - name: jboss/keycloak-adapter-wildfly
+      path: keycloak/adapter-wildfly
+      description: Builds on top of the <code>jboss/wildfly</code> image, adding the Keycloak adapter for WildFly to it, as well as the required changes to the <code>standalone.xml</code>
+    - name: jboss/keycloak-examples
+      path: keycloak/examples
+      description: Builds on top of <code>jboss/keycloak</code>, adding the examples.
+
+- name: TorqueBox
+  description: TorqueBox is a new kind of Ruby application platform that supports popular technologies such as Ruby on Rails and Sinatra, while extending the footprint of Ruby applications to include built-in support for services such as messaging, scheduling, caching, and daemons.
+  url: http://torquebox.org/
+  image_url: http://static.jboss.org/torquebox/images/torquebox_200x150.png
+  images:
+    - name: jboss/torquebox
+      path: torquebox
+      description: Latest TorqueBox release.
+
+- name: Immutant
+  description: Immutant is an application server for Clojure. It's an integrated platform built on JBoss AS7 providing support for Ring handlers, asynchronous messaging, caching, scheduled jobs, XA transactions, clustering, daemons and more!
+  url: http://immutant.org/
+  image_url: http://static.jboss.org/immutant/images/immutant_200x150.png
+  images:
+    - name: jboss/immutant
+      path: immutant
+      description: Latest Immutant release.
+
+- name: LiveOak
+  description: LiveOak is a backend-as-a-service stack that simplifies development for mobile and standard web clients. Its goal is to enable client-side access to traditional backend services without having to write server-side code.
+  url: http://liveoak.io/
+  image_url: http://static.jboss.org/jca/images/jca_200x150.png
+  images:
+    - name: jboss/liveoak-server
+      path: liveoak/server
+      description: This image provides basic distribution of LiveOak.
