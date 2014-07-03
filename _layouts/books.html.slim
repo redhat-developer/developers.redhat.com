@@ -8,8 +8,6 @@ layout: base
 .row
   h2.large-title#books Books
   input(type="text" name="book-filter" placeholder="Filter Books")
-  div.isbnList
-    #{page._isbns}
 .row.content
   .large-24.columns
     ul.breadcrumbs
@@ -32,4 +30,5 @@ script(type="text/template" id="bookTemplate")
     a.button(href="{7}") Purchase
 
 .row.books.large-24 
+  .isbnList
   ul.book-list.small-block-grid-2.large-block-grid-5

@@ -142,8 +142,7 @@ app.books = {
 $(function() {
   // if we are on the books page, pull in the ISBN list
   if($('.isbnList').length) {
-    var isbns = $('.isbnList').text().trim().split(',');
-    app.books.getBooks(isbns);
+    app.books.getBooks(#{JSON.dump(site.books)});
   }
 
   $('input[name=book-filter]').on('keyup',function() {
