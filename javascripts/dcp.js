@@ -41,7 +41,7 @@ app.dcp.resolveContributorsForBlock = function( documentType, documentId, block,
       // First, we must fix up the page content, with the normalised id from the DCP. This allows us to to differentiate between author and contributors
       if (author) {
         block.find( "span.author" ).each( function() {
-          $( this ).replaceWith( app.dcp.generateContributorSpan( author ) ).addClass( "author" );
+          $( this ).replaceWith( app.dcp.generateContributorSpan( tmpl, author ) ).addClass( "author" );
         });
       }
 
