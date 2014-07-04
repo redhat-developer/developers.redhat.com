@@ -26,7 +26,7 @@ head
 
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
-  - if site.profile == 'staging' || site.profile == 'development' || site.profile == 'beta'
+  /- if site.profile == 'staging' || site.profile == 'development' || site.profile == 'beta'
     = partial 'under-development.html.slim', parent: page
   / tabzilla
   .dropup
