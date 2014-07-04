@@ -51,15 +51,17 @@ app.books = {
           // keys consistent
           for (var i = 0; i < books.items.length; i++) {
             var ids = books.items[i].volumeInfo.industryIdentifiers;
-            if (ids[0].type === "OTHER") {
-              bookItemsHash[app.books.unkownISBN[ids[0].identifier]] = books.items[i];
-              books.items[i].volumeInfo.isbn = ids[0].identifier;
-            } else if (ids[0].type === "ISBN_13") {
-              bookItemsHash[ids[0].identifier] = books.items[i];
-              books.items[i].volumeInfo.isbn = ids[0].identifier;
-            } else if (ids[1].type === "ISBN_13") {
-              bookItemsHash[ids[1].identifier] = books.items[i];
-              books.items[i].volumeInfo.isbn = ids[1].identifier;
+            if (ids) {
+              if (ids[0].type === "OTHER") {
+                bookItemsHash[app.books.unkownISBN[ids[0].identifier]] = books.items[i];
+                books.items[i].volumeInfo.isbn = ids[0].identifier;
+              } else if (ids[0].type === "ISBN_13") {
+                bookItemsHash[ids[0].identifier] = books.items[i];
+                books.items[i].volumeInfo.isbn = ids[0].identifier;
+              } else if (ids[1].type === "ISBN_13") {
+                bookItemsHash[ids[1].identifier] = books.items[i];
+                books.items[i].volumeInfo.isbn = ids[1].identifier;
+              }
             }
           }
 
