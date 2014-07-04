@@ -15,11 +15,15 @@ require 'product'
 require 'mktg_ops'
 require 'disqus'
 require 'disqus_more'
+require 'lower_case_paths'
 
 Awestruct::Extensions::Pipeline.new do
   
   # Needs to at the top, to set up site.identity_manager
   extension Aweplug::Identity::Extension.new
+
+  # Needs to be at the top so that we fix all output paths before processing starts
+  extension JBoss::Developer::Extensions::LowerCasePaths.new
 
   # parse AsciiDoc documents and create page variables out of their sections
   extension Aweplug::Extensions::Sections.new
