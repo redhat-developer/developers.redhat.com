@@ -1,3 +1,14 @@
+.buzz-filters {
+  position: relative;
+  .searchResults {
+    ul {
+      margin: 0;
+    }
+  }
+  input[type=text][name="buzz-filter-text"]:focus + .searchResults {
+    display: block;
+  } 
+}
 .buzz-item {
   width:24%;
   float:left;

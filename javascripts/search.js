@@ -27,7 +27,7 @@ app.search = {
         app.search.abort();
       },
       success : function(data) {
-        app.search.format(query, data.hits.hits);
+        app.search.format(query, data.hits.hits, $('form.search .searchResults'));
       },
       error : function() {
         $('.searchResults').html("<ul>" + app.dcp.error_message + "</ul>");
@@ -35,16 +35,19 @@ app.search = {
     });
 
   },
-  format : function(query, results) {
+  format : function(query, results, container) {
     var suggestions = $('<ul>');
     for (var i = 0; i < results.length; i++) {
       var title = results[i].fields.sys_title;
       var url = results[i].fields.sys_url_view;
       var searchRegEx = new RegExp(query,"gi");
-      title = title.replace(searchRegEx,'<span class="highlight">'+query+'</span>');
+      if(query.length) {
+        title = title.replace(searchRegEx,'<span class="highlight">'+query+'</span>');
+      }
       suggestions.append('<li><a href="' + url + '">'+ title  +'</a></li>');
     };
-    $('.searchResults').html(suggestions);
+    // $('.searchResults').html(suggestions);
+    container.html(suggestions);
   }
 
 };
@@ -55,8 +58,8 @@ $(function() {
     e.preventDefault();
   });
 
-  $('form.search').on('keyup','input',function(e) {
-    
+  $('form.search, form.buzz-filters').on('keyup','input',function(e) {
+    var form = $(this).parent();
     /*
       Check for enter / return key 
     */ 
@@ -75,19 +78,19 @@ $(function() {
     if(e.keyCode === 38 || e.keyCode === 40) {
       if(e.keyCode === 38) { // up arrow
         e.preventDefault(); // stop the cursor from going to the front of the input box
-        var activeItem = $('.searchResults li.active-item').prev();
+        var activeItem = form.find('.searchResults li.active-item').prev();
       }
       else { // down arrow
-        var activeItem = $('.searchResults li.active-item').next();
+        var activeItem = form.find('.searchResults li.active-item').next();
       }
 
       // check if there is a selected item in the list
       if(!activeItem.length && e.keyCode === 40) { // nothing and down arrow
-        activeItem = $('.searchResults li:first');
+        activeItem = form.find('.searchResults li:first');
       }
 
       if(!activeItem.length && e.keyCode === 38) { // nothing and up arrow
-        activeItem = $('.searchResults li:last');
+        activeItem = form.find('.searchResults li:last');
       }
 
       $('.active-item').removeClass('active-item');
