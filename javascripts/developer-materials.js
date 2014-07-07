@@ -23,11 +23,12 @@ app.dm = {
       return false;
     }
   },
-  restoreFilter: function() {
+  restoreFilter: function(hashParams) {
     /* Restore the form values previously stored in local storage. */
-    if(!this.supportsLocalStorage()) {
+    if(!this.supportsLocalStorage() ) {
       return;
     }
+
     var filterKeys = [
       "keyword",
       "rating",
@@ -36,8 +37,17 @@ app.dm = {
       "skillLevel",
       "publishDate"
     ];
+    
+    var hashParams = hashParams || app.utils.getParametersFromHash();
+
     $.each(filterKeys, function(idx, key) {
-      var formValue = window.localStorage.getItem("devMatFilter." + key);
+      // check if we have a hash value, if not use localstorage
+      if($.isEmptyObject(hashParams)) {
+        var formValue = window.localStorage.getItem("devMatFilter." + key);
+      }
+      else {
+        var formValue = hashParams[key];
+      }
       /*
        * Restore the value of the form input field.
        * Where multiple values are present, like for check box groups,
@@ -46,11 +56,11 @@ app.dm = {
       if(formValue) {
         switch(key) {
           case "keyword" :
-            $('input[name="filter-text"]').val(formValue);
+            $('input[name="filter-text"]').val(formValue).trigger('change');
             break;
           case "rating" :
             if(formValue != 0) {
-              $('input[name="filter-rating"][value='+ formValue +']').attr('checked', true);
+              $('input[name="filter-rating"][value='+ formValue +']').attr('checked', true).trigger('change');
             }
             break;
           case "topics" :
@@ -66,29 +76,14 @@ app.dm = {
             });
             break;
           case "skillLevel":
-            $('input[name="filter-skill"]').val(formValue);
+            $('input[name="filter-skill"]').val(formValue).trigger('change');
             break;
           case "publishDate":
-            $('input[name="filter-publish-date"]').val(formValue);
+            $('input[name="filter-publish-date"]').val(formValue).trigger('change');
             break;
         }
       }
     });
-    var qsFormat = app.utils.getFragmentParameterByName("format") || app.utils.getParameterByName("format");
-    // A hack for now
-    if (qsFormat == "archetype" || qsFormat == "bom" || qsFormat == "quickstart" || qsFormat == "example" || qsFormat == "sandbox") {
-      qsFormat = "jbossdeveloper_" + qsFormat;
-    }
-    if (qsFormat.charAt(qsFormat.length -1) == 's') {
-      qsFormat = qsFormat.substr(0, qsFormat.length - 1);
-    }
-    if (qsFormat.length > 0) {
-      $('input[name="filter-format"][value=' + qsFormat + ']').attr('checked', true);
-    }
-    var qsText = app.utils.getFragmentParameterByName("keywords") || app.utils.getParameterByName("keywords");
-    if (qsText.length > 0) {
-      $('input[name="filter-text"]').val(qsText);
-    }
   },
   devMatFilter : function(filters) {
     // Set filters to an empty object if it isn't defined
@@ -261,6 +256,14 @@ app.dm = {
       if (skillLevel != 'All') {
         query.push('level:'+skillLevel);
       }
+      else {
+        delete currentFilters['skillLevel'];
+      }
+    }
+
+    // Update the page hash if it isn't googlebot
+    if(!window.location.search.match(/_escaped_fragment_/)) {
+      window.location.hash = "!" + app.utils.convertParametersToHash(currentFilters);
     }
 
     //Handle quickstarts and sandbox quickstarts
