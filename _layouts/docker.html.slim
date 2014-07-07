@@ -8,7 +8,7 @@ doctype html
 head
   meta charset='utf-8'
   meta name='viewport' content='width=device-width, initial-scale=1.0'
-  title=site.title
+  title=page.title || site.title
   = stylesheets "docker" do
     link rel='stylesheet' href="#{site.base_url}/stylesheets/docker/app.css"
   = javascripts "docker-top" do
