@@ -16,7 +16,7 @@ end
 gem 'awestruct', '~> 0.5.4.rc3'
 gem 'slim', '~> 2.0.0'
 gem 'kramdown', '~> 1.0.1'
-gem 'asciidoctor', '~> 1.5.0.preview6'
+gem 'asciidoctor', '~> 1.5.0.preview8'
 gem 'uglifier', '~> 2.0.1'
 gem 'htmlcompressor', '~> 0.0.6'
 gem "zurb-foundation", "~> 4.3.1"
@@ -30,6 +30,7 @@ gem 'therubyracer', :platforms => :ruby, :require => linux_only('therubyracer')
 #gem 'aweplug', :path => '~/projects/ruby/aweplug'
 gem 'parallel', '~> 1.0.0'
 #gem 'aweplug', :path => '../aweplug'
+gem 'mime-types', '2.1'
 
 group :development do
   gem 'rb-inotify', :require => false
