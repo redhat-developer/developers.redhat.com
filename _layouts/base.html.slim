@@ -87,14 +87,8 @@ body(class="#{template}")
           section.top-bar-section
             ul.left.main-menu
               - site.nav.each do |k, v|
-                li(class="#{v.children ? "has-dropdown" : ""}")
+                li(class="#{primary_section_class(k, v)}")
                   a(href="#{v.url}") #{v.label}
-                  - if v.children
-                    span.drop-down-arrow
-                    ul.dropdown
-                      - v.children.each do |l, w|
-                        li
-                          a #{w.label}
             ul.right.social
               li
                 a.has-tip(href="/newsletter" data-tooltip="" title="Newsletter" data-options="disable-for-touch:true")

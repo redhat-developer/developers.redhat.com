@@ -1,26 +1,13 @@
 ---
-layout: base
-status: yellow
-issues: [DEVELOPER-220, DEVELOPER-222, DEVELOPER-221, DEVELOPER-227, DEVELOPER-262, DEVELOPER-387]
+layout: get-involved-base
 title: The buzz about JBoss
 description: JBoss Developer is an open and active community, with updates happening regularly. Check out the latest buzz happening around our community below.
 ---
-.row.tertiary-nav
-  ul.inline-nav
-    - site.nav['get-involved'].children.each do |k, v|
-      li: a(href="#{v.url}") #{v.label}
 .row
   h2.large-title#buzz 
     | Buzz 
     a href="http://dcp.jboss.org/v1/rest/feed/?sys_type=blogpost&sortBy=new-create&feed_title=JBoss%20Developer%20Recent%20Posts": i.fa.fa-rss
 .row.content
-  .large-24.columns
-    ul.breadcrumbs
-      li
-        a href="#{site.base_url}/get-involved" Get Involved
-      li
-        a href="#{site.base_url}/buzz/" Buzz
-  
   .large-24.columns
     h4.divider.buzz-message #{page.description}
   .large-24.columns.buzz-filters

@@ -88,6 +88,30 @@ module JBoss
         out
       end
 
+      def primary_section_class(key, value)
+        unless page.primary_section.nil?
+          "active" if page.primary_section == key
+        else
+          unless value.path.nil?
+            "active" if page.output_path.match(/^#{value.path}\/index.html$/)
+          else
+           "active" if  page.output_path.match(/^\/#{key}\/index.html$/)
+          end
+        end
+      end
+
+      def secondary_section_class(key, value)
+        unless page.secondary_section.nil?
+          "active" if page.secondary_section == key
+        else
+          unless value.path.nil?
+            "active" if page.output_path.match(/^#{value.path}\/index.html$/)
+          else
+            "active" if page.output_path.match(/^\/#{key}\/index.html$/)
+          end
+        end
+      end
+
       class CompassConfigurator
 
         SPRITES_DIR = "sprites"

@@ -1,28 +1,14 @@
 ---
-layout: base
-status: green
-issues: [DEVELOPER-214]
+layout: get-involved-base
 title: Events featuring JBoss
 description: Discover the events and webinars featuring talks about JBoss products and upstream projects.
 ---
-.row.tertiary-nav
-  ul.inline-nav
-    - site.nav['get-involved'].children.each do |k, v|
-      li: a(href="#{v.url}") #{v.label}
-
 .reveal-modal.close-reveal-modal.coming-soon#comingSoonModal
   h3 This Feature Is Not Yet Enabled
   a.close-reveal-modal &#215
 .row
   h2.large-title#events Events
 .row
-  .large-24.columns
-    ul.breadcrumbs
-      li
-        a href="" Getting Started
-      li
-        a href="" Events
-
   .large-24.columns
     .slider-wrapper
       .slider#slider.slider-side-by-side

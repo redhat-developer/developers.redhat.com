@@ -31,6 +31,10 @@ nav.top-bar {
 .top-bar-section li a:not(.button) {
   background: $white;
 }
+.top-bar-section ul li.active > a {
+  background: $dark-blue;
+  color: white; 
+}
 .top-bar-section {
   // Main Nav Elements
   .main-menu {
@@ -59,6 +63,12 @@ h1.logo {
     a {
       color:$dark-blue;
     }
+  }
+}
+
+.tertiary-nav {
+  li.active > a {
+    color:$dark-blue;
   }
 }
 
