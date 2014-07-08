@@ -60,6 +60,42 @@ module JBoss
       end
     end
 
+    # Public: Awestruct Transformer that adds the "external-link" class to
+    # external HTML links.
+    class LinkTransformer
+      def transform site, page, input
+        if page.output_extension == ".html"
+          doc = Nokogiri::HTML(input)
+          doc.css('a').each do |a|
+            url = a['href']
+            if (external?(url, site.base_url) && !(has_non_text_child? a))
+              classes = (a['class'] || "").split(/\s+/)
+
+              unless classes.include? 'external-link'
+                classes << 'external-link'
+              end
+
+              a['class'] = classes.uniq.join ' '
+            end
+          end
+          doc.to_html
+        else
+          input
+        end
+      end
+
+      private
+
+      def external? url, base_url
+        url && !url.start_with?(base_url) && url !~ /^((https?:)?\/\/)(.*?)?\.jboss.org/ && url =~ /^((https?:)?\/\/)/
+      end
+
+      def has_non_text_child? a
+        return true if a.xpath('.//img', './/button', './/i').size > 0
+        false
+      end
+    end
+
     module Extensions
       class AsciidoctorExtensionRegister
         def execute site

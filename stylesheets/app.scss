@@ -1748,3 +1748,11 @@ ul.os-selector {
 .flex-video {
   width:100%;
 }
+
+.external-link:after {
+  @extend .fa;
+  content: "\f08e";
+  padding-left: .5em;
+  font-size: 12px;
+  vertical-align: super;
+}
