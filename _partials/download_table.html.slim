@@ -1,5 +1,3 @@
----
----
 table
   colgroup
     col(style="width:25%")
@@ -18,10 +16,10 @@ table
         tr
           td 
             - if i == 0
-              #{download.version}
+              = download.version
           td 
             - if i == 0
-              #{download.release_date} 
+              = download.release_date
           td #{asset.name}
           td.asset-list 
             - asset.artifacts.each do |artifact|

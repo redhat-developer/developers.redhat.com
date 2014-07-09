@@ -63,7 +63,7 @@ description: The simple, modern & productive way to build apps and infrastructur
               .update-body
                 p
                   span
-                    #{v.description[0 .. 180]}
+                    = v.description[0..180]
               .update-meta
                 = partial("share.html.slim", :url => v.link, :title => v.description[0 .. 139])
 
