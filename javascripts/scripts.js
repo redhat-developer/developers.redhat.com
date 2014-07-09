@@ -435,7 +435,8 @@ app.buzz = {
           "query" : query,
           "size" : 8,
           "sys_type" : "blogpost",
-          "sortBy" : "new-create"
+          "sortBy" : "new-create",
+          "query_highlight" : true
         },
         beforeSend : function() {
           // check if there is a previous ajax request to abort
@@ -517,14 +518,16 @@ $(function() {
   var lastSearch = "";
   $('form.buzz-filters').on('keyup','input',function(e){
     var el = $(this);
+    var query = el.val();
     clearTimeout(timeOut);
-    var el = $(this);
     // throttle ajax requests
     timeOut = setTimeout(function() {
       var $buzz = $('.buzz-container');
-
-      app.buzz.filter(app.templates.buzzTemplate, $buzz);
-      app.utils.updatePageHash(el);
+      if(lastSearch !== query) {
+        app.buzz.filter(app.templates.buzzTemplate, $buzz);
+        app.utils.updatePageHash(el);
+      }
+      lastSearch = query;
     }, 300);
   });
 

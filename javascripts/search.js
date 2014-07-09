@@ -21,7 +21,8 @@ app.search = {
         "field"  : ["sys_title", "sys_url_view"],
         "type" : "jbossdeveloper_website",
         "query" : query,
-        "size" : 10
+        "size" : 10,
+        "query_highlight" : true
       },
       beforeSend : function() {
         app.search.abort();
@@ -38,12 +39,8 @@ app.search = {
   format : function(query, results, container) {
     var suggestions = $('<ul>');
     for (var i = 0; i < results.length; i++) {
-      var title = results[i].fields.sys_title;
+      var title = results[i].highlight.sys_title || results[i].fields.sys_title;
       var url = results[i].fields.sys_url_view;
-      var searchRegEx = new RegExp(query,"gi");
-      if(query.length) {
-        title = title.replace(searchRegEx,'<span class="highlight">'+query+'</span>');
-      }
       suggestions.append('<li><a href="' + url + '">'+ title  +'</a></li>');
     };
     // $('.searchResults').html(suggestions);
