@@ -10,6 +10,7 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
   - if page.metadata[:product] && site[:products][page.metadata[:product]]
     - page.product = site[:products][page.metadata[:product]]
   - page.primary_section = 'get-started'
+  - page.disqus_identifier = "stg-#{page.url}"
 
 .row
   h2.large-title#developer-materials Developer Materials
