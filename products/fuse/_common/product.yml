@@ -5,9 +5,7 @@ default_download_artifact_type: zip
 xpaas_url: https://www.openshift.com/developers/jboss-fuse
 intro_video: https://vimeo.com/95497167
 featured_videos:
-  - https://vimeo.com/61535853
-  - https://vimeo.com/61541717
-  - https://vimeo.com/61543833
+  - https://vimeo.com/84674508
 downloads:
   6.1.0.GA:
     release_date: 2014-04-14
@@ -181,12 +179,12 @@ demos:
     tech: ['Camel', 'Spring', 'Mina']
     use_case: ['Endpoint', 'SetBody', 'Log', 'LoadBalance']
     desc: This example describes a simple prototype that demonstrates the use of Fuse to manage TCP/IP controller failover.
-  - title: Fabric endpoint testing
+  - title: Fabric8 endpoint testing
     url: https://github.com/FuseByExample/fabric-endpoint-example
-    tech: ['Camel', 'Blueprint', 'Fabric']
+    tech: ['Camel', 'Blueprint', 'Fabric8']
     use_case: ['Endpoint', 'SetBody', 'Log']
     desc: This example presents a sample app for the usage of fabric endpoints. It contains a simple client which sends messages to the consumer and logs the conversation.
-  - title: Managing a Deployment using Fuse Fabric
+  - title: Managing a Deployment using Fabric8
     url: https://github.com/FuseByExample/docs/blob/master/deploy-using-fabric/README.md
     tech: []
     use_case: []
