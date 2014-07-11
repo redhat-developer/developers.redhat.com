@@ -44,8 +44,7 @@ group :development do
 end
 
 group :vdiff do
-  #gem 'wraith', '~> 1.2.0'
-  gem 'wraith', :github => 'pmuir/wraith'
+  gem 'wraith', '~> 1.3.0'
 end
 
 group :health do
