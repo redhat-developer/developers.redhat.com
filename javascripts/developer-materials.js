@@ -48,6 +48,11 @@ app.dm = {
       else {
         var formValue = hashParams[key];
       }
+
+      // check if value was set to undefined string, if so, clear it out.
+      if(formValue === 'undefined') {
+        formValue = '';
+      }
       /*
        * Restore the value of the form input field.
        * Where multiple values are present, like for check box groups,
