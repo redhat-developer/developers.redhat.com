@@ -7,8 +7,13 @@
   }
   input[type=text][name="buzz-filter-text"]:focus + .searchResults {
     display: block;
-  } 
+  }
 }
+
+.buzz-container {
+  overflow: visible;
+}
+
 .buzz-item {
   width:24%;
   float:left;

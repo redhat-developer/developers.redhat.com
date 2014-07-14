@@ -481,7 +481,7 @@ app.buzz = {
 
       if (container.hasClass('isotoped')) {
         container.imagesLoaded(function(){
-          container.isotope({
+          container.isotope('destroy').isotope({
             itemSelector: '.buzz-item'
           });
         });
