@@ -39,7 +39,9 @@ function setup_environment {
   rvm_install_on_use_flag=1 rvm --create use ${ruby_version}@${ruby_gemset}
 
   # Make sure rake is installed, so we can execute rake setup
-  rvm ${ruby_version}@${ruby_gemset} do gem install rake --no-document
+  if [ $(rvm ${ruby_version}@${ruby_gemset} do gem list rake -i) != "true" ] ; then
+    rvm ${ruby_version}@${ruby_gemset} do gem install rake
+  fi
 
   ## Build setup
   # Configure the environment. Must run bundle install to bootstrap the env 
