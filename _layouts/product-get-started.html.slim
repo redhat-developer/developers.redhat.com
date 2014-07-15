@@ -10,6 +10,8 @@ h2#get-started Get Started
 
 h3.divider#installation-instructions Instructions for Installation
 
+= partial "os-selector.html.slim"  
+
 ol
   - if page.product.default_download_artifact
     li: p
@@ -59,7 +61,6 @@ ol
     = page._configure_apache_maven
 - else 
   h3.divider#configure-maven Configure Apache&trade; Maven
-  = partial "os-selector.html.slim"  
   = partial "maven_repository_instructions.adoc"
 
 - if page.product.featured_items
