@@ -708,8 +708,8 @@ $(function() {
     app.utils.restoreFromHash();
     app.dm.restoreFilter();
   }
-  else {
-    // 4. Check for localstorage
+  else if($('form.dev-mat-filters').length) {
+    // 4. Check for localstorage and the developer materials form
     app.dm.restoreFilter();
   }
 
