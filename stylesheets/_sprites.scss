@@ -15,6 +15,9 @@
 @import "sprites/_theme-dark.scss";
 @include all-theme-dark-sprites;
 
+@import "sprites/_project-icons.scss";
+@include all-project-icon-sprites;
+
 $icons-calendar-spacing:  20px;
 @import "sprites/_icons.scss";
 @include all-icons-sprites;

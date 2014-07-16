@@ -166,7 +166,11 @@ module JBoss
             FileUtils.mkdir_p cdn.tmp_dir
             # Load this late, we don't want to normally require pngquant
             Compass.configuration.generated_images_dir = cdn.tmp_dir.to_s
-            Compass.configuration.http_generated_images_path = "#{site.cdn_http_base}/#{SPRITES_DIR}"
+            if Aweplug::Helpers::CDN::ENV_PREFIX.nil?
+              Compass.configuration.http_generated_images_path = "#{site.cdn_http_base}/#{SPRITES_DIR}"
+            else
+              Compass.configuration.http_generated_images_path = "#{site.cdn_http_base}/#{Aweplug::Helpers::CDN::ENV_PREFIX}/#{SPRITES_DIR}"
+            end
             # Run sprites through pngquant on creation
             Compass.configuration.on_sprite_saved { |filename| Aweplug::Helpers::PNGFile.new(filename).compress! }
           else
