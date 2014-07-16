@@ -26,35 +26,34 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
 .row itemscope="" itemtype="http://schema.org/Article"
   .collapse.large-24
     h2.divider#start itemprop="name" #{page.metadata[:title]}
-    - if [:author, :commits, :level, :technologies, :target_product].all? { |k| page.metadata.key? k} && !page.metadata[:commits].empty?
-      .gsi-meta data-searchisko-type="#{page.metadata[:searchisko_type]}" data-searchisko-id="#{page.metadata[:searchisko_id]}"
-        ul
-          - if page.metadata[:author]
-            li
-              strong
-                ' Author:
-                span.author itemprop="author" #{page.metadata[:author]}
-          - if page.metadata[:contributors]
-            li: strong
-              ' Contributors:
-              span.contributors= page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
-          - if page.metadata[:commits] && !page.metadata[:commits].empty?
-            li
-              strong
-                ' Last Update:
-                span itemprop="dateModified" =DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')
-          - if page.metadata[:level]
-            li: strong
-              | Level:
-                #{page.metadata[:level]}
-          - if page.metadata[:technologies]
-            li: strong
-              | Technologies: 
-              = page.metadata[:technologies].collect { |t| %Q{<span itemprop="about">#{t}</span>}}.join(", ")
-          - if page.metadata[:target_product]
-            li: strong
-              | Target Product: 
-              span itemprop="about" =page.metadata[:target_product]
+    .gsi-meta data-searchisko-type="#{page.metadata[:searchisko_type]}" data-searchisko-id="#{page.metadata[:searchisko_id]}"
+      ul
+        - if page.metadata[:author]
+          li
+            strong
+              ' Author:
+              span.author itemprop="author" #{page.metadata[:author]}
+        - if page.metadata[:contributors]
+          li: strong
+            ' Contributors:
+            span.contributors= page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
+        - if page.metadata[:commits] && !page.metadata[:commits].empty?
+          li
+            strong
+              ' Last Update:
+              span itemprop="dateModified" =DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')
+        - if page.metadata[:level]
+          li: strong
+            | Level:
+              #{page.metadata[:level]}
+        - if page.metadata[:technologies]
+          li: strong
+            | Technologies:
+            = page.metadata[:technologies].collect { |t| %Q{<span itemprop="about">#{t}</span>}}.join(", ")
+        - if page.metadata[:target_product]
+          li: strong
+            | Target Product:
+            span itemprop="about" =page.metadata[:target_product]
   .row.content
     .columns.large-24
       .columns.large-4

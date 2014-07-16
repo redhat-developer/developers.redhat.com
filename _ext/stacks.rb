@@ -18,8 +18,6 @@ module JBoss::Developer::Extensions
     def initialize stacks, layout, repo, push_to_searchisko = true
       @yml = YAML.load_file File.join(repo, stacks) 
       @layout = layout
-      #@commits = commit_info repo, Pathname.new(File.join repo, stacks)  # DEVELOPER-320
-      @commits = []
       @push_to_searchisko = push_to_searchisko
     end
 
@@ -95,23 +93,29 @@ module JBoss::Developer::Extensions
         bom['allVersions'] = yml['availableBomVersions'].select {|b| b['bom']['id'] == bom['bom']['id']}.collect {|b| b['version']}
         # This is wrong, it's commits for stacks, not the BOM
         # bom['bom']['contributors'] = @commits.collect {|c| c[:author]}.uniq
+        commits = []
+        if site.boms["#{bom['bom']['groupId']}|#{bom['bom']['artifactId']}"]
+          bom_info = site.boms["#{bom['bom']['groupId']}|#{bom['bom']['artifactId']}"]
+          commits = commit_info(bom_info['repo'], Pathname.new(bom_info['location']), bom_info.reject {|k,v| k == 'location' || k == 'repo'})  # DEVELOPER-320
+        end
         metadata = {
           :title => bom['bom']['name'], 
           :summary=> bom['bom']['description'], 
-          :commits => @commits, 
+          :commits => commits,
           :boms => [],
-          :contributors => bom['bom']['contributors'],
-          :author => bom['bom']['author'],
+          :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
+          :contributors => commits.collect { |c| c[:author] }.uniq,
           :searchisko_type => 'jbossdeveloper_bom',
           :searchisko_id => bom['id']
         }
+        metadata[:author] = commits.last[:author] if commits.last
 
         bom_dcp = {
-          :sys_last_activity_date => @commits.collect {|c| DateTime.parse c[:date]}.first,
-          :sys_contributors => @commits.collect {|c| c[:author_email]}.uniq,
-          :author => bom['bom']['author'],
-          :sys_activity_dates => @commits.collect {|c| DateTime.parse c[:date]},
-          :sys_created => @commits.collect {|c| DateTime.parse c[:date]}.last,
+          :sys_last_activity_date => commits.collect {|c| DateTime.parse c[:date]}.first,
+          :sys_contributors => metadata[:contributors_email],
+          :author => metadata[:author],
+          :sys_activity_dates => commits.collect {|c| DateTime.parse c[:date]},
+          :sys_created => commits.collect {|c| DateTime.parse c[:date]}.last,
           :sys_title => bom['bom']['name'],
           :sys_url_view => "#{site.base_url}#{site.ctx_root.nil? ? '/' : '/' + site.ctx_root + '/'}#{bom_page.output_path}",
           :sys_description => bom['bom']['description'],
@@ -171,27 +175,34 @@ module JBoss::Developer::Extensions
                              ::Awestruct::Handlers::TiltHandler.new(site,
                                ::Aweplug::Handlers::SyntheticHandler.new(site, archetype_page_content,
                                                                          "/products/#{product}/boms.html.slim"))))
+        commits = []
+        if site.archetypes["#{archetype['archetype']['groupId']}|#{archetype['archetype']['artifactId']}"]
+          archetype_info = site.archetypes["#{archetype['archetype']['groupId']}|#{archetype['archetype']['artifactId']}"]
+          commits = commit_info(archetype_info['repo'], Pathname.new(archetype_info['location']), archetype_info.reject {|k,v| k == 'location' || k == 'repo'})  # DEVELOPER-320
+        end
+
         archetype_page.layout = @layout
         archetype_page.output_path = "/archetypes/#{product}/#{archetype['archetype']['id']}/index.html"
         archetype['allVersions'] = yml['availableArchetypeVersions'].select {|b| b['archetype']['id'] == archetype['archetype']['id']}.collect {|b| b['version']}
-        archetype['archetype']['contributors'] = @commits.collect {|c| c[:author_email]}.uniq
+        archetype['archetype']['contributors'] = commits.collect {|c| c[:author_email]}.uniq
         metadata = {
           :title => archetype['archetype']['name'], 
           :summary=> archetype['archetype']['description'], 
-          :commits => @commits, 
-          :boms => [],
-          :contributors => archetype['archetype']['contributors'],
-          :author => archetype['archetype']['author'],
+          :commits => commits,
+          :archetypes => [],
+          :contributors => commits.collect { |c| c[:author] }.uniq,
+          :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
           :searchisko_type => 'jbossdeveloper_archetype',
           :searchisko_id => archetype['id']
         }
+        metadata[:author] = commits.last[:author] if commits.last
 
         archetype_dcp = {
-          :sys_last_activity_date => @commits.collect {|c| DateTime.parse c[:date]}.first,
-          :sys_contributors => archetype['archetype']['contributors'],
-          :author => archetype['archetype']['author'],
-          :sys_activity_dates => @commits.collect {|c| DateTime.parse c[:date]},
-          :sys_created => @commits.collect {|c| DateTime.parse c[:date]}.last,
+          :sys_last_activity_date => commits.collect {|c| DateTime.parse c[:date]}.first,
+          :sys_contributors => metadata[:contributors_email],
+          :author => metadata[:author],
+          :sys_activity_dates => commits.collect {|c| DateTime.parse c[:date]},
+          :sys_created => commits.collect {|c| DateTime.parse c[:date]}.last,
           :sys_title => archetype['archetype']['name'],
           :sys_url_view => "#{site.base_url}#{site.ctx_root.nil? ? '/' : '/' + site.ctx_root + '/'}#{archetype_page.output_path}",
           :sys_description => archetype['archetype']['description'],
