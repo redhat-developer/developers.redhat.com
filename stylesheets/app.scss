@@ -1749,3 +1749,13 @@ ul.os-selector {
 .flex-video {
   width:100%;
 }
+
+.external-link:after {
+  @extend .fa;
+  display: inline;
+  content: "\f08e";
+  padding-left: .25em;
+  font-size: 12px;
+  vertical-align: super;
+  text-decoration: none;
+}
