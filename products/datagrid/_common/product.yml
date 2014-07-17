@@ -24,10 +24,13 @@ downloads:
         name: Data Grid Library
       eap_module:
         size: 2mb
-        name: Data Grid EAP Module
+        name: JBoss EAP Module for Hotrod Java Client
       eap_library:
         size: 22mb
-        name: Data Grid EAP Library
+        name: JBoss EAP Module for Data Grid Library
+      java_client:
+        size: 2mb
+        name: Hot Rod Java Client
       cppclient:
         name: Hot Rod C++ Client
         artifacts:
@@ -42,6 +45,15 @@ downloads:
             size: 1mb
           rhel5_64:
             name: C++ Client RHEL5_64
+            size: 1mb
+      dotnetclient:
+        name: Hot Rod .Net Client
+        artifacts:
+          DotNet:
+            name: Hot Rod .Net Client
+            size: 1mb
+          DotNetSource:
+            name: Hot Rod .Net Source
             size: 1mb
       maven_repo:
         size: 72mb
