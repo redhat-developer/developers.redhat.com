@@ -23,6 +23,20 @@ form.dev-mat-filters(method="GET" action="")
   .filter-block.filter-block-checkboxes
     h5.show-more Topics
     .filter-block-inputs
+      / Chosen Select Box for Desktops
+      select(name="filter-topic[]" multiple="true")
+        option(name="filter-topic[]" value="EJB") EJB
+        option(name="filter-topic[]" value="CDI") CDI
+        option(name="filter-topic[]" value="OSGI") OSGI
+        option(name="filter-topic[]" value="JSF") JSF
+        option(name="filter-topic[]" value="JPA") JPA
+        option(name="filter-topic[]" value="EJB") EJB
+        option(name="filter-topic[]" value="JTA") JTA
+        option(name="filter-topic[]" value="Servlet") Servlet
+        option(name="filter-topic[]" value="JavaMail") JavaMail
+        option(name="filter-topic[]" value="H2") H2
+
+      / styled Checkboxes for mobile
       label
         input(type="checkbox" name="filter-topic[]" value="EJB")
         | EJB
@@ -53,6 +67,8 @@ form.dev-mat-filters(method="GET" action="")
       label
         input(type="checkbox" name="filter-topic[]" value="H2")
         | H2
+
+
 
   .filter-block.filter-block-checkboxes
     h5.show-more Format
