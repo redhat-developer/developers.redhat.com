@@ -1,2 +1,28 @@
+:awestruct-interpolate: true
 :awestruct-layout: product-get-started
 
+
+## Extra section title
+
+Install JBoss Developer Studio Integration Stack (Optional)
+
+## Extra section
+
+The Integration Stack for JBoss Developer Studio is a set of plugins for Eclipse that provides tooling for the following products: JBoss Fuse, JBoss Fuse Service Works, JBoss BRMS and JBoss BPM Suite.
+
+To install the Integration Stack tools, first install JBoss Developer Studio from the all-in-one installer (follow the installation steps link:#installation-instructions[above]).
+This installer is bundled and configured out of the box with everything you need to get started.
+Alternatively, if you already have eclipse-jee-kepler installed, you can install JBoss Developer Studio or JBoss Tools from the Eclipse Marketplace via Help > Eclipse Marketplace...
+
+image::#{cdn(site.base_url + '/images/products/devstudio/jbtis-b1.png')}[align="center"]
+
+Once Developer Studio is installed, restart Eclipse and select the Software/Update tab in the JBoss Central view and look for the JBoss Developer Studio Integration Stack installation section.
+Select the items you’d like to install:
+
+image::#{cdn(site.base_url + '/images/products/devstudio/jbtis-b2.png')}[align="center"]
+
+If you want to try out Savara you will need to use the JBoss Tools Integration Stack URL instead: http://download.jboss.org/jbosstools/updates/stable/kepler/integration-stack
+
+*Note:* If you installed into your own Eclipse you should bump up the launch resource parameters:
+
+    --launcher.XXMaxPermSize 256m --launcher.appendVmargs -vmargs -Dosgi.requiredJavaVersion=1.6 -XX:MaxPermSize=256m -Xms512m -Xmx1024m
