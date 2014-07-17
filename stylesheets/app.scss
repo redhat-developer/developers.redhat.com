@@ -421,6 +421,11 @@ i[class*=fa].invert {
   }
   .update-source {
     font-size:emCalc(13);
+    &:hover {
+      h5 {
+        color:$linkhover;
+      }
+    }
   }
   .update-timestamp {
     float:right;
