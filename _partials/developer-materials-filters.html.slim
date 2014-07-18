@@ -25,18 +25,11 @@ form.dev-mat-filters(method="GET" action="")
     .filter-block-inputs
       / Chosen Select Box for Desktops
       select(name="filter-topic[]" multiple="true")
-        option(name="filter-topic[]" value="EJB") EJB
-        option(name="filter-topic[]" value="CDI") CDI
-        option(name="filter-topic[]" value="OSGI") OSGI
-        option(name="filter-topic[]" value="JSF") JSF
-        option(name="filter-topic[]" value="JPA") JPA
-        option(name="filter-topic[]" value="EJB") EJB
-        option(name="filter-topic[]" value="JTA") JTA
-        option(name="filter-topic[]" value="Servlet") Servlet
-        option(name="filter-topic[]" value="JavaMail") JavaMail
-        option(name="filter-topic[]" value="H2") H2
+        - for item in site.dev_mat_techs.flatten.uniq.sort
+          option(name="filter-topic[]" value="#{item.strip}") = item.strip
 
       / styled Checkboxes for mobile
+        TODO: Figure out what we want to do for mobile here
       label
         input(type="checkbox" name="filter-topic[]" value="EJB")
         | EJB
