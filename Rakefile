@@ -386,7 +386,7 @@ desc 'Run wraith'
 task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generate_wraith_config do |task, args|
   $staging_config ||= config 'staging'
   Dir.chdir("_wraith")
-  unless system "wraith capture config"
+  unless system "bundle exec wraith capture config"
     exit 1
   end
   wraith_base_path = "#{args[:pr_prefix]}/#{args[:pull]}/wraith"
@@ -397,6 +397,25 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generat
   rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
   github = GitHub.new
   github.comment_on_pull('jboss-developer', 'www.jboss.org', args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
+end
+
+desc 'Run blinkr'
+task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
+  $staging_config ||= config 'staging'
+  base_path = "#{args[:pr_prefix]}/#{args[:pull]}"
+  base_url = "#{args[:new]}/#{base_path}/#{args[:build_prefix]}/#{args[:build]}/"
+  report_base_path = "#{base_path}/blinkr"
+  report_path = "#{report_base_path}/#{args[:build]}"
+  FileUtils.mkdir_p("_tmp/blinkr")
+  unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url} -v"
+    exit 1
+  end
+  Dir.mktmpdir do |empty_dir|
+    rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_base_path}")
+  end
+  rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
+  github = GitHub.new
+  github.comment_on_pull('jboss-developer', 'www.jboss.org', args[:pull], "Broken links: #{args[:new]}/#{report_path}")
 end
 
 # Execute Awestruct

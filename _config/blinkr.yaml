@@ -1,0 +1,24 @@
+skips:
+    # Can't get this excluded from the sitemap :-(
+  - !ruby/regexp /^https?:\/\/www(-stg)?\.jboss\.org\/(pr\/\d+\/build\/\d+)?\/images\/readme\/$/
+    # localhost:8xxx addresses are extensively used in quickstart readmes
+  - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
+  - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
+    # -YOUR_DOMAIN_NAME.rhcloud.com is used in quickstart readmes
+  - !ruby/regexp /^http:\/\/\w*-YOUR_DOMAIN_NAME\.rhcloud\.com.*/
+    # Prevent any stray mailto and irc links appearing
+  - !ruby/regexp /^mailto:/
+  - !ruby/regexp /^irc:/
+    # For some reason we get a 502 from the linkedin.com and facebook.com share service, so exclude this
+  - !ruby/regexp /^https?:\/\/(www\.)?linkedin\.com\/shareArticle.*/
+  - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/sharer\.php.*/
+ignores:
+  - url: !ruby/regexp /^https?:\/\/dcp(beta-searchisko\.rhcloud\.com|\.jboss\.org)\/v1\/rest/
+    message: Operation canceled
+report: _tmp/blinkr/index.html
+max_page_retys: 10
+max_retrys: 10
+browser: phantomjs
+ignore_fragments: true
+phantomjs_threads: 20
+
