@@ -407,7 +407,7 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
   report_base_path = "#{base_path}/blinkr"
   report_path = "#{report_base_path}/#{args[:build]}"
   FileUtils.mkdir_p("_tmp/blinkr")
-  unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url} -v"
+  unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url}"
     exit 1
   end
   Dir.mktmpdir do |empty_dir|
