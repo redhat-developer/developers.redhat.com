@@ -1,13 +1,15 @@
+:awestruct-interpolate: true
+
 // Space to highlight a maximum of two items. Can be past videos or future webinars.
 === jQuery Mobile
 
-This video demoinstrates the new jQuery Mobile palatte in JBoss Developer Studio 7. 
-
-https://vimeo.com/67480300[Watch Now].
++++
+#{video_thumb(video('https://vimeo.com/67480300'), 'webinar_thumb.html.slim')}
++++
 
 === Forge Wizards
 
-This screencast provides a quick demonstration of the new Forge Wizards in action. 
-
-https://vimeo.com/70822309[Watch Now].
++++
+#{video_thumb(video('https://vimeo.com/70822309'), 'webinar_thumb.html.slim')}
++++
 
