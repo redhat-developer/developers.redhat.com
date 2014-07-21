@@ -1,0 +1,18 @@
+/ www.robotstxt.org/
+/ www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
+
+- if site.robots.nil? || site.robots.disallow
+  | User-agent: *
+    Disallow: /
+
+- else
+  | User-agent: *
+    Disallow: /jbossesb/docs/4.4.GA/javadoc/esb/index-all.html
+    Disallow: /jbossaop/docs/
+    Disallow: /jbossesb/docs/
+    Disallow: /jbossmessaging/docs/
+    Disallow: /jbossremoting/docs/
+    Disallow: /jbosstm/docs/
+    Disallow: /overview/mainColumnParagraphs/0..
+    Disallow: /schema/
+

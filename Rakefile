@@ -179,10 +179,6 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
     rsync(local_path: LOCAL_CDN_PATH, host: cdn_host, remote_path: cdn_path)
   end
 
-  if !$config['robots']
-    $resources << 'robots.txt'
-  end
-
   # Deploy the site
   # If we are running a non-site root build (e.g. Pull Request) we alter where the site is copied too, and we don't delete
   if ENV['site_path_suffix']
