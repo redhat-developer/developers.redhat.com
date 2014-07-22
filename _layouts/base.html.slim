@@ -1,180 +1,180 @@
 doctype html
 /[if IE 8]
-  | <html class="ie8 lt-ie9">
+  | <html class="ie8 lt-ie9" lang="en">
 /[if IE 9]
-  | <html class="ie9">
-/ [if (gte IE 9)|!(IE)]<!--> <html> <!--<![endif]-->
-html lang="en"
-  head
-    meta charset='utf-8' 
-    meta name='viewport' content='width=device-width, initial-scale=1.0' 
-    title= page.title || site.title
-    -if page.description
-      meta name="description" content=page.description
-    - if page.author
-      meta name="author" content=page.author
-    - if site.keywords
-      meta name="keywords" content=site.keywords
-    - if site.url
-      link rel="canonical" href=site.url
-    = stylesheets "all" do
-      link rel='stylesheet' type='text/css' href="#{site.base_url}/#{site.context_url}/stylesheets/app.css" 
-    
-    /[if lt IE 9]
-      script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
+  | <html class="ie9" lang="en">
+/! [if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]
 
-  - template = (page.url.gsub('/','').split('.').first || 'home')
-  body(class="#{template}")
-    /- if site.profile == 'staging' || site.profile == 'development' || site.profile == 'beta'
-      = partial 'under-development.html.slim', parent: page
-    / tabzilla
-    .dropup
-        a(class="tabnav-closed" href="#" id="tab") Red Hat
-    .site-wrapper
-      header.main
-        i.nav-toggle.nav-toggle-open
-        .row
-          .large-7.columns
-            h1.logo
-              a(href="#{site.base_url}/#{site.context_url}") JBoss<strong>Developer</strong>
-            / i.nav-toggle.nav-toggle-close &times;
-          
-      nav.top-bar
-        .row.collapse
-          dl.sub-nav
-            dd.home-link
-              a(href="#{site.base_url}/#{site.context_url}")
-                i.fa.fa-home
-            dd.search-wrapper
-              /  Search Box
-              form.search(action="search" method="POST" name="search" autocomplete="off")
-                input.query(type="text" name="q" placeholder="Search" tabindex="1")
-                span.search-close &times;
-                .searchResults
-            dd.register
-              a(href="#{site.register_url}") Register
-            dd.logged-in
-              a.logged-in-name(href="#")
-            dd.login
-              a(href="https://sso.jboss.org/login?service=#{site.base_url}")
-                i.fa.fa-user
-                | Login
-              / Login Dropdown Box
-              / div.f-dropdown.content.round#login(data-dropdown-content="true")
-              /  h4 Login
-              /  p Log in to access unlimited downloads and contribute to the community.
-              /  form.login
-              /    input(type="text" name="username" placeholder="Username or email")
-              /    input(type="password" name="password" placeholder="Password")
-              /    label
-              /      input(type="checkbox" name="remember")
-              /      | Remember Me
-              /    input.button(type="submit" value="Login")
-              /  p.sign-in-options
-              /    | Or sign in with:
-              /    i.fa.fa-facebook-square
-              /    i.fa.fa-google-plus-square
-              /    i.fa.fa-twitter-square
-              /  ul.inline-list.text-center
-              /    li
-              /      a(href="#") Forgot Password
-              /    li
-              /      a(href="#") Create account
-          .large-24.columns
-            ul.title-area
-              li.name
-            section.top-bar-section
-              ul.left.main-menu
-                - site.nav.each do |k, v|
-                  li(class="#{primary_section_class(k, v)}")
-                    a(href="#{v.url}") #{v.label}
-              ul.right.social
-                li
-                  a.has-tip(href="#{site.base_url}/newsletter" data-tooltip="" title="Newsletter" data-options="disable-for-touch:true")
-                    i.fa.fa-bullhorn
-                li
-                  a.has-tip(data-tooltip="" title="Blogs" data-options="disable-for-touch:true" href="http://planet.jboss.org")
-                    i.fa.fa-comment
-                li
-                  a.has-tip(data-tooltip="" title="Facebook" data-options="disable-for-touch:true" href="http://www.facebook.com/jboss")
-                    i.fa.fa-facebook
-                li
-                  a.has-tip(data-tooltip="" title="Twitter" data-options="disable-for-touch:true" href="http://twitter.com/jbossdeveloper")
-                    i.fa.fa-twitter
-                li
-                  a.has-tip(data-tooltip="" title="LinkedIn" data-options="disable-for-touch:true" href="http://www.linkedin.com/groups?home=&gid=167652")
-                    i.fa.fa-linkedin
-                li
-                  a.has-tip(data-tooltip="" title="Google Plus" data-options="disable-for-touch:true" href="https://plus.google.com/b/117471670409122206659/117471670409122206659/posts")
-                    i.fa.fa-google-plus
-                li
-                  a.has-tip(data-tooltip="" title="Vimeo" data-options="disable-for-touch:true" href="https://vimeo.com/jbossdeveloper")
-                    i.fa.fa-vimeo-square
-      .wrapper.clearfix
-        .content-wrapper
-          = content
-      footer.bottom
-        .row
-          ul.footer-nav
-            li.redhat: a(href="https://www.redhat.com") Red Hat
-            li.security: a(href="https://access.redhat.com/site/security/team/contact/") Report a security problem
-            li Site Help:
-            li: a(href="#{site.base_url}/faq") FAQ
-            li: a(href="mailto:help@jboss.org" target="_blank") Report a website problem
+head
+  meta charset='utf-8' 
+  meta name='viewport' content='width=device-width, initial-scale=1.0' 
+  title= page.title || site.title
+  -if page.description
+    meta name="description" content=page.description
+  - if page.author
+    meta name="author" content=page.author
+  - if site.keywords
+    meta name="keywords" content=site.keywords
+  - if site.url
+    link rel="canonical" href=site.url
+  = stylesheets "all" do
+    link rel='stylesheet' type='text/css' href="#{site.base_url}/#{site.context_url}/stylesheets/app.css" 
+  
+  /[if lt IE 9]
+    script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
 
-    #fb-root
-    
+- template = (page.url.gsub('/','').split('.').first || 'home')
+body(class="#{template}")
+  /- if site.profile == 'staging' || site.profile == 'development' || site.profile == 'beta'
+    = partial 'under-development.html.slim', parent: page
+  / tabzilla
+  .dropup
+      a(class="tabnav-closed" href="#" id="tab") Red Hat
+  .site-wrapper
+    header.main
+      i.nav-toggle.nav-toggle-open
+      .row
+        .large-7.columns
+          h1.logo
+            a(href="#{site.base_url}/#{site.context_url}") JBoss<strong>Developer</strong>
+          / i.nav-toggle.nav-toggle-close &times;
+        
+    nav.top-bar
+      .row.collapse
+        dl.sub-nav
+          dd.home-link
+            a(href="#{site.base_url}/#{site.context_url}")
+              i.fa.fa-home
+          dd.search-wrapper
+            /  Search Box
+            form.search(action="search" method="POST" name="search" autocomplete="off")
+              input.query(type="text" name="q" placeholder="Search" tabindex="1")
+              span.search-close &times;
+              .searchResults
+          dd.register
+            a(href="#{site.register_url}") Register
+          dd.logged-in
+            a.logged-in-name(href="#")
+          dd.login
+            a(href="https://sso.jboss.org/login?service=#{site.base_url}")
+              i.fa.fa-user
+              | Login
+            / Login Dropdown Box
+            / div.f-dropdown.content.round#login(data-dropdown-content="true")
+            /  h4 Login
+            /  p Log in to access unlimited downloads and contribute to the community.
+            /  form.login
+            /    input(type="text" name="username" placeholder="Username or email")
+            /    input(type="password" name="password" placeholder="Password")
+            /    label
+            /      input(type="checkbox" name="remember")
+            /      | Remember Me
+            /    input.button(type="submit" value="Login")
+            /  p.sign-in-options
+            /    | Or sign in with:
+            /    i.fa.fa-facebook-square
+            /    i.fa.fa-google-plus-square
+            /    i.fa.fa-twitter-square
+            /  ul.inline-list.text-center
+            /    li
+            /      a(href="#") Forgot Password
+            /    li
+            /      a(href="#") Create account
+        .large-24.columns
+          ul.title-area
+            li.name
+          section.top-bar-section
+            ul.left.main-menu
+              - site.nav.each do |k, v|
+                li(class="#{primary_section_class(k, v)}")
+                  a(href="#{v.url}") #{v.label}
+            ul.right.social
+              li
+                a.has-tip(href="#{site.base_url}/newsletter" data-tooltip="" title="Newsletter" data-options="disable-for-touch:true")
+                  i.fa.fa-bullhorn
+              li
+                a.has-tip(data-tooltip="" title="Blogs" data-options="disable-for-touch:true" href="http://planet.jboss.org")
+                  i.fa.fa-comment
+              li
+                a.has-tip(data-tooltip="" title="Facebook" data-options="disable-for-touch:true" href="http://www.facebook.com/jboss")
+                  i.fa.fa-facebook
+              li
+                a.has-tip(data-tooltip="" title="Twitter" data-options="disable-for-touch:true" href="http://twitter.com/jbossdeveloper")
+                  i.fa.fa-twitter
+              li
+                a.has-tip(data-tooltip="" title="LinkedIn" data-options="disable-for-touch:true" href="http://www.linkedin.com/groups?home=&gid=167652")
+                  i.fa.fa-linkedin
+              li
+                a.has-tip(data-tooltip="" title="Google Plus" data-options="disable-for-touch:true" href="https://plus.google.com/b/117471670409122206659/117471670409122206659/posts")
+                  i.fa.fa-google-plus
+              li
+                a.has-tip(data-tooltip="" title="Vimeo" data-options="disable-for-touch:true" href="https://vimeo.com/jbossdeveloper")
+                  i.fa.fa-vimeo-square
+    .wrapper.clearfix
+      .content-wrapper
+        = content
+    footer.bottom
+      .row
+        ul.footer-nav
+          li.redhat: a(href="https://www.redhat.com") Red Hat
+          li.security: a(href="https://access.redhat.com/site/security/team/contact/") Report a security problem
+          li Site Help:
+          li: a(href="#{site.base_url}/faq") FAQ
+          li: a(href="mailto:help@jboss.org" target="_blank") Report a website problem
 
-    / It's very important that the metrics scripts appear straight after jquery and namespace.
-      This will ensure that the async scripts that they load from remote servers
-      appear in the right spot on the page.
-    = javascripts "bottom" do
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/namespace.js"
-      - if site.metrics
-        script src="http://www.redhat.com/j/s_code.js"
-        script src="http://www.redhat.com/j/elqNow/elqCfg.js"
-        script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
-        script src="http://www.redhat.com/assets/js/tracking/rh_omni_footer.js"
-        script src="http://www.googleadservices.com/pagead/conversion.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
-      / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.reveal.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.tooltips.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.resize.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.date.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.isotope.min.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/moment.min.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.timeago.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jbossorg-tabzilla.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/socialite.min.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/modernizr-custom.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/polyfiller.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picturefill.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.paging.min.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/highlight.min.js"    
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/imagesloaded.min.js"    
-      script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/dcp.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/rating.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/download.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/search.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/os-filter.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/chosen.jquery.min.js"
+  #fb-root
+  
 
-    / Disabled, pending reimplementation of Share This functionality
-    /script src="http://platform.linkedin.com/in.js"
-    /script src="http://apis.google.com/js/plusone.js"
-    /script src="http://platform.twitter.com/widgets.js"
-
+  / It's very important that the metrics scripts appear straight after jquery and namespace.
+    This will ensure that the async scripts that they load from remote servers
+    appear in the right spot on the page.
+  = javascripts "bottom" do
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/namespace.js"
     - if site.metrics
-      noscript
-        img src="https://smtrcs.redhat.com/b/ss/redhatjbossorg/1/H.21--NS/0?[AQB]&cdp=3&[AQE]" height="1" width="1" border="0" alt=""
+      script src="http://www.redhat.com/j/s_code.js"
+      script src="http://www.redhat.com/j/elqNow/elqCfg.js"
+      script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
+      script src="http://www.redhat.com/assets/js/tracking/rh_omni_footer.js"
+      script src="http://www.googleadservices.com/pagead/conversion.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
+    / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.reveal.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.tooltips.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.resize.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.date.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.isotope.min.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/moment.min.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.timeago.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jbossorg-tabzilla.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/socialite.min.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/modernizr-custom.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/polyfiller.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picturefill.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.paging.min.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/highlight.min.js"    
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/imagesloaded.min.js"    
+    script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/dcp.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/rating.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/download.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/search.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/os-filter.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/chosen.jquery.min.js"
+
+  / Disabled, pending reimplementation of Share This functionality
+  /script src="http://platform.linkedin.com/in.js"
+  /script src="http://apis.google.com/js/plusone.js"
+  /script src="http://platform.twitter.com/widgets.js"
+
+  - if site.metrics
+    noscript
+      img src="https://smtrcs.redhat.com/b/ss/redhatjbossorg/1/H.21--NS/0?[AQB]&cdp=3&[AQE]" height="1" width="1" border="0" alt=""
 
