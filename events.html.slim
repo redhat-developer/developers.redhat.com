@@ -45,19 +45,18 @@ description: Discover the events and webinars featuring talks about JBoss produc
     ul.small-block-grid-2.large-block-grid-4.events-listing
       - site.events.each do |v|
         li
-          .event(itemtype="http://schema.org/Event" itemscope)
+          .event
             .event-header
-              img(itemprop="photo" src=cdn(site.base_url + "/#{v.image}"))
+              img src=cdn(site.base_url + "/#{v.image}")
               - if "#{v.community}" == "true"
-                p itemprop="eventType" Community Event
+                p Community Event
             .event-body
-              / TODO Add schema.org markup for event dates
-              div.event-date itemprop="startDate" content="#{v.start.iso8601}"
+              div.event-date
                 span.month #{v.start.strftime '%b'}
                 span.day #{v.start.strftime '%d'}
-                span itemProp="endDate" content="#{v.end.iso8601}"
-              h3: a(itemprop="url" href="#{v.link}")
-                span itemprop="summary" #{v.title}
+                span
+              h3: a href="#{v.link}"
+                span #{v.title}
               - if "#{v.redhat}" == "true"
                 p.red-hat-event
                   i.icon-redhat
