@@ -49,8 +49,7 @@ group :vdiff do
 end
 
 group :health do
-  #gem 'blinkr', '~> 0.0.2'
-  gem 'blinkr', :github => 'pmuir/blinkr'
+  gem 'blinkr', '~> 0.1.0'
   #gem 'blinkr', :path => '../blinkr'
 end
 
