@@ -26,7 +26,8 @@ profile_base: &profile
   push_to_searchisko: true
   minify: &minify true 
   metrics: true
-  robots: true
+  robots: 
+    disallow: true
   deploy:
     <<: *deploy
   scss:
@@ -69,7 +70,8 @@ profiles:
     dcp_base_protocol_relative_url: //dcp.jboss.org/
     dcp_base_url: http://dcp.jboss.org/
     require_tag: true
-    robots: false
+    robots: 
+      disallow: false
     deploy:
       <<: *deploy
       path: /www_htdocs/www
