@@ -54,6 +54,11 @@ Array.prototype.unique = function() {
     return r;
 };
 
+Array.prototype.peek = function() {
+  var n = this.length;
+  if (n > 0) return this[n - 1];
+};
+
 // Simple JavaScript Templating (modified)
 // Original from John Resig - http://ejohn.org/ - MIT Licensed
 // @see http://ejohn.org/blog/javascript-micro-templating/

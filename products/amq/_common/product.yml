@@ -39,6 +39,10 @@ guides:
   XML_Configuration_Reference:
      formats:
        html:
+forum:
+  url: https://community.jboss.org/en/jbossamq
+  name: jbossamq
+  description: 'A small footprint, high-performance, robust messaging platform that enables real-time integration between applications, services and devices.'
 upstream_projects:
   - activemq
   - fabric8
@@ -120,10 +124,4 @@ demos:
     tech: ['Camel', 'ActiveMQ', 'Spring', 'Fabric', 'ZooKeeper']
     use_case: ['Endpoint', 'SetBody', 'Log']
     desc: This project shows how to connect to JBoss A-MQ message brokers running in Fuse Fabric from JMS clients running outside of Fuse Fabric (i.e. when the JMS client is not running within a Fabric-enabled Fuse container).
-
-
-
-
-
-
 

@@ -16,17 +16,18 @@ a.ctaText(href="#{site.base_url}/get-involved")
   | Learn More About Contributing 
   i.fa.fa-angle-double-right
 
-h3.divider#forums Forums
-asciidoc:
-  Providing support to users is a great way to collaborate and give back to the community. Lots of questions are asked and answered each day in the link:#{page.product.forum_url}[forum].
+- if page.product.forum
+  h3.divider#forums Forums
+  asciidoc:
+    Providing support to users is a great way to collaborate and give back to the community. Lots of questions are asked and answered each day in the link:#{page.product.forum.url}[forum].
 
-  If you're using #{page.product.abbreviated_name} and want to have a say in its future development you can talk with the product team in the link:#{page.product.forum_url}[forum] to have your voice heard.
+    If you're using #{page.product.abbreviated_name} and want to have a say in its future development you can talk with the product team in the link:#{page.product.forum.url}[forum] to have your voice heard.
 
-a.ctaText(href="#{page.product.forum_url}")
-  | Visit the #{page.product.abbreviated_name} Forums 
-  i.fa.fa-angle-double-right 
+  a.ctaText(href="#{page.product.forum.url}")
+    | Visit the #{page.product.abbreviated_name} Forums
+    i.fa.fa-angle-double-right
+
 h3.divider#projects-standards Projects and Standards included in #{page.product.abbreviated_name}
-
 .community-projects(data-product-id="#{page.product[:id]}")
   ul.large-block-grid-3.small-block-grid-2.results#product-upstream-projects
 

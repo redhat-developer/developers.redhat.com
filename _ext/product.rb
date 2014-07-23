@@ -1,6 +1,8 @@
 require 'json'
 require 'aweplug/helpers/searchisko'
 require 'aweplug/helpers/video'
+require 'aweplug/helpers/vimeo'
+require 'aweplug/cache/file_cache'
 
 module JBoss
   module Developer
@@ -36,6 +38,9 @@ module JBoss
                                                           :cache => site.cache,
                                                           :logger => site.log_faraday,
                                                           :searchisko_warnings => site.searchisko_warnings})
+          if site.cache.nil?
+            site.send('cache=', Aweplug::Cache::FileCache.new)
+          end
           articles = []
           solutions = []
           site.products = {}
@@ -46,18 +51,18 @@ module JBoss
               if not site.products.has_key? id
                 # Set the product id to the parent dir
                 product.id = id
-                # Set the forum url to the default value, if not set
-                if site.forums.has_key? product.id
-                  product.forum_url = site.forums[product.id]['url']
-                else
-                  product.forum_url = ''
-                end
                 if product.current_version
                   # Set the product's current major.minor version
                   product.current_minor_version = product.current_version[/^([0-9]*\.[0-9]*)/, 1]
                 end
-                docs(product, site)
+                docs(product, site
                 downloads(product, site)
+
+                unless product.forum.nil?
+                  product.forum.count = forum_count(product, site)
+                  product.forum.histogram = forum_histogram(product, site)
+                end
+
                 product.buzz_tags ||= product.id
                 add_video product.vimeo_album, site, product: id, push_to_searchisko: @push_to_searchisko if product.vimeo_album
                 unless site.featured_videos[id].nil?
@@ -74,6 +79,20 @@ module JBoss
               end
             end
           end
+        end
+
+        def forum_count(product, site)
+          resp = @searchisko.search({query: "(sys_type:forumthread AND sys_project:(#{product.forum.name}))",
+                                    facet:'per_project_counts', sys_type:'forumthread', size:0})
+          terms = JSON.load(resp.body)['facets']['per_project_counts']['terms']
+          terms.empty? ? 0 : terms.first['count']
+        end
+
+        def forum_histogram(product, site)
+          resp = @searchisko.search({actvity_date_interval: 'day', facet:'activity_dates_histogram', 
+                                    sys_type:'forumthread', project: product.forum.name, size:0})
+          histogram = JSON.load(resp.body)['facets']['activity_dates_histogram']['entries']
+          histogram.empty? ? [] : histogram
         end
 
         def downloads(product, site)

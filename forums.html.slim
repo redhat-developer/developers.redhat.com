@@ -30,12 +30,14 @@ description: Forums are the primary way that JBoss Developers communicate.
         th Description
         th Posts
         th Monthly Activity
-      - site.forums.each do |k, v|
+      - site.products.reject {|k,v| v.forum.nil?}.values.sort {|a,b| b.forum[:count] <=> a.forum[:count]}.each do |product|
         tr
           td.product-name
-            a(href="#{v.url}") #{v.name}
-          td.description #{v.description}
-          td
-          td
-        
-
+            a(href="#{product.forum.url}") #{product.abbreviated_name}
+          td.description #{product.forum.description}
+          td = product.forum[:count]
+          td.histogram
+            div.forum-chart(data-forum-name=product.forum.name)
+= javascripts("forums", true) do
+  script src="https://www.google.com/jsapi"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/forums.js"
