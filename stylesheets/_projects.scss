@@ -1,0 +1,69 @@
+// Upstream Projects
+li.upstream {
+    font-size: emCalc(13);
+    padding-bottom: 45px;
+  min-width: 205px;
+
+.defaultprojectimage {
+    border:1px solid $grey-5;
+  background-image:cdn("../images/design/projects/default_200x150.png");
+  background-repeat: no-repeat;
+  height:150px;
+  width: 200px;
+    }
+
+  a.image-link {
+    img {
+    background: $white;
+    }
+  }
+  a.upstream-toggle-more {
+    display: block;
+    clear:both;
+    margin-top: 5px;
+    span.view-less { display: none; }
+    &.upstream-toggle-open {
+      span.view-less { display: inline; }
+      span.view-more { display: none; }
+    }
+    i {
+      margin-left: 5px;
+    }
+  }
+  .upstream-more-content {
+    display: none;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+  h3 {
+    color:$link;
+    font-weight: 600;
+    font-size: emCalc(24);
+    margin:10px 0;
+  }
+}
+
+ul.featured-projects-results {
+  @extend .small-block-grid-2;
+  @extend .large-block-grid-3;
+  & > li {
+    display: inline;
+    height: auto;
+    float: left;
+    padding: 0 0.625em 1.25em;
+    .defaultprojectimage {
+      width:100%;
+      border: 0;
+      background:none;
+      height:auto;
+    }
+  }
+  a.image-link {
+    img {
+      width:100%;
+      border:1px solid $grey-4;
+      padding:5px;
+    }
+  }
+}

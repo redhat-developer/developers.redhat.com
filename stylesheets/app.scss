@@ -73,6 +73,7 @@
 @import "socialite";
 @import "search";
 @import "ie8grid";
+@import "projects";
 @import "magula";
 // @import "theme-dark";
 
@@ -897,6 +898,7 @@ h1,h2,h3,h4,h5,h6 {
     margin-bottom: 20px;
     padding-bottom: 5px;
     font-weight: 100;
+    clear: both;
   }
   &.promo-headline {
     font-size:emCalc(80);
@@ -1132,53 +1134,6 @@ ul[class*=block-grid] {
       background-color:$med-blue;
       border-color:$med-blue;
     }
-  }
-}
-
-
-// Upstream Projects
-li.upstream {
-    font-size: emCalc(13);
-    padding-bottom: 45px;
-	min-width: 205px;
-
-.defaultprojectimage {
-    border:1px solid $grey-5;
-	background-image:cdn("../images/design/projects/default_200x150.png");
-	background-repeat: no-repeat;
-	height:150px;
-	width: 200px;
-    }
-
-  a.image-link {
-    img {
-	  background: $white;
-    }
-  }
-  a.upstream-toggle-more {
-    display: block;
-    clear:both;
-    margin-top: 5px;
-    span.view-less { display: none; }
-    &.upstream-toggle-open {
-      span.view-less { display: inline; }
-      span.view-more { display: none; }
-    }
-    i {
-      margin-left: 5px;
-    }
-  }
-  .upstream-more-content {
-    display: none;
-  }
-  p {
-    margin-bottom: 10px;
-  }
-  h3 {
-    color:$link;
-    font-weight: 600;
-    font-size: emCalc(24);
-    margin:10px 0;
   }
 }
 
