@@ -25,7 +25,6 @@ profile_base: &profile
   log_faraday: true
   push_to_searchisko: true
   minify: &minify true 
-  metrics: true
   robots: 
     disallow: true
   deploy:
@@ -70,6 +69,7 @@ profiles:
     dcp_base_protocol_relative_url: //dcp.jboss.org/
     dcp_base_url: http://dcp.jboss.org/
     require_tag: true
+    metrics: true
     robots: 
       disallow: false
     deploy:
