@@ -30,7 +30,8 @@ module JBoss::Developer::Extensions
                                                      :searchisko_username => ENV['dcp_user'],
                                                      :searchisko_password => ENV['dcp_password'],
                                                      :cache => site.cache,
-                                                     :logger => site.log_faraday})
+                                                     :logger => site.log_faraday,
+                                                     :searchisko_warnings => site.searchisko_warnings})
       Parallel.each(yml['availableRuntimes'], in_threads: 20) do |runtime|
         # WARNING Hacks below
         case runtime['labels']['runtime-type']
