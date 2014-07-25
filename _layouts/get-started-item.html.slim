@@ -28,12 +28,12 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
     h2.divider#start itemprop="name" #{page.metadata[:title]}
     .gsi-meta data-searchisko-type="#{page.metadata[:searchisko_type]}" data-searchisko-id="#{page.metadata[:searchisko_id]}"
       ul
-        - if page.metadata[:author]
+        - if page.metadata[:author] && !page.metadata[:author].empty?
           li
             strong
               ' Author:
               span.author itemprop="author" #{page.metadata[:author]}
-        - if page.metadata[:contributors]
+        - if page.metadata[:contributors] && !page.metadata[:contributors].empty?
           li: strong
             ' Contributors:
             span.contributors= page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
@@ -42,15 +42,15 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
             strong
               ' Last Update:
               span itemprop="dateModified" =DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')
-        - if page.metadata[:level]
+        - if page.metadata[:level] && !page.metadata[:level].empty?
           li: strong
             | Level:
               #{page.metadata[:level]}
-        - if page.metadata[:technologies]
+        - if page.metadata[:technologies] && !page.metadata[:technologies].empty?
           li: strong
             | Technologies:
             = page.metadata[:technologies].collect { |t| %Q{<span itemprop="about">#{t}</span>}}.join(", ")
-        - if page.metadata[:target_product]
+        - if page.metadata[:target_product] && !page.metadata[:target_product].empty?
           li: strong
             | Target Product:
             span itemprop="about" =page.metadata[:target_product]
