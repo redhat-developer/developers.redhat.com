@@ -20,10 +20,10 @@ function jbossLink(linkUrl) {
 
 app.project = {
   projectFilter : function(filters, keyword, container, thumbnailSize) {
-    // Get the Filter Items
-
     //Currently the only way to specify no limit
     var maxResults = 500;
+
+    var url = app.dcp.url.project;
 
     /*
       Keyword
@@ -32,9 +32,16 @@ app.project = {
 
     var filters = $.extend(filters, {"keyword": keyword});
     var currentFilters = {};
+    var request_data = {
+        "field"  : ["_source"],
+        "query" : query,
+        "size" : maxResults
+    } 
 
     if ($('select[name="filter-products"]').length && $('select[name="filter-products"]').val() !== "") {
       filters['project'] = app.products[$('select[name="filter-products"]').val()]['upstream'];
+      url = app.dcp.url.search;
+      request_data["sys_type"] = "project_info";
     }
 
     $.each(filters, function(key, val) {
@@ -45,27 +52,20 @@ app.project = {
     });
 
     // Prep each filter
-    var query = ['NOT archived:true'];
+    var query = ['((_exists_:archived AND NOT archived:true) OR (_missing_:archived))'];
 
     if(currentFilters['keyword']) {
       query.push(keyword);
       delete currentFilters['keyword']
     }
 
-    var query = query.join(" AND ");
-
     // append loading class to wrapper
     $("ul.results").addClass('loading');
-    var request_data = {
-        "sys_type" : "project_info",
-        "field"  : ["_source"],
-        "query" : query,
-        "size" : maxResults
-    } 
     $.extend(request_data, currentFilters);
+    request_data["query"] = query.join(" AND ");
 
     $.ajax({
-      url : app.dcp.url.search,
+      url : url,
       dataType: 'json',
       data : request_data,
       container : container,
@@ -85,7 +85,11 @@ app.project = {
       this.projectFilter();
   },
   format : function(data, container, thumbnailSize) {
-    var hits = data.hits.hits; // first one for testing
+    if (data.responses) {
+      var hits = data.responses[0].hits.hits;
+    } else {
+      var hits = data.hits.hits;
+    }
     hits.sortJsonArrayByProperty("_source.sys_title");
     var html = "";
     // loop over every hit
