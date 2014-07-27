@@ -130,8 +130,6 @@ app.dm = {
     // remove any duplicates because of having a dropdown and checkbox
     $.unique(topics);
 
-    topics = topics.join(" ");
-
     /*
       Formats
     */ 
@@ -251,7 +249,9 @@ app.dm = {
     }
 
     if(currentFilters['topics']) {
-      query.push('sys_tags:('+topics+')');
+      $(topics).each(function(idx, val) {
+        query.push('sys_tags:("'+val+'")');
+      });
     }
 
     if(currentFilters['formats']) {
@@ -289,8 +289,6 @@ app.dm = {
       query.push('sys_created:>='+publishDate);
     }
 
-    query.push("(sys_content_provider:jboss-developer OR sys_content_provider:rht)")
-
     if (currentFilters['product']) {
       query.push('sys_project:(' + currentFilters['product'] + ')');
     }
@@ -306,7 +304,8 @@ app.dm = {
       data : {
         "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg"],
         "query" : query,
-        "size" : maxResults
+        "size" : maxResults,
+        "content_provider" : ["jboss-developer", "rht"]
       },
       beforeSend : function() {
         // check if there is a previous ajax request to abort
