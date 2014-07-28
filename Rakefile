@@ -411,7 +411,7 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
   end
   rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
   github = GitHub.new
-  github.comment_on_pull('jboss-developer', 'www.jboss.org', args[:pull], "Broken links: #{args[:new]}/#{report_path}")
+  github.comment_on_pull('jboss-developer', 'www.jboss.org', args[:pull], "Blinkr: #{args[:new]}/#{report_path}")
 end
 
 # Execute Awestruct

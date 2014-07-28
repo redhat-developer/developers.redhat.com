@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: ddcf65bbd8e3b6432e7a53214e492d19f8b19868
+  revision: fd85bcd2980d8be9f82fc695b74a858a4d6b27c6
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -42,7 +42,7 @@ GEM
       ruby-s3cmd (~> 0.1.5)
       tilt (~> 2.0.1)
       zurb-foundation (~> 4.3.2)
-    blinkr (0.1.0)
+    blinkr (0.2.0)
       nokogiri (~> 1.5)
       parallel (~> 1.0.0)
       slim (~> 2.0)
@@ -183,7 +183,7 @@ DEPENDENCIES
   asciidoctor (~> 1.5.0.preview8)
   aweplug!
   awestruct (~> 0.5.4.rc3)
-  blinkr (~> 0.1.0)
+  blinkr (~> 0.2.0)
   curb (~> 0.8.5)
   git (~> 1.2.5)
   htmlcompressor (~> 0.0.6)
