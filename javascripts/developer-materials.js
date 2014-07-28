@@ -140,8 +140,11 @@ app.dm = {
     //Enable sandbox if sandbox filter checked, or if no format filters are checked.
     var sandboxEnabled = $.inArray('jbossdeveloper_sandbox', formats) != -1 || formats.length == 0;
     var quickstartsEnabled = $.inArray('jbossdeveloper_quickstart', formats) != -1 || formats.length == 0;
+    // check to see if we are filering at all
+    var filteringEnabled = !(formats.length === 0);
 
     //remove sandbox if there.
+    // we will add it back in for the page fragments later
     var index = formats.indexOf('jbossdeveloper_sandbox');
     if (index !== -1) {
       formats[index] = 'jbossdeveloper_quickstart';
@@ -269,13 +272,15 @@ app.dm = {
       }
     }
 
-    // Update the page hash if it isn't googlebot
-    if(!window.location.search.match(/_escaped_fragment_/)) {
-      window.location.hash = "!" + app.utils.convertParametersToHash(currentFilters);
-    }
+    var pageHashFilters = currentFilters;
+    // create an array from the formats so we can check for sandbox
+    var pageHashFormats = (pageHashFilters.formats ? pageHashFilters.formats.split(' ') : []);
 
     //Handle quickstarts and sandbox quickstarts
-    if ((sandboxEnabled && quickstartsEnabled) || (!sandboxEnabled && !quickstartsEnabled)) {
+    if (sandboxEnabled && quickstartsEnabled && filteringEnabled) {
+      // add sandbox to the page hash, but only if we are filtering
+      pageHashFormats.push('jbossdeveloper_sandbox');
+    } else if (!sandboxEnabled && !quickstartsEnabled) {
       //do nothing, the format filter will take care of this case
     } else if (!sandboxEnabled && quickstartsEnabled) {
       //filter out the sandbox quickstarts
@@ -283,6 +288,17 @@ app.dm = {
     } else if (sandboxEnabled && !quickstartsEnabled) {
       //filter out the regular quickstarts
       query.push('github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
+      pageHashFormats.push('jbossdeveloper_sandbox');
+      var idx = pageHashFormats.indexOf('jbossdeveloper_quickstart');
+      pageHashFormats.splice(idx,1);
+    }
+
+    // merge the page hash filters back into the formats string
+    pageHashFilters.formats = $.unique(pageHashFormats).join(' ');
+
+    // Update the page hash if it isn't googlebot
+    if(!window.location.search.match(/_escaped_fragment_/)) {
+      window.location.hash = "!" + app.utils.convertParametersToHash(pageHashFilters);
     }
 
     if(currentFilters['publishDate']) {
