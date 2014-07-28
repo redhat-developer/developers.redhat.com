@@ -31,6 +31,30 @@ guides:
 default_download_artifact_type: jar_universal
 downloads:
   8.0.0.Beta2:
+    release_date: 2014-07-28
+    description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4 Luna.
+    assets:
+      jar_universal:
+        name: Installer With EAP
+        size: 643mb
+        type: jar
+      standalone_jar:
+        name: Stand-alone Installer
+        size: 504mb
+        type: jar
+      standalone_zip_update:
+        name: Update Site
+        size: 850mb
+        type: zip
+      standalone_zip_central:
+        name: JBoss Central
+        size: 115mb
+        type: zip
+      source:
+        name: Source
+        size: 7.6mb
+        type: zip
+  8.0.0.Beta2:
     release_date: 2014-06-20
     description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4 Luna M7.
     assets:
