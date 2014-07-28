@@ -1,20 +1,16 @@
 // Upstream Projects
 li.upstream {
-    font-size: emCalc(13);
-    padding-bottom: 45px;
-  min-width: 205px;
-
-.defaultprojectimage {
+  font-size: emCalc(13);
+  padding-bottom: 45px;
+  .defaultprojectimage {
     border:1px solid $grey-5;
-  background-image:cdn("../images/design/projects/default_200x150.png");
-  background-repeat: no-repeat;
-  height:150px;
-  width: 200px;
-    }
+    width:100%;
+  }
 
   a.image-link {
     img {
-    background: $white;
+      background: $white;
+      width:100%;
     }
   }
   a.upstream-toggle-more {

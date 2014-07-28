@@ -84,6 +84,10 @@ app.project = {
       form[0].reset();
       this.projectFilter();
   },
+  fallbackImage: function(el) {
+    var src = "#{cdn( site.base_url + '/images/design/projects/default_200x150.png')}";
+    el.src = src;
+  },
   format : function(data, container, thumbnailSize) {
     if (data.responses) {
       var hits = data.responses[0].hits.hits;
@@ -103,7 +107,7 @@ app.project = {
         + "<div class=\"defaultprojectimage\">"
         + "<a class=\"image-link\" href=\""
         + getCorrectUrl(props.sys_url_view)
-        + "\"><img onerror=\"this.style.display='none'\" src='" + imgsrc + "'></a></div>"
+        + "\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "'></a></div>"
         + "<h3 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
         + getCorrectUrl(props.sys_url_view) + "\">"
         + props.projectName + "</a></h3><p></p>";
