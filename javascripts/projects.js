@@ -295,7 +295,7 @@ app.project = {
       html = "Sorry, no results to display. Please modify your search.";
     }
     container.html(html).removeClass('loading');
-    $("#results-label").html(hits.length);
+    container.prev().find("#results-label").html(hits.length);
 
   }
 }
