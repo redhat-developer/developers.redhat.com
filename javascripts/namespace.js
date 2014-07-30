@@ -46,3 +46,10 @@ app.dcp.error_message = "<div class='dcp-error-message'>It appears we're unable 
 
 app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'] || '_none'}; map; })}
 
+
+/*
+ * Marketing ops
+ */
+app.mktg_ops = {};
+app.mktg_ops.elqFormName = "#{site.elq_form_name || %Q{jboss-org-integration-sandbox}}"
+

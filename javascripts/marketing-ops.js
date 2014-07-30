@@ -16,8 +16,6 @@
  *
  */
 
-app.mktg_ops = {};
-
 /*******************
  * GLOBAL VARIABLES
  *******************
@@ -74,6 +72,35 @@ _elqQ.push(['elqTrackPageView', trackURL]);
   s.src = '//img.en25.com/i/elqCfg.min.js';
   var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
 })();
+
+/** Copied from s_code.js **/
+/*
+ * Copy elqCustomerGUID value to a cookie so our servers can read it
+ * Copied from elqCopyGUID.js
+ */
+app.mktg_ops.elqCookieCopy = function() {
+  var cookieGUID = getCookie('elqGUID');
+  if (!cookieGUID){
+    var elqPPS = 70;
+    // Copyright Eloqua Corporation.
+    // patched 1-30-2013 gshereme@redhat.com to fix XSS vuln
+    if ((typeof elqCurE != 'undefined') && (typeof elqPPS != 'undefined')){
+      document.write('<SCR' + 'IPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="' + elqCurE + '?pps=' + elqPPS + '&siteid=' + elqSiteID + '&ref=' +
+    elqReplace(elqReplace(elqReplace(elqReplace(elqReplace(elqReplace(location.href,'&','%26'),'#','%23'),'"','%22'),"'",'%27'),'<','%3C'),'>','%3E') 
+    + '&ms=' + new Date().getMilliseconds() + '"><\/SCR' + 'IPT>');
+    }
+    var _onload = function() {
+      if (typeof GetElqCustomerGUID == 'function') {
+        document.cookie = 'elqGUID' + "=" + escape(GetElqCustomerGUID()) + ";expires=" + new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toGMTString() + ";path=/";
+      }
+    }
+    if (window.addEventListener) {
+      window.addEventListener('load', _onload, false);
+    } else if (window.attachEvent) {
+      window.attachEvent('onload', function() { return _onload.apply(window, new Array(window.event)); });
+    }
+  }
+};
 
 /** 
  * Google Analytics
@@ -147,6 +174,8 @@ app.mktg_ops.aa.setup = function() {
   s.prop16 = s.eVar29 = arr.shift(); // prop16/eVar29 is the third minor section (normally /a/b/{minor_section_3})
   s.prop21 = s.eVar18 = encodeURI(location.hostname+location.pathname).toLowerCase(); // prop21/eVar18 is the URL, less any query strings or fragments
 
+  app.mktg_ops.elqCookieCopy('.jboss.org');
+
 }
 
 app.mktg_ops.aa.setup();
@@ -173,5 +202,24 @@ app.mktg_ops.track = function(src) {
   _gaq.push(['_trackEvent', 'outbound', src.title, src.href]);
   // Eloqua will track the link
   _elq.trackEvent(src);
+};
+
+app.mktg_ops.elqFormSubmit = function (src) {
+  var data = {
+    "elqSiteID": "1795",
+    "elqFormName": app.mktg_ops.elqFormName,
+    "elqCustomerGUID": $.cookie('elqGUID'),
+    //"C_EmailAddress": "", TODO
+    "A_RedirectURL": src,
+    "A_TacticID_Internal": "701600000InternalTactic",
+    "A_TacticID_External": "701600000ExternalTactic",
+    "A_ElqVisitorGuid":  $.cookie('elqGUID'),
+    "F_FormData_Trigger": "Consumed through click",
+    "nocache": new Date().getTime()
+  };
+  $.getJSON("http://query.yahooapis.com/v1/public/yql", {
+    q: "select * from json where url=\"https://secure.eloqua.com/e/f2?" + decodeURIComponent($.param(data)) + "\"",
+    format: "json"
+  });
 };
 
