@@ -555,6 +555,15 @@ app.dm = {
 $(function() {
   var timeOut;
   $('form.dev-mat-filters').on('change keyup','input, select',function(e){
+
+    // check for a keyup 
+    // then, only allows on the keyword input
+    // ignores anything in below keys array
+    var keys = [37,38,39,40,9,91,92,18,17,16]; // ← ↑ → ↓ tab super super alt ctrl shift
+    if(e.type === "keyup" && ($(this).attr('name') !== 'filter-text' || keys.indexOf(e.keyCode) !== -1)) {
+      return;
+    }
+
     clearTimeout(timeOut);
     timeOut = setTimeout(function() {
       app.dm.devMatFilter();
