@@ -22,14 +22,14 @@ description: The simple, modern & productive way to build apps and infrastructur
 / Hero
 / Picturefill so we only load what we need on each device
 .row.hero
-  a( href="http://blog.devnation.org/?p=39")
-    span(data-picture="true" data-alt="Dev Nation")
-      span(data-src=cdn("http://design.jboss.org/jbossdeveloper/sitedesign/jbossdeveloper_1_0/makerfiles/images/hero_mobile_480x500_devnationwrap.png"))
-      span(data-src=cdn("http://design.jboss.org/jbossdeveloper/sitedesign/jbossdeveloper_1_0/makerfiles/images/hero_desktop_1175x400_devnationwrap.png") data-media="(min-width: 480px)")
+  a( href="http://jboss.org/events/JUDCon/2014/boston")
+    span(data-picture="true" data-alt="JUDCon:Boston 2014")
+      span(data-src=cdn("#{site.base_url}/images/branding/hero_mobile_480x500_judconbostonwrapup.png"))
+      span(data-src=cdn("#{site.base_url}/images/branding/hero_desktop_1175x400_judconbostonwrapup.png") data-media="(min-width: 480px)")
       / Fallback to the small on on non-js devices
       noscript
-        img(src=cdn("http://design.jboss.org/jbossdeveloper/sitedesign/jbossdeveloper_1_0/makerfiles/images/hero_mobile_480x500_devnationwrap.png") alt="Dev Nation")
-  
+        img(src=cdn("#{site.base_url}/images/branding/hero_mobile_480x500_judconbostonwrapup.png") alt="JUDCon:Boston 2014")
+
 / Buzz and Event Updates
 .row.updates.mobilehome
   .large-24.columns
