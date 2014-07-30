@@ -1,4 +1,6 @@
 require 'zurb-foundation'
+require 'tilt/kramdown'
+
 require 'common_dir'
 require 'aweplug/extensions/kramdown_quickstart'
 require 'aweplug/extensions/sections'
