@@ -42,10 +42,12 @@ description: Discover the events and webinars featuring talks about JBoss produc
       a(href="#")
         | Subscribe to events 
         i.fa.fa-rss
-      .events-actions-buttons
-        a.button.reveal data-reveal-id="comingSoonModal" Add Your Event
-        a.button.reveal data-reveal-id="comingSoonModal" View Past Events
-        a.button.reveal data-reveal-id="comingSoonModal" Events Blog
+      /
+        DEVELOPER-829
+        .events-actions-buttons
+          a.button.reveal data-reveal-id="comingSoonModal" Add Your Event
+          a.button.reveal data-reveal-id="comingSoonModal" View Past Events
+          a.button.reveal data-reveal-id="comingSoonModal" Events Blog
 
     ul.small-block-grid-2.large-block-grid-4.events-listing
       - site.events.each do |v|
