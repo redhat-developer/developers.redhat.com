@@ -231,6 +231,7 @@ app.init = function() {
     win.on('scroll',function() {
       // var win = $(this);
       var scrollBottom = win.scrollTop() + win.height();
+      var scrollTop = win.scrollTop();
       var buzzBottom = $buzz.position().top + $buzz.height();
       if((scrollBottom + 150 > buzzBottom) && !app.buzz.infiniteScrollCalled && buzzFlag) {
         
@@ -241,7 +242,9 @@ app.init = function() {
         app.buzz.infiniteScrollCalled = true;
         var from = $('.buzz-item').length + 1;
         // load in more
-        app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from);
+        app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from, function() {
+          win.scrollTop(scrollTop);
+        });
       }
     });
   };
@@ -414,7 +417,7 @@ app.sso = function() {
  */
 app.buzz = {
 
-  filter : function(tmpl, container, itemCount, append, from) {
+  filter : function(tmpl, container, itemCount, append, from, callback) {
 
     // set a default item count of 8
     var itemCount = itemCount || 8;
@@ -517,6 +520,7 @@ app.buzz = {
           container.isotope('destroy').isotope({
             itemSelector: '.buzz-item'
           });
+          typeof callback === 'function' && callback();
         });
       }
 
