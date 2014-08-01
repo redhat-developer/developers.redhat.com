@@ -676,6 +676,29 @@ app.stickyFooter = function() {
 };
 
 /*
+ * T&C banner display
+ */
+app.termsAndConditionsCallback = function(data) {
+  if (data.tac.accepted) {
+    // create banner, maybe modal? saying when they signed tac.acceptanceTimestamp
+    data.tac.acceptanceTimestamp = new Date(data.tac.acceptanceTimestamp).toLocaleString();
+    var newHtml = app.templates.termsAndConditionsTemplate.template(data.tac);
+    $('#_developer_program_terms_conditions').before(newHtml);
+  }
+}
+
+app.termsAndConditionsBanner = function() {
+  app.dm.authStatus().done(function(data) {
+    if (data.authenticated) {
+      // Add a jsonp call to get the info
+      var tac = document.createElement('script'); tac.type = 'text/javascript'; tac.async = true;
+      tac.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'community.jboss.org/api/custom/v1/account/info?callback=app.termsAndConditionsCallback';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tac, s);
+    }
+  });
+};
+
+/*
   3rd level nav
 */
 
@@ -750,7 +773,9 @@ $(function() {
     app.dm.restoreFilter();
   }
 
-
+  if ($('#_developer_program_terms_conditions').length) {
+    app.termsAndConditionsBanner();
+  }
 });
 
 /*
