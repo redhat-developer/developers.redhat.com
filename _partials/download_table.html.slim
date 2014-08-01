@@ -1,9 +1,9 @@
-table
+table.large-24.small-24.columns
   colgroup
-    col(style="width:25%")
-    col(style="width:25%")
-    col(style="width:25%")
-    col(style="width:25%")
+    col.large-6.small-6.columns
+    col.large-6.small-6.columns
+    col.large-6.small-6.columns
+    col.large-6.small-6.columns
   thead
     tr
       th Version
@@ -14,10 +14,10 @@ table
     - page.downloads.each do |download|
       - download.assets.values.each_with_index do |asset, i|
         tr
-          td 
+          td
             - if i == 0
               = download.version
-          td 
+          td
             - if i == 0
               = download.release_date
           td #{asset.name}
