@@ -220,7 +220,33 @@ app.init = function() {
   var $buzz = $('.buzz-container');
 
   if($buzz.length) {
-    app.buzz.filter(app.templates.buzzTemplate, $buzz);
+    app.buzz.filter(app.templates.buzzTemplate, $buzz, 4);
+
+    // infinite scroll for full buzz page
+
+    app.buzz.infiniteScrollCalled = false;
+    var currentPagination = 0;
+    var buzzFlag = true; // rate limiting 
+    var win = $(window);
+    win.on('scroll',function() {
+      // var win = $(this);
+      var scrollBottom = win.scrollTop() + win.height();
+      var scrollTop = win.scrollTop();
+      var buzzBottom = $buzz.position().top + $buzz.height();
+      if((scrollBottom + 150 > buzzBottom) && !app.buzz.infiniteScrollCalled && buzzFlag) {
+        
+        // limit the number of times it can be called to once per second
+        buzzFlag = false;
+        window.setTimeout(function(){ buzzFlag = true; },1000);
+
+        app.buzz.infiniteScrollCalled = true;
+        var from = $('.buzz-item').length + 1;
+        // load in more
+        app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from, function() {
+          win.scrollTop(scrollTop);
+        });
+      }
+    });
   };
 
   /* 
@@ -391,7 +417,10 @@ app.sso = function() {
  */
 app.buzz = {
 
-  filter : function(tmpl, container) {
+  filter : function(tmpl, container, itemCount, append, from, callback) {
+
+    // set a default item count of 8
+    var itemCount = itemCount || 8;
 
     // append loading class to wrapper
     $("ul.results").addClass('loading');
@@ -433,10 +462,11 @@ app.buzz = {
         data : {
           "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated", "author", "sys_tags"],
           "query" : query,
-          "size" : 8,
+          "size" : itemCount,
           "sys_type" : "blogpost",
           "sortBy" : "new-create",
-          "query_highlight" : true
+          "query_highlight" : true,
+          "from" : from || 0 // for pagination
         },
         beforeSend : function() {
           // check if there is a previous ajax request to abort
@@ -450,6 +480,7 @@ app.buzz = {
           $('.buzz-loading').removeClass('buzz-loading');
         }
       }).done(function(data){
+        app.buzz.infiniteScrollCalled = false;
         var hits = data.hits.hits;
         if(keyword && keyword.length) {
           app.search.format(keyword,hits, $('.buzz-filters .searchResults'));
@@ -477,13 +508,19 @@ app.buzz = {
       if(!html) {
         html = "Sorry, no results to display.";
       }
-      container.html(html);
+      if(append) {
+        container.append(html);
+      }
+      else {
+        container.html(html);
+      }
 
       if (container.hasClass('isotoped')) {
         container.imagesLoaded(function(){
           container.isotope('destroy').isotope({
             itemSelector: '.buzz-item'
           });
+          typeof callback === 'function' && callback();
         });
       }
 
