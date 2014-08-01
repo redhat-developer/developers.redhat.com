@@ -291,7 +291,7 @@ app.init = function() {
    * Call any marketing operations initialization required
    */
 
-  if (app.mktg_ops) {
+  if (typeof app.mktg_ops.init !== "undefined") {
     app.mktg_ops.init();
   }
 
