@@ -25,15 +25,25 @@ head
 
 - template = (page.url.gsub('/','').split('.').first || 'home')
 body(class="#{template}")
-
-  / Metrics scripts that are asynchronous run at the top of the page. It's better to run them at the top, as they
-    are more likely to fire, even if the user clicks away before the page loads completely. However, they do
-    contribute to page load times, so only put fast (i.e async) ones here. Slow (i.e sync) ones go at the bottom.
-  = javascripts "top" do
-    - if site.metrics
-      script src="#{site.base_url}/#{site.context_url}/javascripts/google-tag-manager.js"
-
   - if site.metrics
+    / Metrics scripts that are asynchronous run at the top of the page. It's better to run them at the top, as they
+      are more likely to fire, even if the user clicks away before the page loads completely. However, they do
+      contribute to page load times, so only put fast (i.e async) ones here. Slow (i.e sync) ones go at the bottom.
+      
+      Declarative loading of async scripts is only supported by Chrome and Firefox, however JS loading is supported
+      IE and Safari as well. In order to avoid blocking the browser on downloading a tiny JS file this is declared
+      inline.
+    javascript:
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push(
+          {'gtm.start': new Date().getTime(), event: 'gtm.js'}
+        );
+        var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-NJWS5L');
     noscript
       iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"
 
