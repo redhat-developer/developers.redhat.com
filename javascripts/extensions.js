@@ -1,0 +1,180 @@
+/*
+  jQuery Extensions
+*/
+
+jQuery.ajaxSettings.traditional = true;
+
+String.prototype.format = function() {
+  var args = arguments;
+  return this.replace(/{(\d+)}/g, function(match, number) { 
+    return typeof args[number] != 'undefined'
+      ? args[number]
+      : match
+    ;
+  });
+};
+
+String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = hours+':'+minutes+':'+seconds;
+    return time;
+};
+
+Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop, direction){
+    if (arguments.length < 1) throw new Error("sortJsonArrayByProperty requires 1 argument");
+    var direct = arguments.length > 2 ? arguments[2] : 1; //Default to ascending
+
+    var propPath = (prop.constructor === Array) ? prop : prop.split(".");
+    this.sort(function(a,b){
+        for (var p in propPath){
+            if (a[propPath[p]] && b[propPath[p]]){
+                a = a[propPath[p]];
+                b = b[propPath[p]];
+            }
+        }
+        // convert numeric strings to integers or to lower case strings
+        a = isNaN(Math.floor(a)) ? a.toLowerCase() : a;
+        b = isNaN(Math.floor(b)) ? b.toLowerCase() : b;
+        return ( (a < b) ? ( -1 * direct ) : ((a > b) ? (1 * direct) : 0) );
+    });
+};
+
+// Taken from http://www.shamasis.net/2009/09/fast-algorithm-to-find-unique-items-in-javascript-array/
+Array.prototype.unique = function() {
+    var o = {}, i, l = this.length, r = [];
+    for(i=0; i<l;i+=1) o[this[i]] = this[i];
+    for(i in o) r.push(o[i]);
+    return r;
+};
+
+app.utils = {};
+
+app.utils.getParameterByName = function (name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
+app.utils.getFragmentParameterByName = function (name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\!&]" + name + "=([^&?]*)"), results = regex.exec(location.hash);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
+app.utils.getParametersFromHash = function() {
+  var match,
+      pl     = /\+/g,  // Regex for replacing addition symbol with a space
+      search = /([^&\!#=]+)=?([^&]*)/g,
+      decode = function (s) {
+        return decodeURIComponent(s.replace(pl, " "));
+      },
+      query = window.location.hash || (window.location.search.match(/\?_escaped_fragment_/gi) ? window.location.search.replace('?_escaped_fragment_=','#') : ""),
+      urlParams = {};
+
+
+  
+  while (match = search.exec(query)) {
+     urlParams[decode(match[1])] = decode(match[2]);
+  }
+  return urlParams;
+};
+
+app.utils.convertParametersToHash = function(urlParams) {
+  var hashArray = [];
+  for(k in urlParams){
+    // only push params that are actually set
+    if(urlParams[k]) {
+      hashArray.push(k + "=" + encodeURIComponent(urlParams[k]));
+    }
+  }
+  return hashArray.join("&");
+};
+
+app.utils.updatePageHash = function(el) {
+  var urlParams = app.utils.getParametersFromHash();
+  var name = el.attr('name');
+  urlParams[name] = el.val();
+  window.location.hash = "!" + app.utils.convertParametersToHash(urlParams);
+  // if there is an existing query param, remove it and refresh the page
+  if(!!window.location.search) {
+    window.location = window.location.href.replace(window.location.search,'');
+  }
+};
+
+app.utils.restoreFromHash = function(urlParams) {
+  var urlParams = urlParams || app.utils.getParametersFromHash();
+  for(k in urlParams) {
+    var input = $('[name="'+k+'"]');
+    var tagName = input.prop('tagName');
+    // check if a select box
+    if(tagName === "SELECT") {
+      input.find('option[value="'+urlParams[k]+'"]').attr('selected','selected').trigger('change');
+    }
+    else {
+      input.val(urlParams[k]).trigger('keyup');
+    }
+  }
+};
+
+app.utils.parseDataAttributes = function() {
+  var values = {};
+  $('[data-set]').each(function(i,el){
+    var el = $(this);
+    var data = el.data();
+    for(key in data) {
+      if(key.match(/^set[A-Z]/g)) {
+        var attr = key.replace('set','').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+        values[attr] = data[key];
+      }
+    }
+  });
+  app.dm.restoreFilter(values);
+  app.utils.restoreFromHash(values);
+};
+
+// Simple JavaScript Templating (modified)
+// Original from John Resig - http://ejohn.org/ - MIT Licensed
+// @see http://ejohn.org/blog/javascript-micro-templating/
+// Simple JavaScript Templating
+// John Resig - http://ejohn.org/ - MIT Licensed
+(function(){
+  var cache = {};
+ 
+  String.prototype.template = function (data) {
+    // Figure out if we're getting a template, or if we need to
+    // load the template - and be sure to cache the result.
+    var fn = !/\W/.test(this) ?
+      cache[this] = cache[this] ||
+        tmpl(document.getElementById(this).innerHTML) :
+     
+      // Generate a reusable function that will serve as a template
+      // generator (and which will be cached).
+      new Function("obj",
+        "var p=[],print=function(){p.push.apply(p,arguments);};" +
+       
+        // Introduce the data as local variables using with(){}
+        "with(obj){p.push('" +
+       
+        // Convert the template into pure JavaScript
+        this
+          .replace(/[\r\t\n]/g, " ")
+          .split("<!").join("\t")
+          .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+          .replace(/\t=(.*?)!>/g, "',$1,'")
+          .split("\t").join("');")
+          .split("!>").join("p.push('")
+          .split("\r").join("\\'")
+      + "');}return p.join('');");
+   
+    // Provide some basic currying to the user
+    return data ? fn( data ) : fn;
+  };
+})();
+
