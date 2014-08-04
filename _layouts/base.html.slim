@@ -151,15 +151,27 @@ body(class="#{template}")
     This will ensure that the async scripts that they load from remote servers
     appear in the right spot on the page.
   = javascripts "bottom" do
+    / Load jQuery, CORS support for jquery (IE 8/9)
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
+    / Kick off polyfiller, as it needs to download resources
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/modernizr-custom.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/polyfiller.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/polyfiller-config.js"
+    / Load our basic JS setup
     script src="#{site.base_url}/#{site.context_url}/javascripts/namespace.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/extensions.js"
+    / Load site metrics as early as possible
     - if site.metrics
       script src="http://www.redhat.com/j/s_code.js"
       script src="http://www.redhat.com/j/elqNow/elqCfg.js"
       script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
       script src="http://www.redhat.com/assets/js/tracking/rh_omni_footer.js"
       script src="http://www.googleadservices.com/pagead/conversion.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
+    / Load all our scripts. Anything requiring dependcies can be run here, with dependencies in the DOM ready
+      or can be run after the dependency is loaded
+    script src="#{site.base_url}/#{site.context_url}/javascripts/sso.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/buzz.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
     / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
@@ -174,8 +186,6 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.timeago.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jbossorg-tabzilla.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/socialite.min.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/modernizr-custom.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/polyfiller.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picturefill.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.paging.min.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/highlight.min.js"    
