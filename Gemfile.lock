@@ -13,6 +13,15 @@ GIT
       sass (~> 3.2)
       uglifier (~> 2.0.1)
 
+GIT
+  remote: git://github.com/pmuir/blinkr.git
+  revision: 9e4861c993f8b7c84b477a3a5e69b05c7a47814e
+  specs:
+    blinkr (0.2.4)
+      nokogiri (~> 1.5)
+      parallel (~> 1.1.0)
+      slim (~> 2.0)
+      typhoeus (~> 0.6)
 GEM
   remote: https://rubygems.org/
   specs:
@@ -168,7 +177,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  asciidoctor (~> 1.5.0.preview8)
+  asciidoctor (~> 1.5.0.rc.5)
   aweplug!
   awestruct (~> 0.5.4.rc3)
   blinkr (~> 0.2.4)
