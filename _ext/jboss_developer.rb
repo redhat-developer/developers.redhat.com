@@ -106,6 +106,16 @@ module JBoss
 
     module Utilities
 
+      def js_compress( input )
+        if site.minify
+          # Require this late to prevent people doing devel needing to set up a JS runtime
+          require 'uglifier'
+          Uglifier.new(:mangle => false).compile(input)
+        else
+          input
+        end
+      end
+
       def download_manager_path(product, version) 
         "#{site.download_manager_file_base_url}/#{product}/#{version}/download"
       end
