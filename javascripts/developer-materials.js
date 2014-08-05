@@ -1,20 +1,10 @@
 ---
 interpolate: true
 ---
-function roundHalf(num) {
-    var num = Math.round(num*2)/2;
-    var html = "";
-    for (var i = num; i >= 0; i--) {
-      if(i >= 1) {
-        html += "<i class='fa fa-star'></i>";
-      }
-      else if (i > 0) {
-        html += "<i class='fa fa-star-half-empty'></i>";
-      }
-    };
-    return html;
-}
 
+/**
+ * Dependencies: vendor/jquery.timeago.js
+ */
 app.dm = {
   supportsLocalStorage: function() {
     try {
@@ -425,7 +415,7 @@ app.dm = {
             }
             if (hits[i].fields.sys_created) {
               template += "<p class=\"material-datestamp\">" +
-                "Published " + moment(hits[i].fields.sys_created).fromNow() +
+                "Published " + jQuery.timeago(new Date(hits[i].fields.sys_created)) +
               "</p>"
             }
             template += "<div class=\"body\">" +
@@ -549,10 +539,10 @@ app.dm = {
       xhrFields: {withCredentials: true}
     });
   }
-}
+};
 
 // Event Listeners 
-$(function() {
+(function() {
   var timeOut;
   $('form.dev-mat-filters').on('change keyup','input, select',function(e){
 
@@ -604,13 +594,67 @@ $(function() {
     var el = $(this);
     if(el.is(':checked')) {
       el.parent().addClass('checked');
-    }
-    else {
+    } else {
       el.parent().removeClass('checked');
     }
   }).trigger('change');
 
-  $('select[name="filter-topic[]"]').chosen();
+  // apply the chosen jquery plugin
+  if ($('select[name="filter-topic[]"]').length) {
+    // defer this to the DOM is ready (ensure we've loaden the chosen plugin)
+    $(function() {
+      $('select[name="filter-topic[]"]').chosen()
+    });;
+  }
 
-});
+   /*
+    Developer Materials Slider Filter
+  */
+  $('form.dev-mat-filters input[type=range]').on('change mousemove',function() {
+    // we bind to change and mousemove because Firefox doesn't fire change until mouse is dropped.
+    // convert step and total to number of options
+    var el = $(this),
+        step = el.attr('step'),
+        max = el.attr('max') || 100,
+        value = this.value,
+        labels = el.data('labels').split(','),
+        idx = value / step;
+    el.next('.skill-display').text( labels[idx] );
+  });
+
+  /*
+    Developer Materials Rating Filter
+  */
+  $('input[name="filter-rating"]').on('change input',function() {
+    var val = this.value;
+    $('.filter-rating-active').removeClass('filter-rating-active');
+    $('input[name="filter-rating"]').each(function() {
+      if(this.value <= val) {
+        $(this).parent().addClass('filter-rating-active');
+      }
+    });
+  }); 
+
+  // When the page is loaded, loop through query params and apply them
+  if($('[data-set]').length) {
+    // 1. Check for data-set-* attributes
+    app.utils.parseDataAttributes();
+  }
+  else if(window.location.search && !!window.location.search.match(/_escaped_fragment/)) {
+    // 2. Check for a query string 
+    var hashParams = app.utils.getParametersFromHash();
+    app.utils.restoreFromHash();
+    app.dm.restoreFilter(hashParams);
+  }
+  else if(window.location.hash) {
+    // 3. check for a hash fragment
+    app.utils.restoreFromHash();
+    app.dm.restoreFilter();
+  }
+  else if($('form.dev-mat-filters').length) {
+    // 4. Check for localstorage and the developer materials form
+    app.dm.restoreFilter();
+  }
+
+})();
 

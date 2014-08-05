@@ -50,7 +50,7 @@ app.search = {
 };
 
 // binding
-$(function() {
+(function() {
   $('form.search').on('submit',function(e){
     e.preventDefault();
   });
@@ -123,4 +123,4 @@ $(function() {
     $('.searchResults').html('');
   });
 
-});
+})();

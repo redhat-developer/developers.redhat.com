@@ -138,23 +138,23 @@ app.books = {
       // Append template to HTML
       $('ul.book-list').append(template);
     }
+  },
+  init : function() {
+    // if we are on the books page, pull in the ISBN list
+    if($('.isbnList').length) {
+      app.books.getBooks(#{JSON.dump(site.books)});
+    }
+
+    $('input[name=book-filter]').on('keyup',function() {
+      var el = $(this);
+      var val = el.val();
+      var re = new RegExp(val,"gi");
+
+      app.books.formatBooks(app.books.bookItems,val);
+
+    });
   }
 };
 
-$(function() {
-  // if we are on the books page, pull in the ISBN list
-  if($('.isbnList').length) {
-    app.books.getBooks(#{JSON.dump(site.books)});
-  }
+app.books.init();
 
-  $('input[name=book-filter]').on('keyup',function() {
-    var el = $(this);
-    var val = el.val();
-    var re = new RegExp(val,"gi");
-
-    app.books.formatBooks(app.books.bookItems,val);
-
-  });
-
-
-});

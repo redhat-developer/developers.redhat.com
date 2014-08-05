@@ -54,6 +54,45 @@ Array.prototype.unique = function() {
     return r;
 };
 
+// Simple JavaScript Templating (modified)
+// Original from John Resig - http://ejohn.org/ - MIT Licensed
+// @see http://ejohn.org/blog/javascript-micro-templating/
+// Simple JavaScript Templating
+// John Resig - http://ejohn.org/ - MIT Licensed
+(function(){
+  var cache = {};
+ 
+  String.prototype.template = function (data) {
+    // Figure out if we're getting a template, or if we need to
+    // load the template - and be sure to cache the result.
+    var fn = !/\W/.test(this) ?
+      cache[this] = cache[this] ||
+        tmpl(document.getElementById(this).innerHTML) :
+     
+      // Generate a reusable function that will serve as a template
+      // generator (and which will be cached).
+      new Function("obj",
+        "var p=[],print=function(){p.push.apply(p,arguments);};" +
+       
+        // Introduce the data as local variables using with(){}
+        "with(obj){p.push('" +
+       
+        // Convert the template into pure JavaScript
+        this
+          .replace(/[\r\t\n]/g, " ")
+          .split("<!").join("\t")
+          .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+          .replace(/\t=(.*?)!>/g, "',$1,'")
+          .split("\t").join("');")
+          .split("!>").join("p.push('")
+          .split("\r").join("\\'")
+      + "');}return p.join('');");
+   
+    // Provide some basic currying to the user
+    return data ? fn( data ) : fn;
+  };
+})();
+
 app.utils = {};
 
 app.utils.getParameterByName = function (name) {
@@ -139,42 +178,30 @@ app.utils.parseDataAttributes = function() {
   app.utils.restoreFromHash(values);
 };
 
-// Simple JavaScript Templating (modified)
-// Original from John Resig - http://ejohn.org/ - MIT Licensed
-// @see http://ejohn.org/blog/javascript-micro-templating/
-// Simple JavaScript Templating
-// John Resig - http://ejohn.org/ - MIT Licensed
-(function(){
-  var cache = {};
- 
-  String.prototype.template = function (data) {
-    // Figure out if we're getting a template, or if we need to
-    // load the template - and be sure to cache the result.
-    var fn = !/\W/.test(this) ?
-      cache[this] = cache[this] ||
-        tmpl(document.getElementById(this).innerHTML) :
-     
-      // Generate a reusable function that will serve as a template
-      // generator (and which will be cached).
-      new Function("obj",
-        "var p=[],print=function(){p.push.apply(p,arguments);};" +
-       
-        // Introduce the data as local variables using with(){}
-        "with(obj){p.push('" +
-       
-        // Convert the template into pure JavaScript
-        this
-          .replace(/[\r\t\n]/g, " ")
-          .split("<!").join("\t")
-          .replace(/((^|%>)[^\t]*)'/g, "$1\r")
-          .replace(/\t=(.*?)!>/g, "',$1,'")
-          .split("\t").join("');")
-          .split("!>").join("p.push('")
-          .split("\r").join("\\'")
-      + "');}return p.join('');");
-   
-    // Provide some basic currying to the user
-    return data ? fn( data ) : fn;
-  };
-})();
+// Code pulled from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript
+app.utils.getQueryVariable = function (variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split('&');
+  for(var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+    if (decodeURIComponent(pair[0]) == variable) {
+      return decodeURIComponent(pair[1]);
+    }
+  }
+};
+
+// TODO Move this somewhere else
+function roundHalf(num) {
+    var num = Math.round(num*2)/2;
+    var html = "";
+    for (var i = num; i >= 0; i--) {
+      if(i >= 1) {
+        html += "<i class='fa fa-star'></i>";
+      }
+      else if (i > 0) {
+        html += "<i class='fa fa-star-half-empty'></i>";
+      }
+    };
+    return html;
+}
 

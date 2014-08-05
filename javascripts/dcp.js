@@ -149,3 +149,24 @@ app.dcp.resolveContributors = function(sysContributors) {
   });
 };
 
+(function() {
+  /*
+    * Resolve contributors for getting started items
+    */
+  var gsiMeta = $( '.gsi-meta' );
+  if (gsiMeta.length) {
+    var type = gsiMeta.attr( 'data-searchisko-type' );
+    var id = gsiMeta.attr( 'data-searchisko-id' );
+    app.dcp.resolveContributorsForBlock( type, id, $( 'div.content-wrapper' ), app.templates.basicContributorTemplate );
+  }
+
+  /*
+    * Resolve contributors for videos
+    */
+  $( 'div[itemprop="video"]' ).each( function() {
+    var type = $( this ).attr( 'data-searchisko-type' );
+    var id = $( this ).attr( 'data-searchisko-id' );
+    app.dcp.resolveContributorsForBlock( type, id, $( this ),  app.templates.socialContributorTemplate );
+  });
+})();
+
