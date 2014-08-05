@@ -15,9 +15,9 @@ GIT
 
 GIT
   remote: git://github.com/pmuir/blinkr.git
-  revision: 185780fef666bb656825bb426b7e7f013f591858
+  revision: 024a0316ba88e5656df07c9490a18585d586b69f
   specs:
-    blinkr (0.2.2)
+    blinkr (0.2.3)
       nokogiri (~> 1.5)
       parallel (~> 1.1.0)
       slim (~> 2.0)
@@ -34,7 +34,7 @@ GEM
     anemone (0.7.2)
       nokogiri (>= 1.3.0)
       robotex (>= 1.0.0)
-    asciidoctor (1.5.0.rc.4)
+    asciidoctor (1.5.0.rc.5)
     awestruct (0.5.5)
       asciidoctor
       bootstrap-sass (~> 3.1.1.0)
@@ -155,7 +155,7 @@ GEM
     uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    wraith (1.3.0)
+    wraith (1.3.3)
       anemone
       image_size
       log4r
