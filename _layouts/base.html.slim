@@ -33,17 +33,8 @@ body(class="#{template}")
       Declarative loading of async scripts is only supported by Chrome and Firefox, however JS loading is supported
       IE and Safari as well. In order to avoid blocking the browser on downloading a tiny JS file this is declared
       inline.
-    javascript:
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push(
-          {'gtm.start': new Date().getTime(), event: 'gtm.js'}
-        );
-        var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-NJWS5L');
+    script
+      = js_compress(partial("metrics.js"))
     noscript
       iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"
 
@@ -161,15 +152,6 @@ body(class="#{template}")
     / Load our basic JS setup
     script src="#{site.base_url}/#{site.context_url}/javascripts/namespace.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/extensions.js"
-    / Load site metrics as early as possible
-    - if site.metrics
-      script src="http://www.redhat.com/j/s_code.js"
-      script src="http://www.redhat.com/j/elqNow/elqCfg.js"
-      script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
-      script src="http://www.redhat.com/assets/js/tracking/rh_omni_footer.js"
-      script src="http://www.googleadservices.com/pagead/conversion.js"
-    / Load all our scripts. Anything requiring dependcies can be run here, with dependencies in the DOM ready
-      or can be run after the dependency is loaded
     script src="#{site.base_url}/#{site.context_url}/javascripts/sso.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/buzz.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
@@ -189,7 +171,7 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.paging.min.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/highlight.min.js"    
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/imagesloaded.min.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.cookie-1.4.1.min.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/dcp.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"

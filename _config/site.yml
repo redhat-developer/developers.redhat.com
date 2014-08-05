@@ -44,6 +44,7 @@ profiles:
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     log_faraday: true
     push_to_searchisko: false
+    metrics: true
   
   development_cdn: 
     <<: *development
