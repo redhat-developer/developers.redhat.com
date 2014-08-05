@@ -14,12 +14,8 @@ description: Discover the events and webinars featuring talks about JBoss produc
       .slider#slider.slider-side-by-side
         .swipe-wrap
           .slide
-            span(data-picture="true" data-alt="Developer Focused Events")
-              span(data-src=cdn("#{site.base_url}/images/events/hero_mobile_480x500_nopromo.png"))
-              span(data-src=cdn("#{site.base_url}/images/events/hero_desktop_1175x400_nopromo.png") data-media="(min-width: 480px)")
-              / Fallback to the small on on non-js devices
-              noscript
-                img(src=cdn("#{site.base_url}/images/events/hero_mobile_480x500_nopromo.png") alt="Developer Focused Events")
+            img.mobile(src=cdn("#{site.base_url}/images/events/hero_mobile_480x500_nopromo.png") alt="Developer Focused Events")
+            img.desktop(src=cdn("#{site.base_url}/images/events/hero_desktop_1175x400_nopromo.png") alt="Developer Focused Events")
       .slider-pager
       .slider-controls
         a.slider-prev(data-direction="prev")
