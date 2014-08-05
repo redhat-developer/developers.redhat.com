@@ -247,47 +247,6 @@ task :check => :init do
   end
 end
 
-desc 'Generate site from Travis CI and publish site.'
-task :travis do
-
-  # Default values
-  profile = 'filemgmt'
-  deploy_url=ENV['master_deploy_url'].to_s
-
-  # if this is a pull request, do a simple build of the site and stop
-  if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
-    msg 'Pull request detected. Executing build only.'
-    system "bundle exec awestruct -P #{profile} -g"
-    next
-  end
-
-  if ENV['TRAVIS_BRANCH'].to_s.scan(/^production$/).length > 0
-
-    msg 'Building production branch build.'
-    profile = 'filemgmt'
-    deploy_url=ENV['production_deploy_url'].to_s
-
-  elsif ENV['TRAVIS_BRANCH'].to_s.scan(/^master$/).length > 0
-
-    msg 'Building staging(master) branch build.'
-    profile = 'filemgmt'
-    deploy_url=ENV['master_deploy_url'].to_s
-
-  else
-
-    msg ENV['TRAVIS_BRANCH'].to_s + ' branch is not configured for Travis builds - skipping.'
-    next
-
-  end
-
-  # Build execution
-  system "bundle exec awestruct -P #{profile} -g"
-
-  # Deploying
-  msg "Deploying build result to #{deploy_url}"
-  system "rsync --protocol=29 -r -l -i --no-p --no-g --chmod=Dg+sx,ug+rw _site/* #{deploy_url}"
-end
-
 desc 'Comment to any mentioned JIRA issues that the changes can now be viewed. Close the issue, if it is in the resolved state already.'
 task :comment_and_close_jiras, [:job, :build_number, :deploy_url] do |task, args|
   jenkins = Jenkins.new
@@ -465,7 +424,10 @@ def rsync(local_path:, host:, remote_path:, delete: false, excludes: [], dry_run
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
   cmd = "rsync --partial --archive --checksum --compress --omit-dir-times #{'--quiet' unless verbose} #{'--verbose' if verbose} #{'--dry-run' if dry_run} #{'--ignore-non-existing' if ignore_non_existing} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
   puts "Rsync command: #{cmd}" if verbose
-  open3 cmd
+  unless open3(cmd) == 0
+    puts "error executing rsync, exiting"
+    exit 1
+  end
 end
 
 def sprite(path)
@@ -474,7 +436,7 @@ end
 
 def open3(cmd)
   require 'open3'
-  Open3.popen3( cmd ) do |_, stdout, stderr|
+  Open3.popen3( cmd ) do |_, stdout, stderr, wait_thr|
     threads = []
     threads << Thread.new(stdout) do |i|
       while ( ! i.eof? )
@@ -487,6 +449,7 @@ def open3(cmd)
       end
     end
     threads.each{|t|t.join}
+    wait_thr.value
   end
 end
 
