@@ -1,6 +1,7 @@
 ---
 layout: get-started-base
 ---
+= partial 'jdf_advise.html.slim', {'parent' => page}
 .developer-materials
   .developer-materials-sidebar
     = partial 'developer-materials-filters.html.slim'
@@ -13,4 +14,5 @@ layout: get-started-base
 
 = javascripts("developer-materials-filter", true) do
   script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/chosen.jquery.min.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/jdfadvise.js"
 
