@@ -38,6 +38,9 @@ app.project = {
 
     if ($('select[name="filter-products"]').length && $('select[name="filter-products"]').val() !== "") {
       filters['project'] = app.products[$('select[name="filter-products"]').val()]['upstream'];
+    }
+
+    if (filters['project']) {
       url = app.dcp.url.search;
       request_data["sys_type"] = "project_info";
     }
