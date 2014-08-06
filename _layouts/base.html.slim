@@ -37,6 +37,7 @@ body(class="#{template}")
       = js_compress(partial("metrics.js"))
     noscript
       iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"
+      img src="https://smtrcs.redhat.com/b/ss/redhatjbossorg/1/H.21--NS/0?[AQB]&cdp=3&[AQE]" height="1" width="1" border="0" alt=""
 
   /- if site.profile == 'staging' || site.profile == 'development' || site.profile == 'beta'
     = partial 'under-development.html.slim', parent: page
@@ -137,58 +138,52 @@ body(class="#{template}")
 
   #fb-root
   
-
-  / It's very important that the metrics scripts appear straight after jquery and namespace.
-    This will ensure that the async scripts that they load from remote servers
-    appear in the right spot on the page.
   = javascripts "bottom" do
     / Load jQuery, CORS support for jquery (IE 8/9)
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
-    / Kick off polyfiller, as it needs to download resources
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/modernizr-custom.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/polyfiller.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/polyfiller-config.js"
     / Load our basic JS setup
     script src="#{site.base_url}/#{site.context_url}/javascripts/namespace.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/extensions.js"
+    / Load any JS which is going to make AJAX calls for page load
+    / First load SSO, it needs to make two calls
     script src="#{site.base_url}/#{site.context_url}/javascripts/sso.js"
+    / Now load anything that is going to query the DCP
+    script src="#{site.base_url}/#{site.context_url}/javascripts/dcp.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/buzz.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/rating.js"
+    / Kick off polyfiller, as it needs to download resources
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/modernizr-custom.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/polyfiller.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/polyfiller-init.js"
+    / Load everything else
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
-    / script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.dropdown.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.reveal.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.tooltips.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/swipe.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/mobile.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.resize.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.date.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.isotope.min.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/moment.min.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.timeago.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jbossorg-tabzilla.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/socialite.min.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.paging.min.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/highlight.min.js"    
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/imagesloaded.min.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/marketing-ops.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/scripts.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/dcp.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/rating.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/download.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/terms-and-conditions.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/search.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/os-filter.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/chosen.jquery.min.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/social.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/visual.js"
+
+  - unless page.extra_javascripts.nil?
+    - page.extra_javascripts.each do |id|
+      = deferred_javascripts id
 
   / Disabled, pending reimplementation of Share This functionality
   /script src="http://platform.linkedin.com/in.js"
   /script src="http://apis.google.com/js/plusone.js"
   /script src="http://platform.twitter.com/widgets.js"
-
-  - if site.metrics
-    noscript
-      img src="https://smtrcs.redhat.com/b/ss/redhatjbossorg/1/H.21--NS/0?[AQB]&cdp=3&[AQE]" height="1" width="1" border="0" alt=""
 

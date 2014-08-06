@@ -64,10 +64,10 @@ app.rating = {
       }
     });
   }
-}
+};
 
 // Event Listeners 
-$(function() {
+(function() {
   // Change star and cursor
   $('.rating').on('mouseover', function() {
     var elm = $(this), rating = $(this).prop('id').split('-')[1];
@@ -98,4 +98,4 @@ $(function() {
     app.rating.initYour();
     app.rating.initAvg();
   }
-});
+})();

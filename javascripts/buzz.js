@@ -1,7 +1,8 @@
 /*
  * Buzz
  * Dependencies: vendor/jQuery.js, vendor/jQuery.XDomainRequest.js, namespace.js
- * DOM Ready dependencies: vendor/jquery.isotope.min.js, vendor/jquery.timeago.js
+ * DOM Ready dependencies: vendor/jquery.timeago.js
+ * Isotope dependencies: vendor/jquery.isotope.min.js, vendor/imagesloaded.min.js
  */
 app.buzz = {
 
@@ -213,6 +214,31 @@ app.buzz = {
     if($pbuzz.length) {
       app.buzz.filter(app.templates.productBuzzTemplate, $pbuzz);
     };
+
+    // Event Listeners for Buzz Filter
+    // When the buzz filter input is changed, search
+
+    var timeOut;
+    var lastSearch = "";
+    $('form.buzz-filters').on('keyup','input',function(e){
+      var el = $(this);
+      var query = el.val();
+      clearTimeout(timeOut);
+      // throttle ajax requests
+      timeOut = setTimeout(function() {
+        var $buzz = $('.buzz-container');
+        if(lastSearch !== query) {
+          app.buzz.filter(app.templates.buzzTemplate, $buzz);
+          app.utils.updatePageHash(el);
+        }
+        lastSearch = query;
+      }, 300);
+    });
+
+    $('form.buzz-filters').on('submit',function(e) {
+      e.preventDefault();
+    });
+
   }
 };
 

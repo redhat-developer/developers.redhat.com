@@ -11,3 +11,6 @@ layout: get-started-base
       = partial 'developer-materials-results.html.slim'
   .space
 
+= javascripts("developer-materials-filter", true) do
+  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/chosen.jquery.min.js"
+

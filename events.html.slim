@@ -69,3 +69,10 @@ description: Discover the events and webinars featuring talks about JBoss produc
               a(href="#{v.link}") Learn More
               a(href="#") Add to Calendar
             = partial("share.html.slim", :url => v.link, :title => v.description[0 .. 139])
+
+= javascripts("events", true) do
+  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/picker.date.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/datepicker-init.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/events.js"
+

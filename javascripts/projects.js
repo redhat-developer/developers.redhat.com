@@ -2,23 +2,21 @@
 interpolate: true
 ---
 
-function getCorrectUrl(linkUrl) {
-  if (linkUrl.indexOf("/") > 0) {
-    return linkUrl;
-  } else {
-    return "https://jboss.org" + linkUrl;
-  }
-}
-
-function jbossLink(linkUrl) {
-  if (linkUrl.indexOf("jboss.org") > 0) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 app.project = {
+  getCorrectUrl : function (linkUrl) {
+    if (linkUrl.indexOf("/") > 0) {
+      return linkUrl;
+    } else {
+      return "https://jboss.org" + linkUrl;
+    }
+  },
+  jbossLink : function (linkUrl) {
+    if (linkUrl.indexOf("jboss.org") > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   projectFilter : function(filters, keyword, container, thumbnailSize) {
     //Currently the only way to specify no limit
     var maxResults = 500;
@@ -106,184 +104,184 @@ app.project = {
       var template = "<li class=\"upstream\">"
         + "<div class=\"defaultprojectimage\">"
         + "<a class=\"image-link\" href=\""
-        + getCorrectUrl(props.sys_url_view)
+        + app.project.getCorrectUrl(props.sys_url_view)
         + "\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "'></a></div>"
         + "<h3 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
-        + getCorrectUrl(props.sys_url_view) + "\">"
+        + app.project.getCorrectUrl(props.sys_url_view) + "\">"
         + props.projectName + "</a></h3><p></p>";
 
       if (props.downloadsLink) {
         template += "<a class=\"upstream-download\" href=\""
-          + getCorrectUrl(props.downloadsLink) + "\"><i class=\"fa fa-download\"></i> Download</a>";
+          + app.project.getCorrectUrl(props.downloadsLink) + "\"><i class=\"fa fa-download\"></i> Download</a>";
       }
       template += "<div class=\"upstream-more-content\">"
         // + "<p class=\"product-links\">Included in Product(s)<br></p>"
         + "<ul>";
 
       if (props.docsLink) {
-        var correctLink = getCorrectUrl(props.docsLink);
+        var correctLink = app.project.getCorrectUrl(props.docsLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Documentation</a></li>";
       }
       if (props.communityLink) {
-        var correctLink = getCorrectUrl(props.communityLink)
+        var correctLink = app.project.getCorrectUrl(props.communityLink)
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Community</a></li>";
       }
       if (props.knowledgeBaseLink) {
-        var correctLink = getCorrectUrl(props.knowledgeBaseLink);
+        var correctLink = app.project.getCorrectUrl(props.knowledgeBaseLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">KnowledgeBase</a></li>";
       }
       if (props.userForumLink) {
-        var correctLink = getCorrectUrl(props.userForumLink);
+        var correctLink = app.project.getCorrectUrl(props.userForumLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">User Forum</a></li>";
       }
       if (props.devForumLink) {
-        var correctLink = getCorrectUrl(props.devForumLink);
+        var correctLink = app.project.getCorrectUrl(props.devForumLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Dev Forum</a></li>";
       }
       if (props.mailingListLink) {
-        var correctLink = getCorrectUrl(props.mailingListLink);
+        var correctLink = app.project.getCorrectUrl(props.mailingListLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Mailing List</a></li>";
       }
       if (props.chatLink) {
-        var correctLink = getCorrectUrl(props.chatLink);
+        var correctLink = app.project.getCorrectUrl(props.chatLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Chat</a></li>";
       }
       if (props.blogLink) {
-        var correctLink = getCorrectUrl(props.blogLink);
+        var correctLink = app.project.getCorrectUrl(props.blogLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Blog</a></li>";
       }
       if (props.twitterLink) {
-        var correctLink = getCorrectUrl(props.twitterLink);
+        var correctLink = app.project.getCorrectUrl(props.twitterLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Twitter</a></li>";
       }
       if (props.issueTrackerLink) {
-        var correctLink = getCorrectUrl(props.issueTrackerLink);
+        var correctLink = app.project.getCorrectUrl(props.issueTrackerLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Issue Tracker</a></li>";
       }
       if (props.jiraLink) {
-        var correctLink = getCorrectUrl(props.jiraLink);
+        var correctLink = app.project.getCorrectUrl(props.jiraLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">JIRA</a></li>";
       }
       if (props.srcLink) {
-        var correctLink = getCorrectUrl(props.srcLink);
+        var correctLink = app.project.getCorrectUrl(props.srcLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Source</a></li>";
       }
       if (props.anonymousLink) {
-        var correctLink = getCorrectUrl(props.anonymousLink);
+        var correctLink = app.project.getCorrectUrl(props.anonymousLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Anonymous Source</a></li>";
       }
       if (props.commiterLink) {
-        var correctLink = getCorrectUrl(props.commiterLink);
+        var correctLink = app.project.getCorrectUrl(props.commiterLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Committer Source Access</a></li>";
       }
       if (props.fisheyeLink) {
-        var correctLink = getCorrectUrl(props.fisheyeLink);
+        var correctLink = app.project.getCorrectUrl(props.fisheyeLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">FishEye</a></li>";
       }
       if (props.viewvcLink) {
-        var correctLink = getCorrectUrl(props.viewvcLink);
+        var correctLink = app.project.getCorrectUrl(props.viewvcLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">View Source</a></li>";
       }
       if (props.githubLink) {
-        var correctLink = getCorrectUrl(props.githubLink);
+        var correctLink = app.project.getCorrectUrl(props.githubLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Github</a></li>";
       }
       if (props.anonymousGitLink) {
-        var correctLink = getCorrectUrl(props.anonymousGitLink);
+        var correctLink = app.project.getCorrectUrl(props.anonymousGitLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Anonymous Git</a></li>";
       }
       if (props.committerGitLink) {
-        var correctLink = getCorrectUrl(props.committerGitLink);
+        var correctLink = app.project.getCorrectUrl(props.committerGitLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Committer Git</a></li>";
       }
       if (props.buildLink) {
-        var correctLink = getCorrectUrl(props.buildLink);
+        var correctLink = app.project.getCorrectUrl(props.buildLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Build</a></li>";
       }
       if (props.hudsonLink) {
-        var correctLink = getCorrectUrl(props.hudsonLink);
+        var correctLink = app.project.getCorrectUrl(props.hudsonLink);
         template += "<li><a href=\"" + correctLink + "\"";
-        if (!jbossLink(correctLink)) {
+        if (!app.project.jbossLink(correctLink)) {
           template += " class=\"external-link\"";
         }
         template += ">Jenkins</a></li>";
@@ -302,7 +300,7 @@ app.project = {
     container.prev().find("#results-label").html(hits.length);
 
   }
-}
+};
 
 // Event Listeners
 $(function() {
@@ -335,7 +333,7 @@ $(function() {
 
   if ($('.project-filters').length) {
     if (window.location.search) {
-      var product_id = app.getQueryVariable('included-in');
+      var product_id = app.utils.getQueryVariable('included-in');
       $('option[value="'+product_id+'"]').attr('selected','selected');
       app.project.projectFilter({project: app.products[product_id]['upstream']});
     } else {

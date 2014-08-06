@@ -1,0 +1,5 @@
+/*
+  Date Pickers
+*/
+$('.datepicker').pickadate();
+
