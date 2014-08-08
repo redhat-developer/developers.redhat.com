@@ -6,9 +6,9 @@ app.books = {
     'UOM:39076002794183' : '9781933988641'
   },
   covers : {
-    "1782161341"  : '#{cdn(site.base_url + "/#{site.context_url}/images/books/book_developingjavaEE6applicationsonjbossas7.jpg")}',
-    "1449345158"  : '#{cdn(site.base_url + "/#{site.context_url}/images/books/book_buildingmodularcloudappswithosgi.jpg")}',
-    "unavailable" : '#{cdn(site.base_url + "/#{site.context_url}/images/books/book_noimageavailable.jpg")}'
+    "1782161341"  : '#{cdn(site.base_url + "/images/books/book_developingjavaEE6applicationsonjbossas7.jpg")}',
+    "1449345158"  : '#{cdn(site.base_url + "/images/books/book_buildingmodularcloudappswithosgi.jpg")}',
+    "unavailable" : '#{cdn(site.base_url + "/images/books/book_noimageavailable.jpg")}'
   },
   findCover : function(book, isbn) {
     if (book['volumeInfo'].hasOwnProperty('imageLinks')) {

@@ -18,7 +18,7 @@ head
   - if site.url
     link rel="canonical" href=site.url
   = stylesheets "all" do
-    link rel='stylesheet' type='text/css' href="#{site.base_url}/#{site.context_url}/stylesheets/app.css" 
+    link rel='stylesheet' type='text/css' href="#{site.base_url}/stylesheets/app.css" 
   
   /[if lt IE 9]
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
@@ -46,14 +46,14 @@ body(class="#{template}")
       .row
         .large-7.columns
           h1.logo
-            a(href="#{site.base_url}/#{site.context_url}") JBoss<strong>Developer</strong>
+            a(href="#{site.base_url}/") JBoss<strong>Developer</strong>
           / i.nav-toggle.nav-toggle-close &times;
         
     nav.top-bar
       .row.collapse
         dl.sub-nav
           dd.home-link
-            a(href="#{site.base_url}/#{site.context_url}")
+            a(href="#{site.base_url}/")
               i.fa.fa-home
           dd.search-wrapper
             /  Search Box
@@ -136,26 +136,27 @@ body(class="#{template}")
   
   = javascripts "bottom" do
     / Load jQuery, CORS support for jquery (IE 8/9)
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jquery.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/jQuery.XDomainRequest.js"
+    script src="#{site.base_url}/javascripts/vendor/jquery.js"
+    script src="#{site.base_url}/javascripts/vendor/jQuery.XDomainRequest.js"
     / Load our basic JS setup
-    script src="#{site.base_url}/#{site.context_url}/javascripts/namespace.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/extensions.js"
+    script src="#{site.base_url}/javascripts/namespace.js"
+    script src="#{site.base_url}/javascripts/extensions.js"
     / Load any JS which is going to make AJAX calls for page load
     / First load SSO, it needs to make two calls
-    script src="#{site.base_url}/#{site.context_url}/javascripts/sso.js"
+    script src="#{site.base_url}/javascripts/sso.js"
     / Now load anything that is going to query the DCP
-    script src="#{site.base_url}/#{site.context_url}/javascripts/dcp.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/buzz.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/developer-materials.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/projects.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/books.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/rating.js"
+    script src="#{site.base_url}/javascripts/dcp.js"
+    script src="#{site.base_url}/javascripts/buzz.js"
+    script src="#{site.base_url}/javascripts/developer-materials.js"
+    script src="#{site.base_url}/javascripts/projects.js"
+    script src="#{site.base_url}/javascripts/books.js"
+    script src="#{site.base_url}/javascripts/rating.js"
     / Kick off polyfiller, as it needs to download resources
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/modernizr-custom.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/polyfiller.js"
-    script src="#{site.base_url}/#{site.context_url}/javascripts/polyfiller-init.js"
+    script src="#{site.base_url}/javascripts/vendor/modernizr-custom.js"
+    script src="#{site.base_url}/javascripts/vendor/polyfiller.js"
+    script src="#{site.base_url}/javascripts/polyfiller-init.js"
     / Load everything else
+<<<<<<< HEAD
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.section.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/foundation/foundation.reveal.js"
@@ -172,6 +173,25 @@ body(class="#{template}")
     script src="#{site.base_url}/#{site.context_url}/javascripts/os-filter.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/social.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/visual.js"
+=======
+    script src="#{site.base_url}/javascripts/foundation/foundation.js"
+    script src="#{site.base_url}/javascripts/foundation/foundation.section.js"
+    script src="#{site.base_url}/javascripts/foundation/foundation.reveal.js"
+    script src="#{site.base_url}/javascripts/foundation/foundation.tooltips.js"
+    script src="#{site.base_url}/javascripts/vendor/swipe.js"
+    script src="#{site.base_url}/javascripts/mobile.js"
+    script src="#{site.base_url}/javascripts/vendor/jquery.resize.js"
+    script src="#{site.base_url}/javascripts/vendor/jquery.timeago.js"
+    script src="#{site.base_url}/javascripts/vendor/jbossorg-tabzilla.js"
+    script src="#{site.base_url}/javascripts/vendor/socialite.min.js"
+    script src="#{site.base_url}/javascripts/vendor/jquery.paging.min.js"
+    script src="#{site.base_url}/javascripts/marketing-ops.js"
+    script src="#{site.base_url}/javascripts/terms-and-conditions.js"
+    script src="#{site.base_url}/javascripts/search.js"
+    script src="#{site.base_url}/javascripts/os-filter.js"
+    script src="#{site.base_url}/javascripts/social.js"
+    script src="#{site.base_url}/javascripts/visual.js"
+>>>>>>> deleteThis922
 
   - unless page.extra_javascripts.nil?
     - page.extra_javascripts.each do |id|
