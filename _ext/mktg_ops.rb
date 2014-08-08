@@ -116,49 +116,5 @@ module JBoss::Developer::MktgOps
     end
 
   end
-
-  class LinkInstrumentation
-
-    def initialize
-    end
-
-    def transform(site, page, input)
-      # Only enable if we running in metrics mode
-      if site.metrics && page.output_extension == ".html"
-        @store ||= AssetStore.new site
-        if !@whitelist
-          @whitelist = site.external_link_whitelist ? Array.new(site.external_link_whitelist) : []
-          @whitelist << site.base_url if site.base_url
-        end
-        doc = Nokogiri::HTML(input)
-        @store.transaction do
-          doc.css('a').each do |a|
-            url = a['href']
-            if include? url
-              @store.add_asset({
-                :url => url, 
-                :type => 'external_link', 
-                :title => a['title'] 
-              })
-              a['onclick'] ||= "" << "app.track.outbound(this);return true;"
-            end
-          end
-        end
-        doc.to_html
-      else
-        input
-      end
-    end
-
-    private
-
-    def external? url, base_url
-      url && !url.start_with?(base_url) && url =~ /^((https?:)?\/\/)/
-    end
-
-    def include? url
-      url && url =~ /^((https?:)?\/\/)/ && @whitelist.find_index {|n| url.start_with? n} == nil
-    end
-
-  end
 end
+
