@@ -9,6 +9,7 @@ require 'aweplug/extensions/vimeo'
 require 'aweplug/helpers/vimeo'
 require 'aweplug/helpers/resources'
 require 'aweplug/transformers/asciidoc_cdn_transformer'
+require 'aweplug/extensions/kramdown_demo'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
@@ -85,6 +86,11 @@ Awestruct::Extensions::Pipeline.new do
                                                      additional_excludes: ['ticket-monster.asciidoc'], 
                                                      additional_metadata_keys: ['thumbnail'],
                                                      push_to_searchisko: true)
+
+  extension Aweplug::Extensions::Kramdown::Demo.new(url: 'https://raw.githubusercontent.com/jboss-developer/jboss-developer-demos/master/demos.yaml',
+                                                    layout: 'get-started-item',
+                                                    output_dir: '/demos',
+                                                    push_to_searchisko: true)
 
   # Load indexifier
   extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]

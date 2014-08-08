@@ -109,7 +109,16 @@ module JBoss::Developer::Extensions
           :searchisko_type => 'jbossdeveloper_bom',
           :searchisko_id => bom['id']
         }
+        metadata[:published] = DateTime.parse(commits.first[:date]) unless commits.empty?
         metadata[:author] = commits.last[:author] if commits.last
+        unless metadata[:current_branch] == 'HEAD'
+          git_ref = metadata[:current_branch]
+        else
+          git_ref = metadata[:current_tag] || 'HEAD'
+        end
+        metadata[:download] = "#{metadata[:github_repo_url]}/archive/#{git_ref}.zip"
+        metadata[:browse] = "#{metadata[:github_repo_url]}/tree/#{git_ref}"
+        metadata[:scm] = 'github'
 
         bom_dcp = {
           :sys_last_activity_date => commits.collect {|c| DateTime.parse c[:date]}.first,
@@ -196,7 +205,16 @@ module JBoss::Developer::Extensions
           :searchisko_type => 'jbossdeveloper_archetype',
           :searchisko_id => archetype['id']
         }
+        metadata[:published] = DateTime.parse(commits.first[:date]) unless commits.empty?
         metadata[:author] = commits.last[:author] if commits.last
+        unless metadata[:current_branch] == 'HEAD'
+          git_ref = metadata[:current_branch]
+        else
+          git_ref = metadata[:current_tag] || 'HEAD'
+        end
+        metadata[:download] = "#{metadata[:github_repo_url]}/archive/#{git_ref}.zip"
+        metadata[:browse] = "#{metadata[:github_repo_url]}/tree/#{git_ref}"
+        metadata[:scm] = 'github'
 
         archetype_dcp = {
           :sys_last_activity_date => commits.collect {|c| DateTime.parse c[:date]}.first,
