@@ -112,7 +112,6 @@ Awestruct::Extensions::Pipeline.new do
   helper Aweplug::Helpers::Vimeo
   helper Aweplug::Helpers::Resources
 
-  transformer JBoss::Developer::MktgOps::LinkInstrumentation.new
   transformer JBoss::Developer::LinkTransformer.new
   transformer Aweplug::Transformer::AsciidocCdnTransformer.new
 end
