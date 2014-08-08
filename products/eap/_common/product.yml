@@ -1,6 +1,6 @@
 name: Red Hat JBoss Enterprise Application Platform
 abbreviated_name: JBoss EAP
-current_version: 6.2.0.GA
+current_version: 6.3.0.GA
 has_installer: true
 # EAP is still using an old name for docs on the customer portal
 documentation_path: JBoss_Enterprise_Application_Platform
@@ -65,6 +65,26 @@ guides:
 # EAP has an installer, we want to default to that
 default_download_artifact_type: installer
 downloads:
+  6.3.0.GA:
+    description: Minor release of JBoss EAP 6.x series
+    tag_line: Features an updated administrative console that includes a new homepage and exposes the new JBoss EAP patching feature.  Also includes domain recovery improvements and support for CDI injection with PicketLink.  Try it today!
+    release_date: 2014-08-06
+    assets:
+      installer:
+        size: 175mb
+      zip:
+        name: Zip Files
+        artifacts:
+          zip:
+            size: 151mb
+      maven_repo:
+        size: 223mb
+        name: Maven Repository
+      release_notes:
+      quickstarts:
+        size: 5mb
+      source:
+        size: 37mb
   6.3.0.Beta:
     description: Minor release of JBoss EAP 6.x series
     tag_line: Features an updated administrative console that includes a new homepage and exposes the new JBoss EAP patching feature.  Also includes domain recovery improvements and support for CDI injection with PicketLink.  Try it today!
