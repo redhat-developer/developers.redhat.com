@@ -61,7 +61,8 @@ app.termsAndConditions = {
   callback : function(data) {
     if (data.tac.accepted) {
       // create banner, maybe modal? saying when they signed tac.acceptanceTimestamp
-      data.tac.acceptanceTimestamp = new Date(data.tac.acceptanceTimestamp).toLocaleString();
+      var dateParsed = new Date(data.tac.acceptanceTimestamp);
+      data.tac.acceptanceTimestamp = dateParsed.toISOString().substr(0,10);
       var newHtml = app.templates.termsAndConditionsTemplate.template(data.tac);
       $('#_developer_program_terms_conditions').before(newHtml);
     }
