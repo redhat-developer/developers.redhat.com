@@ -110,6 +110,7 @@ app.search = {
   // When someone hovers over a selection, remove
   $('.searchResults').on('mouseover','li',function() {
     $('li.active-item').removeClass('active-item');
+    $(this).addClass('active-item');
   });
 
   // when someone clicks the search result with their mouse
