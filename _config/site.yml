@@ -10,7 +10,6 @@ vimeo_client_id: 2589d6592dfd44bfec54f22edf766aedaf0fd5d7
 vimeo_access_token: 1ad6583e71e183c3075a88d46ebb0675
 register_url: https://community.jboss.org/register.jspa
 change_frequency: daily
-disqus: jdf
 searchisko_warnings: _site/searchisko_warnings.json
 
 deploy_base: &deploy
@@ -44,7 +43,7 @@ profiles:
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     log_faraday: true
     push_to_searchisko: false
-    metrics: true
+    metrics: false
   
   development_cdn: 
     <<: *development
@@ -61,7 +60,7 @@ profiles:
     <<: *profile
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
-    metrics: true
+    metrics: false
     deploy:
       <<: *deploy
       path: /stg_htdocs/www-stg
@@ -74,6 +73,7 @@ profiles:
     require_tag: true
     metrics: true
     elq_form_name: jboss-org-integration
+    disqus: jdf
     robots: 
       disallow: false
     deploy:
