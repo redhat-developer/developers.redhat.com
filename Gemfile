@@ -16,7 +16,7 @@ end
 gem 'awestruct', '~> 0.5.4.rc3'
 gem 'slim', '~> 2.0.0'
 gem 'kramdown', '~> 1.0.1'
-gem 'asciidoctor', '~> 1.5.0.rc.5'
+gem 'asciidoctor', '~> 1.5.0'
 gem 'uglifier', '~> 2.0.1'
 gem 'htmlcompressor', '~> 0.0.6'
 gem "zurb-foundation", "~> 4.3.1"
