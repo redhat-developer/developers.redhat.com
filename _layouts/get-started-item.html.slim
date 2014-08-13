@@ -2,6 +2,7 @@
 layout: base
 status: green
 issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
+
 ---
 - if page.metadata
   - page.title = page.metadata[:title]
@@ -11,7 +12,10 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
     - page.product = site[:products][page.metadata[:product]]
   - page.primary_section = 'get-started'
   - page.disqus_identifier = "#{page.url}"
-
+  - if page.metadata.thumbnail
+    -page.image = page.metadata.thumbnail
+- page.og_determiner = 'auto'
+- page.og_type = 'article'
 .row
   h2.large-title#developer-materials Developer Materials
 .row.row.content
@@ -42,6 +46,7 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
             strong
               ' Last Update:
               span itemprop="dateModified" =DateTime.parse(page.metadata[:commits].first[:date]).strftime('%b %d, %Y')
+              - page.published_date =DateTime.parse(page.metadata[:commits].first[:date]).iso8601
         - if page.metadata[:level] && !page.metadata[:level].empty?
           li: strong
             | Level:
