@@ -237,8 +237,7 @@ app.dm = {
 
 
     if(currentFilters['rating']) {
-      // rating disabled, doesn't work on DCP
-      // query.push("_score:>="+rating);
+      query.push("sys_rating_avg:>="+rating);
     }
 
     if(currentFilters['topics']) {
@@ -401,7 +400,7 @@ app.dm = {
                 hits[i].fields.sys_title +
               "</a>" +
             "</h4>";
-            if ('sys_rating_num' in hits[i].fields && 'rating_avg' in hits[i].fields) {
+            if ('sys_rating_num' in hits[i].fields && 'sys_rating_avg' in hits[i].fields) {
               template += "<p class=\"rating\">" + roundHalf(hits[i].fields.sys_rating_avg) + "(" + hits[i].fields.sys_rating_num + ")</p>";
             }
             if ('sys_author' in hits[i].fields && hits[i].fields['sys_author'].length > 0) {
