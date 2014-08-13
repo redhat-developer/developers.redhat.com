@@ -12,7 +12,7 @@ app.buzz = {
     var itemCount = itemCount || 8;
 
     // append loading class to wrapper
-    $("ul.results").addClass('loading');
+    container.addClass('buzz-loading');
     
     /*
       Keyword
@@ -185,12 +185,13 @@ app.buzz = {
       var currentPagination = 0;
       var buzzFlag = true; // rate limiting 
       var win = $(window);
+      var offset = 700; // pixel offset
       win.on('scroll',function() {
-        // var win = $(this);
         var scrollBottom = win.scrollTop() + win.height();
         var scrollTop = win.scrollTop();
         var buzzBottom = $buzz.position().top + $buzz.height();
-        if((scrollBottom + 150 > buzzBottom) && !app.buzz.infiniteScrollCalled && buzzFlag) {
+
+        if((scrollBottom + offset > buzzBottom) && !app.buzz.infiniteScrollCalled && buzzFlag) {
           
           // limit the number of times it can be called to once per second
           buzzFlag = false;
@@ -200,7 +201,9 @@ app.buzz = {
           var from = $('.buzz-item').length + 1;
           // load in more
           app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from, function() {
-            win.scrollTop(scrollTop);
+            if(win.scrollTop() < 400){
+              win.scrollTop(scrollTop);
+            }
           });
         }
       });

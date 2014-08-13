@@ -176,14 +176,16 @@ h4.buzz-message.divider {
   }
 }
 
-.buzz-loading {
-    background:red;
-    background:cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
-    height: 200px;
-    width: 100%;
-    li.material {
-      visibility: hidden;
-    }
+span.loader {
+    background: url("../images/icons/ajax-loader.gif") center no-repeat;
+    content: '';
+    display: block;
+    width:100%;
+    height: 60px;
+    z-index: 99999;
+    background-size: contain;
+    background-color: rgba(0, 0, 0, 0);
+    clear: both;
   }
 
 .mini-buzz-container > div:nth-child(odd) {
