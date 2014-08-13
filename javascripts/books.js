@@ -86,6 +86,9 @@ app.books = {
             app.books.bookItems = bookItems; // store for later filtering
             app.books.formatBooks(bookItems);
           }
+        })
+        .error(function(err){
+          $('.book-list').html('<p>We are currently unable to get the list of books. Please try later.</p>');
         });
 
       })(currentIteration);
