@@ -173,7 +173,8 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
     # Collect our original resources, for others to use
     FileUtils.mkdir_p local_originals_path
     $resources.each do |r|
-      FileUtils.cp_r Pathname.new(local_site_path).join(r), local_originals_path
+      src = Pathname.new(local_site_path).join(r)
+      FileUtils.cp_r src, local_originals_path if File.exist? src
     end
 
     rsync(local_path: LOCAL_CDN_PATH, host: cdn_host, remote_path: cdn_path)
