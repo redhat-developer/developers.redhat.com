@@ -193,6 +193,25 @@
         "sys_type": "video",
         "persist" : true,
         "input_preprocessors": [
+           {
+              "name"     : "Projects mapper",
+              "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+              "settings" : {
+                "index_name"       : "sys_projects",
+                "index_type"       : "project",
+                "source_field"     : "target_product",
+                "idx_search_field" : "type_specific_code.jbossdeveloper_website_code",
+                "result_mapping"   : [
+                  {
+                    "idx_result_field" : "code",
+                    "target_field"     : "sys_project"
+                  },{
+                    "idx_result_field" : "name",
+                    "target_field"     : "sys_project_name"
+                  }
+                ]
+              }
+            },     
             {
                 "name": "Author mapper",
                 "class": "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
