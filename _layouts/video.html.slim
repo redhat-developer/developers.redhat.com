@@ -1,11 +1,15 @@
 ---
 layout: base
 ---
-- video = video(page.video_url); \
-  if !video.fetch_failed; \
-    page.title = video.title; \
-    page.description = video(page.video_url).description \
-  end
+- video = video(page.video_url);
+- if !video.fetch_failed;
+  - page.title = "Watch #{video.title}"
+  - page.description = video(page.video_url).description
+  - unless video.author.nil? || video.author.display_name == 'Unknown'
+    - page.author = video.author 
+    - page.title << " by #{video.author.display_name}"
+- page.twitter_card = 'player'
+- page.og_type = 'video'
 
 .row
   h2.large-title#developer-materials Developer Materials
