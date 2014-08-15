@@ -50,13 +50,14 @@ type: Downloads
     
     * link:#{page.product.xpaas_url}[Use #{page.product.abbreviated_name} on OpenShift]
 
-h3.divider#ready-production-use Ready to use #{page.product.abbreviated_name} in Production?
+- unless page.product.id == 'devstudio'
+  h3.divider#ready-production-use Ready to use #{page.product.abbreviated_name} in Production?
 
-asciidoc:
-  We provide enterprise level subscriptions for #{page.product.abbreviated_name} which deliver the latest software, including security, bug fixes, and enhancements along with our industry leading support. With our subscription, you can deploy your application into a production environment and get world-class expertise and knowledge about security, stability, and maintenance for your systems. Our subscriptions are provided in a virtualization-friendly model, consumed in increments of 16, 64, or both processor core bands, and back by a choice of enterprise service levels that support any type of mission-critical deployment.
+  asciidoc:
+    We provide enterprise level subscriptions for #{page.product.abbreviated_name} which deliver the latest software, including security, bug fixes, and enhancements along with our industry leading support. With our subscription, you can deploy your application into a production environment and get world-class expertise and knowledge about security, stability, and maintenance for your systems. Our subscriptions are provided in a virtualization-friendly model, consumed in increments of 16, 64, or both processor core bands, and back by a choice of enterprise service levels that support any type of mission-critical deployment.
 
-  * link:http://www.redhat.com/contact/sales.html[I need a subscription]
-  * link:https://access.redhat.com/site/products/JBoss/[Visit the Red Hat Customer Portal for other Product Downloads]
+    * link:http://www.redhat.com/contact/sales.html[I need a subscription]
+    * link:https://access.redhat.com/site/products/JBoss/[Visit the Red Hat Customer Portal for other Product Downloads]
 
 - unless !page._upstream || page._upstream.empty?
   h3.divider#prefere-upstream Prefer to use the Upstream Project Version?
