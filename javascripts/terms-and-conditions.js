@@ -47,12 +47,13 @@ app.termsAndConditions = {
         $("#tcDownloadFileName").html(decodeURIComponent(tcDownloadFileName));
       }
 
-      //var tcRedirect = app.termsAndConditions.urlParam('tcRedirect');
-      var tcRedirect = 1000;
-      if (tcRedirect) {
-        $("#tcRedirectIn").html(tcRedirect / 1000 + " seconds");
-        setTimeout("location.href = '" + tcDownloadURL + "';", tcRedirect);
-      }
+      $.fileDownload(tcDownloadURL);
+
+      // Inform GTM that we have requested a product download
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'product_download_file_name' : tcDownloadFileName });
+      window.dataLayer.push({'event': 'Product Download Requested'});
+      
     }
   },
   /*
@@ -80,13 +81,13 @@ app.termsAndConditions = {
 
 };
 
-
-(function() {
+// Do this on DOM load so we don't disturb other scripts when we do the redirect to the download!
+$(function() {
   if ($('.downloadthankyou').length) {
     app.termsAndConditions.download();
   }
   if ($('#_developer_program_terms_conditions').length) {
     app.termsAndConditions.banner();
   }
-})();
+});
 
