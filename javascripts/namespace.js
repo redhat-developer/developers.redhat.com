@@ -19,8 +19,6 @@ app.templates = {};
 app.templates.miniBuzzTemplate = '#{partial "mini_buzz_template.html.slim"}';
 app.templates.productBuzzTemplate = '#{partial "product_buzz_template.html.slim"}';
 app.templates.buzzTemplate = '#{partial "buzz_template.html.slim"}';
-app.templates.basicContributorTemplate = '#{partial "basic_contributor.html.slim"}';
-app.templates.socialContributorTemplate = '#{partial "social_contributor.html.slim"}';
 app.templates.termsAndConditionsTemplate = '#{partial "terms_and_conditions.html.slim"}';
 
 /*

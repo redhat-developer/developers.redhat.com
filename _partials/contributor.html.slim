@@ -1,0 +1,19 @@
+- unless page.contributor.nil?
+  span
+    - if !page.contributor['sys_url_view'].nil?
+      - unless page.basic
+        ' Follow
+      span.name
+        a href="#{page.contributor['sys_url_view']}" itemprop="#{page.itemprop || 'author'}"
+          = page.contributor['sys_title']
+      - unless page.contributor['social'].nil?
+        span class="#{page.basic ? 'hide' : ''}"
+          - page.contributor['social'].each do |service, account|
+            - unless account['url'].nil?
+              span< class="account"
+                a class="#{account['service']}" href="#{account['url']}?rel=author"
+                  i class="fa #{account['icon']}"
+    - elsif page.basic
+      span.name
+        = page.contributor['sys_title']
+

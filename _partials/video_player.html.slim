@@ -1,0 +1,21 @@
+- page.parent.video_iframe_url = "//player.vimeo.com/video/#{page.video.id}?title=0&byline=0&portrait=0&badge=0&color=2664A2"
+- page.parent.video_height = 500
+- page.parent.video_width = 313
+- page.parent.video_duration_in_seconds = page.video.duration_in_seconds
+- page.parent.published_date = page.video.upload_date_iso8601
+- page.parent.image ||= page.video.thumb_url
+div(itemprop="video" itemscope itemtype="http://schema.org/VideoObject" data-searchisko-type="jbossdeveloper_vimeo" data-searchisko-id="#{page.video.id}")
+  link itemprop="url" href="#{site.base_url}#{page.parent.url}"
+  meta itemprop="description" content="#{page.video.description}"
+  meta itemprop="height" content="#{page.video.height}"
+  meta itemprop="width" content="#{page.video.width}"
+  h4 itemprop="name" #{page.video.title}
+  / TODO Add more metadata
+  meta itemprop="duration" content="#{page.parent.video_duration}"
+  meta itemprop="thumbnailUrl" content="#{page.parent.image}"
+  meta itemprop="thumbnail" content="#{page.parent.image}"
+  meta itemprop="uploadDate" content="#{page.parent.published_date}"
+  meta itemProp="isFamilyFriendly" content="true"
+  .flex-video(widescreen vimeo)
+    iframe(src="#{page.parent.video_iframe_url}" width="#{page.parent.video_height}" height="#{page.parent.video_width}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+  = partial "contributor.html.slim", {:contributor => page.video.author} 

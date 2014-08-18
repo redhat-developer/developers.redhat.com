@@ -8,7 +8,6 @@ require 'aweplug/extensions/asciidoc_example'
 require 'aweplug/extensions/vimeo'
 require 'aweplug/helpers/vimeo'
 require 'aweplug/helpers/resources'
-require 'aweplug/helpers/identity'
 require 'aweplug/transformers/asciidoc_cdn_transformer'
 require 'jboss_developer'
 require 'nav'
@@ -21,9 +20,6 @@ require 'lower_case_paths'
 
 Awestruct::Extensions::Pipeline.new do
   
-  # Needs to at the top, to set up site.identity_manager
-  extension Aweplug::Identity::Extension.new
-
   # Needs to be at the top so that we fix all output paths before processing starts
   extension JBoss::Developer::Extensions::LowerCasePaths.new
 

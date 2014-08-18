@@ -4,66 +4,6 @@ app.dcp.getNameFromContributor = function( contributor ) {
   return contributor.substring(0, contributor.lastIndexOf("<") - 1);
 };
 
-/**
- * Load a document from the DCP, resolve any contributors, and replace any 
- * span.contributor[data-sys-contributor=<contributor>] elements in the current page
- */
-app.dcp.resolveContributorsForBlock = function( documentType, documentId, block, tmpl ) {
-  if (!documentType) {
-    console.error( "No documentType specified" );
-    return;
-  }
-  if (!documentId) {
-    console.error( "No documentId specified" );
-    return;
-  }
-  
-  app.dcp.currentRequest = $.ajax({
-    url : app.dcp.url.content + "/" + documentType + "/" + documentId,
-    dataType: 'json',
-    beforeSend : function() {
-      // check if there is a previous ajax request to abort
-      if(app.dcp.currentRequest && app.dcp.currentRequest.readyState != 4) {
-        app.dcp.currentRequest.abort();
-      }
-    }
-  }).done(function(fields){
-    if (!fields) {
-      // If the document is not indexed, we can't proceed
-      console.warn("Unable to load document of type:" + documentType + " with id: " + documentId + " from DCP");
-    } else {
-      var author = fields.sys_author;
-      var contributors = fields.sys_contributor;
-      if (!contributors) {
-        contributors = [];
-      }
-
-      // First, we must fix up the page content, with the normalised id from the DCP. This allows us to to differentiate between author and contributors
-      if (author) {
-        block.find( "span.author" ).each( function() {
-          $( this ).replaceWith( app.dcp.generateContributorSpan( tmpl, author ) ).addClass( "author" );
-        });
-      }
-
-      if (contributors.length > 0) {
-        block.find( "span.contributors" ).each( function() {
-          // Remove all the contributors originally in the doc, before replacing the content
-          var out = [];
-          for (var i = 0; i < contributors.length; i++) {
-            out.push( app.dcp.generateContributorSpan( tmpl, contributors[i] ) );
-          }
-          $( this ).html( out.join( ", " ) );
-        });
-      }
-
-      // Make sure the author is in the contributors array, to make sure they are resolved.
-      contributors.push(author);
-      // Having normalised the data, we can now resolve the contributors
-      app.dcp.resolveContributors(contributors);
-    }
-  });
-};
-
 app.dcp.generateContributorSpan = function(tmpl, contributor) {
   var d = {};
   d.contributor = contributor;
@@ -148,25 +88,4 @@ app.dcp.resolveContributors = function(sysContributors) {
     }
   });
 };
-
-(function() {
-  /*
-    * Resolve contributors for getting started items
-    */
-  var gsiMeta = $( '.gsi-meta' );
-  if (gsiMeta.length) {
-    var type = gsiMeta.attr( 'data-searchisko-type' );
-    var id = gsiMeta.attr( 'data-searchisko-id' );
-    app.dcp.resolveContributorsForBlock( type, id, $( 'div.content-wrapper' ), app.templates.basicContributorTemplate );
-  }
-
-  /*
-    * Resolve contributors for videos
-    */
-  $( 'div[itemprop="video"]' ).each( function() {
-    var type = $( this ).attr( 'data-searchisko-type' );
-    var id = $( this ).attr( 'data-searchisko-id' );
-    app.dcp.resolveContributorsForBlock( type, id, $( this ),  app.templates.socialContributorTemplate );
-  });
-})();
 
