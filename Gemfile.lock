@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/LightGuard/aweplug.git
-  revision: ae7093ae53b646beb53de33b3384d5b4d41ca904
-  branch: vimeo_change
+  remote: git://github.com/pmuir/aweplug.git
+  revision: 40e200990eb7cac3544ec044d950a9a8bbf20087
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -108,13 +107,13 @@ GEM
     nokogiri (1.5.11)
     oauth (0.3.6)
       ruby-hmac (>= 0.3.1)
-    octokit (3.3.0)
+    octokit (3.3.1)
       sawyer (~> 0.5.3)
     oily_png (1.1.1)
       chunky_png (~> 1.3.0)
     open4 (1.3.4)
     parallel (1.1.2)
-    pry (0.10.0)
+    pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -132,7 +131,7 @@ GEM
     ruby-hmac (0.4.0)
     ruby-s3cmd (0.1.5)
     sass (3.2.19)
-    sawyer (0.5.4)
+    sawyer (0.5.5)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
     slim (2.0.3)
@@ -151,7 +150,7 @@ GEM
     uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    wraith (1.3.4)
+    wraith (1.3.5)
       anemone
       image_size
       log4r

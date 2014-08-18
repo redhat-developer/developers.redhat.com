@@ -20,20 +20,12 @@ $theme-light-inline: false !default;
    $theme-light-background-short-spacing:  $theme-light-spacing !default;
    $theme-light-background-short-repeat:   $theme-light-repeat !default;
  
-   $theme-light-background-tall-position: $theme-light-position !default;
-   $theme-light-background-tall-spacing:  $theme-light-spacing !default;
-   $theme-light-background-tall-repeat:   $theme-light-repeat !default;
- 
 
  $theme-light-sprites: sprite-map("design/theme-light/*.png",
  
    $theme-light-background-short-position: $theme-light-background-short-position, 
    $theme-light-background-short-spacing:  $theme-light-background-short-spacing, 
    $theme-light-background-short-repeat:   $theme-light-background-short-repeat,
- 
-   $theme-light-background-tall-position: $theme-light-background-tall-position, 
-   $theme-light-background-tall-spacing:  $theme-light-background-tall-spacing, 
-   $theme-light-background-tall-repeat:   $theme-light-background-tall-repeat,
  
  $layout: $theme-light-layout,
  $cleanup: $theme-light-clean-up
@@ -88,5 +80,5 @@ $theme-light-inline: false !default;
 
 // Generates a class for each sprited image.
 @mixin all-theme-light-sprites($dimensions: $theme-light-sprite-dimensions, $prefix: sprite-map-name($theme-light-sprites), $offset-x: 0, $offset-y: 0) {
-  @include theme-light-sprites(background-short background-tall, $dimensions, $prefix, $offset-x, $offset-y);
+  @include theme-light-sprites(background-short, $dimensions, $prefix, $offset-x, $offset-y);
 }
