@@ -568,10 +568,6 @@ app.dm = {
     app.dm.clearFilters($(this));
   });
 
-  if ($('form.dev-mat-filters').length) {
-    app.dm.devMatFilter();
-  }
-
   // slide toggle on mobile
   $('.filter-block h5').on('click',function() {
     if(window.innerWidth <= 768) {
