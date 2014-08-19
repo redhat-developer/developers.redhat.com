@@ -19,12 +19,29 @@ description: The simple, modern & productive way to build apps and infrastructur
       Learn more about the Red Hat^(R)^ JBoss^(R)^ Middleware portfolio
     a.button(href="technology") Learn More
 
-/ Hero
-/ Picturefill so we only load what we need on each device
-.row.hero
-  a( href="http://jboss.org/events/JUDCon/2014/brazil")
-    img.mobile(src=cdn("#{site.base_url}/images/branding/hero_mobile.png") alt="JUDCon:Brazil 2014")
-    img.desktop(src=cdn("#{site.base_url}/images/branding/hero_desktop.png") alt="JUDCon:Brazil 2014")
+/ Hero Slider
+.row.slider-wrapper.hero
+  .slider#slider
+    .swipe-wrap
+      .large-24.slide
+        / Picturefill so we only load what we need on each device
+        a( href="http://jboss.org/events/JUDCon/2014/brazil")
+          img.mobile(src=cdn("#{site.base_url}/images/branding/hero_mobile.png") alt="JUDCon:Brazil 2014 CFP")
+          img.desktop(src=cdn("#{site.base_url}/images/branding/hero_desktop.png") alt="JUDCon:Brazil 2014 CFP")
+      .large-24.slide
+        a( href="http://jboss.org/events/JUDCon/2014/brazil")
+          img.mobile(src=cdn("#{site.base_url}/images/branding/hero_mobile.png") alt="JUDCon:Brazil 2014 CFP")
+          img.desktop(src=cdn("#{site.base_url}/images/branding/hero_desktop.png") alt="JUDCon:Brazil 2014 CFP")
+      .large-24.slide
+        a( href="http://jboss.org/events/JUDCon/2014/brazil")
+          img.mobile(src=cdn("#{site.base_url}/images/branding/hero_mobile.png") alt="JUDCon:Brazil 2014 CFP")
+          img.desktop(src=cdn("#{site.base_url}/images/branding/hero_desktop.png") alt="JUDCon:Brazil 2014 CFP")
+  .slider-controls
+    a.slider-prev(data-direction="prev")
+      i.fa.fa-angle-left.fa-4x
+    a.slider-next(data-direction="next")
+      i.fa.fa-angle-right.fa-4x
+
 / Buzz and Event Updates
 .row.updates.mobilehome
   .large-24.columns
