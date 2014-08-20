@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/awestruct/aweplug.git
-  revision: 060ab58f1e107c2e7ca4523e9b39fe5d4bf9ca35
+  remote: git://github.com/LightGuard/aweplug.git
+  revision: ae7093ae53b646beb53de33b3384d5b4d41ca904
+  branch: vimeo_change
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -168,7 +169,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  asciidoctor (~> 1.5.0.rc.5)
+  asciidoctor (~> 1.5.0)
   aweplug!
   awestruct (~> 0.5.4.rc3)
   blinkr (~> 0.2.5)
