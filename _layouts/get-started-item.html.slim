@@ -36,11 +36,11 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
           li
             strong
               ' Author:
-              span.author itemprop="author" #{page.metadata[:author]}
+              = partial "contributor.html.slim", {:contributor => page.metadata[:author], :basic => true}
         - if page.metadata[:contributors] && !page.metadata[:contributors].empty?
           li: strong
             ' Contributors:
-            span.contributors= page.metadata[:contributors].collect { |c| %Q{<span itemprop="contributor">#{c}</span>}}.join(", ")
+            = page.metadata[:contributors].collect { |c| partial("contributor.html.slim", {:contributor => c, :basic => true, :itemprop => 'contributor'})}.join(", ")
         - if page.metadata[:commits] && !page.metadata[:commits].empty?
           li
             strong

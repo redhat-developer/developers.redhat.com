@@ -23,10 +23,14 @@ head
     meta name='description' content=page.description
     meta name='twitter:description' content=page.description
     meta property='og:description' content=page.description
-  - if page.author
-    meta name='author' content=page.author
-  - if page.author_twitter_handle
-    meta name='twitter:creator' content=page.author_twitter_handle
+  - if !page.author_name.nil?
+    meta name='author' content=page.author_name
+  - elsif !page.author.nil?
+    - if !page.author['sys_title'].nil?
+      meta name='author' content=page.author['sys_title']
+    - if !page.author['social'].nil?
+      - if !page.author['social']['twitter'].nil?
+        meta name='twitter:creator' content="@#{page.author['social']['twitter']['username']}"
   - if site.keywords
     meta name='keywords' content=site.keywords
   - if page.twitter_card == 'player'
@@ -39,15 +43,19 @@ head
     meta property='og:video:width' content=page.video_width
     meta property='og:video:height' content=page.video_height
     meta property='og:video:url' content="https:#{page.video_iframe_url}"
-    - if page.author_facebook_profile_url
-      meta property='og:video:actor' content=page.author_facebook_profile_url
+    - if !page.author.nil?
+      - if !page.author['social'].nil?
+        - if !page.author['social']['facebook'].nil?
+          meta property='og:video:actor' content=page.author['social']['facebook']['username']
   - if page.og_type == 'article'
     meta property='og:article:published_time' content=page.published_date
     - if page.expiration_date
       meta property='og:article:expiration_time' content=page.expiration_date
-    - if page.author_facebook_profile_url
-      meta property='og:article:author' content=page.author_facebook_profile_url
-      meta property='og:article:section' content='Technology'
+    - if !page.author.nil?
+      - if !page.author['social'].nil?
+        - if !page.author['social']['facebook'].nil?
+          meta property='og:article:actor' content=page.author['social']['facebook']['username']
+    meta property='og:article:section' content='Technology'
   - if site.url
     link rel='canonical' href=site.url
   = stylesheets "all" do

@@ -1,0 +1,18 @@
+a href="#{page.video.detail_url}"
+  img src="#{page.video.thumb_url}"
+span.label.material-duration #{page.video.duration}
+/ TODO Add this in once the DCP supports manually adding tags
+  span.label.material-level-beginner Beginner
+h4: a href="#{page.video.detail_url}" #{page.video.title}
+/ TODO Wire in link to profile URL
+= 
+p.author 
+  ' Author: 
+  = partial "contributor.html.slim", {:contributor => page.video.author, :basic => true}
+p.material-datestamp Added #{page.video.upload_date}
+/ TODO wire in ratings
+  p.rating 
+  | Video
+  i.fa.fa-star<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-empty"></i><i class="fa fa-star-empty"></i></p>} +
+.body: p #{page.video.description}
+
