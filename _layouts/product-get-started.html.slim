@@ -62,6 +62,11 @@ ol
   h3.divider#configure-maven Configure Apache&trade; Maven
   = partial "maven_repository_instructions.adoc"
 
+- if page._extra_section
+  - if page._extra_section_title
+    h3.divider#ExtraSection #{page._extra_section_title}
+  = page._extra_section
+
 - if page.product.featured_items
 
   h3.divider#try-quickstart Try a quickstart or example. Watch a video
@@ -74,3 +79,4 @@ ol
 
 = javascripts('product-get-started', true) do
   script src="#{site.base_url}/javascripts/vendor/jquery.fileDownload.js"
+

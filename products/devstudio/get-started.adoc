@@ -1,2 +1,33 @@
+:awestruct-interpolate: true
 :awestruct-layout: product-get-started
+
+## Extra section title
+Install JBoss Developer Studio Integration Stack
+
+## Extra section
+The Integration Stack for JBoss Developer Studio is a set of plugins for Eclipse that provides tooling for the following products:
+
+* JBoss Fuse
+* JBoss A-MQ
+* JBoss Fuse Service Works
+* JBoss BRMS
+* JBoss BPM Suite
+
+To install the Integration Stack tools:
+
+1. Install JBoss Developer Studio from the all-in-one installer (follow the installation steps link:#installation-instructions[above]).
+2. Select the _Software/Update_ tab in the _JBoss Central_ view.
+3. Scroll down the list of _available features_, looking for the _JBoss Developer Studio Integration Stack_ section. See the image below.
+4. Tick the following items:
+
+* JBoss Business Process and Rules Development
+* JBoss Data Virtualization Development
+* JBoss Integration and SOA Development
+* JBoss SOA 5.x Development
+
+
+image::#{cdn(site.base_url + '/images/products/devstudio/jbtis-b2.png')}[align="center"]
+
+[start=5]
+. Click the _Install_ button.
 
