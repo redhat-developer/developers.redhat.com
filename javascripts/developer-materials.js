@@ -524,6 +524,7 @@ app.dm = {
    "quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
    "archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
    "bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
+   "demo" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_demo.png')}",
    // redhat
    "solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
    "article" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}"
