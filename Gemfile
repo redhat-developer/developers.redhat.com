@@ -31,6 +31,8 @@ gem 'therubyracer', platforms: :ruby, require: linux_only('therubyracer')
 gem 'parallel', '~> 1.1.0'
 #gem 'aweplug', path: '../aweplug'
 gem 'mime-types', '2.1'
+gem 'google-api-client', '~> 0.7'
+gem 'signet', '~> 0.5.1'
 
 group :development do
   gem 'rb-inotify', require: false
