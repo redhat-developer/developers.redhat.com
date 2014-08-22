@@ -36,6 +36,10 @@ $get-started-inline: false !default;
    $get-started-jbossdeveloper_bom-spacing:  $get-started-spacing !default;
    $get-started-jbossdeveloper_bom-repeat:   $get-started-repeat !default;
  
+   $get-started-jbossdeveloper_demo-position: $get-started-position !default;
+   $get-started-jbossdeveloper_demo-spacing:  $get-started-spacing !default;
+   $get-started-jbossdeveloper_demo-repeat:   $get-started-repeat !default;
+ 
    $get-started-jbossdeveloper_quickstart-position: $get-started-position !default;
    $get-started-jbossdeveloper_quickstart-spacing:  $get-started-spacing !default;
    $get-started-jbossdeveloper_quickstart-repeat:   $get-started-repeat !default;
@@ -74,6 +78,10 @@ $get-started-inline: false !default;
    $get-started-jbossdeveloper_bom-position: $get-started-jbossdeveloper_bom-position, 
    $get-started-jbossdeveloper_bom-spacing:  $get-started-jbossdeveloper_bom-spacing, 
    $get-started-jbossdeveloper_bom-repeat:   $get-started-jbossdeveloper_bom-repeat,
+ 
+   $get-started-jbossdeveloper_demo-position: $get-started-jbossdeveloper_demo-position, 
+   $get-started-jbossdeveloper_demo-spacing:  $get-started-jbossdeveloper_demo-spacing, 
+   $get-started-jbossdeveloper_demo-repeat:   $get-started-jbossdeveloper_demo-repeat,
  
    $get-started-jbossdeveloper_quickstart-position: $get-started-jbossdeveloper_quickstart-position, 
    $get-started-jbossdeveloper_quickstart-spacing:  $get-started-jbossdeveloper_quickstart-spacing, 
@@ -144,5 +152,5 @@ $get-started-inline: false !default;
 
 // Generates a class for each sprited image.
 @mixin all-get-started-sprites($dimensions: $get-started-sprite-dimensions, $prefix: sprite-map-name($get-started-sprites), $offset-x: 0, $offset-y: 0) {
-  @include get-started-sprites(article bg-squares bg jbossdeveloper_archetype jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_stacks solution ticket-monster-bg, $dimensions, $prefix, $offset-x, $offset-y);
+  @include get-started-sprites(article bg-squares bg jbossdeveloper_archetype jbossdeveloper_bom jbossdeveloper_demo jbossdeveloper_quickstart jbossdeveloper_stacks solution ticket-monster-bg, $dimensions, $prefix, $offset-x, $offset-y);
 }
