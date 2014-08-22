@@ -1,24 +1,27 @@
 // Sprites
 
-@import "sprites/_product-logos.scss";
-@include all-product-logos-sprites(true);
+// Customisation
+$get-started-sprite-dimensions: true;
+$product-logos-sprite-dimensions: true;
+$icons-calendar-spacing:  20px;
 
-@import "sprites/_get-involved.scss";
+@import "compass/utilities/sprites";
+
+@import "branding/product-logos/*.png";
+@include all-product-logos-sprites;
+
+@import "design/get-involved/*.png";
 @include all-get-involved-sprites;
 
-@import "sprites/_get-started.scss";
-@include all-get-started-sprites(true);
+@import "design/get-started/*.png";
+@include all-get-started-sprites;
 
-@import "sprites/_theme-light.scss";
-@include all-theme-light-sprites;
-
-@import "sprites/_theme-dark.scss";
+@import "design/theme-dark/*.png";
 @include all-theme-dark-sprites;
 
-@import "sprites/_project-icons.scss";
-@include all-project-icon-sprites;
+@import "design/theme-light/*.png";
+@include all-theme-light-sprites;
 
-$icons-calendar-spacing:  20px;
-@import "sprites/_icons.scss";
+@import "icons/*.png";
 @include all-icons-sprites;
 

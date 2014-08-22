@@ -66,7 +66,8 @@
 @import "global-wrapper";
 @import "theme-light";
 // @import "theme-dark";
-@import "sprites/_project-icons.scss";
+@import "compass/utilities/sprites";
+@import "icons/project-icon/*.png";
 @include all-project-icon-sprites;
 @import "print";
 
