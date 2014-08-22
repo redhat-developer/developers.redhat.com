@@ -307,7 +307,8 @@ app.dm = {
       dataType: 'json',
       url : app.dcp.url.search,
       data : {
-        "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg"],
+        "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", 
+                    "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg", "experimental"],
         "query" : query,
         "size" : maxResults,
         "content_provider" : ["jboss-developer", "rht"]
@@ -360,12 +361,8 @@ app.dm = {
             if(!hits[i].fields.thumbnail) {
               template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"'>";
             }
-            if (hits[i].fields.github_repo_url) {
-              var repo = hits[i].fields.github_repo_url;
-              var repoLength = repo.length;
-              if (repo.substring((repoLength - 25), repoLength) === 'jboss-sandbox-quickstarts') {
-                template += "<a class=\"banner experimental\"></a>";
-              }
+            if (hits[i].fields.experimental) {
+              template += "<a class=\"banner experimental\"></a>";
             }
             if (hits[i].fields.sys_url_view) {
               var url = hits[i].fields.sys_url_view;

@@ -54,6 +54,7 @@ Awestruct::Extensions::Pipeline.new do
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_picketlink-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           excludes: ['_picketlink-quickstarts/template'],
+                                                          experimental: true,
                                                           output_dir: '/quickstarts/picketlink')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_portal-quickstarts', 
@@ -65,6 +66,7 @@ Awestruct::Extensions::Pipeline.new do
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_sandbox-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           excludes: ['_sandbox-quickstarts/template'],
+                                                          experimental: true,
                                                           output_dir: '/quickstarts/sandbox')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_wfk-quickstarts', 
