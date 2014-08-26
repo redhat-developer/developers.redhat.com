@@ -27,7 +27,6 @@ Awestruct::Extensions::Pipeline.new do
 
   # parse AsciiDoc documents and create page variables out of their sections
   extension Aweplug::Extensions::Sections.new
-  extension Aweplug::Extensions::Video::Vimeo.new('vimeo', 'video')
 
   # Load events from a google spreadsheet
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'events',
@@ -35,6 +34,15 @@ Awestruct::Extensions::Pipeline.new do
                                                        worksheet_title: 'Events',
                                                        col_labels: true,
                                                        by: 'row')
+
+  # Load vimeo videos from a google spreadsheet
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'vimeo',
+                                                       key: '1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c',
+                                                       worksheet_title: 'Vimeo Videos',
+                                                       col_labels: true,
+                                                       by: 'row')
+  extension Aweplug::Extensions::Video::Vimeo.new("site.vimeo.collect {|i,v| v['vimeo_url']}")
+
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'books',
                                                        key: '1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g',
                                                        worksheet_title: 'Books',
