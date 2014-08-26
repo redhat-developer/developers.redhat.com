@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pmuir/aweplug.git
-  revision: a9ff2ebcba9070a33a6c831de8b165ed015463f0
+  revision: a4f43f8d1f4166efc01c6480fd99c531456a1655
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -12,6 +12,7 @@ GIT
       parallel (~> 1.0)
       sass (~> 3.2)
       uglifier (~> 2.0.1)
+      xml-simple (~> 1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -159,6 +160,7 @@ GEM
       rake
       robotex
       thor
+    xml-simple (1.1.4)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
     zurb-foundation (4.3.2)
