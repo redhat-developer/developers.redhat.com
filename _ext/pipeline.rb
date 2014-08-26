@@ -35,6 +35,12 @@ Awestruct::Extensions::Pipeline.new do
                                                        worksheet_title: 'Events',
                                                        col_labels: true,
                                                        by: 'row')
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'books',
+                                                       key: '1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g',
+                                                       worksheet_title: 'Books',
+                                                       col_labels: true,
+                                                       by: 'row')
+
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/eap',
