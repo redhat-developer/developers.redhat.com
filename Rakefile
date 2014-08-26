@@ -40,7 +40,6 @@
 #
 # Now you're Awestruct with rake!
 
-$sprites = ['images/branding/product-logos', 'images/design/get-involved', 'images/design/get-started', 'images/design/theme-dark', 'images/design/theme-light', 'images/icons']
 $resources = ['stylesheets', 'javascripts', 'images']
 $use_bundle_exec = true
 $install_gems = ['awestruct -v "~> 0.5.3"', 'rb-inotify -v "~> 0.9.0"']
@@ -49,7 +48,7 @@ $remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
 
 desc 'Setup the environment to run Awestruct'
-task :setup, [:env] => [:init, :bundle_install, :git_setup, :regen_sprites] do |task, args|
+task :setup, [:env] => [:init, :bundle_install, :git_setup] do |task, args|
   # Don't execute any more tasks, need to reset env
   exit 0
 end
@@ -82,7 +81,7 @@ task :bundle_install, [:env] do |task, args|
 end
 
 desc 'Update the environment to run Awestruct'
-task :update => [:init, :bundle_update, :git_setup, :regen_sprites] do
+task :update => [:init, :bundle_update, :git_setup] do
   # Don't execute any more tasks, need to reset env
   exit 0
 end
@@ -99,13 +98,6 @@ end
 desc 'Initialize any git submodules'
 task :git_setup do
   system 'git submodule update --init'
-end
-
-desc 'Regenerate sprites'
-task :regen_sprites do
-  $sprites.each do |p|
-    sprite(p)
-  end
 end
 
 desc 'Build and preview the site locally in development mode'
@@ -429,10 +421,6 @@ def rsync(local_path:, host:, remote_path:, delete: false, excludes: [], dry_run
     puts "error executing rsync, exiting"
     exit 1
   end
-end
-
-def sprite(path)
-  system "compass sprite --force \"#{path}/*.png\""
 end
 
 def open3(cmd)
