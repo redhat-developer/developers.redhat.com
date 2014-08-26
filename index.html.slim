@@ -42,23 +42,20 @@ description: The simple, modern & productive way to build apps and infrastructur
             | View All Events 
             i.icon-double-angle-right
         h3#events Events
-        - site.events.each do |v|
-          - if "#{v.homepage}" == "true"
+        - site.events.each do |i, e|
+          - if "true".casecmp(e['on_homepage'])
             .update
               .update-date
-                span.month #{v.start.strftime '%b'}
-                - if "#{v.start}" == "#{v.end}"
-                  span.day #{v.start.strftime '%d'}
-                - if "#{v.start}" != "#{v.end}"
-                  span.days #{v.start.strftime '%d'}-#{v.end.strftime '%d'}
+                span.month=DateTime.parse(e['start_date']).strftime '%b'
+                - if e['start_date'] == e['end_date']
+                  span.day=DateTime.parse(e['start_date']).strftime '%d'
+                - if e['start_date'] != e['end_date']
+                  span.days #{DateTime.parse(e['start_date']).strftime '%d'}-#{DateTime.parse(e['end_date']).strftime '%d'}
               h5
-                a(href="#{v.link}") #{v.title}
-              -if "#{v.subtext}" != "{}"
-                p.update-subtext #{v.subtext}
+                a href=e['more_details']
+                  | #{e['title']}
               .update-body
-                p
-                  span
-                    = v.description[0..180]
+                p: span= e['description'][0..180]
               .update-meta
-                = partial("share.html.slim", :url => v.link, :title => v.description[0 .. 139])
+                = partial("share.html.slim", :url => e['more_details'], :title => e['description'][0 .. 139])
 

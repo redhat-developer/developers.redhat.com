@@ -10,6 +10,7 @@ require 'aweplug/helpers/vimeo'
 require 'aweplug/helpers/resources'
 require 'aweplug/transformers/asciidoc_cdn_transformer'
 require 'aweplug/extensions/kramdown_demo'
+require 'aweplug/extensions/google_spreadsheet'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
@@ -28,6 +29,12 @@ Awestruct::Extensions::Pipeline.new do
   extension Aweplug::Extensions::Sections.new
   extension Aweplug::Extensions::Video::Vimeo.new('vimeo', 'video')
 
+  # Load events from a google spreadsheet
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'events',
+                                                       key: '12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k',
+                                                       worksheet_title: 'Events',
+                                                       col_labels: true,
+                                                       by: 'row')
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts', 
                                                           layout: 'get-started-item', 
                                                           output_dir: '/quickstarts/eap',

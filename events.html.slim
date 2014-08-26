@@ -46,29 +46,29 @@ description: Discover the events and webinars featuring talks about JBoss produc
           a.button.reveal data-reveal-id="comingSoonModal" Events Blog
 
     ul.small-block-grid-2.large-block-grid-4.events-listing
-      - site.events.each do |v|
+      - site.events.each do |i, e|
         li
           .event
             .event-header
-              img src=cdn(site.base_url + "/#{v.image}")
-              - if "#{v.community}" == "true"
+              img src="#{e['image_url'].nil? || e['image_url'].strip.empty? ? cdn(site.base_url + "/images/events/event-bg-1.png") : e['image_url']}"
+              - if "community".casecmp(e['type'])
                 p Community Event
             .event-body
               div.event-date
-                span.month #{v.start.strftime '%b'}
-                span.day #{v.start.strftime '%d'}
+                span.month=DateTime.parse(e['start_date']).strftime '%b'
+                span.day=DateTime.parse(e['start_date']).strftime '%d'
                 span
-              h3: a href="#{v.link}"
-                span #{v.title}
-              - if "#{v.redhat}" == "true"
+              h3: a href=e['more_details']
+                span=e['title']
+              - if "red hat".casecmp(e['type'])
                 p.red-hat-event
                   i.icon-redhat
                   | Red Hat Event
-              p #{v.description}
+              p=e['description']
             .event-links
-              a(href="#{v.link}") Learn More
-              a(href="#") Add to Calendar
-            = partial("share.html.slim", :url => v.link, :title => v.description[0 .. 139])
+              a href=e['more_details']
+                | Learn More
+            = partial("share.html.slim", :url => e['more_details'], :title => e['description'][0 .. 139])
 
 = javascripts("events", true) do
   script src="#{site.base_url}/javascripts/vendor/picker.js"
