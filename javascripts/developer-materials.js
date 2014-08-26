@@ -59,9 +59,9 @@ app.dm = {
             }
             break;
           case "topics" :
-            var valArray = formValue.split(" ");
+            var valArray = formValue.split(",");
             $.each(valArray, function(idx, value){
-              $('[name="filter-topic[]"][value=' + value + ']').attr('selected', true).attr('checked', true).trigger('change');
+              $('[name="filter-topic[]"][value="' + value + '"]').attr('selected', true).attr('checked', true).trigger('change');
             });
             break;
           case "formats":
