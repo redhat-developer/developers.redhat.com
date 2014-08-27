@@ -19,6 +19,7 @@ require 'mktg_ops'
 require 'disqus'
 require 'disqus_more'
 require 'lower_case_paths'
+require 'customer_portal'
 
 Awestruct::Extensions::Pipeline.new do
   
@@ -40,6 +41,20 @@ Awestruct::Extensions::Pipeline.new do
                                                        worksheet_title: 'Books',
                                                        col_labels: true,
                                                        by: 'row')
+
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'customer_portal_articles',
+                                                       key: '1440-gFstcyCyFhXISvTIlzrmXZo7Ligs-hla5z9eSQA',
+                                                       worksheet_title: 'Customer Portal Articles',
+                                                       col_labels: true,
+                                                       by: 'row')
+
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'customer_portal_solutions',
+                                                       key: '1440-gFstcyCyFhXISvTIlzrmXZo7Ligs-hla5z9eSQA',
+                                                       worksheet_title: 'Customer Portal Solutions',
+                                                       col_labels: true,
+                                                       by: 'row')
+
+  extension JBoss::Developer::CustomerPortal.new
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts', 
                                                           layout: 'get-started-item', 

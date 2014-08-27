@@ -48,8 +48,6 @@ module JBoss
                 end
                 docs(product, site)
                 downloads(product, site)
-                articles << articles(product, site)
-                solutions << solutions(product, site)
                 product.buzz_tags ||= product.id
 
                 # Store the product in the global product map
@@ -58,16 +56,6 @@ module JBoss
               end
             end
           end
-          File.open(Pathname.new(site.output_dir).join('rht_articles.json'), 'w') { |f| f.write( articles.flatten.reject{ |a| a.nil? }.to_json) }
-          File.open(Pathname.new(site.output_dir).join('rht_solutions.json'), 'w') { |f| f.write( solutions.flatten.reject{ |s| s.nil? }.to_json) }
-        end
-
-        def articles(product, site)
-          product.articles.collect { |a| {'url' => "https://api.access.redhat.com/rs/articles#{a[a.rindex("/"), a.length]}", 'product' => product.id } } unless product.articles.nil?
-        end
-
-        def solutions(product, site)
-          product.solutions.collect { |a| {'url' => "https://api.access.redhat.com/rs/solutions#{a[a.rindex("/"), a.length]}", 'product' => product.id}} unless product.solutions.nil?
         end
 
         def downloads(product, site)
