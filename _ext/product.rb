@@ -83,7 +83,7 @@ module JBoss
 
         def forum_count(product, site)
           resp = @searchisko.search({query: "(sys_type:forumthread AND sys_project:(#{product.forum.name}))",
-                                    facet:'per_project_counts', sys_type:'forumthread', size:0})
+                                    facet:'per_project_counts', sys_type:'forumthread', size:1})
           terms = JSON.load(resp.body)['facets']['per_project_counts']['terms']
           terms.empty? ? 0 : terms.first['count']
         end

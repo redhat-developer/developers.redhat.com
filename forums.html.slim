@@ -35,7 +35,7 @@ description: Forums are the primary way that JBoss Developers communicate.
           td.product-name
             a(href="#{product.forum.url}") #{product.abbreviated_name}
           td.description #{product.forum.description}
-          td = product.forum[:count]
+          td.postCount = product.forum[:count]
           td.histogram
             div.forum-chart(data-forum-name=product.forum.name)
 = javascripts("forums", true) do
