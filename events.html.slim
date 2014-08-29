@@ -51,7 +51,7 @@ description: Discover the events and webinars featuring talks about JBoss produc
           .event
             .event-header
               img src="#{e['image_url'].nil? || e['image_url'].strip.empty? ? cdn(site.base_url + "/images/events/event-bg-1.png") : e['image_url']}"
-              - if "community".casecmp(e['type'])
+              - if "community".casecmp(e['type']) == 0
                 p Community Event
             .event-body
               div.event-date
@@ -60,7 +60,7 @@ description: Discover the events and webinars featuring talks about JBoss produc
                 span
               h3: a href=e['more_details']
                 span=e['title']
-              - if "red hat".casecmp(e['type'])
+              - if "red hat".casecmp(e['type']) == 0
                 p.red-hat-event
                   i.icon-redhat
                   | Red Hat Event

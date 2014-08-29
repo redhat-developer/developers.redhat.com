@@ -43,7 +43,7 @@ description: The simple, modern & productive way to build apps and infrastructur
             i.icon-double-angle-right
         h3#events Events
         - site.events.each do |i, e|
-          - if "true".casecmp(e['on_homepage'])
+          - if "true".casecmp(e['on_homepage']) == 0
             .update
               .update-date
                 span.month=DateTime.parse(e['start_date']).strftime '%b'
