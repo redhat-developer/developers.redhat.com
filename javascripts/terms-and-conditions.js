@@ -73,7 +73,7 @@ app.termsAndConditions = {
       if (data.authenticated) {
         // Add a jsonp call to get the info
         var tac = document.createElement('script'); tac.type = 'text/javascript'; tac.async = true;
-        tac.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'community.jboss.org/api/custom/v1/account/info?callback=app.termsAndConditions.callback';
+        tac.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'developer.jboss.org/api/custom/v1/account/info?callback=app.termsAndConditions.callback';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tac, s);
       }
     });
