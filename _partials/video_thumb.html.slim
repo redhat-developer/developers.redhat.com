@@ -1,6 +1,6 @@
 a href="#{page.video.detail_url}"
   img src="#{page.video.thumb_url}"
-span.label.material-duration #{page.video.duration}
+span.label.material-duration=page.video.duration.strftime('%M:%S')
 / TODO Add this in once the DCP supports manually adding tags
   span.label.material-level-beginner Beginner
 h4: a href="#{page.video.detail_url}" #{page.video.title}
@@ -8,8 +8,8 @@ h4: a href="#{page.video.detail_url}" #{page.video.title}
 = 
 p.author 
   ' Author: 
-  = partial "contributor.html.slim", {:contributor => page.video.author, :basic => true}
-p.material-datestamp Added #{page.video.upload_date}
+  = partial "contributor.html.slim", {:contributor => page.video.normalized_author, :basic => true}
+p.material-datestamp Added #{page.video.published_date.pretty}
 / TODO wire in ratings
   p.rating 
   | Video

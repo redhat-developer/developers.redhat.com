@@ -1,13 +1,11 @@
 ---
 layout: base
 ---
-- video = video(page.video_url);
-- if !video.fetch_failed
-  - page.title = "Watch #{video.title}"
-  - page.description = video(page.video_url).description
-  - unless video.author.nil?
-    - page.author = video.author
-    - page.title << " by #{video.author['sys_title']}"
+- page.title = "Watch #{page.video.title}"
+- page.description = page.video.description
+- unless page.video.normalized_author.nil?
+  - page.author = page.video.normalized_author
+  - page.title << " by #{page.video.normalized_author['sys_title']}"
 - page.twitter_card = 'player'
 - page.og_type = 'video'
 
