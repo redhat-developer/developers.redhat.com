@@ -46,7 +46,7 @@ description: Discover the events and webinars featuring talks about JBoss produc
           a.button.reveal data-reveal-id="comingSoonModal" Events Blog
 
     ul.small-block-grid-2.large-block-grid-4.events-listing
-      - site.events.each do |i, e|
+      - site.events.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|
         li
           .event
             .event-header

@@ -42,8 +42,8 @@ description: The simple, modern & productive way to build apps and infrastructur
             | View All Events 
             i.icon-double-angle-right
         h3#events Events
-        - site.events.each do |i, e|
-          - if "true".casecmp(e['on_homepage']) == 0
+        - site.events.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|
+          - if "true".casecmp(e['on_homepage']) == 0 && DateTime.parse(e['end_date']) > DateTime.now
             .update
               .update-date
                 span.month=DateTime.parse(e['start_date']).strftime '%b'
