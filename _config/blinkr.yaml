@@ -15,6 +15,57 @@ skips:
 ignores:
   - url: !ruby/regexp /^https?:\/\/dcp(beta-searchisko\.rhcloud\.com|\.jboss\.org)\/v1\/rest/
     message: Operation canceled
+#  - url: https://github,com/jbosstm #JIRA Issue BLACKTIE-449 - Github Link ----- Still Outstanding ##### This has been fixed.
+#    message: Couldn't resolve host name
+#  - url: https://jboss.org/capedwarf/docs #JIRA Issue CAPEDWARF-237 - Documentation Link ##### This has been fixed.
+#    message: Docs was not found on this server
+  - url: http://fisheye.jboss.org/changelog/exo-jcr #Not on JIRA?
+    message: Resource could not be found
+#  - url: http://fisheye.jboss.org/browse/gatein/components/pc #JIRA Issue GTNPC-111 (GateIn) - Fisheye Link ----- Still Outstanding
+#    message: Resource could not be found
+  - url: http://fisheye.jboss.org/browse/Guvnor #JIRA Issue GUVNOR-2113 - Fisheye Link ----- Still Outstanding
+    message: The requested resource cannot be found
+  - url: https://infinispan.ci.cloudbees.com/ #JIRA Issue ISPN-4600 - Build Link ----- Still Outstanding
+    message: Subscription not found
+    message: Page can not be found
+  - url: http://fisheye.jboss.org/browse/DTF #Not on JIRA?
+    message: No such repository
+  - url: http://fisheye.jboss.com/browse/JBossAS/projects/jboss-jca/trunk/ #Not on JIRA?
+    message: Page can not be found
+  - url: http://www.jboss.org/feeds/view/jbossprofiler #JIRA Issue JBPROFILER-115 - Blog Link ----- Still Outstanding
+    message: Requested resource is not available
+  - url: http://www.jboss.org/feeds/view/serialization #JIRA Issue JBSER-132 - Blog Link ----- Still Outstanding
+    message: Requested resource is not available
+  - url: git@github.com:belaban/JGroups.git #JIRA Issue JGRP-1866 - Committer Git ---- Still Outstanding ---- Marked resolved, needs to be fixed
+    message: Can't link directly to repository
+  - url: http://www.jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=269 #JIRA Issue JSFUNIT-303 - Dev Forum ----- Still Outstanding
+    message: Page can't be found
+  - url: http://www.jboss.com/index.html?module=bb&op=viewforum&f=269 #JIRA Issue JSFUNIT-303 - Dev Forum ----- Still Outstanding
+    message: Page can't be found
+  - url: http://repository.jboss.org/maven2/org/jboss/maven/plugins/maven-jboss-retro-plugin #JIRA Issue JBRETRO-16 - Download ----- Still Outstanding
+    message: GroupItemNotFoundException
+  - url: http://repository.jboss.org/maven2/org/jboss/maven/plugins/maven-jdocbook-style-plugin/ #Not on JIRA?
+    message: GroupItemNotFoundException
+  - url: http://hudson.jboss.org/hudson/view/Mobicents/ #Not on JIRA?
+    message: Requested resource is not available
+#  - url: https://community.jboss.org/en/mod_cluster/dev #JIRA Issue MODCLUSTER-424 - Dev Forum ----- Still Outstanding ##### This issue has been resolved
+#    message: The item does not exist
+  - url: http://hudson.qa.jboss.com/hudson/view/mod_cluster/view/mod_cluster #JIRA Issue MODCLUSTER-424 - Build/Jenkins ----- Still Outstanding
+    message: The item does not exist
+  - url: http://twitter.com/picketbox #JIRA Issue SECURITY-852 - Twitter ----- Still Outstanding
+    message: Sorry, that page doesn’t exist
+  - url: http://community.jboss.org/en/jbossas/picketbox?view=discussions #JIRA Issue SECURITY-852 (Picketbox) - User Forum, Community ----- Still Outstanding
+    message: The item does not exist
+  - url: git://github.com/snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
+    message: Can't link directly to repository
+  - url: git@github.com:snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
+    message: Can't link directly to repository
+  - url: issues.jboss.org/browse/WINDUP #JIRA Issue WINDUP-180 - JIRA Link ----- Still Outstanding
+    message: Not Found
+#  - url: http://planet.jboss.org/view/xnio #JIRA Issue XNIO-232 - Blog ##### Link has been removed, no longer an issue
+#    message: Requested resource not available
+  - url: git@github.com:nodyn/nodyn.git #Project not on JIRA
+    message: Can't Link to a git respository directly
 report: _tmp/blinkr/index.html
 max_page_retys: 10
 max_retrys: 10
