@@ -352,6 +352,18 @@
         "type" : "elasticsearch-river-remote",
         "name" : "jbossdeveloper_website"
       }
+    },
+    "jbossdeveloper_connector": {
+      "description":"Connectors",
+      "sys_type":"connector",
+      "sys_content_content-type" : "text/plain",
+      "persist" : true,
+      "input_preprocessors": [
+      ],
+      "index": {
+        "name":"data_jbossdeveloper_connector",
+        "type":"jbossdeveloper_connector"
+      }
     }
   }
 }
