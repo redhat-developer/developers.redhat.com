@@ -63,6 +63,14 @@ Awestruct::Extensions::Pipeline.new do
                                                        by: 'row')
 
   extension JBoss::Developer::CustomerPortal.new
+  
+  # Load connectors from Google Spreadsheets
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'fuse_connectors',
+                                                       key: '1-1BxAjMUBE5secHcyoBIaCaNxvrpgBt94gOkSCl6ewk',
+                                                       worksheet_title: 'Connectors',
+                                                       by: 'row',
+                                                       row_labels: true, 
+                                                       col_labels: true)
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts', 
                                                           layout: 'get-started-item', 
