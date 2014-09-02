@@ -20,9 +20,13 @@ require 'disqus'
 require 'disqus_more'
 require 'lower_case_paths'
 require 'customer_portal'
+require 'vault'
 
 Awestruct::Extensions::Pipeline.new do
   
+  # At the top, so that all passwords, logins and keys are available
+  extension JBoss::Developer::Vault.new
+
   # Needs to be at the top so that we fix all output paths before processing starts
   extension JBoss::Developer::Extensions::LowerCasePaths.new
 
