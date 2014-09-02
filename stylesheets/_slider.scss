@@ -17,6 +17,9 @@
       background:white;
       img {
         width:100%;
+        &.mobile {
+          padding: 0;
+        }
       }
     }
   }
@@ -79,7 +82,7 @@
   a {
     position: absolute;
     top:50%;
-    margin-top: -60px;
+    margin-top: -35px;
     font-size: 2em;
     color:$light-green;
     font-weight:600;
@@ -154,8 +157,11 @@
         max-width: none;
       }
     }
+    .slider {
+      max-height:none;
+    }
   }
   .slider-controls a {
-    top:20%;
+    background:rgba(0,0,0,0.2);
   }
 }

@@ -33,9 +33,11 @@ app.createSlider = function($el) {
  /*
     initialize All sliders
   */
-  
-    app.slider = Swipe(document.getElementById('slider'), {
-      auto : 0,
+    var sliderEl = document.getElementById('slider');
+    var $sliderEl = $(sliderEl);
+
+    app.slider = Swipe(sliderEl, {
+      auto : $(sliderEl).data('timeout') || 0,
       transitionEnd : function() {
         var idx = app.slider.getPos();
         $('.slider-pager-active').removeClass('slider-pager-active');
@@ -66,6 +68,15 @@ app.createSlider = function($el) {
         var idx = this.href.split('#').pop();
         app.slider.slide(idx);
       });
+
+      if($sliderEl.data('pause-on-hover')) {
+
+        $sliderEl.on('mouseenter',function() {
+          app.slider.stop();
+        }).on('mouseleave',function(){
+          app.slider.start();
+        });
+      }
     }
 
 
