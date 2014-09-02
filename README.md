@@ -8,14 +8,19 @@ This section covers the steps you need to do in order to setup your environment 
     
             vimeo_access_token_secret
             vimeo_client_secret
+            vimeo_access_token
             dcp_user
             dcp_password
+            google_api_key
+
     * Export the values in the appropriate startup script. For example:
 
             export vimeo_access_token_secret=<VIMEO_ACCESS_TOKEN_SECRET>
             export vimeo_client_secret=<VIMEO_CLIENT_SECRET>
             export dcp_user=<DCP_USER>
             export dcp_password=<DCP_PASSWORD>
+
+   Alternatively, if you plan to do frequent development on the site, you can request access to the password vault. The password vault is checked in to git (so always contains an up to date version of all keys, passwords and usernames), and is encrypted using GPG. To request access from the JBoss Developer team, send them the email address associated with your GPG key. To find out more about GPG (including how to create a key) read https://www.gnupg.org/gph/en/manual.html. If you are on Mac, we recommend GPGSuite which provides Keychain management for your GPG key.
 
 2. Configure the software.
     _NOTE:_ You must use a version of Ruby installed via RVM.
@@ -139,11 +144,9 @@ Finally, you need to commit the new version of `_cdn/cdn.yml` and push that and 
 
 Builds occur automatically when pull requests are submitted, and builds, and deploys, happen when pushes to the master branch occur.
 
-### CI Build Configuration
+## secrets.gpg management
 
-The CI build is configured in 3 files: `.travis.yml`, `_config/site.yml` and `Rakefile`.
-
-TODO
+The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients. A plugin for vim such as vim-gnupg (https://github.com/jamessan/vim-gnupg) makes editing the file easy.
 
 ## Updating Developer Materials Versions
 Developer materials, such as quickstarts and tutorials (Ticket Monster) can be updated to use a new version by completing the following steps. WFK quickstarts are used here as an example:

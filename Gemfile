@@ -33,6 +33,7 @@ gem 'parallel', '~> 1.1.0'
 gem 'mime-types', '2.1'
 gem 'google-api-client', '~> 0.7'
 gem 'signet', '~> 0.5.1'
+gem 'gpgme', '~> 2.0'
 
 group :development do
   gem 'rb-inotify', require: false
