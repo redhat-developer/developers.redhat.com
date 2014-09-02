@@ -87,7 +87,7 @@ app.dm = {
     // Load any options configured on the page
     var developerMaterialsResults = $( '.developer-materials-results' );
     if (developerMaterialsResults.length) {
-      var product = developerMaterialsResults.data("developer-materials-filter-product");
+      var projectCode = developerMaterialsResults.data("developer-materials-filter-project-code");
       // Hidden keyword allows us to insert additional keywords to the filter that the user doesn't set.
       // It's not stored in local storage
       var hidden_keyword = developerMaterialsResults.data("developer-materials-filter-hidden-keyword")
@@ -196,7 +196,7 @@ app.dm = {
       "topics" : topics,
       "formats" : formats,
       "skillLevel" : skillLevel,
-      "product" : product,
+      "projectCode" : projectCode,
       "publishDate" : publishDate
     });
 
@@ -294,25 +294,27 @@ app.dm = {
       query.push('sys_created:>='+publishDate);
     }
 
-    if (currentFilters['product']) {
-      query.push('sys_project:(' + currentFilters['product'] + ')');
-    }
-
     var query = query.join(" AND ");
 
     // append loading class to wrapper
     $("ul.results").addClass('loading');
 
+    var query = {
+            "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", 
+                        "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg", "experimental"],
+            "query" : query,
+            "size" : maxResults,
+            "content_provider" : ["jboss-developer", "rht"]
+           };
+
+    if (currentFilters['projectCode']) {
+      query['project'] = currentFilters['projectCode'];
+    }
+
     app.dm.currentRequest = $.ajax({
       dataType: 'json',
       url : app.dcp.url.search,
-      data : {
-        "field"  : ["sys_author", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", 
-                    "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg", "experimental"],
-        "query" : query,
-        "size" : maxResults,
-        "content_provider" : ["jboss-developer", "rht"]
-      },
+      data: query,
       beforeSend : function() {
         // check if there is a previous ajax request to abort
         if(app.dm.currentRequest && app.dm.currentRequest.readyState != 4) {
