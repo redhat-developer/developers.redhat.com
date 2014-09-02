@@ -25,14 +25,12 @@ table.large-24.small-24
 a(href="#{page.product.documentation_url}")
   | See More Documentation 
 
-- if page.product.featured_videos
+- unless page.product.featured_videos.nil?
   h3.divider#featured-videos Featured Videos
   ul.small-block-grid-3.large-block-grid-3
-    - for i in 0..2
-      - if page.product.featured_videos.length > i
-        - url = page.product.featured_videos[i]
-        li.material
-          = video_thumb(video(url))
+    - page.product.featured_videos.take(3).each do |video|
+      li.material
+        = video_thumb(video)
 
 - unless !page._more_resources || page._more_resources.empty?
   h3.divider#more-resources More Resources
