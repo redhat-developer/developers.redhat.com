@@ -37,7 +37,9 @@ description: Forums are the primary way that JBoss Developers communicate.
           td.description #{product.forum.description}
           td.postCount = product.forum[:count]
           td.histogram
-            div.forum-chart(data-forum-name=product.forum.name)
+            .forum-chart
+              .chart-data.hide
+                = product.forum.histogram.to_json
 = javascripts("forums", true) do
-  script src="https://www.google.com/jsapi"
+  script src="https://www.google.com/jsapi?autoload=#{URI.escape({ 'modules' => [ { 'name' => 'visualization', 'version' => '1.0', 'packages' => [ 'corechart' ] } ] }.to_json)}"
   script src="#{site.base_url}/#{site.context_url}/javascripts/forums.js"

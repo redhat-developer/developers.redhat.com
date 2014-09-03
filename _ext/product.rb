@@ -1,7 +1,6 @@
 require 'json'
 require 'aweplug/helpers/searchisko'
 require 'aweplug/helpers/video'
-require 'aweplug/helpers/vimeo'
 require 'aweplug/cache/file_cache'
 
 module JBoss
@@ -44,6 +43,7 @@ module JBoss
           articles = []
           solutions = []
           site.products = {}
+          forum_counts = Hash[JSON.load(@searchisko.search({facet:'per_project_counts', sys_type:'forumthread', size:1}).body)['facets']['per_project_counts']['terms'].map(&:values).map(&:flatten)]
           site.pages.each do |page|
             if !page.product.nil? && page.relative_source_path.start_with?('/products')
               product = page.product
@@ -51,17 +51,20 @@ module JBoss
               if not site.products.has_key? id
                 # Set the product id to the parent dir
                 product.id = id
+                product.dcp_project_code = @searchisko.normalize('project_by_jbossdeveloper_product_code', id) { |normalized| normalized['project_code'] }
                 if product.current_version
                   # Set the product's current major.minor version
                   product.current_minor_version = product.current_version[/^([0-9]*\.[0-9]*)/, 1]
                 end
-                docs(product, site
+                docs(product, site)
                 downloads(product, site)
-
-                unless product.forum.nil?
-                  product.forum.count = forum_count(product, site)
-                  product.forum.histogram = forum_histogram(product, site)
-                end
+                product.forum = OpenStruct.new({
+                  :count => forum_counts[product.dcp_project_code],
+                  :histogram => forum_histogram(product, site),
+                  :name => product.dcp_project_code,
+                  :url => "#{site.product_forum_base_url}/en/#{product.dcp_project_code}",
+                  :description => product.description
+                })
 
                 product.buzz_tags ||= product.id
                 add_video product.vimeo_album, site, product: id, push_to_searchisko: @push_to_searchisko if product.vimeo_album
@@ -72,7 +75,6 @@ module JBoss
                   end
                   product.featured_videos = res.flatten.reject {|v| v.nil?}
                 end
-                product.dcp_project_code = @searchisko.normalize('project_by_jbossdeveloper_product_code', id) { |normalized| normalized['project_code'] }
                 # Store the product in the global product map
                 site.products[product.id] = product
                 page.send('featured_items=', product['featured_items'])
@@ -81,18 +83,27 @@ module JBoss
           end
         end
 
-        def forum_count(product, site)
-          resp = @searchisko.search({query: "(sys_type:forumthread AND sys_project:(#{product.forum.name}))",
-                                    facet:'per_project_counts', sys_type:'forumthread', size:1})
-          terms = JSON.load(resp.body)['facets']['per_project_counts']['terms']
-          terms.empty? ? 0 : terms.first['count']
-        end
-
         def forum_histogram(product, site)
-          resp = @searchisko.search({actvity_date_interval: 'day', facet:'activity_dates_histogram', 
-                                    sys_type:'forumthread', project: product.forum.name, size:0})
+          resp = @searchisko.search({activity_date_interval: 'month', facet:'activity_dates_histogram', 
+                                    sys_type:'forumthread', project: product.dcp_project_code, size:0})
           histogram = JSON.load(resp.body)['facets']['activity_dates_histogram']['entries']
-          histogram.empty? ? [] : histogram
+          endDate = DateTime.now
+          d = endDate.prev_month
+          res = [['Day', 'Count']]
+          while d <= endDate do
+            d1 = d
+            d = d.next_day
+            t1 = d1.to_time.to_i * 1000
+            t2 = d.to_time.to_i * 1000
+            count = 0
+            histogram.each do |e|
+              if e['time'] > t1 && e['time'] <= t2
+                count = e['count']
+              end
+            end
+            res << [d1.iso8601, count]
+          end
+          res
         end
 
         def downloads(product, site)
