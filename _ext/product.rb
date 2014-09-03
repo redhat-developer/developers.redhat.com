@@ -29,11 +29,18 @@ module JBoss
 
 
         def execute(site)
+          @searchisko = Aweplug::Helpers::Searchisko.new({:base_url => site.dcp_base_url, 
+                                                          :authenticate => true, 
+                                                          :searchisko_username => ENV['dcp_user'], 
+                                                          :searchisko_password => ENV['dcp_password'], 
+                                                          :cache => site.cache,
+                                                          :logger => site.log_faraday,
+                                                          :searchisko_warnings => site.searchisko_warnings})
           articles = []
           solutions = []
           site.products = {}
           site.pages.each do |page|
-            if page.product
+            if !page.product.nil? && page.relative_source_path.start_with?('/products')
               product = page.product
               id = page.parent_dir
               if not site.products.has_key? id
@@ -60,6 +67,7 @@ module JBoss
                   end
                   product.featured_videos = res.flatten.reject {|v| v.nil?}
                 end
+                product.dcp_project_code = @searchisko.normalize('project_by_jbossdeveloper_product_code', id) { |normalized| normalized['project_code'] }
                 # Store the product in the global product map
                 site.products[product.id] = product
                 page.send('featured_items=', product['featured_items'])
