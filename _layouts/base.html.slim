@@ -65,7 +65,7 @@ head
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
 
 - template = (page.url.gsub('/','').split('.').first || 'home')
-body(class="#{template}")
+body(class="#{template} #{page.template}")
   - if site.metrics
     / All metrics and tracking are run via Google Tag Manager
     javascript:
