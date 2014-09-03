@@ -273,10 +273,10 @@ app.dm = {
       //do nothing, the format filter will take care of this case
     } else if (!sandboxEnabled && quickstartsEnabled) {
       //filter out the sandbox quickstarts
-      query.push('-github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
+      query.push('experimental:false')
     } else if (sandboxEnabled && !quickstartsEnabled) {
       //filter out the regular quickstarts
-      query.push('github_repo_url:"https://github.com/jboss-developer/jboss-sandbox-quickstarts"')
+      query.push('experimental:true')
       pageHashFormats.push('jbossdeveloper_sandbox');
       var idx = pageHashFormats.indexOf('jbossdeveloper_quickstart');
       pageHashFormats.splice(idx,1);
