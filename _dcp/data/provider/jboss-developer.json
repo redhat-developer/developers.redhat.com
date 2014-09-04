@@ -372,6 +372,56 @@
         "type": "jbossdeveloper_youtube"
       }
     },
+    "jbossdeveloper_books": {
+      "description": "Books about JBoss from Google Books",
+      "sys_type": "book",
+      "persist" : true,
+      "input_preprocessors": [
+        {
+          "name"     : "Projects mapper",
+          "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+          "settings" : {
+            "index_name"       : "sys_projects",
+            "index_type"       : "project",
+            "source_field"     : "target_product",
+            "idx_search_field" : "type_specific_code.jbossdeveloper_website_code",
+            "result_mapping"   : [
+              {
+                "idx_result_field" : "code",
+                "target_field"     : "sys_project"
+              },{
+              "idx_result_field" : "name",
+              "target_field"     : "sys_project_name"
+              }
+            ]
+          }
+        },{
+        "name"     : "Contributors mapper",
+        "class"    : "org.jboss.elasticsearch.tools.content.ESLookupValuePreprocessor",
+        "settings" : {
+          "index_name"       : "sys_contributors",
+          "index_type"       : "contributor",
+          "source_field"     : "authors",
+          "idx_search_field" : ["jbossdeveloper_quickstart_author","name"],
+          "result_mapping"   : [{
+            "idx_result_field" : "code",
+            "target_field"     : "sys_contributor"
+          }]
+        }
+        },{
+        "name": "sys_activity_dates collector",
+        "class": "org.jboss.elasticsearch.tools.content.ValuesCollectingPreprocessor",
+        "settings": {
+          "target_field": "sys_activity_dates",
+          "source_fields": ["sys_created"]
+        }
+        }
+      ],
+      "index": {
+        "name": "data_jbossdeveloper_book",
+        "type": "jbossdeveloper_book"
+      }
+    },
     "jbossdeveloper_website": {
       "description":"JBoss Developer website pages",
       "sys_type":"webpage",
