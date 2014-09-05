@@ -132,9 +132,6 @@ Awestruct::Extensions::Pipeline.new do
                                                     output_dir: '/demos',
                                                     push_to_searchisko: true)
 
-  # Load indexifier
-  extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]
-
   extension JBoss::Developer::Extensions::Nav.new
  
   extension JBoss::Developer::Extensions::CommonDir.new
@@ -166,6 +163,8 @@ Awestruct::Extensions::Pipeline.new do
                                                        by: 'row')
   extension Aweplug::Extensions::Video.new("site.youtube.collect {|i,v| v['youtube_url']}")
 
+  # Load indexifier
+  extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]
 
   # Pushes compass: config from site.yml -> compass
   extension JBoss::Developer::Utilities::CompassConfigurator.new
