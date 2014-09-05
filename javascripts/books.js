@@ -1,163 +1,218 @@
----
-interpolate: true
----
 app.books = {
-  unkownISBN : {
-    'UOM:39076002794183' : '9781933988641'
-  },
-  covers : {
-    "1782161341"  : '#{cdn(site.base_url + "/images/books/book_developingjavaEE6applicationsonjbossas7.jpg")}',
-    "1449345158"  : '#{cdn(site.base_url + "/images/books/book_buildingmodularcloudappswithosgi.jpg")}',
-    "unavailable" : '#{cdn(site.base_url + "/images/books/book_noimageavailable.jpg")}'
-  },
-  findCover : function(book, isbn) {
-    if (book['volumeInfo'].hasOwnProperty('imageLinks')) {
-      return book['volumeInfo']['imageLinks']['thumbnail'];
-    }
-    else if (app.books.covers[isbn]) {
-      return app.books.covers[isbn];
-    }
-    else {
-      return app.books.covers['unavailable'];
+  supportsLocalStorage: function() {
+    try {
+      return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+      return false;
     }
   },
-  getBooks : function(isbnArray) {
-    var html = "";
-    var chunk = 15;
-    var iterations = Math.ceil(isbnArray.length / chunk); // # of ajax requests
-    var iterationCount = 0; 
-    var currentIteration = 0;
-    var bookItems = []; // master book array
-    var bookItemsHash = {}; // pseudo map of books, keyed by isbn-13
-
-    // I hate having to iterate multiple times, but I don't see a good way around things
-    for (var i = 0; i < isbnArray.length; i++) {
-      bookItemsHash[isbnArray[i]] = null;
+  restoreFilter: function(hashParams) {
+    /* Restore the form values previously stored in local storage. */
+    if(!this.supportsLocalStorage() ) {
+      return;
     }
 
-    for (var i = 0, j = isbnArray.length; i < j; i +=  chunk) {
-      var query = isbnArray.slice(i,i + chunk).join(' OR isbn:');
-      query = query.split(' ').join('+');
-      var url = 'https://www.googleapis.com/books/v1/volumes?q='+ encodeURI('isbn:'+query) + '&maxResults=' + chunk + "&orderBy=newest";
-      currentIteration++;
-      
-      // closure for keeping the book queue while still doing async data requests
-      (function(currentIteration){
+    var filterKeys = [
+      "keyword",
+    ];
+    
+    var hashParams = hashParams || app.utils.getParametersFromHash();
 
-        $.getJSON(url,function(books) {
-          iterationCount++;
-          
-          // Add the book to the hash, we have to try and find the isbn-13 though to keep
-          // keys consistent
-          for (var i = 0; i < books.items.length; i++) {
-            var ids = books.items[i].volumeInfo.industryIdentifiers;
-            if (ids) {
-              if (ids[0].type === "OTHER") {
-                bookItemsHash[app.books.unkownISBN[ids[0].identifier]] = books.items[i];
-                books.items[i].volumeInfo.isbn = ids[0].identifier;
-              } else if (ids[0].type === "ISBN_13") {
-                bookItemsHash[ids[0].identifier] = books.items[i];
-                books.items[i].volumeInfo.isbn = ids[0].identifier;
-              } else if (ids[1].type === "ISBN_13") {
-                bookItemsHash[ids[1].identifier] = books.items[i];
-                books.items[i].volumeInfo.isbn = ids[1].identifier;
-              }
-            }
-          }
+    $.each(filterKeys, function(idx, key) {
+      // check if we have a hash value, if not use localstorage
+      if($.isEmptyObject(hashParams)) {
+        var formValue = window.localStorage.getItem("booksFilter." + key);
+      }
+      else {
+        var formValue = hashParams[key];
+      }
 
-          // If we have all the data in order, move forward with displaying them
-          if(iterations === iterationCount) {
-
-            // flatten into one large array
-            for(key in bookItemsHash){
-              if (bookItemsHash[key]) {
-                bookItems.push(bookItemsHash[key]);
-              }
-            } 
-
-            // Make sure all the books are sorted by desc date
-            bookItems.sort(function(a,b) {
-              var date_a = Date.parse(a.volumeInfo.publishDate);    
-              var date_b = Date.parse(b.volumeInfo.publishDate);    
-              if (date_a > date_b) return -1;    
-              if (date_a < date_b) return 1;    
-              return 0;
-            });
-            app.books.bookItems = bookItems; // store for later filtering
-            app.books.formatBooks(bookItems);
-          }
-        })
-        .error(function(err){
-          $('.book-list').html('<p>We are currently unable to get the list of books. Please try later.</p>');
-        });
-
-      })(currentIteration);
-
-
-    }
+      // check if value was set to undefined string, if so, clear it out.
+      if(formValue === 'undefined') {
+        formValue = '';
+      }
+      /*
+       * Restore the value of the form input field.
+       */
+      if(formValue) {
+        switch(key) {
+          case "keyword" :
+            $('input[name="filter-text"]').val(formValue).trigger('change');
+            break;
+        }
+      }
+    });
   },
-  formatBooks : function(bookItems, filterQuery) {
-    var bookTemplate = $("#bookTemplate").html();
+  performFilter : function() {
+    var bookTemplate = app.templates.bookTemplate;
+    var contributorTemplate = "<span class=\"contributor\" data-sys-contributor=\"<!=author!>\">" +
+            "<a class=\"name\"><!=normalizedAuthor!></a>" +
+          "</span>";
     $('ul.book-list').empty();
 
-    if(!filterQuery || filterQuery === " ") {
-      filterQuery = "";
+    // Set filters to an empty object if it isn't defined
+    filters = typeof filters !== 'undefined' ? filters : {};
+
+    // Set the default maxResults
+    if (!maxResults) {
+      //Currently the only way to specify no limit
+      var maxResults = 500;
     }
 
-    for (var k = 0; k < bookItems.length; k++) {
+    /*
+      Keyword
+    */
+    var keyword = $('input[name="filter-text"]').val();
 
-      var description = bookItems[k]['volumeInfo']['description'] || "";
-      var shortDescription = description.substring(0,475);
-      var thumbnail = ''; 
-      var isbn = bookItems[k]['volumeInfo']['isbn']; 
-      var title = bookItems[k]['volumeInfo']['title'];
-      var filterMatch = new RegExp("("+filterQuery+")","gi");
+    $.extend(filters, {
+      "keyword" : keyword,
+    });
 
-      if(description.length > 475) {
-        shortDescription+="...";
-      }
-
-      // if there is no match on the title or desc, move onto the next
-      if(!title.match(filterMatch) && !description.match(filterMatch)) {
-        console.log("no match, skip it");
-        continue;
-      }
-
-      if(filterQuery && filterQuery.length) {
-        shortDescription = shortDescription.replace(filterMatch,'<span class="highlight">$1</span>');
-        title = title.replace(filterMatch,'<span class="highlight">$1</span>');
-      }
-
-      var template = bookTemplate.format(
-        isbn                                                               // 0 - isbn
-        , bookItems[k]['volumeInfo']['previewLink']                        // 1 - Preview
-        , app.books.findCover(bookItems[k], isbn)                          // 2 - img url
-        , title                                                            // 3 - Title
-        , bookItems[k]['volumeInfo']['authors'].join(', ')                 // 4 - Author
-        , roundHalf(bookItems[k]['volumeInfo']['averageRating'])           // 5 - Rating
-        , shortDescription                                                 // 6 - description
-        , bookItems[k]['volumeInfo']['canonicalVolumeLink']                // 7 - Purchase Url
-        );
-      // Append template to HTML
-      $('ul.book-list').append(template);
-    }
-  },
-  init : function() {
-    // if we are on the books page, pull in the ISBN list
-    if($('.isbnList').length) {
-      app.books.getBooks(#{JSON.dump(site.books.collect {|i,e| e['isbn']})});
+    /* Store the raw form values in local storage. */
+    var formValues = {
+      "keyword" : keyword,
+    };
+    if(this.supportsLocalStorage()) {
+      $.each(formValues, function (key, val) {
+        window.localStorage.setItem("booksFilter." + key, val);
+      });
     }
 
-    $('input[name=book-filter]').on('keyup',function() {
-      var el = $(this);
-      var val = el.val();
-      var re = new RegExp(val,"gi");
+    var currentFilters = {};
 
-      app.books.formatBooks(app.books.bookItems,val);
+    $.each(filters, function(key, val) {
+      // if its empty, remove it from the filters
+      if(val.length) {
+        currentFilters[key] = val;
+      }
+    });
 
+    // Prep each filter
+    var query = []; 
+
+    if(currentFilters['keyword']) {
+      query.push(keyword);
+    }
+
+    // append loading class to wrapper
+    $("ul.book-list").addClass('loading');
+
+    var data = {
+            "field"  : ["preview_link", "thumbnail", "sys_title", "sys_contributor",  "average_rating", "sys_created", "sys_description", "sys_url_view", "isbn", "authors"],
+            "query" : query,
+            "size" : maxResults,
+            "sys_type" : "book",
+            "sortBy" : "new-create"
+           };
+    
+    app.books.currentRequest = $.ajax({
+      dataType: 'json',
+      url : app.dcp.url.search,
+      data: data,
+      beforeSend : function() {
+        // check if there is a previous ajax request to abort
+        if(app.books.currentRequest && app.books.currentRequest.readyState != 4) {
+          app.books.currentRequest.abort();
+        }
+      },
+      error : function() {
+        $("ul.book-list").html(app.dcp.error_message);
+      }
+    }).done(function(data){
+      var results = data.hits.hits;
+      for (var k = 0; k < results.length; k++) {
+        var book = results[k].fields;
+        var authors = ""
+        if (book.sys_contributor) {
+          if (book.sys_contributor.length == 1) {
+            authors += "Author: ";
+          } else {
+            authors += "Authors: ";
+          }
+          for (var i = 0; i < book.sys_contributor.length; i++) {
+            authors += contributorTemplate.template({"author" : book.sys_contributor[i], "normalizedAuthor" : app.dcp.getNameFromContributor( book.sys_contributor[i] ) });
+            if (i < (book.sys_contributor.length -1)) {
+              authors += ", ";
+            }
+          }
+        } else if (book.authors) {
+          var str = "";
+          if (book.authors.length == 1) {
+            authors += "Author: ";
+          } else {
+            authors += "Authors: ";
+          }
+          for (var i = 0; i < book.authors.length; i++) {
+            authors += book.authors[i];
+            if (i < (book.authors.length -1)) {
+              authors += ", ";
+            }
+          }
+        } 
+        book.authors = authors;
+        book.average_rating = roundHalf(book.average_rating) || "";
+        book.sys_description = book.sys_description || "";
+        if (book.sys_created) {
+          var published = new Date(book.sys_created);
+          var now = new Date();
+          var oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+          if (published > oneYearAgo) {
+            book.published = "Published: " + jQuery.timeago(published);
+          } else {
+            book.published = "Published: " + published.getFullYear() + "-" + published.getMonth() + "-" + published.getDate();
+          }
+        } else {
+          book.published = "";
+        }
+        $('ul.book-list').append(bookTemplate.template(book));
+      }
+      $("ul.book-list").removeClass('loading');
     });
   }
 };
 
-app.books.init();
+// Event Listeners 
+(function() {
+  var timeOut;
+  $('form.books-filters').on('change keyup','input, select',function(e){
+
+    // check for a keyup 
+    // then, only allows on the keyword input
+    // ignores anything in below keys array
+    var keys = [37,38,39,40,9,91,92,18,17,16]; // ← ↑ → ↓ tab super super alt ctrl shift
+    if(e.type === "keyup" && ($(this).attr('name') !== 'filter-text' || keys.indexOf(e.keyCode) !== -1)) {
+      return;
+    }
+
+    clearTimeout(timeOut);
+    timeOut = setTimeout(function() {
+      app.books.performFilter();
+    }, 300);
+  });
+
+  $('form.books-filters').on('submit',function(e) {
+    e.preventDefault();
+  });
+
+  // When the page is loaded, loop through query params and apply them
+  if($('[data-set]').length) {
+    // 1. Check for data-set-* attributes
+    app.utils.parseDataAttributes();
+  }
+  else if(window.location.search && !!window.location.search.match(/_escaped_fragment/)) {
+    // 2. Check for a query string 
+    var hashParams = app.utils.getParametersFromHash();
+    app.utils.restoreFromHash();
+    app.books.restoreFilter(hashParams);
+  }
+  else if(window.location.hash) {
+    // 3. check for a hash fragment
+    app.utils.restoreFromHash();
+    app.books.restoreFilter();
+  }
+  else if($('form.books-filters').length) {
+    // 4. Check for localstorage and the books form
+    app.books.restoreFilter();
+  }
+})();
 

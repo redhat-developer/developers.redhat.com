@@ -68,6 +68,14 @@ app.rating = {
 
 // Event Listeners 
 (function() {
+  $('.readonly-rating').html(function() {
+    var rating = $(this).attr('data-rating');
+    if (rating) {
+      return roundHalf(rating);
+    } else {
+      return "";
+    }
+  });
   // Change star and cursor
   $('.rating').on('mouseover', function() {
     var elm = $(this), rating = $(this).prop('id').split('-')[1];
