@@ -227,37 +227,56 @@ app.dm = {
     // Prep each filter
     var query = []; 
 
+    // Pass search params to GTM for analytics
+    window.dataLayer = window.dataLayer || [];
+    
     if(currentFilters['keyword']) {
       query.push(keyword);
+      window.dataLayer.push({ 'keyword' : keyword });
+    } else {
+      window.dataLayer.push({ 'keyword' : null });
     }
 
     if(currentFilters['hidden_keyword']) {
       query.push(hidden_keyword);
+      window.dataLayer.push({ 'hidden-keyword' : hidden-keyword });
+    } else {
+      window.dataLayer.push({ 'hidden-keyword' : null });
     }
 
 
     if(currentFilters['rating']) {
       query.push("sys_rating_avg:>="+rating);
+      window.dataLayer.push({ 'rating' : rating });
+    } else {
+      window.dataLayer.push({ 'rating' : null });
     }
 
     if(currentFilters['topics']) {
       $(topics).each(function(idx, val) {
         query.push('sys_tags:("'+val+'")');
       });
+      window.dataLayer.push({ 'topics' : topics });
+    } else {
+      window.dataLayer.push({ 'topics' : null });
     }
 
     if(currentFilters['formats']) {
       query.push('sys_type:('+formats+')');
+      window.dataLayer.push({ 'formats' : formats });
     } else {
       query.push('sys_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype video rht_knowledgebase_article rht_knowledgebase_solution jbossdeveloper_example)');
+      window.dataLayer.push({ 'formats' : null });
     }
 
     if(currentFilters['skillLevel']) {
       if (skillLevel != 'All') {
         query.push('level:'+skillLevel);
+        window.dataLayer.push({ 'skillLevel' : skillLevel });
       }
       else {
         delete currentFilters['skillLevel'];
+        window.dataLayer.push({ 'skillLevel' : null });
       }
     }
 
@@ -292,6 +311,9 @@ app.dm = {
 
     if(currentFilters['publishDate']) {
       query.push('sys_created:>='+publishDate);
+      window.dataLayer.push({ 'publishDate' : publishDate });
+    } else {
+      window.dataLayer.push({ 'publishDate' : null });
     }
 
     var query = query.join(" AND ");
@@ -309,7 +331,12 @@ app.dm = {
 
     if (currentFilters['projectCode']) {
       query['project'] = currentFilters['projectCode'];
+      window.dataLayer.push({ 'projectCode' : currentFilters['projectCode'] });
+    } else {
+      window.dataLayer.push({ 'projectCode' : null });
     }
+
+    window.dataLayer.push({'event': 'developer-materials-search'});
 
     app.dm.currentRequest = $.ajax({
       dataType: 'json',

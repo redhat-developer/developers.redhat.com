@@ -23,6 +23,9 @@ app.project = {
 
     var url = app.dcp.url.project;
 
+    // Pass search params to GTM for analytics
+    window.dataLayer = window.dataLayer || [];
+    
     /*
       Keyword
     */
@@ -37,7 +40,11 @@ app.project = {
     } 
 
     if ($('select[name="filter-products"]').length && $('select[name="filter-products"]').val() !== "") {
-      filters['project'] = app.products[$('select[name="filter-products"]').val()]['upstream'];
+      var product = $('select[name="filter-products"]').val();
+      filters['project'] = app.products[product]['upstream'];
+      window.dataLayer.push({ 'product' : product });
+    } else {
+      window.dataLayer.push({ 'product' : null });
     }
 
     if (filters['project']) {
@@ -56,14 +63,19 @@ app.project = {
     var query = ['((_exists_:archived AND NOT archived:true) OR (_missing_:archived))'];
 
     if(currentFilters['keyword']) {
+      window.dataLayer.push({ 'keyword' : query });
       query.push(keyword);
       delete currentFilters['keyword']
+    } else {
+      window.dataLayer.push({ 'keyword' : null });
     }
 
     // append loading class to wrapper
     $("ul.results").addClass('loading');
     $.extend(request_data, currentFilters);
     request_data["query"] = query.join(" AND ");
+
+    window.dataLayer.push({'event': 'projects-search'});
 
     $.ajax({
       url : url,
