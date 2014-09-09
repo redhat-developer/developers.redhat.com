@@ -33,17 +33,30 @@ app.buzz = {
 
     // Prep each filter
     var query = [];
+
+    // Pass search params to GTM for analytics
+    window.dataLayer = window.dataLayer || [];
+        
     
     if(currentFilters['keyword']) {
       query.push(keyword);
+      window.dataLayer.push({ 'keyword' : keyword });
+    } else {
+      window.dataLayer.push({ 'keyword' : null });
     }
+
 
     var tags = container.data('tags');
 
     if(tags){
       query.push("sys_tags:"+tags);
+      window.dataLayer.push({ 'tags' : tags });
+    } else {
+      window.dataLayer.push({ 'tags' : null });
     }
     var query = query.join(" AND ");
+
+    window.dataLayer.push({'event': 'buzz-search'});
 
     $.ajax({
         url : app.dcp.url.search,

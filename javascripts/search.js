@@ -13,6 +13,11 @@ app.search = {
   },
   fetch :function(query) {
 
+    // Pass search params to GTM for analytics
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'keyword' : query });
+    window.dataLayer.push({'event': 'website-search'});
+
     // perform ajax request
     $.ajax({
       url : app.dcp.url.search,
@@ -51,6 +56,7 @@ app.search = {
 
 // binding
 (function() {
+  var timeOut;  
   $('form.search').on('submit',function(e){
     e.preventDefault();
   });
@@ -103,7 +109,10 @@ app.search = {
         $('.searchResults').html('');
         return;
       }
-      app.search.fetch(query);
+      clearTimeout(timeOut);
+      timeOut = setTimeout(function() {
+        app.search.fetch(query);
+      }, 300);
     }
   });
 
