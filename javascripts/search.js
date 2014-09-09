@@ -44,7 +44,7 @@ app.search = {
   format : function(query, results, container) {
     var suggestions = $('<ul>');
     for (var i = 0; i < results.length; i++) {
-      var title = results[i].highlight.sys_title || results[i].fields.sys_title;
+      var title = results[i].highlight && results[i].highlight.sys_title ? results[i].highlight.sys_title : results[i].fields.sys_title;
       var url = results[i].fields.sys_url_view;
       suggestions.append('<li><a href="' + url + '">'+ title  +'</a></li>');
     };
@@ -61,7 +61,7 @@ app.search = {
     e.preventDefault();
   });
 
-  $('form.search, form.buzz-filters').on('keyup','input',function(e) {
+  $('form.search').on('keyup','input',function(e) {
     var form = $(this).parent();
     /*
       Check for enter / return key 
