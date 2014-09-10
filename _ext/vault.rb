@@ -10,14 +10,16 @@ module JBoss
       end
 
       def execute site
-        begin
-          fname = File.open @filename || Pathname.new(site.config.config_dir).join('secrets.yaml.gpg').to_s
-          secrets = YAML.load(@crypto.decrypt(fname).to_s)
-          secrets.each do |k, v|
-            ENV[k] = v
+        if site.secrets.nil?
+          begin
+            fname = File.open @filename || Pathname.new(site.config.config_dir).join('secrets.yaml.gpg').to_s
+            site.secrets = YAML.load(@crypto.decrypt(fname).to_s)
+            site.secrets.each do |k, v|
+              ENV[k] = v
+            end
+          rescue GPGME::Error => e
+            puts "Unable to decrypt vault (#{e})"
           end
-        rescue GPGME::Error::DecryptFailed => e
-          puts "Unable to decrypt vault (#{e})"
         end
       end
 
