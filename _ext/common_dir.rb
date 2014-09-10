@@ -1,4 +1,5 @@
 require 'yaml'
+require 'parallel'
 
 module JBoss
   module Developer
@@ -48,7 +49,7 @@ module JBoss
 
 
             # Iterate over all pages
-            site.pages.each do |page|
+            Parallel.each(site.pages, in_threads: 40) do |page|
               # Check if there is a _common directory in the hierarchy of directories above this one
               dir_map.each do |parent, vars| 
                 if page.source_path =~ /^#{site.dir}\/#{parent}/

@@ -1646,6 +1646,31 @@ table.demos {
   }
 }
 
+
+table.forums {
+  th {
+    font-size: emCalc(16);
+  }
+  td.product-name {
+    width:22%;
+    font-size: emCalc(16);
+    font-weight: 600;
+  }
+  td.description {
+    width:48%;
+    padding-right:5%;
+  }
+  td.postCount {
+    font-weight: 600;
+    font-size: emCalc(16);
+  }
+}
+
+.forum-chart {
+  width:200px;
+  height: 100px;
+}
+
 .dcp-error-message {
   background: #FAFFDE;
   padding: 20px;
