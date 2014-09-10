@@ -348,14 +348,15 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generat
 end
 
 desc 'Run blinkr'
-task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
+task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |task, args|
   $staging_config ||= config 'staging'
   base_path = "#{args[:pr_prefix]}/#{args[:pull]}"
   base_url = "#{args[:new]}/#{base_path}/#{args[:build_prefix]}/#{args[:build]}/"
   report_base_path = "#{base_path}/blinkr"
   report_path = "#{report_base_path}/#{args[:build]}"
+  verbose_switch = args[:verbose] == 'verbose' ? '-v' : ''
   FileUtils.mkdir_p("_tmp/blinkr")
-  unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url}"
+  unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url} #{verbose_switch}"
     exit 1
   end
   Dir.mktmpdir do |empty_dir|
