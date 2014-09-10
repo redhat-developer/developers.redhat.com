@@ -11,6 +11,7 @@ require 'aweplug/helpers/resources'
 require 'aweplug/transformers/asciidoc_cdn_transformer'
 require 'aweplug/extensions/kramdown_demo'
 require 'aweplug/extensions/google_spreadsheet'
+require 'aweplug/extensions/books'
 require 'jboss_developer'
 require 'nav'
 require 'stacks'
@@ -40,11 +41,13 @@ Awestruct::Extensions::Pipeline.new do
                                                        col_labels: true,
                                                        by: 'row')
 
-  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'books',
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'book_isbns',
                                                        key: '1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g',
                                                        worksheet_title: 'Books',
                                                        col_labels: true,
                                                        by: 'row')
+
+  extension Aweplug::Extensions::Books.new("site.book_isbns.collect { |i,b| b }")
 
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'customer_portal_articles',
                                                        key: '1440-gFstcyCyFhXISvTIlzrmXZo7Ligs-hla5z9eSQA',

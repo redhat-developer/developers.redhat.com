@@ -1,5 +1,17 @@
-input[name="book-filter"] {
-  width:25%;
+.books-filters {
+  input[name="filter-text"] {
+    width:25%;
+  }
+}
+
+ul.book-list {
+  &.loading {
+    background:cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+    min-height:250px;
+    li.material {
+      visibility: hidden;
+    }
+  }
 }
 
 .book {
@@ -66,8 +78,10 @@ p.desc {
 }
 
 @include tablet-landscape-and-down {
-  input[name="book-filter"] {
-    width:100%;
+  .books-filters {
+    input[name="filter-text"] {
+      width:100%;
+    }
   }
 }
 
