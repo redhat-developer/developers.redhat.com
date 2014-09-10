@@ -44,7 +44,7 @@ app.search = {
   format : function(query, results, container) {
     var suggestions = $('<ul>');
     for (var i = 0; i < results.length; i++) {
-      var title = results[i].highlight.sys_title || results[i].fields.sys_title;
+      var title = results[i].highlight && results[i].highlight.sys_title ? results[i].highlight.sys_title : results[i].fields.sys_title;
       var url = results[i].fields.sys_url_view;
       suggestions.append('<li><a href="' + url + '">'+ title  +'</a></li>');
     };
@@ -61,6 +61,7 @@ app.search = {
     e.preventDefault();
   });
 
+  // listen to key events on the search form and the buzz filter page
   $('form.search, form.buzz-filters').on('keyup','input',function(e) {
     var form = $(this).parent();
     /*
@@ -111,7 +112,11 @@ app.search = {
       }
       clearTimeout(timeOut);
       timeOut = setTimeout(function() {
-        app.search.fetch(query);
+        // if it is the search form, go ahead and search
+        // otherwise it is buzz, and we handle this in buzz.js
+        if(form.hasClass('search')) {
+          app.search.fetch(query);
+        }
       }, 300);
     }
   });
