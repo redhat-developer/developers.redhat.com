@@ -5,7 +5,11 @@
     a href="<!=sys_url_view!>"
       img src="#{cdn(site.base_url + "/images/branding/buzzdefault_orange.png")}"
       h3 <!=sys_title!>
-    p.authorName <!=authorName!>
+    a.authorUpdate href="<!=sys_url_view!>"
+      p.authorName
+        | <!=authorName!>
+        span.updateDate <!=updatedDate!>
+
     p <!=sys_description!>
     = partial "share_js_micro.html.slim"
 

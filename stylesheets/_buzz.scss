@@ -23,10 +23,17 @@
     box-shadow:2px 2px 0 $med-blue;
     background:$grey-2;
     word-wrap:break-word;
+    a.authorUpdate {
+      color:$link;
+    }
     p.authorName {
+      color:$link;
       padding-top: 0;
       padding-bottom: 0;
       font-size: 12px;
+    }
+    span.updateDate {
+      float: right;
     }
   }
   h3,p {
