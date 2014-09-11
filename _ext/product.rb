@@ -62,7 +62,7 @@ module JBoss
                   :count => forum_counts[product.dcp_project_code],
                   :histogram => forum_histogram(product, site),
                   :name => product.dcp_project_code,
-                  :url => "#{site.product_forum_base_url}/en/#{product.dcp_project_code}",
+                  :url => "#{site.product_forum_base_url}#{product.id}",
                   :description => product.description
                 })
 
