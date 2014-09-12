@@ -115,3 +115,122 @@
   }
 
 }
+
+// Navigations
+
+.microsite-nav {
+  @extend .large-24;
+  @extend .columns;
+  margin-top: -40px;
+  margin-bottom: 20px;
+  & > ul {
+    list-style: none;
+    li {
+      display:inline-block;
+      float: left;
+      a {
+        display: block;
+        background:$grey-2;
+        color:$grey-5;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-align: center;
+        padding:10px 0;
+        border-right: 3px solid white;
+        border-top: 3px solid white;
+        &:hover {
+          background:$dark-blue;
+          color:white;
+        }
+      }
+      &.active a {
+        background:$dark-blue;
+        color:white;
+      }
+      &:last-child a {
+        border-right: 0;
+      }
+    }
+    $items: 12;
+    @for $i from 1 through $items {
+      &.microsite-nav-#{$i} {
+        li {
+          width: (100 / $i) * 1%;
+        }
+      }
+    }
+  }
+}
+
+body.microsite-multi-page, body.microsite {
+  .top-bar-section {
+    display: none;
+  }
+  nav.top-bar {
+    border-bottom: 0;
+  }
+}
+
+@include tablet-portrait-and-down {
+  .microsite-nav {
+    position: relative;
+    z-index: 2;
+    height:80px;
+    & > ul[class*=microsite-nav-] {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      // padding-top: 45px;
+      margin-top: 20px;
+      border:1px solid $grey-4;
+      border-radius: $global-radius;
+      overflow: hidden;
+      li {
+        display: block;
+        width:100%;
+        position: relative;
+        display: none;
+        &.active {
+          // position: absolute;
+          // top:0;
+          display: block;
+          a {
+            border-top: 0;
+            background:$grey-6;
+            color:white;
+          }
+        }
+        a {
+          border:0;
+          border-top: 1px solid white;
+          text-align: left;
+          padding-left: 10px;
+          background:$light-blue;
+          color:$dark-blue;
+          &:hover {
+            background:$grey-6;
+            color:white;
+          }
+          &:after {
+            content: "\f107";
+            font-family: 'FontAwesome';
+            float: right;
+            font-weight: 600;
+            margin-right: 10px;
+          }
+        }
+        *:first-child a {
+          border-top: 0;
+        }
+      }
+    }
+    &.microsite-nav--open > ul[class*=microsite-nav-] {
+      & > li {
+        display: block;
+        a:after {
+          content: "\f105"; // >
+        }
+      }
+    }
+  }
+}
