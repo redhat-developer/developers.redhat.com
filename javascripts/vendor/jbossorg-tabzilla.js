@@ -347,10 +347,11 @@ Tabzilla.preventDefault = function(ev)
 Tabzilla.content =
 '<div class="tabnavclearfix" id="tabnav">'
 +'<div class="tabcontent">'
++'<div class="tabcontent">'
 +'  <p class="overview">Learn more about Red Hat and our open source communities:</p>'
 +'  <div class="row-fluid">'
 +'    <span class="span4 middlewarelogo">'
-+'      <img src="#{cdn("http://static.jboss.org/common/images/tabzilla/RHJB_Middleware_Logotype.png")}" alt="Red Hat JBoss MIDDLEWARE" />'
++'      <img src="#{cdn(site.base_url + '/images/branding/RHJB_Middleware_Logotype.png')}" alt="Red Hat JBoss MIDDLEWARE" />'
 +'    </span>'
 +'    <span class="span4">'
 +'      <ul class="level1">'
