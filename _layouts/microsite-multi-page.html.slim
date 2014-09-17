@@ -1,58 +1,16 @@
 ---
-layout: base
+layout: microsite
 ---
 
-.wide.wide-hero
-  .row 
-    .large-25.column.center
-      h2 Microsite marketing<br>tagline here
+= define 'nav_bar'
+  - unless page.nav.nil?
+    .row
+      .microsite-nav
+        ul class="microsite-nav-#{page.nav.length}"
+          - page.nav.each do |item|
+            li
+              a href=item.url
+                | #{item.title}
 
-.row
-  .microsite-nav
-    ul.microsite-nav-7
-      li
-        a href="#" Nav Item 1
-      li
-        a href="#" Nav Item 2
-      li.active
-        a href="#" Nav Item 3
-      li
-        a href="#" Nav Item 4
-      li
-        a href="#" Nav Item 5
-      li
-        a href="#" Nav Item 6
-      li
-        a href="#" Nav Item 7
-
-.row
-  .large-19.columns
-    h2.divider Microsite Nav 1 Title
-    p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit placeat architecto excepturi et laborum quos veritatis at quo non cumque, hic labore soluta, accusamus voluptatibus nostrum eveniet obcaecati perferendis minima molestiae dolore consectetur ratione! Facere reprehenderit blanditiis quia, laborum sint.
-    p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure natus non id aspernatur, fugiat rem sint fugit eum ratione quos ducimus nam tempore, veritatis unde ab, impedit mollitia perferendis. Excepturi vel commodi eos nemo molestias nobis laborum ullam, quibusdam quaerat consequuntur id totam, voluptatum expedita quidem suscipit provident blanditiis quisquam in officiis quo quis optio minus nulla. Odio quidem dicta veniam obcaecati molestiae harum ipsam aliquid, hic ut sed inventore ullam saepe veritatis commodi necessitatibus dolores mollitia, impedit esse suscipit corrupti neque labore nulla recusandae? Ad sequi accusamus dolorem. Assumenda nihil voluptates vero quisquam a ipsum, officia quod quis iure.
-  .large-5.columns
-    
-    .widget
-      h3.widget-title Optional Right Hand Bar
-      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ad cum fugit. Quas sunt earum, dolores, fugit neque cumque eius facere eum, voluptatum nihil aliquam itaque, hic sapiente tenetur similique expedita numquam deserunt. Aut earum culpa cumque rem tenetur temporibus at. Ipsa iste commodi nemo temporibus voluptate odio nesciunt itaque.
-
-    .widget
-      a.button(href="#") Call to Action
-
-    .widget
-      p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, dicta?
-
-    .widget.rightbarbullets
-      ul
-        li
-          a href="" Link to thing 01
-        li
-          a href="" Link to thing 02
-        li
-          a href="" Link to thing 03
-        li
-          a href="" Link to thing 04
-        li
-          a href="" Link to thing 05
-
+= content
 

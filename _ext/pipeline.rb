@@ -22,6 +22,7 @@ require 'disqus_more'
 require 'lower_case_paths'
 require 'customer_portal'
 require 'vault'
+require 'aweplug/helpers/define'
 
 Awestruct::Extensions::Pipeline.new do
   
@@ -183,6 +184,7 @@ Awestruct::Extensions::Pipeline.new do
   helper JBoss::Developer::Utilities
   helper Aweplug::Helpers::Video
   helper Aweplug::Helpers::Resources
+  helper Aweplug::Helpers::Define
 
   transformer JBoss::Developer::LinkTransformer.new
   transformer Aweplug::Transformer::AsciidocCdnTransformer.new
