@@ -76,6 +76,7 @@
 @import "ie8grid";
 @import "projects";
 @import "magula";
+@import "microsite";
 @import "print";
 // @import "theme-dark";
 
@@ -361,6 +362,15 @@ i[class*=fa].invert {
   max-width:1200px;
   padding:10px 20px 10px 20px;
   margin: 0 auto;
+}
+
+body.fullbleed {
+  .content-wrapper {
+    max-width:none;
+    padding:0;
+    margin:0;
+    background:none;
+  }
 }
 .wrapper {
   @include filter-gradient(#ffffff, #e6e7e8, vertical); // IE6-9
