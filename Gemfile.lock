@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/awestruct/aweplug.git
-  revision: c5791fcbfb46bc3fd1615c20929005bbb92be791
+  remote: git://github.com/pmuir/aweplug.git
+  revision: 41762f6c6b1f2654c3f16aab9651438742051fba
+  branch: define
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -21,7 +22,7 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
-    activesupport (4.1.5)
+    activesupport (4.1.6)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -119,13 +120,13 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.6.11)
     image_size (1.3.1)
-    iso8601 (0.8.0)
+    iso8601 (0.8.2)
     json (1.8.1)
     jwt (1.0.0)
     kramdown (1.0.2)
     launchy (2.4.2)
       addressable (~> 2.3)
-    libv8 (3.16.14.5)
+    libv8 (3.16.14.7)
     listen (2.7.9)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -189,7 +190,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (2.0.1)
-    timers (4.0.0)
+    timers (4.0.1)
       hitimes
     typhoeus (0.6.9)
       ethon (>= 0.7.1)
@@ -199,7 +200,7 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     uuidtools (2.1.5)
-    wraith (1.3.5)
+    wraith (1.3.7)
       anemone
       image_size
       log4r
