@@ -80,7 +80,7 @@ app.dm = {
       }
     });
   },
-  devMatFilter : function(filters) {
+  devMatFilter : function(filters, updateHash) {
     // Set filters to an empty object if it isn't defined
     filters = typeof filters !== 'undefined' ? filters : {};
 
@@ -305,7 +305,7 @@ app.dm = {
     pageHashFilters.formats = $.unique(pageHashFormats).join(' ');
 
     // Update the page hash if it isn't googlebot
-    if(!window.location.search.match(/_escaped_fragment_/)) {
+    if(updateHash) {
       window.location.hash = "!" + app.utils.convertParametersToHash(pageHashFilters);
     }
 
@@ -338,6 +338,11 @@ app.dm = {
 
     window.dataLayer.push({'event': 'developer-materials-search'});
 
+    // send the request
+    app.dm.request(query);
+
+  },
+  request: function(query) {
     app.dm.currentRequest = $.ajax({
       dataType: 'json',
       url : app.dcp.url.search,
@@ -352,185 +357,189 @@ app.dm = {
         $("ul.results").html(app.dcp.error_message);
       }
     }).done(function(data){
-      var hits = data.hits.hits;
-
-      var contributors = [];
-      // Collect authors, so we can perform a batch request to the DCP
-      for (var i = 0; i < hits.length; i++) {
-        if ('sys_author' in hits[i].fields) {
-          contributors.push(hits[i].fields.sys_author);
-        }
-      }
-
-      // Create a paginated list
-      var perPage = 9;
-      var pages = hits.length / perPage;
-      $('ul.pagination').removeClass('one-page'); 
-
-      if(pages <= 1) {
-        $('ul.pagination').addClass('one-page');
-      }
-
-      $('ul.pagination').paging(hits.length, {
-        format: '< (qq-) nncnn (-pp) >',
-        // Display 9 hits in a page
-        perpage: perPage,
-        // When a new page in the list of pages is to be displayed
-        onSelect: function(page) {
-          var html = "";
-          var data = this.slice;
-          for (var i = data[0]; i < data[1]; i++) {
-
-            // check for a description
-            var sys_description = hits[i].fields.sys_description || "";
-
-            var template = "<li class=\"material\">"; 
-            template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
-            // jbossdeveloper_example and video have thumbnails
-            if(!hits[i].fields.thumbnail) {
-              template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"'>";
-            }
-            if (hits[i].fields.experimental) {
-              template += "<a class=\"banner experimental\"></a>";
-            }
-            if (hits[i].fields.sys_url_view) {
-              var url = hits[i].fields.sys_url_view;
-              var premiumPrefix = 'https://access.redhat.com';
-              if (url.substring(0, (premiumPrefix.length)) === premiumPrefix) {
-                template += "<a class=\"banner premium\"></a>";
-              }
-            }
-            if (hits[i].fields.thumbnail) {
-              template += "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
-              template +="<img onerror=\"this.style.display='none'\" src=\"" + hits[i].fields.thumbnail + "\" />";
-              template += "</a>"
-            }
-            var labels = "";
-            if (hits[i].fields.duration && hits[i].fields.duration > 0) {
-              labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
-                hits[i].fields.duration.toString().toHHMMSS() +
-              "</span>";
-            }
-            if (hits[i].fields.level && hits[i].fields.level.length > 0) {
-              labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
-                hits[i].fields.level +
-              "</span>";
-            }
-            if (labels.length == 0) {
-              labels += "<div class=\"empty-label\"></div>";
-            }
-            template += labels;
-            template += "</div>";
-            template += "<h4>" +
-              "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
-                hits[i].fields.sys_title +
-              "</a>" +
-            "</h4>";
-            if ('sys_rating_num' in hits[i].fields && 'sys_rating_avg' in hits[i].fields) {
-              template += "<p class=\"rating\">" + roundHalf(hits[i].fields.sys_rating_avg) + "(" + hits[i].fields.sys_rating_num + ")</p>";
-            }
-            if ('sys_author' in hits[i].fields && hits[i].fields['sys_author'].length > 0) {
-              var author = hits[i].fields['sys_author'];
-              template += "<p class=\"author\">" +
-                "Author: " +
-                  "<span class=\"contributor\" data-sys-contributor=\"" + author + "\">" +
-                    "<a class=\"name\">" + app.dcp.getNameFromContributor( author ) + "</a>" +
-                  "</span>" +
-                "</p>";
-            }
-            if (hits[i].fields.sys_created) {
-              template += "<p class=\"material-datestamp\">" +
-                "Published " + jQuery.timeago(new Date(hits[i].fields.sys_created)) +
-              "</p>"
-            }
-            template += "<div class=\"body\">" +
-              "<p>" +
-                sys_description.slice(0,300).concat(' ...') +
-              "</p>" +
-            "</div>" +
-            "</li>";
-
-
-            // Append template to HTML
-            html += template;
-
-            // Resolve contributors
-            app.dcp.resolveContributors(contributors);
-          }
-
-          // Inject HTML into the DOM
-          if(!html) {
-            html = "Sorry, no results to display. Please modify your search.";
-          }
-          $("ul.results > li").remove();
-          $("ul.results").html(html);
-          $("ul.results").removeClass('loading');
-
-          return false; // Don't follow the link!
-        },
-        // Format the paginator
-        onFormat: function(type) {
-          if(hits.length < 1) {
-            return "";
-          }
-          switch (type) {
-
-            case 'block':
-
-              if (!this.active)
-                return '<li class="disabled">' + this.value + '</li>';
-              else if (this.value != this.page)
-                return '<li><a href="#' + this.value + '">' + this.value + '</a></li>';
-              return '<li class="current"><a href="#' + this.value + '">' + this.value + '</a></li>';
-
-            case 'left':
-            case 'right':
-
-              if (!this.active) {
-                return "";
-              }
-              return '<li><a href="#' + this.value + '">' + this.value + '</a></li>';
-
-            case 'next':
-
-              if (this.active)
-                return '<li class="next arrow"><a href="#' + this.value + '" class="next">&raquo;</a></li>';
-              return '<li class="next arrow unavailable"><a href>&raquo;</a></li>';
-
-            case 'prev':
-
-              if (this.active)
-                return '<li class="prev arrow"><a href="#' + this.value + '" class="prev">&laquo;</a></li>';
-              return '<li class="prev arrow unavailable"><a href>&laquo;</a></li>';
-
-            case 'first':
-
-              if (this.active)
-                return '<li><a href="#' + this.value + '" class="first">First</a></li>';
-              return '<li class="disabled">First</li>';
-
-            case 'last':
-
-              if (this.active)
-                return '<li><a href="#' + this.value + '" class="last">Last</a></li>';
-              return '<li class="disabled">Last</li>';
-
-            case "leap":
-
-              if (this.active)
-                return "   ";
-              return "";
-
-            case 'fill':
-
-              if (this.active)
-                return '<li class="unavailable">...</li>';
-              return "";
-          }
-        }
-      }); // end Paging 
+      app.dm.format(data);
     }); // end ajax done()
-  },
+  }, // end app.dm.request()
+
+  format: function(data) {
+    var hits = data.hits.hits;
+
+    var contributors = [];
+    // Collect authors, so we can perform a batch request to the DCP
+    for (var i = 0; i < hits.length; i++) {
+      if ('sys_author' in hits[i].fields) {
+        contributors.push(hits[i].fields.sys_author);
+      }
+    }
+
+    // Create a paginated list
+    var perPage = 9;
+    var pages = hits.length / perPage;
+    $('ul.pagination').removeClass('one-page'); 
+
+    if(pages <= 1) {
+      $('ul.pagination').addClass('one-page');
+    }
+
+    $('ul.pagination').paging(hits.length, {
+      format: '< (qq-) nncnn (-pp) >',
+      // Display 9 hits in a page
+      perpage: perPage,
+      // When a new page in the list of pages is to be displayed
+      onSelect: function(page) {
+        var html = "";
+        var data = this.slice;
+        for (var i = data[0]; i < data[1]; i++) {
+
+          // check for a description
+          var sys_description = hits[i].fields.sys_description || "";
+
+          var template = "<li class=\"material\">"; 
+          template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
+          // jbossdeveloper_example and video have thumbnails
+          if(!hits[i].fields.thumbnail) {
+            template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"'>";
+          }
+          if (hits[i].fields.experimental) {
+            template += "<a class=\"banner experimental\"></a>";
+          }
+          if (hits[i].fields.sys_url_view) {
+            var url = hits[i].fields.sys_url_view;
+            var premiumPrefix = 'https://access.redhat.com';
+            if (url.substring(0, (premiumPrefix.length)) === premiumPrefix) {
+              template += "<a class=\"banner premium\"></a>";
+            }
+          }
+          if (hits[i].fields.thumbnail) {
+            template += "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
+            template +="<img onerror=\"this.style.display='none'\" src=\"" + hits[i].fields.thumbnail + "\" />";
+            template += "</a>"
+          }
+          var labels = "";
+          if (hits[i].fields.duration && hits[i].fields.duration > 0) {
+            labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
+              hits[i].fields.duration.toString().toHHMMSS() +
+            "</span>";
+          }
+          if (hits[i].fields.level && hits[i].fields.level.length > 0) {
+            labels += "<span class=\"material-level-" + hits[i].fields.level + " label\">" +
+              hits[i].fields.level +
+            "</span>";
+          }
+          if (labels.length == 0) {
+            labels += "<div class=\"empty-label\"></div>";
+          }
+          template += labels;
+          template += "</div>";
+          template += "<h4>" +
+            "<a href=\"" + hits[i].fields.sys_url_view + "\">" +
+              hits[i].fields.sys_title +
+            "</a>" +
+          "</h4>";
+          if ('sys_rating_num' in hits[i].fields && 'sys_rating_avg' in hits[i].fields) {
+            template += "<p class=\"rating\">" + roundHalf(hits[i].fields.sys_rating_avg) + "(" + hits[i].fields.sys_rating_num + ")</p>";
+          }
+          if ('sys_author' in hits[i].fields && hits[i].fields['sys_author'].length > 0) {
+            var author = hits[i].fields['sys_author'];
+            template += "<p class=\"author\">" +
+              "Author: " +
+                "<span class=\"contributor\" data-sys-contributor=\"" + author + "\">" +
+                  "<a class=\"name\">" + app.dcp.getNameFromContributor( author ) + "</a>" +
+                "</span>" +
+              "</p>";
+          }
+          if (hits[i].fields.sys_created) {
+            template += "<p class=\"material-datestamp\">" +
+              "Published " + jQuery.timeago(new Date(hits[i].fields.sys_created)) +
+            "</p>"
+          }
+          template += "<div class=\"body\">" +
+            "<p>" +
+              sys_description.slice(0,300).concat(' ...') +
+            "</p>" +
+          "</div>" +
+          "</li>";
+
+
+          // Append template to HTML
+          html += template;
+
+          // Resolve contributors
+          app.dcp.resolveContributors(contributors);
+        }
+
+        // Inject HTML into the DOM
+        if(!html) {
+          html = "Sorry, no results to display. Please modify your search.";
+        }
+        $("ul.results > li").remove();
+        $("ul.results").html(html);
+        $("ul.results").removeClass('loading');
+
+        return false; // Don't follow the link!
+      }, // end onSelect
+      // Format the paginator
+      onFormat: function(type) {
+        if(hits.length < 1) {
+          return "";
+        }
+        switch (type) {
+
+          case 'block':
+
+            if (!this.active)
+              return '<li class="disabled">' + this.value + '</li>';
+            else if (this.value != this.page)
+              return '<li><a href="#' + this.value + '">' + this.value + '</a></li>';
+            return '<li class="current"><a href="#' + this.value + '">' + this.value + '</a></li>';
+
+          case 'left':
+          case 'right':
+
+            if (!this.active) {
+              return "";
+            }
+            return '<li><a href="#' + this.value + '">' + this.value + '</a></li>';
+
+          case 'next':
+
+            if (this.active)
+              return '<li class="next arrow"><a href="#' + this.value + '" class="next">&raquo;</a></li>';
+            return '<li class="next arrow unavailable"><a href>&raquo;</a></li>';
+
+          case 'prev':
+
+            if (this.active)
+              return '<li class="prev arrow"><a href="#' + this.value + '" class="prev">&laquo;</a></li>';
+            return '<li class="prev arrow unavailable"><a href>&laquo;</a></li>';
+
+          case 'first':
+
+            if (this.active)
+              return '<li><a href="#' + this.value + '" class="first">First</a></li>';
+            return '<li class="disabled">First</li>';
+
+          case 'last':
+
+            if (this.active)
+              return '<li><a href="#' + this.value + '" class="last">Last</a></li>';
+            return '<li class="disabled">Last</li>';
+
+          case "leap":
+
+            if (this.active)
+              return "   ";
+            return "";
+
+          case 'fill':
+
+            if (this.active)
+              return '<li class="unavailable">...</li>';
+            return "";
+        }
+      } // end onFormat
+    }); // end Paging 
+  },  // end app.dm.format()
   clearFilters: function($el) {
     var form = $('form.dev-mat-filters');
     form[0].reset();
@@ -541,7 +550,7 @@ app.dm = {
     $('form.dev-mat-filters option:selected').removeAttr('selected');
     $("form.dev-mat-filters select").trigger("chosen:updated");
     $('.filter-rating-active').removeClass('filter-rating-active');
-    this.devMatFilter();
+    this.devMatFilter({},true);
   },
   thumbnails : {
     // These correspond with hit[i]._type
@@ -582,7 +591,7 @@ app.dm = {
 
     clearTimeout(timeOut);
     timeOut = setTimeout(function() {
-      app.dm.devMatFilter();
+      app.dm.devMatFilter({}, true);
     }, 300);
   });
 
@@ -676,6 +685,13 @@ app.dm = {
   else if($('form.dev-mat-filters').length) {
     // 4. Check for localstorage and the developer materials form
     app.dm.restoreFilter();
+  }
+
+  // check for get started developer materials
+  var getStarted = $('[data-developer-materials-filter-project-code]');
+
+  if(getStarted.length) {
+    app.dm.devMatFilter();
   }
 
 })();
