@@ -33,7 +33,7 @@ app.init = function() {
     app.developmentTools();
 
     // run again on window resize
-    $(window).on('scroll',function() {
+    $(window).on('resize',function() {
       app.developmentTools();
     });
 
@@ -143,7 +143,7 @@ app.stickyFooter = function() {
       windowHeight = $(window).height(),
       wrapper = $('.wrapper');
   if(bodyHeight < windowHeight) {
-    var headerHeight = $('header.main').outerHeight(),
+    var headerHeight = $('header.main').outerHeight() + $('nav.top-bar').outerHeight(),
         footerHeight = $('footer.bottom').outerHeight(),
         devHeight = $('.under-development').outerHeight(),
         wrapperHeight = windowHeight - headerHeight - footerHeight - devHeight;
