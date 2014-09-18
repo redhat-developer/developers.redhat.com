@@ -15,4 +15,11 @@ $(function() {
     });
   }
 
+  // equalize bottoms
+  var heroEls = $('.wide-hero > .row > div');
+
+  if(heroEls.length === 2) {
+    app.equalizeBottoms(heroEls);
+  }
+
 });

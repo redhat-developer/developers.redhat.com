@@ -89,78 +89,78 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
           h1.logo
             a(href="#{site.base_url}") JBoss<strong>Developer</strong>
           / i.nav-toggle.nav-toggle-close &times;
-        
-    nav.top-bar
-      .row.collapse
-        dl.sub-nav
-          dd.home-link
-            a(href="#{site.base_url}")
-              i.fa.fa-home
-          dd.search-wrapper
-            /  Search Box
-            form.search(action="search" method="POST" name="search" autocomplete="off")
-              input.query(type="text" name="q" placeholder="Search" tabindex="1")
-              span.search-close &times;
-              .searchResults
-          dd.register
-            a(href="#{site.register_url}") Register
-          dd.logged-in
-            a.logged-in-name(href="#")
-          dd.login
-            a(href="https://sso.jboss.org/login?service=#{site.base_url}")
-              i.fa.fa-user
-              | Login
-            / Login Dropdown Box
-            / div.f-dropdown.content.round#login(data-dropdown-content="true")
-            /  h4 Login
-            /  p Log in to access unlimited downloads and contribute to the community.
-            /  form.login
-            /    input(type="text" name="username" placeholder="Username or email")
-            /    input(type="password" name="password" placeholder="Password")
-            /    label
-            /      input(type="checkbox" name="remember")
-            /      | Remember Me
-            /    input.button(type="submit" value="Login")
-            /  p.sign-in-options
-            /    | Or sign in with:
-            /    i.fa.fa-facebook-square
-            /    i.fa.fa-google-plus-square
-            /    i.fa.fa-twitter-square
-            /  ul.inline-list.text-center
-            /    li
-            /      a(href="#") Forgot Password
-            /    li
-            /      a(href="#") Create account
-        .large-24.columns
-          ul.title-area
-            li.name
-          section.top-bar-section
-            ul.left.main-menu
-              - site.nav.each do |k, v|
-                li(class="#{primary_section_class(k, v)}")
-                  a(href="#{v.url}") #{v.label}
-            ul.right.social
-              li
-                a.has-tip(href="#{site.base_url}/newsletter" data-tooltip="" title="Newsletter" data-options="disable-for-touch:true")
-                  i.fa.fa-bullhorn
-              li
-                a.has-tip(data-tooltip="" title="Blogs" data-options="disable-for-touch:true" href="http://planet.jboss.org")
-                  i.fa.fa-comment
-              li
-                a.has-tip(data-tooltip="" title="Facebook" data-options="disable-for-touch:true" href="http://www.facebook.com/jboss")
-                  i.fa.fa-facebook
-              li
-                a.has-tip(data-tooltip="" title="Twitter" data-options="disable-for-touch:true" href="http://twitter.com/jbossdeveloper")
-                  i.fa.fa-twitter
-              li
-                a.has-tip(data-tooltip="" title="LinkedIn" data-options="disable-for-touch:true" href="http://www.linkedin.com/groups?home=&gid=167652")
-                  i.fa.fa-linkedin
-              li
-                a.has-tip(data-tooltip="" title="Google Plus" data-options="disable-for-touch:true" href="https://plus.google.com/b/117471670409122206659/117471670409122206659/posts")
-                  i.fa.fa-google-plus
-              li
-                a.has-tip(data-tooltip="" title="Vimeo" data-options="disable-for-touch:true" href="https://vimeo.com/jbossdeveloper")
-                  i.fa.fa-vimeo-square
+    - unless page.primary_nav_hidden  
+      nav.top-bar
+        .row.collapse
+          dl.sub-nav
+            dd.home-link
+              a(href="#{site.base_url}")
+                i.fa.fa-home
+            dd.search-wrapper
+              /  Search Box
+              form.search(action="search" method="POST" name="search" autocomplete="off")
+                input.query(type="text" name="q" placeholder="Search" tabindex="1")
+                span.search-close &times;
+                .searchResults
+            dd.register
+              a(href="#{site.register_url}") Register
+            dd.logged-in
+              a.logged-in-name(href="#")
+            dd.login
+              a(href="https://sso.jboss.org/login?service=#{site.base_url}")
+                i.fa.fa-user
+                | Login
+              / Login Dropdown Box
+              / div.f-dropdown.content.round#login(data-dropdown-content="true")
+              /  h4 Login
+              /  p Log in to access unlimited downloads and contribute to the community.
+              /  form.login
+              /    input(type="text" name="username" placeholder="Username or email")
+              /    input(type="password" name="password" placeholder="Password")
+              /    label
+              /      input(type="checkbox" name="remember")
+              /      | Remember Me
+              /    input.button(type="submit" value="Login")
+              /  p.sign-in-options
+              /    | Or sign in with:
+              /    i.fa.fa-facebook-square
+              /    i.fa.fa-google-plus-square
+              /    i.fa.fa-twitter-square
+              /  ul.inline-list.text-center
+              /    li
+              /      a(href="#") Forgot Password
+              /    li
+              /      a(href="#") Create account
+          .large-24.columns
+            ul.title-area
+              li.name
+            section.top-bar-section
+              ul.left.main-menu
+                - site.nav.each do |k, v|
+                  li(class="#{primary_section_class(k, v)}")
+                    a(href="#{v.url}") #{v.label}
+              ul.right.social
+                li
+                  a.has-tip(href="#{site.base_url}/newsletter" data-tooltip="" title="Newsletter" data-options="disable-for-touch:true")
+                    i.fa.fa-bullhorn
+                li
+                  a.has-tip(data-tooltip="" title="Blogs" data-options="disable-for-touch:true" href="http://planet.jboss.org")
+                    i.fa.fa-comment
+                li
+                  a.has-tip(data-tooltip="" title="Facebook" data-options="disable-for-touch:true" href="http://www.facebook.com/jboss")
+                    i.fa.fa-facebook
+                li
+                  a.has-tip(data-tooltip="" title="Twitter" data-options="disable-for-touch:true" href="http://twitter.com/jbossdeveloper")
+                    i.fa.fa-twitter
+                li
+                  a.has-tip(data-tooltip="" title="LinkedIn" data-options="disable-for-touch:true" href="http://www.linkedin.com/groups?home=&gid=167652")
+                    i.fa.fa-linkedin
+                li
+                  a.has-tip(data-tooltip="" title="Google Plus" data-options="disable-for-touch:true" href="https://plus.google.com/b/117471670409122206659/117471670409122206659/posts")
+                    i.fa.fa-google-plus
+                li
+                  a.has-tip(data-tooltip="" title="Vimeo" data-options="disable-for-touch:true" href="https://vimeo.com/jbossdeveloper")
+                    i.fa.fa-vimeo-square
     .wrapper.clearfix
       .content-wrapper
         = content
