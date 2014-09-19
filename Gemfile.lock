@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/awestruct/aweplug.git
-  revision: 1496489fa38d0ed8521bf98e868a0ef1bdd5fe01
+  remote: git://github.com/paulrobinson/aweplug.git
+  revision: 11f1ac8cc14dde8bd949ec228e4a8176156f8dbd
+  branch: enable_books_authenticate
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -31,7 +32,7 @@ GEM
     anemone (0.7.2)
       nokogiri (>= 1.3.0)
       robotex (>= 1.0.0)
-    asciidoctor (1.5.0)
+    asciidoctor (1.5.1)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
