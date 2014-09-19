@@ -57,3 +57,12 @@
     - name: jboss/aerogear-simplepush-server
       path: aerogear/server/simplepush
       description: Provides AeroGear SimplePush Server
+
+- name: SwitchYard
+  description: A lightweight service delivery framework providing full lifecycle support for developing, deploying, and managing service-oriented applications.
+  url: http://switchyard.jboss.org/
+  image_url: http://static.jboss.org/switchyard/images/switchyard_200x150.png
+  images:
+    - name: jboss/switchyard-wildfly
+      path: switchtyard/switchyard-wildfly
+      description: Latest SwitchYard release on top of WildFly server. It is configured to boot the standalone mode by default but you can easily run it in domain mode. Please refer to the README on how to switch the modes and how to deploy applications.
