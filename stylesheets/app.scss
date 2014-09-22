@@ -13,12 +13,11 @@
 @import "foundation/components/type";
 @import "foundation/components/buttons";
 @import "foundation/components/forms"; // *requires components/buttons
-@import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
+
 @import "foundation/components/button-groups"; // *requires components/buttons
 // @import "foundation/components/dropdown-buttons"; // *requires components/buttons
 // @import "foundation/components/split-buttons"; // *requires components/buttons
 @import "foundation/components/flex-video";
-@import "foundation/components/section";
 @import "foundation/components/top-bar";  // *requires components/grid
 // @import "foundation/components/orbit";
 @import "foundation/components/reveal";
@@ -40,6 +39,7 @@
 // @import "foundation/components/thumbs";
 @import "foundation/components/tooltips";
 @import "foundation/components/dropdown";
+@import "foundation/components/tabs";
 
 // Import only the compass modules we need
 @import "compass/css3/box-shadow";
@@ -262,10 +262,12 @@ a.download-link {
     &:nth-child(2) a {
       border-top-width: 0;
     }
-    &.active a, &:hover a, &.active a:first-child, &.side-nav-toggle a {
-      color:white;
-      background:$dark-blue;
-      border-color:darken($dark-blue,5%);
+    &.active , &:hover , &.active, &.side-nav-toggle {
+      & > a:first-child, & > a:first-child:not(.button) {
+        color:white;
+        background:$dark-blue;
+        border-color:darken($dark-blue,5%);
+      }
     }
     &.side-nav-toggle {
       display: none;
@@ -334,6 +336,7 @@ i[class*=fa].invert {
   background:none;
   border:0;
   padding:0;
+  border-radius: 0;
   select {
     width:auto;
     margin: 0;
@@ -1774,3 +1777,26 @@ ul.os-selector {
   }
 }
 
+// Tabs
+.tabs-content {
+  width:75%;
+  padding: 0 0 0 10px;
+  float: left;
+  margin-left: 5%;
+  & > .content.active {
+    width:100%;
+  }
+}
+
+
+.tabs {
+  dd {
+    & > a {
+      padding:3px;
+      background:white;
+    }
+    &.active > a {
+      background:$grey-3;
+    }
+  }
+}

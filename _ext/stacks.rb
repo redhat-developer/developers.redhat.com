@@ -65,26 +65,32 @@ module JBoss::Developer::Extensions
     choose other versions given your environment.
     ====
   h3 Versions
-  .section-auto-sample-vtabs[data-section='vertical-tabs']
+  dl.tabs.vertical[data-tab]
+    - i = 0
     -for ver in page.bom['allVersions']
-      section class=('active' if ver == page.bom['bom']['recommendedVersion'])
-        p.title
-          a[href='#'] #{ver}
-          .content
-            pre
-              code
-                |
-                  &lt;dependencyManagement>
-                    &lt;dependencies>
-                        &lt;dependency>
-                            &lt;groupId>#{page.bom['bom']['groupId']}&lt;/groupId>
-                            &lt;artifactId>#{page.bom['bom']['artifactId']}&lt;/artifactId>
-                            &lt;version>#{ver}&lt;/version>
-                            &lt;type>pom&lt;/type>
-                            &lt;scope>import&lt;/scope>
-                        &lt;/dependency>
-                    &lt;/dependencies>
-                  &lt;/dependencyManagement>
+      - i = i + 1
+      dd class=('active' if ver == page.bom['bom']['recommendedVersion'])
+        a(href="#panel#{i}") #{ver}
+  .tabs-content
+    - i = 0
+    -for ver in page.bom['allVersions']
+      - i = i + 1
+      section.content class=('active' if ver == page.bom['bom']['recommendedVersion']) id="panel#{i}"
+        .tab-content
+          pre
+            code
+              |
+                &lt;dependencyManagement>
+                  &lt;dependencies>
+                      &lt;dependency>
+                          &lt;groupId>#{page.bom['bom']['groupId']}&lt;/groupId>
+                          &lt;artifactId>#{page.bom['bom']['artifactId']}&lt;/artifactId>
+                          &lt;version>#{ver}&lt;/version>
+                          &lt;type>pom&lt;/type>
+                          &lt;scope>import&lt;/scope>
+                      &lt;/dependency>
+                  &lt;/dependencies>
+                &lt;/dependencyManagement>
   = javascripts("developer-materials-bom", true) do
     script src="#{site.base_url}/javascripts/bomadvise.js"!
       runtime['boms'].each do |bom|
