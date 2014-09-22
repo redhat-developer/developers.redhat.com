@@ -163,7 +163,7 @@ Developer materials, such as quickstarts and tutorials (Ticket Monster) can be u
 
 5. Fetch the changes to the quickstart repo
 
-        git fetch origin
+        git fetch origin --tags
 
 6. Checkout the new tag
 
