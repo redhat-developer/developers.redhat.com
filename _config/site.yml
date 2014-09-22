@@ -38,6 +38,7 @@ profile_base: &profile
     :cdn_out_dir: *cdn_out_dir
     :minify: *minify
     :cdn_version: *cdn_version
+  authenticate_google_books_api: true
 
 profiles:
   development: &development
@@ -46,6 +47,7 @@ profiles:
     log_faraday: true
     push_to_searchisko: false
     metrics: false
+    authenticate_google_books_api: false
   
   development_cdn: 
     <<: *development
