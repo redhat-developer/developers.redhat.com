@@ -97,6 +97,7 @@ end
 
 desc 'Initialize any git submodules'
 task :git_setup do
+  system 'git submodule foreach \'git fetch --tags\''
   system 'git submodule update --init'
 end
 
