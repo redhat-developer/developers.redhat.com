@@ -183,3 +183,13 @@ Developer materials, such as quickstarts and tutorials (Ticket Monster) can be u
         git push origin DEVELOPER-841
 
 9. Go to GitHub and raise a PR for your change.
+
+## Common issues
+This area documents fixes to common issues:
+
+
+### "Too many open files"
+This can be caused by running out of file descriptors. Currently only seen on Macs. See the following for how to fix: http://superuser.com/questions/433746/is-there-a-fix-for-the-too-many-open-files-in-system-error-on-os-x-10-7-1
+
+### "An error occurred: getaddrinfo: nodename nor servname provided, or not known"
+Same fix as "Too many open files"
