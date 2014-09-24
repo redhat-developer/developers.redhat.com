@@ -381,6 +381,18 @@ ul.footer-nav {
   }
 }
 
+// HiDPI Screens
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi){ 
+  
+  ul.footer-nav li.redhat a {
+    background-image:cdn("../images/icons/redhat-large.png");
+    background-size:cover;
+    background-position: 0;
+  }
+
+}
+
 @include tablet-portrait-and-down {
   
   header.main {

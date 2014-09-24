@@ -22,6 +22,7 @@
   margin-left: 494px;
   margin-top: -1px !important;
 }
+
 #tabnav-panel {
   background: white;
 }
@@ -264,3 +265,18 @@
   }
 }
 
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  .dropup {
+    background-image:cdn("../images/branding/tabzilla-redhat-logo-sprite.2x.png");
+    background-size:100%;
+    height:36px;
+  }
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 768px), (min-resolution: 144dpi) and (max-width: 768px) {
+  .dropup {
+    background-size: 150%;
+    background-position: 0px -108px;
+  }
+}
