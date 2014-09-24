@@ -193,3 +193,8 @@ This can be caused by running out of file descriptors. Currently only seen on Ma
 
 ### "An error occurred: getaddrinfo: nodename nor servname provided, or not known"
 Same fix as "Too many open files"
+
+### "Unable to decrypt vault (GPGME::Error::BadPassphrase)" 
+When using GNU PGP, sometimes you're not presented with a popup asking the passphrase. This will make the following error to be presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
+To fix it use the instructions in the following url:
+https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
