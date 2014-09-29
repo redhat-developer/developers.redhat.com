@@ -195,6 +195,6 @@ This can be caused by running out of file descriptors. Currently only seen on Ma
 Same fix as "Too many open files"
 
 ### "Unable to decrypt vault (GPGME::Error::BadPassphrase)" 
-When using GNU PGP, sometimes you're not presented with a popup asking the passphrase. This will make the following error to be presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
-To fix it use the instructions in the following url:
+If using GNU PGP, sometimes you're not presented with a popup asking for the passphrase. This will result in the following error being presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
+To fix, use the instructions in the following url:
 https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
