@@ -107,7 +107,7 @@ module JBoss::Developer::Extensions
           :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
           :contributors => commits.collect { |c| c[:author] }.uniq,
           :searchisko_type => 'jbossdeveloper_bom',
-          :searchisko_id => bom['id']
+          :searchisko_id => bom['bom']['id']
         }
         metadata[:published] = DateTime.parse(commits.first[:date]) unless commits.empty?
         metadata[:author] = commits.last[:author] if commits.last
@@ -203,7 +203,7 @@ module JBoss::Developer::Extensions
           :contributors => commits.collect { |c| c[:author] }.uniq,
           :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
           :searchisko_type => 'jbossdeveloper_archetype',
-          :searchisko_id => archetype['id']
+          :searchisko_id => archetype['archetype']['id']
         }
         metadata[:published] = DateTime.parse(commits.first[:date]) unless commits.empty?
         metadata[:author] = commits.last[:author] if commits.last
