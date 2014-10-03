@@ -2,12 +2,15 @@
 / Note that you must pass in a reference to the parent page, as the param 'parent'
 /Define left navigation items for the products. Maybe this should move to a yml file?
 - page.product_subsection = page.parent.output_path[/^\/products\/[a-z]+\/([^\/]+)/, 1]
-- page.nav_items = {"overview" => "Overview", "get-started" => "Get Started", "resources" => "Resources", "developer-materials" => "Developer Materials", "community" => "Community", "download" => "Download " + page.parent.product.abbreviated_name }
+- page.nav_items = {"overview" => "Overview", "get-started" => "Get Started", "resources" => "Resources", "developer-materials" => "Developer Materials", "community" => "Community", "download" => "Download " + page.parent.product.abbreviated_name, "connectors" => "Connectors" }
 
 /The menu items, created by iterating over the array defined above
 ul.side-nav
   li.side-nav-toggle
     a(href="#") Menu
   - page.nav_items.each do |k,v|
-    li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") #{v}
-
+    - if k == "connectors"
+      - if page.parent.product.abbreviated_name == "JBoss Fuse"
+        li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") #{v}
+    - else
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") #{v}

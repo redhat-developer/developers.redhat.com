@@ -1,0 +1,36 @@
+---
+layout: product-no-sidebar
+status: green
+type: Connectors
+---
+
+h2.divider#overview Connectors
+
+= page._overview
+
+.row
+  .large-23.columns
+    ul.large-block-grid-3.medium-block-grid-2.small-block-grid-1
+      - for i in [1,2,3,4,5,6,7,8,9]
+        li.connector
+          a.fn-open-connector(href="#")
+            img.connector-logo(src="http://lorempixel.com/300/150?v=#{i}")
+          h3
+            a.fn-open-connector(href="#") Connector Name
+          p    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga soluta in quasi iste officiis, magni quidem similique quae nam pariatur cumque, incidunt libero officia, quo vel, dolorum eos illo repudiandae blanditiis iusto? Vitae incidunt sint impedit, unde architecto magnam at!
+          .connector-overlay-content
+            .row
+              .large-7.columns
+                img.connector-logo(src="http://lorempixel.com/300/300?v=#{i}")
+              .large-17.columns
+                p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe officiis vero iure incidunt adipisci earum, animi repellendus at harum, eius explicabo, dolorem, dolores eos iusto consequuntur deleniti aliquid. Voluptatum incidunt quas, eos labore eveniet. Sit debitis mollitia reiciendis ad maxime dignissimos quaerat quos repellendus fuga laboriosam quasi nemo temporibus ipsa, obcaecati doloribus autem veniam omnis, saepe fugit modi aliquid officiis maiores ab. Rerum sunt provident maiores hic delectus animi, reiciendis quaerat dolorum, ipsam quasi illum. Quo molestiae assumenda adipisci, omnis eligendi, cupiditate quaerat, velit veniam nisi dolorum ipsum magni inventore repudiandae architecto debitis suscipit. Ad, distinctio! Fuga fugiat itaque, esse.
+
+                h4
+                  | Connector A
+                  = partial 'copy-to-clipboard.html.slim', {'text' => 'aws-ddb://tableName[?<options>]'}                   
+                input type="text" value="flatpack:[fixed|delim]:configFile[?<options>]"
+
+                h4
+                  | Connector B
+                  = partial 'copy-to-clipboard.html.slim', {'text' => 'aws-ddb://tableName[?<options>]'}                   
+                input type="text" value="aws-ddb://tableName[?<options>]"

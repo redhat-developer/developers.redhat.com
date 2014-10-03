@@ -172,6 +172,12 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
           li Site Help:
           li: a(href="#{site.base_url}/faq") FAQ
           li: a(href="mailto:help@jboss.org" target="_blank") Report a website problem
+    .overlay
+      .overlay-wrap
+        .overlay-inner
+          a.overlay-close &times;
+          .overlay-content
+
 
   #fb-root
   
@@ -214,6 +220,7 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
     script src="#{site.base_url}/#{site.context_url}/javascripts/social.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/visual.js"
     script src="#{site.base_url}/#{site.context_url}/javascripts/microsite.js"
+    script src="#{site.base_url}/#{site.context_url}/javascripts/connectors.js"
   - unless page.extra_javascripts.nil?
     - page.extra_javascripts.each do |id|
       = deferred_javascripts id
