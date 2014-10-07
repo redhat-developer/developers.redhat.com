@@ -158,16 +158,19 @@ This section covers the various contributions that can be made to these pages.
 
 ### How to Request a new product download
 
-1. Ensure the download is available in the [Download Manager](www.jboss.org/download-manager).
-2. Raise a JIRA issue for the change request, specifying:
+1. [Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request, specifying:
  1. The product and version to be released
  2. The `description` for the release. E.g: `Minor release of JBoss EAP 6.x series`
  3. The `tag_line` for the release. E.g: `Features an updated administrative console that includes a new homepage and exposes the new JBoss EAP patching feature.  Also includes domain recovery improvements and support for CDI injection with PicketLink.  Try it today!`
  4. The `release_date`
-3. If the product download has a non-zero micro/patch version (e.g 2.0.1), then the Product Manager will need to approve the change.
+ 5. The CDN paths for each artefact.
+2. If the product download has a non-zero micro/patch version (e.g 2.0.1), then the Product Manager will need to approve the change.
 
 ### How to add a new product download
-These steps will no longer be required when the downloads are automatically fetched from the download manager.
+
+First add the downloads to the [Download Manager](www.jboss.org/download-manager).
+
+The following steps are currently required, but will no longer be when the downloads are automatically fetched from the download manager.
 
 1. Add a download item to the associated product's `product.yml` file. As an example here is [JBoss EAP's product.yml](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/product.yml)
 2. Update the `current_version:` field in the `product.yml` if you are adding a GA release (i.e. not an Alpha or Beta).
