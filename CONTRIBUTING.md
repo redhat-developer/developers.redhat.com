@@ -252,7 +252,7 @@ If you are requesting a series of text changes, then putting them in a single is
 ### How to add/remove an item to the Training section
 See the [EAP Product Overview Page](http://www.jboss.org/products/eap/overview/) on the right-hand-side for an example of the training links.
 
-1. Raise a JIRA issue for the change request. Include:
+1. Raise a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request. Include:
  1. The link to the training overview page.
  2. The link text to display on the product overview page.
 2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
@@ -262,7 +262,7 @@ See the [EAP Product Overview Page](http://www.jboss.org/products/eap/overview/)
 ### How to add/remove an item to the Webinars section
 See the [EAP Product Overview Page](http://www.jboss.org/products/eap/overview/) on the right-hand-side for an example of the Webinars links.
 
-1. Raise a JIRA issue for the change request. Include:
+1. Raise a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request. Include:
  1. The link to the Webinar overview page.
  2. The link text to display on the product overview page.
 2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
@@ -271,6 +271,16 @@ See the [EAP Product Overview Page](http://www.jboss.org/products/eap/overview/)
 5. [Raise a PR](#fixing) for your change.
 
 
+### How to add/remove an upstream project from the Community page
+See the [EAP Community Page](http://www.jboss.org/products/eap/overview/), towards the bottom is a list of all upstream projects included in this product. 
+To add or remove from this list:
+
+1. Raise a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request. Include:
+ 1. The name of the project(s) to add/remove
+ 2. The name of the product you want modifying
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
+3. Edit the value of the `upstream_projects` key in the product's `product.yml` file. As an example, here is [JBoss EAP's product.yml](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/product.yml)
+4. [Raise a PR](#fixing) for your change.
 
 ## Upstream Projects
 The upstream projects page is located at http://www.jboss.org/projects.
