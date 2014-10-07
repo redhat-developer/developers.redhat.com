@@ -282,6 +282,27 @@ To add or remove from this list:
 3. Edit the value of the `upstream_projects` key in the product's `product.yml` file. As an example, here is [JBoss EAP's product.yml](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/product.yml)
 4. [Raise a PR](#fixing) for your change.
 
+### How to add/remove 'Featured Video' to the 'Resources' page
+Upto three videos can be added to the 'Featured Videos' area.
+To add/remove them:
+
+1. Open the "Featured Videos" sheet of the [Videos spreadsheet](https://docs.google.com/spreadsheets/d/1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c/edit#gid=1504333800)
+2. Find the product's column.
+3. Notice the three available slots. Modify these slots, such that there is a URL to each video you want to be displayed on the page.
+4. The change will take effect on the next site build. This is typically within a maximum of 6 hours.
+
+### How to add/remove 'More Resources' to the 'Resources' page
+To add/remove item(s) in the 'More Resources' area of the 'Resources' page:
+
+1. Raise a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request. Include:
+ 1. The URL of the resource to add/remove
+ 2. The text to appear in the link
+ 3. The text to appear in the short description
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
+3. Edit the product's `resources.adoc` file to add/remove the item. See [JBoss EAP's resources.adoc file](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/resources.adoc) for an example.
+4. [Raise a PR](#fixing) for your change.
+
+
 ## Upstream Projects
 The upstream projects page is located at http://www.jboss.org/projects.
 This section covers details on how to make changes to the data visible on this page.
