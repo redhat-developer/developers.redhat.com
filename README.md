@@ -148,41 +148,6 @@ Builds occur automatically when pull requests are submitted, and builds, and dep
 
 The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients. A plugin for vim such as vim-gnupg (https://github.com/jamessan/vim-gnupg) makes editing the file easy.
 
-## Updating Developer Materials Versions
-Developer materials, such as quickstarts and tutorials (Ticket Monster) can be updated to use a new version by completing the following steps. WFK quickstarts are used here as an example:
-
-1. Ensure that a tag exists for the new version in the quickstart repo. E.g. for WFK 2.6.0.Final there is the following quickstart tag: https://github.com/jboss-developer/jboss-wfk-quickstarts/tree/2.6.0.Final
-2. Create a Jira issue for the work in the DEVELOPER jira project. E.g. https://issues.jboss.org/browse/DEVELOPER-841. Assign to yourself.
-3. Go to your checkout of this repo and create a new branch for the change:
-
-        git checkout -b DEVELOPER-841
-
-4. Change to the directory containing the developer materials to update:
-
-        cd _wfk-quickstarts
-
-5. Fetch the changes to the quickstart repo
-
-        git fetch origin --tags
-
-6. Checkout the new tag
-
-        git checkout 2.6.0.Final
-
-7. Move back to root directory
-
-        cd ..
-
-7. Add and commit the changes
-
-        git add .
-        git commit -m "DEVELOPER-841 Update developer materials to the latest released WFK 2.6.0.GA resources"
-
-8. Push the branch to your fork of this repo. Assumed to be 'orgin'
-
-        git push origin DEVELOPER-841
-
-9. Go to GitHub and raise a PR for your change.
 
 ## Common issues
 This area documents fixes to common issues:

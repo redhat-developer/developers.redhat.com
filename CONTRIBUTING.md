@@ -150,6 +150,42 @@ __Note:__ YouTube videos cannot yet be associated with products.
 4.2 The name of the JBoss product it relates to (if any)
 5. Click `create`
 
+### Updating Developer Materials Versions
+Developer materials, such as quickstarts and tutorials (Ticket Monster) can be updated to use a new version by completing the following steps. 
+WFK quickstarts are used here as an example:
+
+1. Ensure that a tag exists for the new version in the quickstart repo. E.g. for WFK 2.6.0.Final there is [this quickstart tag](https://github.com/jboss-developer/jboss-wfk-quickstarts/tree/2.6.0.Final).
+2. Create a Jira issue for the work in the DEVELOPER jira project. E.g. https://issues.jboss.org/browse/DEVELOPER-841. Assign to yourself.
+3. Go to your checkout of this repo and create a new branch for the change:
+
+        git checkout -b DEVELOPER-841
+
+4. Change to the directory containing the developer materials to update:
+
+        cd _wfk-quickstarts
+
+5. Fetch the changes to the quickstart repo
+
+        git fetch origin --tags
+
+6. Checkout the new tag
+
+        git checkout 2.6.0.Final
+
+7. Move back to root directory
+
+        cd ..
+
+7. Add and commit the changes
+
+        git add .
+        git commit -m "DEVELOPER-841 Update developer materials to the latest released WFK 2.6.0.GA resources"
+
+8. Push the branch to your fork of this repo. Assumed to be 'orgin'
+
+        git push origin DEVELOPER-841
+
+9. Go to GitHub and raise a PR for your change.
 
 
 ## How to Make Changes to the Product Pages
