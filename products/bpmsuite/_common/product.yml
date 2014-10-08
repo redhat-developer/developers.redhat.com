@@ -1,7 +1,7 @@
 name: Red Hat JBoss BPM Suite
 abbreviated_name: JBoss BPMSuite
 has_installer: true
-current_version: 6.0.1.GA
+current_version: 6.0.2.GA
 documentation_minor_version: 6.0
 xpaas_url: https://www.openshift.com/developers/jboss-bpms
 intro_video: https://vimeo.com/95505857
@@ -28,6 +28,28 @@ guides:
 default_download_artifact_type: installer
 description: 'A business process and decision management platform that provides business users and developers with powerful and intuitive tools to capture business processes, policies and rules.  Combined with reporting and simulation, this platform allows agile modification of systems in response to business needs.'
 downloads:
+  # 6.0.2 is an exclusion to the "no micros through $0 dev program
+  6.0.2.GA:
+    release_date: 2014-06-07
+    assets:
+      installer:
+        size: 294mb
+      zip:
+        artifacts:
+          deployable:
+            size: 170mb
+      zip_planner:
+        size: 53mb
+        name: Optaplanner
+      example:
+        size: 8mb
+        name: BPM Example
+      zip_supplemental:
+        size: 57mb
+        name: Supplemental Tools
+      release_notes:
+      source:
+        size: 150mb
   # 6.0.1 is an exclusion to the "no micros through $0 dev program
   6.0.1.GA:
     release_date: 2014-04-03
