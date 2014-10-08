@@ -43,13 +43,16 @@ module JBoss::Developer::Extensions
           next
         end
 
-        (process_boms runtime, site, product, searchisko) unless runtime['archetypes'].nil?
+        (process_boms runtime, site, product, searchisko) unless runtime['boms'].nil?
         (process_archetype runtime, site, product, searchisko) unless runtime['archetypes'].nil?
       end
     end
 
     def process_boms(runtime, site, product, searchisko)
       bom_page_content = %q!.content[data-slug="#{page.bom['id']}"]
+  p
+    -if page.metadata['replaced_bom']
+      = partial 'bom-replaced_advise.html.slim', {'parent' => page, 'groupId' => page.bom['bom']['groupId'], 'artifactId' => page.bom['bom']['artifactId'], 'replaced_bom' => page.metadata['replaced_bom'], 'replaced_bom_url' => page.metadata['replaced_bom_url']}    
   p
     = page.bom['bom']['description']
   h3 Import code
@@ -81,7 +84,9 @@ module JBoss::Developer::Extensions
                             &lt;scope>import&lt;/scope>
                         &lt;/dependency>
                     &lt;/dependencies>
-                  &lt;/dependencyManagement>!
+                  &lt;/dependencyManagement>
+  = javascripts("developer-materials-bom", true) do
+    script src="#{site.base_url}/javascripts/bomadvise.js"!
       runtime['boms'].each do |bom|
         bom_page = ::Awestruct::Page.new(site,
                      ::Awestruct::Handlers::LayoutHandler.new(site,
@@ -91,13 +96,19 @@ module JBoss::Developer::Extensions
         bom_page.layout = @layout
         bom_page.output_path = "/boms/#{product}/#{bom['bom']['id']}/index.html"
         site.pages << bom_page
-        bom['allVersions'] = yml['availableBomVersions'].select {|b| b['bom']['id'] == bom['bom']['id']}.collect {|b| b['version']}
+        bom['allVersions'] = yml['availableBomVersions'].select{ |b| b['bom']['id'] == bom['bom']['id'] }.collect{ |b| b['version']}
         # This is wrong, it's commits for stacks, not the BOM
         # bom['bom']['contributors'] = @commits.collect {|c| c[:author]}.uniq
         commits = []
         if site.boms["#{bom['bom']['groupId']}|#{bom['bom']['artifactId']}"]
           bom_info = site.boms["#{bom['bom']['groupId']}|#{bom['bom']['artifactId']}"]
-          commits = commit_info(bom_info['repo'], Pathname.new(bom_info['location']), bom_info.reject {|k,v| k == 'location' || k == 'repo'})  # DEVELOPER-320
+          commits = commit_info(bom_info['repo'], Pathname.new(bom_info['location']), bom_info.reject {|k,v| k == 'location' || k == 'repo' || k == 'replacedBy'})  # DEVELOPER-320
+        end
+        #Collect the bom_id of replaced bom
+        replaced_bom_id = nil
+        if bom_info and bom_info['replacedBy']
+          ga = bom_info['replacedBy'].split(':')
+          replaced_bom_id = yml['availableBoms'].select{ |b| b['groupId'] == ga[0] and b['artifactId'] == ga[1] }.collect{ |b| b['id']}[0]
         end
         metadata = {
           :title => bom['bom']['name'], 
@@ -109,6 +120,8 @@ module JBoss::Developer::Extensions
           :searchisko_type => 'jbossdeveloper_bom',
           :searchisko_id => bom['bom']['id']
         }
+        metadata[:replaced_bom] = bom_info['replacedBy'] if bom_info
+        metadata[:replaced_bom_url] = "../#{replaced_bom_id}/" if replaced_bom_id
         metadata[:published] = DateTime.parse(commits.first[:date]) unless commits.empty?
         metadata[:author] = commits.last[:author] if commits.last
         unless metadata[:current_branch] == 'HEAD'

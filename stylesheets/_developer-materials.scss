@@ -308,3 +308,43 @@ body .chosen-container-multi .chosen-choices li.search-field input[type="text"] 
   }
 }
 
+
+// Getting the BOM Advertisment
+
+.bomadvise {
+  padding: 2em;
+  color: $grey-6;
+  background-color: $light-blue;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid $med-blue;
+  margin-bottom: 2em;
+  margin-right: 2em;
+
+  .adviseclose {
+    float:right;
+    margin-right: -1.75em;
+    margin-top: -1.75em;
+    a {
+      color: $grey-6;
+      &:before {
+        font-family: 'FontAwesome';
+        content: "\f00d";
+      }
+    }
+  }
+
+  h3 {
+    font-size: emCalc(20);
+    font-weight: normal;
+    margin-top: 0;
+  }
+  h4 {
+    font-size: emCalc(16);
+  }
+  p {
+    margin-bottom: 0;
+  }
+  
+}
