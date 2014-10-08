@@ -1,15 +1,15 @@
 ---
 layout: base
 body_class: fullbleed
+primary_nav_hidden: true
 ---
-
-.wide.wide-hero==hero
+.wide.wide-hero(style="background-image: url(#{cdn(page.hero_image)})")==hero
 
 - unless nav_bar.nil?
   == nav_bar
 
 .row
-  .columns class="#{right_rail.nil? ? 'large-24' : 'large-19'}"
+  .columns.text-content class="#{right_rail.nil? ? 'large-24' : 'large-19'}"
     = content
   - unless right_rail.nil?
     .large-5.columns

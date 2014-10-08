@@ -48,17 +48,25 @@
   }
 }
 
-
 .wide-hero {
-  background:cdn("../images/branding/microsite-1.jpg") top center no-repeat;
+  background: top center no-repeat;
   background-size:cover;
   color:white;
   padding:50px 0;
   margin-bottom: 40px;
+  border-bottom: 1px solid $grey-2;
+  h1 {
+    color:white;
+  }
   h2 {
     color:white;
     font-size: emCalc(65);
     text-align: right;
+    line-height: 1;
+  }
+  h3 {
+    color:white;
+    font-size: emCalc(32);
     line-height: 1;
   }
   p {
@@ -90,7 +98,38 @@
   background-size:cover;
 }
 
+.y-center {
+  text-align: center;
+  display: table;
+  & > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  a {
+    margin: 0;
+  }
+}
+
 @include tablet-landscape-and-down {
+  body.fullbleed {
+    .row {
+      .row {
+        margin: 0;
+        .columns {
+          padding: 0;
+        }
+      }
+    }
+  }
+  
+  .wide-hero {
+    width:100%; // fallback
+    width: calc(100% + 10px); // acount for the wrapper margin
+    width: -webkit-calc(100% + 10px);
+    margin-left: -5px;
+  }
+
+
   .microsite-cta--image {
     & div {
       width:100%;
@@ -232,5 +271,9 @@ body.microsite-multi-page, body.microsite {
         }
       }
     }
+  }
+
+  .y-center {
+    height:auto !important;
   }
 }

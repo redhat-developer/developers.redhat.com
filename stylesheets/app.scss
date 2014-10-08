@@ -1762,3 +1762,15 @@ ul.os-selector {
   vertical-align: super;
   text-decoration: none;
 }
+
+.text-content {
+  .list-icon-checklist ul li:before {
+    content: "\f046";
+    font-family: FontAwesome; /* or whatever */
+    display: inline-block;
+    margin-left: -1.2em; /*same as padding-left set on li*/
+    width: 1.2em; /*same as padding-left set on li*/
+    color: black;
+  }
+}
+
