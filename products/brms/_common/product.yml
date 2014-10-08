@@ -1,7 +1,7 @@
 name: Red Hat JBoss BRMS
 abbreviated_name: JBoss BRMS
 has_installer: false
-current_version: 6.0.1.GA
+current_version: 6.0.2.GA
 documentation_minor_version: 6.0
 intro_video: https://vimeo.com/95600665
 vimeo_album: http://vimeo.com/album/2982444
@@ -22,7 +22,30 @@ guides:
 default_download_artifact_type: installer
 description: 'A rule-based programming platform built on Drools Expert, Drools Guvnor, and Drools Fusion that allows users to capture rules that can be easily modified as the business changes without impacting static applications.'
 downloads:
-  # 6.0.1 is an exclusion to the "no micros through $0 dev program  
+  # 6.0.2 is an exclusion to the "no micros through $0 dev program
+  6.0.2.GA:
+    release_date: 2014-10-07
+    description: A business process and decision management platform that combines Drools Expert, Drools Guvnor, Drools Fusion and JBoss jBPM in a single integrated distribution.
+    assets:
+      installer:
+        size: 265mb
+      zip:
+        artifacts:
+          deployable:
+            size: 140mb
+      maven_repo:
+        size: 142mb
+        name: Maven Repository
+        filename: bpms-brms-6.0.2.GA-redhat-5-maven-repository.zip
+      zip_planner:
+        size: 53mb
+        name: Optaplanner
+        filename: jboss-bpmsuite-6.0.2.GA-zip_planner.zip
+      release_notes:
+      source:
+        size: 150mb
+        filename: jboss-bpmsuite-6.0.2.GA-source.zip
+  # 6.0.1 is an exclusion to the "no micros through $0 dev program
   6.0.1.GA:
     release_date: 2014-04-03
     description: A business process and decision management platform that combines Drools Expert, Drools Guvnor, Drools Fusion and JBoss jBPM in a single integrated distribution.
