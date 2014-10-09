@@ -35,7 +35,7 @@ freemodeler_app_url: https://dev-freemodeler.rhcloud.com/
           p Your processes can run on BPMN2 software such as Red Hat JBoss BPM Suite
     .y-center.large-8.columns
       div
-        a.button.btn-primary.btn-large(href="#{page.freemodeler_app_url}") Use FreeModeler
+        a.button.btn-primary.btn-large(href="#{page.freemodeler_app_url}" id="use-freemodeler-link") Use FreeModeler
 
 = define 'right_rail'
   .widget
@@ -43,18 +43,18 @@ freemodeler_app_url: https://dev-freemodeler.rhcloud.com/
     asciidoc:
       Sign up for a jboss.org account to use FreeModeler today or use your existing account to sign in and use FreeModeler.
 
-    a href="https://sso.jboss.org/login?service=http%3A%2F%2Fwww.jboss.org%2Ffreemodeler%2F"
+    a href="https://sso.jboss.org/login?service=http%3A%2F%2Fwww.jboss.org%2Ffreemodeler%2F" id="sign-up-link"
       | Sign Up Today &raquo;
 
   .widget
     h3 Get involved
-    a(href="https://community.jboss.org/en/freemodeler") Vist the forums &raquo;
+    a(href="https://community.jboss.org/en/freemodeler" id="forums-link") Vist the forums &raquo;
 
   .widget
     / JBoss xPaaS Services Info
     h3 Freemodeler is part of JBoss xPaaS Services for OpenShift
     p Are you familiar with the our bpmPaaS offering, part of xPaaS Services for OpenShift?
-    a(href="http://www.openshift.com/xpaas") Learn more
+    a(href="http://www.openshift.com/xpaas" id="xpaas-link") Learn more
 
   .widget
     asciidoc:
@@ -84,6 +84,6 @@ h2 Cloud-based process modeling
   asciidoc:
     Looking for a solution that can model and run your processes? Upgrade to link:http://www.jboss.org/products/bpmsuite[Red Hat JBoss BPM Suite], which will empower you to model, automate, and orchestrate business processes across applications, services and data, in order to strengthen business agility, execution and results.
     
-  a href="#{site.base_url}/products/bpmsuite/overview"
+  a href="#{site.base_url}/products/bpmsuite/overview" id="bpmsuite-link"
     | Learn More About Red Hat JBoss BPM Suite &raquo;
 
