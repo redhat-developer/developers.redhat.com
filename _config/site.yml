@@ -64,7 +64,7 @@ profiles:
     <<: *profile
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
-    metrics: false
+    metrics: true
     deploy:
       <<: *deploy
       path: /stg_htdocs/www-stg
