@@ -152,17 +152,18 @@ __Note:__ YouTube videos cannot yet be associated with products.
 
 ### Updating Developer Materials Versions
 Developer materials, such as quickstarts and tutorials (Ticket Monster) can be updated to use a new version by completing the following steps. 
-WFK quickstarts are used here as an example:
+EAP quickstarts are used here as an example:
 
-1. Ensure that a tag exists for the new version in the quickstart repo. E.g. for WFK 2.6.0.Final there is [this quickstart tag](https://github.com/jboss-developer/jboss-wfk-quickstarts/tree/2.6.0.Final).
-2. Create a Jira issue for the work in the DEVELOPER jira project. E.g. https://issues.jboss.org/browse/DEVELOPER-841. Assign to yourself.
-3. Go to your checkout of this repo and create a new branch for the change:
+1. Ensure that a tag exists for the new version in the quickstart repo. E.g. for EAP 6.2.0.GA there is [this quickstart tag](https://github.com/jboss-developer/jboss-eap-quickstarts/tree/6.2.0.GA).
+2. [Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for your change.
+3. If you intend to make the change, assign to yourself. Otherwise leave unassigned and skip the following steps.
+4. Go to your checkout of this repo and create a new branch for the change:
 
-        git checkout -b DEVELOPER-841
+        git checkout -b DEVELOPER-123
 
 4. Change to the directory containing the developer materials to update:
 
-        cd _wfk-quickstarts
+        cd _eap-quickstarts
 
 5. Fetch the changes to the quickstart repo
 
@@ -170,7 +171,7 @@ WFK quickstarts are used here as an example:
 
 6. Checkout the new tag
 
-        git checkout 2.6.0.Final
+        git checkout 6.2.0.GA
 
 7. Move back to root directory
 
@@ -179,11 +180,11 @@ WFK quickstarts are used here as an example:
 7. Add and commit the changes
 
         git add .
-        git commit -m "DEVELOPER-841 Update developer materials to the latest released WFK 2.6.0.GA resources"
+        git commit -m "DEVELOPER-123 Update EAP quickstarts t0 version 6.2.0.GA"
 
 8. Push the branch to your fork of this repo. Assumed to be 'orgin'
 
-        git push origin DEVELOPER-841
+        git push origin DEVELOPER-123
 
 9. Go to GitHub and raise a PR for your change.
 
@@ -242,7 +243,7 @@ This makes it easier to discuss the changes individually and aids scheduling of 
 If you are requesting a series of text changes, then putting them in a single issue will probably be fine.
 
 1. Raise a JIRA issue for the change request.
-2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
 3. The Product Marketing Manager (PMM) of the related product approves/rejects the change.
 4. Make the changes to the code.
 5. [Raise a PR](#fixing) for your change.
@@ -255,7 +256,7 @@ See the [EAP Product Overview Page](http://www.jboss.org/products/eap/overview/)
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request. Include:
  1. The link to the training overview page.
  2. The link text to display on the product overview page.
-2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
 3. Add the Link to the product's `featured_training.adoc` file. E.g. see [EAP's featured_training.adoc file](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/featured_training.adoc).
 4. [Raise a PR](#fixing) for your change.
 
@@ -265,7 +266,7 @@ See the [EAP Product Overview Page](http://www.jboss.org/products/eap/overview/)
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request. Include:
  1. The link to the Webinar overview page.
  2. The link text to display on the product overview page.
-2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
 3. Create a thumbnail image for the webinar and add it to the associated product's directory under `/images/products/`. You can probably grab a thumbnail from the webinar's details page.
 4. Add the details to the product's `featured_webinar.adoc` file. E.g. see [EAP's featured_webinar.adoc file](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/featured_webinar.adoc). Use existing links as an example of the format.
 5. [Raise a PR](#fixing) for your change.
@@ -278,7 +279,7 @@ To add or remove from this list:
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request. Include:
  1. The name of the project(s) to add/remove
  2. The name of the product you want modifying
-2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
 3. Edit the value of the `upstream_projects` key in the product's `product.yml` file. As an example, here is [JBoss EAP's product.yml](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/product.yml)
 4. [Raise a PR](#fixing) for your change.
 
@@ -298,7 +299,7 @@ To add/remove item(s) in the 'More Resources' area of the 'Resources' page:
  1. The URL of the resource to add/remove
  2. The text to appear in the link
  3. The text to appear in the short description
-2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned.
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
 3. Edit the product's `resources.adoc` file to add/remove the item. See [JBoss EAP's resources.adoc file](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/resources.adoc) for an example.
 4. [Raise a PR](#fixing) for your change.
 
@@ -329,7 +330,7 @@ Otherwise, the data is being pulled from the project's Magnolia page:
 To change the icon currently displayed for a project on www.jboss.org/projects:
 
 1. [Create a DESIGN JIRA issue](https://issues.jboss.org/secure/DESIGN/CreateIssue!default.jspa)
-2. If you intend to do the following steps, assign to yourself. Otherwise leave unassigned.
+2. If you intend to do the following steps, assign to yourself. Otherwise leave unassigned and skip the following steps.
 3. Create a new image for the project
 4. Using the `design` account, upload it to the project's directory on filemgmt.jboss.org. For example, the AeroGear logo is located at: `filemgmt.jboss.org:/static_htdocs/aerogear/images/aerogear_200x150.png`. Take care to follow the exact format as the image links are generated.
 5. Wait a short while for caches to clear before it appears on www.jboss.org/projects.
