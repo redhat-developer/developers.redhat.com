@@ -66,46 +66,57 @@ org.jboss.bom|jboss-javaee-6.0-with-deltaspike:
   location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-deltaspike/pom.xml'
   repo: '_boms/jboss-wfk-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.wfk:jboss-javaee-6.0-with-deltaspike'
 org.jboss.bom|jboss-javaee-6.0-with-errai:
   location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-errai/pom.xml'
   repo: '_boms/jboss-wfk-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.wfk:jboss-javaee-6.0-with-errai'
 org.jboss.bom|jboss-javaee-6.0-with-hibernate:
-  location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-hibernate/pom.xml'
-  repo: '_boms/jboss-wfk-boms'
+  location: '_boms/jboss-eap-boms/jboss-javaee-6.0-with-hibernate/pom.xml'
+  repo: '_boms/jboss-eap-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.eap:jboss-javaee-6.0-with-hibernate'
 org.jboss.bom|jboss-javaee-6.0-with-hibernate3:
-  location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-hibernate3/pom.xml'
-  repo: '_boms/jboss-wfk-boms'
+  location: '_boms/jboss-eap-boms/jboss-javaee-6.0-with-hibernate3/pom.xml'
+  repo: '_boms/jboss-eap-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.eap:jboss-javaee-6.0-with-hibernate3'
 org.jboss.bom|jboss-javaee-6.0-with-infinispan:
   location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-inifinispan/pom.xml'
   repo: '_boms/jboss-wfk-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.wfk:jboss-javaee-6.0-with-infinispan'
 org.jboss.bom|jboss-javaee-6.0-with-logging:
-  location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-logging/pom.xml'
-  repo: '_boms/jboss-wfk-boms'
+  location: '_boms/jboss-eap-boms/jboss-javaee-6.0-with-logging/pom.xml'
+  repo: '_boms/jboss-eap-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.eap:jboss-javaee-6.0-with-logging'
 org.jboss.bom|jboss-javaee-6.0-with-osgi:
-  location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-osgi/pom.xml'
-  repo: '_boms/jboss-wfk-boms'
+  location: '_boms/jboss-eap-boms/jboss-javaee-6.0-with-osgi/pom.xml'
+  repo: '_boms/jboss-eap-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.eap:jboss-javaee-6.0-with-logging'
 org.jboss.bom|jboss-javaee-6.0-with-richfaces:
   location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-richfaces/pom.xml'
   repo: '_boms/jboss-wfk-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.wfk:jboss-javaee-6.0-with-richfaces'
 org.jboss.bom|jboss-javaee-6.0-with-security:
-  location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-security/pom.xml'
-  repo: '_boms/jboss-wfk-boms'
+  location: '_boms/jboss-eap-boms/jboss-javaee-6.0-with-security/pom.xml'
+  repo: '_boms/jboss-eap-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.eap:jboss-javaee-6.0-with-security'
 org.jboss.bom|jboss-javaee-6.0-with-tools:
-  location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-tools/pom.xml'
-  repo: '_boms/jboss-wfk-boms'
+  location: '_boms/jboss-eap-boms/jboss-javaee-6.0-with-tools/pom.xml'
+  repo: '_boms/jboss-eap-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.eap:jboss-javaee-6.0-with-tools'
 org.jboss.bom|jboss-javaee-6.0-with-transactions:
-  location: '_boms/jboss-wfk-boms/jboss-javaee-6.0-with-transactions/pom.xml'
-  repo: '_boms/jboss-wfk-boms'
+  location: '_boms/jboss-eap-boms/jboss-javaee-6.0-with-transactions/pom.xml'
+  repo: '_boms/jboss-eap-boms'
   until: 2013-07-08 11:20:46 -0300
+  replacedBy: 'org.jboss.bom.eap:jboss-javaee-6.0-with-transactions'
 #org.jboss.bom|jboss-wfk-arquillian:
 #org.jboss.bom|gatein-3.6-bom:
 #org.jboss.bom|gatein-3.5-bom:
