@@ -17,21 +17,21 @@ app.termsAndConditions = {
   },
   download: function () {
 
-    var tcUser = app.termsAndConditions.urlParam('tcUser');
-    var tcWhenSigned = app.termsAndConditions.urlParam('tcWhenSigned');
-    var tcEndsIn = app.termsAndConditions.urlParam('tcEndsIn');
-    var tcDownloadURL = app.termsAndConditions.urlParam('tcDownloadURL');
-    var tcDownloadFileName = app.termsAndConditions.urlParam('tcDownloadFileName');
+    var tcUser = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcUser'));
+    var tcWhenSigned = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcWhenSigned'));
+    var tcEndsIn = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcEndsIn'));
+    var tcDownloadURL = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadURL'));
+    var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
 
     if (tcWhenSigned) {
-      $("#tcWhenSigned").html(decodeURIComponent(tcWhenSigned));
+      $("#tcWhenSigned").html($.encoder.encodeForHTML(tcWhenSigned));
     }
 
     if (tcEndsIn) {
       if (tcEndsIn == "1") {
         $("#tcEndsIn").html("one day ");
       } else {
-        $("#tcEndsIn").html(tcEndsIn + " days ");
+        $("#tcEndsIn").html($.encoder.encodeForHTML(tcEndsIn) + " days ");
       }
     }
 
@@ -39,19 +39,21 @@ app.termsAndConditions = {
       $('div#downloadthankyou').show('slow');
     }
 
-    if (tcDownloadURL) {
-      tcDownloadURL = window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14);
+    if (tcDownloadURL &&
+        tcDownloadURL.startsWith('https://access.cdn.redhat.com/') &&
+        tcDownloadURL.contains(tcDownloadFileName)) {
+      tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
 
       $("a#tcDownloadLink").attr("href", tcDownloadURL);
       if (tcDownloadFileName) {
-        $("#tcDownloadFileName").html(decodeURIComponent(tcDownloadFileName));
+        $("#tcDownloadFileName").html($.encoder.encodeForHTML(tcDownloadFileName));
       }
 
       $.fileDownload(tcDownloadURL);
 
       // Inform GTM that we have requested a product download
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ 'product_download_file_name' : tcDownloadFileName });
+      window.dataLayer.push({ 'product_download_file_name' : $.encoder.encodeForJavascript(tcDownloadFileName) });
       window.dataLayer.push({'event': 'Product Download Requested'});
       
     }
