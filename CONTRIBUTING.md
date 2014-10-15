@@ -199,9 +199,11 @@ This section covers the various contributions that can be made to these pages.
  1. The product and version to be released
  2. The `description` for the release. E.g: `Minor release of JBoss EAP 6.x series`
  3. The `tag_line` for the release. E.g: `Features an updated administrative console that includes a new homepage and exposes the new JBoss EAP patching feature.  Also includes domain recovery improvements and support for CDI injection with PicketLink.  Try it today!`
- 4. The `release_date`
- 5. The CDN paths for each artefact.
+ 4. The `date` of the release.
+ 5. The CDN links to each of the download files. E.g: ` /content/origin/files/sha256/3e/4ed3ea35b5c70f52ad8a7f2cdb40d3ab1a42752c1d3f5f78c76ed571f31g2c60/my_product.1.2.3.GA.zip`
+ 5. The date when you want this change to go live. Typically 'now', but in some case it might be a time in the future.
 2. If the product download has a non-zero micro/patch version (e.g 2.0.1), then the Product Manager will need to approve the change.
+
 
 ### How to add a new product download
 
@@ -209,12 +211,13 @@ First add the downloads to the [Download Manager](www.jboss.org/download-manager
 
 The following steps are currently required, but will no longer be when the downloads are automatically fetched from the download manager.
 
-1. Add a download item to the associated product's `product.yml` file. As an example here is [JBoss EAP's product.yml](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/product.yml)
-2. Update the `current_version:` field in the `product.yml` if you are adding a GA release (i.e. not an Alpha or Beta).
-3. Build the site locally
-4. Visit the download page on your local build to verify the download is appearing correctly
-5. Inspect each of the download links and paste the part after `http://www.jboss.org/download-manager/file` into the associated `Short URL` field of the download item in the [Download Manager](www.jboss.org/download-manager). Take a look at existing downloads for examples. Remember the preceding `/` character. 
-6. [Raise a PR](#fixing) for your change.
+1. Ensure the download is available in the [Download Manager](www.jboss.org/download-manager).
+2. Add a download item to the associated product's `product.yml` file. As an example here is [JBoss EAP's product.yml](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/product.yml)
+3. Update the `current_version:` field in the `product.yml` if you are adding a GA release (i.e. not an Alpha or Beta).
+4. Build the site locally
+5. Visit the download page on your local build to verify the download is appearing correctly
+6. Inspect each of the download links and paste the part after `http://www.jboss.org/download-manager/file` into the associated `Short URL` field of the download item in the [Download Manager](www.jboss.org/download-manager). Take a look at existing downloads for examples. Remember the preceding `/` character. 
+7. [Raise a PR](#fixing) for your change.
 
 
 ### How to Highlight a particular Developer material
