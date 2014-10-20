@@ -3,7 +3,7 @@ layout: microsite
 title: "FreeModeler: BPMN Process Modeling in the Cloud"
 description: Model and simulate business processes in the Cloud at no cost with FreeModeler by Red Hat.
 hero_image: images/freemodeler/freemodeler_microsite_hero.jpg
-freemodeler_app_url: https://dev-freemodeler.rhcloud.com/
+freemodeler_app_url: https://freemodeler-cloud.jboss.org/
 ---
 = define 'hero'
   .row
@@ -43,12 +43,12 @@ freemodeler_app_url: https://dev-freemodeler.rhcloud.com/
     asciidoc:
       Sign up for a jboss.org account to use FreeModeler today or use your existing account to sign in and use FreeModeler.
 
-    a href="https://sso.jboss.org/login?service=http%3A%2F%2Fwww.jboss.org%2Ffreemodeler%2F" id="sign-up-link"
+    a href="#{page.freemodeler_app_url}" id="sign-up-link"
       | Sign Up Today &raquo;
 
   .widget
     h3 Get involved
-    a(href="https://community.jboss.org/en/freemodeler" id="forums-link") Vist the forums &raquo;
+    a(href="https://developer.jboss.org/en/products/bpmsuite/freemodeler" id="forums-link") Vist the forums &raquo;
 
   .widget
     / JBoss xPaaS Services Info
@@ -78,7 +78,7 @@ h2 Cloud-based process modeling
   asciidoc:
     FreeModeler uses the BPMN2 standard for building processes. You can use the following resources to help you learn how to build BPMN2 compliant processes. The process that you build using FreeModeler can be run using any BPMN2 compliant process engine, such as Red Hat JBoss BPM Suite.
   
-    - https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_BRMS_Platform/5/html/BRMS_Business_Process_Management_Guide/chap-Process_Designer.html[Process Modeler User's Guide]
+  a href="https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_BRMS_Platform/5/html/BRMS_Business_Process_Management_Guide/chap-Process_Designer.html" id="user-guide-link" Process Modeler User's Guide
 
   h2 Run your processes!
   asciidoc:
