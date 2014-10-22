@@ -162,9 +162,9 @@ module JBoss::Developer::Extensions
       archetype_page_content = %q!.content[data-slug="#{page.archetype['id']}"]
   p
     = page.archetype['archetype']['description']
-  h3 Import code
+  h3 Usage command
   asciidoc:
-    Place the following into your `pom.xml` file of your project.
+    To use the archetype to generate a new project, you should run:
 
     [NOTE]
     ====
@@ -181,17 +181,10 @@ module JBoss::Developer::Extensions
             pre
               code
                 |
-                  &lt;dependencyManagement>
-                    &lt;dependencies>
-                        &lt;dependency>
-                            &lt;groupId>#{page.archetype['archetype']['groupId']}&lt;/groupId>
-                            &lt;artifactId>#{page.archetype['archetype']['artifactId']}&lt;/artifactId>
-                            &lt;version>#{ver}&lt;/version>
-                            &lt;type>pom&lt;/type>
-                            &lt;scope>import&lt;/scope>
-                        &lt;/dependency>
-                    &lt;/dependencies>
-                  &lt;/dependencyManagement>!
+                   mvn archetype:generate \
+                    -DarchetypeGroupId=#{page.archetype['archetype']['groupId']} \
+                    -DarchetypeArtifactId=#{page.archetype['archetype']['artifactId']} \
+                    -DarchetypeVersion=#{ver}!
       runtime['archetypes'].each do |archetype|
         archetype_page = ::Awestruct::Page.new(site,
                            ::Awestruct::Handlers::LayoutHandler.new(site,
