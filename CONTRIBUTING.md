@@ -188,6 +188,8 @@ EAP quickstarts are used here as an example:
 
 9. Go to GitHub and raise a PR for your change.
 
+#### Updating Ticket Monster download version
+If Ticket Monster has released a new version, the download link in `ticket-monster.adoc` needs to be manually updated as well. Follow the above process for creating a git branch and assigning a JIRA ticket. Open the `ticket-monster.adoc` file and find the correct `DOWNLOAD IT` link, retreive the new link from GitHub and modify the document. Then follow the above instructions for adding the change, pushing the branch and creating a new pull request.  
 
 ## How to Make Changes to the Product Pages
 The product pages are those linked from www.jboss.org/products.
