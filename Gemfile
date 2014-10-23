@@ -13,7 +13,7 @@ def darwin_only(require_as)
 end
  
 # GEMS
-gem 'awestruct', '~> 0.5.4.rc3'
+gem 'awestruct', '~> 0.5.6.beta3'
 gem 'slim', '~> 2.0.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 1.5.0'
@@ -35,6 +35,7 @@ gem 'google-api-client', '~> 0.7'
 gem 'signet', '~> 0.5.1'
 gem 'gpgme', '~> 2.0'
 gem 'ruby-duration', '~> 3.1'
+gem 'daybreak'
 
 group :development do
   gem 'rb-inotify', require: false
