@@ -1,5 +1,5 @@
 /*
-* jQuery File Download Plugin v1.4.2 
+* jQuery File Download Plugin v1.4.2
 *
 * http://www.johnculviner.com
 *
@@ -116,7 +116,7 @@ $.extend({
             //
             //if specified it will be used when attempting to clear the above name value pair
             //useful for when downloads are being served on a subdomain (e.g. downloads.example.com)
-            //	
+            //
             cookieDomain: null,
 
             //
@@ -131,7 +131,7 @@ $.extend({
             //It is recommended that on the server, htmlentity decoding is done irrespective.
             //
             encodeHTMLEntities: true
-            
+
         }, options);
 
         var deferred = new $.Deferred();
@@ -215,7 +215,7 @@ $.extend({
                 }
 
                 settings.failCallback(responseHtml, url);
-                
+
                 deferred.reject(responseHtml, url);
             }
         };
@@ -371,7 +371,7 @@ $.extend({
                                 } else {
                                     throw e;
                                 }
-                            } 
+                            }
                         }
 
                         if (isFailure) {
@@ -380,7 +380,7 @@ $.extend({
                                 internalCallbacks.onFail(formDoc.body.innerHTML, fileUrl);
                                 cleanUp(true);
                             }, 100);
-                            
+
                             return;
                         }
                     }
@@ -429,7 +429,7 @@ $.extend({
                         }
                     }
                 }
-                
+
                 //iframe cleanup appears to randomly cause the download to fail
                 //not doing it seems better than failure...
                 //if ($iframe) {
@@ -443,7 +443,7 @@ $.extend({
         function htmlSpecialCharsEntityEncode(str) {
             return str.replace(htmlSpecialCharsRegEx, function(match) {
                 return '&' + htmlSpecialCharsPlaceHolders[match];
-        	});
+		});
         }
 
         return deferred.promise();

@@ -27,6 +27,26 @@ String.prototype.toHHMMSS = function () {
     return time;
 };
 
+// String startsWith polyfill from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
+if (!String.prototype.startsWith) {
+  Object.defineProperty(String.prototype, 'startsWith', {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+    value: function (searchString, position) {
+      position = position || 0;
+      return this.lastIndexOf(searchString, position) === position;
+    }
+  });
+}
+
+// String contains polyfill from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/contains
+if (!String.prototype.contains) {
+  String.prototype.contains = function() {
+    return String.prototype.indexOf.apply(this, arguments) !== -1;
+  };
+}
+
 Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop, direction){
     if (arguments.length < 1) throw new Error("sortJsonArrayByProperty requires 1 argument");
     var direct = arguments.length > 2 ? arguments[2] : 1; //Default to ascending
