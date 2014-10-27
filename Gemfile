@@ -35,6 +35,7 @@ gem 'signet', '~> 0.5.1'
 gem 'gpgme', '~> 2.0'
 gem 'ruby-duration', '~> 3.1'
 gem 'daybreak'
+gem 'sass', '~> 3.4', '< 3.4.6'
 
 group :development do
   gem 'rb-inotify', require: false
