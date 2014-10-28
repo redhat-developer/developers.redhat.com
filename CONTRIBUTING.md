@@ -360,22 +360,22 @@ If you don't have access:
 To request a change to the banner on the homepage:
 
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa)
-1.1 Specify when you would like the new banner to go live, and when it should expire.
-1.2 If you have an existing image or an idea of what the image should look like, attach or link to it in the issue
-1.3 Provide the link that should be followed when the user clicks on the banner.
+ 1. Specify when you would like the new banner to go live, and when it should expire.
+ 2. If you have an existing image or an idea of what the image should look like, attach or link to it in the issue
+ 3. Provide the link that should be followed when the user clicks on the banner.
 
 On approval of the change:
 
 1. [Create a DESIGN JIRA issue](https://issues.jboss.org/secure/DESIGN/CreateIssue!default.jspa) to have a desktop and mobile banner graphic created.
-1.2 On completion of graphic creation, a link to the graphic (hosted on http://design.jboss.org/) should be added to the DEVELOPER issue (created above).
+2. On completion of graphic creation, a link to the graphic (hosted on http://design.jboss.org/) should be added to the DEVELOPER issue (created above).
 2. To change the image:
-2.1 Add the mobile and desktop images to https://github.com/jboss-developer/www.jboss.org/tree/master/images/branding
-2.2 Open https://github.com/jboss-developer/www.jboss.org/blob/master/index.html.slim
-2.3 Change the '/ Hero Slider' section of the code:
-2.3.1 Each `.large-24.slide` section represents an individual banner in the carousel in the order it shows on the site.
-2.3.2 Either replace an existing item, or add a new one in the right place.
-2.3.3 Remember to remove any old images if you remove the item from the carousel.
-2.3.4 Remember to set the link, image and alt text for the banner you are adding.
+  1. Add the mobile and desktop images to https://github.com/jboss-developer/www.jboss.org/tree/master/images/branding
+  2. Open https://github.com/jboss-developer/www.jboss.org/blob/master/index.html.slim
+  3. Change the '/ Hero Slider' section of the code:
+    1. Each `.large-24.slide` section represents an individual banner in the carousel in the order it shows on the site.
+    2. Either replace an existing item, or add a new one in the right place.
+    3. Remember to remove any old images if you remove the item from the carousel.
+    4. Remember to set the link, image and alt text for the banner you are adding.
 3. [Raise a PR](#fixing) for your change.
 
 ## General changes
