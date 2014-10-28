@@ -924,6 +924,10 @@ h1,h2,h3,h4,h5,h6 {
     padding-bottom: 5px;
     font-weight: 100;
     clear: both;
+    p {
+      font-size:1.8rem;
+      margin: 0;
+    }
   }
   &.promo-headline {
     font-size:emCalc(80);
