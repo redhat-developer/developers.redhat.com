@@ -209,7 +209,7 @@ This section covers the various contributions that can be made to these pages.
 
 ### How to add a new product download
 
-First add the downloads to the [Download Manager](www.jboss.org/download-manager).
+First add the downloads to the [Download Manager](http://www.jboss.org/download-manager/).
 
 The following steps are currently required, but will no longer be when the downloads are automatically fetched from the download manager.
 
