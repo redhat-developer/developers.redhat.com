@@ -23,6 +23,15 @@
     }
   }
 
+  .intro {
+    &.intro-layout2 {
+      h2 {
+        padding:0;
+        font-size: emCalc(25);
+      }
+    }
+  }
+
   /* Development Tools */
   div.development-tool-category {
     div.development-tool {
@@ -162,6 +171,14 @@
   }
 }
 
+@include mobile-landscape-and-down {
+  .spotlights {
+    img {
+      margin-bottom: 20px;
+    }
+  }
+}
+
 // Events mobile styles
 
 @media (max-width: 767px) {
@@ -209,14 +226,16 @@
 
 @media (max-width: 480px) {
 
-.desktop {
-  display:none;
-}
+  .desktop {
+    display:none;
+  }
 
-.mobile {
-  display:block;
-  padding-bottom: 20px;
-}
+  .mobile {
+    display:block;
+    padding-bottom: 20px;
+  }
+
+
 }
 
 // Newsletter mobile style
