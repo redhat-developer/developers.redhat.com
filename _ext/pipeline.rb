@@ -119,6 +119,12 @@ Awestruct::Extensions::Pipeline.new do
                                                           excludes: ['_wfk-quickstarts/template'],
                                                           product: 'wfk')
 
+  extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_fuse-quickstarts',
+                                                          layout: 'get-started-item',
+                                                          output_dir: '/quickstarts/fuse',
+                                                          excludes: ['_fuse-quickstarts/template'],
+                                                          product: 'fuse')
+
   extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
   extension JBoss::Developer::Extensions::AsciidoctorExtensionRegister.new
   
