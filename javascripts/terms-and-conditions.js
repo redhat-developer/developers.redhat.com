@@ -53,7 +53,7 @@ app.termsAndConditions = {
 
       // Inform GTM that we have requested a product download
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ 'product_download_file_name' : $.encoder.encodeForJavascript(tcDownloadFileName) });
+      window.dataLayer.push({ 'product_download_file_name' : $.encoder.encodeForJavascript(tcDownloadFileName).replace(/\x2D/g, '-') });
       window.dataLayer.push({'event': 'Product Download Requested'});
       
     }
