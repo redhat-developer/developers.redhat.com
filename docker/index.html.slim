@@ -78,7 +78,7 @@ asciidoc:
               a.button.postfix href="#"
                 span More info &raquo;
 
-          div.more-info[style="clear: both; display: none;" name="#{image.name.gsub('/', '_').strip}"]
+          div.more-info.hide[name="#{image.name.gsub('/', '_').strip}"]
             p #{image.description}
 
             ul.button-group.right

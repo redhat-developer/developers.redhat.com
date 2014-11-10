@@ -80,6 +80,10 @@ module JBoss
               altered = true
             end
           end
+          if doc.xpath('@style|.//@style')
+            altered = true
+            doc.xpath('@style|.//@style').remove
+          end
           content = doc.to_html if altered
         end
         content
