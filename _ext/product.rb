@@ -41,12 +41,10 @@ module JBoss
           if site.cache.nil?
             site.send('cache=', Aweplug::Cache::FileCache.new)
           end
-          articles = []
-          solutions = []
+
           site.products = {}
           forum_counts = Hash[JSON.load(@searchisko.search({facet:'per_project_counts', sys_type:'forumthread', size:1}).body)['facets']['per_project_counts']['terms'].map(&:values).map(&:flatten)]
           Parallel.each(site.pages, :in_threads => (site.build_threads || 0)) do |page|
-          #site.pages.each do |page|
             if !page.product.nil? && page.relative_source_path.start_with?('/products')
               product = page.product
               id = page.parent_dir
