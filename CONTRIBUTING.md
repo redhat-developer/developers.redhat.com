@@ -381,6 +381,12 @@ On approval of the change:
 ## General changes
 If you have a general change that doesn't fall into the categories above, create a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa).
 
+## Images
+
+1. Images below 20kb should normally be saved as PNGs. The site build automatically compresses PNGs, so just save the PNG out.
+2. Images above 20kb should normally be saved as JPEGs, however if you have a text, or line, heavy image, consider using a PNG - save both and look at the file size. The site build does not automatically compress JPEGs, so run them through kraken.io first.
+3. Images should normally be 100kb or less.
+
 ## General Feedback
 [contact us](#contact) for general feedback that doesn't constitute a bug report or feature request.
 
