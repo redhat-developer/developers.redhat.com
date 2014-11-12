@@ -15,47 +15,6 @@
   display: none;
 }
 
-
-.overlay {
-  background:rgba(0,0,0,0.6);
-  position: fixed;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 999; 
-  display: none;
-}
-
-body.overlay-open {
-  .overlay {
-    display:table;
-  }
-}
-
-
-.overlay-wrap {
-  display: table-cell;
-  vertical-align: middle;
-}
-.overlay-inner {
-  max-width:800px;
-  padding:30px 0;
-  background:white;
-  margin: 0 auto;
-  position: relative;
-}
-
-
-.overlay-close {
-  position: absolute;
-  font-size: 30px;
-  top:0;
-  right:10px;  
-}
-
 .copy-to-clipboard {
   height:14px;
   width:114px;
