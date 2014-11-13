@@ -1,0 +1,16 @@
+---
+layout: product-base
+---
+
+.large-6.columns
+  = partial 'product-left-menu.html.slim', {'parent' => page}
+
+//Store the DCP Project code in a div, so that it can be read by connectors.js when deciding which target_product to filter on
+span[data-target-product='#{page.product.dcp_project_code}']
+
+.large-18.columns.text-content
+  h2.divider#overview Connectors
+  = page._overview
+
+  ul.small-block-grid-2.large-block-grid-4.medium-block-grid-3.results
+

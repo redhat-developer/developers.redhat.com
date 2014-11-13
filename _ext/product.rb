@@ -76,6 +76,12 @@ module JBoss
                   end
                   product.featured_videos = res.flatten.reject {|v| v.nil?}
                 end
+
+                # Add a flag if product has a connectors page
+                if File.exists?('./products/' + id + '/connectors.adoc')
+                  product.send('has_connectors_page=', true)
+                end
+
                 # Store the product in the global product map
                 site.products[product.id] = product
                 page.send('featured_items=', product['featured_items'])

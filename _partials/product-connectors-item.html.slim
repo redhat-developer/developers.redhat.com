@@ -1,0 +1,27 @@
+li.connector
+  a.fn-open-connector(href="#")
+    img.connector-logo(src="<!=img_path_thumb!>")
+  h3
+    a.fn-open-connector(href="#") <!=sys_title!>
+  p    <!=sys_description!>
+  .connector-overlay-content
+    .row
+      .large-7.columns
+        img.connector-logo(src="<!=img_path_thumb!>")
+      .large-17.columns
+        p  <!=sys_content!>
+
+        div.connector-a
+          h4
+            | Connector A
+            = partial 'copy-to-clipboard.html.slim', {'text' => '<!=code_snippet_1!>'}
+          input.snippet-value type="text" value="<!=code_snippet_1!>"
+
+        div.connector-b
+          h4
+            | Connector B
+            = partial 'copy-to-clipboard.html.slim', {'text' => '<!=code_snippet_2!>'}
+          input.snippet-value type="text" value="<!=code_snippet_2!>"
+        p
+          | For more details, view the 
+          a(href="<!=more_details_url!>") Product Documentation
