@@ -1,0 +1,58 @@
+---
+layout: solution-base
+title: Solutions
+---
+.row
+  .large-24.columns
+    h2 Solutions
+.row
+  .large-24.columns
+    ul.breadcrumbs
+      li
+        a href="#{site.base_url}/technology" Technology
+      li
+        a href="#{site.base_url}/solutions" Solutions
+.row
+  .large-24.columns
+    p
+      = page._overview
+.row.solutions-row
+  .large-24.columns
+    ul.large-block-grid-4.small-block-grid-2
+      - for solution in site.solutions.values
+        li.solution.large-8.column(data-open-solution="#{solution.id}")
+          a.image-link: img(src=cdn(site.base_url + "/images/solutions/#{solution.id}/thumb_300x300.png"))
+          a.solution-name-link(href="#")
+            h3.solution-name #{solution.name}
+  .solution-overlays.clearfix
+    - for solution in site.solutions.values
+      .solution-wrap(data-solution="#{solution.id}")
+        .solution-overlay.clearfix
+          .large-12.column
+            h3: Solution #{solution.name}
+            p #{solution.long_description}
+            - if solution.overview_links
+              - for item in solution.overview_links do
+                p.solution-meta
+                  a(href="#{item.url}") #{item.description}
+            a.button.shadow href="#{site.base_url}/#{solution.id}" See the solution in action!
+          .large-12.column
+            a.fn-close-overlay(href="#") &times;
+            - if solution.slider_images.length > 0
+              .slider-wrapper.solution-slider
+                .slider
+                  .swipe-wrap
+                    - for img in solution.slider_images
+                      .slide
+                        img(src=cdn(site.base_url + '/' + img))
+              .solutions-slider-controls
+                a.prev(href="#")
+                  i.fa.fa-chevron-circle-left
+                a.next(href="#")
+                  i.fa.fa-chevron-circle-right
+                span.current-slide 1
+                span of
+                span.total-slides #(solution.slider_images.length)
+            - else
+              img(src=cdn(site.base_url + "/images/solutions/#{solution.id}/thumb_400x300.png"))
+

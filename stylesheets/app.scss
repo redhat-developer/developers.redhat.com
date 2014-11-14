@@ -131,6 +131,22 @@ button, .button {
       background: lighten($med-blue,10%);
     }
   }
+  &.button--clear {
+    padding-left:0;
+    padding-right: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow:none;
+    color:$med-green;
+    text-align-last: auto;
+    font-size: emCalc(14);
+    text-transform: none;
+    i {
+      margin-right:2px;
+      margin-left: 2px;
+    }
+  }
 }
 
 .button-group {
@@ -144,11 +160,6 @@ button, .button {
  }
 }
 
-
-.row .row {
-  margin-left: -$column-gutter / 2;
-  margin-right: -$column-gutter / 2; // accommodates for larger gutters and nested rows
-}
 
 /* Tables */
 table {
@@ -1427,6 +1438,17 @@ span.asterisk {
     i {
       margin-right:10px;
     }
+  }
+}
+
+.divider .share-this {
+  width: 200px;
+  display: inline-block;
+  float: right;
+  position: relative;
+  // top: -26px;
+  p {
+    font-size: 15px;
   }
 }
 
