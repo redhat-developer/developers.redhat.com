@@ -98,7 +98,7 @@ $(function () {
 
     $('ul.results').on('click','a.fn-open-connector',function(e){
         e.preventDefault();
-        var overlay_content = $(this).parent().parent().find('.connector-overlay-content');
+        var overlay_content = $(this).parents('li').find('.connector-overlay-content');
         app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-a'));
         app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
         app.connectors.open(overlay_content.html());
