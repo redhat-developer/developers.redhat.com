@@ -7,7 +7,7 @@ li.connector
   .connector-overlay-content
     .row
       .large-7.columns
-        img.connector-logo(src="<!=img_path_thumb!>")
+        img.connector-logo(src="<!=img_path_thumb!>" onerror="<!=fallback_img!>" )
       .large-17.columns
         p  <!=sys_content!>
 

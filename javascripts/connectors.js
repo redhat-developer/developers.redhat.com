@@ -18,8 +18,16 @@ app.connectors = {
             snippet_elem.hide();
         }
     },
+    
+    displayOverlay: function (e) {
+        e.preventDefault();
+        var overlay_content = $(this).parents('li').find('.connector-overlay-content');
+        app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-a'));
+        app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
+        app.connectors.open(overlay_content.html());  
+    },
 
-    connectorFilter : function(container, target_product) {
+    connectorFilter : function(keyword, container, target_product, thumbnailSize) {
         //Currently the only way to specify no limit
         var maxResults = 500;
         var url = app.dcp.url.search;
@@ -27,6 +35,11 @@ app.connectors = {
         //Query returns items where any of the three target products are set to the required product.
         var query = ["(sys_content_type: jbossdeveloper_connector AND (target_product_1: " + target_product + " OR target_product_2: " + target_product + " OR target_product_3: " + target_product + "))"];
 
+        //And specify the connector IDs if specified.
+        if (keyword) {
+            query += " AND (" + keyword + ")";
+        }
+        
         var request_data = {
             "field"  : ["_source"],
             "query" : query,
@@ -41,16 +54,18 @@ app.connectors = {
             dataType: 'json',
             data : request_data,
             container : container,
+            thumbnailSize : thumbnailSize,
             error : function() {
                 $('ul.results').html(app.dcp.error_message);
             }
         }).done(function(data){
             var container = this.container || $('ul.results');
-            app.connectors.format(data, container);
+            var thumbnailSize = this.thumbnailSize || "200x150";
+            app.connectors.format(data, container, thumbnailSize);
         });
     },
 
-    format: function (data, container) {
+    format: function (data, container, thumbnailSize) {
         if (data.responses) {
             var hits = data.responses[0].hits.hits;
         } else {
@@ -63,7 +78,8 @@ app.connectors = {
         for (var i = 0; i < hits.length; i++) {
             var props = hits[i]._source;
 
-            props.img_path_thumb = "http://static.jboss.org/connectors/" + props.id + "_200x150.png";
+            props.img_path_thumb = "http://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
+            props.fallback_img = app.connectors.fallbackImage(this);
 
             //If no 'long description', use the short one (before it is truncated)
             if (!('sys_content' in props)) {
@@ -89,24 +105,31 @@ app.connectors = {
         }
 
         container.html(html).removeClass('loading');
-        container.prev().find("#connectors-results-label").html(hits.length);
+        $('span#connectors-results-label').html(hits.length);
     }
 };
 
 
 $(function () {
 
-    $('ul.results').on('click','a.fn-open-connector',function(e){
-        e.preventDefault();
-        var overlay_content = $(this).parents('li').find('.connector-overlay-content');
-        app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-a'));
-        app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
-        app.connectors.open(overlay_content.html());
-    });
+    $('ul.results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
+    $('ul.featured-connectors-results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
 
     $('.overlay-close').on('click', app.connectors.close);
 
     var targetProductFilter = $('[data-target-product]').data('target-product');
-    app.connectors.connectorFilter($('ul.results'), targetProductFilter);
+    app.connectors.connectorFilter(null, $('ul.results'), targetProductFilter, null);
+
+    
+    /*
+        Featured Connectors
+     */
+    var featuredConnectorIds = $('.featured-connector-ids');
+    if(featuredConnectorIds.length) {
+        var queryVal = JSON.parse(featuredConnectorIds.text()).join(' OR ');
+        var query = "sys_content_id:("+queryVal+")";
+
+        app.connectors.connectorFilter(query, $('ul.featured-connectors-results'), targetProductFilter, '500x400');
+    }
 });
 
