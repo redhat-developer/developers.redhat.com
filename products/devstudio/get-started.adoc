@@ -6,22 +6,24 @@ Install JBoss Developer Studio Integration Stack
 
 ## Extra section
 
-*Note:* You will need JBoss Developer Studio 7 to use the Integration Stack. This is not yet offered for JBoss Developer Studio 8.
+*Note:* You will need JBoss Developer Studio 7 to use the stable Integration Stack, or you can use JBoss Developer Studio 8 with an _Early Access_ version of the Integration Stack.
 
-The Integration Stack for JBoss Developer Studio 7, is a set of plugins for Eclipse that provides tooling for the following products:
+The Integration Stack for JBoss Developer Studio is a set of plugins for Eclipse that provides tooling for:
 
-* JBoss Fuse
-* JBoss A-MQ
-* JBoss Fuse Service Works
-* JBoss BRMS
-* JBoss BPM Suite
+* JBoss Business Process and Rules Development
+* JBoss Data Virtualization Development
+* JBoss Integration and SOA Development
+* JBoss SOA 5.x Development
 
 To install the Integration Stack tools:
 
-1. link:http://www.jboss.org/download-manager/file/jboss-devstudio-7.1.1.GA-jar_universal.jar[Download JBoss Developer Studio 7.1.1 all-in-one installer] and then install it.
+1. Download the JBoss Developer Studio all-in-one installer and install it. Choose one of these:
+* Stable version: link:http://www.jboss.org/download-manager/file/jboss-devstudio-7.1.1.GA-jar_universal.jar[7.1.1] or 
+* Early Access version: link:http://www.jboss.org/download-manager/file/jboss-devstudio-8.0.0.GA-jar_universal.jar[8.0.0]
 2. Select the _Software/Update_ tab in the _JBoss Central_ view.
-3. Scroll down the list of _available features_, looking for the _JBoss Developer Studio Integration Stack_ section. See the image below.
-4. Tick the following items:
+3. If using JBoss Developer Studio 8, tick the checkbox to _Enable Early Access_, and click _Yes_ to accept the warning.
+4. Scroll down the list of _available features_, looking for the _JBoss Developer Studio Integration Stack_ section. See the image below.
+5. Tick the following items:
 
 * JBoss Business Process and Rules Development
 * JBoss Data Virtualization Development
@@ -30,6 +32,6 @@ To install the Integration Stack tools:
 
 image::#{cdn(site.base_url + '/images/products/devstudio/jbtis-b2.png')}[role="center"]
 
-[start=5]
+[start=6]
 . Click the _Install_ button.
 
