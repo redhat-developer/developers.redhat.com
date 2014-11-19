@@ -34,7 +34,7 @@ head
   - if site.keywords
     meta name='keywords' content=site.keywords
   - if page.twitter_card == 'player'
-    meta name='twitter:player' content="https:#{page.video_iframe_url}"
+    meta name='twitter:player' content="#{page.video_url}"
     meta name='twitter:player:height' content=page.video_height
     meta name='twitter:player:width' content=page.video_width
   - if page.og_type == 'video'
@@ -42,7 +42,7 @@ head
     meta property='og:updated_time' content=page.published_date
     meta property='og:video:width' content=page.video_width
     meta property='og:video:height' content=page.video_height
-    meta property='og:video:url' content="https:#{page.video_iframe_url}"
+    meta property='og:video:url' content="#{page.video_url}"
     - if !page.author.nil?
       - if !page.author['social'].nil?
         - if !page.author['social']['facebook'].nil?
