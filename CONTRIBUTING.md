@@ -213,12 +213,12 @@ First add the downloads to the [Download Manager](http://www.jboss.org/download-
 
 The following steps are currently required, but will no longer be when the downloads are automatically fetched from the download manager.
 
-1. Ensure the download is available in the [Download Manager](www.jboss.org/download-manager).
+1. Ensure the download is available in the [Download Manager](http://www.jboss.org/download-manager).
 2. Add a download item to the associated product's `product.yml` file. As an example here is [JBoss EAP's product.yml](https://github.com/jboss-developer/www.jboss.org/blob/master/products/eap/_common/product.yml)
 3. Update the `current_version:` field in the `product.yml` **only** if you are adding a GA release (i.e. not an Alpha or Beta).
 4. Build the site locally
 5. Visit the download page on your local build to verify the download is appearing correctly
-6. Inspect each of the download links and paste the part after `http://www.jboss.org/download-manager/file` into the associated `Short URL` field of the download item in the [Download Manager](www.jboss.org/download-manager). Take a look at existing downloads for examples. Remember the preceding `/` character. 
+6. Inspect each of the download links and paste the part after `http://www.jboss.org/download-manager/file` into the associated `Short URL` field of the download item in the [Download Manager](http://www.jboss.org/download-manager). Take a look at existing downloads for examples. Remember the preceding `/` character. 
 7. [Raise a PR](#fixing) for your change.
 
 
