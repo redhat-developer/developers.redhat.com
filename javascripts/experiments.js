@@ -17,7 +17,7 @@ app.pageVariations = [
       Variation 2:
       Fullbleed Layout
     */
-    $('.slider').hide();
+    $('.hero .slider').hide();
     $('.intro').removeClass().addClass('row').wrap('<div class="wide intro intro-layout2">');
     $('.intro').show();
     $('.hero').removeClass('hero').load(app.baseUrl + 'spotlights .spotlights');
