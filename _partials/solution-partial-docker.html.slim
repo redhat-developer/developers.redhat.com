@@ -1,0 +1,34 @@
+h3.divider Available Docker Images
+| Below you can find the list of images we have crafted for you.
+
+- site.docker_images.each do |project|
+
+  .row.solutions-body
+    .large-12.columns
+      h4 #{project.name}
+      p
+        a href='#{project.url}'
+          img src='#{project.image_url}'
+      p #{project.description}
+      a[class="small button" href='#{project.url}'] Learn more
+    .large-12.columns
+      div
+        h5 Images
+        - project.images.each do |image|
+          .more-info-link[name="#{image.name.gsub('/', '_').strip}"]
+            input[type="text" id="pull-wildfly" value="docker pull #{image.name}" readonly="readonly"]
+            a.button.postfix href="#" More info
+
+          div.more-info[name="#{image.name.gsub('/', '_').strip}" hidden]
+            p #{image.description}
+
+            a[href="https://registry.hub.docker.com/u/#{image.name}/"] Docker Hub
+            a[href='https://github.com/jboss-dockerfiles/#{image.path}/Dockerfile'] Dockerfile
+            a[href='https://github.com/jboss-dockerfiles/#{image.path}/README.md'] Readme
+
+
+  hr
+
+asciidoc:
+  ==== I don't see my project!
+  We're happy to add your project to the list, just link:mailto:docker@jboss.org[contact us] and we'll see what we can do. If you have a Dockerfile already, be sure to add it to the email :)

@@ -8,10 +8,11 @@ layout: technology-base
 .row.technology-blocks
   ul.large-block-grid-2.small-block-grid-1
     - site.nav['technology'].children.each do |k,v|
-      li
-        .technology-item
-          h3 #{v.label}
-          .technology-item-inside
-            = page["_" + k.gsub(/-/, "_")]
-            a.button(href="#{v.url}") Learn More
-            = video_player(video(v.video))
+      - if v.video
+        li
+          .technology-item
+            h3 #{v.label}
+            .technology-item-inside
+              = page["_" + k.gsub(/-/, "_")]
+              a.button(href="#{v.url}") Learn More
+              = video_player(video(v.video))

@@ -4,7 +4,7 @@
   image_url: http://static.jboss.org/wildfly/images/wildfly_200x150.png
   images:
     - name: jboss/wildfly
-      path: wildfly
+      path: wildfly/blob/master
       description: Image containing the latest WildFly release. It is configured to boot the standalone mode by default but you can easily run it in domain mode. Please refer to the README on how to switch the modes and how to deploy applications.
 
 - name: Keycloak
@@ -13,13 +13,13 @@
   image_url: http://static.jboss.org/keycloak/images/keycloak_200x150.png
   images:
     - name: jboss/keycloak
-      path: keycloak/server
+      path: keycloak/blob/master/server
       description: Builds on top of <code>jboss/keycloak-adapter-wildfly</code>, adding the <code>auth-server.war</code> to it, as well as its dependencies
     - name: jboss/keycloak-adapter-wildfly
-      path: keycloak/adapter-wildfly
+      path: /keycloak/tree/master/adapter-wildfly
       description: Builds on top of the <code>jboss/wildfly</code> image, adding the Keycloak adapter for WildFly to it, as well as the required changes to the <code>standalone.xml</code>
     - name: jboss/keycloak-examples
-      path: keycloak/examples
+      path: keycloak/tree/master/server
       description: Builds on top of <code>jboss/keycloak</code>, adding the examples.
 
 - name: TorqueBox
@@ -28,7 +28,7 @@
   image_url: http://static.jboss.org/torquebox/images/torquebox_200x150.png
   images:
     - name: jboss/torquebox
-      path: torquebox
+      path: torquebox/blob/master
       description: Latest TorqueBox release.
 
 - name: Immutant
@@ -37,7 +37,7 @@
   image_url: http://static.jboss.org/immutant/images/immutant_200x150.png
   images:
     - name: jboss/immutant
-      path: immutant
+      path: immutant/blob/master
       description: Latest Immutant release.
 
 - name: LiveOak
@@ -46,7 +46,7 @@
   image_url: http://static.jboss.org/jca/images/jca_200x150.png
   images:
     - name: jboss/liveoak-server
-      path: liveoak/server
+      path: liveoak/blob/master/server
       description: This image provides basic distribution of LiveOak.
 
 - name: AeroGear
@@ -55,7 +55,7 @@
   image_url: http://static.jboss.org/aerogear/images/aerogear_200x150.png
   images:
     - name: jboss/aerogear-simplepush-server
-      path: aerogear/server/simplepush
+      path: aerogear/blob/master/server/simplepush
       description: Provides AeroGear SimplePush Server
 
 - name: SwitchYard
@@ -64,5 +64,5 @@
   image_url: http://static.jboss.org/switchyard/images/switchyard_200x150.png
   images:
     - name: jboss/switchyard-wildfly
-      path: switchyard/switchyard-wildfly
+      path: switchyard/blob/master/switchyard-wildfly
       description: Latest SwitchYard release on top of WildFly server. It is configured to boot the standalone mode by default but you can easily run it in domain mode. Please refer to the README on how to switch the modes and how to deploy applications.

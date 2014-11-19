@@ -23,3 +23,23 @@ font-size: 1em;
   border-color: #c60f13;
   }
 }
+
+form.side-by-side {
+  label {
+    display: block;
+    width:20%;
+    float: left;
+    margin: 0;
+    padding:0.925em 1em 0.925em 0;
+    color:$grey-5;
+    font-weight: 600;
+    text-align: right;
+  }
+  input[type=text],input[type=email], select, textarea {
+    width:80%;
+    float: left;
+  }
+  textarea {
+    height:150px;
+  }
+}

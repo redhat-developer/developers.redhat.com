@@ -15,6 +15,7 @@ require 'jboss_developer'
 require 'nav'
 require 'stacks'
 require 'product'
+require 'solution'
 require 'mktg_ops'
 require 'disqus'
 require 'disqus_more'
@@ -127,6 +128,11 @@ Awestruct::Extensions::Pipeline.new do
                                                           excludes: ['_fuse-quickstarts/template'],
                                                           product: 'fuse')
 
+  extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_unifiedpush-quickstarts',
+                                                          layout: 'get-started-item',
+                                                          output_dir: '/quickstarts/unifiedpush',
+                                                          product: 'unifiedpush')
+
   extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
   extension JBoss::Developer::Extensions::AsciidoctorExtensionRegister.new
   
@@ -146,6 +152,8 @@ Awestruct::Extensions::Pipeline.new do
   extension JBoss::Developer::Extensions::Nav.new
  
   extension JBoss::Developer::Extensions::CommonDir.new
+
+  extension JBoss::Developer::Extensions::Solution.new
 
   # Load featured videos from a googlespreadsheet. Must be loaded before product
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'featured_videos',

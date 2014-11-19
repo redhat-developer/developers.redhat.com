@@ -1,0 +1,40 @@
+= Docker
+:awestruct-layout: solution-detail
+
+== Overview
+The http://www.docker.com/[Docker project] revolutionizes thinking about software delivery making it easy to build and share images that include your content. 
+We at http://jboss.org/[JBoss] love the idea behind Docker and ship images for our projects. 
+Just for you.
+
+Pssst. If you’re new to Docker please take 8 minutes to http://www.docker.com/whatisdocker/[watch this introduction to Docker]. And of course http://www.docker.com/tryit/[give it a try!]
+
+
+
+== Left Section
+
+=== Goal
+We provide Docker images for our http://www.jboss.org/projects/[JBoss projects] to let you focus on using them instead of worrying about packaging.
+The Docker image delivery format makes it easy to extend/reuse images. It is a good idea to use our images as the base for your own image (using the `FROM` command in your http://docs.docker.com/reference/builder/[Dockerfile]).
+
+=== Documentation
+Every image is different therefore please consult the readme linked to each image. If you don’t find the answer there, don’t hesitate to contact us.
+
+
+== Right Section
+
+=== Issues and enhancements
+If you have issues with images listed below or you have an idea on how to make them better, please open a new ticket in the image's repo in our https://github.com/jboss-dockerfiles[GitHub organization]. 
+Please start the ticket name with a `[image-name]` prefix, eg. `[jboss/wildfly]`.
+
+=== Contact
+We’re there for you on IRC in the `#jboss-docker` channel on Freenode.
+
+
+== Extra Section Title
+JBoss Projects and Docker
+
+== Extra Section
+We publish our images under the official https://hub.docker.com/u/jboss/[jboss organization].
+Every image is built from Dockerfiles available from the repositories in our https://github.com/jboss-dockerfiles[GitHub organization].
+To keep them up to date we have http://docs.docker.com/docker-hub/builds/[automated builds] that track the source and rebuild images (only) if necessary.
+Additionally, images are linked to each other: If an image we're base on is modified, we rebuild our image to provide you the fresh image that you deserve.
