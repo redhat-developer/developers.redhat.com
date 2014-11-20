@@ -14,6 +14,66 @@ guides:
 default_download_artifact_type: zip
 description: 'An intelligent, distributed caching solution that boosts application performance, provides greater deployment flexibility, and minimizes the overhead of standing up new applications.'
 downloads:
+  6.4.0.Beta:
+    release_date: 2014-11-18
+    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
+    assets:
+      zip:
+        size: 164mb
+        name: Data Grid Server
+      zip_library:
+        size: 37mb
+        name: Data Grid Library
+      eap_module:
+        size: 2mb
+        name: JBoss EAP Module for Hotrod Java Client
+      eap_library:
+        size: 22mb
+        name: JBoss EAP Module for Data Grid Library
+      java_client:
+        size: 2mb
+        name: Hot Rod Java Client
+      cppclient:
+        name: Hot Rod C++ Client
+        artifacts:
+          win32:
+            name: C++ Client Win32
+            size: 4mb
+          win64:
+            name: C++ Client Win64
+            size: 4mb
+          rhel6_64:
+            name: C++ Client RHEL6_64
+            size: 1mb
+          rhel5_64:
+            name: C++ Client RHEL5_64
+            size: 1mb
+          source:
+            name: Source
+            size: 610kb
+      dotnetclient:
+        name: Hot Rod .Net Client
+        artifacts:
+          DotNet:
+            name: Hot Rod .Net Client
+            size: 1mb
+            type: msi
+          DotNetSource:
+            name: Hot Rod .Net Source
+            size: 1mb
+      quickstarts:
+        size: 1mb
+        name: Quickstarts
+      camel_library:
+        size: 1mb
+        name: Camel Library
+      maven_repo:
+        size: 141mb
+        name: Maven Repository
+      source:
+        size: 38mb
+      release_notes:
+        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Grid/6.4/html/6.4.0_Beta_Release_Notes/index.html
   6.3.0.GA:
     release_date: 2014-07-21
     description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
@@ -70,54 +130,6 @@ downloads:
       source:
         size: 9mb
       release_notes:
-#  6.3.0.Beta:
-#    release_date: 2014-05-28
-#    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
-#    tag_line: Features expanded security with role-based authorization and access control as well as secured data within clusters. Also, modules for JBoss EAP users, a new JPA cache store, and a C# Hot Rod client in technology preview. Try it today!
-#    assets:
-#      server:
-#        size: 142mb
-#        name: Data Grid Server
-#      library:
-#        size: 33mb
-#        name: Data Grid Library
-#      eap-modules-library:
-#        size: 22mb
-#        name: JBoss EAP Module for Data Grid Library
-#      hotrod-java-client:
-#        size: 1.6mb
-#        name: Hot Rod Java Client
-#      eap-modules-hotrod-java-client:
-#        size: 1.6mb
-#        name: JBoss EAP Module for Hotrod Java Client
-#      hotrod-cpp-client:
-#        name: Hot Rod C++ Client
-#        artifacts:
-#          win-i686:
-#            name: C++ Client Win32
-#            size: 3.5mb
-#          win-x86_64:
-#            name: C++ Client Win64
-#            size: 3.8mb
-#          rhel6-x86_64:
-#            name: C++ Client RHEL6_64
-#            size: 1.3mb
-#          rhel5-x86_64:
-#            name: C++ Client RHEL5_64
-#            size: 1mb
-#      hotrod-dotnet-client-win:
-#        size: 1.4mb
-#        name: Hot Rod .Net Client
-#        type: msi
-#      maven-repository:
-#        size: 74mb
-#        name: Maven Repository
-#      quickstarts:
-#        size: 214kb
-#        name: Quickstarts
-#      sources:
-#        size: 13mb
-#      release_notes:
   6.2.0.GA:
     release_date: 2014-01-15
     description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
@@ -146,72 +158,6 @@ downloads:
       source:
         size: 9mb
       release_notes:
-#  6.2.0.Beta:
-#    release_date: 2013-11-07
-#    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
-#    assets:
-#      zip:
-#        size: 133mb
-#        name: Data Grid Server
-#      zip_library:
-#        size: 41mb
-#        name: Data Grid Library
-#      cppclient:
-#        name: Hot Rod C++ Client
-#        artifacts:
-#          rhel6_64:
-#            name: C++ Client RHEL6_64
-#            size: 1mb
-#      source:
-#        size: 19mb
-#      release_notes:
-#  6.1.0.GA:
-#    release_date: 2013-03-20
-#    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
-#    assets:
-#      zip_library:
-#        size: 22mb
-#        name: Zip (Data Grid Library)
-#      zip:
-#        size: 68mb
-#        name: Zip (Data Grid Server)
-#      release_notes:
-#      source:
-#        size: 8mb
-#
-#  6.0.1:
-#    release_date: 2012-09-18
-#    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
-#    assets:
-#      zip-library:
-#        size: 14mb
-#        name: Zip (Data Grid Library)
-#      zip-server:
-#        size: 67mb
-#        name: Zip (Data Grid Server)
-#  6.0.0:
-#    release_date: 2012-06-15
-#    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
-#    assets:
-#      zip-library:
-#        size: 14mb
-#        name: Zip (Data Grid Library)
-#      zip-server:
-#        size: 67mb
-#        name: Zip (Data Grid Server)
-#  6.2.0.BETA:
-#    release_date: 2013-11-07
-#    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
-#    assets:
-#      zip-cppclient-RHEL6_64:
-#        size: 434kb
-#        name: Zip (CPP Client RHEL6 64bit)
-#      zip-library:
-#        size: 41mb
-#        name: Zip (Data Grid Library)
-#      zip-server:
-#        size: 133mb
-#        name: Zip (Data Grid Server)
 upstream_projects:
   - infinispan
   - jgroups
