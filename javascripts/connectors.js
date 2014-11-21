@@ -47,7 +47,7 @@ app.connectors = {
         };
 
         // append loading class to wrapper
-        $("ul.results").addClass('loading');
+        $("ul.connector-results").addClass('loading');
 
         $.ajax({
             url : url,
@@ -56,10 +56,10 @@ app.connectors = {
             container : container,
             thumbnailSize : thumbnailSize,
             error : function() {
-                $('ul.results').html(app.dcp.error_message);
+                $('ul.connector-results').html(app.dcp.error_message);
             }
         }).done(function(data){
-            var container = this.container || $('ul.results');
+            var container = this.container || $('ul.connector-results');
             var thumbnailSize = this.thumbnailSize || "200x150";
             app.connectors.format(data, container, thumbnailSize);
         });
@@ -112,13 +112,20 @@ app.connectors = {
 
 $(function () {
 
-    $('ul.results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
+    $('ul.connector-results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
     $('ul.featured-connectors-results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
 
     $('.overlay-close').on('click', app.connectors.close);
 
     var targetProductFilter = $('[data-target-product]').data('target-product');
-    app.connectors.connectorFilter(null, $('ul.results'), targetProductFilter, null);
+
+    /*
+     Featured Connectors
+     */
+    var connectorResults = $('.connector-results');
+    if(connectorResults.length) {
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null);
+    }
 
     
     /*
