@@ -2,17 +2,17 @@
 layout: get-started-base
 ---
 = partial 'jdf_advise.html.slim', {'parent' => page}
-.developer-materials
-  .developer-materials-sidebar
-    = partial 'developer-materials-filters.html.slim'
-  .developer-materials-main.text-content
-    h2.divider#featured Featured
-    = partial('developer-materials-featured.html.slim', {'featured_items' => site.featured_items})
-    .developer-materials-results
-      = partial 'developer-materials-results.html.slim'
-  .space
+div(ng-app="dcp")
+  .developer-materials(ng-controller="developerMaterialsController")
+    .developer-materials-sidebar
+      = partial 'developer-materials-filters.html.slim'
+    .developer-materials-main.text-content
+      h2.divider#featured Featured
+      = partial('developer-materials-featured.html.slim', {'featured_items' => site.featured_items})
+      .developer-materials-results
+        = partial 'developer-materials-results.html.slim'
+    .space
 
-= javascripts("developer-materials-filter", true) do
-  script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
-  script src="#{site.base_url}/javascripts/jdfadvise.js"
+  = javascripts("developer-materials-filter", true) do
+    script src="#{site.base_url}/javascripts/jdfadvise.js"
 

@@ -14,19 +14,6 @@ String.prototype.format = function() {
   });
 };
 
-String.prototype.toHHMMSS = function () {
-    var sec_num = parseInt(this, 10); // don't forget the second param
-    var hours   = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-    var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-    if (hours   < 10) {hours   = "0"+hours;}
-    if (minutes < 10) {minutes = "0"+minutes;}
-    if (seconds < 10) {seconds = "0"+seconds;}
-    var time    = hours+':'+minutes+':'+seconds;
-    return time;
-};
-
 // String startsWith polyfill from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
 if (!String.prototype.startsWith) {
   Object.defineProperty(String.prototype, 'startsWith', {
@@ -219,6 +206,36 @@ app.utils.getQueryVariable = function (variable) {
       return decodeURIComponent(pair[1]);
     }
   }
+};
+
+app.utils.diplayPagination = function(currentPage, totalPages, pagesToShow) {
+  if(!pagesToShow) {
+    pagesToShow = 4;
+  }
+  else if(pagesToShow % 2) {
+    pagesToShow++; // must be an even number
+  }
+  // some defaults
+  var pagesToShow = pagesToShow || 4;
+  var startPage = (currentPage < 5) ? 1 : currentPage - (pagesToShow / 2);
+  var endPage = pagesToShow + startPage;
+  endPage = (totalPages < endPage) ? totalPages : endPage;
+  var diff = startPage - endPage + pagesToShow;
+  startPage -= (startPage - diff > 0) ? diff : 0;
+
+  var display = [];
+  if (startPage > 1) {
+    display.push(1);
+    display.push("⋯");
+  }
+  for(i=startPage; i<=endPage; i++){
+    display.push(i);
+  }
+  if (endPage < totalPages) {
+    display.push("⋯");
+    display.push(totalPages);
+  }
+  return display;
 };
 
 // TODO Move this somewhere else

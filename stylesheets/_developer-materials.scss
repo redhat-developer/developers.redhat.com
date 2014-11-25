@@ -3,8 +3,27 @@
   @extend .columns;
 }
 .developer-materials-main {
-  @extend .large-13;
+  @extend .large-17;
   @extend .columns;
+}
+
+
+.developer-materials-options {
+  text-align: right;
+  margin-bottom: 20px;
+  label {
+    display: inline-block;
+    background: #F5F5F5;
+    padding: 10px;
+    margin: 10px;
+  }
+  input[type="radio"], input[type="checkbox"] {
+    display: none;
+    &:checked + label {
+      background:$dark-blue;
+      color:white;
+    }
+  }
 }
 
 /* Materials */
@@ -100,6 +119,13 @@ ul.results {
   }
 }
 
+label.has-tip {
+  border-bottom: 0;
+  &:hover {
+    border-bottom: 0;
+  }
+}
+
 .chosen-container ~ label {
   display: none; // hide the inputs if the chosen container activates (desktop only)
 }
@@ -108,6 +134,75 @@ body .chosen-container-multi .chosen-choices li.search-field input[type="text"] 
   height:auto !important;
   font-size: 1em;
   color: #ABABAB;
+}
+
+// Table Layout
+
+.label {
+  &.experimental-text, &.premium-text {
+    display: block;
+    width: 100%;
+    margin: 0;
+    float: none;
+    text-align: center;
+    &:hover {
+      color:white;
+    }
+  }
+  &.experimental-text {
+    background: #FE8D00;
+  }
+  &.premium-text {
+    background:#CD0013;
+    color:white;
+  }
+}
+
+table.developer-materials-grid {
+  table-layout: fixed;
+  width: 100%;
+  tr {
+    td {
+      vertical-align: middle;
+      position: relative;
+      &.type {
+        width:15%;
+        img {
+          padding: 0;
+        }
+      }
+      &.description {
+        width:28%;
+      }
+      &.title {
+        width:30%;
+        a.name {
+          font-size: 12px;
+          margin-top: 10px;
+          display: block;
+        }
+      }
+      &.publish {
+        width:12%;
+      }
+      &.product {
+        width:10%;
+      }
+      &.skill {
+        width:13%;
+        text-align: center;
+        padding: 0;
+        .label {
+          margin: 0;
+          float: none;
+        }
+      }
+      &.rating-stars {
+        width:11%;
+      }
+
+    }
+  }
 }
 
 @include tablet-portrait-and-down {
@@ -206,7 +301,7 @@ body .chosen-container-multi .chosen-choices li.search-field input[type="text"] 
     h5 {
       padding-left:10px;
     }
-    
+
     select[name="filter-topic[]"] {
       display: none; // hide the select as chosen will provide the interface
     }
@@ -224,6 +319,7 @@ body .chosen-container-multi .chosen-choices li.search-field input[type="text"] 
       background:$dark-blue;
       border-bottom: 1px solid $grey-5;
       font-weight: 600;
+      display: block;
       &:after {
         content : "\f00c";
         font-family: FontAwesome;
@@ -241,6 +337,9 @@ body .chosen-container-multi .chosen-choices li.search-field input[type="text"] 
         margin:0;
         display: none;
       }
+    }
+    .chosen-container {
+      display: none;
     }
     span.skill-display {
       position: absolute;
@@ -346,5 +445,25 @@ body .chosen-container-multi .chosen-choices li.search-field input[type="text"] 
   p {
     margin-bottom: 0;
   }
-  
+
+}
+
+img.loader {
+  display: block;
+  margin: 20px auto;
+  padding-bottom: 600px; // this stops the jump when the results pane is emptied and updated
+}
+
+span.label.count {
+  border-radius:4px;
+  margin-left: 4px;
+  background:$light-green;
+  display: none; // Hide until we have more than 500 payload
+}
+
+a[data-page="⋯"]{
+  cursor:default;
+  &:hover {
+    background:none;
+  }
 }
