@@ -191,6 +191,28 @@ EAP quickstarts are used here as an example:
 #### Updating Ticket Monster download version
 If Ticket Monster has released a new version, the download link in `ticket-monster.adoc` needs to be manually updated as well. Follow the above process for creating a git branch and assigning a JIRA ticket. Open the `ticket-monster.adoc` file and find the correct `DOWNLOAD IT` link, retreive the new link from GitHub and modify the document. Then follow the above instructions for adding the change, pushing the branch and creating a new pull request.  
 
+
+### How to Highlight a particular Developer material
+A particular developer material can be highlighted on the main developer materials page.
+For example, notice the banner visible on [the Developer Materials page](http://www.jboss.org/developer-materials).
+To change this:
+
+1. [Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for your change. Include:
+1.1 When you would like the new banner to go live, and when it should expire.
+1.2 Any existing image or idea of what the image should look like.
+1.3 The link to the developer material that should be associated with the image. This needs to be a link to the details page. See existing banners for examples.
+
+On approval of the change:
+
+1. Create a DESIGN issue to have a graphic created.
+1.2 On completion of graphic creation, a link to the graphic (hosted on http://design.jboss.org/) should be added to the DEVELOPER issue.
+2. Update the `_config/featured_items.yml`. Changing:
+2.1 `image_url`: This is the address of the graphic created by the DESIGN JIRA issue and linked in the DEVELOPER issue.
+2.2 `title`: The title of the item being linked to.
+2.3 `text`: A short description of the item being linked to. Most likely the text from the image.
+2.4 `url`: A url to the developer material's details page on www.jboss.org.
+3. [Raise a PR](#fixing) for your change.
+
 ## How to Make Changes to the Product Pages
 The product pages are those linked from www.jboss.org/products.
 This section covers the various contributions that can be made to these pages.
