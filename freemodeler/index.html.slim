@@ -1,0 +1,89 @@
+---
+layout: microsite
+title: "FreeModeler: BPMN Process Modeling in the Cloud"
+description: Model and simulate business processes in the Cloud at no cost with FreeModeler by Red Hat.
+hero_img: images/freemodeler/freemodeler_microsite_hero.jpg
+freemodeler_app_url: https://freemodeler-cloud.jboss.org/
+---
+= define 'hero'
+  .row
+    .large-16.columns
+      .row
+        .large-24.columns
+          img src=cdn('images/freemodeler/freemodeler_logotype_light.svg')
+      .row
+        .large-3.columns
+          h3: i.fa.fa-pencil.fa-inverse.pull-right
+        .large-9.columns
+          h3 Model your processes
+          p Easily import or create business processes
+        .large-3.columns
+          h3: i.fa.fa-comments.fa-inverse.pull-right
+        .large-9.columns.end
+          h3 Free to use
+          p Create a free account to start modeling your processes
+      .row
+        .large-3.columns
+          h3: i.fa.fa-signal.fa-inverse.pull-right
+        .large-9.columns
+          h3 In the cloud
+          p Your processes safely stored and available wherever and whenever you need them
+        .large-3.columns
+          h3: i.fa.fa-sign-out.fa-inverse.pull-right
+        .large-9.columns
+          h3 Export
+          p Your processes can run on BPMN2 software such as Red Hat JBoss BPM Suite
+    .y-center.large-8.columns
+      div
+        a.button.btn-primary.btn-large(href="#{page.freemodeler_app_url}" id="use-freemodeler-link") Use FreeModeler
+
+= define 'right_rail'
+  .widget
+    h3 Sign Up for Free
+    asciidoc:
+      Sign up for a jboss.org account to use FreeModeler today or use your existing account to sign in and use FreeModeler.
+
+    a href="#{page.freemodeler_app_url}" id="sign-up-link"
+      | Sign Up Today &raquo;
+
+  .widget
+    h3 Get involved
+    a(href="https://developer.jboss.org/en/products/bpmsuite/freemodeler" id="forums-link") Vist the forums &raquo;
+
+  .widget
+    / JBoss xPaaS Services Info
+    h3 Freemodeler is part of JBoss xPaaS Services for OpenShift
+    p Are you familiar with the our bpmPaaS offering, part of xPaaS Services for OpenShift?
+    a(href="http://www.openshift.com/xpaas" id="xpaas-link") Learn more
+
+  .widget
+    asciidoc:
+      === Learn more about BPMN2
+      - http://en.wikipedia.org/wiki/Business_Process_Model_and_Notation[BPMN2 Quick Guide]
+      - http://www.omg.org/oceb-2/index.htm[BPMN2 Certification]
+
+
+/ Content area 
+h2 Cloud-based process modeling
+.list-icon-checklist
+  asciidoc:
+    - Cloud-based. No downloads, no installation required.
+    - Free to use. Just create your account and you are ready to go!
+    - Create an account and model processes in moments.
+    - Simple to use web-based interface enables you to model your processes
+    - Open, no lock-in. Export your processes for execution on your BPM software
+    - Evolve your process drawings to fully-fledged BPMN2 processes
+
+  h2 Use
+  asciidoc:
+    FreeModeler uses the BPMN2 standard for building processes. You can use the following resources to help you learn how to build BPMN2 compliant processes. The process that you build using FreeModeler can be run using any BPMN2 compliant process engine, such as Red Hat JBoss BPM Suite.
+  
+  a href="https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_BRMS_Platform/5/html/BRMS_Business_Process_Management_Guide/chap-Process_Designer.html" id="user-guide-link" Process Modeler User's Guide
+
+  h2 Run your processes!
+  asciidoc:
+    Looking for a solution that can model and run your processes? Upgrade to link:http://www.jboss.org/products/bpmsuite[Red Hat JBoss BPM Suite], which will empower you to model, automate, and orchestrate business processes across applications, services and data, in order to strengthen business agility, execution and results.
+    
+  a href="#{site.base_url}/products/bpmsuite/overview" id="bpmsuite-link"
+    | Learn More About Red Hat JBoss BPM Suite &raquo;
+
