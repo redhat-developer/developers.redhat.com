@@ -18,6 +18,9 @@
   ## Fix MimeType for .ttf files
   ## Prevents incorrect type detection - mainly useful to remove false positives from PageSpeed
   AddType application/octet-stream .ttf
+  ############################################
+  ## Fix MimeType for .svg files
+  AddType image/svg+xml svg
 </IfModule>
 
 <IfModule mod_headers.c>
