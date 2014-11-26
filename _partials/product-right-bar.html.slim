@@ -22,6 +22,11 @@
             i>(class="#{asset.artifacts[0].icon}")
             | #{asset.name}
 
+- if page.parent.product.secondary_cta
+  .widget
+    h3.widget-title #{page.parent.product.secondary_cta.title}
+    a.button.small.blue(href="#{page.parent.product.secondary_cta.href}") #{page.parent.product.secondary_cta.button_text}
+
 .widget
   h3.widget-title#supported-solutions Supported Solutions
   ul
