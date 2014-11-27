@@ -12,6 +12,8 @@ skips:
     # For some reason we get a 502 from the linkedin.com and facebook.com share service, so exclude this
   - !ruby/regexp /^https?:\/\/(www\.)?linkedin\.com\/shareArticle.*/
   - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/sharer\.php.*/
+    # Facebook profile pages cannot be checked without a login
+  - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/.*\?rel=author$/
 ignores:
   - url: !ruby/regexp /^https?:\/\/dcp(beta-searchisko\.rhcloud\.com|\.jboss\.org)\/v1\/rest/
   - url: git://github.com/snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
