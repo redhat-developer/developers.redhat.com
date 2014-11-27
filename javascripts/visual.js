@@ -107,9 +107,10 @@ app.stickyNav = function(className, headerElement) {
 
   win.scroll(function() {
     if(win.scrollTop() >= (top)) {
-      nav.addClass(className + "-nav-fixed");
+      var width = nav.parent().width();
+      nav.addClass(className + "-nav-fixed").css('width',width);
     } else {
-      nav.removeClass(className + "-nav-fixed");
+      nav.removeClass(className + "-nav-fixed").css('width','auto');
     }
 
     // Sticky headers on the faqs
