@@ -27,6 +27,10 @@ app.termsAndConditions = {
       $("#tcWhenSigned").html($.encoder.encodeForHTML(tcWhenSigned));
     }
 
+    if(!tcWhenSigned) {
+      $('.downloadthankyou p').hide();
+    }
+
     if (tcEndsIn) {
       if (tcEndsIn == "1") {
         $("#tcEndsIn").html("one day ");
