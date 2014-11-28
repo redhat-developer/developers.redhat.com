@@ -26,8 +26,25 @@ app.connectors = {
         app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
         app.connectors.open(overlay_content.html());  
     },
+    
+    orderByPriority: function(e) {
+        e.preventDefault();
+        var targetProductFilter = $('[data-target-product]').data('target-product');
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, 'priority');
 
-    connectorFilter : function(keyword, container, target_product, thumbnailSize) {
+        $('.connectors-order a').removeClass('active');
+        $('.order-priority').addClass('active');
+    },
+
+    orderByAlpha: function(e) {
+        e.preventDefault();
+        var targetProductFilter = $('[data-target-product]').data('target-product');
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, 'sys_title');
+        $('.connectors-order a').removeClass('active');
+        $('.order-alpha').addClass('active');
+    },
+
+    connectorFilter : function(keyword, container, target_product, thumbnailSize, orderBy) {
         //Currently the only way to specify no limit
         var maxResults = 500;
         var url = app.dcp.url.search;
@@ -55,23 +72,26 @@ app.connectors = {
             data : request_data,
             container : container,
             thumbnailSize : thumbnailSize,
+            orderBy: orderBy,
             error : function() {
                 $('ul.connector-results').html(app.dcp.error_message);
             }
         }).done(function(data){
             var container = this.container || $('ul.connector-results');
             var thumbnailSize = this.thumbnailSize || "200x150";
-            app.connectors.format(data, container, thumbnailSize);
+            var orderBy = this.orderBy || "priority";
+            app.connectors.format(data, container, thumbnailSize, orderBy);
         });
     },
 
-    format: function (data, container, thumbnailSize) {
+    format: function (data, container, thumbnailSize, orderBy) {
         if (data.responses) {
             var hits = data.responses[0].hits.hits;
         } else {
             var hits = data.hits.hits;
         }
-        hits.sortJsonArrayByProperty("_source.sys_title");
+        
+        hits.sortJsonArrayByProperty("_source." + orderBy);
 
         var html = "";
         // loop over every hit
@@ -114,17 +134,21 @@ $(function () {
 
     $('ul.connector-results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
     $('ul.featured-connectors-results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
-
+    
+    $('.link-list').on('click','a.order-priority',app.connectors.orderByPriority);
+    $('.link-list').on('click','a.order-alpha',app.connectors.orderByAlpha);
+    
     $('.overlay-close').on('click', app.connectors.close);
 
     var targetProductFilter = $('[data-target-product]').data('target-product');
-
+    var orderBy = $('[data-order-by]').data('order-by');
+    
     /*
-     Featured Connectors
+        All Connectors
      */
     var connectorResults = $('.connector-results');
     if(connectorResults.length) {
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null);
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, orderBy);
     }
 
     
