@@ -125,7 +125,6 @@ app.connectors = {
         }
 
         container.html(html).removeClass('loading');
-        $('span#connectors-results-label').html(hits.length);
     }
 };
 
