@@ -23,7 +23,10 @@ ol
 
     li
       p
-        | Make sure you have a JDK of your choice installed. We recommend OpenJDK or Oracle JDK. 
+        - if page._jdk_advice
+          = page._jdk_advice
+        - else
+          | Make sure you have a JDK of your choice installed. We recommend OpenJDK or Oracle JDK. 
 
     - if page.product.default_download_artifact.type == "installer"
       li
