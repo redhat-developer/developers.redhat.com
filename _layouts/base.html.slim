@@ -182,7 +182,8 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
   #fb-root
   
   / Page Experiments
-  script src="//www.google-analytics.com/cx/api.js?experiment=moRTWrZ2RgCt2XT5fJPqrQ"
+  - unless site.experiment_id.nil?
+    script src="//www.google-analytics.com/cx/api.js?experiment=#{site.experiment_id}"
   = javascripts "bottom" do
     / Load jQuery, CORS support for jquery (IE 8/9)
     script src="#{site.base_url}/javascripts/vendor/jquery.js"
