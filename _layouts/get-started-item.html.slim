@@ -61,13 +61,13 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
             span itemprop="about" =page.metadata[:target_product]
   .row.content
     .columns.large-24
-      .columns.large-4
+      .columns.medium-4
         ul.toc.gsi-nav
           - if page.metadata[:toc]
             - for link in page.metadata[:toc]
               li: a href="##{link[:id]}" #{link[:text]}
         br
-      .columns.large-16.gsi
+      .columns.medium-16.gsi
         = page.content
 
         / TODO: Share Knowledge, comments go here
