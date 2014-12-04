@@ -53,10 +53,16 @@ Array.prototype.sortJsonArrayByProperty = function sortJsonArrayByProperty(prop,
 
     var propPath = (prop.constructor === Array) ? prop : prop.split(".");
     this.sort(function(a,b){
-        for (var p in propPath){
-            if (a[propPath[p]] && b[propPath[p]]){
+        for (var p = 0; p < propPath.length; p++) {
+            if (a[propPath[p]] && b[propPath[p]]){ //Both have the property, so continue
                 a = a[propPath[p]];
                 b = b[propPath[p]];
+            } else if (a[propPath[p]]) { //B doesn't have the property so A comes before B
+                return -1 * direct;
+            } else if (b[propPath[p]]) { //A doesn't have the property so B comes before A
+                return direct;
+            } else { //Neither has the property so they are both considered equal
+                return 0;
             }
         }
         // convert numeric strings to integers or to lower case strings
