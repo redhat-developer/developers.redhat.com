@@ -95,6 +95,7 @@ ul.featured-projects-results {
 }
 
 .project-content-left {
+  position: static;
   p {
     margin:5px 0;
   }
@@ -103,6 +104,8 @@ ul.featured-projects-results {
 ul.project-social {
   list-style: none;
   margin: 0;
+  position: absolute;
+  bottom: 10px;
   li {
     display:inline;
     a {

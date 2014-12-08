@@ -25,7 +25,7 @@ app.project = {
 
     // Pass search params to GTM for analytics
     window.dataLayer = window.dataLayer || [];
-    
+
     /*
       Keyword
     */
@@ -37,7 +37,7 @@ app.project = {
         "field"  : ["_source"],
         "query" : query,
         "size" : maxResults
-    } 
+    }
 
     if ($('select[name="filter-products"]').length && $('select[name="filter-products"]').val() !== "") {
       var product = $('select[name="filter-products"]').val();
@@ -113,7 +113,7 @@ app.project = {
 
     for (var i = 0; i < hits.length; i++) {
       var props = hits[i]._source;
-      
+
       var imgsrc = "http://static.jboss.org/" + (props.specialIcon || props.sys_project) + "/images/" + (props.specialIcon || props.sys_project) + "_" + thumbnailSize + ".png";
 
       var template = "<li class=\"upstream\">"
@@ -164,7 +164,8 @@ app.project = {
       }
       if (props.chatLink) {
         var correctLink = app.project.getCorrectUrl(props.chatLink);
-        list += "<li><a href='"+correctLink+"'>Chat</a></li>";
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Chat: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
       }
       if (props.blogLink) {
         var correctLink = app.project.getCorrectUrl(props.blogLink);
@@ -239,11 +240,11 @@ app.project = {
 
       // downloads link
       if (props.downloadsLink) {
-        projectContentLeft.append("<p><a class='upstream-download' href=\""+ app.project.getCorrectUrl(props.downloadsLink) + "\"><i class=\"fa fa-download\"></i> Download</a></p>"); 
+        projectContentLeft.append("<p><a class='upstream-download' href=\""+ app.project.getCorrectUrl(props.downloadsLink) + "\"><i class=\"fa fa-download\"></i> Download</a></p>");
       }
 
       // project url
-      projectContentLeft.append("<p><a href='"+app.project.getCorrectUrl(props.sys_url_view)+"'>Visit the "+props.sys_project_name+" home page</a></p>");
+      projectContentLeft.append("<p><a href='"+app.project.getCorrectUrl(props.sys_url_view)+"'>Visit home page</a></p>");
 
       // social links
       var social = $('<ul>').addClass('project-social');
@@ -298,7 +299,7 @@ $(function() {
   $('select[name="filter-products"]').on('change', function(e) {
     e.preventDefault();
     var el = $(this);
-    app.project.projectFilter(); 
+    app.project.projectFilter();
     app.utils.updatePageHash(el);
   });
 
@@ -350,7 +351,7 @@ $(function() {
   if(featuredProjectIds.length) {
     var queryVal = JSON.parse(featuredProjectIds.text()).join(' OR ');
     var query = "sys_content_id:("+queryVal+")";
-    
+
     app.project.projectFilter(null, query, $('ul.featured-projects-results'), '500x400');
 
   }
