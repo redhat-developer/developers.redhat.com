@@ -55,4 +55,4 @@ a.moreinfolink(href="../resources")
   = page._articles
 
 h3.divider#buzz Buzz
-.product-buzz-container(data-tags="#{page.product.buzz_tags}")
+.product-buzz-container(data-tags="#{(JSON.dump page.product.buzz_tags).gsub(/"/, "'")}")
