@@ -16,9 +16,9 @@ skips:
   - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/.*\?rel=author$/
     # False errors on Blinkr.yaml
   - !ruby/regexp /http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/contact/
-  - !ruby/regexp /^http:\/\/community.jboss.org\/en\/gatein\?view=discussions.+/
-  - !ruby/regexp /^https:\/\/community.jboss.org\/en\/gatein\?view=documents.+/
-  - !ruby/regexp /^http:\/\/community.jboss.org\/en\/gatein\?view=blog.+/
+  - !ruby/regexp /^http:\/\/community.jboss.org\/en\/gatein\?view=discussions+/
+  - !ruby/regexp /^https:\/\/community.jboss.org\/en\/gatein\?view=documents+/
+  - !ruby/regexp /^http:\/\/community.jboss.org\/en\/gatein\?view=blog+/
     # LinkedIn Issue DEVELOPER-1120
   - !ruby/regexp /http:\/\/linkedin.com\/.+/
     # Google plus issue DEVELOPER-1126
@@ -43,6 +43,8 @@ skips:
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/sample-portal\/README.html+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/simplest-hello-world-portlet\/README.html+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/social-portlets\/README.html+/
+    # JDF-773
+  - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Unsolicted\+Responses+/
 ignores:
   - url: !ruby/regexp /^https?:\/\/dcp(beta-searchisko\.rhcloud\.com|\.jboss\.org)\/v1\/rest/
   - url: git://github.com/snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
@@ -286,6 +288,9 @@ ignores:
   - url: https://www.redhat.com/rhecm/rest-rhecm/jcr/repository/collaboration/jcr:system/jcr:versionStorage/5e6e3e7a7f0000011d40cd22e322196b/4/jcr:frozenNode/rh:pdfFile.pdf #DEVELOPER-1139
   - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/IDU-JBI_HSH_JBIComponent.html #DEVELOPER-1148
   - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Unified_Push/ #DEVELOPER-1148
+  - url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Fabric_Guide/files/front.html #DEVELOPER-1148
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Fuse/6.1/html/Release_Notes/files/front.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/IDU-Cache_HSH_CacheComponent.html #DEVELOPER-1148
 max_page_retys: 10
 max_retrys: 10
 browser: phantomjs
