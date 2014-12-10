@@ -48,7 +48,11 @@ app.buzz = {
 
     // Pull the json array, switch back to double quotes, then parse it.
     var tags = container.data('tags') || "";
-    tags = JSON.parse(tags.replace(/'/g, "\""));
+    try {
+      tags = JSON.parse(tags.replace(/'/g, "\""));
+    } catch (e) {
+      tags = "";
+    }
 
     if(tags){
       query.push("sys_tags:"+tags);
