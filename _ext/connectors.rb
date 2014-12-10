@@ -28,10 +28,11 @@ module JBoss
             end
           }.to_h.merge({'sys_url_view' => "#{site.base_url}/products/fuse/connectors#!id=#{id}",})
 
-          searchisko.push_content('jbossdeveloper_connector',
+          unless !site.push_to_searchisko || site.profile =~ /development/
+            searchisko.push_content('jbossdeveloper_connector',
                         id,
                         searchisko_hash.to_json)
-
+          end
         end
       end
 
