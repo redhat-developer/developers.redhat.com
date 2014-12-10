@@ -32,7 +32,7 @@ module JBoss::Developer::Extensions
                                                      :cache => site.cache,
                                                      :logger => site.log_faraday,
                                                      :searchisko_warnings => site.searchisko_warnings})
-      Parallel.each(yml['availableRuntimes'], in_threads: 20) do |runtime|
+      Parallel.each(yml['availableRuntimes'], in_threads: (site.build_threads || 0)) do |runtime|
         # WARNING Hacks below
         case runtime['labels']['runtime-type']
         when 'JPP'
