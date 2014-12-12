@@ -9,7 +9,7 @@ app.buzz = {
   filter : function(tmpl, container, itemCount, append, from, callback) {
 
     // set a default item count of 8
-    var itemCount = itemCount || 8;
+    itemCount = itemCount || 8;
 
     // append loading class to wrapper
     container.addClass('buzz-loading');
@@ -21,7 +21,7 @@ app.buzz = {
 
     var filters = {
       "keyword" : keyword
-    }
+    };
     var currentFilters = {};
 
     $.each(filters, function(key, val) {
@@ -38,7 +38,7 @@ app.buzz = {
     window.dataLayer = window.dataLayer || [];
         
     
-    if(currentFilters['keyword']) {
+    if(currentFilters.keyword) {
       query.push(keyword);
       window.dataLayer.push({ 'keyword' : keyword });
     } else {
@@ -46,15 +46,26 @@ app.buzz = {
     }
 
 
-    var tags = container.data('tags');
+    // Pull the json array, switch back to double quotes, then parse it.
+    var tags = container.data('tags') || "";
+    try {
+      tags = JSON.parse(tags.replace(/'/g, "\""));
+    } catch (e) {
+      tags = "";
+    }
 
     if(tags){
+      for (var i = 0; i < tags.length; i++) {
+        if (tags[i].contains(" ")) {
+          tags[i] = "\"" + tags[i] + "\"";
+        }
+      }
       query.push("sys_tags:"+tags);
       window.dataLayer.push({ 'tags' : tags });
     } else {
       window.dataLayer.push({ 'tags' : null });
     }
-    var query = query.join(" AND ");
+    query = query.join(" AND ");
 
     window.dataLayer.push({'event': 'buzz-search'});
 
@@ -173,7 +184,7 @@ app.buzz = {
             itemSelector: '.buzz-item'
           });
         });
-      };
+      }
     });
     
     /* 
@@ -183,7 +194,7 @@ app.buzz = {
 
     if($mbuzz.length) {
       app.buzz.filter(app.templates.miniBuzzTemplate, $mbuzz);
-    };
+    }
 
     /* 
       Full Buzz, for the buzz page
@@ -221,7 +232,7 @@ app.buzz = {
           });
         }
       });
-    };
+    }
 
     /* 
       Product Page Buzz by tag
@@ -230,7 +241,7 @@ app.buzz = {
 
     if($pbuzz.length) {
       app.buzz.filter(app.templates.productBuzzTemplate, $pbuzz);
-    };
+    }
 
     // Event Listeners for Buzz Filter
     // When the buzz filter input is changed, search
