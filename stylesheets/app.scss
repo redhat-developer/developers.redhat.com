@@ -1236,6 +1236,9 @@ ul.external-links {
   &:hover {
     border-color:inherit;
   }
+  &.active {
+    color:$linkhover;
+  }
 }
 
 // Login Page

@@ -28,6 +28,11 @@ module JBoss
             end
           }.to_h.merge({'sys_url_view' => "#{site.base_url}/products/fuse/connectors#!id=#{id}",})
 
+          ## Set a default priority if none set. 100 is lowest possible priority value.
+          if !searchisko_hash['priority']
+            searchisko_hash['priority'] = 100
+          end 
+        
           unless !site.push_to_searchisko || site.profile =~ /development/
             searchisko.push_content('jbossdeveloper_connector',
                         id,
