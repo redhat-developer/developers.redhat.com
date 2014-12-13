@@ -479,6 +479,56 @@ Custom layouts can be added below the content displayey by the default template.
 
 You can fully customise the layout of the Solution's main page by removing all the optional sections from the `index.adoc` file and the `speech_bubble` from the `solution.yml` file and then provide a layout file in the `_partials` directory.
 
+## How to create a Microsite
+Microsites can either be single paged or multi-paged. Take a look at the following mockups to see which variation meets your needs. 
+
+|Type|Description|Resources|
+|----|-----------|---------|
+|Single Page|A single page microsite, with no sub-navigation|[Live](http://www.jboss.org/microsite), [Source](https://github.com/jboss-developer/www.jboss.org/blob/master/microsite.html.slim)
+|Multi-page|A multiple-page microsite with a single level of sub-navigation|[Live](http://www.jboss.org/microsite-multi-page/), [Source](https://github.com/jboss-developer/www.jboss.org/blob/master/microsite-multi-page.html.slim)
+
+Before creating a Microsite, please [contact us](#contact) to ensure that a 'Microsite' is the right place for your content.
+
+### Microsite Constraints
+The following constraints are imposed on JBoss Developer Microsites in order to retain consistency and to make them fit within the JBoss Developer brand.
+
+1. The JBoss Developer header must remain present
+2. Microsites may have 0 or 1 levels of navigation. 
+
+### Single Page Microsites
+To create a new single page microsite at `www.jboss.org/<microsite_id>`:
+
+1. Copy `microsite.html.slim` to `<microsite_id>.html.slim`
+2. [Configure the banner graphic](#banner)
+3. Edit the page further to suite your needs
+4. When your microsite is ready for review, [raise a PR](#fixing) for your change.
+
+### Multiple Page Microsites
+__Note:__ This section is un-tested as JBoss Developer doesn't currently host any multi-page microsites.
+
+To create a new multi-page microsite at `www.jboss.org/<microsite_id>`:
+
+1. Create a `<microsite_id>` directory
+2. Copy `microsite-multi-page.html.slim` to `<microsite_id>/index.html.slim`
+3. [Configure the banner graphic](#banner)
+4. Edit the `nav:` section of `<microsite_id>/index.html.slim` to specify the navigation to each of the sub pages
+5. Make a copy of  `<microsite_id>/index.html.slim` for each of the sub-pages. E.g. `<microsite_id>/my_subpage.html.slim`.
+  1. Ensure the sub-pages match those specified in the navigation.
+6. Edit the pages further to suite your needs
+7. When your microsite is ready for review, [raise a PR](#fixing) for your change.
+
+### <a name="banner"></a> Configure the Banner Graphic
+
+1. Create a 2000x500 pixel banner graphic and place it at `/images/<microsite_id>/<microsite_id>_microsite_hero.jpg`
+2. Create a Sass Stylesheet at `stylesheets/_<microsite_id>.scss`. You can add your own styles here, but do so with care as this stylesheet will be loaded for the entire JBoss Developer site. Minimally, this stylesheet needs to specify the banner graphic and should contain the following. Replace the `<microsite_id>` text with the id of your Microsite. 
+
+        .wide-hero.<microsite_id> {
+                background: cdn('../images/<microsite_id>/<microsite_id>_microsite_hero.jpg');
+        }
+
+3. Import the stylesheet into `stylesheets/app.scss` by adding the following import line after the existing imports:
+
+        @import "<microsite_id>";
 
 ## General changes
 If you have a general change that doesn't fall into the categories above, create a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa).
