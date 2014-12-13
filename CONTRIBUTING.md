@@ -429,6 +429,14 @@ On approval of the change:
     4. Remember to set the link, image and alt text for the banner you are adding.
 3. [Raise a PR](#fixing) for your change.
 
+## How to Create a 'Solution'
+Additional solutiuons can be added to the [Solutions page](http://www.jboss.org/solutiuons) using the following instructions. However, before creating a 'Solution', please [contact us](#contact) to ensure that a 'Solution' is the right place for your content.
+
+### Using a Template (Simplest)
+The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/jboss-developer/www.jboss.org/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required. When your solution is ready for review, [raise a PR](#fixing) for your change.
+
+### Using Your Own Layout
+
 ## General changes
 If you have a general change that doesn't fall into the categories above, create a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa).
 
