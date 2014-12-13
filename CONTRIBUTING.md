@@ -430,14 +430,55 @@ On approval of the change:
 3. [Raise a PR](#fixing) for your change.
 
 ## How to Create a 'Solution'
-Additional solutions can be added to the [Solutions page](http://www.jboss.org/solutiuons) using the following instructions. However, before creating a 'Solution', please [contact us](#contact) to ensure that a 'Solution' is the right place for your content.
+The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/jboss-developer/www.jboss.org/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required.
 
-### Using a Template (Simplest)
-The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/jboss-developer/www.jboss.org/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required. Note that the level 2 headings (preceded by '=='), in the index.adoc file, can't be changed, as they are used to identify your snippets of content.
+See the [Unified Push Solution's code](https://github.com/jboss-developer/www.jboss.org/tree/master/solutions/unifiedpush) for an example that uses an entirely custom layout. The [Docker Solution code](https://github.com/jboss-developer/www.jboss.org/blob/master/solutions/docker/index.adoc) provides an example of where the default layout was used, but with an additional custom layout section at the bottom. Look at the [live Docker page](http://www.jboss.org/docker/) and notice that above the "Available Docker Images" title is using the default layout and under this title is a custom layout.
 
-When your solution is ready for review, [raise a PR](#fixing) for your change.
+To create a solution:
 
-### Using Your Own Layout
+1. Create your initial layout by copying the [example solution code](https://github.com/jboss-developer/www.jboss.org/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb).
+2. Think of an ID for your solution. This will be used to identify it in several place and will become part of the URL of its page. E.g: http://www.jboss.org/mysolution.
+  1. Good names are short, descriptive and contain just lower-case alpha-numeric characters.
+2. Rename the solution's directory to that of your solution:
+    mv ./solution/example ./solution/mysolution
+3. Modify the example Solution to create your solution. See below for documentation on what can be edited.
+4. When your solution is ready for review, [raise a PR](#fixing) for your change.
+
+### The `solution.yml` file
+This file is used to configure various aspects of your solution.
+
+The following table describes the purpose of each key. __Note:__ items marked with a (*) are required.
+
+|Key|Value|
+|----|-------|
+|name*|The name is used as a short title to identify your solution in a variety of places on the site. Keep it short and human readable. 
+|sub_title|An optional sub-title that will appear under the main title on the Solution's main page.
+|long_description*|A long description to show when the user clicks on the Solution in the [all Solutions page](http://www.jboss.org/solutions/).
+|overview_links|An optional list of links to show when the user clicks on the Solution in the [all Solutions page](http://www.jboss.org/solutions/).
+|speech_bubble|An optional speech bubble to show towards the top of the Solution's main page. 
+|image_link|An optional link to display under the Solution's logo towards the top of the Solution's main page.
+|related_solutions|An optional list of related solutions to show down the right-hand side of the Solution's main page. Solution IDs are used to identify each related Solution.
+
+### The `index.adoc` File
+This file provides the majority of the content to that is displayed on the Solution's main page. A default layout is used.
+
+Note that level two headings (identified by the preceding '==') are keys used to identify fragments of content. Headings at a greater level than two (E.g '===') can be used to place headings in your content. The following table describes the purpose of each key. __Note:__ all items are optional.
+
+|Key|Value|
+|----|-------|
+|Overview|Content to replace the 'speech bubble' if it was removed from the `solution.yml` file.
+|Left Section|Content to be placed in the left-hand side of the double column area. 
+|Right Section|Content to be placed in the right-hand side of the double column area. 
+|Extra Section Title| The title to use for an extra section that is displayed under the double column area
+|Extra Section|The content to place under the extra section title
+
+_Note:_ The solution logo will only appear on the Solution's main page if either the 'speech bubble' or 'overview text' is provided. 
+
+### Custom Layouts
+Custom layouts can be added below the content displayey by the default template. This is automatically added when the Solution's template is present. For example, create:  `_partials/solution-partial-mysolution.html.slim`. See the other  `_partials/solution-partial-*.html.slim` files for examples.
+
+You can fully customise the layout of the Solution's main page by removing all the optional sections from the `index.adoc` file and the `speech_bubble` from the `solution.yml` file and then provide a layout file in the `_partials` directory.
+
 
 ## General changes
 If you have a general change that doesn't fall into the categories above, create a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa).
