@@ -9,7 +9,7 @@
             - url = item.url
         .slide
           a href=url 
-            img(src=cdn(item.image_url))
+            img(src=cdn(item.image_url) alt="#{item.title}")
             .slider-label
               - if item.title
                 h3 = item.title

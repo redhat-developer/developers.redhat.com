@@ -8,7 +8,7 @@ h3.divider Available Docker Images
       h4 #{project.name}
       p
         a href='#{project.url}'
-          img src='#{project.image_url}'
+          img(src='#{project.image_url}' alt="#{project.name}")
       p #{project.description}
       a[class="small button" href='#{project.url}'] Learn more
     .large-12.columns
