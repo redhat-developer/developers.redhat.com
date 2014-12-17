@@ -143,8 +143,16 @@ Builds occur automatically when pull requests are submitted, and builds, and dep
 
 ## secrets.gpg management
 
-The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients. A plugin for vim such as vim-gnupg (https://github.com/jamessan/vim-gnupg) makes editing the file easy.
+The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients. A plugin for vim such as vim-gnupg (https://github.com/jamessan/vim-gnupg) makes editing the file easy:
 
+1. Install vim and vim-gnupg e.g. using pathogen
+2. Open the file `_config/secrets.yaml.gpg` using vim
+3. Use the command `:GPGEditRecipients` to open the recipient list
+4. Add the email address for the relevant user to the bottom of the edit area
+5. Write and quit this edit area, and the main file using `:wq` and `:wq`
+6. Commit the updated `_config/secrets.yaml.gpg`
+
+In order to do this, you will need load the user's public key in to your keychain. You will need to add the key to your keychain using your preferred tool on your platform. For example, we recommend GPGSuite for Mac OS; load GPG Keychain Access and then use the `Find Key...` tool to download the key to your keychain.
 
 ## Common issues
 This area documents fixes to common issues:
