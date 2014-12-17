@@ -19,10 +19,14 @@ skips:
   - !ruby/regexp /^http:\/\/community.jboss.org\/en\/gatein\?view=discussions+/
   - !ruby/regexp /^https:\/\/community.jboss.org\/en\/gatein\?view=documents+/
   - !ruby/regexp /^http:\/\/community.jboss.org\/en\/gatein\?view=blog+/
+  - !ruby/regexp /^https:\/\/jboss.orgmail.list:.dev@httpd.apache.org+/
+  - !ruby/regexp /^https:\/\/jboss.orgmail.list:.dev@tomcat.apache.org+/
+  - !ruby/regexp /^https:\/\/jboss.orgmail.list:.users@tomcat.apache.org+/
     # LinkedIn Issue DEVELOPER-1120
   - !ruby/regexp /http:\/\/linkedin.com\/.+/
     # Google plus issue DEVELOPER-1126
   - !ruby/regexp /^http:\/\/plus.google.com\/.+/
+  - !ruby/regexp /^https:\/\/plus.google.com\/.+/
     # JIRA Issue BG-12 - Build link
   - !ruby/regexp /^http:\/\/ci.stormgrind.org\/project.html(.)projectId=project2&guest=1+/
     # JDF-778
@@ -45,6 +49,14 @@ skips:
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/social-portlets\/README.html+/
     # JDF-773
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Unsolicted\+Responses+/
+    # WINDUP-180
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/projects\/issues.jboss.org\/browse\/WINDUP+/
+    # DEVELOPER-1016
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/datagrid\/.\/+/
+    # DEVELOPER-1159
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/wfk\/spring-petclinic\/+/
+    # DEVELOPER-1160
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/unifiedpush\/.+/
 ignores:
   - url: !ruby/regexp /^https?:\/\/dcp(beta-searchisko\.rhcloud\.com|\.jboss\.org)\/v1\/rest/
   - url: git://github.com/snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
@@ -141,142 +153,15 @@ ignores:
   - url: https://developer.jboss.org/en/products/datavirt #Not an error
   - url: https://developer.jboss.org/en/products/fuse #Not an error
   - url: https://developer.jboss.org/en/products/brms #Not an error
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Stomp.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SpringLDAP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_LevelDB.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_RabbitMQ.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SJMS.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Timer.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_avro.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Test.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_FTP2.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_DNS.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_AHC.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SpringWebServices.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SAPNetWeaver.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Flatpack.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Zookeeper.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_glogin.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Mail.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Nagios.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HL7.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_JBI_HSH_JBIComponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_LDAP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Pax-Logging.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Ref.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_FreeMarker.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_JPA.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Mock.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_UrlRewrite.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/Master.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SpringBatch.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HDFS.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HazelcastComponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_XMLSecuritycomponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_APNS.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Atom.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Disruptor.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SEDA.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MVELComponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_IRC.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Language.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MongoDB.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SpringRedis.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Printer.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_StringTemplate.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Facebook.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SpringIntegration.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HTTP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_File2.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Browse.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Direct-VM.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MyBatis.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_gauth.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Kestrel.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Exec.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_gtask.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_EventAdmin.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Restlet.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_DataFormatComponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SpringEvent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_CryptoDigitalSignatures.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_ServletListenerComponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MQTT.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Solr.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_BeanValidation.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Jetty.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_RMI.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Validation.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Lucene.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_ActiveMQ.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Salesforce.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Krati.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_NMR.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Vertx.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Properties.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Cache_HSH_CacheComponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/SAP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MINA2.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_CXF.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_RSS.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HTTP4.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Sip.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Yammer.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_gmail.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Mustache.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_JDBC.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_XSLT.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_DataSet.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Stub.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/Fabric.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Quartz.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_CouchDB.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_JavaSpace.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SERVLET.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Log.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_iBATIS.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_jclouds.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_XMPP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_EJB.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_ControlBusComponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SMPP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Netty.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_JMS.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Twitter.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_FOP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Jsch.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Velocity.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Cometd.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_XQueryEndpoint.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_CMIS.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Context.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_AMQP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SSH.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Quickfix.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_ghttp.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Bean.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_JCR.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_GuavaEventBus.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_JT400.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_StAX.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Geocoder.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MINA.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Jing.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Weather.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_ElasticSearch.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Stream.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_XmlRpc.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SNMP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Class.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Quartz2.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Websocket.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_NettyHTTP.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_hbase.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_SQLComponent.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MSV.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Routebox.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Direct.html #DEVELOPER-1148 Document is broken
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_VM.html #DEVELOPER-1148 Document is broken
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/Master.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HazelcastComponent.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_gtask.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/SAP.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MINA2.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/Fabric.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MINA.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Jing.html #DEVELOPER-1148
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_VM.html #DEVELOPER-1148
   - url: http://fabric8.io/ #Not an error
   - url: https://developer.jboss.org/en/products/webserver #Not an error
   - url: https://www.innovateuk.org #Not an error
@@ -288,6 +173,13 @@ ignores:
   - url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Fabric_Guide/files/front.html #DEVELOPER-1148
   - url: https://access.redhat.com/site/documentation/en-US/JBoss_Fuse/6.1/html/Release_Notes/files/front.html #DEVELOPER-1148
   - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/IDU-Cache_HSH_CacheComponent.html #DEVELOPER-1148
+  - url: http://planet.jboss.org/post/open_source_conference_amsterdam_2013_jboss_integration_bpm_together_with_a_zeppelin_nemo_fish0 #DEVELOPER-1154
+  - url: http://fabric8.io/community/ #Not an error
+  - url: http://fabric8.io/docs/ #Not an error
+  - url: http://fabric8.io/getstarted/ #Not an error
+  - url: https://github.com/jboss-developer/jboss-eap-quickstarts/tree/master/numberguess #JDF-779
+  - url: https://github.com/jboss-developer/jboss-sandbox-quickstarts/fork_select #JDF-778
+  - url: http://<app-name>-<domain-name>.rhcloud.com #Not an error just for reference on loading on openshift
 max_page_retys: 10
 max_retrys: 10
 browser: phantomjs
