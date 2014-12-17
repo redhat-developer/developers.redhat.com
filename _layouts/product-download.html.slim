@@ -11,12 +11,12 @@ type: Downloads
   asciidoc:
     To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the JBoss Developer Program which provides $0 subscriptions for development use only. link:../../../faq[Read more] about the JBoss Developer Program.
 
-  - if page.product.beta_download
-    h4.download-link: a(href="#{page.product.beta_download_artifact.url}")
+  - if page.product.latest_release
+    h4.download-link: a(href="#{page.product.latest_release.url}")
       i.fa.fa-download>
-      | Download #{page.product.abbreviated_name} #{page.product.beta_download.version}
+      | Download #{page.product.abbreviated_name} #{page.product.latest_release.version}
 
-    = partial("download_table.html.slim", { 'downloads' => [page.product.beta_download] })
+    = partial("download_table.html.slim", { 'downloads' => [page.product.latest_release] })
 
   h4.download-link: a(href="#{page.product.default_download_artifact.url}")
     i.fa.fa-download>

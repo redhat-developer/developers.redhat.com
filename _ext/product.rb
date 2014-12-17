@@ -176,25 +176,36 @@ module JBoss
                 product.default_download_artifact ||= asset[1].artifacts[0]
               end
             end
+
+            early_access_releases = []
+
             # Identify any Betas that need highlighting
             if product.beta_version
-              product.beta_download = product.downloads[product.beta_version]
-            elsif product.downloads.size > 0 && product.current_download
-              candidates = product.downloads.select { |k, v| v.release_date > product.current_download.release_date }
-              if candidates.size > 0
-                product.beta_download = candidates.values[0]
+              early_access_releases << product.downloads[product.beta_version]
+            end
+
+            if product.alpha_version
+              early_access_releases << product.downloads[product.alpha_version]
+            end
+
+            if product.downloads.size > 0 && product.current_download
+              candidates = []
+              candidates << product.downloads.select { |k, v| v.release_date > product.current_download.release_date }
+              unless candidates.empty?
+                early_access_releases << candidates
+                early_access_releases.flatten!
               end
             end
-            if product.beta_download
-              if product.beta_download.assets.has_key? product.default_download_artifact_type
-                product.beta_download_artifact = product.beta_download.assets[product.default_download_artifact_type].artifacts[0]
-              elsif product.beta_download.assets.size > 0
-                product.beta_download_artifact = product.beta_download.assets.values[0].artifacts[0]
-              end
+
+            unless early_access_releases.empty? || early_access_releases.first.empty?
+              product.latest_release = early_access_releases.sort_by {|ver| ver['release_date']}.first.values.first
+              product.latest_release.alpha = true if product.latest_release.version.downcase.include? 'alpha'
+              product.latest_release.beta = true if product.latest_release.version.downcase.include? 'beta'
             end
+
             product.older_downloads = product.downloads.clone
             product.older_downloads.delete(product.current_download.version) unless product.current_download.nil?
-            product.older_downloads.delete(product.beta_download.version) unless product.beta_download.nil?
+            product.older_downloads.delete(product.latest_release.version) unless product.latest_release.nil?
           end
         end
 
