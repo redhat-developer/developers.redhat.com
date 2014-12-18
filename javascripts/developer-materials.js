@@ -398,7 +398,7 @@ app.dm = {
           template += "<div class=\"get-started-placeholder-" + hits[i].fields.sys_type + "\" >";
           // jbossdeveloper_example and video have thumbnails
           if(!hits[i].fields.thumbnail) {
-            template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"'>";
+            template += "<img src='"+app.dm.thumbnails[hits[i].fields.sys_type]+"' alt='" + hits[i].fields.sys_type + "'>";
           }
           if (hits[i].fields.experimental) {
             template += "<a class=\"banner experimental\"></a>";
@@ -412,7 +412,7 @@ app.dm = {
           }
           if (hits[i].fields.thumbnail) {
             template += "<a class=\"thumbnail\" href=\"" + hits[i].fields.sys_url_view + "\">";
-            template +="<img onerror=\"this.style.display='none'\" src=\"" + hits[i].fields.thumbnail + "\" />";
+            template +="<img onerror=\"this.style.display='none'\" src=\"" + hits[i].fields.thumbnail + "\" alt=\"Thumbnail\"/>";
             template += "</a>"
           }
           var labels = "";

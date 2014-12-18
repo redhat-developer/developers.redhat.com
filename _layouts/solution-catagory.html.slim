@@ -21,7 +21,7 @@ title: Solutions
     ul.large-block-grid-4.small-block-grid-2
       - for solution in site.solutions.values
         li.solution.large-8.column(data-open-solution="#{solution.id}")
-          a.image-link: img(src=cdn(site.base_url + "/images/solutions/#{solution.id}/thumb_300x300.png"))
+          a.image-link: img(src=cdn(site.base_url + "/images/solutions/#{solution.id}/thumb_300x300.png") alt="#{solution.id}")
           a.solution-name-link(href="#")
             h3.solution-name #{solution.name}
   .solution-overlays.clearfix
@@ -44,7 +44,7 @@ title: Solutions
                   .swipe-wrap
                     - for img in solution.slider_images
                       .slide
-                        img(src=cdn(site.base_url + '/' + img))
+                        img(src=cdn(site.base_url + '/' + img) alt="Solution Slider Image")
               .solutions-slider-controls
                 a.prev(href="#")
                   i.fa.fa-chevron-circle-left
@@ -54,5 +54,5 @@ title: Solutions
                 span of
                 span.total-slides #(solution.slider_images.length)
             - else
-              img(src=cdn(site.base_url + "/images/solutions/#{solution.id}/thumb_400x300.png"))
+              img(src=cdn(site.base_url + "/images/solutions/#{solution.id}/thumb_400x300.png") alt="#{solution.id}")
 

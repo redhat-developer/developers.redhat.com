@@ -15,7 +15,7 @@ description: All the books about JBoss products and projects ever written
     - site.books.each do |book|
       li.book.columns.large-6(data-isbn="#{book['isbn']}")
         a.book-preview(href="#{book['preview_link']}" target="_blank") Preview
-        img(src="#{book['thumbnail']}")
+        img(src="#{book['thumbnail']}" alt="#{book.sys_title} Cover Image")
         h4
           | #{book.sys_title}
         p

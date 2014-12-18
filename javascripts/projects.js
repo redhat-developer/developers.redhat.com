@@ -120,7 +120,7 @@ app.project = {
         + "<div class=\"defaultprojectimage\">"
         + "<a class=\"image-link\" href=\""
         + app.project.getCorrectUrl(props.sys_url_view)
-        + "\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "'></a></div>"
+        + "\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "' alt='" + props.projectName + "'></a></div>"
         + "<h3 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
         + app.project.getCorrectUrl(props.sys_url_view) + "\">"
         + props.projectName + "</a></h3><p></p>";
@@ -235,7 +235,7 @@ app.project = {
 
       // modal overlay content
       var projectContent = $('<div>').addClass('project-content row');
-      var projectContentLeft = $('<div>').addClass('large-6 project-content-left columns').html("<img src='"+imgsrc+"'>");
+      var projectContentLeft = $('<div>').addClass('large-6 project-content-left columns').html("<img src='"+imgsrc+"' alt='" + props.projectName + "'>");
       var projectContentRight = $('<div>').addClass('large-18 project-content-right  columns');
 
       // downloads link
