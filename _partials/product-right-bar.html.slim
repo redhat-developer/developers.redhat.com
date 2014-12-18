@@ -13,8 +13,10 @@
   .widget.panel.radius
     - if page.parent.product.latest_release.alpha
       h3.widget-title Alpha Release
-    - if page.parent.product.latest_release.beta
+    - elsif page.parent.product.latest_release.beta
       h3.widget-title Beta Release
+    - else
+      h3.widget-title Candidate Release 
     p.widget-description= page.parent.product.latest_release.tag_line if page.parent.product.latest_release.tag_line
     b
       | Downloads
