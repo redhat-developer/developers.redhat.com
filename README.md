@@ -64,8 +64,6 @@ If the build was successful, you should be able to visit the site here: <http://
 
 ## Development
 
-If you are working on the CSS, make sure to also run `compass watch`
-
 New pages should be added to the root with the extension `.html.slim`
 
 ### Updating the DCP
