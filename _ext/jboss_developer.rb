@@ -206,10 +206,12 @@ module Kramdown
     class QuickStartParser 
       def add_link(el, href, title, alt_text = nil)
         if el.type == :a
-          if href =~ /README\.md/
-            el.attr['href'] = '../index.html' + "##{URI.parse(href).fragment}"
+          if href =~ /^http[s]?:/
+            el.attr['href'] = href # If the link is absolute let it go
+          elsif href =~ /README\.md/
+            el.attr['href'] = href.gsub('README.md', 'index.html')
           elsif href =~ /CONTRIBUTING\.md/
-            el.attr['href'] = 'contributing/index.html' + "##{URI.parse(href).fragment}"
+            el.attr['href'] = href.gsub('CONTRIBUTING.md', 'contributing/index.html')
           else
             el.attr['href'] = href
           end 
