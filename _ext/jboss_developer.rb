@@ -69,6 +69,40 @@ module JBoss
           altered = false
           doc.css('a').each do |a|
             url = a['href']
+
+            unless page.metadata.nil? # check to see if we're a demo or quickstart
+              if (url && !url.start_with?('http') && !url.start_with?('#') && !url.start_with?('mailto'))
+                found_page = has_page_by_uri? site, page, url
+
+                # If we haven't found the page, start trying to make substitions for the url
+                unless found_page
+                  if (url.include?('.md'))
+                    if has_page_by_uri? site, page, url.gsub('README.md', 'index.html')                      
+                      a['href'] = url.gsub('README.md', 'index.html')
+                      altered = true
+                    else
+                      if (page.metadata[:browse].include?('blob') || page.metadata[:browse].include?('tree'))
+                        if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
+                          a['href'] = page.metadata[:browse] + '/' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
+                        else
+                          a['href'] = page.metadata[:browse] + '/' + page.output_path.split('/').last.gsub('index.html', '') + url
+                        end
+                      altered = true
+                      else
+                        if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
+                          a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
+                        else
+                          a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split('/').last.gsub('index.html', '') + url
+                        end
+                        a['href'] = page.metadata[:browse] + '/blob/master/' + page.output_path.split('/').last.gsub('index.html', '') + url
+                        altered = true
+                      end
+                    end
+                  end
+                end
+              end
+            end
+
             if (external?(url, site.base_url) && !(has_non_text_child? a))
               classes = (a['class'] || "").split(/\s+/)
 
@@ -95,10 +129,21 @@ module JBoss
         url && !url.start_with?(base_url) && url !~ /^((https?:)?\/\/)(.*?)?\.jboss.org/ && url =~ /^((https?:)?\/\/)/
       end
 
+      def has_page_by_uri? site, page, url
+        site.pages.find do |p|
+          begin
+            URI.join(site.base_url, p.output_path).path == URI.join(site.base_url, page.output_path, url).path
+          rescue
+            false
+          end
+        end
+      end
+
       def has_non_text_child? a
         return true if a.xpath('.//img', './/button', './/i').size > 0
         false
       end
+
     end
 
     module Extensions
@@ -208,8 +253,6 @@ module Kramdown
         if el.type == :a
           if href =~ /^http[s]?:/
             el.attr['href'] = href # If the link is absolute let it go
-          elsif href =~ /README\.md/
-            el.attr['href'] = href.gsub('README.md', 'index.html')
           elsif href =~ /CONTRIBUTING\.md/
             el.attr['href'] = href.gsub('CONTRIBUTING.md', 'contributing/index.html')
           else
