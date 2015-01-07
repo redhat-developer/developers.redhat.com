@@ -1,0 +1,58 @@
+---
+layout: microsite
+hero_class: champions
+---
+
+= define 'hero'
+  .row
+    .large-12.column
+      img(src=cdn(site.base_url + "/images/champions/roadtoawesome_graphic.png"))
+    .large-12.column
+      img(src=cdn(site.base_url + "/images/champions/jbosschampion_logo.png"))
+      p JBoss Champions is a selected group of community members who are passionate advocate of JBoss technologies under a program sponsored by Red Hat. JBoss Champions use a variety of JBoss technologies and actively share their deep technical expertise about it in the community, within their company and their customers or partners. This could be done in forums, blogs, screencasts, tweets, conferences, social media, whitepapers, articles, books, and other means.
+
+.wide.microsite-text-points
+  .row
+    .large-12.column
+      .champions-content
+        = content
+    .large-12.column
+      <a class="twitter-timeline" href="https://twitter.com/jbossdeveloper/lists/jboss-champions" data-widget-id="559786004609912833">Tweets from https://twitter.com/jbossdeveloper/lists/jboss-champions</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+.wide
+  .row.champions-row
+    .large-24.column
+      h2 Meet The Champions
+      .row
+        ul.large-block-grid-4.medium-block-grid-2.small-block-grid-1
+          - site.champions.each do |champion|
+            li.champions.large-8.column
+              a.image-link href='#{champion['jboss']}': img(src="#{champion['photo']}" alt="#{champion.name}")
+              h3.champion-name #{champion.name}
+              p #{champion.description}
+              ul.social.champions-social
+                - if champion['twitter']
+                  li
+                    a.has-tip(data-tooltip="" title="Twitter" data-options="disable-for-touch:true" href="#{champion['twitter']}")
+                      i.fa.fa-twitter
+                - if champion['linkedin']
+                  li
+                    a.has-tip(data-tooltip="" title="LinkedIn" data-options="disable-for-touch:true" href="#{champion['linkedin']}")
+                      i.fa.fa-linkedin
+                - if champion['facebook']
+                  li
+                    a.has-tip(data-tooltip="" title="Facebook" data-options="disable-for-touch:true" href="#{champion['facebook']}")
+                      i.fa.fa-facebook
+                - if champion['github']
+                  li
+                    a.has-tip(data-tooltip="" title="GitHub" data-options="disable-for-touch:true" href="#{champion['github']}")
+                      i.fa.fa-github
+                - if champion['googleplus']
+                  li
+                    a.has-tip(data-tooltip="" title="Google Plus" data-options="disable-for-touch:true" href="#{champion['googleplus']}")
+                      i.fa.fa-google-plus
+                - if champion['jboss']
+                  li
+                    a.has-tip(data-tooltip="" title="JBoss.org Profile" data-options="disable-for-touch:true" href="#{champion['jboss']}")
+                      i.fa.fa-user
+

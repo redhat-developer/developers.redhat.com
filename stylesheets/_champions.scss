@@ -1,0 +1,69 @@
+.wide-hero.champions {
+  background: cdn('../images/champions/champions_microsite_hero.jpg');
+}
+
+.champions-content{
+  ul{
+    padding-bottom: 5px;
+
+    li {
+      padding-left: 20px;
+      text-indent: -1em;
+    }
+  }
+}
+
+.champions-row {
+  position: relative;
+
+  ul{
+    margin-bottom: 10px;
+  }
+}
+
+.champions{
+  &:last-child.column {
+    float:left;
+  }
+  img {
+    width:100%;
+    @include transition(all 0.7s);
+  }
+  p {
+    margin-top: 15px;
+  }
+
+  .champion-name {
+    width:100%;
+    text-align: center;
+    background:$dark-blue;
+    color:white;
+    font-size:emCalc(22);
+    margin: 0;
+    position: relative;
+    padding: 10px;
+    z-index: 999;
+    clear: both;
+  }
+}
+
+ul.champions-social {
+  margin-top: 10px;
+
+  li{
+    display: inline-block;
+    list-style-type: none;
+    border: 0;
+    background: none;
+    a {
+      padding: 8px;
+      border-bottom: 0;
+      font-size: 24px;
+      &:hover {
+        border-bottom: 0;
+        color:white;
+        background:$dark-blue;
+      }
+    }
+  }
+}
