@@ -18,12 +18,20 @@ app.connectors = {
             snippet_elem.hide();
         }
     },
+
+    hideDocsLinkIfEmpty: function (docs_elem) {
+        var docs_link = docs_elem.find('.docs-link');
+        if (!docs_link.val()) {
+            docs_link.hide();
+        }
+    },
     
     displayOverlay: function (e) {
         e.preventDefault();
         var overlay_content = $(this).parents('li').find('.connector-overlay-content');
         app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-a'));
         app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
+        app.connectors.hideDocsLinkIfEmpty(overlay_content);
         app.connectors.open(overlay_content.html());  
     },
     
@@ -117,6 +125,9 @@ app.connectors = {
             }
             if (!props.code_snippet_2) {
                 props.code_snippet_2 = '';
+            }
+            if (!props.more_details_url) {
+                props.more_details_url = '';
             }
             
             var connectorTemplate = app.templates.connectorTemplate;
