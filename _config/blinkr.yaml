@@ -57,6 +57,11 @@ skips:
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/wfk\/spring-petclinic\/+/
     # DEVELOPER-1160
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/unifiedpush\/.+/
+    # DEVELOPER-1168
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/+/
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/demos\/external-mq-fabric-client\/docs\/fabric-ha-setup-master-slave.md+/
+    # JDF-791
+  - !ruby/regexp /^https:\/\/devstudio.jboss.com\/central\/install\?connectors=org.jboss.tools.aerogear.hybrid+/
 ignores:
   - url: !ruby/regexp /^https?:\/\/dcp(beta-searchisko\.rhcloud\.com|\.jboss\.org)\/v1\/rest/
   - url: git://github.com/snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
@@ -64,7 +69,6 @@ ignores:
   - url: git@github.com:nodyn/nodyn.git #Project not on JIRA
   - url: git@github.com:snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
   - url: http://ci.infinispan.org/ #Link works correctly
-  - url: http://ci.stormgrind.org/project.html?projectId=project2&guest=1 #JIRA Issue BG-12 - Build link
   - url: http://community.jboss.org/en/gatein #Can't replicate the error
   - url: http://community.jboss.org/en/jbossas/picketbox?view=discussions #JIRA Issue SECURITY-852 (Picketbox) - User Forum, Community ----- Still Outstanding
   - url: http://facebook.com/kenneth.peeples?rel=author #Link does not appear on the page
@@ -153,26 +157,12 @@ ignores:
   - url: https://developer.jboss.org/en/products/datavirt #Not an error
   - url: https://developer.jboss.org/en/products/fuse #Not an error
   - url: https://developer.jboss.org/en/products/brms #Not an error
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/Master.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HazelcastComponent.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_gtask.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/SAP.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MINA2.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/Fabric.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MINA.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Jing.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_VM.html #DEVELOPER-1148
   - url: http://fabric8.io/ #Not an error
   - url: https://developer.jboss.org/en/products/webserver #Not an error
   - url: https://www.innovateuk.org #Not an error
   - url: http://community.jboss.org/community/modeshape #Not an error
   - url: https://developer.jboss.org/en/products/devstudio #Not an error
   - url: https://www.redhat.com/rhecm/rest-rhecm/jcr/repository/collaboration/jcr:system/jcr:versionStorage/5e6e3e7a7f0000011d40cd22e322196b/4/jcr:frozenNode/rh:pdfFile.pdf #DEVELOPER-1139
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/IDU-JBI_HSH_JBIComponent.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Unified_Push/ #DEVELOPER-1148
-  - url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Fabric_Guide/files/front.html #DEVELOPER-1148
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Fuse/6.1/html/Release_Notes/files/front.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/IDU-Cache_HSH_CacheComponent.html #DEVELOPER-1148
   - url: http://planet.jboss.org/post/open_source_conference_amsterdam_2013_jboss_integration_bpm_together_with_a_zeppelin_nemo_fish0 #DEVELOPER-1154
   - url: http://fabric8.io/community/ #Not an error
   - url: http://fabric8.io/docs/ #Not an error
@@ -180,6 +170,12 @@ ignores:
   - url: https://github.com/jboss-developer/jboss-eap-quickstarts/tree/master/numberguess #JDF-779
   - url: https://github.com/jboss-developer/jboss-sandbox-quickstarts/fork_select #JDF-778
   - url: http://<app-name>-<domain-name>.rhcloud.com #Not an error just for reference on loading on openshift
+  - url: http://ci.motd.kr #Issue 3257 github repo https://github.com/netty/netty/issues/3257
+  - url: https://ci.jboss.org/hudson/view/Richfaces #RF-13943
+  - url: https://github.com/jboss-developer/jboss-eap-quickstarts/fork_select #JDF-770
+  - url: https://devstudio.jboss.com/central/install?connectors=org.jboss.tools.aerogear.hybrid #JDF-791
+  - url: http://planet.jboss.org/post/world_first_demo_of_live_open_source_telecom_service #DEVELOPER-1154
+  - url: http://planet.jboss.org/post/at_t_bootstrap_week_learn_how_to_build_a_complete_html5_hybrid_app_with_appery_io #DEVELOPER-1154
 max_page_retys: 10
 max_retrys: 10
 browser: phantomjs
