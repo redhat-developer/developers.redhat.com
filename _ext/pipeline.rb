@@ -201,6 +201,13 @@ Awestruct::Extensions::Pipeline.new do
   helper Aweplug::Helpers::Resources
   helper Aweplug::Helpers::Define
 
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'high_value_interactions',
+                                                       key: '1gas_1NM3lLIkCS1s3RF_D1F_BfCss4dXCX6ycwFdaFE',
+                                                       worksheet_title: 'www.jboss.org',
+                                                       col_labels: true,
+                                                       by: 'row')
+  extension JBoss::Developer::HighValueInteractionDataPreparer.new
+
   transformer JBoss::Developer::LinkTransformer.new
   transformer Aweplug::Transformer::AsciidocCdnTransformer.new
 end
