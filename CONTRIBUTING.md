@@ -530,6 +530,10 @@ To create a new multi-page microsite at `www.jboss.org/<microsite_id>`:
 
         @import "<microsite_id>";
 
+4. Add the following line to the header section of `<microsite_id>.html.slim` (for single page microsites) or `<microsite_id>/index.html.slim` for multi-page microsites. 
+
+        hero_class: <microsite_id>
+
 ## General changes
 If you have a general change that doesn't fall into the categories above, create a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa).
 
