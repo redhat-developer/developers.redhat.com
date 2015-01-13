@@ -60,8 +60,22 @@ module JBoss
       end
     end
 
+    class HighValueInteractionDataPreparer
+      def execute site
+        res = []
+        site.high_value_interactions.each do |n, act|
+          begin
+            res << {:from => URI.parse(act['from']).path, :to => act['to']}
+          rescue URI::InvalidURIError
+            res << {:from => act[:from], :to => act['to']}
+          end
+        end
+        site.high_value_interactions = res
+      end
+    end
+
     # Public: Awestruct Transformer that adds the "external-link" class to
-    # external HTML links.
+    # external HTML links and the "high-value class to high value interactions.
     class LinkTransformer
       def transform site, page, content
         if page.output_extension == ".html"
@@ -69,7 +83,7 @@ module JBoss
           altered = false
           doc.css('a').each do |a|
             url = a['href']
-
+            # Add external links
             unless page.metadata.nil? # check to see if we're a demo or quickstart
               if (url && !url.start_with?('http') && !url.start_with?('#') && !url.start_with?('mailto'))
                 found_page = has_page_by_uri? site, page, url
@@ -112,6 +126,18 @@ module JBoss
 
               a['class'] = classes.uniq.join ' '
               altered = true
+            end
+            # Add high-value-interaction class
+            site.high_value_interactions.each do |act|
+              if (act[:from] == page.output_path || "#{act[:from]}index.html" == page.output_path) && url == act[:to]
+                classes = (a['class'] || "").split(/\s+/)
+                unless classes.include? 'high-value-interaction'
+                  classes << 'high-value-interaction'
+                end
+
+                a['class'] = classes.uniq.join ' '
+                altered = true
+              end
             end
           end
           if doc.xpath('@style|.//@style')
