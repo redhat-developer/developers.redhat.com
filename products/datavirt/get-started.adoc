@@ -1,2 +1,14 @@
 :awestruct-layout: product-get-started
 
+## Extra installation instructions
+
+[start=4]
+. For JBoss Data Virtualization 6.1 Beta, open a terminal window and navigate to where the GUI installer was downloaded.  Then enter the command in to launch the GUI installer:
+
+    java -jar jboss-dv-installer-6.1.0.Beta-redhat-1.jar
+
+. You can now (optionally) install the _Integration Stack for JBoss Developer Studio_.
+This provides IDE support for developing JBoss Data Virtualization applications.
+For more details, see the link:../../devstudio/get-started/#ExtraSection[installation instructions].
+For JBoss Data Virtualization 6.0.0 GA follow the instructions for installing  JBoss Developer Studio 7 and the Integration Stack.
+For JBoss Data Virtualization 6.1.0 Beta follow the instructions for installing JBoss Developer Studio 8 and the _Early Access_ version of Integration Stack.
