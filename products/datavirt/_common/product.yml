@@ -24,6 +24,7 @@ guides:
       epub: 
         url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6/epub/Release_Notes/Red_Hat_JBoss_Data_Virtualization-6-Release_Notes-en-US.epub
 description: 'A data virtualization tool useful for any organization struggling to gain operational and analytical insights from data dispersed and locked up in various business units, applications, and technology silos. (formerly known as JBoss Enterprise Data Services Platform).'
+default_download_artifact_type: installer
 downloads:
   6.1.0.Beta:
     release_date: 2014-12-22
@@ -42,9 +43,10 @@ downloads:
     release_date: 2014-02-03
     description: Accesses and transforms data from one or more heterogeneous sources into logical, business-friendly data models.
     assets:
-      zip:
+      installer:
         size: 235mb
         name: Jar (Installer)
+        filename: jboss-dv-installer-6.0.0.GA-redhat-4.jar
       source:
         size: 67mb
       docker:
