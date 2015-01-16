@@ -24,6 +24,26 @@ guides:
 default_download_artifact_type: installer
 description: 'An application platform for hosting your apps that provides an innovative modular, cloud-ready architecture, powerful management and automation, and world class developer productivity.'
 downloads:
+  6.4.0.Alpha:
+    description: Minor release of JBoss EAP 6.x series
+    tag_line: Featuring many updates, including targeted support of Java 8 and updated database certifications. Try it today!
+    release_date: 2015-01-15
+    assets:
+      zip:
+        name: Zip Files
+        artifacts:
+          zip:
+            size: 157mb
+      javadoc:
+        size: 105mb
+        name: Javadoc
+      maven_repo:
+        size: 242mb
+        name: Maven Repository
+      quickstarts:
+        size: 5mb
+      source:
+        size: 33mb
   6.3.0.GA:
     description: Minor release of JBoss EAP 6.x series
     tag_line: Features an updated administrative console that includes a new homepage and exposes the new JBoss EAP patching feature.  Also includes domain recovery improvements and support for CDI injection with PicketLink.  Try it today!
