@@ -49,4 +49,27 @@ JBoss Data Virtualization offers comprehensive data abstraction, federation, int
 
 JBoss Data Virtualization implements all three steps internally; hiding the technical complexities of knowing physical data locations, storage structures, APIs, access and/or merge logic, thus making it easy for developers and users to work with data.
 
-== Resources 
+=== What's new in JBoss Data Virtualization 6.1 Beta?
+
+For JBoss Data Virtualization 6.1 Beta, we focused on Big Data, Cloud and other Productivity and deployment improvements.
+
+==== Big Data
+
+- Support for Cloudera Impala in addition to Apache Hive
+- Support for Apache Solr as a data source
+- Full support for MongoDB 
+- Expanded support for JDG with the ability to perform writes Apache
+- Cassandra (Tech Preview)
+
+==== Cloud
+- OpenShift Online with new WebUI (Dev Preview)
+- Cloud enablement with support for Amazon EC2 and Google Compute Engine
+
+==== Productivity and Deployment Improvements
+- Security audit log dashboard
+- Custom Translator Improvements
+- Apache POI for multi-platform MS Excel deployments
+- Performance Improvements
+- Support for Azul Zing JVM, EAP 6.3, MariaDB
+
+== Resources
