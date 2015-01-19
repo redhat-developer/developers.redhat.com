@@ -21,8 +21,9 @@ app.connectors = {
 
     hideDocsLinkIfEmpty: function (docs_elem) {
         var docs_link = docs_elem.find('.docs-link');
-        if (!docs_link.val()) {
-            docs_link.hide();
+        var docs_link_text = docs_elem.find('.docs-link-text');
+        if (!docs_link.attr("href")) {
+            docs_link_text.hide();
         }
     },
     
