@@ -39,6 +39,7 @@ ol
         p: code
           | unzip #{page.product.default_download_artifact.filename}
     - if page._extra_installation_instructions
+      .extra-installation-instructions
         = page._extra_installation_instructions
   - else 
     li
