@@ -103,7 +103,7 @@ end
 
 desc 'Build and preview the site locally in development mode'
 task :preview, [:profile] => :check do |task, args|
-  run_awestruct "-P #{args[:profile] || 'development'} -a -s --force -q --auto"
+  run_awestruct "-P #{args[:profile] || 'development'} -a -s --force -q --auto --no-livereload"
 end
 
 desc 'Generate the site using the defined profile, or development if none is given'

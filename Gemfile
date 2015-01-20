@@ -13,7 +13,7 @@ def darwin_only(require_as)
 end
  
 # GEMS
-gem 'awestruct', '~> 0.5.6.beta4'
+gem 'awestruct', '~> 0.5.6.beta8'
 gem 'slim', '~> 2.0.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 1.5.0'
