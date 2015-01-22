@@ -40,6 +40,7 @@ profile_base: &profile
     :minify: *minify
     :cdn_version: *cdn_version
   authenticate_google_books_api: true
+  build_threads: 40
 
 profiles:
   development: &development
@@ -49,6 +50,7 @@ profiles:
     push_to_searchisko: false
     metrics: false
     authenticate_google_books_api: false
+    build_threads: 0
   
   development_cdn: 
     <<: *development
