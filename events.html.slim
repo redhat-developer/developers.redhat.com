@@ -50,8 +50,8 @@ description: Discover the events and webinars featuring talks about JBoss produc
         li
           .event
             .event-header
-              img(src="#{e['image_url'].nil? || e['image_url'].strip.empty? ? cdn(site.base_url + "/images/events/event-bg-1.jpg") : e['image_url']}" alt="#{e['title']} Image")
-              - if "community".casecmp(e['type']) == 0
+              img(src="#{e['image'].nil? || e['image'].strip.empty? || e['image'] == 'default' ? cdn(site.base_url + "/images/events/event-bg-1.jpg") : "http://static.jboss.org/images/events/event_" + e['image'] + ".png"}" alt="#{e['title']} Image")
+              - if "community".casecmp(e['type']) == 0 && e['image'] == 'default'
                 p Community Event
             .event-body
               div.event-date
