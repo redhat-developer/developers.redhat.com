@@ -59,7 +59,7 @@ description: The simple, modern & productive way to build apps and infrastructur
             | View All Events 
             i.icon-double-angle-right
         h3#events Events
-        - site.events.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|
+        - site.events.reject{ |a, b| b['start_date'].nil? }.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|
           / We use PST for "now"
           - if "true".casecmp(e['on_homepage']) == 0 && DateTime.parse(e['end_date']).to_time > DateTime.now.prev_day.to_time.localtime("+09:00")
             .update
