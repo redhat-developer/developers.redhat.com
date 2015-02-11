@@ -1,4 +1,6 @@
+require 'tilt'
 require 'tilt/kramdown'
+require 'slim'
 
 require 'common_dir'
 require 'aweplug/extensions/kramdown_quickstart'
