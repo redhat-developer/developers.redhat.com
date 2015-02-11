@@ -22,21 +22,21 @@ description: Discover the events and webinars featuring talks about JBoss produc
           i.icon-angle-left.icon-4x
         a.slider-next(data-direction="next")
           i.icon-angle-right.icon-4x
-    
+
     h4.divider.events-header#find Find webinars and events within the industry, community or sponsored by Red Hat.
 
     .events-control.large-10
       form.events-filter
         input(type="text" name="events-filter-name" placeholder="Find An Event")
-        p 
-          | Currently Viewing 
+        p
+          | Currently Viewing
           input(type="text" name="events-filter-start-date" class="datepicker small")
           | to
           input(type="text" name="events-filter-end-date" class="datepicker small")
 
     .events-control.events-actions.large-14
       a(href="#")
-        | Subscribe to events 
+        | Subscribe to events
         i.fa.fa-rss
       /
         DEVELOPER-829
@@ -46,12 +46,12 @@ description: Discover the events and webinars featuring talks about JBoss produc
           a.button.reveal data-reveal-id="comingSoonModal" Events Blog
 
     ul.small-block-grid-2.large-block-grid-4.events-listing
-      - site.events.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|
+      - site.events.reject{ |a, b| b['start_date'].nil? }.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|
         li
           .event
             .event-header
-              img(src="#{e['image_url'].nil? || e['image_url'].strip.empty? ? cdn(site.base_url + "/images/events/event-bg-1.jpg") : e['image_url']}" alt="#{e['title']} Image")
-              - if "community".casecmp(e['type']) == 0
+              img(src="#{e['image'].nil? || e['image'].strip.empty? || e['image'] == 'default' ? cdn(site.base_url + "/images/events/event-bg-1.jpg") : "http://static.jboss.org/images/events/event_" + e['image'] + ".png"}" alt="#{e['title']} Image")
+              - if "community".casecmp(e['type']) == 0 && e['image'] == 'default'
                 p Community Event
             .event-body
               div.event-date
@@ -60,11 +60,11 @@ description: Discover the events and webinars featuring talks about JBoss produc
                 span
               h3: a href=e['more_details']
                 span=e['title']
+              p=e['description']
               - if "red hat".casecmp(e['type']) == 0
                 p.red-hat-event
                   i.icon-redhat
                   | Red Hat Event
-              p=e['description']
             .event-links
               a href=e['more_details']
                 | Learn More

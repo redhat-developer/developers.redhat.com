@@ -13,6 +13,7 @@ def darwin_only(require_as)
 end
  
 # GEMS
+gem 'awestruct', github: 'LightGuard/awestruct', branch: 'multi-thread-gen-trial'
 gem 'awestruct', '~> 0.5.6.beta8'
 #gem 'awestruct', path: '~/projects/ruby/awestruct'
 gem 'slim', '> 3.0.0'
@@ -26,7 +27,7 @@ gem 'git', '> 1.2.5'
 gem 'oily_png', '> 1.1.1'
 gem 'nokogiri', '> 1.5.10'
 gem 'therubyracer', platforms: :ruby, require: linux_only('therubyracer')
-gem 'aweplug', github: 'awestruct/aweplug', branch: 'country_code_minus_video'
+gem 'aweplug', github: 'LightGuard/aweplug', branch: 'DEVELOPER-1220'
 #gem 'aweplug', github: 'awestruct/aweplug'
 #gem 'aweplug', path: '~/projects/ruby/aweplug'
 #gem 'aweplug', path: '../aweplug'
@@ -56,7 +57,7 @@ group :vdiff do
 end
 
 group :health do
-  #gem 'blinkr', '~> 0.2.7'
+  gem 'blinkr', '~> 0.2.7'
   #gem 'blinkr', github: 'pmuir/blinkr'
   #gem 'blinkr', path: '../blinkr'
 end
