@@ -1,24 +1,4 @@
 GIT
-  remote: git://github.com/LightGuard/aweplug.git
-  revision: 22b44014c80c459451fc0fb425cf380c1cc6e56a
-  branch: DEVELOPER-1220
-  specs:
-    aweplug (1.0.0.a24)
-      curb (~> 0.8.5)
-      faraday (>= 0.8.7, < 1.0.0)
-      faraday_middleware (>= 0.9.0)
-      google-api-client (~> 0.7)
-      kramdown (~> 1.0.2)
-      nokogiri (~> 1.5.10)
-      oauth (~> 0.3.6)
-      octokit (>= 1.24.0)
-      parallel (> 1.0.0)
-      ruby-duration (= 3.1)
-      sass (< 3.4.6)
-      uglifier (~> 2.0.1)
-      xml-simple (~> 1.1)
-
-GIT
   remote: git://github.com/LightGuard/awestruct.git
   revision: 05bf2c7fc4027c00115b6bc2e9ff0ffcf3eacc8e
   branch: multi-thread-gen-trial
@@ -41,6 +21,25 @@ GIT
       tilt (~> 2.0.1)
       zurb-foundation (~> 4.3.2)
 
+GIT
+  remote: git://github.com/awestruct/aweplug.git
+  revision: 9c80c7cf003eefde0713a63f972c1a88804b8e5a
+  specs:
+    aweplug (1.0.0.a24)
+      curb (~> 0.8.5)
+      faraday (>= 0.8.7, < 1.0.0)
+      faraday_middleware (>= 0.9.0)
+      google-api-client (~> 0.7)
+      kramdown (~> 1.0.2)
+      nokogiri (~> 1.5.10)
+      oauth (~> 0.3.6)
+      octokit (>= 1.24.0)
+      parallel (> 1.0.0)
+      ruby-duration (= 3.1)
+      sass (< 3.4.6)
+      uglifier (~> 2.0.1)
+      xml-simple (~> 1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -59,35 +58,23 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    awestruct (0.5.6.beta8)
-      asciidoctor
-      bootstrap-sass (~> 3.2.0.2)
-      colorize (~> 0.7.1)
-      compass (~> 1.0.1)
-      compass-960-plugin (~> 0.10.4)
-      git (~> 1.2.6)
-      guard-livereload (~> 2.1.2)
-      haml (~> 4.0.5)
-      listen (~> 2.7.1)
-      mime-types (~> 2.1)
-      parallel (> 1.1.1)
-      rack (~> 1.5.2)
-      rest-client (~> 1.7.2)
-      ruby-s3cmd (~> 0.1.5)
-      tilt (~> 2.0.1)
-      zurb-foundation (~> 4.3.2)
-    blinkr (0.2.7)
+    blinkr (0.2.9)
       nokogiri (~> 1.5)
-      parallel (~> 1.1.0)
-      slim (~> 2.0)
-      typhoeus (~> 0.6)
+      parallel (~> 1.3)
+      slim (~> 3.0)
+      typhoeus (~> 0.7)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     chunky_png (1.3.3)
     coderay (1.1.0)
     colorize (0.7.5)
+    columnize (0.9.0)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -104,11 +91,14 @@ GEM
       sass (>= 3.2, < 3.5)
     curb (0.8.6)
     daybreak (0.3.0)
+    debugger-linecache (1.2.0)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
-    eventmachine (1.0.4)
-    execjs (2.2.2)
+    ethon (0.7.2)
+      ffi (>= 1.3.0)
+    eventmachine (1.0.7)
+    execjs (2.3.0)
     extlib (0.9.16)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
@@ -180,11 +170,14 @@ GEM
       sawyer (~> 0.6.0, >= 0.5.3)
     oily_png (1.1.2)
       chunky_png (~> 1.3.1)
-    parallel (1.3.3)
+    parallel (1.3.4)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.0.1)
+      byebug (~> 3.4)
+      pry (~> 0.10)
     rack (1.5.2)
     rake (10.0.4)
     rb-fchange (0.0.6)
@@ -196,7 +189,7 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    retriable (2.0.2)
+    retriable (1.4.1)
     robotex (1.0.0)
     ruby-duration (3.1.0)
       activesupport (>= 3.0.0)
@@ -215,7 +208,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.0)
       multi_json (~> 1.10)
-    slim (3.0.1)
+    slim (3.0.2)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
@@ -228,11 +221,8 @@ GEM
     tilt (2.0.1)
     timers (4.0.1)
       hitimes
-<<<<<<< HEAD
-=======
     typhoeus (0.7.1)
       ethon (>= 0.7.1)
->>>>>>> origin/master
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.0.1)
@@ -258,14 +248,9 @@ DEPENDENCIES
   activesupport (> 3.1, < 4.2.0)
   asciidoctor (> 1.5.0)
   aweplug!
-<<<<<<< HEAD
-  awestruct (~> 0.5.6.beta8)
-  curb (> 0.8.5)
-=======
   awestruct!
-  blinkr (~> 0.2.7)
-  curb (~> 0.8.5)
->>>>>>> origin/master
+  blinkr (~> 0.2.9)
+  curb (> 0.8.5)
   daybreak
   git (> 1.2.5)
   google-api-client (> 0.7)
@@ -277,6 +262,8 @@ DEPENDENCIES
   oauth (~> 0.3.6)
   oily_png (> 1.1.1)
   parallel (> 1.1.0)
+  pry
+  pry-byebug
   rake (~> 10.0.4)
   rb-fchange
   rb-fsevent
