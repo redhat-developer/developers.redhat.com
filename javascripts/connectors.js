@@ -26,13 +26,28 @@ app.connectors = {
             docs_link_text.hide();
         }
     },
-    
+
+    hideExtLinkIfEmpty: function (ext_elem) {
+        var link_1 = ext_elem.find('.link_1');
+        var link_1_text = ext_elem.find('.link_1_text');
+        var link_2 = ext_elem.find('.link_2');
+        var link_2_text = ext_elem.find('.link_2_text');
+        if (!link_1.attr("href")) {
+            link_1_text.hide();
+        }
+        if (!link_2.attr("href")) {
+            link_2_text.hide();
+        }
+    },
+
+
     displayOverlay: function (e) {
         e.preventDefault();
         var overlay_content = $(this).parents('li').find('.connector-overlay-content');
         app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-a'));
         app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
         app.connectors.hideDocsLinkIfEmpty(overlay_content);
+        app.connectors.hideExtLinkIfEmpty(overlay_content);
         app.connectors.open(overlay_content.html());  
     },
     
@@ -129,6 +144,14 @@ app.connectors = {
             }
             if (!props.more_details_url) {
                 props.more_details_url = '';
+            }
+            if(!props.link_1_text || !props.link_1_url){
+               props.link_1_text = '';
+                props.link_1_url = '';
+            }
+            if(!props.link_2_text || !props.link_2_url){
+                props.link_2_text = '';
+                props.link_2_url = '';
             }
             
             var connectorTemplate = app.templates.connectorTemplate;
