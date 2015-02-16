@@ -13,31 +13,31 @@ def darwin_only(require_as)
 end
  
 # GEMS
-#gem 'awestruct', '~> 0.5.6.beta8'
 gem 'awestruct', github: 'LightGuard/awestruct', branch: 'multi-thread-gen-trial'
-gem 'slim', '~> 2.0.0'
-gem 'kramdown', '~> 1.0.1'
-gem 'asciidoctor', '~> 1.5.0'
+#gem 'awestruct', '~> 0.5.6.beta8'
+#gem 'awestruct', path: '~/projects/ruby/awestruct'
+gem 'slim', '> 3.0.0'
+gem 'kramdown', '> 1.0.1'
+gem 'asciidoctor', '> 1.5.0'
 gem 'uglifier', '~> 2.0.1'
-gem 'htmlcompressor', '~> 0.0.6'
-gem 'curb', '~> 0.8.5'
+gem 'htmlcompressor', '> 0.0.6'
+gem 'curb', '> 0.8.5'
 gem 'oauth', '~> 0.3.6'
-gem 'git', '~> 1.2.5'
-gem 'oily_png', '~> 1.1.1'
-gem 'nokogiri', '~> 1.5.10'
+gem 'git', '> 1.2.5'
+gem 'oily_png', '> 1.1.1'
+gem 'nokogiri', '> 1.5.10'
 gem 'therubyracer', platforms: :ruby, require: linux_only('therubyracer')
-gem 'aweplug', github: 'LightGuard/aweplug', branch: 'DEVELOPER-1220'
-#gem 'aweplug', github: 'awestruct/aweplug'
+gem 'aweplug', github: 'awestruct/aweplug'
 #gem 'aweplug', path: '~/projects/ruby/aweplug'
 #gem 'aweplug', path: '../aweplug'
-gem 'parallel', '~> 1.1.0'
+gem 'parallel', '> 1.1.0'
 gem 'mime-types', '2.1'
-gem 'google-api-client', '~> 0.7'
-gem 'signet', '~> 0.5.1'
-gem 'gpgme', '~> 2.0'
+gem 'google-api-client', '> 0.7'
+gem 'signet', '> 0.5.1'
+gem 'gpgme', '> 2.0'
 gem 'ruby-duration', '~> 3.1'
 gem 'daybreak'
-gem 'sass', '~> 3.4', '< 3.4.6'
+gem 'sass', '~> 3.4'
 gem 'activesupport', '> 3.1', '< 4.2.0' # Used in aweplug by ruby-duration
 
 group :development do
@@ -45,8 +45,8 @@ group :development do
   gem 'rb-fsevent', require: false
   gem 'rb-fchange', require: false
   gem 'rake', '~> 10.0.4'
-  #gem 'pry', require: false
-  #gem 'pry-byebug', require: false
+  gem 'pry', require: false
+  gem 'pry-byebug', require: false
   #gem 'pry-stack_explorer', require: false
   #gem 'pry-exception_explorer', require: false
 end
@@ -56,7 +56,8 @@ group :vdiff do
 end
 
 group :health do
-  gem 'blinkr', '~> 0.2.7'
+  gem 'blinkr', '~> 0.2.9'
+  #gem 'blinkr', path: '~/projects/ruby/blinkr'
   #gem 'blinkr', github: 'pmuir/blinkr'
   #gem 'blinkr', path: '../blinkr'
 end
