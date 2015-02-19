@@ -1,24 +1,4 @@
 GIT
-  remote: git://github.com/LightGuard/aweplug.git
-  revision: cbb35f04993dae0631c4700d2b65d7a3721e69fb
-  branch: DEVELOPER-1203
-  specs:
-    aweplug (1.0.0.a24)
-      curb (~> 0.8.5)
-      faraday (>= 0.8.7, < 1.0.0)
-      faraday_middleware (>= 0.9.0)
-      google-api-client (~> 0.7)
-      kramdown (~> 1.0.2)
-      nokogiri (~> 1.5.10)
-      oauth (~> 0.3.6)
-      octokit (>= 1.24.0)
-      parallel (> 1.0.0)
-      ruby-duration (= 3.1)
-      sass (< 3.4.6)
-      uglifier (~> 2.0.1)
-      xml-simple (~> 1.1)
-
-GIT
   remote: git://github.com/LightGuard/awestruct.git
   revision: 05bf2c7fc4027c00115b6bc2e9ff0ffcf3eacc8e
   branch: multi-thread-gen-trial
@@ -40,6 +20,25 @@ GIT
       ruby-s3cmd (~> 0.1.5)
       tilt (~> 2.0.1)
       zurb-foundation (~> 4.3.2)
+
+GIT
+  remote: git://github.com/awestruct/aweplug.git
+  revision: 6433d984d28da461654efa2bbbcb57cef0d9a272
+  specs:
+    aweplug (1.0.0.a24)
+      curb (~> 0.8.5)
+      faraday (>= 0.8.7, < 1.0.0)
+      faraday_middleware (>= 0.9.0)
+      google-api-client (~> 0.7)
+      kramdown (~> 1.0.2)
+      nokogiri (~> 1.5.10)
+      oauth (~> 0.3.6)
+      octokit (>= 1.24.0)
+      parallel (> 1.0.0)
+      ruby-duration (= 3.1)
+      sass (< 3.4.6)
+      uglifier (~> 2.0.1)
+      xml-simple (~> 1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -72,7 +71,7 @@ GEM
       sass (~> 3.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    chunky_png (1.3.3)
+    chunky_png (1.3.4)
     coderay (1.1.0)
     colorize (0.7.5)
     compass (1.0.3)
@@ -140,7 +139,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     image_size (1.4.1)
-    iso8601 (0.8.4)
+    iso8601 (0.8.5)
     json (1.8.2)
     jwt (1.2.1)
     kramdown (1.0.2)
@@ -162,12 +161,12 @@ GEM
     nenv (0.2.0)
     netrc (0.10.2)
     nokogiri (1.5.11)
-    notiffany (0.0.5)
+    notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.3.6)
       ruby-hmac (>= 0.3.1)
-    octokit (3.7.0)
+    octokit (3.7.1)
       sawyer (~> 0.6.0, >= 0.5.3)
     oily_png (1.1.2)
       chunky_png (~> 1.3.1)
