@@ -139,6 +139,29 @@ Finally, you need to commit the new version of `_cdn/cdn.yml` and push that and 
 
 Builds occur automatically when pull requests are submitted, and builds, and deploys, happen when pushes to the master branch occur.
 
+### Tracking CI Intermittent Failures
+In order to improve the stability of the CI jobs, we need to track the intermittent failures and target the more frequent ones for resolution. The process is:
+
+Carry out the steps below for each of the jobs on here: https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org
+
+Open the job page. E.g: https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org/job/www.jboss.org/ and for each, not yet documented, failed run:
+
+1.  Select the job
+2.  Select 'Console Output'
+3.  Inspect the output. If it's a new issue, create a JIRA issue. If it's an existing issue, locate the JIRA id. Note: for 'www.jboss.org-pull-player-executor' failures, you need to find out if it was caused by the code changes inthe relate pull request, or if it's an intermittent build issue, unrelated to the PR.
+4.  Return to the 'status' page of the run
+5.  Selct 'keep this build forvever'
+6. Update the description to contain just the JIRA id (e.g. DEVELOPER-1234)
+7. Update https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org/job/www.jboss.org/[this spreadsheet]
+  1. If the failure is already known, increment the occurances column and 'last failure' date.
+  2. If the failure is new, add a new row to the spreadsheet
+  
+When an issue is resolved:
+
+1. Mark the status as resolved in https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org/job/www.jboss.org/[this spreadsheet]
+2. Delete every CI run that failed with this issue.
+
+
 ## secrets.gpg management
 
 The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients. A plugin for vim such as vim-gnupg (https://github.com/jamessan/vim-gnupg) makes editing the file easy:
