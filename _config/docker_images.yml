@@ -54,8 +54,11 @@
   url: http://aerogear.org/
   image_url: http://static.jboss.org/aerogear/images/aerogear_200x150.png
   images:
-    - name: jboss/aerogear-simplepush-server
-      path: aerogear/blob/master/server/simplepush
+    - name: aerogear/unifiedpush-wildfly
+      path: aerogear/blob/master/wildfly/unifiedpush-wildfly
+      description: Provides latest AeroGear UnifiedPush Server release
+    - name: aerogear/simplepush
+      path: aerogear/tree/master/netty/simplepush
       description: Provides AeroGear SimplePush Server
 
 - name: SwitchYard
