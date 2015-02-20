@@ -47,28 +47,29 @@ description: Discover the events and webinars featuring talks about JBoss produc
 
     ul.small-block-grid-2.large-block-grid-4.events-listing
       - site.events.reject{ |a, b| b['start_date'].nil? }.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|
-        li
-          .event
-            .event-header
-              img(src="#{e['image'].nil? || e['image'].strip.empty? || e['image'] == 'default' ? cdn(site.base_url + "/images/events/event-bg-1.jpg") : "http://static.jboss.org/images/events/event_" + e['image'] + ".png"}" alt="#{e['title']} Image")
-              - if "community".casecmp(e['type']) == 0 && e['image'] == 'default'
-                p Community Event
-            .event-body
-              div.event-date
-                span.month=DateTime.parse(e['start_date']).strftime '%b'
-                span.day=DateTime.parse(e['start_date']).strftime '%d'
-                span
-              h3: a href=e['more_details']
-                span=e['title']
-              p=e['description']
-              - if "red hat".casecmp(e['type']) == 0
-                p.red-hat-event
-                  i.icon-redhat
-                  | Red Hat Event
-            .event-links
-              a href=e['more_details']
-                | Learn More
-            = partial("share.html.slim", :url => e['more_details'], :title => e['description'][0 .. 139])
+        - if DateTime.parse(e['end_date']).to_time > DateTime.now.prev_day.to_time.localtime("+09:00")
+          li
+            .event
+              .event-header
+                img(src="#{e['image'].nil? || e['image'].strip.empty? || e['image'] == 'default' ? cdn(site.base_url + "/images/events/event-bg-1.jpg") : "http://static.jboss.org/images/events/event_" + e['image'] + ".png"}" alt="#{e['title']} Image")
+                - if "community".casecmp(e['type']) == 0 && e['image'] == 'default'
+                  p Community Event
+              .event-body
+                div.event-date
+                  span.month=DateTime.parse(e['start_date']).strftime '%b'
+                  span.day=DateTime.parse(e['start_date']).strftime '%d'
+                  span
+                h3: a href=e['more_details']
+                  span=e['title']
+                p=e['description']
+                - if "red hat".casecmp(e['type']) == 0
+                  p.red-hat-event
+                    i.icon-redhat
+                    | Red Hat Event
+              .event-links
+                a href=e['more_details']
+                  | Learn More
+              = partial("share.html.slim", :url => e['more_details'], :title => e['description'][0 .. 139])
 
 = javascripts("events", true) do
   script src="#{site.base_url}/javascripts/vendor/picker.js"
