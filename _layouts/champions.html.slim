@@ -27,7 +27,8 @@ hero_class: champions
         ul.large-block-grid-4.medium-block-grid-2.small-block-grid-1
           - site.champions.each do |champion|
             li.champions.large-8.column
-              a.image-link href='#{champion['jboss']}': img(src="#{champion['photo']}" alt="#{champion.name}")
+              a.image-link href='#{champion['jboss']}'
+               img src="#{champion['photo']}" alt="#{champion.name}"
               h3.champion-name #{champion.name}
               p #{champion.description}
               ul.social.champions-social
