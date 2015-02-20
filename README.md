@@ -142,7 +142,7 @@ Builds occur automatically when pull requests are submitted, and builds, and dep
 ### Tracking CI Intermittent Failures
 In order to improve the stability of the CI jobs, we need to track the intermittent failures and target the more frequent ones for resolution. The process is:
 
-Carry out the steps below for each of the jobs on here: https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org
+Carry out the steps below for each of the jobs on here: https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org. Ignore the jobs named after a JIRA issue (e.g. DEVELOPER-1234) as they are setup to debug a particular issue and are the responsibility of the creator to inspect.
 
 Open the job page. E.g: https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org/job/www.jboss.org/ and for each, not yet documented, failed run:
 
