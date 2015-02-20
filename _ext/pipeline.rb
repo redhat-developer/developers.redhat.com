@@ -24,6 +24,7 @@ require 'disqus_more'
 require 'lower_case_paths'
 require 'customer_portal'
 require 'connectors'
+require 'events'
 require 'vault'
 require 'aweplug/helpers/define'
 
@@ -50,6 +51,8 @@ Awestruct::Extensions::Pipeline.new do
                                                        worksheet_title: 'Books',
                                                        col_labels: true,
                                                        by: 'row')
+
+  extension JBoss::Developer::Events.new
 
   extension Aweplug::Extensions::Books.new("site.book_isbns.collect { |i,b| b }")
 

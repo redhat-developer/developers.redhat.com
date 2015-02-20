@@ -466,6 +466,19 @@
         "name":"data_jbossdeveloper_connector",
         "type":"jbossdeveloper_connector"
       }
+    },
+      "jbossdeveloper_event": {
+      "description":"Events",
+      "sys_type":"event",
+      "sys_content_content-type" : "text/plain",
+      "persist" : true,
+      "input_preprocessors": [
+      ],
+      "index": {
+        "name":"data_jbossdeveloper_event",
+        "type":"jbossdeveloper_event"
+      }
     }
+
   }
 }
