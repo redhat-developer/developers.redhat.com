@@ -1,6 +1,80 @@
 :awestruct-layout: product-get-started
+:awestruct-interpolate: true
 
-## Extra installation instructions
 
-[start=4]
-. You can now (optionally) install the _Integration Stack for JBoss Developer Studio_. This provides IDE support for developing JBoss BRMS applications. For more details, see the link:../../devstudio/get-started/#ExtraSection[installation instructions].
+## Extra section
+
+The purpose of this page is to provide the means to get started with the JBoss BRMS product, from introduction, to installation, to using the product to build a first application.
+These instructions take a user from start to finish using the https://github.com/eschabell/brms-coolstore-demo[Red Hat JBoss BRMS - Retail Rules & Events with the Cool Store Demo] as a PoC project.
+
+### Target audience
+Anyone interested in getting started quickly with JBoss BRMS:
+
+* Developers evaluating open source rules and events tooling
+* Architects tasked with evaluating technology for potential use in organization
+* Business or information analysts interested in exploring rule design tooling
+
+image::#{cdn(site.base_url + '/images/products/brms/console.png')}[]
+
+### Getting Started
+The best way to discover a new product is to get hands-on with the product.
+We have put together an online http://bpmworkshop-onthe.rhcloud.com/workshops.html#/[JBoss BRMS workshop], where you are introduced to the product in an overview presentation before embarking on installing and building the project.
+You will be http://bpmworkshop-onthe.rhcloud.com/workshops.html#/4[building a retail webshop project] that includes rules, events, and ruleflow, all within the latest link:../overview[JBoss BRMS product].
+
+The https://github.com/eschabell/brms-coolstore-demo[Red Hat JBoss BRMS - Retail Rules & Events with the Cool Store Demo] is laid out with links and video to all the available material for exploring this project.
+
+### Installation Instructions
+The simplest and quickest way to get started with JBoss BRMS, is to run it in the Cloud on OpenShift.
+See the next section for details.
+However, if you would like to install it yourself, follow these instructions:
+
+1. Visit the link:../download[JBoss BRMS download page] and download the installer.
+2. Make sure you have a JDK of your choice installed. We recommend OpenJDK or Oracle JDK.
+3. You can now (optionally) install the Integration Stack for JBoss Developer Studio. This provides IDE support for developing JBoss BRMS applications. For more details, see the link:../../devstudio/get-started/#ExtraSection[installation instructions].
+
+
+### Workshop in the Cloud
+
+image::#{cdn(site.base_url + '/images/products/brms/online-workshop.png')}[]
+
+The workshop can be loaded into the Cloud on your own OpenShift account, just follow the https://github.com/eschabell/openshift-brms-workshop[project introduction page] instructions:
+
+. Create an account at http://openshift.redhat.com/
+. Create a ruby application: +
+`rhc app create brmsworkshop -t ruby-1.9 --from-code git://github.com/eschabell/openshift-brms-workshop.git`
+
+That's it, you can now start your workshop at: +
+`\http://brmsworkshop-$your_domain.rhcloud.com`
+
+
+### Contents
+The workshop will take you through the following components where you will create rules artifacts for our project and become comfortable with their capabilities:
+
+* Admin perspective
+* Project authoring perspective
+* Technical rules (DRL) designer
+* Guided rule wizard / designer
+* Decision table wizard / designer
+* Domain specific language (DSL) designer
+* Domain modeler
+* Process designer (ruleflow)
+* Rule test wizard / designer
+* Run test scenarios
+* Project deployment and running the Cool Store
+* KieScanner usage / explanation for runtime updates to rules
+
+
+### Resource collection
+_Ready to just get started with an example or two?_ +
+_Maybe you want to see a video?_ +
+_How about some background articles on JBoss BRMS?_ +
+
+Browse the following resources that will start you off with implementations that are automated, repeatable, and easy to use in a demo format that will have you up and running in minutes with JBoss BRMS.
+They will provide you with in depth articles that guide your decisions and videos that make it all as easy as can be to follow along and learn the BPM skills you need.
+
+* link:../developer-materials/#!hidden_keyword=JBoss%20BRMS[Developer materials for JBoss BRMS]
+* http://www.schabell.org/search/label/Tips%26Tricks[JBoss BRMS tips and tricks]
+* link:../developer-materials/#!formats=video&projectCode=brms[JBoss BRMS videos]
+* link:../overview/#buzz[Catch all the Buzz around JBoss BRMS]
+
+We hope this page will help you accelerate your JBoss BRMS experience!
