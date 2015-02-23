@@ -50,12 +50,15 @@
       description: This image provides basic distribution of LiveOak.
 
 - name: AeroGear
-  description: AeroGear provides flexible and extensible libraries to simplify mobile development across platforms and cut common repetitive infrastructure tasks. Integrate with the most exotic of endpoints.
+  description: Aerogear provides a set of flexible and extensible libraries, as well as server side components, to simplify mobile development across platforms and common repetitive infrastructure tasks.
   url: http://aerogear.org/
   image_url: http://static.jboss.org/aerogear/images/aerogear_200x150.png
   images:
-    - name: jboss/aerogear-simplepush-server
-      path: aerogear/blob/master/server/simplepush
+    - name: aerogear/unifiedpush-wildfly
+      path: aerogear/blob/master/wildfly/unifiedpush-wildfly
+      description: Provides latest AeroGear UnifiedPush Server release
+    - name: aerogear/simplepush
+      path: aerogear/tree/master/netty/simplepush
       description: Provides AeroGear SimplePush Server
 
 - name: SwitchYard
