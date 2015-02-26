@@ -11,7 +11,7 @@
           - page.contributor['social'].each do |service, account|
             - unless account['url'].nil?
               span< class="account"
-                a class="#{account['service']}" href="#{account['url']}?rel=author"
+                a class="#{account['service']}" href="#{account['link']}?rel=author"
                   i class="fa #{account['icon']}"
     - elsif page.basic
       span.name
