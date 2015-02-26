@@ -1,38 +1,99 @@
-div.pagination-centered
-  ul.pagination
+div
+  .panel(ng-hide="data.materials.length") Sorry there were no results, please modify your search query.
 
-ul.results.small-block-grid-2.large-block-grid-3
-  / Results will be placed here via JS
+  .developer-material-results(ng-hide="!data.materials.length")
+    img.loader(src=cdn("#{site.base_url}/images/icons/ajax-loader.gif") ng-show="data.loading")
+    .pagination-centered(ng-hide="pagination.viewall || !data.materials.length || data.loading")
+      ul.pagination
+        li.prev.arrow(ng-class="{unavailable: paginate.currentPage < 2}")
+          a(ng-click="paginate(paginate.currentPage - 1)") &laquo;
+        li(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}")
+          a(ng-click="paginate(page)" data-page="{{page}}")
+            | {{page}}
+        li.prev.arrow(ng-class="{unavailable: paginate.currentPage >= paginate.pages}")
+          a(ng-click="paginate(paginate.currentPage + 1)") &raquo;
 
-/ Layout — Keep this for reference
-/ ul.results.small-block-grid-2.large-block-grid-3
-/   |
-/   - page.max_results ||= 6
-/   - page.max_results.times do |material|
-/     li.material
-/       - if material === 5
-/         a.banner.experimental(href="#") Experimental
-/       - if material === 1
-/         a.banner.premium(href="#") Premium 
-/       a(href="#")
-/         img(src="/images/materials-thumb1.jpg")
-/       span.label.material-duration 04:54
-/       span.label.material-level-beginner Beginner
-/       h4: a(href="#") JBoss EAP 6 Administration 
-/       p.author
-/         | Author: 
-/         a(href="#") John Smith
-/       p.material-datestamp Added 28 2014 9:15pm
-/       p.rating
-/         | Video
-/         i.fa.fa-star
-/         i.fa.fa-star
-/         i.fa.fa-star
-/         i.fa.fa-star-half-o
-/         i.fa.fa-star-o
-/       .body
-/         p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec sem ac vehicula...
+    .developer-materials-options(ng-hide="data.loading")
 
-div.pagination-centered
-  ul.pagination
+      input(type="checkbox" id="showall" name="showall" value="500" ng-model="pagination.viewall" ng-change="paginate(1)")
+      label(for="showall")
+        | View All
 
+      input(type="radio" name="showall" ng-model="data.layout" id="grid" value="grid" ng-checked="true")
+      label(for="grid")
+        i.fa.fa-square
+        |  Grid
+
+      input(type="radio" name="showall" ng-model="data.layout" id="list" value="list")
+      label(for="list")
+        i.fa.fa-align-justify
+        |  List
+
+
+
+    table.developer-materials-grid(ng-hide="data.layout === 'grid' || !data.layout || data.loading")
+      thead
+        tr
+          td.type Type
+          td.title Title
+          td.description Description
+          td.product(ng-hide="filters.project")
+            | Product
+          td.skill Skill Level
+      tbody
+        tr.material(ng-repeat="item in data.displayedMaterials" class="get-started-placeholder-{{item.fields.sys_type}}")
+          / Type
+          td.type
+            a(ng-href="{{item.fields.sys_url_view}}")
+              img(ng-src="{{item | thumbnailURL}}")
+            / Experimental Banner
+            a.label.experimental-text(ng-show="item.fields.experimental") Experimental
+            / Premium Banner
+            a.label.premium-text(ng-show="item.fields.sys_url_view | isPremium") Premium
+          / Title
+          td.title
+            p
+              a(ng-href="{{item.fields.sys_url_view}}")
+                | {{item.fields.sys_title}}
+            span.contributor(data-sys-contributor="{{item.fields.sys_author}}")
+              a.name
+                | {{item.fields.sys_author | name}}
+          / Description
+          td.description
+            | {{item.fields.sys_description | truncate}}
+          / Product
+          td.product(ng-hide="filters.project")
+            | {{item.fields.target_product.join(', ')}}
+          / Skill Level
+          td.skill
+            span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.level") {{ item.fields.level }}
+            span(ng-bind-html="item.fields | stars" ng-show="item.fields.sys_rating_avg > 0" )
+
+    ul.small-block-grid-2.large-block-grid-3(ng-hide="data.layout === 'list'")
+      li.material(ng-repeat="item in data.displayedMaterials")
+        div(class="get-started-placeholder-{{item.fields.sys_type}}")
+          / Thumbnail
+          a(ng-href="{{item.fields.sys_url_view}}")
+            img(ng-src="{{item | thumbnailURL}}")
+          / Experimental Banner
+          a.banner.experimental(ng-show="item.fields.experimental")
+          / Premium Banner
+          a.banner.premium(ng-show="item.fields.sys_url_view | isPremium")
+          / Badges
+          span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.duration") {{ item.fields.duration | HHMMSS}}
+          span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.level") {{ item.fields.level }}
+          / Material Name
+          h4
+            a(ng-href="{{item.fields.sys_url_view}}")
+              | {{item.fields.sys_title}}
+          / Author
+          span.contributor(data-sys-contributor="{{item.fields.sys_author}}")
+            a.name
+          / timestamp
+          p.material-datestamp
+            | {{item.fields.sys_created | timeAgo}}
+
+          / Description
+          p
+            | {{item.fields.sys_description | truncate}}
+            | &hellip;

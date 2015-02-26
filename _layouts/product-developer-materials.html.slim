@@ -7,18 +7,20 @@ issues: [DEVELOPER-207, DEVELOPER-243, DEVELOPER-179, DEVELOPER-207, DEVELOPER-2
 - page.description = "Find quickstarts, archetypes, BOMs, Tutorials, and other developer oriented materials for #{page.product.abbreviated_name}."
 / Note that this layout directly uses product-base, as it needs to add stuff to the left-bar
 
-.large-6.columns
-  = partial 'product-left-menu.html.slim', {'parent' => page}
-  = partial 'developer-materials-filters.html.slim'
-.large-13.columns.text-content
-  - if page.product.featured_items
-    h2.divider#featured Featured
-    = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
-  .developer-materials-results data-developer-materials-filter-project-code="#{page.product.dcp_project_code}"
-    = partial 'developer-materials-results.html.slim'
-.large-4.columns
-  = partial 'product-right-bar.html.slim', {'parent' => page}
+div(ng-app="dcp")
+  .developer-materials(ng-controller="developerMaterialsController")
+    .large-6.columns
+      = partial 'product-left-menu.html.slim', {'parent' => page}
+      = partial 'developer-materials-filters.html.slim'
+    .large-13.columns.text-content
+      - if page.product.featured_items
+        h2.divider#featured Featured
+        = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
+      .developer-materials-results data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}'"
+        = partial 'developer-materials-results.html.slim'
+    .large-4.columns
+      = partial 'product-right-bar.html.slim', {'parent' => page}
 
-= javascripts("developer-materials-filter", true) do
-  script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
+    = javascripts("developer-materials-filter", true) do
+      script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
 

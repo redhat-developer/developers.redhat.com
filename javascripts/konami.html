@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Komani</title>
+</head>
+<body>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <script>
+    $(function() {
+      var sequence = ["32","32","32"];
+      var ours = [];
+
+      $(window).on('keyup',function(e) {
+        // push the key code
+        ours.unshift(e.keyCode);
+        console.log(ours);
+      });
+
+    });
+  </script>
+</body>
+</html>
