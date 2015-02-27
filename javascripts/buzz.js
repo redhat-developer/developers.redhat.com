@@ -73,7 +73,7 @@ app.buzz = {
         url : app.dcp.url.search,
         dataType: 'json',
         data : {
-          "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_updated", "author", "sys_tags", "sys_content_id"],
+          "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_created", "author", "sys_tags", "sys_content_id"],
           "query" : query,
           "size" : itemCount,
           "sys_type" : "blogpost",
@@ -115,7 +115,7 @@ app.buzz = {
             if(!d.authorName) {
               d.authorName = d.author;
             }
-            d.updatedDate = jQuery.timeago(new Date(d.sys_updated));
+            d.updatedDate = jQuery.timeago(new Date(d.sys_created));
             d.sys_description = d.sys_description.substr(0,197) + '...';
             d.permanentLink = "//planet.jboss.org/post/" + d.sys_content_id;
             html += tmpl.template(d);
