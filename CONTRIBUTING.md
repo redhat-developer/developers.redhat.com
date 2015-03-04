@@ -546,7 +546,9 @@ This documentation covers http://www.jboss.org/champions/
  1. Add a new entry for each champion, using an existing one as a template
  2. Notice the image URL. This is a relative path to the location of the profile image added in the next step
 4. For each champion you are adding, download the profile image from the jboss.org profile page (download the default one if no real one set) and save it to the [champions images directory](https://github.com/jboss-developer/www.jboss.org/tree/master/images/champions).
+5. If the Bio contains a twitter ID, remove it and tidy up the text so it still makes sense. Then ensure the twitter property is set.
 5. [Raise a PR](#fixing) for your change.
+6. After the PR is merged and the change is online, email: champions@jboss.org to notify.
 
 ## General changes
 If you have a general change that doesn't fall into the categories above, create a [JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa).
