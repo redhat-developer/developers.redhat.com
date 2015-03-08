@@ -1,24 +1,4 @@
 GIT
-  remote: git://github.com/Dantheman720/aweplug.git
-  revision: 922f8bfee5bfc357f62760f0340ae5e5d05e9f23
-  branch: DEVELOPER-1232
-  specs:
-    aweplug (1.0.0.a24)
-      curb (~> 0.8.5)
-      faraday (>= 0.8.7, < 1.0.0)
-      faraday_middleware (>= 0.9.0)
-      google-api-client (~> 0.7)
-      kramdown (~> 1.0.2)
-      nokogiri (~> 1.5.10)
-      oauth (~> 0.3.6)
-      octokit (>= 1.24.0)
-      parallel (> 1.0.0)
-      ruby-duration (= 3.1)
-      sass (< 3.4.6)
-      uglifier (~> 2.0.1)
-      xml-simple (~> 1.1)
-
-GIT
   remote: git://github.com/LightGuard/awestruct.git
   revision: 05bf2c7fc4027c00115b6bc2e9ff0ffcf3eacc8e
   branch: multi-thread-gen-trial
@@ -40,6 +20,25 @@ GIT
       ruby-s3cmd (~> 0.1.5)
       tilt (~> 2.0.1)
       zurb-foundation (~> 4.3.2)
+
+GIT
+  remote: git://github.com/awestruct/aweplug.git
+  revision: 35a4b7d340aab8c69111b263d25f161e2dd8432f
+  specs:
+    aweplug (1.0.0.a24)
+      curb (~> 0.8.5)
+      faraday (>= 0.8.7, < 1.0.0)
+      faraday_middleware (>= 0.9.0)
+      google-api-client (~> 0.7)
+      kramdown (~> 1.0.2)
+      nokogiri (~> 1.5.10)
+      oauth (~> 0.3.6)
+      octokit (>= 1.24.0)
+      parallel (> 1.0.0)
+      ruby-duration (= 3.1)
+      sass (< 3.4.6)
+      uglifier (~> 2.0.1)
+      xml-simple (~> 1.1)
 
 GEM
   remote: https://rubygems.org/
