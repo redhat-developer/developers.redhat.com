@@ -1,0 +1,124 @@
+---
+layout: microsite-multi-page
+hero_class: event-javaland
+
+nav: 
+  - title: About JavaLand
+    url: '../about/'
+  - title: Our Speakers
+    url: '../speakers/'
+  - title: Our Sessions
+    url: '../sessions/'
+  - title: Further Information
+    url: '../info/'
+---
+
+- page.title = "JBoss at JavaLand - Our Speakers"
+
+= define 'hero'
+  .row 
+    .large-25.column.center
+      h2 JBoss at JavaLand
+
+h2.divider Meet Our Speakers
+p  JBoss speakers will be speaking at various sessions and will be around the Hackergarden and Early-Adopters-Area this year. Here is a list of our speakers so you don't miss out on their cool talks.
+
+table
+ tr
+  td
+   p Name
+  td 
+   p Description
+  td
+   p Reach out
+ tr
+   td width = "300"
+    p: strong Arun Gupta
+    img(src="#{cdn( site.base_url + '/images/people/ArunGupta.jpg')}" alt="Arun Gupta" width="200" height="250")
+   td
+    p Arun Gupta is Director of Developer Advocacy at Red Hat and focuses on JBoss Middleware. A founding member of the Java EE team at Sun Microsystems, he led a cross-functional team at Oracle to drive the global launch of the Java EE 7 platform through strategy, planning, and execution of content, marketing campaigns, and program. Arun has extensive speaking experience in ~40 countries on myriad topics and is a JavaOne Rockstar. He also founded the Devoxx4Kids chapter in the USA and continues to promoting technology education amongst kids. An author of a best-selling book, an avid runner, a globe trotter, a Java Champion, JUG leader, he is easily accessible at @arungupta.
+   td width = "100"
+     p
+      a href = "https://twitter.com/arungupta" 
+       i.fa.fa-lg.fa-twitter-square
+      a href = "https://github.com/arungupta" 
+       i.fa.fa-lg.fa-github-square
+      a href = "http://blog.arungupta.me" 
+       i.fa.fa-lg.fa-rss-square
+ tr
+   td width = "300"
+    p: strong Jason Porter
+    img(src="#{cdn( site.base_url + '/images/people/JasonPorter.jpg')}" alt="Jason Porter" width="200" height="250")
+   td
+    p Jason is a software engineer currently working in the Java Enterprise Edition Space, Arquillian, Forge, web site and other developer experience projects within Red Hat. His specialties include JBoss AS, Seam, CDI, JSF, Java EE, and Gradle. He has worked with PHP, Ruby, Groovy, XSLT, SASS the rest of the web language arena (HTML, CSS, JS, etc). His current position as Senior Software Engineer at Red Hat has him work primarily on the JBoss website, however, he also contributes to JBoss Forge, Arquillian, Apache DeltaSpike, Awestruct and others as time allows. He’s very interested in the developer experience and helping to improve it at all aspects.
+    td width = "100"
+     p
+      a href = "https://twitter.com/lightguardjp" 
+       i.fa.fa-lg.fa-twitter-square
+      a href = "https://github.com/arungupta" 
+       i.fa.fa-lg.fa-github-square
+      a href = "https://www.linkedin.com/in/jasonporter" 
+       i.fa.fa-lg.fa-linkedin-square
+ tr
+   td width = "300"
+    p: strong Stephane Epardaud
+    img(src="#{cdn( site.base_url + '/images/people/StephaneEpardaud.jpg')}" alt="Stephane Epardaud" width="200" height="250")
+   td
+    p Senior Software Developer on Ceylon at Red Hat
+   td width = "100"
+     p
+      a href = "http://twitter.com/UnFroMage" 
+       i.fa.fa-lg.fa-twitter-square
+      a href = "https://github.com/FroMage" 
+       i.fa.fa-lg.fa-github-square
+      a href = "http://www.linkedin.com/pub/4/487/97a" 
+       i.fa.fa-lg.fa-linkedin-square
+ tr
+   td width = "300"
+    p: strong Matthias Wessendorf
+    img(src="#{cdn( site.base_url + '/images/people/MatthiasWessendorf.jpg')}" alt="Matthias Wessendorf" width="200" height="250")
+   td
+    p Matthias is working at Red Hat where he is leading the AeroGear project. Previously, he was the PMC Chair of the Apache MyFaces project. Matthias is a regular conference speaker.
+ 
+   td width = "100"
+     p
+      a href = "http://twitter.com/UnFroMage" 
+       i.fa.fa-lg.fa-twitter-square
+      a href = "https://twitter.com/mwessendorf" 
+       i.fa.fa-lg.fa-github-square
+      a href = "https://matthiaswessendorf.wordpress.com/" 
+       i.fa.fa-lg.fa-rss-square
+ tr
+   td width = "300"
+    p: strong Mark Little
+    img(src="#{cdn( site.base_url + '/images/people/MarkLittle.jpg')}" alt="MarkLittle" width="200" height="250")
+   td
+    p Mark works for Red Hat, where he lead JBoss technical direction and research/development. Prior to this he was SOA Technical Development Manager and Director of Standards. Beside that he was Chief Architect and co-founder at Arjuna Technologies, an HP spin-off (where he worked a Distinguished Engineer). He has been working in the area of reliable distributed systems since the mid-80's and made his PhD on fault-tolerant distributed systems, replication and transactions. He is also a Professor at Newcastle University.
+   td width = "100"
+     p
+      a href = "http://twitter.com/nmcl" 
+       i.fa.fa-lg.fa-twitter-square
+      a href = "https://github.com/nmcl" 
+       i.fa.fa-lg.fa-github-square
+      a href = "http://markclittle.blogspot.de/" 
+       i.fa.fa-lg.fa-rss-square
+
+= define 'right_rail'
+  .widget
+    h3.widget-title Learn More about JavaLand
+    p JavaLand Conference Offers Thrills on many levels. Beside the nearly 100 sessions, JavaLand also includes a training day, including deep dives on NoSQL for Java Developers, Java 8: Practical Streams and Lambdas, Java EE 7 from and HTML5 Perspective and JavaScript for Java developers. There will be lots of community activities, including a Java Innovation Lab and Hackergarten. 
+	p JBoss' Mark Little will be giving a keynote about Enterprise and IoT.
+
+  .widget
+    a.button(href="http://www.javaland.eu/1/javaland-2015/") Visit JavaLand
+
+  .widget.rightbarbullets
+    ul
+      li
+        a href="http://blog.eisele.net/2015/02/mark-little-about-enterprise-and-iot.html" Interview with Mark Little
+      li
+        a href="https://www.doag.org/konferenz/konferenzplaner/b.php?id=483801&locS=1" Conference Schedule
+      li
+        a href="http://www.javaland.eu/1/location/" Location Information
+
+

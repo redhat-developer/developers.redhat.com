@@ -1,0 +1,97 @@
+---
+layout: microsite-multi-page
+hero_class: event-javaland
+
+nav: 
+  - title: About JavaLand
+    url: '../about/'
+  - title: Our Speakers
+    url: '../speakers/'
+  - title: Our Sessions
+    url: '../sessions/'
+  - title: Further Information
+    url: '../info/'
+---
+
+- page.title = "JBoss at JavaLand - The Sessions"
+
+= define 'hero'
+  .row 
+    .large-25.column.center
+      h2 JBoss at JavaLand
+
+
+h2.divider JBoss Sessions at JavaLand
+p Some more interesting content for you to check out  
+
+table
+ tr
+  td
+   p Title
+  td 
+   p Description
+  td
+   p Speaker
+ tr
+  td
+   p Lessons Learned from Real-World Deployments of Java EE 7
+  td 
+   p Java EE 7, released over a year ago, introduced several new technologies such as WebSocket, Batch, and JSON. There are already three compliant application servers: WildFly, GlassFish, and Tmaxsoft. NetBeans, Eclipse, and IntelliJ provide extensive tooling support for the APIs. What are the best practices for building and deploying Java EE 7 applications? What to do and not to do? This session takes three Java EE 7 applications running in production and shares lessons learned from each one. It attempts to answer questions such as: - Is WebSocket ready for production? - How do we migrate from Spring Batch to JSR 352 batch? - Any change in DevOps? - Are additional libraries still needed? - Which is more prominent, EJB/JSF or REST/JavaScript?
+  td
+   a href ="http://blog.arungupta.me" Arun P. Gupta
+ tr
+  td
+   p Package your Java EE Application using Docker and Kubernetes
+  td
+   p Docker simplifies software delivery by making it easy to build and share images that contain your application's operating system. It packages your application and infrastructure together, managed as one component. These images are then used to create Docker containers which run on the container virtualization platform, provided by Docker. These images can be distributed using Docker Registry. Kubernetes provides an open source orchestration of Docker containers. This talk will provide an introduction to Docker images (build time), containers (run time), and registry (distribution). Java EE application require operating system, JDK, database, application server, tuning of different parts of the stack, WAR file, and much more. The talk will explain how to create and publish Docker images that package these components and talk to each other. Design patterns and anti-patterns that show how to create cluster of such applications will be shown. Replicating your development, test, and production environments using Docker images will be shown. Basic terminology of Kubernetes will be introduced. Attendees will learn how Kubernetes's self-healing mechanism can be used to create cluster of these containers.
+  td
+   a href ="http://blog.arungupta.me" Arun P. Gupta
+ tr
+  td 
+   p Building CDI Extensions
+  td
+   p You've heard about Contexts and Dependency Injection (CDI) and the extensibility of Java EE 6. You may have also looked at Seam 3 or MyFaces CODI. You've seen enough to pique your curiosity. This session will sate that curiosity and give you enough information to build great extensions for your application and business. The presentation covers creating extensions in Java EE 6 and shows how to use Apache DeltaSpike.
+  td 
+   a href="http://lightguard-jp.blogspot.de/" Jason Porter
+ tr
+  td
+   p Ceylon from Here to Infinity: the Big Picture and the Future
+  td 
+   p Ceylon is a new modern, elegant programming language for the JVM and JavaScript VM, designed for team work. But it's more than that, it is a full platform with modularity, an SDK, tools and IDEs. We will present Ceylon the language, the platform, and its ecosystem. You will see everything from starting a new project in the IDE to publishing it on Herd, our module repository, including using the SDK. We will also discuss the ongoing Ceylon projects such as the build system, Vert.x integration or Cayla, the new web framework. Finally we will discuss the plans for Ceylon 1.1, 1.2 and further.
+  td 
+   a href="http://stephane.epardaud.fr/" Stephane Epardaud
+ tr
+  td 
+   p Mobile Push for the Enterprise
+  td
+   p Interaction with the user is the basis for successful mobile application. Push messages, a central component of a mobile operating system, provide a convenient way to get in touch with the user. The UnifiedPush server from the Aerogear project supports developers when sending push messages to different platforms (Apache Cordova, Android, iOS and Firefox OS, including device management). This presentation provides an introduction to push messages and the effective implementation in different scenarios, such as geolocation, personalized news. In addition, the integration of automated sending of push messages from your own Java backend out is shown in detail
+  td
+   a href="http://www.wessendorf.net/" Matthias Wessendorf
+ tr
+  td
+   p Keynote: Enterprise and Internet of Things
+  td
+   p With the rapid growth in interest around mobile, we're starting to hear that existing middleware implementations and approaches are simply not right for the mobile developer, Cloud or the Internet of Things. In short, these technology waves represent the death of middleware! However, we believe that this approach may be short-sighted and risky. Not only does enterprise Java (particularly Java EE) have a critical role to play in Java-based PaaS and mobile solutions, but it can also be used as a platform for other languages such as Ruby, that are finding growing adoption in both of these areas. The requirements for real world Cloud or Mobile applications include reliability, security, fault tolerance and much more: things that your typical enterprise middleware developer has taken for granted for four decades. In this session we will discuss the needs for enterprise Java in the IoT arena and show what weve been doing in JBoss to ensure that our projects run on a variety of devices, such as the Raspberry Pi or Android, and are available to the widest group of developers, such as mobile.
+  td 
+   a href="https://developer.jboss.org/blogs/mark.little/" Mark Little
+
+
+= define 'right_rail'
+  .widget
+    h3.widget-title Learn More about JavaLand
+    p JavaLand Conference Offers Thrills on many levels. Beside the nearly 100 sessions, JavaLand also includes a training day, including deep dives on NoSQL for Java Developers, Java 8: Practical Streams and Lambdas, Java EE 7 from and HTML5 Perspective and JavaScript for Java developers. There will be lots of community activities, including a Java Innovation Lab and Hackergarten. 
+	p JBoss' Mark Little will be giving a keynote about Enterprise and IoT.
+
+  .widget
+    a.button(href="http://www.javaland.eu/1/javaland-2015/") Visit JavaLand
+
+  .widget.rightbarbullets
+    ul
+      li
+        a href="http://blog.eisele.net/2015/02/mark-little-about-enterprise-and-iot.html" Interview with Mark Little
+      li
+        a href="https://www.doag.org/konferenz/konferenzplaner/b.php?id=483801&locS=1" Conference Schedule
+      li
+        a href="http://www.javaland.eu/1/location/" Location Information
+
+
