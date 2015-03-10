@@ -853,6 +853,17 @@ body.fullbleed {
   }
 }
 
+// Spacing under the bulleted list
+.ulist {
+  margin-bottom: 15px;
+}
+
+// Fixes spacing between/after lists made up of more than one list
+.multi-ul {
+  margin-bottom: 15px;
+  .ulist{margin: 0;}
+}
+
 // Spacing alignment for the bulleted list
 
 .ulist ul li {
