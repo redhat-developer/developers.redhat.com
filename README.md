@@ -173,7 +173,24 @@ The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients. A p
 5. Write and quit this edit area, and the main file using `:wq` and `:wq`
 6. Commit the updated `_config/secrets.yaml.gpg`
 
-In order to do this, you will need load the user's public key in to your keychain. You will need to add the key to your keychain using your preferred tool on your platform. For example, we recommend GPGSuite for Mac OS; load GPG Keychain Access and then use the `Find Key...` tool to download the key to your keychain.
+In order to do this, you will need load the user's public key in to your keychain. You will need to add the key to your keychain using your preferred tool on your platform. For example, we recommend GPGSuite for Mac OS. In this case:
+
+1. load `GPG Keychain Access` application
+2. Select `key` -> `Retreive rom key server`
+3. Pass in the ID of the public key you need to add. 
+
+Minimailly the follwoing list of receipients is required to encrypt the file:
+
+* Pete Muir <pmuir@bleepbleep.org.uk> (ID: 0x6CE6E8FB45FE317D created at Mon 1 Sep 18:29:07 2014
+* Jason Robert Porter (new key) <lightguard.jp@gmail.com> (ID: 0xBEDFCFB30FB72D11 created at Tue 24 Dec 06:51:51 2013)
+* Wes Bos <wesbos@gmail.com> (ID: 0x8C1F9282110E7CA0 created at Tue 2 Sep 17:13:12 2014)
+* Rafael Benevides <benevides@redhat.com> (ID: 0x81C7CA49C57D4F5C created at Thu 2 Aug 20:14:57 2012)
+* Daniel Coughlin <Daniel.coughlin86@gmail.com> (ID: 0x91A225F08D1D811B created at Tue 2 Sep 17:19:02 2014)
+* Paul Robinson <paul.robinson@redhat.com> (ID: 0xBCE89FD63FBB22CF created at Wed 10 Sep 15:08:22 2014)
+* Adela Arreola <aarreola@redhat.com> (ID: 0xC946E35184EBDCF7 created at Tue 7 Oct 15:26:21 2014)
+* Markus Eisele (myfear) <markus@jboss.org> (ID: 0xBE0AACE30C6FAC25 created at Tue 16 Dec 13:11:42 2014)
+
+If you add a new recipient to the file, ensure you update the list above.
 
 ## Common issues
 This area documents fixes to common issues:
