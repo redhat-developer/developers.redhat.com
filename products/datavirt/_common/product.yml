@@ -1,30 +1,59 @@
 name: Red Hat JBoss Data Virtualization
 abbreviated_name: JBoss Data Virtualization
 current_version: 6.1.0.GA
-documentation_minor_version: 6
+documentation_minor_version: 6.1
 xpaas_url: https://www.openshift.com/developers/jboss-data-virtualization
 intro_video: https://vimeo.com/91533636
 vimeo_album: http://vimeo.com/album/2982437
 skip_installation_instructions: true
 skip_maven_instructions: true
 guides:
+  Administration_and_Configuration_Guide:
+    name: "Administration and Configuration"
+  API_Documentation:
+  Development_Guide_Volume_1_Client_Development:
+    name: "Development Guide: Client Development"
+  Development_Guide_Volume_2_Governance:
+    name: "Development Guide: Governance"
   Development_Guide_Reference_Material:
     name: "Development Guide: Reference Material"
+    formats:
+      html:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/html/Development_Guide_Volume_3_Reference_Material/index.html
+      html-single:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/html-single/Development_Guide_Volume_3_Reference_Material/index.html
+      pdf:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/pdf/Development_Guide_Volume_3_Reference_Material/Red_Hat_JBoss_Data_Virtualization-6.1-Development_Guide_Volume_3_Reference_Material-en-US.pdf
+      epub:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/epub/Development_Guide_Volume_3_Reference_Material/Red_Hat_JBoss_Data_Virtualization-6.1-Development_Guide_Volume_3_Reference_Material-en-US.epub
   Development_Guide_Server_Development:
     name: "Development Guide: Server Development"
+    formats:
+      html:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/html/Development_Guide_Volume_4_Server_Development/index.html
+      html-single:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/html-single/Development_Guide_Volume_4_Server_Development/index.html
+      pdf:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/pdf/Development_Guide_Volume_4_Server_Development/Red_Hat_JBoss_Data_Virtualization-6.1-Development_Guide_Volume_4_Server_Development-en-US.pdf
+      epub:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/epub/Development_Guide_Volume_4_Server_Development/Red_Hat_JBoss_Data_Virtualization-6.1-Development_Guide_Volume_4_Server_Development-en-US.epub
+  Development_Guide_Volume_5_Caching_Guide:
+    name: "Development Guide: Caching Guide"
   Getting_Started_Guide:
   Installation_Guide:
   Migration_Guide:
   Release_Notes:
     formats:
       html:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/html/Release_Notes/index.html
+        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/html/Release_Notes/index.html
       html-single:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/html-single/Release_Notes/index.html
+        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/html-single/Release_Notes/index.html
       pdf:
         url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/pdf/Release_Notes/Red_Hat_JBoss_Data_Virtualization-6.1-Release_Notes-en-US.pdf
       epub:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/epub/Release_Notes/Red_Hat_JBoss_Data_Virtualization-6.1-Release_Notes-en-US.epub
+        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.1/epub/Release_Notes/Red_Hat_JBoss_Data_Virtualization-6.1-Release_Notes-en-US.epub
+  Security_Guide:
+  User_Guide:
 description: 'A data virtualization tool useful for any organization struggling to gain operational and analytical insights from data dispersed and locked up in various business units, applications, and technology silos. (formerly known as JBoss Enterprise Data Services Platform).'
 default_download_artifact_type: installer
 downloads:
