@@ -976,8 +976,11 @@ body.fullbleed {
       p {
         margin:0;
       }
-
     }
+  }
+  // Keeps images from overflowing outside of their container
+  .imageblock > .content{
+    margin: auto 0;
   }
 }
 
