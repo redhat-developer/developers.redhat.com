@@ -1,4 +1,24 @@
 GIT
+  remote: git://github.com/Dantheman720/aweplug.git
+  revision: 21591e79452685ee3728b2d23ec885e811e1f75f
+  branch: DEVELOPER-1248
+  specs:
+    aweplug (1.0.0.a24)
+      curb (~> 0.8.5)
+      faraday (>= 0.8.7, < 1.0.0)
+      faraday_middleware (>= 0.9.0)
+      google-api-client (~> 0.7)
+      kramdown (~> 1.0.2)
+      nokogiri (~> 1.5.10)
+      oauth (~> 0.3.6)
+      octokit (>= 1.24.0)
+      parallel (> 1.0.0)
+      ruby-duration (= 3.1)
+      sass (< 3.4.6)
+      uglifier (~> 2.0.1)
+      xml-simple (~> 1.1)
+
+GIT
   remote: git://github.com/LightGuard/awestruct.git
   revision: 05bf2c7fc4027c00115b6bc2e9ff0ffcf3eacc8e
   branch: multi-thread-gen-trial
@@ -20,25 +40,6 @@ GIT
       ruby-s3cmd (~> 0.1.5)
       tilt (~> 2.0.1)
       zurb-foundation (~> 4.3.2)
-
-GIT
-  remote: git://github.com/awestruct/aweplug.git
-  revision: 7c94a1fbcbb099e54c9ecdc8d1fd0d3e1fdb09ae
-  specs:
-    aweplug (1.0.0.a24)
-      curb (~> 0.8.5)
-      faraday (>= 0.8.7, < 1.0.0)
-      faraday_middleware (>= 0.9.0)
-      google-api-client (~> 0.7)
-      kramdown (~> 1.0.2)
-      nokogiri (~> 1.5.10)
-      oauth (~> 0.3.6)
-      octokit (>= 1.24.0)
-      parallel (> 1.0.0)
-      ruby-duration (= 3.1)
-      sass (< 3.4.6)
-      uglifier (~> 2.0.1)
-      xml-simple (~> 1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -102,7 +103,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
-    ffi (1.9.6)
+    ffi (1.9.8)
     formatador (0.2.5)
     git (1.2.9.1)
     google-api-client (0.7.1)
@@ -118,7 +119,7 @@ GEM
       uuidtools (>= 2.1.0)
     gpgme (2.0.8)
       mini_portile (>= 0.5.0)
-    guard (2.12.4)
+    guard (2.12.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
