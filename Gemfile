@@ -11,7 +11,7 @@ end
 def darwin_only(require_as)
   RbConfig::CONFIG['host_os'] =~ /darwin/ ? require_as : false
 end
- 
+
 # GEMS
 #gem 'awestruct', '~> 0.5.6.beta8'
 gem 'awestruct', github: 'LightGuard/awestruct', branch: 'multi-thread-gen-trial'
@@ -26,7 +26,7 @@ gem 'git', '~> 1.2.5'
 gem 'oily_png', '~> 1.1.1'
 gem 'nokogiri', '~> 1.5.10'
 gem 'therubyracer', platforms: :ruby, require: linux_only('therubyracer')
-gem 'aweplug', github: 'awestruct/aweplug'
+gem 'aweplug', github: 'Dantheman720/aweplug', :branch => 'DEVELOPER-1205'
 #gem 'aweplug', path: '~/projects/ruby/aweplug'
 #gem 'aweplug', path: '../aweplug'
 gem 'parallel', '~> 1.1.0'
