@@ -6,6 +6,7 @@ require 'common_dir'
 require 'aweplug/extensions/kramdown_quickstart'
 require 'aweplug/extensions/sections'
 require 'aweplug/extensions/asciidoc_example'
+require 'aweplug/extensions/drupal_extension'
 require 'aweplug/extensions/video'
 require 'aweplug/helpers/video'
 require 'aweplug/helpers/resources'
@@ -212,6 +213,8 @@ Awestruct::Extensions::Pipeline.new do
                                                        col_labels: true,
                                                        by: 'row')
   extension JBoss::Developer::HighValueInteractionDataPreparer.new
+
+  extension Aweplug::Extensions::DrupalExtension.new
 
   transformer JBoss::Developer::LinkTransformer.new
   transformer Aweplug::Transformer::AsciidocCdnTransformer.new
