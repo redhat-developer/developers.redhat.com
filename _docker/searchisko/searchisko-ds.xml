@@ -1,0 +1,29 @@
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+<datasource jndi-name="java:jboss/datasources/SearchiskoDS" pool-name="SearchiskoDS" enabled="true" use-java-context="true">
+  <connection-url>jdbc:mysql://localhost:3306/searchisko</connection-url>
+  <connection-property name="autoReconnect">true</connection-property>
+  <connection-property name="useUnicode">true</connection-property>
+  <connection-property name="characterEncoding">UTF-8</connection-property>
+  <driver>com.mysql</driver>
+  <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+  <pool>
+    <min-pool-size>10</min-pool-size>
+    <max-pool-size>100</max-pool-size>
+    <prefill>true</prefill>
+  </pool>
+  <security>
+    <user-name>root</user-name>
+    <password>708808</password>
+  </security>
+  <validation>
+    <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"></valid-connection-checker>
+    <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+    <background-validation>true</background-validation>
+    <background-validation-millis>300000</background-validation-millis>
+  </validation>
+  <statement>
+    <prepared-statement-cache-size>32</prepared-statement-cache-size>
+    <share-prepared-statements>true</share-prepared-statements>
+  </statement>
+</datasource>
+</datasources>

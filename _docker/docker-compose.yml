@@ -1,0 +1,38 @@
+drupal:
+  build: drupal
+  ports:
+    - "8081:80"
+  links:
+    - drupalmysql
+drupalmysql:
+  build: drupal_mysql
+  ports:
+    - "13306:3306"
+mysql:
+  build: ./searchisko_mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=708808
+  ports:
+    - "3306:3306"
+elasticsearch:
+  build: ./elasticsearch
+  ports:
+   - "9200:9200"
+   - "9300:9300"
+searchisko:
+  build: ./searchisko
+  ports:
+   - "8080:8080"
+  environment:
+    - MYSQL_ROOT_PASSWORD=708808
+  links:
+   - mysql
+   - elasticsearch
+searchiskoconfigure:
+  build: ./searchisko_configure
+  links:
+   - mysql
+   - elasticsearch
+   - searchisko
+  environment:
+    - MYSQL_ROOT_PASSWORD=708808
