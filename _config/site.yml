@@ -73,18 +73,3 @@ profiles:
       <<: *deploy
       path: /stg_htdocs/www-stg
     
-  production:
-    <<: *profile
-    base_url: http://www.jboss.org/
-    dcp_base_protocol_relative_url: //dcp.jboss.org/
-    dcp_base_url: http://dcp.jboss.org/
-    require_tag: true
-    metrics: true
-    elq_form_name: jboss-org-integration
-    disqus: jdf
-    robots: 
-      disallow: false
-    deploy:
-      <<: *deploy
-      path: /www_htdocs/www
-
