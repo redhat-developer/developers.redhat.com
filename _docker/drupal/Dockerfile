@@ -2,7 +2,7 @@ FROM centos:centos6
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 # Get the latest
-RUN yum -y update && yum -y install  \
+RUN yum clean dbcache && yum -y update && yum -y install  \
   curl \ 
   curl-devel \
   httpd \
