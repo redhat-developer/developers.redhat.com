@@ -1,0 +1,38 @@
+# ###### Three Musketeers Cluster Nodes Configuration  
+  
+cluster.name: search 
+node.name: aramis.prod  
+  
+# ###### Paths  
+# Default values are setup by rpm installation  
+  
+path.data: /services/elasticsearch/idx  
+path.logs: /services/elasticsearch/logs  
+path.work: /services/elasticsearch/work  
+#path.plugins: ???  
+#plugin.mandatory: elasticsearch-river-jira,elasticsearch-river-remote  
+  
+bootstrap.mlockall: true  
+  
+index.number_of_shards: 1
+index.number_of_replicas: 0  
+  
+# ###### Network and HTTP  
+  
+network.host: 0.0.0.0
+transport.tcp.port: 9300  
+http.port: 9200  
+http.enabled: true  
+  
+# ###### Gateway  
+  
+gateway.recover_after_nodes: 1
+# gateway.recover_after_time: 5m  
+# gateway.expected_nodes: 3  
+  
+# ###### Discovery  
+  
+discovery.zen.minimum_master_nodes: 1
+# discovery.zen.ping_timeout: 3s  
+discovery.zen.ping.multicast.enabled: false  
+discovery.zen.ping.unicast.hosts: ["127.0.0.1:9300"]  

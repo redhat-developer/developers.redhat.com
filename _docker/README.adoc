@@ -1,0 +1,26 @@
+= Drupal Setup
+Jason Porter <jporter@redhat.com>
+
+This docker compose setup builds and creates the images for use with drupal (php, apache httpd, drupal) and mysql.
+
+== Usage
+
+On the first use, issue the following commands:
+
+....
+$ docker-compose build
+$ docker-compose up
+....
+
+Subsequent uses should be able to simply use
+
+....
+$ docker-compose start
+....
+
+The first use will create the database, download drush and drupal and also set drupal up to accept rest calls via the API on `localhost:8081`, or the IP address of the docker container when using `boot2docker`.
+This first run may take a few minutes to put everything in place.
+When you see that Apache Httpd couldn't find the `ServerName` everything should be ready to go.
+
+The MySQL database is also exposed on port 13306.
+
