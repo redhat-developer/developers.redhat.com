@@ -1,6 +1,6 @@
 FROM centos:6 
 
-RUN yum -y install yum-utils && yum clean all
+RUN yum clean dbcache && yum -y install yum-utils && yum clean all
 
 RUN yum-config-manager --add-repo http://yum.engineering.redhat.com/pub/yum/repo_files/rhel6-base.repo
 RUN yum-config-manager --add-repo http://yum.engineering.redhat.com/pub/yum/repo_files/rhel6-fastrack.repo
