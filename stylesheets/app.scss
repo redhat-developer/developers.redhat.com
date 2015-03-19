@@ -871,6 +871,7 @@ body.fullbleed {
 // Spacing under the bulleted list
 .ulist {
   margin-bottom: 15px;
+  margin-left: 1em;
 }
 
 // Fixes spacing between/after lists made up of more than one list
@@ -966,10 +967,11 @@ body.fullbleed {
         font-family: 'FontAwesome';
         float: left;
         color:$grey-4;
-        font-size: 11px;
-        padding-right: 1.4em;
+        font-size: 9px;
+        padding-right: 0;
+        text-indent: -1.5em;
         position: relative;
-        top: 5px;
+        top: 4px;
       }
       p {
         margin:0;
