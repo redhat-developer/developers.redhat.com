@@ -15,7 +15,7 @@ done
 
 # Setup drupal. Ideally this would all be done in a make file or install profile, but I don't know how to do that yet
 drush si -y standard --db-url=mysql://drupal:708808@$DRUPALMYSQL_PORT_3306_TCP_ADDR/drupal --account-name=admin --account-pass=admin
-drush en features services ctools -y --resolve-dependencies
+drush en features services ctools libraries token pathauto -y --resolve-dependencies
 drush en awestruct_push -y
 drush user-create awestruct --password="awestruct"
 drush user-add-role awestruct awestruct
