@@ -1,7 +1,39 @@
-# jboss-developer-site
+# Red Hat Developer Site
 
 ## Getting Started
 This section covers the steps you need to do in order to setup your environment and get the site running for the first time. Further sections cover the details.
+
+Fork the project, then clone your fork and add the upstream repository.
+ 
+         git clone git@github.com:YOUR_USER_NAME/developer.redhat.com.git
+         cd developer.redhat.com
+         git remote add -f upstream git@github.com:redhat-developer/developer.redhat.com.git
+
+### Docker setup
+In order to build the site, you need to have a local Drupal and Searchisko service running.
+This environment is available via Docker images. 
+Before building the site, you must setup this environment first.
+
+1. Install Docker (or Boot2Docker on a Mac). Select the instructions from the [Docker installation docs](https://docs.docker.com/installation/) for your operating system. Make sure Docker is running correctly before proceeding.
+2. [Install Docker Compose](https://docs.docker.com/compose/install/). Again, make sure this is working correctly before proceeding.
+3. Download the Searchisko data dump from [here](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
+4. Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Boot2Docker, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `boot2docker ip`
+5. Run the following commands to build the images and start the containers:
+
+        cd _docker
+        docker-compose build
+        docker-compose up -d
+    
+Once the previous command completes, it will take a few minutes for the services to boot up and get configured. You can monitor the progress by running this command:
+
+        docker logs -f docker_searchiskoconfigure_1
+    
+When you see `FINISHED!` you will know that Searchisko is configured. This is the last step in the process, so all the services should now be ready. Visit the following URLs and check that you don't get any errors:
+
+* Drupal: <http://docker:8081/>
+* Searchisko: <http://docker:8080/v1/rest/project>
+
+### Site Build Setup
 
 1. Configure environment variables needed for the site.
     * Request the following values from the JBoss Developer team:
@@ -20,7 +52,7 @@ This section covers the steps you need to do in order to setup your environment 
             export dcp_user=<DCP_USER>
             export dcp_password=<DCP_PASSWORD>
 
-   Alternatively, if you plan to do frequent development on the site, you can request access to the password vault. The password vault is checked in to git (so always contains an up to date version of all keys, passwords and usernames), and is encrypted using GPG. To request access from the JBoss Developer team, send them the email address associated with your GPG key. To find out more about GPG (including how to create a key) read https://www.gnupg.org/gph/en/manual.html. If you are on Mac, we recommend GPGSuite which provides Keychain management for your GPG key.
+   Alternatively, if you plan to do frequent development on the site, you can request access to the password vault. The password vault is checked in to git (so always contains an up to date version of all keys, passwords and usernames), and is encrypted using GPG. To request access from the Red Hat Developer team, send them the email address associated with your GPG key. To find out more about GPG (including how to create a key) read https://www.gnupg.org/gph/en/manual.html. If you are on Mac, we recommend GPGSuite which provides Keychain management for your GPG key.
 
 2. Configure the software.
     _NOTE:_ You must use a version of Ruby installed via RVM.
@@ -40,26 +72,28 @@ This section covers the steps you need to do in order to setup your environment 
             sudo yum install -y gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel
             sudo sysctl fs.inotify.max_user_watches=524288
             sudo sysctl -p
-3. Fork the project, then clone your fork and add the upstream repository.
- 
-         git clone git@github.com:YOUR_USER_NAME/www.jboss.org.git
-         cd www.jboss.org
-         git remote add -f upstream git@github.com:jboss-developer/www.jboss.org.git
 
-4. Bootstrap the environment (only needed the first time)
+3. Bootstrap the environment (only needed the first time)
         
         bundle install
 
-5. Configure the enviornment:
+4. Configure the enviornment:
 
         rake setup
 
-6. Build the site for display at <http://localhost:4242>
+5. Build the site for display at <http://localhost:4242> and <http://docker:8081>
+   
+        export drupal_user=admin
+        export drupal_password=admin
         rake clean preview
 
 _NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
 
-If the build was successful, you should be able to visit the site here: <http://localhost:4242>
+If the build was successful, you should be able to visit the site here: <http://localhost:4242> and <http://docker:8081>
+
+
+
+> Everything below is copied across verbatim from www.jboss.org. Proceed with caution.
 
 
 ## Development

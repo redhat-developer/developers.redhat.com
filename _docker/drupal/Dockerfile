@@ -2,7 +2,7 @@ FROM centos:centos6
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 # Get the latest
-RUN yum -y update && yum -y install  \
+RUN yum clean dbcache && yum -y update && yum -y install  \
   curl \ 
   curl-devel \
   httpd \
@@ -22,7 +22,7 @@ RUN yum -y update && yum -y install  \
 RUN pear channel-discover pear.drush.org && pear install drush/drush
 COPY run-httpd.sh /run-httpd.sh
 COPY httpd.conf /etc/httpd/conf/httpd.conf
-ADD awestruct_push-7.x-1.0-beta1.tar /var/www/html/sites/all/modules
+ADD awestruct_push-7.x-1.0-beta2.tar /var/www/html/sites/all/modules
 EXPOSE 80
 
 CMD ["/bin/bash", "/run-httpd.sh"]

@@ -4,7 +4,7 @@ ENV JAVA_VERSION 7u25
 ENV BUILD_VERSION b15
 
 # Upgrading system
-RUN yum -y upgrade
+RUN yum clean dbcache && yum -y upgrade
 RUN yum -y install wget which
 
 # Downloading Java
