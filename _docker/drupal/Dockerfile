@@ -31,6 +31,8 @@ RUN yum clean dbcache && yum -y update && yum -y install  \
   libcurl-devel \
 && yum clean all
 
+WORKDIR /var/www/html
+
 # Add RVM keys
 RUN gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 
@@ -39,14 +41,14 @@ RUN curl -L get.rvm.io | bash -s stable
 RUN /bin/bash -l -c "rvm requirements && rvm autolibs enable"
 
 # Install Ruby
-ADD .ruby-version /
-ADD .ruby-gemset /
+ADD .ruby-version ./
+ADD .ruby-gemset ./
 RUN /bin/bash -l -c "rvm install `cat .ruby-version`"
 
-## Build setup
+## Install the current gemset 
 # Build the current gemset (user will only need to build the difference 
-ADD Gemfile /
-ADD Gemfile.lock /
+ADD Gemfile ./
+ADD Gemfile.lock ./
 RUN /bin/bash -l -c "bundle install"
 
 RUN pear channel-discover pear.drush.org && pear install drush/drush
@@ -55,4 +57,8 @@ COPY run-httpd.sh /run-httpd.sh
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 EXPOSE 80
 
+# Add the site themes
+VOLUME /var/www/html/sites/all/themes
+
 CMD ["/bin/bash", "/run-httpd.sh"]
+
