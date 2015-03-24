@@ -4,6 +4,8 @@ drupal:
     - "8081:80"
   links:
     - drupalmysql
+  volumes:
+    - ../_drupal/themes:/var/www/html/sites/all/themes
 drupalmysql:
   build: drupal_mysql
   ports:
