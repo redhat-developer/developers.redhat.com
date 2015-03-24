@@ -368,7 +368,12 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     }
 
     if($scope.filters.sys_tags && $scope.filters.sys_tags.length){
-        var tags = "\"" + $scope.filters.sys_tags.join("\" \"") + "\"";
+        if(typeof $scope.filters.sys_tags === 'string') {
+          var tags = $scope.filters.sys_tags; // singular string
+        }
+        else {
+          var tags = "\"" + $scope.filters.sys_tags.join("\" \"") + "\""; // array
+        }
         searchTerms.push('sys_tags:('+tags+')');
     }
 
