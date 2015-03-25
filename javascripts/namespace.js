@@ -7,7 +7,7 @@ interpolate: true
  */
 
 var app = window.app = {};
-/* 
+/*
   Website Cache
 */
 app.cache = {};
@@ -28,13 +28,14 @@ app.templates.connectorTemplate = '#{partial "product-connectors-item.html.slim"
 */
 app.fastClick = false;
 
-/* 
+/*
   DCP setup
 */
 
 app.dcp = {};
 app.dcp.url = {};
 app.dcp.url.search = '#{site.dcp_base_protocol_relative_url}v1/rest/search';
+// app.dcp.url.search = 'http://dcp.jboss.org/';
 app.dcp.url.content = '#{site.dcp_base_protocol_relative_url}v1/rest/content';
 app.dcp.url.auth_status = '#{site.dcp_base_protocol_relative_url}v1/rest/auth/status';
 app.dcp.url.rating = '#{site.dcp_base_protocol_relative_url}v1/rest/rating';

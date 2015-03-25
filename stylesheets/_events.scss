@@ -84,12 +84,23 @@
   margin-right:15px;
   margin-bottom: 5px;
   box-shadow:2px 2px 0 $med-blue;
+  &.multiday {
+    span {
+      font-size: 10px;
+    }
+    span.end {
+      display: inline;
+    }
+  }
   span {
     display: block;
     clear:both;
     width:100%;
     font-size: 20px;
     line-height: 23px;
+    &.end {
+      display: none;
+    }
     &.days {
       font-size: 18px;
       padding-top: 6px;
