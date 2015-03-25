@@ -11,9 +11,7 @@ function do_index {
 
   echo "Running indexing for: $DESCRIPTION"
 
-  #echo curl -X POST --user jbossorg:jbossorgjbossorg  "$URL" -d "$BODY" -H "Content-Type:application/json"
   RESULT=$(curl -s -X POST --user jbossorg:jbossorgjbossorg  "$URL" -d "$BODY" -H "Content-Type:application/json")
-  #echo $RESULT
   TASK_ID=$(echo $RESULT | awk -F '"' '{ print $4 }')
   if [ "$TASK_ID" == "" ]; then
       echo "ERROR getting task ID"
@@ -24,7 +22,6 @@ function do_index {
   TASK_OUTCOME=
   while [ "$DONE" == "false" ]; do
 
-    #echo curl -X GET "http://192.168.59.103:8080/v1/rest/tasks/task/$TASK_ID" --user jbossorg:jbossorgjbossorg
     TASK_OUTCOME=$(curl -s -X GET "http://192.168.59.103:8080/v1/rest/tasks/task/$TASK_ID" --user jbossorg:jbossorgjbossorg | awk -F 'taskStatus' '{ print $2 }' | awk -F '"' '{ print $3 }')
 
     echo $TASK_OUTCOME
@@ -90,7 +87,6 @@ pushd indexes/
 popd
 
 pushd mappings/
-sed -i.bak "s/curl /curl -s /g" ./init_mappings.sh
 ./init_mappings.sh ${esurl} ${esusername} ${espassword}
 popd
 

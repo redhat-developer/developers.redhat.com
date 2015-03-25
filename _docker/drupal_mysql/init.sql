@@ -1,4 +1,0 @@
-DROP DATABASE IF EXISTS `drupal`;
-CREATE DATABASE `drupal`;
-GRANT ALL ON drupal.* TO drupal@'%' IDENTIFIED BY '708808';
-

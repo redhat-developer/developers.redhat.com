@@ -1,19 +1,30 @@
 drupal:
-  build: drupal
+  build: ./drupal
   ports:
     - "8081:80"
   links:
     - drupalmysql
   volumes:
     - ../_drupal/themes:/var/www/html/sites/all/themes
+    - ../_drupal/scripts:/opt/drupal/bin
+  environment:
+    - DB_NAME=drupal
+    - DB_USER=drupal
+    - DB_PASSWORD=drupal
 drupalmysql:
-  build: drupal_mysql
+  build: ./mysql
+  environment:
+    - DB_NAME=drupal
+    - DB_USER=drupal
+    - DB_PASSWORD=drupal
   ports:
     - "13306:3306"
 mysql:
-  build: ./searchisko_mysql
+  build: ./mysql
   environment:
-    - MYSQL_ROOT_PASSWORD=708808
+    - DB_NAME=searchisko
+    - DB_USER=searchisko
+    - DB_PASSWORD=searchisko
   ports:
     - "3306:3306"
 elasticsearch:
@@ -26,7 +37,9 @@ searchisko:
   ports:
    - "8080:8080"
   environment:
-    - MYSQL_ROOT_PASSWORD=708808
+    - DB_NAME=searchisko
+    - DB_USER=searchisko
+    - DB_PASSWORD=searchisko
   links:
    - mysql
    - elasticsearch
@@ -36,5 +49,3 @@ searchiskoconfigure:
    - mysql
    - elasticsearch
    - searchisko
-  environment:
-    - MYSQL_ROOT_PASSWORD=708808

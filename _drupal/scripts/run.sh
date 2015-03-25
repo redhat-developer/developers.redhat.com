@@ -9,22 +9,21 @@ mkdir -p sites/default/files
 chown -R apache:apache /var/www/html
 
 echo "Attempting to connect to mysql, waiting until it comes up if needed..."
-until mysql -u drupal -p708808 -h $DRUPALMYSQL_PORT_3306_TCP_ADDR -e ";" 2>/dev/null; do
-  sleep 10s
+until mysql -u $DB_USER -p$DB_PASSWORD -h $DRUPALMYSQL_PORT_3306_TCP_ADDR -e ";" 2>/dev/null; do
+  sleep 5s
 done
 
 # Setup drupal. Ideally this would all be done in a make file or install profile, but I don't know how to do that yet
-drush si -y standard --db-url=mysql://drupal:708808@$DRUPALMYSQL_PORT_3306_TCP_ADDR/drupal --account-name=admin --account-pass=admin
+drush si -y standard --db-url=mysql://$DB_USER:$DB_PASSWORD@$DRUPALMYSQL_PORT_3306_TCP_ADDR/$DB_NAME --account-name=admin --account-pass=admin
 drush en features services ctools libraries token pathauto -y --resolve-dependencies
 drush en awestruct_push -y
+# Add Drupal functional modules
+drush en metatag compass securesite -y
+# Disable the drush update manager, we will manage updates from here
+drush pm-disable update -y
 drush user-create awestruct --password="awestruct"
 drush user-add-role awestruct awestruct
 
-# Disable the drush update manager, we will manage updates from here
-drush pm-disable update -y
-
-# Add Drupal functional modules
-drush en metatag compass securesite -y
 
 # Switch to HTTP Basic for authentication to restricted pages
 drush vset --exact securesite_enabled 3
