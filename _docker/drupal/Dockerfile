@@ -1,9 +1,8 @@
-FROM centos:centos6
+FROM developer.redhat.com/base
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 # Get the latest
-RUN yum clean dbcache && yum -y update && yum -y install  \
-  curl \ 
+RUN yum -y install  \
   curl-devel \
   httpd \
   mysql \
@@ -18,8 +17,6 @@ RUN yum clean dbcache && yum -y update && yum -y install  \
   php-xml \ 
   php-xmlrpc \
   # Install RVM dependencies
-  tar \
-  which \
   tar \
   bzip2 \
   gcc \
@@ -53,12 +50,13 @@ RUN /bin/bash -l -c "bundle install"
 
 RUN pear channel-discover pear.drush.org && pear install drush/drush
 ADD awestruct_push-7.x-1.0-beta2.tar /var/www/html/sites/all/modules
-COPY run-httpd.sh /run-httpd.sh
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 EXPOSE 80
 
 # Add the site themes
 VOLUME /var/www/html/sites/all/themes
 
-CMD ["/bin/bash", "/run-httpd.sh"]
+# Add the script(s)
+VOLUME /opt/drupal/bin
 
+CMD ["/bin/bash", "/opt/drupal/bin/run.sh"]
