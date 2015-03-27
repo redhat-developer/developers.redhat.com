@@ -20,6 +20,19 @@ drush en awestruct_push -y
 drush user-create awestruct --password="awestruct"
 drush user-add-role awestruct awestruct
 
+# Disable the drush update manager, we will manage updates from here
+drush pm-disable update -y
+
+# Add Drupal functional modules
+drush en metatag compass securesite -y
+
+# Switch to HTTP Basic for authentication to restricted pages
+drush vset --exact securesite_enabled 3
+
+# Enable and set the Drupal default theme
+drush en rhd
+#drush vset theme_default rhd
+
 # Make sure we're not confused by old, incompletely-shutdown httpd
 # context after restarting the container.  httpd won't start correctly
 # if it thinks it is already running.
