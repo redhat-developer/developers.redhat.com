@@ -21,6 +21,8 @@ Before building the site, you must setup this environment first.
 5. Run the following commands to build the images and start the containers:
 
         cd _docker
+        docker build --tag developer.redhat.com/base ./base
+        docker build --tag developer.redhat.com/java
         docker-compose build
         docker-compose up -d
     

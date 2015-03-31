@@ -131,7 +131,8 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:datasources:1.2">
             <datasources>
-                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true"
+                    use-java-context="true">
                     <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <driver>h2</driver>
                     <security>
@@ -143,38 +144,40 @@
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
                     </driver>
-                   <driver name="com.mysql" module="com.mysql">
-        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
-      </driver> 
-               </drivers>
-<datasource jndi-name="java:jboss/datasources/SearchiskoDS" pool-name="SearchiskoDS" enabled="true" use-java-context="true">  
-<connection-url>jdbc:mysql://MYSQL_IP:3306/searchisko</connection-url>  
-<connection-property name="autoReconnect">true</connection-property>  
-<connection-property name="useUnicode">true</connection-property>  
-<connection-property name="characterEncoding">UTF-8</connection-property>  
-<driver>com.mysql</driver>  
-<transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>  
-<pool>  
-<min-pool-size>10</min-pool-size>  
-<max-pool-size>100</max-pool-size>  
-<prefill>true</prefill>  
-</pool>  
-<security>  
-<user-name>searchisko</user-name>  
-<password>708808</password>  
-</security>  
-<validation>  
-<valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"></valid-connection-checker>  
-<exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>  
-<background-validation>true</background-validation>  
-<background-validation-millis>300000</background-validation-millis>  
-</validation>  
-<statement>  
-<prepared-statement-cache-size>32</prepared-statement-cache-size>  
-<share-prepared-statements>true</share-prepared-statements>  
-</statement>  
-</datasource>  
-         </datasources>
+                    <driver name="com.mysql" module="com.mysql">
+                        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+                    </driver>
+                </drivers>
+                <datasource jndi-name="java:jboss/datasources/SearchiskoDS" pool-name="SearchiskoDS" enabled="true"
+                    use-java-context="true">
+                    <connection-url>jdbc:mysql://${env.MYSQL_PORT_3306_TCP_ADDR}:3306/${env.DB_NAME}</connection-url>
+                    <connection-property name="autoReconnect">true</connection-property>
+                    <connection-property name="useUnicode">true</connection-property>
+                    <connection-property name="characterEncoding">UTF-8</connection-property>
+                    <driver>com.mysql</driver>
+                    <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+                    <pool>
+                        <min-pool-size>10</min-pool-size>
+                        <max-pool-size>100</max-pool-size>
+                        <prefill>true</prefill>
+                    </pool>
+                    <security>
+                        <user-name>${env.DB_USER}</user-name>
+                        <password>${env.DB_PASSWORD}</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker
+                            class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"></valid-connection-checker>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+                        <background-validation>true</background-validation>
+                        <background-validation-millis>300000</background-validation-millis>
+                    </validation>
+                    <statement>
+                        <prepared-statement-cache-size>32</prepared-statement-cache-size>
+                        <share-prepared-statements>true</share-prepared-statements>
+                    </statement>
+                </datasource>
+            </datasources>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:deployment-scanner:1.1">
             <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000"/>
@@ -195,8 +198,10 @@
             </session-bean>
             <pools>
                 <bean-instance-pools>
-                    <strict-max-pool name="slsb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
-                    <strict-max-pool name="mdb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                    <strict-max-pool name="slsb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5"
+                    instance-acquisition-timeout-unit="MINUTES"/>
+                    <strict-max-pool name="mdb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5"
+                    instance-acquisition-timeout-unit="MINUTES"/>
                 </bean-instance-pools>
             </pools>
             <caches>
@@ -221,7 +226,8 @@
             <default-missing-method-permissions-deny-access value="true"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:infinispan:1.5">
-            <cache-container name="web" aliases="standard-session-cache" default-cache="local-web" module="org.jboss.as.clustering.web.infinispan">
+            <cache-container name="web" aliases="standard-session-cache" default-cache="local-web"
+                module="org.jboss.as.clustering.web.infinispan">
                 <local-cache name="local-web" batching="true">
                     <file-store passivation="false" purge="false"/>
                 </local-cache>
@@ -308,24 +314,25 @@
                     <authorization>
                         <policy-module code="Delegating" flag="required"/>
                     </authorization>
-	        </security-domain>
-<security-domain name="SearchiskoSecurityDomain">
-    <authentication>
-        <login-module code="org.searchisko.api.security.jaas.ProviderLoginModule" flag="sufficient">
-        </login-module>
-
-        <login-module code="org.searchisko.api.security.jaas.ContributorCasLoginModule" flag="required">
-            <module-option name="ticketValidatorClass" value="org.jasig.cas.client.validation.Cas20ServiceTicketValidator" />
-            <module-option name="tolerance" value="20000" />
-            <module-option name="defaultRoles" value="contributor" />
-            <module-option name="roleAttributeNames" value="" />
-            <module-option name="principalGroupName" value="CallerPrincipal"/>
-            <module-option name="roleGroupName" value="Roles"/>
-            <module-option name="cacheAssertions" value="true" />
-            <module-option name="cacheTimeout" value="480" />
-        </login-module>
-    </authentication>
-</security-domain>
+                </security-domain>
+                <security-domain name="SearchiskoSecurityDomain">
+                    <authentication>
+                        <login-module code="org.searchisko.api.security.jaas.ProviderLoginModule" flag="sufficient">
+                        </login-module>
+                        
+                        <login-module code="org.searchisko.api.security.jaas.ContributorCasLoginModule" flag="required">
+                            <module-option name="ticketValidatorClass"
+                            value="org.jasig.cas.client.validation.Cas20ServiceTicketValidator"/>
+                            <module-option name="tolerance" value="20000"/>
+                            <module-option name="defaultRoles" value="contributor"/>
+                            <module-option name="roleAttributeNames" value=""/>
+                            <module-option name="principalGroupName" value="CallerPrincipal"/>
+                            <module-option name="roleGroupName" value="Roles"/>
+                            <module-option name="cacheAssertions" value="true"/>
+                            <module-option name="cacheTimeout" value="480"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
             </security-domains>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:threads:1.1"/>
@@ -350,7 +357,8 @@
             <wsdl-host>${jboss.bind.address:127.0.0.1}</wsdl-host>
             <endpoint-config name="Standard-Endpoint-Config"/>
             <endpoint-config name="Recording-Endpoint-Config">
-                <pre-handler-chain name="recording-handlers" protocol-bindings="##SOAP11_HTTP ##SOAP11_HTTP_MTOM ##SOAP12_HTTP ##SOAP12_HTTP_MTOM">
+                <pre-handler-chain name="recording-handlers"
+                    protocol-bindings="##SOAP11_HTTP ##SOAP11_HTTP_MTOM ##SOAP12_HTTP ##SOAP12_HTTP_MTOM">
                     <handler name="RecordingHandler" class="org.jboss.ws.common.invocation.RecordingServerHandler"/>
                 </pre-handler-chain>
             </endpoint-config>
@@ -371,7 +379,8 @@
         </interface>
     </interfaces>
 
-    <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
+    <socket-binding-group name="standard-sockets" default-interface="public"
+        port-offset="${jboss.socket.binding.port-offset:0}">
         <socket-binding name="management-native" interface="management" port="${jboss.management.native.port:9999}"/>
         <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
         <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9443}"/>
