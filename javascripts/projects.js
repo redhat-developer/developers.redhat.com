@@ -121,13 +121,13 @@ app.project = {
         + "<a class=\"image-link\" href=\""
         + app.project.getCorrectUrl(props.sys_url_view)
         + "\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "' alt='" + props.projectName + "'></a></div>"
-        + "<h3 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
+        + "<h5 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
         + app.project.getCorrectUrl(props.sys_url_view) + "\">"
         + props.projectName + "</a></h3><p></p>";
 
       if (props.downloadsLink) {
-        template += "<a class=\"upstream-download\" href=\""
-          + app.project.getCorrectUrl(props.downloadsLink) + "\"><i class=\"fa fa-download\"></i> Download</a>";
+        template += "<a class=\"upstream-download button blue tiny round\" href=\""
+          + app.project.getCorrectUrl(props.downloadsLink) + "\">Download</a>";
       }
 
 
