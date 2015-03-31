@@ -11,6 +11,7 @@ drupal:
     - DB_NAME=drupal
     - DB_USER=drupal
     - DB_PASSWORD=drupal
+  privileged: true
 drupalmysql:
   build: ./mysql
   environment:
