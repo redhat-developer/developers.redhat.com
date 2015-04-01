@@ -22,7 +22,7 @@ function do_index {
   TASK_OUTCOME=
   while [ "$DONE" == "false" ]; do
 
-    TASK_OUTCOME=$(curl -s -X GET "http://192.168.59.103:8080/v1/rest/tasks/task/$TASK_ID" --user jbossorg:jbossorgjbossorg | awk -F 'taskStatus' '{ print $2 }' | awk -F '"' '{ print $3 }')
+    TASK_OUTCOME=$(curl -s -X GET "http://$SEARCHISKO_PORT_8080_TCP_ADDR:8080/v1/rest/tasks/task/$TASK_ID" --user jbossorg:jbossorgjbossorg | awk -F 'taskStatus' '{ print $2 }' | awk -F '"' '{ print $3 }')
 
     echo $TASK_OUTCOME
     if [ "$TASK_OUTCOME" == "FINISHED_OK" ]; then
