@@ -204,7 +204,6 @@ ul.toc {
 .downloadthankyou {
   padding: 2em;
   color: $grey-6;
-  background-color: $light-blue;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -213,8 +212,8 @@ ul.toc {
 
   .thankyouclose {
     float:right;
-    margin-right: -1.75em;
-    margin-top: -1.75em;
+    margin-right: -1em;
+    margin-top: -1.5em;
     a {
       color: $grey-6;
       &:before {
@@ -223,11 +222,21 @@ ul.toc {
       }
     }
   }
+  .thankyoupanels{
+    i{
+      text-align: center;
+      color: $grey-6;
+    }
+    p{
+      margin-left: -1em;
+    }
+  }
 
   h2 {
     font-size: emCalc(28);
     font-weight: normal;
     margin-top: 0;
+    margin-bottom: 0;
   }
   h3 {
     font-size: emCalc(20);
