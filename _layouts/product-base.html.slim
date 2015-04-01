@@ -7,8 +7,11 @@ secondary_section: supported-products
 /If you are aren't sure which product layout to use, you probably want 'product', not this one!
 - page.title = "#{page.product.abbreviated_name} - #{page.type}"
 
+br
 .row
-  h2.large-title#product #{page.product.name}
+  .large-24
+    img(src="#{cdn( site.base_url + '/images/branding/product-logos/' + page.product.product_logo )}" alt="#{page.product.name}")
+    h3#product One Line Tagline Lorem Ipsum Dolor Sit Amet
 .row.content
   .large-24.columns
     ul.breadcrumbs
@@ -18,6 +21,9 @@ secondary_section: supported-products
         a href="#{site.base_url}/products" Products
       li
         a href="" #{page.product.abbreviated_name}
-
-  = content
-
+.row
+  .large-24
+    .hero.product-placeholder
+.row.content
+  .large-24
+    = content
