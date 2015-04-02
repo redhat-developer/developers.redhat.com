@@ -1,7 +1,7 @@
 name: Red Hat JBoss Developer Studio
 abbreviated_name: JBoss Developer Studio
 product_logo: developer-studio.png
-current_version: 8.0.0.GA
+current_version: 8.1.0.GA
 intro_video: https://vimeo.com/95444954
 vimeo_album: http://vimeo.com/album/2982449
 buzz_tags: 
@@ -14,6 +14,30 @@ guides:
 default_download_artifact_type: jar_universal
 description: 'A development environment that provides superior support for your entire development lifecycle. It includes a broad set of tooling capabilities and support for multiple programming models and frameworks.'
 downloads:
+  8.1.0.GA:
+    release_date: 2015-04-02
+    description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4.2 Luna SR2.
+    assets:
+      jar_universal:
+        name: Installer With EAP
+        size: 706mb
+        type: jar
+      standalone_jar:
+        name: Stand-alone Installer
+        size: 576mb
+        type: jar
+      standalone_zip_update:
+        name: Update Site Zip
+        size: 528mb
+        type: zip
+      standalone_zip_central:
+        name: JBoss Central Zip
+        size: 296mb
+        type: zip
+      source:
+        name: Source Zip
+        size: 44mb
+        type: zip
   8.1.0.CR1:
     release_date: 2015-03-19
     description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.4.2 Luna SR2.
