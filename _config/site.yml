@@ -11,18 +11,18 @@ vimeo_access_token: 1ad6583e71e183c3075a88d46ebb0675
 register_url: https://community.jboss.org/register.jspa
 change_frequency: daily
 searchisko_warnings: _site/searchisko_warnings.json
-application_name: JBoss Developer
+application_name: Red Hat Developer
 application_version: 1
 experiment_id: U10jDQ5OSNyz_vAuuUdggg
 
 deploy_base: &deploy
-  host: www@filemgmt.jboss.org
-  cdn_host: www@filemgmt.jboss.org
-  cdn_path: /static_htdocs/www
+  host: rhd@filemgmt.jboss.org
+  cdn_host: rhd@filemgmt.jboss.org
+  cdn_path: /static_htdocs/rhd
   uncommitted: true
 
 profile_base: &profile
-  cdn_http_base: &cdn_http_base //static.jboss.org/www 
+  cdn_http_base: &cdn_http_base //static.jboss.org/rhd
   cdn_out_dir: &cdn_out_dir _tmp
   cdn_version: &cdn_version true
   log_faraday: true
@@ -72,4 +72,18 @@ profiles:
     deploy:
       <<: *deploy
       path: /stg_htdocs/www-stg
-    
+  
+  production:
+    <<: *profile
+    base_url: http://rhd.jboss.org/
+    dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
+    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
+    require_tag: true
+    metrics: false
+    disqus: jdf
+    robots:
+      disallow: true
+    deploy:
+      <<: *deploy
+      path: /www_htdocs/rhd
+
