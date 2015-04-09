@@ -214,7 +214,8 @@ Awestruct::Extensions::Pipeline.new do
                                                        by: 'row')
   extension JBoss::Developer::HighValueInteractionDataPreparer.new
 
-  extension Aweplug::Extensions::DrupalExtension.new
+  #Un-comment the extension below to push pages to a Drupal instance
+  #extension Aweplug::Extensions::DrupalExtension.new
 
   transformer JBoss::Developer::LinkTransformer.new
   transformer Aweplug::Transformer::AsciidocCdnTransformer.new
