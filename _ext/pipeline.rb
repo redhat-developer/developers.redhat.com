@@ -28,6 +28,7 @@ require 'connectors'
 require 'events'
 require 'vault'
 require 'aweplug/helpers/define'
+require 'active_support' # HACK for autosupport required by duration
 
 Awestruct::Extensions::Pipeline.new do
   
@@ -214,10 +215,8 @@ Awestruct::Extensions::Pipeline.new do
                                                        by: 'row')
   extension JBoss::Developer::HighValueInteractionDataPreparer.new
 
-  #Un-comment the extension below to push pages to a Drupal instance
-  #extension Aweplug::Extensions::DrupalExtension.new
-
   transformer JBoss::Developer::LinkTransformer.new
   transformer Aweplug::Transformer::AsciidocCdnTransformer.new
+  transformer(JBoss::Developer::DrupalTransformer.new(site)) if site.drupal_base_url
 end
 

@@ -2,6 +2,7 @@ require 'uri'
 require 'aweplug/helpers/cdn'
 require 'aweplug/helpers/resources'
 require 'aweplug/helpers/png'
+require 'aweplug/helpers/drupal_service'
 require 'compass'
 require 'asciidoctor'
 require 'asciidoctor/extensions'
@@ -71,6 +72,19 @@ module JBoss
           end
         end
         site.high_value_interactions = res
+      end
+    end
+
+    class DrupalTransformer
+      def initialize(site)
+        @drupal = Aweplug::Helpers::DrupalService.default site
+      end
+
+      def transform site, page, content
+        if site.drupal_base_url && page.output_extension.include?('htm')
+          @drupal.send_page page, content
+        end
+        content # Don't mess up the content locally in _site
       end
     end
 

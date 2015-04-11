@@ -13,8 +13,7 @@ def darwin_only(require_as)
 end
 
 # GEMS
-#gem 'awestruct', '~> 0.5.6.beta8'
-gem 'awestruct', github: 'LightGuard/awestruct', branch: 'multi-thread-gen-trial'
+gem 'awestruct', github: 'awestruct/awestruct'
 gem 'slim', '~> 2.0.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 1.5.0'
@@ -39,6 +38,7 @@ gem 'ruby-duration', '~> 3.1'
 gem 'daybreak'
 gem 'sass', '~> 3.4', '< 3.4.6'
 gem 'activesupport', '> 3.1', '< 4.2.0' # Used in aweplug by ruby-duration
+gem 'compass', '~> 1.0'
 
 group :development do
   gem 'rb-inotify', require: false

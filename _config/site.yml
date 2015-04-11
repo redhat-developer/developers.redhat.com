@@ -42,6 +42,7 @@ profile_base: &profile
     :cdn_version: *cdn_version
   authenticate_google_books_api: true
   build_threads: 40
+  cache_type: :external
 
 profiles:
   development: &development
@@ -52,7 +53,18 @@ profiles:
     metrics: false
     authenticate_google_books_api: false
     build_threads: 0
-    drupal_base_url: http://docker:8081/
+    cache_type: :local
+
+  docker: &docker
+    <<: *development
+    base_url: http://docker:<%= ENV['AWESTRUCT_HOST_PORT'] %>/
+    dcp_base_url: http://searchisko:8080/
+    dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+
+  drupal:
+    <<: *docker
+    base_url: http://<%= ENV['DRUPAL_HOST_IP'] %>:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    drupal_base_url: http://drupal/
   
   development_cdn: 
     <<: *development
