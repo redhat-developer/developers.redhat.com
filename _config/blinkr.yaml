@@ -22,19 +22,27 @@ skips:
   - !ruby/regexp /^https:\/\/jboss.orgmail.list:.dev@httpd.apache.org+/
   - !ruby/regexp /^https:\/\/jboss.orgmail.list:.dev@tomcat.apache.org+/
   - !ruby/regexp /^https:\/\/jboss.orgmail.list:.users@tomcat.apache.org+/
-    # LinkedIn Issue DEVELOPER-1120
+  # DEVELOPER-1252
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/797\/build\/1759\/enterprise-java\/http\/:www.jboss.org\/products\/eap\/overview\/+/
+    # Non-errors in production
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/overview\/#buzz+/
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/developer-materials\/#!formats=video&amp;projectCode=bpmsuite+/
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/developer-materials\/#!projectCode=bpmsuite+/
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/devstudio\/get-started\/#ExtraSection+/
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/download+/
+#    # LinkedIn Issue DEVELOPER-1120
   - !ruby/regexp /http:\/\/linkedin.com\/.+/
-    # Google plus issue DEVELOPER-1126
-    # JIRA Issue BG-12 - Build link
+#    # Google plus issue DEVELOPER-1126
+#    # JIRA Issue BG-12 - Build link
   - !ruby/regexp /^http:\/\/ci.stormgrind.org\/project.html(.)projectId=project2&guest=1+/
-    # JDF-778
+#    # JDF-778
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#add-an-application-user+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#build-and-deploy-the-quickstarts+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#configure-maven+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#mavenconfiguration+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#run-the-arquillian-tests+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts+/
-    # JDF-773
+#    # JDF-773
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/cdi-generic-portlet\/README.html+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/cdi-jsf-portlet\/README.html+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/cdi-scopes-portlet\/README.html+/
@@ -45,82 +53,19 @@ skips:
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/sample-portal\/README.html+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/simplest-hello-world-portlet\/README.html+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/social-portlets\/README.html+/
-    # JDF-773
+#    # JDF-773
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Unsolicted\+Responses+/
-    # WINDUP-180
+#    # WINDUP-180
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/projects\/issues.jboss.org\/browse\/WINDUP+/
-    # JDF-791
+#    # JDF-791
   - !ruby/regexp /^https:\/\/devstudio.jboss.com\/central\/install\?connectors=org.jboss.tools.aerogear.hybrid+/
-    # JDF-770
+#    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Security\+Token\+Server\+%28STS%29+/
-    # JDF-770
+#    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
 ignores:
-  - url: !ruby/regexp /^https?:\/\/dcp(beta-searchisko\.rhcloud\.com|\.jboss\.org)\/v1\/rest/
-  - url: git://github.com/snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
-  - url: git@github.com:belaban/JGroups.git #JIRA Issue JGRP-1866 - Committer Git ---- Still Outstanding ---- Marked resolved, needs to be fixed
   - url: git@github.com:nodyn/nodyn.git #Not an error.
-  - url: http://ci.infinispan.org/ #Link works correctly
-  - url: http://community.jboss.org/en/gatein #Can't replicate the error
-  - url: http://community.jboss.org/en/jbossas/picketbox?view=discussions #JIRA Issue SECURITY-852 (Picketbox) - User Forum, Community ----- Still Outstanding
-  - url: http://facebook.com/kenneth.peeples?rel=author #Link does not appear on the page
-  - url: http://fisheye.jboss.com/browse/JBossAS/projects/jboss-jca/trunk/ #Not on JIRA?
-  - url: http://fisheye.jboss.org/browse/DTF #Not on JIRA?
-  - url: http://fisheye.jboss.org/browse/gatein/components/pc #JIRA Issue GTNPC-111 (GateIn) - Fisheye Link ----- Still Outstanding
-  - url: http://fisheye.jboss.org/browse/Guvnor #JIRA Issue GUVNOR-2113 - Fisheye Link ----- Still Outstanding
-  - url: http://fisheye.jboss.org/changelog/exo-jcr #Not on JIRA?
-  - url: http://fisheye.jboss.org/repos/jbossbuild/trunk #JIRA Issue JBBUILD-738 ----- Still Outstanding
-  - url: http://hudson.jboss.org/hudson/view/Mobicents/ #Not on JIRA?
-  - url: http://nodyn.io/community/ #Not on JIRA
-  - url: http://nodyn.io/documentation/ #Not on JIRA
-  - url: http://nodyn.io/install/ #Not on JIRA
-  - url: http://nodyn.io/news/ #Not on JIRA
-  - url: http://nodyn.io/releases/ #Not on JIRA
-  - url: http://repository.jboss.org/maven2/org/jboss/maven/plugins/maven-jdocbook-style-plugin/ #Not on JIRA?
-  - url: http://www.jboss.org/feeds/view/jbossprofiler #JIRA Issue JBPROFILER-115 - Blog Link ----- Still Outstanding
-  - url: http://www.jboss.org/feeds/view/serialization #JIRA Issue JBSER-132 - Blog Link ----- Still Outstanding
-  - url: http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/HelloworldQuickstart #JIRA Issue JDF-770
-  - url: http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/Introduction/ #JIRA Issue JDF-773
-  - url: http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/KitchensinkQuickstart/ #JIRA Issue JDF-770
-  - url: http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/NumberguessQuickstart/ #JIRA Issue JDF-770
-  - url: http://www.jboss.org/quickstarts/eap/guide/HelloworldOSGiQuickstart/  #JIRA Issue JDF-770
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/chap-Basic_JSF_Portlet_Development.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/chap-JSF_Portlet_Development_with_RichFaces.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/chap-Portlet_Bridge.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/Facebook.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/Google.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/part-Portal_API.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/sect-Standard_Portlet_Development_JSR-286.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/sect-Starting_a_Portlet_Project.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Portal/6.1/html/Development_Guide/Twitter.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-Portal_Containers.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-Portal_Extension.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-Basic_JSF_Portlet_Development.html #JIRA Issue JDF-773
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-CDI_Portlet_Development.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/Facebook.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-Portlet_Bridge.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/sect-Portlet_CDI_Scopes.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/Twitter.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/sect-Standard_Portlet_Development_JSR-286.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/GenericPortlet_and_Portlet_Filter_Injection.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/part-Portal_API.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-JSF_Portlet_Development_with_RichFaces.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/Google.html #JDF-773.
-  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/sect-Starting_a_Portlet_Project.html #JDF-773.
-  - url: https://infinispan.ci.cloudbees.com/ #JIRA Issue ISPN-4600 - Build Link ----- Still Outstanding
-  - url: issues.jboss.org/browse/WINDUP #JIRA Issue WINDUP-180 - JIRA Link ----- Still Outstandingreport: _tmp/blinkr/index.html
-  - url: https://plus.google.com/share?url=http://www.jakubkorab.net/2014/12/digesting-microservices-at-mucon.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=digesting-microservices-at-mucon #302 moved, but not actually an error.
-  - url: https://docs.google.com/spreadsheets/d/12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k/edit #302 moved, but not actually an error.
-  - url: https://issues.jboss.org/browse/WELD #302 moved, but not actually an error.
-  - url: http://jira.jboss.org/jira/browse/JBCLUSTER #302 moved, but not actually an error.
-  - url: https://plus.google.com/share?url=http://ceylon-lang.org/blog/2014/12/01/version-ranges #302 moved, but not actually an error.
-  - url: https://docs.google.com/spreadsheets/d/1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c/edit #302 moved, but not actually an error.
-  - url: https://issues.jboss.org/browse/WFLY #302 moved, but not actually an error.
-  - url: https://docs.google.com/spreadsheets/d/1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g/edit?usp=sharing #302 moved, but not actually an error.
   - url: http://in.relation.to/ #Not an error.
-  - url: http://overlord.jboss.org/issues #DEVELOPER-1140.
-  - url: http://overlord.jboss.org/documentation #DEVELOPER-1140.
-  - url: http://overlord.jboss.org/downloads #DEVELOPER-1140.
   - url: https://console.developers.google.com #Not an error.
   - url: http://svn.jboss.org/repos/tohu/ #Not an error.
   - url: https://developer.jboss.org/en/products/fsw #Not an error
@@ -137,33 +82,98 @@ ignores:
   - url: https://www.innovateuk.org #Not an error
   - url: http://community.jboss.org/community/modeshape #Not an error
   - url: https://developer.jboss.org/en/products/devstudio #Not an error
-  - url: http://planet.jboss.org/post/open_source_conference_amsterdam_2013_jboss_integration_bpm_together_with_a_zeppelin_nemo_fish0 #DEVELOPER-1154
   - url: http://fabric8.io/community/ #Not an error
   - url: http://fabric8.io/docs/ #Not an error
   - url: http://fabric8.io/getstarted/ #Not an error
-  - url: https://github.com/jboss-developer/jboss-eap-quickstarts/tree/master/numberguess #JDF-779
-  - url: https://github.com/jboss-developer/jboss-sandbox-quickstarts/fork_select #JDF-778
   - url: http://<app-name>-<domain-name>.rhcloud.com #Not an error just for reference on loading on openshift
-  - url: http://ci.motd.kr #Issue 3257 github repo https://github.com/netty/netty/issues/3257
-  - url: https://github.com/jboss-developer/jboss-eap-quickstarts/fork_select #JDF-770
-  - url: https://devstudio.jboss.com/central/install?connectors=org.jboss.tools.aerogear.hybrid #JDF-791
-  - url: http://planet.jboss.org/post/world_first_demo_of_live_open_source_telecom_service #DEVELOPER-1154
-  - url: http://planet.jboss.org/post/at_t_bootstrap_week_learn_how_to_build_a_complete_html5_hybrid_app_with_appery_io #DEVELOPER-1154
-  - url: https://infinispan.ci.cloudbees.com/ #ISPN-4600
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/Master.html #DEVELOPER-1148
+  - url: https://api.github.com/repos/weimeilin79/homeloan-part3/zipball/master #Not an error
+  - url: https://api.github.com/repos/kpeeples/jboss-a-mq-websockets-demo/zipball/master #Not an error
+  - url: https://api.github.com/repos/FuseByExample/kie-remote-example/zipball/master #Not an error
+  - url: https://api.github.com/repos/weimeilin79/homeloan-part2/zipball/master #Not an error
+  - url: https://api.github.com/repos/FuseByExample/external-mq-fabric-client/zipball/master #Not an error
+  - url: https://api.github.com/repos/weimeilin79/homeloan-part1/zipball/master #Not an error
+  - url: https://api.github.com/repos/javaee-samples/javaee7-samples/zipball/master #Not an error
+  - url: https://api.github.com/repos/kpeeples/jboss-fuse-websockets-demo/zipball/master #Not an error
+  - url: https://github.com/jbossdemocentral/fuse-components-salesforce #Not an error
+  - url: !ruby/regexp /^https?:\/\/dcp(beta-searchisko\.rhcloud\.com|\.jboss\.org)\/v1\/rest/
+  - url: git://github.com/snowdrop/snowdrop.git #JIRA Issue SNOWDROP-118 - Anonymous Git ---- Still Outstanding
+  - url: git@github.com:belaban/JGroups.git #JIRA Issue JGRP-1866 - Committer Git ---- Still Outstanding ---- Marked resolved, needs to be fixed
+  - url: http://www.jboss.org/solutions/ #Not an error
+  - url: http://www.jboss.org/usergroups #Not an error
+  - url: http://access.redhat.com/site/downloads #Not an error
+  - url: http://www.openshift.com #Not an error
+  - url: https://community.jboss.org/en/wise/dev #Not an error
+  - url: http://www.jboss.org/community/docs/DOC-14138 #Not an error
+  - url: https://developer.jboss.org/people/anil.saldhana #Not an error
+  - url: https://developer.jboss.org/people/smakary #Not an error
+  - url: https://developer.jboss.org/people/paul.robinson #Not an error
+  - url: https://developer.jboss.org/people/starksm64 #Not an error
+  - url: https://developer.jboss.org/people/bmincey #Not an error
+  - url: https://developer.jboss.org/people/claudio_miranda #Not an error
+  - url: https://community.jboss.org/wiki/EqualsAndHashCode #Not an error
+  - url: https://developer.jboss.org/people/emil.cervenan #Not an error
+  - url: https://developer.jboss.org/people/stefanutti #Not an error
+  - url: https://www.jboss.org/community/docs/DOC-13269 #Not an error
+  - url: https://developer.jboss.org/people/adietish #Not an error
+  - url: https://developer.jboss.org/people/jmesnil #Not an error
+  - url: https://developer.jboss.org/people/ataylor #Not an error
+  - url: https://developer.jboss.org/people/LightGuard #Not an error
+  - url: https://developer.jboss.org/people/edgar.silva #Not an error
+  - url: https://developer.jboss.org/people/jamezp #Not an error
+  - url: http://ci.infinispan.org/ #Not an error
+  - url: http://community.jboss.org/en/gatein #Not an error
+  - url: https://community.jboss.org/wiki/RedHatResearchCentreAwayDays #Not an error
+  - url: https://community.jboss.org/blogs/mark.little/2011/05/16/ubiquitous-computing #Not an error
+  - url: https://community.jboss.org/en/infinispan/content?filterID=contentstatus%5Bpublished%5D~objecttype~objecttype%5Bthread%5D #Not an error
+  - url: http://www.jboss.org/community/docs/DOC-11431 #Not an error
+  - url: https://developer.jboss.org/people/vrockai #Not an error
+  - url: http://community.jboss.org/community/wise #Not an error
+  - url: https://community.jboss.org/wiki/StudentResearchProjects #Not an error
+  - url: https://developer.jboss.org/people/jowilson #Not an error
+  - url: https://developer.jboss.org/people/marius.bogoevici #Not an error
+  - url: https://developer.jboss.org/people/tomjenkinson #Not an error
+  - url: https://community.jboss.org/wiki/How-toRunJBossAS7OnAnAndroid #Not an error
+  - url: https://developer.jboss.org/people/javapapo #Not an error
+  - url: https://www.jboss.org/community/docs/DOC-12956 #Not an error
+  - url: http://community.jboss.org/en/guvnor/dev?view=all #Not an error
+  - url: http://community.jboss.org/en/switchyard/dev?view=documents #Not an error
+  - url: https://community.jboss.org/en/serialization/dev #Not an error
+  - url: https://community.jboss.org/emailPasswordToken%21input.jspa #Not an error
+  - url: https://developer.jboss.org/people/nzhu #Not an error
+  - url: https://developer.jboss.org/people/mmusgrov #Not an error
+# ---------------BELOW ARE CURRENT OUTSTANDING ISSUES--------------------------
+  - url: https://devstudio.jboss.com/central/install?connectors=org.jboss.tools.aerogear.hybrid #JIRA Ticket Outstanding
+  - url: https://github.com/jboss-developer/jboss-sandbox-quickstarts/fork_select #JIRA Ticket Outstanding
+  - url: https://github.com/jboss-developer/jboss-eap-quickstarts/tree/master/numberguess #JIRA Ticket Outstanding
+  - url: https://github.com/jboss-developer/jboss-sandbox-quickstarts/tree/b5714e4/../README.md #JIRA Ticket Outstanding
+  - url: http://www.jboss.org/feeds/view/serialization #JIRA Ticket Outstanding
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_VM.html #JIRA Ticket Outstanding
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Web_Server/2/epub/Hibernate_Core_Guide/JBoss_Enterprise_Web_Server-2-Hibernate_Core_Guide-en-US.epub #DEVELOPER-1253
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Web_Server/2/pdf/HTTP_Connectors_Load_Balancing_Guide/JBoss_Enterprise_Web_Server-2-HTTP_Connectors_Load_Balancing_Guide-en-US.pdf #DEVELOPER-1253
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Web_Server/2/pdf/Hibernate_Core_Guide/JBoss_Enterprise_Web_Server-2-Hibernate_Core_Guide-en-US.pdf #DEVELOPER-1253
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Web_Server/2/epub/HTTP_Connectors_Load_Balancing_Guide/JBoss_Enterprise_Web_Server-2-HTTP_Connectors_Load_Balancing_Guide-en-US.epub #DEVELOPER-1253
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Web_Server/2/epub/Installation_Guide/JBoss_Enterprise_Web_Server-2-Installation_Guide-en-US.epub #DEVELOPER-1253
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Web_Server/2/epub/2.0.0_Release_Notes/JBoss_Enterprise_Web_Server-2-2.0.0_Release_Notes-en-US.epub #DEVELOPER-1253
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Web_Server/2/pdf/2.0.0_Release_Notes/JBoss_Enterprise_Web_Server-2-2.0.0_Release_Notes-en-US.pdf #DEVELOPER-1253
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Web_Server/2/pdf/Installation_Guide/JBoss_Enterprise_Web_Server-2-Installation_Guide-en-US.pdf #DEVELOPER-1253
+  - url: http://planet.jboss.org/post/telscale_smsc_gateway_sending_messages_from_jss7_to_smpp #DEVELOPER-1254
+  - url: http://planet.jboss.org/post/building_ussd_mobile_application_with_telscale_restcomm_in_less_than_10_mins #DEVELOPER-1254
+  - url: http://planet.jboss.org/post/applicata_jn_test_suite_platform_catches_a_bug_in_restcomm_days_before_mwc_2015 #DEVELOPER-1254
+  - url: https://devstudio.jboss.com/central/install?connectors=org.jboss.tools.aerogear.hybrid #JIRA Ticket Outstanding
+  - url: http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/Introduction/ #JIRA Ticket Outstanding
+  - url: http://www.jboss.org/feeds/view/jbossprofiler #JIRA Ticket Outstanding
+  - url: https://github.com/jboss-developer/jboss-eap-quickstarts/fork_select #JIRA Ticket Outstanding
+  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Jing.html #JIRA Ticket Outstanding
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-Portal_Containers.html #JDF-773.
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-Portal_Extension.html #JDF-773.
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-CDI_Portlet_Development.html #JDF-773.
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-Portlet_Bridge.html #JDF-773.
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/sect-Standard_Portlet_Development_JSR-286.html #JDF-773.
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/GenericPortlet_and_Portlet_Filter_Injection.html #JDF-773.
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/part-Portal_API.html #JDF-773.
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-JSF_Portlet_Development_with_RichFaces.html #JDF-773.
+  - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/Google.html #JDF-773.
   - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HazelcastComponent.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_gtask.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MINA2.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/Fabric.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_MINA.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_Jing.html #DEVELOPER-1148
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_VM.html #DEVELOPER-1148
-  - url: https://freemodeler-cloud.jboss.org/ #DEVELOPER-1197
-  - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Grid/6.4/html/6.4.0_Beta_Release_Notes/ #DEVELOPER-1209
-  - url: https://github.com/jboss-developer/jboss-sandbox-quickstarts/tree/b5714e4/../README.md #JDF-778
-  - url: http://planet.jboss.org/post/telscale_jss7_6_2_2_ga_release_adds_multi_tenancy_support #DEVELOPER-1154
-  - url: https://docs.jboss.org/author/display/PLINK/Security+Token+Server+%28STS%29 #JDF-770
-  - url: https://docs.jboss.org/author/display/PLINK/SAML+Authenticators+%28Tomcat%2CJBossAS%29 #JDF-777
 max_page_retys: 10
 max_retrys: 10
 browser: phantomjs
