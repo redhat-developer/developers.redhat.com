@@ -6,10 +6,10 @@ type: Downloads
 - page.description = "Download current or older versions of #{page.product.abbreviated_name}."
 - if page.product.current_download
 
-  h2.divider#download-development-use Download for Development Use
+  h3#download-development-use Download #{page.product.abbreviated_name} for Development Use
 
   asciidoc:
-    To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the JBoss Developer Program which provides $0 subscriptions for development use only. link:../../../faq[Read more] about the JBoss Developer Program.
+    To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the Red Hat Developer Program which provides $0 subscriptions for development use only. link:../../../faq[Read more] about the Red Hat Developer Program.
 
   - if page.product.latest_release
     h4.download-link: a(href="#{page.product.latest_release.url}")
@@ -33,7 +33,7 @@ type: Downloads
 
 - else
 
-  h3.divider#downloads #{page.product.abbreviated_name} Downloads
+  h3#downloads #{page.product.abbreviated_name} Downloads
 
   asciidoc:
     #{page.product.abbreviated_name} is only available through a full Red Hat subscription.  Download #{page.product.abbrevaited_name} by following the link below to log into the Red Hat Customer Portal and download from there.
@@ -41,26 +41,32 @@ type: Downloads
   h4.download-link: a(href="https://access.redhat.com/jbossnetwork/restricted/listSoftware.html")
     i.fa.fa-download>
     | Download #{page.product.abbreviated_name} from the Red Hat Customer Portal
+  br
+.row
+  - unless page.product.id == 'devstudio'
+    .large-16.small-24.columns
+      br
+      h4#ready-production-use Ready to use #{page.product.abbreviated_name} in Production?
 
-- if page.product.xpaas_url
-  h3.divider#jboss-xpaas-services  JBoss xPaaS Services for OpenShift
+      asciidoc:
+        We provide enterprise level subscriptions for #{page.product.abbreviated_name} which deliver the latest software, including security, bug fixes, and enhancements along with our industry leading support. With our subscription, you can deploy your application into a production environment and get world-class expertise and knowledge about security, stability, and maintenance for your systems. Our subscriptions are provided in a virtualization-friendly model, consumed in increments of 16, 64, or both processor core bands, and back by a choice of enterprise service levels that support any type of mission-critical deployment.
 
-  asciidoc:
-    You can also deploy applications using #{page.product.abbreviated_name} on OpenShift, meaning you don't even need to download the bits! Try #{page.product.abbreviated_name} and other middleware products on OpenShift Online to get your applications up and running even faster.
-    
-    * link:#{page.product.xpaas_url}[Use #{page.product.abbreviated_name} on OpenShift]
+        link:http://www.redhat.com/contact/sales.html[I need a subscription]
 
-- unless page.product.id == 'devstudio'
-  h3.divider#ready-production-use Ready to use #{page.product.abbreviated_name} in Production?
+        link:https://access.redhat.com/site/products/JBoss/[Visit the Red Hat Customer Portal for other Product Downloads]
 
-  asciidoc:
-    We provide enterprise level subscriptions for #{page.product.abbreviated_name} which deliver the latest software, including security, bug fixes, and enhancements along with our industry leading support. With our subscription, you can deploy your application into a production environment and get world-class expertise and knowledge about security, stability, and maintenance for your systems. Our subscriptions are provided in a virtualization-friendly model, consumed in increments of 16, 64, or both processor core bands, and back by a choice of enterprise service levels that support any type of mission-critical deployment.
+  - unless !page._upstream || page._upstream.empty?
+    .large-8.small-24.columns
+      h4#prefere-upstream Prefer to use the Upstream Project Version?
 
-    * link:http://www.redhat.com/contact/sales.html[I need a subscription]
-    * link:https://access.redhat.com/site/products/JBoss/[Visit the Red Hat Customer Portal for other Product Downloads]
+      = page._upstream
 
-- unless !page._upstream || page._upstream.empty?
-  h3.divider#prefere-upstream Prefer to use the Upstream Project Version?
+  - if page.product.xpaas_url
+    .large-24.columns
+      br
+      h4#jboss-xpaas-services  JBoss xPaaS Services for OpenShift
 
-  = page._upstream
-
+      asciidoc:
+        You can also deploy applications using #{page.product.abbreviated_name} on OpenShift, meaning you don't even need to download the bits! Try #{page.product.abbreviated_name} and other middleware products on OpenShift Online to get your applications up and running even faster.
+        
+        link:#{page.product.xpaas_url}[Use #{page.product.abbreviated_name} on OpenShift]
