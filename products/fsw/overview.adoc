@@ -17,7 +17,7 @@ Build reusable and flexible business services that hide the complexity of connec
 
 == Icon1
 
-[.fa .fa-briefcase .fa-5x .fa-fw]#&nbsp;# 
+[.fa .fa-briefcase .fa-4x .fa-fw]#&nbsp;# 
 
 == Features2
 
@@ -27,7 +27,7 @@ Store and explore business services, set policies for access to business service
 
 == Icon2
 
-[.fa .fa-shield .fa-5x .fa-fw]#&nbsp;# 
+[.fa .fa-shield .fa-4x .fa-fw]#&nbsp;# 
 
 == Features3
 
@@ -37,7 +37,7 @@ View service activity, define SLA's, analyze performance, find problems and resp
 
 == Icon3
 
-[.fa .fa-search .fa-5x .fa-fw]#&nbsp;# 
+[.fa .fa-search .fa-4x .fa-fw]#&nbsp;# 
 
 == Detail
 
@@ -45,22 +45,32 @@ JBoss Fuse Service Works is the next version of Red Hat JBoss SOA Platform with 
 
 Want a services platform to create reusable, changeable, flexible business services that hide the complexity of connecting to different applications? Want the capability to manage the lifecycle of services from design, development through deployment? Require a platform that sets the stage for faster and easier cloud, mobile application and business process application development projects? Try JBoss Fuse Service Works 6.0.0.GA!
 
-image::#{cdn(site.base_url + '/images/products/fsw/fsw_overview.png')}[]
+image::#{cdn(site.base_url + '/images/products/fsw/fsw_overview.png')}["FSW Overview",60%,float="right"]
 
 What is new in JBoss Fuse Service Works::
 Besides the new name, the latest release (version 6.0) incorporates core ESB technology from JBoss Fuse and numerous service management and governance capabilities. New features include:
 
-Core ESB based on JBoss Fuse:
+[.large-12.columns.features-ul]
+--
+*Core ESB based on JBoss Fuse:*
 
 * Apache Camel - enterprise integration pattern framework
 * Apache CXF - webServices, REST
 * Apache ActiveMQ - robust, high performance messaging
+--
 
-Additional value provided by JBoss Fuse Service Works:
+[.large-12.columns.features-ul]
+--
+*Additional value provided by JBoss Fuse Service Works:*
 
 * Lightweight structured service development Framework
 * Service Governance
 * Business Transaction Monitoring
+--
+
+[.space]
+--
+--
 
 === JBoss Fuse or JBoss Fuse Service Works?
 
@@ -68,8 +78,3 @@ JBoss Fuse and JBoss Fuse Service Works share the same core ESB components.
 
 With JBoss Fuse Service Works, you get additional capabilities like structured service development framework, service orchestration, rules processing, service governance and business transaction monitoring.
 
-== Resources
-
-- https://www.jboss.org/products/fuse/fusebyexample.html[FuseByExample] is a set of examples created by Fuse consultants based on their experience with customers.
-
-- Check out JBoss Fuse ServiceWorks in https://engage.redhat.com/integration-middleware-fuse-s-201404231024[The Forrester Wave: Hybrid integration, 2014]
