@@ -19,7 +19,7 @@ Leverage Apache Camel to provide a full-featured, easy-to-use and intuitive fram
 
 == Icon1
 
-[.fa .fa-sitemap .fa-5x .fa-fw]#&nbsp;# 
+[.fa .fa-sitemap .fa-4x .fa-fw]#&nbsp;# 
 
 == Features2
 
@@ -29,7 +29,7 @@ Change configuration while container is running. Easily deploy or update service
 
 == Icon2
 
-[.fa .fa-wrench .fa-5x .fa-fw]#&nbsp;#
+[.fa .fa-wrench .fa-4x .fa-fw]#&nbsp;#
 
 
 == Features3
@@ -40,13 +40,19 @@ Connect to external applications with connectors for JDBC, FTP/SFTP, HTTP/HTTPS,
 
 == Icon3
 
-[.fa .fa-random .fa-5x .fa-fw]#&nbsp;#
+[.fa .fa-random .fa-4x .fa-fw]#&nbsp;#
 
 == Detail
 
+[.large-12.columns]
 JBoss Fuse combines several technologies like core Enterprise Service Bus capabilities (based on Apache Camel, Apache CXF, Apache ActiveMQ), Apache Karaf and Fabric8 in a single integrated distribution.
 
-image::#{cdn(site.base_url + '/images/products/fuse/Fuse_Builtfromdiagram_02.png')}[]
+[.large-12.columns]
+image::#{cdn(site.base_url + 'images/products/fuse/Fuse_Builtfromdiagram_02.png')}[]
+
+[.space]
+--
+--
 
 [colls="3,1",role="split-50"]
 |====
@@ -57,6 +63,7 @@ image::#{cdn(site.base_url + '/images/products/fuse/Fuse_Builtfromdiagram_02.png
 |Fabric8|Makes it simple to manage large and distributed, JBoss Fuse deployments from a central location.
 |====
 
+[.large-24]
 link:../../devstudio[JBoss Developer Studio] provides an easy-to-use integration development environment built on Eclipse. The https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Developer_Studio/7.1/html/Integration_Stack_Guide/chap-Introduction_to_Red_Hat_JBoss_Developer_Studio_Integration_Stack.html[JBoss Developer Studio Integration Stack] provides tooling for developing, configuring and deploying Fuse applications.
 
 Fuse Management Console is based on the http://hawt.io[hawtio] web console. You can now start, stop, measure and trace Camel routes on-premise or in the cloud.
@@ -66,22 +73,15 @@ Fuse Management Console is based on the http://hawt.io[hawtio] web console. You 
 
 Try the exciting new features:
 
-* Full support of AMQP 1.0 - provides wire-level compatibility across connections
-* Vast library of connectors - over 150+ out-of-the-box-connectors via Apache Camel
-* Managed integration routes - start, stop, measure and trace Camel routes on-premise or in the Cloud
-* Improved high availability (HA) - embedded message store for shared-nothing HA
+* *Full support of AMQP 1.0* - provides wire-level compatibility across connections
+* *Vast library of connectors* - over 150+ out-of-the-box-connectors via Apache Camel
+* *Managed integration routes* - start, stop, measure and trace Camel routes on-premise or in the Cloud
+* *Improved high availability (HA)* - embedded message store for shared-nothing HA
 
 === Integration Everywhere
 
-image::#{cdn(site.base_url + '/images/products/fuse/overview.png')}[]
+image::#{cdn(site.base_url + 'images/products/fuse/overview.png')}[]
 
 JBoss Fuse includes industry-standard integration patterns so you can easily configure and manage a network of integration brokers. These patterns, when used with the flexible and cost-effective ESB, allow you to deploy and connect customized solutions at every distributor, outlet, and partner, eliminating batch delivery and hub-and-spoke architectures forever.
 
 We encourage you to download JBoss Fuse, and see for yourself if it meets your needs.  
-
-== Resources
-
-- link:../resources#demos[FuseByExample] is a set of examples created by Fuse consultants based on their experience with customers.
-
-- Check out JBoss Fuse in https://engage.redhat.com/integration-middleware-fuse-s-201404231024[The Forrester Wave: Hybrid integration, 2014]
-
