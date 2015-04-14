@@ -724,6 +724,20 @@ body.fullbleed {
   }
 }
 
+#guides-row{
+  border-bottom: 1px solid #d5d5d5;
+  margin: 1em 0 0 0;
+  .dropdown.button, button.dropdown {
+    position: relative;
+    float: right;
+  }
+  ul li:before{display: none;}
+}
+
+.more-guides{
+  margin: 1.5em auto;
+}
+
 .development-tools {
   h2 {
     clear: both;
