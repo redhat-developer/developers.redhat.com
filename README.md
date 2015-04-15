@@ -22,7 +22,7 @@ Before building the site, you must setup this environment first.
 
         cd _docker
         docker build --tag developer.redhat.com/base ./base
-        docker build --tag developer.redhat.com/java
+        docker build --tag developer.redhat.com/java ./java
         docker-compose build
         docker-compose up -d
     
