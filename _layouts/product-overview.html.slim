@@ -8,53 +8,48 @@ image: http://static.jboss.org/ffe/1/www/origin/jbossdeveloper_twitteravatar.png
 ---
 - page.description ||= truncate_para(page._overview, 150)
 
-h2.divider#overview Overview
+h2#overview Overview
 
-= page._overview
+.row
+  .large-13.columns
+    .large-24
+      = page._overview
+    .large-24.multi-ul
+      / Horrible hack, couldn't find a better way
+      - unless page.product.forum.nil?
+        asciidoc:
+          - Discuss on the link:#{page.product.forum.url}[#{page.product.abbreviated_name} Forums]
+      asciidoc:
+        - Get started with one of our many link:../developer-materials?quickstarts[quickstarts].
+        - View the link:#{page.product.documentation_url}[#{page.product.abbreviated_name} Documentation]
+
+      a.moreinfolink(href="../resources")
+        | View More Resources
+        i.fa.fa-angle-double-right
+      
+  .large-11.columns.product-video
+    = video_player(video(page.product.intro_video)) if page.product.intro_video
 
 br
-.panel.radius.features
-  div(class="feature-icon")
-    = page._icon1
-  div(class="feature-text")
-    = page._features1
-  div(class="feature-icon")
-    = page._icon2
-  div(class="feature-text")
-    = page._features2
-  div(class="feature-icon")
-    = page._icon3
-  div(class="feature-text")
-    = page._features3
+.row#product-features
+  .large-8.columns
+    div(class="feature-icon")
+      = page._icon1
+    div(class="feature-text")
+      = page._features1
+  .large-8.columns
+    div(class="feature-icon")
+      = page._icon2
+    div(class="feature-text")
+      = page._features2
+  .large-8.columns
+    div(class="feature-icon")
+      = page._icon3
+    div(class="feature-text")
+      = page._features3
 
-= video_player(video(page.product.intro_video)) if page.product.intro_video
-
-= page._detail
-
-= video_player(video(page.product.intro_video_2)) if page.product.intro_video_2
-
-h3.divider#resources Resources
-
-.multi-ul
-
-  = page._resources
-
-  / Horrible hack, couldn't find a better way
-  - unless page.product.forum.nil?
-    asciidoc:
-      - Discuss on the link:#{page.product.forum.url}[#{page.product.abbreviated_name} Forums]
-  asciidoc:
-    - Get started with one of our many link:../developer-materials?quickstarts[quickstarts].
-    - View the link:#{page.product.documentation_url}[#{page.product.abbreviated_name} Documentation]
-
-a.moreinfolink(href="../resources")
-  | View More Resources
-  i.fa.fa-angle-double-right
-
-- unless !page.articles || page._articles.empty?
-  h3.divider#blog-posts Blog Posts and Articles
-
-  = page._articles
-
-h3.divider#buzz Buzz
-.product-buzz-container(data-tags="#{(JSON.dump page.product.buzz_tags).gsub(/"/, "'")}")
+.row
+  .large-24.columns
+    = page._detail
+    .large-16
+      = video_player(video(page.product.intro_video_2)) if page.product.intro_video_2

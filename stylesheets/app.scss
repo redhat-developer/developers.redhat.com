@@ -698,6 +698,32 @@ body.fullbleed {
   border: none;
 }
 
+.product-video h4{display: none;}
+
+#product-features{
+  margin: 1em 0;
+  .feature-icon {
+    text-align: center;
+    padding-left: 12px;
+    p {
+      color: $grey-5;
+    }
+  }
+
+  .feature-text {
+    text-align: center;
+    h4{
+      font-size: 1.2rem;
+    }
+    .paragraph{
+      text-align: left;
+    }
+  }
+}
+.features-u, .features-ul > .content{
+  margin-left: 0 !important;
+}
+
 .card {
   padding: 1.875rem;
   padding-left: 24px;
@@ -979,9 +1005,14 @@ body.fullbleed {
       }
     }
   }
-  // Keeps images from overflowing outside of their container
-  .imageblock > .content{
-    margin: auto 0;
+  .imageblock{
+   .content{
+      margin: -16px auto auto auto;
+      img{
+        display: block;
+        margin: 0 auto;
+      }
+    }
   }
 }
 
@@ -1671,18 +1702,6 @@ span.asterisk {
     color:white;
     text-shadow:1px 1px 0 rgba(0,0,0,0.2);
   }
-}
-
-.feature-icon {
-    float: left;
-    p {
-      color: $grey-5;
-    }
-}
-
-.feature-text {
-    margin-left: 100px;
-    padding-top: 5px;
 }
 
 .space,.spacer {
