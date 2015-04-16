@@ -1,8 +1,18 @@
 # Query: Developer Materials
 
 **Developer materials** query is designed for the needs of developer materials finder web page
-and it is used to search and filter developer related documents
-(i.e. content provided by `jboss_developer` and `rht` content providers).
+and it is used to search and filter developer related documents.
+
+It is restricted to search on top of the following `sys_type`s:
+
+ - jbossdeveloper_quickstart
+ - video
+ - demo
+ - jbossdeveloper_example
+ - jbossdeveloper_archetype
+ - jbossdeveloper_bom
+ - solution
+ - article
 
 In addition to matching documents it also provides two aggregations around "format" which is basically
 [terms aggregation] of `sys_type` field. The tricky part is that one specific `sys_type` category
