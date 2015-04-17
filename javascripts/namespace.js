@@ -55,3 +55,10 @@ app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[pro
 app.mktg_ops = {};
 app.mktg_ops.elqFormName = "#{site.elq_form_name || %Q{jboss-org-integration-sandbox}}"
 
+
+/*
+ * Keycloak Config
+ */
+app.ssoConfig = {};
+app.ssoConfig.account_url = '#{site.keycloak_account_url}';
+app.ssoConfig.auth_url = '#{site.keycloak_auth_url}';

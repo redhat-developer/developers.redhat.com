@@ -1,48 +1,90 @@
-// Dependencies: vendor/jQuery.js, vendor/jQuery.XDomainRequest.js, namespace.js
+app.sso = function () {
 
-app.sso = function() {
-  jbssoserverbase = "https://sso.jboss.org";
+    function updateUser() {
+        if (keycloak.authenticated) {
+            keycloak.updateToken().success(function () {
+                saveTokens();
 
-  // you can uncomment and fill next variable with another URL to be used for return from SSO login.
-  // Full URL of current page is used normally. 
-  var _jbssobackurl = window.location.href;
-  // you can uncomment and fill next variable with another URL to be used for logout link.
-  // Global SSO logout URL is used normally if not defined. 
-  var _jbssologouturl = window.location.origin + '/login';
-  // postfix appended to returned info snippets before they are placed into HTML 
-  var _jbssoinfopostfix = ' |';
-  
-  // Loads this..
-  $.ajax({
-    // https://sso.jboss.org/logininfo
-    url : jbssoserverbase + "/logininfo?backurl=" + escape(_jbssobackurl) +"&lourl="+ escape(_jbssologouturl),
-    context : document.body,
-    dataType : "jsonp",
-    type : "GET",
-    success : function(data, textStatus) {
-      
-      if (data && data.session) {
-        // user is logged in!
-        var response = $(data.part1),
-            img = response.find('img'),
-            profileUrl = response[2].getAttribute('href'),
-            name = response[2].innerText;
-        $('a.logged-in-name')
-          .text(name)
-          .attr('href', profileUrl)
-          .prepend(img)
-          .show();
-        $('dd.logged-in').show();
-        $('dd.login').hide();
-        $('dd.register').hide();
-      } else {
-        $('dd.login').show();
-        $('dd.register').show();
-        $('dd.logged-in').hide();        
-      }
+                $('a.logged-in-name')
+                    .text(keycloak.tokenParsed['name'])
+                    .attr('href', app.ssoConfig.account_url)
+                    .show();
+                $('li.logged-in').show();
+                $('li.login').hide();
+                $('li.register').hide();
+            });
+        } else {
+            $('li.login').show();
+            $('li.login a').on('click',function(e){
+                e.preventDefault();
+                keycloak.login();
+            });
+            $('li.register').show();
+            $('li.logged-in').hide();
+        }
     }
-  });
+
+    function saveTokens() {
+        if (keycloak.authenticated) {
+            var tokens = {token: keycloak.token, refreshToken: keycloak.refreshToken};
+            if (localStorage) {
+                localStorage.token = JSON.stringify(tokens);
+            } else {
+                document.cookie = 'token=' + btoa(JSON.stringify(tokens));
+            }
+        } else {
+            if (localStorage) {
+                delete localStorage.token;
+            } else {
+                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            }
+        }
+    }
+
+    function loadTokens() {
+        if (localStorage) {
+            if (localStorage.token) {
+                return JSON.parse(localStorage.token);
+            }
+        } else {
+            var name = 'token=';
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+
+                if (c.indexOf(name) == 0) {
+                    return JSON.parse(atob(c.substring(name.length, c.length)));
+                }
+            }
+        }
+    }
+    
+    var keycloak = Keycloak({
+        url: app.ssoConfig.auth_url,
+        realm: 'rhd',
+        clientId: 'web'
+    });
+    var tokens = loadTokens();
+    var init = {onLoad: 'check-sso', checkLoginIframeInterval: 10};
+    if (tokens) {
+        init.token = tokens.token;
+        init.refreshToken = tokens.refreshToken;
+    }
+
+    keycloak.onAuthLogout = updateUser;
+
+    keycloak.init(init).success(function (authenticated) {
+        updateUser(authenticated);
+        saveTokens();
+    }).error(function () {
+        updateUser();
+    });
 };
+
 
 // Call app.sso() straight away, the call is slow, and enough of the DOM is loaded by this point anyway
 app.sso();
