@@ -2,92 +2,610 @@
 layout: technology-base
 ---
 
+.row.hero-placeholder
+
 .row.development-tools
   
-  .development-tool-category
-    h2.divider#application-platforms Application Platforms
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/enterprise-app-platform.png')}" alt="Red Hat JBoss Enterprise Application Platform")
-      = page._eap
-      a.button(href="eap/overview") Learn More
+  h2#products Products
 
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/web-server.png')}" alt="Red Hat JBoss Web Server")
+  .large-24.development-tool-category
 
-      = page._web_server
-      a.button(href="webserver/overview") Learn More
+    .large-24.category-label#linux-platforms
+      h5 LINUX PLATFORMS
 
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/data-grid.png')}" alt="Red Hat JBoss Data Grid") 
-      = page._data_grid
-      a.button(href="datagrid/overview") Learn More
+    .large-24#development-tool.divider
+      h4 
+        a(href="#")Red Hat Enterprise Linux 
+      .row
+        .large-16.columns
+          p = page._enterprise_linux
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Enterprise Linux 
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/portal.png')}" alt="Red Hat JBoss Portal")
+    .large-24#development-tool.divider
+      h4 
+        a(href="#")Red Hat Satellite  
+      .row
+        .large-16.columns
+          p = page._satellite
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Satellite  
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-      = page._portal
-      a.button(href="portal/overview") Learn More
+    .large-24#development-tool
+      h4 
+        a(href="#")Red Hat Enteprise Linux OpenStack Platform
+      .row
+        .large-16.columns
+          p = page._openstack
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Enteprise Linux OpenStack Platform
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-  .development-tool-category
-    h2.divider#integration Integration
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/fsw.png')}" alt="Red Hat JBoss Fuse Service Works")
+  .large-24.development-tool-category
+    
+    .large-24.category-label#linux-platforms
+      h5 JBOSS MIDDLEWARE
+    
+    .large-24#development-tool.divider
+      h4
+        a(href="eap/overview") Red Hat JBoss Enterprise Application Platform
+      .row
+        .large-16.columns
+          p = page._eap
+          p
+            strong
+              a(href="eap/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss Enterprise Application Platform
+          .tool-links
+              a(href="eap/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-      = page._fuse_service_works
-      a.button(href="fsw/overview") Learn More
+    .large-24#development-tool.divider
+      h4
+        a(href="webserver/overview") Red Hat JBoss Web Server
+      .row
+        .large-16.columns
+          p = page._web_server
+          p
+            strong
+              a(href="webserver/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss Web Server
+          .tool-links
+              a(href="webserver/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/data-virtualization.png')}" alt="Red Hat JBoss Data Virtualization")
+    .large-24#development-tool.divider
+      h4
+        a(href="datagrid/overview") Red Hat JBoss Data Grid
+      .row
+        .large-16.columns
+          p = page._data_grid
+          p
+            strong
+              a(href="datagrid/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss Data Grid
+          .tool-links
+              a(href="datagrid/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-      = page._data_virtualization
-      a.button(href="datavirt/overview") Learn More
+    .large-24#development-tool.divider
+      h4
+        a(href="portal/overview") Red Hat JBoss Portal
+      .row
+        .large-16.columns
+          p = page._portal
+          p
+            strong
+              a(href="portal/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss Portal
+          .tool-links
+              a(href="portal/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/fuse.png')}" alt="Red Hat JBoss Fuse")
+    .large-24#development-tool.divider
+      h4
+        a(href="devstudio/overview") Red Hat JBoss Developer Studio
+      .row
+        .large-16.columns
+          p = page._developer_studio
+          p
+            strong
+              a(href="devstudio/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Developer Studio
+          .tool-links
+              a(href="devstudio/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-      = page._fuse
-      a.button(href="fuse/overview") Learn More
+    .large-24#development-tool
+      h4
+        a(href="#") Red Hat JBoss Operations Network
+      .row
+        .large-16.columns
+          p = page._operations_network
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss Operations Network
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/a-mq.png')}" alt="Red Hat JBoss A-MQ")
+  .large-24.development-tool-category
 
-      = page._a_mq
-      a.button(href="amq/overview") Learn More
-  .development-tool-category
-    h2.divider#automation Automation
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/brms.png')}" alt="Red Hat JBoss BRMS")
+    .large-24.category-label#linux-platforms
+      h5 INTEGRATE
 
-      = page._brms
-      a.button(href="brms/overview") Learn More
+    .large-24#development-tool.divider
+      h4
+        a(href="fuse/overview") Red Hat JBoss Fuse
+      .row
+        .large-16.columns
+          p = page._fuse
+          p
+            strong
+              a(href="fuse/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss Fuse
+          .tool-links
+              a(href="fuse/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/bpm-suite.png')}" alt="Red Hat JBoss BPM Suite")
+    .large-24#development-tool.divider
+      h4
+        a(href="a-mq/overview") Red Hat JBoss A-MQ
+      .row
+        .large-16.columns
+          p = page._a_mq
+          p
+            strong
+              a(href="a-mq/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss A-MQ
+          .tool-links
+              a(href="a-mq/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-      = page._bpm_suite
-      a.button(href="bpmsuite/overview") Learn More
+    .large-24#development-tool.divider
+      h4
+        a(href="datavirt/overview") Red Hat JBoss Data Virtualization
+      .row
+        .large-16.columns
+          p = page._data_virtualization
+          p
+            strong
+              a(href="datavirt/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss Data Virtualization
+          .tool-links
+              a(href="datavirt/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
+    .large-24#development-tool
+      h4
+        a(href="fsw/overview") Red Hat JBoss Service Works
+      .row
+        .large-16.columns
+          p = page._fsw
+          p
+            strong
+              a(href="fsw/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss Service Works
+          .tool-links
+              a(href="fsw/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-  .development-tool-category
-    h2.divider#development-tools Development Tools
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/developer-studio.png')}" alt="Red Hat JBoss Developer Studio")
+  .large-24.development-tool-category
 
-      = page._developer_studio
-      a.button(href="devstudio/overview") Learn More
+    .large-24.category-label#linux-platforms
+      h5 AUTOMATE
+    
+    .large-24#development-tool.divider
+      h4
+        a(href="brms/overview") Red Hat JBoss BRMS
+      .row
+        .large-16.columns
+          p = page._fuse
+          p
+            strong
+              a(href="brms/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss BRMS
+          .tool-links
+              a(href="brms/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
-/    .development-tool
-/      h3 Red Hat&reg; JBoss&reg;
-/      h2 Frameworks
-/      = page._frameworks
-/      a.button(href="frameworks/overview") Learn More
+    .large-24#development-tool
+      h4
+        a(href="bpmsuite/overview") Red Hat JBoss BPM Suite
+      .row
+        .large-16.columns
+          p = page._bpm_suite
+          p
+            strong
+              a(href="bpmsuite/get-started") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat JBoss BPM Suite
+          .tool-links
+              a(href="bpmsuite/docs-and-apis") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
+  .large-24.development-tool-category
 
-  .development-tool-category
-    h2.divider#management Management
-    .development-tool
-      img(src="#{cdn( site.base_url + '/images/branding/product-logos/operationsnetwork.png')}" alt="Red Hat JBoss Operations Network")
+    .large-24.category-label#linux-platforms
+      h5 CLOUD COMPUTING
 
-      = page._operations_network
-      a.button(href="operationsnetwork/overview") Learn More
+    .large-24#development-tool.divider
+      h4
+        a(href="#") Red Hat Cloud Infrastructure
+      .row
+        .large-16.columns
+          p = page._cloud_infrastructure
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Cloud Infrastructure
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
 
+    .large-24#development-tool.divider
+      h4
+        a(href="#") Red Hat CloudForms
+      .row
+        .large-16.columns
+          p = page._cloudforms
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat CloudForms
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
+    
+    .large-24#development-tool.divider
+      h4
+        a(href="#") Red Hat Enterprise Linux OpenStack Platform
+      .row
+        .large-16.columns
+          p = page._openstack_platform
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Enterprise Linux OpenStack Platform
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
+
+    .large-24#development-tool.divider
+      h4
+        a(href="#") OpenShift by Red Hat
+      .row
+        .large-16.columns
+          p = page._openshift
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download OpenShift by Red Hat
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
+    
+    .large-24#development-tool.divider
+      h4
+        a(href="#") Red Hat Certificate System
+      .row
+        .large-16.columns
+          p = page._certificate_system
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Certificate System
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
+   
+    .large-24#development-tool
+      h4
+        a(href="#") Red Hat Directory Server
+      .row
+        .large-16.columns
+          p = page._directory_server
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Directory Server
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples
+   
+  .large-24.development-tool-category
+
+    .large-24.category-label#linux-platforms
+      h5 STORAGE
+   
+    .large-24#development-tool
+      h4
+        a(href="#") Red Hat Storage Server
+      .row
+        .large-16.columns
+          p = page._storage_server
+          p
+            strong
+              a(href="#") GET STARTED
+              | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp; 
+            a(href="#") IoT, 
+            a(href="#") DevOps, 
+            a(href="#") Web Apps
+        .large-8.columns
+          .download-link
+            a(href="#")
+              i.fa.fa-download
+              |  Download Red Hat Storage Server
+          .tool-links
+              a(href="#") 
+                i.fa.fa-file-text-o
+                |  Docs and APIs  
+              a(href="#")  
+                i.fa.fa-files-o
+                |  Developer Samples

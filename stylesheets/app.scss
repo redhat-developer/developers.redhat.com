@@ -764,55 +764,56 @@ body.fullbleed {
   margin: 1.5em auto;
 }
 
+.hero-placeholder{
+  height: 300px;
+  background-color: $grey-2;
+}
 .development-tools {
+  margin-top: 20px;
   h2 {
     clear: both;
   }
 }
 
 .development-tool-category {
-  .development-tool:nth-child(even) {
-    width:49%;
-    margin-right:1%;
-    clear: left;
-  }
-  .development-tool:nth-child(odd) {
-    width:49%;
-    margin-left:1%;
-  }
-  .development-tool p {
-    margin-top: 1.25em;
-  }
-}
-.development-tool {
-  width:50%; // leave 50% on for older browsers who ignore nth-child
-  float:left;
-  background:$grey-2;
-  padding:20px;
-  margin-bottom: 40px;
-  position: relative;
-  min-height:200px;
-  h2,h3 {
-    text-transform: uppercase;
-    font-weight: 600;
-    color:$grey-7;
-    margin:0;
-  }
-  p.features {
-    font-size: 12px;
-    margin-bottom: 5px;
-    a {
-      padding:0 5px;
+  .category-label{
+    border-bottom: 3px solid $black;
+    margin-bottom: 20px;
+    h5{
       text-transform: uppercase;
-      color:$grey-7;
-      font-weight: 600;
+      background-color: $black;
+      color: $white;
+      margin-bottom: 0;
+      display:inline-block;
+      padding: 5px 10px;
+      width: 300px;
     }
   }
-  a.button {
-    position: absolute;
-    bottom: 0;
+
+  .divider{
+    border-bottom: 1px solid #d5d5d5;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    height: auto;
   }
 }
+#development-tool {
+  .download-link{
+    width: 100%;
+    background-color: $grey-2;
+    padding: 15px 15px;
+    text-align: center;
+  }
+  .download-link a:before{
+    display: none;
+  }
+  .tool-links{
+    padding: 15px 15px;
+    text-align: center;
+    a:first-of-type{margin-right: 15px;}
+  }
+}
+
 
 .asset-list  {
   .item + .item::before {
