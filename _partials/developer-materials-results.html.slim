@@ -69,7 +69,7 @@ div
             span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.level") {{ item.fields.level }}
             span(ng-bind-html="item.fields | stars" ng-show="item.fields.sys_rating_avg > 0" )
 
-    ul.small-block-grid-2.large-block-grid-3(ng-hide="data.layout === 'list'")
+    ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4(ng-hide="data.layout === 'list'")
       li.material(ng-repeat="item in data.displayedMaterials")
         div(class="get-started-placeholder-{{item.fields.sys_type}}")
           / Thumbnail
@@ -82,16 +82,17 @@ div
           / Badges
           span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.duration") {{ item.fields.duration | HHMMSS}}
           span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.level") {{ item.fields.level }}
-          / Material Name
-          h4
-            a(ng-href="{{item.fields.sys_url_view}}")
-              | {{item.fields.sys_title}}
-          / Author
-          span.contributor(data-sys-contributor="{{item.fields.sys_author}}")
-            a.name
-          / timestamp
-          p.material-datestamp
-            | {{item.fields.sys_created | timeAgo}}
+          .material-info
+            / Material Name
+            h5
+              a(ng-href="{{item.fields.sys_url_view}}")
+                | {{item.fields.sys_title}}
+            / Author
+            span.contributor(data-sys-contributor="{{item.fields.sys_author}}")
+              a.name
+            / timestamp
+            p.material-datestamp
+              | {{item.fields.sys_created | timeAgo}}
 
           / Description
           p

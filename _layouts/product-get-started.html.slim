@@ -7,12 +7,12 @@ type: Get Started
 = partial 'getstarted-thankyou.html.slim', {'parent' => page}
 
 h2#get-started Get Started
+br
 
 - if !page.product.skip_installation_instructions
+  = partial "os-selector.html.slim"  
 
   h3.divider#installation-instructions Instructions for Installation
-  
-  = partial "os-selector.html.slim"  
   
   ol
     - if page.product.default_download_artifact
@@ -76,7 +76,8 @@ h2#get-started Get Started
 div(ng-app="dcp")
   .developer-materials(ng-controller="developerMaterialsController")
     - if page.product.featured_items
-      h3.divider#try-quickstart Try a quickstart or example. Watch a video
+      br
+      h5#try-quickstart Dive in with a quickstart, example or video
       = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
       .developer-materials-results data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}'"
         = partial 'developer-materials-results.html.slim'
