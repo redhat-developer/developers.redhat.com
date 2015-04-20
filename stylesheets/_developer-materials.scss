@@ -68,8 +68,14 @@ ul.results {
     height: 1.3em;
     font-size: 0.75em;
   }
-  h4 {
-    clear: both;
+  .material-info{
+    position: relative;
+    top: 10px;
+    margin-bottom: 17px;
+    h5 {
+      clear: both;
+      margin-bottom: 0;
+    }
   }
   p {
     margin:0;
