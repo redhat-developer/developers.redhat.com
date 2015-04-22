@@ -107,13 +107,53 @@ p.sign-in-options {
 
 // Footer
 footer.bottom {
-  background:$grey-7;
-  ul.footer-nav {
-    display: block;
-    margin-bottom: 0;
-    li.security {
-      margin-right: 20px;
+  background:$black;
+  padding:20px 0;
+  a {
+    color:white;
+    font-size: 25px;
+  }
+}
+
+ul.footer-nav {
+  display: block;
+  margin-bottom: 0;
+  li.security {
+    margin-right: 20px;
+  }
+}
+
+ul.social-nav {
+  list-style: none;
+  width:65%;
+  float: left;
+  margin: 0;
+  text-align:right;
+  padding-right:5%;
+  li {
+    display: inline;
+    margin-left:5px;
+    &:first-child {
+      margin-left:0px;
+      float: left;
     }
+  }
+}
+
+p.feedback {
+  background:$dark-red;
+  text-align: center;
+  color:white;
+  font-size: 20px;
+  font-weight: 600;
+  width:35%;
+  float: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: -20px;
+  a {
+    font-weight: normal;
+    padding:5px;
   }
 }
 
@@ -257,7 +297,7 @@ nav.top-bar {
 
 // Custom icons
 i.jd-redhat:before {
-  @extend .icons-redhat !optional;
+  // @extend .icons-redhat !optional;
   content:"R";
   position: relative;
   color:transparent;
@@ -344,7 +384,7 @@ ul.footer-nav {
     display:inline;
     margin-right: 2px;
     &.redhat a {
-      @extend .icons-redhat-logo !optional;
+      // @extend .icons-redhat-logo !optional;
       display: block;
       width:77px;
       height:25px;
@@ -384,8 +424,8 @@ ul.footer-nav {
 
 // HiDPI Screens
 
-@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi){ 
-  
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi){
+
   ul.footer-nav li.redhat a {
     background-image:cdn("../images/icons/redhat-large.png");
     background-size:cover;
@@ -395,7 +435,7 @@ ul.footer-nav {
 }
 
 @include tablet-portrait-and-down {
-  
+
   header.main {
     h4 {
       display: none;
@@ -599,6 +639,9 @@ ul.footer-nav {
 }
 
 .inline-nav {
+  margin: 0;
+  @extend .large-24;
+  @extend .column;
   li {
     display: inline;
     margin-right: 15px;
@@ -619,6 +662,11 @@ ul.footer-nav {
 }
 
 
+// when there are both breadcrumbs and a 3rd level nav
+.tertiary-nav + .row .breadcrumbs {
+  margin-top: 20px;
+}
+
 .overlay {
   background:rgba(0,0,0,0.6);
   position: fixed;
@@ -628,7 +676,7 @@ ul.footer-nav {
   right: 0;
   height: 100%;
   width: 100%;
-  z-index: 999; 
+  z-index: 999;
   display: none;
 }
 
@@ -655,7 +703,7 @@ body.overlay-open {
   position: absolute;
   font-size: 30px;
   top:10px;
-  right:10px;  
+  right:10px;
 }
 
 

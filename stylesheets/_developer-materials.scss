@@ -20,7 +20,7 @@
   input[type="radio"], input[type="checkbox"] {
     display: none;
     &:checked + label {
-      background:$dark-blue;
+      background:$red;
       color:white;
     }
   }
@@ -56,12 +56,12 @@ ul.results {
     margin-left:10px;
     border-radius:$global-radius;
     line-height: 1.3;
-    &.material-level-beginner { background:$med-green; }
-    &.material-level-Beginner { background:$med-green; }
-    &.material-level-intermediate { background:$med-blue; }
-    &.material-level-Intermediate { background:$med-blue; }
-    &.material-level-advanced { background:$dark-red; }
-    &.material-level-Advanced { background:$dark-red; }
+    &.material-level-beginner { background:$green; }
+    &.material-level-Beginner { background:$green; }
+    &.material-level-intermediate { background:$blue; }
+    &.material-level-Intermediate { background:$blue; }
+    &.material-level-advanced { background:$red; }
+    &.material-level-Advanced { background:$red; }
   }
 
   .empty-label {
@@ -110,13 +110,13 @@ ul.results {
     position: absolute;
     text-indent: -9999px;
     &.premium {
-      @extend .icons-premium;
+      // @extend .icons-premium !optional;
       height:20px;
       top:20px
 
     }
     &.experimental {
-      @extend .icons-earlyaccess;
+      // @extend .icons-earlyaccess !optional;
       height: 120px;
       width: 130px;
       right: 0px;

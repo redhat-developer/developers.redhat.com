@@ -6,10 +6,6 @@ layout: solution-base
 
 .row
   .large-24.columns
-    h2 #{page.solution.name}
-    
-.row
-  .large-24.columns
     ul.breadcrumbs
       li
         a href="#{site.base_url}/technology" Technology
@@ -17,14 +13,17 @@ layout: solution-base
         a href="#{site.base_url}/solutions" Solutions
       li
         a href="#{site.base_url}/#{page.solution.id}" #{page.solution.name}
-        
+.row
+  .large-24.columns
+    h2 #{page.solution.name}
+
 .row
   .large-19.columns
     .solution-header
       - if page.solution.sub_title
         h3 #{page.solution.sub_title}
       = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
-    
+
     hr.divider
 
     - if page.solution.speech_bubble || page._overview
@@ -33,7 +32,7 @@ layout: solution-base
           img(src=cdn(site.base_url + "/images/solutions/#{page.solution.id}/thumb_400x300.png") alt="#{page.solution.id}")
           - if page.solution.image_link
             a.button.button--clear(href="#{page.solution.image_link.url}")
-              i.fa.fa-arrow-circle-down 
+              i.fa.fa-arrow-circle-down
               = page.solution.image_link.description
         .large-16.columns
           - if page.solution.speech_bubble
@@ -42,19 +41,19 @@ layout: solution-base
               cite #{page.solution.speech_bubble.author}
           - else
             = page._overview
-         
+
     - if page._header
       .row
         .large-24.columns
           = page._header
-    
+
     - if page._left_section && page._right_section
       .row.solutions-body
         .large-12.columns
           = page._left_section
         .large-12.columns
           = page._right_section
-    
+
     - if page._extra_section
       .row
         .large-24.columns

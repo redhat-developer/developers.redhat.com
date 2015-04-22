@@ -42,15 +42,15 @@
 @import "foundation/components/tabs";
 
 // Import only the compass modules we need
-@import "compass/css3/box-shadow";
-@import "compass/css3/images";
-@import "compass/css3/transform";
-@import "compass/css3/transition";
-@import "compass/css3/columns";
+// @import "compass/css3/box-shadow";
+// @import "compass/css3/images";
+// @import "compass/css3/transform";
+// @import "compass/css3/transition";
+// @import "compass/css3/columns";
 
 
 // Import Our CSS Modules and mixins
-@import "sprites";
+// @import "sprites";
 @import "mq-mixins";
 @import "jboss-mixins";
 // @import "navigation";
@@ -87,6 +87,7 @@
 @import "enterprise-java";
 @import "event-javaland";
 
+
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
 /*
@@ -98,9 +99,13 @@
   max-width:emCalc(1200);
 }
 
+.row {
+  max-width:1100px;
+  margin: 0 auto;
+}
+
 .content {
   padding:1em 0;
-  margin: auto -17px;
 }
 
 a {
@@ -112,16 +117,15 @@ a {
 }
 
 button, .button {
-  border-radius: $global-radius;
-  @include box-shadow(none);
   text-transform: uppercase;
-  background: $med-green;
+  background: $red;
   text-transform: uppercase;
   text-decoration: none;
   border:0;
-  box-shadow:2px 2px 0 $grey-7;
+  font-size: 15px;
+  font-weight: 600;
   &:hover {
-    background: $light-green;
+    background: $red;
   }
   &.large {
     padding: 0.6em 0.9em;
@@ -134,6 +138,10 @@ button, .button {
     &:hover {
       background: lighten($med-blue,10%);
     }
+  }
+  &.inverse {
+    background:white;
+    color:$red;
   }
   &.button--clear {
     padding-left:0;
@@ -156,7 +164,7 @@ button, .button {
 .button-group {
   button, .button  {
     border-radius: 0;
-	border-left: 1px solid $white;
+  border-left: 1px solid $white;
     margin-left: 0px;
   }
   a {
@@ -167,15 +175,12 @@ button, .button {
 
 /* Tables */
 table {
-  border-radius: $global-radius;
-  overflow: hidden;
-  border:1px double transparent;
+  border:0;
   background:$grey-3;
   tbody tr {
     background:#f5f5f6;
   }
   td {
-    border: 1px solid $grey-2;
     vertical-align: top;
   }
   td.linkList {
@@ -226,6 +231,13 @@ table.downloads {
   white-space: nowrap;
 }
 
+.panel {
+  background:$headline-grey;
+  h1,h2,h3,h4,h5,h6,p,ul,li {
+    color:white;
+  }
+}
+
 // Download link
 
 .download-link {
@@ -254,35 +266,31 @@ a.download-link {
 
 
 .side-nav {
-  border:1px solid $grey-3;
+  border:0;
   padding:0;
-  border-radius:$global-radius;
   overflow: hidden;
   margin-bottom: 20px;
   background:white;
   li {
-    margin:0;
+    margin:0 0 15px 0;
     a {
-      border-top:1px solid $grey-3;
-      padding:emCalc(8) 1em;
+      padding:0 10px 0 0!important;
+      text-transform: uppercase;
+      font-weight: 600;
       font-size: emCalc(18);
       position: relative;
-      color:$grey-5;
-      &:after {
-        content: "\f105";
-        font-family: 'FontAwesome';
-        float: right;
-        font-weight: 600;
+      color:$mars-black;
+      text-align: right;
+      border-right:4px solid $grey;
+      &:hover {
+        background:none !important;
       }
-    }
-    &:nth-child(2) a {
-      border-top-width: 0;
     }
     &.active , &:hover , &.active, &.side-nav-toggle {
       & > a:first-child, & > a:first-child:not(.button) {
-        color:white;
-        background:$dark-blue;
-        border-color:darken($dark-blue,5%);
+        color:black;
+        border-color:$red;
+        font-weight:600;
       }
     }
     &.side-nav-toggle {
@@ -321,7 +329,7 @@ textarea {
   font-size: 1em;
 /*   margin-bottom: 10px;  Commenting out as this adds space between the field a end the zurb error message style */
   &:focus {
-    @include box-shadow(0 0 5px $link);
+    box-shadow : 0 0 5px $link;
     border:1px solid $med-blue;
   }
 }
@@ -353,17 +361,23 @@ i[class*=fa].invert {
   border:0;
   padding:0;
   border-radius: 0;
+  margin: 0;
   select {
     width:auto;
     margin: 0;
   }
   & > *:before {
-    content: ">"
+    color:$mars-black;
+    content: ">";
+    margin: 0 5px;
+    font-weight: 800;
+    position: relative;
+    top: 0px;
   }
   a {
+    color:$mars-black;
     text-transform: none;
     font-size: 14px;
-    text-decoration: underline;
   }
   li:last-child a {
    font-weight: 600; // bold the last item
@@ -378,8 +392,7 @@ i[class*=fa].invert {
 
 .content-wrapper {
   background:white;
-  max-width:1200px;
-  padding:10px 20px 10px 20px;
+  // max-width:1200px;
   margin: 0 auto;
 }
 
@@ -392,8 +405,6 @@ body.fullbleed {
   }
 }
 .wrapper {
-  @include filter-gradient(#ffffff, #e6e7e8, vertical); // IE6-9
-  @include background-image(linear-gradient(top,  #ffffff 0%,#ffffff 43%,#e7e9e9 88%,#e6e7e8 100%));
   background-size: 100% 100px;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -409,12 +420,26 @@ body.fullbleed {
 }
 
 
-
 // Hero Module
 .hero {
   border:1px solid black;
   border-radius:$global-radius;
   margin-bottom: 20px;
+}
+
+.hero-try-or-buy {
+  background:$grey;
+  border:0;
+  padding:40px;
+  margin:20px 0;
+  text-align: center;
+  .button {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  p {
+    margin-bottom: 0;
+  }
 }
 
 // Introduction Module
@@ -556,8 +581,7 @@ body.fullbleed {
       color: #EAC562;
       font-size: emCalc(25px);
       left: 0.7em;
-      // -webkit-transform: rotate(-47deg);
-      @include transform2d(rotate(-45deg));
+      @include transform(rotate(-45deg));
 
     }
   }
@@ -653,7 +677,9 @@ body.fullbleed {
 
 // columns of text
 .two-col {
-  @include columns(20em 2);
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
 }
 
 
@@ -725,11 +751,11 @@ body.fullbleed {
 }
 
 .card {
-  padding: 1.875rem;
-  padding-left: 24px;
+  padding: 30px 20px;
   display: block;
-  background: rgb(237, 237, 237);
-  color: #424242;
+  background: $headline-grey;
+  border-left:4px solid $red;
+  color: white;
   margin-bottom: 15px;
 }
 
@@ -756,6 +782,9 @@ body.fullbleed {
   .dropdown.button, button.dropdown {
     position: relative;
     float: right;
+  }
+  & > div {
+    padding-left: 0;
   }
   ul li:before{display: none;}
 }
@@ -943,9 +972,9 @@ body.fullbleed {
     list-style:none;
     li {
       margin-bottom: 15px;
-	  line-height: 1.25em;
-	  text-indent:-1em;
-	  margin-left: 1em;
+    line-height: 1.25em;
+    text-indent:-1em;
+    margin-left: 1em;
       &:before {
         content: "\f111";
         font-family: 'FontAwesome';
@@ -955,8 +984,8 @@ body.fullbleed {
         padding-right: 1.8em;
         position: relative;
       }
-	 p {
-	  line-height: 1.25em;
+   p {
+    line-height: 1.25em;
     }
 }
 }
@@ -971,17 +1000,14 @@ body.fullbleed {
 }
 
 // Typography
+
 .large-title {
   font-size: emCalc(44);
-  font-weight: normal;
-  color: $black;
   margin-bottom: 0;
 }
 
 .large-subtitle {
   font-size: emCalc(32);
-  font-weight: normal;
-  color: $black;
   margin-bottom: 0;
 }
 
@@ -995,7 +1021,6 @@ body.fullbleed {
 .text-content {
   h3 {
     margin-top: 0;
-    color:$grey-6;
   }
   .divider:first-child {
     margin-top: 0;
@@ -1044,19 +1069,23 @@ a, span  {
 
 
 h1,h2,h3,h4,h5,h6 {
-  font-weight: normal;
-  // font-weight: 600;
-  color:$grey-6;
+  font-weight: 800;
+  color:$headline-grey;
   &.divider {
     border-bottom: 1px solid $grey-3;
     margin-bottom: 20px;
     padding-bottom: 5px;
-    font-weight: 100;
     clear: both;
     p {
       font-size:1.8rem;
       margin: 0;
     }
+  }
+  &.blowout {
+    text-transform: uppercase;
+    color:$red;
+    font-size: emCalc(90px);
+    font-weight: 600;
   }
   &.promo-headline {
     font-size:emCalc(80);
@@ -1096,8 +1125,8 @@ input[type=range] {
     border-radius:9px;
     background: #eeeeee; /* Old browsers */
     background-color: #ffffff; // Old browsers
-    @include filter-gradient(#ffffff, #ececec, vertical); // IE6-9
-    @include background-image(linear-gradient(top,  #ffffff 0%,#fcfcfc 33%,#f9f9f9 33%,#f9f9f9 44%,#f6f6f6 45%,#f4f4f4 67%,#f1f1f1 67%,#f1f1f1 78%,#eeeeee 78%,#ececec 100%));
+    // @include filter-gradient(#ffffff, #ececec, vertical); // IE6-9
+    // @include background-image(linear-gradient(top,  #ffffff 0%,#fcfcfc 33%,#f9f9f9 33%,#f9f9f9 44%,#f6f6f6 45%,#f4f4f4 67%,#f1f1f1 67%,#f1f1f1 78%,#eeeeee 78%,#ececec 100%));
     outline: none;
     &::-moz-focus-inner {
       outline:0;
@@ -1411,7 +1440,6 @@ form.login {
         }
       }
       h4 {
-        font-weight: normal;
         margin:0;
       }
     }
@@ -1445,9 +1473,10 @@ a.filter.button {
   ul {
     border-bottom: 1px solid $grey-3;
     list-style-type: none;
+    margin: 0;
     li {
       border-top: 1px solid $grey-3;
-      padding: 5px;
+      padding: 5px 0 5px 0;
       p {
         margin:0;
         &.download {
@@ -1583,7 +1612,7 @@ span.asterisk {
   }
   .facebook-share-button-count {
     &:before {
-      @extend .icons-facebook-bubble;
+      // @extend .icons-facebook-bubble !optional;
       content:attr(data-shares);
       display: inline-block;
       // content:"100";
@@ -1601,8 +1630,8 @@ span.asterisk {
 // Special Callout Panel styles
 
 .light-blue {
-	background-color: $light-blue;
-	}
+  background-color: $light-blue;
+  }
 
 // Technology Overview
 
@@ -1668,8 +1697,8 @@ span.asterisk {
 
 // View More link
 .moreinfolink {
-	padding-top: 15px;
-	display: inline-block;
+  padding-top: 15px;
+  display: inline-block;
 }
 
 
@@ -1720,9 +1749,9 @@ span.asterisk {
 }
 
 .space,.spacer {
-	width:100%;
-	height:1px;
-	clear:both;
+  width:100%;
+  height:1px;
+  clear:both;
 }
 
 table.demos {
@@ -1762,7 +1791,7 @@ table.demos {
   }
 }
 
-// Get social 
+// Get social
 .technology-blocks {
   .contributors {
     display: block;
@@ -1773,7 +1802,7 @@ table.demos {
       border-top:1px solid $grey-2;
       border-bottom:1px solid $grey-2;
       a {
-        padding-right:20px; 
+        padding-right:20px;
       }
       & + .contributor {
         border-top: 0;
@@ -1836,20 +1865,20 @@ td.icon {
   vertical-align: middle;
 }
 
-.icon {
-  @extend .fa;
-  .icon-warning {
-    @extend .fa-warning;
-    @extend .fa-2x;
-  }
-}
+// .icon {
+//   @extend .fa;
+//   .icon-warning {
+//     @extend .fa-warning;
+//     @extend .fa-2x;
+//   }
+// }
 
 td.content {
   padding: inherit;
   margin: inherit;
 }
 
-// Operating System Selector 
+// Operating System Selector
 ul.os-selector {
   margin: 0;
   display: inline-block;
@@ -1863,23 +1892,21 @@ ul.os-selector {
   input {
     display: none;
     &:checked + label {
-      background:$dark-blue;
-      color:white;
-      border-color:darken($dark-blue,5%);
+      background:$red;
     }
   }
   label {
     display: inline-block;
     padding: 10px;
     margin: 0;
-    border-right:1px solid $grey-3;
+    background:$dark-grey;
+    color:white;
+    border-right:1px solid white;
     &:last-child {
       border-right: 0;
     }
     &:hover {
-      background:$dark-blue;
-      color:white;
-      border-color:darken($dark-blue,5%);
+      background:$red;
     }
     i.fa {
       margin-right: 10px;
@@ -1943,6 +1970,100 @@ table.split-50 col {
   }
 }
 
+
+/* Typography */
 small {
   font-size: 80%;
+}
+
+h1 { font-size: 42px; }
+h2 { font-size: 42px; }
+
+// New Nav
+
+header.main {
+  background:$dark-grey;
+  font-size: 2rem;
+}
+
+
+nav.secondary-nav {
+  background:$black;
+  overflow: hidden;
+  padding:10px 15px;
+  @extend .column;
+  ul {
+    margin: 0;
+    padding: 0;
+    float:left;
+    &.menu-left {
+      a {
+        margin-right: 15px;
+        font-weight: 600;
+      }
+    }
+    &.menu-right {
+      float: right;
+      a {
+        margin-left:20px;
+        font-size: 18px;
+        color:$gray;
+      }
+    }
+  }
+  li {
+    padding: 0;
+    display:inline-block;
+  }
+  a {
+    color:white;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+}
+
+
+h1.logo {
+  font-size: 20px;
+  float: left;
+  margin-right: 40px;
+  a {
+    color:white;
+  }
+}
+
+
+nav.primary-nav {
+  padding-top:40px;
+  padding-bottom:40px;
+  overflow: hidden;
+  @extend .column;
+}
+
+.nav-tabs {
+  margin: 0;
+  float: left;
+  li {
+    display: inline;
+    margin-right: 20px;
+    a {
+      color:white;
+      position: relative;
+      font-size: 20px;
+      font-weight: 600;
+      &:after {
+        position: absolute;
+        left:0;
+        content : '';
+        display: block;
+        height:3px;
+        bottom:-6px;
+        width:30px;
+        background:white;
+      }
+      &:hover:after {
+        background:$red;
+      }
+    }
+  }
 }
