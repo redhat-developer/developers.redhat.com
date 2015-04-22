@@ -9,12 +9,12 @@ description: The simple, modern & productive way to build apps and infrastructur
 / Introduction
 .row.intro.panel
   h2#introduction The simple, modern and productive way to build apps and infrastructure.
-  .large-12.column
+  .col-lg-12.column
     h3 Get Started
     asciidoc:
       Start using JBoss today with free downloads, tutorials, and quickstarts
     a.button(href="get-started") Get Started
-  .large-12.column
+  .col-lg-12.column
     h3 Explore JBoss
     asciidoc:
       Learn more about the Red Hat^(R)^ JBoss^(R)^ Middleware portfolio
@@ -24,15 +24,15 @@ description: The simple, modern & productive way to build apps and infrastructur
 .row.slider-wrapper.hero
   .slider#slider(data-pause-on-hover="true" data-timeout="5000")
     .swipe-wrap
-      .large-24.slide
+      .col-lg-24.slide
         a( href="http://www.devnation.org/?intcmp=70160000000wnNOAAY")
           img.mobile(src=cdn("#{site.base_url}/images/branding/hero_mobile_480x500_devnation_03252015.jpg") alt="DevNation: An open source conference, by and for developers across the globe")
           img.desktop(src=cdn("#{site.base_url}/images/branding/hero_desktop_1175x400_devnation_03252015.jpg") alt="DevNation: An open source conference, by and for developers across the globe")
-      .large-24.slide
+      .col-lg-24.slide
         a( href="http://www.redhat.com/en/about/press-releases/red-hat-launches-new-release-openshift-enterprise-and-adds-private-ipaas")
           img.mobile(src=cdn("#{site.base_url}/images/branding/hero_mobile_480x500_jbossxpaas.png") alt="JBoss Fuse for xPaaS and JBoss A-MQ for xPaaS now available")
           img.desktop(src=cdn("#{site.base_url}/images/branding/hero_desktop_1175x400_jbossxpaas.jpg") alt="JBoss Fuse for xPaaS and JBoss A-MQ for xPaaS now available")
-      .large-24.slide
+      .col-lg-24.slide
         a( href="http://www.jboss.org/unifiedpush/")
           img.mobile(src=cdn("#{site.base_url}/images/branding/hero_mobile_480x500_unifiedpush.jpg") alt="Red Hat JBoss Unified Push. Using native mobile push notification services on OpenShift")
           img.desktop(src=cdn("#{site.base_url}/images/branding/hero_desktop_1175x400_unifiedpush.jpg") alt="Red Hat JBoss Unified Push. Using native mobile push notification services on OpenShift")
@@ -44,19 +44,19 @@ description: The simple, modern & productive way to build apps and infrastructur
 
 / Buzz and Event Updates
 .row.updates.mobilehome
-  .large-24.columns
-    .row 
-      .large-16.columns
+  .col-lg-24.columns
+    .row
+      .col-lg-16.columns
         h6.viewall
           a(href="#{site.base_url}/buzz")
-            | View All Buzz 
+            | View All Buzz
             i.fa.fa-angle-double-right
         h3#buzz Buzz
         .mini-buzz-container.buzz-loading
-      .large-8.columns
+      .col-lg-8.columns
         h6.viewall
           a(href="events")
-            | View All Events 
+            | View All Events
             i.icon-double-angle-right
         h3#events Events
         - site.events.reject{ |a, b| b['start_date'].nil? }.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|

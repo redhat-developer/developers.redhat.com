@@ -8,106 +8,106 @@ $mq-desktop: 1382px !default;
     @media (max-width : $mq-mobile-landscape) {
         @content
     }
-};
+}
 
 @mixin mobile-portrait-only {
     @media (max-width : $mq-mobile-portrait) {
         @content
     }
-};
+}
 
 @mixin mobile-portrait-and-down {
     @media (max-width : $mq-mobile-portrait) {
         @content
     }
-};
+}
 
 @mixin mobile-portrait-and-up {
     @media (min-width : $mq-mobile-portrait) {
         @content
     }
-};
+}
 
 @mixin mobile-landscape-only {
     @media only screen and (min-width : $mq-mobile-portrait + 1) and (max-width : $mq-mobile-landscape) {
         @content
     }
-};
+}
 
 @mixin mobile-landscape-and-down {
     @media only screen and (max-width : $mq-mobile-landscape) {
         @content
     }
-};
+}
 
 @mixin mobile-landscape-and-up {
     @media only screen and (min-width : $mq-mobile-portrait + 1) {
         @content
     }
-};
+}
 
 @mixin tablet-only {
     @media only screen and (min-width : $mq-mobile-landscape + 1) and (max-width : $mq-tablet-landscape) {
         @content
     }
-};
+}
 
 @mixin tablet-portrait-only {
     @media only screen and (min-width : $mq-mobile-landscape + 1) and (max-width : $mq-tablet-portrait) {
         @content
     }
-};
+}
 
 @mixin tablet-portrait-and-down {
     @media only screen and (max-width : $mq-tablet-portrait) {
         @content
     }
-};
+}
 
 @mixin tablet-portrait-and-up {
     @media only screen and (min-width : $mq-mobile-landscape + 1) {
         @content
     }
-};
+}
 
 @mixin tablet-landscape-only {
     @media only screen and (min-width : $mq-tablet-portrait + 1) and (max-width : $mq-tablet-landscape) {
         @content
     }
-};
+}
 
 @mixin tablet-landscape-and-down {
     @media only screen and (max-width : $mq-tablet-landscape) {
         @content
     }
-};
+}
 
 @mixin tablet-landscape-and-up {
     @media only screen and (min-width : $mq-tablet-portrait + 1) {
         @content
     }
-};
+}
 
 @mixin desktop-and-up {
     @media only screen and (min-width : $mq-tablet-landscape + 1) {
         @content
     }
-};
+}
 
 @mixin desktop-and-down {
     @media only screen and (max-width : $mq-desktop) {
         @content
     }
-};
+}
 
 @mixin desktop-only {
     @media only screen and (min-width : $mq-tablet-landscape + 1) and (max-width : $mq-desktop) {
         @content
     }
-};
+}
 
 @mixin hidpi {
     @media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
         @content
     }
-};
+}

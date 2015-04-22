@@ -246,15 +246,15 @@ ul.toc {
   }
 }
 
-// Ticket Monster demo styles 
+// Ticket Monster demo styles
 .ticket-monster-items {
-  @extend .get-started-ticket-monster-bg;
+  // @extend .get-started-ticket-monster-bg !optional;
   margin-bottom: 30px;
   position: relative;
   min-height:200px;
   border-radius: $global-radius;
   padding: 30px;
-  
+
   p {
 	font-size: 1.5em;
     text-transform: uppercase;
