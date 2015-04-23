@@ -17,23 +17,33 @@ secondary_section: supported-products
       li
         a href="" #{page.product.abbreviated_name}
 .row
-  .large-24
-    img(src="#{cdn( site.base_url + '/images/branding/product-logos/' + page.product.product_logo )}" alt="#{page.product.name}")
+  .large-24.product-header
+    h2 #{page.product.name}
     h3#product One Line Tagline Lorem Ipsum Dolor Sit Amet
 
 .hero.hero-try-or-buy
   .row
-    .large-7.columns
-      h3 Hello World
-      p Build Something Today!
-    .large-8.columns
-      a.button Download Locally
-      small Red Hat JBoss EAP 6.3 Installer
-    .large-1.columns
-      p OR
-    .large-8.columns
-      a.button.inverse Launch in the cloud
-      small Red Hat JBoss EAP 6.3 on OpenShift
+    .large-17.columns.hello-world
+      .large-8.columns
+        h2 Hello World!
+        p BUILD SOMETHING TODAY
+      .large-8.columns
+        a.button(href="#") LAUNCH IN THE CLOUD
+        small Red Hat JBoss EAP 6.3 Installer
+      .large-8.columns
+        a.button.inverse(href="#") DOWNLOAD LOCALLY
+        small Red Hat JBoss EAP 6.3 on OpenShift
+    .large-7.columns.outside-links
+      a.large-24.columns(href="http://www.redhat.com/en/about/contact/sales")
+        strong Buy It
+        p 
+          | Contact Sales  
+          i.fa.fa-caret-right
+      a.large-24.columns(href="#") 
+        strong Make it better
+        p
+          | Join the community  
+          i.fa.fa-caret-right
 
 .row.content
   .large-24

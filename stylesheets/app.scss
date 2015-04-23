@@ -428,17 +428,44 @@ body.fullbleed {
 }
 
 .hero-try-or-buy {
-  background:$grey;
+  background:#242424;
   border:0;
-  padding:40px;
+  padding: 0 40px;
   margin:20px 0;
   text-align: center;
   .button {
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 5px;
+    padding: 1rem;
   }
   p {
     margin-bottom: 0;
+  }
+  .hello-world{
+    margin-top: 2.5rem;
+    color: $white;
+    p{font-size: .8rem;}
+    h2{
+      color: $red;
+      font-size: 37px;
+      margin-bottom: 5px;
+    }
+
+    @media only screen and (max-width: 64em) { 
+      margin-bottom: 15px;
+      small{display: block;}
+      p{margin-bottom: 10px;}
+    }
+  }
+  .outside-links a{
+    text-align: left;
+    display: block;
+    border-left: 4px solid #08c0fc;
+    color: $white;
+    padding: 10px 16px;
+  }
+  .outside-links a:first-of-type{
+    margin-bottom: 20px;
   }
 }
 
@@ -714,6 +741,14 @@ body.fullbleed {
   h4 {
     margin-bottom: 0;
     font-weight: normal;
+  }
+}
+
+.product-header{
+  h2{color: $red;}
+  h3 {
+    font-weight: 100;
+    text-transform: uppercase;
   }
 }
 
