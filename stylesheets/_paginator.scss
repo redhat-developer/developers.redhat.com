@@ -1,8 +1,26 @@
 div.pagination-centered {
-  ul.pagination {
     margin: 2em 0;
+  ul.pagination {
+    font-size: 0;
     li {
-      &:before {display: none;}
+      height:auto;
+      margin: 0;
+      border:1px solid $grey;
+      border-right:0;
+      &:before {
+        display: none;
+      }
+      &:last-child a {
+        border-right:1px solid $grey;
+      }
+      &.current a {
+        color:white;
+      }
+      a {
+        color:$blue;
+        height:auto;
+        font-size: emCalc(16);
+      }
     }
     &.one-page {
       visibility: hidden;

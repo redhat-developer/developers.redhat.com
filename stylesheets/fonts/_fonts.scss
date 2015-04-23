@@ -1,6 +1,29 @@
 /*
- * JBoss Developer additional fonts
+ * RedHat additional fonts
  */
 
-@import "cabin-400";
 
+@font-face {
+    font-family: Overpass;
+    src: url("/stylesheets/fonts/overpass_regular-web.eot");
+    src: url("/stylesheets/fonts/overpass_regular-web.eot?#iefix") format("eot"), url("/stylesheets/fonts/overpass_regular-web.woff") format("woff"), url("/stylesheets/fonts/overpass_regular-web.ttf") format("truetype"), url("/stylesheets/fonts/overpass_regular-web.svg#webfontLTZe4IYH") format("svg");
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Overpass;
+    src: url("/stylesheets/fonts/overpass_bold-web.eot");
+    src: url("/stylesheets/fonts/overpass_bold-web.eot?#iefix") format("eot"), url("/stylesheets/fonts/overpass_bold-web.woff") format("woff"), url("/stylesheets/fonts/overpass_bold-web.ttf") format("truetype"), url("/stylesheets/fonts/overpass_bold-web.svg#webfontzAU82Ltw") format("svg");
+    font-weight: 800;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Overpass;
+    src: url("/stylesheets/fonts/overpass_light-webfont.eot");
+    src: url("/stylesheets/fonts/overpass_light-webfont.eot?#iefix") format("eot"), url("/stylesheets/fonts/overpass_light-webfont.woff") format("woff"), url("/stylesheets/fonts/overpass_light-webfont.ttf") format("truetype"), url("/stylesheets/fonts/overpass_light-webfont.svg#webfontzAU82Ltw") format("svg");
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: .05em
+}

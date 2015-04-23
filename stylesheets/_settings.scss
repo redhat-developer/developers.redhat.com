@@ -56,7 +56,7 @@ $default-float: left;
 
 // $body-bg: #fff;
 $body-font-color: $grey-7;
-$body-font-family: 'Cabin', sans-serif;
+$body-font-family: "Overpass","Open Sans",Helvetica,sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -77,7 +77,7 @@ $primary-color: $dark-blue;
 
 // Make sure border radius matches unless we want it different.
 
-$global-radius: 5px;
+$global-radius: 0;
 $global-rounded: 1000px;
 
 // Inset shadow shiny edges and depressions.
@@ -164,7 +164,7 @@ $block-grid-default-spacing: emCalc(20);
 
 // Control header font styles
 
-$header-font-family: 'Cabin', sans-serif;
+$header-font-family: "Overpass","Open Sans",Helvetica,sans-serif;
 // $header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -175,7 +175,7 @@ $header-font-family: 'Cabin', sans-serif;
 
 // Control header font sizes
 
-// $h1-font-size: emCalc(44);
+// $h1-font-size: emCalc(42);
 // $h2-font-size: emCalc(37);
 // $h3-font-size: emCalc(27);
 // $h4-font-size: emCalc(23);
@@ -297,12 +297,13 @@ $paragraph-line-height: 1.5;
 // $input-bg-color: #fff;
 // $input-focus-bg-color: darken(#fff, 2%);
 // $input-border-color: darken(#fff, 20%);
-// $input-focus-border-color: darken(#fff, 40%);
-// $input-border-style: solid;
+$input-focus-border-color: darken(#fff, 40%);
+$input-border-style: solid;
 // $input-border-width: 1px;
 // $input-disabled-bg: #ddd;
-// $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+$input-box-shadow: 0;
 // $input-include-glowing-effect: true;
+$input-border-radius: 0px;
 
 // We use these to style the fieldset border and spacing.
 
@@ -858,7 +859,7 @@ $paragraph-line-height: 1.5;
 
 // We use these for the pagination anchor links
 
-// $pagination-link-pad: emCalc(1, 7, 1);
+$pagination-link-pad: emCalc(8) emCalc(15);
 // $pagination-link-font-color: #999;
 // $pagination-link-active-bg: darken(#fff, 10%);
 
@@ -870,9 +871,9 @@ $paragraph-line-height: 1.5;
 
 // We use these for currently selected anchor links
 
-// $pagination-link-current-background: $primary-color;
+$pagination-link-current-background: $blue;
 // $pagination-link-current-font-color: #fff;
-// $pagination-link-current-font-weight: bold;
+$pagination-link-current-font-weight: normal;
 // $pagination-link-current-cursor: default;
 // $pagination-link-current-active-bg: $primary-color;
 
@@ -1169,15 +1170,15 @@ $table-even-row-bg: #fff;
 
 $table-border-style: solid;
 $table-border-size: 1px;
-$table-border-color: #d5d5d5;
+$table-border-color: transparent;
 
 // These control the table head styles
 
-$table-head-bg: $grey-4;
-// $table-head-font-size: emCalc(14);
+$table-head-bg: $dark-grey;
+$table-head-font-size: emCalc(16);
 $table-head-font-color: #fff;
-// $table-head-font-weight: bold;
-// $table-head-padding: emCalc(8, 10, 10);
+$table-head-font-weight: 600;
+$table-head-padding: 10px;
 
 // These control the row padding and font styles
 

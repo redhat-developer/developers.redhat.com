@@ -2,8 +2,8 @@
 .solution {
   margin-bottom: 20px;
   position: relative;
-  &:last-child.column { 
-    float:left; 
+  &:last-child.column {
+    float:left;
   }
   img {
     width:100%;
@@ -20,8 +20,8 @@
   .solution-name {
     width:100%;
     text-align: center;
-    background:$dark-blue;
-    color:white;
+    color:$link;
+    font-weight: 400;
     font-size:emCalc(22);
     margin: 0;
     margin-top: -50px;

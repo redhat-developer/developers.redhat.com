@@ -126,7 +126,7 @@ app.project = {
         + props.projectName + "</a></h3><p></p>";
 
       if (props.downloadsLink) {
-        template += "<a class=\"upstream-download button blue tiny round\" href=\""
+        template += "<a class=\"upstream-download button tiny\" href=\""
           + app.project.getCorrectUrl(props.downloadsLink) + "\">Download</a>";
       }
 

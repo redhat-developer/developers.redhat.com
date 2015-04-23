@@ -4,7 +4,7 @@ status: green
 type: Overview
 twitter_card: player
 og_type: video
-image: http://static.jboss.org/ffe/1/www/origin/jbossdeveloper_twitteravatar.png 
+image: http://static.jboss.org/ffe/1/www/origin/jbossdeveloper_twitteravatar.png
 ---
 - page.description ||= truncate_para(page._overview, 150)
 
@@ -26,7 +26,7 @@ h2#overview Overview
       a.moreinfolink(href="../resources")
         | View More Resources
         i.fa.fa-angle-double-right
-      
+
   .large-11.columns.product-video
     = video_player(video(page.product.intro_video)) if page.product.intro_video
 
