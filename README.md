@@ -9,10 +9,10 @@ Fork the project, then clone your fork and add the upstream repository.
          cd developer.redhat.com
          git remote add -f upstream git@github.com:redhat-developer/developer.redhat.com.git
 
-### Docker setup
-In order to build the site, you need to have a local Drupal and Searchisko service running.
-This environment is available via Docker images. 
-Before building the site, you must setup this environment first.
+### Docker setup (Optional) WARNING: incomplete instructions, updates coming soon.
+This section describes how to build the site using local instances of Drupal and Searchisko (running in Docker containers).
+This section is optional.
+Skip to the [Site Build Setup](#site_build_setup) section if you don't want to use Docker.
 
 1. Install Docker (or Boot2Docker on a Mac). Select the instructions from the [Docker installation docs](https://docs.docker.com/installation/) for your operating system. Make sure Docker is running correctly before proceeding.
 2. [Install Docker Compose](https://docs.docker.com/compose/install/). Again, make sure this is working correctly before proceeding.
@@ -36,7 +36,7 @@ When you see `FINISHED!` you will know that Searchisko is configured. This is th
 * Drupal: <http://docker:8081/>
 * Searchisko: <http://docker:8080/v1/rest/project>
 
-### Site Build Setup
+### <a name="site_build_setup"></a> Site Build Setup
 
 1. Configure environment variables needed for the site.
     * Request the following values from the JBoss Developer team:
@@ -80,19 +80,22 @@ When you see `FINISHED!` you will know that Searchisko is configured. This is th
         
         bundle install
 
-4. Configure the enviornment:
+4. Configure the environment:
 
         rake setup
 
-5. Build the site for display at <http://localhost:4242> and <http://docker:8081>
-   
+5. If using Docker, set the drupal credentials:
+
         export drupal_user=admin
         export drupal_password=admin
+
+6. Build the site for display at <http://localhost:4242> and <http://docker:8081> (if using Docker)
+   
         rake clean preview
 
 _NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
 
-If the build was successful, you should be able to visit the site here: <http://localhost:4242> and <http://docker:8081>
+If the build was successful, you should be able to visit the site here: <http://localhost:4242> and <http://docker:8081> (if using Docker).
 
 ### Edit your boot2docker DNS servers
 
