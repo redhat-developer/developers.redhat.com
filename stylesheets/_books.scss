@@ -12,9 +12,15 @@ ul.book-list {
       visibility: hidden;
     }
   }
+  li:last-child{
+    float: left !important;
+  }
 }
 
 .book {
+  &:last-child.column {
+    float:left;
+  }
   padding-right:20px !important;
   position: relative;
   float: left;
