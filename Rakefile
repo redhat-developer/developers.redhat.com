@@ -681,6 +681,7 @@ class JIRA
     req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
     req.basic_auth ENV['jira_username'], ENV['jira_password']
     http = Net::HTTP.new(uri.host, uri.port)
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     http.use_ssl = true
     req.body = body
     http.request(req)
@@ -691,6 +692,7 @@ class JIRA
     req = Net::HTTP::Get.new(uri.path, initheader = {'Content-Type' =>'application/json'})
     req.basic_auth ENV['jira_username'], ENV['jira_password']
     http = Net::HTTP.new(uri.host, uri.port)
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     if uri.scheme == 'https'
       http.use_ssl = true
     end
