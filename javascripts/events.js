@@ -27,7 +27,7 @@ dcp.service('searchService', function($http, $q) {
     query.query = decodeURIComponent(decodeURIComponent(query.query));
 
     var deferred = $q.defer();
-    app.dcp.url.search = 'http://dcpbeta-searchisko.rhcloud.com/v1/rest/search'; // temp overwrite for staging data
+    // app.dcp.url.search = 'http://dcpbeta-searchisko.rhcloud.com/v1/rest/search'; // temp overwrite for staging data
     $http.get(app.dcp.url.search, { params : query }).success(function(data){
       deferred.resolve(data);
     });
@@ -42,10 +42,11 @@ dcp.controller('eventsController', function($scope, searchService) {
 
   // group into month array
   $scope.filter = {}; // stores the applied filter
+  $scope.filters = {regions : [], solutions : [], products : [], types : [] };
+  $scope.filtersFilled = false; // flag to only update the filters once
 
   $scope.getEvents = function() {
 
-    $scope.filters = {regions : [], solutions : [], products : [], types : [] };
     $scope.events = []; // parent array
 
     searchService.getData($scope.filter).then(function(data){
@@ -56,21 +57,29 @@ dcp.controller('eventsController', function($scope, searchService) {
         var itemEndMonth = moment(item._source.end_date).month();
         var itemEndYear = moment(item._source.end_date).year();
         var currentYear = (new Date()).getFullYear();
+        var now = (new Date()).getTime();
+        var then = (new Date(item._source.end_date)).getTime();
 
-        if(itemEndYear < currentYear) {
+        if(then < now) {
           continue; // skip this one..
         }
 
-        if(item._source.target_product) {
-          $scope.filters.products.push({ text : item._source.target_product , value : item._source.target_product });
-        }
+        // Fill filters if we haven't
 
-        if(item._source.region) {
-          $scope.filters.regions.push({ text : item._source.region , value : item._source.region });
-        }
+        if(!$scope.filtersFilled) {
 
-        if(item._source.solution) {
-          $scope.filters.solutions.push({ text : item._source.solution , value : item._source.solution });
+          if(item._source.target_product) {
+            $scope.filters.products.push({ text : item._source.target_product , value : item._source.target_product });
+          }
+
+          if(item._source.region) {
+            $scope.filters.regions.push({ text : item._source.region , value : item._source.region });
+          }
+
+          if(item._source.solution) {
+            $scope.filters.solutions.push({ text : item._source.solution , value : item._source.solution });
+          }
+
         }
 
         // push to the array
@@ -84,6 +93,8 @@ dcp.controller('eventsController', function($scope, searchService) {
         }
 
       }
+
+      $scope.filtersFilled = true; // marked as filled so they do not update when we filter
 
       // $scope.events = data.hits.hits;
     });

@@ -3,11 +3,6 @@ layout: get-involved-base
 title: Events featuring JBoss
 description: Discover the events and webinars featuring talks about JBoss products and upstream projects.
 ---
-.reveal-modal.close-reveal-modal.coming-soon#comingSoonModal
-  h3 This Feature Is Not Yet Enabled
-  a.close-reveal-modal &#215
-.row
-  h2.large-title#events Events
 .row(ng-app="dcp")
   .large-24.columns
     .slider-wrapper
@@ -23,43 +18,52 @@ description: Discover the events and webinars featuring talks about JBoss produc
         a.slider-next(data-direction="next")
           i.icon-angle-right.icon-4x
 
+    h2.blowout#events All Events
     h4.divider.events-header#find Find webinars and events within the industry, community or sponsored by Red Hat.
 
     div(ng-controller="eventsController")
-      .events-control.large-10
-        form.events-filter
+      .events-control.large-24
+        form.events-filter.row
+          .large-8.columns
+            label(for="region") Region:
+            select(ng-model="filter.region" ng-options="option.value as option.text for option in filters.regions" ng-change="getEvents()")
+              option(value="") All
+          .large-8.columns
+            label(for="product") Product:
+            select(ng-model="filter.target_product" ng-options="option.value as option.text for option in filters.products" ng-change="getEvents()")
+              option(value="") All
+          .large-8.columns
+            label(for="product") Solution:
+            select(ng-model="filter.solution" ng-options="option.value as option.text for option in filters.solutions" ng-change="getEvents()")
+              option(value="") All
 
-          label(for="region") Region:
-          select(ng-model="filter.region" ng-options="option.value as option.text for option in filters.regions" ng-change="getEvents()")
-            option(value="") Filter by Region
-
-          label(for="product") Product:
-          select(ng-model="filter.target_product" ng-options="option.value as option.text for option in filters.products" ng-change="getEvents()")
-            option(value="") Filter by Product
-
-          label(for="product") Solution:
-          select(ng-model="filter.solution" ng-options="option.value as option.text for option in filters.solutions" ng-change="getEvents()")
-            option(value="") Filter by Solutions
-
+      p(ng-hide="events.length") Sorry, there are no events to show. Please alter your search criteria.
       .month(ng-repeat="month in [0,1,2,3,4,5,6,7,8,9,10,11]" ng-show="events[month].length")
-        h2.divider
+        h2.divider.month-heading
           | {{ month | momentMonth:'MMMM' }}
-        ul.small-block-grid-2.large-block-grid-4.events-listing
+        ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4.events-listing
           li(ng-repeat="event in events[month] | orderBy: '_source.start_date'")
             .event
-              .event-date(ng-class="{'multiday': event._source.end_date !== event._source.start_date}")
-                 p
-                  span.start
-                    | {{event._source.start_date | moment:'MMM DD'}}
-                  span.end - {{event._source.end_date | moment:'MMM DD'}}
-              .event-links
+              .event-head
+                .event-date(ng-class="{'multiday': event._source.end_date !== event._source.start_date}")
+                   p
+                    span.start
+                      span.month
+                        | {{event._source.start_date | moment:'MMM'}}
+                        | &nbsp;
+                      span.day
+                        | {{event._source.start_date | moment:'DD'}}
+                    span.end
+                      | {{event._source.end_date | moment:'MMM DD'}}
+              .event-body
                 h3: a(ng-href="{{event._source.sys_url_view}}")
                   | {{event._source.sys_title}}
                 p
                   | {{event._source.sys_description}}
-                p
-                  | {{event._source.end_date}}
-              .event-body
+                a.button(href="{{event._source.sys_url_view}}")
+                  | Learn More
+                  i.fa.fa-external-link
+
 
 
 
