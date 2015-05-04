@@ -1,0 +1,13 @@
+/ The left menu for solutions
+/ Note that you must pass in a reference to the parent page, as the param 'parent'
+/Define left navigation items for the solutions. Maybe this should move to a yml file?
+- page.solution_subsection = page.parent.output_path[/^\/solutions\/[a-z]+\/([^\/]+)/, 1]
+- page.nav_items = {"overview" => "Overview", "learn" => "Learn", "get-started" => "Get Started", "buzz" => "Buzz"}
+
+/The menu items, created by iterating over the array defined above
+ul.side-nav
+  li.side-nav-toggle
+    a(href="#") Menu
+  - page.nav_items.each do |k,v|
+  	li(class="#{k == page.solution_subsection ? "active" : ""}"): a(href="../#{k}") #{v}
+

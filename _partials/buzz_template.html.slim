@@ -1,15 +1,9 @@
-.buzz-item.buzz-item-twitter
-  .buzz-item-inner
-    / .buzz-header
-      i.icon-twitter
-    a href="<!=permanentLink!>"
-      img src="#{cdn(site.base_url + "/images/branding/buzzdefault_orange.png")}"
-      h3 <!=sys_title!>
-    a.authorUpdate href="<!=permanentLink!>"
-      p.authorName
-        | <!=authorName!>
-        span.updateDate <!=updatedDate!>
-
-    p <!=sys_description!>
-    = partial "share_js_micro.html.slim"
-
+.buzz-product-update
+  .update
+    .update-meta
+      a.update-source href="<!=permanentLink!>"
+        h5 <!=sys_title!>
+      a.update-source href="<!=permanentLink!>" <!=authorName!>
+      a.update-timestamp href="<!=permanentLink!>" <!=updatedDate!>
+    .update-body
+      p <!=sys_description!>
