@@ -1,74 +1,41 @@
-h4.filter-toggle
-  | Filters
-  a.filters-clear(ng-click="filter.clear(); filter.applyFilters()") Clear All
-button.filters-apply.filter-toggle Apply
+.large-24.developer-materials-header
+  h4 Learn
+  / small
+  /   | 320,000 Results  &#124;  
+  /   a(href="#") Show 25  &#124;  
+  /   a(href="#") View All
+.large-24
+  form(method="GET" ng-submit="filter.applyFilters()")
+    .row 
+      .large-7.columns
+        label.right.inline(for="filter-by")
+          strong Filter By:
+        button.filters-apply.filter-toggle Apply
+        input(type="text" id="filter-by" placeholder="Keyword" name="filter-text" class="keyword" ng-model="filters.query" ng-change="filter.applyFilters()" ng-model-options="{debounce:300}")
 
-form.dev-mat-filters(method="GET" ng-submit="filter.applyFilters()")
-  .filter-block
-    input(type="text" placeholder="Filter by keyword" name="filter-text" ng-model="filters.query" ng-change="filter.applyFilters()" ng-model-options="{debounce:300}")
-
-  .filter-block
-   h5.show-more
-    | Rating
-   .filter-block-inputs
-     label(for="filter-rating" ng-class="{'filter-rating-active': filters.sys_rating_avg >= 1}")
-      input(type="radio" name="filter-rating" ng-model="filters.sys_rating_avg" value="1" ng-change="filter.applyFilters()")
-     label(for="filter-rating" ng-class="{'filter-rating-active': filters.sys_rating_avg >= 2}")
-      input(type="radio" name="filter-rating" ng-model="filters.sys_rating_avg" value="2" ng-change="filter.applyFilters()")
-     label(for="filter-rating" ng-class="{'filter-rating-active': filters.sys_rating_avg >= 3}")
-      input(type="radio" name="filter-rating" ng-model="filters.sys_rating_avg" value="3" ng-change="filter.applyFilters()")
-     label(for="filter-rating" ng-class="{'filter-rating-active': filters.sys_rating_avg >= 4}")
-      input(type="radio" name="filter-rating" ng-model="filters.sys_rating_avg" value="4" ng-change="filter.applyFilters()")
-     label(for="filter-rating" ng-class="{'filter-rating-active': filters.sys_rating_avg >= 5}")
-      input(type="radio" name="filter-rating" ng-model="filters.sys_rating_avg" value="5" ng-change="filter.applyFilters()")
-     a.clear-rating(ng-click="filters.sys_rating_avg = 0; filter.applyFilters()")
-      | &times;
-
-  .filter-block.filter-block-checkboxes
-    h5.show-more Topics
-    .filter-block-inputs
-      / Chosen Select Box for Desktops
-      select.chosen(ng-model="filters.sys_tags" multiple="true" ng-change="filter.applyFilters()")
-        option(ng-repeat="item in data.availableTopics" ng-selected="filters.sys_tags.indexOf(item) > -1" value="{{item}}")
-          | {{item}}
-          | {{data.groups["tag-" + item] | brackets }}
-
-      label(ng-repeat="item in ['EJB','CDI','OSGi', 'JSF', 'JPA', 'JTA', 'Serverlet', 'JavaMail', 'H2']")
-        input(type="checkbox" name="filter-topic[]" ng-click="filter.toggleSelection(item, 'sys_tags'); filter.applyFilters()" value="{{item | trim}}" ng-checked="filters.sys_tags.indexOf(item) > -1")
-        | {{item | trim}}
-        span.label.count(ng-show="data.groups[item]")
-          | {{data.groups[item]}}
-
-
-  .filter-block.filter-block-checkboxes
-    h5.show-more Format
-    .filter-block-inputs
-      label(
-        ng-repeat="item in data.availableFormats"
-      )
-        input(type="checkbox" name="filter-format[]" value="{{item.value}}"
-              ng-click="filter.toggleSelection(item.value, 'sys_type'); filter.applyFilters()"
-              ng-checked="filters.sys_type.indexOf(item.value) > -1"
-        )
-        span(
-          data-tooltip=""
-          aria-haspopup="true"
-          class="has-tip tip-right"
-          title="{{item.description}}"
-          data-options="disable_for_touch:true"
-        )
-          | {{item.name}}
-        span.label.count(ng-show="data.groups[item.value]")
+      .large-4.columns
+        select
+          option(value="default")Format
+          option(ng-repeat="item in data.availableFormats"name="filter-format[]"  value="{{item.value}}" ng-click="filter.toggleSelection(item.value, 'sys_type'); filter.applyFilters()" ng-checked="filters.sys_type.indexOf(item.value) > -1"){{item.name}}
+          span.label.count(ng-show="data.groups[item.value]")
           | {{data.groups[item.value]}}
 
-  .filter-block
-    h5 Skill Level
-    input(type="range" name="filter-skill" ng-change="filter.updateSkillLevel(); filter.applyFilters()" ng-model="data.skillNumber" value="0" min="0" max="3" ng-init="filter.updateSkillLevel();")
-    span.skill-display
-      | {{data.displaySkill || 'All'}}
+      .large-5.columns.left
+        label(for="publish-date")
+          strong Publish Date
+        input(type="range" id="publish-date" name="filter-publish-date" ng-change="filter.updateDate(); filter.applyFilters()" ng-model="data.dateNumber" value="0" max="4" ng-init="filter.updateSkillLevel();")
+        span.skill-display
+          | {{data.displayDate || 'All'}}
 
-  .filter-block
-    h5 Publish Date
-    input(type="range" name="filter-publish-date" ng-change="filter.updateDate(); filter.applyFilters()" ng-model="data.dateNumber" value="0" max="4" ng-init="filter.updateSkillLevel();")
-    span.skill-display
-      | {{data.displayDate || 'All'}}
+      / .large-6.columns.dropdown-filter.right
+      /   label.right.inline(for="sort-by")
+      /     strong Sort By:
+      /   a(href="#" data-dropdown="sort-by" class="tiny button") 
+      /     | Relevancy  
+      /     i.fa.fa-caret-down
+      /   ul(id="sort-by" class="f-dropdown" data-dropdown-content)
+      /     li Option 1
+      /     li Option 2
+      /     li Option 3
+
+

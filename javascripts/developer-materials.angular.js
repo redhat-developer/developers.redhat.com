@@ -634,7 +634,7 @@ $(function() {
   // toggle filters on mobile
   $('.filter-toggle').on('click',function() {
     if(window.innerWidth <= 768) {
-      $('.learn-sidebar').toggleClass('open');
+      $('.developer-materials-sidebar').toggleClass('open');
     }
   });
 

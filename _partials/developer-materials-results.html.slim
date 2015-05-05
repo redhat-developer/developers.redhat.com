@@ -3,7 +3,7 @@
 
   .developer-material-results(ng-hide="!data.materials.length")
     img.loader(src=cdn("#{site.base_url}/images/icons/ajax-loader.gif") ng-show="data.loading")
-    / .learn-options(ng-hide="data.loading")
+    / .developer-materials-options(ng-hide="data.loading")
 
     /   input(type="checkbox" id="showall" name="showall" value="500" ng-model="pagination.viewall" ng-change="paginate(1)")
     /   label(for="showall")
@@ -19,7 +19,7 @@
     /     i.fa.fa-align-justify
     /     |  List
 
-    table.learn-grid(ng-hide="data.layout === 'grid' || !data.layout || data.loading")
+    table.developer-materials-grid(ng-hide="data.layout === 'grid' || !data.layout || data.loading")
       thead
         tr
           td.topics Topics

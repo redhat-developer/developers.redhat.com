@@ -1,14 +1,14 @@
-.learn-sidebar {
+.developer-materials-sidebar {
   @extend .large-6;
   @extend .columns;
 }
-.learn-main {
+.developer-materials-main {
   @extend .large-17;
   @extend .columns;
 }
 
 
-.learn-options {
+.developer-materials-options {
   text-align: right;
   margin-bottom: 20px;
   label {
@@ -180,7 +180,7 @@ body .chosen-container-multi .chosen-choices li.search-field input[type="text"] 
   }
 }
 
-table.learn-grid {
+table.developer-materials-grid {
   table-layout: fixed;
   width: 100%;
   margin-top: 1rem;
@@ -229,13 +229,13 @@ table.learn-grid {
 }
 
 @include tablet-portrait-and-down {
-  body.learn {
-    .content-wrapper, .wrapper, .learn-sidebar {
+  body.developer-materials {
+    .content-wrapper, .wrapper, .developer-materials-sidebar {
       padding:0;
     }
   }
 
-  .learn-sidebar {
+  .developer-materials-sidebar {
     h4 {
       background:$dark-blue;
       color:white;
@@ -381,13 +381,13 @@ table.learn-grid {
 }
 
 @include tablet-landscape-and-down {
-  .learn-main {
+  .developer-materials-main {
     width:75%;
   }
 }
 
 @include tablet-portrait-and-down {
-  .learn-main {
+  .developer-materials-main {
     width:100%;
   }
 }
@@ -491,8 +491,8 @@ a[data-page="⋯"]{
   }
 }
 
-#learn-filters{
-  .learn-header{
+#developer-materials-filters{
+  .developer-materials-header{
     border-bottom: 1px solid #d5d5d5;
     margin-bottom: 20px;
     padding-bottom: 5px;
