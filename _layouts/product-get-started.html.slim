@@ -82,7 +82,8 @@ div(ng-app="dcp")
       .developer-materials-results data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}'"
         = partial 'developer-materials-results.html.slim'
 
-      p: a(href="../developer-materials") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
+      .large-15.more-developer-materials
+        p: a(href="../developer-materials") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
 
     = javascripts('product-get-started', true) do
       script src="#{site.base_url}/javascripts/vendor/class.create.js"

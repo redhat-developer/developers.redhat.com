@@ -1,30 +1,45 @@
-div.pagination-centered {
-    margin: 2em 0;
+#paginator {
   ul.pagination {
     font-size: 0;
+    height: auto;
+    @media only screen and (min-width: 64.063em) {
+      float: right;
+    }
     li {
-      height:auto;
-      margin: 0;
-      border:1px solid $grey;
-      border-right:0;
+      position: relative;
+      float: left;
+      padding: 0;
+      line-height: 1.42857;
+      text-decoration: none;
+      color: #0088ce;
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-left: -1px;
+      height: auto;
+      
       &:before {
         display: none;
       }
-      &:last-child a {
-        border-right:1px solid $grey;
+      &.one-page {
+        visibility: hidden;
+        margin-top: 0;
       }
-      &.current a {
-        color:white;
+      a{
+        padding-top: 0.6em;
+        transition: none;
+        cursor: pointer;
+        &:hover, &:focus{
+          color: #005582 !important;
+          background: #eee;
+          border-color: #ddd;
+        }
       }
-      a {
-        color:$blue;
-        height:auto;
-        font-size: emCalc(16);
+      &.current a{
+        z-index: 2;
+        color: #fff !important;
+        background: #0088ce !important;
+        border-color: #0088ce !important;
       }
-    }
-    &.one-page {
-      visibility: hidden;
-      margin-top: 0;
     }
   }
 }

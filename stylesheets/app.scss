@@ -236,6 +236,7 @@ table.downloads {
   h1,h2,h3,h4,h5,h6,p,ul,li {
     color:white;
   }
+  color: $white;
 }
 
 // Download link
@@ -1154,10 +1155,9 @@ input[type=checkbox],input[type=radio] {
 input[type=range] {
     position: relative;
     -webkit-appearance: none;
-    width: 200px;
-    height:12px;
+    width: 100%;
+    height:8px;
     border:1px solid #d5d5d5;
-    border-radius:9px;
     background: #eeeeee; /* Old browsers */
     background-color: #ffffff; // Old browsers
     // @include filter-gradient(#ffffff, #ececec, vertical); // IE6-9
@@ -1178,10 +1178,10 @@ $prefixes : -webkit-slider-thumb -moz-range-thumb -ms-slider-thumb slider-thumb;
 @each $prefix in $prefixes {
   input[type="range"]::#{$prefix} {
       -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
       border-radius:50%;
-      background:#336799;
+      background:#08c0fc;
       position: relative;
       z-index: 2;
   }
@@ -2102,3 +2102,8 @@ nav.primary-nav {
     }
   }
 }
+
+label.inline{
+  display: inline-block;
+}
+

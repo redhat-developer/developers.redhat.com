@@ -1,55 +1,39 @@
-div
+.large-24
   .panel(ng-hide="data.materials.length") Sorry there were no results, please modify your search query.
 
   .developer-material-results(ng-hide="!data.materials.length")
     img.loader(src=cdn("#{site.base_url}/images/icons/ajax-loader.gif") ng-show="data.loading")
-    .pagination-centered(ng-hide="pagination.viewall || !data.materials.length || data.loading")
-      ul.pagination
-        li.prev.arrow(ng-class="{unavailable: paginate.currentPage < 2}")
-          a(ng-click="paginate(paginate.currentPage - 1)") &laquo;
-        li(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}")
-          a(ng-click="paginate(page)" data-page="{{page}}")
-            | {{page}}
-        li.prev.arrow(ng-class="{unavailable: paginate.currentPage >= paginate.pages}")
-          a(ng-click="paginate(paginate.currentPage + 1)") &raquo;
+    / .developer-materials-options(ng-hide="data.loading")
 
-    .developer-materials-options(ng-hide="data.loading")
+    /   input(type="checkbox" id="showall" name="showall" value="500" ng-model="pagination.viewall" ng-change="paginate(1)")
+    /   label(for="showall")
+    /     | View All
 
-      input(type="checkbox" id="showall" name="showall" value="500" ng-model="pagination.viewall" ng-change="paginate(1)")
-      label(for="showall")
-        | View All
+    /   input(type="radio" name="showall" ng-model="data.layout" id="grid" value="grid" ng-checked="true")
+    /   label(for="grid")
+    /     i.fa.fa-square
+    /     |  Grid
 
-      input(type="radio" name="showall" ng-model="data.layout" id="grid" value="grid" ng-checked="true")
-      label(for="grid")
-        i.fa.fa-square
-        |  Grid
-
-      input(type="radio" name="showall" ng-model="data.layout" id="list" value="list")
-      label(for="list")
-        i.fa.fa-align-justify
-        |  List
-
-
+    /   input(type="radio" name="showall" ng-model="data.layout" id="list" value="list")
+    /   label(for="list")
+    /     i.fa.fa-align-justify
+    /     |  List
 
     table.developer-materials-grid(ng-hide="data.layout === 'grid' || !data.layout || data.loading")
       thead
         tr
-          td.type Type
+          td.topics Topics
           td.title Title
           td.description Description
           td.product(ng-hide="filters.project")
             | Product
-          td.skill Skill Level
+          td.format Format
+          td.publish-date Publish Date
       tbody
         tr.material(ng-repeat="item in data.displayedMaterials" class="get-started-placeholder-{{item.fields.sys_type}}")
-          / Type
-          td.type
-            a(ng-href="{{item.fields.sys_url_view}}")
-              img(ng-src="{{item | thumbnailURL}}")
-            / Experimental Banner
-            a.label.experimental-text(ng-show="item.fields.experimental") Experimental
-            / Premium Banner
-            a.label.premium-text(ng-show="item.fields.sys_url_view | isPremium") Premium
+          / Topics
+          td.topics
+            | {{item.fields.sys_tags.join(', ')}}
           / Title
           td.title
             p
@@ -65,9 +49,10 @@ div
           td.product(ng-hide="filters.project")
             | {{item.fields.target_product.join(', ')}}
           / Skill Level
-          td.skill
-            span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.level") {{ item.fields.level }}
-            span(ng-bind-html="item.fields | stars" ng-show="item.fields.sys_rating_avg > 0" )
+          td.format
+            | {{item.fields.sys_type}}
+          td.publish-date
+            | {{item.fields.sys_created | timeAgo}}
 
     ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4(ng-hide="data.layout === 'list'")
       li.material(ng-repeat="item in data.displayedMaterials")
@@ -98,3 +83,28 @@ div
           p
             | {{item.fields.sys_description | truncate}}
             | &hellip;
+.large-24
+  .large-7.columns#show-entries
+    label.inline Show
+    select(name="show-entries")
+      option(value="1") 10
+      option(value="2") 15
+      option(value="3") 20
+      option(value="4") 25
+    label.inline entries
+    br
+    p Showing 1 to 10 of 12 entries
+  .large-17.small-24.columns
+    nav#paginator(ng-hide="pagination.viewall || !data.materials.length || data.loading")
+      ul.pagination
+        li(ng-class="{unavailable: paginate.currentPage < 2}")
+          a(ng-click="paginate(paginate.currentPage = 1)") First
+        li(ng-class="{unavailable: paginate.currentPage < 2}")
+          a(ng-click="paginate(paginate.currentPage - 1)") Previous
+        li(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}")
+          a(ng-click="paginate(page)" data-page="{{page}}")
+            | {{page}}
+        li(ng-class="{unavailable: paginate.currentPage >= paginate.pages}")
+          a(ng-click="paginate(paginate.currentPage + 1)") Next
+        li(ng-class="{unavailable: paginate.currentPage  < 2}")
+          a(ng-click="paginate(paginate.currentPage = paginate.pages)") Last
