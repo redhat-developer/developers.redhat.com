@@ -1,7 +1,32 @@
+.hero.hero-solutions {
+  background: cdn('../images/design/night.png') top center / cover no-repeat;
+  content : ':4242';
+  border:0;
+  margin-bottom: 70px;
+  margin-top: -70px;
+  .button {
+    width: 100%;
+    display: block;
+    margin-left: 0;
+  }
+  h2.blowout {
+    color:white;
+    font-size: 70px;
+  }
+  p {
+    color: white;
+  }
+}
+
 // Solutions Grid
 .solution {
-  margin-bottom: 20px;
   position: relative;
+  i {
+    font-size: 60px;
+  }
+  p {
+    margin-bottom: 0;
+  }
   &:last-child.column {
     float:left;
   }
@@ -19,14 +44,11 @@
   }
   .solution-name {
     width:100%;
-    text-align: center;
-    color:$link;
+    color:$red;
     font-weight: 400;
     font-size:emCalc(22);
     margin: 0;
-    margin-top: -50px;
     position: relative;
-    padding: 10px;
     z-index: 999;
     clear: both;
     a {
@@ -213,6 +235,23 @@ blockquote.speech-bubble {
   }
 }
 
+ul.solutions {
+  margin-top: 30px !important;
+  display:flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  & > li {
+    width:23.875%;
+    padding:20px;
+    background:#DCDCDC;
+    margin:0 1.5% 20px 0;
+    &:nth-child(4n+4) {
+      margin-right: 0;
+    }
+  }
+}
+
 .row.solutions-body {
   margin-top: 1.24rem;
   ul,ol {
@@ -338,7 +377,7 @@ blockquote.speech-bubble {
       color: $white;
       font-weight: 100;
       padding: 10px 18% 0 18%;
-      @media (max-width: 64.063em) { 
+      @media (max-width: 64.063em) {
         padding: 10px 5% 0 5%;
       }
     }

@@ -1,7 +1,7 @@
 ---
 layout: technology-base
 ---
-    
+
 .row
   .large-24.columns
     ul.breadcrumbs
@@ -10,7 +10,7 @@ layout: technology-base
       li
         a href="#{site.base_url}/solutions" Solutions
       li
-        a href="#{site.base_url}/solutions/#{page.solution.id}" #{page.solution.name}
+        a href="#{site.base_url}/solutions/#{page.solution.name}" #{page.solution.name}
 
 .solution-hero
   .row
@@ -26,5 +26,4 @@ layout: technology-base
 
 = javascripts("solutions", true) do
   script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/chosen.jquery.min.js"
-  script src="#{site.base_url}/#{site.context_url}/javascripts/solutions.js"
   script src="#{site.base_url}/#{site.context_url}/javascripts/solution-docker.js"
