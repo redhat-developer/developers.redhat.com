@@ -81,6 +81,7 @@
 @import "print";
 @import "champions";
 @import "devoxx4kids";
+@import "rh-icons";
 // @import "theme-dark";
 
 // Microsites
@@ -143,17 +144,11 @@ button, .button {
     background:white;
     color:$red;
   }
-  &.button--clear {
+  &.clear {
     padding-left:0;
     padding-right: 0;
     background: transparent;
     border: 0;
-    border-radius: 0;
-    box-shadow:none;
-    color:$med-green;
-    text-align-last: auto;
-    font-size: emCalc(14);
-    text-transform: none;
     i {
       margin-right:2px;
       margin-left: 2px;
@@ -391,8 +386,6 @@ i[class*=fa].invert {
 */
 
 .content-wrapper {
-  background:white;
-  // max-width:1200px;
   margin: 0 auto;
 }
 
@@ -1080,6 +1073,9 @@ h1,h2,h3,h4,h5,h6 {
       font-size:1.8rem;
       margin: 0;
     }
+  }
+  &.caps {
+    text-transform: uppercase;
   }
   &.blowout {
     text-transform: uppercase;
@@ -1982,8 +1978,9 @@ h2 { font-size: 42px; }
 // New Nav
 
 header.main {
-  background:$dark-grey;
+  background:$dark-grey cdn('../images/design/header.jpg') center / cover no-repeat;
   font-size: 2rem;
+  padding-bottom: 40px;
 }
 
 
@@ -2029,6 +2026,12 @@ h1.logo {
   margin-right: 40px;
   a {
     color:white;
+    background: cdn('../images/design/logo.png') center no-repeat;
+    text-indent:-9999px;
+    position: relative;
+    display: block;
+    width:261px;
+    height:56px;
   }
 }
 
@@ -2036,6 +2039,7 @@ h1.logo {
 nav.primary-nav {
   padding-top:40px;
   padding-bottom:40px;
+  padding-left: 0;
   overflow: hidden;
   @extend .column;
 }
@@ -2043,6 +2047,7 @@ nav.primary-nav {
 .nav-tabs {
   margin: 0;
   float: left;
+  padding-top: 24px;
   li {
     display: inline;
     margin-right: 20px;

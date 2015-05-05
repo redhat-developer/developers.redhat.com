@@ -3,29 +3,37 @@ layout: solution-base
 title: Solutions
 ---
 
-.row
-  .large-24.columns
-    ul.breadcrumbs
-      li
-        a href="#{site.base_url}/technology" Technology
-      li
-        a href="#{site.base_url}/solutions" Solutions
 
-.row
-  .large-8.columns
-    h2.blowout Topics
-  .large-16.columns
-    p
-      = page._overview
+.hero.hero-wide.hero-solutions
+  .row
+    .large-24.columns
+      ul.breadcrumbs
+        li
+          a href="#{site.base_url}/technology" Technology
+        li
+          a href="#{site.base_url}/solutions" Solutions
+
+  .row
+    .large-10.columns
+      h2.blowout Solutions
+    .large-8.columns
+      p
+        = page._overview
+    .large-6.columns
+      a.button.clear(href="#") Get the latest information about Red Hat insights
+      a.button(href="#") Sign Up
 
 .row.solutions-row
   .large-24.columns
-    ul.large-block-grid-4.small-block-grid-2
+    h3.caps I want to use Red Hat technology to develop for:
+    ul.row.large-block-grid-4.small-block-grid-2.solutions
       - for solution in site.solutions.values
-        li.solution.large-8.column(data-open-solution="#{solution.id}")
-          a.image-link: img(src=cdn(site.base_url + "/images/solutions/#{solution.id}/thumb_300x300.png") alt="#{solution.id}")
-          a.solution-name-link(href="#")
-            h3.solution-name #{solution.name}
+        li.large-8.column(data-open-solution="#{solution.id}")
+          .solution
+            i(class="#{solution.icon}")
+            a.solution-name-link(href="#")
+              h3.solution-name #{solution.name}
+            p Start with a stable, flexible foundation that adapts as your business changes.
   .solution-overlays.clearfix
     - for solution in site.solutions.values
       .solution-wrap(data-solution="#{solution.id}")
