@@ -251,7 +251,6 @@ task :comment_and_close_jiras, [:job, :build_number, :deploy_url] do |task, args
 
   # Comment on any JIRAs
   jira.comment_issues(changes[:issues], "Successfully deployed to #{args[:deploy_url]} at #{Time.now}")
-  jira.close_issues_if_resolved(changes[:issues])
 end
 
 desc 'Comment to any mentioned JIRA issues that the changes can now be viewed. Close the issue, if it is in the resolved state already.'
@@ -697,29 +696,6 @@ class JIRA
     http.request(req)
   end
 
-  def close_issues_if_resolved(issues)
-    issues.each do |k|
-      status = issue_status k
-      if status == "Resolved"
-        url = "#{@jira_issue_base_url}#{k}/transitions"
-        body = %Q{
-          {
-            "transition": {
-              "id": "51"
-            }
-          }
-        }
-        resp = post(url, body)
-        if resp.is_a?(Net::HTTPSuccess)
-          puts "Successfully closed #{k}"
-        else
-          puts "Error closing #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
-          puts "Request body: #{body}"
-        end
-      end
-    end 
-  end
-
   def link_pull_requests_if_unlinked(issues, pull_request)
     linked_issues = []
     issues.each do |k|
@@ -736,7 +712,7 @@ class JIRA
               ]
             },
             "transition": {
-              "id": "61"
+              "id": "131"
             }
           }
         }
