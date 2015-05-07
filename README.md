@@ -9,16 +9,17 @@ Fork the project, then clone your fork and add the upstream repository.
          cd developer.redhat.com
          git remote add -f upstream git@github.com:redhat-developer/developer.redhat.com.git
 
-### Docker setup
-In order to build the site, you need to have a local Drupal and Searchisko service running.
-This environment is available via Docker images. 
-Before building the site, you must setup this environment first.
+### Docker setup (Optional) WARNING: incomplete instructions, updates coming soon.
+This section describes how to build the site using local instances of Drupal and Searchisko (running in Docker containers).
+This section is optional.
+Skip to the [Site Build Setup](#site_build_setup) section if you don't want to use Docker.
 
 1. Install Docker (or Boot2Docker on a Mac). Select the instructions from the [Docker installation docs](https://docs.docker.com/installation/) for your operating system. Make sure Docker is running correctly before proceeding.
 2. [Install Docker Compose](https://docs.docker.com/compose/install/). Again, make sure this is working correctly before proceeding.
 3. Download the Searchisko data dump from [here](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
 4. Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Boot2Docker, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `boot2docker ip`
-5. Run the following commands to build the images and start the containers:
+5. If you are running on Mac, and are not on an office network, you may hit DNS problems. If so, run `./control.sh -d` which will add the Red Hat DNS servers to your boot2docker install. This may cause issues if you use boot2docker and aren't on the Red Hat VPN. If you need to undo this, the easiest way is to get a fresh copy of the boot2docker VM image by running `boot2docker destroy && boot2docker init` (note that this will reset any other customisations you have made to the image). If you are unwilling to get a fresh copy of the boot2docker VM, then you will need to follow the steps below in _Edit your boot2docker DNS setup_ to remove the Red Hat DNS servers.
+6. Run the following commands to build the images and start the containers:
 
         cd _docker
         docker build --tag developer.redhat.com/base ./base
@@ -35,7 +36,7 @@ When you see `FINISHED!` you will know that Searchisko is configured. This is th
 * Drupal: <http://docker:8081/>
 * Searchisko: <http://docker:8080/v1/rest/project>
 
-### Site Build Setup
+### <a name="site_build_setup"></a> Site Build Setup
 
 1. Configure environment variables needed for the site.
     * Request the following values from the JBoss Developer team:
@@ -79,21 +80,35 @@ When you see `FINISHED!` you will know that Searchisko is configured. This is th
         
         bundle install
 
-4. Configure the enviornment:
+4. Configure the environment:
 
         rake setup
 
-5. Build the site for display at <http://localhost:4242> and <http://docker:8081>
-   
+5. If using Docker, set the drupal credentials:
+
         export drupal_user=admin
         export drupal_password=admin
+
+6. Build the site for display at <http://localhost:4242> and <http://docker:8081> (if using Docker)
+   
         rake clean preview
 
 _NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
 
-If the build was successful, you should be able to visit the site here: <http://localhost:4242> and <http://docker:8081>
+If the build was successful, you should be able to visit the site here: <http://localhost:4242> and <http://docker:8081> (if using Docker).
 
+### Edit your boot2docker DNS servers
 
+1. SSH in to the boot2docker image:
+   
+        boot2docker ssh
+2. Edit the boot2docker profile:
+        
+        sudo vi /var/lib/boot2docker/profile
+3. The DNS servers are specified using the `EXTRA_ARGS` variable. It will look a bit like:
+        
+        EXTRA_ARGS="--dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
+    If you want to use your host (DHCP) provided DNS servers, make sure there are no `--dns` arguments. If you want to use the Red Hat servers, then add a line like this to the file.
 
 > Everything below is copied across verbatim from www.jboss.org. Proceed with caution.
 
@@ -243,3 +258,4 @@ Same fix as "Too many open files"
 If using GNU PGP, sometimes you're not presented with a popup asking for the passphrase. This will result in the following error being presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
 To fix, use the instructions in the following url:
 https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
+
