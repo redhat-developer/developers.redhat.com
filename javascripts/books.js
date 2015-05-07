@@ -123,6 +123,10 @@ app.books = {
       for (var k = 0; k < results.length; k++) {
         var book = results[k].fields;
         var authors = ""
+          if(!book.sys_url_view){
+              book.sys_url_view = ""
+          }
+
         if (book.sys_contributor) {
           if (book.sys_contributor.length == 1) {
             authors += "Author: ";
