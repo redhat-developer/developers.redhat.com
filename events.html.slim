@@ -3,12 +3,7 @@ layout: get-involved-base
 title: Events featuring JBoss
 description: Discover the events and webinars featuring talks about JBoss products and upstream projects.
 ---
-.reveal-modal.close-reveal-modal.coming-soon#comingSoonModal
-  h3 This Feature Is Not Yet Enabled
-  a.close-reveal-modal &#215
-.row
-  h2.large-title#events Events
-.row
+.row(ng-app="dcp")
   .large-24.columns
     .slider-wrapper
       .slider#slider.slider-side-by-side
@@ -23,57 +18,59 @@ description: Discover the events and webinars featuring talks about JBoss produc
         a.slider-next(data-direction="next")
           i.icon-angle-right.icon-4x
 
+    h2.blowout#events All Events
     h4.divider.events-header#find Find webinars and events within the industry, community or sponsored by Red Hat.
 
-    .events-control.large-10
-      form.events-filter
-        input(type="text" name="events-filter-name" placeholder="Find An Event")
-        p
-          | Currently Viewing
-          input(type="text" name="events-filter-start-date" class="datepicker small")
-          | to
-          input(type="text" name="events-filter-end-date" class="datepicker small")
+    div(ng-controller="eventsController")
+      .events-control.large-24
+        form.events-filter.row
+          .large-8.columns
+            label(for="region") Region:
+            select(ng-model="filter.region" ng-options="option.value as option.text for option in filters.regions" ng-change="getEvents()")
+              option(value="") All
+          .large-8.columns
+            label(for="product") Product:
+            select(ng-model="filter.target_product" ng-options="option.value as option.text for option in filters.products" ng-change="getEvents()")
+              option(value="") All
+          .large-8.columns
+            label(for="product") Solution:
+            select(ng-model="filter.solution" ng-options="option.value as option.text for option in filters.solutions" ng-change="getEvents()")
+              option(value="") All
 
-    .events-control.events-actions.large-14
-      a(href="#")
-        | Subscribe to events
-        i.fa.fa-rss
-      /
-        DEVELOPER-829
-        .events-actions-buttons
-          a.button.reveal data-reveal-id="comingSoonModal" Add Your Event
-          a.button.reveal data-reveal-id="comingSoonModal" View Past Events
-          a.button.reveal data-reveal-id="comingSoonModal" Events Blog
-
-    ul.small-block-grid-2.large-block-grid-4.events-listing
-      - site.events.reject{ |a, b| b['start_date'].nil? }.values.sort{ |a, b| DateTime.parse(a['start_date']) <=> DateTime.parse(b['start_date']) }.each do |e|
-        - if DateTime.parse(e['end_date']).to_time > DateTime.now.prev_day.to_time.localtime("+09:00")
-          li
+      p(ng-hide="events.length") Sorry, there are no events to show. Please alter your search criteria.
+      .month(ng-repeat="month in [0,1,2,3,4,5,6,7,8,9,10,11]" ng-show="events[month].length")
+        h2.divider.month-heading
+          | {{ month | momentMonth:'MMMM' }}
+        ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4.events-listing
+          li(ng-repeat="event in events[month] | orderBy: '_source.start_date'")
             .event
-              .event-header
-                img(src="#{e['image'].nil? || e['image'].strip.empty? || e['image'] == 'default' ? cdn(site.base_url + "/images/events/event-bg-1.jpg") : "http://static.jboss.org/images/events/event_" + e['image'] + ".png"}" alt="#{e['title']} Image")
-                - if "community".casecmp(e['type']) == 0 && e['image'] == 'default'
-                  p Community Event
+              .event-head
+                .event-date(ng-class="{'multiday': event._source.end_date !== event._source.start_date}")
+                   p
+                    span.start
+                      span.month
+                        | {{event._source.start_date | moment:'MMM'}}
+                        | &nbsp;
+                      span.day
+                        | {{event._source.start_date | moment:'DD'}}
+                    span.end
+                      | {{event._source.end_date | moment:'MMM DD'}}
               .event-body
-                div.event-date
-                  span.month=DateTime.parse(e['start_date']).strftime '%b'
-                  span.day=DateTime.parse(e['start_date']).strftime '%d'
-                  span
-                h3: a href=e['more_details']
-                  span=e['title']
-                p=e['description']
-                - if "red hat".casecmp(e['type']) == 0
-                  p.red-hat-event
-                    i.icon-redhat
-                    | Red Hat Event
-              .event-links
-                a href=e['more_details']
+                h3: a(ng-href="{{event._source.sys_url_view}}")
+                  | {{event._source.sys_title}}
+                p
+                  | {{event._source.sys_description}}
+                a.button(href="{{event._source.sys_url_view}}")
                   | Learn More
-              = partial("share.html.slim", :url => e['more_details'], :title => e['description'][0 .. 139])
+                  i.fa.fa-external-link
+
+
+
 
 = javascripts("events", true) do
   script src="#{site.base_url}/javascripts/vendor/picker.js"
   script src="#{site.base_url}/javascripts/vendor/picker.date.js"
+  script src="#{site.base_url}/javascripts/vendor/moment.js"
   script src="#{site.base_url}/javascripts/datepicker-init.js"
   script src="#{site.base_url}/javascripts/events.js"
 
