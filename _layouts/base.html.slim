@@ -71,9 +71,9 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
     javascript:
       dataLayer = [{'channel' : 'developer'}];
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-NJWS5L');
     noscript
       iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"
@@ -90,8 +90,10 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
           ul.menu-right
             li: a
               i.fa.fa-search
-            li: a
+            li.login: a
               i.fa.fa-user
+            li.logged-in
+              a.logged-in-name(href="#")
             li: a
               i.fa.fa-globe
         nav.primary-nav
@@ -150,6 +152,7 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
     script src="#{site.base_url}/javascripts/extensions.js"
     / Load any JS which is going to make AJAX calls for page load
     / First load SSO, it needs to make two calls
+    script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/keycloak.js"
     script src="#{site.base_url}/javascripts/sso.js"
     / Now load anything that is going to query the DCP
     script src="#{site.base_url}/javascripts/dcp.js"
