@@ -90,10 +90,8 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
           ul.menu-right
             li: a
               i.fa.fa-search
-            li: a
+            li: a(href="https://www.redhat.com/wapps/sso/login.html")
               i.fa.fa-user
-            li: a
-              i.fa.fa-globe
         nav.primary-nav
           h1.logo: a(href="/") Red Hat Developer Program
           ul.nav.nav-tabs
