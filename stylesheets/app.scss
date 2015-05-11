@@ -82,12 +82,6 @@
 @import "champions";
 @import "devoxx4kids";
 @import "rh-icons";
-// @import "theme-dark";
-
-// Microsites
-@import "enterprise-java";
-@import "event-javaland";
-
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -364,7 +358,7 @@ i[class*=fa].invert {
   border:0;
   padding:0;
   border-radius: 0;
-  margin: 0;
+  margin-bottom: 10px;
   select {
     width:auto;
     margin: 0;
@@ -385,10 +379,12 @@ i[class*=fa].invert {
     text-transform: none;
     font-size: 14px;
   }
-  li:last-child a {
-   font-weight: 600; // bold the last item
+  li{
+    margin-top: 3px;
+    &:last-child a {
+      font-weight: 600; // bold the last item
+    }
   }
-
 }
 
 

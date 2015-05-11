@@ -1,0 +1,30 @@
+---
+layout: technology-base
+---
+    
+.row
+  .large-24.columns
+    ul.breadcrumbs
+      li
+        a href="#{site.base_url}/technology" Technology
+      li
+        a href="#{site.base_url}/solutions" Solutions
+      li
+        a href="#{site.base_url}/solutions/#{page.solution.id}" #{page.solution.name}
+
+.solution-hero
+  .row
+    h2 #{page.solution.sub_title}
+    h5.description #{page.solution.long_description}
+
+.row
+  .large-4.columns
+    = partial 'solution-left-menu.html.slim', {'parent' => page}
+
+  .large-20.columns
+    =content
+
+= javascripts("solutions", true) do
+  script src="#{site.base_url}/#{site.context_url}/javascripts/vendor/chosen.jquery.min.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/solutions.js"
+  script src="#{site.base_url}/#{site.context_url}/javascripts/solution-docker.js"
