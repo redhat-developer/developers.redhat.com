@@ -269,14 +269,19 @@ a.download-link {
   li {
     margin:0 0 15px 0;
     a {
-      padding:0 10px 0 0!important;
+      padding:0 !important;
       text-transform: uppercase;
       font-weight: 600;
       font-size: emCalc(18);
       position: relative;
       color:$mars-black;
       text-align: right;
-      border-right:4px solid $grey;
+      &:after {
+        content : '▶';
+        font-size: 10px;
+        color:#AFB1B2;
+        margin-left: 10px;
+      }
       &:hover {
         background:none !important;
       }
@@ -286,6 +291,9 @@ a.download-link {
         color:black;
         border-color:$red;
         font-weight:600;
+        &:after {
+          color:$red;
+        }
       }
     }
     &.side-nav-toggle {
@@ -361,6 +369,9 @@ i[class*=fa].invert {
     width:auto;
     margin: 0;
   }
+  & > * {
+    line-height:1;
+  }
   & > *:before {
     color:$mars-black;
     content: ">";
@@ -426,6 +437,17 @@ body.fullbleed {
   padding: 0 40px;
   margin:20px 0;
   text-align: center;
+  position: relative;
+  z-index: 2;
+  &:before {
+    content: 'Hello World';
+    font-size: 130px;
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    bottom:40px;
+    color:#2D2D2F;
+  }
   .button {
     width: 100%;
     margin-bottom: 5px;
@@ -444,7 +466,7 @@ body.fullbleed {
       margin-bottom: 5px;
     }
 
-    @media only screen and (max-width: 64em) { 
+    @media only screen and (max-width: 64em) {
       margin-bottom: 15px;
       small{display: block;}
       p{margin-bottom: 10px;}
@@ -2016,6 +2038,12 @@ header.main {
   font-size: 2rem;
 }
 
+
+body.solutions {
+  header.main {
+    padding-bottom: 70px;
+  }
+}
 
 nav.secondary-nav {
   background:$black;
