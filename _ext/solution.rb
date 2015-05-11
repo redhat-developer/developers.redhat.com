@@ -14,7 +14,9 @@ module JBoss
               solution = page.solution
               solution.id = page.parent_dir
 
-              page.output_path = '/' + solution.id + "/index.html"
+              output_path = page.output_path
+              output_path.slice! "/solutions"
+              page.output_path = output_path
               
               if File.exists?('_partials/solution-partial-' + solution.id + '.html.slim')
                 solution.has_partial = true

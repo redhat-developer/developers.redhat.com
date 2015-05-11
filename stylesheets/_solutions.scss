@@ -318,3 +318,29 @@ blockquote.speech-bubble {
     margin-bottom: 10px;
   }
 }
+
+.solution-hero{
+  margin-bottom: 40px;
+  .row{
+    background: #242424;
+    border: 0;
+    margin: 20px 0;
+    text-align: center;
+    color: $white;
+    max-width: none;
+    padding: 30px 40px;
+    h2{
+      color: $white;
+      font-weight: 100;
+      margin-bottom: 0;
+      }
+    .description{
+      color: $white;
+      font-weight: 100;
+      padding: 10px 18% 0 18%;
+      @media (max-width: 64.063em) { 
+        padding: 10px 5% 0 5%;
+      }
+    }
+  }
+}
