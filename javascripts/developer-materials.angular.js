@@ -209,14 +209,14 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
   $scope.data = {};
   $scope.filters = {};
   $scope.pagination = {
-    size : 9
+    size : 10
   };
 
   /*
     Handle Pagination
   */
   $scope.paginate = function(page) {
-    $scope.pagination.size = ($scope.pagination.viewall ? 500 : 9);
+    $scope.pagination.size = ($scope.pagination.viewall ? 500 : $scope.pagination.size);
     var startAt = (page * $scope.pagination.size) - $scope.pagination.size;
     var endAt = page * $scope.pagination.size;
     var pages = Math.ceil($scope.data.materials.length / $scope.pagination.size);
@@ -378,6 +378,8 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     }
 
     if($scope.filters.sys_type && $scope.filters.sys_type.length){
+      // convert single sys_type into an array - allows us to switch to multi-select down the road
+      $scope.filters.sys_type = [$scope.filters.sys_type];
       // remove jbossdeveloper_sandbox "Early Access and convert it to experimental"
 
         var idx = $scope.filters.sys_type.indexOf("jbossdeveloper_sandbox");
