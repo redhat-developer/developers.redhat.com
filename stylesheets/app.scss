@@ -869,9 +869,23 @@ body.fullbleed {
   .download-link a:before{
     display: none;
   }
+  a.button{
+    max-width: 265px;
+    margin: 0 auto 5px auto;
+    display: block;
+    padding: .8rem 2rem;
+  }
+  .download-sublabel{
+    font-size: 70%;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+  }
   .tool-links{
     padding: 15px 15px;
     text-align: center;
+    font-weight: 600;
     a:first-of-type{margin-right: 15px;}
   }
 }
