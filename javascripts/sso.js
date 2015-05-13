@@ -12,7 +12,7 @@ app.sso = function () {
                 $('li.logged-in').show();
                 $('li.login').hide();
                 $('li.register').hide();
-            });
+            }).error(clearTokens);
         } else {
             $('li.login').show();
             $('li.login a').on('click',function(e){
@@ -63,6 +63,15 @@ app.sso = function () {
         }
     }
     
+    function clearTokens() {
+        keycloak.clearToken();
+        if (localStorage) {
+            localStorage.token = "";
+        } else {
+            document.cookie = 'token=' + btoa("");
+        }
+    }
+
     var keycloak = Keycloak({
         url: app.ssoConfig.auth_url,
         realm: 'rhd',
