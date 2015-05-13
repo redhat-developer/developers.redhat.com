@@ -1,0 +1,16 @@
+---
+layout: solution
+---
+
+- page.title = "Find quickstarts, archetypes, BOMs, Tutorials, and other developer oriented materials for #{page.solution.name}."
+
+div(ng-app="dcp")
+  .developer-materials(ng-controller="developerMaterialsController")
+    .large-24#developer-materials-filters
+      = partial 'developer-materials-filters.html.slim'
+    .text-content
+      .developer-materials-results
+        = partial 'developer-materials-results.html.slim'
+
+    = javascripts("developer-materials-filter", true) do
+      script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
