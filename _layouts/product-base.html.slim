@@ -31,8 +31,9 @@ secondary_section: supported-products
         a.button(href="#") LAUNCH IN THE CLOUD
         small #{page.product.abbreviated_name} #{page.product.current_version} on OpenShift
       .large-8.columns
-        a.button.inverse(href="#") DOWNLOAD LOCALLY
-        small #{page.product.abbreviated_name} #{page.product.current_version} Installer
+        - if page.product.default_download_artifact
+          a.button.inverse(href="#{page.product.default_download_artifact.url}") DOWNLOAD LOCALLY
+          small #{page.product.abbreviated_name} #{page.product.current_version} Installer
     .large-7.columns.outside-links
       a.large-24.columns(href="http://www.redhat.com/en/about/contact/sales")
         strong Buy It
