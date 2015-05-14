@@ -3,40 +3,32 @@
 ## Getting Started
 This section covers the steps you need to do in order to setup your environment and get the site running for the first time. Further sections cover the details.
 
-Fork the project, then clone your fork and add the upstream repository.
+Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
  
          git clone git@github.com:YOUR_USER_NAME/developer.redhat.com.git
          cd developer.redhat.com
          git remote add -f upstream git@github.com:redhat-developer/developer.redhat.com.git
 
-### Docker setup (Optional) WARNING: incomplete instructions, updates coming soon.
-This section describes how to build the site using local instances of Drupal and Searchisko (running in Docker containers).
-This section is optional.
+### Docker setup (Optional, but preferred)
+This section describes how to build the site using local instances of Searchisko (running in Docker containers).
+This section is optional, but highly recommended as this gives you a production-like environment locally.
 Skip to the [Site Build Setup](#site_build_setup) section if you don't want to use Docker.
 
 1. Install Docker (or Boot2Docker on a Mac). Select the instructions from the [Docker installation docs](https://docs.docker.com/installation/) for your operating system. Make sure Docker is running correctly before proceeding.
 2. [Install Docker Compose](https://docs.docker.com/compose/install/). Again, make sure this is working correctly before proceeding.
 3. Download the Searchisko data dump from [here](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
 4. Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Boot2Docker, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `boot2docker ip`
-5. If you are running on Mac, and are not on an office network, you may hit DNS problems. If so, run `./control.sh -d` which will add the Red Hat DNS servers to your boot2docker install. This may cause issues if you use boot2docker and aren't on the Red Hat VPN. If you need to undo this, the easiest way is to get a fresh copy of the boot2docker VM image by running `boot2docker destroy && boot2docker init` (note that this will reset any other customisations you have made to the image). If you are unwilling to get a fresh copy of the boot2docker VM, then you will need to follow the steps below in _Edit your boot2docker DNS setup_ to remove the Red Hat DNS servers.
-6. Run the following commands to build the images and start the containers:
+5. Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
+6. If you are running on Mac, and are not on an office network, you may hit DNS problems. If so, run `./control.rb -d` which will add the Red Hat DNS servers to your boot2docker install. This may cause issues if you use boot2docker and aren't on the Red Hat VPN. If you need to undo this, the easiest way is to get a fresh copy of the boot2docker VM image by running `boot2docker destroy && boot2docker init` (note that this will reset any other customisations you have made to the image). If you are unwilling to get a fresh copy of the boot2docker VM, then you will need to follow the steps below in _Edit your boot2docker DNS setup_ to remove the Red Hat DNS servers.
+7. Run the following commands to build the images and start the containers:
 
-        cd _docker
-        docker build --tag developer.redhat.com/base ./base
-        docker build --tag developer.redhat.com/java ./java
-        docker-compose build
-        docker-compose up -d
+        ./control.rb -br
+
+This will take awhile the first time. On subsequent builds you do not need to pass the `-b` flag unless you need to rebuild the docker containers. The script will output some information when everything is ready to go and you'll see the familiar awestruct build as you near the end. The script runs awestruct in preview mode, so the script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
+
+NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
     
-Once the previous command completes, it will take a few minutes for the services to boot up and get configured. You can monitor the progress by running this command:
-
-        docker logs -f docker_searchiskoconfigure_1
-    
-When you see `FINISHED!` you will know that Searchisko is configured. This is the last step in the process, so all the services should now be ready. Visit the following URLs and check that you don't get any errors:
-
-* Drupal: <http://docker:8081/>
-* Searchisko: <http://docker:8080/v1/rest/project>
-
-### <a name="site_build_setup"></a> Site Build Setup
+### <a name="site_build_setup"></a> Site Build without Docker
 
 1. Configure environment variables needed for the site.
     * Request the following values from the JBoss Developer team:
@@ -119,7 +111,7 @@ New pages should be added to the root with the extension `.html.slim`
 
 ### Updating the DCP
 
-Updates to the DCP should happen automatically if the build is being done on the build server, however, if
+Updates to the DCP should happen automatically if the build is being done on the build server or if you are using docker, however, if
 it is down or there is another emergency situation and the site needs to be built and content pushed to the
 DCP for staging or production please contact Pete Muir, Jason Porter, Andrew Rubinger or Ray Ploski. Below
 are steps to setup the environment for pushing content to the DCP.

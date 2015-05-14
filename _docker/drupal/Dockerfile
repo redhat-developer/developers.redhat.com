@@ -17,39 +17,59 @@ RUN yum -y install  \
   php-xml \ 
   php-xmlrpc \
   # Install RVM dependencies
-  tar \
+  bison \
   bzip2 \
+  epel-release \
   gcc \
-  ruby-devel \
+  gcc-c++ \
+  git \
+  libcurl-devel \
+  libffi-devel \
+  libtool \
   libxml2 \
   libxml2-devel \
   libxslt \
   libxslt-devel \
-  libcurl-devel \
+  libyaml-devel \
+  openssl-devel \
+  patch \
+  readline-devel \
+  ruby-devel \
+  sqlite-devel \
+  tar \
+  which \
 && yum clean all
 
 WORKDIR /var/www/html
 
-# Add RVM keys
-RUN gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+# Install Ruby and bundler
+RUN curl http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz > /tmp/ruby-2.1.2.tar.gz \
+    && cd /tmp \
+    && tar -xzf /tmp/ruby-2.1.2.tar.gz \
+    && cd ruby-2.1.2/ \
+    && ./configure --disable-install-doc \
+    && make \
+    && make install \
+    && rm -rf /tmp/*
 
-# Install RVM
-RUN curl -L get.rvm.io | bash -s stable
-RUN /bin/bash -l -c "rvm requirements && rvm autolibs enable"
+RUN curl http://production.cf.rubygems.org/rubygems/rubygems-2.4.1.tgz > /tmp/rubygems-2.4.1.tgz \
+    && cd /tmp \
+    && tar -zxf /tmp/rubygems-2.4.1.tgz \
+    && cd /tmp/rubygems-2.4.1 \
+    && ruby setup.rb \
+    && rm -rf /tmp/* \
+    && echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
-# Install Ruby
-ADD .ruby-version ./
-ADD .ruby-gemset ./
-RUN /bin/bash -l -c "rvm install `cat .ruby-version`"
+RUN gem install bundler --no-rdoc --no-ri
 
 ## Install the current gemset 
 # Build the current gemset (user will only need to build the difference 
 ADD Gemfile ./
 ADD Gemfile.lock ./
-RUN /bin/bash -l -c "bundle install"
+RUN bundle install
 
 RUN pear channel-discover pear.drush.org && pear install drush/drush
-ADD awestruct_push-7.x-1.0-beta2.tar /var/www/html/sites/all/modules
+ADD awestruct_push-7.x-1.0-beta4.tar /var/www/html/sites/all/modules
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 EXPOSE 80
 
@@ -59,4 +79,4 @@ VOLUME /var/www/html/sites/all/themes
 # Add the script(s)
 VOLUME /opt/drupal/bin
 
-CMD ["/bin/bash", "/opt/drupal/bin/run.sh"]
+CMD ["/bin/bash", "/drupal/bin/run.sh"]

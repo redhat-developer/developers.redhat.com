@@ -15,10 +15,9 @@ done
 
 # Setup drupal. Ideally this would all be done in a make file or install profile, but I don't know how to do that yet
 drush si -y standard --db-url=mysql://$DB_USER:$DB_PASSWORD@$DRUPALMYSQL_PORT_3306_TCP_ADDR/$DB_NAME --account-name=admin --account-pass=admin
-drush en features services ctools libraries token pathauto -y --resolve-dependencies
+drush en features services ctools libraries token metatag compass securesite -y --resolve-dependencies
 drush en awestruct_push -y
 # Add Drupal functional modules
-drush en metatag compass securesite -y
 # Disable the drush update manager, we will manage updates from here
 drush pm-disable update -y
 drush user-create awestruct --password="awestruct"
