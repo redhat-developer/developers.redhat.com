@@ -179,6 +179,19 @@ dcp.filter('timeAgo',function() {
 });
 
 /*
+  Filter to use the correct location for links coming from seachisko.
+*/
+dcp.filter('urlFix', function() {
+  return function(str){
+    if (str.contains("access.redhat.com")) {
+      return str;
+    } else {
+      return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+\/)?/, '#{site.base_url}/');
+    }
+  }
+});
+
+/*
   Filter to trim whitespace
 */
 dcp.filter('trim',function() {
