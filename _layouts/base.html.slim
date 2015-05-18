@@ -15,7 +15,7 @@ head
   meta property='og:image' content="#{page.image || 'http://static.jboss.org/ffe/1/www/origin/jbossdeveloper_twitteravatar.png'}"
   meta property='og:url' content="#{site.base_url}#{page.url}"
   meta property='og:determiner' content="#{page.og_determiner || 'the'}"
-  meta property='og:site_name' content='JBoss Developer'
+  meta property='og:site_name' content='Red Hat Developers'
   meta name="google-site-verification" content="s5Ticd4VGKCHPTMtzmH-EbGcGVxDwdMO28vNA_cb8SI"
   title= page.title || site.title
   meta name='twitter:title' content="#{page.title || site.title}"
@@ -92,7 +92,7 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
             li.login: a
               i.fa.fa-user
         nav.primary-nav
-          h1.logo: a(href="/") Red Hat Developer Program
+          h1.logo: a(href="/") Red Hat Developers
           ul.nav.nav-tabs
             li: a(href="#{site.base_url}/solutions") Solutions
             li: a(href="#{site.base_url}/products") Products
