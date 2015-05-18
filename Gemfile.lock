@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: eba7ac3870686aec4b526bbbbabac25c82f00fed
+  revision: c0f6b17d5dfd4304a7e2aaf0914bf89e9fc1b759
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -12,7 +12,7 @@ GIT
       oauth (~> 0.3.6)
       octokit (>= 1.24.0)
       parallel (> 1.0.0)
-      ruby-duration (= 3.1)
+      ruby-duration (~> 3.2)
       sass (< 3.4.6)
       uglifier (~> 2.0.1)
       xml-simple (~> 1.1)
@@ -192,7 +192,7 @@ GEM
       netrc (~> 0.7)
     retriable (2.0.2)
     robotex (1.0.0)
-    ruby-duration (3.1.0)
+    ruby-duration (3.2.1)
       activesupport (>= 3.0.0)
       i18n
       iso8601
