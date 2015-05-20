@@ -5,11 +5,13 @@ layout: solution
 - page.title = "JBoss Developer Solution: #{page.solution.name}"
 
 .row
-  .large-18.columns
+  .large-24.columns
     .solution-header
       - if page.solution.sub_title
-        h3 #{page.solution.sub_title}
-      = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
+        .large-16.columns
+          h3 #{page.solution.sub_title}
+      .large-8.columns
+        = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
 
     hr.divider
 
@@ -52,11 +54,11 @@ layout: solution
         - if page.solution.has_partial
           = partial("solution-partial-" + page.solution.id + ".html.slim")
 
-  .large-5.columns
-    - if page.solution.related_solutions
-      h4 Related Solutions
-      - for solution in page.solution.related_solutions
-        a.solution-name-link(href="#{site.base_url}/#{solution}")
-          .widget.widget--solution
-            img(src=cdn(site.base_url + "/images/solutions/#{solution}/thumb_300x200.png") alt="#{solution}")
-            h3 #{site.solutions[solution].name}
+  / .large-5.columns
+  /   - if page.solution.related_solutions
+  /     h4 Related Solutions
+  /     - for solution in page.solution.related_solutions
+  /       a.solution-name-link(href="#{site.base_url}/#{solution}")
+  /         .widget.widget--solution
+  /           img(src=cdn(site.base_url + "/images/solutions/#{solution}/thumb_300x200.png") alt="#{solution}")
+  /           h3 #{site.solutions[solution].name}

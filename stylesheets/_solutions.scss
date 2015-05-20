@@ -304,7 +304,6 @@ ul.solutions {
     display: inline-block;
     width:250px;
     float: right;
-    margin-top: -20px;
   }
 }
 
@@ -377,6 +376,7 @@ ul.solutions {
       color: $white;
       font-weight: 100;
       padding: 10px 18% 0 18%;
+      text-align: left;
       @media (max-width: 64.063em) {
         padding: 10px 5% 0 5%;
       }
