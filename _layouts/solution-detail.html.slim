@@ -54,11 +54,3 @@ layout: solution
         - if page.solution.has_partial
           = partial("solution-partial-" + page.solution.id + ".html.slim")
 
-  / .large-5.columns
-  /   - if page.solution.related_solutions
-  /     h4 Related Solutions
-  /     - for solution in page.solution.related_solutions
-  /       a.solution-name-link(href="#{site.base_url}/#{solution}")
-  /         .widget.widget--solution
-  /           img(src=cdn(site.base_url + "/images/solutions/#{solution}/thumb_300x200.png") alt="#{solution}")
-  /           h3 #{site.solutions[solution].name}
