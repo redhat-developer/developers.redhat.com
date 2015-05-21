@@ -1,4 +1,4 @@
-# Red Hat Developer Site
+# Red Hat Developers Site
 
 ## Getting Started
 This section covers the steps you need to do in order to setup your environment and get the site running for the first time. Further sections cover the details.
@@ -31,7 +31,7 @@ NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder
 ### <a name="site_build_setup"></a> Site Build without Docker
 
 1. Configure environment variables needed for the site.
-    * Request the following values from the JBoss Developer team:
+    * Request the following values from the Red Hat Developers team:
     
             vimeo_access_token_secret
             vimeo_client_secret
@@ -47,7 +47,7 @@ NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder
             export dcp_user=<DCP_USER>
             export dcp_password=<DCP_PASSWORD>
 
-   Alternatively, if you plan to do frequent development on the site, you can request access to the password vault. The password vault is checked in to git (so always contains an up to date version of all keys, passwords and usernames), and is encrypted using GPG. To request access from the Red Hat Developer team, send them the email address associated with your GPG key. To find out more about GPG (including how to create a key) read https://www.gnupg.org/gph/en/manual.html. If you are on Mac, we recommend GPGSuite which provides Keychain management for your GPG key.
+   Alternatively, if you plan to do frequent development on the site, you can request access to the password vault. The password vault is checked in to git (so always contains an up to date version of all keys, passwords and usernames), and is encrypted using GPG. To request access from the Red Hat Developers team, send them the email address associated with your GPG key. To find out more about GPG (including how to create a key) read https://www.gnupg.org/gph/en/manual.html. If you are on Mac, we recommend GPGSuite which provides Keychain management for your GPG key.
 
 2. Configure the software.
     _NOTE:_ You must use a version of Ruby installed via RVM.
@@ -232,7 +232,7 @@ Minimailly the follwoing list of receipients is required to encrypt the file:
 * Paul Robinson <paul.robinson@redhat.com> (ID: 0xBCE89FD63FBB22CF created at Wed 10 Sep 15:08:22 2014)
 * Adela Arreola <aarreola@redhat.com> (ID: 0xC946E35184EBDCF7 created at Tue 7 Oct 15:26:21 2014)
 * Markus Eisele (myfear) <markus@jboss.org> (ID: 0xBE0AACE30C6FAC25 created at Tue 16 Dec 13:11:42 2014)
-* James Parenti (JBoss Developer Site Key) <james@visuale.net> (ID: 0x21BF1DFDC7A143E0 created at Tue 10 Mar 14:33:51 2015)
+* James Parenti (Red Hat Developer Site Key) <james@visuale.net> (ID: 0x21BF1DFDC7A143E0 created at Tue 10 Mar 14:33:51 2015)
 * Ryszard Koźmik <rkozmik@redhat.com> (ID: 0x70E45BDE7C68C64D created at Mon 11 May 16:09:19 2015)
 
 If you add a new recipient to the file, ensure you update the list above.
