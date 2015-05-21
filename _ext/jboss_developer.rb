@@ -166,7 +166,7 @@ module JBoss
       private
 
       def external? url, base_url
-        url && !url.start_with?(base_url) && url !~ /^((https?:)?\/\/)(.*?)?\.jboss.org/ && url =~ /^((https?:)?\/\/)/
+        url && !url.start_with?(base_url) && url !~ /^((https?:)?\/\/)(.*?)?\.redhat.com/ && url =~ /^((https?:)?\/\/)/
       end
 
       def has_page_by_uri? site, page, url
