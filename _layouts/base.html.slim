@@ -94,9 +94,10 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
         nav.primary-nav
           h1.logo: a(href="/") Red Hat Developers
           ul.nav.nav-tabs
-            li: a(href="#{site.base_url}/solutions") Solutions
-            li: a(href="#{site.base_url}/products") Products
-            li: a(href="#{site.base_url}/downloads") Downloads
+            - currentPage = page.url.gsub('/','').split('.').first
+            - for pageName in ['solutions', 'products', 'downloads']
+              li(class=(currentPage == pageName ? 'active' : 'nah'))
+                a(href="#{site.base_url}/#{pageName}") #{pageName.capitalize}
 
     .wrapper.clearfix
       .content-wrapper

@@ -91,11 +91,10 @@
 */
 
 .row, .top-bar .row {
-  max-width:emCalc(1200);
+  max-width:emCalc(1170);
 }
 
 .row {
-  max-width:1100px;
   margin: 0 auto;
 }
 
@@ -118,9 +117,12 @@ button, .button {
   text-decoration: none;
   border:0;
   font-size: 15px;
-  font-weight: 600;
-  &:hover {
-    background: $red;
+  font-weight: 400;
+  padding:9px 40px;
+  transition:background .2s ease-in 0s;
+
+  &:hover, &:focus {
+    background: #AD0000;
   }
   &.large {
     padding: 0.6em 0.9em;
@@ -2031,7 +2033,7 @@ header.main {
 nav.secondary-nav {
   background:$black;
   overflow: hidden;
-  padding:10px 15px;
+  padding:6.5px 15px;
   @extend .column;
   ul {
     margin: 0;
@@ -2039,14 +2041,14 @@ nav.secondary-nav {
     float:left;
     &.menu-left {
       a {
-        margin-right: 15px;
+        margin-right: 20px;
         font-weight: 600;
       }
     }
     &.menu-right {
       float: right;
       a {
-        margin-left:20px;
+        margin-left:30px;
         font-size: 18px;
         color:$gray;
       }
@@ -2067,7 +2069,7 @@ nav.secondary-nav {
 h1.logo {
   font-size: 20px;
   float: left;
-  margin-right: 40px;
+  margin-right: 60px;
   a {
     color:white;
     background: cdn('../images/design/logo.png') center no-repeat;
@@ -2081,7 +2083,7 @@ h1.logo {
 
 
 nav.primary-nav {
-  padding-top:40px;
+  padding-top:30px;
   padding-bottom:40px;
   padding-left: 0;
   overflow: hidden;
@@ -2094,7 +2096,7 @@ nav.primary-nav {
   padding-top: 24px;
   li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 64px;
     a {
       color:white;
       position: relative;
@@ -2111,6 +2113,11 @@ nav.primary-nav {
         background:white;
       }
       &:hover:after {
+        background:$red;
+      }
+    }
+    &.active {
+      a:after {
         background:$red;
       }
     }
