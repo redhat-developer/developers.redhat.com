@@ -75,6 +75,7 @@
 @import "chosen";
 @import "ie8grid";
 @import "projects";
+@import "products";
 @import "magula";
 @import "microsite";
 @import "connectors";
@@ -97,6 +98,16 @@
 .row {
   max-width:1100px;
   margin: 0 auto;
+  &.grow {
+    & > [class^=large-] {
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
 }
 
 .content {
@@ -713,63 +724,6 @@ body.fullbleed {
   }
 }
 
-
-
-// Products
-.product {
-  .toolbar {
-    text-align: right;
-    a {
-      margin-right: 1em;
-    }
-  }
-  p {
-    font-family: $sans-serif;
-    font-style: italic;
-  }
-  h4 {
-    margin-bottom: 0;
-    font-weight: normal;
-  }
-}
-
-.product-header{
-  h2{color: $red;}
-  h3 {
-    font-weight: 100;
-    text-transform: uppercase;
-  }
-}
-
-.product-placeholder{
-  width: 100%;
-  height:250px;
-  background-color: rgb(237, 237, 237);
-  border: none;
-}
-
-.product-video h4{display: none;}
-
-#product-features{
-  margin: 1em 0;
-  .feature-icon {
-    text-align: center;
-    padding-left: 12px;
-    p {
-      color: $grey-5;
-    }
-  }
-
-  .feature-text {
-    text-align: center;
-    h4{
-      font-size: 1.2rem;
-    }
-    .paragraph{
-      text-align: left;
-    }
-  }
-}
 .features-u, .features-ul > .content{
   margin-left: 0 !important;
 }
@@ -816,71 +770,6 @@ body.fullbleed {
 .more-guides{
   margin: 1.5em auto;
 }
-
-.hero-placeholder{
-  height: 300px;
-  background-color: $grey-2;
-}
-.development-tools {
-  margin-top: 20px;
-  h2 {
-    clear: both;
-  }
-}
-
-.development-tool-category {
-  .category-label{
-    border-bottom: 3px solid $black;
-    margin-bottom: 20px;
-    h5{
-      text-transform: uppercase;
-      background-color: $black;
-      color: $white;
-      margin-bottom: 0;
-      display:inline-block;
-      padding: 5px 10px;
-      width: 300px;
-    }
-  }
-
-  .divider{
-    border-bottom: 1px solid #d5d5d5;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
-    height: auto;
-  }
-}
-#development-tool {
-  .download-link{
-    width: 100%;
-    background-color: $grey-2;
-    padding: 15px 15px;
-    text-align: center;
-  }
-  .download-link a:before{
-    display: none;
-  }
-  a.button{
-    max-width: 265px;
-    margin: 0 auto 5px auto;
-    display: block;
-    padding: .8rem 2rem;
-  }
-  .download-sublabel{
-    font-size: 70%;
-    font-weight: 600;
-    text-transform: uppercase;
-    display: block;
-    text-align: center;
-  }
-  .tool-links{
-    padding: 15px 15px;
-    text-align: center;
-    font-weight: 600;
-    a:first-of-type{margin-right: 15px;}
-  }
-}
-
 
 .asset-list  {
   .item + .item::before {
