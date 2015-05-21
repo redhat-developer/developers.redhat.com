@@ -19,8 +19,10 @@ h2#overview Overview
       - unless page.product.forum.nil?
         asciidoc:
           - Discuss on the link:#{page.product.forum.url}[#{page.product.abbreviated_name} Forums]
-      asciidoc:
-        - Get started with one of our many link:../learn?quickstarts[quickstarts].
+      - unless page.product.skip_quickstart_link
+        asciidoc:        
+          - Get started with one of our many link:../learn?quickstarts[quickstarts].
+      asciidoc:  
         - View the link:#{page.product.documentation_url}[#{page.product.abbreviated_name} Documentation]
 
       a.moreinfolink(href="../resources")
