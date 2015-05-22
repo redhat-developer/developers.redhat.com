@@ -1,0 +1,24 @@
+{
+  "name": "openshift",
+  "description": "Provider used by the Red Hat Developer website process to store Openshift related content.",
+  "contact_email": "pmuir@redhat.com",
+  "super_provider": false,
+  "pwd_hash": "037acec3e7b3f74e8f85310b5b1077b8a451696a",
+  "type": {
+    "openshift_quickstart": {
+      "description":"Quickstarts from Openshift",
+      "sys_type":"quickstart",
+      "sys_content_content-type" : "text/html",
+      "persist" : true,
+      "input_preprocessors": [],
+      "index": {
+        "name":"data_openshift_quickstart",
+        "type":"openshift_quickstart"
+      },
+      "indexer" : {
+        "type" : "elasticsearch-river-remote",
+        "name" : "openshift_quickstart"
+      }
+    }
+  }
+}
