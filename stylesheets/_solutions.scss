@@ -3,11 +3,13 @@
   content : ':4242';
   border:0;
   margin-bottom: 70px;
-  margin-top: -70px;
+  margin-top: -50px;
+  padding:20px;
   .button {
     width: 100%;
     display: block;
     margin-left: 0;
+    margin-bottom: 0;
   }
   h2.blowout {
     color:white;
@@ -15,6 +17,18 @@
   }
   p {
     color: white;
+    font-size: 20px;
+  }
+
+  .breadcrumbs {
+
+    li:before, a {
+      color:white;
+    }
+  }
+
+  .row {
+    @extend .flex-center;
   }
 }
 
