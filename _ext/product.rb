@@ -58,14 +58,18 @@ module JBoss
                 end
                 docs(product, site)
                 downloads(product, site)
-                product.forum = OpenStruct.new({
-                  :count => forum_counts[product.dcp_project_code],
-                  :histogram => forum_histogram(product, site),
-                  :name => product.dcp_project_code,
-                  :url => "#{site.product_forum_base_url}#{product.id}",
-                  :description => product.description
-                })
+                if forum_counts.has_key? id
+                  product.forum = OpenStruct.new({
+                          :count => forum_counts[product.dcp_project_code],
+                          :histogram => forum_histogram(product, site),
+                          :name => product.dcp_project_code,
+                          :url => "#{site.product_forum_base_url}#{product.id}",
+                          :description => product.description
+                      })
 
+                end
+
+                
                 product.buzz_tags ||= product.id
                 add_video product.vimeo_album, site, product: id, push_to_searchisko: @push_to_searchisko if product.vimeo_album
                 add_video product.youtube_album, site, product: id, push_to_searchisko: @push_to_searchisko if product.youtube_album
