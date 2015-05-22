@@ -103,27 +103,54 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
         = content
     footer.bottom
       .row
-        ul.social-nav
-          li.redhat: a(href="https://www.redhat.com") Red Hat
-          li: a
-            i.fa.fa-rss
-          li: a
-            i.fa.fa-facebook-square
-          li: a
-            i.fa.fa-twitter
-          li: a
-            i.fa.fa-linkedin
-          li: a
-            i.fa.fa-youtube
-          li: a
-            i.fa.fa-vimeo-square
-          li: a
-            i.fa.fa-google-plus
-        p.feedback
-          a ☹
-          | or
-          a ☺
-          | We want your feedback.
+        .large-4.columns
+          a(href="https://www.redhat.com")
+            img.desktop(src=cdn("#{site.base_url}/images/branding/RHLogo_white.svg") alt="Red Hat")
+        .large-11.columns
+          strong Quick Links
+          ul.quick-links
+            li
+              a(href="https://access.redhat.com/security/team/contact/") Report a Security Problem
+            li
+              a(href="https://engage.redhat.com/forms/consulting-contact-sales")
+                | Consulting Solutions
+                i.fa.fa-external-link
+            li
+              a(href="http://www.redhat.com/en/services/training")
+                | Training
+                i.fa.fa-external-link
+        .large-9.columns
+          ul.social-nav
+            li: a
+              i.fa.fa-rss
+            li: a
+              i.fa.fa-facebook-square
+            li: a
+              i.fa.fa-twitter
+            li: a
+              i.fa.fa-linkedin
+            li: a
+              i.fa.fa-youtube
+            li: a
+              i.fa.fa-vimeo-square
+            li: a
+              i.fa.fa-google-plus
+          / p.feedback
+          /   a ☹
+          /   | or
+          /   a ☺
+          /   | We want your feedback.
+        .large-24.columns
+          ul.inline-list
+            li
+              a Copyright &copy; 2015 RedHat Inc.
+            li
+              a(href="http://www.redhat.com/en/about/privacy-policy") Privacy Policy
+            li
+              a(href="http://www.redhat.com/en/about/terms-use") Terms of Use
+            li
+              a(href="http://www.redhat.com/en/about/all-policies-guidelines") All Policies and Guidelines
+
 
 
   .overlay

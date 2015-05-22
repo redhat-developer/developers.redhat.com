@@ -109,10 +109,49 @@ p.sign-in-options {
 footer.bottom {
   background:$black;
   padding:20px 0;
+  strong {
+    color:white;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 20px;
+    margin-top: 16px;
+    display: block;
+    font-size: 14px;
+  }
   a {
     color:white;
-    font-size: 25px;
+    // font-size: 25px;
   }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    &.quick-links {
+      li {
+          padding-bottom: 5px;
+          a {
+            font-size: 13px;
+            i {
+              font-size: 12px;
+              margin-left: 5px;
+            }
+          }
+      }
+    }
+    &.inline-list {
+      float: right;
+      text-align: right;
+      & > li {
+        margin: 0 0 0 10px;
+        a {
+          font-size: 12px;
+          color:#4d4d4d;
+        }
+      }
+    }
+
+  }
+
 }
 
 ul.footer-nav {
@@ -130,12 +169,13 @@ ul.social-nav {
   margin: 0;
   text-align:right;
   padding-right:5%;
+  float: right;
   li {
     display: inline;
     margin-left:5px;
-    &:first-child {
-      margin-left:0px;
-      float: left;
+    float:none;
+    a {
+      font-size: 25px;
     }
   }
 }
