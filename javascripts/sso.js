@@ -5,11 +5,16 @@ app.sso = function () {
             keycloak.updateToken().success(function () {
                 saveTokens();
 
-                $('li.login').show();
+                $('a.logged-in-name')
+                    .text(keycloak.tokenParsed['name'])
+                    .attr('href', app.ssoConfig.account_url)
+                    .show();
+                $('li.login').hide();
                 $('li.login a').attr("href", keycloak.createAccountUrl())
             }).error(clearTokens);
         } else {
             $('li.login').show();
+            $('li.logged-in').hide();
             $('li.login a').on('click',function(e){
                 e.preventDefault();
                 keycloak.login();
