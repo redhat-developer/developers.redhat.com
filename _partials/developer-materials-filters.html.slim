@@ -10,7 +10,7 @@
         input(type="text" id="filter-by" placeholder="Keyword" name="filter-text" class="keyword" ng-model="filters.query" ng-change="filter.applyFilters()" ng-model-options="{debounce:300}")
 
       .large-5.columns
-        select(ng-options="item.value as item.name for item in data.availableFormats" ng-model="filters.sys_type" ng-change="filter.applyFilters()")
+        select(ng-options="item.value as item.name for item in data.availableFormats" ng-model="data.sys_type_string" ng-change="filter.applyFilters()")
           option(value="") Choose a Format
 
       .large-5.columns.left

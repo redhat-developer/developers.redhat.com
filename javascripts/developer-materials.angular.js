@@ -216,6 +216,23 @@ dcp.filter('name',function(){
   }
 });
 
+/*
+  Return the proper name for formats
+*/
+dcp.filter('formatName',function(){
+  return function(value, scope){
+    for(f in scope.data.availableFormats) {
+      var format = scope.data.availableFormats[f];
+      if(format.value === value) {
+        return format.name;
+        break;
+      }
+    }
+    // if not in our object, returnt the original value
+    return value;
+  }
+});
+
 dcp.controller('developerMaterialsController', function($scope, materialService) {
 
   window.scope = $scope;
@@ -390,9 +407,9 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
         searchTerms.push('sys_tags:('+tags+')');
     }
 
-    if($scope.filters.sys_type && $scope.filters.sys_type.length){
+    if($scope.data.sys_type_string && $scope.data.sys_type_string.length){
       // convert single sys_type into an array - allows us to switch to multi-select down the road
-      $scope.filters.sys_type = [$scope.filters.sys_type];
+      $scope.filters.sys_type = [$scope.data.sys_type_string];
       // remove jbossdeveloper_sandbox "Early Access and convert it to experimental"
 
         var idx = $scope.filters.sys_type.indexOf("jbossdeveloper_sandbox");
