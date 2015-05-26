@@ -1,0 +1,164 @@
+
+
+// Products
+.product {
+  .toolbar {
+    text-align: right;
+    a {
+      margin-right: 1em;
+    }
+  }
+  p {
+    font-family: $sans-serif;
+    font-style: italic;
+  }
+  h4 {
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+}
+
+.product-header{
+  h2{color: $red;}
+  h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+}
+
+.product-placeholder{
+  width: 100%;
+  height:250px;
+  background-color: rgb(237, 237, 237);
+  border: none;
+}
+
+.product-video h4{display: none;}
+
+#product-features{
+  margin: 1em 0;
+  .feature-icon {
+    text-align: center;
+    padding-left: 12px;
+    p {
+      color: $grey-5;
+    }
+  }
+
+  .feature-text {
+    text-align: center;
+    h4{
+      font-size: 1.2rem;
+    }
+    .paragraph{
+      text-align: left;
+    }
+  }
+}
+
+.hero-placeholder{
+  height: 300px;
+  background-color: $grey-2;
+}
+
+.development-tools {
+  margin-top: 20px;
+  h2 {
+    clear: both;
+  }
+}
+
+.development-tool-category {
+  .category-label{
+    margin-bottom: 40px;
+    margin-top: 50px;
+    h5{
+      text-transform: uppercase;
+      color: $black;
+      margin-bottom: 0;
+      font-size: 30px;
+    }
+  }
+
+  .divider{
+    border-bottom: 1px solid #d5d5d5;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    height: auto;
+  }
+}
+#development-tool {
+  .download-link{
+    width: 100%;
+    background-color: $grey-2;
+    padding: 15px 15px;
+    text-align: center;
+  }
+  .download-link a:before{
+    display: none;
+  }
+  a.button{
+    max-width: 265px;
+    margin: 0 auto 5px auto;
+    display: block;
+    padding: .8rem 2rem;
+  }
+  .download-sublabel{
+    font-size: 70%;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+  }
+  .tool-links{
+    padding: 15px 15px;
+    text-align: center;
+    a:first-of-type{margin-right: 15px;}
+  }
+}
+.hero.hero-products {
+  background:#045688;
+  border:0;
+  padding-top: 40px;
+  h2.blowout {
+    color:white;
+    line-height:1;
+  }
+  p {
+    color:white;
+  }
+  .row {
+    @extend .grow;
+  }
+}
+
+
+.band-tabs {
+  .nav-tabs {
+    font-size: 0; // ghost space
+    li {
+      margin: 0;
+      &.active {
+        a {
+          color:$headline-grey;
+          background:white;
+          &:after {
+            background:$red;
+          }
+        }
+      }
+      a {
+        background:$headline-grey;
+        text-transform: uppercase;
+        font-size: 20px;
+        padding:15px 15px 24px 15px;
+        display: inline-block;
+        min-width:250px;
+        &:after {
+          bottom:10px;
+          left:15px;
+        }
+      }
+    }
+  }
+}
