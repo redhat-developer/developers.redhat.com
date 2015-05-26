@@ -1929,17 +1929,21 @@ h2 { font-size: 42px; }
 // New Nav
 
 header.main {
-  background:$dark-grey cdn('../images/design/header.jpg') center / cover no-repeat;
+  background:white;
   font-size: 2rem;
-  padding-bottom: 40px;
+  background: linear-gradient(to bottom,  #ffffff 0%,#fefeff 38%,#e7f6f9 100%); /* W3C */
+  border-bottom: 1px solid #D1E7EE;
 }
 
 
 nav.secondary-nav {
-  background:$black;
+  background:none;
   overflow: hidden;
-  padding:6.5px 15px;
+  padding:0;
   @extend .column;
+  margin-bottom: -27px;
+  position: relative;
+  z-index:99;
   ul {
     margin: 0;
     padding: 0;
@@ -1954,7 +1958,7 @@ nav.secondary-nav {
       float: right;
       a {
         margin-left:30px;
-        font-size: 18px;
+        font-size: 12px;
         color:$gray;
       }
     }
@@ -1977,45 +1981,62 @@ h1.logo {
   margin-right: 60px;
   a {
     color:white;
-    background: cdn('../images/design/logo.png') center no-repeat;
+    background: cdn('../images/branding/RHDevelopers_RGB_Default.svg') center no-repeat;
     text-indent:-9999px;
     position: relative;
     display: block;
-    width:261px;
+    width:155px;
     height:56px;
   }
 }
 
 
 nav.primary-nav {
-  padding-top:30px;
-  padding-bottom:40px;
-  padding-left: 0;
+  padding:25px 0;
   overflow: hidden;
   @extend .column;
+  ul.menu-right {
+    float:right;
+    margin: 0;
+    padding: 15px 0 0 0;
+    li {
+      display: inline-block;
+      a {
+        text-transform: uppercase;
+        color:$headline-grey;
+        font-weight: 900;
+        font-size: 13px;
+        margin-left: 20px;
+      }
+    }
+  }
 }
 
 .nav-tabs {
   margin: 0;
   float: left;
-  padding-top: 24px;
+  padding-top: 15px;
   li {
     display: inline;
     margin-right: 64px;
+    &:last-child {
+      margin-right: 0;
+    }
     a {
-      color:white;
+      color:$headline-grey;
       position: relative;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
+      text-transform: uppercase;
       &:after {
         position: absolute;
         left:0;
         content : '';
         display: block;
-        height:3px;
+        height:4px;
         bottom:-6px;
         width:30px;
-        background:white;
+        background:$headline-grey;
       }
       &:hover:after {
         background:$red;

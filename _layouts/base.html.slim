@@ -82,24 +82,24 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
     header.main.clearfix
       .row
         nav.secondary-nav
-          ul.menu-left
-            li: a(href="#{site.base_url}/projects/") Community
-            li: a(href="#{site.base_url}/events") Events
-            li: a(href="http://developerblog.redhat.com") Blogs
           ul.menu-right
             li: a
               i.fa.fa-search
-            li.login: a
-              i.fa.fa-user
+            li.login: a LOGIN | REGISTER
             li.logged-in
               a.logged-in-name(href="#")
+              a.logout(href="#") Logout
         nav.primary-nav
           h1.logo: a(href="/") Red Hat Developers
           ul.nav.nav-tabs
             - currentPage = page.url.gsub('/','').split('.').first
             - for pageName in ['solutions', 'products', 'downloads']
-              li(class=(currentPage == pageName ? 'active' : 'nah'))
+              li(class=(currentPage == pageName ? 'active' : ''))
                 a(href="#{site.base_url}/#{pageName}") #{pageName.capitalize}
+          ul.menu-right
+            li: a(href="#{site.base_url}/projects/") Community
+            li: a(href="#{site.base_url}/events") Events
+            li: a(href="http://developerblog.redhat.com") Blogs
 
     .wrapper.clearfix
       .content-wrapper
