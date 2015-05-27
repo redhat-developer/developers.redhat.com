@@ -36,12 +36,47 @@ layout: solution
         .large-24.columns
           = page._header
 
-    - if page._left_section && page._right_section
+    - if page._left_section && page._middle_section && page.right_section
       .row.solutions-body
-        .large-12.columns
-          = page._left_section
-        .large-12.columns
-          = page._right_section
+        .large-8.columns
+          - if page.solution.left_section_icon
+            p
+              i(class="#{page.solution.left_section_icon}")/
+
+          p.small
+            = page._left_section
+        .large-8.columns
+          - if page.solution.middle_section_icon
+            p
+              i(class="#{page.solution.middle_section_icon}")/
+
+          p.small
+            = page._middle_section
+        .large-8.columns
+          - if page.solution.right_section_icon
+            p
+              i(class="#{page.solution.right_section_icon}")/
+
+          p.small
+            = page._right_section
+
+    - else 
+  	  - if page._left_section && page._right_section
+        .row.solutions-body
+          .large-12.columns
+            - if page.solution.left_section_icon
+              .solution
+                i(class="#{page.solution.left_section_icon}")/
+            p.small
+              = page._left_section
+          .large-12.columns
+            - if page.solution.right_section_icon
+              .solution
+                i(class="#{page.solution.right_section_icon}")/
+            p.small
+              = page._right_section
+
+
 
     - if page._extra_section
       .row
