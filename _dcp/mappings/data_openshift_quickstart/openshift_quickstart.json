@@ -1,0 +1,21 @@
+{
+  "openshift_quickstart": {
+    "properties": {
+      "tags": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.5
+      },
+      "sys_description": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.7
+      },
+      "sys_title": {
+        "type": "string",
+        "include_in_all": true,
+        "_boost": 1.5
+      }
+    }
+  }
+}

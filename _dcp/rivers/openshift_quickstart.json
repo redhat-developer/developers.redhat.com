@@ -1,0 +1,90 @@
+{
+    "type" : "remote",
+    "remote" : {
+        "urlGetDocuments"               : "https://hub-osdevelopers.rhcloud.com/api/v1/quickstarts.json",
+        "simpleGetDocuments"            : "true",
+        "spacesIndexed"                 : "MAIN",
+        "timeout"                       : "20s",
+        "indexUpdatePeriod"             : "1h",
+        "maxIndexingThreads"            : 1,
+        "getDocsResFieldDocuments"      : "data"
+    },
+    "index" : {
+        "index"                         : "data_openshift_quickstart",
+        "type"                          : "openshift_quickstart",
+        "remote_field_document_id"      : "quickstart.id",
+        "field_document_id"             : "sys_id",
+        "fields" : {
+            "sys_id"                    : { "remote_field" : "prep_sys_id"},
+            "sys_content_id"            : { "remote_field" : "quickstart.id"},
+            "sys_type"                  : { "remote_field" : "prep_type" },
+            "sys_content_type"          : { "remote_field" : "prep_content_type" },
+            "sys_content_content-type"  : { "remote_field" : "prep_content_content-type" },
+            "sys_content_provider"      : { "remote_field" : "prep_sys_content_provider" },
+            "sys_content"               : { "remote_field" : "quickstart.body" },
+            "sys_content_plaintext"     : { "remote_field" : "prep_content_plaintext" },
+            "sys_title"                 : { "remote_field" : "quickstart.name" },
+            "sys_url_view"              : { "remote_field" : "quickstart.href" },
+            "sys_description"           : { "remote_field" : "quickstart.summary" },
+            "sys_tags"                  : { "remote_field" : "prep_tags" },
+            "tags"                      : { "remote_field" : "prep_tags" },
+            "cartridges"                : { "remote_field" : "prep_cartridges" },
+            "website"                   : { "remote_field" : "quickstart.website" },
+            "language"                  : { "remote_field" : "quickstart.language" },
+            "github_repo_url"           : { "remote_field" : "quickstart.initial_git_url" },
+            "provider"                  : { "remote_field" : "quickstart.provider" },
+            "sys_created"               : { "remote_field" : "prep_sys_created" },
+            "sys_updated"               : { "remote_field" : "prep_sys_updated" },
+            "sys_activity_dates"        : { "remote_field" : "prep_sys_created" }
+        },
+        "preprocessors" : [
+            {
+                "name"     : "Values filler",
+                "class"    : "org.jboss.elasticsearch.tools.content.AddMultipleValuesPreprocessor",
+                "settings" : {
+                    "prep_sys_id"               : "openshift_quickstart-{quickstart.id}",
+                    "prep_type"                 : "quickstart",
+                    "prep_content_type"         : "openshift_quickstart",
+                    "prep_content_content-type" : "text/html",
+                    "prep_sys_content_provider" : "openshift",
+                    "prep_sys_created"          : "{quickstart.updated}",
+                    "prep_tags"                 : "{quickstart.tags}",
+                    "prep_cartridges"           : "{quickstart.cartridges}"
+                } 
+            },
+            { 
+                "name"     : "Updated filler",
+                "class"    : "org.jboss.elasticsearch.tools.content.AddCurrentTimestampPreprocessor",
+                "settings" : { "field" : "prep_sys_updated" }
+            },
+            { 
+                "name"     : "Body HTML stripper",
+                "class"    : "org.jboss.elasticsearch.tools.content.StripHtmlPreprocessor",
+                "settings" : {
+                    "source_field" : "quickstart.body",
+                    "target_field" : "prep_content_plaintext"
+                } 
+            },
+            {
+                "name"     : "Parse date in quickstart.updated field into sys_created.",
+                "class"    : "org.jboss.elasticsearch.tools.content.ScriptingPreprocessor",
+                "settings" : {
+                    "script_engine_name"  : "JavaScript",
+                    "script"              : "
+                        var dateToParse = data.get('prep_sys_created');
+                        var dateParts     = dateToParse.match(/(\\d{4})-(\\d{2})-(\\d{2})\\s(\\d{2}):(\\d{2}):(\\d{2})/);
+                        dateParts[2] -= 1; 
+                        var UtcDate = new Date( Date.UTC.apply( this, dateParts.slice(1) ) );
+                        data.put('prep_sys_created', UtcDate.toISOString() );
+
+                        data.put('prep_tags',data.get('prep_tags').toString().split(', '));
+                        data.put('prep_cartridges',data.get('prep_cartridges').toString().split(', '));
+                    "
+                }
+            }
+        ]
+    },
+    "activity_log" : {
+        "index":"stats_openshift_quickstart_river"
+    }
+}
