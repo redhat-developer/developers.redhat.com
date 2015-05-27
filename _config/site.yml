@@ -76,15 +76,30 @@ profiles:
       :cdn_http_base: *dev_cdn_http_base
       :cdn_out_dir: *dev_cdn_out_dir
       :cdn_version: *dev_cdn_version
-
+  
+  # Pull Request configuration
   staging: 
     <<: *profile
+    download_manager_file_base_url: //www.stage.jboss.org/download-manager/file/
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     metrics: true
     deploy:
       <<: *deploy
       path: /stg_htdocs/rhd-stg
+  
+  # Main staging configuration
+  staging_main: 
+    <<: *profile
+    download_manager_file_base_url: //www.stage.jboss.org/download-manager/file/
+    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_url: http://dcp.stage.jboss.org/
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    metrics: true
+    deploy:
+      <<: *deploy
+      path: /stg_htdocs/rhd-stg-main
   
   production:
     <<: *profile
