@@ -23,28 +23,25 @@ secondary_section: supported-products
 
 .hero.hero-try-or-buy
   .row
-    .large-17.columns.hello-world
-      .large-8.columns
+    .large-24.columns.hello-world
+      .large-6.columns
         h2 Hello World!
         p BUILD SOMETHING TODAY
-      .large-8.columns
-        a.button(href="#") LAUNCH IN THE CLOUD
-        small #{page.product.abbreviated_name} #{page.product.current_version} on OpenShift
-      .large-8.columns
-        - if page.product.default_download_artifact
-          a.button.inverse(href="#{page.product.default_download_artifact.url}") DOWNLOAD LOCALLY
-          small #{page.product.abbreviated_name} #{page.product.current_version} Installer
-    .large-7.columns.outside-links
-      a.large-24.columns(href="http://www.redhat.com/en/about/contact/sales")
-        strong Buy It
-        p 
-          | Contact Sales  
-          i.fa.fa-caret-right
-      a.large-24.columns(href="#") 
-        strong Make it better
-        p
-          | Join the community  
-          i.fa.fa-caret-right
+      .large-6.columns
+        p Let's walk through everything you need to build your first application.
+      .large-6.columns
+        a.button(href="#") Get Started
+      .large-6.columns.outside-links
+        a.large-24.columns(href="http://www.redhat.com/en/about/contact/sales")
+          strong Buy It
+          p
+            | Contact Sales
+            i.fa.fa-caret-right
+        a.large-24.columns(href="#")
+          strong Make it better
+          p
+            | Join the community
+            i.fa.fa-caret-right
 
 .row.content
   .large-24

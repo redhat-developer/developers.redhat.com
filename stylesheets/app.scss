@@ -446,7 +446,9 @@ body.fullbleed {
   border:0;
   padding: 0 40px;
   margin:20px 0;
-  text-align: center;
+  .row {
+    @extend .grow;
+  }
   .button {
     width: 100%;
     margin-bottom: 5px;
@@ -456,9 +458,12 @@ body.fullbleed {
     margin-bottom: 0;
   }
   .hello-world{
-    margin-top: 2.5rem;
     color: $white;
-    p{font-size: .8rem;}
+    display: flex;
+    align-items: center;
+    & > div:first-child {
+      text-align: center;
+    }
     h2{
       color: $red;
       font-size: 37px;
