@@ -272,6 +272,7 @@ a.download-link {
   border:0;
   padding:0;
   overflow: hidden;
+  margin-top: 1rem;
   margin-bottom: 20px;
   background:white;
   li {
@@ -284,21 +285,31 @@ a.download-link {
       position: relative;
       color:$mars-black;
       text-align: right;
-      border-right:4px solid $grey;
       &:hover {
         background:none !important;
       }
+      i.fa-caret-right{
+          color: $grey;
+          margin-left: 5px;
+        }
     }
     &.active , &:hover , &.active, &.side-nav-toggle {
       & > a:first-child, & > a:first-child:not(.button) {
         color:black;
-        border-color:$red;
         font-weight:600;
+        i.fa-caret-right{
+          color: $red;
+        }
       }
     }
     &.side-nav-toggle {
       display: none;
     }
+  }
+}
+@media only screen and (max-width: 768px){
+  .side-nav li.side-nav-toggle a:before {
+    display: none !important;
   }
 }
 
