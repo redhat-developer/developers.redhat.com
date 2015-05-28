@@ -1,17 +1,33 @@
 name: Red Hat JBoss Portal
 abbreviated_name: JBoss Portal
 product_logo: portal.png
-current_version: 6.1.0.GA
+current_version: 6.2.0.GA
 vimeo_album: http://vimeo.com/album/2982433
 youtube_album: http://www.youtube.com/playlist?list=PLcrLvMVKO0b2woVHNeCILbZ6WjDvhMdJ-
 guides:
   Release_Notes:
   Administration_and_Configuration_Guide:
   Installation_Guide:
-  Migration_Guide:
+  Development_Guide:
   User_Guide:
 description: 'A lean portal solution for building high-impact, self-service applications.'
 downloads:
+  6.2.0.GA:
+    release_date: 2015-05-14
+    description: Provides reliability and powerful performance with a track record of near-zero downtime and maintenance along with high-availability, clustering, caching, failover, load-balancing, and distributed deployment features.
+    assets:
+      zip:
+        size: 232mb
+        name: Zip (Base Distribution)
+      maven_repo:
+        size: 85mb
+        name: Maven Repository
+      quickstarts:
+        size: 1mb
+        name: Quickstarts
+      source:
+        size: 86mb
+      release_notes:
   #  6.1.1.GA:
   # release_date: 2014-02-20
   # description: Provides reliability and powerful performance with a track record of near-zero downtime and maintenance along with high-availability, clustering, caching, failover, load-balancing, and distributed deployment features.

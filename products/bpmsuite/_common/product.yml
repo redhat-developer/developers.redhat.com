@@ -2,8 +2,8 @@ name: Red Hat JBoss BPM Suite
 abbreviated_name: JBoss BPM Suite
 product_logo: bpm-suite.png
 has_installer: true
-current_version: 6.0.2.GA
-documentation_minor_version: 6.0
+current_version: 6.1.0.GA
+documentation_minor_version: 6.1
 xpaas_url: https://www.openshift.com/developers/jboss-bpms
 intro_video: https://vimeo.com/95505857
 vimeo_album: http://vimeo.com/album/2982446
@@ -14,26 +14,40 @@ buzz_tags:
   - BPM Suite
 guides:
   Release_Notes:
-    formats:
-      html:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_BPM_Suite/6.0/html/6.0.2_Release_Notes/index.html
-      html-single:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_BPM_Suite/6.0/html-single/6.0.2_Release_Notes/index.html
-      pdf:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_BPM_Suite/6.0/pdf/6.0.2_Release_Notes/Red_Hat_JBoss_BPM_Suite-6.0-6.0.2_Release_Notes-en-US.pdf
-      epub:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_BPM_Suite/6.0/epub/6.0.2_Release_Notes/Red_Hat_JBoss_BPM_Suite-6.0-6.0.2_Release_Notes-en-US.epub
   Administration_And_Configuration_Guide:
   Business_Resource_Planner_Guide:
   Development_Guide:
   Getting_Started_Guide:
   Installation_Guide:
+  Migration_Guide:
   User_Guide:
-  Working_with_the_BPM_Suite_Example_App:
 default_download_artifact_type: installer
 description: 'A business process and decision management platform that provides business users and developers with powerful and intuitive tools to capture business processes, policies and rules.  Combined with reporting and simulation, this platform allows agile modification of systems in response to business needs.'
 downloads:
   # 6.0.2 is an exclusion to the "no micros through $0 dev program
+  6.1.0.GA:
+    description: Minor release in the JBoss BPM Suite 6.x series
+    tag_line: Critical enterprise features such as better integration with Camel, highly customizable business central that enables partners and customers to extend the platform, productivity enhancement features, collaborative user interface and enhanced stability of the platform. Includes full support for Business Resource Planner that offers ability to build resource optimized solutions.
+    release_date: 2015-04-16
+    assets:
+      installer:
+        size: 177mb
+      zip:
+        artifacts:
+          deployable:
+            size: 187mb
+      zip_planner:
+        size: 89mb
+        name: Optaplanner
+      example:
+        size: 4mb
+        name: Quickstarts
+      zip_supplemental:
+        size: 70mb
+        name: Supplemental Tools
+      release_notes:
+      source:
+        size: 194mb
   6.0.2.GA:
     description: Red Hat JBoss BPM Suite 6.0.2 is an incremental bug fix release over the 6.0.1 version.
     tag_line: This release brings in 250+ bug fixes, support for IBM Websphere, certification on RHEL7 and several new quick starts.

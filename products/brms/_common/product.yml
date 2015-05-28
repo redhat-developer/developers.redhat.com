@@ -1,32 +1,45 @@
 name: Red Hat JBoss BRMS
 abbreviated_name: JBoss BRMS
 product_logo: brms.png
-has_installer: false
-current_version: 6.0.2.GA
-documentation_minor_version: 6.0
+has_installer: true
+current_version: 6.1.0.GA
+documentation_minor_version: 6.1
 intro_video: https://vimeo.com/95600665
 vimeo_album: http://vimeo.com/album/2982444
 youtube_album: http://www.youtube.com/playlist?list=PLcrLvMVKO0b377pxbjvepIBuoQl7lcEiK
 skip_installation_instructions: true
 skip_maven_instructions: true
 guides: 
-  Business_Resource_Planner_Guide:
   Getting_Started_Guide:
   Release_Notes:
-    formats:
-      html: 
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_BRMS/6.0/html/6.0.2_Release_Notes/index.html
-      html-single:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_BRMS/6.0/html-single/6.0.2_Release_Notes/index.html
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_BRMS/6.0/pdf/6.0.2_Release_Notes/Red_Hat_JBoss_BRMS-6.0-6.0.2_Release_Notes-en-US.pdf
-      epub: 
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_BRMS/6.0/pdf/6.0.2_Release_Notes/Red_Hat_JBoss_BRMS-6.0-6.0.2_Release_Notes-en-US.pdf
   User_Guide:
 default_download_artifact_type: installer
 description: 'A rule-based programming platform built on Drools Expert, Drools Guvnor, and Drools Fusion that allows users to capture rules that can be easily modified as the business changes without impacting static applications.'
 downloads:
   # 6.0.2 is an exclusion to the "no micros through $0 dev program
+  6.1.0.GA:
+    description: Red Hat JBoss BRMS 6.0.2 is an incremental bug fix release over the 6.0.1 version.
+    tag_line: Built in centralized decision server, collaborative user interface, expanded platform certifications and enhanced stability of the platform. Includes full support for Business Resource Planner that offers ability to build resource optimized solutions.
+    release_date: 2015-04-16
+    assets:
+      installer:
+        size: 156mb
+      zip:
+        artifacts:
+          deployable:
+            size: 163mb
+      zip_planner:
+        size: 89mb
+        name: Optaplanner
+      example:
+        size: 4mb
+        name: Quickstarts
+      zip_supplemental:
+        size: 71mb
+        name: Supplemental Tools
+      release_notes:
+      source:
+        size: 194mb
   6.0.2.GA:
     description: Red Hat JBoss BRMS 6.0.2 is an incremental bug fix release over the 6.0.1 version.
     tag_line: This release brings in 250+ bug fixes, support for IBM Websphere, certification on RHEL7 and several new quick starts.
