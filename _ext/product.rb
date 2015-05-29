@@ -2,6 +2,7 @@ require 'json'
 require 'aweplug/helpers/searchisko'
 require 'aweplug/helpers/video'
 require 'aweplug/cache/file_cache'
+require 'asciidoctor'
 
 module JBoss
   module Developer
@@ -84,6 +85,15 @@ module JBoss
                 # Add a flag if product has a connectors page
                 if File.exists?('./products/' + id + '/connectors.adoc')
                   product.send('has_connectors_page=', true)
+                end
+
+                if product.key? 'index'
+                  product['index']['desc'] = ::Asciidoctor::Document.new(product['index']['desc'] || product['description']).convert
+                else
+                  # Used 1 to alert people they're lacking info, 2 for backwards compat
+                  product['index'] = {}
+                  product['index']['desc'] = '<strong>TODO: please add index.desc in the product.yml file for this product</strong>'
+                  product['index']['action_links'] = []
                 end
 
                 # Store the product in the global product map

@@ -1,0 +1,12 @@
+- name: :linux_platforms
+  products: [rhel, satellite, openstack]
+- name: :jboss_middleware
+  products: [eap, webserver, datagrid, portal, devstudio, rhjon]
+- name: :integrate
+  products: [fuse, amq, datavirt, fsw]
+- name: :automate
+  products: [brms, bpmsuite]
+- name: :cloud_computing
+  products: [cloud, cloudforms, openstack, openshift, cert, directory]
+- name: :storage 
+  products: [storage]
