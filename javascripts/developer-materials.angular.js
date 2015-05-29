@@ -443,10 +443,13 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     });
 
     // save search in local storage
-    $scope.filter.store();
+    if(!$scope.filters.solution) {
 
-    // update the page hash
-    window.location.hash = "!" + $.param($scope.filters);
+      $scope.filter.store();
+
+      // update the page hash
+      window.location.hash = "!" + $.param($scope.filters);
+    }
 
   }
 
@@ -487,7 +490,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
 
   $scope.filter.store = function() {
     // check if we have local storage, abort if not
-    if(!window.localStorage || $scope.filters.project) { return; }
+    if(!window.localStorage || $scope.filters.project || $scope.filters.solution) { return; }
     // store them in local storage
     window.localStorage.filters = JSON.stringify(scope.filters);
     window.localStorage.filtersTimeStamp = new Date().getTime();
@@ -505,8 +508,8 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     }
 
     // if we are on a project page, skip restoring
-    if($scope.filters.project) {
-      $scope.filter.applyFilters(); // run with no filters
+    if($scope.filters.project || $scope.filters.solution) {
+      $scope.filter.applyFilters(); // run without restoring filters
       return;
     }
 
