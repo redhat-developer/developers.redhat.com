@@ -97,6 +97,7 @@ profiles:
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
     metrics: true
+    build_threads: 1
     deploy:
       <<: *deploy
       path: /stg_htdocs/rhd-stg-main
