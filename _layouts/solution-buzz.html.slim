@@ -6,10 +6,10 @@ layout: solution
 
 h2#buzz Buzz about #{page.solution.name}
 
-.buzz-container.isotoped.buzz-loading
+.buzz-container.isotoped.buzz-loading(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
   span.loader
 
 = javascripts("buzz", true) do
   script src="#{site.base_url}/javascripts/vendor/jquery.isotope.min.js"
   script src="#{site.base_url}/javascripts/vendor/imagesloaded.min.js"
-  
+
