@@ -19,6 +19,8 @@ module JBoss::Developer::Extensions
       @yml = YAML.load_file File.join(repo, stacks) 
       @layout = layout
       @push_to_searchisko = push_to_searchisko
+      @seen_boms = []
+      @seen_archetypes = []
     end
 
     def execute site
@@ -32,7 +34,7 @@ module JBoss::Developer::Extensions
                                                      :cache => site.cache,
                                                      :logger => site.log_faraday,
                                                      :searchisko_warnings => site.searchisko_warnings})
-      Parallel.each(yml['availableRuntimes'], in_threads: (site.build_threads || 0)) do |runtime|
+      yml['availableRuntimes'].each do |runtime|
         # WARNING Hacks below
         case runtime['labels']['runtime-type']
         when 'JPP'
@@ -49,7 +51,7 @@ module JBoss::Developer::Extensions
     end
 
     def process_boms(runtime, site, product, searchisko)
-      bom_page_content = %q!.content[data-slug="#{page.bom['id']}"]
+      @bom_page_content ||= %q!.content[data-slug="#{page.bom['id']}"]
   p
     -if page.metadata['replaced_bom']
       = partial 'bom-replaced_advise.html.slim', {'parent' => page, 'groupId' => page.bom['bom']['groupId'], 'artifactId' => page.bom['bom']['artifactId'], 'replaced_bom' => page.metadata['replaced_bom'], 'replaced_bom_url' => page.metadata['replaced_bom_url']}    
@@ -94,13 +96,18 @@ module JBoss::Developer::Extensions
   = javascripts("developer-materials-bom", true) do
     script src="#{site.base_url}/javascripts/bomadvise.js"!
       runtime['boms'].each do |bom|
+        if @seen_boms.include? bom['id']
+          next
+        else
+          @seen_boms << bom['id']
+        end
         bom_page = ::Awestruct::Page.new(site,
                      ::Awestruct::Handlers::LayoutHandler.new(site,
                        ::Awestruct::Handlers::TiltHandler.new(site,
-                         ::Aweplug::Handlers::SyntheticHandler.new(site, bom_page_content,
+                         ::Aweplug::Handlers::SyntheticHandler.new(site, @bom_page_content,
                                                                    "/products/#{product}/boms.html.slim"))))
         bom_page.layout = @layout
-        bom_page.output_path = "/boms/#{product}/#{bom['bom']['id']}/index.html"
+        bom_page.output_path = "/boms/#{product}/#{bom['id']}/index.html"
         site.pages << bom_page
         bom['allVersions'] = yml['availableBomVersions'].select{ |b| b['bom']['id'] == bom['bom']['id'] }.collect{ |b| b['version']}
         # This is wrong, it's commits for stacks, not the BOM
@@ -124,7 +131,7 @@ module JBoss::Developer::Extensions
           :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
           :contributors => commits.collect { |c| c[:author] }.uniq,
           :searchisko_type => 'jbossdeveloper_bom',
-          :searchisko_id => bom['bom']['id']
+          :searchisko_id => bom['id']
         }
         metadata[:replaced_bom] = bom_info['replacedBy'] if bom_info
         metadata[:replaced_bom_url] = "../#{replaced_bom_id}/" if replaced_bom_id
@@ -153,6 +160,7 @@ module JBoss::Developer::Extensions
           :recommendedVersion => bom['bom']['recommendedVersion'],
           :versions => bom['allVersions']
         }
+
         #metadata[:boms] << bom
         unless !@push_to_searchisko || !site.push_to_searchisko
           searchisko.push_content(metadata[:searchisko_type], metadata[:searchisko_id], bom_dcp.to_json)
@@ -165,7 +173,7 @@ module JBoss::Developer::Extensions
     end
 
     def process_archetype(runtime, site, product, searchisko)
-      archetype_page_content = %q!.content[data-slug="#{page.archetype['id']}"]
+      @archetype_page_content ||= %q!.content[data-slug="#{page.archetype['id']}"]
   p
     = page.archetype['archetype']['description']
   h3 Usage command
@@ -192,10 +200,15 @@ module JBoss::Developer::Extensions
                     -DarchetypeArtifactId=#{page.archetype['archetype']['artifactId']} \
                     -DarchetypeVersion=#{ver}!
       runtime['archetypes'].each do |archetype|
+        if @seen_archetypes.include? archetype['id']
+          next
+        else
+          @seen_archetypes << archetype['id']
+        end
         archetype_page = ::Awestruct::Page.new(site,
                            ::Awestruct::Handlers::LayoutHandler.new(site,
                              ::Awestruct::Handlers::TiltHandler.new(site,
-                               ::Aweplug::Handlers::SyntheticHandler.new(site, archetype_page_content,
+                               ::Aweplug::Handlers::SyntheticHandler.new(site, @archetype_page_content,
                                                                          "/products/#{product}/boms.html.slim"))))
         commits = []
         if site.archetypes["#{archetype['archetype']['groupId']}|#{archetype['archetype']['artifactId']}"]
@@ -215,7 +228,7 @@ module JBoss::Developer::Extensions
           :contributors => commits.collect { |c| c[:author] }.uniq,
           :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
           :searchisko_type => 'jbossdeveloper_archetype',
-          :searchisko_id => archetype['archetype']['id']
+          :searchisko_id => archetype['id']
         }
         metadata[:published] = DateTime.parse(commits.first[:date]) unless commits.empty?
         metadata[:author] = commits.last[:author] if commits.last
