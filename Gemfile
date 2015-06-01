@@ -45,8 +45,8 @@ group :development do
   gem 'rb-fsevent', require: false
   gem 'rb-fchange', require: false
   gem 'rake', '~> 10.0.4'
-  #gem 'pry', require: false
-  #gem 'pry-byebug', require: false
+  gem 'pry', require: false
+  gem 'pry-byebug', require: false
   #gem 'pry-stack_explorer', require: false
   #gem 'pry-exception_explorer', require: false
 end
