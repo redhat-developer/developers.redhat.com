@@ -86,6 +86,12 @@ module JBoss
                 if File.exists?('./products/' + id + '/connectors.adoc')
                   product.send('has_connectors_page=', true)
                 end
+                if File.exists?('./products/' + id + '/buzz.html.slim')
+                  product.send('has_buzz_page=', true)
+                end
+                if File.exists?('./products/' + id + '/learn.html.slim')
+                  product.send('has_learn_page=', true)
+                end
 
                 if product.key? 'index'
                   product['index']['desc'] = ::Asciidoctor::Document.new(product['index']['desc'] || product['description']).convert

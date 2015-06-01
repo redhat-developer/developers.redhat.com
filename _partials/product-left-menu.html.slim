@@ -9,7 +9,19 @@ ul.side-nav
   li.side-nav-toggle
     a(href="#") Menu
   - page.nav_items.each do |k,v|
-    - if (k == "connectors" && page.parent.product.has_connectors_page) || (k != "connectors")
+    - if (k == "connectors" && page.parent.product.has_connectors_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
+        | #{v}  
+        i.fa.fa-caret-right.fa-lg
+    - elsif (k == "learn" && page.parent.product.has_learn_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
+        | #{v}  
+        i.fa.fa-caret-right.fa-lg
+    - elsif (k == "buzz" && page.parent.product.has_buzz_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
+        | #{v}  
+        i.fa.fa-caret-right.fa-lg
+    - elsif (k != "buzz" && k != "learn" && k != "connectors")
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
         | #{v}  
         i.fa.fa-caret-right.fa-lg
