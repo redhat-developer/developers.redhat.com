@@ -50,7 +50,7 @@
             | {{item.fields.target_product.join(', ')}}
           / Skill Level
           td.format
-            | {{item.fields.sys_type}}
+            | {{item.fields.sys_type | formatName:this}}
           td.publish-date
             | {{item.fields.sys_created | timeAgo}}
 
