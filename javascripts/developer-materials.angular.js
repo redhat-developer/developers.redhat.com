@@ -183,7 +183,7 @@ dcp.filter('timeAgo',function() {
 */
 dcp.filter('urlFix', function() {
   return function(str){
-    if (str.contains("access.redhat.com")) {
+    if (str.contains("access.redhat.com") || str.contains("hub-osdevelopers.rhcloud.com")) {
       return str;
     } else {
       return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+\/)?/, '#{site.base_url}/');
