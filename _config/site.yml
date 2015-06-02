@@ -91,6 +91,7 @@ profiles:
   # Main staging configuration
   staging_main: 
     <<: *profile
+    base_url: http://developers.stage.redhat.com/
     download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
     dcp_base_protocol_relative_url: //dcp-stg.jboss.org/
     dcp_base_url: http://dcp-stg.jboss.org/
