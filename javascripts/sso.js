@@ -11,6 +11,12 @@ app.sso = function () {
                     .show();
                 $('li.login').hide();
                 $('li.login a').attr("href", keycloak.createAccountUrl())
+                // once the promise comes back, listen for a click on logout
+                $('a.logout').on('click',function(e) {
+                    e.preventDefault();
+                    keycloak.logout();
+                });
+
             }).error(clearTokens);
         } else {
             $('li.login').show();
@@ -19,6 +25,7 @@ app.sso = function () {
                 e.preventDefault();
                 keycloak.login();
             });
+
         }
     }
 
@@ -60,7 +67,7 @@ app.sso = function () {
             }
         }
     }
-    
+
     function clearTokens() {
         keycloak.clearToken();
         if (localStorage) {
@@ -75,6 +82,7 @@ app.sso = function () {
         realm: 'rhd',
         clientId: 'web'
     });
+    app.keycloak = keycloak;
     var tokens = loadTokens();
     var init = {onLoad: 'check-sso', checkLoginIframeInterval: 10};
     if (tokens) {
@@ -90,6 +98,8 @@ app.sso = function () {
     }).error(function () {
         updateUser();
     });
+
+
 };
 
 
