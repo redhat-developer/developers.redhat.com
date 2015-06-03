@@ -98,9 +98,9 @@ profiles:
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
     metrics: true
     build_threads: 1
-    cdn_path: /static_htdocs/rhd/stage
     deploy:
       <<: *deploy
+      cdn_path: /static_htdocs/rhd/stage
       path: /stg_htdocs/rhd-stg-main
   
   production:
