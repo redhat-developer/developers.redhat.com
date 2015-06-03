@@ -77,6 +77,8 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
       })(window,document,'script','dataLayer','GTM-NJWS5L');
     noscript
       iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"
+  - if site.under_development
+    = partial 'under-development.html.slim', parent: page
 
   .site-wrapper
     header.main.clearfix
