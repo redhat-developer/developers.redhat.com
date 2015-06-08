@@ -1,0 +1,51 @@
+:awestruct-layout: solution-get-started
+
+Your web applications are not just Java - at a minimum they also have HTML, CSS, and JavaScript.  And for some ideas, Ruby, Python, or Node may be a better approach.  How do you allow the right tool for the right problem while still maintaining application and environment integrity along with an environment that is supportable?
+
+Taking that polyglot to the next step, how do you create, orchestrate, and publish an API that is language agnostic so your product community can build on the great work you did?
+
+Keep reading to get some ideas on how Red Hat Web & API products can help with these challenges and more.
+
+'''
+
+### Choose a platform
+
+* Getting started with link:/products/eap[JBoss EAP]
+  * Try a simple link:/quickstarts/eap/helloworld/index.html[Hello World]
+  * or link:https://hub.openshift.com/quickstarts/deploy/95-jboss-eap-6-4[launch EAP on OpenShift]
+* Using Apache HTTP Server or Apache Tomcat
+  * with link:/products/webserver[JBoss Web Server] link:simple[Get Started]
+  * launch today on OpenShift link:https://hub.openshift.com/quickstarts/deploy/96-tomcat-7-jboss-ews-2-0[Get Started]
+  * install and use modern versions of Apache HTTP and Tomcat with Software Collections link:#[Get Started]
+* Using Nginx
+  * install and use modern versions of Nginx with Software Collections link:#[Get Started] on RHEL via Software Collections.  link:https://www.softwarecollections.org/en/scls/rhscl/nginx14/[Learn how].
+  * use nginx on OpenShift today.  link:https://blog.openshift.com/lightweight-http-serving-using-nginx-on-openshift/[Learn how].
+* Using Passenger
+  * link:https://github.com/phusion/passenger[Passenger] is an easy, scalable and reliable web app server for Ruby, Python, Node.js and Meteor
+
+'''
+
+### Java Web Applications
+
+* Getting started with JBoss Developer Studio link:/products/devstudio/get-started/!project=devstudio[Get Started]#
+* Hello World on link:/products/eap[JBoss EAP] link:#[Get Started]
+* Managing dependencies with link:/web-and-api-development/learn/#!query=maven[Maven]
+* Using Angular and RESTFul services link:/web-and-api-development/learn/#!sys_type=quickstart&query=Angular[Get Started]
+* Tomcat Application Hosting on OpenShift link:https://developers.openshift.com/en/tomcat-getting-started.html[Get Started]#
+
+'''
+
+### Integration and API
+
+* Getting Started with Fuse link:#[Get Started]
+  * link:https://github.com/FuseByExample/HelloCamel[Hello Camel]
+* Exposing a RESTFul API link:#[Get Started]
+* Creating data services link:#[Get Started]
+
+'''
+
+### Another Section
+* How can link:#[JBoss Developer Studio] help you with visual editors
+* Simple Integration and Functional testing with link:/web-and-api-development/learn/#!query=arquillian[Arquillian]
+* Driving consistent environments with link:/web-and-api-development/learn/#!query=cli[JBoss CLI]
+*  and link:#[Artifactory]
