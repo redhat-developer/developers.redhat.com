@@ -55,6 +55,7 @@
 @import "jboss-mixins";
 // @import "navigation";
 @import "slider";
+@import "home";
 @import "solutions";
 @import "events";
 @import "buzz";
@@ -128,7 +129,7 @@ button, .button {
   text-decoration: none;
   border:0;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 600;
   padding:9px 40px;
   transition:background .2s ease-in 0s;
 
@@ -945,6 +946,12 @@ body.fullbleed {
 }
 
 // Typography
+
+* {
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 .large-title {
   font-size: emCalc(44);
