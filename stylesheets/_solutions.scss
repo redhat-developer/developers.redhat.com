@@ -1,9 +1,13 @@
 .hero.hero-solutions {
-  background: cdn('../images/design/RHDev_indeximage_solutions.png') top center / cover no-repeat;
+  background: cdn('../images/design/RHDev_indeximage_desktop_solutions.png') top center / cover no-repeat;
   content : ':4242';
   border:0;
   margin-bottom: 70px;
   padding:20px;
+  @media (max-width: 970px){
+    background: cdn('../images/design/RHDev_indeximage_mobile_solutions.png') top center / cover no-repeat;
+    margin: -15px;
+  }
   .button {
     width: 100%;
     display: block;
