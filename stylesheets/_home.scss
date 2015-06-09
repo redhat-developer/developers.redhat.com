@@ -2,6 +2,11 @@
   display:flex;
   & > li {
     display:flex;
+    img {
+      margin-top: -25%;
+      margin-bottom: -25%;
+      max-width:350px;
+    }
   }
 }
 .cta-item {
@@ -61,9 +66,34 @@ h2.home-title {
 
   .cta-items {
     flex-direction: column;
+    .cta-item {
+      overflow: hidden;
+    }
     & > li {
       display: block;
+      p {
+        text-align:left;
+      }
+
       width: 100%;
+      img {
+        margin:  -14% -12% -20% -10%;
+        float:left;
+      }
     }
   }
 }
+
+@include mobile-landscape-and-down {
+  .cta-items {
+    & > li {
+      img {
+        float:none;
+      }
+      p {
+        text-align: center;
+      }
+    }
+  }
+}
+
