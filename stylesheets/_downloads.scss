@@ -1,8 +1,9 @@
 .hero.hero-downloads {
   background: cdn('../images/design/RHDev_indeximage_desktop_downloads.png') top center / cover no-repeat;
   border:0;
+  padding: 20px;
   padding-top: 40px;
-  margin-bottom: 40px;
+  min-height: 260px;
   @media (max-width: 970px){
     background: cdn('../images/design/RHDev_indeximage_mobile_downloads.png') top center / cover no-repeat;
     margin: -15px;
