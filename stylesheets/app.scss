@@ -443,53 +443,6 @@ body.fullbleed {
   margin-bottom: 20px;
 }
 
-.hero-try-or-buy {
-  background:#242424;
-  border:0;
-  padding: 0 40px;
-  margin:20px 0;
-  .row {
-    @extend .grow;
-  }
-  .button {
-    width: 100%;
-    margin-bottom: 5px;
-    padding: 1rem;
-  }
-  p {
-    margin-bottom: 0;
-  }
-  .hello-world{
-    color: $white;
-    display: flex;
-    align-items: center;
-    & > div:first-child {
-      text-align: center;
-    }
-    h2{
-      color: $red;
-      font-size: 37px;
-      margin-bottom: 5px;
-    }
-
-    @media only screen and (max-width: 64em) {
-      margin-bottom: 15px;
-      small{display: block;}
-      p{margin-bottom: 10px;}
-    }
-  }
-  .outside-links a{
-    text-align: left;
-    display: block;
-    border-left: 4px solid #08c0fc;
-    color: $white;
-    padding: 10px 16px;
-  }
-  .outside-links a:first-of-type{
-    margin-bottom: 20px;
-  }
-}
-
 // Introduction Module
 
 .intro {
