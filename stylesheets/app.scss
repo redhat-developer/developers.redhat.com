@@ -55,6 +55,7 @@
 @import "jboss-mixins";
 // @import "navigation";
 @import "slider";
+@import "home";
 @import "solutions";
 @import "events";
 @import "buzz";
@@ -83,6 +84,7 @@
 @import "champions";
 @import "devoxx4kids";
 @import "rh-icons";
+@import "downloads";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -128,7 +130,7 @@ button, .button {
   text-decoration: none;
   border:0;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 600;
   padding:9px 40px;
   transition:background .2s ease-in 0s;
 
@@ -946,6 +948,12 @@ body.fullbleed {
 
 // Typography
 
+* {
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .large-title {
   font-size: emCalc(44);
   margin-bottom: 0;
@@ -1408,41 +1416,6 @@ a.filter.button {
   margin-bottom: 10px;
   display: block;
   clear:both;
-}
-
-
-// Downloads list
-.download-list {
-  padding-bottom: 30px;
-  h3 {
-    color: #000;
-  }
-  ul {
-    border-bottom: 1px solid $grey-3;
-    list-style-type: none;
-    margin: 0;
-    li {
-      border-top: 1px solid $grey-3;
-      padding: 5px 0 5px 0;
-      p {
-        margin:0;
-        &.download {
-          font-size: emCalc(18);
-          padding-bottom: emCalc(5);
-        }
-      }
-      h4 {
-        font-weight: normal;
-        margin:0;
-      }
-    }
-  }
-  .link-list {
-    margin-left: 5px;
-  }
-  i {
-    margin-right: 5px;
-  }
 }
 
 // Downloads links
@@ -1959,7 +1932,7 @@ nav.secondary-nav {
       a {
         margin-left:30px;
         font-size: 12px;
-        color:$gray;
+        color:$dark-gray;
       }
     }
   }

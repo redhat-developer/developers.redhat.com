@@ -4,6 +4,7 @@
 */
 .slider-wrapper {
   position: relative;
+  overflow: hidden;
   .slider {
     // max-height:405px;
     // overflow: hidden;
@@ -13,9 +14,13 @@
     }
     .slide {
       position: relative;
-      background:white;
+      background:cdn("../images/homepage_carouselhelloworld_bkg.png") center repeat-x;
+      background-size:auto 100%;
+      color:white;
       img {
-        width:100%;
+        &.desktop {
+          width:100%;
+        }
         &.mobile {
           padding: 0;
         }
@@ -69,6 +74,7 @@
 }
 .swipe-wrap {
   overflow: hidden;
+  max-height:450px;
   position: relative;
 }
 .swipe-wrap > div {
@@ -77,40 +83,155 @@
   position: relative;
 }
 
-.slider-controls {
-  a {
-    position: absolute;
-    top:50%;
-    margin-top: -35px;
-    font-size: 2em;
-    color:$light-green;
-    font-weight:600;
-    text-shadow:0 2px 0 $med-green;
-    &.slider-prev {
-      left:-75px;
+.slide-text {
+  text-align: center;
+}
+
+.slide {
+  blockquote {
+    border:0;
+    color:white;
+    font-size: 20px;
+    line-height:1.2;
+    margin-bottom: 0;
+    color:#eafbff;
+    &:before { content : '“'; }
+    &:after { content : '”'; }
+    &:before, &:after {
+      font-size: 35px;
+      line-height:.58; // thats 20/35
+      position: relative;
+      top:5px;
+      font-weight: 900;
     }
-    &.slider-next {
-      right:-75px;
-    }
-    i {
-      font-weight: 600;
+    strong {
+      color:white;
     }
   }
+  cite {
+    display: block;
+    clear: both;
+    font-size: 22px;
+  }
+  small {
+    display: block;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  h3, h4 {
+    font-weight: 500;
+    color:white;
+  }
+  h3 {
+    padding-bottom: 10px;
+  }
+}
 
+.slide__heading {
+  color:white;
+  font-size: 45px;
+  padding:20px 0;
+  text-transform: uppercase;
+}
 
-  @media all and (max-width: 1350px) {
-    a {
-      background:black;
-      font-size: 16px;
-      padding: 0 10px 5px 10px;
-      border-radius: 5px;
-      text-shadow:none;
-      &.slider-prev {
-        left:10px;
+.portrait {
+  display:flex;
+  img {
+    width:auto;
+    max-width: none;
+    position: relative;
+    left: -60%;
+    position: absolute;
+  }
+}
+
+.text-pagination {
+  @extend .row;
+  @extend .grow;
+}
+.slider-controls {
+  background:$headline-grey;
+  ul {
+    list-style: none;
+    margin: 0;
+    // Flexbox Wrapper
+    display:flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+  }
+  .slider-item {
+    text-align: center;
+    color:white;
+    font-weight: 400;
+    padding:10px 5px;
+    cursor:pointer;
+    transition:0.3s;
+
+    // Flexbox Basics
+    display: flex;
+    align-items: center;
+    flex:3;
+
+    // Flexbox w/ Prefixes (http://autoprefixer.github.io/)
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex:3;
+    -webkit-flex:3;
+    -ms-flex:3;
+    flex:3;
+
+    // use CSS not() to only apply to the elements you want
+    &:not(:last-child) {
+      border-right:1px solid #424242;
+    }
+
+    &:hover, &.slider-pager-active {
+      background:$red;
+      padding-left:10px;
+      padding-right:10px;
+    }
+
+    &.arrow {
+      max-width:80px;
+      &:hover {
+        background:none;
       }
-      &.slider-next {
-        right:10px;
-      }
+    }
+
+    // specialized: Red Hat Summit
+    // This idea was scrapped
+    // &.slider-item--summit {
+    //   background:cdn("../images/slider-image--summit.png") center no-repeat;
+    //   background-size:cover;
+    //   text-align:left;
+    //   a {
+    //     padding-left: 55px;
+    //   }
+    // }
+  }
+  strong {
+    font-weight: 600;
+    display: block;
+  }
+  a {
+    color:white;
+    width: 100%;
+    &:hover {
+      color:white;
+    }
+    &.slider-prev {
+      // left:-75px;
+    }
+    &.slider-next {
+      // right:-75px;
+      // flex-basis:50px;
     }
   }
 }
@@ -145,22 +266,57 @@
 }
 
 
+@include tablet-landscape-and-down {
+  // .slider-wrapper {
+  //   .slider, .slider.slider-side-by-side {
+  //     .slider-label {
+  //       position: relative;
+  //       padding-right: 70px;
+  //       background:black;
+  //       width:100%;
+  //       max-width: none;
+  //     }
+  //   }
+  //   .slider {
+  //     max-height:none;
+  //   }
+  // }
+  // .slider-controls a {
+  //   background:rgba(0,0,0,0.2);
+  // }
+
+    .portrait {
+      display: none;
+    }
+   .swipe-wrap {
+    max-height:none;
+   }
+}
+
 @include tablet-portrait-and-down {
-  .slider-wrapper {
-    .slider, .slider.slider-side-by-side {
-      .slider-label {
-        position: relative;
-        padding-right: 70px;
-        background:black;
-        width:100%;
-        max-width: none;
-      }
+  .swipe-wrap {
+    counter-reset: item; /* create a item counter scope */
+  }
+  .slider-item:not(.arrow) {
+    counter-increment: item; /* add 1 to chapter */
+    strong {
+      display: none;
     }
-    .slider {
-      max-height:none;
+    a:after {
+      content: counter(item);
     }
   }
-  .slider-controls a {
-    background:rgba(0,0,0,0.2);
+
+  .slide__heading {
+    padding: 10px 0 0 0;
+    font-size: 30px;
+    margin-bottom: 0;
   }
+
+  .slide {
+    h3 {
+      padding: 0;
+    }
+  }
+
 }

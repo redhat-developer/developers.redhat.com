@@ -117,15 +117,22 @@
   }
 }
 .hero.hero-products {
-  background:#045688;
+  background: cdn('../images/design/RHDev_indeximage_desktop_products.png') top center / cover no-repeat;
   border:0;
   padding-top: 40px;
+  @media (max-width: 970px){
+    background: cdn('../images/design/RHDev_indeximage_mobile_products.png') top center / cover no-repeat;
+    margin: -15px;
+  }
   h2.blowout {
     color:white;
     line-height:1;
+    font-size: 70px;
+    text-shadow: 3px 3px #063a63;
   }
   p {
     color:white;
+    font-size: 20px;
   }
   .row {
     @extend .grow;
@@ -154,9 +161,11 @@
         padding:15px 15px 24px 15px;
         display: inline-block;
         min-width:250px;
+        color: white;
         &:after {
           bottom:10px;
           left:15px;
+          background-color: #888;
         }
       }
     }

@@ -38,14 +38,17 @@ app.createSlider = function($el) {
 
     app.slider = Swipe(sliderEl, {
       auto : $(sliderEl).data('timeout') || 0,
+
       transitionEnd : function() {
         var idx = app.slider.getPos();
         $('.slider-pager-active').removeClass('slider-pager-active');
         $('.slider-pager a:eq('+idx+')').addClass('slider-pager-active');
+        $('.slider-item a[data-index="'+idx+'"]').parent().addClass('slider-pager-active');
       }
     });
 
     if(app.slider) {
+
       var numSlides = app.slider.getNumSlides(),
           pagerHtml = "";
 
@@ -58,9 +61,22 @@ app.createSlider = function($el) {
 
       /* Bind Arrows and pager */
       $('.slider-controls').on('click','a',function(e){
-        var direction = $(this).data('direction');
-        app.slider[direction]();
         e.preventDefault();
+
+        // pause it
+        app.slider.stop();
+
+        var el = $(this);
+        var direction = el.data('direction');
+        var index = el.data('index');
+
+        if(index >= 0) {
+          app.slider.slide(index);
+        }
+        else {
+          app.slider[direction]();
+        }
+
       });
 
       $('.slider-pager').on('click','a',function(e){
@@ -96,7 +112,7 @@ app.createSlider = function($el) {
   /*
     Mobile Nav dropdown
   */
-  
+
   $('li.has-dropdown span.drop-down-arrow').on('click touchend',function(e){
       if (!app.fastClick) {
         // we're binding to touchstart and click. If we have a touchstart, don't also run on click
