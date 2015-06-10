@@ -48,6 +48,7 @@ app.createSlider = function($el) {
     });
 
     if(app.slider) {
+
       var numSlides = app.slider.getNumSlides(),
           pagerHtml = "";
 
@@ -61,6 +62,9 @@ app.createSlider = function($el) {
       /* Bind Arrows and pager */
       $('.slider-controls').on('click','a',function(e){
         e.preventDefault();
+
+        // pause it
+        app.slider.stop();
 
         var el = $(this);
         var direction = el.data('direction');
