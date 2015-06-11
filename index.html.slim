@@ -10,14 +10,13 @@ description: The simple, modern & productive way to build apps and infrastructur
 .slider-wrapper.hero-wide
   .slider#slider(data-pause-on-hover="true" data-timeout="5000")
     .swipe-wrap
-      - slides = [1,2,3,4,5]
-      - for slide in slides
-        .slide
+        /  slide 1 - Matt Hicks
+        .slide.slide--matthicks
           .row
             .large-8.columns.portrait
               span
                 | &nbsp;
-              img(src=cdn("#{site.base_url}/images/homepage_carouselhelloworld_photohicks.png"))
+              img(src=cdn("#{site.base_url}/images/slider/homepage_carouselhelloworld_photohicks.png"))
             .large-16.columns.slide-text
               .row
                 .large-24.columns
@@ -32,6 +31,45 @@ description: The simple, modern & productive way to build apps and infrastructur
                   h3 Develop, Host and Scale your applications in the cloud
                   h4 Experience what's new in OpenShift v3 with
                   a.button(hef="#") Hello World
+        /  slide 2 - DevNation
+        .slide.slide--devnation
+          .row
+            .large-12.columns
+              img(src=cdn("#{site.base_url}/images/slider/homepage_carousel_devnation_logo.png"))
+              h3 Red Hat's premiere event by<br>and for developers across the globe.
+            .large-12.columns.slide-text
+              h2 Updates from<br>the nation
+              h4 Get the latest news<br>and information on the event.
+              a.button(hef="#") Watch keynotes live and on demand!
+        /  slide 3 - Signup for RedHat Developers
+        .slide.slide--redhatdevelopers
+          .row
+            .large-24.columns.slide-text
+              .row
+                  h2.slide__heading Become a Red Hat Developer. <br> Register Today!
+              .row.center
+                .large-12.columns
+                  p Red Hat delivers the resources and ecosystem of experts to help developrs be more productive and build great solutions.
+                .large-12.columns
+                  a.button.inverse(href="#") Register For Free!
+        /  slide 4 - Java 8
+        .slide.slide--java8
+          .row
+            .large-15.columns.small-centered
+              h2 Deploy your Java 8 apps on-premise or in the cloud
+              p Now supported with newly released Red Hat JBoss Enterprise Application Platform 6.4
+              a.button.inverse Try it today
+
+        /  slide 5 - atomic
+        .slide.slide--atomic
+          .row
+            .large-9.columns
+              img(src=cdn("#{site.base_url}/images/slider/homepage_carousel_container_atomiclogo.png"))
+            .large-15.columns
+              h2 Announcing Red Hat<br>Container Platforms and Tools!
+              p Make applications and more portable with Red Hat container platforms and tools
+              p Get Started with Atomic
+              a.button Hello World
 
   .slider-controls
     .text-pagination
@@ -79,7 +117,7 @@ description: The simple, modern & productive way to build apps and infrastructur
 
 .row
   .large-24.columns
-    h2.home-title.caps We are better, together
+    h2.home-title.caps I'm interested in…
 .row
   .large-6.columns
     p We continue to challenge each other to be better, to move forward. We do this by being part of the Red Hat® community and sharing great ideas.
