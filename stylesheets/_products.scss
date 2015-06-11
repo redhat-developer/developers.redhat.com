@@ -171,3 +171,48 @@
     }
   }
 }
+
+#hero-try-or-buy {
+  border-top:1px solid #a3dbe8;
+  border-bottom:1px solid #a3dbe8;
+  padding: 0 40px;
+  margin:40px auto;
+  .button {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: .7rem;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  .hello-world{
+    display: flex;
+    align-items: center;
+    & > div:first-child {
+      text-align: center;
+    }
+    h2{
+      color: #146691;
+      font-size: 37px;
+      margin-bottom: 0;
+    }
+
+    @media only screen and (max-width: 64em) {
+      margin-bottom: 15px;
+      small{display: block;}
+      p{margin-bottom: 10px;}
+    }
+  }
+  .outside-links a{
+    text-align: left;
+    display: block;
+    padding: 5px 16px;
+    color: $grey-7;
+    p {
+      color: #0088ce;
+    }
+    i {
+      margin-left: 5px;
+    }
+  }
+}
