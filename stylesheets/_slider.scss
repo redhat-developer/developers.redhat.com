@@ -7,16 +7,18 @@
   overflow: hidden;
   .slider {
     // max-height:405px;
-    // overflow: hidden;
+    overflow: hidden;
     &.rounded {
       border-radius:$global-radius;
       overflow: hidden;
     }
     .slide {
       position: relative;
-      background:cdn("../images/homepage_carouselhelloworld_bkg.png") center repeat-x;
-      background-size:auto 100%;
       color:white;
+      @include flexbox;
+      & > .row {
+        @include align-self(center);
+      }
       img {
         &.desktop {
           width:100%;
@@ -27,6 +29,93 @@
       }
     }
   }
+
+  /* Individual Slide Designs */
+  .slide--matthicks {
+    background:cdn("../images/slider/homepage_carouselhelloworld_bkg.png") center repeat-x;
+    background-size:auto 100%;
+  }
+
+  .slide--devnation {
+    background:cdn("../images/slider/homepage_carousel_devnation_desktop_bkg.jpg") center repeat-x;
+    background-size:auto 100%;
+    @include mobile-landscape-and-down {
+      background-image:cdn("../images/slider/homepage_carousel_devnation_mobile_bkg.jpg");
+    }
+    text-align: center;
+    h2 {
+      text-transform: uppercase;
+      color:white;
+      line-height: 1.2;
+    }
+    .columns {
+      // padding:90px;
+    }
+    img {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .slide--redhatdevelopers {
+    background:cdn("../images/slider/homepage_carousel_join_desktop_bkg.png") center repeat-x;
+    background-size:auto 100%;
+    @include mobile-landscape-and-down {
+      background-image:cdn("../images/slider/homepage_carousel_join_mobile_bkg.png");
+    }
+    h2 {
+      text-shadow:3px 3px 0 #994030;
+      font-size: 60px;
+      line-height: 1;
+      text-align:left;
+    }
+    p {
+      font-size: 20px;
+      text-shadow:1px 1px 0 #994030;
+      text-align:left;
+      padding-left: 50px;;
+    }
+  }
+
+  .slide--java8 {
+    background:cdn("../images/slider/homepage_carousel_deployjava_desktop_bkg.jpg") center repeat-x;
+    background-size:auto 100%;
+    @include mobile-landscape-and-down {
+      background-image:cdn("../images/slider/homepage_carousel_deployjava_mobile_bkg.jpg");
+    }
+    h2 {
+      color:white;
+      line-height: 1;
+      font-size: 55px;;
+    }
+    p {
+      font-size: 30px;
+    }
+  }
+
+  .slide--atomic {
+    background:cdn("../images/slider/homepage_carousel_container_desktop_bkg.jpg") center repeat-x;
+    background-size:auto 100%;
+    @include mobile-landscape-and-down {
+      background-image:cdn("../images/slider/homepage_carousel_container_mobile_bkg.png");
+    }
+
+    text-align: center;
+    h2 {
+      color:white;
+      text-transform: uppercase;
+      line-height: 1;
+      padding:0 50px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 22px;
+      max-width:450px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+  }
+
 
   .slider-label {
     position: absolute;
@@ -76,6 +165,7 @@
   overflow: hidden;
   max-height:450px;
   position: relative;
+  @include flexbox;
 }
 .swipe-wrap > div {
   float:left;
@@ -112,6 +202,7 @@
     display: block;
     clear: both;
     font-size: 22px;
+    padding-bottom: 10px;
   }
   small {
     display: block;
@@ -204,17 +295,6 @@
         background:none;
       }
     }
-
-    // specialized: Red Hat Summit
-    // This idea was scrapped
-    // &.slider-item--summit {
-    //   background:cdn("../images/slider-image--summit.png") center no-repeat;
-    //   background-size:cover;
-    //   text-align:left;
-    //   a {
-    //     padding-left: 55px;
-    //   }
-    // }
   }
   strong {
     font-weight: 600;
@@ -267,24 +347,6 @@
 
 
 @include tablet-landscape-and-down {
-  // .slider-wrapper {
-  //   .slider, .slider.slider-side-by-side {
-  //     .slider-label {
-  //       position: relative;
-  //       padding-right: 70px;
-  //       background:black;
-  //       width:100%;
-  //       max-width: none;
-  //     }
-  //   }
-  //   .slider {
-  //     max-height:none;
-  //   }
-  // }
-  // .slider-controls a {
-  //   background:rgba(0,0,0,0.2);
-  // }
-
     .portrait {
       display: none;
     }
