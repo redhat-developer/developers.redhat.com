@@ -119,20 +119,27 @@
 .hero.hero-products {
   background: cdn('../images/design/RHDev_indeximage_desktop_products.png') top center / cover no-repeat;
   border:0;
-  padding-top: 40px;
+  padding: 20px;
+  padding-top: 65px;
+  min-height: 260px;
   @media (max-width: 970px){
     background: cdn('../images/design/RHDev_indeximage_mobile_products.png') top center / cover no-repeat;
     margin: -15px;
+    h2.blowout {
+      padding-top: 20px !important;
+    }
   }
   h2.blowout {
     color:white;
     line-height:1;
     font-size: 70px;
     text-shadow: 3px 3px #063a63;
+    padding-top: 27px;
   }
   p {
     color:white;
     font-size: 20px;
+    padding-top: 15px;
   }
   .row {
     @extend .grow;
