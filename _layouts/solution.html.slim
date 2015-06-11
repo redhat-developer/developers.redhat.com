@@ -2,20 +2,18 @@
 layout: technology-base
 ---
 
-.row
-  .large-24.columns
-    ul.breadcrumbs
-      li
-        a href="#{site.base_url}/technology" Technology
-      li
-        a href="#{site.base_url}/solutions" Solutions
-      li
-        a href="#{site.base_url}/#{page.solution.id}" #{page.solution.name}
-
 .solution-hero
   .row
-    h2 #{page.solution.name}
-    h5.description #{page.solution.long_description}
+    .large-24
+      ul.breadcrumbs
+        li
+          a href="#{site.base_url}/technology" Technology
+        li
+          a href="#{site.base_url}/solutions" Solutions
+        li
+          a href="#{site.base_url}/#{page.solution.id}" #{page.solution.name}
+      h2 #{page.solution.name}
+      h5.description #{page.solution.long_description}
 
 .row
   .large-4.columns
