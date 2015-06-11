@@ -429,7 +429,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
 
     } else {
       // There are no types, set the default ones
-      searchTerms.push("sys_type:(jbossdeveloper_bom jbossdeveloper_quickstart jbossdeveloper_archetype video rht_knowledgebase_article rht_knowledgebase_solution jbossdeveloper_example)");
+      searchTerms.push("sys_type:(jbossdeveloper_bom quickstart jbossdeveloper_archetype video article solution jbossdeveloper_example)");
     }
 
     if($scope.filters.level){
