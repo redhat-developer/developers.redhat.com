@@ -11,7 +11,7 @@ div(ng-app="dcp")
     .large-24#developer-materials-filters
       = partial 'developer-materials-filters.html.slim'
     .text-content
-      .developer-materials-results data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}'"
+      .developer-materials-results data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}';filters.randomize = true"
         = partial 'developer-materials-results.html.slim'
 
     = javascripts("developer-materials-filter", true) do

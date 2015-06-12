@@ -238,6 +238,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
   window.scope = $scope;
   $scope.data = {};
   $scope.filters = {};
+  $scope.randomize = false;
   $scope.pagination = {
     size : 10
   };
@@ -454,6 +455,19 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
 
     materialService.getMaterials(q, $scope.filters.project).then(function(data){
       $scope.data.materials = data.hits.hits;
+      // http://www.codinghorror.com/blog/2007/12/the-danger-of-naivete.html
+      if ($scope.filters.randomize) {
+        $scope.data.materials = (function knuthfisheryates(arr) {
+          var i, temp, j, len = arr.length;
+          for (i = 0; i < len; i++) {
+            j = ~~(Math.random() * (i + 1));
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+          }
+          return arr;
+        })($scope.data.materials);
+      }
       $scope.data.loading = false;
       $scope.paginate(1); // start at page 1
       $scope.filter.group();
