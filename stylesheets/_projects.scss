@@ -124,3 +124,30 @@ ul.project-social {
     }
   }
 }
+
+.hero.hero-projects {
+  background: cdn('../images/design/RHDev_indeximage_desktop_community.png') top center / cover repeat-x;
+  content : ':4242';
+  border:0;
+  margin-bottom: 40px;
+  padding:20px;
+  min-height: 185px;
+  @media (max-width: 970px){
+    background: cdn('../images/design/RHDev_indeximage_mobile_community.png') top center / cover repeat-x;
+    margin: -15px;
+    margin-bottom: 40px;
+  }
+  h2.blowout {
+    color:white;
+    font-size: 70px;
+    text-shadow: 3px 3px #063a63;
+    margin-top: 25px;
+  }
+  p {
+    color: white;
+    font-size: 20px;
+  }
+  .row {
+    @extend .flex-center;
+  }
+}
