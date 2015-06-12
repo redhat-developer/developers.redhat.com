@@ -2,11 +2,6 @@
 layout: base
 primary_section: get-involved
 ---
-.row.tertiary-nav
-  ul.inline-nav
-    - site.nav['get-involved'].children.each do |k, v|
-      li(class="#{secondary_section_class(k,v)}")
-        a(href="#{v.url}") #{v.label}
 
 = content
 
