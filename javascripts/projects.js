@@ -349,10 +349,10 @@ $(function() {
   var featuredProjectIds = $('.featured-project-ids');
 
   if(featuredProjectIds.length) {
-    var queryVal = JSON.parse(featuredProjectIds.text()).join(' OR ');
-    var query = "sys_content_id:("+queryVal+")";
+    //var queryVal = JSON.parse(featuredProjectIds.text()).join(' OR ');
+    //var query = "sys_content_id:("+queryVal+")";
 
-    app.project.projectFilter(null, query, $('ul.featured-projects-results'), '500x400');
+    //app.project.projectFilter(null, query, $('ul.featured-projects-results'), '500x400');
 
   }
 
