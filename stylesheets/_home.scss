@@ -27,7 +27,7 @@
 
 
 .button.button--solution {
-  background:#6abcd3 url("../images/design/stars-texture.png") bottom right no-repeat;
+  background:#6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
   width: 100%;
   padding-top:30px;
   padding-bottom:30px;
@@ -35,7 +35,7 @@
   padding-right: 10px;
   text-align:left;
   &:hover {
-    background:darken(#6abcd3,10%) url("../images/design/stars-texture.png") bottom right no-repeat;
+    background:darken(#6abcd3,10%) cdn("../images/design/stars-texture.png") bottom right no-repeat;
   }
   &.clear {
     color:#0088ce;
