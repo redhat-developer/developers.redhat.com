@@ -37,11 +37,37 @@ description: Learn more about the upstream projects that JBoss is involved with.
 
   .large-18.column
     .featured-projects
-      span.featured-project-ids(hidden) #{site.featured_projects}
+      // span.featured-project-ids(hidden) #{site.featured_projects}
       ul.featured-projects-results
+        li.upstream
+          .defaultprojectimage
+            a.image-link href="https://getfedora.org"
+              img alt=("Fedora Linux") onerror="app.project.fallbackImage(this)" src="http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/upstream/images/fedora_500x400.png" /
+          h5.solution-name
+            a.solution-name-link href="https://getfedora.org"  Fedora Linux
+          .project-content.row
+            .large-6.project-content-left.columns
+              img alt=("Fedora Linux") src="http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/upstream/images/fedora_500x400.png" /
+        li.upstream
+          .defaultprojectimage
+            a.image-link href="http://www.wildfly.org"
+              img alt=("WildFly Application Server") onerror="app.project.fallbackImage(this)" src="http://static.jboss.org/wildfly/images/wildfly_500x400.png" /
+          h5.solution-name
+            a.solution-name-link href="http://www.wildfly.org"  WildFly Application Server
+          .project-content.row
+            .large-6.project-content-left.columns
+              img alt=("WildFly Application Server") src="http://static.jboss.org/wildfly/images/wildfly_500x400.png" /
+        li.upstream
+          .defaultprojectimage
+            a.image-link href="http://commons.openshift.org"
+              img alt=("OpenShift Commons") onerror="app.project.fallbackImage(this)" src="http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/upstream/images/openshiftcommons_500x400.png" /
+          h5.solution-name
+            a.solution-name-link href="http://commons.openshift.org"  OpenShift Commons
+          .project-content.row
+            .large-6.project-content-left.columns
+              img alt=("WildFly Application Server") src="http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/upstream/images/openshiftcommons_500x400.png" /
 
     h2.divider
-      | All Projects
       span.label#results-label
     ul.small-block-grid-2.large-block-grid-4.medium-block-grid-3.results
 
