@@ -107,8 +107,8 @@ profiles:
   production:
     <<: *profile
     base_url: http://developers.redhat.com/
-    dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
-    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //dcp.jboss.org/
+    dcp_base_url: http://dcp.jboss.org/
     require_tag: true
     metrics: true
     disqus: jdf
