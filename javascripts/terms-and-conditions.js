@@ -18,7 +18,7 @@ app.termsAndConditions = {
   download: function () {
 
     var tcUser = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcUser'));
-    var tcWhenSigned = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcWhenSigned'));
+    var tcWhenSigned = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcWhenSigned')).replace(/\+/g, ' ');
     var tcEndsIn = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcEndsIn'));
     var tcDownloadURL = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadURL'));
     var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
@@ -59,7 +59,7 @@ app.termsAndConditions = {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ 'product_download_file_name' : tcDownloadFileName });
       window.dataLayer.push({'event': 'Product Download Requested'});
-      
+
     }
   },
   /*
