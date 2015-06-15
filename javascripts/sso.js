@@ -10,7 +10,7 @@ app.sso = function () {
                     .attr('href', app.ssoConfig.account_url)
                     .show();
                 $('li.login').hide();
-                $('li.login a').attr("href", keycloak.createAccountUrl())
+                $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl())
                 // once the promise comes back, listen for a click on logout
                 $('a.logout').on('click',function(e) {
                     e.preventDefault();

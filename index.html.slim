@@ -10,14 +10,13 @@ description: The simple, modern & productive way to build apps and infrastructur
 .slider-wrapper.hero-wide
   .slider#slider(data-pause-on-hover="true" data-timeout="5000")
     .swipe-wrap
-      - slides = [1,2,3,4,5]
-      - for slide in slides
-        .slide
+        /  slide - Matt Hicks
+        .slide.slide--matthicks
           .row
             .large-8.columns.portrait
               span
                 | &nbsp;
-              img(src=cdn("#{site.base_url}/images/homepage_carouselhelloworld_photohicks.png"))
+              img(src=cdn("#{site.base_url}/images/slider/homepage_carouselhelloworld_photohicks.png"))
             .large-16.columns.slide-text
               .row
                 .large-24.columns
@@ -31,7 +30,49 @@ description: The simple, modern & productive way to build apps and infrastructur
                 .large-12.columns
                   h3 Develop, Host and Scale your applications in the cloud
                   h4 Experience what's new in OpenShift v3 with
-                  a.button(hef="#") Hello World
+                  a.button(hef="http://openshift.com") Hello World
+
+        /  slide - Signup for RedHat Developers
+        .slide.slide--redhatdevelopers
+          .row
+            .large-24.columns.slide-text
+              .row
+                  h2.slide__heading Become a Red Hat Developer. <br> Register Today!
+              .row.center
+                .large-12.columns
+                  p Red Hat delivers the resources and ecosystem of experts to help developrs be more productive and build great solutions.
+                .large-12.columns
+                  a.button.inverse.keycloak-url(href="") Register For Free!
+
+        /  slide - atomic
+        .slide.slide--atomic
+          .row
+            .large-9.columns
+              img(src=cdn("#{site.base_url}/images/slider/RH_atomic_bug_2cBlue_text_rgb.svg"))
+            .large-15.columns
+              h2 Announcing Red Hat<br>Container Platforms and Tools!
+              p Make applications and more portable with Red Hat container platforms and tools
+              p Get Started with Atomic
+              a.button(href="") Hello World
+
+        /  slide - DevNation
+        .slide.slide--devnation
+          .row
+            .large-12.columns
+              img(src=cdn("#{site.base_url}/images/slider/homepage_carousel_devnation_logo.png"))
+              h3 Red Hat's premiere event by<br>and for developers across the globe.
+            .large-12.columns.slide-text
+              h2 Updates from<br>the nation
+              h4 Get the latest news<br>and information on the event.
+              a.button(hef="http://www.devnation.org/#keynotes") DevNation keynotes live and on demand
+
+        /  slide - Java 8
+        .slide.slide--java8
+          .row
+            .large-15.columns.small-centered
+              h2 Deploy your Java 8 apps on-premise or in the cloud
+              p Now supported with newly released Red Hat JBoss Enterprise Application Platform 6.4
+              a.button.inverse(href="https://www.redhat.com/apps/store/middleware/jboss_enterprise_application_platform.html") Try it today
 
   .slider-controls
     .text-pagination
@@ -40,46 +81,47 @@ description: The simple, modern & productive way to build apps and infrastructur
           a.slider-prev(data-direction="prev")
             i.fa.fa-arrow-circle-left.fa-2x
         li.slider-item: a(href="#" data-index="0")
-          strong Hello World for Red Hat Enterprise Linux
+          strong Announcing OpenShift<br>V3
         li.slider-item: a(href="#" data-index="1")
-          strong Sign up for Red Hat Developers
+          strong Register today for Red Hat Developers
         li.slider-item: a(href="#" data-index="2")
-          strong Hello World for Red Hat JBoss Enterprise Application Platform
+          strong Announcing Red Hat Container Platforms and Tools
         li.slider-item: a(href="#" data-index="3")
-          strong Hello World for Red Hat Enterprise Linux OpenStack Platform
+          strong Develop in the Cloud with Java EE
         li.slider-item: a(href="#" data-index="4")
-          strong Join us at Red Hat Summit
+          strong DevNation - Updates from the event
         li.slider-item.arrow
           a.slider-next(data-direction="next")
             i.fa.fa-arrow-circle-right.fa-2x
 
 .row
   .large-24.columns
-    h2.home-title.caps Red Hat Developer Subscription Program
+    h2.home-title.caps Become a Red Hat Developer
   .large-12.columns
-    h4 Providing leadership and technology that enables developers to build a better world.
+    h4 Share more. Learn more. Code more.
     p Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications. Join now for free!
 
   .large-12.columns
-    a.button.button--join-today Join Today - It's Free!
+    a.button.button--join-today.keycloak-url(href="#")
+      | Join Today - It's Free!
   .large-24.columns
     ul.medium-block-grid-3.cta-items
       li
         .cta-item
           img(src=cdn("#{site.base_url}/images/design/rh-icon-download.svg"))
-          p <strong>Develop:</strong> A​ccess a wealth of resources, including development tools, reference architectures, guides, videos, training, and more to become more productive while developing great applications.
-      li
-        .cta-item
-          img(src=cdn("#{site.base_url}/images/design/rh-icon-piggybank.svg"))
-          p <strong>Collaborate:</strong> A​sk questions, share ideas, and learn from the passionate Red Hat developer community
+          p Get immediate access to download Red Hat® products
       li
         .cta-item
           img(src=cdn("#{site.base_url}/images/design/rh-icon-cloud.svg"))
-          p <strong>Get Ahead:</strong> ​Enjoy exclusive special offers from Red Hat and enhance your career and industry value through Red Hat certification, training and community activities.
+          p Launch your new apps in the cloud on Red Hat® OpenShift
+      li
+        .cta-item
+          img(src=cdn("#{site.base_url}/images/design/rh-icon-piggybank.svg"))
+          p Offers and discounts on products, services, training, & events
 
 .row
   .large-24.columns
-    h2.home-title.caps We are better, together
+    h2.home-title.caps I'm interested in…
 .row
   .large-6.columns
     p We continue to challenge each other to be better, to move forward. We do this by being part of the Red Hat® community and sharing great ideas.
