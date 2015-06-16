@@ -1,4 +1,4 @@
-.get-started-items {
+.adoption-items {
   margin-bottom: 30px;
   position: relative;
   background:cdn("../images/design/get-started/bg.png") bottom center no-repeat;
@@ -35,7 +35,7 @@
   }
 }
 
-.get-started-content {
+.adoption-content {
   padding-top: 15px;
   text-align: center;
   p {
@@ -51,7 +51,7 @@
   }
 }
 
-a.get-started-example {
+a.adoption-example {
   background:cdn("../images/design/get-started/bg-squares.jpg");
   background-size:cover;
   display: inline-block;
@@ -77,7 +77,7 @@ a.get-started-example {
 }
 
 
-a.get-started-quickstart.button {
+a.adoption-quickstart.button {
   font-size: emCalc(14);
   background:$med-blue;
   width:80%;
@@ -88,7 +88,7 @@ a.get-started-quickstart.button {
   clear:both;
 }
 
-.get-started-item {
+.adoption-item {
   h3 {
     margin: 0;
   }
@@ -177,9 +177,9 @@ ul.toc {
 }
 
 @include tablet-landscape-and-down {
-  .get-started-items {
+  .adoption-items {
     background:none;
-    a.get-started-example {
+    a.adoption-example {
       width: 100%;
       background:cdn("../images/design/get-started/bg-squares.jpg");
       background-size:cover;
@@ -248,7 +248,7 @@ ul.toc {
 
 // Ticket Monster demo styles
 .ticket-monster-items {
-  // @extend .get-started-ticket-monster-bg !optional;
+  // @extend .adoption-ticket-monster-bg !optional;
   margin-bottom: 30px;
   position: relative;
   min-height:200px;

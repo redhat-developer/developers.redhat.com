@@ -82,77 +82,77 @@ Awestruct::Extensions::Pipeline.new do
   extension JBoss::Developer::Connectors.new
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts', 
-                                                          layout: 'get-started-item', 
+                                                          layout: 'adoption-item', 
                                                           output_dir: '/quickstarts/eap',
                                                           excludes: ['_eap-quickstarts/template'],
                                                           product: 'eap')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_brms-quickstarts', 
-                                                          layout: 'get-started-item', 
+                                                          layout: 'adoption-item', 
                                                           output_dir: '/quickstarts/brms',
                                                           excludes: ['_brms-quickstarts/template'],
                                                           product: 'brms')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jdg-quickstarts', 
-                                                          layout: 'get-started-item', 
+                                                          layout: 'adoption-item', 
                                                           output_dir: '/quickstarts/datagrid',
                                                           excludes: ['_jdg-quickstarts/template'],
                                                           product: 'datagrid')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jon-quickstarts', 
-                                                          layout: 'get-started-item', 
+                                                          layout: 'adoption-item', 
                                                           output_dir: '/quickstarts/operationsnetwork',
                                                           excludes: ['_jon-quickstarts/template'],
                                                           product: 'operationsnetwork')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_picketlink-quickstarts', 
-                                                          layout: 'get-started-item', 
+                                                          layout: 'adoption-item', 
                                                           excludes: ['_picketlink-quickstarts/template'],
                                                           experimental: true,
                                                           output_dir: '/quickstarts/picketlink')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_portal-quickstarts', 
-                                                          layout: 'get-started-item', 
+                                                          layout: 'adoption-item', 
                                                           output_dir: '/quickstarts/portal',
                                                           excludes: ['_portal-quickstarts/template'],
                                                           product: 'portal')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_sandbox-quickstarts', 
-                                                          layout: 'get-started-item', 
+                                                          layout: 'adoption-item', 
                                                           excludes: ['_sandbox-quickstarts/template'],
                                                           experimental: true,
                                                           output_dir: '/quickstarts/sandbox')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_wfk-quickstarts', 
-                                                          layout: 'get-started-item', 
+                                                          layout: 'adoption-item', 
                                                           output_dir: '/quickstarts/wfk',
                                                           excludes: ['_wfk-quickstarts/template'],
                                                           product: 'wfk')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_fuse-quickstarts',
-                                                          layout: 'get-started-item',
+                                                          layout: 'adoption-item',
                                                           output_dir: '/quickstarts/fuse',
                                                           excludes: ['_fuse-quickstarts/template'],
                                                           product: 'fuse')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_unifiedpush-quickstarts',
-                                                          layout: 'get-started-item',
+                                                          layout: 'adoption-item',
                                                           output_dir: '/quickstarts/unifiedpush',
                                                           product: 'unifiedpush')
 
-  extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
+  extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'adoption-item', '_jdf-stack'
   extension JBoss::Developer::Extensions::AsciidoctorExtensionRegister.new
   
   extension Aweplug::Extensions::AsciidocExample.new(repository: '_ticket-monster', 
                                                      directory: 'tutorial', 
-                                                     layout:'get-started-item', 
+                                                     layout:'adoption-item', 
                                                      output_dir: 'ticket-monster', 
                                                      additional_excludes: ['ticket-monster.asciidoc'], 
                                                      additional_metadata_keys: ['thumbnail'],
                                                      push_to_searchisko: true)
 
   extension Aweplug::Extensions::Kramdown::Demo.new(url: 'https://raw.githubusercontent.com/jboss-developer/jboss-developer-demos/master/demos.yaml',
-                                                    layout: 'get-started-item',
+                                                    layout: 'adoption-item',
                                                     output_dir: '/demos',
                                                     push_to_searchisko: true)
 

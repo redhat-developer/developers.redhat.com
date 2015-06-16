@@ -30,7 +30,7 @@
           td.format Format
           td.publish-date Publish Date
       tbody
-        tr.material(ng-repeat="item in data.displayedMaterials" class="get-started-placeholder-{{item.fields.sys_type}}")
+        tr.material(ng-repeat="item in data.displayedMaterials" class="adoption-placeholder-{{item.fields.sys_type}}")
           / Topics
           td.topics
             | {{item.fields.sys_tags.join(', ')}}
@@ -56,7 +56,7 @@
 
     ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4(ng-hide="data.layout === 'list'")
       li.material(ng-repeat="item in data.displayedMaterials")
-        div(class="get-started-placeholder-{{item.fields.sys_type}}")
+        div(class="adoption-placeholder-{{item.fields.sys_type}}")
           / Thumbnail
           a(ng-href="{{item.fields.sys_url_view}}")
             img(ng-src="{{item | thumbnailURL}}")
