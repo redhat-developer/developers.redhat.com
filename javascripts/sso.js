@@ -21,7 +21,7 @@ app.sso = function () {
         } else {
             $('li.login').show();
             $('li.logged-in').hide();
-            $('li.login a').on('click',function(e){
+            $('li.login a, a.keycloak-url').on('click',function(e){
                 e.preventDefault();
                 keycloak.login();
             });
