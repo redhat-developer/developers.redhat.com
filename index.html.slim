@@ -11,25 +11,25 @@ description: The simple, modern & productive way to build apps and infrastructur
   .slider#slider(data-pause-on-hover="true" data-timeout="5000")
     .swipe-wrap
         / Commented out until summit - make sure to shift data-index below when going live
-        /  slide - Matt Hicks
-        .slide.slide--matthicks
-          .row
-            .large-8.columns.portrait
-              img(src=cdn("#{site.base_url}/images/slider/homepage_carouselhelloworld_photohicks.png"))
-            .large-16.columns.slide-text
-              .row
-                .large-24.columns
-                  h2.slide__heading Red Hat enterprise Linux
-              .row
-                .large-12.columns
-                  blockquote OpenShift v3 is bringing Linux containers and DevOps together in a comprehensive solution establishing how enterprise applications will be built.
-                  cite
-                    | - Matthew Hicks
-                    small Vice President, Software Engineering<br>Red Hat Inc.
-                .large-12.columns
-                  h3 Develop, Host and Scale your applications in the cloud
-                  h4 Experience what's new in OpenShift v3 with
-                  a.button(hef="http://openshift.com") Hello World
+         / slide - Matt Hicks
+        / .slide.slide--matthicks
+        /   .row
+        /     .large-8.columns.portrait
+        /       img(src=cdn("#{site.base_url}/images/slider/homepage_carouselhelloworld_photohicks.png"))
+        /     .large-16.columns.slide-text
+        /       .row
+        /         .large-24.columns
+        /           h2.slide__heading Red Hat enterprise Linux
+        /       .row
+        /         .large-12.columns
+        /           blockquote OpenShift v3 is bringing Linux containers and DevOps together in a comprehensive solution establishing how enterprise applications will be built.
+        /           cite
+        /             | - Matthew Hicks
+        /             small Vice President, Software Engineering<br>Red Hat Inc.
+        /         .large-12.columns
+        /           h3 Develop, Host and Scale your applications in the cloud
+        /           h4 Experience what's new in OpenShift v3 with
+        /           a.button(hef="http://openshift.com") Hello World
         /  slide - Signup for RedHat Developers
         .slide.slide--redhatdevelopers
           .row
@@ -86,11 +86,9 @@ description: The simple, modern & productive way to build apps and infrastructur
         li.slider-item: a(href="#" data-index="1")
           strong Announcing Red Hat Container Platforms and Tools
         li.slider-item: a(href="#" data-index="2")
-          strong Develop in the Cloud with Java EE
-        li.slider-item: a(href="#" data-index="3")
-          strong DevNation - Updates from the event
-        li.slider-item: a(href="#" data-index="4")
           strong DevNation keynotes live and on demand
+        li.slider-item: a(href="#" data-index="3")
+          strong Develop in the Cloud with Java EE
         li.slider-item.arrow
           a.slider-next(data-direction="next")
             i.fa.fa-arrow-circle-right.fa-2x
