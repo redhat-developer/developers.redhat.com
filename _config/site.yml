@@ -101,7 +101,6 @@ profiles:
     build_threads: 1
     deploy:
       <<: *deploy
-      cdn_path: /static_htdocs/rhd/stage
       path: /stg_htdocs/rhd-stg-main
   
   production:

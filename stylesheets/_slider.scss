@@ -226,13 +226,12 @@
 }
 
 .portrait {
-  display:flex;
+  display:block;
   img {
     width:auto;
     max-width: none;
     position: relative;
     left: -60%;
-    position: absolute;
   }
 }
 
@@ -285,8 +284,6 @@
 
     &:hover, &.slider-pager-active {
       background:$red;
-      padding-left:10px;
-      padding-right:10px;
     }
 
     &.arrow {
