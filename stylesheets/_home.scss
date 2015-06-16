@@ -3,9 +3,10 @@
   & > li {
     display:flex;
     img {
-      margin-top: -25%;
-      margin-bottom: -25%;
-      max-width:350px;
+      height:100px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      max-width:150px;
     }
   }
 }
@@ -77,8 +78,11 @@ h2.home-title {
 
       width: 100%;
       img {
-        margin:  -14% -12% -20% -10%;
         float:left;
+        height:auto;
+        width:20%;
+        margin-right: 20px;
+        max-height:100px;
       }
     }
   }
