@@ -1,10 +1,10 @@
 ---
 layout: base
-primary_section: get-started
+primary_section: Adoption
 ---
 .row.tertiary-nav
   ul.inline-nav
-    - site.nav['get-started'].children.each do |k, v|
+    - site.nav['adoption'].children.each do |k, v|
       li(class="#{secondary_section_class(k,v)}")
         a(href="#{v.url}") #{v.label}
 
