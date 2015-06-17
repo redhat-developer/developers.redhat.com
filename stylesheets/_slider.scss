@@ -263,10 +263,13 @@
     cursor:pointer;
     transition:0.3s;
 
+
     // Flexbox Basics
     display: flex;
     align-items: center;
     flex:3;
+    flex-wrap:wrap;
+    word-wrap: break-word;
 
     // Flexbox w/ Prefixes (http://autoprefixer.github.io/)
     display: -webkit-box;
@@ -281,7 +284,9 @@
     -webkit-flex:3;
     -ms-flex:3;
     flex:3;
-
+    & > a {
+      display: block; /* fixes IE11 flexbox wrapping */
+    }
     // use CSS not() to only apply to the elements you want
     &:not(:last-child) {
       border-right:1px solid #424242;
