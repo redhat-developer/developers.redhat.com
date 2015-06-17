@@ -1,6 +1,6 @@
-:awestruct-layout: solution-get-started
+:awestruct-layout: solution-adoption
 
-### Culture
+### [[culture]]Culture
 Cultural shifts are as important as any other aspect of DevOps.  A successful transformation starts with a culture that breaks down traditional development/operations silos, promotes communication between everyone involved in delivering applications, and emphasizes constant process and product improvement.
 
 #### Mindset
@@ -18,74 +18,80 @@ The key to avoiding this paralysis is understanding the consequences and embraci
 #### Transparency
 Combining siloed teams helps eliminate the pursuit of different—and often conflicting—goals and metrics. Sharing ideas and improvements, no matter where they originate, creates a vital feedback loop for the entire app delivery process.  Standardized tooling to accurately report builds, tests, deployments, changes aid in improving cultural transparency.
 
-link:https://developerblog.redhat.com/category/devops/[Learn more about DevOps culture at our blog.]
+link:https://developerblog.redhat.com/category/devops/[Learn more about DevOps culture at developerblog.redhat.com].
 
 '''
 
-### Automation
-#### Continuous Integration
+### [[automation]]Automation
+#### [[continuous-integration]]Continuous Integration
 The time between the introduction of a software defect and its detection can have a dramatic effect on the elimination of that defect: find the defect soon after its introduction, with the relevant changes fresh in the developer’s mind, and it will be easy to eliminate — find it later, after the details of the change have faded, and the solution can be elusive.
 
 Continuous Integration facilitates the early detection and eradication of software defects: defects that may otherwise go undetected for days, weeks, or months after they were created. Detecting and resolving these problems early in the development process can translate into fewer bugs and shorter timelines.
 
 A continuous integration server, such as Jenkins, Travis, buildbot, Bamboo or Wercker, monitors changes in the repository and identifies the need for an integration build/test and orchestrates the process.
 
-Testing Automation—such as Arquillian, Beaker, or Autotest for applications or Selenium for web apps—to execute integration and end-to-end tests on the build application, again providing test reports as it does so.
+[[integration-testing]]Testing Automation—such as link:http://www.arquillian.org[Arquillian], link:https://beaker-project.org/[Beaker], or link:http://autotest.github.io/[Autotest] for applications or Selenium for web apps—to execute integration and end-to-end tests on the build application, again providing test reports as it does so.
 
 The continuous integration server parses the test reports and provides feedback to the developer. At this point, the developer either implements any necessary defect fixes or continues with the application development.
 
 ##### Get Started
-Get Started with link:#[Jenkins on OpenShift]
-
-Get Started with link:#[Travis and OpenShift]
-
-Introduction to link:#[Arquillian]
-
-
-#### Continuous Delivery
-An environment provisioning tool—such as Red Hat Satellite, Cobbler, Ansible, Puppet, or Chef —to create the environments in which to test the software against one or more versions of an operating system.
+|=======
+|Get Started with link:https://developers.openshift.com/en/managing-continuous-integration.html[Jenkins on OpenShift]
+|Get Started with link:https://hub.openshift.com/quickstarts/26-travis-ci[Travis and OpenShift]
+|Introduction to link:http://arquillian.org/guides/getting_started/[Arquillian]
+|=======
 
 
-Get Started with link:#[Red Hat Satellite]
+#### [[continuous-delivery]]Continuous Delivery
+[[configuration-as-code]][[server-provisioning]]An environment provisioning tool—such as link:/products/satellite[Red Hat Satellite], link:https://access.redhat.com/documentation/en-US/Red_Hat_Network_Satellite/5.3/html/Reference_Guide/ch-cobbler.html[Cobbler], link:http://docs.ansible.com/index.html[Ansible], link:https://access.redhat.com/articles/1138393[Puppet], or link:https://learn.chef.io/learn-the-basics/rhel/[Chef] to create the environments in which to test the software against one or more versions of an operating system.
 
-Get Started with link:#[Cobbler]
-
-Get Started with link:#[Ansible]
-
-Get Started with link:#[Puppet]
-
+|=======
+|link:https://www.redhat.com/en/about/events/expediting-devops-and-continuous-delivery-paas[Expediting DevOps and continuous delivery with PaaS]
+|link:https://www.redhat.com/en/about/events/continuous-delivery-docker-containers-and-java-ee[Continuous delivery with docker containers and Java EE]
+|link:https://www.redhat.com/en/about/events/establishing-continuous-delivery-pipeline-faster-integration[Establishing a continuous delivery pipeline for faster integration]
+|[[container-orchestration]]link:http://www.projectatomic.io[Deploy and Manage Your Docker Containers.]
+|link:http://www.redhat.com/en/about/blog/red-hat-and-google-collaborate-kubernetes-manage-docker-containers-scale[Red Hat and Google Collaborate on Kubernetes to Manage Docker Containers at Scale]
+|link:https://access.redhat.com/articles/1198103[Get Started Orchestrating Containers with Kubernetes]
+|=======
 
 '''
 
-### Tools and Infrastructure
+### [[tools]]Tools and Infrastructure
 #### Code
 Red Hat provides support for multiple versions of C, C++, Java, JavaScript, Node, Python, Ruby and many more languages.
 
-Check out the versions of link:#[Python], link:#[Ruby], link:#[Java] and link:#[JavaScript] available within link:#[Red Hat Software Collections].
+Check out the versions of link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Python], link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Ruby], link:https://access.redhat.com/articles/1299013[Java] and link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[JavaScript] available within link:/products/software-collections[Red Hat Software Collections].
 
-Introduction to link:#[Arquillian]
-
-Seamless integration with link:#[OpenShift] allows you to quickly get up and running with your codebase.
+Seamless integration with link:/products/openshift[OpenShift] allows you to quickly get up and running with your codebase.
 
 #### Build Tools
 Build automation should be advanced enough to eliminate human intervention entirely in the process. To achieve this the build needs to be complete, so that the end result is an artifact that could be installed into a virgin environment and run.. Various approaches can be adopted in migrating to the target build time; for example, the code may offer the option to modularize the build so that only a partial build may be needed for most commits. Then full builds may be run less frequently, maybe nightly or weekly depending on how long they take to execute.
 
-The build manager—such as Apache Ant, Apache Maven to create the application (providing test reports as it does so).
+The build manager—such as link:http://ant.apache.org[Apache Ant], link:http://maven.apache.org[Apache Maven] to create the application (providing test reports as it does so).
 
-Get Started with link:#[JBoss Enterprise Maven Repository]
+|=======
+|Get Started with link:#[JBoss Enterprise Maven Repository]
+|=======
 
 
-#### Containers
+#### [[containers]]Containers
 Deploy a secure, integrated host platform that is designed to run container images with optimizations for scalability, density, and performance.
 
-Build and run image-based containers using the docker service, accessible through the Extras channel as part of a Red Hat Enterprise Linux Server subscription.
+Build and run image-based containers using the docker service, accessible through the link:https://access.redhat.com/solutions/265523[Extras] channel as part of a link:/products/rhel[Red Hat Enterprise Linux] subscription or choose link:/products/atomic[Red Hat Enterprise Linux Atomic Host], a secure, lightweight and minimized footprint operating system that is optimized to run Linux containers.
 
+|=======
+|link:https://www.redhat.com/en/insights/containers[Transform application delivery with containers]
+|link:http://developerblog.redhat.com/2015/03/11/introducing-the-rhel-container-for-rhel-atomic-host/[Learn more about RHEL Atomic] or watch the link:https://www.youtube.com/watch?v=64SigEZyMHw[video].
+|link:https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems]
+|link:http://www.projectatomic.io[Deploy and Manage Your Docker Containers.]
+|link:http://www.redhat.com/en/about/blog/red-hat-and-google-collaborate-kubernetes-manage-docker-containers-scale[Red Hat and Google Collaborate on Kubernetes to Manage Docker Containers at Scale]
+|link:https://access.redhat.com/articles/1198103[Get Started Orchestrating Containers with Kubernetes]
+|=======
 
-
-
-#### Source Control
+#### [[source-control]]Source Control
 While not a new concept, it’s essential that all project source code and build components are maintained in a single repository. The repository must contain not just the source code, but all the assets needed to build, deploy, and test the software; this may include test scripts, property/configuration files, database schema, install scripts, and third-party libraries. Red Hat can provide you with supported versions of git and svn
 
-Get Started with link:#[Git] as part of link:#[Red Hat Software Collections]
-
-Get Started with link:#[Subversion] as part of link:#[Red Hat Software Collections]
+|=======
+|Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaboration.git.html[Git]
+|Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaborating.svn.html[Subversion]
+|=======
