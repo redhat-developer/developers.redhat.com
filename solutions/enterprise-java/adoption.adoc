@@ -20,24 +20,43 @@ Developers can build applications, integrate with other systems, orchestrate usi
 ##### Get Started
 |=======
 |Get Started with link:http://www.jboss.org/products/devstudio/get-started/#!project=devstudio[JBoss Developer Studio]
+|Watch the link:http://www.jboss.org/video/vimeo/95462201[Architecture Overview of JBoss Enterprise Application Platform]
 |Get Started with link:http://www.jboss.org/products/eap/get-started/#!project=eap[JBoss Enterprise Application Platform]
+|Get Started with link:http://www.jboss.org/video/vimeo/44390131[JBoss EAP6 on OpenShift with JBoss Developer Studio]
 |Introduction to link:http://www.feedhenry.com/developer/[FeedHenry]
+|=======
+
+#### [[simplify-deployment]]Simplify Deployment
+[[cloud]][[hybrid]]To deploy seamlessly across on-premise, private-cloud, and public-cloud environments, an application must allow for multiple deployment options from the same code base.
+
+Red Hat JBoss Enterprise Application Platform for xPaaS extends Java&trade; EE application platform capabilities to OpenShift by Red Hat's Platform-as-a-Service (PaaS) solutions to let you do just that. Don't start over from scratch or compromise on enterprise performance. Deploy or move your applications to the cloud quickly, with the simplicity of PaaS.
+
+##### Get Started
+|=======
 |Introduction to link:https://www.openshift.com/xpaas[xPaas]
 |Introduction to link:http://www.openshift.org/#v3[OpenShift]
 |=======
 
+#### [[accelerate-performance]] Accelerate Product Performance
+[[performance]][[jdg]]As transactions from your popular applications grow, data can be hard to access in a timely manner. You could spend more money on additional database licenses or an army of database administrators. Or, you could use Red Hat JBoss Data Grid, which lets you:
+Achieve 3-times-faster application performance.
+Effortlessly process huge volumes of data.
+Scale for high-transaction throughput.
+Concentrate on coding web applications instead of solving scaling problems.
 
-#### [[continuous-delivery]]Continuous Delivery
-[[configuration-as-code]][[server-provisioning]]An environment provisioning tool—such as link:/products/satellite[Red Hat Satellite], link:https://access.redhat.com/documentation/en-US/Red_Hat_Network_Satellite/5.3/html/Reference_Guide/ch-cobbler.html[Cobbler], link:http://docs.ansible.com/index.html[Ansible], link:https://access.redhat.com/articles/1138393[Puppet], or link:https://learn.chef.io/learn-the-basics/rhel/[Chef] to create the environments in which to test the software against one or more versions of an operating system.
+[[thermostat]][[testing]]The best time to figure out how to increase product performance is before you need it.  link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat], part of link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/[Red Hat Software Collections], is an instrumentation tool for the Hotspot JVM, with support for monitoring multiple JVM instances on multiple hosts, optionally in a cloud environment.  Using Thermostat, you can find the bottlenecks in your product and tune it for performance.
 
+[[openjdk]][[shenandoah]]To drive product performance, we need an enterprise class VM to run them on.  As our products grow and we scale to large systems, we need a performant garbage collector to avoid 'Stop the World'.  Shenandoah is Red Hat's ultra high performance garbage collector for OpenJDK.
+
+##### Get Started 
 |=======
-|link:https://www.redhat.com/en/about/events/expediting-devops-and-continuous-delivery-paas[Expediting DevOps and continuous delivery with PaaS]
-|link:https://www.redhat.com/en/about/events/continuous-delivery-docker-containers-and-java-ee[Continuous delivery with docker containers and Java EE]
-|link:https://www.redhat.com/en/about/events/establishing-continuous-delivery-pipeline-faster-integration[Establishing a continuous delivery pipeline for faster integration]
-|[[container-orchestration]]link:http://www.projectatomic.io[Deploy and Manage Your Docker Containers.]
-|link:http://www.redhat.com/en/about/blog/red-hat-and-google-collaborate-kubernetes-manage-docker-containers-scale[Red Hat and Google Collaborate on Kubernetes to Manage Docker Containers at Scale]
-|link:https://access.redhat.com/articles/1198103[Get Started Orchestrating Containers with Kubernetes]
+|Get Started with link:http://icedtea.classpath.org/wiki/Thermostat/UserGuide[Thermostat]
+|Get Started with link:http://openjdk.java.net/[OpenJDK]
+|Learn More about link:http://planet.jboss.org/post/rhel_openjdk_performance_tuning[Tuning OpenJDK]
+|Learn More about link:http://jaxenter.com/red-hat-lifts-lid-on-high-performance-garbage-collector-107419.html[Shenandoah]
+|Read the link:http://openjdk.java.net/jeps/189[JEP for Shenandoah]
 |=======
+
 
 '''
 
