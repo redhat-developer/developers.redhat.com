@@ -1,5 +1,3 @@
-
-
 // Products
 .product {
   .toolbar {
@@ -220,6 +218,95 @@
     }
     i {
       margin-left: 5px;
+    }
+  }
+}
+
+#get-started h2{
+  margin-bottom: 1rem;
+}
+
+#get-started-instructions {
+  #PrerequisitesSection {
+    h4 p{
+      font-weight: 800;
+      color: #252527;
+      font-size: 1.4375rem;
+      margin-bottom: .5rem;
+    }
+    ol {
+      margin-bottom: 2.25rem;
+      p {
+        margin-bottom: 0;
+      }
+    } 
+  }
+  .card {
+    background-color: #3999cb;
+    color: $white;
+    border: none;
+    h4 {
+      color: $white;
+    }
+    @include tablet-landscape-and-down {
+      h4 {
+        padding-top: 15px;
+      }
+    }
+    i {
+      float: right;
+      font-size: .9rem;
+    }
+    .paragraph, .paragraph p {
+      display: inline-block;
+      font-size: .9rem;
+      margin-bottom: 0;
+    }
+  }
+  .step-header {
+    background-color: #3999cb;
+    color: $white;
+    border: none;
+    padding: 5px 15px;
+    margin: 3rem 0;
+    h4 {
+      color: $white;
+      margin-bottom: 0;
+    }
+    .duration {
+      display: inline;
+      font-size: .9rem;
+      margin-left: 10px;
+      bottom: 2px;
+      position: relative;
+      color: #aae3ec;
+      .paragraph, .paragraph p {
+        display: inline;
+        font-size: .9rem;
+      }
+    }
+  }
+  .step-num {
+    color: #aae3ec;
+    display: inline;
+  }
+  ol li p, ul li p{
+    margin-bottom: 1rem;
+  }
+  .content-img img {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    max-width: 540px;
+  }
+  table {
+    width: 100%;
+  }
+  #MoreResources {
+    border: 10px solid #e6e7e8;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    ul li:before{ 
+      display: none;
     }
   }
 }

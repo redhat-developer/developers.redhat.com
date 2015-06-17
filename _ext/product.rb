@@ -93,6 +93,21 @@ module JBoss
                   product.send('has_learn_page=', true)
                 end
 
+                # Add a flag if the product get-started has a partial to include for the set up section
+                if File.exists?('_partials/product-get-started-partial-' + id + '-setup.html.slim')
+                  product.send('has_setup_partial=', true)
+                end
+
+                # Add a flag if the product get-started has a partial to include for the install section
+                if File.exists?('_partials/product-get-started-partial-' + id + '-install.html.slim')
+                  product.send('has_install_partial=', true)
+                end
+
+                # Add a flag if the product get-started has a partial to include for the build section
+                if File.exists?('_partials/product-get-started-partial-' + id + '-build.html.slim')
+                  product.send('has_build_partial=', true)
+                end
+
                 if product.key? 'index'
                   product['index']['desc'] = ::Asciidoctor::Document.new(product['index']['desc'] || product['description']).convert
                 else

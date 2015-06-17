@@ -6,87 +6,93 @@ type: Get Started
 - page.description = "Learn how to install and start using #{page.product.abbreviated_name}."
 = partial 'getstarted-thankyou.html.slim', {'parent' => page}
 
-h2#get-started Get Started
-br
+#get-started-instructions
+  .row
+    .large-17.columns#get-started 
+      h2 Get Started
+    .large-7.columns
+      - if !page.product.skip_installation_instructions
+        = partial "os-selector.html.slim"
 
-- if !page.product.skip_installation_instructions
-  = partial "os-selector.html.slim"  
+  - if page._prerequisites_section
+    .large-24#PrerequisitesSection
+      - if page._prerequisites_section_title
+        h4 #{page._prerequisites_section_title}
+      = page._prerequisites_section  
+  .row
+    .large-8.columns
+      .card
+        .row
+          .small-4.large-4.columns
+            h2.step-num 1.
+          .small-20.large-20.columns
+            h4 Set up your Dev Environment
+        .row
+          .large-24.columns
+            - if page._setup_duration
+              i.fa.fa-clock-o  #{page._setup_duration}
+    .large-8.columns
+      .card
+        .row
+          .small-4.large-4.columns
+            h2.step-num 2.
+          .small-20.large-20.columns
+            h4 Install, Configure, and Verify 
+        .row
+          .large-24.columns
+            - if page._install_duration
+              i.fa.fa-clock-o  #{page._install_duration}
+    .large-8.columns
+      .card
+        .row
+          .small-4.large-4.columns
+            h2.step-num 3.
+          .small-20.large-20.columns
+            h4 Build your first  application 
+        .row
+          .large-24.columns
+            - if page._build_duration
+              i.fa.fa-clock-o  #{page._build_duration}
 
-  h3.divider#installation-instructions Instructions for Installation
-  
-  ol
-    - if page.product.default_download_artifact
-      li: p
-        | Download 
-        a href="#{page.product.default_download_artifact.url}"#{page.product.abbreviated_name} #{page.product.current_version} #{page.product.default_download_artifact.name}
-        | . Or 
-        a href="../download" See all downloads
-        | .
-  
-      li
-        p
-          - if page._jdk_advice
-            = page._jdk_advice
-          - else
-            | Make sure you have a JDK of your choice installed. We recommend OpenJDK or Oracle JDK. 
-  
-      - if page.product.default_download_artifact.type == "installer"
-        li
-          p In Windows or Mac, you can start the installer by double clicking on the JAR file.  In Linux, open a terminal window in the target machine and navigate to where the GUI installer was downloaded.  Launch the GUI installer by executing the following command:
-          p: code
-            | java -jar #{page.product.default_download_artifact.filename}
-      - if page.product.default_download_artifact.type == "zip"
-        li
-          p In Windows or Mac, you can extract the contents of the ZIP archive by double clicking on the ZIP file.  In Linux, open a terminal window in the target machine and navigate to where the ZIP file was downloaded.  Extract the ZIP file by executing the following command:
-          p: code
-            | unzip #{page.product.default_download_artifact.filename}
-      - if page._extra_installation_instructions
-        .extra-installation-instructions
-          = page._extra_installation_instructions
-    - else 
-      li
-        asciidoc:
-          #{page.product.abbreviated_name} is only available through a full Red Hat subscription. Download #{page.product.abbreviated_name} by
-          https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[logging in to the Red Hat Customer Portal]  and downloading it from there.
-    - if page.product.guides['Getting_Started_Guide']
-      p
-        | For more details, view the 
-        a href="#{page.product.guides['Getting_Started_Guide'].formats['html'].url}" #{page.product.guides['Getting_Started_Guide'].name}
-        | .
-    - else
-      p 
-        | For more details, view the 
-        a href="#{page.product.documentation_url}" Product Documentation
-        | .
+  .large-24.step-header
+    h4 
+      .step-num 1.
+      |  Set up your Dev Environment
+      .duration
+        - if page._setup_duration
+          i.fa.fa-clock-o  #{page._setup_duration}
+  - if page._setup_environment
+    .large-24#SetupEnvironment
+      = page._setup_environment
 
-- if !page.product.skip_maven_instructions
-  - if page._configure_apache_maven 
-    - unless page._configure_apache_maven.strip.empty?
-      h3.divider#configure-maven Configure Apache&trade; Maven
-      = page._configure_apache_maven
-  - else 
-    h3.divider#configure-maven Configure Apache&trade; Maven
-    = partial "maven_repository_instructions.adoc"
+  .large-24.step-header
+    h4 
+      .step-num 2.
+      |  Install, Configure, and Verif
+      .duration
+        - if page._install_duration
+          i.fa.fa-clock-o  #{page._install_duration}
+  - if page._install_config_verify
+    .large-24#InstallConfigVerify
+      = page._install_config_verify
 
-- if page._extra_section
-  - if page._extra_section_title
-    h3.divider#ExtraSection #{page._extra_section_title}
-  = page._extra_section
+  .large-24.step-header
+    h4 
+      .step-num 3.
+      |  Build your first JBoss EAP application
+      .duration
+        - if page._setup_duration
+          i.fa.fa-clock-o  #{page._setup_duration}
+  - if page._build_your_app
+    .large-24#BuildYourApp
+      = page._build_your_app
 
-div(ng-app="dcp")
-  .developer-materials(ng-controller="developerMaterialsController")
-    - if page.product.featured_items
-      br
-      h5#try-quickstart Dive in with a quickstart, example or video
-      = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
-      .developer-materials-results data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}'"
-        = partial 'developer-materials-results.html.slim'
+  - if page._extra_section
+    - if page._extra_section_title
+      h3#ExtraSection #{page._extra_section_title}
+    = page._extra_section
 
-      .large-15.more-developer-materials
-        p: a(href="../learn") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
-
-    = javascripts('product-get-started', true) do
-      script src="#{site.base_url}/javascripts/vendor/class.create.js"
-      script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
-      script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"
-
+  - if page._more_resources
+    .large-24#MoreResources
+      h4 Want to know more about what you can do with #{page.product.abbreviated_name}?
+      = page._more_resources  
