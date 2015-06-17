@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: "rh-icons";
-  src: url("./rh-icons/rh-icons.eot");
-  src: url("./rh-icons/rh-icons.eot?#iefix") format("embedded-opentype"),
-       url("./rh-icons/rh-icons.woff") format("woff"),
-       url("./rh-icons/rh-icons.ttf") format("truetype"),
-       url("./rh-icons/rh-icons.svg#rh-icons") format("svg");
+  src: cdn("./rh-icons/rh-icons.eot");
+  src: cdn("./rh-icons/rh-icons.eot?#iefix") format("embedded-opentype"),
+       cdn("./rh-icons/rh-icons.woff") format("woff"),
+       cdn("./rh-icons/rh-icons.ttf") format("truetype"),
+       cdn("./rh-icons/rh-icons.svg#rh-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +16,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "rh-icons";
-    src: url("./rh-icons/rh-icons.svg#rh-icons") format("svg");
+    src: cdn("./rh-icons/rh-icons.svg#rh-icons") format("svg");
   }
 }
 
