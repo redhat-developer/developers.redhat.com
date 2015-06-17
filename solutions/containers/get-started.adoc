@@ -1,0 +1,91 @@
+:awestruct-layout: solution-get-started
+
+### Culture
+Cultural shifts are as important as any other aspect of DevOps.  A successful transformation starts with a culture that breaks down traditional development/operations silos, promotes communication between everyone involved in delivering applications, and emphasizes constant process and product improvement.
+
+#### Mindset
+The most important goal of software development is getting good ideas delivered into users hands as quickly as possible.  In order to achieve this goals, teams responsible for activities such as build, test, deploy, provisioning, administering software need to maintain a mindset that embraces collaboration and transparency.
+
+#### Collaboration
+In traditional IT, the priorities and goals of development and operations teams are often misaligned, causing a wall of confusion. Developers want to move quickly from idea, to code, to production. Operations wants predictable production deployments to remain stable. Developers need rapid change and operations needs stability (and hence a desire for minimal change).
+
+Misaligned goals lead to typical enterprise slowdowns. Add the typical finger pointing between various stakeholders, each protecting the success they are responsible for. This wall between development and operations is cultural and a byproduct of their misaligned goals. It’s also aggravated by the lack of good available tools and processes. To aggravate things further, for many teams, the development and test environments are different from production.
+
+In addition, add the friction between development and operations because of monolithic application development and deployment patterns. It’s harder to perform accurate root cause analysis in monolithic application code which also increases mistrust and fighting between development and operations. As a result of all of these factors, many organizations end up with paralysis, unable to make forward progress.
+
+The key to avoiding this paralysis is understanding the consequences and embracing newer methods and tools.
+
+#### Transparency
+Combining siloed teams helps eliminate the pursuit of different—and often conflicting—goals and metrics. Sharing ideas and improvements, no matter where they originate, creates a vital feedback loop for the entire app delivery process.  Standardized tooling to accurately report builds, tests, deployments, changes aid in improving cultural transparency.
+
+link:https://developerblog.redhat.com/category/devops/[Learn more about DevOps culture at our blog.]
+
+'''
+
+### Automation
+#### Continuous Integration
+The time between the introduction of a software defect and its detection can have a dramatic effect on the elimination of that defect: find the defect soon after its introduction, with the relevant changes fresh in the developer’s mind, and it will be easy to eliminate — find it later, after the details of the change have faded, and the solution can be elusive.
+
+Continuous Integration facilitates the early detection and eradication of software defects: defects that may otherwise go undetected for days, weeks, or months after they were created. Detecting and resolving these problems early in the development process can translate into fewer bugs and shorter timelines.
+
+A continuous integration server, such as Jenkins, Travis, buildbot, Bamboo or Wercker, monitors changes in the repository and identifies the need for an integration build/test and orchestrates the process.
+
+Testing Automation—such as Arquillian, Beaker, or Autotest for applications or Selenium for web apps—to execute integration and end-to-end tests on the build application, again providing test reports as it does so.
+
+The continuous integration server parses the test reports and provides feedback to the developer. At this point, the developer either implements any necessary defect fixes or continues with the application development.
+
+##### Get Started
+Get Started with link:#[Jenkins on OpenShift]
+
+Get Started with link:#[Travis and OpenShift]
+
+Introduction to link:#[Arquillian]
+
+
+#### Continuous Delivery
+An environment provisioning tool—such as Red Hat Satellite, Cobbler, Ansible, Puppet, or Chef —to create the environments in which to test the software against one or more versions of an operating system.
+
+
+Get Started with link:#[Red Hat Satellite]
+
+Get Started with link:#[Cobbler]
+
+Get Started with link:#[Ansible]
+
+Get Started with link:#[Puppet]
+
+
+'''
+
+### Tools and Infrastructure
+#### Code
+Red Hat provides support for multiple versions of C, C++, Java, JavaScript, Node, Python, Ruby and many more languages.
+
+Check out the versions of link:#[Python], link:#[Ruby], link:#[Java] and link:#[JavaScript] available within link:#[Red Hat Software Collections].
+
+Introduction to link:#[Arquillian]
+
+Seamless integration with link:#[OpenShift] allows you to quickly get up and running with your codebase.
+
+#### Build Tools
+Build automation should be advanced enough to eliminate human intervention entirely in the process. To achieve this the build needs to be complete, so that the end result is an artifact that could be installed into a virgin environment and run.. Various approaches can be adopted in migrating to the target build time; for example, the code may offer the option to modularize the build so that only a partial build may be needed for most commits. Then full builds may be run less frequently, maybe nightly or weekly depending on how long they take to execute.
+
+The build manager—such as Apache Ant, Apache Maven to create the application (providing test reports as it does so).
+
+Get Started with link:#[JBoss Enterprise Maven Repository]
+
+
+#### Containers
+Deploy a secure, integrated host platform that is designed to run container images with optimizations for scalability, density, and performance.
+
+Build and run image-based containers using the docker service, accessible through the Extras channel as part of a Red Hat Enterprise Linux Server subscription.
+
+
+
+
+#### Source Control
+While not a new concept, it’s essential that all project source code and build components are maintained in a single repository. The repository must contain not just the source code, but all the assets needed to build, deploy, and test the software; this may include test scripts, property/configuration files, database schema, install scripts, and third-party libraries. Red Hat can provide you with supported versions of git and svn
+
+Get Started with link:#[Git] as part of link:#[Red Hat Software Collections]
+
+Get Started with link:#[Subversion] as part of link:#[Red Hat Software Collections]
