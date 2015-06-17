@@ -1,11 +1,82 @@
-:awestruct-layout: solution-get-started
+:awestruct-layout: solution-adoption
 
-## Extra section title
-Lorem ipsum dolor sit amet
+### [[accelerate]]Accelerate
+#### [[accelerate-development]]Accelerate Development
+Don't let a complex, inflexible, proprietary application infrastructure hinder your developers' productivity. Create applications faster. Deploy them across on-premise, mobile, and cloud environments. And increase application performance.
 
-## Extra section
-Lorem ipsum dolor sit amet, rebum graeci disputationi no pro. Mea ad duis sanctus assentior. Laudem iuvaret pro et, cu ius affert integre. Nec ex possit timeam percipit. Vim ipsum probatus ad.
+With Red Hat Enterprise Java Solutions, you have everything you need to build, run, and manage services for Java EE6 enterprise applications.  Whether you are building an HTML5 mobile product, a highly transactional, distributed application - or anything in between - Red Hat Enterprise Java Solutions have you covered.
 
-Vim te commune voluptua principes. Debet solet salutandi est ad, sit ei simul solet. Et nibh omnium mnesarchum eum, eam illum indoctum persequeris id, ex nominavi inciderint eos. Vis eu insolens phaedrum, usu pericula periculis ex. Nibh probatus inciderint his ei, nec no pertinax reprehendunt, ei discere erroribus temporibus est. Saepe fastidii suscipiantur et sed.
+[[developer-studio]]Developer IDEs-such as link:http://www.jboss.org/products/devstudio/overview/[JBoss Developer Studio] help developers visualize, refactor, and test their code locally.
 
-Vix error volumus forensibus in, cum noluisse concludaturque et. Odio feugiat delicatissimi ut cum, usu ex malis aeterno phaedrum, an eum dicunt facilisis ocurreret. Nec possim scripta explicari ex. Mei fabulas omittam intellegebat eu, id his quas latine imperdiet. Eu semper quodsi expetendis vim, usu dico velit te, tale minim iuvaret sed eu. Quot ignota accusam ad mea. Ne eum porro iudico omittantur.
+[[eap]]JBoss Enterprise Application Platorm (EAP) is a Java EE 6 application server, providing developers not only with all of the necessary plumbing to quickly build enterprise products, but also a light and fast enough platform to run on their laptops allowing rapid development and testing.
+
+[[feedhenry]]The RedHat FeedHenry 3 Mobile Application Platform brings agility, visibility and efficiency to enterprise mobility. This Mobile App Platform embraces collaborative product development across multiple teams and projects and supports development "your way" with  Bring-Your-Own-Tools (BYOT). All of this designed to help you buid your products faster and meet the needs of your mobile customers.
+
+[[xpaas]]JBoss xPaaS services provide the powerful capabilities of JBoss Middleware as cloud based services on OpenShift.
+
+Developers can build applications, integrate with other systems, orchestrate using rules and processes, and then deploy across hybrid environments.
+[[openshift]]OpenShift 3 is built around a core of application containers powered by Docker, with orchestration and management provided by Kubernetes, on a foundation of Atomic and Enterprise Linux. Origin Milestone 5 (M5) is the upstream community project that brings it all together along with extensions, to accelerate application development and deployment.
+
+##### Get Started
+|=======
+|Get Started with link:http://www.jboss.org/products/devstudio/get-started/#!project=devstudio[JBoss Developer Studio]
+|Get Started with link:http://www.jboss.org/products/eap/get-started/#!project=eap[JBoss Enterprise Application Platform]
+|Introduction to link:http://www.feedhenry.com/developer/[FeedHenry]
+|Introduction to link:https://www.openshift.com/xpaas[xPaas]
+|Introduction to link:http://www.openshift.org/#v3[OpenShift]
+|=======
+
+
+#### [[continuous-delivery]]Continuous Delivery
+[[configuration-as-code]][[server-provisioning]]An environment provisioning tool—such as link:/products/satellite[Red Hat Satellite], link:https://access.redhat.com/documentation/en-US/Red_Hat_Network_Satellite/5.3/html/Reference_Guide/ch-cobbler.html[Cobbler], link:http://docs.ansible.com/index.html[Ansible], link:https://access.redhat.com/articles/1138393[Puppet], or link:https://learn.chef.io/learn-the-basics/rhel/[Chef] to create the environments in which to test the software against one or more versions of an operating system.
+
+|=======
+|link:https://www.redhat.com/en/about/events/expediting-devops-and-continuous-delivery-paas[Expediting DevOps and continuous delivery with PaaS]
+|link:https://www.redhat.com/en/about/events/continuous-delivery-docker-containers-and-java-ee[Continuous delivery with docker containers and Java EE]
+|link:https://www.redhat.com/en/about/events/establishing-continuous-delivery-pipeline-faster-integration[Establishing a continuous delivery pipeline for faster integration]
+|[[container-orchestration]]link:http://www.projectatomic.io[Deploy and Manage Your Docker Containers.]
+|link:http://www.redhat.com/en/about/blog/red-hat-and-google-collaborate-kubernetes-manage-docker-containers-scale[Red Hat and Google Collaborate on Kubernetes to Manage Docker Containers at Scale]
+|link:https://access.redhat.com/articles/1198103[Get Started Orchestrating Containers with Kubernetes]
+|=======
+
+'''
+
+### [[tools]]Tools and Infrastructure
+#### Code
+Red Hat provides support for multiple versions of C, C++, Java, JavaScript, Node, Python, Ruby and many more languages.
+
+Check out the versions of link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Python], link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Ruby], link:https://access.redhat.com/articles/1299013[Java] and link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[JavaScript] available within link:/products/software-collections[Red Hat Software Collections].
+
+Seamless integration with link:/products/openshift[OpenShift] allows you to quickly get up and running with your codebase.
+
+#### Build Tools
+Build automation should be advanced enough to eliminate human intervention entirely in the process. To achieve this the build needs to be complete, so that the end result is an artifact that could be installed into a virgin environment and run.. Various approaches can be adopted in migrating to the target build time; for example, the code may offer the option to modularize the build so that only a partial build may be needed for most commits. Then full builds may be run less frequently, maybe nightly or weekly depending on how long they take to execute.
+
+The build manager—such as link:http://ant.apache.org[Apache Ant], link:http://maven.apache.org[Apache Maven] to create the application (providing test reports as it does so).
+
+|=======
+|Get Started with link:#[JBoss Enterprise Maven Repository]
+|=======
+
+
+#### [[containers]]Containers
+Deploy a secure, integrated host platform that is designed to run container images with optimizations for scalability, density, and performance.
+
+Build and run image-based containers using the docker service, accessible through the link:https://access.redhat.com/solutions/265523[Extras] channel as part of a link:/products/rhel[Red Hat Enterprise Linux] subscription or choose link:/products/atomic[Red Hat Enterprise Linux Atomic Host], a secure, lightweight and minimized footprint operating system that is optimized to run Linux containers.
+
+|=======
+|link:https://www.redhat.com/en/insights/containers[Transform application delivery with containers]
+|link:http://developerblog.redhat.com/2015/03/11/introducing-the-rhel-container-for-rhel-atomic-host/[Learn more about RHEL Atomic] or watch the link:https://www.youtube.com/watch?v=64SigEZyMHw[video].
+|link:https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems]
+|link:http://www.projectatomic.io[Deploy and Manage Your Docker Containers.]
+|link:http://www.redhat.com/en/about/blog/red-hat-and-google-collaborate-kubernetes-manage-docker-containers-scale[Red Hat and Google Collaborate on Kubernetes to Manage Docker Containers at Scale]
+|link:https://access.redhat.com/articles/1198103[Get Started Orchestrating Containers with Kubernetes]
+|=======
+
+#### [[source-control]]Source Control
+While not a new concept, it’s essential that all project source code and build components are maintained in a single repository. The repository must contain not just the source code, but all the assets needed to build, deploy, and test the software; this may include test scripts, property/configuration files, database schema, install scripts, and third-party libraries. Red Hat can provide you with supported versions of git and svn
+
+|=======
+|Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaboration.git.html[Git]
+|Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaborating.svn.html[Subversion]
+|=======
