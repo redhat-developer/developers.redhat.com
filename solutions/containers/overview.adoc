@@ -3,27 +3,21 @@
 
 
 == Header
-Containers
+*So, what are containers??*
 
-You'll also find how Red Hat's own culture and processes have been automated while on our DevOps journey. The approach is focused on making it easy to develop, test, deploy, integrate, scale and manage applications. We'll also be sharing insights on culture changes as Red Hat continues on its own DevOps journey.
+Linux containers keep applications and their runtime components together by combining lightweight application isolation with an image-based deployment method. Containers introduce autonomy for applications by packaging apps with the libraries and other binaries on which they depend. This avoids conflicts between apps that otherwise rely on key components of the underlying host operating system. Containers do not contain a(n) (OS) kernel, which makes them faster and more agile than virtual machines. However, it does mean that all containers on a host must use the same kernel.
 
+Survey results - Top 3 container benefits for application developers:
+* Higher quality releases
+* Better application scalability
+* Greater application isolation
+_Base: 194 IT operations and development decision-makers at enterprises in APAC, EMEA, and North America Source: A commissioned study conducted by Forrester Consulting on behalf of Red Hat, January 2015_
 
-== Left Section
-=== Culture
-At its core, DevOps is about culture. DevOps aims at improving communication, collaboration and transparency between developers, operations and their clients.
+== Red Hat Containers
+It’s an apps-based world and developing, deploying and managing software solutions in a secure and scalable architecture is critical for today’s hybrid IT environments.
 
-link:/devops/adoption/#__a_id_culture_a_culture[Learn more on culture...]
+Red Hat Enterprise Linux is firmly established as the world’s most popular commercial distribution of Linux in the enterprise, now supporting more than 1 million customers across the globe. As the world moves to a container-based delivery model for software solutions, the decision is easy for developers looking for an established and trusted platform partner with the introduction of Red Hat Enterprise Linux Atomic Host.
 
+Red Hat helps you accelerate your container development through a collection of development tools and resources.
 
-== Middle Section
-=== Automation
-Learn how treating infrastructure as code and continuous delivery can help you deliver software to production on demand.
-
-link:/devops/adoption/#__a_id_automation_a_automation[Learn more on automation ...]
-
-
-== Right Section
-=== Tools
-Discover everything from developer tooling, source control, and build tools to help create your application.
-
-link:/devops/adoption/#__a_id_tools_a_tools_and_infrastructure[Learn more on tools...]
+link:/containters/adoption[Learn more...]

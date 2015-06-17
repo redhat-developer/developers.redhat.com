@@ -1,105 +1,68 @@
-:awestruct-layout: solution-adoption
+:awestruct-layout: solution-get-started
 
-### [[culture]]Culture
-Cultural shifts are as important as any other aspect of DevOps.  A successful transformation starts with a culture that breaks down traditional development/operations silos, promotes communication between everyone involved in delivering applications, and emphasizes constant process and product improvement.
+## Developing for containers
+### Which use-case is for you?
 
-#### Mindset
-The most important goal of software development is getting good ideas delivered into users hands as quickly as possible.  In order to achieve this goals, teams responsible for activities such as build, test, deploy, provisioning, administering software need to maintain a mindset that embraces collaboration and transparency.
+There are two ways to begin your Red Hat container development, but regardless of approach, your containerized applications will be deployable on Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and OpenShift V3. These tools are provided as a convenience and are optional, not required, to containerizing and certifying your applications.
 
-#### Collaboration
-In traditional IT, the priorities and goals of development and operations teams are often misaligned, causing a wall of confusion. Developers want to move quickly from idea, to code, to production. Operations wants predictable production deployments to remain stable. Developers need rapid change and operations needs stability (and hence a desire for minimal change).
+## 1. Native RHEL development
 
-Misaligned goals lead to typical enterprise slowdowns. Add the typical finger pointing between various stakeholders, each protecting the success they are responsible for. This wall between development and operations is cultural and a byproduct of their misaligned goals. It’s also aggravated by the lack of good available tools and processes. To aggravate things further, for many teams, the development and test environments are different from production.
+Setting up Red Hat containers on Red Hat Enterprise Linux is easy and there are a number of development tools for you to containerize your application and after you install your hypervisor.  For example, all of the Red Hat Software Collections have dockerfiles to help you get started including Python, Ruby, PostgreSQL, MongoDB, Apache server, JBoss Middleware and more.
 
-In addition, add the friction between development and operations because of monolithic application development and deployment patterns. It’s harder to perform accurate root cause analysis in monolithic application code which also increases mistrust and fighting between development and operations. As a result of all of these factors, many organizations end up with paralysis, unable to make forward progress.
+## 2. Off-platform development via the Red Hat Container Development Kit
 
-The key to avoiding this paralysis is understanding the consequences and embracing newer methods and tools.
-
-#### Transparency
-Combining siloed teams helps eliminate the pursuit of different—and often conflicting—goals and metrics. Sharing ideas and improvements, no matter where they originate, creates a vital feedback loop for the entire app delivery process.  Standardized tooling to accurately report builds, tests, deployments, changes aid in improving cultural transparency.
-
-|=======
-|link:https://blog.openshift.com/what-is-devops-really/[What is DevOps Really?]
-|link:https://blog.openshift.com/your-devops-journey-starts-with-business/[Your DevOps Journey Starts With Business]
-|link:http://www.redhat.com/en/about/events/transforming-organizational-culture-through-devops-and-paas[Transforming organizational culture through DevOps and PaaS]
-|link:http://devops.com/2015/06/03/redhat-culture-keeping-devops-faith/[Red Hat Keeping the DevOps Faith]
-|link:http://developerblog.redhat.com/2013/12/10/red-hat-begins-devops-journey/[Red Hat IT Begins Its DevOps Journey]
-|link:http://www.businessinsider.com/red-hat-ceo-it-is-in-fight-for-its-life-2015-2[Red Hat CEO: Today's IT department is in a fight for its life]
-|Learn more about DevOps culture at link:https://developerblog.redhat.com/category/devops/[developerblog.redhat.com].
-|=======
+Red Hat also provides resources for creating RHEL-based containerized applications from non-Red Hat platforms such as Microsoft Windows, Mac, and other Linux development platforms.  In this case, the Red Hat Container Development Kit (see below) utilizes Vagrant to easily set up your environment so that developing on different desktops will have the same experience of containerizing your apps for Red Hat Containers.
 
 '''
 
-### [[automation]]Automation
-#### [[continuous-integration]]Continuous Integration
-The time between the introduction of a software defect and its detection can have a dramatic effect on the elimination of that defect: find the defect soon after its introduction, with the relevant changes fresh in the developer’s mind, and it will be easy to eliminate — find it later, after the details of the change have faded, and the solution can be elusive.
+#### Red Hat Container Developer Kit - set up your container dev environment
 
-Continuous Integration facilitates the early detection and eradication of software defects: defects that may otherwise go undetected for days, weeks, or months after they were created. Detecting and resolving these problems early in the development process can translate into fewer bugs and shorter timelines.
+The Red Hat Container Developer Kit (CDK) is a collection of developer tools, Vagrantfiles and plug-ins, RHEL images, and documentation.  This collection will enable application developers to more easily create container-based applications for use with Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, or OpenShift V3. Rather than starting from scratch, developers who are using Windows, Mac, Fedora, and other Linux distributions can take advantage of pre-configured CDK images and pre-tested Vagrant files to make installing Red Hat Enterprise Linux containers and developing container-based applications as quick and easy as possible. Technology partners that have joined the Container Zone have access CDK content.
 
-A continuous integration server, such as Jenkins, Travis, buildbot, Bamboo or Wercker, monitors changes in the repository and identifies the need for an integration build/test and orchestrates the process.
+****
+*Red Hat Enterprise Linux Vagrant Boxes*
+Red Hat Enterprise Linux Vagrant Boxes are Red Hat Enterprise Linux system install images pre-configured for use with Vagrant.  They are being made available for Red Hat Enterprise Linux 7 and Red Hat Enterprise Linux Atomic Host, both available in formats for VirtualBox and link:http://www.google.com/url?q=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FLibvirt&sa=D&sntz=1&usg=AFQjCNEG3Iv26RkgNn1T1dJ02ClE0i90ZQ[libvirt].
 
-[[integration-testing]]Testing Automation—such as link:http://www.arquillian.org[Arquillian], link:https://beaker-project.org/[Beaker], or link:http://autotest.github.io/[Autotest] for applications or Selenium for web apps—to execute integration and end-to-end tests on the build application, again providing test reports as it does so.
+Initial setup requires a developer to (1) install Vagrant on their development machine (e.g. their laptop) and to then (2) download the appropriate Vagrant Box along with any of our recommended Vagrantfiles and plug-ins.  After the two initial setup steps are complete - running a simple “vagrantup” command automatically installs and configures the Red Hat Enterprise Linux container host.
 
-The continuous integration server parses the test reports and provides feedback to the developer. At this point, the developer either implements any necessary defect fixes or continues with the application development.
+*Subscription Manager Vagrant registration plug-in*
+The subscription Manager plug-in automatically registers the Red Hat Enterprise Linux container host with the Red Hat Customer Portal when the “vagrant up” command is run and (then) un-registers the container host whenever you vagrant halt or vagrant destroy.
 
-##### Get Started
-|=======
-|Get Started with link:https://developers.openshift.com/en/managing-continuous-integration.html[Jenkins on OpenShift]
-|Get Started with link:https://hub.openshift.com/quickstarts/26-travis-ci[Travis and OpenShift]
-|Introduction to link:http://arquillian.org/guides/getting_started/[Arquillian]
-|=======
+*Vagrant Atomic plug-in*
+As Atomic Host uses a different update model from a traditional Linux distribution, it needs to be handled slightly differently by Vagrant. As a result, when using Atomic Host as a Vagrant Guest, we highly recommend installing this plugin.
 
+*Steps for getting the CDK:*
+. Use (or get) your RHEL Developer Subscription to get access to the CDK.
+. View the CDK installation guide that’s right for you: Windows, Mac, Linux.
+  .. Get the Vagrant boxes for RHEL 7 and/or Atomic host
+  .. Get Vagrant
+  .. Get the CDK zip file
 
-#### [[continuous-delivery]]Continuous Delivery
-[[configuration-as-code]][[server-provisioning]]An environment provisioning tool—such as link:/products/satellite[Red Hat Satellite], link:https://access.redhat.com/documentation/en-US/Red_Hat_Network_Satellite/5.3/html/Reference_Guide/ch-cobbler.html[Cobbler], link:http://docs.ansible.com/index.html[Ansible], link:https://access.redhat.com/articles/1138393[Puppet], or link:https://learn.chef.io/learn-the-basics/rhel/[Chef] to create the environments in which to test the software against one or more versions of an operating system.
+****
 
-|=======
-|link:https://www.redhat.com/en/about/events/expediting-devops-and-continuous-delivery-paas[Expediting DevOps and continuous delivery with PaaS]
-|link:https://www.redhat.com/en/about/events/continuous-delivery-docker-containers-and-java-ee[Continuous delivery with docker containers and Java EE]
-|link:https://www.redhat.com/en/about/events/establishing-continuous-delivery-pipeline-faster-integration[Establishing a continuous delivery pipeline for faster integration]
-|[[container-orchestration]]link:http://www.projectatomic.io[Deploy and Manage Your Docker Containers.]
-|link:http://www.redhat.com/en/about/blog/red-hat-and-google-collaborate-kubernetes-manage-docker-containers-scale[Red Hat and Google Collaborate on Kubernetes to Manage Docker Containers at Scale]
-|link:https://access.redhat.com/articles/1198103[Get Started Orchestrating Containers with Kubernetes]
-|=======
+#### Development tools for containers
 
-'''
+The Red Hat Enterprise Linux developer tools makes it easy to access industry-leading developer tools, instructional resources, and an ecosystem of experts to help developers maximize productivity in building great Linux applications.  Please review this section as the options have greatly expanded recently.
 
-### [[tools]]Tools and Infrastructure
-#### Code
-Red Hat provides support for multiple versions of C, C++, Java, JavaScript, Node, Python, Ruby and many more languages.
+*Red Hat Developer Toolset*
+The Red Hat Developer Toolset enables developers to take advantage of the latest versions of GNU Compiler Collection (GCC), Eclipse, and more as they build, test, and deploy applications for RHEL 7.
 
-Check out the versions of link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Python], link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Ruby], link:https://access.redhat.com/articles/1299013[Java] and link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[JavaScript] available within link:/products/software-collections[Red Hat Software Collections].
+* Learn about the GNU Compiler Collection (GCC) link:https://engineering.redhat.com/pnt/p-432439/RH_Developer_...sw_US_web.pdf[toolchains] available in Red Hat Developer Toolset.
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/3.0_Release_Notes/index.html[Red Hat Developer Toolset 3.0]
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/index.html[Installing and Using] Red Hat Developer Toolset
 
-Seamless integration with link:/products/openshift[OpenShift] allows you to quickly get up and running with your codebase.
+*Red Hat Software Collections*
+Red Hat Software Collections (RHSCL) includes frequently updated sets of scripting languages, databases, web servers and more.  These give you common development stacks for supporting both RHEL 6 and 7.
 
-#### Build Tools
-Build automation should be advanced enough to eliminate human intervention entirely in the process. To achieve this the build needs to be complete, so that the end result is an artifact that could be installed into a virgin environment and run.. Various approaches can be adopted in migrating to the target build time; for example, the code may offer the option to modularize the build so that only a partial build may be needed for most commits. Then full builds may be run less frequently, maybe nightly or weekly depending on how long they take to execute.
+* A detailed description of the Software Collections for link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[RHEL 7]
+* An link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Developer_Guide/index.html[introduction] to application development tools in Red Hat Enterprise Linux 7
+* SystemTap link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SystemTap_Beginners_Guide/index.html[Beginners Guide]
+* We now have link:https://github.com/sclorg/rhscl-dockerfiles[dockerfiles] for Red Hat Software Collections (RHSCL), helping developers to rapidly build and deploy containerized applications. Available for both Red Hat Enterprise Linux 6 and Red Hat Enterprise Linux 7, there are even a few that combine Apache HTTP Server and your favorite scripting language.  These are also now included as you install RHSCL components.
+* Read link:/products/rhel[more] about RHEL development tools.
 
-The build manager—such as link:http://ant.apache.org[Apache Ant], link:http://maven.apache.org[Apache Maven] to create the application (providing test reports as it does so).
+*Containerizing with JBoss*
 
-|=======
-|Get Started with link:#[JBoss Enterprise Maven Repository]
-|=======
+* JBoss Projects and Docker
+  We publish our images under the official link:https://registry.hub.docker.com/repos/jboss/[jboss organization]. Every image is built from Dockerfiles available from the repositories in our link:https://github.com/jboss-dockerfiles[GitHub organization]. Images are linked to each other: If an image we’re base on is modified, we rebuild our image to provide you the fresh image that you deserve.
 
-
-#### [[containers]]Containers
-Deploy a secure, integrated host platform that is designed to run container images with optimizations for scalability, density, and performance.
-
-Build and run image-based containers using the docker service, accessible through the link:https://access.redhat.com/solutions/265523[Extras] channel as part of a link:/products/rhel[Red Hat Enterprise Linux] subscription or choose link:/products/atomic[Red Hat Enterprise Linux Atomic Host], a secure, lightweight and minimized footprint operating system that is optimized to run Linux containers.
-
-|=======
-|link:https://www.redhat.com/en/insights/containers[Transform application delivery with containers]
-|link:http://developerblog.redhat.com/2015/03/11/introducing-the-rhel-container-for-rhel-atomic-host/[Learn more about RHEL Atomic] or watch the link:https://www.youtube.com/watch?v=64SigEZyMHw[video].
-|link:https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems]
-|link:http://www.projectatomic.io[Deploy and Manage Your Docker Containers.]
-|link:http://www.redhat.com/en/about/blog/red-hat-and-google-collaborate-kubernetes-manage-docker-containers-scale[Red Hat and Google Collaborate on Kubernetes to Manage Docker Containers at Scale]
-|link:https://access.redhat.com/articles/1198103[Get Started Orchestrating Containers with Kubernetes]
-|=======
-
-#### [[source-control]]Source Control
-While not a new concept, it’s essential that all project source code and build components are maintained in a single repository. The repository must contain not just the source code, but all the assets needed to build, deploy, and test the software; this may include test scripts, property/configuration files, database schema, install scripts, and third-party libraries. Red Hat can provide you with supported versions of git and svn
-
-|=======
-|Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaboration.git.html[Git]
-|Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaborating.svn.html[Subversion]
-|=======
+* Browse the link:http://www.jboss.org/docker/[list] of available docker images
