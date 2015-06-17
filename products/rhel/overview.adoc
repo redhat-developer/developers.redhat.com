@@ -5,7 +5,13 @@
 
 == Overview
 
-Red Hat Enterprise Linux 7 redefines the enterprise operating system and how applications interact with it to speed application delivery across physical, virtual, and cloud environments using lightweight, portable containers. With Red Hat Enterprise Linux 7, you gain the flexibility to quickly adapt to demands for business agility and IT efficiency on a stable foundation known for its mission-critical reliability and military-grade security.
+When developing applications for Red Hat Enterprise Linux®, developers have two major tools chains to utilize.  
 
-If you're building device drivers or need tools that will be supported for 10 years, the Red Hat Enterprise Linux base tool chain will be right for you. These include gcc 4.8, Python 2.7, Ruby 2.0, PHP 5.4, Perl 5.16, MariaDB, PostgreSQL 9.2, and Apache 2.4.
+First, Red Hat Enterprise Linux has a base tool chain that are included with the same support lifecycle.  If you’re building device drivers or need tools that will be supported for 10 years, the Red Hat Enterprise Linux base tool chain will be right for you. With RHEL 7, these include gcc 4.8, Python 2.7, Ruby 2.0, PHP 5.4, Perl 5.16, MariaDB, PostgreSQL 9.2, and Apache 2.4.
+
+Second, for developers who are looking for updated tools, Red Hat® Software Collections and Red Hat Developer Toolset deliver the latest stable versions of dynamic languages, open source databases, web development tools, and other important development resources that can be deployed alongside those included in the Red Hat Enterprise Linux® base tool chain. Red Hat Developer Toolset (for gcc development) and Red Hat Software Collections (for scripting languages, databases, etc.) are available via select Red Hat Enterprise Linux subscriptions, and are updated yearly with two- and three-year life cycles (respectively) to allow rapid innovation without sacrificing stability. 
+
+Red Hat Developer Toolset and Red Hat Software Collections (RHSCL) allow you to build and concurrently install multiple versions of the same software components on your system. Packages built using software collections technology do not overwrite system files and can depend on other software collections.  In addition, dockerfiles are available for each Software Collection component for developing in containers, and are identical to the development stacks available on OpenShift.  This means you can develop or deploy on either Red Hat Enterprise Linux or OpenShift.
+
+For details, visit the http://developers.redhat.com/products/developertoolset/overview/[Red Hat Developer Toolset] and Red Hat Software Collections sections.
 
