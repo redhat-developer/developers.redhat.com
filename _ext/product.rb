@@ -92,6 +92,9 @@ module JBoss
                 if File.exists?('./products/' + id + '/learn.html.slim')
                   product.send('has_learn_page=', true)
                 end
+                if File.exists?('./products/' + id + '/community.html.slim')
+                  product.send('has_community_page=', true)
+                end
 
                 if product.key? 'index'
                   product['index']['desc'] = ::Asciidoctor::Document.new(product['index']['desc'] || product['description']).convert
