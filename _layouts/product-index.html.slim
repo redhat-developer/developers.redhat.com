@@ -32,13 +32,11 @@ layout: technology-base
                 = product['index'].desc
                 p
                   strong
-                  - if product.default_download_artifact && product.current_version
                     a(href="#{site.base_url}/products/#{product.id}/download/")
                       |  DOWNLOADS
                   - solutions = site.solutions.select {|_,s| s.related_products.include? product.id}
                   - unless solutions.empty?
-                    - if product.default_download_artifact && product.current_version
-                      | &nbsp;&nbsp;&#124;&nbsp;&nbsp;
+                    | &nbsp;&nbsp;&#124;&nbsp;&nbsp;
                     | SEE IT IN ACTION:&nbsp;
                     - solutions.each_with_index do |(_,solution), i|
                       a(href="#{site.base_url}/#{solution.id}")
