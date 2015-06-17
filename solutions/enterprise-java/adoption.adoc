@@ -50,6 +50,9 @@ Concentrate on coding web applications instead of solving scaling problems.
 
 ##### Get Started 
 |=======
+|Watch a link:http://developers.redhat.com/video/vimeo/95291413[JBoss Data Grid Overview]
+|Learn more about link:http://developers.redhat.com/video/vimeo/28201194[Leveraging JBoss Data Grid as a local cache]
+|Learn more on link:https://developer.jboss.org/wiki/SharingHTTPSessionsWithInfinispan[Sharing HTTPS Sessions using JBoss Data Grid]
 |Get Started with link:http://icedtea.classpath.org/wiki/Thermostat/UserGuide[Thermostat]
 |Get Started with link:http://openjdk.java.net/[OpenJDK]
 |Learn More about link:http://planet.jboss.org/post/rhel_openjdk_performance_tuning[Tuning OpenJDK]
@@ -60,42 +63,102 @@ Concentrate on coding web applications instead of solving scaling problems.
 
 '''
 
-### [[tools]]Tools and Infrastructure
-#### Code
-Red Hat provides support for multiple versions of C, C++, Java, JavaScript, Node, Python, Ruby and many more languages.
+### [[integrate]]Integrate
+#### [[patterns]]Pattern Based Integrations
+Systems integrations is a challenge for all enterprise systems. How do we connect our new applications with our old; how do we connect different teams to create cumulative products; how do we manage all of this?
 
-Check out the versions of link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Python], link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Ruby], link:https://access.redhat.com/articles/1299013[Java] and link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[JavaScript] available within link:/products/software-collections[Red Hat Software Collections].
+No reason to reinvent the world.  There are well known and defined link:http://www.enterpriseintegrationpatterns.com/[Enterprise Integration Patterns].  As developers, we need tools that make using these patterns easy and predictable so we can continue delivering business value.
+ 
+Using Apache Camel and JBoss Fuse, you will be able to quickly, easily, and confidently integrate your legacy systems.
 
-Seamless integration with link:/products/openshift[OpenShift] allows you to quickly get up and running with your codebase.
-
-#### Build Tools
-Build automation should be advanced enough to eliminate human intervention entirely in the process. To achieve this the build needs to be complete, so that the end result is an artifact that could be installed into a virgin environment and run.. Various approaches can be adopted in migrating to the target build time; for example, the code may offer the option to modularize the build so that only a partial build may be needed for most commits. Then full builds may be run less frequently, maybe nightly or weekly depending on how long they take to execute.
-
-The build manager—such as link:http://ant.apache.org[Apache Ant], link:http://maven.apache.org[Apache Maven] to create the application (providing test reports as it does so).
-
+##### Get Started 
 |=======
-|Get Started with link:#[JBoss Enterprise Maven Repository]
-|=======
-
-
-#### [[containers]]Containers
-Deploy a secure, integrated host platform that is designed to run container images with optimizations for scalability, density, and performance.
-
-Build and run image-based containers using the docker service, accessible through the link:https://access.redhat.com/solutions/265523[Extras] channel as part of a link:/products/rhel[Red Hat Enterprise Linux] subscription or choose link:/products/atomic[Red Hat Enterprise Linux Atomic Host], a secure, lightweight and minimized footprint operating system that is optimized to run Linux containers.
-
-|=======
-|link:https://www.redhat.com/en/insights/containers[Transform application delivery with containers]
-|link:http://developerblog.redhat.com/2015/03/11/introducing-the-rhel-container-for-rhel-atomic-host/[Learn more about RHEL Atomic] or watch the link:https://www.youtube.com/watch?v=64SigEZyMHw[video].
-|link:https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems]
-|link:http://www.projectatomic.io[Deploy and Manage Your Docker Containers.]
-|link:http://www.redhat.com/en/about/blog/red-hat-and-google-collaborate-kubernetes-manage-docker-containers-scale[Red Hat and Google Collaborate on Kubernetes to Manage Docker Containers at Scale]
-|link:https://access.redhat.com/articles/1198103[Get Started Orchestrating Containers with Kubernetes]
+|Getting Started with link:http://ait2.iit.uni-miskolc.hu/oktatas/lib/exe/fetch.php?id=tanszek%3Aoktatas%3Ainformacios_rendszerek_integralasa%3Ainformatikai_rendszerek_epitese&cache=cache&media=tanszek:oktatas:informacios_rendszerek_integralasa:camelinaction.pdf[Apache Camel - free eBook]
+| Watch link:http://www.jboss.org/video/vimeo/77941255[Getting Started with JBoss Fuse Works]
+|Watch link:http://www.jboss.org/video/vimeo/84674508[Loan Broker Demo]
+|Get started with an link:https://github.com/FuseByExample/HelloCamel[Apache Camel OSGi example]
+|Get Started with link:https://www.jboss.org/products/fuse/resources/#demos[Fuse Demos]
 |=======
 
-#### [[source-control]]Source Control
-While not a new concept, it’s essential that all project source code and build components are maintained in a single repository. The repository must contain not just the source code, but all the assets needed to build, deploy, and test the software; this may include test scripts, property/configuration files, database schema, install scripts, and third-party libraries. Red Hat can provide you with supported versions of git and svn
+#### [[connectors]]Multiple Connectors
+Most enterprise systems are not simple or easy to integrate.  You have some mainframe systems, some batch systems, maybe even some systems in different technology stacks.  Not to mention the newer systems with a whole variety of integration points and third party systems.  How to integrate all of those easily and securely?  Use the deep set of connectors in JBoss Fuse to help you.
 
-|=======
-|Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaboration.git.html[Git]
-|Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaborating.svn.html[Subversion]
-|=======
+A Fuse Connector provides easy integration of your applications inside the Enterprise as well as externally by providing a uniform endpoint interface and acting as connectors to all other systems.  
+
+##### Get Started
+|======
+|Learn about link:http://www.jboss.org/products/fsw/connectors/[Available Connectors]
+|Get Started with the link:http://wei-meilin.blogspot.tw/2014/11/jboss-fuse-connecting-to-twitter-and.html[Twitter Connector Example]
+|======
+
+#### [[data]]Connecting & Securing Disparate Data
+Data is always a challenge.  Whether it is just different teams iterating at different cadences with different data needs or different systems with a need for a master data set that doesn’t exist - or anything in between - JBoss Data Services has you covered.  Do you find yourself writing code to process those mainframe data reports, look up the data in your database, and combine with a query to a rest service?  All of that code is fragile - any number of data changes and you are broke.  Why suffer when you can introduce a simple abstraction tier - without code - to manage this for you?
+
+JBoss Data Virtualization is a data integration solution that sits in front of multiple data sources and allows them to be treated as a single source, delivering the right data, in the required form, at the right time to any application and/or user.  Additionally, developers can build powerful transformations and relationships in their IDE using common metadata and semantics.  Once those models are ready for delivery, you can apply role based data access, security and auditing policies regardless of data source types like a data firewall.
+
+##### Get Started
+|======
+|Learn more about link:https://planet.jboss.org/post/data_virtualization_primer_the_concepts[Data Virtualization Concepts]
+|Get Started with link:https://github.com/teiid/teiid-quickstarts/tree/master/webservices-as-a-datasource[Services as a Datasource]
+|Learn more about link:https://planet.jboss.org/post/moving_to_data_services_for_microservices[Moving Data to MicroServices]
+|======
+
+'''
+
+### [[automate]]Automate
+#### [[business-rules]]Business Rule Management
+Business rules management (BRM) technologies have emerged as a powerful approach to building agile business solutions, fostering true collaboration between business and IT stakeholders. Instead of having these business rules written in code that has a longer lifecycle for change and a different skillset, it would be ideal to have these rules outside of the code base in a platform that allowed IT and business collaboration, without exposing risk from untesting scenarios.
+
+A platform that integrates process and decision management, coupled with simple tools for both business experts and developers, makes it easy for project stakeholders to collaborate.
+
+JBoss BRM provides a suite that is supports collaboration between developers and business stake holders, allowing a safe environment for rapid adjustment of business critical rules.
+
+##### Get Started
+|======
+|Get Started with link:https://github.com/eschabell/brms-coolstore-demo[BRMS Cool Store Demo]
+|Start Learning with link:http://bpmworkshop-onthe.rhcloud.com/workshops.html#/[Online BRMS Workshop]
+|Advance your rules with link:http://www.schabell.org/search/label/Tips%26Tricks[Business Rules Tips and Tricks]
+|======
+
+#### [[complex-event]]Complex Event Processing
+Managing and responding to events is critical to business functionality.  Get a payment to process?  Well process it.  Schedule a package for delivery?  Well, find a truck for it.
+
+But then reality hits.  What if you receive two payments from different locations in the world in a small window - is it fraud detection?  What if the package you are shipping is temperature sensitive, it is the middle of summer, and not only is there construction but there is a major accident on a critical highway?
+
+Complex events are the reality of the world and the handling of them separates the leaders from the rest of the pack. 
+
+Complex event processing (CEP) searches for these event patterns and executes business rules that make active decisions in response to those events.  
+
+Using event-based logic delivers in-the-moment decision-making and adds business value.
+
+##### Get Started
+|======
+|Get Started with link:https://github.com/jboss-developer/jboss-brms-quickstarts/tree/6.1.x/helloworld-cep[Hello World CEP Example]
+|Learn with use cases with link:http://developers.redhat.com/video/vimeo/30743896[CEP with JBoss]
+|======
+
+#### [[bpm]]Business Process Management
+Change is the new constant and agile business applications are key to remaining competitive. Let the people who understand the business make and change the rules — without involving IT.
+
+Business process management (BPM) has emerged as a powerful approach to building agile business solutions, fostering true collaboration between business and IT stakeholders.  Whether you are modeling your call center flow or the build out of your inventory check system, BPM is there for you.
+
+A platform that integrates this business process and decision management, coupled with simple tools for both business experts and developers to work and validate makes it easy for project stakeholders to collaborate.
+
+##### Get Started
+|======
+|Get Started with link:http://planet.jboss.org/post/modern_bpm_data_integration_with_jboss_bpm_travel_agency_demo[Travel Agency Demo with BPM, code and videos]
+|Start Learning with link:http://bpmworkshop-onthe.rhcloud.com/workshops.html#/[Online BPM Workshop]
+|Keep Learning with link:http://www.schabell.org/2014/07/redhat-jboss-bpmsuite-product-demos-6.0.2-updated.html[More BPM code examples]
+|======
+
+#### [[bam]]Business Activity Management
+Enterprises run on business processes.  Once these business processes are deployed, organizations need to monitor how they are impacting their business. Business Activity Monitoring (BAM) is a term commonly used for monitoring BPM and other systems generating business events and data within an enterprise. Red Hat JBoss BPM Suite includes BAM capabilities that focus on the graphical presentation of business and process metrics along with the ability to flexibly draw data from a variety of sources.
+
+It is not unusual for Red Hat JBoss BPM Suite developers to get started with BAM using data drawn from the BPM execution engine. However, when monitoring the impact of business processes, access to data via JDBC data sources and flat files, can be tremendously valuable and is a capability built into Red Hat JBoss BPM Suite business activity monitoring.
+
+##### Get Started
+|======
+|Get Started with a sample link:https://github.com/eschabell/bpms-bam-dashboard[BAM Dashboard]
+|Learn More about link:http://www.schabell.org/2014/03/redhat-jboss-bpmsuite-change-bam-permissions.html[Setting BAM Permissions]
+|Learn More about how link:https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_BPM_Suite/6.0/html/Getting_Started_Guide/chap-BAM.html[BPM and BAM work together]
+|======
