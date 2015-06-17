@@ -2,8 +2,8 @@
  * Dependencies: vendor/jquery.resize.js
  */
 
-/* 
-  Website Init 
+/*
+  Website Init
 */
 app.init = function() {
   /*
@@ -24,7 +24,7 @@ app.init = function() {
       moreDownloadsLink.next('table').toggle();
     })
   }
-  
+
   /*
    * Product Page demo toggle
    */
@@ -76,7 +76,7 @@ app.stickyNav = function(className, headerElement) {
   if(!nav.length) {
     return; // Don't need to go any further, this isn't the faq page
   }
-  
+
   var html = "",
       top = nav.offset().top,
       select = $("<select>").append('<option selected value="">Choose a section</option>');
@@ -145,9 +145,9 @@ app.stickyFooter = function() {
 app.sideNav = function() {
 
   // hide the active one
-  var sideItem = $('.side-nav li.active');
+  // var sideItem = $('.side-nav li.active');
 
-  $('.side-nav-toggle a').text(sideItem.text());
+  // $('.side-nav-toggle a').text(sideItem.text());
   //
   $('.side-nav-toggle a').on('click',function(e) {
     e.preventDefault();

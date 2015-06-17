@@ -19,7 +19,8 @@ h1.logo {
   a {
     font-weight: 100;
     letter-spacing:-2px;
-    strong {
+    &.nav-toggle {
+      display: none;
     }
   }
 }
@@ -144,8 +145,8 @@ footer.bottom {
               margin-left: 5px;
             }
           }
-        } 
-      li:first-child { 
+        }
+      li:first-child {
         margin-left: 0;
       }
     }
@@ -163,7 +164,7 @@ footer.bottom {
       }
     }
   }
-  @media (max-width: 970px) {
+  @include tablet-portrait-and-down {
     .rh-logo{
       max-height: 31px;
     }
@@ -367,55 +368,6 @@ i.jd-redhat:before {
   display: inline-block;
 }
 
-// Mobile Slide out
-body.nav-open {
-  header.main h1.logo {
-    visibility: hidden; // hide the logo so it doesn't overlap the X
-  }
-  @include tablet-portrait-and-down {
-    overflow-x:hidden;
-    .site-wrapper {
-      // left: 85%;
-      @include transform(translateX(85%) translateZ(0));
-    }
-    i.nav-toggle {
-      right:auto;
-      // left:45px;
-      left: 15%;
-      margin-left: -43px;
-      top:1px !important;
-      &:before {
-        content: '×';
-        font-size: 4em;
-        line-height: 0.6em;
-      }
-    }
-    nav.top-bar {
-      // This allows for a consistent close button area
-      // regardless of device width
-      // margin-left: -60px;
-      // padding-left: 60px;
-      // width:100%;
-    }
-    .sub-nav {
-      top:0;
-    }
-  }
-}
-.nav-toggle {
-  &:before {
-    display: block;
-    content: "\f0c9";
-    font-size:emCalc(40);
-    width: 40px;
-    height: 40px;
-    speak:none;
-    font-family: 'FontAwesome';
-    font-style:normal;
-  }
-  display: none;
-}
-
 .site-wrapper {
   @include transition(all 0.3s);
   position: relative;
@@ -499,6 +451,14 @@ ul.footer-nav {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  @include tablet-landscape-and-down {
+    // stack
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -webkit-flex-direction:column;
+        -ms-flex-direction:column;
+            flex-direction:column;
+  }
 }
 
 
@@ -520,6 +480,7 @@ ul.footer-nav {
     h4 {
       display: none;
     }
+
     h1 {
       text-align: center;
       &.logo {

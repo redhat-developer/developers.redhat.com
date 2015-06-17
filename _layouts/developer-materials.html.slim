@@ -9,7 +9,7 @@ div(ng-app="dcp")
     .developer-materials-main.text-content
       h2.divider#featured Featured
       = partial('developer-materials-featured.html.slim', {'featured_items' => site.featured_items})
-      .developer-materials-results
+      .developer-materials-results-wrapper
         = partial 'developer-materials-results.html.slim'
     .space
 

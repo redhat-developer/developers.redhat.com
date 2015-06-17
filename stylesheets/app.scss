@@ -6,6 +6,7 @@
 @import "fonts/fonts";
 @import "colours";
 @import "foundation/components/global"; // *always required
+$include-html-global-classes: false; // fix for our version of ruby - https://github.com/zurb/foundation/issues/5989
 @import "foundation/components/grid";
 
 // @import "foundation/components/visibility";
@@ -1566,9 +1567,6 @@ span.asterisk {
   }
 }
 
-// Mobile!
-@import "mobile";
-
 // View More link
 .moreinfolink {
   padding-top: 15px;
@@ -1984,3 +1982,6 @@ label.inline{
 [class*="column"] + [class*="column"]:last-child {
   float:left;
 }
+
+// Mobile!
+@import "mobile";
