@@ -33,8 +33,16 @@ layout: solution
 
     - if page._header
       .row
-        .large-24.columns
-          = page._header
+        div
+        - if page._side_call_out
+          .large-12.columns
+            = page._header
+        
+          .large-12.columns.panel
+            = page._side_call_out
+        - else
+          .large-24.columns
+            = page._header          
 
     - if page._left_section && page._middle_section && page._right_section
       .row.solutions-body
@@ -60,6 +68,21 @@ layout: solution
           p.small
             = page._right_section
 
+    - elsif page._left_section_extra && page._right_section_extra
+      .row.solutions-body
+        .large-12.columns
+          - if page.solution.left_section_extra_icon
+            .solution
+              i(class="#{page.solution.left_section_extra_icon}")/
+          p.small
+            = page._left_section_extra
+        .large-12.columns
+          - if page.solution.right_section_extra_icon
+            .solution
+              i(class="#{page.solution.right_section_extra_icon}")/
+          p.small
+            = page._right_section_extra
+
     - else 
   	  - if page._left_section && page._right_section
         .row.solutions-body
@@ -75,8 +98,6 @@ layout: solution
                 i(class="#{page.solution.right_section_icon}")/
             p.small
               = page._right_section
-
-
 
     - if page._extra_section
       .row
