@@ -108,19 +108,23 @@ p.sign-in-options {
 // Footer
 footer.bottom {
   background:$black;
-  padding:20px 0;
-  strong {
-    color:white;
+  padding:20px 0 10px 0;
+  h3 {
+    font-size: 1rem;
     text-transform: uppercase;
-    font-weight: 400;
-    margin-bottom: 20px;
-    margin-top: 16px;
-    display: block;
-    font-size: 14px;
+    font-weight: 800;
+    color: white;
+    margin-top: 15px;
   }
   a {
     color:white;
-    // font-size: 25px;
+    &.copyright {
+      color: #646464;
+      width: 240px;
+    }
+    &.summit-logo {
+      margin-right: 20px;
+    }
   }
   ul {
     list-style: none;
@@ -129,29 +133,47 @@ footer.bottom {
     &.quick-links {
       li {
           padding-bottom: 5px;
+          margin-right: 51px;
           a {
-            font-size: 13px;
+            font-size: 14px;
+            color: white;
+            font-weight: 400;
+            text-decoration: none;
             i {
-              font-size: 12px;
+              font-size: 13px;
               margin-left: 5px;
             }
           }
+        } 
+      li:first-child { 
+        margin-left: 0;
       }
     }
-    &.inline-list {
-      float: right;
-      text-align: right;
+  }
+  .legal {
+    margin-top: 1.5rem;
+    ul.inline-list {
+      margin-top: 10px;
       & > li {
         margin: 0 0 0 10px;
         a {
-          font-size: 12px;
-          color:#4d4d4d;
+          font-size: .75rem;
+          color: #858585;
         }
       }
     }
-
   }
-
+  @media (max-width: 970px) {
+    .rh-logo{
+      max-height: 31px;
+    }
+    ul {
+      &.inline-list li{
+        float: none;
+        margin-left: 0 !important;
+      }
+    }
+  }
 }
 
 ul.footer-nav {

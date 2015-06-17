@@ -98,7 +98,7 @@ module JBoss
                 else
                   # Used 1 to alert people they're lacking info, 2 for backwards compat
                   product['index'] = {}
-                  product['index']['desc'] = '<strong>TODO: please add index.desc in the product.yml file for this product</strong>'
+                  product['index']['desc'] = ''
                   product['index']['action_links'] = []
                 end
 

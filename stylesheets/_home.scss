@@ -3,9 +3,10 @@
   & > li {
     display:flex;
     img {
-      margin-top: -25%;
-      margin-bottom: -25%;
-      max-width:350px;
+      height:100px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      max-width:150px;
     }
   }
 }
@@ -27,7 +28,7 @@
 
 
 .button.button--solution {
-  background:#6abcd3 url("../images/design/stars-texture.png") bottom right no-repeat;
+  background:#6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
   width: 100%;
   padding-top:30px;
   padding-bottom:30px;
@@ -35,7 +36,7 @@
   padding-right: 10px;
   text-align:left;
   &:hover {
-    background:darken(#6abcd3,10%) url("../images/design/stars-texture.png") bottom right no-repeat;
+    background:darken(#6abcd3,10%) cdn("../images/design/stars-texture.png") bottom right no-repeat;
   }
   &.clear {
     color:#0088ce;
@@ -77,8 +78,11 @@ h2.home-title {
 
       width: 100%;
       img {
-        margin:  -14% -12% -20% -10%;
         float:left;
+        height:auto;
+        width:20%;
+        margin-right: 20px;
+        max-height:100px;
       }
     }
   }

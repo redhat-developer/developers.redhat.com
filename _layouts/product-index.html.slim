@@ -6,14 +6,14 @@ layout: technology-base
     .large-12.columns
       h2.blowout Products
     .large-12.columns
-      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolor autem, modi adipisci sequi asperiores. Mollitia ipsam numquam, quae id.
-  .row
-    .large-24.columns.band-tabs
-      ul.nav.nav-tabs
-        li.active
-          a(href='#temp1') By Category
-        li
-          a(href='#temp2') A-Z 
+      p The Red Hat portfolio of products empowers professional developers to be more productive and build great solutions.
+  / .row
+  /   .large-24.columns.band-tabs
+  /     ul.nav.nav-tabs
+  /       li.active
+  /         a(href='#temp1') By Category
+  /       li
+  /         a(href='#temp2') A-Z 
 .row.development-tools 
   - site.categories.each do |category|
     .large-24.development-tool-category
@@ -32,20 +32,21 @@ layout: technology-base
                 = product['index'].desc
                 p
                   strong
-                    a(href="#{site.base_url}/products/#{product.id}/get-started/") GET STARTED
-                    | &nbsp;&nbsp;&#124;&nbsp;&nbsp;SEE IT IN ACTION:&nbsp;
+                  - if product.default_download_artifact && product.current_version
+                    a(href="#{site.base_url}/products/#{product.id}/download/")
+                      |  DOWNLOADS
                   - solutions = site.solutions.select {|_,s| s.related_products.include? product.id}
-                  - solutions.each_with_index do |(_,solution), i|
-                    a(href="#{site.base_url}/#{solution.id}")
-                      ' #{solution.name}
-                      - unless i >= (solutions.keys.size - 1)
-                        ' ,
+                  - unless solutions.empty?
+                    - if product.default_download_artifact && product.current_version
+                      | &nbsp;&nbsp;&#124;&nbsp;&nbsp;
+                    | SEE IT IN ACTION:&nbsp;
+                    - solutions.each_with_index do |(_,solution), i|
+                      a(href="#{site.base_url}/#{solution.id}")
+                        ' #{solution.name}
+                        - unless i >= (solutions.keys.size - 1)
+                          ' ,
               .large-8.columns
-                - if product.default_download_artifact && product.current_version
-                  a.button(href="#{product.default_download_artifact.url}")
-                    i.fa.fa-download
-                    |  Download Locally
-                  .download-sublabel #{product.name} #{product.current_version}
+                a.button(href="#{site.base_url}/products/#{product.id}/get-started/") GET STARTED
                 .tool-links
                   ul.inline-list
                     li

@@ -7,13 +7,12 @@ layout: solution
 .row
   .large-24.columns
     .solution-header
-      - if page.solution.sub_title
-        .large-16.columns
-          h3 #{page.solution.sub_title}
-      .large-8.columns
-        = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
-
-    hr.divider
+      .row
+        - if page.solution.sub_title
+          .large-17.columns
+            h3 #{page.solution.sub_title}
+        .large-7.columns
+          = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
 
     - if page.solution.speech_bubble || page._overview
       .row
@@ -33,8 +32,16 @@ layout: solution
 
     - if page._header
       .row
-        .large-24.columns
-          = page._header
+        div
+        - if page._side_call_out
+          .large-13.columns
+            = page._header
+        
+          .large-11.columns.panel.callout
+            = page._side_call_out
+        - else
+          .large-24.columns
+            = page._header          
 
     - if page._left_section && page._middle_section && page._right_section
       .row.solutions-body
@@ -60,8 +67,23 @@ layout: solution
           p.small
             = page._right_section
 
+    - if page._left_section_extra && page._right_section_extra
+      .row.solutions-body
+        .large-12.columns
+          - if page.solution.left_section_extra_icon
+            .solution
+              i(class="#{page.solution.left_section_extra_icon}")/
+          p.small
+            = page._left_section_extra
+        .large-12.columns
+          - if page.solution.right_section_extra_icon
+            .solution
+              i(class="#{page.solution.right_section_extra_icon}")/
+          p.small
+            = page._right_section_extra
+
     - else 
-  	  - if page._left_section && page._right_section
+  	  - if page._left_section && page._right_section && !page._middle_section
         .row.solutions-body
           .large-12.columns
             - if page.solution.left_section_icon
@@ -76,14 +98,11 @@ layout: solution
             p.small
               = page._right_section
 
-
-
     - if page._extra_section
       .row
-        .large-24.columns
-          - if page._extra_section_title
-            h3.divider#ExtraSection #{page._extra_section_title}
-          = page._extra_section
+        - if page._extra_section_title
+          h3.divider#ExtraSection #{page._extra_section_title}
+        = page._extra_section
     .row
       .large-24.columns
         - if page.solution.has_partial

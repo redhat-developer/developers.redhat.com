@@ -10,7 +10,7 @@ app.sso = function () {
                     .attr('href', app.ssoConfig.account_url)
                     .show();
                 $('li.login').hide();
-                $('li.login a').attr("href", keycloak.createAccountUrl())
+                $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl())
                 // once the promise comes back, listen for a click on logout
                 $('a.logout').on('click',function(e) {
                     e.preventDefault();
@@ -21,7 +21,7 @@ app.sso = function () {
         } else {
             $('li.login').show();
             $('li.logged-in').hide();
-            $('li.login a').on('click',function(e){
+            $('li.login a, a.keycloak-url').on('click',function(e){
                 e.preventDefault();
                 keycloak.login();
             });

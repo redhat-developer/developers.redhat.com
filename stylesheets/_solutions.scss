@@ -1,11 +1,12 @@
 .hero.hero-solutions {
-  background: cdn('../images/design/RHDev_indeximage_desktop_solutions.png') top center / cover no-repeat;
+  background: cdn('../images/design/RHDev_indeximage_desktop_solutions.png') top center / cover repeat-x;
   content : ':4242';
   border:0;
   margin-bottom: 70px;
   padding:20px;
+  min-height: 260px;
   @media (max-width: 970px){
-    background: cdn('../images/design/RHDev_indeximage_mobile_solutions.png') top center / cover no-repeat;
+    background: cdn('../images/design/RHDev_indeximage_mobile_solutions.png') top center / cover repeat-x;
     margin: -15px;
   }
   .button {
@@ -375,29 +376,38 @@ ul.solutions {
   }
 }
 
-.solution-hero{
+.solution-hero {
   margin-bottom: 40px;
-  .row{
-    background: #242424;
-    border: 0;
-    margin: 20px 0;
-    text-align: center;
-    color: $white;
-    max-width: none;
-    padding: 30px 40px;
-    h2{
-      color: $white;
-      font-weight: 100;
-      margin-bottom: 0;
-      }
-    .description{
-      color: $white;
-      font-weight: 100;
-      padding: 10px 18% 0 18%;
-      text-align: left;
-      @media (max-width: 64.063em) {
-        padding: 10px 5% 0 5%;
-      }
+  background: cdn('../images/design/RHDev_indeximage_desktop_solutions_lvl2.png') top center / cover no-repeat;
+  content : ':4242';
+  border:0;
+  margin-bottom: 70px;
+  padding:20px;
+  min-height: 185px;
+  @media (max-width: 970px){
+    background: cdn('../images/design/RHDev_indeximage_mobile_solutions_lvl2.png') top center / cover no-repeat;
+    margin: -15px;
+  }
+  .breadcrumbs {
+
+    li:before, a {
+      color:white;
     }
   }
+  .row {
+    @extend .flex-center;
+  }
+  h2 {
+    color: $white;
+    text-transform: uppercase;
+    margin-top: 1.25rem;
+  }
+  h5 {
+    color: $white;
+    font-weight: 100;
+  }
+}
+
+.clearfix{
+  clear: both !important;
 }
