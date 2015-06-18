@@ -25,7 +25,7 @@ layout: technology-base
           - product = site.products[p]
           .development-tool.divider
             h4
-              a(href="#{site.base_url}/products/#{product.id}")
+              a(href="#{site.base_url}/products/#{product.id}/")
                 = product.name
             .row
               .large-16.columns
@@ -39,7 +39,7 @@ layout: technology-base
                     | &nbsp;&nbsp;&#124;&nbsp;&nbsp;
                     | SEE IT IN ACTION:&nbsp;
                     - solutions.each_with_index do |(_,solution), i|
-                      a(href="#{site.base_url}/#{solution.id}")
+                      a(href="#{site.base_url}/#{solution.id}/")
                         ' #{solution.name}
                         - unless i >= (solutions.keys.size - 1)
                           ' ,
@@ -52,7 +52,7 @@ layout: technology-base
                           i.fa.fa-file-text-o
                           |  Docs and APIs
                     li
-                      a(href="#{site.base_url}/products/#{product.id}/learn")
+                      a(href="#{site.base_url}/products/#{product.id}/learn/")
                         i.fa.fa-files-o
                         |  Learn
 
