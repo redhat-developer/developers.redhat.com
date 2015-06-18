@@ -1,9 +1,22 @@
 :awestruct-layout: product-get-started
 :awestruct-interpolate: true
 
-Get started with Red Hat Developer Toolset (DTS) for gcc (C, C++, and/or Fortran) development - access and install DTS and optionally in a container on Red Hat Enterprise Linux 7.  This is a “quick start” excerpt from the entire https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/index.html[Red Hat Developer Toolset User Guide].  
+## Prerequisites section title
+Introduction
 
-# 1. Getting access to Red Hat Developer Toolset (20 minutes) 
+## Prerequisites section
+Get started with Red Hat Developer Toolset (DTS) for gcc (C, C++, and/or Fortran) development - access and install DTS and optionally in a container on Red Hat Enterprise Linux 7.  This is a “quick start” excerpt from the entire https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/index.html[Red Hat Developer Toolset User Guide].
+
+## Setup Duration
+20 minutes
+
+## Install Duration
+10 minutes
+
+## Build Duration
+20 minutes
+
+## Setup Environment 
 
 Red Hat Developer Toolset is an offering that is distributed as a part of the Red Hat Software Collections content set, which is available to customers with Red Hat Enterprise Linux 6 and 7 subscriptions listed at https://access.redhat.com/solutions/472793[https://access.redhat.com/solutions/472793]. Depending on the subscription management service with which you registered your Red Hat Enterprise Linux system, you can either enable Red Hat Developer Toolset by using the Red Hat Subscription Management, or by using RHN Classic. 
 
@@ -11,7 +24,7 @@ For detailed instructions on how to enable Red Hat Software Collections (and thu
 
 Important. Red Hat Developer Toolset 3.1 is only compatible with Red Hat Enterprise Linux Server 6.5 and higher and Red Hat Enterprise Linux Workstation 6.5 and higher. See https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Red_Hat_Developer_Toolset-Compatibility.html#figu-Red_Hat_Developer_Toolset-Compatibility[Figure 1.1, “Red Hat Developer Toolset 3.1 Compatibility Matrix”.] 	
 
-## 1. Access DTS Using Red Hat Subscription Management
+### 1. Access DTS Using Red Hat Subscription Management
 
 If your system is registered with Red Hat Subscription Management, complete the following steps to attach a subscription that provides access to the repository for Red Hat Software Collections (which includes Red Hat Developer Toolset), and then enable that repository: 		
 
@@ -23,7 +36,7 @@ For each available subscription, this command displays its name, unique identifi
 
 For a complete list of subscriptions that provide access to Red Hat Developer Toolset, see https://access.redhat.com/solutions/472793. 				
 
-### 1.1 Attach the appropriate subscription to your system by running the following command as root: 				
+#### 1.1 Attach the appropriate subscription to your system by running the following command as root: 				
 
   subscription-manager attach --pool=pool_id
 
@@ -31,11 +44,11 @@ Replace 'pool_id' with the pool ID you determined in the previous step. To verif
 
   subscription-manager list --consumed
 
-### 1.2 Determine the exact name of the Red Hat Software Collections repository. 
+#### 1.2 Determine the exact name of the Red Hat Software Collections repository. 
 
 To do so, type the following at a shell prompt as root to retrieve repository metadata and to display a list of available *Yum* repositories: 
 				
-  subscription-manager repos --list
+	subscription-manager repos --list
 
 The repository names depend on the specific version of Red Hat Enterprise Linux you are using and are in the following format: 				
 
@@ -51,17 +64,17 @@ In addition, certain packages, such as devtoolset-3-gcc-plugin-devel, depend on 
 
 For both the regular repositories and optional repositories, replace variant with the Red Hat Enterprise Linux system variant (server or workstation), and version with the Red Hat Enterprise Linux system version (6-eus, 6, or 7). 				
 
-### 1.3 Enable the repositories from the privious step by running the following command as 'root': 				
+#### 1.3 Enable the repositories from the privious step by running the following command as 'root': 				
 
   subscription-manager repos --enable repository
 
 Replace ‘repository’ with the name of the repository to enable. 				
 	
-## 2. Access DTS Using RHN Classic
+### 2. Access DTS Using RHN Classic
 
 If you are running Red Hat Enterprise Linux 6, and your system is registered with RHN Classic, complete the following steps to subscribe to Red Hat Software Collections (which includes Red Hat Developer Toolset): 	
 	
-### 2.1 Determine the exact name of the Red Hat Software Collections channel. 
+#### 2.1 Determine the exact name of the Red Hat Software Collections channel. 
 
 To do so, type the following at a shell prompt as root to display a list of all channels that are available to you: 				
 
@@ -77,19 +90,21 @@ In addition, certain packages, such as devtoolset-3-gcc-plugin-devel, depend on 
 
 Replace _variant_ with the Red Hat Enterprise Linux system variant (server or workstation). 			
 	
-### 2.2 Subscribe the system to the channels from step no. 1 by running the following command as root: 
+#### 2.2 Subscribe the system to the channels from step no. 1 by running the following command as root: 
 
   rhn-channel --add --channel=channel_name
 
 Replace _channel_name_ with the name of the channel to enable. 				
 
-### 2.3. To verify the list of channels you are subscribed to, at any time, run as root: 				
+#### 2.3. To verify the list of channels you are subscribed to, at any time, run as root: 				
 
   rhn-channel --list
 
 Once the system is subscribed, you can install Red Hat Developer Toolset as described in https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Red_Hat_Developer_Toolset-Install.html[Section 1.5, “Installing Red Hat Developer Toolset”]. For more information on how to register your system with RHN Classic, see the https://access.redhat.com/documentation/en-US/Red_Hat_Subscription_Management/[Red Hat Subscription Management] collection of guides. 
 
-# 2. Installing Red Hat Developer Toolset (10 minutes)
+## Install Config Verify
+
+Installing Red Hat Developer Toolset
 
 This section is an abridged version from our  https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Red_Hat_Developer_Toolset-Install.html[Developer Guide: Installing Red Hat Developer Toolset]
 
@@ -97,7 +112,7 @@ Red Hat Developer Toolset is distributed as a collection of RPM packages that ca
 
 *Important* Before installing Red Hat Developer Toolset, install all available Red Hat Enterprise Linux updates. 		
 
-## ⁠2.1. Installing All or Some DTS Components
+### 1. Installing All or Some DTS Components
 
 To install *all DTS components* (see the table below) that are included in Red Hat Developer Toolset, install the devtoolset-3 package by typing the following at a shell prompt as 'root': 		
 
@@ -128,7 +143,7 @@ Replace package_name with a space-separated list of meta packages you want to in
 	
   ~]# yum install devtoolset-3-ide
 
-### ⁠2.1.1. Installing Optional Packages
+#### 1.1. Installing Optional Packages
 
 Red Hat Developer Toolset is distributed with a number of optional packages that are not installed by default. To list all Red Hat Developer Toolset packages that are available to you but not installed on your system, type the following command at a shell prompt: 		
 
@@ -142,7 +157,7 @@ Replace package_name with a space-separated list of packages that you want to in
 
   ~]# yum install devtoolset-3-gdb-gdbserver devtoolset-3-gdb-doc
 
-### 2.1.2 Installing Debugging Information
+#### 1.2 Installing Debugging Information
 
 To install debugging information for any of the Red Hat Developer Toolset packages, make sure that the yum-utils package is installed and run the following command as root: 		
 
@@ -154,7 +169,7 @@ For example, to install debugging information for the devtoolset-3-dwz package, 
 
 Note that in order to use this command, you need to have access to the repository with these packages. If your system is registered with Red Hat Subscription Management, enable the rhel-variant-rhscl-version-debug-rpms repository as described in https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Red_Hat_Developer_Toolset-Subscribe.html#sect-Red_Hat_Developer_Toolset-Subscribe-RHSM[Section 1.4.1, “Using Red Hat Subscription Management”]. If your system is registered with RHN Classic, subscribe the system to the rhel-x86_64-variant-version-debuginfo channel as described in https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Red_Hat_Developer_Toolset-Subscribe.html#sect-Red_Hat_Developer_Toolset-Subscribe-RHN_Classic[Section 1.4.2, “Using RHN Classic”]. For more information on how to get access to debuginfo packages, see https://access.redhat.com/site/solutions/9907[https://access.redhat.com/site/solutions/9907]. 		
 
-## 2.2 Using Red Hat Developer Toolset Container Images
+### 2. Using Red Hat Developer Toolset Container Images
 
 Starting with Red Hat Developer Toolset 3.1, Dockerfiles are available for selected Red Hat Developer Toolset components. Dockerfiles are text documents that contain instructions for automated building of docker-formatted container images. The resulting container images can be used to run Red Hat Developer Toolset components inside virtual software containers, thus isolating them from the host system and allowing for their rapid deployment. This section describes how to obtain Red Hat Developer Toolset Dockerfiles, how to use them to build docker-formatted container images, and how to run Red Hat Developer Toolset components using the resulting container images. 
 
@@ -169,7 +184,7 @@ Red Hat Developer Toolset 3.1 is shipped with the following Dockerfiles:
 
 *Note.* The docker package, which contains the *Docker* daemon, command line tool, and other necessary components for building and using docker-formatted container images, is currently only available for the Server variant of the Red Hat Enterprise Linux 7 product. Red Hat Developer Toolset Dockerfiles are distributed for Red Hat Enterprise Linux 6 as well, but the images built using them can only be deployed on Red Hat Enterprise Linux 7 Server. 	
 
-### 2.2.1. Obtaining Dockerfiles
+#### 2.1. Obtaining Dockerfiles
 
 The Red Hat Developer Toolset Dockerfiles are provided by the devtoolset-3-dockerfiles package. The package contains individual Dockerfiles for building docker-formatted container images with individual components and a meta-package for building a docker-formatted container image with all the components offered. To be able to use the Dockerfiles, install this package by executing: 
 	
@@ -177,13 +192,13 @@ The Red Hat Developer Toolset Dockerfiles are provided by the devtoolset-3-docke
 
 Note that because some Red Hat Developer Toolset components depend on packages from the Optional channel, the provided Dockerfiles contain instructions that enable the channel automatically. 	
 
-### 2.2.2. Building Container Images
+#### 2.2. Building Container Images
 
 Follow the instruction outlined at https://access.redhat.com/articles/881893#get[Getting Docker in RHEL 7] to set up an environment for building and using docker-formatted container images. 		
 
-When you are ready to build your image, change to the directory where the Dockerfile is installed and run the docker build command as shown in the following example. 		
-⁠
-### Example 1 -  Building a Container Image with a Red Hat Developer Toolset Component
+When you are ready to build your image, change to the directory where the Dockerfile is installed and run the docker build command as shown in the following example.
+
+#### Example 1 -  Building a Container Image with a Red Hat Developer Toolset Component
 
 To build a docker-formatted container image for deploying the elfutils tools in a container, follow the instructions below.  Type the following at a shell prompt as 'root'.
 
@@ -207,7 +222,7 @@ Build the container image using the docker build command:
 
 Replace ‘devtoolset-3-elfutils-7’ with the name you wish to assign to your resulting container image. 					
 
-### 2.2.3. Running Red Hat Developer Toolset Tools from Container Images
+#### 2.3. Running Red Hat Developer Toolset Tools from Container Images
 
 To launch the docker-formatted container image you built above in Example 1, execute the docker run command as follows: 		
 
@@ -217,12 +232,9 @@ Substitute the _container-image_ parameter with the name of the container image 
 	
   ~]# docker run -t -i devtoolset-3-elfutils-7 /bin/bash -l
 
+## More Rescoures
 
-
-
-#  3. Build your first application (10 minutes)
-
-## Tutorial: Creating a simple C++ application with Eclipse IDE
+#### Tutorial: Creating a simple C++ application with Eclipse IDE
 
 http://help.eclipse.org/kepler/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Fgetting_started%2Fcdt_w_basic.htm[In this tutorial], you will use the Eclipse CDT to create a simple 'Hello World' application. This tutorial describes the process of creating a new C++ project where the build is automatically managed by the CDT, and running the program.
 
