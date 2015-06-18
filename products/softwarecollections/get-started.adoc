@@ -1,3 +1,129 @@
 :awestruct-layout: product-get-started-old
 :awestruct-interpolate: true
 
+## Prerequisites section title
+Using RHSCL: Django on Python 3 with PostgreSQL
+
+## Prerequisites section
+This article will show you how to use two software collections of http://developerblog.redhat.com/2013/06/05/red-hat-software-collections-1-0-beta-now-available[RHSCL Red Hat Announces Software Collections 1.0 beta] 1.0 Beta for cutting edge development. We will create a Django 1.5 application (running on Python 3.3), that will use PostgreSQL 9.2 as a database.
+
+## Setup Duration
+10 minutes
+
+## Install Duration
+10 minutes
+
+## Build Duration
+10 minutes
+
+## Setup Environment 
+
+### Installing Dependencies
+
+First off, we will install the required collections. If you haven't done so already, you need to subscribe to the correct RHN channel (‘rhel-x86_64-variant-6-rhscl-1-beta’, where ‘variant’ is one of ‘server’, ‘client’ or ‘>workstation’).
+
+Now you should be able to install all the needed dependencies just by issuing this command (as a superuser):
+
+  yum install python33 postgresql92 python33-python-psycopg2
+
+The reason why 'python33-python-psycopg2' has to be listed is that it doesn't belong to the basic 'python33' installation package set.
+
+### Configuring PostgreSQL
+
+Now we need to setup a PostgreSQL database. First, let's initialize database cluster and run the service (as a superuser):
+
+  service postgresql92-postgresql initdb
+  service postgresql92-postgresql start
+
+Second, we need to create the actual database. For this, we have to switch to 'postgres' user, who has permissions to do this, then we need to create new database user (name should be the same as the name of your local account) and then finally the database called 'testdb' (again, do this as a superuser):
+
+  su - postgres
+  scl enable postgresql92 bash
+  createuser
+  createdb testdb --owner
+
+We're all set and we can continue with the Django part. Before going on, don't forget to exit the all the subshells to get back to your original shell.
+
+## Install Config Verify
+
+### Creating a New Django Project
+
+We will create a new Django project using virtualenv. Everything we need (except for Django itself) is present in the 'python33' collection, so we just need to create the virtual environment and install Django from PyPi there:
+
+  scl enable python33 postgresql92 bash
+  virtualenv --system-site-packages my-django-app
+  cd my-django-app
+  source bin/activate
+  pip install django==1.5.1
+
+To comment a bit on the above:  First we switch to SCL-enabled shell (don't forget to enable both collections), then we create a virtualenv directory 'my-django-app' (passing the option to use RPM installed site-packages from the collection). After that, we switch to the newly created directory and activate the virtual environment (lines 3 and 4). Finally, we install Django (I decided to pin it to version 1.5.1 in this example, but you should be able to use any version >=1.5.0.)
+
+Now that everything is set, we can create the actual Django project:
+
+  django-admin.py startproject myproj
+  cd myproj
+
+Then we will adjust database settings to use our previously created database. In your favourite text editor, open 'myproj/settings.py' and fill in database engine, user and name, so that the 'DATABASES' section looks like this:
+
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+          'NAME': 'testdb',
+          'USER': '',
+          'PASSWORD': '',
+          'HOST': '',
+          'PORT': '',
+      }
+  }
+
+and then run
+
+  python manage.py syncdb
+
+to make sure that the database is set correctly. You will be asked whether or not you want to create a new superuser for your project - feel free to choose either option, it doesn't matter for this tutorial.
+
+And that's it! We now have a fully operational Django 1.5 application running on Python 3.3, using PostgreSQL 9.2 - all that on RHEL 6. Now we can just create a simple view that will print out all this.
+
+### A Simple View to Prove It
+
+As an optional step, we will create a really minimalistic view that confirms we're using the right versions. First, let's define a new view function. Create a new file 'myproj/views.py' and copy&paste this into it:
+
+
+  import sys
+
+  import django
+
+  from django.db import backend, connection
+  from django.shortcuts import render_to_response
+
+  def index(request):
+      return render_to_response('index.html',
+                              {'sysver': sys.version,
+                               'djangover': django.VERSION,
+                               'pgsqlver': backend.get_version(connection)})
+
+Then create a directory 'myproj/templates' and a file 'myproj/templates/index.html' (note, that we will not use actual HTML, but just a plain text to render the versions, which suites our example but would otherwise be considered very ugly):
+
+  Python: {{ sysver }}, Django: {{ djangover }}, PostgreSQL: {{ pgsqlver }}
+
+Now we need to tell Django where to look for templates. Find 'TEMPLATE_DIRS' constant in 'myproj/settings.py' and replace it with following:
+
+  import os
+  BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+  TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+  )
+
+Finally, let's route the '/' (root URL of our Django project) to the newly created view. Open 'myproj/urls.py' in your favorite editor and insert following line into patterns:
+
+    url(r'^$', 'myproj.views.index', name='home')
+
+Now just run 'python manage.py runserver' and go to http://127.0.0.1:8000/[http://127.0.0.1:8000/] in your browser. You should see a result like this:
+
+'Python: 3.3.2 (default, Jun 12 2013, 11:40:18) [GCC 4.4.7 20120313 (Red Hat 4.4.7-3)], Django: (1, 5, 1, 'final', 0), PostgreSQL: 90204'
+
+## More Resources
+
+Try this sample “hello world” from https://docs.python.org/3/tutorial/inputoutput.html[python.org].
+
+Enjoy!
