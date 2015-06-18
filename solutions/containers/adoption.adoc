@@ -1,0 +1,68 @@
+:awestruct-layout: solution-get-started
+
+## Developing for containers
+### Which use-case is for you?
+
+There are two ways to begin your Red Hat container development, but regardless of approach, your containerized applications will be deployable on Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and OpenShift V3. These tools are provided as a convenience and are optional, not required, to containerizing and certifying your applications.
+
+## 1. Native RHEL development
+
+Setting up Red Hat containers on Red Hat Enterprise Linux is easy and there are a number of development tools for you to containerize your application and after you install your hypervisor.  For example, all of the Red Hat Software Collections have dockerfiles to help you get started including Python, Ruby, PostgreSQL, MongoDB, Apache server, JBoss Middleware and more.
+
+## 2. Off-platform development via the Red Hat Container Development Kit
+
+Red Hat also provides resources for creating RHEL-based containerized applications from non-Red Hat platforms such as Microsoft Windows, Mac, and other Linux development platforms.  In this case, the Red Hat Container Development Kit (see below) utilizes Vagrant to easily set up your environment so that developing on different desktops will have the same experience of containerizing your apps for Red Hat Containers.
+
+'''
+
+#### Red Hat Container Developer Kit - set up your container dev environment
+
+The Red Hat Container Developer Kit (CDK) is a collection of developer tools, Vagrantfiles and plug-ins, RHEL images, and documentation.  This collection will enable application developers to more easily create container-based applications for use with Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, or OpenShift V3. Rather than starting from scratch, developers who are using Windows, Mac, Fedora, and other Linux distributions can take advantage of pre-configured CDK images and pre-tested Vagrant files to make installing Red Hat Enterprise Linux containers and developing container-based applications as quick and easy as possible. Technology partners that have joined the Container Zone have access CDK content.
+
+****
+*Red Hat Enterprise Linux Vagrant Boxes*
+Red Hat Enterprise Linux Vagrant Boxes are Red Hat Enterprise Linux system install images pre-configured for use with Vagrant.  They are being made available for Red Hat Enterprise Linux 7 and Red Hat Enterprise Linux Atomic Host, both available in formats for VirtualBox and link:http://www.google.com/url?q=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FLibvirt&sa=D&sntz=1&usg=AFQjCNEG3Iv26RkgNn1T1dJ02ClE0i90ZQ[libvirt].
+
+Initial setup requires a developer to (1) install Vagrant on their development machine (e.g. their laptop) and to then (2) download the appropriate Vagrant Box along with any of our recommended Vagrantfiles and plug-ins.  After the two initial setup steps are complete - running a simple “vagrantup” command automatically installs and configures the Red Hat Enterprise Linux container host.
+
+*Subscription Manager Vagrant registration plug-in*
+The subscription Manager plug-in automatically registers the Red Hat Enterprise Linux container host with the Red Hat Customer Portal when the “vagrant up” command is run and (then) un-registers the container host whenever you vagrant halt or vagrant destroy.
+
+*Vagrant Atomic plug-in*
+As Atomic Host uses a different update model from a traditional Linux distribution, it needs to be handled slightly differently by Vagrant. As a result, when using Atomic Host as a Vagrant Guest, we highly recommend installing this plugin.
+
+*Steps for getting the CDK:*
+. Use (or get) your RHEL Developer Subscription to get access to the CDK.
+. View the CDK installation guide that’s right for you: Windows, Mac, Linux.
+  .. Get the Vagrant boxes for RHEL 7 and/or Atomic host
+  .. Get Vagrant
+  .. Get the CDK zip file
+
+****
+
+#### Development tools for containers
+
+The Red Hat Enterprise Linux developer tools makes it easy to access industry-leading developer tools, instructional resources, and an ecosystem of experts to help developers maximize productivity in building great Linux applications.  Please review this section as the options have greatly expanded recently.
+
+*Red Hat Developer Toolset*
+The Red Hat Developer Toolset enables developers to take advantage of the latest versions of GNU Compiler Collection (GCC), Eclipse, and more as they build, test, and deploy applications for RHEL 7.
+
+* Learn about the GNU Compiler Collection (GCC) link:https://engineering.redhat.com/pnt/p-432439/RH_Developer_...sw_US_web.pdf[toolchains] available in Red Hat Developer Toolset.
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/3.0_Release_Notes/index.html[Red Hat Developer Toolset 3.0]
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/index.html[Installing and Using] Red Hat Developer Toolset
+
+*Red Hat Software Collections*
+Red Hat Software Collections (RHSCL) includes frequently updated sets of scripting languages, databases, web servers and more.  These give you common development stacks for supporting both RHEL 6 and 7.
+
+* A detailed description of the Software Collections for link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[RHEL 7]
+* An link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Developer_Guide/index.html[introduction] to application development tools in Red Hat Enterprise Linux 7
+* SystemTap link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SystemTap_Beginners_Guide/index.html[Beginners Guide]
+* We now have link:https://github.com/sclorg/rhscl-dockerfiles[dockerfiles] for Red Hat Software Collections (RHSCL), helping developers to rapidly build and deploy containerized applications. Available for both Red Hat Enterprise Linux 6 and Red Hat Enterprise Linux 7, there are even a few that combine Apache HTTP Server and your favorite scripting language.  These are also now included as you install RHSCL components.
+* Read link:/products/rhel[more] about RHEL development tools.
+
+*Containerizing with JBoss*
+
+* JBoss Projects and Docker
+  We publish our images under the official link:https://registry.hub.docker.com/repos/jboss/[jboss organization]. Every image is built from Dockerfiles available from the repositories in our link:https://github.com/jboss-dockerfiles[GitHub organization]. Images are linked to each other: If an image we’re base on is modified, we rebuild our image to provide you the fresh image that you deserve.
+
+* Browse the link:http://www.jboss.org/docker/[list] of available docker images
