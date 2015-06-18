@@ -1,10 +1,30 @@
 = Mobile
 :awestruct-layout: solution-detail
+:awestruct-interpolate: true
 
 == Header
+[.large-16.columns.ov-block]
+--
 Extend your development capabilities to mobile. Build enterprise-grade mobile applications that securely integrate with backend systems with Red Hat’s Mobile Application Platform.
-Choose the toolkits, frameworks and development environment to build native mobile apps for iOS, Android and Windows Phone using native SDKs and hybrid apps using Apache Cordova. The platform includes an enterprise mobile backend-as-a-service (MBaaS)  offering seamless integration with enterprise systems and applications, including integration with link:/products/fuse[JBoss Fuse]. The MBaaS provides a place to write and run Cloud Code - small app services that offload logic or processes from a single mobile app and run them in the cloud. The platform also supports collaborative app development across multiple teams and projects giving you controlled access to backend developer services that can be easily discovered and reused across multiple projects. Control of security, user access, and backend connectivity is centralized on the platform across all app projects, giving greater visibility and reusability of developer components.  The public cloud or private Platform-as-a-Service (PaaS)-based architecture facilitates agile development and DevOps processes, uses RESTful APIs and microservices, and accelerates time-to-deployment..
+Choose the toolkits, frameworks and development environment to build native mobile apps for link:/mobile/learn/#!query=iOS[iOS], link:/mobile/learn/#!query=Android[Android] and Windows Phone using native SDKs and link:/mobile/learn/#!query=hybrid[hybrid] apps using link:/mobile/learn/!query=Cordova[Apache Cordova]. The platform includes an enterprise mobile backend-as-a-service (MBaaS)  offering seamless integration with enterprise systems and applications, including integration with link:/products/fuse[JBoss Fuse]. The MBaaS provides a place to write and run Cloud Code - small app services that offload logic or processes from a single mobile app and run them in the cloud. The platform also supports collaborative app development across multiple teams and projects giving you controlled access to backend developer services that can be easily discovered and reused across multiple projects. Control of security, user access, and backend connectivity is centralized on the platform across all app projects, giving greater visibility and reusability of developer components.  The public cloud or private Platform-as-a-Service (PaaS)-based architecture facilitates agile development and DevOps processes, uses RESTful APIs and microservices, and accelerates time-to-deployment..
+--
 
+[.large-8.columns]
+image:#{cdn('/images/solutions/mobile/solutions_illustrations_mobile.png')}["Mobile"]
+
+== Call Out
+
+[.large-12.columns]
+--
+If you’d like to use Red Hat Mobile Application Platform, you can apply here for an invitation to our new OpenShift Online backed trial which we launched at Red Hat Summit in June 2015. The only thing you’ll need is an account on OpenShift. This configuration is for development only and not for production use but still gives you access to the full product suite.
+--
+
+[.large-12.columns]
+--
+Due to overwhelming demand, we have to release these invitations in batches but you can sign up today and expect to get access soon.
+
+In the meantime, you can learn more using the wide range of instructional material on the FeedHenry Docs link:http://docs.feedhenry.com/v3/[site].
+--
 
 == Extra Section
 
@@ -38,9 +58,3 @@ There are many equally valid approaches to mobile app development and as develop
 
 link:/mobile/adoption/#frontend_development[Learn more on frontend development...]
 
-== Side Call Out
-If you’d like to use Red Hat Mobile Application Platform, you can apply here for an invitation to our new OpenShift Online backed trial which we launched at Red Hat Summit in June 2015. The only thing you’ll need is an account on OpenShift. This configuration is for development only and not for production use but still gives you access to the full product suite.
-
-Due to overwhelming demand, we have to release these invitations in batches but you can sign up today and expect to get access soon.
-
-In the meantime, you can learn more using the wide range of instructional material on the FeedHenry Docs link:http://docs.feedhenry.com/v3/[site].
