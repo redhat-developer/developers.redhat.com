@@ -1,7 +1,7 @@
 :awestruct-layout: product-get-started-old
 :awestruct-interpolate: true
 
-## Extra section
+== Extra section
 
 . Burn the ISO image to DVD media or create bootable USB media.
 
@@ -11,7 +11,7 @@
 
 image::#{cdn(site.base_url + '/images/products/rhel/rhel7_install01_1_1.png')}[]
 
-### Customize installation options: 
+=== Customize installation options: 
 * Adjust Date & Time, Keyboard, and Language Support preferences under Localization.
 * Modify Installation Source, Software Selection, and Network Configuration options under Software.
 * Configure any additional options for Storage.
@@ -26,5 +26,5 @@ image::#{cdn(site.base_url + '/images/products/rhel/rhel7_install03_1_0.png')}[]
   
 * Extend your installation by subscribing via Red Hat Subscription Management to receive updates and install additional products.
 
-### Get Started with Docker Formatted Container Images on Red Hat Systems
+=== Get Started with Docker Formatted Container Images on Red Hat Systems
 See https://access.redhat.com/articles/881893[here].
