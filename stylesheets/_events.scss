@@ -175,7 +175,7 @@ h4.events-header.divider {
   margin-bottom: 70px;
   padding:20px;
   min-height: 185px;
-  @media (max-width: 970px){
+  @include tablet-portrait-and-down {
     background: cdn('../images/design/RHDev_indeximage_mobile_events.png') top center / cover no-repeat;
     margin: -15px;
     margin-bottom: 40px;

@@ -34,7 +34,7 @@
       left: 1rem;
     }
   }
-  @media #{$large-up} { 
+  @media #{$large-up} {
     a{
       margin-left: 1.6rem;
     }
@@ -493,7 +493,6 @@ a[data-page="⋯"]{
 
 #developer-materials-filters{
   .developer-materials-header{
-    border-bottom: 1px solid #d5d5d5;
     margin-bottom: 20px;
     padding-bottom: 5px;
   }
@@ -531,5 +530,13 @@ a[data-page="⋯"]{
   }
   p{
     font-size: .9rem;
+  }
+}
+
+.developer-materials-results-wrapper {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  .developer-material-results {
+    min-width: 900px;
   }
 }

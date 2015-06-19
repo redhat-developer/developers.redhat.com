@@ -7,7 +7,10 @@
   min-height: 260px;
   @media (max-width: 970px){
     background: cdn('../images/design/RHDev_indeximage_mobile_solutions.png') top center / cover repeat-x;
-    margin: -15px;
+    margin-bottom: 10px;
+    margin-left:-15px;
+    margin-right:-15px;
+    margin-top: -15px;
   }
   .button {
     width: 100%;
@@ -256,7 +259,12 @@ blockquote.speech-bubble {
 
 ul.solutions {
   margin-top: 30px !important;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
   display:flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
@@ -316,8 +324,12 @@ ul.solutions {
 }
 
 .solution-header {
-  h3 {
+  .subtitle-wrapper {
+    margin-bottom: 15px;
+  }
+  h2 {
     display:inline;
+    line-height: 1.2;
   }
   .share-this {
     display: inline-block;
@@ -340,39 +352,30 @@ ul.solutions {
 }
 
 @include tablet-portrait-and-down {
-  .solution-overlays {
-    padding: 0;
-    background:white;
-  }
-  .solution-wrap {
-    padding: 0;
-    width: 100%;
-  }
-  .solution-overlay {
-    position: absolute;
-    top:0;
-    width:100%;
-    max-width: none;
-    height: 100%;
-    overflow: scroll;
-    border: 0;
-    -webkit-overflow-scrolling: touch;
-    overflow-scrolling: touch;
-  }
-
-  .fn-close-overlay {
-    position: fixed;
-    top: 10px;
-    right: 20px;
+  ul.solutions {
+    & > li {
+      width:32.333333333%;
+      &:nth-child(1n) {
+        margin-right: 1.5%;
+      }
+      &:nth-child(3n+3) {
+        margin-right: 0;
+      }
+    }
   }
 }
 
 @include mobile-landscape-and-down {
-  li.solution {
-    width:100%;
-    margin:0;
-    padding:0;
-    margin-bottom: 10px;
+  ul.solutions {
+    & > li {
+      width:48%;
+      &:nth-child(1n) {
+        margin-right: 4%;
+      }
+      &:nth-child(2n+2) {
+        margin-right: 0;
+      }
+    }
   }
 }
 
@@ -386,7 +389,6 @@ ul.solutions {
   min-height: 185px;
   @media (max-width: 970px){
     background: cdn('../images/design/RHDev_indeximage_mobile_solutions_lvl2.png') top center / cover no-repeat;
-    margin: -15px;
   }
   .breadcrumbs {
 
@@ -410,4 +412,12 @@ ul.solutions {
 
 .clearfix{
   clear: both !important;
+}
+
+.ov-img img{
+  margin-top: -40px;
+}
+
+.ov-block{
+  margin-left: -15px;
 }

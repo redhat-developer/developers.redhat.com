@@ -9,8 +9,8 @@ layout: solution
     .solution-header
       .row
         - if page.solution.sub_title
-          .large-17.columns
-            h3 #{page.solution.sub_title}
+          .large-17.columns.subtitle-wrapper
+            h2 #{page.solution.sub_title}
         .large-7.columns
           = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
 

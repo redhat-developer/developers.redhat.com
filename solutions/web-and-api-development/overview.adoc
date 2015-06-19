@@ -1,7 +1,10 @@
 = Web and API Development
 :awestruct-layout: solution-detail
+:awestruct-interpolate: true
 
 == Header
+[.large-16.columns.ov-block]
+--
 Whether you have a simple website, are building a new web application, extending an existing one, or creating a new API to extend your product community, Red Hat has solutions to assist your polyglot world.
 
 Learn how you can build and manage products in your choice of modern languages - ranging from Java to Ruby up through Python and Node.
@@ -10,4 +13,8 @@ Learn more about Polyglot development with Red Hat
 
 Discover simple ways of building, versioning, connecting, and managing your API - giving you the power of creating a community around your solutions.
 
-Learn more about Red Hat API solutions like link:/products/eap[JBoss Enterprise Application Server] with link:/web-and-api-development/learn/!#query="RESTEasy"[RESTEasy] and link:/products/openshift/[OpenShift Online].
+Learn more about Red Hat API solutions like link:/products/eap[JBoss Enterprise Application Server] with RESTEasy and link:/products/openshift/[OpenShift Online].
+--
+
+[.large-8.columns]
+image:#{cdn(site.base_url + '/images/solutions/web-and-api-development/solutions_illustrations_webapi_development.png')}["Web and APIs Development Icon"]
