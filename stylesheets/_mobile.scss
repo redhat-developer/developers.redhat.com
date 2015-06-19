@@ -284,6 +284,11 @@
 
 @include tablet-portrait-and-down {
 
+  // offset the header
+
+  body {
+    margin-top: 76px;
+  }
 
   header.main {
     background:black;
