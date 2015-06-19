@@ -51,8 +51,9 @@ layout: technology-base
                       a(href="#{site.base_url}/products/#{product.id}/docs-and-apis/")
                           i.fa.fa-file-text-o
                           |  Docs and APIs
-                    li
-                      a(href="#{site.base_url}/products/#{product.id}/learn")
-                        i.fa.fa-files-o
-                        |  Learn
+                    - if site.engine.page_by_source_path("products/#{product.id}/learn")
+                      li
+                        a(href="#{site.base_url}/products/#{product.id}/learn")
+                          i.fa.fa-files-o
+                          |  Learn
 
