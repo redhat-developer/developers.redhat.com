@@ -30,7 +30,8 @@ type: Downloads
       i.fa.fa-caret-down
 
     = partial("download_table.html.slim", { 'downloads' => page.product.older_downloads.values })
-
+- elsif page._alternate
+  = page._alternate
 - else
 
   h3#downloads #{page.product.abbreviated_name} Downloads
