@@ -1,23 +1,23 @@
 :awestruct-interpolate: true
 :awestruct-layout: product-get-started
 
-## Prerequisites section title
+== Prerequisites section title
 Prerequisites &#38; Required Dependencies Checklist
 
-## Prerequisites section
+== Prerequisites section
 1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
 2. JBoss&#174; Developer Studio (JBDS) 8.1 with EAP
 
-## Setup Duration
+== Setup Duration
 10 minutes
 
-## Install Duration
+== Install Duration
 5 minutes
 
-## Build Duration
+== Build Duration
 20 minutes
 
-## Setup Environment
+== Setup Environment
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
 2.  Download
@@ -59,7 +59,7 @@ image://static.jboss.org/rhd/pr/165/build/372/images/images_products_devstudio_d
 Maven Repository]
 e.  Answer _Yes_ when asked if you want to update the `settings.xml` file.
 
-## Install Config Verify
+== Install Config Verify
 To verify that the JBoss Developer Studio and JBoss EAP is working
 correctly, deploy and execute the _helloworld_ quickstart application in
 an EAP server you will now create and configure: +
@@ -99,7 +99,7 @@ This will build, deploy and run the helloworld application inside JBoss
 EAP server. The application will open the internal JBDS browser and
 present "Hello World!" Success!
 
-## Build Your App
+== Build Your App
 Follow the below series to build your first application. You will build some simple examples as well as build a TicketMonster Application using JBoss EAP. The TicketMonster application shows you how to build a modern HTML application that communicates with a Java EE backend using REST. The series walks you through each step of the application development lifecycle, from start to finish.
 
 [width="100%",cols="50%,50%",]
@@ -111,7 +111,7 @@ Enterprise Application Platform Overview]
 |*Step 2:* Start exploring TicketMonster |link:http://www.jboss.org/ticket-monster/[Tutorial]
 |=======================================================================
 
-## More Resources
+== More Resources
 
 * link:../learn[See Quickstarts, Videos, and other Learning materials]
 * link:../buzz[Read about how other people are using DevStudio]
