@@ -32,7 +32,7 @@ module JBoss
             when 'type'
               [:sys_url_view, value]
             when 'more_details'
-              [:sys_url_view, value]
+              [:event_url, value]
             else
               [key, value]
           end
