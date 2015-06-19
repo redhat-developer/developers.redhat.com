@@ -17,10 +17,15 @@
 }
 
 .product-header{
-  h2{color: $red;}
+  h2 {
+    color: $red;
+  }
   h3 {
     font-weight: 100;
     text-transform: uppercase;
+  }
+  @include desktop-and-down {
+    padding:20px;
   }
 }
 
@@ -120,7 +125,7 @@
   padding: 20px;
   padding-top: 65px;
   min-height: 260px;
-  @media (max-width: 970px){
+  @include tablet-portrait-and-down {
     background: cdn('../images/design/RHDev_indeximage_mobile_products.png') top center / cover repeat-x;
     margin: -15px;
     h2.blowout {
@@ -191,7 +196,7 @@
     margin-bottom: 0;
   }
   .hello-world{
-    display: flex;
+    @extend .flex-center;
     align-items: center;
     & > div:first-child {
       text-align: center;
@@ -204,8 +209,12 @@
 
     @media only screen and (max-width: 64em) {
       margin-bottom: 15px;
-      small{display: block;}
-      p{margin-bottom: 10px;}
+      small {
+        display: block;
+      }
+      p {
+        margin-bottom: 10px;
+      }
     }
   }
   .outside-links a{
@@ -307,6 +316,17 @@
     margin-top: 3rem;
     ul li:before{ 
       display: none;
+    }
+  }
+}
+
+
+@include desktop-and-down {
+  #hero-try-or-buy {
+    padding: 0;
+    margin:0;
+    .hello-world {
+      padding: 0;
     }
   }
 }

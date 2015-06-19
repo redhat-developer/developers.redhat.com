@@ -8,7 +8,7 @@ div(ng-app="dcp")
     .large-24#developer-materials-filters(ng-init="filters.solution = true; filters.sys_tags = #{page.solution.tags.to_json.gsub(/"/, "'")}")
       = partial 'developer-materials-filters.html.slim'
     .text-content
-      .developer-materials-results
+      .developer-materials-results-wrapper
         = partial 'developer-materials-results.html.slim'
 
     = javascripts("developer-materials-filter", true) do
