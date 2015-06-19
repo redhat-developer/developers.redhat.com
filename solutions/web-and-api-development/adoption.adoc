@@ -6,10 +6,138 @@ Taking that polyglot to the next step, how do you create, orchestrate, and publi
 
 Keep reading to get some ideas on how Red Hat Web & API products can help with these challenges and more.
 
-'''
+[discrete]
+[[languages]]
+#### Java
+A high-level multipurpose language well suited for the web.  Java and link:http://openjdk.java.net/[OpenJDK] are integral parts of the RHEL platform.  Download yourself a copy of link:/products/devstudio[JBoss Developer Studio], pick a server and start building your application today.
+
+Also available is link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat], an instrumentation tool for the Hotspot JVM, with support for monitoring multiple JVM instances on multiple hosts, optionally in a cloud environment.
+
+|=====
+| *Language* | *Channel*
+| Java 1.6 | java-1.6.0-openjdk
+| Java 1.7 | java-1.7.0-openjdk
+| Java 1.8 | java-1.8.0-openjdk
+| Maven 3.0.5 | maven30
+| link:https://rhn.redhat.com/errata/RHEA-2015-0883.html[Common Java Packages 1.1] | rh-java-common
+| Thermostat | thermostat1-thermostat
+|=====
+
+
 
 [discrete]
-=== Choose a platform
+##### Web Servers and frameworks
+
+. Get the tools
+  .. link:/products/devstudio/get-started/!project=devstudio[Get Started] with JBoss Developer Studio..
+. Choose an application or web server
+  * link:/products/eap/download/[Download] *JBoss EAP* or launch EAP on link:https://hub.openshift.com/quickstarts/95-jboss-eap-6-4[OpenShift]
+  * *Apache Tomcat* is part of link:/products/webserver/download/[JBoss Web Server] and is also available on link:https://hub.openshift.com/quickstarts/96-tomcat-7-jboss-ews-2-0[OpenShift]
+. link:/products/eap/learn/#!project=eap&randomize=true[Check out] one of the many quickstarts, tutorials and demos availble.
+. Learn how to manage dependencies with link:/web-and-api-development/learn/#!query=maven[Maven]
+
+// * Using Angular and RESTFul services link:/web-and-api-development/learn/#!sys_type=quickstart&query=Angular[Get Started]
+
+
+''''
+
+[discrete]
+#### Perl
+_Want a Dancer applicaiton backed by MySQL?  Or maybe you're looking for Mojolicious and MongoDB?_  Perl is a high-level, general purpose dynamic language.  With link:/products/softwarecollections[Software Collections] and link:/products/openshift[OpenShift] you can easily deploy and run Perl applications using your favorite frameworks and databases.
+
+|=====
+| *Language* | *Channel*
+| Perl 5.10 | link:https://hub.openshift.com/quickstarts/100-perl-5-10[Launch Perl on OpenShift]
+| Perl 5.16.3 |	perl516
+| Perl 5.20.1	| rh-perl520
+|=====
+
+''''
+
+[discrete]
+##### PHP
+PHP is a general-purpose server-side scripting language originally designed for Web development to produce dynamic Web pages. Popular development frameworks include CakePHP, Zend, Symfony, and CodeIgniter.
+
+|=====
+| *Language* | *Channel*
+| PHP 5.4 | php54 +
+link:https://hub.openshift.com/quickstarts/101-php-5-4[Launch PHP 5.4 on OpenShift]
+| PHP 5.5 | php55
+| PHP 5.6 | rh-php56
+| Perl 5.20.1	| rh-perl520
+|=====
+
+''''
+
+[discrete]
+##### Python
+Another general-purpose, high-level programming language, Python differentiates itself with a design philosophy that emphasizes code readability. Popular development frameworks include: Django, Bottle, Pylons, Zope and TurboGears.
+
+|=====
+| *Language* | *Channel*
+| Python 2.7.8 | python 27
+| Python 3.3.2 | python 33 +
+link:https://hub.openshift.com/quickstarts/103-python-3-3[Launch Python 3.3 on OpenShift]
+| Python 3.4.2 | rh-python 34
+|=====
+
+''''
+
+[discrete]
+##### Ruby
+Ruby, the dynamic, reflective, general-purpose object-oriented programming language and its popular development framework Ruby on Rails is supported by Red Hat.
+
+|=====
+| *Language* | *Channel*
+| Ruby 1.9.3 | ruby19
+| Ruby 2.0.0 | ruby200 +
+link:https://hub.openshift.com/quickstarts/106-ruby-2-0[Launch Ruby on OpenShift]
+| Ruby 2.2.2 | rh-ruby22
+| Ruby on Rails 4.0.2 | ror40 +
+link:https://hub.openshift.com/quickstarts/76-ruby-on-rails-4[Launch Ruby on Rails on OpenShift]
+| Ruby on Rails 4.1.5 | rh-ror41
+|=====
+
+
+''''
+
+[discrete]
+[[apis]]
+### Integration and API
+Whether you are publishing services or consuming someone else's APIs integration can be tricky.  Take a look at using link:/products/fuse[Fuse], link:/products/amq[A-MQ] and link:/products/datavirt[Data Virtualization] to make the job that much easier.
+
+#### REST
+Representational State Transfer (REST) works well with a API-centric web applications. RESTEasy makes it simple to expose your services via JAX-RS.
+
+
+* link:/web-and-api-development/learn/!query=REST[Get started] exposing a RESTFul API.
+
+##### Fuse
+Fuse is a small footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.
+
+* link:/products/fuse/get-started[Get Started] with Fuse.
+* link:/products/fuse/learn[Learn] more about integrating with Fuse.
+* Check out a series of examples on link:https://github.com/FuseByExample[GitHub]
+* link:https://hub.openshift.com/quickstarts/40-jboss-fuse-6-1[Launch] fuse on OpenShift
+
+
+##### Data Virtualization
+Need to expose your data as a service?  JBoss Data Virtualization makes it simple whether you have a single data source or many.
+
+* Creating data services link:/products/datavirt/learn[Get Started]
+
+
+##### A-MQ
+A-MQ gives you a high performance, cross-platform multi-language messaging system that can be deployed across your infrastructure.
+
+* link:/products/amq/learn[Get started] using A-MQ
+
+
+
+
+////
+[discrete]
+### Choose a platform
 
 * Getting started with link:/products/eap[JBoss EAP]
   * Try a simple link:/quickstarts/eap/helloworld/index.html[Hello World]
@@ -18,22 +146,8 @@ Keep reading to get some ideas on how Red Hat Web & API products can help with t
   * with link:/products/webserver[JBoss Web Server] link:simple[Get Started]
   * launch today on OpenShift link:https://hub.openshift.com/quickstarts/deploy/96-tomcat-7-jboss-ews-2-0[Get Started]
   * install and use modern versions of Apache HTTP and Tomcat with Software Collections link:#[Get Started]
-* Using Nginx
-  * install and use modern versions of Nginx with Software Collections link:#[Get Started] on RHEL via Software Collections.  link:https://www.softwarecollections.org/en/scls/rhscl/nginx14/[Learn how].
-  * use nginx on OpenShift today.  link:https://blog.openshift.com/lightweight-http-serving-using-nginx-on-openshift/[Learn how].
-* Using Passenger
-  * link:https://github.com/phusion/passenger[Passenger] is an easy, scalable and reliable web app server for Ruby, Python, Node.js and Meteor
-
 '''
 
-[discrete]
-=== Java Web Applications
-
-* Getting started with JBoss Developer Studio link:/products/devstudio/get-started/!project=devstudio[Get Started]#
-* Hello World on link:/products/eap[JBoss EAP] link:#[Get Started]
-* Managing dependencies with link:/web-and-api-development/learn/#!query=maven[Maven]
-* Using Angular and RESTFul services link:/web-and-api-development/learn/#!sys_type=quickstart&query=Angular[Get Started]
-* Tomcat Application Hosting on OpenShift link:https://developers.openshift.com/en/tomcat-getting-started.html[Get Started]#
 
 '''
 
@@ -46,10 +160,4 @@ Keep reading to get some ideas on how Red Hat Web & API products can help with t
 * Creating data services link:#[Get Started]
 
 '''
-
-[discrete]
-=== Another Section
-* How can link:#[JBoss Developer Studio] help you with visual editors
-* Simple Integration and Functional testing with link:/web-and-api-development/learn/#!query=arquillian[Arquillian]
-* Driving consistent environments with link:/web-and-api-development/learn/#!query=cli[JBoss CLI]
-*  and link:#[Artifactory]
+////

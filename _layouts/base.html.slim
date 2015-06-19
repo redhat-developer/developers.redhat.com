@@ -101,10 +101,10 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
             - currentPage = page.url.gsub('/','').split('.').first
             - for pageName in ['solutions', 'products', 'downloads']
               li(class=(currentPage == pageName ? 'active' : ''))
-                a(href="#{site.base_url}/#{pageName}") #{pageName.capitalize}
+                a(href="#{site.base_url}/#{pageName}/") #{pageName.capitalize}
           ul.menu-right
             li: a(href="#{site.base_url}/projects/") Community
-            li: a(href="#{site.base_url}/events") Events
+            li: a(href="#{site.base_url}/events/") Events
             li: a(href="http://developerblog.redhat.com") Blogs
 
     .wrapper.clearfix
