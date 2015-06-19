@@ -324,8 +324,12 @@ ul.solutions {
 }
 
 .solution-header {
-  h3 {
+  .subtitle-wrapper {
+    margin-bottom: 15px;
+  }
+  h2 {
     display:inline;
+    line-height: 1.2;
   }
   .share-this {
     display: inline-block;
