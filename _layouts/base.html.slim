@@ -92,15 +92,19 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
               a.logged-in-name(href="#")
               a.logout(href="#") Logout
         nav.primary-nav
-          h1.logo: a(href="/") Red Hat Developers
+          h1.logo
+            a(href="/")Red Hat Developers
+            a.nav-toggle
+              i.fa.fa-bars
+              i.fa.fa-times
           ul.nav.nav-tabs
             - currentPage = page.url.gsub('/','').split('.').first
             - for pageName in ['solutions', 'products', 'downloads']
               li(class=(currentPage == pageName ? 'active' : ''))
-                a(href="#{site.base_url}/#{pageName}") #{pageName.capitalize}
+                a(href="#{site.base_url}/#{pageName}/") #{pageName.capitalize}
           ul.menu-right
             li: a(href="#{site.base_url}/projects/") Community
-            li: a(href="#{site.base_url}/events") Events
+            li: a(href="#{site.base_url}/events/") Events
             li: a(href="http://developerblog.redhat.com") Blogs
 
     .wrapper.clearfix
@@ -126,7 +130,7 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
                 i.fa.fa-external-link
             li
               a(href="#") Contact Us
-          
+
           / p.feedback
           /   a ☹
           /   | or
@@ -143,9 +147,9 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
             li
               a.copyright Copyright &copy; 2015 RedHat Inc.
             li
-              a(href="http://www.redhat.com/en/about/privacy-policy") Privacy statement 
+              a(href="http://www.redhat.com/en/about/privacy-policy") Privacy statement
             li
-              a(href="http://www.redhat.com/en/about/terms-use") Terms of use  &nbsp;&nbsp;|  
+              a(href="http://www.redhat.com/en/about/terms-use") Terms of use  &nbsp;&nbsp;|
             li
               a(href="http://www.redhat.com/en/about/all-policies-guidelines") All policies and guidelines
 

@@ -24,20 +24,21 @@ Oracle JDK.
 3.  Run JBDS installer +
 For Mac / Windows Development Hosts:
 a.  Go to the folder you have downloaded JBDS:
-...  Right Click on *jboss-devstudio-8.1.0.GA-installer-eap.jar*
-... Select _"Open With -> Jar Launcher"_
+...  Right Click on `jboss-devstudio-8.1.0.GA-installer-eap.jar`
+... Select _Open With -> Jar Launcher_
 +
 For Linux Development Hosts:
 +
 Go to the folder where you have downloaded the JBDS, and execute the
 installer +
 +
-`java -jar jboss-devstudio-8.1.0.GA-installer-eap.jar`
+----
+java -jar jboss-devstudio-8.1.0.GA-installer-eap.jar
+----
 +
 *Note:* This will execute the JBDS installation wizard. Common
 Installation Steps: +
- *Answer "Yes"* to the question: _"JBoss Developer Studio includes
-Red Hat JBoss Enterprise Application Platform. Install it now ?"_
+ Answer _Yes_ to the question _"JBoss Developer Studio includes Red Hat JBoss Enterprise Application Platform. Install it now ?"_
 4.  Start JBoss Developer Studio. +
 For more details, view the https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Developer_Studio/8.1/html/Install_Red_Hat_JBoss_Developer_Studio/Install_JBoss_Developer_Studio_Stand-alone_and_JBoss_EAP.html[JBoss
 Developer Studio documentation.]
@@ -56,8 +57,7 @@ d.  Click Finish +
 [.content-img]
 image://static.jboss.org/rhd/pr/165/build/372/images/images_products_devstudio_devstudio-overview-2-1.png[Configure
 Maven Repository]
-e.  Answer _"Yes"_ for the question if you want to update settings.xml
-file.
+e.  Answer _Yes_ when asked if you want to update the `settings.xml` file.
 
 ## Install Config Verify
 To verify that the JBoss Developer Studio and JBoss EAP is working
@@ -100,6 +100,8 @@ EAP server. The application will open the internal JBDS browser and
 present "Hello World!" Success!
 
 ## Build Your App
+Follow the below series to build your first application. You will build some simple examples as well as build a TicketMonster Application using JBoss EAP. The TicketMonster application shows you how to build a modern HTML application that communicates with a Java EE backend using REST. The series walks you through each step of the application development lifecycle, from start to finish.
+
 [width="100%",cols="50%,50%",]
 |=======================================================================
 |*Step 1:* What is JBoss EAP?

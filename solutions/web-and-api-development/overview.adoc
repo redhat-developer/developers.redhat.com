@@ -1,13 +1,37 @@
 = Web and API Development
 :awestruct-layout: solution-detail
+:awestruct-interpolate: true
 
 == Header
-Whether you have a simple website, are building a new web application, extending an existing one, or creating a new API to extend your product community, Red Hat has solutions to assist your polyglot world.
+[.large-16.columns.ov-block]
+--
+Whether you have a simple website, are building a new web application, extending an existing one, or creating a new API to extend your product community, Red Hat has solutions to assist you.
 
-Learn how you can build and manage products in your choice of modern languages - ranging from Java to Ruby up through Python and Node.
+With Red Hat it is easy to build and manage products in your choice of modern languages ranging from Java to Ruby up through Python and Node all without the effort and risk associated with installing and troubleshooting unsupported community versions.
 
-Learn more about Polyglot development with Red Hat
+*Languages*
+[[language-table]]
+|=====
+| Java| OpenJDK, Tomcat, JBoss EAP
+| Node.js| MEAN Stack, Red Hat Mobile Platform
+| Perl |
+| PHP | Zend Server, Laravel, Symfony, WordPress
+| Python | Flask
+| Ruby | Rails
+|=====
+
+*Choice of platform*
+
+Language is not the only choice afforded to developers by Red Hat.  You can get up to speed quickly on link:/products/rhel[Red Hat Enterprise Linux], online at link:/products/openshift[OpenShift] or construct link:/containers[containers].
+
+link:#[Learn more...]
+
+*API Development*
+
+With the evolution of the web, it is not uncommon that more of your applications are accessed in manners other than a browser.  Whether you are building applications focused on phones, IoT devices or consuming/providing services, learn more about Red Hat API solutions like link:/products/eap[JBoss Enterprise Application Server] with link:/web-and-api-development/learn/!#query="RESTEasy"[RESTEasy] and link:/products/openshift/[OpenShift].
 
 Discover simple ways of building, versioning, connecting, and managing your API - giving you the power of creating a community around your solutions.
+--
 
-Learn more about Red Hat API solutions like link:/products/eap[JBoss Enterprise Application Server] with link:/web-and-api-development/learn/!#query="RESTEasy"[RESTEasy] and link:/products/openshift/[OpenShift Online].
+[.large-8.columns]
+image:#{cdn(site.base_url + '/images/solutions/web-and-api-development/solutions_illustrations_webapi_development.png')}["Web and APIs Development Icon"]

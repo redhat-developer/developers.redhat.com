@@ -6,6 +6,7 @@
 @import "fonts/fonts";
 @import "colours";
 @import "foundation/components/global"; // *always required
+$include-html-global-classes: false; // fix for our version of ruby - https://github.com/zurb/foundation/issues/5989
 @import "foundation/components/grid";
 
 // @import "foundation/components/visibility";
@@ -81,8 +82,6 @@
 @import "microsite";
 @import "connectors";
 @import "print";
-@import "champions";
-@import "devoxx4kids";
 @import "rh-icons";
 @import "downloads";
 
@@ -1029,21 +1028,24 @@ input[type=range] {
     position: relative;
     -webkit-appearance: none;
     width: 100%;
-    height:8px;
-    border:1px solid #d5d5d5;
-    background: #eeeeee; /* Old browsers */
     background-color: #ffffff; // Old browsers
-    // @include filter-gradient(#ffffff, #ececec, vertical); // IE6-9
-    // @include background-image(linear-gradient(top,  #ffffff 0%,#fcfcfc 33%,#f9f9f9 33%,#f9f9f9 44%,#f6f6f6 45%,#f4f4f4 67%,#f1f1f1 67%,#f1f1f1 78%,#eeeeee 78%,#ececec 100%));
     outline: none;
     &::-moz-focus-inner {
       outline:0;
     }
     &:focus,&:active {
-      outline:0;
+      outline:none;
     }
 }
 
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height:10px;
+  position: relative;
+  background: #fff;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
 
 // These pseudo selectors cannot be in the same selector so we need to output it 4 times
 $prefixes : -webkit-slider-thumb -moz-range-thumb -ms-slider-thumb slider-thumb;
@@ -1054,6 +1056,8 @@ $prefixes : -webkit-slider-thumb -moz-range-thumb -ms-slider-thumb slider-thumb;
       width: 15px;
       height: 15px;
       border-radius:50%;
+      position: relative;
+      top:-2px;
       background:#08c0fc;
       position: relative;
       z-index: 2;
@@ -1566,9 +1570,6 @@ span.asterisk {
   }
 }
 
-// Mobile!
-@import "mobile";
-
 // View More link
 .moreinfolink {
   padding-top: 15px;
@@ -1984,3 +1985,6 @@ label.inline{
 [class*="column"] + [class*="column"]:last-child {
   float:left;
 }
+
+// Mobile!
+@import "mobile";

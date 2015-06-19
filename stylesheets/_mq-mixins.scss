@@ -2,7 +2,7 @@ $mq-mobile-portrait: 320px !default;
 $mq-mobile-landscape: 480px !default;
 $mq-tablet-portrait: 768px !default;
 $mq-tablet-landscape: 1024px !default;
-$mq-desktop: 1382px !default;
+$mq-desktop: 1170px !default;
 
 @mixin mobile-only {
     @media (max-width : $mq-mobile-landscape) {
