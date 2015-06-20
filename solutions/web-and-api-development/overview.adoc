@@ -1,7 +1,10 @@
 = Web and API Development
 :awestruct-layout: solution-detail
+:awestruct-interpolate: true
 
 == Header
+[.large-16.columns.ov-block]
+--
 The web is a dynamic, open environment.  Daily we see new ideas and creations, built upon a collection of data sets, services, and APIs.  Enterprises are looking to build and extend their product community through the use of web applications and APIs.
 
 Whether you have a simple website, are building a new web application, extending an existing one, or creating a new API to extend your product community, Red Hat has solutions to assist you.
@@ -11,6 +14,10 @@ With Red Hat it is easy to build and manage products in your choice of modern la
 The web isn't just one language or technology - why should your development be limited to one?
 
 With Red Hat, you will find tools to help you build your applications easily - from link:http://www.jboss.org/products/devstudio/overview/[Developer IDEs] to link:https://www.openshift.com/products/technologies[Languages and Platforms] and link:http://www.jboss.org/products/fuse/overview/[API Tools]  
+--
+
+[.large-8.columns]
+image:#{cdn(site.base_url + '/images/solutions/web-and-api-development/solutions_illustrations_webapi_development.png')}["Web and APIs Development Icon"]
 
 == Left Section
 === Languages
@@ -28,5 +35,5 @@ link:/web-and-api-development/adoption/#platforms[Learn more ...]
 === API Development
 Creating APIs
 You know there is more to APIs than just creating a web service. See how Red Hat helps you create as well as test, manage, version, and secure.
-link:/web-and-api-development/adoption/#api[Learn more ...]
 
+link:/web-and-api-development/adoption/#api[Learn more ...]

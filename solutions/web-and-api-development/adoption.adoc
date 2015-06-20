@@ -9,47 +9,258 @@ Keep reading to get some ideas on how Red Hat Web & API products can help with t
 '''
 
 [discrete]
-### Choose a platform
+### [[languages]]Languages
+Red Hat supports more than just Java because the web is more than just Java.  Some of the languages Red Hat supports:
+[[language-table]]
+|=====
+| Java| OpenJDK, Tomcat, JBoss EAP
+| Ruby | Rails
+| Node.js| MEAN Stack, Red Hat Mobile Platform
+| Perl | Dancer
+| PHP | Zend Server, Laravel, Symfony, WordPress
+| Python | Flask
+| Ceylon | Vert.x
+| Go |
+| Rust |
+|=====
 
-* Getting started with link:/products/eap[JBoss EAP]
-  * Try a simple link:/quickstarts/eap/helloworld/index.html[Hello World]
-  * or link:https://hub.openshift.com/quickstarts/deploy/95-jboss-eap-6-4[launch EAP on OpenShift]
-* Using Apache HTTP Server or Apache Tomcat
-  * with link:/products/webserver[JBoss Web Server] link:simple[Get Started]
-  * launch today on OpenShift link:https://hub.openshift.com/quickstarts/deploy/96-tomcat-7-jboss-ews-2-0[Get Started]
-  * install and use modern versions of Apache HTTP and Tomcat with Software Collections link:#[Get Started]
-* Using Nginx
-  * install and use modern versions of Nginx with Software Collections link:#[Get Started] on RHEL via Software Collections.  link:https://www.softwarecollections.org/en/scls/rhscl/nginx14/[Learn how].
-  * use nginx on OpenShift today.  link:https://blog.openshift.com/lightweight-http-serving-using-nginx-on-openshift/[Learn how].
-* Using Passenger
-  * link:https://github.com/phusion/passenger[Passenger] is an easy, scalable and reliable web app server for Ruby, Python, Node.js and Meteor
+#### Java
+A high-level multipurpose language well suited for the web.  Java and link:http://openjdk.java.net/[OpenJDK] are integral parts of the RHEL platform.  Download yourself a copy of link:/products/devstudio[JBoss Developer Studio], pick a server and start building your application today.
+
+Also available is link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat], an instrumentation tool for the Hotspot JVM, with support for monitoring multiple JVM instances on multiple hosts, optionally in a cloud environment.
+
+|=====
+| *Language* | *Channel*
+| Java 1.6 | java-1.6.0-openjdk
+| Java 1.7 | java-1.7.0-openjdk
+| Java 1.8 | java-1.8.0-openjdk
+| Maven 3.0.5 | maven30
+| link:https://rhn.redhat.com/errata/RHEA-2015-0883.html[Common Java Packages 1.1] | rh-java-common
+| Thermostat | thermostat1-thermostat
+|=====
+
+''''
+
+[discrete]
+#### [[ruby]]Ruby
+link:https://www.ruby-lang.org/en/[Ruby], the dynamic, reflective, general-purpose object-oriented programming language and its popular development framework link:http://rubyonrails.org/[Ruby on Rails] are supported by Red Hat.
+
+Get Started with link:https://github.com/openshift/rails-example[Ruby on Rails Example]
+
+|=====
+| *Language* | *Channel*
+| Ruby 1.9.3 | ruby19
+| Ruby 2.0.0 | ruby200 +
+link:https://hub.openshift.com/quickstarts/106-ruby-2-0[Launch Ruby on OpenShift]
+| Ruby 2.2.2 | rh-ruby22
+| Ruby on Rails 4.0.2 | ror40 +
+link:https://hub.openshift.com/quickstarts/76-ruby-on-rails-4[Launch Ruby on Rails on OpenShift]
+| Ruby on Rails 4.1.5 | rh-ror41
+|=====
+
+''''
+
+#### Node.js
+Looking to build a lightweight, event-driven application?  Will your product be data-intensive and highly concurrent, so you are considering using the awesome Node.js?  Red Hat supports link:https://nodejs.org[Node.js] as well as the link:https://developers.openshift.com/en/node-js-example-meanstack.html[MEAN stack]
+
+Get Started with link:https://developers.openshift.com/en/node-js-example-meanstack.html[MEAN Stack for Node.js development on OpenShift]
+
+|=====
+| *Language* | *Channel*
+| Node.js 0.10 | nodejs010 + 
+link:https://hub.openshift.com/quickstarts/deploy/99-node-js-0-10[Launch Node on OpenShift]
+|=====
+
+
+''''
+
+[discrete]
+#### [[perl]]Perl
+Want a link:http://www.perldancer.org/[Dancer] applicaiton backed by MySQL?  Or maybe you're looking for Mojolicious and MongoDB?  Perl is a high-level, general purpose dynamic language.  With link:/products/softwarecollections[Software Collections] and link:/products/openshift[OpenShift] you can easily deploy and run Perl applications using your favorite frameworks and databases.
+
+|=====
+| *Language* | *Channel*
+| Perl 5.10 | link:https://hub.openshift.com/quickstarts/100-perl-5-10[Launch Perl on OpenShift]
+| Perl 5.16.3 |	perl516
+| Perl 5.20.1	| rh-perl520
+|=====
+
+''''
+
+[discrete]
+#### [[php]]PHP
+PHP is a general-purpose server-side scripting language originally designed for Web development to produce dynamic Web pages. Popular development frameworks include link:https://hub.openshift.com/quickstarts/73-cakephp[CakePHP], link:https://hub.openshift.com/quickstarts/112-php-5-4-with-zend-server-6-1[Zend], link:https://hub.openshift.com/quickstarts/34-symfony-2-3-6[Symfony], and link:https://hub.openshift.com/quickstarts/123-codeigniter-3-0[CodeIgniter].  Looking for the best place to host your site?  We have you covered with link:https://hub.openshift.com/quickstarts/1-wordpress-4[Wordpress] as well.
+
+|=====
+| *Language* | *Channel*
+| PHP 5.4 | php54 +
+link:https://hub.openshift.com/quickstarts/101-php-5-4[Launch PHP 5.4 on OpenShift]
+| PHP 5.5 | php55
+| PHP 5.6 | rh-php56
+| Perl 5.20.1	| rh-perl520
+|=====
+
+''''
+
+[discrete]
+#### [[python]]Python
+Another general-purpose, high-level programming language, Python differentiates itself with a design philosophy that emphasizes code readability. Popular development frameworks include: link:https://hub.openshift.com/quickstarts/72-django[Django], Bottle, Pylons, Zope and TurboGears.
+
+|=====
+| *Language* | *Channel*
+| Python 2.7.8 | python 27
+| Python 3.3.2 | python 33 +
+link:https://hub.openshift.com/quickstarts/103-python-3-3[Launch Python 3.3 on OpenShift]
+| Python 3.4.2 | rh-python 34
+|=====
+
+''''
+
+[discrete]
+#### [[ceylon]]Ceylon
+Love Java but think that it could use some updating?  Look no further than Ceylon.  With intersection types, mixin inheritance, and type inference, Ceylon takes what you know from Java and allows you to write more expressive code.
+
+|=====
+| Learn More about link:http://ceylon-lang.org/[Ceylon]
+| link:https://hub.openshift.com/quickstarts/deploy/138-ceylon[Launch Ceylon on OpenShift]
+|=====
+
+''''
+
+[discrete]
+#### [[go]]Go
+Go, a programming language from google, looks to take some of the best ideas from C and Java, along with updates from today's technologies, and make a language that is easy and fun to develop in. 
+
+|=====
+| Learn More about link:http://golang.org/[Go Language]
+| Get Started writing link:https://gobyexample.com/[Go by example]
+| link:https://hub.openshift.com/quickstarts/deploy/29-go-language[Launch Go on OpenShift]
+|=====
+
+''''
+
+[discrete]
+#### [[rust]]Rust
+Rust is a systems programming language that runs blazingly fast, prevents almost all crashes, and eliminates data races.
+
+|=====
+| Learn More about link:http://www.rust-lang.org/[Rust]
+| Get Started with link:http://rustbyexample.com/[Rust by Example]
+| link:https://hub.openshift.com/quickstarts/deploy/150-rust[Launch Rust on OpenShift]
+|=====
+
+''''
+
+[discrete]
+### [[platforms]]Platforms
+Building enterprise products requires stable, predictable, performant platforms.  Red Hat brings you the innovation of open source platforms with the stability for enterprise needs.
+
+[discrete]
+#### [[containers]]Containers
+No more guessing across environments. Use containers to simplify your deployments and drive repeatability.
+
+''''
+
+[discrete]
+#### [[web-servers]]Web Servers
+Web servers, one of the basic building blocks of the web.  Whether you are serving static content or running your LAMP stack, these web servers have what you need.
+
+New to Nginx? link:http://nginx.org/en/[Learn More]
+
+|=====
+| Learn more about link:/products/webserver[JBoss Web Server] +
+  * launch link:https://hub.openshift.com/quickstarts/deploy/96-tomcat-7-jboss-ews-2-0[Apache on OpenShift]
+|  link:https://www.softwarecollections.org/en/scls/rhscl/httpd24/[Install versions of Apache HTTP and Tomcat with Software Collections]
+| Launch link:https://blog.openshift.com/lightweight-http-serving-using-nginx-on-openshift[Nginx on OpenShift]
+| link:https://www.softwarecollections.org/en/scls/rhscl/nginx14/[Install Nginx on RHEL with Software Collections]
+| Use link:https://github.com/phusion/passenger[Passenger], an easy, scalable and reliable web app server for Ruby, Python, Node.js and Meteor
+|=====
+
+''''
+
+[discrete]
+#### [[app-platforms]]Application Platforms
+From simple tomcat to J2EE servers and rules engines all the way to Vert.x - Red Hat has the Java Platforms for your products.
+
+|=====
+| Get Started with link:/products/eap[JBoss EAP]  +
+  link:https://hub.openshift.com/quickstarts/deploy/95-jboss-eap-6-4[EAP on OpenShift]
+| Run Spring on JBoss - link:https://github.com/openshift/spring-eap6-quickstart[Learn How] + 
+link:https://hub.openshift.com/quickstarts/deploy/68-spring-framework[Launch Spring on OpenShift Now]
+| Get Started with link:https://developers.openshift.com/en/tomcat-getting-started.html[Tomcat on OpenShift]
+| Get Started with link:https://developers.openshift.com/en/vertx-overview.html[Vert.x] +
+  Launch link:https://hub.openshift.com/quickstarts/deploy/110-vert-x-2-1[Vert.x Now on OpenShift]
+| Get Started with link:/products/brms[JBoss BRMS] +
+  link:https://hub.openshift.com/quickstarts/deploy/88-jboss-brms[Launch BRMS on OpenShift Now]
+|=====
+''''
+
+[discrete]
+#### [[build-tools]]Build, Test, and Repository Tools
+Because building products is much more than just the code and the framework. 
+Red Hat supports the full product delivery lifecycle.
+
+|=====
+| Continuous Integration (CI) with link:http://www.jenkins-ci.org/[Jenkins] +
+   link:https://hub.openshift.com/quickstarts/deploy/98-jenkins-server[Launch Jenkins Now on Openshift]
+| Drive consistent environments with link:/web-and-api-development/learn/#!query=chef[Chef] / link:/web-and-api-development/learn/#!query=puppet[Puppet] / link:/web-and-api-development/learn/#!query=salt[Salt] / link:/web-and-api-development/learn/#!query=ansible[Ansible]
+| Managing dependencies with link:/web-and-api-development/learn/#!query=maven[Maven]
+| Simple Integration and Functional testing with link:/web-and-api-development/learn/#!query=arquillian[Arquillian]
+| Managing artifacts with link:https://www.jfrog.com/artifactory/free-trial/[Artifactory]
+| Getting started with link:/products/devstudio/get-started/!project=devstudio[JBoss Developer Studio] and visual editors
+| Driving consistent configurations with link:/web-and-api-development/learn/#!query=cli[JBoss CLI]
+|=====
+
 
 '''
 
 [discrete]
-### Java Web Applications
+### [[api]]Integration and API
+Products that grow communities flourish.  Whether you are providing access to your maps for people to build upon, your government data for people to openly look for patterns across, or your inventory data to create an online marketplace - and everywhere in between - it is no denying that we are living in an Open API world.
 
-* Getting started with JBoss Developer Studio link:/products/devstudio/get-started/!project=devstudio[Get Started]#
-* Hello World on link:/products/eap[JBoss EAP] link:#[Get Started]
-* Managing dependencies with link:/web-and-api-development/learn/#!query=maven[Maven]
-* Using Angular and RESTFul services link:/web-and-api-development/learn/#!sys_type=quickstart&query=Angular[Get Started]
-* Tomcat Application Hosting on OpenShift link:https://developers.openshift.com/en/tomcat-getting-started.html[Get Started]#
+Whether you are publishing services or consuming someone else's APIs integration can be tricky.  Take a look at using link:/products/fuse[Fuse], link:/products/amq[A-MQ] and link:/products/datavirt[Data Virtualization] to make the job that much easier.
 
-'''
+#### Creating APIs via REST
+Representational State Transfer (REST) works well with a API-centric web applications. RESTEasy makes it simple to expose your services via JAX-RS.
 
-[discrete]
-### Integration and API
+|=====
+| link:/web-and-api-development/learn/!query=REST[Get started] exposing a RESTFul API.
+| Using Angular and RESTFul services link:/web-and-api-development/learn/#!sys_type=quickstart&query=Angular[Get Started]
+|=====
 
-* Getting Started with Fuse link:#[Get Started]
-  * link:https://github.com/FuseByExample/HelloCamel[Hello Camel]
-* Exposing a RESTFul API link:#[Get Started]
-* Creating data services link:#[Get Started]
+##### Orchestrating APIs via Fuse
+Fuse is a small footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.
 
-'''
+|=====
+| link:/products/fuse/get-started[Get Started] with Fuse.
+| link:/products/fuse/learn[Learn] more about integrating with Fuse.
+| Check out a series of examples on link:https://github.com/FuseByExample[GitHub]
+| link:https://hub.openshift.com/quickstarts/40-jboss-fuse-6-1[Launch] fuse on OpenShift
+|=====
 
-[discrete]
-### Another Section
-* How can link:#[JBoss Developer Studio] help you with visual editors
-* Simple Integration and Functional testing with link:/web-and-api-development/learn/#!query=arquillian[Arquillian]
-* Driving consistent environments with link:/web-and-api-development/learn/#!query=cli[JBoss CLI]
-*  and link:#[Artifactory]
+##### Securing and Performance of APIs via Fuse
+|=====
+| link:https://planet.jboss.org/post/api_management_part_2_with_fuse_on_openshift_with_apicast[Rate Limiting Services]
+| link:https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.0/html/Web_Services_Security_Guide/files/i305901.html[Securing Services]
+| link:https://www.jboss.org/products/fsw/overview/[Monitor Service Performance with JBoss Fuse]
+|=====
+
+##### Simple Services with Difficult Data
+Have data that you want to expose as a service?  What if it is from a file, or from multiple systems?  JBoss Data Virtualization makes it simple to create secure API access to your data, whether it is one source or many.
+
+|=====
+| link:/products/datavirt/learn[Learn About Data Virtualization]
+| link:https://developer.jboss.org/wiki/TeiidDesignerExamples[Learn by Example]
+| link:http://hortonworks.com/hadoop-tutorial/federated-hadoop-security-using-hdp-red-hat-jboss-data-virtualization/[Secure Hadoop with JBoss Data Virtualization]
+|=====
+
+##### A-MQ
+Message buses are as important to integration and API development as service endpoints.  Leverage message buses to transport data in a consistent manner, handle potential disconnects, and distribute work.
+
+A-MQ gives you a high performance, cross-platform multi-language messaging system that can be deployed across your infrastructure.
+
+|=====
+| link:/products/amq/learn[Get started] using A-MQ
+| link:http://www.jboss.org/products/amq/developer-materials/#!project=amq[Learn more about A-MQ]
+|=====
+
