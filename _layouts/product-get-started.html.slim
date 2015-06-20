@@ -96,3 +96,9 @@ type: Get Started
     .large-24#MoreResources
       h4 Want to know more about what you can do with #{page.product.abbreviated_name}?
       = page._more_resources  
+
+= javascripts('product-get-started', true) do
+  script src="#{site.base_url}/javascripts/vendor/class.create.js"
+  script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
+  script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"      
+
