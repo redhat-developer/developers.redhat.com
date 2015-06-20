@@ -1,7 +1,7 @@
 name: Red Hat JBoss Data Grid
 abbreviated_name: JBoss Data Grid
 product_logo: data-grid.png
-current_version: 6.4.0.GA
+current_version: 6.5.0.GA
 intro_video: https://vimeo.com/95291413
 vimeo_album: http://vimeo.com/album/2982379
 youtube_album: http://www.youtube.com/playlist?list=PLcrLvMVKO0b3EXp_uIAUH9u1g1VesSOEu
@@ -12,12 +12,85 @@ guides:
   Release_Notes:
   Administration_and_Configuration_Guide:
   API_Documentation:
+    formats:
+      html:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Grid/6.5/html/API_Documentation/index.html
+      html-single:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Grid/6.5/html-single/API_Documentation/index.html  
   Developer_Guide:
   Getting_Started_Guide:
   Infinispan_Query_Guide:
 default_download_artifact_type: zip
 description: 'An intelligent, distributed caching solution that boosts application performance, provides greater deployment flexibility, and minimizes the overhead of standing up new applications.'
 downloads:
+  6.5.0.GA:
+    release_date: 2015-06-17
+    description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
+    assets:
+      zip:
+        size: 158mb
+        name: Data Grid Server
+      zip_library:
+        size: 39mb
+        name: Data Grid Library
+      eap_module:
+        size: 3mb
+        name: JBoss EAP Module for Hotrod Java Client
+      eap_library:
+        size: 27mb
+        name: JBoss EAP Module for Data Grid Library
+      java_client:
+        size: 4mb
+        name: Hot Rod Java Client
+      cppclient:
+        name: Hot Rod C++ Client
+        artifacts:
+          win64:
+            name: C++ Client Win64
+            size: 4mb
+          rhel7_64:
+            name: C++ Client RHEL7_64
+            size: 1mb
+          rhel6_64:
+            name: C++ Client RHEL6_64
+            size: 1mb
+          rhel5_64:
+            name: C++ Client RHEL5_64
+            size: 1mb
+          source:
+            name: Source
+            size: 303kb
+      dotnetclient:
+        name: Hot Rod .Net Client
+        artifacts:
+          DotNet:
+            name: Hot Rod .Net Client
+            size: 1mb
+            type: msi
+          DotNetSource:
+            name: Hot Rod .Net Source
+            size: 174kb
+      jdbc_migrator:
+        size: 7mb
+        name: JDBC Migrator from 6.1
+      jon_server:
+        size: 1mb
+        name: JON Server Plugin
+      jon_library:
+        size: 1mb
+        name: JON Library Plugin        
+      quickstarts:
+        size: 2mb
+        name: Quickstarts
+      camel_library:
+        size: 1mb
+        name: Camel Component for JBoss Fuse
+      maven_repo:
+        size: 453mb
+        name: Maven Repository
+      source:
+        size: 40mb
+      release_notes:
   6.5.0.Beta:
     release_date: 2015-05-07
     description: An in-memory distributed database, Red Hat JBoss Data Grid provides fast access to data and elastic scalability for large data volumes.
