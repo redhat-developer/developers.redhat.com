@@ -9,6 +9,7 @@ ul.side-nav
   li.side-nav-toggle
     a(href="#") Menu
   - page.nav_items.each do |k,v|
-    li(class="#{k == page.solution_subsection ? "active" : ""}"): a(href="../#{k}")
-      | #{v}
-      i.fa.fa-caret-right.fa-lg
+    - if site.engine.page_by_source_path "solutions/#{page.parent.solution.id}/#{k}"
+      li(class="#{k == page.solution_subsection ? "active" : ""}"): a(href="../#{k}/")
+        | #{v}
+        i.fa.fa-caret-right.fa-lg

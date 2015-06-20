@@ -31,17 +31,18 @@ layout: solution
             = page._overview
 
     - if page._header
-      .row
-        div
-        - if page._side_call_out
-          .large-13.columns
-            = page._header
-        
-          .large-11.columns.panel.callout
-            = page._side_call_out
-        - else
+      div
+      - if page._call_out
+        .row
           .large-24.columns
-            = page._header          
+            = page._header
+        div
+          .large-24.panel.callout
+            .row
+              = page._call_out
+      - else
+        .large-24.columns
+          = page._header          
 
     - if page._left_section && page._middle_section && page._right_section
       .row.solutions-body

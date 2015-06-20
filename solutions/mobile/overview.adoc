@@ -1,10 +1,30 @@
 = Mobile
 :awestruct-layout: solution-detail
+:awestruct-interpolate: true
 
 == Header
+[.large-16.columns.ov-block]
+--
 Extend your development capabilities to mobile. Build enterprise-grade mobile applications that securely integrate with backend systems with Red Hat’s Mobile Application Platform.
-Choose the toolkits, frameworks and development environment to build native mobile apps for iOS, Android and Windows Phone using native SDKs and hybrid apps using Apache Cordova. The platform includes an enterprise mobile backend-as-a-service (MBaaS)  offering seamless integration with enterprise systems and applications, including integration with link:/products/fuse[JBoss Fuse]. The MBaaS provides a place to write and run Cloud Code - small app services that offload logic or processes from a single mobile app and run them in the cloud. The platform also supports collaborative app development across multiple teams and projects giving you controlled access to backend developer services that can be easily discovered and reused across multiple projects. Control of security, user access, and backend connectivity is centralized on the platform across all app projects, giving greater visibility and reusability of developer components.  The public cloud or private Platform-as-a-Service (PaaS)-based architecture facilitates agile development and DevOps processes, uses RESTful APIs and microservices, and accelerates time-to-deployment..
+Choose the toolkits, frameworks and development environment to build native mobile apps for link:/mobile/learn/#!query=iOS[iOS], link:/mobile/learn/#!query=Android[Android] and Windows Phone using native SDKs and link:/mobile/learn/#!query=hybrid[hybrid] apps using link:/mobile/learn/!query=Cordova[Apache Cordova]. The platform includes an enterprise mobile backend-as-a-service (MBaaS)  offering seamless integration with enterprise systems and applications, including integration with link:/products/fuse[JBoss Fuse]. The MBaaS provides a place to write and run Cloud Code - small app services that offload logic or processes from a single mobile app and run them in the cloud. The platform also supports collaborative app development across multiple teams and projects giving you controlled access to backend developer services that can be easily discovered and reused across multiple projects. Control of security, user access, and backend connectivity is centralized on the platform across all app projects, giving greater visibility and reusability of developer components.  The public cloud or private Platform-as-a-Service (PaaS)-based architecture facilitates agile development and DevOps processes, uses RESTful APIs and microservices, and accelerates time-to-deployment..
+--
 
+[.large-8.columns]
+image::#{cdn(site.base_url + '/images/solutions/mobile/solutions_illustrations_mobile.png')}["Mobile"]
+
+== Call Out
+
+[.large-12.columns]
+--
+If you’d like to use Red Hat Mobile Application Platform, you can apply here for an invitation to our new OpenShift Online backed trial which we launched at Red Hat Summit in June 2015. The only thing you’ll need is an account on OpenShift. This configuration is for development only and not for production use but still gives you access to the full product suite.
+--
+
+[.large-12.columns]
+--
+Due to overwhelming demand, we have to release these invitations in batches but you can sign up today and expect to get access soon.
+
+In the meantime, you can learn more using the wide range of instructional material on the FeedHenry Docs link:http://docs.feedhenry.com/v3/[site].
+--
 
 == Extra Section
 
@@ -12,35 +32,29 @@ Choose the toolkits, frameworks and development environment to build native mobi
 === Application Lifecycle Management
 Every developer knows that the life of a software project extends far beyond the initial coding phase. You need a range of tools and support that enable you to manage mobile apps and integrations from that code phase, through test, release and maintenance. The Red Hat Mobile Platform provides everything you need in a flexible non-prescriptive way to manage the entire lifecycle of your developments.
 
-link:/mobile/get-started/#application_lifecycle_management[Learn more on application lifecycle management...]
+link:/mobile/adoption/#application_lifecycle_management[Learn more on application lifecycle management...]
 
 [.large-12.columns]
 === Backend Integration
 Enterprise mobile applications are islands unless they are connected to something and islands are of limited use as enterprise apps go. This is where the MBaaS functionality in the Red Hat Mobile Application Platform comes in. By using our Node.js-based back-end which has staggering performance and responsiveness, developers can easily integrate with heterogeneous back-end systems, without having to build everything from scratch each time.
 
-link:/mobile/get-started/#backend_intergration[Learn more on backend integration...]
+link:/mobile/adoption/#backend_intergration[Learn more on backend integration...]
 
 [.large-12.columns]
 === API-driven Open Tooling
 The heart of the Red Hat Mobile Application Platform is an open technology stack, built API-first, that leverages the best of open source, to give you an environment that can be customised to your exact needs. You can easily tie our mobile application development flow into your existing toolchain. We call it Bring Your Own Tools (BYOT) with good reason.
 
-link:/mobile/get-started/#api-driven_open_tooling[Learn more on API-driven open tooling...]
+link:/mobile/adoption/#api-driven_open_tooling[Learn more on API-driven open tooling...]
 
 [.large-12.columns]
 === Cloud and On-Premise Deployment 
 A mobile platform that only works on one Cloud provider or needs many months to deploy On-Premise isn't much use to you when your project started yesterday. The Red Hat Mobile Platform can be easily deployed in many different ways to exactly suit your needs now and in the future, as they change.
 
-link:/mobile/get-started/#cloud_and_on-premise_deployment[Learn more on cloud and on-premise deployment...]
+link:/mobile/adoption/#cloud_and_on-premise_deployment[Learn more on cloud and on-premise deployment...]
 
 [.large-12.columns.clearfix]
 === Frontend Development
 There are many equally valid approaches to mobile app development and as developers we’d rather make the choice of tools that work best for us. Rather than forcing a case of one-size-fits-all, many we believe that developers should be to free to bring their own tools. 
 
-link:/mobile/get-started/#frontend_development[Learn more on frontend development...]
+link:/mobile/adoption/#frontend_development[Learn more on frontend development...]
 
-== Side Call Out
-If you’d like to use Red Hat Mobile Application Platform, you can apply here for an invitation to our new OpenShift Online backed trial which we launched at Red Hat Summit in June 2015. The only thing you’ll need is an account on OpenShift. This configuration is for development only and not for production use but still gives you access to the full product suite.
-
-Due to overwhelming demand, we have to release these invitations in batches but you can sign up today and expect to get access soon.
-
-In the meantime, you can learn more using the wide range of instructional material on the FeedHenry Docs link:http://docs.feedhenry.com/v3/[site].

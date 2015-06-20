@@ -2,12 +2,12 @@
 :awestruct-interpolate: true
 
 
-## Extra section
+== Extra section
 
 The purpose of this page is to provide the means to get started with the JBoss BRMS product, from introduction, to installation, to using the product to build a first application.
 These instructions take a user from start to finish using the https://github.com/eschabell/brms-coolstore-demo[Red Hat JBoss BRMS - Retail Rules & Events with the Cool Store Demo] as a PoC project.
 
-### Target audience
+=== Target audience
 Anyone interested in getting started quickly with JBoss BRMS:
 
 * Developers evaluating open source rules and events tooling
@@ -16,14 +16,14 @@ Anyone interested in getting started quickly with JBoss BRMS:
 
 image::#{cdn(site.base_url + '/images/products/brms/console.png')}["BRMS",60%]
 
-### Getting Started
+=== Getting Started
 The best way to discover a new product is to get hands-on with the product.
 We have put together an online http://bpmworkshop-onthe.rhcloud.com/workshops.html#/[JBoss BRMS workshop], where you are introduced to the product in an overview presentation before embarking on installing and building the project.
 You will be http://bpmworkshop-onthe.rhcloud.com/workshops.html#/4[building a retail webshop project] that includes rules, events, and ruleflow, all within the latest link:../overview[JBoss BRMS product].
 
 The https://github.com/eschabell/brms-coolstore-demo[Red Hat JBoss BRMS - Retail Rules & Events with the Cool Store Demo] is laid out with links and video to all the available material for exploring this project.
 
-### Installation Instructions
+=== Installation Instructions
 The simplest and quickest way to get started with JBoss BRMS, is to run it in the Cloud on OpenShift.
 See the next section for details.
 However, if you would like to install it yourself, follow these instructions:
@@ -33,7 +33,7 @@ However, if you would like to install it yourself, follow these instructions:
 3. You can now (optionally) install the Integration Stack for JBoss Developer Studio. This provides IDE support for developing JBoss BRMS applications. For more details, see the link:../../devstudio/get-started/#ExtraSection[installation instructions].
 
 
-### Workshop in the Cloud
+=== Workshop in the Cloud
 
 image::#{cdn(site.base_url + '/images/products/brms/online-workshop.png')}["BRMS Workshop",60%]
 
@@ -47,7 +47,7 @@ That's it, you can now start your workshop at: +
 `\http://brmsworkshop-$your_domain.rhcloud.com`
 
 
-### Contents
+=== Contents
 The workshop will take you through the following components where you will create rules artifacts for our project and become comfortable with their capabilities:
 
 * Admin perspective
@@ -64,7 +64,7 @@ The workshop will take you through the following components where you will creat
 * KieScanner usage / explanation for runtime updates to rules
 
 
-### Resource collection
+=== Resource collection
 _Ready to just get started with an example or two?_ +
 _Maybe you want to see a video?_ +
 _How about some background articles on JBoss BRMS?_ +
