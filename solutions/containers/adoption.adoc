@@ -1,15 +1,19 @@
 :awestruct-layout: solution-get-started
 
+## New to containers?
+
+Begin with this handy Red Hat guide: https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems].
+
 ## Developing for containers
 ### Which use-case is for you?
 
 There are two ways to begin your Red Hat container development, but regardless of approach, your containerized applications will be deployable on Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and OpenShift V3. These tools are provided as a convenience and are optional, not required, to containerizing and certifying your applications.
 
-## 1. Native RHEL development
+##### 1. Native RHEL development
 
 Setting up Red Hat containers on Red Hat Enterprise Linux is easy and there are a number of development tools for you to containerize your application and after you install your hypervisor.  For example, all of the Red Hat Software Collections have dockerfiles to help you get started including Python, Ruby, PostgreSQL, MongoDB, Apache server, JBoss Middleware and more.
 
-## 2. Off-platform development via the Red Hat Container Development Kit
+##### 2. Off-platform development via the Red Hat Container Development Kit
 
 Red Hat also provides resources for creating RHEL-based containerized applications from non-Red Hat platforms such as Microsoft Windows, Mac, and other Linux development platforms.  In this case, the Red Hat Container Development Kit (see below) utilizes Vagrant to easily set up your environment so that developing on different desktops will have the same experience of containerizing your apps for Red Hat Containers.
 
@@ -32,8 +36,10 @@ The subscription Manager plug-in automatically registers the Red Hat Enterprise 
 As Atomic Host uses a different update model from a traditional Linux distribution, it needs to be handled slightly differently by Vagrant. As a result, when using Atomic Host as a Vagrant Guest, we highly recommend installing this plugin.
 
 *Steps for getting the CDK:*
+
 . Use (or get) your RHEL Developer Subscription to get access to the CDK.
-. View the CDK installation guide that’s right for you: Windows, Mac, Linux.
+. View the https://access.redhat.com/articles/rhel-atomic-documentation[CDK installation guide] that’s right for you: Windows, Mac, Linux.
+
   .. Get the Vagrant boxes for RHEL 7 and/or Atomic host
   .. Get Vagrant
   .. Get the CDK zip file
