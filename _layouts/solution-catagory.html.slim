@@ -23,7 +23,8 @@ title: Solutions
       - for solution in site.solutions.values
         li
           .solution
-            i(class="#{solution.icon}")
+            a.solution.icon-link(href="#{site.base_url}/#{solution.id}/")
+              i(class="#{solution.icon}")
             a.solution-name-link(href="#{site.base_url}/#{solution.id}/")
               h3.solution-name #{solution.name}
             p #{solution.sub_title}
