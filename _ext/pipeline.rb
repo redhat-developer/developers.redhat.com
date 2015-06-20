@@ -38,9 +38,6 @@ Awestruct::Extensions::Pipeline.new do
   # Needs to be at the top so that we fix all output paths before processing starts
   extension JBoss::Developer::Extensions::LowerCasePaths.new
 
-  # parse AsciiDoc documents and create page variables out of their sections
-  extension Aweplug::Extensions::Sections.new
-
   # Load events from a google spreadsheet
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'events',
                                                        key: '12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k',
@@ -172,6 +169,12 @@ Awestruct::Extensions::Pipeline.new do
 
   # Must be loaded after CommonDir
   extension JBoss::Developer::Extensions::Product.new
+
+  # parse AsciiDoc documents and create page variables out of their sections
+  # Must be loaded after Product
+  extension Aweplug::Extensions::Sections.new
+
+
 
   # Load vimeo videos from a google spreadsheet
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'vimeo',

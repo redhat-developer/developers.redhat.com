@@ -1,48 +1,66 @@
-:awestruct-layout: product-get-started-old
+:awestruct-layout: product-get-started
+:awestruct-interpolate: true
 
-== JDK Advice
-Make sure you have a supported JDK installed. OpenJDK or Oracle JDK 6 or 7 is required. Java 8 is not yet supported, but will be in a future release.
+== Prerequisites section title
+Prerequisites &#38; Required Dependencies Checklist
 
-== Extra installation instructions
+== Prerequisites section
+1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
+2. JBoss&#174; Developer Studio (JBDS) 8.1 with EAP
 
-[start=4]
-. Start JBoss Fuse.
+== Setup Duration
+10 minutes
+
+== Install Duration
+5 minutes
+
+== Build Duration
+20 minutes
+
+== Setup Environment
+
+[pass]
+#{partial("jbds-is.adoc", { "product" => product })}
+
+== Install Config Verify
+
+1. Download link:#{page.product.downloads['6.1.0.GA'].assets[page.product.default_download_artifact_type].artifacts[0].url}[JBoss Fuse 6.1.0.GA #{page.product.downloads['6.1.0.GA'].assets[page.product.default_download_artifact_type].artifacts[0].name}].
 +
-For Linux or Mac::
-+    
-    cd jboss-fuse-6.1.0.redhat-379
-    bin/fuse
+*For Mac / Windows Development Hosts:*
 +
-For Windows::
+Go to the folder you have downloaded JBoss Fuse and double click on *jboss-fuse-full-6.2.0.redhat-129.zip*
 +
-    cd jboss-fuse-6.1.0.redhat-379
-    bin\fuse.bat
+*For Linux Development Hosts:*
 +
-. The first time JBoss Fuse is started you must configure an `administrator` user. In the Fuse shell execute the following command:::
+Go to the folder where you have downloaded JBoss Fuse and unzip it +
 +
-      esb:create-admin-user
+----
+unzip jboss-fuse-full-6.2.0.redhat-129.zip
+----
 +
-And type in a username and password.
+WARNING: Edit `jboss-fuse-6.2.0.redhat-129/etc/users.properties` and uncomment the _admin_ user on the last line.
+2. In JBoss Developer Studio locate the _Servers_ tab and click on _New server_ button. Select *JBoss Fuse 6.2 Server*. Change the _Server name_ to *jboss-fuse* and click _Next_.
+3. On the _JBoss Fuse Runtime_ window, select the folder where you installed JBoss Fuse and click _Finish_.
 +
-. Create a new fabric (optional). 
-  JBoss Fuse comes with Fuse Fabric which can be created by executing the following command from the Fuse shell:
-
-      fabric:create
+TIP: We recommend you select Java SE 7 as your execution environment.
 +
-For more information about Fuse Fabric view the https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Fabric_Guide/index.html[Fabric Guide]
-. Using the web console
-  Open a web browser and visit http://localhost:8181[http://localhost:8181]. Login using the `administrator` user you created.
+image:#{cdn(site.base_url + '/images/products/fuse/get-started-fuse-runtime.png')}[Create a JBoss Fuse Server]
+4. On Servers tab, click on the green start button to start the Fuse Server.
++	
+NOTE: It’s safe to say yes if you receive a warning that “The authenticity of host 'localhost' can't be established.”
++
+5. Create a new fabric. JBoss Fuse comes with Fuse Fabric which can be created by executing the following command from the Shell tab:
++
+----
+fabric:create
+----
++
+For more information about Fuse Fabric view the link:https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Fabric_Guide/index.html[Fabric Guide].
 
-. You can now (optionally) install the _Integration Stack for JBoss Developer Studio_. This provides IDE support for developing JBoss Fuse applications. For more details, see the link:../../devstudio/get-started/#ExtraSection[installation instructions].
+6. To verify Fuse was successfully installed, open a web browser and visit link:http://localhost:8181[]. Login using the username `admin` and the password `admin`. Success!
+7. For more details, view the link:#{page.product.documentation_url}[Product Documentation].
 
-
-== Configure Apache Maven
-
-== Extra section title
-
-Build your first application
-
-== Extra section
+== Build Your App
 
 Follow the below series to build your first application.
 You will build some simple examples as well as build a Home Loan Application using JBoss Fuse to integrate different enterprise systems.
@@ -69,3 +87,9 @@ The series walks you through each step of the application development lifecycle,
 
 | Innovate further. Try, experiment, test, deploy.
 | https://vimeo.com/101266094[Video]
+
+== More Resources
+
+* link:../learn[See Quickstarts, Videos, and other Learning materials]
+* link:../buzz[Read about how other people are using DevStudio]
+
