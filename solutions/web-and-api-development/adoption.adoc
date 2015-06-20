@@ -8,7 +8,7 @@ Keep reading to get some ideas on how Red Hat Web & API products can help with t
 
 [discrete]
 [[languages]]
-#### Java
+==== Java
 A high-level multipurpose language well suited for the web.  Java and link:http://openjdk.java.net/[OpenJDK] are integral parts of the RHEL platform.  Download yourself a copy of link:/products/devstudio[JBoss Developer Studio], pick a server and start building your application today.
 
 Also available is link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat], an instrumentation tool for the Hotspot JVM, with support for monitoring multiple JVM instances on multiple hosts, optionally in a cloud environment.
@@ -26,7 +26,7 @@ Also available is link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat],
 
 
 [discrete]
-##### Web Servers and frameworks
+===== Web Servers and frameworks
 
 . Get the tools
   .. link:/products/devstudio/get-started/!project=devstudio[Get Started] with JBoss Developer Studio..
@@ -42,7 +42,7 @@ Also available is link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat],
 ''''
 
 [discrete]
-#### Perl
+==== Perl
 _Want a Dancer applicaiton backed by MySQL?  Or maybe you're looking for Mojolicious and MongoDB?_  Perl is a high-level, general purpose dynamic language.  With link:/products/softwarecollections[Software Collections] and link:/products/openshift[OpenShift] you can easily deploy and run Perl applications using your favorite frameworks and databases.
 
 |=====
@@ -55,7 +55,7 @@ _Want a Dancer applicaiton backed by MySQL?  Or maybe you're looking for Mojolic
 ''''
 
 [discrete]
-##### PHP
+===== PHP
 PHP is a general-purpose server-side scripting language originally designed for Web development to produce dynamic Web pages. Popular development frameworks include CakePHP, Zend, Symfony, and CodeIgniter.
 
 |=====
@@ -70,7 +70,7 @@ link:https://hub.openshift.com/quickstarts/101-php-5-4[Launch PHP 5.4 on OpenShi
 ''''
 
 [discrete]
-##### Python
+===== Python
 Another general-purpose, high-level programming language, Python differentiates itself with a design philosophy that emphasizes code readability. Popular development frameworks include: Django, Bottle, Pylons, Zope and TurboGears.
 
 |=====
@@ -84,7 +84,7 @@ link:https://hub.openshift.com/quickstarts/103-python-3-3[Launch Python 3.3 on O
 ''''
 
 [discrete]
-##### Ruby
+===== Ruby
 Ruby, the dynamic, reflective, general-purpose object-oriented programming language and its popular development framework Ruby on Rails is supported by Red Hat.
 
 |=====
@@ -103,16 +103,16 @@ link:https://hub.openshift.com/quickstarts/76-ruby-on-rails-4[Launch Ruby on Rai
 
 [discrete]
 [[apis]]
-### Integration and API
+=== Integration and API
 Whether you are publishing services or consuming someone else's APIs integration can be tricky.  Take a look at using link:/products/fuse[Fuse], link:/products/amq[A-MQ] and link:/products/datavirt[Data Virtualization] to make the job that much easier.
 
-#### REST
+==== REST
 Representational State Transfer (REST) works well with a API-centric web applications. RESTEasy makes it simple to expose your services via JAX-RS.
 
 
 * link:/web-and-api-development/learn/!query=REST[Get started] exposing a RESTFul API.
 
-##### Fuse
+===== Fuse
 Fuse is a small footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.
 
 * link:/products/fuse/get-started[Get Started] with Fuse.
@@ -121,13 +121,13 @@ Fuse is a small footprint enterprise service bus (ESB) that lets you build, depl
 * link:https://hub.openshift.com/quickstarts/40-jboss-fuse-6-1[Launch] fuse on OpenShift
 
 
-##### Data Virtualization
+===== Data Virtualization
 Need to expose your data as a service?  JBoss Data Virtualization makes it simple whether you have a single data source or many.
 
 * Creating data services link:/products/datavirt/learn[Get Started]
 
 
-##### A-MQ
+===== A-MQ
 A-MQ gives you a high performance, cross-platform multi-language messaging system that can be deployed across your infrastructure.
 
 * link:/products/amq/learn[Get started] using A-MQ
@@ -137,7 +137,7 @@ A-MQ gives you a high performance, cross-platform multi-language messaging syste
 
 ////
 [discrete]
-### Choose a platform
+=== Choose a platform
 
 * Getting started with link:/products/eap[JBoss EAP]
   * Try a simple link:/quickstarts/eap/helloworld/index.html[Hello World]
@@ -145,14 +145,14 @@ A-MQ gives you a high performance, cross-platform multi-language messaging syste
 * Using Apache HTTP Server or Apache Tomcat
   * with link:/products/webserver[JBoss Web Server] link:simple[Get Started]
   * launch today on OpenShift link:https://hub.openshift.com/quickstarts/deploy/96-tomcat-7-jboss-ews-2-0[Get Started]
-  * install and use modern versions of Apache HTTP and Tomcat with Software Collections link:#[Get Started]
+  * install and use modern versions of Apache HTTP and Tomcat with Software Collections link:##[Get Started]
 '''
 
 
 '''
 
 [discrete]
-### Integration and API
+=== Integration and API
 
 * Getting Started with Fuse link:#[Get Started]
   * link:https://github.com/FuseByExample/HelloCamel[Hello Camel]

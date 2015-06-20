@@ -61,16 +61,13 @@ description: Discover the events and webinars featuring talks about JBoss produc
                     span.end
                       | {{event._source.end_date | moment:'MMM DD'}}
               .event-body
-                h3: a(ng-href="{{event._source.sys_url_view}}")
+                h3: a(ng-href="{{event._source.event_url}}")
                   | {{event._source.sys_title}}
                 p
                   | {{event._source.sys_description}}
-                a.button(href="{{event._source.sys_url_view}}")
+                a.button(ng-href="{{event._source.event_url}}")
                   | Learn More
                   i.fa.fa-external-link
-
-
-
 
 = javascripts("events", true) do
   script src="#{site.base_url}/javascripts/vendor/picker.js"
