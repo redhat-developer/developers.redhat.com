@@ -1,4 +1,5 @@
 :awestruct-layout: solution-get-started
+:awestruct-interpolate: true
 
 Your web applications are not just Java - at a minimum they also have HTML, CSS, and JavaScript.  And for some ideas, Ruby, Python, or Node may be a better approach.  How do you allow the right tool for the right problem while still maintaining application and environment integrity along with an environment that is supportable?
 
@@ -9,7 +10,7 @@ Keep reading to get some ideas on how Red Hat Web & API products can help with t
 [discrete]
 [[languages]]
 ==== Java
-A high-level multipurpose language well suited for the web.  Java and link:http://openjdk.java.net/[OpenJDK] are integral parts of the RHEL platform.  Download yourself a copy of link:/products/devstudio[JBoss Developer Studio], pick a server and start building your application today.
+A high-level multipurpose language well suited for the web.  Java and link:http://openjdk.java.net/[OpenJDK] are integral parts of the RHEL platform.  Download yourself a copy of link:#{site.base_url}/products/devstudio[JBoss Developer Studio], pick a server and start building your application today.
 
 Also available is link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat], an instrumentation tool for the Hotspot JVM, with support for monitoring multiple JVM instances on multiple hosts, optionally in a cloud environment.
 
@@ -29,21 +30,21 @@ Also available is link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat],
 ===== Web Servers and frameworks
 
 . Get the tools
-  .. link:/products/devstudio/get-started/!project=devstudio[Get Started] with JBoss Developer Studio..
+  .. link:#{site.base_url}/products/devstudio/get-started[Get Started] with JBoss Developer Studio..
 . Choose an application or web server
-  * link:/products/eap/download/[Download] *JBoss EAP* or launch EAP on link:https://hub.openshift.com/quickstarts/95-jboss-eap-6-4[OpenShift]
-  * *Apache Tomcat* is part of link:/products/webserver/download/[JBoss Web Server] and is also available on link:https://hub.openshift.com/quickstarts/96-tomcat-7-jboss-ews-2-0[OpenShift]
-. link:/products/eap/learn/#!project=eap&randomize=true[Check out] one of the many quickstarts, tutorials and demos availble.
-. Learn how to manage dependencies with link:/web-and-api-development/learn/#!query=maven[Maven]
+  * link:#{site.base_url}/products/eap/download/[Download] *JBoss EAP* or launch EAP on link:https://hub.openshift.com/quickstarts/95-jboss-eap-6-4[OpenShift]
+  * *Apache Tomcat* is part of link:#{site.base_url}/products/webserver/download/[JBoss Web Server] and is also available on link:https://hub.openshift.com/quickstarts/96-tomcat-7-jboss-ews-2-0[OpenShift]
+. link:#{site.base_url}/products/eap/learn/#!project=eap&randomize=true[Check out] one of the many quickstarts, tutorials and demos availble.
+. Learn how to manage dependencies with link:#{site.base_url}/web-and-api-development/learn/#!query=maven[Maven]
 
-// * Using Angular and RESTFul services link:/web-and-api-development/learn/#!sys_type=quickstart&query=Angular[Get Started]
+// * Using Angular and RESTFul services link:#{site.base_url}/web-and-api-development/learn/#!sys_type=quickstart&query=Angular[Get Started]
 
 
 ''''
 
 [discrete]
 ==== Perl
-_Want a Dancer applicaiton backed by MySQL?  Or maybe you're looking for Mojolicious and MongoDB?_  Perl is a high-level, general purpose dynamic language.  With link:/products/softwarecollections[Software Collections] and link:/products/openshift[OpenShift] you can easily deploy and run Perl applications using your favorite frameworks and databases.
+_Want a Dancer applicaiton backed by MySQL?  Or maybe you're looking for Mojolicious and MongoDB?_  Perl is a high-level, general purpose dynamic language.  With link:#{site.base_url}/products/softwarecollections[Software Collections] and link:#{site.base_url}/products/openshift[OpenShift] you can easily deploy and run Perl applications using your favorite frameworks and databases.
 
 |=====
 | *Language* | *Channel*
@@ -104,19 +105,19 @@ link:https://hub.openshift.com/quickstarts/76-ruby-on-rails-4[Launch Ruby on Rai
 [discrete]
 [[apis]]
 === Integration and API
-Whether you are publishing services or consuming someone else's APIs integration can be tricky.  Take a look at using link:/products/fuse[Fuse], link:/products/amq[A-MQ] and link:/products/datavirt[Data Virtualization] to make the job that much easier.
+Whether you are publishing services or consuming someone else's APIs integration can be tricky.  Take a look at using link:#{site.base_url}/products/fuse[Fuse], link:#{site.base_url}/products/amq[A-MQ] and link:#{site.base_url}/products/datavirt[Data Virtualization] to make the job that much easier.
 
 ==== REST
 Representational State Transfer (REST) works well with a API-centric web applications. RESTEasy makes it simple to expose your services via JAX-RS.
 
 
-* link:/web-and-api-development/learn/!query=REST[Get started] exposing a RESTFul API.
+* link:#{site.base_url}/web-and-api-development/learn/#!query=REST[Get started] exposing a RESTFul API.
 
 ===== Fuse
 Fuse is a small footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.
 
-* link:/products/fuse/get-started[Get Started] with Fuse.
-* link:/products/fuse/learn[Learn] more about integrating with Fuse.
+* link:#{site.base_url}/products/fuse/get-started[Get Started] with Fuse.
+* link:#{site.base_url}/products/fuse/learn[Learn] more about integrating with Fuse.
 * Check out a series of examples on link:https://github.com/FuseByExample[GitHub]
 * link:https://hub.openshift.com/quickstarts/40-jboss-fuse-6-1[Launch] fuse on OpenShift
 
@@ -124,13 +125,13 @@ Fuse is a small footprint enterprise service bus (ESB) that lets you build, depl
 ===== Data Virtualization
 Need to expose your data as a service?  JBoss Data Virtualization makes it simple whether you have a single data source or many.
 
-* Creating data services link:/products/datavirt/learn[Get Started]
+* Creating data services link:#{site.base_url}/products/datavirt/learn[Get Started]
 
 
 ===== A-MQ
 A-MQ gives you a high performance, cross-platform multi-language messaging system that can be deployed across your infrastructure.
 
-* link:/products/amq/learn[Get started] using A-MQ
+* link:#{site.base_url}/products/amq/learn[Get started] using A-MQ
 
 
 
@@ -139,11 +140,11 @@ A-MQ gives you a high performance, cross-platform multi-language messaging syste
 [discrete]
 === Choose a platform
 
-* Getting started with link:/products/eap[JBoss EAP]
-  * Try a simple link:/quickstarts/eap/helloworld/index.html[Hello World]
+* Getting started with link:#{site.base_url}/products/eap[JBoss EAP]
+  * Try a simple link:#{site.base_url}/quickstarts/eap/helloworld/index.html[Hello World]
   * or link:https://hub.openshift.com/quickstarts/deploy/95-jboss-eap-6-4[launch EAP on OpenShift]
 * Using Apache HTTP Server or Apache Tomcat
-  * with link:/products/webserver[JBoss Web Server] link:simple[Get Started]
+  * with link:#{site.base_url}/products/webserver[JBoss Web Server] link:simple[Get Started]
   * launch today on OpenShift link:https://hub.openshift.com/quickstarts/deploy/96-tomcat-7-jboss-ews-2-0[Get Started]
   * install and use modern versions of Apache HTTP and Tomcat with Software Collections link:##[Get Started]
 '''

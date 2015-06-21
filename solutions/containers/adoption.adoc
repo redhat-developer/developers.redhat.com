@@ -1,4 +1,5 @@
 :awestruct-layout: solution-get-started
+:awestruct-interpolate: true
 
 == New to containers?
 
@@ -25,7 +26,7 @@ The Red Hat Container Developer Kit (CDK) is a collection of developer tools, Va
 
 ****
 *Red Hat Enterprise Linux Vagrant Boxes*
-Red Hat Enterprise Linux Vagrant Boxes are Red Hat Enterprise Linux system install images pre-configured for use with Vagrant.  They are being made available for Red Hat Enterprise Linux 7 and Red Hat Enterprise Linux Atomic Host, both available in formats for VirtualBox and link:http://www.google.com/url?q=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FLibvirt&sa=D&sntz=1&usg=AFQjCNEG3Iv26RkgNn1T1dJ02ClE0i90ZQ[libvirt].
+Red Hat Enterprise Linux Vagrant Boxes are Red Hat Enterprise Linux system install images pre-configured for use with Vagrant.  They are being made available for Red Hat Enterprise Linux 7 and Red Hat Enterprise Linux Atomic Host, both available in formats for VirtualBox and link:http://libvirt.org/[libvirt].
 
 Initial setup requires a developer to (1) install Vagrant on their development machine (e.g. their laptop) and to then (2) download the appropriate Vagrant Box along with any of our recommended Vagrantfiles and plug-ins.  After the two initial setup steps are complete - running a simple “vagrantup” command automatically installs and configures the Red Hat Enterprise Linux container host.
 
@@ -64,7 +65,7 @@ Red Hat Software Collections (RHSCL) includes frequently updated sets of scripti
 * An link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Developer_Guide/index.html[introduction] to application development tools in Red Hat Enterprise Linux 7
 * SystemTap link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SystemTap_Beginners_Guide/index.html[Beginners Guide]
 * We now have link:https://github.com/sclorg/rhscl-dockerfiles[dockerfiles] for Red Hat Software Collections (RHSCL), helping developers to rapidly build and deploy containerized applications. Available for both Red Hat Enterprise Linux 6 and Red Hat Enterprise Linux 7, there are even a few that combine Apache HTTP Server and your favorite scripting language.  These are also now included as you install RHSCL components.
-* Read link:/products/rhel[more] about RHEL development tools.
+* Read link:#{site.base_url}/products/rhel[more] about RHEL development tools.
 
 *Containerizing with JBoss*
 
