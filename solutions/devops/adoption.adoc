@@ -1,4 +1,5 @@
 :awestruct-layout: solution-adoption
+:awestruct-interpolate: true
 
 [discrete]
 === [[culture]]Culture
@@ -60,7 +61,7 @@ The continuous integration server parses the test reports and provides feedback 
 
 [discrete]
 ==== [[continuous-delivery]]Continuous Delivery
-[[configuration-as-code]][[server-provisioning]]An environment provisioning tool—such as link:/products/satellite[Red Hat Satellite], link:https://access.redhat.com/documentation/en-US/Red_Hat_Network_Satellite/5.3/html/Reference_Guide/ch-cobbler.html[Cobbler], link:http://docs.ansible.com/index.html[Ansible], link:https://access.redhat.com/articles/1138393[Puppet], or link:https://learn.chef.io/learn-the-basics/rhel/[Chef] to create the environments in which to test the software against one or more versions of an operating system.
+[[configuration-as-code]][[server-provisioning]]An environment provisioning tool—such as link:#{site.base_url}/products/satellite[Red Hat Satellite], link:https://access.redhat.com/documentation/en-US/Red_Hat_Network_Satellite/5.3/html/Reference_Guide/ch-cobbler.html[Cobbler], link:http://docs.ansible.com/index.html[Ansible], link:https://access.redhat.com/articles/1138393[Puppet], or link:https://learn.chef.io/learn-the-basics/rhel/[Chef] to create the environments in which to test the software against one or more versions of an operating system.
 
 |=======
 |link:https://www.redhat.com/en/about/events/expediting-devops-and-continuous-delivery-paas[Expediting DevOps and continuous delivery with PaaS]
@@ -80,9 +81,9 @@ The continuous integration server parses the test reports and provides feedback 
 ==== Code
 Red Hat provides support for multiple versions of C, C++, Java, JavaScript, Node, Python, Ruby and many more languages.
 
-Check out the versions of link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Python], link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Ruby], link:https://access.redhat.com/articles/1299013[Java] and link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[JavaScript] available within link:/products/software-collections[Red Hat Software Collections].
+Check out the versions of link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Python], link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Ruby], link:https://access.redhat.com/articles/1299013[Java] and link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[JavaScript] available within link:#{site.base_url}/products/software-collections[Red Hat Software Collections].
 
-Seamless integration with link:/products/openshift[OpenShift] allows you to quickly get up and running with your codebase.
+Seamless integration with link:#{site.base_url}/products/openshift[OpenShift] allows you to quickly get up and running with your codebase.
 
 [discrete]
 ==== Build Tools
@@ -99,7 +100,7 @@ The build manager—such as link:http://ant.apache.org[Apache Ant], link:http://
 ==== [[containers]]Containers
 Deploy a secure, integrated host platform that is designed to run container images with optimizations for scalability, density, and performance.
 
-Build and run image-based containers using the docker service, accessible through the link:https://access.redhat.com/solutions/265523[Extras] channel as part of a link:/products/rhel[Red Hat Enterprise Linux] subscription or choose link:/products/atomic[Red Hat Enterprise Linux Atomic Host], a secure, lightweight and minimized footprint operating system that is optimized to run Linux containers.
+Build and run image-based containers using the docker service, accessible through the link:https://access.redhat.com/solutions/265523[Extras] channel as part of a link:#{site.base_url}/products/rhel[Red Hat Enterprise Linux] subscription or choose link:#{site.base_url}/products/atomic[Red Hat Enterprise Linux Atomic Host], a secure, lightweight and minimized footprint operating system that is optimized to run Linux containers.
 
 |=======
 |link:https://www.redhat.com/en/insights/containers[Transform application delivery with containers]
@@ -118,4 +119,3 @@ While not a new concept, it’s essential that all project source code and build
 |Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaboration.git.html[Git]
 |Get Started with link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/collaborating.svn.html[Subversion]
 |=======
-

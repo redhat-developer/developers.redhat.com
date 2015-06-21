@@ -48,7 +48,7 @@ Concentrate on coding web applications instead of solving scaling problems.
 
 [[openjdk]][[shenandoah]]To drive product performance, we need an enterprise class VM to run them on.  As our products grow and we scale to large systems, we need a performant garbage collector to avoid 'Stop the World'.  Shenandoah is Red Hat's ultra high performance garbage collector for OpenJDK.
 
-===== Get Started 
+===== Get Started
 |=======
 |Watch a link:http://developers.redhat.com/video/vimeo/95291413[JBoss Data Grid Overview]
 |Learn more about link:http://developers.redhat.com/video/vimeo/28201194[Leveraging JBoss Data Grid as a local cache]
@@ -68,10 +68,10 @@ Concentrate on coding web applications instead of solving scaling problems.
 Systems integrations is a challenge for all enterprise systems. How do we connect our new applications with our old; how do we connect different teams to create cumulative products; how do we manage all of this?
 
 No reason to reinvent the world.  There are well known and defined link:http://www.enterpriseintegrationpatterns.com/[Enterprise Integration Patterns].  As developers, we need tools that make using these patterns easy and predictable so we can continue delivering business value.
- 
+
 Using Apache Camel and JBoss Fuse, you will be able to quickly, easily, and confidently integrate your legacy systems.
 
-===== Get Started 
+===== Get Started
 |=======
 |Getting Started with link:http://ait2.iit.uni-miskolc.hu/oktatas/lib/exe/fetch.php?id=tanszek%3Aoktatas%3Ainformacios_rendszerek_integralasa%3Ainformatikai_rendszerek_epitese&cache=cache&media=tanszek:oktatas:informacios_rendszerek_integralasa:camelinaction.pdf[Apache Camel - free eBook]
 | Watch link:http://www.jboss.org/video/vimeo/77941255[Getting Started with JBoss Fuse Works]
@@ -83,7 +83,7 @@ Using Apache Camel and JBoss Fuse, you will be able to quickly, easily, and conf
 ==== [[connectors]]Multiple Connectors
 Most enterprise systems are not simple or easy to integrate.  You have some mainframe systems, some batch systems, maybe even some systems in different technology stacks.  Not to mention the newer systems with a whole variety of integration points and third party systems.  How to integrate all of those easily and securely?  Use the deep set of connectors in JBoss Fuse to help you.
 
-A Fuse Connector provides easy integration of your applications inside the Enterprise as well as externally by providing a uniform endpoint interface and acting as connectors to all other systems.  
+A Fuse Connector provides easy integration of your applications inside the Enterprise as well as externally by providing a uniform endpoint interface and acting as connectors to all other systems.
 
 ===== Get Started
 |======
@@ -125,9 +125,9 @@ Managing and responding to events is critical to business functionality.  Get a 
 
 But then reality hits.  What if you receive two payments from different locations in the world in a small window - is it fraud detection?  What if the package you are shipping is temperature sensitive, it is the middle of summer, and not only is there construction but there is a major accident on a critical highway?
 
-Complex events are the reality of the world and the handling of them separates the leaders from the rest of the pack. 
+Complex events are the reality of the world and the handling of them separates the leaders from the rest of the pack.
 
-Complex event processing (CEP) searches for these event patterns and executes business rules that make active decisions in response to those events.  
+Complex event processing (CEP) searches for these event patterns and executes business rules that make active decisions in response to those events.
 
 Using event-based logic delivers in-the-moment decision-making and adds business value.
 
