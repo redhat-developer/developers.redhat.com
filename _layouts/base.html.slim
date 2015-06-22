@@ -7,16 +7,16 @@ doctype html
 
 head
   meta charset='utf-8'
+  meta name='google-site-verification' content='bxtQxPXTaA2g5bXw_buofCT53_Uwp1fGAu9uHSA0UWc'
   meta name='viewport' content='width=device-width, initial-scale=1.0'
   meta name='twitter:card' content="#{page.twitter_card || 'summary'}"
   meta property='og:type' content="#{page.og_type || 'website'}"
-  meta name='twitter:site' content='@jbossdeveloper'
+  meta name='twitter:site' content='@rhdevelopers'
   meta name='twitter:image:src' content="#{page.image || 'http://static.jboss.org/ffe/1/www/origin/jbossdeveloper_twitteravatar.png'}"
   meta property='og:image' content="#{page.image || 'http://static.jboss.org/ffe/1/www/origin/jbossdeveloper_twitteravatar.png'}"
   meta property='og:url' content="#{site.base_url}#{page.url}"
   meta property='og:determiner' content="#{page.og_determiner || 'the'}"
   meta property='og:site_name' content='Red Hat Developers'
-  meta name="google-site-verification" content="s5Ticd4VGKCHPTMtzmH-EbGcGVxDwdMO28vNA_cb8SI"
   title= page.title || site.title
   meta name='twitter:title' content="#{page.title || site.title}"
   meta property='og:title' content="#{page.title || site.title}"
@@ -218,4 +218,4 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
   /script src="http://platform.linkedin.com/in.js"
   /script src="http://apis.google.com/js/plusone.js"
   /script src="http://platform.twitter.com/widgets.js"
-
+  
