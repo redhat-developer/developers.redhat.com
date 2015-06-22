@@ -34,11 +34,12 @@ secondary_section: supported-products
         p
           | Contact Sales
           i.fa.fa-caret-right
-      a.large-24.medium-12.columns(href="../community/")
-        strong Make it better
-        p
-          | Join the community
-          i.fa.fa-caret-right
+      - if page.product.has_community_page
+        a.large-24.medium-12.columns(href="../community/")
+          strong Make it better
+          p
+            | Join the community
+            i.fa.fa-caret-right
 
 .row.content
   .large-24
