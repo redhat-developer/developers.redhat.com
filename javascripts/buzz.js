@@ -228,7 +228,7 @@ app.buzz = {
           window.setTimeout(function(){ buzzFlag = true; },1000);
 
           app.buzz.infiniteScrollCalled = true;
-          var from = $('.buzz-item').length;
+          var from = $('.buzz-container > div').length;
         
           // load in more
           app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from, function() {
