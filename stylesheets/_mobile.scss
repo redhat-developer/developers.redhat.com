@@ -173,8 +173,8 @@
   }
 }
 
-@media (max-width: 642px) {
-  // 3rd level nav
+// 3rd level nav on solutions pages
+@include tablet-landscape-and-down {
 
   .side-nav {
     li {
