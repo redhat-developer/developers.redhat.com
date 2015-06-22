@@ -49,21 +49,21 @@ layout: solution
         .large-8.columns
           - if page.solution.left_section_icon
             p
-              i(class="#{page.solution.left_section_icon}")/
+              i(class="#{page.solution.left_section_icon} solution-column-icon")/
 
           p.small
             = page._left_section
         .large-8.columns
           - if page.solution.middle_section_icon
             p
-              i(class="#{page.solution.middle_section_icon}")/
+              i(class="#{page.solution.middle_section_icon} solution-column-icon")/
 
           p.small
             = page._middle_section
         .large-8.columns
           - if page.solution.right_section_icon
             p
-              i(class="#{page.solution.right_section_icon}")/
+              i(class="#{page.solution.right_section_icon} solution-column-icon")/
 
           p.small
             = page._right_section
@@ -73,13 +73,13 @@ layout: solution
         .large-12.columns
           - if page.solution.left_section_extra_icon
             .solution
-              i(class="#{page.solution.left_section_extra_icon}")/
+              i(class="#{page.solution.left_section_extra_icon} solution-column-icon")/
           p.small
             = page._left_section_extra
         .large-12.columns
           - if page.solution.right_section_extra_icon
             .solution
-              i(class="#{page.solution.right_section_extra_icon}")/
+              i(class="#{page.solution.right_section_extra_icon} solution-column-icon")/
           p.small
             = page._right_section_extra
 
@@ -89,13 +89,13 @@ layout: solution
           .large-12.columns
             - if page.solution.left_section_icon
               .solution
-                i(class="#{page.solution.left_section_icon}")/
+                i(class="#{page.solution.left_section_icon} solution-column-icon")/
             p.small
               = page._left_section
           .large-12.columns
             - if page.solution.right_section_icon
               .solution
-                i(class="#{page.solution.right_section_icon}")/
+                i(class="#{page.solution.right_section_icon} solution-column-icon" )/
             p.small
               = page._right_section
 
@@ -108,4 +108,3 @@ layout: solution
       .large-24.columns
         - if page.solution.has_partial
           = partial("solution-partial-" + page.solution.id + ".html.slim")
-
