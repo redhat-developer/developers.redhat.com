@@ -382,7 +382,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     delete $scope.filters.level;
     delete $scope.filters.sys_created;
     // clear local storage
-    delete localStorage.filters;
+    delete localStorage[$scope.data.pageType + '-filters'];
     // trigger chosen
     $(".chosen").trigger("chosen:updated");
   }
@@ -474,13 +474,9 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     });
 
     // save search in local storage
-    if(!$scope.filters.solution) {
-
-      $scope.filter.store();
-
-      // update the page hash
-      window.location.hash = "!" + $.param($scope.filters);
-    }
+    $scope.filter.store();
+    // update the page hash
+    window.location.hash = "!" + $.param($scope.filters);
 
   }
 
@@ -521,10 +517,10 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
 
   $scope.filter.store = function() {
     // check if we have local storage, abort if not
-    if(!window.localStorage || $scope.filters.project || $scope.filters.solution) { return; }
+    // if(!window.localStorage || $scope.filters.project || $scope.filters.solution) { return; }
     // store them in local storage
-    window.localStorage.filters = JSON.stringify(scope.filters);
-    window.localStorage.filtersTimeStamp = new Date().getTime();
+    window.localStorage[$scope.data.pageType + '-filters'] = JSON.stringify(scope.filters);
+    window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] = new Date().getTime();
   }
 
   $scope.filter.restore = function() {
@@ -539,13 +535,13 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     }
 
     // if we are on a project page, skip restoring
-    if($scope.filters.project || $scope.filters.solution) {
-      $scope.filter.applyFilters(); // run without restoring filters
-      return;
-    }
+    // if($scope.filters.project || $scope.filters.solution) {
+    //   $scope.filter.applyFilters(); // run without restoring filters
+    //   return;
+    // }
 
     // check if we have window hash,  local storage or any stored filters, abort if not
-    if(!window.location.hash && (!window.localStorage || !window.localStorage.filters)) {
+    if(!window.location.hash && (!window.localStorage || !window.localStorage[$scope.data.pageType + '-filters'])) {
       $scope.filter.applyFilters(); // run with no filters
       return;
     }
@@ -595,13 +591,13 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
       }
 
     }
-    else if(window.localStorage && window.localStorage.filters) {
+    else if(window.localStorage && window.localStorage[$scope.data.pageType + '-filters']) {
       // only restore if less than 2 hours old
       var now = new Date().getTime();
-      var then = window.localStorage.filtersTimeStamp || 0;
+      var then = window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] || 0;
 
       if((now - then) < 7200000) { // 2 hours
-        $scope.filters = JSON.parse(window.localStorage.filters);
+        $scope.filters = JSON.parse(window.localStorage[$scope.data.pageType + '-filters']);
       }
     }
 
