@@ -4,7 +4,7 @@ layout: get-started-base
 = partial 'jdf_advise.html.slim', {'parent' => page}
 div(ng-app="dcp")
   .developer-materials(ng-controller="developerMaterialsController")
-    .developer-materials-sidebar
+    .developer-materials-sidebar(ng-init="data.pageType = 'learn'")
       = partial 'developer-materials-filters.html.slim'
     .developer-materials-main.text-content
       h2.divider#featured Featured

@@ -5,7 +5,7 @@ layout: solution
 - page.title = "Find quickstarts, archetypes, BOMs, Tutorials, and other developer oriented materials for #{page.solution.name}."
 div(ng-app="dcp")
   .developer-materials(ng-controller="developerMaterialsController")
-    .large-24#developer-materials-filters(ng-init="filters.solution = true; filters.sys_tags = #{page.solution.tags.to_json.gsub(/"/, "'")}")
+    .large-24#developer-materials-filters(ng-init="data.pageType = '#{page.solution.id}'; filters.sys_tags = #{page.solution.tags.to_json.gsub(/"/, "'")}")
       = partial 'developer-materials-filters.html.slim'
     .text-content
       .developer-materials-results-wrapper
