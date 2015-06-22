@@ -2,7 +2,6 @@
  * Buzz
  * Dependencies: vendor/jQuery.js, vendor/jQuery.XDomainRequest.js, namespace.js
  * DOM Ready dependencies: vendor/jquery.timeago.js
- * Isotope dependencies: vendor/jquery.isotope.min.js, vendor/imagesloaded.min.js
  */
 app.buzz = {
 
@@ -137,15 +136,6 @@ app.buzz = {
           container.html(html);
         }
 
-        if (container.hasClass('isotoped')) {
-          container.imagesLoaded(function(){
-            container.isotope('destroy').isotope({
-              itemSelector: '.buzz-item'
-            });
-            typeof callback === 'function' && callback();
-          });
-        }
-
         container.removeClass('buzz-loading');
 
         $('.share-this').on('click mouseover', function() {
@@ -159,39 +149,6 @@ app.buzz = {
 
   init : function() {
 
-    $( function() {
-    
-      /*
-        Isotope
-      */
-      var $container = $('.buzz-container');
-
-      if($container.length) {
-
-        $(window).load(function() {
-
-          // Filtering
-          /*$('.sort-icons a').click(function(){
-            $('.buzz-filter-active').removeClass('buzz-filter-active');
-            $(this).addClass('buzz-filter-active');
-            var filterType = ".buzz-item-"+$(this).data('filter');
-            if(filterType == '.buzz-item-all') {
-              filterType = ".buzz-item";
-            }
-            $container.isotope({ filter: filterType });
-          });*/
-
-        });
-
-        // Bind to window resize
-        $(window).resize(function() {
-          $container.isotope({
-            itemSelector: '.buzz-item'
-          });
-        });
-      }
-    });
-    
     /* 
       "Mini" Buzz, for the homepage
     */
