@@ -131,7 +131,7 @@ profiles:
     metrics: true
     disqus: jdf
     robots:
-      disallow: true
+      disallow: false
     deploy:
       <<: *deploy
       path: /www_htdocs/rhd
