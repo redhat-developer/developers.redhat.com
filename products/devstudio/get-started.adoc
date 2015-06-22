@@ -6,7 +6,7 @@ Prerequisites &#38; Required Dependencies Checklist
 
 == Prerequisites section
 1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
-2. JBoss&#174; Developer Studio (JBDS) 8.1 with EAP
+2. JBoss&#174; Developer Studio 8.1 with EAP
 
 == Setup Duration
 10 minutes
@@ -20,23 +20,23 @@ Prerequisites &#38; Required Dependencies Checklist
 == Setup Environment
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
-2.  Download
-3.  Run JBDS installer +
+2.  Download link:http://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-jar_universal.jar[JBoss Developer Studio 8.1.0.GA with EAP] 
+3.  Run JBoss Developer Studio installer +
 For Mac / Windows Development Hosts:
-a.  Go to the folder you have downloaded JBDS:
+a.  Go to the folder you have downloaded JBoss Developer Studio:
 ...  Right Click on `jboss-devstudio-8.1.0.GA-installer-eap.jar`
 ... Select _Open With -> Jar Launcher_
 +
 For Linux Development Hosts:
 +
-Go to the folder where you have downloaded the JBDS, and execute the
+Go to the folder where you have downloaded the JBoss Developer Studio, and execute the
 installer +
 +
 ----
 java -jar jboss-devstudio-8.1.0.GA-installer-eap.jar
 ----
 +
-*Note:* This will execute the JBDS installation wizard. Common
+*Note:* This will execute the JBoss Developer Studio installation wizard. Common
 Installation Steps: +
  Answer _Yes_ to the question _"JBoss Developer Studio includes Red Hat JBoss Enterprise Application Platform. Install it now ?"_
 4.  Start JBoss Developer Studio. +
@@ -50,13 +50,11 @@ c.  Click _Add Repository_ and select the
 *redhat-techpreview-all-repository* profile and then click Ok. +
 +
 [.content-img]
-image://static.jboss.org/rhd/pr/165/build/372/images/images_products_devstudio_devstudio-overview-1-1.png[Add
-Maven Repository]
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-1.png')}[Add Maven Repository]
 d.  Click Finish +
 +
 [.content-img]
-image://static.jboss.org/rhd/pr/165/build/372/images/images_products_devstudio_devstudio-overview-2-1.png[Configure
-Maven Repository]
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-2.png')}[Configure Maven Repository]
 e.  Answer _Yes_ when asked if you want to update the `settings.xml` file.
 
 == Install Config Verify
@@ -68,15 +66,14 @@ an EAP server you will now create and configure: +
 steps are required to install or configure JBoss EAP after completing
 the following steps.
 
-1.  In JBDS, Open the _JBoss Central view._ +
+1.  In JBoss Developer Studio, Open the _JBoss Central view._ +
 *Note:* If the _JBoss Central_ view is not visible, please click the
-image://static.jboss.org/rhd/pr/165/build/372/images/images_products_devstudio_devstudio-overview-3-1.png[menu
-icon] icon on the main menu bar.
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-3.png')}[menu icon] icon on the main menu bar.
 2.  Under the _"Start from a sample"_ section, select Web
 Applications, and click on the *_helloworld_* quickstart application. +
 +
 [.content-img]
-image://static.jboss.org/rhd/pr/165/build/372/images/images_products_devstudio_devstudio-overview-4-1.png[JBoss
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-4.png')}[JBoss
 Central]
 3.  Click on _Finish._ This will download the helloworld application and
 it’s maven dependencies.
@@ -86,7 +83,7 @@ a dialog telling you your project is ready. Just click _Finish._
 start button to start the EAP server. +
 +
 [.content-img]
-image://static.jboss.org/rhd/pr/165/build/372/images/images_products_devstudio_devstudio-overview-5-1.png[EAP
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-5.png')}[EAP
 Server]
 6.  Once the server has been started, select the _jboss-helloworld_
 application on the _Project Explorer._
@@ -96,7 +93,7 @@ options.
 c.  Select the newly created jboss-eap server, click _Ok_ and _Finish._
 
 This will build, deploy and run the helloworld application inside JBoss
-EAP server. The application will open the internal JBDS browser and
+EAP server. The application will open the internal JBoss Developer Studio browser and
 present "Hello World!" Success!
 
 == Build Your App
@@ -115,3 +112,4 @@ Enterprise Application Platform Overview]
 
 * link:../learn[See Quickstarts, Videos, and other Learning materials]
 * link:../buzz[Read about how other people are using DevStudio]
+
