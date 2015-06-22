@@ -18,7 +18,9 @@ app.termsAndConditions = {
   download: function () {
 
     var tcUser = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcUser'));
-    var tcWhenSigned = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcWhenSigned')).replace(/\+/g, ' ');
+    // set when signed to blank when we do not require a login
+    var whenSigned = app.termsAndConditions.urlParam('tcWhenSigned') || '';
+    var tcWhenSigned = $.encoder.canonicalize(whenSigned).replace(/\+/g, ' ');
     var tcEndsIn = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcEndsIn'));
     var tcDownloadURL = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadURL'));
     var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
