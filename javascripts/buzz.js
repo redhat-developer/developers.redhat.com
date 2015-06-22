@@ -55,12 +55,17 @@ app.buzz = {
     }
 
     if(tags){
+      var tagsString = "";
       for (var i = 0; i < tags.length; i++) {
         if (tags[i].contains(" ")) {
           tags[i] = "\"" + tags[i] + "\"";
         }
+        if (i > 0) {
+          tagsString += " ";
+        }
+        tagsString += tags[i];
       }
-      query.push("sys_tags:"+tags);
+      query.push("sys_tags:"+tagsString);
       window.dataLayer.push({ 'tags' : tags });
     } else {
       window.dataLayer.push({ 'tags' : null });
