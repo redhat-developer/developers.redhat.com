@@ -1,6 +1,6 @@
 name: Red Hat JBoss A-MQ 
 abbreviated_name: JBoss A-MQ
-current_version: 6.1.0.GA
+current_version: 6.2.0.GA
 documentation_path: Red_Hat_JBoss_A-MQ
 product_logo: a-mq.png
 intro_video: https://vimeo.com/95430180
@@ -27,15 +27,15 @@ guides:
   Migration_Guide:
   Product_Introduction:
   Release_Notes:
-   formats:
-      html: 
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_A-MQ/6.1/html/Release_Notes/index.html
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_A-MQ/6.2/html/Release_Notes/index.html
       html-single:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_A-MQ/6.1/html-single/Release_Notes/index.html
-      pdf:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_A-MQ/6.1/pdf/Release_Notes/Red_Hat_JBoss_A-MQ-6.1-Release_Notes-en-US.pdf
-      epub: 
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_A-MQ/6.1/epub/Release_Notes/Red_Hat_JBoss_A-MQ-6.1-Release_Notes-en-US.epub
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_A-MQ/6.2/html-single/Release_Notes/index.html
+      pdf: 
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_A-MQ/6.2/pdf/Release_Notes/Red_Hat_JBoss_A-MQ-6.2-Release_Notes-en-US.pdf
+      epub:
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_A-MQ/6.2/epub/Release_Notes/Red_Hat_JBoss_A-MQ-6.2-Release_Notes-en-US.epub
   Security_Guide:
   Tuning_Guide:
   Using_Networks_of_Brokers:
@@ -48,6 +48,40 @@ upstream_projects:
   - activemq
   - fabric8
 downloads:
+  6.2.0.GA:
+    release_date: 2015-06-23
+    description: Our small footprint, high performance, open source messaging platform
+    assets:
+      zip:
+        size: 277mb
+        name: Zip (Full Install)
+      zip_cpp:
+        size: 6mb
+        name: Zip C++
+      amqp_jms_client:
+        name: AMQP JMS Client
+        size: 3mb
+      cppclient:
+        name: AMQP Client
+        artifacts:
+          vs2012:
+            name: AMQP C++ Client x86
+            size: 34mb
+          vs2012_sources:
+            name: AMQP C++ Sources
+            size: 1mb
+          vs2012_64:
+            name: AMQP C++ Client 64
+            size: 36mb
+      net_client:
+        size: 9mb
+        name: .NET Client
+      net_lite_sdk:
+        size: 1mb
+        name: .NET Lite SDK
+      net_lite_sources:
+        size: 1mb
+        name: .NET Lite Sources        
   6.1.0.GA:
     release_date: 2014-04-14
     description: Our small footprint, high performance, open source messaging platform
