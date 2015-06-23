@@ -1,48 +1,116 @@
-:awestruct-layout: product-get-started-old
+:awestruct-layout: product-get-started
+:awestruct-interpolate: true
 
-== JDK Advice
-Make sure you have a supported JDK installed. OpenJDK or Oracle JDK 6 or 7 is required. Java 8 is not yet supported, but will be in a future release.
+== Prerequisites section title
+Prerequisites &#38; Required Dependencies Checklist
 
-== Extra installation instructions
+== Prerequisites section
+1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
+2. JBoss&#174; Developer Studio 8.1
 
-[start=4]
-. Start JBoss Fuse.
+== Setup Duration
+10 minutes
+
+== Install Duration
+5 minutes
+
+== Build Duration
+20 minutes
+
+== Setup Environment
+
+1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
+Oracle JDK.
+2.  Download link:http://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-standalone_jar.jar[JBoss Developer Studio 8.1.0.GA] 
+3.  Run JBoss Developer Studio installer +
+For Mac / Windows Development Hosts:
+a.  Go to the folder you have downloaded JBoss Developer Studio:
+...  Right Click on *jboss-devstudio-8.1.0.GA-installer-standalone.jar*
+... Select _"Open With -> Jar Launcher"_
 +
-For Linux or Mac::
-+    
-    cd jboss-fuse-6.1.0.redhat-379
-    bin/fuse
+For Linux Development Hosts:
 +
-For Windows::
+Go to the folder where you have downloaded JBoss Developer Studio, and execute the
+installer +
 +
-    cd jboss-fuse-6.1.0.redhat-379
-    bin\fuse.bat
+`java -jar jboss-devstudio-8.1.0.GA-installer-standalone.jar`
 +
-. The first time JBoss Fuse is started you must configure an `administrator` user. In the Fuse shell execute the following command:::
+*Note:* This will execute the JBoss Developer Studio installation wizard. +
+4.  Start JBoss Developer Studio. +
+For more details, view the https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Developer_Studio/8.1/html/Install_Red_Hat_JBoss_Developer_Studio/Install_JBoss_Developer_Studio_Stand-alone_and_JBoss_EAP.html[JBoss
+Developer Studio documentation.]
+5.  Configure Maven
+a.  Open JBoss Developer Studio preferences and expand _JBoss Tools_ and
+select _JBoss Maven Integration._
+b.  Click _Configure Maven Repositories…_ button.
+c.  Click _Add Repository_ and select the
+*redhat-techpreview-all-repository* profile and then click Ok. +
 +
-      esb:create-admin-user
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-1.png')}[Add Maven Repository]
+d.  Click Finish +
 +
-And type in a username and password.
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-2.png')}[Configure
+Maven Repository]
+e.  Answer _"Yes"_ for the question if you want to update settings.xml
+file.
+6. Install JBoss Developer Studio Integration Stack plugins
+a. Select the _Software/Update_ tab in the _JBoss Central_ view.
+b. Tick _Enable Early Access_ and click _Yes_ when the warning dialog pops up.
+c. Scroll down the list of available features, looking for the _JBoss Developer Studio Integration Stack_ section. See the image below.
+d. Tick the following items:
+... JBoss Fuse Development
+... JBoss Business Process and Rules Development
+... JBoss Data Virtualization Development
+... JBoss Integration and SOA Development
+... JBoss SOA 5.x Development
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-get-started-is.png')}[Install JBoss Developer Studio Integration Stack]
+e. Click the _Install_ button.
+... Click _Next_, _Next_, and then accept the terms and conditions. Finally, click _Finish_.
+... You will be given a _Security Warning_ during installation, click _Yes_.
+... You will need to restart JBoss Developer Studio. Click _Yes_ when asked.
+
+== Install Config Verify
+
+1. Download link:http://developers.redhat.com/download-manager/file/jboss-fuse-6.2.0.GA-full_zip.zip[JBoss Fuse 6.2.0.GA]
 +
-. Create a new fabric (optional). 
-  JBoss Fuse comes with Fuse Fabric which can be created by executing the following command from the Fuse shell:
-
-      fabric:create
+*For Mac / Windows Development Hosts:*
 +
-For more information about Fuse Fabric view the https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Fabric_Guide/index.html[Fabric Guide]
-. Using the web console
-  Open a web browser and visit http://localhost:8181[http://localhost:8181]. Login using the `administrator` user you created.
+Go to the folder you have downloaded JBoss Fuse and double click on *jboss-fuse-full-6.2.0.redhat-133.zip*
++
+*For Linux Development Hosts:*
++
+Go to the folder where you have downloaded JBoss Fuse and unzip it +
++
+----
+unzip jboss-fuse-full-6.2.0.redhat-133.zip
+----
++
+WARNING: Edit `jboss-fuse-full-6.2.0.redhat-133/etc/users.properties` and uncomment the _admin_ user on the last line.
+2. In JBoss Developer Studio locate the _Servers_ tab and click on _New server_ button. Select *JBoss Fuse 6.2 Server*. Change the _Server name_ to *jboss-fuse* and click _Next_.
+3. On the _JBoss Fuse Runtime_ window, select the folder where you installed JBoss Fuse and click _Finish_.
++
+TIP: We recommend you select Java SE 7 as your execution environment.
++
+image:#{cdn(site.base_url + '/images/products/fuse/get-started-fuse-runtime.png')}[Create a JBoss Fuse Server]
+4. On Servers tab, click on the green start button to start the Fuse Server.
++	
+NOTE: It’s safe to say yes if you receive a warning that “The authenticity of host 'localhost' can't be established.”
++
+5. Create a new fabric. JBoss Fuse comes with Fuse Fabric which can be created by executing the following command from the Shell tab:
++
+----
+fabric:create
+----
++
+For more information about Fuse Fabric view the link:https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Fabric_Guide/index.html[Fabric Guide].
 
-. You can now (optionally) install the _Integration Stack for JBoss Developer Studio_. This provides IDE support for developing JBoss Fuse applications. For more details, see the link:../../devstudio/get-started/#ExtraSection[installation instructions].
+6. To verify Fuse was successfully installed, open a web browser and visit link:http://localhost:8181[]. Login using the username `admin` and the password `admin`. Success!
+7. For more details, view the link:https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Fuse[Product Documentation].
 
-
-== Configure Apache Maven
-
-== Extra section title
-
-Build your first application
-
-== Extra section
+== Build Your App
 
 Follow the below series to build your first application.
 You will build some simple examples as well as build a Home Loan Application using JBoss Fuse to integrate different enterprise systems.
@@ -69,3 +137,10 @@ The series walks you through each step of the application development lifecycle,
 
 | Innovate further. Try, experiment, test, deploy.
 | https://vimeo.com/101266094[Video]
+|===
+
+== More Resources
+
+* link:../learn[See Quickstarts, Videos, and other Learning materials]
+* link:../buzz[Read about how other people are using JBoss Fuse]
+
