@@ -30,7 +30,8 @@ app.termsAndConditions = {
     }
 
     if(!tcWhenSigned) {
-      $('.downloadthankyou p').hide();
+      $('.downloadthankyou p, .thankyoupanels').hide();
+      $('#download-problems').show();
     }
 
     if (tcEndsIn) {
