@@ -1,21 +1,25 @@
 :awestruct-layout: solution-get-started
 :awestruct-interpolate: true
+:leveloffset: 1
 
-== New to containers?
-
+[.large-24.columns.panel.callout]
+*New to containers?* +
 Begin with this handy Red Hat guide: https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems].
 
 == Developing for containers
-=== Which use-case is for you?
+
+'''
+
+==== Which use-case is for you?
 
 There are two ways to begin your Red Hat container development, but regardless of approach, your containerized applications will be deployable on Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and OpenShift V3. These tools are provided as a convenience and are optional, not required, to containerizing and certifying your applications.
 
-===== 1. Native RHEL development
-
+[.large-12.columns]
+*1. Native RHEL development* +
 Setting up Red Hat containers on Red Hat Enterprise Linux is easy and there are a number of development tools for you to containerize your application and after you install your hypervisor.  For example, all of the Red Hat Software Collections have dockerfiles to help you get started including Python, Ruby, PostgreSQL, MongoDB, Apache server, JBoss Middleware and more.
 
-===== 2. Off-platform development via the Red Hat Container Development Kit
-
+[.large-12.columns]
+*2. Off-platform development via the Red Hat Container Development Kit* +
 Red Hat also provides resources for creating RHEL-based containerized applications from non-Red Hat platforms such as Microsoft Windows, Mac, and other Linux development platforms.  In this case, the Red Hat Container Development Kit (see below) utilizes Vagrant to easily set up your environment so that developing on different desktops will have the same experience of containerizing your apps for Red Hat Containers.
 
 '''
@@ -24,7 +28,6 @@ Red Hat also provides resources for creating RHEL-based containerized applicatio
 
 The Red Hat Container Developer Kit (CDK) is a collection of developer tools, Vagrantfiles and plug-ins, RHEL images, and documentation.  This collection will enable application developers to more easily create container-based applications for use with Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, or OpenShift V3. Rather than starting from scratch, developers who are using Windows, Mac, Fedora, and other Linux distributions can take advantage of pre-configured CDK images and pre-tested Vagrant files to make installing Red Hat Enterprise Linux containers and developing container-based applications as quick and easy as possible. Technology partners that have joined the Container Zone have access CDK content.
 
-****
 *Red Hat Enterprise Linux Vagrant Boxes*
 Red Hat Enterprise Linux Vagrant Boxes are Red Hat Enterprise Linux system install images pre-configured for use with Vagrant.  They are being made available for Red Hat Enterprise Linux 7 and Red Hat Enterprise Linux Atomic Host, both available in formats for VirtualBox and link:http://libvirt.org/[libvirt].
 
@@ -39,15 +42,15 @@ As Atomic Host uses a different update model from a traditional Linux distributi
 *Steps for getting the CDK:*
 
 . Use (or get) your RHEL Developer Subscription to get access to the CDK.
-. View the https://access.redhat.com/articles/rhel-atomic-documentation[CDK installation guide] that’s right for you: Windows, Mac, Linux.
+. View the https://access.redhat.com/articles/rhel-atomic-documentation[CDK installation guide] that’s right for you: 
++
+link:https://access.redhat.com/articles/1487723[Windows], link:https://access.redhat.com/articles/1487693[Mac], link:https://access.redhat.com/articles/1487733[Fedora and other Linux]
 
   .. Get the Vagrant boxes for RHEL 7 and/or Atomic host
   .. Get Vagrant
   .. Get the CDK zip file
 
-****
-
-==== Development tools for containers
+=== Development tools for containers
 
 The Red Hat Enterprise Linux developer tools makes it easy to access industry-leading developer tools, instructional resources, and an ecosystem of experts to help developers maximize productivity in building great Linux applications.  Please review this section as the options have greatly expanded recently.
 
@@ -65,11 +68,50 @@ Red Hat Software Collections (RHSCL) includes frequently updated sets of scripti
 * An link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Developer_Guide/index.html[introduction] to application development tools in Red Hat Enterprise Linux 7
 * SystemTap link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SystemTap_Beginners_Guide/index.html[Beginners Guide]
 * We now have link:https://github.com/sclorg/rhscl-dockerfiles[dockerfiles] for Red Hat Software Collections (RHSCL), helping developers to rapidly build and deploy containerized applications. Available for both Red Hat Enterprise Linux 6 and Red Hat Enterprise Linux 7, there are even a few that combine Apache HTTP Server and your favorite scripting language.  These are also now included as you install RHSCL components.
-* Read link:#{site.base_url}/products/rhel[more] about RHEL development tools.
++
+Read link:#{site.base_url}/products/rhel[more] about RHEL development tools.
 
-*Containerizing with JBoss*
+==== Containerizing with JBoss
 
-* JBoss Projects and Docker
-  We publish our images under the official link:https://registry.hub.docker.com/repos/jboss/[jboss organization]. Every image is built from Dockerfiles available from the repositories in our link:https://github.com/jboss-dockerfiles[GitHub organization]. Images are linked to each other: If an image we’re base on is modified, we rebuild our image to provide you the fresh image that you deserve.
+*JBoss Projects and Docker* +
+We publish our images under the official link:https://registry.hub.docker.com/repos/jboss/[jboss organization]. Every image is built from Dockerfiles available from the repositories in our link:https://github.com/jboss-dockerfiles[GitHub organization]. Images are linked to each other: If an image we’re base on is modified, we rebuild our image to provide you the fresh image that you deserve.
 
-* Browse the link:http://www.jboss.org/docker/[list] of available docker images
+*Available Docker Images* +
+Browse the link:http://www.jboss.org/docker/[list] of available docker images
+
+[.large-24.columns.panel.callout]
+--
+[.center]
+*link:youtube.com/4uQ6gR_xZhE[Watch this Virtual JBUG session with Marek Goldmann, who leads Docker related initiatives at Red Hat.]* 
+
+In this session, and right after an introduction to Docker, Marek will dive into examples showing how you can leverage this tool to create a deployment environment for your applications. You will see how to cluster JBoss EAP and deploy an application to it. Marek will share some tips and tricks too: for example how to manage logs or customize the configuration of JBoss EAP to be able to deploy your applications. If you want to, you can just deep link:https://goldmann.pl/presentations/2014-vjbug-docker/#/[dive into the slides] or link:https://github.com/goldmann/goldmann.pl/tree/master/.presentations/2014-vjbug-docker/demos[look at the code] that he used to demo.
+--
+
+== Why containers?
+'''
+
+=== Containers support modern application development trends
+A recent Forrester Consulting study asked IT decision-makers "For which workloads or application use cases have you used/do you anticipate to use containers?"
+
+image:#{cdn(site.base_url + '/images/solutions/container/container_adoption_1.png')}["Containers development trends"]
+
+Base: 194 IT operations and development decision-makers at enterprises in APAC, EMEA, and North America
+Source: A commissioned study conducted by Forrester Consulting on behalf of Red Hat, January 2015
+
+=== Security - How to keep your containers safe and certified
+
+[.large-24.columns.containers-callout]
+*Survey:* +
+*53% say security is their biggest concern about containers.*
+
+You must make sure that container images running in your infrastructure are safe to consume and certified to run wherever they are deployed.
+
+* Article: link:http://venturebeat.com/2014/12/16/whats-in-a-container-you-dont-know-and-thats-a-problem/#[Lars Herrmann for Venture Beat, "What's in a container? You don't know. And that's a problem." Dec 16, 2014.]
+* Opensource.com: link:http://opensource.com/business/14/7/docker-security-selinux[Containers don't contain]. Containers only improve the isolation of applications so treat privileged processes inside a container the same way you'd treat them outside of it.  This article reveals why containers and SELinux are a perfect (and easy) combo. By Daniel Walsh, Red Hat.
+* link:http://blog.docker.com/2014/07/new-dockercon-video-docker-security-renamed-from-docker-and-selinux/[SELinux for security] - DockerCon 2014.  Docker Security, SELinux can provide a security framework to help isolate Linux containers and support higher levels of security. by: Daniel Walsh for Opensource.com, "Bringing new security features to Docker," Sep 3, 2014.
+** *Video:* link:https://www.youtube.com/embed/zWGFqMuEHdw[Docker and SELinux by Daniel Walsh from Red Hat]
+
+== Community - Project Atomic
+'''
+Red Hat is working with the open source community through Project Atomic to help create industry-wide Linux container standards. Project Atomic helps make sure that common containers work with trusted operating system platforms. By working towards compatibility and coordinating standards, Project Atomic helps Red Hat and other vendors deliver a complete hosting architecture that's modern, reliable, and secure.  Learn more at link:projectatomic.org[projectatomic.org].
+
