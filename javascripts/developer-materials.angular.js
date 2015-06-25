@@ -233,6 +233,18 @@ dcp.filter('formatName',function(){
   }
 });
 
+/**
+ * safeNumber is an "ng filter" that accept string value
+ * and convert to number (using radix of 10). If parsing
+ * fails (NaN) then 0 is returned.
+ */
+dcp.filter('safeNumber', function() {
+  return function(input) {
+    var n = parseInt(input, 10);
+    return isNaN(n) ? 0 : n;
+  }
+});
+
 dcp.controller('developerMaterialsController', function($scope, materialService) {
 
   window.scope = $scope;
@@ -242,6 +254,12 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
   $scope.pagination = {
     size : 10
   };
+
+  // Add Math object to $scope so we can use it directly in Angular expressions
+  // like: {{ Math.min(data.materials.length, paginate.currentPage * pagination.size) }}
+  // This might not be clean technique from Angular perspective (more clear would be
+  // to do all required calculations in controller and not the view)
+  $scope.Math = Math;
 
   /*
     Handle Pagination
