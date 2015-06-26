@@ -1,0 +1,15 @@
+name = Secure Site
+description = Enables HTTP Auth security or an HTML form to restrict site access.
+core = 7.x
+configure = admin/config/system/securesite
+
+files[] = securesite.test
+files[] = securesite.inc
+
+
+; Information added by Drupal.org packaging script on 2015-04-04
+version = "7.x-2.0-beta3"
+core = "7.x"
+project = "securesite"
+datestamp = "1428145089"
+

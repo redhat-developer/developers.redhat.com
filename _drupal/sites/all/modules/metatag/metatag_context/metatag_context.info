@@ -1,0 +1,15 @@
+name = Metatag: Context
+description = "Assigned Metatag using Context definitions, allowing them to be assigned by path and other criteria."
+package = SEO
+core = 7.x
+dependencies[] = context
+dependencies[] = metatag
+files[] = metatag_context.test
+configure = admin/config/search/metatags/context
+
+; Information added by Drupal.org packaging script on 2015-05-29
+version = "7.x-1.5"
+core = "7.x"
+project = "metatag"
+datestamp = "1432910283"
+

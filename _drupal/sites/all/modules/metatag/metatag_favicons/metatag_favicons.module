@@ -1,0 +1,43 @@
+<?php
+/**
+ * @file
+ * Primary hook implementations for Metatag:favicons.
+ */
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function metatag_favicons_ctools_plugin_api($owner, $api) {
+  if ($owner == 'metatag' && $api == 'metatag') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function metatag_favicons_theme() {
+  $info['metatag_favicon'] = array(
+    'render element' => 'element',
+  );
+
+  return $info;
+}
+
+/**
+ * Theme callback for a favicon meta tag.
+ *
+ * The format is:
+ * <link rel="[rel]" href="[value]" sizes="[sizes]" />
+ */
+function theme_metatag_favicon($variables) {
+  $element = &$variables['element'];
+  $args = array(
+    '#rel' => 'rel',
+    '#value' => 'href',
+    '#sizes' => 'sizes',
+  );
+  element_set_attributes($element, $args);
+  unset($element['#value']);
+  return theme('html_tag', $variables);
+}

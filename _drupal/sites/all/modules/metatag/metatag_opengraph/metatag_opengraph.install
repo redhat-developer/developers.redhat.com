@@ -1,0 +1,55 @@
+<?php
+/**
+ * @file
+ * Installation and update scripts for Metatag:OpenGraph.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function metatag_opengraph_requirements($phase) {
+  $requirements = array();
+  // Ensure translations don't break during installation.
+  $t = get_t();
+
+  if ($phase == 'runtime') {
+    if (module_exists('rdf')) {
+      // Work out the release of D7 that is currently running.
+      list($major, $minor) = explode('.', VERSION);
+      // Strip off any suffixes on the version string, e.g. "17-dev".
+      if (strpos('-', $minor)) {
+        list($minor, $suffix) = explode('-', $minor);
+      }
+
+      if ($minor < 33) {
+        $requirements['metatag_og_rdf'] = array(
+          'severity' => REQUIREMENT_WARNING,
+          'title' => 'Metatag:OpenGraph',
+          'value' => $t('RDF problems with Drupal core releases before v7.33'),
+          'description' => $t('The core RDF module in Drupal before v7.33 caused validation problems for Open Graph meta tags. The solution is to update to v7.33 or newer.'),
+        );
+      }
+    }
+  }
+
+  return $requirements;
+}
+
+/**
+ * Implementations of hook_update_N().
+ */
+
+/**
+ * Enable the new Metatag:Facebook submodule.
+ */
+function metatag_opengraph_update_7100() {
+  module_enable(array('metatag_facebook'));
+  drupal_set_message(t('Enabled the new Metatag:Facebook submodule. If the Facebook meta tags are not being used then it is safe to disable.'));
+}
+
+/**
+ * Leave a warning about the two og:type value changes.
+ */
+function metatag_opengraph_update_7101() {
+  drupal_set_message(t('The "Movie" and "TV Show" values for the "Content type" open graph meta tag changed, if this site used those values they will need to be manually updated.'));
+}

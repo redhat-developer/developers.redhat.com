@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function compass_uninstall() {
+  variable_del('compass_path');
+  variable_del('compass_gem_path');
+  variable_del('compass_gem_home');
+  variable_del('compass_cron');
+  variable_del('compass_debugging');
+  variable_del('compass_devel_rebuild');
+}

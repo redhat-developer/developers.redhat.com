@@ -1,0 +1,13 @@
+<?php
+/**
+ * @file
+ * Installation and update hooks for Metatag:Context.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function metatag_context_enable() {
+  // Clear the cache so Context and CTools know about this plugin.
+  cache_clear_all('plugins:context:plugins', 'cache');
+}

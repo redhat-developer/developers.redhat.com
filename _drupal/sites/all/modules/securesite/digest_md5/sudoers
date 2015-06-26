@@ -1,0 +1,26 @@
+# $Id$
+#
+# Sample sudoers file for Drupal Secure Site module.
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# See the sudoers man page for the details on how to write an sudoers file.
+#
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# Defaults specification
+Defaults	env_reset
+Defaults:apache	!authenticate
+Defaults:apache	!lecture
+
+# Runas alias specification
+
+# User privilege specification
+root	ALL=(ALL) ALL
+apache	ALL=/usr/local/digest_md5/stored_passwords.php [A-z]*
+apache	ALL=/usr/local/digest_md5/digest_md5.php [A-z]*

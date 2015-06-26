@@ -1,0 +1,64 @@
+<?php
+/**
+ * @file
+ * Primary hook implementations for Metatag: Google+.
+ */
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function metatag_google_plus_ctools_plugin_api($owner, $api) {
+  if ($owner == 'metatag' && $api == 'metatag') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function metatag_google_plus_theme() {
+  $info['metatag_google_plus'] = array(
+    'render element' => 'element',
+  );
+
+  return $info;
+}
+
+/**
+ * Theme callback for an Google+ meta tag.
+ *
+ * The format is:
+ * <meta itemprop="[itemprop]" content="[value]" />
+ */
+function theme_metatag_google_plus($variables) {
+  $element = &$variables['element'];
+
+  // The format is e.g. 'itemprop:name'. Remove 'itemprop:' and store the rest
+  // in '#itemprop'.
+  $element['#itemprop'] = substr($element['#name'], 9);
+  $args = array(
+    '#itemprop' => 'itemprop',
+    '#value' => 'content',
+  );
+  element_set_attributes($element, $args);
+  unset($element['#value']);
+
+  return theme('html_tag', $variables);
+}
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Add itemtype when available.
+ *
+ * We will not add itemtype in the rdf_namespaces when using Zen and its derived
+ * themes as Zen will serialize RDF Namespaces into an RDFa 1.1 prefix
+ * attribute, which means itemtype will be included in prefix="...".
+ *
+ * @see zen_preprocess_html()
+ */
+function metatag_google_plus_preprocess_html(&$variables) {
+  if (isset($variables['itemtype']) && !function_exists('zen_preprocess_html')) {
+    $variables['rdf_namespaces'] .= "\n  itemscope itemtype=\"http://schema.org/{$variables['itemtype']}\"";
+  }
+}

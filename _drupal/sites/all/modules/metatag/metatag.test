@@ -1,0 +1,397 @@
+<?php
+
+class MetaTagsTestHelper extends DrupalWebTestCase {
+  function setUp(array $modules = array()) {
+    $modules[] = 'ctools';
+    $modules[] = 'token';
+    $modules[] = 'metatag';
+    $modules[] = 'metatag_test';
+    parent::setUp($modules);
+  }
+}
+
+class MetaTagsNodeUITest extends MetaTagsTestHelper {
+  /**
+   * Admin user.
+   *
+   * @var \StdClass
+   */
+  protected $adminUser;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Metatag tests for nodes',
+      'description' => 'Test Metatag edit functionality for nodes.',
+      'group' => 'Metatag',
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  function setUp(array $modules = array()) {
+    $modules = array(
+      'metatag_dc',
+      'metatag_facebook',
+      'metatag_google_plus',
+      'metatag_opengraph',
+      'metatag_twitter_cards',
+    );
+    parent::setUp($modules);
+  }
+
+  /**
+   * Tests filtering of values using metatag_filter_values_from_defaults().
+   */
+  public function testMetatagFilterValuesFromDefaults() {
+    // Create a content type.
+    $this->drupalCreateContentType(array(
+      'type' => 'metatag_test',
+      'name' => 'Test',
+    ));
+
+    // Enable meta tags for this new content type.
+    metatag_entity_type_enable('node', 'metatag_test');
+
+    // Create an admin-level user.
+    $this->adminUser = $this->drupalCreateUser(array(
+      'administer meta tags',
+      'edit meta tags',
+      'create metatag_test content',
+      'delete any metatag_test content',
+      'edit any metatag_test content',
+    ));
+    $this->drupalLogin($this->adminUser);
+
+    // Assign default values for the new content type.
+    $this->drupalGet('admin/config/search/metatags/config/add');
+    $this->drupalPost(NULL, array(
+      'instance' => 'node:metatag_test',
+    ), t('Add and configure'));
+    $this->drupalPost(NULL, array(
+      'metatags[und][dcterms.title][value]' => '[node:title]',
+      'metatags[und][dcterms.creator][value]' => '[node:author]',
+      'metatags[und][dcterms.date][value]' => '[node:created:custom:Y-m-d\TH:iP]',
+      'metatags[und][dcterms.format][value]' => 'text/html',
+      'metatags[und][dcterms.identifier][value]' => '[current-page:url:absolute]',
+      'metatags[und][dcterms.language][value]' => '[node:language]',
+    ), t('Save'));
+
+    // Create a test node.
+    $this->drupalGet('node/add/metatag-test');
+    $this->drupalPost(NULL, array(
+      'metatags[und][dcterms.title][value]' => '[node:title] ponies',
+      'title' => 'Who likes magic',
+    ), t('Save'));
+
+    // Verify that the node saved correctly.
+    $xpath = $this->xpath("//h1");
+    $t_args = array('@type' => 'Test', '%title' => 'Who likes magic');
+    // This doesn't work for some reason, it seems the HTML is stripped off
+    // during output so the %title's standard Drupal wrappers don't match.
+    // $this->assertText(t('@type %title has been created.', $t_args));
+    // .. so this has to be done instead.
+    $this->assertText(strip_tags(t('@type %title has been created.', $t_args)));
+
+    // Verify the node data saved correctly.
+    $matches = array();
+    if (preg_match('@node/(\d+)$@', $this->getUrl(), $matches)) {
+      $nid = end($matches);
+      $node = node_load($nid);
+
+      // Only the non-default values are stored.
+      $expected = array(
+        'und' => array(
+          'dcterms.title' => array(
+            'value' => '[node:title] ponies',
+          ),
+        ),
+      );
+      $this->assertEqual($expected, $node->metatags);
+    }
+    else {
+      $this->fail(t('Could not determine node ID for created node.'));
+    }
+
+    // Verify the title is using the custom default for this content type.
+    $xpath = $this->xpath("//meta[@name='dcterms.title']");
+    $this->assertEqual(count($xpath), 1);
+    $this->assertEqual($xpath[0]['content'], "Who likes magic ponies");
+  }
+}
+
+class MetaTagsUnitTest extends MetaTagsTestHelper {
+  public static function getInfo() {
+    return array(
+      'name' => 'Metatag unit tests',
+      'description' => 'Test basic meta tag functionality.',
+      'group' => 'Metatag',
+    );
+  }
+
+  /**
+   * Test the metatag_config_load_with_defaults() function.
+   */
+  public function testConfigLoadDefaults() {
+    $defaults = metatag_config_load_with_defaults('test:foo');
+    $this->assertEqual($defaults, array(
+      // Basic meta tags.
+      'title' => array('value' => 'Test altered title'),
+      'description' => array('value' => 'Test foo description'),
+      'abstract' => array('value' => 'Test foo abstract'),
+      // 'keywords' => array('value' => ''),
+
+      // Advanced meta tags.
+      // 'robots' => array('value' => ''),
+      // 'news_keywords' => array('value' => ''),
+      // 'standout' => array('value' => ''),
+      // 'robots' => array('value' => ''),
+      // 'standout' => array('value' => ''),
+      'generator' => array('value' => 'Drupal 7 (http://drupal.org)'),
+      // 'standout' => array('value' => ''),
+      // 'image_src' => array('value' => ''),
+      'canonical' => array('value' => '[current-page:url:absolute]'),
+      'shortlink' => array('value' => '[current-page:url:unaliased]'),
+      // 'publisher' => array('value' => ''),
+      // 'author' => array('value' => ''),
+      // 'original-source' => array('value' => ''),
+      // 'revisit-after' => array('value' => ''),
+      // 'content-language' => array('value' => ''),
+
+      // Fake meta tag.
+      'test:foo' => array('value' => 'foobar'),
+    ));
+  }
+
+  public function testEntitySupport() {
+    $test_cases[1] = array('type' => 'node', 'bundle' => 'article', 'expected' => TRUE);
+    $test_cases[2] = array('type' => 'node', 'bundle' => 'page', 'expected' => TRUE);
+    $test_cases[3] = array('type' => 'node', 'bundle' => 'invalid-bundle', 'expected' => FALSE);
+    $test_cases[4] = array('type' => 'user', 'expected' => TRUE);
+    $test_cases[5] = array('type' => 'taxonomy_term', 'bundle' => 'tags', 'expected' => TRUE);
+    $test_cases[6] = array('type' => 'taxonomy_term', 'bundle' => 'invalid-bundle', 'expected' => FALSE);
+    foreach ($test_cases as $test_case) {
+      $test_case += array('bundle' => NULL);
+      $this->assertMetatagEntitySupportsMetatags($test_case['type'], $test_case['bundle'], $test_case['expected']);
+    }
+
+    // variable_set('metatag_test_entity_info_disable', TRUE);
+    // Enable meta tags for this new content type.
+    metatag_entity_type_disable('node', 'page');
+    metatag_entity_type_disable('user');
+    // drupal_static_reset('metatag_entity_supports_metatags');
+    // entity_info_cache_clear();
+
+    $test_cases[2]['expected'] = FALSE;
+    $test_cases[4]['expected'] = FALSE;
+    $test_cases[6]['expected'] = FALSE;
+    foreach ($test_cases as $test_case) {
+      $test_case += array('bundle' => NULL);
+      $this->assertMetatagEntitySupportsMetatags($test_case['type'], $test_case['bundle'], $test_case['expected']);
+    }
+  }
+
+  function assertMetatagEntitySupportsMetatags($entity_type, $bundle, $expected) {
+    $entity = entity_create_stub_entity($entity_type, array(0, NULL, $bundle));
+    return $this->assertEqual(
+      metatag_entity_supports_metatags($entity_type, $bundle),
+      $expected,
+      t("metatag_entity_supports_metatags(:type, :bundle) is :expected", array(
+        ':type' => var_export($entity_type, TRUE),
+        ':bundle' => var_export($bundle, TRUE),
+        ':expected' => var_export($expected, TRUE),
+      ))
+    );
+  }
+
+  /**
+   * Test the metatag_config_instance_label() function.
+   */
+  public function testConfigLabels() {
+    $test_cases = array(
+      'node' => 'Node',
+      'node:article' => 'Node: Article',
+      'node:article:c' => 'Node: Article: Unknown (c)',
+      'node:b' => 'Node: Unknown (b)',
+      'node:b:c' => 'Node: Unknown (b): Unknown (c)',
+      'a' => 'Unknown (a)',
+      'a:b' => 'Unknown (a): Unknown (b)',
+      'a:b:c' => 'Unknown (a): Unknown (b): Unknown (c)',
+      'a:b:c:d' => 'Unknown (a): Unknown (b): Unknown (c): Unknown (d)',
+    );
+
+    foreach ($test_cases as $input => $expected_output) {
+      drupal_static_reset('metatag_config_instance_label');
+      $actual_output = metatag_config_instance_label($input);
+      $this->assertEqual($actual_output, $expected_output);
+    }
+  }
+}
+
+
+// TODO: Test each meta tag.
+// TODO: Scenarios.
+//
+// 1. Node
+// * No language assignment.
+// * First save.
+//
+// 2. Node
+// * No language assignment.
+// * Edit existing revision.
+//
+// 3. Node
+// * No language assignment.
+// * Create new revision.
+// * Publish new revision.
+//
+// 4. Node
+// * No language assignment.
+// * Create new revision.
+// * Delete new revision.
+//
+// 5. Node + Translation
+// * No language assignment
+// * Change language assignment.
+//   * Edit existing revision.
+//
+// 6. Node + Translation
+// * No language assignment
+// * Change language assignment.
+//   * Create new revision.
+// * Publish new revision.
+//
+// 7. Node + Translation
+// * No language assignment
+// * Change language assignment.
+//   * Create new revision.
+// * Delete new revision.
+//
+// 8. Node + Translation
+// * Initial language assignment
+//
+// 9. Node + Translation
+// * Initial language assignment
+// * Create new revision.
+// * Publish new revision.
+//
+// 10. Node + Translation
+// * Initial language assignment
+// * Create new revision.
+// * Delete new revision.
+//
+// 11. Node + Translation
+// * Initial language assignment
+// * Change language assignment.
+//   * Create new revision.
+// * Publish new revision.
+//
+// 12. Node + Translation
+// * Initial language assignment
+// * Change language assignment.
+//   * Create new revision.
+// * Delete new revision.
+//
+// 13. Node + Translation
+// * Initial language assignment
+// * Create translated node.
+//
+// 14. Node + Translation
+// * Initial language assignment
+// * Create new revision.
+// * Publish new revision.
+// * Create translated node.
+//
+// 15. Node + Translation
+// * Initial language assignment
+// * Create new revision.
+// * Publish new revision.
+// * Create translated node.
+// * Delete translated node.
+//
+// 16. Node + Translation
+// * Initial language assignment
+// * Create translated node.
+// * Delete original node.
+//
+// 17. Node + Translation
+// * Initial language assignment
+// * Create new revision.
+// * Publish new revision.
+// * Create translated node.
+// * Delete original node.
+//
+// 18. Node + entity_translation
+// * Initial language assignment
+// * Create translated node.
+//
+// 19. Node + entity_translation
+// * Initial language assignment
+// * Create translated node.
+// * Delete original.
+//
+// 20. Node + entity_translation
+// * Initial language assignment
+// * Create translated node.
+// * Create new revision.
+// * Publish new revision.
+//
+// 21. Node + entity_translation
+// * Initial language assignment
+// * Create translated node.
+// * Create new revision.
+// * Publish new revision.
+// * Delete new revision.
+//
+// 22. Node + entity_translation
+// * Initial language assignment
+// * Create translated node.
+// * Create new revision.
+// * Publish new revision.
+// * Delete original.
+//
+// 23. Node + entity_translation
+// * Initial language assignment
+// * Create translated node.
+// * Create new revision.
+// * Publish new revision.
+// * Delete original.
+//
+// 24. Node + entity_translation
+// * Initial language assignment
+// * Create new revision.
+// * Publish new revision.
+// * Create translated node.
+//
+// 25. Node + entity_translation
+// * Initial language assignment
+// * Create new revision.
+// * Publish new revision.
+// * Create translated node.
+// * Delete new revision.
+//
+//
+// 30. Node + i18n
+//
+//
+// 50. Term
+// * Create term.
+//
+// 51. Term
+// * Create term.
+// * Change values.
+//
+//
+// 60. User
+// * Create user.
+//
+// 61. User
+// * Create user.
+// * Change values.
+//
+//
+// 70. Custom path
+// * Defaults loaded.

@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * Secure Site installation functions.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function securesite_enable() {
+  if (variable_get('securesite_enabled', SECURESITE_DISABLED) == SECURESITE_403) {
+    if (($site_403 = variable_get('site_403', '')) != 'securesite_403') {
+      variable_set('securesite_403', variable_get('site_403', ''));
+      variable_set('site_403', 'securesite_403');
+    }
+  }
+}
+
+/**
+ * Implements hook_disable().
+ */
+function securesite_disable() {
+  variable_set('site_403', variable_get('securesite_403', variable_get('site_403', '')));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function securesite_uninstall() {
+  drupal_load("module", "securesite");
+  if (in_array(SECURESITE_DIGEST, variable_get('securesite_type', array(SECURESITE_BASIC)))) {
+    $script = variable_get('securesite_password_script', drupal_get_path('module', 'securesite') . '/digest_md5/stored_passwords.php');
+    $realm = variable_get('securesite_realm', variable_get('site_name', 'Drupal'));
+    exec("$script realm=" . escapeshellarg($realm) . ' op=delete');
+  }
+  $settings = db_query("SELECT name FROM {variable} WHERE name LIKE 'securesite\_%'");
+  foreach ($settings as $variable) {
+    variable_del($variable->name);
+  }
+}
+
+/**
+ * Convert variables from older versions.
+ */
+function securesite_update_6200() {
+  switch (variable_get('securesite_enabled', SECURESITE_DISABLED)) {
+    case 0:
+      variable_del('securesite_enabled');
+      break;
+    case 1:
+    case 2:
+      variable_set('securesite_enabled', SECURESITE_ALWAYS);
+      variable_set('securesite_type', array(SECURESITE_BASIC));
+      break;
+    case 3:
+      variable_set('securesite_enabled', SECURESITE_ALWAYS);
+      variable_set('securesite_type', array(SECURESITE_FORM));
+      break;
+  }
+  variable_del('securesite_filter_pages');
+  variable_del('securesite_filter_pages_type');
+}
