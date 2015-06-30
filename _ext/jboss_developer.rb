@@ -82,7 +82,12 @@ module JBoss
 
       def transform site, page, content
         if site.drupal_base_url && page.output_extension.include?('htm')
-          @drupal.send_page page, content
+          begin
+            @drupal.send_page page, content
+          rescue Exception => e
+            puts e.message
+            puts e.backtrace
+          end
         end
         content # Don't mess up the content locally in _site
       end
@@ -97,6 +102,7 @@ module JBoss
           altered = false
           doc.css('a').each do |a|
             url = a['href']
+
             # Add external links
             unless page.metadata.nil? # check to see if we're a demo or quickstart
               if (url && !url.start_with?('http') && !url.start_with?('#') && !url.start_with?('mailto'))
@@ -170,9 +176,13 @@ module JBoss
       end
 
       def has_page_by_uri? site, page, url
+        fixed_url = url
+        fixed_url = "#{fixed_url}index.html" if fixed_url.end_with? '/'
+        fixed_url = "#{fixed_url}/index.html" unless fixed_url.end_with? 'html'
+
         site.pages.find do |p|
           begin
-            URI.join(site.base_url, p.output_path).path == URI.join(site.base_url, page.output_path, url).path
+            URI.join(site.base_url, p.output_path.gsub(/\s+/, '+')).path == URI.join(site.base_url, page.output_path.gsub(/\s+/, '+'), fixed_url).path
           rescue
             false
           end
