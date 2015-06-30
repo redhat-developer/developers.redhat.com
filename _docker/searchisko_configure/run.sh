@@ -79,15 +79,15 @@ echo Using Elasticsearch http connector URL base: ${esurl}
 cd /tmp/configuration
 
 pushd index_templates/
-./init_templates.sh ${esurl} ${esusername} ${espassword}
+./init_templates.sh ${esurl} ${esusername} ${espassword} &
 popd
 
 pushd indexes/
-./init_indexes.sh ${esurl} ${esusername} ${espassword}
+./init_indexes.sh ${esurl} ${esusername} ${espassword} &
 popd
 
 pushd mappings/
-./init_mappings.sh ${esurl} ${esusername} ${espassword}
+./init_mappings.sh ${esurl} ${esusername} ${espassword} &
 popd
 
 
@@ -96,44 +96,47 @@ echo ========== Initializing Searchisko ===========
 echo Using Searchisko REST API URL base: ${searchiskourl}
 
 pushd data/provider/
-./init-providers.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword}
+./init-providers.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword} &
 popd
 
 pushd data/config/
-./init-config.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword}
+./init-config.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword} &
 popd
+
+wait
 
 echo ========== Run indexers ===========
 
 #No Content Provider
-reindex_project 'sys_projects'
-reindex_contributor 'sys_contributors'
+reindex_project 'sys_projects' &
+reindex_contributor 'sys_contributors' &
 
 # jbossdeveloper
-reindex_from_persistence 'jbossdeveloper_quickstart'
-reindex_from_persistence 'jbossdeveloper_demo'
-reindex_from_persistence 'jbossdeveloper_bom'
-reindex_from_persistence 'jbossdeveloper_archetype'
-reindex_from_persistence 'jbossdeveloper_example'
-reindex_from_persistence 'jbossdeveloper_vimeo'
-reindex_from_persistence 'jbossdeveloper_youtube'
-reindex_from_persistence 'jbossdeveloper_book'
-#reindex_from_persistence 'jbossdeveloper_website'
-reindex_from_persistence 'jbossdeveloper_connector'
-reindex_from_persistence 'jbossdeveloper_event'
+reindex_from_persistence 'jbossdeveloper_quickstart' &
+reindex_from_persistence 'jbossdeveloper_demo' &
+reindex_from_persistence 'jbossdeveloper_bom' &
+reindex_from_persistence 'jbossdeveloper_archetype' &
+reindex_from_persistence 'jbossdeveloper_example' &
+reindex_from_persistence 'jbossdeveloper_vimeo' &
+reindex_from_persistence 'jbossdeveloper_youtube' &
+reindex_from_persistence 'jbossdeveloper_book' &
+#reindex_from_persistence 'jbossdeveloper_website' &
+reindex_from_persistence 'jbossdeveloper_connector' &
+reindex_from_persistence 'jbossdeveloper_event' &
 
 # jbossforge
-reindex_from_persistence 'jbossforge_addon'
+reindex_from_persistence 'jbossforge_addon' &
 
 # jbossorg
-reindex_from_persistence 'jbossorg_blog'
-reindex_from_persistence 'jbossorg_project_info'
-#reindex_from_persistence 'jbossorg_sbs_forum'
-#reindex_from_persistence 'jbossorg_sbs_article'
-#reindex_from_persistence 'jbossorg_contributor_profile'
+reindex_from_persistence 'jbossorg_blog' &
+reindex_from_persistence 'jbossorg_project_info' &
+#reindex_from_persistence 'jbossorg_sbs_forum' &
+#reindex_from_persistence 'jbossorg_sbs_article' &
+#reindex_from_persistence 'jbossorg_contributor_profile' &
 
 # rht
-#reindex_from_persistence 'rht_knowledgebase_article'
-#reindex_from_persistence 'rht_knowledgebase_solution'
+#reindex_from_persistence 'rht_knowledgebase_article' &
+#reindex_from_persistence 'rht_knowledgebase_solution' &
 
+wait
 echo FINISHED!
