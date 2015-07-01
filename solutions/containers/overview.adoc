@@ -6,7 +6,13 @@
 == Header
 === So, what are containers??
 
+[.large-16.columns.ov-block]
+--
 Linux containers keep applications and their runtime components together by combining lightweight application isolation with an image-based deployment method. Containers introduce autonomy for applications by packaging apps with the libraries and other binaries on which they depend. This avoids conflicts between apps that otherwise rely on key components of the underlying host operating system. Containers do not contain a(n) (OS) kernel, which makes them faster and more agile than virtual machines. However, it does mean that all containers on a host must use the same kernel.
+--
+
+[.large-8.columns.ov-img]
+image:#{cdn(site.base_url + '/images/solutions/container/solutions_illustrations_container.png')}["Containers Icon"]
 
 [.large-24.columns.panel.callout.containers-callout]
 --
