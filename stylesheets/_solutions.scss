@@ -428,3 +428,17 @@ ul.solutions {
 .ov-block{
   margin-left: -15px;
 }
+
+.containers-callout {
+  text-align: center;
+  padding: .75rem 12% !important;
+  .ulist {
+    margin-left: 0;
+  }
+  ul {
+    list-style: none;
+    li p {
+      margin-bottom: 0;
+    }
+  }
+}
