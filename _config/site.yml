@@ -139,6 +139,7 @@ profiles:
  # Production (on IT's Infr)
   production_it: 
     <<: *profile
+    push_to_searchisko: false
     base_url: http://it-developers.redhat.com/
     download_manager_file_base_url: //it-developers.redhat.com/download-manager/file/
     dcp_base_protocol_relative_url: //dcp.jboss.org/
