@@ -41,8 +41,9 @@ layout: solution
             .row
               = page._call_out
       - else
-        .large-24.columns
-          = page._header          
+        .row
+          .large-24.columns
+            = page._header          
 
     - if page._left_section && page._middle_section && page._right_section
       .row.solutions-body
