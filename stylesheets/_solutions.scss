@@ -1,11 +1,10 @@
 .hero.hero-solutions {
   background: cdn('../images/design/RHDev_indeximage_desktop_solutions.png') top center / cover repeat-x;
-  content : ':4242';
   border:0;
-  margin-bottom: 70px;
-  padding:20px;
-  min-height: 260px;
-  @media (max-width: 970px){
+  padding: 20px;
+  padding-top: 40px;
+  min-height: 230px;
+  @include tablet-portrait-and-down {
     background: cdn('../images/design/RHDev_indeximage_mobile_solutions.png') top center / cover repeat-x;
     margin-bottom: 10px;
     margin-left:-15px;
@@ -22,6 +21,8 @@
     color:white;
     font-size: 70px;
     text-shadow: 3px 3px #063a63;
+    position: relative;
+    top: -10px;
   }
   p {
     color: white;
@@ -36,7 +37,7 @@
   }
 
   .row {
-    @extend .flex-center;
+    @extend .grow;
   }
 }
 
