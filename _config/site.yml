@@ -4,7 +4,7 @@ asciidoctor:
   :attributes:
     sectanchors: ''
 slim:
-  :attr_list_delims: 
+  :attr_list_delims:
     '(': ')'
     '[': ']'
 download_manager_file_base_url: //developers.redhat.com/download-manager/file/
@@ -33,8 +33,8 @@ profile_base: &profile
   cdn_version: &cdn_version true
   log_faraday: true
   push_to_searchisko: true
-  minify: &minify true 
-  robots: 
+  minify: &minify true
+  robots:
     disallow: true
   deploy:
     <<: *deploy
@@ -59,6 +59,7 @@ profiles:
     authenticate_google_books_api: false
     build_threads: 0
     cache_type: :local
+    url_status_debug: true
 
   docker: &docker
     <<: *development
@@ -70,8 +71,8 @@ profiles:
     <<: *docker
     base_url: http://<%= ENV['DRUPAL_HOST_IP'] %>:<%= ENV['DRUPAL_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
-  
-  development_cdn: 
+
+  development_cdn:
     <<: *development
     cdn_http_base: &dev_cdn_http_base http://localhost:4242/cdn
     cdn_out_dir: &dev_cdn_out_dir _site
@@ -81,19 +82,20 @@ profiles:
       :cdn_http_base: *dev_cdn_http_base
       :cdn_out_dir: *dev_cdn_out_dir
       :cdn_version: *dev_cdn_version
-  
+
   # Pull Request configuration
-  staging: 
+  staging:
     <<: *profile
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     metrics: true
+    url_status_debug: true
     deploy:
       <<: *deploy
       path: /stg_htdocs/rhd-stg
-  
+
   # Main staging configuration
-  staging_main: 
+  staging_main:
     <<: *profile
     base_url: http://developers.stage.redhat.com/
     download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
@@ -108,7 +110,7 @@ profiles:
       path: /stg_htdocs/rhd-stg-main
 
   # Main staging configuration (on IT's Infr)
-  staging_main_it: 
+  staging_main_it:
     <<: *profile
     base_url: http://it-developers.stage.redhat.com/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
