@@ -123,8 +123,8 @@
   background: cdn('../images/design/RHDev_indeximage_desktop_products.png') top center / cover repeat-x;
   border:0;
   padding: 20px;
-  padding-top: 65px;
-  min-height: 260px;
+  padding-top: 40px;
+  min-height: 230px;
   @include tablet-portrait-and-down {
     background: cdn('../images/design/RHDev_indeximage_mobile_products.png') top center / cover repeat-x;
     margin: -15px;
@@ -137,12 +137,10 @@
     line-height:1;
     font-size: 70px;
     text-shadow: 3px 3px #063a63;
-    padding-top: 27px;
   }
   p {
     color:white;
     font-size: 20px;
-    padding-top: 15px;
   }
   .row {
     @extend .grow;

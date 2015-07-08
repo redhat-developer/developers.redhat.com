@@ -6,21 +6,24 @@
 == Header
 === So, what are containers??
 
+[.large-16.columns.ov-block]
+--
 Linux containers keep applications and their runtime components together by combining lightweight application isolation with an image-based deployment method. Containers introduce autonomy for applications by packaging apps with the libraries and other binaries on which they depend. This avoids conflicts between apps that otherwise rely on key components of the underlying host operating system. Containers do not contain a(n) (OS) kernel, which makes them faster and more agile than virtual machines. However, it does mean that all containers on a host must use the same kernel.
+--
 
-*Survey results - Top 3 container benefits for application developers:*
+[.large-8.columns.ov-img]
+image:#{cdn(site.base_url + '/images/solutions/container/solutions_illustrations_container.png')}["Containers Icon"]
+
+[.large-24.columns.panel.callout.containers-callout]
+--
+*Survey results* +
+*Top 3 container benefits for application developers:*
 
 * Higher quality releases
 * Better application scalability
 * Greater application isolation
 
 _Base: 194 IT operations and development decision-makers at enterprises in APAC, EMEA, and North America Source: A commissioned study conducted by Forrester Consulting on behalf of Red Hat, January 2015_
-
-=== Red Hat Containers
-It’s an apps-based world and developing, deploying and managing software solutions in a secure and scalable architecture is critical for today’s hybrid IT environments.
-
-Red Hat Enterprise Linux is firmly established as the world’s most popular commercial distribution of Linux in the enterprise, now supporting more than 1 million customers across the globe. As the world moves to a container-based delivery model for software solutions, the decision is easy for developers looking for an established and trusted platform partner with the introduction of Red Hat Enterprise Linux Atomic Host.
-
-Red Hat helps you accelerate your container development through a collection of development tools and resources.
+--
 
 link:#{site.base_url}/containers/adoption[Learn more...]
