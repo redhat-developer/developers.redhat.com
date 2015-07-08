@@ -281,13 +281,13 @@ task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   # Link pull requests to JIRA
   linked_issues = jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
   # Add links to JIRA to pull requests
-  github.link_issues('redhat-developer', 'developer.redhat.com', args[:pull_request], linked_issues)
+  github.link_issues('redhat-developer', 'developers.redhat.com', args[:pull_request], linked_issues)
 end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
 task :reap_old_pulls, [:pr_prefix] do |task, args|
   github = GitHub.new
-  reap = github.list_closed_pulls('redhat-developer', 'developer.redhat.com', DateTime.now - 7)
+  reap = github.list_closed_pulls('redhat-developer', 'developers.redhat.com', DateTime.now - 7)
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
     reap.each do |p|
@@ -344,7 +344,7 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generat
   end
   rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
   github = GitHub.new
-  github.comment_on_pull('redhat-developer', 'developer.redhat.com', args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
+  github.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
 end
 
 desc 'Run blinkr'
@@ -365,7 +365,7 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |tas
   end
   rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
   github = GitHub.new
-  github.comment_on_pull('redhat-developer', 'developer.redhat.com', args[:pull], "Blinkr: #{args[:new]}/#{report_path}")
+  github.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Blinkr: #{args[:new]}/#{report_path}")
 end
 
 # Execute Awestruct
@@ -551,7 +551,7 @@ class GitHub
     if issues.length > 0
       issue_list = issues.collect {|i| %Q{<a href="https://issues.jboss.org/browse/} + i + %Q{">} + i + %Q{</a>}}.join(", ")
       comment_on_pull(org, repo, pull, "Related issue#{issues.length > 1 ? 's' : ''}: #{issue_list}")
-      puts "Successfully commented JIRA issue list on https://github.com/redhat-developer/developer.redhat.com/pull/#{pull}"
+      puts "Successfully commented JIRA issue list on https://github.com/redhat-developer/developers.redhat.com/pull/#{pull}"
     end
   end
 
@@ -707,7 +707,7 @@ class JIRA
             "update": {
               "customfield_12310220": [
                 {
-                  "set": "https://github.com/redhat-developer/developer.redhat.com/pull/#{pull_request}"
+                  "set": "https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request}"
                 }
               ]
             },
@@ -718,9 +718,9 @@ class JIRA
         }
         resp = post(url, body)
         if resp.is_a?(Net::HTTPSuccess)
-          puts "Successfully linked https://github.com/redhat-developer/developer.redhat.com/pull/#{pull_request} to #{k}"
+          puts "Successfully linked https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k}"
         else
-          puts "Error linking https://github.com/redhat-developer/developer.redhat.com/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+          puts "Error linking https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
           puts "Request body: #{body}"
         end
         linked_issues << k

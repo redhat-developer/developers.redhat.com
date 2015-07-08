@@ -5,9 +5,9 @@ This section covers the steps you need to do in order to setup your environment 
 
 Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
  
-         git clone git@github.com:YOUR_USER_NAME/developer.redhat.com.git
-         cd developer.redhat.com
-         git remote add -f upstream git@github.com:redhat-developer/developer.redhat.com.git
+         git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
+         cd developers.redhat.com
+         git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
 
 ### Docker setup (Optional, but preferred)
 This section describes how to build the site using local instances of Searchisko (running in Docker containers).
