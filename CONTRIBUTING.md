@@ -11,17 +11,17 @@ To fix an issue:
 
 1. Assign the JIRA issue to yourself if it isn't already
 
-2. [Fork](https://github.com/redhat-developer/developer.redhat.com/fork) the project. This creates the `developer.redhat.com` project in your own Git with the default remote name 'origin'.
+2. [Fork](https://github.com/redhat-developer/developers.redhat.com/fork) the project. This creates the `developers.redhat.com` project in your own Git with the default remote name 'origin'.
 
 3. Clone your fork. This creates and populates a directory in your local file system.
 
-        git clone https://github.com/<your-username>/developer.redhat.com.git
+        git clone https://github.com/<your-username>/developers.redhat.com.git
 
-4. Change to the `developer.redhat.com` directory.
+4. Change to the `developers.redhat.com` directory.
 
 5. Add the remote `upstream` repository so you can fetch any changes to the original forked repository.
 
-        git remote add upstream https://github.com/jboss-developer/developer.redhat.com.git
+        git remote add upstream https://github.com/jboss-developer/developers.redhat.com.git
 
 6. Get the latest files from the `upstream` repository.
 
@@ -70,7 +70,7 @@ To fix an issue:
    _Note:_ The above command assumes your remote repository is named 'origin'. You can verify your forked remote repository name using the command `git remote -v`.
    
 14. Raise a Pull Request by:
- 1. Visit https://github.com/redhat-developer/developer.redhat.com
+ 1. Visit https://github.com/redhat-developer/developers.redhat.com
  2. Click on the "Compare and Pull Request" button next to your topic branch.
  3. Review your code changes and check that only the commit(s) you expect are present.
  4. Check that the PR title contains the JIRA ID and a short description.
@@ -215,7 +215,7 @@ First add the downloads to the [Download Manager](http://developers.redhat.com/d
 The following steps are currently required, but will no longer be when the downloads are automatically fetched from the download manager.
 
 1. Ensure the download is available in the [Download Manager](http://developers.redhat.com/download-manager).
-2. Add a download item to the associated product's `product.yml` file. As an example here is [JBoss EAP's product.yml](https://github.com/redhat-developer/developer.redhat.com/blob/master/products/eap/_common/product.yml)
+2. Add a download item to the associated product's `product.yml` file. As an example here is [JBoss EAP's product.yml](https://github.com/redhat-developer/developers.redhat.com/blob/master/products/eap/_common/product.yml)
 3. Update the `current_version:` field in the `product.yml` **only** if you are adding a GA release (i.e. not an Alpha or Beta).
 4. Build the site locally
 5. Visit the download page on your local build to verify the download is appearing correctly
@@ -241,7 +241,7 @@ On approval of the change:
 2.1 `image_url`: This is the address of the graphic created by the DESIGN JIRA issue and linked in the DEVELOPER issue.
 2.2 `title`: The title of the item being linked to.
 2.3 `text`: A short description of the item being linked to.
-2.4 `url`: A url to the developer material's details page on developer.redhat.com.
+2.4 `url`: A url to the developer material's details page on developers.redhat.com.
 3. [Raise a PR](#fixing) for your change.
 
 
@@ -266,7 +266,7 @@ See the [EAP Product Overview Page](http://developers.redhat.com/products/eap/ov
  1. The link to the training overview page.
  2. The link text to display on the product overview page.
 2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
-3. Add the Link to the product's `featured_training.adoc` file. E.g. see [EAP's featured_training.adoc file](https://github.com/redhat-developer/developer.redhat.com/blob/master/products/eap/_common/featured_training.adoc).
+3. Add the Link to the product's `featured_training.adoc` file. E.g. see [EAP's featured_training.adoc file](https://github.com/redhat-developer/developers.redhat.com/blob/master/products/eap/_common/featured_training.adoc).
 4. [Raise a PR](#fixing) for your change.
 
 ### How to add/remove an item to the Webinars section
@@ -277,7 +277,7 @@ See the [EAP Product Overview Page](http://developers.redhat.com/products/eap/ov
  2. The link text to display on the product overview page.
 2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
 3. Create a thumbnail image for the webinar and add it to the associated product's directory under `/images/products/`. You can probably grab a thumbnail from the webinar's details page.
-4. Add the details to the product's `featured_webinar.adoc` file. E.g. see [EAP's featured_webinar.adoc file](https://github.com/redhat-developer/developer.redhat.com/blob/master/products/eap/_common/featured_webinar.adoc). Use existing links as an example of the format.
+4. Add the details to the product's `featured_webinar.adoc` file. E.g. see [EAP's featured_webinar.adoc file](https://github.com/redhat-developer/developers.redhat.com/blob/master/products/eap/_common/featured_webinar.adoc). Use existing links as an example of the format.
 5. [Raise a PR](#fixing) for your change.
 
 
@@ -289,7 +289,7 @@ To add or remove from this list:
  1. The name of the project(s) to add/remove
  2. The name of the product you want modifying
 2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
-3. Edit the value of the `upstream_projects` key in the product's `product.yml` file. As an example, here is [JBoss EAP's product.yml](https://github.com/redhat-developer/developer.redhat.com/blob/master/products/eap/_common/product.yml)
+3. Edit the value of the `upstream_projects` key in the product's `product.yml` file. As an example, here is [JBoss EAP's product.yml](https://github.com/redhat-developer/developers.redhat.com/blob/master/products/eap/_common/product.yml)
 4. [Raise a PR](#fixing) for your change.
 
 ### How to add/remove 'Featured Video' to the 'Resources' page
@@ -309,7 +309,7 @@ To add/remove item(s) in the 'More Resources' area of the 'Resources' page:
  2. The text to appear in the link
  3. The text to appear in the short description
 2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
-3. Edit the product's `resources.adoc` file to add/remove the item. See [JBoss EAP's resources.adoc file](https://github.com/redhat-developer/developer.redhat.com/blob/master/products/eap/resources.adoc) for an example.
+3. Edit the product's `resources.adoc` file to add/remove the item. See [JBoss EAP's resources.adoc file](https://github.com/redhat-developer/developers.redhat.com/blob/master/products/eap/resources.adoc) for an example.
 4. [Raise a PR](#fixing) for your change.
 
 
@@ -399,8 +399,8 @@ On approval of the change:
 1. [Create a DESIGN JIRA issue](https://issues.jboss.org/secure/DESIGN/CreateIssue!default.jspa) to have a desktop and mobile banner graphic created.
 2. On completion of graphic creation, a link to the graphic (hosted on http://design.jboss.org/) should be added to the DEVELOPER issue (created above).
 2. To change the image:
-  1. Add the mobile and desktop images to https://github.com/redhat-developer/developer.redhat.com/tree/master/images/branding
-  2. Open https://github.com/redhat-developer/developer.redhat.com/blob/master/index.html.slim
+  1. Add the mobile and desktop images to https://github.com/redhat-developer/developers.redhat.com/tree/master/images/branding
+  2. Open https://github.com/redhat-developer/developers.redhat.com/blob/master/index.html.slim
   3. Change the '/ Hero Slider' section of the code:
     1. Each `.large-24.slide` section represents an individual banner in the carousel in the order it shows on the site.
     2. Either replace an existing item, or add a new one in the right place.
@@ -409,13 +409,13 @@ On approval of the change:
 3. [Raise a PR](#fixing) for your change.
 
 ## How to Create a 'Solution'
-The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/redhat-developer/developer.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required.
+The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/redhat-developer/developers.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required.
 
-See the [Unified Push Solution's code](https://github.com/redhat-developer/developer.redhat.com/tree/master/solutions/unifiedpush) for an example that uses an entirely custom layout. The [Docker Solution code](https://github.com/redhat-developer/developer.redhat.com/blob/master/solutions/docker/index.adoc) provides an example of where the default layout was used, but with an additional custom layout section at the bottom. Look at the [live Docker page](http://developers.redhat.com/docker/) and notice that above the "Available Docker Images" title is using the default layout and under this title is a custom layout.
+See the [Unified Push Solution's code](https://github.com/redhat-developer/developers.redhat.com/tree/master/solutions/unifiedpush) for an example that uses an entirely custom layout. The [Docker Solution code](https://github.com/redhat-developer/developers.redhat.com/blob/master/solutions/docker/index.adoc) provides an example of where the default layout was used, but with an additional custom layout section at the bottom. Look at the [live Docker page](http://developers.redhat.com/docker/) and notice that above the "Available Docker Images" title is using the default layout and under this title is a custom layout.
 
 To create a solution:
 
-1. Create your initial layout by copying the [example solution code](https://github.com/redhat-developer/developer.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb).
+1. Create your initial layout by copying the [example solution code](https://github.com/redhat-developer/developers.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb).
 2. Think of an ID for your solution. This will be used to identify it in several place and will become part of the URL of its page. E.g: http://developers.redhat.com/mysolution.
   1. Good names are short, descriptive and contain just lower-case alpha-numeric characters.
 2. Rename the solution's directory to that of your solution:
@@ -463,8 +463,8 @@ Microsites can either be single paged or multi-paged. Take a look at the followi
 
 |Type|Description|Resources|
 |----|-----------|---------|
-|Single Page|A single page microsite, with no sub-navigation|[Live](http://developers.redhat.com/microsite), [Source](https://github.com/redhat-developer/developer.redhat.com/blob/master/microsite.html.slim)
-|Multi-page|A multiple-page microsite with a single level of sub-navigation|[Live](http://developers.redhat.com/microsite-multi-page/), [Source](https://github.com/redhat-developer/developer.redhat.com/blob/master/microsite-multi-page.html.slim)
+|Single Page|A single page microsite, with no sub-navigation|[Live](http://developers.redhat.com/microsite), [Source](https://github.com/redhat-developer/developers.redhat.com/blob/master/microsite.html.slim)
+|Multi-page|A multiple-page microsite with a single level of sub-navigation|[Live](http://developers.redhat.com/microsite-multi-page/), [Source](https://github.com/redhat-developer/developers.redhat.com/blob/master/microsite-multi-page.html.slim)
 
 Before creating a Microsite, please [contact us](#contact) to ensure that a 'Microsite' is the right place for your content.
 
@@ -475,7 +475,7 @@ The following constraints are imposed on Red Hat Developers Microsites in order 
 2. Microsites may have 0 or 1 levels of navigation. 
 
 ### Single Page Microsites
-To create a new single page microsite at `developer.redhat.com/<microsite_id>`:
+To create a new single page microsite at `developers.redhat.com/<microsite_id>`:
 
 1. Copy `microsite.html.slim` to `<microsite_id>.html.slim`
 2. [Configure the banner graphic](#banner)
@@ -484,7 +484,7 @@ To create a new single page microsite at `developer.redhat.com/<microsite_id>`:
 
 ### Multiple Page Microsites
 
-To create a new multi-page microsite at `developer.redhat.com/<microsite_id>`:
+To create a new multi-page microsite at `developers.redhat.com/<microsite_id>`:
 
 1. Create a `<microsite_id>` directory
 2. Copy `microsite-multi-page.html.slim` to `<microsite_id>/index.html.slim`
@@ -526,4 +526,4 @@ If you have a general change that doesn't fall into the categories above, create
 [contact us](#contact) for general feedback that doesn't constitute a bug report or feature request.
 
 ## Feature Requests and Bug reporting
-If you find a bug on developer.redhat.com or if you have a feature request, please file a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa).
+If you find a bug on developers.redhat.com or if you have a feature request, please file a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa).
