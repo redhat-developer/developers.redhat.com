@@ -262,7 +262,6 @@
     text-align: center;
     color:white;
     font-weight: 400;
-    padding:10px 5px;
     cursor:pointer;
     transition:0.3s;
 
@@ -287,8 +286,14 @@
     -webkit-flex:3;
     -ms-flex:3;
     flex:3;
+    flex-flow: column wrap;
     & > a {
       display: block; /* fixes IE11 flexbox wrapping */
+      flex: 1;
+      padding:10px 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     // use CSS not() to only apply to the elements you want
     &:not(:last-child) {
