@@ -1988,3 +1988,10 @@ label.inline{
 
 // Mobile!
 @import "mobile";
+
+// Custom breakpoint for side navigation
+@media only screen and (max-width: 768px) {
+  .nav-breakpoint {
+    width: 100%;
+  }
+}
