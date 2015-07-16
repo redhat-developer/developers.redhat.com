@@ -23,7 +23,7 @@ skips:
   - !ruby/regexp /^https:\/\/jboss.orgmail.list:.dev@tomcat.apache.org+/
   - !ruby/regexp /^https:\/\/jboss.orgmail.list:.users@tomcat.apache.org+/
   # DEVELOPER-1252
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/797\/build\/1759\/enterprise-java\/http\/:www.jboss.org\/products\/eap\/overview\/+/
+  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/797\/build\/1759\/enterprisejava\/http\/:www.jboss.org\/products\/eap\/overview\/+/
     # Non-errors in production
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/overview\/#buzz+/
   - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/developer-materials\/#!formats=video&amp;projectCode=bpmsuite+/
