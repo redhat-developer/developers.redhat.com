@@ -120,7 +120,7 @@ app.buzz = {
               d.authorName = d.author;
             }
             d.updatedDate = jQuery.timeago(new Date(d.sys_created));
-            d.sys_description = d.sys_description.substr(0,197) + '...';
+            d.sys_description = d.sys_description[0].substr(0,197) + '...';
             d.permanentLink = "//planet.jboss.org/post/" + d.sys_content_id;
             html += tmpl.template(d);
         }
