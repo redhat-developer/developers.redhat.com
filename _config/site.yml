@@ -139,15 +139,14 @@ profiles:
  # Production (on IT's Infr)
   production_it: 
     <<: *profile
-    push_to_searchisko: false
-    base_url: http://it-developers.redhat.com/
-    download_manager_file_base_url: //it-developers.redhat.com/download-manager/file/
+    base_url: http://developers.redhat.com/
     dcp_base_protocol_relative_url: //dcp.jboss.org/
     dcp_base_url: http://dcp.jboss.org/
-    keycloak_account_url: https://it-developers.redhat.com/auth/realms/rhd/account/
-    keycloak_auth_url: https://it-developers.redhat.com/auth/
+    require_tag: true
     metrics: true
-    build_threads: 1
+    disqus: jdf
+    robots:
+      disallow: false
     deploy:
       <<: *deploy
       path: /www_htdocs/it-rhd
