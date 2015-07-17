@@ -179,6 +179,22 @@ dcp.filter('timeAgo',function() {
 });
 
 /*
+ Remove fields that don't contain required sys_url_view links
+ */
+dcp.filter('noURL', function() {
+    return function(str){
+        var filterArray = [];
+        angular.forEach(str, function(ref){
+            if(ref.fields.sys_url_view){
+                filterArray.push(ref);
+
+            }
+        })
+        return filterArray;
+    }
+});
+
+/*
   Filter to use the correct location for links coming from seachisko.
 */
 dcp.filter('urlFix', function() {
