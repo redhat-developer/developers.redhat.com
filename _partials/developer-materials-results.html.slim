@@ -30,7 +30,7 @@
           td.format Format
           td.publish-date Publish Date
       tbody
-        tr.material(ng-repeat="item in data.displayedMaterials" class="get-started-placeholder-{{item.fields.sys_type}}")
+        tr.material(ng-repeat="item in data.displayedMaterials | noURL" class="get-started-placeholder-{{item.fields.sys_type}}")
           / Topics
           td.topics
             | {{item.fields.sys_tags.join(', ')}}
