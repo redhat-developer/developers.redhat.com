@@ -1,4 +1,5 @@
 :awestruct-layout: product-overview
+:awestruct-interpolate: true
 :leveloffset: 1
 
 == Overview
@@ -14,7 +15,7 @@ Create, test, deploy and monitor BPMN2-based business processes to optimize ente
 
 == Icon1
 
-[.fa .fa-random .fa-4x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_management.png')}["Management Icon"]
 
 
 == Features2
@@ -24,7 +25,7 @@ Create, test, deploy and monitor BPMN2-based business processes to optimize ente
 Includes all the business rules and event processing capabilities of Red Hat JBoss BRMS.
 
 == Icon2
-[.fa .fa-bell-o .fa-4x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_application.png')}["Application Icon"]
 
 
 == Features3
@@ -35,7 +36,7 @@ Easily create real-time dashboards to monitor key performance indicators for run
 
 == Icon3
 
-[.fa .fa-tachometer .fa-4x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_toolbox.png')}["Toolbox Icon"]
 
 == Detail
 

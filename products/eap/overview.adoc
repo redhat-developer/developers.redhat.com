@@ -1,4 +1,5 @@
 :awestruct-layout: product-overview
+:awestruct-interpolate: true
 :leveloffset: 1
 
 == Overview
@@ -13,7 +14,7 @@ Includes everything needed to build, run and manage services for Java EE 6 enter
 
 == Icon1
 
-[.fa .fa-code .fa-4x .fa-fw]#&nbsp;# 
+image:#{cdn(site.base_url + '/images/icons/products/products_laptop.png')}["Laptop Icon"]
 
 == Features2
 
@@ -22,7 +23,7 @@ Includes everything needed to build, run and manage services for Java EE 6 enter
 Boosts efficiency with an extremely low memory footprint and blazingly fast start-up times. Simplifies deployment to virtualized environments with smart resource utilization and port management.
 
 == Icon2
-[.fa .fa-dashboard .fa-4x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_speedometer.png')}["Speedometer Icon"]
 
 
 == Features3
@@ -32,4 +33,4 @@ Boosts efficiency with an extremely low memory footprint and blazingly fast star
 Offers a lightweight, efficient and modern architecture based on a services-driven set of components.  Simplifies application deployment into both on-premise and cloud environments.
 
 == Icon3
-[.fa .fa-cloud .fa-4x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_cloud.png')}["Cloud Icon"]
