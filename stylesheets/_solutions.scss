@@ -376,13 +376,7 @@ ul.solutions {
 @include mobile-landscape-and-down {
   ul.solutions {
     & > li {
-      width:48%;
-      &:nth-child(1n) {
-        margin-right: 4%;
-      }
-      &:nth-child(2n+2) {
-        margin-right: 0;
-      }
+      width:100%;
     }
   }
 }
