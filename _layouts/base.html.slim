@@ -137,11 +137,24 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
           /   a ☺
           /   | We want your feedback.
       .row.legal
-        .large-8.right.columns
+        .large-8.medium-24.right.columns
           a.summit-logo(href="http://www.redhat.com/summit/")
             img(src=cdn("#{site.base_url}/images/design/logo-summit.png") alt="Red Hat Summit")
           a(href="http://www.devnation.org/")
             img(src=cdn("#{site.base_url}/images/design/logo_devnation_footer.png") alt="Red Hat Summit")
+          ul.social-nav
+            li: a(href="https://plus.google.com/b/115510193032626892178/115510193032626892178/posts")
+              i.fa.fa-google-plus
+            / li: a
+            /   i.fa.fa-linkedin-square
+            li: a(href="https://www.youtube.com/channel/UCISz9r2nix7KZ84QC2JjZ2g")
+              i.fa.fa-youtube
+            / li: a
+            /   i.fa.fa-facebook
+            li: a(href="https://twitter.com/rhdevelopers")
+              i.fa.fa-twitter
+            / li: a
+            /   i.fa.fa-vimeo-square
         .large-16.columns
           ul.inline-list
             li
