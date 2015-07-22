@@ -1,4 +1,5 @@
 :awestruct-layout: product-overview
+:awestruct-interpolate: true
 :leveloffset: 1
 
 == Overview
@@ -15,7 +16,7 @@ A reliable messaging platform that supports standard messaging paradigms for a r
 
 == Icon1
 
-[.fa .fa-comments .fa-4x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_talk_bubble.png')}["Talk Bubble Icon"]
 
 
 == Features2
@@ -25,7 +26,7 @@ A reliable messaging platform that supports standard messaging paradigms for a r
 Allows native connectivity from applications written in Java, C, C++. Multiple transport protocols for exchanging data between applications, services and devices. Supports JMS 1.1, TCP, SSL, STOMP, NMS, MQTT, AMQP 1.0.
 
 == Icon2
-[.fa .fa-arrows-alt .fa-4x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_network.png')}["Network Icon"]
 
 
 == Features3
@@ -36,7 +37,7 @@ Deploy on premise, in the cloud or in a hybrid configuration.
 
 == Icon3
 
-[.fa .fa-cloud .fa-4x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_cloud.png')}["Cloud Icon"]
 
 == Detail
 

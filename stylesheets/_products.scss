@@ -42,9 +42,12 @@
   margin: 1em 0;
   .feature-icon {
     text-align: center;
-    padding-left: 12px;
     p {
       color: $grey-5;
+      margin-bottom: 0;
+    }
+    img {
+      max-width: 160px;
     }
   }
 

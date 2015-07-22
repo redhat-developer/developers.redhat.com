@@ -1,4 +1,5 @@
 :awestruct-layout: product-overview
+:awestruct-interpolate: true
 :leveloffset: 1
 
 == Overview
@@ -13,7 +14,7 @@ Rapid ways to deliver reusable and loosely coupled unified data views and data s
 
 == Icon1
 
-[.fa .fa-hdd-o .fa-5x .fa-fw]#&nbsp;# 
+image:#{cdn(site.base_url + '/images/icons/products/products_datacenter.png')}["Data Center Icon"] 
 
 == Features2
 
@@ -23,7 +24,7 @@ Builds powerful transformations and relationships using an integrated modeling a
 
 == Icon2
 
-[.fa .fa-info-circle .fa-5x .fa-fw]#&nbsp;# 
+image:#{cdn(site.base_url + '/images/icons/products/products_virtual_stack.png')}["Virtual Stack Icon"] 
 
 == Features3
 
@@ -34,12 +35,12 @@ Lean Integration: Reduce data sprawl by avoiding compulsory data copying and min
 
 == Icon3
 
-[.fa .fa-tint .fa-5x .fa-fw]#&nbsp;#
+image:#{cdn(site.base_url + '/images/icons/products/products_stopwatch.png')}["Stopwatch Icon"]
 
 
 == Detail
 
-image::images/products/datavirt/red-hat-jboss-datavirt.png["Data Virtualization", 75%]
+image:#{cdn(site.base_url + '/images/products/datavirt/red-hat-jboss-datavirt.png')}["Data Virtualization", 75%]
 
 JBoss Data Virtualization offers comprehensive data abstraction, federation, integration, transformation, and delivery capabilities to combine data from one or multiple sources into reusable and unified logical data models accessible thru standard SQL (JDBC, ODBC, Hibernate) and/or web services (REST, OData, SOAP) interfaces for agile data utilization and sharing. It enables agile data utilization by providing following functionality:
 
