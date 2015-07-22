@@ -20,9 +20,10 @@ title: Solutions
     ul.solutions
       - for solution in site.solutions.values
         li
-          .solution
-            a.solution.icon-link(href="#{site.base_url}/#{solution.id}/")
-              i(class="#{solution.icon}")
-            a.solution-name-link(href="#{site.base_url}/#{solution.id}/")
-              h3.solution-name #{solution.name}
-            p #{solution.sub_title}
+          a(href="#{site.base_url}/#{solution.id}/")
+            .solution
+              .icon-link
+                i(class="#{solution.icon}")
+              .solution-name-link
+                h3.solution-name #{solution.name}
+              p.solution-description #{solution.sub_title}

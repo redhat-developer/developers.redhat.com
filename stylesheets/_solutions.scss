@@ -44,6 +44,14 @@
 // Solutions Grid
 .solution {
   position: relative;
+  padding: 20px;
+  li {
+    display: inline-block;
+    padding: 0;
+      & > a {
+        display: block;
+      }
+  }
   i {
     font-size: 60px;
   }
@@ -65,7 +73,7 @@
     width:100%;
     overflow: hidden;
   }
-  a.solution.icon-link{
+  .icon-link, .solution-description{
     color: black;
   }
   .solution-name {
@@ -278,7 +286,6 @@ ul.solutions {
   margin: 0;
   & > li {
     width:23.875%;
-    padding:20px;
     background:#DCDCDC;
     margin:0 1.5% 20px 0;
     &:nth-child(4n+4) {
