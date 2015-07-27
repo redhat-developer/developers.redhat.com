@@ -43,6 +43,13 @@ app.dcp.url.project= '#{site.dcp_base_protocol_relative_url}v1/rest/suggestions/
 app.dcp.error_message = "<div class='dcp-error-message'>It appears we're unable to access this data right now. Look at <a href='http://twitter.com/jbossorg' target=_blank>@jbossorg</a> to see if there is scheduled maintenance, or try again shortly.</div>";
 
 /*
+  Temporary variables to use DCP v2 early. When the full site moves to DCP v2, remove these variables and update the 'app.dcp' variables (above) to use DCP v2 URLS.
+*/
+app.dcp2 = {};
+app.dcp2.url = {};
+app.dcp2.url.search = '#{site.dcp2_base_protocol_relative_url}v2/rest/search';
+
+/*
   Products
 */
 
