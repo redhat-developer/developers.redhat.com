@@ -1,33 +1,32 @@
 ---
-layout: product-base
+layout: product
 ---
-
-.large-6.columns
-  = partial 'product-left-menu.html.slim', {'parent' => page}
 
 //Store the DCP Project code in a div, so that it can be read by connectors.js when deciding which target_product to filter on
 span[data-target-product='#{page.product.dcp_project_code}']
 
 span[data-order-by='priority']
 
-.large-18.column
-  .featured-projects
-    span.featured-connector-ids(hidden) #{page.product.featured_connectors}
-    ul.featured-connectors-results
+.row
+  .large-24.column
+    .featured-projects
+      span.featured-connector-ids(hidden) #{page.product.featured_connectors}
+      ul.featured-connectors-results
 
-.large-18.columns.text-content
-  h2.divider#overview
-    | All Connectors
-  p.link-list.connectors-order
-    strong Order By
-    a.active.order-priority href="#"
-      i.fa.fa-sort-amount-desc
-      |  Importance
-    a.order-alpha href="#"
-      i.fa.fa-sort-alpha-asc 
-      |  Alphabetically
-  = page._overview
+.row
+  .large-24.columns.text-content
+    h2#overview
+      | All Connectors
+    p.link-list.connectors-order
+      strong Order By
+      a.active.order-priority href="#"
+        i.fa.fa-sort-amount-desc
+        |  Importance
+      a.order-alpha href="#"
+        i.fa.fa-sort-alpha-asc 
+        |  Alphabetically
+    = page._overview
 
-  ul.small-block-grid-2.large-block-grid-4.medium-block-grid-3.connector-results
+    ul.small-block-grid-2.large-block-grid-4.medium-block-grid-3.connector-results
 
-  small &#42;All registered trademarks belong to their respective owners.
+    small &#42;All registered trademarks belong to their respective owners.
