@@ -52,6 +52,12 @@ ul.featured-connectors-results {
       background:none;
       height:auto;
     }
+    &:before {
+      display: none;
+    }
+    .connector-logo {
+      max-width: 250px;
+    }
   }
   a.image-link {
     img {
