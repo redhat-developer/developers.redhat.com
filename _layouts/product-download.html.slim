@@ -4,36 +4,22 @@ status: green
 type: Downloads
 ---
 - page.description = "Download current or older versions of #{page.product.abbreviated_name}."
+
+
+
 - if page._alternate
   = page._alternate
 - else
-  - if page.product.current_download
-
+  .has-download
     h2#download-development-use Download #{page.product.abbreviated_name} for Development Use
 
     asciidoc:
       To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the Red Hat Developer Program which provides $0 subscriptions for development use only. link:../../../faq[Read more] about the Red Hat Developer Program.
+      
+    .product-downloads(data-product-code="#{page.product.dcp_project_code}")
+      / Downloads go here via JS
 
-    - if page.product.latest_release
-      h4.download-link: a(href="#{page.product.latest_release.url}")
-        i.fa.fa-download>
-        | Download #{page.product.abbreviated_name} #{page.product.latest_release.version}
-
-      = partial("download_table.html.slim", { 'downloads' => [page.product.latest_release] })
-
-    h4.download-link: a(href="#{page.product.default_download_artifact.url}")
-      i.fa.fa-download>
-      | Download #{page.product.abbreviated_name} #{page.product.current_version}
-
-    = partial("download_table.html.slim", { 'downloads' => [page.product.current_download] })
-
-    - if page.product.older_downloads && page.product.older_downloads.length > 0 
-      a.view-older-downloads(href="#")
-        | View Older Downloads
-        i.fa.fa-caret-down
-
-      = partial("download_table.html.slim", { 'downloads' => page.product.older_downloads.values })
-  - else
+  .no-download
 
     h2#downloads #{page.product.abbreviated_name} Downloads
 
@@ -48,6 +34,7 @@ type: Downloads
       i.fa.fa-download>
       | Download #{page.product.abbreviated_name} from the Red Hat Customer Portal
     br
+
 .row
   - unless page.product.id == 'devstudio'
     .large-16.small-24.columns
