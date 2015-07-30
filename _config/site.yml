@@ -94,7 +94,7 @@ profiles:
     metrics: true
     deploy:
       <<: *deploy
-      path: /stg_htdocs/rhd-stg
+      path: /stg_htdocs/it-rhd-stg
   
   # Main staging configuration
   staging_main: 
