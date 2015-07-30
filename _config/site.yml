@@ -144,18 +144,4 @@ profiles:
       disallow: false
     deploy:
       <<: *deploy
-      path: /www_htdocs/rhd
-      
- # Production (on IT's Infr)
-  production_it: 
-    <<: *profile
-    base_url: http://developers.redhat.com/
-    dcp_base_protocol_relative_url: //dcp.jboss.org/
-    dcp_base_url: http://dcp.jboss.org/
-    metrics: true
-    disqus: jdf
-    robots:
-      disallow: false
-    deploy:
-      <<: *deploy
       path: /www_htdocs/it-rhd
