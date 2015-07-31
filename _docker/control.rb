@@ -181,14 +181,24 @@ if options[:build] || options[:restart]
   File.write('docker-compose.yml', ERB.new(File.read('docker-compose.yml.erb')).result)
 end
 
+def copy_if_changed(sourceFile, targetFile)
+  unless FileUtils.identical?(sourceFile, targetFile)
+    FileUtils.cp sourceFile, targetFile
+  end
+end
+
 if options[:build]
   docker_dir = 'awestruct'
 
   parent_gemfile = File.new '../Gemfile'
-  parent_lock = File.new '../Gemfile.lock'
+  parent_gemlock = File.new '../Gemfile.lock'
 
-  FileUtils.cp parent_gemfile, docker_dir
-  FileUtils.cp parent_lock, docker_dir
+  target_gemfile = File.new docker_dir + '/Gemfile'
+  target_gemlock = File.new docker_dir + '/Gemfile.lock'
+
+  #Only copy if the file has changed. Otherwise docker won't cache optimally
+  copy_if_changed(parent_gemfile, target_gemfile)
+  copy_if_changed(parent_gemlock, target_gemlock)
 
   puts 'Building base docker image...'
   execute_docker(:build, '--tag=developer.redhat.com/base', './base')
