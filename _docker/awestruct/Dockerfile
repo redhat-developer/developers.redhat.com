@@ -23,7 +23,8 @@ RUN yum install -y  \
   ruby-devel \
   sqlite-devel \
   tar \
-  which \ 
+  which \
+  wget \
 && yum clean all
 
 # Prevent encoding errors
@@ -33,9 +34,10 @@ ENV LC_ALL en_US.UTF-8
 
 RUN adduser --system --uid=1000 --home-dir /home/awestruct --shell /bin/bash -m -U awestruct
 
+WORKDIR /tmp
+
 # Install ruby and rubygems
-ADD http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz /tmp/
-RUN cd /tmp \
+RUN wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz \
     && tar -xzf /tmp/ruby-2.1.2.tar.gz \
     && cd ruby-2.1.2/ \
     && ./configure --disable-install-doc \
@@ -43,8 +45,7 @@ RUN cd /tmp \
     && make install \
     && rm -rf /tmp/*
 
-ADD http://production.cf.rubygems.org/rubygems/rubygems-2.4.1.tgz /tmp/
-RUN cd /tmp \
+RUN wget http://production.cf.rubygems.org/rubygems/rubygems-2.4.1.tgz \
     && tar -zxf /tmp/rubygems-2.4.1.tgz \
     && cd /tmp/rubygems-2.4.1 \
     && ruby setup.rb \
@@ -53,21 +54,21 @@ RUN cd /tmp \
 
 RUN gem install bundler --no-rdoc --no-ri
 
-# Add the volume for the actual project
-VOLUME /home/awestruct/developer.redhat.com
-
 USER awestruct
+
+ENV GEM_HOME /home/awestruct/gems
+RUN mkdir -p /home/awestruct/gems
+
+WORKDIR /home/awestruct
 
 ## Build setup
 # Build the current gemset (user will only need to build the difference
-COPY Gemfile /tmp/Gemfile
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 COPY gemrc /home/awestruct/.gemrc
-WORKDIR /tmp
+RUN bundle install
 
-ENV GEM_HOME /home/awestruct/gems
-RUN mkdir -p /home/awestruct/gems && bundle install
-
-WORKDIR /home/awestruct/developer.redhat.com 
+WORKDIR /home/awestruct/developer.redhat.com
 
 EXPOSE 4242
 
