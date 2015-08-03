@@ -212,6 +212,12 @@
   }
 }
 
+@media #{$large-only} { 
+  ul.side-nav {
+    margin-left: -29px;
+  }
+}
+
 // Events mobile styles
 
 @media (max-width: 767px) {
