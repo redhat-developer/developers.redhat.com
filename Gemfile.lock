@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: 052a3873c1ef83652a65b05f5e587b3896b05758
+  revision: 8218d63ee1382224853fcc0ddf87d9fc20cb13b1
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git://github.com/awestruct/awestruct.git
-  revision: fdb9369446530019a7fcc8550cf5dcd895a83617
+  revision: 008609137c94664dc7ddd885a98d8808f3abd2d5
   specs:
     awestruct (0.5.6.beta9)
       asciidoctor (~> 1.5, >= 1.5.2)
@@ -44,7 +44,7 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
-    activesupport (4.1.12)
+    activesupport (4.1.11)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -66,7 +66,7 @@ GEM
       parallel (~> 1.1.0)
       slim (~> 2.0)
       typhoeus (~> 0.6)
-    byebug (5.0.0)
+    byebug (4.0.5)
       columnize (= 0.9.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
@@ -100,9 +100,9 @@ GEM
     extlib (0.9.16)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.10.0)
+    faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
-    ffi (1.9.10)
+    ffi (1.9.8)
     formatador (0.2.5)
     git (1.2.9.1)
     google-api-client (0.8.6)
@@ -123,11 +123,11 @@ GEM
       memoist (~> 0.12)
       multi_json (= 1.11)
       signet (~> 0.6)
-    gpgme (2.0.9)
+    gpgme (2.0.8)
       mini_portile (>= 0.5.0)
-    guard (2.13.0)
+    guard (2.12.6)
       formatador (>= 0.2.4)
-      listen (>= 2.7, <= 4.0)
+      listen (~> 2.7)
       lumberjack (~> 1.0)
       nenv (~> 0.1)
       notiffany (~> 0.0)
@@ -150,11 +150,11 @@ GEM
     image_size (1.4.1)
     iso8601 (0.8.6)
     json (1.8.3)
-    jwt (1.5.1)
+    jwt (1.5.0)
     kramdown (1.0.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    libv8 (3.16.14.11)
+    libv8 (3.16.14.7)
     listen (2.10.1)
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
@@ -175,12 +175,12 @@ GEM
     nenv (0.2.0)
     netrc (0.10.3)
     nokogiri (1.5.11)
-    notiffany (0.0.7)
+    notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.3.6)
       ruby-hmac (>= 0.3.1)
-    octokit (4.0.1)
+    octokit (3.8.0)
       sawyer (~> 0.6.0, >= 0.5.3)
     oga (0.3.4)
       ast
@@ -193,8 +193,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.2.0)
-      byebug (~> 5.0)
+    pry-byebug (3.1.0)
+      byebug (~> 4.0)
       pry (~> 0.10)
     rack (1.6.4)
     rake (10.0.4)
@@ -203,7 +203,7 @@ GEM
     rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    ref (2.0.0)
+    ref (1.0.5)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -300,6 +300,3 @@ DEPENDENCIES
   therubyracer
   uglifier (~> 2.0.1)
   wraith (~> 1.3.0)
-
-BUNDLED WITH
-   1.10.6
