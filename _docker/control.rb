@@ -161,9 +161,9 @@ def startup_services(opts)
   block_wait_drupal_started if opts[:drupal]
 
   if opts[:drupal]
-    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake bundle_update clean preview[drupal]']
+    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup bundle_update clean preview[drupal]']
   else
-    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake bundle_update clean preview[docker]']
+    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup bundle_update clean preview[docker]']
   end
 end
 
@@ -187,14 +187,22 @@ def copy_if_changed(sourceFile, targetFile)
   end
 end
 
+def open_or_new(path)
+  if (File.exist?(path))
+    File.open(path)
+  else
+    File.new(path, 'w')
+  end
+end
+
 if options[:build]
   docker_dir = 'awestruct'
 
-  parent_gemfile = File.new '../Gemfile'
-  parent_gemlock = File.new '../Gemfile.lock'
+  parent_gemfile = File.open '../Gemfile'
+  parent_gemlock = File.open '../Gemfile.lock'
 
-  target_gemfile = File.new docker_dir + '/Gemfile'
-  target_gemlock = File.new docker_dir + '/Gemfile.lock'
+  target_gemfile = open_or_new(docker_dir + '/Gemfile')
+  target_gemlock = open_or_new(docker_dir + '/Gemfile.lock')
 
   #Only copy if the file has changed. Otherwise docker won't cache optimally
   copy_if_changed(parent_gemfile, target_gemfile)
