@@ -48,6 +48,7 @@ app.dcp.error_message = "<div class='dcp-error-message'>It appears we're unable 
 app.dcp2 = {};
 app.dcp2.url = {};
 app.dcp2.url.search = '#{site.dcp2_base_protocol_relative_url}v2/rest/search';
+app.dcp2.url.project= '#{site.dcp2_base_protocol_relative_url}v2/rest/search/suggest_project_name_ngram_more_fields';
 
 /*
   Products

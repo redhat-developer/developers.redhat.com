@@ -4,6 +4,9 @@ interpolate: true
 
 app.project = {
   getCorrectUrl : function (linkUrl) {
+    if ($.isArray(linkUrl) && linkUrl.length > 0) {
+      linkUrl = linkUrl[0];
+    }
     if (linkUrl.indexOf("/") > 0) {
       return linkUrl;
     } else {
@@ -18,10 +21,8 @@ app.project = {
     }
   },
   projectFilter : function(filters, keyword, container, thumbnailSize) {
-    //Currently the only way to specify no limit
-    var maxResults = 500;
 
-    var url = app.dcp.url.project;
+    var url = app.dcp2.url.project;
 
     // Pass search params to GTM for analytics
     window.dataLayer = window.dataLayer || [];
@@ -33,24 +34,19 @@ app.project = {
 
     var filters = $.extend(filters, {"keyword": keyword});
     var currentFilters = {};
-    var request_data = {
-        "field"  : ["_source"],
-        "query" : query,
-        "size" : maxResults
-    }
+    var request_data = {};
 
-    if ($('select[name="filter-products"]').length && $('select[name="filter-products"]').val() !== "") {
-      var product = $('select[name="filter-products"]').val();
+    var filter_products = $('select[name="filter-products"]');
+    if (filter_products.length && filter_products.val() !== "") {
+      var product = filter_products.val();
       filters['project'] = app.products[product]['upstream'];
       window.dataLayer.push({ 'product' : product });
     } else {
       window.dataLayer.push({ 'product' : null });
     }
 
-    if (filters['project']) {
-      url = app.dcp.url.search;
-      request_data["sys_type"] = "project_info";
-    }
+    // sort by sys_title
+    filters['sort'] = 'sys_title';
 
     $.each(filters, function(key, val) {
       // if its empty, remove it from the filters
@@ -59,8 +55,7 @@ app.project = {
       }
     });
 
-    // Prep each filter
-    var query = ['((_exists_:archived AND NOT archived:true) OR (_missing_:archived))'];
+    var query = [];
 
     if(currentFilters['keyword']) {
       window.dataLayer.push({ 'keyword' : query });
@@ -107,12 +102,12 @@ app.project = {
     } else {
       var hits = data.hits.hits;
     }
-    hits.sortJsonArrayByProperty("_source.sys_title");
-    var html = "";
-    // loop over every hit
 
+    var html = "";
+
+    // loop over every hit
     for (var i = 0; i < hits.length; i++) {
-      var props = hits[i]._source;
+      var props = hits[i].fields;
 
       var imgsrc = "http://static.jboss.org/" + (props.specialIcon || props.sys_project) + "/images/" + (props.specialIcon || props.sys_project) + "_" + thumbnailSize + ".png";
 

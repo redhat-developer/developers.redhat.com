@@ -114,7 +114,8 @@ app.connectors = {
         } else {
             var hits = data.hits.hits;
         }
-        
+
+        // Note: we might be able to get rid of sortJsonArrayByProperty function after migration to Searchisko 2.
         hits.sortJsonArrayByProperty("_source." + orderBy);
 
         var html = "";
