@@ -21,7 +21,9 @@ class Options
       opts.banner = 'Usage: control.rb [options]'
       opts.separator 'Specific options:'
 
-      opts.on('-d', '--docker', 'Docker client connection info (i.e. tcp://example.com:1000)') do |d|
+      docker_message = "Docker client connection info (i.e. tcp://example.com:1000). "\
+                       "DOCKER_HOST used if parameter not provided"
+      opts.on('-d', '--docker CONNECTION_INFO', String, docker_message) do |d|
         options[:docker] = d
       end
 
@@ -173,6 +175,7 @@ puts Options.parse %w(-h) unless options_selected? options
 
 modify_env(options)
 
+#the docker url is taken from DOCKER_HOST env variable otherwise
 Docker.url = options[:docker] if options[:docker]
 
 if options[:build] || options[:restart]
