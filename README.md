@@ -98,10 +98,23 @@ If the build was successful, you should be able to visit the site here: <http://
 2. Edit the boot2docker profile:
         
         sudo vi /var/lib/boot2docker/profile
-3. The DNS servers are specified using the `EXTRA_ARGS` variable. It will look a bit like:
+3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the ethernet port to be ready. Make sure that your file contains the following:
         
-        EXTRA_ARGS="--dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
-    If you want to use your host (DHCP) provided DNS servers, make sure there are no `--dns` arguments. If you want to use the Red Hat servers, then add a line like this to the file.
+        ```
+        wait4eth1() {
+        CNT=0
+        until ip a show eth1 | grep -q UP
+        do
+                [ $((CNT++)) -gt 60 ] && break || sleep 1
+        done
+        sleep 1
+        }
+        EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
+        wait4eth1
+        ```
+4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
+5. exit the boot2docker image
+6. Restart it `boot2docker down && boot2docker up`
 
 > Everything below is copied across verbatim from www.jboss.org. Proceed with caution.
 
