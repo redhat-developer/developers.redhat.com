@@ -67,7 +67,6 @@ h2.divider.month-heading {
     text-transform: uppercase;
     text-align: center;
     display: block;
-    position: absolute;   bottom:0;   left:0;
     padding: 5px;
     background: cdn("../images/icons/redhat.png") no-repeat 20%;
     width:100%;
@@ -99,6 +98,9 @@ h2.divider.month-heading {
   font-weight: 800;
   text-transform: uppercase;
   border:1px solid white;
+  margin-left: 10px;
+  position: absolute;
+  top: 10px;
   &.multiday {
     padding-top: 15px;
     span[class] {
@@ -139,7 +141,12 @@ h2.divider.month-heading {
 
 .event-head {
   overflow: hidden;
-  padding:10px;
+  position: relative;
+  min-height: 89px;
+  img {
+    height: 89px;
+    width: 100%;
+  }
 }
 
 .event-body {
