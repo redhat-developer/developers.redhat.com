@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/awestruct/aweplug.git
-  revision: 8218d63ee1382224853fcc0ddf87d9fc20cb13b1
+  remote: git://github.com/Dantheman720/aweplug.git
+  revision: 4bbcc880d47b3b0a674e40cf012c0eaf33857081
+  branch: RHD-604
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -100,7 +101,7 @@ GEM
     extlib (0.9.16)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.9.1)
+    faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
     ffi (1.9.8)
     formatador (0.2.5)
@@ -180,7 +181,7 @@ GEM
       shellany (~> 0.0)
     oauth (0.3.6)
       ruby-hmac (>= 0.3.1)
-    octokit (3.8.0)
+    octokit (4.0.1)
       sawyer (~> 0.6.0, >= 0.5.3)
     oga (0.3.4)
       ast
