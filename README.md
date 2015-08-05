@@ -19,8 +19,9 @@ Skip to the [Site Build Setup](#site_build_setup) section if you don't want to u
 3. Download the Searchisko data dump from [here](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
 4. Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Boot2Docker, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `boot2docker ip`
 5. Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
-6. If you are running on Mac, and are not on an office network, you may hit DNS problems. If so, run `./control.rb -d` which will add the Red Hat DNS servers to your boot2docker install. This may cause issues if you use boot2docker and aren't on the Red Hat VPN. If you need to undo this, the easiest way is to get a fresh copy of the boot2docker VM image by running `boot2docker destroy && boot2docker init` (note that this will reset any other customisations you have made to the image). If you are unwilling to get a fresh copy of the boot2docker VM, then you will need to follow the steps below in _Edit your boot2docker DNS setup_ to remove the Red Hat DNS servers.
-7. Run the following commands to build the images and start the containers:
+6. If you are running on Mac you will need to follow the steps below in _Edit your boot2docker DNS setup_ to setup configuration for the Red Hat DNS and VPN.
+7. If you need to override the default DOCKER_HOST this can be done via the `-d` flag. This should not be necessary in most cases.
+8. Run the following commands to build the images and start the containers:
 
         ./control.rb -br
 
@@ -97,10 +98,23 @@ If the build was successful, you should be able to visit the site here: <http://
 2. Edit the boot2docker profile:
         
         sudo vi /var/lib/boot2docker/profile
-3. The DNS servers are specified using the `EXTRA_ARGS` variable. It will look a bit like:
+3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the ethernet port to be ready. Make sure that your file contains the following:
         
-        EXTRA_ARGS="--dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
-    If you want to use your host (DHCP) provided DNS servers, make sure there are no `--dns` arguments. If you want to use the Red Hat servers, then add a line like this to the file.
+        ```
+        wait4eth1() {
+        CNT=0
+        until ip a show eth1 | grep -q UP
+        do
+                [ $((CNT++)) -gt 60 ] && break || sleep 1
+        done
+        sleep 1
+        }
+        EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
+        wait4eth1
+        ```
+4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
+5. exit the boot2docker image
+6. Restart it `boot2docker down && boot2docker up`
 
 > Everything below is copied across verbatim from www.jboss.org. Proceed with caution.
 
