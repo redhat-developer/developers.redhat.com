@@ -21,7 +21,8 @@ Skip to the [Site Build Setup](#site_build_setup) section if you don't want to u
 5. Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
 6. If you are running on Mac you will need to follow the steps below in _Edit your boot2docker DNS setup_ to setup configuration for the Red Hat DNS and VPN.
 7. If you need to override the default DOCKER_HOST this can be done via the `-d` flag. This should not be necessary in most cases.
-8. Run the following commands to build the images and start the containers:
+8. If you are working on OSX or widows via boot to docker, then set the environment variable DOCKER_SSL_VERIFY to false. E.g `export DOCKER_SSL_VERIFY=false`. See here as to why https://github.com/swipely/docker-api/issues/202
+9. Run the following commands to build the images and start the containers:
 
         ./control.rb -br
 
