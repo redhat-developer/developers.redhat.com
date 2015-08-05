@@ -148,7 +148,16 @@ def startup_services(opts)
   else
     execute_docker_compose :up, %w(-d elasticsearch mysql searchisko searchiskoconfigure)
   end
-  configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
+
+  begin
+    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
+  rescue Excon::Errors::SocketError => se
+    puts se.backtrace
+    puts('There has been a problem with your CA certs, are you developing using boot2docker?')
+    puts('If so set your DOCKER_SSL_VERIFY environment variable to false')
+    puts('E.g export DOCKER_SSL_VERIFY=false')
+    exit #quit the whole thing
+  end
 
   puts 'Waiting to proceed until searchiskoconfigure has completed'
 
