@@ -50,7 +50,7 @@ description: Discover the events and webinars featuring talks about JBoss produc
           li(ng-repeat="event in events[month] | orderBy: '_source.start_date'")
             .event
               .event-head
-                img(ng-if="'default' !== event._source.image" ng-src="http://static.jboss.org/images/rhd/events/event_{{event._source.image}}.png")
+                img(ng-if="'default' !== event._source.sys_image" ng-src="http://static.jboss.org/images/rhd/events/event_{{event._source.sys_image}}.png")
                 .event-date(ng-class="{'multiday': event._source.end_date !== event._source.start_date}")
                    p
                     span.start
