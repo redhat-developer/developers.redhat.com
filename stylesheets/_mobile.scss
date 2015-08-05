@@ -220,6 +220,12 @@
 
 // Events mobile styles
 
+@include mobile-landscape-and-down {
+  .events-listing li {
+    display: block;
+    width: 100%;
+  }
+}
 @media (max-width: 767px) {
 .events-control {
   input[type] {
