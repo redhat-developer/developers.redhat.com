@@ -65,6 +65,7 @@ def modify_env(opts)
     fname = File.open '../_config/secrets.yaml.gpg'
 
     secrets = YAML.load(crypto.decrypt(fname).to_s)
+
     secrets.each do |k, v|
       if k.include? 'drupal'
         ENV[k] = v if opts[:drupal]
@@ -172,9 +173,9 @@ def startup_services(opts)
   block_wait_drupal_started if opts[:drupal]
 
   if opts[:drupal]
-    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup bundle_update clean preview[drupal]']
+    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[drupal]']
   else
-    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup bundle_update clean preview[docker]']
+    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]']
   end
 end
 
