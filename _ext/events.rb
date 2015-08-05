@@ -28,6 +28,8 @@ module JBoss
               [:sys_description, value]
             when 'on_homepage'
               [:featured, value]
+            when 'image'
+              [:sys_image, value]
             # Hacked together
             when 'type'
               [:sys_url_view, value]
