@@ -25,12 +25,6 @@ gem 'git', '~> 1.2.5'
 gem 'oily_png', '~> 1.1.1'
 gem 'nokogiri', '~> 1.5.10'
 gem 'therubyracer', platforms: :ruby, require: linux_only('therubyracer')
-
-gem 'aweplug', github: 'awestruct/aweplug'
-#gem 'aweplug', github: 'Dantheman720/aweplug', :branch => 'DEVELOPER-1248'
-#gem 'aweplug', path: '~/projects/ruby/aweplug'
-#gem 'aweplug', path: '../aweplug'
-
 gem 'parallel', '~> 1.1.0'
 gem 'mime-types', '2.1'
 gem 'google-api-client', '~> 0.8'
@@ -41,6 +35,17 @@ gem 'daybreak'
 gem 'sass', '~> 3.4', '< 3.4.6'
 gem 'activesupport', '> 3.1', '< 4.2.0' # Used in aweplug by ruby-duration
 gem 'compass', '~> 1.0'
+
+# To use Aweplug code from a different location:
+#
+# From a specific GitHub branch. Ommit the 'branch' parameter for 'master'
+#    gem 'aweplug', github: '<github_id>/aweplug', :branch => '<branch_name>'
+#
+# From a location on your disk:
+#    gem 'aweplug', path: '<path_to_aweplug_on_your_disk>'
+#
+gem 'aweplug', github: 'awestruct/aweplug'
+
 
 group :development do
   gem 'rb-inotify', require: false
