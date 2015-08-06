@@ -25,3 +25,34 @@
     @extend .grow;
   }
 }
+
+ul.ytlist {
+  list-style: none;
+  margin-top: 50px;
+  td {
+    padding: 1rem;
+    &:first-of-type {
+      width: 300px;
+    }
+  }
+}
+
+@include tablet-portrait-and-down {
+  ul.ytlist {
+    table {
+      width: 100%;
+    }
+    tr {
+      overflow-x: auto;
+      display: block;
+    }
+    td{
+      width: 100%;
+      display: block;
+      clear: both;
+      &:first-of-type {
+        width: 100% !important;
+      }
+    }
+  }
+}
