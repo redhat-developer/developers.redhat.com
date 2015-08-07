@@ -64,12 +64,10 @@ app.buzz = {
         }
         tagsString += tags[i];
       }
-      query.push("sys_tags:"+tagsString);
       window.dataLayer.push({ 'tags' : tags });
     } else {
       window.dataLayer.push({ 'tags' : null });
     }
-    query = query.join(" AND ");
 
     window.dataLayer.push({'event': 'buzz-search'});
 
@@ -79,10 +77,10 @@ app.buzz = {
         data : {
           "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_created", "author", "sys_tags", "sys_content_id"],
           "query" : query,
+          "tag" : tags,
           "size" : itemCount,
           "sys_type" : "blogpost",
           "sortBy" : "new-create",
-          "query_highlight" : true,
           "from" : from || 0 // for pagination
         },
         beforeSend : function() {
