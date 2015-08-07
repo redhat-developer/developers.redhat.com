@@ -92,9 +92,10 @@ app.termsAndConditions = {
 
 // Do this on DOM load so we don't disturb other scripts when we do the redirect to the download!
 $(function() {
-  if ($('.downloadthankyou').length) {
-    app.termsAndConditions.download();
-  }
+
+  //The download is now triggered from the success callback from KeyCloak in sso.js. This ensures that KeyCloak is initialised before doing the download.
+  
+  //Display the Ts&Cs banner
   if ($('#_developer_program_terms_conditions').length) {
     app.termsAndConditions.banner();
   }
