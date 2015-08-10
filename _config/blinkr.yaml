@@ -1,6 +1,4 @@
 skips:
-    # Can't get this excluded from the sitemap :-(
-  - !ruby/regexp /^https?:\/\/www(-stg)?\.jboss\.org\/(pr\/\d+\/build\/\d+)?\/images\/readme\/$/
     # localhost:8xxx addresses are extensively used in quickstart readmes
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
@@ -14,45 +12,8 @@ skips:
   - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/sharer\.php.*/
     # Facebook profile pages cannot be checked without a login
   - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/.*\?rel=author$/
-    # False errors on Blinkr.yaml
-  - !ruby/regexp /http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/contact/
-  - !ruby/regexp /^http:\/\/community.jboss.org\/en\/gatein\?view=discussions+/
-  - !ruby/regexp /^https:\/\/community.jboss.org\/en\/gatein\?view=documents+/
-  - !ruby/regexp /^http:\/\/community.jboss.org\/en\/gatein\?view=blog+/
-  - !ruby/regexp /^https:\/\/jboss.orgmail.list:.dev@httpd.apache.org+/
-  - !ruby/regexp /^https:\/\/jboss.orgmail.list:.dev@tomcat.apache.org+/
-  - !ruby/regexp /^https:\/\/jboss.orgmail.list:.users@tomcat.apache.org+/
-  # DEVELOPER-1252
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/797\/build\/1759\/enterprise-java\/http\/:www.jboss.org\/products\/eap\/overview\/+/
-    # Non-errors in production
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/overview\/#buzz+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/developer-materials\/#!formats=video&amp;projectCode=bpmsuite+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/developer-materials\/#!projectCode=bpmsuite+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/devstudio\/get-started\/#ExtraSection+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/products\/bpmsuite\/download+/
 #    # LinkedIn Issue DEVELOPER-1120
   - !ruby/regexp /http:\/\/linkedin.com\/.+/
-#    # Google plus issue DEVELOPER-1126
-#    # JIRA Issue BG-12 - Build link
-  - !ruby/regexp /^http:\/\/ci.stormgrind.org\/project.html(.)projectId=project2&guest=1+/
-#    # JDF-778
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#add-an-application-user+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#build-and-deploy-the-quickstarts+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#configure-maven+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#mavenconfiguration+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#run-the-arquillian-tests+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/sandbox\/index.html#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts+/
-#    # JDF-773
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/cdi-generic-portlet\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/cdi-jsf-portlet\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/cdi-scopes-portlet\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/jsf2-hello-world-portlet\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/jsf2-rf4-hello-world-portlet\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/navigation-api-portlet\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/portal-extension\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/sample-portal\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/simplest-hello-world-portlet\/README.html+/
-  - !ruby/regexp /^http:\/\/www-stg.jboss.org\/pr\/\d{3}\/build\/\d{4}\/quickstarts\/portal\/social-portlets\/README.html+/
 #    # JDF-773
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Unsolicted\+Responses+/
 #    # WINDUP-180
@@ -174,13 +135,13 @@ ignores:
   - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-JSF_Portlet_Development_with_RichFaces.html #JDF-773.
   - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/Google.html #JDF-773.
   - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HazelcastComponent.html #DEVELOPER-1148
-max_page_retys: 10
-max_retrys: 10
+max_page_retys: 5
+max_retrys: 5
 browser: phantomjs
 ignore_fragments: true
 phantomjs_threads: 20
 pipeline: ../_ext/blinkr/blinkr.rb
 # The output file to write the report to
 #report: _tmp/blinkr/index.html
-#sitemap: /home/jporter/projects/developer.redhat.com/_tmp/sitemap.xml
+#sitemap: /home/jporter/projects/developers.redhat.com/_tmp/sitemap.xml
 
