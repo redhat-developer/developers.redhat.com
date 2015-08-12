@@ -146,7 +146,6 @@ app.buzz = {
   },
 
   init : function() {
-
     /* 
       "Mini" Buzz, for the homepage
     */
@@ -159,7 +158,7 @@ app.buzz = {
     /* 
       Full Buzz, for the buzz page
     */
-    var $buzz = $('.buzz-container');
+    var $buzz = $('.buzz-container, .product-buzz-container');
 
     if($buzz.length) {
       app.buzz.filter(app.templates.buzzTemplate, $buzz, 4);
