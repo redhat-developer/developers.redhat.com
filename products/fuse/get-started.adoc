@@ -1,21 +1,6 @@
 :awestruct-layout: product-get-started
 :awestruct-interpolate: true
 
-== Prerequisites section title
-Prerequisites &#38; Required Dependencies Checklist
-
-== Prerequisites section
-1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
-2. JBoss&#174; Developer Studio 8.1
-
-== Setup Duration
-10 minutes
-
-== Install Duration
-5 minutes
-
-== Build Duration
-20 minutes
 
 == Setup Environment
 
@@ -69,7 +54,7 @@ d. Tick the following items:
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-get-started-is.png')}[Install JBoss Developer Studio Integration Stack]
 e. Click the _Install_ button.
 ... Click _Next_, _Next_, and then accept the terms and conditions. Finally, click _Finish_.
-... You will be given a _Security Warning_ during installation, click _Yes_.
+... You will be given a _Security Warning_ during installation, click _OK_.
 ... You will need to restart JBoss Developer Studio. Click _Yes_ when asked.
 
 == Install Config Verify
@@ -88,11 +73,12 @@ Go to the folder where you have downloaded JBoss Fuse and unzip it +
 unzip jboss-fuse-full-6.2.0.redhat-133.zip
 ----
 +
-WARNING: Edit `jboss-fuse-full-6.2.0.redhat-133/etc/users.properties` and uncomment the _admin_ user on the last line.
+Edit `jboss-fuse-full-6.2.0.redhat-133/etc/users.properties` and uncomment the _admin_ user on the last line.
++
 2. In JBoss Developer Studio locate the _Servers_ tab and click on _New server_ button. Select *JBoss Fuse 6.2 Server*. Change the _Server name_ to *jboss-fuse* and click _Next_.
 3. On the _JBoss Fuse Runtime_ window, select the folder where you installed JBoss Fuse and click _Finish_.
 +
-TIP: We recommend you select Java SE 7 as your execution environment.
+TIP: We recommend you select Java SE-1.7 as your execution environment.
 +
 image:#{cdn(site.base_url + '/images/products/fuse/get-started-fuse-runtime.png')}[Create a JBoss Fuse Server]
 4. On Servers tab, click on the green start button to start the Fuse Server.
