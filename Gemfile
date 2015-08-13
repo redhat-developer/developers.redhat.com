@@ -14,7 +14,7 @@ end
 
 # GEMS
 gem 'awestruct', github: 'awestruct/awestruct'
-gem 'slim', '~> 2.0'
+gem 'slim', '~> 3.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 1.5.0'
 gem 'uglifier', '~> 2.0.1'
@@ -25,7 +25,7 @@ gem 'git', '~> 1.2.5'
 gem 'oily_png', '~> 1.1.1'
 gem 'nokogiri', '~> 1.5.10'
 gem 'therubyracer', platforms: :ruby, require: linux_only('therubyracer')
-gem 'parallel', '~> 1.1.0'
+gem 'parallel', '~> 1.1'
 gem 'mime-types', '2.1'
 gem 'google-api-client', '~> 0.8'
 gem 'signet', '~> 0.6'
@@ -61,6 +61,6 @@ group :vdiff do
 end
 
 group :health do
-  gem 'blinkr', '~> 0.2.7'
+  gem 'blinkr', '~> 0.3'
 end
 
