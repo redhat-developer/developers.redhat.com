@@ -225,6 +225,8 @@ if options[:build]
   execute_docker(:build, '--tag=developer.redhat.com/base', './base')
   puts 'Building base Java docker image...'
   execute_docker(:build, '--tag=developer.redhat.com/java', './java')
+  puts 'Building base Ruby docker image...'
+  execute_docker(:build, '--tag=developer.redhat.com/ruby', './ruby')
   puts 'Building services...'
   execute_docker_compose :build
 end
