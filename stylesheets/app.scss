@@ -1980,4 +1980,15 @@ label.inline{
 .overlay-content {
   position: relative;
   top: 5px;
+} 
+
+// Fixes styles for Notes, Tips, and Warnings in asciidocs
+.admonitionblock {
+  td.content {
+    padding: 9px 0;
+  }
+  .title {
+    font-weight: bold;
+    padding-left: 5px;
+  }
 }
