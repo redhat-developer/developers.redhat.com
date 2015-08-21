@@ -255,6 +255,9 @@
     background-color: #3999cb;
     color: $white;
     border: none;
+    -webkit-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
+    -o-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
+    transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
     h4 {
       color: $white;
     }
@@ -271,6 +274,15 @@
       display: inline-block;
       font-size: .9rem;
       margin-bottom: 0;
+    }
+    &:hover {
+      background-color: #2d7195;
+      .step-num {
+        color: #3999cb;
+      }
+      .paragraph, .paragraph p, h4, i {
+        color: #a3dbe8;
+      }
     }
   }
   .step-header {
