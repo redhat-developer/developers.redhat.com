@@ -49,27 +49,31 @@ drupal:
     - DB_PASSWORD=drupal
   privileged: true
 drupalmysql:
-  build: ./mysql
+  image: mysql:5.5
   <% if ENV['ghprbPullId'] %>
   labels:
     - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
   <% end %>
   environment:
-    - DB_NAME=drupal
-    - DB_USER=drupal
-    - DB_PASSWORD=drupal
+    - MYSQL_DATABASE=drupal
+    - MYSQL_USER=drupal
+    - MYSQL_PASSWORD=drupal
+    - MYSQL_ROOT_PASSWORD=superdupersecret
   ports:
     - "<%= ENV['DRUPALMYSQL_HOST_PORT'] %>:3306"
 mysql:
-  build: ./mysql
+  image: mysql:5.5
   <% if ENV['ghprbPullId'] %>
   labels:
     - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
   <% end %>
+  volumes:
+    - ./searchisko_configure:/etc/mysql/conf.d
   environment:
-    - DB_NAME=searchisko
-    - DB_USER=searchisko
-    - DB_PASSWORD=searchisko
+    - MYSQL_DATABASE=searchisko
+    - MYSQL_USER=searchisko
+    - MYSQL_PASSWORD=searchisko
+    - MYSQL_ROOT_PASSWORD=superdupersecret
   ports:
     - "<%= ENV['MYSQL_HOST_PORT'] %>:3306"
 elasticsearch:
