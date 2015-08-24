@@ -44,7 +44,7 @@ gem 'compass', '~> 1.0'
 # From a location on your disk:
 #    gem 'aweplug', path: '<path_to_aweplug_on_your_disk>'
 #
-gem 'aweplug', github: 'awestruct/aweplug'
+gem 'aweplug', github: 'LightGuard/aweplug'
 
 
 group :development do

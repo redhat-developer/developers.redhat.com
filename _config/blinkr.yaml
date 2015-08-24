@@ -6,7 +6,7 @@ skips:
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
     # -YOUR_DOMAIN_NAME.rhcloud.com is used in quickstart readmes
-  - !ruby/regexp /^http:\/\/\w*-YOUR_DOMAIN_NAME\.rhcloud\.com.*/
+  - !ruby/regexp /-YOUR_DOMAIN_NAME\.rhcloud\.com/
     # Prevent any stray mailto and irc links appearing
   - !ruby/regexp /^mailto:/
   - !ruby/regexp /^irc:/
@@ -29,6 +29,7 @@ skips:
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
 ignores:
   - url: !ruby/regexp /boms/
+  - url: !ruby/regexp /archetypes/
   - url: !ruby/regexp /archetypes/
   - url: git@github.com:nodyn/nodyn.git #Not an error.
   - url: http://in.relation.to/ #Not an error.
