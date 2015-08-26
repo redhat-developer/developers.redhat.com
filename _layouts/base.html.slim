@@ -98,9 +98,9 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
               i.fa.fa-bars
               i.fa.fa-times
           ul.nav.nav-tabs
-            - currentPage = page.url.gsub('/','').split('.').first
+            - currentPage = page.url
             - for pageName in ['solutions', 'products', 'downloads']
-              li(class=(currentPage == pageName ? 'active' : ''))
+              li(class=(currentPage.include?(pageName) ? 'active' : ''))
                 a(href="#{site.base_url}/#{pageName}/") #{pageName.capitalize}
           ul.menu-right
             li: a(href="#{site.base_url}/projects/") Community
