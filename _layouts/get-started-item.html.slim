@@ -20,13 +20,16 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
   h2.large-title#developer-materials Developer Materials
 .row.row.content
   .large-24.columns
-    ul.breadcrumbs
-      li
-        a href="#{site.base_url}/get-started/" Get Started
-      li
-        a href="#{site.base_url}/developer-materials/" Developer Materials
-      li
-        a href="#{site.base_url}/#{page.output_path}" #{page.metadata[:title]}
+    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item" href="#{site.base_url}/get-started/" Get Started
+        meta itemprop="position" content="1"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item" href="#{site.base_url}/developer-materials/" Developer Materials
+        meta itemprop="position" content="2"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item" href="#{site.base_url}/#{page.output_path}" #{page.metadata[:title]}
+        meta itemprop="position" content="3"
 .row itemscope="" itemtype="http://schema.org/Article"
   .collapse.large-24
     h2.divider#start itemprop="name" #{page.metadata[:title]}

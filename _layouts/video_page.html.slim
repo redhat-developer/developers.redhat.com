@@ -13,13 +13,16 @@ layout: base
   h2.large-title#developer-materials Developer Materials
 .row.content
   .large-24.columns
-    ul.breadcrumbs
-      li
-        a href="#{site.base_url}/get-started/" Get Started
-      li
+    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item" href="#{site.base_url}/get-started/" Get Started
+        meta itemprop="position" content="1"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
         a href="#{site.base_url}/developer-materials/" Developer Materials
-      li
+        meta itemprop="position" content="2"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
         a href="#{site.base_url}/#{page.output_path}" #{page.video.title}
+        meta itemprop="position" content="3"
 
 .row.content
   .large-18.columns

@@ -5,13 +5,16 @@ layout: base
   h2.large-title Developer Materials
 .row.collapse
   .large-24.columns
-    ul.breadcrumbs
-      li
-        a href="" Get Started
-      li
-        a href="" Developer Materials
-      li
-        a href="" Get Started Title
+    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item"  href="" Get Started
+        meta itemprop="position" content="1"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item"  href="" Developer Materials
+        meta itemprop="position" content="2"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item"  href="" Get Started Title
+        meta itemprop="position" content="3"
 
 .row
   .large-24

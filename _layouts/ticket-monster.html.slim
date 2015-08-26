@@ -5,11 +5,13 @@ layout: base
   h2.large-title#ticket-monster Ticket Monster
 .row.content
   .large-24.columns
-    ul.breadcrumbs
-      li
-        a href="#{site.base_url}/get-started/" Get Started
-      li
-        a href="#{site.base_url}/ticket-monster/" Ticket Monster
+    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item" href="#{site.base_url}/get-started/" Get Started
+        meta itemprop="position" content="1"
+      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+        a itemprop="item" href="#{site.base_url}/ticket-monster/" Ticket Monster
+        meta itemprop="position" content="2"
 
 .row
   .ticket-monster-items

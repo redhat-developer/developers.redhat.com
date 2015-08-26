@@ -5,11 +5,13 @@ layout: technology-base
 .solution-hero.hero
   .row
     .large-24
-      ul.breadcrumbs
-        li
-          a href="#{site.base_url}/solutions/" Solutions
-        li
-          a href="#{site.base_url}/#{page.solution.id}/" #{page.solution.name}
+      ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
+        li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+          a itemprop="item" href="#{site.base_url}/solutions/" Solutions
+          meta itemprop="position" content="1"
+        li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+          a itemprop="item" href="#{site.base_url}/#{page.solution.id}/" #{page.solution.name}
+          meta itemprop="position" content="2"
       h2 #{page.solution.name}
       h5.description #{page.solution.long_description}
 
