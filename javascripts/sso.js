@@ -95,6 +95,11 @@ app.sso = function () {
     keycloak.init(init).success(function (authenticated) {
         updateUser(authenticated);
         saveTokens();
+
+        if ($('.downloadthankyou').length) {
+            app.termsAndConditions.download();
+        }
+        
     }).error(function () {
         updateUser();
     });
