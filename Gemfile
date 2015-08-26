@@ -44,7 +44,7 @@ gem 'compass', '~> 1.0'
 # From a location on your disk:
 #    gem 'aweplug', path: '<path_to_aweplug_on_your_disk>'
 #
-gem 'aweplug', github: 'LightGuard/aweplug'
+gem 'aweplug', github: 'awestruct/aweplug'
 
 
 group :development do
@@ -61,7 +61,6 @@ group :vdiff do
 end
 
 group :health do
-  gem 'blinkr', github: 'LightGuard/blinkr'
-  #gem 'blinkr', '~> 0.3'
+  gem 'blinkr', '~> 0.3'
 end
 
