@@ -43,7 +43,7 @@ Also available is link:http://icedtea.classpath.org/wiki/Thermostat[Thermostat],
 ''''
 
 [discrete]
-==== Perl
+===== Perl
 _Want a Dancer applicaiton backed by MySQL?  Or maybe you're looking for Mojolicious and MongoDB?_  Perl is a high-level, general purpose dynamic language.  With link:#{site.base_url}/products/softwarecollections[Software Collections] and link:#{site.base_url}/products/openshift[OpenShift] you can easily deploy and run Perl applications using your favorite frameworks and databases.
 
 |=====
@@ -107,12 +107,14 @@ link:https://hub.openshift.com/quickstarts/76-ruby-on-rails-4[Launch Ruby on Rai
 === Integration and API
 Whether you are publishing services or consuming someone else's APIs integration can be tricky.  Take a look at using link:#{site.base_url}/products/fuse[Fuse], link:#{site.base_url}/products/amq[A-MQ] and link:#{site.base_url}/products/datavirt[Data Virtualization] to make the job that much easier.
 
-==== REST
+[discrete]
+===== REST
 Representational State Transfer (REST) works well with a API-centric web applications. RESTEasy makes it simple to expose your services via JAX-RS.
 
 
 * link:#{site.base_url}/web-and-api-development/learn/#!query=REST[Get started] exposing a RESTFul API.
 
+[discrete]
 ===== Fuse
 Fuse is a small footprint enterprise service bus (ESB) that lets you build, deploy and integrate applications and services.
 
@@ -121,13 +123,13 @@ Fuse is a small footprint enterprise service bus (ESB) that lets you build, depl
 * Check out a series of examples on link:https://github.com/FuseByExample[GitHub]
 * link:https://hub.openshift.com/quickstarts/40-jboss-fuse-6-1[Launch] fuse on OpenShift
 
-
+[discrete]
 ===== Data Virtualization
 Need to expose your data as a service?  JBoss Data Virtualization makes it simple whether you have a single data source or many.
 
 * Creating data services link:#{site.base_url}/products/datavirt/learn[Get Started]
 
-
+[discrete]
 ===== A-MQ
 A-MQ gives you a high performance, cross-platform multi-language messaging system that can be deployed across your infrastructure.
 
