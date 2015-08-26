@@ -70,24 +70,25 @@ while [ "$(curl -sL -w "%{http_code}\\n" http://$SEARCHISKO_PORT_8080_TCP_ADDR:8
 done;
 echo "Searchisko ready"
 
-
-
 echo ========== Initializing Elasticsearch cluster ===========
 echo Using Elasticsearch http connector URL base: ${esurl}
 
-
+# These steps must be run in a precise order. See README herei https://github.com/searchisko/configuration/tree/v1.1.1
 cd /tmp/configuration
 
+echo ========== Runing index_templates/index_templates ===========
 pushd index_templates/
-./init_templates.sh ${esurl} ${esusername} ${espassword} &
+./init_templates.sh ${esurl} ${esusername} ${espassword}
 popd
 
+echo ========== Runing indexes/init_indexes.sh ===========
 pushd indexes/
-./init_indexes.sh ${esurl} ${esusername} ${espassword} &
+./init_indexes.sh ${esurl} ${esusername} ${espassword}
 popd
 
+echo ========== Runing mappings/init_mappings.sh ===========
 pushd mappings/
-./init_mappings.sh ${esurl} ${esusername} ${espassword} &
+./init_mappings.sh ${esurl} ${esusername} ${espassword}
 popd
 
 
@@ -95,12 +96,14 @@ popd
 echo ========== Initializing Searchisko ===========
 echo Using Searchisko REST API URL base: ${searchiskourl}
 
+echo ========== Runing data/provider/init-providers.sh ===========
 pushd data/provider/
-./init-providers.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword} &
+./init-providers.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword}
 popd
 
+echo ========== Runing data/config/init-config.sh ===========
 pushd data/config/
-./init-config.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword} &
+./init-config.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword}
 popd
 
 wait
@@ -108,8 +111,8 @@ wait
 echo ========== Run indexers ===========
 
 #No Content Provider
-reindex_project 'sys_projects' &
-reindex_contributor 'sys_contributors' &
+reindex_project 'sys_projects' 
+reindex_contributor 'sys_contributors'
 
 # jbossdeveloper
 reindex_from_persistence 'jbossdeveloper_quickstart' &
