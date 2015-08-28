@@ -62,11 +62,19 @@ head
   = stylesheets "all" do
     link rel='stylesheet' type='text/css' href="#{site.base_url}/stylesheets/app.css"
 
+  - if site.metrics
+    / Adobe DTM staging
+    script src="//assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js"
+
   /[if lt IE 9]
     script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
 
 body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_class}")
   - if site.metrics
+    / Adobe DTM staging
+    javascript:
+      _satellite.pageBottom();
+      
     / All metrics and tracking are run via Google Tag Manager
     javascript:
       dataLayer = [{'channel' : 'developer'}];
