@@ -98,6 +98,22 @@
     }
   }
 
+  .slide--openshift {
+    background:cdn("../images/slider/RHDev_homecarousel_roadshow_desktop_08262015.jpg") center repeat-x;
+    background-size:auto 100%;
+    @include mobile-landscape-and-down {
+      background-image:cdn("../images/slider/RHDev_homecarousel_roadshow_mobile_08262015.png");
+    }
+    h2 {
+      color:white;
+      line-height: 1;
+      font-size: 55px;;
+    }
+    p {
+      font-size: 30px;
+    }
+  }
+
   .slide--atomic {
     background:cdn("../images/slider/homepage_carousel_container_desktop_bkg.jpg") center repeat-x;
     background-size:auto 100%;
