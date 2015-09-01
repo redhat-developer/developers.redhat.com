@@ -237,20 +237,18 @@
 }
 
 #get-started-instructions {
-  #PrerequisitesSection {
-    h4 p{
-      font-weight: 800;
-      color: #252527;
-      font-size: 1.4375rem;
-      margin-bottom: .5rem;
-    }
-    ol {
-      margin-bottom: 2.25rem;
-      p {
-        margin-bottom: 0;
-      }
-    } 
+  .gs-prerequisites h4 p, .gs-faq h4 p {
+    font-weight: 800;
+    color: #252527;
+    font-size: 1.4375rem;
+    margin-bottom: .5rem;
   }
+  .gs-prerequisites ol {
+    margin-bottom: 2.25rem;
+    p {
+      margin-bottom: 0;
+    }
+  } 
   .card {
     background-color: #3999cb;
     color: $white;
@@ -290,10 +288,11 @@
     color: $white;
     border: none;
     padding: 5px 15px;
-    margin: 3rem 0;
+    margin: 3.2rem 0 1rem;
     h4 {
       color: $white;
       margin-bottom: 0;
+      display: inline-block;
     }
     .duration {
       display: inline;
@@ -311,6 +310,7 @@
   .step-num {
     color: #aae3ec;
     display: inline;
+    margin-right: 5px;
   }
   ol li p, ul li p{
     margin-bottom: 1rem;
@@ -324,12 +324,25 @@
     width: 100%;
   }
   #MoreResources {
-    border: 10px solid #e6e7e8;
+    border: 5px solid #e6e7e8;
     padding: 1.5rem;
-    margin-top: 3rem;
+    margin: 3rem 0;
     ul li:before{ 
       display: none;
     }
+  }
+  mark {
+    background: transparent;
+    color: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+  }
+
+  h4 p, .card h4 > .paragraph p {
+    font-size: 1.4375rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0;
   }
 }
 
