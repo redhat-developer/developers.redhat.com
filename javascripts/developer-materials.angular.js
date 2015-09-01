@@ -199,7 +199,10 @@ dcp.filter('noURL', function() {
 */
 dcp.filter('urlFix', function() {
   return function(str){
-    if (str.contains("access.redhat.com") || str.contains("hub-osdevelopers.rhcloud.com")) {
+    if(!str.length) {
+      return; // no string provided
+    }
+    else if (str.contains("access.redhat.com") || str.contains("hub-osdevelopers.rhcloud.com")) {
       return str;
     } else {
       return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+\/)?/, '#{site.base_url}/');
@@ -258,6 +261,21 @@ dcp.filter('safeNumber', function() {
   return function(input) {
     var n = parseInt(input, 10);
     return isNaN(n) ? 0 : n;
+  }
+});
+
+/**
+ * checkInternal checks is a link is internal
+ */
+dcp.filter('checkInternal',function() {
+  return function(item) {
+    if(!item.fields.sys_url_view) {
+      return true;
+    }
+    else if(!!item.fields.sys_url_view.match(window.location.host)) {
+      return true;
+    }
+    return false;
   }
 });
 
