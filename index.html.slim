@@ -11,6 +11,26 @@ description: The simple, modern & productive way to build apps and infrastructur
   .slider#slider(data-pause-on-hover="true" data-timeout="5000")
     .swipe-wrap
 
+        /  slide - OpenShift 3 is hitting the road
+        .slide.slide--openshift
+          .row
+            .large-15.columns.small-centered
+              h2 OPENSHIFT 3 IS HITTING THE ROAD
+              p See how you can deliver apps faster.
+              a.button.inverse(href="https://meeting-reg.com/redhat/openshift-roadshow-2015/") Register now
+
+        /  slide - Signup for RedHat Developers
+        .slide.slide--redhatdevelopers
+          .row
+            .large-24.columns.slide-text
+              .row
+                h2.slide__heading Become a Red Hat Developer. <br> Register Today!
+              .row.center
+                .large-12.columns
+                  p Red Hat delivers the resources and ecosystem of experts to help developers be more productive and build great solutions.
+                .large-12.columns
+                  a.button.inverse.keycloak-url(href="") Register For Free!
+
         /  slide - DevNation
         .slide.slide--devnation
           .row
@@ -22,18 +42,6 @@ description: The simple, modern & productive way to build apps and infrastructur
               h4 Our technical sessions from Boston are up!
               a.button(href="#{site.base_url}/#{site.context_url}/devnation2015") View the sessions
             
-        /  slide - Signup for RedHat Developers
-        .slide.slide--redhatdevelopers
-          .row
-            .large-24.columns.slide-text
-              .row
-                  h2.slide__heading Become a Red Hat Developer. <br> Register Today!
-              .row.center
-                .large-12.columns
-                  p Red Hat delivers the resources and ecosystem of experts to help developers be more productive and build great solutions.
-                .large-12.columns
-                  a.button.inverse.keycloak-url(href="") Register For Free!
-
         /  slide - atomic
         .slide.slide--atomic
           .row
@@ -61,12 +69,14 @@ description: The simple, modern & productive way to build apps and infrastructur
           a.slider-prev(data-direction="prev")
             i.fa.fa-arrow-circle-left.fa-2x
         li.slider-item: a(href="#" data-index="0")
-          strong Catch DevNation Keynotes and sessions now on-demand
+          strong OpenShift 3 is hitting the road
         li.slider-item: a(href="#" data-index="1")
           strong Register today for Red Hat Developers
         li.slider-item: a(href="#" data-index="2")
-          strong Announcing Red Hat Container Platforms and Tools
+          strong Catch DevNation Keynotes and sessions now on-demand
         li.slider-item: a(href="#" data-index="3")
+          strong Announcing Red Hat Container Platforms and Tools
+        li.slider-item: a(href="#" data-index="4")
           strong Develop in the Cloud with Java EE
         li.slider-item.arrow
           a.slider-next(data-direction="next")
