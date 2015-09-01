@@ -2,128 +2,235 @@
 :awestruct-interpolate: true
 
 ## Prerequisites section title
-Using RHSCL: Django on Python 3 with PostgreSQL
+Introduction and Prerequisites
 
 ## Prerequisites section
-This article will show you how to use two software collections of http://developerblog.redhat.com/2013/06/05/red-hat-software-collections-1-0-beta-now-available[RHSCL Red Hat Announces Software Collections 1.0 beta] 1.0 Beta for cutting edge development. We will create a Django 1.5 application (running on Python 3.3), that will use PostgreSQL 9.2 as a database.
+In this tutorial, you will set your system up to install software from Red Hat Software Collections (RHSCL), which provides the latest development technologies for Red Hat Enterprise Linux. Then, you will install Node.js and run a simple “Hello, World” application. The whole tutorial will take less than ten minutes to complete.
 
-## Setup Duration
-10 minutes
+You will need a Red Hat Enterprise Linux 7 system that is has a current Red Hat subscription and is able to receive software updates. Access to the Red Hat Software Collections (RHSCL) is included with many Red Hat Enterprise Linux (RHEL) subscriptions. For more information about which subscriptions include RHSCL, see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)?]
 
-## Install Duration
-10 minutes
+If you don’t have a Red Hat Enterprise Linux Subscription, you can try it for free. Get started with an evaluation at link:https://access.redhat.com/products/red-hat-enterprise-linux/evaluation[].
+Select the Red Hat Enterprise Linux Developer Workstation option to ensure your evaluation will include both RHSCL and DTS.
 
-## Build Duration
-10 minutes
+If you have problems at any point, see the troubleshooting section of this article.
 
-## Setup Environment 
+## Step1 Duration
+2 minutes
 
-### Installing Dependencies
+## Step1 Title
+Enable Red Hat Software Collections (RHSCL)
 
-First off, we will install the required collections. If you haven't done so already, you need to subscribe to the correct RHN channel (‘rhel-x86_64-variant-6-rhscl-1-beta’, where ‘variant’ is one of ‘server’, ‘client’ or ‘>workstation’).
+## Step2 Duration
+2 minutes
 
-Now you should be able to install all the needed dependencies just by issuing this command (as a superuser):
+## Step2 Title
+Setup Your Development Environment
 
-  yum install python33 postgresql92 python33-python-psycopg2
+## Step3 Duration
+2 minutes
 
-The reason why 'python33-python-psycopg2' has to be listed is that it doesn't belong to the basic 'python33' installation package set.
+## Step3 Title
+Hello World and Your First Application
 
-### Configuring PostgreSQL
+## Step1 Content
 
-Now we need to setup a PostgreSQL database. First, let's initialize database cluster and run the service (as a superuser):
+In this step you will configure your system to obtain software, including the latest dynamic languages, from the RHSCL software repository. Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
 
-  service postgresql92-postgresql initdb
-  service postgresql92-postgresql start
+### Using the Red Hat Subscription Manager GUI
 
-Second, we need to create the actual database. For this, we have to switch to 'postgres' user, who has permissions to do this, then we need to create new database user (name should be the same as the name of your local account) and then finally the database called 'testdb' (again, do this as a superuser):
+Red Hat Subscription Manager can be started from the _System Tools_ group of the _Applications Menu_. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
 
-  su - postgres
-  scl enable postgresql92 bash
-  createuser
-  createdb testdb --owner
+Select _Repositories_ from the System menu of the subscription manager. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-7-rpms_ and _rhel-7-server-optional-rpms_. If you are using a desktop version of Red Hat Enterprise Linux, the repositories will be named _rhel-desktop-rhscl-7-rpms_ and _rhel-7-desktop-optional-rpms_. +
+ 
+If you don’t see any RHSCL repositories in the list your subscription may not include it, see the troubleshooting section for more information. +
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/softwarecollections/softwarecollections_install_1.png')}[Manage Repositories]
 
-We're all set and we can continue with the Django part. Before going on, don't forget to exit the all the subshells to get back to your original shell.
+### Using subscription-manager from the command line
 
-## Install Config Verify
+You can add or remove software repositories from the command line using the `subscription-manager` tool as root.  If you are using a desktop edition of Red Hat Enterprise Linux, change `-server-` to `-desktop-` in the following commands.
 
-### Creating a New Django Project
+[.code-block]
+```
+$ su
+# subscription-manager repos --enable rhel-server-rhscl-7-rpms
+# subscription-manager repos --enable rhel-7-server-optional-rpms
+```
 
-We will create a new Django project using virtualenv. Everything we need (except for Django itself) is present in the 'python33' collection, so we just need to create the virtual environment and install Django from PyPi there:
+To view the available software repositories use the --list option.
 
-  scl enable python33 postgresql92 bash
-  virtualenv --system-site-packages my-django-app
-  cd my-django-app
-  source bin/activate
-  pip install django==1.5.1
+`# subscription-manager repos --list | egrep rhscl`
 
-To comment a bit on the above:  First we switch to SCL-enabled shell (don't forget to enable both collections), then we create a virtualenv directory 'my-django-app' (passing the option to use RPM installed site-packages from the collection). After that, we switch to the newly created directory and activate the virtual environment (lines 3 and 4). Finally, we install Django (I decided to pin it to version 1.5.1 in this example, but you should be able to use any version >=1.5.0.)
+If you don’t see any RHSCL repositories in the list your subscription may not include it, see the troubleshooting section for more information.
 
-Now that everything is set, we can create the actual Django project:
+## Step2 Content
 
-  django-admin.py startproject myproj
-  cd myproj
+In this next step you will Install Node.js 0.10 from RHSCL.
 
-Then we will adjust database settings to use our previously created database. In your favourite text editor, open 'myproj/settings.py' and fill in database engine, user and name, so that the 'DATABASES' section looks like this:
+[.code-block]
+```
+$ su
+# yum install nodejs010
+```
 
-  DATABASES = {
-      'default': {
-          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-          'NAME': 'testdb',
-          'USER': '',
-          'PASSWORD': '',
-          'HOST': '',
-          'PORT': '',
-      }
-  }
+Note: The V8 JavaScript runtime is installed automatically as a dependency. +
 
-and then run
+If you need help, see troubleshooting section of this article.
 
-  python manage.py syncdb
+## Step3 Content
 
-to make sure that the database is set correctly. You will be asked whether or not you want to create a new superuser for your project - feel free to choose either option, it doesn't matter for this tutorial.
+Under your normal user id, start a terminal session.  First, we will use scl enable to add Node.js to your environment, then we start  `node` to check the version.
 
-And that's it! We now have a fully operational Django 1.5 application running on Python 3.3, using PostgreSQL 9.2 - all that on RHEL 6. Now we can just create a simple view that will print out all this.
+[.code-block]
+```
+$ scl enable nodejs010 bash
+$ node --version
+v0.10.35
+```
 
-### A Simple View to Prove It
+Now we will create a JavaScript program that can be run from the command line. Using your preferred text editor, create `hello.js`: 
 
-As an optional step, we will create a really minimalistic view that confirms we're using the right versions. First, let's define a new view function. Create a new file 'myproj/views.py' and copy&paste this into it:
+`$ nano hello.js`
 
 
-  import sys
+[.code-block]
+```
+console.log("Hello, Red Hat Developers World!")
+```
 
-  import django
+Save it and exit the editor. Run it with the `node` command:
+[.code-block]
+```
+$ node ./hello.js
+Hello, Red Hat Developers World
+```
 
-  from django.db import backend, connection
-  from django.shortcuts import render_to_response
+If you get an error that node is not found, you need to run `scl enable nodejs010` first.
 
-  def index(request):
-      return render_to_response('index.html',
-                              {'sysver': sys.version,
-                               'djangover': django.VERSION,
-                               'pgsqlver': backend.get_version(connection)})
+Now we will try a slightly larger Node.js example that implements a tiny web server.  Using your preferred text editor, create `hello-http.js`:
 
-Then create a directory 'myproj/templates' and a file 'myproj/templates/index.html' (note, that we will not use actual HTML, but just a plain text to render the versions, which suites our example but would otherwise be considered very ugly):
+`$ nano hello-http.js`
 
-  Python: {{ sysver }}, Django: {{ djangover }}, PostgreSQL: {{ pgsqlver }}
 
-Now we need to tell Django where to look for templates. Find 'TEMPLATE_DIRS' constant in 'myproj/settings.py' and replace it with following:
+[.code-block]
+```
+var http = require('http');
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello, Red Hat Developers World!\n');
+}).listen(8000, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:8000/');
+```
 
-  import os
-  BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-  TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-  )
+Save it and exit the editor. Run it with the `node` command:
 
-Finally, let's route the '/' (root URL of our Django project) to the newly created view. Open 'myproj/urls.py' in your favorite editor and insert following line into patterns:
+`$ node ./hello-http.js`
 
-    url(r'^$', 'myproj.views.index', name='home')
+Now use Firefox or your preferred browser to connect to the Node.js web server `http://localhost:8000/`.
 
-Now just run 'python manage.py runserver' and go to http://127.0.0.1:8000/[http://127.0.0.1:8000/] in your browser. You should see a result like this:
 
-'Python: 3.3.2 (default, Jun 12 2013, 11:40:18) [GCC 4.4.7 20120313 (Red Hat 4.4.7-3)], Django: (1, 5, 1, 'final', 0), PostgreSQL: 90204'
+### Working with RHSCL packages
+
+The software packages in RHSCL are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed by running scl enable package. When scl enable is run it modifies environment variables which only affects the current shell and any processes that are run from it. The changes aren’t permanent, so scl enable needs to be run at each login.
+
+While it is possible to change the system profile to make RHSCL packages part of the system’s global environment this is not recommended as this can cause conflicts and unexpected problems with other applications as the system version of the package would be effectively replaced by the RHSCL version.
+
+#### Permanently enable RHSCL in your development environment
+
+To make one or more RHSCL packages a permanent part of your development environment, you can add it to the login script for your specific user id. this is the recommend approach for development as only processes run under your user id will be affected.
+
+Using your prefered text editor, add the following line to ~/.bashrc:
+
+`source scl_source enable nodejs010`
+
+When you deliver an application that uses RHSCL packages, a best practice is to have your startup script handles the scl enable step for your application. You should not ask your users to change their environment as this is likely to create conflicts with other applications.
+
+### Where to go next?
+
+*Learn Node.js and JavaScript using NodeSchool.io tutorials* +
+
+Now that you have Node.js installed, use the tutorials from link:http://nodeschool.io/#workshopper-list[nodeschool.io] to learn Node.js and JavaScript. You need to have already run `scl enable nodejs010 ...` or have added Node.js permanently to development environment.  
+
+Install the JavaScript and Node.js tutorial in your current directory:
+[.code-block]
+```
+$ npm install javascripting
+$ npm install learnyounode`
+```
+
+Temporarily add node_modules/.bin to your PATH:
+
+`$ export PATH=$PATH:$PWD/node_modules/.bin`
+
+
+Run the JavaScript tutorial:
+
+`$ javascripting`
+
+Run the Node.js tutorial:
+
+`$ learnyounode`
+
+*View documentation on the Nodejs.org web site* +
+link:http://nodejs.org/documentation/[]
+
+*Find additional RHSCL Node modules* +
+`$ yum list available nodejs\*`
+
+*View the list of software available in RHSCL* +
+`$ yum --disablerepo="*" --enablerepo="rhel-server-rhscl-7-rpms" list available`
 
 ## More Resources
 
-Try this sample “hello world” from https://docs.python.org/3/tutorial/inputoutput.html[python.org].
+* link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)?]
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/index.html[Red Hat Software Collection 2.0 Documentation]
+** link:https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/index.html[Red Hat Software Collections 2.0 Release Notes]
+** link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/Packaging_Guide/index.html[Red Hat Software Collections 2.0 Packaging Guide] +
+_Developers should read this guide to get a more complete understanding of how software collections work, and how to deliver software that uses RHSCL._
 
-Enjoy!
+### Become a Red Hat Developer: Developers.redhat.com
+
+Red Hat delivers the resources and ecosystem of experts to help developers be more productive and build great solutions.  Register for free at link:http://developers.redhat.com/[developers.redhat.com]
+
+## Faq section title
+Troubleshooting and FAQ
+
+## Faq section
+
+1. The rhscl repository is not available or is not found on my system.
++
+The name of the repo depends on whether you have ‘server’ or ‘desktop’ version of Red Hat Enterprise Linux Installed.
++
+Some Red Hat Enterprise Linux Subscriptions do not include access to RHSCL. See link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)?]
+2. yum install fails due to a missing dependency such as scl-utils-build or texlive-*.
++
+These packages are in the RHEL Optional RPMS repository which is not enabled by default. See the “Enable Red Hat Software Collections” step of this tutorial for how to enable both the Optional RPMS and RHSCL repositories.
+3. How can I find out what RHSCL packages are installed?
++
+scl --list will show the list of RHSCL packages that have been installed whether they are enabled or not.
++
+[.code-block]
+```
+$ scl --list
+nodejs010
+v8314
+```
+4. How do I find out if there is a newer version of Node.js in the RHSCL?
++
+How do I find out what version of Node.js is available in the current RHSCL?
++
+I have the RHSCL repository enabled, but I can’t find the Node.js version listed in this tutorial?
++
+`# yum list available nodejs\*`
+5. I’ve installed Node.js from RHSCL, but `node` is not in my path?
++
+I can’t find the `node` command?
++
+RHSCL does not alter the system path.  You need to use scl enable to change the PATH for your session:
++
+`$ scl enable nodejs010 bash`
++
+For more information see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/index.html[Red Hat Software Collection 2.0 Documentation]
+6. When I try to run node, I get an error about a missing shared library?
++
+This is due to not having run ‘scl enable’ first. When scl enable is run, in addition to setting up the command search path, it also sets up the search path for shared libraries, LD_LIBRARY_PATH.

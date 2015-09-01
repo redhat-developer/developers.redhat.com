@@ -1976,7 +1976,12 @@ label.inline{
   }
 }
 
-.overlay-content {
-  position: relative;
-  top: 5px;
-}
+.code-block {
+  .content {
+    padding-top: 0;
+  }
+  code{
+    border: none;
+    padding: 0.125rem 0 0.0625rem;
+  }
+} 
