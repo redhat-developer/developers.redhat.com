@@ -1,12 +1,14 @@
 skips:
   - !ruby/regexp /developer-materials/
-  - !ruby/regexp /bom/
-  - !ruby/regexp /archetype/
+    #- !ruby/regexp /bom/
+    #- !ruby/regexp /archetype/
     # localhost:8xxx addresses are extensively used in quickstart readmes
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
     # -YOUR_DOMAIN_NAME.rhcloud.com is used in quickstart readmes
   - !ruby/regexp /-YOUR_DOMAIN_NAME\.rhcloud\.com/
+    # -YOUR_DOMAIN.rhcloud.com using in ticket monster
+  - !ruby/regexp /-YOUR_DOMAIN\.rhcloud\.com/
     # Prevent any stray mailto and irc links appearing
   - !ruby/regexp /^mailto:/
   - !ruby/regexp /^irc:/
@@ -28,9 +30,9 @@ skips:
 #    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
 ignores:
-  - url: !ruby/regexp /boms/
-  - url: !ruby/regexp /archetypes/
-  - url: !ruby/regexp /archetypes/
+  #- url: !ruby/regexp /boms/
+  #- url: !ruby/regexp /archetypes/
+  #- url: !ruby/regexp /archetypes/
   - url: git@github.com:nodyn/nodyn.git #Not an error.
   - url: http://in.relation.to/ #Not an error.
   - url: https://console.developers.google.com #Not an error.
@@ -149,5 +151,4 @@ phantomjs_threads: 20
 pipeline: ../_ext/blinkr/blinkr.rb
 # The output file to write the report to
 report: _tmp/blinkr/report.html
-#sitemap: /home/jporter/projects/developers.redhat.com/_tmp/sitemap.xml
 
