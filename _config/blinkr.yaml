@@ -1,5 +1,6 @@
 skips:
   - !ruby/regexp /developer-materials/
+  - !ruby/regexp /get-started/
     #- !ruby/regexp /bom/
     #- !ruby/regexp /archetype/
     # localhost:8xxx addresses are extensively used in quickstart readmes
@@ -33,6 +34,7 @@ ignores:
   #- url: !ruby/regexp /boms/
   #- url: !ruby/regexp /archetypes/
   #- url: !ruby/regexp /archetypes/
+  - url: !ruby/regexp /get-started/
   - url: git@github.com:nodyn/nodyn.git #Not an error.
   - url: http://in.relation.to/ #Not an error.
   - url: https://console.developers.google.com #Not an error.
