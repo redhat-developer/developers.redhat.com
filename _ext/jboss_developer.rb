@@ -110,9 +110,9 @@ module JBoss
 
                 # If we haven't found the page, start trying to make substitions for the url
                 unless found_page
-                  if (url.include?('.md'))
-                    if has_page_by_uri? site, page, url.gsub('README.md', 'index.html')                      
-                      a['href'] = url.gsub('README.md', 'index.html')
+                  if (url.include?('.md') || url.include?('README'))
+                    if has_page_by_uri? site, page, url.gsub(/README\.(md|html)/, 'index.html')
+                      a['href'] = url.gsub(/README\.(md|html)/, 'index.html')
                       altered = true
                     else
                       if (page.metadata[:browse].include?('blob') || page.metadata[:browse].include?('tree'))
