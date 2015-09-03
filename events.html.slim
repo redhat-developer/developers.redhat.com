@@ -24,23 +24,23 @@ description: Discover the events and webinars featuring talks about JBoss produc
         a.slider-next(data-direction="next")
           i.icon-angle-right.icon-4x
 
-    h4.divider.events-header#find Find webinars and events within the industry, community or sponsored by Red Hat.
+    h4.events-header#find Find webinars and events within the industry, community or sponsored by Red Hat.
 
     div(ng-controller="eventsController")
-      .events-control.large-24
-        form.events-filter.row
-          .large-8.columns
-            label(for="region") Region:
-            select(ng-model="filter.region" ng-options="option.value as option.text for option in filters.regions" ng-change="getEvents()")
-              option(value="") All
-          .large-8.columns
-            label(for="product") Product:
-            select(ng-model="filter.target_product" ng-options="option.value as option.text for option in filters.products" ng-change="getEvents()")
-              option(value="") All
-          .large-8.columns
-            label(for="product") Solution:
-            select(ng-model="filter.solution" ng-options="option.value as option.text for option in filters.solutions" ng-change="getEvents()")
-              option(value="") All
+      / .events-control.large-24
+      /   form.events-filter.row
+      /     .large-8.columns
+      /       label(for="region") Region:
+      /       select(ng-model="filter.region" ng-options="option.value as option.text for option in filters.regions" ng-change="getEvents()")
+      /         option(value="") All
+      /     .large-8.columns
+      /       label(for="product") Product:
+      /       select(ng-model="filter.target_product" ng-options="option.value as option.text for option in filters.products" ng-change="getEvents()")
+      /         option(value="") All
+      /     .large-8.columns
+      /       label(for="product") Solution:
+      /       select(ng-model="filter.solution" ng-options="option.value as option.text for option in filters.solutions" ng-change="getEvents()")
+      /         option(value="") All
 
       p(ng-hide="events.length") Sorry, there are no events to show. Please alter your search criteria.
       .month(ng-repeat="month in [0,1,2,3,4,5,6,7,8,9,10,11]" ng-show="events[month].length")
