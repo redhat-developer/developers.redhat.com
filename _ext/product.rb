@@ -95,6 +95,13 @@ module JBoss
                 if File.exists?('./products/' + id + '/community.html.slim')
                   product.send('has_community_page=', true)
                 end
+                if File.exists?('./products/' + id + '/download.adoc')
+                  product.send('has_download_page=', true)
+                end
+                if File.exists?('./products/' + id + '/docs-and-apis.adoc')
+                  product.send('has_docsandapis_page=', true)
+                end
+
 
                 # Add a flag if the product get-started has a partial to include for the set up section
                 if File.exists?('_partials/product-get-started-partial-' + id + '-setup.html.slim')

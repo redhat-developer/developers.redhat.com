@@ -25,8 +25,16 @@ ul.side-nav
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
         | #{v}  
         i.fa.fa-caret-right.fa-lg
-    - elsif (k != "buzz" && k != "learn" && k != "connectors" && k != "community")
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
-        | #{v}  
+    - elsif (k == "download" && page.parent.product.has_download_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+        | #{v}
+        i.fa.fa-caret-right.fa-lg
+    - elsif (k == "docs-and-apis" && page.parent.product.has_docsandapis_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+        | #{v}
+        i.fa.fa-caret-right.fa-lg
+    - elsif (k != "buzz" && k != "learn" && k != "connectors" && k != "community" && k != "download" && k != "docs-and-apis")
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+        | #{v}
         i.fa.fa-caret-right.fa-lg
 
