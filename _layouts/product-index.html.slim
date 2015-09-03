@@ -32,6 +32,7 @@ layout: technology-base
                 = product['index'].desc
                 p
                   strong
+                  - if(product.has_download_page)
                     a(href="#{site.base_url}/products/#{product.id}/download/")
                       |  DOWNLOADS
                   - solutions = site.solutions.select {|_,s| s.related_products.include? product.id}
@@ -48,6 +49,7 @@ layout: technology-base
                 .tool-links
                   ul.inline-list
                     li
+                    - if(product.has_docsandapis_page)
                       a(href="#{site.base_url}/products/#{product.id}/docs-and-apis/")
                           i.fa.fa-file-text-o
                           |  Docs and APIs
