@@ -4,7 +4,7 @@
 This section covers the steps you need to do in order to setup your environment and get the site running for the first time. Further sections cover the details.
 
 Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
- 
+
          git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
          cd developers.redhat.com
          git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
@@ -29,12 +29,12 @@ Skip to the [Site Build Setup](#site_build_setup) section if you don't want to u
 This will take awhile the first time. On subsequent builds you do not need to pass the `-b` flag unless you need to rebuild the docker containers. The script will output some information when everything is ready to go and you'll see the familiar awestruct build as you near the end. The script runs awestruct in preview mode, so the script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
 
 NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
-    
+
 ### <a name="site_build_setup"></a> Site Build without Docker
 
 1. Configure environment variables needed for the site.
     * Request the following values from the Red Hat Developers team:
-    
+
             vimeo_access_token_secret
             vimeo_client_secret
             vimeo_access_token
@@ -58,11 +58,11 @@ NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder
     * Install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
 
             rvm install ruby-2.1.2 --disable-binary
-            
+
     * If you see the `Error running 'requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl'` error message, you may need to run the following, and then retry the above install command:
-    
+
             rvm requirements
-            
+
     * Install any required supporting software. For example, on Fedora you may need to:
 
             sudo yum install -y rubygem-nokogiri
@@ -71,7 +71,7 @@ NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder
             sudo sysctl -p
 
 3. Bootstrap the environment (only needed the first time)
-        
+
         bundle install
 
 4. Configure the environment:
@@ -84,7 +84,7 @@ NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder
         export drupal_password=admin
 
 6. Build the site for display at <http://localhost:4242> and <http://docker:8081> (if using Docker)
-   
+
         rake clean preview
 
 _NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
@@ -94,13 +94,13 @@ If the build was successful, you should be able to visit the site here: <http://
 ### Edit your boot2docker DNS servers
 
 1. SSH in to the boot2docker image:
-   
+
         boot2docker ssh
 2. Edit the boot2docker profile:
-        
+
         sudo vi /var/lib/boot2docker/profile
 3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the ethernet port to be ready. Make sure that your file contains the following:
-        
+
         ```
         wait4eth1() {
         CNT=0
@@ -131,7 +131,7 @@ it is down or there is another emergency situation and the site needs to be buil
 DCP for staging or production please contact Pete Muir, Jason Porter, Andrew Rubinger or Ray Ploski. Below
 are steps to setup the environment for pushing content to the DCP.
 
-In order to update content in the DCP you must have the URL set in config.yaml and the following two environment variables set: 
+In order to update content in the DCP you must have the URL set in config.yaml and the following two environment variables set:
 
     export dcp_user=jboss-developer
     export dcp_password=<see one of the people above for this>
@@ -143,7 +143,7 @@ If these two variables are not set you will see a warning during the build:
 You can then preview the staging site, which will also push data to the DCP staging server:
 
     rake preview[staging]
-    
+
 Alterntively, you can preview/deploy to staging or production and the asociated DCP server will also be updated.
 
 ## Deployment
@@ -170,6 +170,10 @@ To deploy using the production profile, execute:
 
 `rake deploy`
 
+To run the smoke test features (currently only for http://docker:32768), execute:
+
+'rake features'
+
 To get a list of all tasks, execute:
 
 `rake -T`
@@ -184,9 +188,9 @@ For example, to release 1.0.Beta6:
     rake "clean[all]" "deploy[staging]"
 
 The site is now deployed to www-stg.jboss.org. You need to go there and check it looks right. If it is, you can deploy to www-beta.jboss.org:
-    
+
     rake "clean[all]" "deploy[beta,1.0.Beta6]"
-    
+
 Finally, you need to commit the new version of `_cdn/cdn.yml` and push that and the new tag upstream. _NOTE:_ It is very important that you remember to commit+push your changes to cdn.yml.
 
     git commit -a -m “Updated cdn.yml” _cdn/cdn.yml
@@ -213,7 +217,7 @@ Open the job page. E.g: https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jb
 7. Update [this spreadsheet](https://docs.google.com/a/redhat.com/spreadsheets/d/1KrHGJ7_eKzSy-3S6ZXqVFPNC1obEBjSSpSR9XkqLlow/edit#gid=0)
   1. If the failure is already known, increment the occurances column and 'last failure' date.
   2. If the failure is new, add a new row to the spreadsheet
-  
+
 When an issue is resolved:
 
 1. Mark the status as resolved in [this spreadsheet](https://docs.google.com/a/redhat.com/spreadsheets/d/1KrHGJ7_eKzSy-3S6ZXqVFPNC1obEBjSSpSR9XkqLlow/edit#gid=0)
@@ -235,7 +239,7 @@ In order to do this, you will need load the user's public key in to your keychai
 
 1. load `GPG Keychain Access` application
 2. Select `key` -> `Retreive rom key server`
-3. Pass in the ID of the public key you need to add. 
+3. Pass in the ID of the public key you need to add.
 
 Minimailly the follwoing list of receipients is required to encrypt the file:
 
@@ -264,8 +268,7 @@ This can be caused by running out of file descriptors. Currently only seen on Ma
 ### "An error occurred: getaddrinfo: nodename nor servname provided, or not known"
 Same fix as "Too many open files"
 
-### "Unable to decrypt vault (GPGME::Error::BadPassphrase)" 
+### "Unable to decrypt vault (GPGME::Error::BadPassphrase)"
 If using GNU PGP, sometimes you're not presented with a popup asking for the passphrase. This will result in the following error being presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
 To fix, use the instructions in the following url:
 https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
-
