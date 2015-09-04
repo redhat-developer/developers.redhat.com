@@ -46,37 +46,37 @@ description: Discover the events and webinars featuring talks about JBoss produc
       /       select(ng-model="filter.solution" ng-options="option.value as option.text for option in filters.solutions" ng-change="getEvents()")
       /         option(value="") All
 
-      p(ng-hide="events.length") Sorry, there are no events to show. Please alter your search criteria.
-      .month(ng-repeat="month in [0,1,2,3,4,5,6,7,8,9,10,11]" ng-show="events[month].length")
+      p(ng-hide="monthKeys.length") Sorry, there are no events to show. Please alter your search criteria.
+      .month(ng-repeat="monthKey in monthKeys | orderBy" ng-show="monthKeys.length")
         h2.divider.month-heading
-          | {{ month | momentMonth:'MMMM' }}
+          | {{ monthKey | moment:'MMMM YYYY' }}
         ul.events-listing
-          li.event-item(ng-repeat="event in events[month] | orderBy: '_source.start_date'")
+          li.event-item(ng-repeat="event in events[monthKey] | orderBy: 'start_date'")
             .event
               .event-head
-                img(ng-if="'default' !== event._source.sys_image" ng-src="http://static.jboss.org/images/rhd/events/event_{{event._source.sys_image}}.png")
-                .event-date(ng-class="{'multiday': event._source.end_date !== event._source.start_date}")
+                img(ng-if="'default' !== event.sys_image" ng-src="http://static.jboss.org/images/rhd/events/event_{{event.sys_image}}.png")
+                .event-date(ng-class="{'multiday': event.end_date !== event.start_date}")
                    p
-                    span.start(ng-class="{'multimonth': (event._source.start_date | moment:'MMM') !== (event._source.end_date | moment:'MMM'), 'same-month': (event._source.start_date | moment:'MMM') == (event._source.end_date | moment:'MMM') }")
+                    span.start(ng-class="{'multimonth': (event.start_date | moment:'MMM') !== (event.end_date | moment:'MMM'), 'same-month': (event.start_date | moment:'MMM') == (event.end_date | moment:'MMM') }")
                       span.month
-                        | {{event._source.start_date | moment:'MMM'}}
+                        | {{event.start_date | moment:'MMM'}}
                         | &nbsp;
                       span.day
-                        | {{event._source.start_date | moment:'DD'}}
+                        | {{event.start_date | moment:'DD'}}
                       span.end-day
                         | -{{event._source.end_date | moment:'DD'}}
-                    span.end(ng-class="{'same-month': (event._source.start_date | moment:'MMM') == (event._source.end_date | moment:'MMM')}")
-                      | {{event._source.end_date | moment:'MMM DD'}}
+                    span.end(ng-class="{'same-month': (event.start_date | moment:'MMM') == (event.end_date | moment:'MMM')}")
+                      | {{event.end_date | moment:'MMM DD'}}
               .event-body
-                h3: a(ng-href="{{event._source.event_url}}")
-                  | {{event._source.sys_title}}
+                h3: a(ng-href="{{event.event_url}}")
+                  | {{event.sys_title}}
                 p
-                  | {{event._source.sys_description}}
-                - if "red hat".casecmp("event._source.type") == 0
+                  | {{event.sys_description}}
+                - if "red hat".casecmp("event.type") == 0
                   p.red-hat-event
                     i.icon-redhat
                     | Red Hat Event
-                a.button(ng-href="{{event._source.event_url}}")
+                a.button(ng-href="{{event.event_url}}")
                   | Learn More
                   i.fa.fa-external-link
 
