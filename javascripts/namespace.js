@@ -61,6 +61,8 @@ app.dcp2.url = {};
 app.dcp2.url.search = '#{site.dcp2_base_protocol_relative_url}v2/rest/search';
 app.dcp2.url.project= '#{site.dcp2_base_protocol_relative_url}v2/rest/search/suggest_project_name_ngram_more_fields';
 app.dcp2.url.events= '#{site.dcp2_base_protocol_relative_url}v2/rest/search/events';
+app.dcp2.url.connectors= '#{site.dcp2_base_protocol_relative_url}v2/rest/search/connectors';
+app.dcp2.url.developer_materials= '#{site.dcp2_base_protocol_relative_url}v2/rest/search/developer_materials';
 
 /*
   Products
