@@ -19,50 +19,242 @@ dcp.config(function($provide){
           } else {
               return superUrl().replace(/\+/g,"%20");
           }
-      }
+      };
       return $delegate;
   });
 });
 
+dcp.factory('httpInterceptor', ['$q', '$injector', function($q, $injector) {
+  /**
+   * httpInterceptor is used to broadcast XHR request activity events
+   * for specific requests (doing GET on developer_materials REST API).
+   * These event can be used to display 'loading' image ... etc.
+   */
+  return {
+    'request': function (config) {
+      if (config.method == 'GET' && config.url.indexOf(app.dcp2.url.developer_materials) > -1) {
+        $injector.get('$rootScope').$broadcast('_START_REQUEST_');
+      }
+      return config;
+    },
+    'requestError': function(rejection) {
+      /**
+       * We can probably ignore 'requestError' interceptor.
+       * From official doc: "interceptor gets called when a previous interceptor threw an error or resolved with a rejection."
+       * We do not have the configuration object here so we can not test URL and Method type anyway.
+       */
+      //$injector.get('$rootScope').$broadcast('_END_REQUEST_');
+      return $q.reject(rejection);
+    },
+    'response': function(response) {
+      if (response.config.method == 'GET' && response.config.url.indexOf(app.dcp2.url.developer_materials) > -1) {
+        $injector.get('$rootScope').$broadcast('_END_REQUEST_');
+      }
+      return response;
+    },
+    'responseError': function(rejection) {
+      if (rejection.config.method == 'GET' && rejection.config.url.indexOf(app.dcp2.url.developer_materials) > -1) {
+        $injector.get('$rootScope').$broadcast('_END_REQUEST_');
+      }
+      return $q.reject(rejection);
+    }
+  };
+}]);
+
+dcp.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.interceptors.push('httpInterceptor');
+}]);
+
 /*
   Create a service for fetching materials
 */
-dcp.service('materialService',function($http, $q) {
+dcp.service('materialService', function($http, $q) {
 
-  this.getMaterials = function(searchTerms, project) {
-    var query = {
-      "field"  : ["sys_author", "target_product", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_tags", "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg", "experimental"],
-      "size" : 500,
-      "content_provider" : ["jboss-developer", "rht", "openshift"],
-      "sortBy" : "new-create"
-    };
+  this.deferred_ = $q.defer();
 
-    if(searchTerms) {
-      query.query = decodeURIComponent(decodeURIComponent(searchTerms)); // stop it from being encoded twice
+  this.getMaterials = function(params) {
+
+    var params = params || {};
+    var query = {};
+
+    if(params.query) {
+      query.query = params.query;
     }
-    if(project) {
-      query.project = project;
+    if(params.project) {
+      query.project = params.project;
+    }
+    if (params.randomize) {
+      query.randomize = params.randomize;
+    }
+    if (params.sys_type &&
+        (
+            // TODO: if we do not need to support array then drop array condition
+            ($.isArray(params.sys_type) && params.sys_type.length > 0) ||
+            ($.trim(params.sys_type).length > 0)
+        )
+    ) {
+      query.sys_type = params.sys_type;
+    }
+    if (params.publish_date) {
+      query.publish_date = params.publish_date;
+    }
+    if (params.from) {
+      query.from = params.from;
     }
 
-    var deferred = $q.defer();
+    // Abort ongoing requests. Interestingly, aborting XHR requests is quite confusing in Angular :-\
+    // - https://developer.rackspace.com/blog/cancelling-ajax-requests-in-angularjs-applications/
+    // - http://www.bennadel.com/blog/2616-aborting-ajax-requests-using-http-and-angularjs.htm
+    if (true) {
+      // We shall execute this only if there are any pending XHR requests,
+      // but I have no clue how to learn about this ATM. May be it is safe
+      // to call it always... (which is what we do now).
+      this.deferred_.resolve(undefined);
+    }
+    this.deferred_ = $q.defer();
+    var promise = this.deferred_.promise;
+
     // app.dcp.url.search = "//dcp.jboss.org/v1/rest/search"; // testing with live data
     // query = decodeURIComponent(query);
-    $http.get(app.dcp.url.search, { params : query }).success(
-        function (data) {
-          deferred.resolve(data);
-        })
-        .error(function () {
-          $(".panel[ng-hide='data.materials.length']").replaceWith(app.dcp.error_message);
-        });
-    return deferred.promise;
+    var deferred = this.deferred_;
+    $http.get(app.dcp2.url.developer_materials, { params : query, timeout: promise })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function () {
+        $(".panel[ng-hide='data.materials.length']").replaceWith(app.dcp.error_message);
+      });
+    return promise;
   }
 
+});
+
+/**
+ * Data flow service is responsible for updating URL fragment (called path in Angular terminology).
+ * Any changes in app state that we want to project to URL must go through this method.
+ */
+dcp.factory('dataFlowService', function($location) {
+  var service = function() {
+    this.processParams = function(params) {
+      var params_ = params || {};
+      $location.path($.param(params_));
+    };
+  };
+  return new service();
+});
+
+dcp.factory('helper', function() {
+  /**
+   * Helper utility class.
+   *
+   * @constructor
+   */
+  var Helper = function() {
+
+    /**
+     * This method return first item from input iff the input is non empty array
+     * otherwise it return the input value unchanged.
+     * This method is expected to be used when accessing hit.fields values
+     * as fields in Searchisko 2 are always arrays.
+     *
+     * @param {*} input
+     * @return {*}
+     */
+    this.firstIfArray = function(input) {
+      if ($.isArray(input) && input.length > 0) {
+        return input[0];
+      }
+      return input;
+    };
+
+    /**
+     * Parse 'path' part of the URL. Returns object representing the params.
+     * Input string can contain leading forward slash. I.e. both the following
+     * input values are the same: '/param=value' and 'param=value'.
+     *
+     * @param {string} path
+     * @return {Object}
+     */
+    this.parsePath = function(path) {
+      var path_ = path || '';
+      if (path_.indexOf('/') == 0) {
+        path_ = path_.substr(1);
+      }
+      return deparam(path_);
+    };
+
+    /**
+     * Check the params and return safe representation of it.
+     * Unknown parameters are dropped.
+     *
+     * @param {Object} params
+     * @return {Object}
+     */
+    this.safeParams = function(params) {
+      var p = angular.isObject(params) ? params : {};
+      var obj = {};
+      angular.copy(p, obj);
+
+      for (var key in obj) {
+        if (!obj.hasOwnProperty(key)) continue;
+        if (!this.isValidParam_(key)) {
+          delete obj[key];
+        }
+      }
+      return obj;
+    };
+
+    /**
+     * Valid parameter names.
+     *
+     * @type {Array.<string>}
+     * @constant
+     * @private
+     */
+    this.VALID_URL_PARAMS_ = [
+        "sys_type",
+        "rating",
+        "publish_date",
+        "tag",
+        "level",
+        "from",
+        "query",
+        "project",
+        "product"
+    ];
+
+    /**
+     * Return true if given key value is valid request parameter name.
+     *
+     * @param {string} key
+     * @return {boolean}
+     * @private
+     */
+    this.isValidParam_ = function(key) {
+      return this.VALID_URL_PARAMS_.indexOf(key) >= 0;
+    };
+
+    this.availableFormats = [
+      { value : "quickstart" , "name" : "Quickstart", "description" : "Single use-case code examples tested with the latest stable product releases" },
+      { value : "video" , "name" : "Video", "description" : "Short tutorials and presentations for Red Hat JBoss Middleware products and upstream projects" },
+      { value : "demo" , "name" : "Demo", "description" : "Full applications that show what you can achieve with Red Hat JBoss Middleware" },
+      { value : "jbossdeveloper_example" , "name" : "Tutorial", "description" : "Guided content, teaching you how to build complex applications from the ground up" },
+      { value : "jbossdeveloper_archetype" , "name" : "Archetype", "description" : "Maven Archetypes for building Red Hat JBoss Middleware applications" },
+      { value : "jbossdeveloper_bom" , "name" : "BOM", "description" : "Maven BOMs for managing dependencies within Red Hat JBoss Middleware applications" },
+      { value : "jbossdeveloper_sandbox" , "name" : "Early Access", "description" : "Single use-case code examples demonstrating features not yet available in a product release" },
+      { value : "article" , "name" : "Articles (Premium)", "description" : "Technical articles and best practices for Red Hat JBoss Middleware products" },
+      { value : "solution" , "name" : "Solutions (Premium)", "description" : "Answers to questions or issues you may be experiencing" }
+    ];
+
+  };
+
+  return new Helper();
 });
 
 /*
   Filter to determine which thumbnail to return
 */
-dcp.filter('thumbnailURL',function(){
+dcp.filter('thumbnailURL', function(){
   return function(item) {
     var thumbnails = {
       // jboss
@@ -84,8 +276,8 @@ dcp.filter('thumbnailURL',function(){
       "jbossdeveloper_vimeo" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}",
       "jbossdeveloper_connector" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}"
     };
-    if(item.fields.thumbnail) {
-      return item.fields.thumbnail;
+    if(item.fields.thumbnail && item.fields.thumbnail[0]) {
+      return item.fields.thumbnail[0];
     }
     else if(item._type) {
       return thumbnails[item._type];
@@ -97,6 +289,7 @@ dcp.filter('thumbnailURL',function(){
 
 });
 
+/*
 dcp.filter('stars',['$sce',function($sce){
   return function(fields) {
     var html = "";
@@ -107,12 +300,14 @@ dcp.filter('stars',['$sce',function($sce){
     return $sce.trustAsHtml(html);
   }
 }]);
+*/
 
 /*
   Filter to return whether or not an item is premium
 */
-dcp.filter('isPremium',function() {
+dcp.filter('isPremium', ['helper', function(helper) {
   return function(url) {
+    url = helper.firstIfArray(url);
     if(url) {
       return !!url.match("access.redhat.com");
     }
@@ -120,25 +315,26 @@ dcp.filter('isPremium',function() {
       return false;
     }
   }
-});
+}]);
 
 /*
   Filter to add brackets
 */
-dcp.filter('brackets',function(){
+dcp.filter('brackets', ['helper', function(helper){
   return function(num){
+    num = helper.firstIfArray(num);
     if(num > 0) {
       return  "  (" + num + ")";
     }
-    return;
   }
-});
+}]);
 
 /*
   Filter to add truncate
 */
-dcp.filter('truncate',function(){
+dcp.filter('truncate', ['helper', function(helper) {
   return function(str){
+    str = helper.firstIfArray(str);
     str = $("<p>").html(str).text(); // parse html entities
     if(str.length <= 150) {
       return str;
@@ -146,14 +342,15 @@ dcp.filter('truncate',function(){
     //
     return str.slice(0,150) + "…";
   }
-});
+}]);
 
 /*
   Filter to format time
 */
-dcp.filter('HHMMSS',function() {
-  return function(seconds) {
-    var sec_num = parseInt(seconds, 10); // don't forget the second param
+dcp.filter('HHMMSS', ['helper', function(helper) {
+  return function(sec_string) {
+    sec_string = helper.firstIfArray(sec_string);
+    var sec_num = parseInt(sec_string, 10); // don't forget the second param
     var hours   = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     var seconds = sec_num - (hours * 3600) - (minutes * 60);
@@ -169,19 +366,26 @@ dcp.filter('HHMMSS',function() {
     }
     return time;
   }
-});
+}]);
 
 /*
   Filter to return human readable time ago
 */
-dcp.filter('timeAgo',function() {
+dcp.filter('timeAgo', ['helper', function(helper) {
   return function(timestamp){
+    timestamp = helper.firstIfArray(timestamp);
     if(!timestamp) return;
 
     var date = new Date(timestamp);
     return $.timeago(date);
   }
-});
+}]);
+
+dcp.filter('firstIfArray', ['helper', function(helper) {
+  return function(input) {
+    return helper.firstIfArray(input);
+  }
+}]);
 
 /*
  Remove fields that don't contain required sys_url_view links
@@ -194,16 +398,17 @@ dcp.filter('noURL', function() {
                 filterArray.push(ref);
 
             }
-        })
+        });
         return filterArray;
     }
 });
 
 /*
-  Filter to use the correct location for links coming from seachisko.
+  Filter to use the correct location for links coming from searchisko.
 */
-dcp.filter('urlFix', function() {
+dcp.filter('urlFix', ['helper', function(helper) {
   return function(str){
+    str = helper.firstIfArray(str);
     if(!str.length) {
       return; // no string provided
     }
@@ -213,101 +418,157 @@ dcp.filter('urlFix', function() {
       return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+)?/, '#{site.base_url}');
     }
   }
-});
+}]);
 
 /*
   Filter to trim whitespace
 */
-dcp.filter('trim',function() {
+dcp.filter('trim', ['helper', function(helper) {
   return function(str){
+    str = helper.firstIfArray(str);
     return str.trim();
   }
-});
+}]);
 
 /*
   Return just the name, no email
 */
-dcp.filter('name',function(){
+dcp.filter('name', ['helper', function(helper) {
   return function(str){
+    str = helper.firstIfArray(str);
     str = str || "";
     var pieces = str.split('<');
     if(pieces.length) {
       return pieces[0].trim()
     }
-    else {
-      return;
-    }
   }
-});
+}]);
 
 /*
   Return the proper name for formats
 */
-dcp.filter('formatName',function(){
+dcp.filter('formatName', ['helper', function(helper) {
   return function(value, scope){
-    for(f in scope.data.availableFormats) {
+    value = helper.firstIfArray(value);
+    for(var f in scope.data.availableFormats) {
       var format = scope.data.availableFormats[f];
       if(format.value === value) {
         return format.name;
-        break;
       }
     }
-    // if not in our object, returnt the original value
+    // if not in our object, return the original value
     return value;
   }
-});
+}]);
 
 /**
  * safeNumber is an "ng filter" that accept string value
  * and convert to number (using radix of 10). If parsing
  * fails (NaN) then 0 is returned.
  */
-dcp.filter('safeNumber', function() {
+dcp.filter('safeNumber', ['helper', function(helper) {
   return function(input) {
+    input = helper.firstIfArray(input);
     var n = parseInt(input, 10);
     return isNaN(n) ? 0 : n;
   }
-});
+}]);
 
 /**
- * checkInternal checks is a link is internal
+ * checkInternal checks if a link is internal
  */
-dcp.filter('checkInternal',function() {
+dcp.filter('checkInternal', ['helper', '$location', function(helper, $location) {
   return function(item) {
-    if(!item.fields.sys_url_view) {
+    if(!helper.firstIfArray(item.fields.sys_url_view)) {
       return true;
     }
-    else if(!!item.fields.sys_url_view.match(window.location.host)) {
+    else if(!!helper.firstIfArray(item.fields.sys_url_view).match($location.host())) {
       return true;
     }
     return false;
   }
-});
+}]);
 
-dcp.controller('developerMaterialsController', function($scope, materialService) {
+dcp.controller('developerMaterialsController',
+    ['$scope', 'materialService', '$rootScope', '$location', 'helper', 'dataFlowService',
+      function($scope, materialService, $rootScope, $location, helper, dataFlowService) {
 
+  // Initialize params state
   window.scope = $scope;
-  $scope.data = {};
-  $scope.filters = {};
-  $scope.randomize = false;
-  $scope.pagination = {
-    size : 10
-  };
+  $scope.params = {};
 
   // Add Math object to $scope so we can use it directly in Angular expressions
   // like: {{ Math.min(data.materials.length, paginate.currentPage * pagination.size) }}
   // This might not be clean technique from Angular perspective (more clear would be
   // to do all required calculations in controller and not the view)
+  // TODO: remove
   $scope.Math = Math;
 
+  $scope.data = {};
+  $scope.randomize = false;
+  $scope.pagination = { size : 10 };
+  $scope.filters = {}; // stores data
+  $scope.filter = {}; // stores util functions
+
+  // Register listener for location path change
+  var needsToBeUnregistered = $rootScope.$on('$locationChangeSuccess', function(event) {
+    console.log("***************** $locationChangeSuccess");
+    // parse and store params
+    $scope.params = helper.safeParams(
+        helper.parsePath($location.path())
+    );
+    // persist params if possible
+    console.log('params', $scope.params);
+
+    materialService.getMaterials($scope.params)
+        .then(function(data) {
+          // process response data
+          console.log('data >', data);
+
+          // Check if there are any data! In case the request was aborted
+          // there are no data or the data has unexpected format.
+          if (data && data.hits && data.hits.hits) {
+            $scope.data.materials = data.hits.hits;
+            $scope.data.total = data.hits.total;
+            $scope.paginate($scope.paginate.currentPage || 1);
+          } else {
+            // clean the table
+            $scope.data.materials = [];
+            $scope.data.total = 0;
+          }
+
+        })
+        .then(function() {
+          // sync web form with query parameters
+          $scope.filters.query = $scope.params.query;
+          $scope.filters.sys_type = $scope.params.sys_type;
+        });
+  });
+
+  // Unregister listeners registered on different scopes (and rootScope is one).
+  //  - https://code.angularjs.org/1.3.3/docs/api/ng/type/$rootScope.Scope#$destroy
+  //  - http://stackoverflow.com/a/27016855
+  $rootScope.$on('$destroy', needsToBeUnregistered);
+
+  $scope.$on('_START_REQUEST_', function() {
+    $scope.data.loading = true;
+  });
+
+  $scope.$on('_END_REQUEST_', function() {
+    $scope.data.loading = false;
+  });
+
+  $scope.data.availableTopics = #{site.dev_mat_techs.flatten.uniq.sort};
+  $scope.data.availableFormats = helper.availableFormats;
+
   /*
-    Handle Pagination
-  */
+   Handle Pagination
+   */
   $scope.paginate = function(page) {
     $scope.pagination.size = ($scope.pagination.viewall ? 500 : $scope.pagination.size);
     var startAt = (page * $scope.pagination.size) - $scope.pagination.size;
     var endAt = page * $scope.pagination.size;
-    var pages = Math.ceil($scope.data.materials.length / $scope.pagination.size);
+    var pages = Math.ceil($scope.data.total / $scope.pagination.size);
 
     // do nothing if we have no more pages
     if(page > pages || page < 1 || typeof page === "string") {
@@ -318,8 +579,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     // $scope.paginate.pagesArray = new Array(pages);
     $scope.paginate.currentPage = page;
 
-    // $scope.data.displayedMaterials = [];
-    $scope.data.displayedMaterials = $scope.data.materials.slice(startAt,endAt);
+    $scope.data.displayedMaterials = $scope.data.materials;
 
     // pagination display logic
     $scope.paginate.pagesArray = app.utils.diplayPagination($scope.paginate.currentPage, pages, 4);
@@ -328,27 +588,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     window.setTimeout(function() {
       app.dcp.resolveContributors();
     },0);
-  }
-
-  /*
-    Handle Filters
-  */
-  $scope.filters = {}; // stores data
-  $scope.filter = {}; // stores util functions
-
-  $scope.data.availableTopics = #{site.dev_mat_techs.flatten.uniq.sort};
-
-  $scope.data.availableFormats = [
-    { value : "quickstart" , "name" : "Quickstart", "description" : "Single use-case code examples tested with the latest stable product releases" },
-    { value : "video" , "name" : "Video", "description" : "Short tutorials and presentations for Red Hat JBoss Middleware products and upstream projects" },
-    { value : "demo" , "name" : "Demo", "description" : "Full applications that show what you can achieve with Red Hat JBoss Middleware" },
-    { value : "jbossdeveloper_example" , "name" : "Tutorial", "description" : "Guided content, teaching you how to build complex applications from the ground up" },
-    { value : "jbossdeveloper_archetype" , "name" : "Archetype", "description" : "Maven Archetypes for building Red Hat JBoss Middleware applications" },
-    { value : "jbossdeveloper_bom" , "name" : "BOM", "description" : "Maven BOMs for managing dependencies within Red Hat JBoss Middleware applications" },
-    { value : "jbossdeveloper_sandbox" , "name" : "Early Access", "description" : "Single use-case code examples demonstrating features not yet available in a product release" },
-    { value : "article" , "name" : "Articles (Premium)", "description" : "Technical articles and best practices for Red Hat JBoss Middleware products" },
-    { value : "solution" , "name" : "Solutions (Premium)", "description" : "Answers to questions or issues you may be experiencing" }
-  ];
+  };
 
   $scope.filters.sys_tags = [];
   $scope.filters.sys_type = [];
@@ -374,6 +614,9 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     Update skill level when the range input changes
   */
   $scope.filter.updateSkillLevel = function() {
+    // TODO: is this still needed?
+    // Do not forget to remove call to this method from templates as well !
+    /*
     var n = parseInt($scope.data.skillNumber);
     var labels = ["All", "Beginner", "Intermediate", "Advanced"];
     $scope.data.displaySkill = labels[n];
@@ -391,7 +634,8 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
         $scope.filters.level = "Advanced";
         break;
     }
-  }
+    */
+  };
 
   /*
     Update date when the range input changes
@@ -402,9 +646,12 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     var labels = ["All", "Within 1 Year", "Within 30 days", "Within 7 days", "Within 24hrs"];
     $scope.data.displayDate = labels[n];
 
+    console.log('$scope.data.dateNumber', $scope.data.dateNumber);
+    console.log('$scope.data.displayDate', $scope.data.displayDate);
+
     switch(n) {
       case 0 :
-        delete $scope.filters.sys_created;
+        delete $scope.filters.publish_date;
         break;
       case 1 :
         //Within 1 Year
@@ -425,9 +672,9 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     }
 
     if(n) {
-      $scope.filters.sys_created = ">=" + d.getFullYear() + "-" + ( d.getMonth() + 1 ) + "-" + d.getDate();
+      $scope.filters.publish_date = /*">=" +*/ d.getFullYear() + "-" + ( d.getMonth() + 1 ) + "-" + d.getDate();
     }
-  }
+  };
 
   $scope.filter.clear = function() {
     $scope.filters.sys_tags = [];
@@ -437,141 +684,52 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     delete $scope.filters.query;
     delete $scope.filters.sys_rating_avg;
     delete $scope.filters.level;
-    delete $scope.filters.sys_created;
+    delete $scope.filters.publish_date;
     // clear local storage
     delete localStorage[$scope.data.pageType + '-filters'];
     // trigger chosen
     $(".chosen").trigger("chosen:updated");
-  }
+  };
 
-  $scope.filter.createString = function() {
-    var searchTerms = [];
+  $scope.firstPage = function() {
+    $scope.paginate.currentPage = 1;
+    $scope.processPagination_();
+  };
 
-    if($scope.filters.query){
-      searchTerms.push($scope.filters.query);
-    }
+  $scope.previousPage = function() {
+    $scope.paginate.currentPage -= 1;
+    $scope.processPagination_();
+  };
 
-    if($scope.filters.sys_rating_avg) {
-      searchTerms.push("sys_rating_avg:>="+$scope.filters.sys_rating_avg);
-    }
+  $scope.nextPage = function() {
+    $scope.paginate.currentPage += 1;
+    $scope.processPagination_();
+  };
 
-    if($scope.filters.sys_tags && $scope.filters.sys_tags.length){
-        if(typeof $scope.filters.sys_tags === 'string') {
-          var tags = $scope.filters.sys_tags; // singular string
-        }
-        else {
-          var tags = "\"" + $scope.filters.sys_tags.join("\" \"") + "\""; // array
-        }
-        searchTerms.push('sys_tags:('+tags+')');
-    }
+  $scope.lastPage = function() {
+    $scope.paginate.currentPage = $scope.paginate.pages;
+    $scope.processPagination_();
+  };
 
-    if($scope.data.sys_type_string && $scope.data.sys_type_string.length){
-      // convert single sys_type into an array - allows us to switch to multi-select down the road
-      $scope.filters.sys_type = [$scope.data.sys_type_string];
-      // remove jbossdeveloper_sandbox "Early Access and convert it to experimental"
+  $scope.goToPage = function(page) {
+    $scope.paginate.currentPage = page;
+    $scope.processPagination_();
+  };
 
-        var idx = $scope.filters.sys_type.indexOf("jbossdeveloper_sandbox");
-
-        if(idx >= 0 && $scope.filters.sys_type.length > 1) {
-          // We have experimental turned on, but we also have other types to search for
-          searchTerms.push("(experimental:true AND sys_type:(jbossdeveloper_sandbox jbossdeveloper_quickstart)) OR sys_type:("+$scope.filters.sys_type.join(" ")+")");
-        }
-        else if(idx >= 0 && scope.filters.sys_type.length === 1) {
-          // Only Experimental - just search for that without sys_types
-          searchTerms.push("experimental:true");
-        }
-        else {
-          // no experimental - just regular search
-          searchTerms.push("sys_type:("+$scope.filters.sys_type.join(" ")+")");
-        }
-
-    } else {
-      // There are no types, set the default ones
-      searchTerms.push("sys_type:(jbossdeveloper_bom quickstart jbossdeveloper_archetype video article solution jbossdeveloper_example)");
-    }
-
-    if($scope.filters.level){
-      searchTerms.push("(level:"+$scope.filters.level + "%20OR%20_missing_:level)");
-    }
-
-    if($scope.filters.sys_created){
-      searchTerms.push("sys_created:"+$scope.filters.sys_created);
-    }
-
-    searchTerms = searchTerms.join(" AND ");
-
-    $scope.data.searchTerms = searchTerms;
-
-    return searchTerms;
+  $scope.processPagination_ = function() {
+    $scope.filters.from = ($scope.paginate.currentPage - 1) * $scope.pagination.size;
+    $scope.filter.applyFilters();
   };
 
   $scope.filter.applyFilters = function() {
     $scope.data.displayedMaterials = [];
-    $scope.data.loading = true;
-    var q = this.createString();
-
-    materialService.getMaterials(q, $scope.filters.project).then(function(data){
-      $scope.data.materials = data.hits.hits;
-      // http://www.codinghorror.com/blog/2007/12/the-danger-of-naivete.html
-      // explicity check for true, or "true" as it comes in as a string
-      if ($scope.randomize == true) {
-        $scope.data.materials = (function knuthfisheryates(arr) {
-          var i, temp, j, len = arr.length;
-          for (i = 0; i < len; i++) {
-            j = ~~(Math.random() * (i + 1));
-            temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-          }
-          return arr;
-        })($scope.data.materials);
-      }
-      $scope.data.loading = false;
-      $scope.paginate(1); // start at page 1
-      $scope.filter.group();
-    });
 
     // save search in local storage
     $scope.filter.store();
     // update the page hash
-    window.location.hash = "!" + $.param($scope.filters);
-
-  }
-
-  /*
-    groups the items together by type so we can provide a count
-  */
-  $scope.filter.group = function() {
-    $scope.data.groups = {};
-    for (var i = 0; i < $scope.data.materials.length; i++) {
-      (function(sys_type, sys_tags){
-
-        // group the types (formats)
-        if($scope.data.groups[sys_type] >= 0) {
-          $scope.data.groups[sys_type]++;
-        }
-        else {
-         $scope.data.groups[sys_type] = 0;
-        }
-
-        // group the tags (topics)
-        if(sys_tags) {
-
-          // we prefix the index with tag- because "demo" is both a tag and a topic
-          for (var i = 0; i < sys_tags.length; i++) {
-            if($scope.data.groups['tag-' + sys_tags[i]] >= 0) {
-              $scope.data.groups['tag-' + sys_tags[i]]++;
-            }
-            else {
-             $scope.data.groups['tag-' + sys_tags[i]] = 0;
-            }
-          };
-
-        }
-
-      })($scope.data.materials[i].fields.sys_type, $scope.data.materials[i].fields.sys_tags);
-    };
-  }
+    //window.location.hash = "!" + $.param($scope.filters);
+    dataFlowService.processParams($scope.filters)
+  };
 
   $scope.filter.store = function() {
     // check if we have local storage, abort if not
@@ -579,7 +737,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     // store them in local storage
     window.localStorage[$scope.data.pageType + '-filters'] = JSON.stringify(scope.filters);
     window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] = new Date().getTime();
-  }
+  };
 
   $scope.filter.restore = function() {
     // restore and set
@@ -598,15 +756,16 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     //   return;
     // }
 
-    // check if we have window hash,  local storage or any stored filters, abort if not
+    // check if we have window hash, local storage or any stored filters, abort if not
     if(!window.location.hash && (!window.localStorage || !window.localStorage[$scope.data.pageType + '-filters'])) {
       $scope.filter.applyFilters(); // run with no filters
       return;
     }
 
-    if(window.location.hash) {
-      var hashFilters = window.location.hash.replace('#!','');
-      var filters = deparam(hashFilters);
+    if($location.path().length > 0) {
+      // $location service always makes sure the path starts with a forward slash
+      // https://code.angularjs.org/1.3.3/docs/api/ng/service/$location#path
+      var filters = deparam($location.path().slice(1));
 
       // check for single string sys_type
       if(typeof filters.sys_type === "string") {
@@ -629,8 +788,8 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
       }
 
       // restore date slider to closest match
-      if($scope.filters.sys_created) {
-        var parts = scope.filters.sys_created.replace('>=','').split('-'); // YYYY MM DD
+      if($scope.filters.publish_date) {
+        var parts = scope.filters.publish_date.split('-'); // YYYY MM DD
         var d = new Date(parts[0], parts[1], parts[2]); // Year, month date
         var now = new Date().getTime();
         var ago = now - d;
@@ -658,9 +817,8 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
         $scope.filters = JSON.parse(window.localStorage[$scope.data.pageType + '-filters']);
       }
     }
-
     $scope.filter.applyFilters();
-  }
+  };
 
 
   $scope.chosen = function() {
@@ -675,7 +833,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
       $scope.$apply();
       $scope.filter.applyFilters()
     }).trigger('chosen:updated');
-  }
+  };
 
   /*
     Update chosen when the available topics update
@@ -684,15 +842,6 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     // next tick
     window.setTimeout(function(){
       $scope.chosen();
-    },0);
-  });
-
-  /*
-    Update chosen when the counts update
-  */
-  $scope.$watch('data.groups',function() {
-    window.setTimeout(function() {
-      $(".chosen").trigger("chosen:updated");
     },0);
   });
 
@@ -710,7 +859,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
   */
   window.setTimeout($scope.filter.restore, 0);
 
-});
+}]);
 
 
 // jQuery for mobile filters
