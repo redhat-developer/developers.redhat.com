@@ -31,9 +31,12 @@ h2#overview Overview
 
   .large-11.columns.product-video
     = video_player(video(page.product.intro_video)) if page.product.intro_video
+    - if page.product.intro_youtube
+      = video_player(site.videos["#{page.product.intro_youtube}"])
 
 br
 .row#product-features
+  = page._feature_title
   .large-8.columns
     div(class="feature-icon")
       = page._icon1
