@@ -130,7 +130,7 @@ This process is used for contributing details of a Vimeo or YouTube video.
 #### To add a Vimeo video to the site:
 
 1. Visit https://vimeo.com/
-2. Login with the `Red Hat Developers` account.
+2. Login with the `JBoss Developers` account.
 3. Browse to the video you want to add to the site.
 4. Click on `+ Collections`
 5. In the albums area, tick each product that the video is related to. Just tick the `Miscellaneous` if it relates to no product. __Note:__ You will see several albums, only those entitled `Red Hat JBoss ...` are product albums.
