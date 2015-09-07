@@ -1,8 +1,23 @@
 :awestruct-layout: product-get-started
 :awestruct-interpolate: true
 
+== Prerequisites section title
+Prerequisites &#38; Required Dependencies Checklist
 
-== Setup Environment
+== Prerequisites section
+1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
+2. JBoss&#174; Developer Studio 8.1
+
+== Step1 Duration
+10 minutes
+
+== Step2 Duration
+5 minutes
+
+== Step3 Duration
+20 minutes
+
+== Step1 Content
 
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
@@ -55,7 +70,7 @@ e. Click the _Install_ button.
 ... You will be given a _Security Warning_ during installation, click _OK_.
 ... You will need to restart JBoss Developer Studio. Click _Yes_ when asked.
 
-== Install Config Verify
+== Step2 Content
 
 1. Download link:http://developers.redhat.com/download-manager/file/jboss-fuse-6.2.0.GA-full_zip.zip[JBoss Fuse 6.2.0.GA]
 +
@@ -94,7 +109,7 @@ For more information about Fuse Fabric view the link:https://access.redhat.com/d
 6. To verify Fuse was successfully installed, open a web browser and visit link:http://localhost:8181[]. Login using the username `admin` and the password `admin`. Success!
 7. For more details, view the link:https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Fuse[Product Documentation].
 
-== Build Your App
+== Step3 Content
 
 Follow the below series to build your first application.
 You will build some simple examples as well as build a Home Loan Application using JBoss Fuse to integrate different enterprise systems.

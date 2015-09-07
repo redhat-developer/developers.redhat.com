@@ -8,16 +8,16 @@ Prerequisites &#38; Required Dependencies Checklist
 1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
 2. JBoss&#174; Developer Studio 8.1 with EAP
 
-== Setup Duration
+== Step1 Duration
 10 minutes
 
-== Install Duration
+== Step2 Duration
 5 minutes
 
-== Build Duration
+== Step3 Duration
 20 minutes
 
-== Setup Environment
+== Step1 Content
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
 2.  Download link:http://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-jar_universal.jar[JBoss Developer Studio 8.1.0.GA with EAP] 
@@ -57,7 +57,7 @@ d.  Click Finish +
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-2.png')}[Configure Maven Repository]
 e.  Answer _Yes_ when asked if you want to update the `settings.xml` file.
 
-== Install Config Verify
+== Step2 Content
 To verify that the JBoss Developer Studio and JBoss EAP is working
 correctly, deploy and execute the _helloworld_ quickstart application in
 an EAP server you will now create and configure: +
@@ -94,7 +94,7 @@ This will build, deploy and run the helloworld application inside JBoss
 EAP server. The application will open the internal JBoss Developer Studio browser and
 present "Hello World!" Success!
 
-== Build Your App
+== Step3 Content
 Follow the below series to build your first application. You will build some simple examples as well as build a TicketMonster Application using JBoss EAP. The TicketMonster application shows you how to build a modern HTML application that communicates with a Java EE backend using REST. The series walks you through each step of the application development lifecycle, from start to finish.
 
 [width="100%",cols="50%,50%",]
