@@ -35,6 +35,7 @@ gem 'daybreak'
 gem 'sass', '~> 3.4', '< 3.4.6'
 gem 'activesupport', '> 3.1', '< 4.2.0' # Used in aweplug by ruby-duration
 gem 'compass', '~> 1.0'
+gem 'rake', '~>10.4'
 
 # To use Aweplug code from a different location:
 #
@@ -46,12 +47,18 @@ gem 'compass', '~> 1.0'
 #
 gem 'aweplug', github: 'awestruct/aweplug'
 
+group :test do
+  gem 'launchy', '~>2.4'
+  gem 'cucumber', '~>2.0'
+  gem 'poltergeist', '~>1.6'
+  gem 'rspec', '~>3.3'
+  gem 'capybara', '~>2.5'
+end
 
 group :development do
   gem 'rb-inotify', require: false
   gem 'rb-fsevent', require: false
   gem 'rb-fchange', require: false
-  gem 'rake', '~> 10.0.4'
   gem 'pry', require: false
   gem 'pry-byebug', require: false
 end
@@ -63,4 +70,3 @@ end
 group :health do
   gem 'blinkr', '~> 0.3'
 end
-

@@ -40,6 +40,8 @@
 #
 # Now you're Awestruct with rake!
 
+load './_smoke_tests/smoke.rake'
+
 $resources = ['stylesheets', 'javascripts', 'images']
 $use_bundle_exec = true
 $install_gems = ['awestruct -v "~> 0.5.3"', 'rb-inotify -v "~> 0.9.0"']
@@ -116,7 +118,7 @@ task :tag, [:profile, :tag_name] do |task, args|
   end
   if !args[:tag_name].nil?
     msg "Tagging '#{args[:tag_name]}'"
-    system "git tag #{args[:tag_name]}" 
+    system "git tag #{args[:tag_name]}"
   end
 end
 
@@ -143,7 +145,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   if $config['cdn_http_base']
     cdn_host = $config.deploy.cdn_host
     cdn_path = $config.deploy.cdn_path
-    
+
     if args[:tag_name]
       local_originals_path = LOCAL_CDN_PATH.join(args[:tag_name])
     else
@@ -308,7 +310,7 @@ end
 desc 'Generate a wraith config file'
 task :generate_wraith_config, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
   require 'yaml/store'
-  
+
   cfg = '_wraith/configs/config.yaml'
   FileUtils.cp '_wraith/configs/template_config.yaml', cfg
   config = YAML::Store.new(cfg)
@@ -368,7 +370,7 @@ def run_awestruct(args)
     base_url = "#{base_url}/#{ENV['site_path_suffix']}" if ENV['site_path_suffix']
   end
   args ||= "" # Make sure that args is initialized
-  args << " --url " + base_url if base_url 
+  args << " --url " + base_url if base_url
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
     raise "Error executing awestruct"
   end
@@ -446,7 +448,7 @@ def load_site_yaml(yaml_path, profile = nil)
   require 'awestruct/page'
   config = Awestruct::AStruct.new
   if ( File.exist?( yaml_path ) )
-    require 'yaml'    
+    require 'yaml'
     data = YAML.load( File.read( yaml_path ) )
     if ( profile )
       profile_data = {}
@@ -504,7 +506,7 @@ class Git
   end
 end
 
-class GitHub 
+class GitHub
   def initialize
     @github_base_url = 'https://api.github.com/'
   end
@@ -596,7 +598,7 @@ class Jenkins
     resp = http.request(req)
     issues = []
     commits = []
-    if resp.is_a?(Net::HTTPSuccess) 
+    if resp.is_a?(Net::HTTPSuccess)
         json = JSON.parse(resp.body)
         json['changeSet']['items'].each do |item|
           commits << item['commitId']
@@ -622,8 +624,8 @@ class JIRA
       abort 'Must provide jira_username and jira_password environment variables'
     end
   end
-  
-  def comment_issues(issues, comment)  
+
+  def comment_issues(issues, comment)
     issues.each do |k|
       url = "#{@jira_issue_base_url}#{k}/comment"
       body = %Q{{ "body": "#{comment}"}}
@@ -722,6 +724,3 @@ class JIRA
     linked_issues
   end
 end
-
-
-
