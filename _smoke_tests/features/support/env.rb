@@ -17,5 +17,5 @@ Capybara.register_driver :poltergeist do |app|
 end
 
 #This timeout will allow the page to wait for XHR
-Capybara.default_wait_time = 5
+Capybara.default_max_wait_time = 10
 World(Capybara)

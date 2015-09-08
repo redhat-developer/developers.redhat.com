@@ -1,5 +1,5 @@
 @javascript
-Feature: Smoke Test
+Feature: Community Page Smoke Test
   In order to see other projects in the Red Hat community
   As generic site visitor
   I want to be able to see a list of community projects.
