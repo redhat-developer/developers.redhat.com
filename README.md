@@ -261,6 +261,8 @@ If you add a new recipient to the file, ensure you update the list above.
 ## Common issues
 This area documents fixes to common issues:
 
+### 'No address for docker'
+If you get an error with the message 'no address for docker (Resolv::ResolvError)' you need to ensure that the host 'docker' is added to your /etc/hosts file. Instructions for this are available in the Docker section of this document.
 
 ### "Too many open files"
 This can be caused by running out of file descriptors. Currently only seen on Macs. See the following for how to fix: http://superuser.com/questions/433746/is-there-a-fix-for-the-too-many-open-files-in-system-error-on-os-x-10-7-1
