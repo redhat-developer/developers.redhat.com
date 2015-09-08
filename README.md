@@ -261,7 +261,7 @@ If you add a new recipient to the file, ensure you update the list above.
 ## Common issues
 This area documents fixes to common issues:
 
-### ''
+### 'No address for docker'
 If you get an error with the message 'no address for docker (Resolv::ResolvError)' you need to ensure that the host 'docker' is added to your /etc/hosts file. Instructions for this are available in the Docker section of this document.
 
 ### "Too many open files"
