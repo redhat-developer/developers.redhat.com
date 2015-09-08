@@ -130,20 +130,27 @@ This process is used for contributing details of a Vimeo or YouTube video.
 #### To add a Vimeo video to the site:
 
 1. Visit https://vimeo.com/
-2. Login with the `JBoss Developers` account.
+2. Login with the `JBoss Developer` account.
 3. Browse to the video you want to add to the site.
 4. Click on `+ Collections`
 5. In the albums area, tick each product that the video is related to. Just tick the `Miscellaneous` if it relates to no product. __Note:__ You will see several albums, only those entitled `Red Hat JBoss ...` are product albums.
+6. The video should appear on the site within 6 hours.
+7. If the related product doesn't have a learn page yet, then raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) requesting that the learn page be added for the product.
 
 #### To add a YouTube video to the site:
-Add the URL of the video to the "YouTube Videos" sheet of this spreadsheet: https://docs.google.com/spreadsheets/d/1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c/edit#gid=1504333800
+1. Visit https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q/playlists
+2. Switch to the `Red Hat Developers` account. (Email paul.robinson@redhat.com and arubinge@redhat.com to request access)
+3. Select the playlist for the product that the video relates to. Select the `Miscellaneous` playlist if it relates to no product.
+4. Click `Add VIdeos`.
+5. Find the video you want to add, and select it.
+6. The video should appear on the site within 6 hours.
+7. If the related product doesn't have a learn page yet, then raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) requesting that the learn page be added for the product.
 
-__Note:__ YouTube videos cannot yet be associated with products.
 
 #### If you can't add the video yourself, create a JIRA issue:
 
 1. Visit: https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa
-2. Select: Project="Red Hat Developer" and Issue Type = "Task"
+2. Select: Project="Red Hat Developer" and Issue Type = "Content Change"
 3. Provide a summary
 4. Provide a description, including:
 4.1 The link to the video you want to add
