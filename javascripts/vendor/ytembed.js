@@ -1,7 +1,12 @@
+---
+interpolate: true
+---
+
 /* Source: http://yvoschaap.com */
 /* Build first in '06 */
 /* 1/4/2015: upgraded to YouTube API v3 */
 /* 6/5/2015: added back views and duration  */
+/* 9/9/2015: Modifed by Wes Bos → Changed youtube links to redhat links */
 
 Function.prototype.bind = function(obj, args) {
     var method = this,
@@ -285,7 +290,7 @@ var ytEmbed = {
                         }));
                     }
                 } else {
-                    a.setAttribute('href', 'https://www.youtube.com/watch?v=' + id);
+                    a.setAttribute('href', '#{site.base_url}/video/youtube/' + id);
                 }
 
                 var span = document.createElement('span');
@@ -315,6 +320,7 @@ var ytEmbed = {
                 div.style.left = '0px';
                 //document bottom add X (height) pixels margin
             }
+            div.innerHTML = ""; // clear "Loading videos..."
             div.appendChild(ul);
 
             //playlist
