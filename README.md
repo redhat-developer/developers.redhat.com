@@ -274,3 +274,11 @@ Same fix as "Too many open files"
 If using GNU PGP, sometimes you're not presented with a popup asking for the passphrase. This will result in the following error being presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
 To fix, use the instructions in the following url:
 https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
+
+### "SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed"
+If you get this error, you may be seeing it because your SSL cert file is out of date.  You can fix this by:
+
+1. Downloading http://curl.haxx.se/ca/cacert.pem
+2. Setting the environment variable SSL_CERT_FILE to the /path/to/file/cacert.pem
+
+Alternatively, see the following for how to fix: http://railsapps.github.io/openssl-certificate-verify-failed.html
