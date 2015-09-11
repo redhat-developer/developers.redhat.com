@@ -24,7 +24,7 @@ WORKDIR /tmp
 # Build the current gemset (user will only need to build the difference 
 ADD Gemfile ./
 ADD Gemfile.lock ./
-RUN bundle install
+RUN bundle install -j 2
 
 WORKDIR /var/www/html
 

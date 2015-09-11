@@ -20,7 +20,9 @@ WORKDIR /home/awestruct
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 COPY gemrc /home/awestruct/.gemrc
-RUN bundle install
+
+#parallel install of gems
+RUN bundle install -j 2 
 
 WORKDIR /home/awestruct/developer.redhat.com
 
