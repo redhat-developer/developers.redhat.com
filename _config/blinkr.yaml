@@ -139,7 +139,7 @@ ignores:
   - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HazelcastComponent.html #DEVELOPER-1148
 max_page_retys: 5
 max_retrys: 5
-browser: phantomjs
+browser: slimerjs
 ignore_fragments: true
 phantomjs_threads: 20
 pipeline: ../_ext/blinkr/blinkr.rb
