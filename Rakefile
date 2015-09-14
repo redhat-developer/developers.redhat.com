@@ -356,7 +356,7 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |tas
   base_url = "#{args[:new]}/#{base_path}/#{args[:build_prefix]}/#{args[:build]}/"
   report_base_path = "#{base_path}/blinkr"
   report_path = "#{report_base_path}/#{args[:build]}"
-  verbose_switch = args[:verbose] == 'verbose' ? '-v' : ''
+  verbose_switch = args[:verbose] == 'verbose' ? '-w' : ''
   FileUtils.rm_rf("_tmp/blinkr")
   FileUtils.mkdir_p("_tmp/blinkr")
   unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url} #{verbose_switch}"

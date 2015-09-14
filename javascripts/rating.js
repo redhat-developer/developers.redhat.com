@@ -11,7 +11,7 @@ app.rating = {
     $('#your-rating').show();
   },
   initYour: function() {
-    app.dm.authStatus().done(function(data) {
+    app.dcp.authStatus().done(function(data) {
       if (data.authenticated) {
         var user_rating = $.ajax({
           type: 'GET',
