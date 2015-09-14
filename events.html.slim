@@ -50,8 +50,8 @@ description: Discover the events and webinars featuring talks about JBoss produc
       .month(ng-repeat="month in [0,1,2,3,4,5,6,7,8,9,10,11]" ng-show="events[month].length")
         h2.divider.month-heading
           | {{ month | momentMonth:'MMMM' }}
-        ul.small-block-grid-2.large-block-grid-4.events-listing
-          li(ng-repeat="event in events[month] | orderBy: '_source.start_date'")
+        ul.events-listing
+          li.event-item(ng-repeat="event in events[month] | orderBy: '_source.start_date'")
             .event
               .event-head
                 img(ng-if="'default' !== event._source.sys_image" ng-src="http://static.jboss.org/images/rhd/events/event_{{event._source.sys_image}}.png")

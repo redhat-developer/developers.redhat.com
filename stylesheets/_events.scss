@@ -34,11 +34,6 @@
   }
 }
 
-.events-listing {
-  margin-top:20px;
-}
-
-
 h2.divider.month-heading {
   text-transform: uppercase;
   font-size: 14px;
@@ -200,5 +195,58 @@ h4.events-header.divider {
   }
   .row {
     @extend .flex-center;
+  }
+}
+
+// Makes height of events equal in each row using Flexbox
+.events-listing {
+  margin-top:20px;
+  margin-left: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.event-item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5em;
+  width: 25%;
+}
+
+@include tablet-landscape-and-down {
+  .event-item{
+    width: 50%;
+  }
+}
+
+@include mobile-landscape-and-down {
+  .event-item{
+    width: 100%;
+  }
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  .button {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 92%;
+    margin-bottom: 10px;
+  }
+}
+
+.event-body {
+  flex-grow: 1;
+  position: absolute;
+  bottom: 0;
+  p {
+    padding-bottom: 25px;
   }
 }
