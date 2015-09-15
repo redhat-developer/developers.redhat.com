@@ -22,7 +22,7 @@ COPY Gemfile.lock Gemfile.lock
 COPY gemrc /home/awestruct/.gemrc
 
 #parallel install of gems
-RUN bundle install -j 2 
+RUN bundle install -j 10
 
 WORKDIR /home/awestruct/developer.redhat.com
 
