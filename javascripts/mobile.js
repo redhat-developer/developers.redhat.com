@@ -36,6 +36,20 @@ app.createSlider = function($el) {
     var sliderEl = document.getElementById('slider');
     var $sliderEl = $(sliderEl);
 
+    /*
+      Shuffle if we need to
+    */
+    var shouldShuffle = $sliderEl.data('shuffle');
+    
+    if(shouldShuffle) {
+      var slides = $sliderEl.find('.slide');
+      slides = slides.sort(function() {
+        return .5 - Math.random();
+      });
+
+      $sliderEl.find('.swipe-wrap').html(slides);
+    }
+
     app.slider = Swipe(sliderEl, {
       auto : $(sliderEl).data('timeout') || 0,
 
