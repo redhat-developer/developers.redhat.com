@@ -75,7 +75,10 @@ def modify_env(opts)
     end
     puts 'Vault decrypted'
   rescue GPGME::Error => e
-    puts "Unable to decrypt vault (#{e})"
+    #If we have a BUILD_NUMBER in the environment we are building from Jenkins
+    unless(ENV['BUILD_NUMBER'])
+      abort "Unable to decrypt vault (#{e})"
+    end
   end
 
 
