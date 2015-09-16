@@ -6,6 +6,8 @@ skips:
   - !ruby/regexp /-YOUR_DOMAIN_NAME\.rhcloud\.com/
     # -YOUR_DOMAIN.rhcloud.com using in ticket monster
   - !ruby/regexp /-YOUR_DOMAIN\.rhcloud\.com/
+    # <app-name>-<domain-name>.rhcloud.com or &lt;app-name&gt;-&lt;domain-name&gt;.rhcloud.com
+  - !ruby/regexp (.+?)app-name(.+?)-(.+?)domain-name(.+?)\.rhcloud\.com/
     # Prevent any stray mailto and irc links appearing
   - !ruby/regexp /^mailto:/
   - !ruby/regexp /^irc:/
@@ -27,7 +29,6 @@ skips:
 #    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
 ignores:
-  - code: 6 # Try to ignore those ssl issues
   - snippet: !ruby/regexp /f\.vimeocdn\.com/ # I don't see this error in real browsers
   - url: git@github.com:nodyn/nodyn.git #Not an error.
   - url: http://in.relation.to/ #Not an error.
