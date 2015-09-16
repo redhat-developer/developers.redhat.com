@@ -2,6 +2,7 @@
   @extend .large-6;
   @extend .columns;
 }
+
 .developer-materials-main {
   @extend .large-17;
   @extend .columns;
@@ -493,6 +494,15 @@ a[data-page="⋯"]{
 }
 
 #developer-materials-filters{
+  // Hide title on resources page
+  &.resources-page h2 {
+    display: none;
+  }
+  &[class*=large] {
+    input, select {
+      width: 100%;
+    }
+  }
   .developer-materials-header{
     margin-bottom: 20px;
     padding-bottom: 5px;

@@ -33,7 +33,8 @@ dcp.service('materialService',function($http, $q) {
     var query = {
       "field"  : ["sys_author", "target_product", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_tags", "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg", "experimental"],
       "size" : 500,
-      "content_provider" : ["jboss-developer", "rht", "openshift"]
+      "content_provider" : ["jboss-developer", "rht", "openshift"],
+      "sortBy" : "new-create"
     };
 
     if(searchTerms) {

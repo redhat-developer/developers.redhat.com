@@ -3,13 +3,10 @@ layout: get-started-base
 ---
 = partial 'jdf_advise.html.slim', {'parent' => page}
 div(ng-app="dcp")
-  .developer-materials(ng-controller="developerMaterialsController")
-    .developer-materials-sidebar(ng-init="data.pageType = 'learn'")
+  .developer-materials.row(ng-controller="developerMaterialsController")
+    div#developer-materials-filters.resources-page(ng-init="data.pageType = 'learn'")
       = partial 'developer-materials-filters.html.slim'
-    .developer-materials-main.text-content
-      h2.divider#featured Featured
-      = partial('developer-materials-featured.html.slim', {'featured_items' => site.featured_items})
-      .developer-materials-results-wrapper
+    .developer-materials-results-wrapper
         = partial 'developer-materials-results.html.slim'
     .space
 

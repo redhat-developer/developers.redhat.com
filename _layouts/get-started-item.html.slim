@@ -18,14 +18,11 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
 - page.og_type = 'article'
 .row
   h2.large-title#developer-materials Developer Materials
-.row.row.content
+.row.grow.content
   .large-24.columns
     ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
       li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/get-started/" Get Started
-        meta itemprop="position" content="1"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/developer-materials/" Developer Materials
+        a itemprop="item" href="#{site.base_url}/resources/" Resources
         meta itemprop="position" content="2"
       li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
         a itemprop="item" href="#{site.base_url}#{page.output_path}" #{page.metadata[:title]}

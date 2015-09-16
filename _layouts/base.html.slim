@@ -122,6 +122,7 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
               li(class=(currentPage.include?(pageName) ? 'active' : ''))
                 a(href="#{site.base_url}/#{pageName}/") #{pageName.capitalize}
           ul.menu-right
+            li: a(href="#{site.base_url}/resources/") Resources
             li: a(href="#{site.base_url}/projects/") Community
             li: a(href="#{site.base_url}/events/") Events
             li: a(href="http://developerblog.redhat.com") Blogs
