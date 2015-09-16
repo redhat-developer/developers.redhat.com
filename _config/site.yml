@@ -128,6 +128,7 @@ profiles:
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     metrics: true
     build_threads: 1
+    dtm_code: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg-main
@@ -142,6 +143,8 @@ profiles:
     require_tag: true
     metrics: true
     disqus: jdf
+    dtm_mode: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
+
     robots:
       disallow: false
     deploy:
