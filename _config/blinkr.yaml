@@ -29,6 +29,9 @@ skips:
 #    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
 ignores:
+  # Okay blinkr.... these shouldn't be errors
+  - code: 202
+  - code: 203
   - snippet: !ruby/regexp /f\.vimeocdn\.com/ # I don't see this error in real browsers
   - url: git@github.com:nodyn/nodyn.git #Not an error.
   - url: http://in.relation.to/ #Not an error.
