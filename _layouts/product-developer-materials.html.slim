@@ -11,7 +11,7 @@ div(ng-app="dcp")
     .large-24#developer-materials-filters(ng-init="data.pageType = 'sitewide'")
       = partial 'developer-materials-filters.html.slim'
     .text-content
-      .developer-materials-results-wrapper data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}';filters.randomize = true; data.pageType = '#{page.product.dcp_project_code}';"
+      .developer-materials-results-wrapper data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}';filters.randomize = false; data.pageType = '#{page.product.dcp_project_code}';"
         = partial 'developer-materials-results.html.slim'
 
     = javascripts("developer-materials-filter", true) do

@@ -509,7 +509,8 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     materialService.getMaterials(q, $scope.filters.project).then(function(data){
       $scope.data.materials = data.hits.hits;
       // http://www.codinghorror.com/blog/2007/12/the-danger-of-naivete.html
-      if ($scope.filters.randomize) {
+      // explicity check for true, or "true" as it comes in as a string
+      if ($scope.randomize == true) {
         $scope.data.materials = (function knuthfisheryates(arr) {
           var i, temp, j, len = arr.length;
           for (i = 0; i < len; i++) {
