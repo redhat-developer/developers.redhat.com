@@ -15,6 +15,7 @@ require 'open3'
 class Options
   def self.parse(args)
     options = {:build => false, :restart => false, :drupal => false,
+               :stage_pr => false,
                :awestruct => {:gen => false, :preview => false}}
 
     opts_parse = OptionParser.new do |opts|
@@ -45,6 +46,11 @@ class Options
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
         options[:drupal] = true
+      end
+
+      opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
+        puts pr
+        options[:stage_pr] = pr
       end
 
       # No argument, shows at tail.  This will print an options summary.
@@ -102,7 +108,7 @@ def execute_docker(cmd, *args)
 end
 
 def options_selected? options
-  (options[:build] || options[:restart] || options[:awestruct][:gen] || options[:awestruct][:preview])
+  (options[:build] || options[:restart] || options[:awestruct][:gen] || options[:awestruct][:preview] || options[:stage_pr])
 end
 
 def is_port_open?(host, port)
@@ -246,3 +252,11 @@ end
 if options[:awestruct][:preview]
   execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake clean preview[docker]']
 end
+
+if options[:stage_pr]
+  puts 'Running the stage PR for PR number' + options[:stage_pr].to_s
+  puts "running rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}]"
+  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}]"]
+  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake clean']
+end
+

@@ -184,6 +184,7 @@ end
 
 desc 'Clean out generated site and temporary files'
 task :clean, :spec do |task, args|
+  puts 'Im running'
   require 'fileutils'
   dirs = ['.awestruct', '.sass-cache', '_site']
   if args[:spec] == 'all'
