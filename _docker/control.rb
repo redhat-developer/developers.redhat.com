@@ -65,31 +65,35 @@ class Options
   end
 end
 
+def building_ci_job?()
+  return ENV['BUILD_NUMBER']
+end
+
 def modify_env(opts)
-  begin
-    crypto = GPGME::Crypto.new
-    fname = File.open '../_config/secrets.yaml.gpg'
+  unless (building_ci_job?)
+    begin
+      puts 'decrypting vault'
+      crypto = GPGME::Crypto.new
+      fname = File.open '../_config/secrets.yaml.gpg'
 
-    secrets = YAML.load(crypto.decrypt(fname).to_s)
+      secrets = YAML.load(crypto.decrypt(fname).to_s)
 
-    secrets.each do |k, v|
-      if k.include? 'drupal'
-        ENV[k] = v if opts[:drupal]
-      else
-        ENV[k] = v
+      secrets.each do |k, v|
+        if k.include? 'drupal'
+          ENV[k] = v if opts[:drupal]
+        else
+          ENV[k] = v
+        end
       end
-    end
-    puts 'Vault decrypted'
-  rescue GPGME::Error => e
-    #If we have a BUILD_NUMBER in the environment we are building from Jenkins
-    unless(ENV['BUILD_NUMBER'])
+      puts 'Vault decrypted'
+    rescue GPGME::Error => e
+      #If we have a BUILD_NUMBER in the environment we are building from Jenkins
       abort "Unable to decrypt vault (#{e})"
     end
   end
 
-
   port_names = ['AWESTRUCT_HOST_PORT', 'DRUPAL_HOST_PORT', 'DRUPALMYSQL_HOST_PORT',
-   'MYSQL_HOST_PORT', 'ES_HOST_PORT1', 'ES_HOST_PORT2', 'SEARCHISKO_HOST_PORT']
+    'MYSQL_HOST_PORT', 'ES_HOST_PORT1', 'ES_HOST_PORT2', 'SEARCHISKO_HOST_PORT']
 
   # We have to reverse the logic in `is_port_open` because if nothing is listening, we can use it
   available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(port_names.size).force
