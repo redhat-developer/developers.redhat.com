@@ -86,11 +86,6 @@ dcp.controller('eventsController', function($scope, searchService) {
         $scope.events[itemStartMonth] = $scope.events[itemStartMonth] || [];
         $scope.events[itemStartMonth].push(item);
 
-        // push it to next months if it ends in that month
-        if(itemStartMonth !== itemEndMonth) {
-          $scope.events[itemEndMonth] = $scope.events[itemEndMonth] || [];
-          $scope.events[itemEndMonth].push(item);
-        }
 
       }
 
