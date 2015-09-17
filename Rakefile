@@ -412,6 +412,9 @@ def msg(text, level = :info)
 end
 
 def rsync(local_path:, host:, remote_path:, delete: false, excludes: [], dry_run: false, verbose: false, ignore_non_existing: false)
+  unless File.exist?(ENV['HOME']+'/.ssh/id_rsa.pub')
+    abort("#{ENV['HOME']}+'/.ssh/id_rsa.pub' does not exists. Rsync will fail")
+  end
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
   cmd = "rsync --partial --archive --checksum --compress --omit-dir-times #{'--quiet' unless verbose} #{'--verbose' if verbose} #{'--dry-run' if dry_run} #{'--ignore-non-existing' if ignore_non_existing} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
   puts "Rsync command: #{cmd}" if verbose
