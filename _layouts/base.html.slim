@@ -7,8 +7,9 @@ doctype html
 
 head
   - if site.metrics
-    / Adobe DTM staging
-    script src="//assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js"
+    - if site.dtm_code
+      / Adobe DTM staging
+      script src="#{site.dtm_code}"
   meta charset='utf-8'
   meta name='google-site-verification' content='bxtQxPXTaA2g5bXw_buofCT53_Uwp1fGAu9uHSA0UWc'
   meta name='viewport' content='width=device-width, initial-scale=1.0'
@@ -70,9 +71,10 @@ head
 
 body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_class}")
   - if site.metrics
-    / Adobe DTM staging
-    javascript:
-      _satellite.pageBottom();
+    - if site.dtm_code
+      / Run Adobe DTM staging
+      javascript:
+        _satellite.pageBottom();
       
     / All metrics and tracking are run via Google Tag Manager
     javascript:
