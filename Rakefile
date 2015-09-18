@@ -124,14 +124,17 @@ end
 
 desc 'Generate the site and deploy using the given profile'
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
+  puts 'running deploy'
   # Delay awestruct failing the build until after we rsync files, if we are staging.
   # Allows errors to be viewed
   begin
     run_awestruct "-P #{args[:profile]} -g --force -q"
   rescue
     if args[:profile] != 'production'
+      puts 'awestruct_failed'
       awestruct_failed = true
     else
+      puts 'awestruct_failed, exit'
       exit 1
     end
   end
@@ -184,7 +187,7 @@ end
 
 desc 'Clean out generated site and temporary files'
 task :clean, :spec do |task, args|
-  puts 'Im running'
+  puts 'running clean'
   require 'fileutils'
   dirs = ['.awestruct', '.sass-cache', '_site']
   if args[:spec] == 'all'
@@ -297,6 +300,7 @@ end
 
 desc 'Make sure Pull Request dirs exist'
 task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
+  puts 'running create_pr_dirs'
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
     rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{args[:pr_prefix]}")
@@ -366,12 +370,16 @@ end
 
 # Execute Awestruct
 def run_awestruct(args)
+  puts "ENV['site_base_path'] = #{ENV['site_base_path']}"
+  puts "ENV['site_path_suffix'] = #{ENV['site_path_suffix']}"
+
   if ENV['site_base_path']
     base_url = ENV['site_base_path']
     base_url = "#{base_url}/#{ENV['site_path_suffix']}" if ENV['site_path_suffix']
   end
   args ||= "" # Make sure that args is initialized
   args << " --url " + base_url if base_url
+  puts "Executing awestruct with args #{args}" 
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
     raise "Error executing awestruct"
   end
