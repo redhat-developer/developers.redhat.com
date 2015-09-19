@@ -68,5 +68,5 @@ group :vdiff do
 end
 
 group :health do
-  gem 'blinkr', github: 'LightGuard/blinkr'
+  gem 'blinkr', '~> 0.3'
 end
