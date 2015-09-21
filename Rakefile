@@ -105,7 +105,7 @@ task :gen, [:profile] => :check do |task, args|
 end
 
 desc "Push local commits to #{$remote}/master"
-task :push, [:profile, :tag_name] => :init do
+task :push, [:profile, :tag_name] => :init do |task, args|
   if !args[:tag_name].nil?
     msg "Pushing tags"
     system "git push --tags #{$remote} master"

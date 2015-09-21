@@ -261,6 +261,6 @@ if options[:stage_pr]
   execute_docker_compose :kill
   puts 'Running the stage PR for PR number' + options[:stage_pr].to_s
   puts "running rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}]"
-  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake setup; bundle exec rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}]; bundle exec rake clean deploy[staging]"]
+  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}] clean deploy[staging]"]
 end
 
