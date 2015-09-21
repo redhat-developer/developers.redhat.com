@@ -118,10 +118,14 @@ module JBoss
                       if (page.metadata[:browse].include?('blob') || page.metadata[:browse].include?('tree'))
                         if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
                           a['href'] = page.metadata[:browse] + '/' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
-                        else
+                        else # There is no product
                           a['href'] = page.metadata[:browse] + '/' + page.output_path.split('/').last.gsub('index.html', '') + url
                         end
-                      altered = true
+
+                        # One off for petclinic
+                        if url == 'CHANGES.md' && page.output_path.include?('spring-petclinic')
+                          a['href'] = File.join page.metadata[:browse], url
+                        end
                       else
                         if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
                           a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
@@ -129,9 +133,9 @@ module JBoss
                           a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split('/').last.gsub('index.html', '') + url
                         end
                         a['href'] = page.metadata[:browse] + '/blob/master/' + page.output_path.split('/').last.gsub('index.html', '') + url
-                        altered = true
                       end
                     end
+                    altered = true
                   end
                 end
               end
