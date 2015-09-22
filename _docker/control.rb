@@ -261,6 +261,27 @@ if options[:stage_pr]
   execute_docker_compose :kill
   puts 'Running the stage PR for PR number' + options[:stage_pr].to_s
   puts "running rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}]"
-  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}] clean deploy[staging]"]
-end
 
+  execute_docker_compose :up, %w(-d elasticsearch mysql searchisko searchiskoconfigure)
+
+  begin
+    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
+  rescue Excon::Errors::SocketError => se
+    puts se.backtrace
+    puts('There has been a problem with your CA certs, are you developing using boot2docker?')
+    puts('If so set your DOCKER_SSL_VERIFY environment variable to false')
+    puts('E.g export DOCKER_SSL_VERIFY=false')
+    exit #quit the whole thing
+  end
+
+  puts 'Waiting to proceed until searchiskoconfigure has completed'
+
+  # searchiskoconfigure takes a while, we need to wait to proceed
+  while configure_service.info['State']['Running']
+    # TODO We need to figure out if the container has actually died, if it died print an error and abort
+    sleep 5
+    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
+  end
+  puts 'Searchisko configure started'
+  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}] clean deploy[staging_docker_pr]"]
+end

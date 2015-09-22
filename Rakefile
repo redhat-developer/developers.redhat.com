@@ -131,7 +131,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   # Delay awestruct failing the build until after we rsync files, if we are staging.
   # Allows errors to be viewed
   begin
-    run_awestruct "-P #{args[:profile]} -g --force -q"
+    run_awestruct "-P #{args[:profile]} -g --force"
   rescue
     if args[:profile] != 'production'
       puts 'awestruct_failed'
