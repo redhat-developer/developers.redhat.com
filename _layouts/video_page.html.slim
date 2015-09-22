@@ -9,8 +9,10 @@ layout: base
 - page.twitter_card = 'player'
 - page.og_type = 'video'
 
-.row
-  h2.large-title#developer-materials Developer Materials
+/ Check if there is a target product for this video
+- if page.video.present? && page.video.target_product.present? && page.video.target_product[0].present?
+  - product = site.products[page.video.target_product[0]]
+
 .row.content
   .large-24.columns
     ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
@@ -21,12 +23,44 @@ layout: base
         a href="#{site.base_url}/#{page.output_path}" #{page.video.title}
         meta itemprop="position" content="3"
 
-.row.content
+header.row
+  .large-24
+    h2 #{page.video.title}
+    / h3 Event Name Not Avaiable
+    p.video-stats #{page.video.view_count} Views, #{page.video.published_date.strftime("%B %d %Y")}
+    = partial("share.html.slim", :url => page.video_url, :title => page.description[0 .. 139], :className => 'visible-by-default')
+.row.content.grow
   .large-18.columns
-    = video_player(page.video)
-    = partial("share.html.slim", :url => page.video_url, :title => page.description[0 .. 139])
-
+   = video_player(page.video)
   .large-6.columns
-    h4#related-links Related Links
-    = page._relatedlinks
+    / This should be changed to full_description once it's available 
+    p #{page.video.full_description}
+    ul.inline-list
+      li
+        strong Tags:
+      - for tag in page.video.tags
+        - unless tag === 'red hat'
+          li #{tag}
+    .speakers-list
+      - for speaker in page.video.cast
+        .speaker
+          | #{speaker[:name]}
 
+/ Uncomment when we get transcripts
+/ .row
+/   .transcript
+/     .transcript-wrap
+/       p  transcript will go here
+/     a.transcript-toggle-more(href="#")
+/       span.more More
+/       span.less Less
+
+- if product.present?
+  .row
+    h2 More Videos about #{product.abbreviated_name}
+    .video-carousel(data-similar-videos="#{page.video.target_product[0]}")
+      a.carousel-pager.prev
+        i.fa.fa-arrow-circle-left
+      a.carousel-pager.next
+        i.fa.fa-arrow-circle-right
+      ul

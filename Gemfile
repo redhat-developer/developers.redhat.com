@@ -46,7 +46,7 @@ gem "octokit", "~> 4.0"
 # From a location on your disk:
 #    gem 'aweplug', path: '<path_to_aweplug_on_your_disk>'
 #
-gem 'aweplug', github: 'awestruct/aweplug'
+gem 'aweplug', github: 'wesbos/aweplug', :branch => 'FullDescription'
 
 group :test do
   gem 'climate_control'

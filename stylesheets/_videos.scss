@@ -1,0 +1,48 @@
+.speakers-list {
+
+}
+
+.speaker {
+  width: 48%;
+  margin-right: 2%;
+  float: left;
+  text-align: center;
+  img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+}
+
+
+.video-carousel {
+  display: flex;
+  align-items:center;
+  text-align: center;
+  a {
+    flex:0 0 5%;
+    font-size: 40px;
+    color: black;
+    &.next {
+      order:3;
+    }
+  }
+  ul {
+    flex:1 0 90%;
+    margin:0;
+    padding:0;
+    list-style: none;
+    display:flex;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    li {
+      flex: 1 0 23%;
+      margin: 0 1%;
+      padding: 1%;
+      background:$grey;
+    }
+  }
+  h4 {
+    font-size:18px;
+  }
+}
