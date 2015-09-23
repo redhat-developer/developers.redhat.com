@@ -29,9 +29,9 @@ awestruct:
     - github_token
     - drupal_user
     - drupal_password
-    - AWESTRUCT_HOST_PORT
-    - SEARCHISKO_HOST_PORT
-    - DRUPAL_HOST_PORT
+    - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
+    - SEARCHISKO_HOST_PORT=<%=ENV['SEARCHISKO_HOST_PORT']%>
+    - DRUPAL_HOST_PORT=<%=ENV['DRUPAL_HOST_PORT']%>
     - DRUPAL_HOST_IP
 drupal:
   build: ./drupal
