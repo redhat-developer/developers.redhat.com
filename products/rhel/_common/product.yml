@@ -119,4 +119,15 @@ skip_maven_instructions: true
 other_product: true
 upstream_projects:
   - fedora
-
+get_started_multipath: true
+get_started_paths:
+  - id: "cpp"
+    name: CPP
+  - id: "perl"
+    name: Perl
+  - id: "php"
+    name: PHP
+  - id: "python"
+    name: Python
+  - id: "ruby"
+    name: Ruby
