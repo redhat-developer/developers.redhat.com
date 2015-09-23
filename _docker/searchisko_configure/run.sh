@@ -111,8 +111,8 @@ wait
 echo ========== Run indexers ===========
 
 #No Content Provider
-reindex_project 'sys_projects' 
-reindex_contributor 'sys_contributors'
+reindex_project 'sys_projects'&
+reindex_contributor 'sys_contributors'&
 
 # jbossdeveloper
 reindex_from_persistence 'jbossdeveloper_quickstart' &
