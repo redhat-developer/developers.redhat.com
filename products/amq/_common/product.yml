@@ -55,34 +55,34 @@ downloads:
     assets:
       zip:
         size: 277mb
-        name: Zip (Full Install)
+        name: Full Install
       zip_cpp:
         size: 6mb
-        name: Zip C++
+        name: CMS C++ Client API
       amqp_jms_client:
-        name: AMQP JMS Client
+        name: AMQP 1.0 JMS Client API
         size: 3mb
       cppclient:
-        name: AMQP Client
+        name: AMQP 1.0 C++ Client API
         artifacts:
           vs2012:
-            name: AMQP C++ Client x86
+            name: AMQP 1.0 C++ Client x86
             size: 34mb
           vs2012_sources:
-            name: AMQP C++ Sources
+            name: AMQP 1.0 C++ Client Sources
             size: 1mb
           vs2012_64:
-            name: AMQP C++ Client 64
+            name: AMQP 1.0 C++ Client 64
             size: 36mb
       net_client:
         size: 9mb
-        name: .NET Client
+        name: NMS .NET Client API
       net_lite_sdk:
         size: 1mb
-        name: .NET Lite SDK
+        name: AMQP 1.0 .NET Lite Client SDK
       net_lite_sources:
         size: 1mb
-        name: .NET Lite Sources        
+        name: AMQP 1.0 .NET Lite Client Sources
   6.1.0.GA:
     release_date: 2014-04-14
     description: Our small footprint, high performance, open source messaging platform
