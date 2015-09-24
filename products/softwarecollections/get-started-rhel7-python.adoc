@@ -221,7 +221,7 @@ This is due to not having run `scl enable` first. When `scl enable` runs, in add
 +
 Python 3.x is a new version of the Python language that is incompatible with the previous 2.x series. The version of Python included with Red Hat Enterprise Linux in `/usr/bin/python` is from the Python 2.x series. There is a large amount of code written for Python 2.x that will not run without modification on Python 3.x.
 +
-For more information see link:https://wiki.python.org/moin/Python2orPython3[Should I use Python 2 or Python 3 for my development activity?] at link:python.org[Python.org].
+For more information see link:https://wiki.python.org/moin/Python2orPython3[Should I use Python 2 or Python 3 for my development activity?] at link:https://python.org[Python.org].
 +
 After you have added Python 3 to your environment by using `scl enable`, the command `python` as well as `python3` will run Python 3 from RHSCL. Python 2 can be run by using the command `python2` with or without RHSCL. Therefore, it is recommended that you use either the command `python2` or `python3` to ensure that you get the version you are expecting.
 8. Some existing Python programs fail after I’ve enabled Python 3 from RHSCL.
