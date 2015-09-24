@@ -1,0 +1,219 @@
+:awestruct-layout: product-get-started-multipath
+:awestruct-interpolate: true
+
+## Path Name
+PHP
+
+## Path Intro section
+[.large-6.columns]
+image:#{cdn(site.base_url + '/images/products/multipath/php-logo.png')}[PHP Logo]
+
+[.large-18.columns#PathIntroSection]
+Get started developing with PHP 5.6 from Red Hat Software Collections in under 10 minutes.
+
+## Prerequisites section title
+Introduction and Prerequisites
+
+## Prerequisites section
+In this tutorial, you will set your system up to install software from Red Hat Software Collections (RHSCL), which provides the latest development technologies for Red Hat Enterprise Linux. Then, you will install PHP 5.6 and run a simple “Hello, World” application. The whole tutorial should take less than ten minutes to complete.
+
+You will need a Red Hat Enterprise Linux 7 system with a current Red Hat subscription that allows you to download software and updates from Red Hat. Access to the Red Hat Software Collections (RHSCL) is included with many Red Hat Enterprise Linux (RHEL) subscriptions. For more information about which subscriptions include RHSCL, see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
+
+If you don’t have a Red Hat Enterprise Linux subscription, you can try it for free. Get started with an evaluation at link:https://access.redhat.com/products/red-hat-enterprise-linux/evaluation[].
+Select the _Red Hat Enterprise Linux Developer Workstation_ option to ensure your evaluation will include both RHSCL and DTS.
+
+If you have problems at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+## Step1 Duration
+2 minutes
+
+## Step1 Title
+Enable Red Hat Software Collections (RHSCL)
+
+## Step2 Duration
+2 minutes
+
+## Step2 Title
+Setup your development environment
+
+## Step3 Duration
+2 minutes
+
+## Step3 Title
+Hello World and your first application
+
+## Step1 Content
+
+In this step you will configure your system to obtain software, including the latest dynamic languages, from the RHSCL software repository. Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
+
+### Using the Red Hat Subscription Manager GUI
+
+Red Hat Subscription Manager can be started from the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
+
+Select _Repositories_ from the _System_ menu of the subscription manager. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-7-rpms_ and _rhel-7-server-optional-rpms_. If you are using a desktop version of Red Hat Enterprise Linux, the repositories will be named _rhel-desktop-rhscl-7-rpms_ and _rhel-7-desktop-optional-rpms_. +
+ 
+If you don’t see any RHSCL repositories in the list, your subscription might not include it.
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel7/manage-repositories.png')}[Manage Repositories]
+
+See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
+
+
+### Using subscription-manager from the command line
+
+You can add or remove software repositories from the command line using the `subscription-manager` tool as the root user. Use the `--list` option to view the available software repositories and verify that you have access to RHSCL:
+
+[.code-block]
+```
+$ su -
+# subscription-manager repos --list | egrep rhscl
+```
+
+If you don’t see any RHSCL repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
+
+If you are using a desktop edition of Red Hat Enterprise Linux, change `-server-` to `-desktop-` in the following commands:
+
+[.code-block]
+```
+# subscription-manager repos --enable rhel-server-rhscl-7-rpms
+# subscription-manager repos --enable rhel-7-server-optional-rpms
+```
+
+## Step2 Content
+
+In this next step you will install PHP 5.6 from RHSCL:
+
+[.code-block]
+```
+$ su -
+# yum install rh-php56
+```
+
+If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+## Step3 Content
+
+Under your normal user ID, start a _Terminal_ window. First, use `scl enable` to add PHP 5.6 to your environment, then run PHP in interactive mode to see the versionn number.
+
+[.code-block]
+```
+$ scl enable rh-php56 bash
+$ php -a
+Interactive shell
+
+php > printf("Hello, Red Hat Developers World from PHP %s\n",PHP_VERSION);
+Hello, Red Hat Developers World from PHP 5.6.5
+php > quit
+```
+
+The next step is to create a PHP program that can be run from the command line. Using your preferred text editor, create a file named `hello.php`: 
+
+`$ nano hello.php`
+
+Add the following text to the file:
+[.code-block]
+```
+#!/usr/bin/env php
+<?php
+print "Hello, Red Hat Developers World from PHP " . PHP_VERSION . "\n";
+?>
+```
+
+Save it and exit the editor. Then make the script executable and run it:
+[.code-block]
+```
+$ chmod +x hello.php
+$ ./hello.php
+Hello, Red Hat Developers World from PHP 5.6.5
+```
+
+If you get an error that PHP is not found, or see an older version number, you need to run `scl enable rh-php56 bash` first.
+
+### Working with RHSCL packages
+
+The software packages in RHSCL are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login, or start a new terminal sesssion, `scl enable` needs to be run again.
+
+While it is possible to change the system profile to make RHSCL packages part of the system’s global environment, this is not recommended. Doing this can cause conflicts and unexpected problems with other applications because the system version of the package is obscured by having the RHSCL version in the path first.
+
+
+#### Permanently enable RHSCL in your development environment
+
+To make one or more RHSCL packages a permanent part of your development environment, you can add it to the login script for your specific user ID. this is the recommend approach for development as only processes run under your user ID will be affected.
+
+Using your preferred text editor, add the following line to `~/.bashrc`:
+
+`source scl_source enable rh-php56`
+
+After making the change, you should log out and log back in again.
+
+When you deliver an application that uses RHSCL packages, a best practice is to have your startup script handle the `scl enable` step for your application. You should not ask your users to change their environment as this is likely to create conflicts with other applications.
+
+### Where to go next?
+
+*PHP Tutorial at php.net* +
+link:http://php.net/manual/en/tutorial.php[]
+
+*Find additional PHP components* +
+`$ yum list available rh-php56-\*`
+
+*View the list of software available in RHSCL* +
+`$ yum --disablerepo="*" --enablerepo="rhel-server-rhscl-7-rpms" list available`
+
+## More Resources
+
+* link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)]
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/index.html[Red Hat Software Collection 2.0 Documentation]
+** link:https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/index.html[Red Hat Software Collections 2.0 Release Notes]
+** link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/Packaging_Guide/index.html[Red Hat Software Collections 2.0 Packaging Guide] +
+_Developers should read this guide to get a more complete understanding of how software collections work, and how to deliver software that uses RHSCL._
+
+### Become a Red Hat developer: developers.redhat.com
+
+Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:http://developers.redhat.com/[developers.redhat.com].
+
+## Faq section title
+[[troubleshooting]]Troubleshooting and FAQ
+
+## Faq section
+
+1. The RHSCL repository is not available or is not found on my system.
++
+The name of the repository depends on whether you have a server or desktop version of Red Hat Enterprise Linux installed.
++
+Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. See link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
+2. yum install fails due to a missing dependency.
++
+These packages are in the optional RPMs repository, which is not enabled by default. See <<Enable Red Hat Software Collections>> for how to enable both the optional RPMs and RHSCL repositories.
+3. How can I find out what RHSCL packages are installed?
++
+`scl --list` will show the list of RHSCL packages that have been installed, whether they are enabled or not.
++
+[.code-block]
+```
+$ scl --list
+rh-perl520
+rh-php56
+rh-python34
+rh-ruby22
+```
+4. How do I find out if there is a newer version of PHP in the RHSCL?
++
+How do I find out what version of PHP is available in the RHSCL?
++
+I have the RHSCL repository enabled, but I can’t find the PHP version listed in this tutorial.
++
+Use the following command to find packages with matching names:
++
+`# yum list available rh-php\*`
+5. I’ve installed PHP 5.6 from RHSCL, but it is not in my path.
++
+When I type ‘php’, I get an older version.
++
+RHSCL does not alter the system path.  You need to use `scl enable` to change the environment for your session:
++
+`$ scl enable rh-php56 bash`
++
+For more information see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/index.html[Red Hat Software Collection 2.0 Documentation].
+6. When I try to run PHP 5.6, I get an error about a missing shared library.
++
+This is due to not having run `scl enable` first. When `scl enable` runs, in addition to setting up the command search PATH, it also sets up the search path for shared libraries, LD_LIBRARY_PATH.
