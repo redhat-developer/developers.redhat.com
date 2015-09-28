@@ -9,9 +9,10 @@ ENV LC_ALL en_US.UTF-8
 RUN yum install -y  \
   pngquant
 
-RUN wget http://prdownloads.sourceforge.net/optipng/optipng-0.7.5.tar.gz?download
-RUN mv optipng* optipng.tar.gz
-RUN tar -xvzf optipng.tar.gz
+RUN wget http://prdownloads.sourceforge.net/optipng/optipng-0.7.5.tar.gz?download && \
+  mv optipng* optipng.tar.gz && \
+  tar -xvzf optipng.tar.gz
+
 WORKDIR /tmp/optipng-0.7.5
 RUN ./configure && make && make install
 
