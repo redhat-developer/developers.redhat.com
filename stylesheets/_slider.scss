@@ -17,6 +17,12 @@
       color:white;
       padding-top: 20px;
       padding-bottom: 20px;
+      a.slider-img {
+        width: 100%;
+        img {
+          width: inherit;
+        }
+      }
       @include flexbox;
       & > .row {
         @include align-self(center);
