@@ -24,9 +24,16 @@ app.termsAndConditions = {
     var tcEndsIn = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcEndsIn'));
     var tcDownloadURL = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadURL'));
     var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
+    var product = $.encoder.canonicalize(app.termsAndConditions.urlParam('p'));
+    var tcProduct = $.encoder.canonicalize(product).replace(/\+/g, ' ');
+
 
     if (tcWhenSigned) {
       $("#tcWhenSigned").html($.encoder.encodeForHTML(tcWhenSigned));
+    }
+
+    if (tcProduct) {
+      $("h2#thank-you").append($.encoder.encodeForHTML(" " + tcProduct));
     }
 
     if(!tcWhenSigned) {
