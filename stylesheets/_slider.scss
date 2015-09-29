@@ -39,10 +39,13 @@
   }
 
   .slide--devnation {
-    background:cdn("../images/slider/homepage_carousel_devnation_desktop_bkg.jpg") center repeat-x;
+    background:cdn("../images/slider/RHDev_homecarousel_docker_desktop_09252015.jpg") center repeat-x;
     background-size:auto 100%;
     @include mobile-landscape-and-down {
-      background-image:cdn("../images/slider/homepage_carousel_devnation_mobile_bkg.jpg");
+      background-image:cdn("../images/slider/RHDev_homecarousel_docker_mobile_09252015.png");
+      .slide-text {
+        margin-top: 0;
+      }
     }
     text-align: center;
     h2 {
@@ -56,6 +59,9 @@
     img {
       margin-top: 20px;
       margin-bottom: 20px;
+    }
+    .slide-text {
+      margin-top: 65px;
     }
   }
 
