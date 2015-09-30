@@ -14,7 +14,6 @@ require 'open3'
 require './lib/misc/Options.rb'
 require './lib/misc/FileHelpers.rb'
 
-
 def building_ci_job?
   return ENV['BUILD_NUMBER']
 end
@@ -108,7 +107,7 @@ def block_wait_drupal_started
   end
 end
 
-def block_wait_searchisko_configure_started
+def block_wait_searchisko_configure_finished
   begin
     configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
   rescue Excon::Errors::SocketError => se
@@ -137,7 +136,7 @@ def startup_supporting_services(opts)
     execute_docker_compose :up, %w(-d elasticsearch mysql searchisko searchiskoconfigure)
   end
 
-  block_wait_searchisko_configure_started
+  block_wait_searchisko_configure_finished()
 
   # Check to see if Drupal is accepting connections before continuing
   block_wait_drupal_started if opts[:drupal]
@@ -204,22 +203,9 @@ if options[:stage_pr]
   execute_docker_compose :kill
   puts 'Running the docker staging build for PR number' + options[:stage_pr].to_s
 
-  execute_docker_compose :up, %w(-d elasticsearch mysql searchisko searchiskoconfigure)
+  startup_supporting_services(options)
 
-  begin
-    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
-  rescue Excon::Errors::SocketError => se
-    puts se.backtrace
-    exit #quit the whole thing
-  end
-
-  puts 'Waiting to proceed until searchiskoconfigure has completed'
-
-  # searchiskoconfigure takes a while, we need to wait to proceed
-  while configure_service.info['State']['Running']
-    sleep 5
-    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
-  end
+  block_wait_searchisko_configure_finished()
 
   puts 'Searchisko configure started'
   execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}] clean deploy[staging_docker_pr]"]
