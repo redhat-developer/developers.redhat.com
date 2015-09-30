@@ -105,8 +105,11 @@ task :gen, [:profile] => :check do |task, args|
 end
 
 desc "Push local commits to #{$remote}/master"
-task :push => :init do
-  system "git push --tags #{$remote} master"
+task :push, [:profile, :tag_name] => :init do |task, args|
+  if !args[:tag_name].nil?
+    msg "Pushing tags"
+    system "git push --tags #{$remote} master"
+  end
 end
 
 desc 'Tag the source files'
@@ -124,14 +127,17 @@ end
 
 desc 'Generate the site and deploy using the given profile'
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
+  msg 'running deploy'
   # Delay awestruct failing the build until after we rsync files, if we are staging.
   # Allows errors to be viewed
   begin
-    run_awestruct "-P #{args[:profile]} -g --force -q"
+    run_awestruct "-P #{args[:profile]} -g --force"
   rescue
     if args[:profile] != 'production'
+      msg 'awestruct_failed'
       awestruct_failed = true
     else
+      msg 'awestruct_failed, exit'
       exit 1
     end
   end
@@ -184,6 +190,7 @@ end
 
 desc 'Clean out generated site and temporary files'
 task :clean, :spec do |task, args|
+  msg 'running clean'
   require 'fileutils'
   dirs = ['.awestruct', '.sass-cache', '_site']
   if args[:spec] == 'all'
@@ -253,7 +260,7 @@ task :list_jiras, [:job, :build_number] do |task, args|
   # Read the changes
   changes = jenkins.read_changes(args[:job], args[:build_number])
 
-  puts changes[:issues]
+  msg changes[:issues]
 end
 
 desc 'Comment to any mentioned JIRA issues that the changes can now be viewed.'
@@ -285,7 +292,7 @@ task :reap_old_pulls, [:pr_prefix] do |task, args|
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
     reap.each do |p|
-      puts "Reaping staging and cdn for Pull ##{p}"
+      msg "Reaping staging and cdn for Pull ##{p}"
       # Clear the path on the html staging server
       rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{args[:pr_prefix]}/#{p}", delete: true, ignore_non_existing: true)
       # Clear the path on the cdn
@@ -296,6 +303,7 @@ end
 
 desc 'Make sure Pull Request dirs exist'
 task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
+  msg 'running create_pr_dirs'
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
     rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{args[:pr_prefix]}")
@@ -365,12 +373,14 @@ end
 
 # Execute Awestruct
 def run_awestruct(args)
+
   if ENV['site_base_path']
     base_url = ENV['site_base_path']
     base_url = "#{base_url}/#{ENV['site_path_suffix']}" if ENV['site_path_suffix']
   end
   args ||= "" # Make sure that args is initialized
   args << " --url " + base_url if base_url
+  msg "Executing awestruct with args #{args}" 
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
     raise "Error executing awestruct"
   end
@@ -411,11 +421,14 @@ def msg(text, level = :info)
 end
 
 def rsync(local_path:, host:, remote_path:, delete: false, excludes: [], dry_run: false, verbose: false, ignore_non_existing: false)
+  unless File.exist?(ENV['HOME']+'/.ssh/id_rsa')
+    abort("#{ENV['HOME']}+'/.ssh/id_rsa' does not exists. Rsync will fail")
+  end
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
   cmd = "rsync --partial --archive --checksum --compress --omit-dir-times #{'--quiet' unless verbose} #{'--verbose' if verbose} #{'--dry-run' if dry_run} #{'--ignore-non-existing' if ignore_non_existing} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
-  puts "Rsync command: #{cmd}" if verbose
+  msg "Rsync command: #{cmd}" if verbose
   unless open3(cmd) == 0
-    puts "error executing rsync, exiting"
+    msg "error executing rsync, exiting"
     exit 1
   end
 end
@@ -537,7 +550,7 @@ class GitHub
         end
       end
     else
-      puts "Error requesting cosed pulls from github. Status code #{resp.code}. Error message #{resp.body}"
+      msg "Error requesting cosed pulls from github. Status code #{resp.code}. Error message #{resp.body}"
     end
     pulls
   end
@@ -546,7 +559,7 @@ class GitHub
     if issues.length > 0
       issue_list = issues.collect {|i| %Q{<a href="https://issues.jboss.org/browse/} + i + %Q{">} + i + %Q{</a>}}.join(", ")
       comment_on_pull(org, repo, pull, "Related issue#{issues.length > 1 ? 's' : ''}: #{issue_list}")
-      puts "Successfully commented JIRA issue list on https://github.com/redhat-developer/developers.redhat.com/pull/#{pull}"
+      msg "Successfully commented JIRA issue list on https://github.com/redhat-developer/developers.redhat.com/pull/#{pull}"
     end
   end
 
@@ -605,7 +618,7 @@ class Jenkins
           issues << item['comment'].scan(JIRA::KEY_PATTERN)
         end
     else
-      puts "Error loading changes from Jenkins using #{url}. Status code #{resp.code}. Error message #{resp.body}"
+      msg "Error loading changes from Jenkins using #{url}. Status code #{resp.code}. Error message #{resp.body}"
     end
     # There can be multiple comments per issue
     {:issues => issues.flatten.uniq, :commits => commits}
@@ -631,10 +644,10 @@ class JIRA
       body = %Q{{ "body": "#{comment}"}}
       resp = post(url, body)
       if resp.is_a?(Net::HTTPSuccess)
-        puts "Successfully commented on #{k}"
+        msg "Successfully commented on #{k}"
       else
-        puts "Error commenting on #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
-        puts "Request body: #{body}"
+        msg "Error commenting on #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+        msg "Request body: #{body}"
       end
     end
   end
@@ -647,11 +660,11 @@ class JIRA
       if json['fields'] && json['fields']['status'] && json['fields']['status']['name']
         json['fields']['status']['name']
       else
-        puts "Error fetching status of #{issue} from JIRA. Status field not present"
+        msg "Error fetching status of #{issue} from JIRA. Status field not present"
         -1
       end
     else
-      puts "Error fetching status of #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
+      msg "Error fetching status of #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
       -1
     end
   end
@@ -665,7 +678,7 @@ class JIRA
         json['fields']['customfield_12310220']
       end
     else
-      puts "Error fetching linked pull request for #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
+      msg "Error fetching linked pull request for #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
       -1
     end
   end
@@ -713,10 +726,10 @@ class JIRA
         }
         resp = post(url, body)
         if resp.is_a?(Net::HTTPSuccess)
-          puts "Successfully linked https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k}"
+          msg "Successfully linked https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k}"
         else
-          puts "Error linking https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
-          puts "Request body: #{body}"
+          msg "Error linking https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
+          msg "Request body: #{body}"
         end
         linked_issues << k
       end

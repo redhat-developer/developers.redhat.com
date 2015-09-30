@@ -15,6 +15,7 @@ require 'open3'
 class Options
   def self.parse(args)
     options = {:build => false, :restart => false, :drupal => false,
+               :stage_pr => false,
                :awestruct => {:gen => false, :preview => false}}
 
     opts_parse = OptionParser.new do |opts|
@@ -47,6 +48,10 @@ class Options
         options[:drupal] = true
       end
 
+      opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
+        options[:stage_pr] = pr
+      end
+
       # No argument, shows at tail.  This will print an options summary.
       opts.on_tail('-h', '--help', 'Show this message') do
         puts opts
@@ -59,28 +64,34 @@ class Options
   end
 end
 
+def building_ci_job?()
+  return ENV['BUILD_NUMBER']
+end
+
 def modify_env(opts)
-  begin
-    crypto = GPGME::Crypto.new
-    fname = File.open '../_config/secrets.yaml.gpg'
+  unless (building_ci_job?)
+    begin
+      puts 'decrypting vault'
+      crypto = GPGME::Crypto.new
+      fname = File.open '../_config/secrets.yaml.gpg'
 
-    secrets = YAML.load(crypto.decrypt(fname).to_s)
+      secrets = YAML.load(crypto.decrypt(fname).to_s)
 
-    secrets.each do |k, v|
-      if k.include? 'drupal'
-        ENV[k] = v if opts[:drupal]
-      else
-        ENV[k] = v
+      secrets.each do |k, v|
+        if k.include? 'drupal'
+          ENV[k] = v if opts[:drupal]
+        else
+          ENV[k] = v
+        end
       end
+      puts 'Vault decrypted'
+    rescue GPGME::Error => e
+      abort "Unable to decrypt vault (#{e})"
     end
-    puts 'Vault decrypted'
-  rescue GPGME::Error => e
-    puts "Unable to decrypt vault (#{e})"
   end
 
-
   port_names = ['AWESTRUCT_HOST_PORT', 'DRUPAL_HOST_PORT', 'DRUPALMYSQL_HOST_PORT',
-   'MYSQL_HOST_PORT', 'ES_HOST_PORT1', 'ES_HOST_PORT2', 'SEARCHISKO_HOST_PORT']
+    'MYSQL_HOST_PORT', 'ES_HOST_PORT1', 'ES_HOST_PORT2', 'SEARCHISKO_HOST_PORT']
 
   # We have to reverse the logic in `is_port_open` because if nothing is listening, we can use it
   available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(port_names.size).force
@@ -99,7 +110,7 @@ def execute_docker(cmd, *args)
 end
 
 def options_selected? options
-  (options[:build] || options[:restart] || options[:awestruct][:gen] || options[:awestruct][:preview])
+  (options[:build] || options[:restart] || options[:awestruct][:gen] || options[:awestruct][:preview] || options[:stage_pr])
 end
 
 def is_port_open?(host, port)
@@ -243,3 +254,29 @@ end
 if options[:awestruct][:preview]
   execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake clean preview[docker]']
 end
+
+if options[:stage_pr]
+  execute_docker_compose :kill
+  puts 'Running the docker staging build for PR number' + options[:stage_pr].to_s
+
+  execute_docker_compose :up, %w(-d elasticsearch mysql searchisko searchiskoconfigure)
+
+  begin
+    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
+  rescue Excon::Errors::SocketError => se
+    puts se.backtrace
+    exit #quit the whole thing
+  end
+
+  puts 'Waiting to proceed until searchiskoconfigure has completed'
+
+  # searchiskoconfigure takes a while, we need to wait to proceed
+  while configure_service.info['State']['Running']
+    sleep 5
+    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
+  end
+
+  puts 'Searchisko configure started'
+  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}] clean deploy[staging_docker_pr]"]
+end
+

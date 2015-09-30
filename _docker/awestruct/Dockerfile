@@ -6,6 +6,16 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
+RUN yum install -y  \
+  pngquant
+
+RUN wget http://prdownloads.sourceforge.net/optipng/optipng-0.7.5.tar.gz?download && \
+  mv optipng* optipng.tar.gz && \
+  tar -xvzf optipng.tar.gz
+
+WORKDIR /tmp/optipng-0.7.5
+RUN ./configure && make && make install
+
 RUN adduser --system --uid=1000 --home-dir /home/awestruct --shell /bin/bash -m -U awestruct
 
 USER awestruct
@@ -20,7 +30,9 @@ WORKDIR /home/awestruct
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 COPY gemrc /home/awestruct/.gemrc
-RUN bundle install
+
+#parallel install of gems
+RUN bundle install -j 10
 
 WORKDIR /home/awestruct/developer.redhat.com
 

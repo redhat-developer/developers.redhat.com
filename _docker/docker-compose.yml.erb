@@ -2,12 +2,17 @@ awestruct:
   build: ./awestruct
   ports:
     - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:4242"
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
   links:
     - drupal
     - searchisko
   privileged: true
   volumes:
     - ../:/home/awestruct/developer.redhat.com
+    - ./awestruct/overlay/ssh-key:/home/awestruct/.ssh
   environment:
     - google_api_key
     - dcp_user
@@ -17,6 +22,9 @@ awestruct:
     - vimeo_access_token
     - cache_password
     - cache_url
+    - site_base_path
+    - site_path_suffix
+    - cdn_prefix
     - cache_user
     - github_token
     - drupal_user
@@ -34,6 +42,10 @@ drupal:
   volumes:
     - ../_drupal/themes/:/var/www/html/sites/all/themes
     - ../_drupal/scripts/:/drupal/bin
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
   environment:
     - DB_NAME=drupal
     # TODO: We could probably take these out and move them to secrets.yml.gpg if they aren't there already
@@ -41,23 +53,39 @@ drupal:
     - DB_PASSWORD=drupal
   privileged: true
 drupalmysql:
-  build: ./mysql
+  image: mysql:5.5
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
   environment:
-    - DB_NAME=drupal
-    - DB_USER=drupal
-    - DB_PASSWORD=drupal
+    - MYSQL_DATABASE=drupal
+    - MYSQL_USER=drupal
+    - MYSQL_PASSWORD=drupal
+    - MYSQL_ROOT_PASSWORD=superdupersecret
   ports:
     - "<%= ENV['DRUPALMYSQL_HOST_PORT'] %>:3306"
 mysql:
-  build: ./mysql
+  image: mysql:5.5
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
+  volumes:
+    - ./searchisko_configure:/etc/mysql/conf.d
   environment:
-    - DB_NAME=searchisko
-    - DB_USER=searchisko
-    - DB_PASSWORD=searchisko
+    - MYSQL_DATABASE=searchisko
+    - MYSQL_USER=searchisko
+    - MYSQL_PASSWORD=searchisko
+    - MYSQL_ROOT_PASSWORD=superdupersecret
   ports:
     - "<%= ENV['MYSQL_HOST_PORT'] %>:3306"
 elasticsearch:
   build: ./elasticsearch
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
   ports:
    - "<%= ENV['ES_HOST_PORT1'] %>:9200"
    - "<%= ENV['ES_HOST_PORT2'] %>:9300"
@@ -65,6 +93,10 @@ searchisko:
   build: ./searchisko
   ports:
    - "<%= ENV['SEARCHISKO_HOST_PORT'] %>:8080"
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
   environment:
     - DB_NAME=searchisko
     - DB_USER=searchisko
@@ -74,6 +106,14 @@ searchisko:
    - elasticsearch
 searchiskoconfigure:
   build: ./searchisko_configure
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
+  environment:
+    - DB_NAME=searchisko
+    - DB_USER=searchisko
+    - DB_PASSWORD=searchisko
   links:
    - mysql
    - elasticsearch
