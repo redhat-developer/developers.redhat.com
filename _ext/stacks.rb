@@ -95,10 +95,10 @@ module JBoss::Developer::Extensions
   = javascripts("developer-materials-bom", true) do
     script src="#{site.base_url}/javascripts/bomadvise.js"!
       runtime['boms'].each do |bom|
-        if @seen_boms.include? bom['id']
+        if @seen_boms.include? bom['bom']['id']
           next
         else
-          @seen_boms << bom['id']
+          @seen_boms << bom['bom']['id']
         end
         bom_page = ::Awestruct::Page.new(site,
                      ::Awestruct::Handlers::LayoutHandler.new(site,
@@ -201,72 +201,71 @@ module JBoss::Developer::Extensions
                     -DarchetypeArtifactId=#{page.archetype['archetype']['artifactId']} \
                     -DarchetypeVersion=#{ver}!
       runtime['archetypes'].each do |archetype|
-        if @seen_archetypes.include? archetype['id']
-          next
-        else
-          @seen_archetypes << archetype['id']
-        end
-        archetype_page = ::Awestruct::Page.new(site,
-                           ::Awestruct::Handlers::LayoutHandler.new(site,
-                             ::Awestruct::Handlers::TiltHandler.new(site,
-                               ::Aweplug::Handlers::SyntheticHandler.new(site, @archetype_page_content,
-                                                                         "/products/#{product}/boms.html.slim"))))
-        commits = []
-        if site.archetypes["#{archetype['archetype']['groupId']}|#{archetype['archetype']['artifactId']}"]
-          archetype_info = site.archetypes["#{archetype['archetype']['groupId']}|#{archetype['archetype']['artifactId']}"]
-          commits = commit_info(archetype_info['repo'], Pathname.new(archetype_info['location']), archetype_info.reject {|k,v| k == 'location' || k == 'repo'})  # DEVELOPER-320
-        end
+        output_path = "/archetypes/#{product}/#{archetype['archetype']['id']}/index.html"
+        unless @seen_archetypes.include? archetype['archetype']['id']
+          @seen_archetypes << archetype['archetype']['id']
+          archetype_page = ::Awestruct::Page.new(site,
+                             ::Awestruct::Handlers::LayoutHandler.new(site,
+                               ::Awestruct::Handlers::TiltHandler.new(site,
+                                 ::Aweplug::Handlers::SyntheticHandler.new(site, @archetype_page_content,
+                                                                           "/products/#{product}/boms.html.slim"))))
+          commits = []
+          if site.archetypes["#{archetype['archetype']['groupId']}|#{archetype['archetype']['artifactId']}"]
+            archetype_info = site.archetypes["#{archetype['archetype']['groupId']}|#{archetype['archetype']['artifactId']}"]
+            commits = commit_info(archetype_info['repo'], Pathname.new(archetype_info['location']), archetype_info.reject {|k,v| k == 'location' || k == 'repo'})  # DEVELOPER-320
+          end
 
-        archetype_page.layout = @layout
-        archetype_page.output_path = "/archetypes/#{product}/#{archetype['archetype']['id']}/index.html"
-        archetype['allVersions'] = yml['availableArchetypeVersions'].select {|b| b['archetype']['id'] == archetype['archetype']['id']}.collect {|b| b['version']}
-        archetype['archetype']['contributors'] = commits.collect {|c| c[:author_email]}.uniq
-        metadata = {
-          :title => archetype['archetype']['name'], 
-          :summary=> archetype['archetype']['description'], 
-          :commits => commits,
-          :archetypes => [],
-          :contributors => commits.collect { |c| c[:author] }.uniq,
-          :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
-          :searchisko_type => 'jbossdeveloper_archetype',
-          :searchisko_id => archetype['id'],
-          :target_product => product
-        }
-        metadata[:published] = DateTime.parse(commits.first[:date]) unless commits.empty?
-        metadata[:author] = commits.last[:author] if commits.last
-        unless metadata[:current_branch] == 'HEAD'
-          git_ref = metadata[:current_branch]
-        else
-          git_ref = metadata[:current_tag] || 'HEAD'
-        end
-        metadata[:download] = "#{metadata[:github_repo_url]}/archive/#{git_ref}.zip"
-        metadata[:browse] = "#{metadata[:github_repo_url]}/tree/#{git_ref}"
-        metadata[:scm] = 'github'
+          archetype_page.layout = @layout
+          archetype_page.output_path = output_path
+          archetype['allVersions'] = yml['availableArchetypeVersions'].select {|b| b['archetype']['id'] == archetype['archetype']['id']}.collect {|b| b['version']}
+          archetype['archetype']['contributors'] = commits.collect {|c| c[:author_email]}.uniq
+          metadata = {
+            :title => archetype['archetype']['name'], 
+            :summary=> archetype['archetype']['description'], 
+            :commits => commits,
+            :archetypes => [],
+            :contributors => commits.collect { |c| c[:author] }.uniq,
+            :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
+            :searchisko_type => 'jbossdeveloper_archetype',
+            :searchisko_id => archetype['id'],
+            :target_product => product
+          }
+          metadata[:published] = DateTime.parse(commits.first[:date]) unless commits.empty?
+          metadata[:author] = commits.last[:author] if commits.last
+          unless metadata[:current_branch] == 'HEAD'
+            git_ref = metadata[:current_branch]
+          else
+            git_ref = metadata[:current_tag] || 'HEAD'
+          end
+          metadata[:download] = "#{metadata[:github_repo_url]}/archive/#{git_ref}.zip"
+          metadata[:browse] = "#{metadata[:github_repo_url]}/tree/#{git_ref}"
+          metadata[:scm] = 'github'
 
-        archetype_dcp = {
-          :sys_last_activity_date => commits.collect {|c| DateTime.parse c[:date]}.first,
-          :sys_contributors => metadata[:contributors_email],
-          :author => metadata[:author],
-          :sys_activity_dates => commits.collect {|c| DateTime.parse c[:date]},
-          :sys_created => commits.collect {|c| DateTime.parse c[:date]}.last,
-          :sys_title => archetype['archetype']['name'],
-          :sys_url_view => "#{site.base_url}#{site.ctx_root.nil? ? '/' : '/' + site.ctx_root + '/'}#{archetype_page.output_path}",
-          :sys_description => archetype['archetype']['description'],
-          :groupId => archetype['archetype']['groupId'],
-          :artifactId => archetype['archetype']['artifactId'],
-          :recommendedVersion => archetype['archetype']['recommendedVersion'],
-          :versions => archetype['allVersions'],
-          :sys_project => metadata[:target_product]
-        }
-        unless !@push_to_searchisko || !site.push_to_searchisko
-          searchisko.push_content(metadata[:searchisko_type], metadata[:searchisko_id] , archetype_dcp.to_json)
-        end
-        archetype_page.send('metadata=', metadata)
-        archetype_page.send('archetype=', archetype)
+          archetype_dcp = {
+            :sys_last_activity_date => commits.collect {|c| DateTime.parse c[:date]}.first,
+            :sys_contributors => metadata[:contributors_email],
+            :author => metadata[:author],
+            :sys_activity_dates => commits.collect {|c| DateTime.parse c[:date]},
+            :sys_created => commits.collect {|c| DateTime.parse c[:date]}.last,
+            :sys_title => archetype['archetype']['name'],
+            :sys_url_view => "#{site.base_url}#{site.ctx_root.nil? ? '/' : '/' + site.ctx_root + '/'}#{archetype_page.output_path}",
+            :sys_description => archetype['archetype']['description'],
+            :groupId => archetype['archetype']['groupId'],
+            :artifactId => archetype['archetype']['artifactId'],
+            :recommendedVersion => archetype['archetype']['recommendedVersion'],
+            :versions => archetype['allVersions'],
+            :sys_project => metadata[:target_product]
+          }
+          unless !@push_to_searchisko || !site.push_to_searchisko
+            searchisko.push_content(metadata[:searchisko_type], metadata[:searchisko_id] , archetype_dcp.to_json)
+          end
+          archetype_page.send('metadata=', metadata)
+          archetype_page.send('archetype=', archetype)
 
-        # Add the status and issues
-        archetype_page.send('status=', 'red')
-        site.pages << archetype_page
+          # Add the status and issues
+          archetype_page.send('status=', 'red')
+          site.pages << archetype_page
+        end
       end
     end
   end
