@@ -38,6 +38,12 @@ class Options
         options[:stage_pr] = pr
       end
 
+      opts.on('--run-the-stack', 'build, restart and preview') do |rts|
+        options[:awestruct][:preview] = true
+        options[:build] = true
+        options[:restart] = true
+      end
+
       # No argument, shows at tail.  This will print an options summary.
       opts.on_tail('-h', '--help', 'Show this message') do
         puts opts
