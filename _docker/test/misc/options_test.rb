@@ -76,6 +76,7 @@ class TestOptions < Test::Unit::TestCase
     def test_run_docker_nightly
       tasks = Options.parse (["--docker-nightly"])
       assert(tasks[:kill_all])
+      assert(tasks[:set_ports])
       assert(tasks[:build])
       assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
     end
@@ -84,6 +85,7 @@ class TestOptions < Test::Unit::TestCase
       tasks = Options.parse (["--stage-pr", "6"])
       assert(tasks[:kill_all])
       assert(tasks[:build])
+      assert(tasks[:set_ports])
       assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
     end
 
