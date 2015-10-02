@@ -151,11 +151,6 @@ Awestruct::Extensions::Pipeline.new do
                                                      additional_metadata_keys: ['thumbnail'],
                                                      push_to_searchisko: true)
 
-  extension Aweplug::Extensions::Kramdown::Demo.new(url: 'https://raw.githubusercontent.com/jboss-developer/jboss-developer-demos/master/demos.yaml',
-                                                    layout: 'get-started-item',
-                                                    output_dir: '/demos',
-                                                    push_to_searchisko: true)
-
   extension JBoss::Developer::Extensions::Nav.new
  
   extension JBoss::Developer::Extensions::CommonDir.new
@@ -172,6 +167,12 @@ Awestruct::Extensions::Pipeline.new do
 
   # Must be loaded after CommonDir
   extension JBoss::Developer::Extensions::Product.new
+
+  # Demos reference products, so it needs to be done further down the pipeline
+  extension Aweplug::Extensions::Kramdown::Demo.new(url: 'https://raw.githubusercontent.com/jboss-developer/jboss-developer-demos/master/demos.yaml',
+                                                    layout: 'get-started-item',
+                                                    output_dir: '/demos',
+                                                    push_to_searchisko: true)
 
   # Load vimeo videos from a google spreadsheet
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'vimeo',
