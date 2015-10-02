@@ -11,33 +11,23 @@ require 'timeout'
 require 'erb'
 require 'resolv'
 require 'open3'
-require './lib/misc/Options.rb'
-require './lib/misc/FileHelpers.rb'
+require './lib/misc/options.rb'
+require './lib/misc/file_helpers.rb'
 
-def building_ci_job?
-  return ENV['BUILD_NUMBER']
-end
+def modify_env
+  begin
+    puts 'decrypting vault'
+    crypto = GPGME::Crypto.new
+    fname = File.open '../_config/secrets.yaml.gpg'
 
-def modify_env(opts)
-  unless (building_ci_job?)
-    begin
-      puts 'decrypting vault'
-      crypto = GPGME::Crypto.new
-      fname = File.open '../_config/secrets.yaml.gpg'
+    secrets = YAML.load(crypto.decrypt(fname).to_s)
 
-      secrets = YAML.load(crypto.decrypt(fname).to_s)
-
-      secrets.each do |k, v|
-        if k.include? 'drupal'
-          ENV[k] = v if opts[:drupal]
-        else
-          ENV[k] = v
-        end
-      end
-      puts 'Vault decrypted'
-    rescue GPGME::Error => e
-      abort "Unable to decrypt vault (#{e})"
+    secrets.each do |k, v|
+      ENV[k] = v
     end
+    puts 'Vault decrypted'
+  rescue GPGME::Error => e
+    abort "Unable to decrypt vault (#{e})"
   end
 end
 
@@ -62,10 +52,6 @@ end
 
 def execute_docker(cmd, *args)
   Kernel.abort('Error running docker') unless Kernel.system 'docker', cmd.to_s, *args
-end
-
-def options_selected? options
-  (options[:build] || options[:restart] || options[:awestruct][:gen] || options[:awestruct][:preview] || options[:stage_pr])
 end
 
 def is_port_open?(host, port)
@@ -129,38 +115,30 @@ def block_wait_searchisko_configure_finished
   end
 end
 
-def startup_supporting_services(opts)
-  puts 'Starting up services...'
-  if opts[:drupal]
-    execute_docker_compose :up, %w(-d elasticsearch mysql drupalmysql drupal searchisko searchiskoconfigure)
-  else
-    execute_docker_compose :up, %w(-d elasticsearch mysql searchisko searchiskoconfigure)
-  end
+tasks = Options.parse ARGV
 
-  block_wait_searchisko_configure_finished()
-
-  # Check to see if Drupal is accepting connections before continuing
-  block_wait_drupal_started if opts[:drupal]
-
+if(tasks.empty?)
+  puts Options.parse %w(-h)
 end
 
-options = Options.parse ARGV
-
-puts Options.parse %w(-h) unless options_selected? options
-
 #the docker url is taken from DOCKER_HOST env variable otherwise
-Docker.url = options[:docker] if options[:docker]
+Docker.url = tasks[:docker] if tasks[:docker]
 
-modify_env(options)
+if tasks[:decrypt]
+  puts 'Decrypting...'
+  modify_env
+end
 
-if options[:build] || options[:restart]
+if tasks[:set_ports]
+  puts 'Setting ports...'
   set_ports()
   # Output the new docker-compose file with the modified ports
   File.delete('docker-compose.yml') if File.exists?('docker-compose.yml')
   File.write('docker-compose.yml', ERB.new(File.read('docker-compose.yml.erb')).result)
 end
 
-if options[:build]
+if tasks[:build]
+  puts 'Building...'
   docker_dir = 'awestruct'
 
   parent_gemfile = File.open '../Gemfile'
@@ -183,31 +161,24 @@ if options[:build]
   execute_docker_compose :build
 end
 
-if options[:restart]
+if tasks[:kill_all]
+  puts 'Killing docker services...'
   execute_docker_compose :kill
-  startup_supporting_services(options)
 end
 
-if options[:awestruct][:gen]
-  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake clean gen[docker]']
-end
+if tasks[:supporting_services]
+  puts 'Starting up services...'
 
-if options[:awestruct][:preview]
-  if options[:drupal]
-    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[drupal]']
-  else
-    execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]']
-  end
-end
-
-if options[:stage_pr]
-  execute_docker_compose :kill
-  puts 'Running the docker staging build for PR number' + options[:stage_pr].to_s
-
-  startup_supporting_services(options)
+  execute_docker_compose :up, tasks[:supporting_services]
 
   block_wait_searchisko_configure_finished()
 
-  puts 'Searchisko configure started'
-  execute_docker_compose :run, ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake create_pr_dirs[docker-pr,build,#{options[:stage_pr]}] clean deploy[staging_docker_pr]"]
+  # Check to see if Drupal is accepting connections before continuing
+  block_wait_drupal_started if tasks[:drupal]
 end
+
+if tasks[:awestruct_command_args]
+  puts 'running awestruct command'
+  execute_docker_compose :run, tasks[:awestruct_command_args]
+end
+
