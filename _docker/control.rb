@@ -129,12 +129,6 @@ if tasks[:decrypt]
   modify_env
 end
 
-puts '~~~~~~~~~~~~~~~~~~~~~~~~SET PORTS'
-puts "~~~~~~~~~~~~~~~~~~~~~~~~#{tasks[:set_ports]}"
-puts "NEW REVISION 01"
-puts '~~~~~~~~~~~~~~~~~~~~~~~~SET PORTS'
-
-
 if tasks[:set_ports]
   puts 'Setting ports...'
   set_ports()
