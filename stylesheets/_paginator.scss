@@ -40,6 +40,11 @@
         background: #0088ce !important;
         border-color: #0088ce !important;
       }
+      &.unavailable {
+        background-color: #F7F7F7;;
+        cursor: auto;
+        pointer-events: none;
+      }
     }
   }
 }
