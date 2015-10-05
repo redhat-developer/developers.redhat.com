@@ -13,7 +13,7 @@ Follow the instructions to install the latest docker for your system [here] (htt
 
 Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
 ### Basic Ruby install
-In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`. In order to run this you will require ruby 2.1.2. The following instructions install ruby via rbenv. You can use other methods, but your mileage may vary.
+In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`. In order to run this you will require ruby 2.1 or greater. The following instructions install ruby via rbenv. You can use other methods, but your mileage may vary.
 #### Pre-requisits
 OSX:
 ```bash
@@ -66,14 +66,14 @@ Run `bundle install` from within the `_docker` directory to download the necessa
 ###Boot2Docker setup (OSX only)
 If you are running on Mac you will need to follow the steps below in _Edit your boot2docker DNS setup_ to setup configuration for the Red Hat DNS and VPN.
 
-If you are working on OSX or widows via boot to docker, then set the environment variable DOCKER_SSL_VERIFY to false. E.g `export DOCKER_SSL_VERIFY=false`. See here as to why https://github.com/swipely/docker-api/issues/202
+If you are working on OSX via boot to docker, then set the environment variable DOCKER_SSL_VERIFY to false. E.g `export DOCKER_SSL_VERIFY=false`. See here as to why https://github.com/swipely/docker-api/issues/202
 
 ###Run the stack!
 Run the following commands to build the images and start the containers:
 
 ` bundle exec control.rb --run-the-stack`
 
-This will take awhile the first time. The starts all required services and then  runs awestruct in preview mode. The script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
+This will take awhile the first time. This starts all required services and then  runs awestruct in preview mode. The script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
 
 NOTE: When `preview` is run, you may see errors from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
 
