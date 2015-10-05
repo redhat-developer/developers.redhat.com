@@ -116,15 +116,6 @@ module JBoss
                     else # We don't have it at all, so we'll go to github
                       if (page.metadata[:browse].include?('blob') || page.metadata[:browse].include?('tree'))
                         a['href'] = File.join page.metadata[:browse], url
-                        ## One off for petclinic
-                        #if url == 'CHANGES.md' && page.output_path.include?('spring-petclinic')
-                        #  a['href'] = File.join page.metadata[:browse], url
-                        #end
-
-                        ## One off for unified push issues
-                        #if url == 'CHANGES.md' && page.output_path.include?('spring-petclinic')
-                        #  a['href'] = File.join page.metadata[:browse], url
-                        #end
                       # We want to link to the master branch
                       else
                         a['href'] = File.join page.metadata[:browse], '/blob/master', url

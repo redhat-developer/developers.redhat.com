@@ -107,7 +107,6 @@ profiles:
     dcp2_base_url: http://dcp2-searchisko.rhcloud.com/
     dcp2_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
     metrics: false
-    adobe_metrics_url: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg
@@ -124,7 +123,6 @@ profiles:
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
     metrics: false
-    adobe_metrics_url: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
     build_threads: 1
     deploy:
       <<: *deploy
@@ -142,7 +140,6 @@ profiles:
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     metrics: false
-    adobe_metrics_url: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
     build_threads: 1
     dtm_code: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
     deploy:
@@ -158,7 +155,6 @@ profiles:
     dcp2_base_url: http://dcp2.jboss.org/
     require_tag: true
     metrics: true
-    adobe_metrics_url: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
     disqus: jdf
     dtm_mode: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
 
