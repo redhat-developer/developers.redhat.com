@@ -17,7 +17,9 @@ h3#documentation #{page.product.abbreviated_name} #{page.product.current_version
       h5 = guide.name
       p #{guide.name} for #{page.product.abbreviated_name} #{page.product.current_version}
     .large-8.small-9.columns
-      a(class="button tiny dropdown" data-dropdown="#{k}") View As
+      a(class="button tiny dropdown" data-dropdown="#{k}")
+        | View As &nbsp;
+        i.fa.fa-caret-down
       ul(id="#{k}" class="f-dropdown" data-dropdown-content)
         - guide.formats.each do |l, format|
           li
