@@ -117,17 +117,22 @@ module JBoss
                     else
                       if (page.metadata[:browse].include?('blob') || page.metadata[:browse].include?('tree'))
                         if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
+                          # TODO: What do we do here if there's more than one product??
                           a['href'] = page.metadata[:browse] + '/' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
                         else
                           a['href'] = page.metadata[:browse] + '/' + page.output_path.split('/').last.gsub('index.html', '') + url
                         end
                       altered = true
                       else
-                        if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
+                        # TODO: What do we do here if there's more than one product??
+                        if (page.metadata[:product] && page.metadata[:product].size == 1 && page.output_path.include?(page.metadata[:product].first))
+                          # TODO: What do we do here if there's more than one product??
                           a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
                         else
+                          # TODO: What do we do here if there's more than one product??
                           a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split('/').last.gsub('index.html', '') + url
                         end
+                        # TODO: What do we do here if there's more than one product??
                         a['href'] = page.metadata[:browse] + '/blob/master/' + page.output_path.split('/').last.gsub('index.html', '') + url
                         altered = true
                       end
