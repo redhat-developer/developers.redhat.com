@@ -60,9 +60,12 @@ function setup_environment {
     $RVMDO gem install rake
   fi
 
+  #We need bundler, and we need a recent version
+  $RVMDO gem install bundler
+
   ## Build setup
   # Configure the environment. Must run bundle install to bootstrap the env 
   $RVMDO bundle install
-  $RVMDO rake setup 
+  $RVMDO rake setup
 }
 
