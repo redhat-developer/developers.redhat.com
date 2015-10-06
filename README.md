@@ -1,34 +1,98 @@
 # Red Hat Developers Site
 
-## Getting Started
-This section covers the steps you need to do in order to setup your environment and get the site running for the first time. Further sections cover the details.
+Powering the Red Hat Developers site available at http://developers.redhat.com/
 
+## Developer setup
+We recommend that Docker be used in development. This simplifies the setup, and makes your development environment consistent with other developers and our CI servers. The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
+
+Skip to the [Site Build Setup](#site_build_setup) section if you don't want to use Docker.
+###Utilities
+You should be running a bash shell (Linux or OSX) and you will require: git and curl.
+###Docker and Docker compose
+Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system as they will be too far out of date.
+
+Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
+### Basic Ruby install
+In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`. In order to run this you will require ruby 2.1 or greater. The following instructions install ruby via rbenv. You can use other methods, but your mileage may vary.
+#### Pre-requisits
+OSX:
+```bash
+brew install openssl libyaml libffi
+```
+
+Ubuntu/Debian/Mint:
+```bash
+apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+```
+
+Centos/Fedora:
+```bash
+yum install -y gcc openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
+```
+#### Installation of rbenv
+```bash
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc #(or .bash_profile on a OSX)
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc #(or .bash_profile on a OSX)
+source ~/.bashrc #(or .bash_profile on a OSX)
+```
+#### Installation of rbenv-build
+```bash
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+```
+#### Installation of Ruby
+```bash
+rbenv install 2.1.2
+rbenv rehash
+```
+#### Setup ruby
+```bash
+gem install bundler
+```
+### Git checkout
 Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
 
          git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
          cd developers.redhat.com
          git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
 
-### Docker setup (Optional, but preferred)
-This section describes how to build the site using local instances of Searchisko (running in Docker containers).
-This section is optional, but highly recommended as this gives you a production-like environment locally.
-Skip to the [Site Build Setup](#site_build_setup) section if you don't want to use Docker.
+### Set up
+Download the Searchisko data dump from [here](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
 
-1. Install Docker (or Boot2Docker on a Mac). Select the instructions from the [Docker installation docs](https://docs.docker.com/installation/) for your operating system. Make sure Docker is running correctly before proceeding.
-2. [Install Docker Compose](https://docs.docker.com/compose/install/). Again, make sure this is working correctly before proceeding.
-3. Download the Searchisko data dump from [here](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
-4. Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Boot2Docker, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `boot2docker ip`
-5. Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
-6. If you are running on Mac you will need to follow the steps below in _Edit your boot2docker DNS setup_ to setup configuration for the Red Hat DNS and VPN.
-7. If you need to override the default DOCKER_HOST this can be done via the `-d` flag. This should not be necessary in most cases.
-8. If you are working on OSX or widows via boot to docker, then set the environment variable DOCKER_SSL_VERIFY to false. E.g `export DOCKER_SSL_VERIFY=false`. See here as to why https://github.com/swipely/docker-api/issues/202
-9. Run the following commands to build the images and start the containers:
+Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Boot2Docker, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `boot2docker ip`
 
-        ./control.rb -br
+Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
 
-This will take awhile the first time. On subsequent builds you do not need to pass the `-b` flag unless you need to rebuild the docker containers. The script will output some information when everything is ready to go and you'll see the familiar awestruct build as you near the end. The script runs awestruct in preview mode, so the script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
+###Boot2Docker setup (OSX only)
+If you are running on Mac you will need to follow the steps below in _Edit your boot2docker DNS setup_ to setup configuration for the Red Hat DNS and VPN.
 
-NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
+If you are working on OSX via boot to docker, then set the environment variable DOCKER_SSL_VERIFY to false. E.g `export DOCKER_SSL_VERIFY=false`. See here as to why https://github.com/swipely/docker-api/issues/202
+
+###Run the stack!
+Run the following commands to build the images and start the containers:
+
+` bundle exec control.rb --run-the-stack`
+
+This will take awhile the first time. This starts all required services and then  runs awestruct in preview mode. The script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
+
+NOTE: When `preview` is run, you may see errors from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
+
+###Important Control.rb commands
+To build and start all services:
+
+`bundle exec ./control.rb --run-the-stack`
+
+To build the docker images:
+
+`bundle exec ./control.rb -b`
+
+To restart the (non awestruct services)
+
+`bundle exec ./control.rb -r`
+
+To run awestruct in preview mode
+
+`bundle exec ./control.rb -p`
 
 ### <a name="site_build_setup"></a> Site Build without Docker
 
@@ -78,7 +142,7 @@ NOTE: When `preview` is run, you may see erorrs from guard/listen about a folder
 
         rake setup
 
-5. If using Docker, set the drupal credentials:
+5. If using Docker, set the Drupal credentials:
 
         export drupal_user=admin
         export drupal_password=admin
@@ -99,7 +163,7 @@ If the build was successful, you should be able to visit the site here: <http://
 2. Edit the boot2docker profile:
 
         sudo vi /var/lib/boot2docker/profile
-3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the ethernet port to be ready. Make sure that your file contains the following:
+3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Make sure that your file contains the following:
 
         ```
         wait4eth1() {
@@ -144,7 +208,7 @@ You can then preview the staging site, which will also push data to the DCP stag
 
     rake preview[staging]
 
-Alterntively, you can preview/deploy to staging or production and the asociated DCP server will also be updated.
+Alternatively, you can preview/deploy to staging or production and the associated DCP server will also be updated.
 
 ## Deployment
 
@@ -156,11 +220,7 @@ To tag:
 
 To run in Awestruct in development mode, execute:
 
-`rake`
-
-To run Awestruct while developing, execute:
-
-`rake preview`
+`rake` (this is the equivalent to `rake preview`)
 
 To clean the generated site before you build, execute:
 
@@ -172,7 +232,7 @@ To deploy using the production profile, execute:
 
 To run the smoke test features (currently only for http://docker:32768), execute:
 
-'rake features'
+`rake features`
 
 To get a list of all tasks, execute:
 
@@ -180,49 +240,9 @@ To get a list of all tasks, execute:
 
 Now you're Awestruct with rake!
 
-## Release Process
-
-For example, to release 1.0.Beta6:
-
-    rake update
-    rake "clean[all]" "deploy[staging]"
-
-The site is now deployed to www-stg.jboss.org. You need to go there and check it looks right. If it is, you can deploy to www-beta.jboss.org:
-
-    rake "clean[all]" "deploy[beta,1.0.Beta6]"
-
-Finally, you need to commit the new version of `_cdn/cdn.yml` and push that and the new tag upstream. _NOTE:_ It is very important that you remember to commit+push your changes to cdn.yml.
-
-    git commit -a -m “Updated cdn.yml” _cdn/cdn.yml
-    git push upstream master
-    git push upstream --tags
-
 ## Continuous integration
 
-Builds occur automatically when pull requests are submitted, and builds, and deploys, happen when pushes to the master branch occur.
-
-### Tracking CI Intermittent Failures
-In order to improve the stability of the CI jobs, we need to track the intermittent failures and target the more frequent ones for resolution. The process is:
-
-Carry out the steps below for each of the jobs on here: https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org. Ignore the jobs named after a JIRA issue (e.g. DEVELOPER-1234) as they are setup to debug a particular issue and are the responsibility of the creator to inspect.
-
-Open the job page. E.g: https://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org/job/www.jboss.org/ and for each, not yet documented, failed run:
-
-1.  Select the job
-2.  Select 'Console Output'
-3.  Inspect the output. If it's a new issue, create a JIRA issue. If it's an existing issue, locate the JIRA id. Note: for 'www.jboss.org-pull-player-executor' failures, you need to find out if it was caused by the code changes inthe relate pull request, or if it's an intermittent build issue, unrelated to the PR.
-4.  Return to the 'status' page of the run
-5.  Selct 'keep this build forvever'
-6. Update the description to contain just the JIRA id (e.g. DEVELOPER-1234)
-7. Update [this spreadsheet](https://docs.google.com/a/redhat.com/spreadsheets/d/1KrHGJ7_eKzSy-3S6ZXqVFPNC1obEBjSSpSR9XkqLlow/edit#gid=0)
-  1. If the failure is already known, increment the occurances column and 'last failure' date.
-  2. If the failure is new, add a new row to the spreadsheet
-
-When an issue is resolved:
-
-1. Mark the status as resolved in [this spreadsheet](https://docs.google.com/a/redhat.com/spreadsheets/d/1KrHGJ7_eKzSy-3S6ZXqVFPNC1obEBjSSpSR9XkqLlow/edit#gid=0)
-2. Delete every CI run that failed with this issue.
-
+Builds occur automatically when pull requests are submitted. Builds and deploys happen when pushes to the master branch occur.
 
 ## secrets.gpg management
 
@@ -241,7 +261,7 @@ In order to do this, you will need load the user's public key in to your keychai
 2. Select `key` -> `Retreive rom key server`
 3. Pass in the ID of the public key you need to add.
 
-Minimailly the follwoing list of receipients is required to encrypt the file:
+Minimally the following list of recipients is required to encrypt the file:
 
 * Pete Muir <pmuir@bleepbleep.org.uk> (ID: 0x6CE6E8FB45FE317D created at Mon 1 Sep 18:29:07 2014
 * Jason Robert Porter (new key) <lightguard.jp@gmail.com> (ID: 0xBEDFCFB30FB72D11 created at Tue 24 Dec 06:51:51 2013)
@@ -262,7 +282,7 @@ If you add a new recipient to the file, ensure you update the list above.
 This area documents fixes to common issues:
 
 ### 'No address for docker'
-If you get an error with the message 'no address for docker (Resolv::ResolvError)' you need to ensure that the host 'docker' is added to your /etc/hosts file. Instructions for this are available in the Docker section of this document.
+If you get an error with the message 'no address for docker (Resolv::ResolvError)' you need to ensure that the host 'docker' is added as an alias to localhost in your /etc/hosts file. Instructions for this are available in the Docker section of this document.
 
 ### "Too many open files"
 This can be caused by running out of file descriptors. Currently only seen on Macs. See the following for how to fix: http://superuser.com/questions/433746/is-there-a-fix-for-the-too-many-open-files-in-system-error-on-os-x-10-7-1

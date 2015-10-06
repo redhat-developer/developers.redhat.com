@@ -2,4 +2,6 @@ source "https://rubygems.org"
 
 gem 'gpgme', '~> 2.0'
 gem 'docker-api', :require => 'docker'
-
+gem 'test-unit', '~> 3.1'
+gem 'guard'
+gem 'guard-test'
