@@ -121,6 +121,7 @@ if(tasks.empty?)
   puts Options.parse %w(-h)
 end
 
+
 #the docker url is taken from DOCKER_HOST env variable otherwise
 Docker.url = tasks[:docker] if tasks[:docker]
 
@@ -135,6 +136,11 @@ if tasks[:set_ports]
   # Output the new docker-compose file with the modified ports
   File.delete('docker-compose.yml') if File.exists?('docker-compose.yml')
   File.write('docker-compose.yml', ERB.new(File.read('docker-compose.yml.erb')).result)
+end
+
+if tasks[:kill_all]
+  puts 'Killing docker services...'
+  execute_docker_compose :kill
 end
 
 if tasks[:build]
@@ -159,11 +165,6 @@ if tasks[:build]
   execute_docker(:build, '--tag=developer.redhat.com/ruby', './ruby')
   puts 'Building services...'
   execute_docker_compose :build
-end
-
-if tasks[:kill_all]
-  puts 'Killing docker services...'
-  execute_docker_compose :kill
 end
 
 if tasks[:supporting_services]
