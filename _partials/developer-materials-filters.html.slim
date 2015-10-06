@@ -13,7 +13,7 @@
         select(ng-options="item.value as item.name for item in data.availableFormats" ng-model="data.sys_type_string" ng-change="filter.applyFilters()")
           option(value="") Choose a Format
 
-      .large-8.columns.left
+      .large-8.columns.left.date-filter
         label(for="publish-date")
           strong Publish Date
         input(type="range" id="publish-date" name="filter-publish-date" ng-change="filter.updateDate(); filter.applyFilters()" ng-model="data.dateNumber" value="0" max="4" ng-init="filter.updateSkillLevel();")

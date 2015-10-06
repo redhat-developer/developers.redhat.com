@@ -107,5 +107,5 @@
             | {{page}}
         li(ng-class="{unavailable: paginate.currentPage >= paginate.pages}")
           a(ng-click="paginate(paginate.currentPage + 1)") Next
-        li(ng-class="{unavailable: paginate.currentPage  < 2}")
+        li(ng-class="{unavailable: paginate.currentPage  == paginate.pages}")
           a(ng-click="paginate(paginate.currentPage = paginate.pages)") Last
