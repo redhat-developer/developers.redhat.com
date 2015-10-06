@@ -71,9 +71,9 @@ If you are working on OSX via boot to docker, then set the environment variable 
 ###Run the stack!
 Run the following commands to build the images and start the containers:
 
-` bundle exec control.rb --run-the-stack`
+` bundle exec ./control.rb --run-the-stack`
 
-This will take awhile the first time. This starts all required services and then  runs awestruct in preview mode. The script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
+This will take a while the first time. This starts all required services and then  runs awestruct in preview mode. The script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
 
 NOTE: When `preview` is run, you may see errors from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
 
