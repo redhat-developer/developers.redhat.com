@@ -121,7 +121,6 @@ if(tasks.empty?)
   puts Options.parse %w(-h)
 end
 
-
 #the docker url is taken from DOCKER_HOST env variable otherwise
 Docker.url = tasks[:docker] if tasks[:docker]
 

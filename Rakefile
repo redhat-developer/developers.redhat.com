@@ -128,9 +128,6 @@ end
 desc 'Generate the site and deploy using the given profile'
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   msg 'running deploy'
-  puts '~~~~~~~SEARCHISKO_HOST_PORT in right place 01'
-  puts "#{ENV['SEARCHISKO_HOST_PORT']}"
-  puts '~~~~~~~SEARCHISKO_HOST_PORT'
   # Delay awestruct failing the build until after we rsync files, if we are staging.
   # Allows errors to be viewed
   begin
