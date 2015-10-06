@@ -275,6 +275,7 @@ Minimally the following list of recipients is required to encrypt the file:
 * Ryszard Koźmik <rkozmik@redhat.com> (ID: 0x70E45BDE7C68C64D created at Mon 11 May 16:09:19 2015)
 * Lukas Vlcek (Lukas Vlcek) <lvlcek@redhat.com> (ID: 0x3442A3D7BD324826 created at Fri 22 May 11:24:48 2015)
 * Oliver Shaw <oshaw@redhat.com> (ID: 0xD57A952A22E69562 created at Mon 27 Jul 11:10:09 2015)
+* Ian Hamilton <ian.ross.hamilton@gmail.com> (ID: 0xE48F54FDCAB257C5 created at Tue  6 Oct 15:16:26 2015)
 
 If you add a new recipient to the file, ensure you update the list above.
 
