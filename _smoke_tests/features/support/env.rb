@@ -5,9 +5,11 @@ require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
 Capybara.configure do |config|
-  #TODO these need to be configured externally
-  #config.app_host   = 'https://developers.redhat.com/'
-  config.app_host   = 'http://docker:32768'
+  host_to_test = ENV['HOST_TO_TEST'] ||= 'http://docker:32768'
+  puts "Running smoke tests against #{host_to_test}."
+  puts "To change this use the Environment varaiable HOST_TO_TEST"
+  puts "E.g bundle exec features HOST_TO_TEST=http://the_host_you_want:8080"
+  config.app_host = host_to_test
 end
 
 Capybara.register_driver :poltergeist do |app|
