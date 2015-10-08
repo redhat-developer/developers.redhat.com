@@ -1,12 +1,13 @@
 skips:
-  - !ruby/regexp /developer-materials/
-  - !ruby/regexp /bom/
-  - !ruby/regexp /archetype/
     # localhost:8xxx addresses are extensively used in quickstart readmes
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
     # -YOUR_DOMAIN_NAME.rhcloud.com is used in quickstart readmes
   - !ruby/regexp /-YOUR_DOMAIN_NAME\.rhcloud\.com/
+    # -YOUR_DOMAIN.rhcloud.com using in ticket monster
+  - !ruby/regexp /-YOUR_DOMAIN\.rhcloud\.com/
+    # <app-name>-<domain-name>.rhcloud.com or &lt;app-name&gt;-&lt;domain-name&gt;.rhcloud.com
+  - !ruby/regexp /(.+?)app-name(.+?)-(.+?)domain-name(.+?)\.rhcloud\.com/
     # Prevent any stray mailto and irc links appearing
   - !ruby/regexp /^mailto:/
   - !ruby/regexp /^irc:/
@@ -28,9 +29,11 @@ skips:
 #    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
 ignores:
-  - url: !ruby/regexp /boms/
-  - url: !ruby/regexp /archetypes/
-  - url: !ruby/regexp /archetypes/
+  - code: 202
+  - code: 203
+  - snippet: !ruby/regexp /f\.vimeocdn\.com/ # I don't see this error in real browsers
+  - url: https://library.oreilly.com/book/0636920025368/continuous-enterprise-development-in-java/toc # works fine in a browser, not an error
+  - url: http://venturebeat.com/2014/12/16/whats-in-a-container-you-dont-know-and-thats-a-problem/ # also not an error
   - url: git@github.com:nodyn/nodyn.git #Not an error.
   - url: http://in.relation.to/ #Not an error.
   - url: https://console.developers.google.com #Not an error.

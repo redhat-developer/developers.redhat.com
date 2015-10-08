@@ -85,7 +85,7 @@ app.termsAndConditions = {
     }
   },
   banner : function() {
-    app.dm.authStatus().done(function(data) {
+    app.dcp.authStatus().done(function(data) {
       if (data.authenticated) {
         // Add a jsonp call to get the info
         var tac = document.createElement('script'); tac.type = 'text/javascript'; tac.async = true;

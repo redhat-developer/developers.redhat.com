@@ -11,6 +11,14 @@ app.dcp.generateContributorSpan = function(tmpl, contributor) {
   return tmpl.template( d );
 };
 
+app.dcp.authStatus = function() {
+  return $.ajax({
+    type:"GET",
+    url: app.dcp.url.auth_status,
+    xhrFields: {withCredentials: true}
+  });
+};
+
 /*
  * Resolve an array of contributors, and replace any
  * span.contributor[data-sys-contributor=<contributor>] elements in the current page
