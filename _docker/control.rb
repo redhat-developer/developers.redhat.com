@@ -137,6 +137,11 @@ if tasks[:set_ports]
   File.write('docker-compose.yml', ERB.new(File.read('docker-compose.yml.erb')).result)
 end
 
+if tasks[:kill_all]
+  puts 'Killing docker services...'
+  execute_docker_compose :kill
+end
+
 if tasks[:build]
   puts 'Building...'
   docker_dir = 'awestruct'
@@ -159,11 +164,6 @@ if tasks[:build]
   execute_docker(:build, '--tag=developer.redhat.com/ruby', './ruby')
   puts 'Building services...'
   execute_docker_compose :build
-end
-
-if tasks[:kill_all]
-  puts 'Killing docker services...'
-  execute_docker_compose :kill
 end
 
 if tasks[:supporting_services]
