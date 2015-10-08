@@ -532,7 +532,7 @@ a[data-page="⋯"]{
 #show-entries{
   select{
     display: inline-block;
-    max-width: 45px;
+    max-width: 55px;
     margin: 0 10px;
     background-color: transparent;
   }
@@ -550,4 +550,10 @@ a[data-page="⋯"]{
   .developer-material-results {
     min-width: 900px;
   }
+}
+
+.date-filter input[type="range"]{
+  height: 10px;
+  border: 1px solid rgb(144, 144, 144);
+  border-radius: 9px;
 }

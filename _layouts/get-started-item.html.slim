@@ -8,8 +8,6 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
   - page.title = page.metadata[:title]
   - page.description = page.metadata[:summary]
   - page.author = page.metadata[:author]
-  - if page.metadata[:product] && site[:products][page.metadata[:product]]
-    - page.product = site[:products][page.metadata[:product]]
   - page.primary_section = 'get-started'
   - page.disqus_identifier = "#{page.url}"
   - if page.metadata.thumbnail
@@ -58,7 +56,7 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
         - if page.metadata[:target_product] && !page.metadata[:target_product].empty?
           li: strong
             | Target Product:
-            span itemprop="about" =page.metadata[:target_product]
+            span itemprop="about" =(page.metadata[:target_product].is_a?(String) ? page.metadata[:target_product] : page.metadata[:target_product].join(", "))
   .row.content
     .columns.large-24
       .columns.medium-4
