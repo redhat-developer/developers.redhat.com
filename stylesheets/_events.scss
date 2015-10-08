@@ -109,6 +109,30 @@ h2.divider.month-heading {
     span.end {
       display: block;
     }
+    .same-month {
+      position: relative;
+      top: -3px;
+      span {
+        &.month {
+          display: block;
+          font-size: 16px;
+          font-weight: 200;
+          margin-bottom: 3px;
+        }
+        &.day {
+          font-size: 18px;
+        }
+        &.end-day {
+          display: inline !important;
+          font-size: 18px;
+        }
+      }
+    }
+    span.end {
+      &.same-month {
+        display: none;
+      }
+    }
   }
   span {
     display: block;
@@ -131,6 +155,9 @@ h2.divider.month-heading {
       font-size: 16px;
       padding-top: 5px;
     }
+  }
+  span.end-day {
+    display: none !important;
   }
 }
 
