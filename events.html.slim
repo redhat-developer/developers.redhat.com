@@ -57,13 +57,15 @@ description: Discover the events and webinars featuring talks about JBoss produc
                 img(ng-if="'default' !== event._source.sys_image" ng-src="http://static.jboss.org/images/rhd/events/event_{{event._source.sys_image}}.png")
                 .event-date(ng-class="{'multiday': event._source.end_date !== event._source.start_date}")
                    p
-                    span.start
+                    span.start(ng-class="{'multimonth': (event._source.start_date | moment:'MMM') !== (event._source.end_date | moment:'MMM'), 'same-month': (event._source.start_date | moment:'MMM') == (event._source.end_date | moment:'MMM') }")
                       span.month
                         | {{event._source.start_date | moment:'MMM'}}
                         | &nbsp;
                       span.day
                         | {{event._source.start_date | moment:'DD'}}
-                    span.end
+                      span.end-day
+                        | -{{event._source.end_date | moment:'DD'}}
+                    span.end(ng-class="{'same-month': (event._source.start_date | moment:'MMM') == (event._source.end_date | moment:'MMM')}")
                       | {{event._source.end_date | moment:'MMM DD'}}
               .event-body
                 h3: a(ng-href="{{event._source.event_url}}")
