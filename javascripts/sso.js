@@ -9,7 +9,7 @@ app.sso = function () {
                     .text(keycloak.tokenParsed['name'])
                     .attr('href', app.ssoConfig.account_url)
                     .show();
-                $('li.login').hide();
+                $('li.login, li.register, li.login-divider').hide();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl())
                 // once the promise comes back, listen for a click on logout
                 $('a.logout').on('click',function(e) {
@@ -21,11 +21,14 @@ app.sso = function () {
         } else {
             $('li.login').show();
             $('li.logged-in').hide();
-            $('li.login a, a.keycloak-url').on('click',function(e){
+            $('li.login a').on('click',function(e){
                 e.preventDefault();
                 keycloak.login();
             });
-
+            $('li.register a, a.keycloak-url').on('click',function(e){
+                e.preventDefault();
+                keycloak.login({ action : 'register' });
+            });
         }
     }
 

@@ -107,7 +107,9 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
           ul.menu-right
             / li: a
             /   i.fa.fa-search
-            li.login: a LOGIN | REGISTER
+            li.login: a LOGIN 
+            li.login-divider &nbsp; |
+            li.register: a REGISTER
             li.logged-in
               a.logged-in-name(href="#")
               a.logout(href="#") Logout
