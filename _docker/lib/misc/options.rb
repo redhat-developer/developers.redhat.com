@@ -51,9 +51,13 @@ class Options
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
+      opts.on('--features', 'runs the cucumber features') do |f|
+        tasks[:features_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"]
+        tasks[:build] = true
+      end
+
       opts.on('--docker-nightly', 'build for PR Staging') do |pr|
         tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"]
-        tasks[:features_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"]
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:set_ports] = true
