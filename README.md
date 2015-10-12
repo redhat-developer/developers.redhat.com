@@ -47,6 +47,7 @@ rbenv rehash
 ```
 #### Setup ruby
 ```bash
+rbenv global 2.1.2
 gem install bundler
 ```
 ### Git checkout
