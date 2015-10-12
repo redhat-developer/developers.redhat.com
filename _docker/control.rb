@@ -182,3 +182,8 @@ if tasks[:awestruct_command_args]
   execute_docker_compose :run, tasks[:awestruct_command_args]
 end
 
+if tasks[:features_task]
+  puts 'running features task'
+  execute_docker_compose :run, tasks[:features_task]
+end
+

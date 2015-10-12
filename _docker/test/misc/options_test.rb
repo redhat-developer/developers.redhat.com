@@ -75,6 +75,8 @@ class TestOptions < Test::Unit::TestCase
 
     def test_run_docker_nightly
       tasks = Options.parse (["--docker-nightly"])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"], tasks[:features_task])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
       assert(tasks[:kill_all])
       assert(tasks[:set_ports])
       assert(tasks[:build])
