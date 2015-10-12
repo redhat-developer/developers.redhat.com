@@ -76,6 +76,7 @@ class TestOptions < Test::Unit::TestCase
     def test_features_task
       tasks = Options.parse (["--features"])
       assert(tasks[:build])
+      assert(tasks[:set_ports])
       assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"], tasks[:features_task])
     end
 

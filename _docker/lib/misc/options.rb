@@ -54,6 +54,7 @@ class Options
       opts.on('--features', 'runs the cucumber features') do |f|
         tasks[:features_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"]
         tasks[:build] = true
+        tasks[:set_ports] = true
       end
 
       opts.on('--docker-nightly', 'build for PR Staging') do |pr|
