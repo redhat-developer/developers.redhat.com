@@ -28,7 +28,7 @@ drush user-add-role awestruct awestruct
 drush vset --exact securesite_enabled 3
 
 # Enable and set the Drupal default theme
-drush en rhd
+drush en rhd -y
 #drush vset theme_default rhd
 
 # Make sure we're not confused by old, incompletely-shutdown httpd

@@ -1,6 +1,6 @@
 class Options
   def self.parse(args)
-    tasks = {}
+    tasks = {supporting_services: %w(-d)}
 
     opts_parse = OptionParser.new do |opts|
       opts.banner = 'Usage: control.rb [options]'
@@ -16,7 +16,7 @@ class Options
         tasks[:decrypt] = true
         tasks[:set_ports] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] = %w(-d elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
       opts.on('-b', '--build', 'Build the containers') do |b|
@@ -27,16 +27,20 @@ class Options
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake clean gen[docker]']
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct',
+                                          "rake git_setup clean gen[#{tasks[:drupal].nil? ? 'docker':'drupal'}]"]
       end
 
       opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
         tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]']
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct',
+                                          "rake git_setup clean preview[#{tasks[:drupal].nil? ? 'docker':'drupal'}]"]
       end
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
         tasks[:drupal] = true
+        tasks[:supporting_services] += %w(drupal drupalmysql)
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]']
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -44,7 +48,7 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:set_ports] = true
-        tasks[:supporting_services] = %w(-d elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
       opts.on('--docker-nightly', 'build for PR Staging') do |pr|
@@ -52,7 +56,7 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:set_ports] = true
-        tasks[:supporting_services] = %w(-d elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
@@ -60,8 +64,9 @@ class Options
         tasks[:set_ports] = true
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] = %w(-d elasticsearch mysql searchisko searchiskoconfigure)
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]']
+        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct',
+                                          "rake git_setup clean preview[#{tasks[:drupal].nil? ? 'docker':'drupal'}]"]
       end
 
       # No argument, shows at tail.  This will print an options summary.
