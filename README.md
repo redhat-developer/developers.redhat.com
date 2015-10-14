@@ -95,6 +95,12 @@ To run awestruct in preview mode
 
 `bundle exec ./control.rb -p`
 
+To run with drupal enabled
+
+`bundle exec ./control.rb -u [-g, -p, -r, --run-the-stack]`
+
+This means that any of the previous commands may be run with drupal by using the `-u` flag. The `-b` flag does not need the `-u` flag to build the drupal image.
+
 ### <a name="site_build_setup"></a> Site Build without Docker
 
 1. Configure environment variables needed for the site.
