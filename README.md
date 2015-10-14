@@ -69,6 +69,11 @@ If you are running on Mac you will need to follow the steps below in _Edit your 
 
 If you are working on OSX via boot to docker, then set the environment variable DOCKER_SSL_VERIFY to false. E.g `export DOCKER_SSL_VERIFY=false`. See here as to why https://github.com/swipely/docker-api/issues/202
 
+
+#### Warning about previous containers
+
+We've found that left over containers from previously failed attempts can cause problems. Please remove all containers from these failed attempts before starting again.
+
 ###Run the stack!
 Run the following commands to build the images and start the containers:
 
