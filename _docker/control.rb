@@ -184,6 +184,6 @@ end
 
 if tasks[:acceptance_test_target_task]
   puts 'running features task'
-  execute_docker_compose :run, tasks[:features_task]
+  execute_docker_compose :run, tasks[:acceptance_test_target_task]
 end
 
