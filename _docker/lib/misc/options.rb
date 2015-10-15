@@ -28,7 +28,7 @@ class Options
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
         tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct',
-                                          "rake git_setup clean gen[#{tasks[:drupal].nil? ? 'docker':'drupal'}]"]
+                                          "rake clean gen[#{tasks[:drupal].nil? ? 'docker':'drupal'}]"]
       end
 
       opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
@@ -51,8 +51,10 @@ class Options
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
-      opts.on('--features', 'runs the cucumber features') do |f|
-        tasks[:features_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"]
+      opts.on('--acceptance_test_target[=HOST_TO_TEST]', String, 'runs the cucumber features. If you do not specify HOST_TO_TEST then http://localhost:32768 is used') do |f|
+        ENV['HOST_TO_TEST'] = f ||= 'http://localhost:32768'
+        puts ENV['HOST_TO_TEST']
+        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"]
         tasks[:build] = true
         tasks[:set_ports] = true
       end
@@ -82,7 +84,12 @@ class Options
       end
     end
 
+    if args.empty?
+      args += ['-h'] #Show the help
+    end
     opts_parse.parse! args
+    tasks[:should_start_supporting_services] = tasks[:supporting_services].size > 1
     tasks
   end
 end
+

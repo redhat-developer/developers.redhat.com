@@ -242,9 +242,9 @@ To deploy using the production profile, execute:
 
 `rake deploy`
 
-To run the smoke test features (currently only for http://docker:32768), execute:
+To run the smoke test features execute:
 
-`rake features`
+`rake acceptance_test_target=http://host_you_want:8080`
 
 To get a list of all tasks, execute:
 
