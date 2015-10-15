@@ -69,6 +69,11 @@ If you are running on Mac you will need to follow the steps below in _Edit your 
 
 If you are working on OSX via boot to docker, then set the environment variable DOCKER_SSL_VERIFY to false. E.g `export DOCKER_SSL_VERIFY=false`. See here as to why https://github.com/swipely/docker-api/issues/202
 
+
+#### Warning about previous containers
+
+We've found that left over containers from previously failed attempts can cause problems. Please remove all containers from these failed attempts before starting again.
+
 ###Run the stack!
 Run the following commands to build the images and start the containers:
 
@@ -94,6 +99,12 @@ To restart the (non awestruct services)
 To run awestruct in preview mode
 
 `bundle exec ./control.rb -p`
+
+To run with drupal enabled
+
+`bundle exec ./control.rb -u [-g, -p, -r, --run-the-stack]`
+
+This means that any of the previous commands may be run with drupal by using the `-u` flag. The `-b` flag does not need the `-u` flag to build the drupal image.
 
 ### <a name="site_build_setup"></a> Site Build without Docker
 
