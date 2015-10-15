@@ -53,7 +53,6 @@ class Options
 
       opts.on('--acceptance_test_target[=HOST_TO_TEST]', String, 'runs the cucumber features. If you do not specify HOST_TO_TEST then http://localhost:32768 is used') do |f|
         ENV['HOST_TO_TEST'] = f ||= 'http://localhost:32768'
-        puts ENV['HOST_TO_TEST']
         tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"]
         tasks[:build] = true
         tasks[:set_ports] = true
@@ -87,7 +86,10 @@ class Options
     if args.empty?
       args += ['-h'] #Show the help
     end
+
     opts_parse.parse! args
+
+    #Flag to see if anything was set it supporting_services
     tasks[:should_start_supporting_services] = tasks[:supporting_services].size > 1
     tasks
   end

@@ -22,6 +22,7 @@ RUN yum -y install gcc gcc-c++ make flex bison gperf \
 
 WORKDIR /tmp
 RUN git clone git://github.com/ariya/phantomjs.git
+
 WORKDIR /tmp/phantomjs
 RUN git checkout 2.0 && ./build.sh --confirm
 RUN cp bin/phantomjs /usr/local/bin
