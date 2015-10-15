@@ -145,12 +145,12 @@ app.project = {
       if (props.userForumLink) {
         var correctLink = app.project.getCorrectUrl(props.userForumLink);
         var viewLink = correctLink.replace(/https?:\/\//,'');
-        list += "<li>User Form: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+        list += "<li>User Forum: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
       }
       if (props.devForumLink) {
         var correctLink = app.project.getCorrectUrl(props.devForumLink);
         var viewLink = correctLink.replace(/https?:\/\//,'');
-        list += "<li>Dev Form: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+        list += "<li>Dev Forum: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
       }
       if (props.mailingListLink) {
         var correctLink = app.project.getCorrectUrl(props.mailingListLink);
