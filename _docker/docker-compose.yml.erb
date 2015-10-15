@@ -36,6 +36,8 @@ awestruct:
     - DRUPAL_HOST_IP
 drupal:
   build: ./drupal
+  expose:
+    - "80"
   ports:
     - "<%= ENV['DRUPAL_HOST_PORT'] %>:80"
   links:
