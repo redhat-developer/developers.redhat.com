@@ -79,7 +79,7 @@ class TestOptions < Test::Unit::TestCase
       assert(tasks[:build])
       assert(tasks[:set_ports])
       assert_equal('http://localhost:32768', ENV['HOST_TO_TEST'])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"], tasks[:acceptance_test_target_task])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"], tasks[:acceptance_test_target_task])
     end
 
     def test_acceptance_test_target_task
@@ -87,7 +87,7 @@ class TestOptions < Test::Unit::TestCase
       assert(tasks[:build])
       assert_equal('http://example.com', ENV['HOST_TO_TEST'])
       assert(tasks[:set_ports])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"], tasks[:acceptance_test_target_task])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"], tasks[:acceptance_test_target_task])
     end
 
     def test_run_docker_nightly
