@@ -1,0 +1,27 @@
+<%
+
+test_env_no = ENV['TEST_ENV_NUMBER'] || ''
+test_env_no = '1' if test_env_no == ''
+
+$output_folder = "out/#{ENV['BUILD_NUMBER'] || 'logs'}"
+html_output = "#{$output_folder}/report#{test_env_no}.html"
+html_rerun_output = "#{$output_folder}/report_rerun.html"
+
+Dir.mkdir("out") rescue ""
+Dir.mkdir($output_folder) rescue ""
+
+default_options = "-r _cucumber/features/ --strict -f pretty"
+exclusions = "-t ~@wip -t ~@todo"
+exclusions_nonparallel = "-t ~@wip -t ~@todo"
+exclusions_in_progress = "-t ~@wip -t ~@todo"
+slow = "-r _cucumber/features/ --format pretty"
+remote = "-r _cucumber/features/ --format ParallelTests::Cucumber::FailuresLogger --out _cucumber/parallel_cucumber_failures.log -f pretty"
+
+%>
+
+default: <%= default_options %> <%= exclusions %>
+slow: <%= slow %> <%= exclusions %>
+wip: -t @wip
+parallel_html: --format html --out reports/process<%= ENV['TEST_ENV_NUMBER'] %>.html
+parallel: -r _cucumber/features/ --format ParallelTests::Cucumber::FailuresLogger --out _cucumber/parallel_cucumber_failures.log --strict -f json -o _cucumber/first_run.json -f pretty <%= exclusions %>
+parallel_smoke: -r _cucumber/features/ --tags @smoke --format ParallelTests::Cucumber::FailuresLogger --out _cucumber/parallel_cucumber_failures.log --strict -f json -o _cucumber/first_run.json -f pretty <%= exclusions %>
