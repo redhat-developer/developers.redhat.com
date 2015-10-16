@@ -166,7 +166,7 @@ if tasks[:build]
   execute_docker_compose :build
 end
 
-if tasks[:supporting_services]
+if tasks[:should_start_supporting_services]
   puts 'Starting up services...'
 
   execute_docker_compose :up, tasks[:supporting_services]
@@ -180,5 +180,10 @@ end
 if tasks[:awestruct_command_args]
   puts 'running awestruct command'
   execute_docker_compose :run, tasks[:awestruct_command_args]
+end
+
+if tasks[:acceptance_test_target_task]
+  puts 'running features task'
+  execute_docker_compose :run, tasks[:acceptance_test_target_task]
 end
 
