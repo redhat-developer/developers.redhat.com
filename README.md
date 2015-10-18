@@ -8,13 +8,16 @@ We recommend that Docker be used in development. This simplifies the setup, and 
 Skip to the [Site Build Setup](#site_build_setup) section if you don't want to use Docker.
 ###Utilities
 You should be running a bash shell (Linux or OSX) and you will require: git and curl.
-###Docker and Docker compose
+###Docker
 Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system as they will be too far out of date.
 
-Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
+###Docker Compose
+OSX: Docker compose will have been installed as part of the docker toolbox.
+
+Non-OSX:Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
 ### Basic Ruby install
 In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`. In order to run this you will require ruby 2.1 or greater. The following instructions install ruby via rbenv. You can use other methods, but your mileage may vary.
-#### Pre-requisits
+#### Pre-requisites
 OSX:
 ```bash
 brew install openssl libyaml libffi
@@ -27,7 +30,7 @@ apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadlin
 
 Centos/Fedora:
 ```bash
-yum install -y gcc openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
+yum install -y gcc openssl-devel bzip2 libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
 ```
 #### Installation of rbenv
 ```bash
@@ -40,15 +43,13 @@ source ~/.bashrc #(or .bash_profile on a OSX)
 ```bash
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
-#### Installation of Ruby
+#### Install and Setup ruby
 ```bash
 rbenv install 2.1.2
-rbenv rehash
-```
-#### Setup ruby
-```bash
 rbenv global 2.1.2
+gem update --system
 gem install bundler
+rbenv rehash
 ```
 ### Git checkout
 Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
@@ -60,14 +61,32 @@ Fork the project, then clone your fork and add the upstream repository (Please e
 ### Set up
 Download the Searchisko data dump from [here](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
 
-Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Boot2Docker, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `boot2docker ip`
+Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Docker-machine, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `docker-machine ip default`
 
 Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
 
-###Boot2Docker setup (OSX only)
-If you are running on Mac you will need to follow the steps below in _Edit your boot2docker DNS setup_ to setup configuration for the Red Hat DNS and VPN.
+###Docker-machine setup (OSX only)
 
-If you are working on OSX via boot to docker, then set the environment variable DOCKER_SSL_VERIFY to false. E.g `export DOCKER_SSL_VERIFY=false`. See here as to why https://github.com/swipely/docker-api/issues/202
+You'll probably want to start docker with 'Docker quickstart terminal'. However to run docker commands in any shell, run:
+```bash
+eval "$(docker-machine env default)"
+```
+#### Edit your boot2docker DNS servers
+
+1. SSH in to the default docker machine :
+
+       `docker-machine ssh default `
+2. Edit the boot2docker profile:
+
+        `sudo vi /var/lib/boot2docker/profile`
+3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Replace the existing EXTRA_ARGS with the following:
+
+        ```
+        EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
+        ```
+4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
+5. exit the boot2docker image
+6. Restart docker-machine `docker-machine restart default`
 
 
 #### Warning about previous containers
@@ -166,32 +185,6 @@ This means that any of the previous commands may be run with drupal by using the
 _NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
 
 If the build was successful, you should be able to visit the site here: <http://localhost:4242> and <http://docker:8081> (if using Docker).
-
-### Edit your boot2docker DNS servers
-
-1. SSH in to the boot2docker image:
-
-        boot2docker ssh
-2. Edit the boot2docker profile:
-
-        sudo vi /var/lib/boot2docker/profile
-3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Make sure that your file contains the following:
-
-        ```
-        wait4eth1() {
-        CNT=0
-        until ip a show eth1 | grep -q UP
-        do
-                [ $((CNT++)) -gt 60 ] && break || sleep 1
-        done
-        sleep 1
-        }
-        EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
-        wait4eth1
-        ```
-4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
-5. exit the boot2docker image
-6. Restart it `boot2docker down && boot2docker up`
 
 > Everything below is copied across verbatim from www.jboss.org. Proceed with caution.
 
