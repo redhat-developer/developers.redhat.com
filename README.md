@@ -11,7 +11,7 @@ You should be running a bash shell (Linux or OSX) and you will require: git and 
 ###Docker
 Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system as they will be too far out of date.
 
-###Docker Compose
+###Docker Compose 
 OSX: Docker compose will have been installed as part of the docker toolbox.
 
 Non-OSX:Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
