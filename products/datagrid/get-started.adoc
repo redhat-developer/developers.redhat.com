@@ -104,6 +104,6 @@ To access predefined servlets and directly store/retrieve a key in the cache, ac
 +
 [.code-block]
 ```
-mvn jboss-as:undeploy
-mvn jboss-as:undeploy -Ddeploy.port=10099
+mvn jboss-as:undeploy -s ../settings.xml
+mvn jboss-as:undeploy -s ../settings.xml -Ddeploy.port=10099
 ```
