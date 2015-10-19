@@ -62,8 +62,9 @@ type: Downloads
         link:https://access.redhat.com/site/products/JBoss/[Visit the Red Hat Customer Portal for other Product Downloads]
 
   - unless !page._upstream || page._upstream.empty?
-    .large-8.small-24.columns
-      h4#prefere-upstream Prefer to use the Upstream Project Version?
+    br
+    .large-8.small-24.panel.callout.columns
+      h5#prefere-upstream Prefer to use the Upstream Project Version?
 
       = page._upstream
 
