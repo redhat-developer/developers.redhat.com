@@ -39,7 +39,7 @@ class Options
         if tasks[:drupal].nil?
           tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
         else
-          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[drupal]"]
+          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
         end
       end
 
@@ -81,7 +81,7 @@ class Options
         if tasks[:drupal].nil?
           tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
         else
-          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[drupal]"]
+          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
         end
       end
 
