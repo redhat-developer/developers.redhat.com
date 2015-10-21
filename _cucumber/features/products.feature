@@ -7,10 +7,10 @@ Feature: Home Page Smoke Test
   Scenario: Visit Product landing page
     Given I am on the Products page
     Then I should see the following main products sections:
-      | INFRASTRUCTURE MANAGEMENT S       |
+      | INFRASTRUCTURE MANAGEMENT        |
       | CLOUD PRODUCTS                   |
       | JBOSS DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION       |
-    And I should see "16" products
+    And I should see "160" products
     And I should see "12" products with a learn link
 

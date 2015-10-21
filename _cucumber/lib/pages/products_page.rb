@@ -16,13 +16,15 @@ class ProductsPage < Base
   def product_titles(product)
     case product
       when 'INFRASTRUCTURE MANAGEMENT'
-        find(INFRASTRUCTURE_MANAGEMENT).find('h5').text eql? 'INFRASTRUCTURE MANAGEMENT'
+        page.find(INFRASTRUCTURE_MANAGEMENT).find('h5').text
       when 'CLOUD PRODUCTS'
-        find(CLOUD_PRODUCTS).find('h5').text eql? 'CLOUD PRODUCTS'
+        page.find(CLOUD_PRODUCTS).find('h5').text
       when 'JBOSS DEVELOPMENT AND MANAGEMENT'
-        find(JBOSS_DEV_AND_MANAGEMENT).find('h5').text eql? 'JBOSS DEVELOPMENT AND MANAGEMENT'
+        page.find(JBOSS_DEV_AND_MANAGEMENT).find('h5').text
       when 'INTEGRATION AND AUTOMATION'
-        find(INTEGRATION_AND_AUTOMATION).find('h5').text eql? 'INTEGRATION AND AUTOMATION'
+        page.find(INTEGRATION_AND_AUTOMATION).find('h5').text
+      else
+        raise "#{product} was not a expected product title"
     end
   end
 

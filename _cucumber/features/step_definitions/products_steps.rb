@@ -1,7 +1,7 @@
 Then(/^I should see the following main products sections:$/) do |table|
   table.raw.each do |sections|
     section = sections.first
-    expect(@site.products.product_titles(section)).to be_truthy
+    raise "Expected section '#{section}' was not displayed" unless @site.products.product_titles(section).eql? section
   end
 end
 
