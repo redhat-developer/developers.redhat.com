@@ -17,7 +17,7 @@ WORKDIR /tmp/optipng-0.7.5
 RUN ./configure && make && make install
 
 WORKDIR /tmp
-RUN yum install -y fontconfig freetype freetype-devel fontconfig-devel libstdc++ && \
+RUN yum install -y fontconfig freetype && \
     wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 && \
     mkdir -p /opt/phantomjs && \
     tar -xjvf /tmp/phantomjs-1.9.8-linux-x86_64.tar.bz2 -C /opt/phantomjs/ && \
