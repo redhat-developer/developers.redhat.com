@@ -11,6 +11,6 @@ Feature: Home Page Smoke Test
       | CLOUD PRODUCTS                   |
       | JBOSS DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION       |
-    And I should see "160" products
+    And I should see "16" products
     And I should see "12" products with a learn link
 
