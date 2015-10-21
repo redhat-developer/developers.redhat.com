@@ -1,0 +1,103 @@
+---
+layout: base
+body_class: fullbleed
+primary_nav_hidden: true
+interpolate: true
+hero_class: javaone
+---
+
+.wide.wide-hero(class="#{page.hero_class}")==hero
+
+#javaone-microsite
+  section
+    .row
+      .event-header
+        .large-12.small-24.columns
+          h2 RED HAT AT JAVA ONE
+        .large-6.small-24.columns
+          = partial("share.html.slim", :url => "#{site.base_url}#{page.url}", :title => "#{page.title}")
+        .large-6.small-24.columns.javaone-date
+          .large-6.small-3.columns
+            i.fa.fa-calendar.fa-2x
+          .large-18.small-21.columns
+            h6 Sunday, October 25 - Thursday, October 29
+      .large-24.column
+        span
+          p
+            | It's that time again. Red Hat is going to be at JavaOne, big-time. Sessions, a mini-theater, and yes ... 
+            strong a chance to meet Red Hat Engineers!
+    .row.event-nav
+      .large-12.columns
+        ul.nav-list
+          li
+            a href="#kickoff-drinkup" 
+              i.fa.fa-glass.fa-2x
+              |  Kickoff Drink-up at Mikkeller Bar
+          li
+            a href="#minibooth-sessions" 
+              i.fa.fa-film.fa-2x
+              |  Mini-Booth sessions, live-streamed and on demand
+          li
+            a href="#featured-speakers" 
+              i.fa.fa-group.fa-2x
+              |  Featured Red Hat Speakers
+      .large-12.columns
+        a.button.rsvp-btn href='#{site.base_url}/events/javaone/2015/registration' RSVP for the Drink-up
+  section.inverse#kickoff-drinkup
+    .row
+      .large-16.columns
+        h2 JOIN THE KICKOFF DRINK-UP
+      .large-8.columns
+        h4.right
+          i.fa.fa-map-marker
+          |  Mikkeller Bar SF, 34 Mason St
+          br
+        h5.right 6:00 PM - 9:00 PM
+      .large-24.column
+        p Let's get things started right with friends old and new; our kickoff drink-up at Mikkeller bar gets us all together to welcome one another (back) to San Francisco and geek out.  This is your first crack at catching some of our coders to see what we've been up to even before sessions start, and we'll supply the food and drink. Space is limited, so be sure to RSVP here and we'll prioritize you a place at the table!
+        p 
+          strong Note 
+          | that we've can't *save* a seat for ya if there are others waiting, but we'll put you to the top of the line if you've told us you're coming.  Think of it like a Priority Queue without resource starvation. ;)
+        a.button.inverse.right href='#{site.base_url}/events/javaone/2015/registration' RSVP NOW
+  section#minibooth-sessions
+    .row
+      .large-14.columns
+        h2 MINIBOOTH SESSIONS
+      .large-10.columns
+        h5 THIS YEAR - LIVE STREAMED & ON DEMAND!
+      .large-24.columns
+        ul.session-list.small-block-grid-1.large-block-grid-2
+          - page.javaone.minibooth_sessions.each do |session|
+            li
+              .session
+                a.watch-now(href="#{session.url}")
+                  i.fa.fa-video-camera
+                  |  Watch now
+                .large-24
+                  h4 #{session.title}
+                  h5 #{session.date}  -  #{session.speaker}
+                  p #{session.description}
+  section.inverse#featured-speakers
+    .row
+      .large-24.column
+        h2 RED HAT FEATURED SPEAKERS
+        ul.speakers-list
+          - page.javaone.featured_speakers.each do |speaker|
+            li.row
+              .large-3.small-10.columns
+                img(src=cdn("#{site.base_url}/images/javaone/2015/#{speaker.speaker_img}") alt="")
+              .large-4.small-14.columns.speaker-info
+                p #{speaker.speaker_name}
+                strong #{speaker.speaker_lastname}
+                p #{speaker.speaker_title}
+              .large-17.columns
+                .row.talk-info
+                  .large-13.columns
+                    h4 #{speaker.title}
+                  - unless !speaker.url  
+                    .large-11.columns(href="#{speaker.url}")
+                      a Stream the mini-booth version of this session
+                  .large-24.columns
+                    p #{speaker.date} - #{speaker.location}
+                .row  
+                  p.large-24.columns #{speaker.description}

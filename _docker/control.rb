@@ -73,16 +73,16 @@ def is_port_open?(host, port)
 end
 
 def block_wait_drupal_started
-  docker_drupal = Docker::Container.get('docker_drupal_1')
-  until docker_drupal.info['NetworkSettings']['Ports']
+  docker_drupal = Docker::Container.all(filters: {label: ['com.docker.compose.service=drupal']}.to_json).first
+  until docker_drupal.json['NetworkSettings']['Ports']
     sleep(5)
     docker_drupal = Docker::Container.get('docker_drupal_1')
   end
 
   # Check to see if Drupal is accepting connections before continuing
   puts 'Waiting to proceed until Drupal is up'
-  drupal_port80_info = docker_drupal.info['NetworkSettings']['Ports']['80/tcp'].first
-  drupal_ip = drupal_port80_info['HostIp']
+  drupal_port80_info = docker_drupal.json['NetworkSettings']['Ports']['80/tcp'].first
+  drupal_ip = "docker"
   drupal_port = drupal_port80_info['HostPort']
 
   # Add this to the ENV so we can pass it to the awestruct build

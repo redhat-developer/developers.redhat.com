@@ -37,6 +37,8 @@ awestruct:
     - HOST_TO_TEST
 drupal:
   build: ./drupal
+  expose:
+    - "80"
   ports:
     - "<%= ENV['DRUPAL_HOST_PORT'] %>:80"
   links:
@@ -67,6 +69,8 @@ drupalmysql:
     - MYSQL_ROOT_PASSWORD=superdupersecret
   ports:
     - "<%= ENV['DRUPALMYSQL_HOST_PORT'] %>:3306"
+  expose:
+    - "3306"  
 mysql:
   image: mysql:5.5
   <% if ENV['ghprbPullId'] %>
