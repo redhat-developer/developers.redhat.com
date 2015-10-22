@@ -38,9 +38,12 @@ def set_ports
   port_names = ['AWESTRUCT_HOST_PORT', 'DRUPAL_HOST_PORT', 'DRUPALMYSQL_HOST_PORT',
     'MYSQL_HOST_PORT', 'ES_HOST_PORT1', 'ES_HOST_PORT2', 'SEARCHISKO_HOST_PORT']
 
+  #We only set ports for ENVs not already set.
+  ports_to_set = port_names.select{ |x| !ENV[x] }
+
   # We have to reverse the logic in `is_port_open` because if nothing is listening, we can use it
-  available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(port_names.size).force
-  port_names.each_with_index do |name, index|
+  available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(ports_to_set.size).force
+  ports_to_set.each_with_index do |name, index|
     puts "#{name} available at #{available_ports[index]}"
     ENV[name] = available_ports[index].to_s
   end
