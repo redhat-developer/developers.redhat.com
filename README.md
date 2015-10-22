@@ -75,7 +75,7 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
 
 1. SSH in to the default docker machine :
 
-       docker-machine ssh default
+        docker-machine ssh default
        
 2. Edit the boot2docker profile:
 
