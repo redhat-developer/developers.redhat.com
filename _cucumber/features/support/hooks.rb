@@ -1,11 +1,10 @@
 Before do
   @driver = Capybara.current_session.driver
   @site = App.new(@driver)
-  case ENV['DRIVER']
-    when 'firefox' || 'chrome'
-      @driver.browser.manage.delete_all_cookies
-    else
-      @driver.clear_cookies
+  if Capybara.current_driver == 'poltergeist'.to_sym
+    @driver.clear_cookies
+  else
+    @driver.browser.manage.delete_all_cookies
   end
 end
 
@@ -20,7 +19,7 @@ After do |scenario|
 
       if File.exist?(saver.screenshot_path)
         require 'base64'
-        image = open(saver.screenshot_path, 'rb') {|io|io.read}
+        image = open(saver.screenshot_path, 'rb') { |io| io.read }
         encoded_img = Base64.encode64(image)
         embed(encoded_img, 'image/png;base64', "Screenshot of the error")
       end

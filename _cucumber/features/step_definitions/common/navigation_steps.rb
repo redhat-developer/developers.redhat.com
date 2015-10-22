@@ -4,6 +4,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       visit('/projects')
     when 'downloads'
       visit('/downloads')
+    when 'resources'
+      visit('/resources/#!')
     when 'eap landing'
       visit('/products/eap/overview/')
     when 'eap learn'
@@ -14,6 +16,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       visit('/products')
     when 'solutions'
       visit('/solutions')
+    when 'events'
+      visit('/events')
     else
       raise "#{page} was not recognised, please add it to the navigation step definition at step_definitions/common/navigation_steps.rb"
   end

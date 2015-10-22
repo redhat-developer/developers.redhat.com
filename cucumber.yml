@@ -20,8 +20,10 @@ remote = "-r _cucumber/features/ --format ParallelTests::Cucumber::FailuresLogge
 %>
 
 default: <%= default_options %> <%= exclusions %>
-slow: <%= slow %> <%= exclusions %>
+html: --format --out reports/test-report.html
 wip: -t @wip
-parallel_html: --format html --out reports/process<%= ENV['TEST_ENV_NUMBER'] %>.html
-parallel: -r _cucumber/features/ --format ParallelTests::Cucumber::FailuresLogger --out _cucumber/parallel_cucumber_failures.log --strict -f json -o _cucumber/first_run.json -f pretty <%= exclusions %>
-parallel_smoke: -r _cucumber/features/ --tags @smoke --format ParallelTests::Cucumber::FailuresLogger --out _cucumber/parallel_cucumber_failures.log --strict -f json -o _cucumber/first_run.json -f pretty <%= exclusions %>
+smoke: -t @smoke
+parallel_html: --format html --out _cucumber/reports/process<%= ENV['TEST_ENV_NUMBER'] %>.html
+pretty: -f pretty
+parallel: -r _cucumber/features/ --format pretty --profile parallel_html --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log
+parallel_smoke: --profile smoke -r _cucumber/features/ --format pretty --profile parallel_html --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log

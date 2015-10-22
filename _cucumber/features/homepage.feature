@@ -5,8 +5,8 @@ Feature: Home Page Smoke Test
   I want to be able to see sanity tests pass.
 
   @smoke
-  Scenario: All titles present
-    Given I am on the Home page
+  Scenario Outline: All titles present
+    Given I am on the <page> page
     Then I should see a primary nav bar with the following links:
       | Solutions |
       | Products  |
@@ -15,3 +15,13 @@ Feature: Home Page Smoke Test
       | Community |
       | Events    |
       | Blogs     |
+
+  Examples: developers.redhat.com pages
+    | page      |
+    | Home      |
+    | Solutions |
+    | Products  |
+    | Downloads |
+    | Resources |
+    | Community |
+    | Events    |
