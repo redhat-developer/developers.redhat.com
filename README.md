@@ -68,22 +68,24 @@ Run `bundle install` from within the `_docker` directory to download the necessa
 ###Docker-machine setup (OSX only)
 
 You'll probably want to start docker with 'Docker quickstart terminal'. However to run docker commands in any shell, run:
-```bash
-eval "$(docker-machine env default)"
-```
+
+       eval "$(docker-machine env default)"
+
 #### Edit your boot2docker DNS servers
 
 1. SSH in to the default docker machine :
 
-       `docker-machine ssh default `
+       docker-machine ssh default
+       
 2. Edit the boot2docker profile:
 
-        `sudo vi /var/lib/boot2docker/profile`
+        sudo vi /var/lib/boot2docker/profile
+        
 3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Replace the existing EXTRA_ARGS with the following:
 
-        ```
+       
         EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
-        ```
+        
 4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
 5. exit the boot2docker image
 6. Restart docker-machine `docker-machine restart default`
