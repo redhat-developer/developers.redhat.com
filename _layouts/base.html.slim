@@ -131,8 +131,12 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
             li: a(href="http://developerblog.redhat.com") Blogs
 
     .wrapper.clearfix
-      .content-wrapper
-        = content
+      - if(site.protected.to_s.include?("#{page.url}"))
+        .content-wrapper(data-tags="protected") 
+          = content
+      - else
+        .content-wrapper 
+          = content
     footer.bottom
       .row
         .large-4.columns
