@@ -68,22 +68,24 @@ Run `bundle install` from within the `_docker` directory to download the necessa
 ###Docker-machine setup (OSX only)
 
 You'll probably want to start docker with 'Docker quickstart terminal'. However to run docker commands in any shell, run:
-```bash
-eval "$(docker-machine env default)"
-```
+
+       eval "$(docker-machine env default)"
+
 #### Edit your boot2docker DNS servers
 
 1. SSH in to the default docker machine :
 
-       `docker-machine ssh default `
+        docker-machine ssh default
+       
 2. Edit the boot2docker profile:
 
-        `sudo vi /var/lib/boot2docker/profile`
+        sudo vi /var/lib/boot2docker/profile
+        
 3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Replace the existing EXTRA_ARGS with the following:
 
-        ```
+       
         EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
-        ```
+        
 4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
 5. exit the boot2docker image
 6. Restart docker-machine `docker-machine restart default`
@@ -281,6 +283,8 @@ Minimally the following list of recipients is required to encrypt the file:
 * Lukas Vlcek (Lukas Vlcek) <lvlcek@redhat.com> (ID: 0x3442A3D7BD324826 created at Fri 22 May 11:24:48 2015)
 * Oliver Shaw <oshaw@redhat.com> (ID: 0xD57A952A22E69562 created at Mon 27 Jul 11:10:09 2015)
 * Ian Hamilton <ian.ross.hamilton@gmail.com> (ID: 0xE48F54FDCAB257C5 created at Tue  6 Oct 15:16:26 2015)
+* Libor Krzyžanek <libor@krzyzanek.com> (ID: 0x0C3FF1F29223684E created at Thu 22 Oct 11:37:43 2015)
+* Vlastimil Elias <velias@redhat.com> (ID: 0x1104635722CBE84A created at Fri 20 May 09:58:18 2011)
 
 If you add a new recipient to the file, ensure you update the list above.
 

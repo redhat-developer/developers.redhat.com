@@ -1,0 +1,114 @@
+.eventsjavaone2015 .wrapper {
+  padding-bottom: 0;
+}
+
+.wide-hero.javaone {
+  background-image: cdn('../images/javaone/2015/javaone_microsite_desktop_hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border:0;
+  padding: 20px;
+  padding-top: 40px;
+  min-height: 260px;
+  @include tablet-portrait-and-down {
+    background: cdn('../images/javaone/2015/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
+    min-height: 400px;
+  }
+}
+
+#javaone-microsite {
+  section{
+    padding: 35px 0;
+    &.inverse {
+      background-color: #0d5884;
+      padding: 25px 0;
+      p, h2, h3, h4, h5, h6 {
+        color: $white;
+      }
+    }
+  }
+  .session-list {
+    .session {
+      background: $grey-2;
+      margin: 0 1.5% 20px 0;
+      padding: 25px;
+      a.watch-now {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+      }
+    }
+  }
+  ul {
+    list-style: none;
+    &.nav-list li {
+      margin: 15px 0;
+      i {
+        margin-right: 3px;
+      }
+    }
+    &.speakers-list {
+      li img {
+        display: block;
+        float: left;
+        height:120px
+      }
+    }
+  }
+  .event-header {
+    margin-bottom: 25px;
+    .javaone-date {
+      .large-6 {
+        padding-right: 0;
+        text-align: right;
+      }
+      h6{
+        display: inline;
+      }
+    }
+  }
+  a.rsvp-btn {
+    float: right;
+    margin-top: 10%; 
+  }
+  ul.speakers-list {
+    li {
+      margin-top: 20px;
+      margin-left: 0;
+    }
+    .speaker-info {
+      strong {
+        color: $white;
+      }
+    }
+    p, h4 {
+        margin-bottom: 0;
+    }
+    .talk-info {
+      background-color: #09496F;
+      padding: 10px;
+      margin-bottom: 10px;
+      a {
+        color: $white;
+        position: relative;
+        top: 8px;
+      }
+    }
+  }
+  @include tablet-portrait-and-down {
+    a.button {
+      float: none !important;
+      width: 100%;
+    }
+    .talk-info {
+      margin-top: 10px;
+    }
+  }
+}
+
+#javaone-registration iframe {
+    min-height: 670px;
+    display: block;
+    margin: 30px auto;
+}

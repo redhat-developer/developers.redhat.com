@@ -8,6 +8,8 @@ skips:
   - !ruby/regexp /-YOUR_DOMAIN\.rhcloud\.com/
     # <app-name>-<domain-name>.rhcloud.com or &lt;app-name&gt;-&lt;domain-name&gt;.rhcloud.com
   - !ruby/regexp /(.+?)app-name(.+?)-(.+?)domain-name(.+?)\.rhcloud\.com/
+    # Prevent localhost errors
+  - !ruby/regexp /^http:\/\/logout@127.0.0.1:8080\/.*/
     # Prevent any stray mailto and irc links appearing
   - !ruby/regexp /^mailto:/
   - !ruby/regexp /^irc:/
@@ -144,6 +146,11 @@ ignores:
   - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-JSF_Portlet_Development_with_RichFaces.html #JDF-773.
   - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/Google.html #JDF-773.
   - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HazelcastComponent.html #DEVELOPER-1148
+  - url: https://github.com/jboss-developer/jboss-eap-quickstarts/tree/cd0505f/cdi-stereotype/../cdi_interceptors/README.md #Issue-1671 - Github
+  - url: https://github.com/jbossdemocentral/brms-realtime-decicion-server-demo/archive/master.zip #PR opened https://github.com/jbossdemocentral/brms-loan-realtime-decision-server-demo/pull/7
+  - url: https://infinispan.ci.cloudbees.com/ #ISPN-4600
+  - url: http://fisheye.jboss.org/browse/Guvnor #GUVNOR-2113
+  - url: https://jboss.org/jbossas/osgi #JBAS-9573
 max_page_retys: 5
 max_retrys: 5
 browser: phantomjs

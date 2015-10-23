@@ -38,9 +38,12 @@ def set_ports
   port_names = ['AWESTRUCT_HOST_PORT', 'DRUPAL_HOST_PORT', 'DRUPALMYSQL_HOST_PORT',
     'MYSQL_HOST_PORT', 'ES_HOST_PORT1', 'ES_HOST_PORT2', 'SEARCHISKO_HOST_PORT']
 
+  #We only set ports for ENVs not already set.
+  ports_to_set = port_names.select{ |x| !ENV[x] }
+
   # We have to reverse the logic in `is_port_open` because if nothing is listening, we can use it
-  available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(port_names.size).force
-  port_names.each_with_index do |name, index|
+  available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(ports_to_set.size).force
+  ports_to_set.each_with_index do |name, index|
     puts "#{name} available at #{available_ports[index]}"
     ENV[name] = available_ports[index].to_s
   end
@@ -73,16 +76,16 @@ def is_port_open?(host, port)
 end
 
 def block_wait_drupal_started
-  docker_drupal = Docker::Container.get('docker_drupal_1')
-  until docker_drupal.info['NetworkSettings']['Ports']
+  docker_drupal = Docker::Container.all(filters: {label: ['com.docker.compose.service=drupal']}.to_json).first
+  until docker_drupal.json['NetworkSettings']['Ports']
     sleep(5)
     docker_drupal = Docker::Container.get('docker_drupal_1')
   end
 
   # Check to see if Drupal is accepting connections before continuing
   puts 'Waiting to proceed until Drupal is up'
-  drupal_port80_info = docker_drupal.info['NetworkSettings']['Ports']['80/tcp'].first
-  drupal_ip = drupal_port80_info['HostIp']
+  drupal_port80_info = docker_drupal.json['NetworkSettings']['Ports']['80/tcp'].first
+  drupal_ip = "docker"
   drupal_port = drupal_port80_info['HostPort']
 
   # Add this to the ENV so we can pass it to the awestruct build

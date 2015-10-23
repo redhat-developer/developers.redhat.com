@@ -80,6 +80,14 @@ app.sso = function () {
         }
     }
 
+    function checkIfProtectedPage() {
+        if ($('.protected').length) {
+            if (!keycloak.authenticated) {
+                keycloak.login();
+            }
+        }
+    }
+
     var keycloak = Keycloak({
         url: app.ssoConfig.auth_url,
         realm: 'rhd',
@@ -98,6 +106,7 @@ app.sso = function () {
     keycloak.init(init).success(function (authenticated) {
         updateUser(authenticated);
         saveTokens();
+        checkIfProtectedPage();
 
         if ($('.downloadthankyou').length) {
             app.termsAndConditions.download();

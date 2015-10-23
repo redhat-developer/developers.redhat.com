@@ -131,7 +131,10 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
             li: a(href="http://developerblog.redhat.com") Blogs
 
     .wrapper.clearfix
-      .content-wrapper
+      - for pageToProtect in site.protected
+        - if(pageToProtect == "#{page.url}")
+          .protected
+      .content-wrapper 
         = content
     footer.bottom
       .row
@@ -249,6 +252,7 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
     script src="#{site.base_url}/javascripts/experiments.js"
     script src="#{site.base_url}/javascripts/overlay.js"
     script src="#{site.base_url}/javascripts/devnation2015.js"
+    script src="#{site.base_url}/javascripts/book-download.js"
   - unless page.extra_javascripts.nil?
     - page.extra_javascripts.each do |id|
       = deferred_javascripts id

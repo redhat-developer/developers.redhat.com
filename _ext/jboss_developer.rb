@@ -84,8 +84,7 @@ module JBoss
           begin
             @drupal.send_page page, content
           rescue Exception => e
-            puts e.message
-            puts e.backtrace
+            puts "Error pushing to drupal #{page.output_path} : #{e.message}"
           end
         end
         content # Don't mess up the content locally in _site

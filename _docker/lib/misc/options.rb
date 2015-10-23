@@ -27,20 +27,26 @@ class Options
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct',
-                                          "rake clean gen[#{tasks[:drupal].nil? ? 'docker':'drupal'}]"]
+        if tasks[:drupal].nil?
+          tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[docker]"]
+        else
+          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
+        end
       end
 
       opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
         tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct',
-                                          "rake git_setup clean preview[#{tasks[:drupal].nil? ? 'docker':'drupal'}]"]
+        if tasks[:drupal].nil?
+          tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
+        else
+          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
+        end
       end
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
         tasks[:drupal] = true
         tasks[:supporting_services] += %w(drupal drupalmysql)
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]']
+        tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]']
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -72,8 +78,11 @@ class Options
         tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct',
-                                          "rake git_setup clean preview[#{tasks[:drupal].nil? ? 'docker':'drupal'}]"]
+        if tasks[:drupal].nil?
+          tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
+        else
+          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
+        end
       end
 
       # No argument, shows at tail.  This will print an options summary.
