@@ -131,7 +131,10 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
             li: a(href="http://developerblog.redhat.com") Blogs
 
     .wrapper.clearfix
-      .content-wrapper
+      - for pageToProtect in site.protected
+        - if(pageToProtect == "#{page.url}")
+          .protected
+      .content-wrapper 
         = content
     footer.bottom
       .row
