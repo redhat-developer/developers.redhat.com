@@ -1,0 +1,89 @@
+.devoxx-be .wrapper {
+  padding-bottom: 0;
+}
+
+.wide-hero.devoxxbe {
+  // background-image: cdn('../images/javaone/javaone_microsite_desktop_hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border:0;
+  padding: 20px;
+  padding-top: 40px;
+  min-height: 260px;
+  @include tablet-portrait-and-down {
+    // background: cdn('../images/javaone/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
+    min-height: 400px;
+  }
+}
+
+#devoxx-be-microsite {
+  section{
+    padding: 35px 0;
+    &.inverse {
+      background-color: #0d5884;
+      padding: 25px 0;
+      p, h2, h3, h4, h5, h6 {
+        color: $white;
+      }
+      a {
+        color: $white;
+        font-weight: 600;
+      }
+    }
+  }
+  ul {
+    list-style: none;
+    &.nav-list li {
+      margin: 15px 0;
+      i {
+        margin-right: 3px;
+      }
+    }
+    &.speakers-list {
+      li img {
+        display: block;
+        float: left;
+        height:120px
+      }
+    }
+  }
+  .event-header {
+    margin-bottom: 25px;
+    .devoxx-date {
+      .large-6 {
+        padding-right: 0;
+        text-align: right;
+      }
+      h6{
+        display: inline;
+      }
+    }
+  }
+  ul.speakers-list {
+    li {
+      margin-top: 30px;
+    }
+    p, h4 {
+        margin-bottom: 0;
+    }
+    .talk-info {
+      background-color: $grey-2;
+      padding: 10px;
+      margin-bottom: 10px;
+      a {
+        position: relative;
+        top: 8px;
+      }
+    }
+    i.user-default {
+      color: $grey-3;
+      margin-left: 18%;
+    }
+  }
+  @include tablet-portrait-and-down {
+    .talk-info {
+      margin-top: 10px;
+    }
+  }
+}
