@@ -62,6 +62,7 @@ app.createSlider = function($el) {
     });
 
     if(app.slider) {
+      $(sliderEl).addClass('slider-loaded');
 
       var numSlides = app.slider.getNumSlides(),
           pagerHtml = "";
