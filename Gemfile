@@ -48,9 +48,12 @@ gem 'rake', '~>10.4'
 gem 'aweplug', github: 'awestruct/aweplug'
 
 group :test do
+  gem 'guard'
+  gem 'guard-minitest'
   gem 'launchy', '~>2.4'
   gem 'cucumber', '~>2.0'
   gem 'poltergeist', '~>1.6'
+  gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
   gem 'capybara', '~>2.5'
 end
@@ -70,3 +73,4 @@ end
 group :health do
   gem 'blinkr', '~> 0.3'
 end
+

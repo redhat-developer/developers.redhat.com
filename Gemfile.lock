@@ -145,10 +145,15 @@ GEM
       pry (>= 0.9.12)
       shellany (~> 0.0)
       thor (>= 0.18.1)
-    guard-livereload (2.4.0)
+    guard-compat (1.2.1)
+    guard-livereload (2.5.1)
       em-websocket (~> 0.5)
       guard (~> 2.8)
+      guard-compat (~> 1.0)
       multi_json (~> 1.8)
+    guard-minitest (2.4.4)
+      guard-compat (~> 1.2)
+      minitest (>= 3.0)
     haml (4.0.7)
       tilt
     htmlcompressor (0.0.7)
@@ -178,7 +183,12 @@ GEM
     method_source (0.8.2)
     mime-types (2.1)
     mini_portile (0.6.2)
-    minitest (5.8.1)
+    minitest (5.8.2)
+    minitest-reporters (1.1.4)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     multi_json (1.11.2)
     multi_test (0.1.2)
     multipart-post (2.0.0)
@@ -248,6 +258,7 @@ GEM
     ruby-ll (2.1.2)
       ansi
       ast
+    ruby-progressbar (1.7.5)
     sass (3.4.5)
     sawyer (0.6.0)
       addressable (~> 2.3.5)
@@ -315,10 +326,13 @@ DEPENDENCIES
   git (~> 1.2.5)
   google-api-client (~> 0.8)
   gpgme (~> 2.0)
+  guard
+  guard-minitest
   htmlcompressor (~> 0.0.6)
   kramdown (~> 1.0.1)
   launchy (~> 2.4)
   mime-types (= 2.1)
+  minitest-reporters
   nokogiri (~> 1.5.10)
   oauth (~> 0.3.6)
   oily_png (~> 1.1.1)

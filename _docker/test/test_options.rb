@@ -1,7 +1,7 @@
-require 'test/unit'
-require './lib/misc/options.rb'
+require 'minitest/autorun'
+require_relative '../lib/options.rb'
 
-class TestOptions < Test::Unit::TestCase
+class TestOptions < Minitest::Test
     def test_add
       assert_equal (4+1), 5
     end
@@ -41,7 +41,7 @@ class TestOptions < Test::Unit::TestCase
     def test_set_build
       tasks = Options.parse (["-b"])
       assert(tasks[:build])
-      assert_false(tasks[:should_start_supporting_services])
+      refute(tasks[:should_start_supporting_services])
 
       tasks = Options.parse (["--run-the-stack"])
       assert(tasks[:build])
@@ -71,7 +71,7 @@ class TestOptions < Test::Unit::TestCase
       tasks = Options.parse (["-p"])
       assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
       tasks = Options.parse (["-g"])
-      assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake clean gen[docker]'], tasks[:awestruct_command_args])
+      assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[docker]'], tasks[:awestruct_command_args])
     end
 
     def test_acceptance_test_target_task_default_value
@@ -92,7 +92,7 @@ class TestOptions < Test::Unit::TestCase
 
     def test_run_docker_nightly
       tasks = Options.parse (["--docker-nightly"])
-      assert_not_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"], tasks[:acceptance_test_target_task])
+      refute_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"], tasks[:acceptance_test_target_task])
       assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
       assert(tasks[:kill_all])
       assert(tasks[:set_ports])

@@ -40,6 +40,9 @@
 #
 # Now you're Awestruct with rake!
 
+require "minitest/reporters"
+require 'rake/testtask'
+
 load './_smoke_tests/smoke.rake'
 
 $resources = ['stylesheets', 'javascripts', 'images']
@@ -48,6 +51,13 @@ $install_gems = ['awestruct -v "~> 0.5.3"', 'rb-inotify -v "~> 0.9.0"']
 $awestruct_cmd = nil
 $remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
+
+Rake::TestTask.new do |t|
+  t.libs = ["_docker/lib"]
+  t.warning = false
+  t.verbose = true
+  t.test_files = FileList['_docker/test/*.rb'] #Let's add more files here!
+end
 
 desc 'Setup the environment to run Awestruct'
 task :setup, [:env] => [:init, :bundle_install, :git_setup] do |task, args|
