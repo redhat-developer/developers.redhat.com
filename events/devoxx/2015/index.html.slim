@@ -5,7 +5,7 @@ primary_nav_hidden: true
 interpolate: true
 ---
 
-/ .wide.wide-hero.devoxxbe(class="#{page.hero_class}")==hero
+.wide.wide-hero.devoxxbe(class="#{page.hero_class}")==hero
 
 #devoxx-be-microsite
   section
@@ -66,7 +66,7 @@ interpolate: true
             li.row
               .large-3.small-10.columns
                 - unless !a.speaker_img
-                  img(src=cdn("#{site.base_url}/images/devoxx-be/#{a.speaker_img}") alt="#{a.speaker_name} #{a.speaker_lastname}")
+                  img(src=cdn("#{site.base_url}/images/events/devoxx/2015/#{a.speaker_img}") alt="#{a.speaker_name} #{a.speaker_lastname}")
                 - else
                   i.fa.fa-user.fa-5x.user-default
               .large-4.small-14.columns
