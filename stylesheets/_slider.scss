@@ -110,11 +110,15 @@
     }
   }
 
-  .slide--openshift {
-    background:cdn("../images/slider/RHDev_homecarousel_roadshow_desktop_08262015.jpg") center repeat-x;
-    background-size:auto 100%;
+  .slide--javaone {
+    background:cdn("../images/slider/RHDev_homecarousel_desktop_javaone_bg_10262015.png") center;
+    background-size: cover;
     @include mobile-landscape-and-down {
-      background-image:cdn("../images/slider/RHDev_homecarousel_roadshow_mobile_08262015.png");
+      background-image:cdn("../images/slider/RHDev_homecarousel_mobile_javaone_bg_10262015.png");
+      span {
+        float: none;
+        padding-right: 0;
+      }
     }
     h2 {
       color:white;
@@ -123,6 +127,11 @@
     }
     p {
       font-size: 30px;
+    }
+    span {
+      float: right;
+      padding-right: 33px;
+      font-weight: 600;
     }
   }
 
