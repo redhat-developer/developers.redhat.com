@@ -7,28 +7,8 @@
 dcp.service('searchService', function($http, $q) {
 
   this.getData = function(filter) {
-
-    var query = {
-      'field'  : ['_source'],
-      'size' : 500,
-      'content_provider' : ['jboss-developer', 'rht']
-    };
-
-    /* Delete null filters */
-    for(var f in filter) {
-      if(!filter[f]) {
-        delete filter[f];
-      }
-    }
-
-    var queryFilters = dcp.objectToFilter(filter);
-    queryFilters.push('sys_content_type:jbossdeveloper_event');
-    query.query = '(' + queryFilters.join(' AND ') + ')';
-    query.query = decodeURIComponent(decodeURIComponent(query.query));
-
     var deferred = $q.defer();
-    // app.dcp.url.search = 'http://dcpbeta-searchisko.rhcloud.com/v1/rest/search'; // temp overwrite for staging data
-    $http.get(app.dcp.url.search, { params : query }).success(function(data){
+    $http.get(app.dcp2.url.events, { params : filter }).success(function(data){
       deferred.resolve(data);
     });
     return deferred.promise;
@@ -36,67 +16,120 @@ dcp.service('searchService', function($http, $q) {
 
 });
 
-dcp.controller('eventsController', function($scope, searchService) {
+dcp.service('helpers', function() {
+
+  /**
+   * Retrieve object keys and convert them to number (we assume string keys that can be converted to number like "123").
+   * @param {Object} obj
+   * @return {Array.<number>}
+   */
+  this.getKeys = function(obj) {
+    var r = [];
+    for (var k in obj) {
+      if (!obj.hasOwnProperty(k)) continue;
+      r.push(Number(k));
+    }
+    return r;
+  };
+
+  /**
+   * Push {event} into {store} under given {key}.
+   * Store is an object (hashmap) keyed by timestamps (month start). Each key points to an array
+   * of events falling into particular month. Events spanning month borders are added into all relevant months.
+   *
+   * @param event
+   * @param key
+   * @param store
+   */
+  this.recordEvent = function(event, key, store) {
+    if (store && key && event && event.start_date && event.end_date) { // prevent NPE
+
+      store[key] = store[key] || [];
+      store[key].push(event);
+
+      try {
+        var start = moment(event.start_date);
+        var end = moment(event.end_date);
+        var startMonths = this.getAbsoluteMonths_(start);
+        var endMonths = this.getAbsoluteMonths_(end);
+        var mdiff = endMonths - startMonths;
+        if (mdiff > 0) {
+          var nmonth_ = key;
+          for (var i = 0; i < mdiff; i++) {
+            nmonth_ = moment(nmonth_).add(1, 'month').toDate().getTime();
+            store[nmonth_] = store[nmonth_] || [];
+            store[nmonth_].push(event);
+          }
+        }
+      } catch (ignore) {
+        // Assume any exception here comes from moment.js trying to parse
+        // invalid date value. In this case we can simply ignore it.
+        if (console && console.log) {
+          console.log(ignore);
+        }
+      }
+    }
+  };
+
+  /**
+   * @link http://stackoverflow.com/a/30605234
+   * @param momentDate
+   * @return {number}
+   * @private
+   */
+  this.getAbsoluteMonths_ = function(momentDate) {
+    var months = Number(momentDate.format("MM"));
+    var years = Number(momentDate.format("YYYY"));
+    return months + (years * 12);
+  };
+
+});
+
+dcp.controller('eventsController', function($scope, searchService, helpers) {
   window.$scope = $scope;
 
 
   // group into month array
   $scope.filter = {}; // stores the applied filter
-  $scope.filters = {regions : [], solutions : [], products : [], types : [] };
+  $scope.filters = {regions : [], solutions : [], products : [] };
   $scope.filtersFilled = false; // flag to only update the filters once
 
   $scope.getEvents = function() {
 
-    $scope.events = []; // parent array
+    $scope.monthKeys = [];
+    $scope.events = {}; // keyed by monthKeys
 
     searchService.getData($scope.filter).then(function(data){
 
-      for (var i = 0; i < data.hits.hits.length; i++) {
-        var item = data.hits.hits[i];
-        var itemStartMonth = moment(item._source.start_date).month();
-        var itemEndMonth = moment(item._source.end_date).month();
-        var itemEndYear = moment(item._source.end_date).year();
-        var currentYear = (new Date()).getFullYear();
-        var now = (new Date()).getTime();
-        var then = (new Date(item._source.end_date)).getTime();
+      var i = 0;
+      var item = null;
 
-        if(then < now) {
-          continue; // skip this one..
+      // Fill filters if we haven't
+      if(!$scope.filtersFilled) {
+        for (i = 0; i < data.aggregations.product_global.product_filter.product.buckets.length; i++) {
+          item = data.aggregations.product_global.product_filter.product.buckets[i];
+          $scope.filters.products.push({ text : item.key , value : item.key });
         }
-
-        // Fill filters if we haven't
-
-        if(!$scope.filtersFilled) {
-
-          if(item._source.target_product) {
-            $scope.filters.products.push({ text : item._source.target_product , value : item._source.target_product });
-          }
-
-          if(item._source.region) {
-            $scope.filters.regions.push({ text : item._source.region , value : item._source.region });
-          }
-
-          if(item._source.solution) {
-            $scope.filters.solutions.push({ text : item._source.solution , value : item._source.solution });
-          }
-
+        for (i = 0; i < data.aggregations.region_global.region_filter.region.buckets.length; i++) {
+          item = data.aggregations.region_global.region_filter.region.buckets[i];
+          $scope.filters.regions.push({ text : item.key , value : item.key });
         }
-
-        // push to the array
-        $scope.events[itemStartMonth] = $scope.events[itemStartMonth] || [];
-        $scope.events[itemStartMonth].push(item);
-
-        // push it to next months if it ends in that month
-        if(itemStartMonth !== itemEndMonth) {
-          $scope.events[itemEndMonth] = $scope.events[itemEndMonth] || [];
-          $scope.events[itemEndMonth].push(item);
+        for (i = 0; i < data.aggregations.solution_global.solution_filter.solution.buckets.length; i++) {
+          item = data.aggregations.solution_global.solution_filter.solution.buckets[i];
+          $scope.filters.solutions.push({ text : item.key , value : item.key })
         }
-
+        $scope.filtersFilled = true; // marked as filled so they do not update when we filter
       }
 
-      $scope.filtersFilled = true; // marked as filled so they do not update when we filter
-
-      // $scope.events = data.hits.hits;
+      var monthStartBuckets_ = data.aggregations.months_by_start_date.buckets;
+      for (i = 0; i < monthStartBuckets_.length; i++) {
+        var bucket = monthStartBuckets_[i];
+        var monthlyEvents_ = bucket.events.hits.hits;
+        for (var e = 0; e < monthlyEvents_.length; e++) {
+          helpers.recordEvent(monthlyEvents_[e]._source, bucket.key, $scope.events);
+        }
+        $scope.monthKeys = helpers.getKeys($scope.events);
+      }
     });
   }; // end $scope.getEvents
 
@@ -110,20 +143,3 @@ dcp.filter('moment',function() {
     return moment(dateString).format(format);
   };
 });
-
-dcp.filter('momentMonth',function() {
-  return function(dateString, format){
-    return moment().month(dateString).format(format);
-  };
-});
-
-dcp.objectToFilter = function(obj) {
-    var str = '';
-    var arr = [];
-    for (var p in obj) {
-        if (obj.hasOwnProperty(p)) {
-            arr.push(p + ':' + obj[p]);
-        }
-    }
-    return arr;
-};

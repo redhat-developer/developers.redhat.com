@@ -38,9 +38,9 @@
           td.title
             p
               a(ng-href="{{item.fields.sys_url_view | urlFix}}" )
-                | {{item.fields.sys_title}}
+                | {{item.fields.sys_title | firstIfArray}}
                 i.fa.fa-external-link(ng-hide="item | checkInternal")
-            span.contributor(data-sys-contributor="{{item.fields.sys_author}}")
+            span.contributor(data-sys-contributor="{{item.fields.sys_author | firstIfArray}}")
               a.name
                 | {{item.fields.sys_author | name}}
           / Description
@@ -59,7 +59,7 @@
       li.material(ng-repeat="item in data.displayedMaterials")
         div(class="get-started-placeholder-{{item.fields.sys_type}}")
           / Thumbnail
-          a(ng-href="{{item.fields.sys_url_view}}")
+          a(ng-href="{{item.fields.sys_url_view | firstIfArray}}")
             img(ng-src="{{item | thumbnailURL}}")
           / Experimental Banner
           a.banner.experimental(ng-show="item.fields.experimental")
@@ -67,14 +67,14 @@
           a.banner.premium(ng-show="item.fields.sys_url_view | isPremium")
           / Badges
           span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.duration") {{ item.fields.duration | HHMMSS}}
-          span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.level") {{ item.fields.level }}
+          span.label(class="material-level-{{item.fields.level}}" ng-show="item.fields.level") {{ item.fields.level | firstIfArray }}
           .material-info
             / Material Name
             h5
-              a(ng-href="{{item.fields.sys_url_view}}")
-                | {{item.fields.sys_title}}
+              a(ng-href="{{item.fields.sys_url_view | firstIfArray}}")
+                | {{item.fields.sys_title | firstIfArray}}
             / Author
-            span.contributor(data-sys-contributor="{{item.fields.sys_author}}")
+            span.contributor(data-sys-contributor="{{item.fields.sys_author | firstIfArray}}")
               a.name
             / timestamp
             p.material-datestamp
@@ -88,24 +88,24 @@
   .large-7.columns#show-entries
     label.inline Show
     select(name="show-entries" ng-model="pagination.size" ng-change="filter.applyFilters()")
-      option(value="10") 10
-      option(value="15") 15
-      option(value="20") 20
-      option(value="25") 25
+      option(value="size10") 10
+      option(value="size15") 15
+      option(value="size20") 20
+      option(value="size25") 25
     label.inline entries
     br
-    p Showing {{(paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber}} to {{ Math.min(data.materials.length, paginate.currentPage * pagination.size) | safeNumber}} of {{data.materials.length | safeNumber}} entries
+    p Showing {{(paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber}} to {{ Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber}} of {{data.total | safeNumber}} entries
   .large-17.small-24.columns
     nav#paginator(ng-hide="pagination.viewall || !data.materials.length || data.loading")
       ul.pagination
         li(ng-class="{unavailable: paginate.currentPage < 2}")
-          a(ng-click="paginate(paginate.currentPage = 1)") First
+          a(ng-click="firstPage()") First
         li(ng-class="{unavailable: paginate.currentPage < 2}")
-          a(ng-click="paginate(paginate.currentPage - 1)") Previous
+          a(ng-click="previousPage()") Previous
         li(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}")
-          a(ng-click="paginate(page)" data-page="{{page}}")
+          a(ng-click="goToPage(page)" data-page="{{page}}")
             | {{page}}
         li(ng-class="{unavailable: paginate.currentPage >= paginate.pages}")
-          a(ng-click="paginate(paginate.currentPage + 1)") Next
+          a(ng-click="nextPage()") Next
         li(ng-class="{unavailable: paginate.currentPage  == paginate.pages}")
-          a(ng-click="paginate(paginate.currentPage = paginate.pages)") Last
+          a(ng-click="lastPage()") Last
