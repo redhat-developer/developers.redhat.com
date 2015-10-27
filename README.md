@@ -96,6 +96,8 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
 We've found that left over containers from previously failed attempts can cause problems. Please remove all containers from these failed attempts before starting again.
 
 ###Run the stack!
+_NOTE:_ You must be connected to the Red Hat VPN to build the Docker images. 
+
 Run the following commands to build the images and start the containers:
 
 ` bundle exec ./control.rb --run-the-stack`
