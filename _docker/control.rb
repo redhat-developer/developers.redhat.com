@@ -11,8 +11,8 @@ require 'timeout'
 require 'erb'
 require 'resolv'
 require 'open3'
-require './lib/misc/options.rb'
-require './lib/misc/file_helpers.rb'
+require './lib/options.rb'
+require './lib/file_helpers.rb'
 
 def modify_env
   begin
@@ -167,6 +167,12 @@ if tasks[:build]
   execute_docker(:build, '--tag=developer.redhat.com/ruby', './ruby')
   puts 'Building services...'
   execute_docker_compose :build
+end
+
+if tasks[:unit_tests]
+  puts "Running the unit tests"
+
+  execute_docker_compose :run, tasks[:unit_tests]
 end
 
 if tasks[:should_start_supporting_services]

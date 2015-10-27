@@ -19,8 +19,16 @@ class Options
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
+      opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
+        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
+        tasks[:decrypt] = true
+        tasks[:set_ports] = true
+        tasks[:build] = true
+      end
+
       opts.on('-b', '--build', 'Build the containers') do |b|
         tasks[:decrypt] = true
+        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
         tasks[:set_ports] = true
         tasks[:build] = true
       end
@@ -53,6 +61,7 @@ class Options
         tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-pr,build,#{pr}] clean deploy[staging_docker]"]
         tasks[:kill_all] = true
         tasks[:build] = true
+        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
         tasks[:set_ports] = true
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
@@ -61,6 +70,7 @@ class Options
         ENV['HOST_TO_TEST'] = f ||= 'http://localhost:32768'
         tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"]
         tasks[:build] = true
+        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
         tasks[:set_ports] = true
       end
 
@@ -69,12 +79,14 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:set_ports] = true
+        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
         tasks[:decrypt] = true
         tasks[:set_ports] = true
+        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
         tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
