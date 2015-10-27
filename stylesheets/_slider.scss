@@ -207,8 +207,14 @@
   overflow: hidden;
   max-height:450px;
   position: relative;
+  visibility:hidden;
   @include flexbox;
 }
+
+.slider-loaded .swipe-wrap {
+  visibility:visible;
+}
+
 .swipe-wrap > div {
   float:left;
   width:100%;
