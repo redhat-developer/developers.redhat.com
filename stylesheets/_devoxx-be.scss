@@ -1,9 +1,9 @@
-.devoxx-be .wrapper {
+.eventsdevoxx2015 .wrapper {
   padding-bottom: 0;
 }
 
 .wide-hero.devoxxbe {
-  // background-image: cdn('../images/javaone/javaone_microsite_desktop_hero.png');
+  background-image: cdn('../images/events/devoxx/2015/devoxx-be_microsite_desktop_hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,7 +12,7 @@
   padding-top: 40px;
   min-height: 260px;
   @include tablet-portrait-and-down {
-    // background: cdn('../images/javaone/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
+    background: cdn('../images/events/devoxx/2015/devoxx-be_microsite_mobile_hero.png') top center / cover repeat-x;
     min-height: 400px;
   }
 }
