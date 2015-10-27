@@ -59,9 +59,6 @@
       color:white;
       line-height: 1.2;
     }
-    .columns {
-      // padding:90px;
-    }
     img {
       margin-top: 20px;
       margin-bottom: 20px;
@@ -94,11 +91,11 @@
     }
   }
 
-  .slide--java8 {
-    background:cdn("../images/slider/homepage_carousel_deployjava_desktop_bkg.jpg") center repeat-x;
+  .slide--modernjava {
+    background:cdn("../images/slider/RHDev_homecarousel_oreilly_desktop.png") center repeat-x;
     background-size:auto 100%;
-    @include mobile-landscape-and-down {
-      background-image:cdn("../images/slider/homepage_carousel_deployjava_mobile_bkg.jpg");
+    .large-11 {
+      margin-left: 15%;
     }
     h2 {
       color:white;
@@ -107,18 +104,34 @@
     }
     p {
       font-size: 30px;
+    }
+    @include tablet-landscape-and-down {
+      .large-11 {
+        margin-left: 0%;
+      }
+      img {
+        max-width: 252px;
+        display: block;
+        margin: 0 auto;
+      }
+      .button {
+        max-width: 252px;
+        display: block;
+        margin: 0 auto 30px auto;
+      }
+    }
+    @include mobile-landscape-and-down {
+      background-image:cdn("../images/slider/RHDev_homecarousel_oreilly_mobile.png");
     }
   }
 
   .slide--javaone {
     background:cdn("../images/slider/RHDev_homecarousel_desktop_javaone_bg_10262015.png") center;
     background-size: cover;
-    @include mobile-landscape-and-down {
-      background-image:cdn("../images/slider/RHDev_homecarousel_mobile_javaone_bg_10262015.png");
-      span {
-        float: none;
-        padding-right: 0;
-      }
+    span {
+      float: right;
+      padding-right: 33px;
+      font-weight: 600;
     }
     h2 {
       color:white;
@@ -128,10 +141,18 @@
     p {
       font-size: 30px;
     }
-    span {
-      float: right;
-      padding-right: 33px;
-      font-weight: 600;
+    strong {
+      margin-right: 15px;
+    }
+    @include tablet-landscape-and-down {
+      span {
+        float: none;
+        padding-right: 0;
+        display: inline-block;
+      }
+    }
+    @include mobile-landscape-and-down {
+      background-image:cdn("../images/slider/RHDev_homecarousel_mobile_javaone_bg_10262015.png");
     }
   }
 
