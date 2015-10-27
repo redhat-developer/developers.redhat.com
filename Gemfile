@@ -13,7 +13,7 @@ def darwin_only(require_as)
 end
 
 # GEMS
-gem 'awestruct', '0.5.7.RC1'
+gem 'awestruct', '0.5.7.RC2'
 gem 'slim', '~> 3.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 1.5.0'
@@ -32,9 +32,8 @@ gem 'signet', '~> 0.6'
 gem 'gpgme', '~> 2.0'
 gem 'ruby-duration', '~> 3.1'
 gem 'daybreak'
-gem 'sass', '~> 3.4', '< 3.4.6'
+gem 'sassc'
 gem 'activesupport', '> 3.1', '< 4.2.0' # Used in aweplug by ruby-duration
-gem 'compass', '~> 1.0'
 gem 'rake', '~>10.4'
 
 # To use Aweplug code from a different location:
