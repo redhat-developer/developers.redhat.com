@@ -42,7 +42,16 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "foundation/components/dropdown";
 @import "foundation/components/tabs";
 
+// Import only the compass modules we need
+// @import "compass/css3/box-shadow";
+// @import "compass/css3/images";
+// @import "compass/css3/transform";
+// @import "compass/css3/transition";
+// @import "compass/css3/columns";
+
+
 // Import Our CSS Modules and mixins
+// @import "sprites";
 @import "mq-mixins";
 @import "jboss-mixins";
 // @import "navigation";
