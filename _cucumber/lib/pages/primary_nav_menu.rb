@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 class PrimaryNav < Base
 
   PRIMARY_NAV_BAR = '.primary-nav'

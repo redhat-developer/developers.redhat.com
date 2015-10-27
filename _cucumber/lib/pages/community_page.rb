@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 class CommunityPage < Base
 
   COMMUNITY_HEADER      = '.hero-projects'

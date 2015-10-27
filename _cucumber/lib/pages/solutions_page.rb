@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 class SolutionsPage < Base
 
   SOLUTIONS_HEADER = '.hero-solutions'

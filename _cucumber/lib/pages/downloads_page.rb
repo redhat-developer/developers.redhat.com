@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 class DownloadsPage < Base
 
   DOWNLOADS_HEADER = '.hero-downloads'

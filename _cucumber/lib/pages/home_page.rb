@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 class Home < Base
 
   def initialize(driver)

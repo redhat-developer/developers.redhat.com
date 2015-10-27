@@ -1,3 +1,5 @@
+require_relative 'base.rb'
+
 class ProductsPage < Base
 
   PRODUCTS_SECTIONS          = '.development-tool'
