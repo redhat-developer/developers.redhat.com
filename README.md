@@ -110,7 +110,7 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
 
 #### Warning about previous containers
 
-We've found that left over containers from previously failed attempts can cause problems. Please remove all containers from these failed attempts before starting again.
+We've found that left over containers from previously failed attempts can cause problems. Docker will give an output on how it reccomends you deal with this. Please follow the advice there.
 
 ###Run the stack!
 _NOTE:_ You must be connected to the Red Hat VPN to build the Docker images.
