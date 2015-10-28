@@ -1,33 +1,43 @@
 # Red Hat Developers Site
 
-Powering the Red Hat Developers site available at http://developers.redhat.com/
+Powering the [Red Hat Developers site](http://developers.redhat.com/)
 
 ## Developer setup
 We recommend that Docker be used in development. This simplifies the setup, and makes your development environment consistent with other developers and our CI servers. The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
 
+There are some [Common Issues](#CommonIssues) you may encounter, check them out before seeking help.
+
 Skip to the [Site Build Setup](#site_build_setup) section if you don't want to use Docker.
-###Utilities
+### Utilities
 You should be running a bash shell (Linux or OSX) and you will require: git and curl.
-###Docker
+### Brew (OSX only)
+If you are on a mac then brew is required to install some dependant packages. Brew is like apt-get or yum for mac. [Follow their instructions](http://brew.sh/) and make sure that `brew doctor` completes without error.
+### Docker
 Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system as they will be too far out of date.
 
-###Docker Compose
+### Docker Compose
 OSX: Docker compose will have been installed as part of the docker toolbox.
 
 Non-OSX:Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
+### Sanity test
+At this point you need to and should be able to run the following commands without error:
+```bash
+docker run hello-world
+docker-compose version
+```
+If you have trouble running either of these commands please refer back to docker installation instructions. At this point no project specific steps have been taken, so docker is the reference point for fixing issues. If there is anything missing in this guide please submit a PR.
+
 ### Basic Ruby install
-In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`. In order to run this you will require ruby 2.1 or greater. The following instructions install ruby via rbenv. You can use other methods, but your mileage may vary.
-#### Pre-requisites
+In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`. In order to run this you will require ruby 2.1 or greater. The following instructions install ruby via rbenv. You can use other methods, but your mileage may vary. If you already have RVM installed you'll need to [remove it to use rbenv](http://stackoverflow.com/a/3558763/2012130).
+#### Pre-requisites for Ruby installation
 OSX:
 ```bash
 brew install openssl libyaml libffi
 ```
-
 Ubuntu/Debian/Mint:
 ```bash
 apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 ```
-
 Centos/Fedora:
 ```bash
 yum install -y gcc openssl-devel bzip2 libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
@@ -53,13 +63,13 @@ rbenv rehash
 ```
 ### Git checkout
 Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
-
-         git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
-         cd developers.redhat.com
-         git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
-
+```bash
+git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
+cd developers.redhat.com
+git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
+```
 ### Set up
-Download the Searchisko data dump from [here](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
+Download the [Searchisko data dump](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko.sql.zip) and copy to `_docker/searchisko/overlay/searchisko.sql.zip`
 
 Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Docker-machine, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `docker-machine ip default`
 
@@ -76,16 +86,15 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
 1. SSH in to the default docker machine :
 
         docker-machine ssh default
-       
+
 2. Edit the boot2docker profile:
 
         sudo vi /var/lib/boot2docker/profile
-        
+
 3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Replace the existing EXTRA_ARGS with the following:
 
-       
         EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
-        
+
 4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
 5. exit the boot2docker image
 6. Restart docker-machine `docker-machine restart default`
@@ -96,11 +105,14 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
 We've found that left over containers from previously failed attempts can cause problems. Please remove all containers from these failed attempts before starting again.
 
 ###Run the stack!
-_NOTE:_ You must be connected to the Red Hat VPN to build the Docker images. 
+_NOTE:_ You must be connected to the Red Hat VPN to build the Docker images.
+_NOTE:_ The first time to build and run the site will take a long time (15-45 mins) as a lot of docker images need to be built.
 
 Run the following commands to build the images and start the containers:
 
-` bundle exec ./control.rb --run-the-stack`
+```
+bundle exec ./control.rb --run-the-stack
+```
 
 This will take a while the first time. This starts all required services and then  runs awestruct in preview mode. The script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
 
@@ -294,8 +306,15 @@ Minimally the following list of recipients is required to encrypt the file:
 
 If you add a new recipient to the file, ensure you update the list above.
 
-## Common issues
+## <a name="CommonIssues"></a>Common issues
 This area documents fixes to common issues:
+
+### 'Illegal instruction: 4'
+There is an [issue on older macs](https://github.com/docker/compose/issues/271) where docker compose will not run. The only way around this is to install docker-compose via pip (Python's package manager). This can be done as follows:
+```bash
+sudo easy_install pip
+sudo pip install docker-compose
+```
 
 ### 'No address for docker'
 If you get an error with the message 'no address for docker (Resolv::ResolvError)' you need to ensure that the host 'docker' is added as an alias to localhost in your /etc/hosts file. Instructions for this are available in the Docker section of this document.
