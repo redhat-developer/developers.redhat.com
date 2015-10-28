@@ -1,10 +1,9 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class DownloadsPage < Base
+class DownloadsPage < BasePage
   set_url '/downloads/'
 
-  element :downloads_header, '.hero-downloads'
-  element :downloads_header, '#downloads'
+  element :downloads, '#downloads'
   element :download_latest_link, '.fa-download'
 
   def initialize(driver)

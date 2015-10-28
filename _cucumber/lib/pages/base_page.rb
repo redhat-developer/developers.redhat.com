@@ -1,6 +1,6 @@
 require 'rspec'
 
-class Base < SitePrism::Page
+class BasePage < SitePrism::Page
   include Capybara::DSL
 
   attr_reader :driver

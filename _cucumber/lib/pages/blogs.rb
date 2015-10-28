@@ -1,6 +1,6 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class Blogs < Base
+class Blogs < BasePage
   set_url 'http://developerblog.redhat.com/'
 
 end

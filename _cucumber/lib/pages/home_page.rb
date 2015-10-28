@@ -1,6 +1,6 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class Home < Base
+class Home < BasePage
   set_url '/'
 
   def initialize(driver)

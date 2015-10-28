@@ -1,6 +1,6 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class EventsPage < Base
+class EventsPage < BasePage
   set_url '/events/'
 
   def initialize(driver)

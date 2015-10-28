@@ -1,6 +1,6 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class PrimaryNav < Base
+class PrimaryNav < BasePage
 
   PRIMARY_NAV_TABS   = %i[Solutions Products Downloads Resources Community Events Blogs]
 

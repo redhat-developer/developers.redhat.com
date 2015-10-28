@@ -1,6 +1,6 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class ProductsPage < Base
+class ProductsPage < BasePage
   set_url '/products/'
 
   elements :products_sections, '.development-tool'

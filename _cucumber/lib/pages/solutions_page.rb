@@ -1,6 +1,6 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class SolutionsPage < Base
+class SolutionsPage < BasePage
   set_url '/solutions/'
 
   element  :solutions_header, '.hero-solutions'

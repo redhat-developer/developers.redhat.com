@@ -1,6 +1,6 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class CommunityPage < Base
+class CommunityPage < BasePage
   set_url '/projects/'
 
   element :promoted_links, '.defaultprojectimage'

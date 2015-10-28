@@ -1,6 +1,6 @@
-require_relative 'base.rb'
+require_relative 'base_page.rb'
 
-class ResourcesPage < Base
+class ResourcesPage < BasePage
   set_url '/resources/'
 
   def initialize(driver)
