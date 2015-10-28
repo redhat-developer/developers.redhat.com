@@ -26,12 +26,6 @@ class Options
         tasks[:build] = true
       end
 
-      opts.on('-b', '--build', 'Build the containers') do |b|
-        tasks[:decrypt] = true
-        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
-        tasks[:set_ports] = true
-        tasks[:build] = true
-      end
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
