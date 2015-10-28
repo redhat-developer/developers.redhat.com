@@ -107,6 +107,10 @@ This will take a while the first time. This starts all required services and the
 NOTE: When `preview` is run, you may see errors from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
 
 ###Important Control.rb commands
+Run the unit tests
+
+`bundle exec ./control.rb -t`
+
 To build and start all services:
 
 `bundle exec ./control.rb --run-the-stack`
