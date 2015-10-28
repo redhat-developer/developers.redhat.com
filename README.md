@@ -1,6 +1,6 @@
 # Red Hat Developers Site
 
-Powering the [Red Hat Developers site](http://developers.redhat.com/)
+Powering the [Red Hat Developers site](http://developers.redhat.com/).
 
 ## Developer setup
 We recommend that Docker be used in development. This simplifies the setup, and makes your development environment consistent with other developers and our CI servers. The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
@@ -13,7 +13,7 @@ You should be running a bash shell (Linux or OSX) and you will require: git and 
 ### Brew (OSX only)
 If you are on a mac then brew is required to install some dependant packages. Brew is like apt-get or yum for mac. [Follow their instructions](http://brew.sh/) and make sure that `brew doctor` completes without error.
 ### Docker
-Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system as they will be too far out of date.
+Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
 
 ### Docker Compose
 OSX: Docker compose will have been installed as part of the docker toolbox.
@@ -43,11 +43,19 @@ Centos/Fedora:
 yum install -y gcc openssl-devel bzip2 libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
 ```
 #### Installation of rbenv
+####OSX
 ```bash
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc #(or .bash_profile on a OSX)
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc #(or .bash_profile on a OSX)
-source ~/.bashrc #(or .bash_profile on a OSX)
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+####Linux
+```bash
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+source ~/.bashrc
 ```
 #### Installation of rbenv-build
 ```bash
@@ -61,7 +69,7 @@ gem update --system
 gem install bundler
 rbenv rehash
 ```
-### Git checkout
+### Project checkout
 Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
 ```bash
 git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
@@ -96,7 +104,7 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
         EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
 
 4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
-5. exit the boot2docker image
+5. exit the boot2docker image (just type `exit` in the terminal)
 6. Restart docker-machine `docker-machine restart default`
 
 
@@ -106,7 +114,8 @@ We've found that left over containers from previously failed attempts can cause 
 
 ###Run the stack!
 _NOTE:_ You must be connected to the Red Hat VPN to build the Docker images.
-_NOTE:_ The first time to build and run the site will take a long time (15-45 mins) as a lot of docker images need to be built.
+
+_NOTE:_ The first time to build and run the site will take a long time (15-45 minutes) as a lot of docker images need to be built.
 
 Run the following commands to build the images and start the containers:
 
