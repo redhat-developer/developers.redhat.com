@@ -3,7 +3,6 @@ Feature: Home Page Smoke Test
   As a build agent
   I want to be able to see sanity tests pass.
 
-  @smoke
   Scenario: Visit Product landing page
     Given I am on the Products page
     Then I should see the following main products sections:

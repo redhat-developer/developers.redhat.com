@@ -1,7 +1,7 @@
 Before do
   @driver = Capybara.current_session.driver
-  @site = App.new(@driver)
-  if Capybara.current_driver == 'poltergeist'.to_sym
+  @page = App.new(@driver)
+  if Capybara.current_driver == 'poltergeist'.to_sym || Capybara.current_driver == 'webkit'.to_sym
     @driver.clear_cookies
   else
     @driver.browser.manage.delete_all_cookies

@@ -1,7 +1,7 @@
 require_relative 'base.rb'
 
-class Home < Base
-  set_url '/'
+class EventsPage < Base
+  set_url '/events/'
 
   def initialize(driver)
     super
@@ -9,7 +9,7 @@ class Home < Base
 
   def open
     load
-    loaded?('Red Hat Developers')
+    loaded?('Events featuring JBoss')
   end
 
 end

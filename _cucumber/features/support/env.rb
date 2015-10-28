@@ -10,6 +10,8 @@ require 'require_all'
 require 'fileutils'
 require 'rubocop'
 require 'capybara-screenshot/cucumber'
+require 'site_prism'
+require 'capybara-webkit'
 
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
@@ -20,9 +22,8 @@ Capybara.configure do |config|
   host_to_test = ENV['HOST_TO_TEST'] ||= 'http://docker:32768'
   config.app_host = host_to_test
   config.run_server = false
-  config.default_driver = (ENV['DRIVER'] || 'poltergeist').to_sym
-  config.javascript_driver = config.default_driver
-  config.default_max_wait_time = 60
+  config.default_driver = (ENV['DRIVER'] ||= 'webkit').to_sym
+  config.default_max_wait_time = 30
   config.save_and_open_page_path = SCREENSHOT_DIRECTORY
   Capybara::Screenshot.prune_strategy = :keep_last_run
   puts " . . . Running smoke tests against #{host_to_test}  . . . "
@@ -34,10 +35,14 @@ Capybara.configure do |config|
   puts " . . . Screenshot directory location: #{SCREENSHOT_DIRECTORY} . . . "
 end
 
+Capybara::Webkit.configure do |config|
+  config.allow_unknown_urls
+  config.ignore_ssl_errors
+end
+
 Capybara.register_driver :poltergeist do |app|
   #The ssl options below allow us to call searchisko (operating from a different host
-  Capybara::Poltergeist::Driver.new(app, {
-      :phantomjs_options => ['--debug=no', '--load-images=no', '--ignore-ssl-errors=yes', '--ssl-protocol=TLSv1'], :js_errors => false})
+  Capybara::Poltergeist::Driver.new(app, { :phantomjs_options => ['--debug=no', '--load-images=no', '--ignore-ssl-errors=yes', '--ssl-protocol=TLSv1'], :js_errors => false })
 end
 
 Capybara.register_driver :firefox do |app|
@@ -58,3 +63,4 @@ end
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   driver.browser.save_screenshot path
 end
+

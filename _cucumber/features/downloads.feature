@@ -4,7 +4,6 @@ Feature: Download Page Smoke Test
   As generic site visitor
   I want to be able to see a list of available downloads.
 
-  @smoke
   Scenario: Sanity check
     Given I am on the Downloads page
     Then I should see the download page title
