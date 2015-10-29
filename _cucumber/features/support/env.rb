@@ -11,7 +11,6 @@ require 'fileutils'
 require 'rubocop'
 require 'capybara-screenshot/cucumber'
 require 'site_prism'
-require 'capybara-webkit'
 
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
@@ -22,8 +21,8 @@ Capybara.configure do |config|
   host_to_test = ENV['HOST_TO_TEST'] ||= 'http://docker:32768'
   config.app_host = host_to_test
   config.run_server = false
-  config.default_driver = (ENV['DRIVER'] ||= 'webkit').to_sym
-  config.default_max_wait_time = 30
+  config.default_driver = (ENV['DRIVER'] ||= 'poltergeist').to_sym
+  config.default_max_wait_time = 45
   config.save_and_open_page_path = SCREENSHOT_DIRECTORY
   Capybara::Screenshot.prune_strategy = :keep_last_run
   puts " . . . Running smoke tests against #{host_to_test}  . . . "
@@ -33,11 +32,6 @@ Capybara.configure do |config|
   puts ' . . . To switch browser use the Environment variable DRIVER . . . '
   puts ' . . . E.g. bundle exec features DRIVER=firefox . . . '
   puts " . . . Screenshot directory location: #{SCREENSHOT_DIRECTORY} . . . "
-end
-
-Capybara::Webkit.configure do |config|
-  config.allow_unknown_urls
-  config.ignore_ssl_errors
 end
 
 Capybara.register_driver :poltergeist do |app|
@@ -63,4 +57,3 @@ end
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   driver.browser.save_screenshot path
 end
-

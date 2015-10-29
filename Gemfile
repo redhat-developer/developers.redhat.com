@@ -64,7 +64,7 @@ group :test do
   gem 'chromedriver-helper', '0.0.6'
   gem 'capybara-screenshot', '~> 1.0.11'
   gem 'site_prism', '~> 2.7'
-end
+ end
 
 group :development do
   gem 'rb-inotify', require: false

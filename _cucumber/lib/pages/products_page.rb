@@ -20,4 +20,11 @@ class ProductsPage < BasePage
     loaded?('Red Hat Products')
   end
 
+  def product_titles
+     titles = []
+     elements = [infrastructure_management, cloud_products,mobile, jboss_dev_and_management, integration_and_automation]
+     elements.each { |el| titles << el.text }
+    titles
+  end
+
 end
