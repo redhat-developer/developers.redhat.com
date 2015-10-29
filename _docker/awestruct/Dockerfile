@@ -16,10 +16,6 @@ RUN wget http://prdownloads.sourceforge.net/optipng/optipng-0.7.5.tar.gz?downloa
 WORKDIR /tmp/optipng-0.7.5
 RUN ./configure && make && make install
 
-RUN yum -y install gcc gcc-c++ make flex bison gperf \
-  openssl-devel freetype-devel fontconfig-devel libicu-devel sqlite-devel \
-  libpng-devel libjpeg-devel
-
 WORKDIR /tmp
 RUN yum install -y fontconfig freetype && \
     wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 && \
