@@ -43,7 +43,7 @@
 require "minitest/reporters"
 require 'rake/testtask'
 
-load './_smoke_tests/smoke.rake'
+load './_cucumber/cucumber.rake'
 
 $resources = ['stylesheets', 'javascripts', 'images']
 $use_bundle_exec = true
