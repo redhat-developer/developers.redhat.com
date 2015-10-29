@@ -3,7 +3,6 @@ require 'aweplug/helpers/cdn'
 require 'aweplug/helpers/resources'
 require 'aweplug/helpers/png'
 require 'aweplug/helpers/drupal_service'
-require 'compass'
 require 'asciidoctor'
 require 'asciidoctor/extensions'
 require 'pathname'
@@ -245,41 +244,7 @@ module JBoss
             "active" if page.output_path.match(/^\/#{key}\/index.html$/)
           end
         end
-      end
-
-      class CompassConfigurator
-
-        SPRITES_DIR = "sprites"
-        SPRITES_PATH = Pathname.new("images").join(SPRITES_DIR)
-
-        def initialize
-          
-        end
-
-        def execute(site)
-          if site.cdn_http_base
-            cdn = Aweplug::Helpers::CDN.new(SPRITES_DIR, site.cdn_out_dir, site.version)
-            if File.exists? Aweplug::Helpers::CDN::EXPIRES_FILE
-              FileUtils.cp(Aweplug::Helpers::CDN::EXPIRES_FILE, cdn.tmp_dir.join(".htaccess"))
-            end
-            FileUtils.mkdir_p cdn.tmp_dir
-            # Load this late, we don't want to normally require pngquant
-            Compass.configuration.generated_images_dir = cdn.tmp_dir.to_s
-            if Aweplug::Helpers::CDN::ENV_PREFIX.nil?
-              Compass.configuration.http_generated_images_path = "#{site.cdn_http_base}/#{SPRITES_DIR}"
-            else
-              Compass.configuration.http_generated_images_path = "#{site.cdn_http_base}/#{Aweplug::Helpers::CDN::ENV_PREFIX}/#{SPRITES_DIR}"
-            end
-            # Run sprites through pngquant on creation
-            Compass.configuration.on_sprite_saved { |filename| Aweplug::Helpers::PNGFile.new(filename).compress! }
-          else
-            Compass.configuration.generated_images_dir = SPRITES_PATH.to_s
-            Compass.configuration.http_generated_images_path = "#{site.base_url}/#{SPRITES_PATH}"
-          end
-        end
-
-      end
-
+      end 
     end
   end
 end

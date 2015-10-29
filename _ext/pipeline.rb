@@ -193,9 +193,6 @@ Awestruct::Extensions::Pipeline.new do
   # Load indexifier
   extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]
 
-  # Pushes compass: config from site.yml -> compass
-  extension JBoss::Developer::Utilities::CompassConfigurator.new
-
   # Generate a sitemap.xml
   extension Awestruct::Extensions::Sitemap.new
   # Generate a assets.yml
