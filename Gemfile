@@ -45,7 +45,7 @@ gem 'rake', '~>10.4'
 # From a location on your disk:
 #    gem 'aweplug', path: '<path_to_aweplug_on_your_disk>'
 #
-gem 'aweplug', github: 'Dantheman720/aweplug', :branch => 'RHD-621'
+gem 'aweplug', github: 'awestruct/aweplug'
 
 group :test do
   gem 'guard'
