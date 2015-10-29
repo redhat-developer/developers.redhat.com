@@ -51,12 +51,20 @@ group :test do
   gem 'guard'
   gem 'guard-minitest'
   gem 'launchy', '~>2.4'
+  gem 'rubocop', '~> 0.34.2'
   gem 'cucumber', '~>2.0'
-  gem 'poltergeist', '~>1.6'
+  gem 'poltergeist', '~> 1.7.0'
   gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
   gem 'capybara', '~>2.5'
-end
+  gem 'selenium-webdriver', '~> 2.48.0'
+  gem 'parallel_tests', '~> 1.9.0'
+  gem 'cuke_sniffer', '~> 0.0.8'
+  gem 'require_all', '~> 1.3.2'
+  gem 'chromedriver-helper', '0.0.6'
+  gem 'capybara-screenshot', '~> 1.0.11'
+  gem 'site_prism', '~> 2.7'
+ end
 
 group :development do
   gem 'rb-inotify', require: false
