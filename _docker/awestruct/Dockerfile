@@ -22,10 +22,10 @@ RUN yum -y install gcc gcc-c++ make flex bison gperf \
 
 WORKDIR /tmp
 RUN yum install -y fontconfig freetype && \
-wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 && \
-mkdir -p /opt/phantomjs && \
-tar -xjvf /tmp/phantomjs-1.9.8-linux-x86_64.tar.bz2 -C /opt/phantomjs/ && \
-cp /opt/phantomjs/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
+    wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 && \
+    mkdir -p /opt/phantomjs && \
+    tar -xjvf /tmp/phantomjs-1.9.8-linux-x86_64.tar.bz2 -C /opt/phantomjs/ && \
+    cp /opt/phantomjs/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
 
 RUN adduser --system --uid=1000 --home-dir /home/awestruct --shell /bin/bash -m -U awestruct
 
