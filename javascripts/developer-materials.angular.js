@@ -31,13 +31,13 @@ dcp.factory('httpInterceptor', ['$q', '$injector', function($q, $injector) {
    * These event can be used to display 'loading' image ... etc.
    */
   return {
-    'request': function (config) {
-      if (config.method == 'GET' && config.url.indexOf(app.dcp2.url.developer_materials) > -1) {
+    request: function (config) {
+      if (config.method == 'GET' && config.url.indexOf(app.dcp.url.developer_materials) > -1) {
         $injector.get('$rootScope').$broadcast('_START_REQUEST_');
       }
       return config;
     },
-    'requestError': function(rejection) {
+    requestError: function(rejection) {
       /**
        * We can probably ignore 'requestError' interceptor.
        * From official doc: "interceptor gets called when a previous interceptor threw an error or resolved with a rejection."
@@ -46,14 +46,14 @@ dcp.factory('httpInterceptor', ['$q', '$injector', function($q, $injector) {
       //$injector.get('$rootScope').$broadcast('_END_REQUEST_');
       return $q.reject(rejection);
     },
-    'response': function(response) {
-      if (response.config.method == 'GET' && response.config.url.indexOf(app.dcp2.url.developer_materials) > -1) {
+    response: function(response) {
+      if (response.config.method == 'GET' && response.config.url.indexOf(app.dcp.url.developer_materials) > -1) {
         $injector.get('$rootScope').$broadcast('_END_REQUEST_');
       }
       return response;
     },
-    'responseError': function(rejection) {
-      if (rejection.config.method == 'GET' && rejection.config.url.indexOf(app.dcp2.url.developer_materials) > -1) {
+    responseError: function(rejection) {
+      if (rejection.config.method == 'GET' && rejection.config.url.indexOf(app.dcp.url.developer_materials) > -1) {
         $injector.get('$rootScope').$broadcast('_END_REQUEST_');
       }
       return $q.reject(rejection);
@@ -76,6 +76,8 @@ dcp.service('materialService', function($http, $q) {
 
     var params = params || {};
     var query = {};
+    
+    query.newFirst = true;
 
     if(params.query) {
       query.query = params.query;
@@ -86,6 +88,11 @@ dcp.service('materialService', function($http, $q) {
     if (params.randomize) {
       query.randomize = params.randomize;
     }
+
+    if(params.size) {
+      query['size' + params.size] = true;
+    }
+
     if (params.sys_type &&
         (
             // TODO: if we do not need to support array then drop array condition
@@ -117,7 +124,7 @@ dcp.service('materialService', function($http, $q) {
     // app.dcp.url.search = "//dcp.jboss.org/v1/rest/search"; // testing with live data
     // query = decodeURIComponent(query);
     var deferred = this.deferred_;
-    $http.get(app.dcp2.url.developer_materials, { params : query, timeout: promise })
+    $http.get(app.dcp.url.developer_materials, { params : query, timeout: promise })
       .success(function(data){
         deferred.resolve(data);
       })
@@ -220,7 +227,8 @@ dcp.factory('helper', function() {
         "from",
         "query",
         "project",
-        "product"
+        "product",
+        "size"
     ];
 
     /**
@@ -235,13 +243,13 @@ dcp.factory('helper', function() {
     };
 
     this.availableFormats = [
-      { value : "quickstart" , "name" : "Quickstart", "description" : "Single use-case code examples tested with the latest stable product releases" },
+      { value : "jbossdeveloper_quickstart" , "name" : "Quickstart", "description" : "Single use-case code examples tested with the latest stable product releases" },
       { value : "video" , "name" : "Video", "description" : "Short tutorials and presentations for Red Hat JBoss Middleware products and upstream projects" },
       { value : "demo" , "name" : "Demo", "description" : "Full applications that show what you can achieve with Red Hat JBoss Middleware" },
       { value : "jbossdeveloper_example" , "name" : "Tutorial", "description" : "Guided content, teaching you how to build complex applications from the ground up" },
       { value : "jbossdeveloper_archetype" , "name" : "Archetype", "description" : "Maven Archetypes for building Red Hat JBoss Middleware applications" },
       { value : "jbossdeveloper_bom" , "name" : "BOM", "description" : "Maven BOMs for managing dependencies within Red Hat JBoss Middleware applications" },
-      { value : "jbossdeveloper_sandbox" , "name" : "Early Access", "description" : "Single use-case code examples demonstrating features not yet available in a product release" },
+      { value : "jbossdeveloper_quickstart_early_access" , "name" : "Early Access", "description" : "Single use-case code examples demonstrating features not yet available in a product release" },
       { value : "article" , "name" : "Articles (Premium)", "description" : "Technical articles and best practices for Red Hat JBoss Middleware products" },
       { value : "solution" , "name" : "Solutions (Premium)", "description" : "Answers to questions or issues you may be experiencing" }
     ];
@@ -504,26 +512,50 @@ dcp.controller('developerMaterialsController',
   // TODO: remove
   $scope.Math = Math;
 
-  $scope.data = {};
+  $scope.data = {
+    layout : 'list',
+    dateNumber : 0
+  };
+
   $scope.randomize = false;
   $scope.pagination = { size : 10 };
   $scope.filters = {}; // stores data
   $scope.filter = {}; // stores util functions
 
+
   // Register listener for location path change
-  var needsToBeUnregistered = $rootScope.$on('$locationChangeSuccess', function(event) {
-    console.log("***************** $locationChangeSuccess");
-    // parse and store params
+  var needsToBeUnregistered = $rootScope.$on('$locationChangeSuccess', function() {
+    $scope.fetchAndUpdate();
+  });
+
+  // Unregister listeners registered on different scopes (and rootScope is one).
+  //  - https://code.angularjs.org/1.3.3/docs/api/ng/type/$rootScope.Scope#$destroy
+  //  - http://stackoverflow.com/a/27016855
+  $rootScope.$on('$destroy', needsToBeUnregistered);
+
+  $scope.$on('_START_REQUEST_', function() {
+    $scope.data.loading = true;
+  });
+
+  $scope.$on('_END_REQUEST_', function() {
+    $scope.data.loading = false;
+  });
+
+  $scope.data.availableTopics = #{site.dev_mat_techs.flatten.uniq.sort};
+  $scope.data.availableFormats = helper.availableFormats;
+
+  $scope.fetchAndUpdate = function(){
+    // Parse Params from URL Hash
     $scope.params = helper.safeParams(
         helper.parsePath($location.path())
     );
-    // persist params if possible
-    console.log('params', $scope.params);
 
+    $scope.params.size  = $scope.pagination.size;
+
+    // Go get new materials and display them
     materialService.getMaterials($scope.params)
         .then(function(data) {
           // process response data
-          console.log('data >', data);
 
           // Check if there are any data! In case the request was aborted
           // there are no data or the data has unexpected format.
@@ -543,29 +575,14 @@ dcp.controller('developerMaterialsController',
           $scope.filters.query = $scope.params.query;
           $scope.filters.sys_type = $scope.params.sys_type;
         });
-  });
-
-  // Unregister listeners registered on different scopes (and rootScope is one).
-  //  - https://code.angularjs.org/1.3.3/docs/api/ng/type/$rootScope.Scope#$destroy
-  //  - http://stackoverflow.com/a/27016855
-  $rootScope.$on('$destroy', needsToBeUnregistered);
-
-  $scope.$on('_START_REQUEST_', function() {
-    $scope.data.loading = true;
-  });
-
-  $scope.$on('_END_REQUEST_', function() {
-    $scope.data.loading = false;
-  });
-
-  $scope.data.availableTopics = #{site.dev_mat_techs.flatten.uniq.sort};
-  $scope.data.availableFormats = helper.availableFormats;
+  };
 
   /*
    Handle Pagination
    */
   $scope.paginate = function(page) {
     $scope.pagination.size = ($scope.pagination.viewall ? 500 : $scope.pagination.size);
+    $scope.pagination.size = parseInt($scope.pagination.size);
     var startAt = (page * $scope.pagination.size) - $scope.pagination.size;
     var endAt = page * $scope.pagination.size;
     var pages = Math.ceil($scope.data.total / $scope.pagination.size);
@@ -585,9 +602,11 @@ dcp.controller('developerMaterialsController',
     $scope.paginate.pagesArray = app.utils.diplayPagination($scope.paginate.currentPage, pages, 4);
 
     // next tick
-    window.setTimeout(function() {
-      app.dcp.resolveContributors();
-    },0);
+    // TODO: Do we need to display contributor?
+    // window.setTimeout(function() {
+    //   app.dcp.resolveContributors();
+    // },0);
+
   };
 
   $scope.filters.sys_tags = [];
@@ -611,33 +630,6 @@ dcp.controller('developerMaterialsController',
   };
 
   /*
-    Update skill level when the range input changes
-  */
-  $scope.filter.updateSkillLevel = function() {
-    // TODO: is this still needed?
-    // Do not forget to remove call to this method from templates as well !
-    /*
-    var n = parseInt($scope.data.skillNumber);
-    var labels = ["All", "Beginner", "Intermediate", "Advanced"];
-    $scope.data.displaySkill = labels[n];
-    switch (n) {
-      case 0 :
-        delete $scope.filters.level;
-        break;
-      case 1 :
-        $scope.filters.level = "Beginner";
-        break;
-      case 2 :
-        $scope.filters.level = "Intermediate";
-        break;
-      case 3 :
-        $scope.filters.level = "Advanced";
-        break;
-    }
-    */
-  };
-
-  /*
     Update date when the range input changes
   */
   $scope.filter.updateDate = function() {
@@ -645,10 +637,6 @@ dcp.controller('developerMaterialsController',
     var d = new Date();
     var labels = ["All", "Within 1 Year", "Within 30 days", "Within 7 days", "Within 24hrs"];
     $scope.data.displayDate = labels[n];
-
-    console.log('$scope.data.dateNumber', $scope.data.dateNumber);
-    console.log('$scope.data.displayDate', $scope.data.displayDate);
-
     switch(n) {
       case 0 :
         delete $scope.filters.publish_date;
@@ -723,7 +711,6 @@ dcp.controller('developerMaterialsController',
 
   $scope.filter.applyFilters = function() {
     $scope.data.displayedMaterials = [];
-
     // save search in local storage
     $scope.filter.store();
     // update the page hash
@@ -740,21 +727,10 @@ dcp.controller('developerMaterialsController',
   };
 
   $scope.filter.restore = function() {
+
     // restore and set
     $scope.data.skillNumber = 0;
     $scope.data.dateNumber = 0;
-
-    if(window.localStorage.layout === 'grid' || window.localStorage.layout === 'list') {
-      $scope.data.layout = window.localStorage.layout;
-    } else {
-      $scope.data.layout = 'list';
-    }
-
-    // if we are on a project page, skip restoring
-    // if($scope.filters.project || $scope.filters.solution) {
-    //   $scope.filter.applyFilters(); // run without restoring filters
-    //   return;
-    // }
 
     // check if we have window hash, local storage or any stored filters, abort if not
     if(!window.location.hash && (!window.localStorage || !window.localStorage[$scope.data.pageType + '-filters'])) {
@@ -818,6 +794,7 @@ dcp.controller('developerMaterialsController',
       }
     }
     $scope.filter.applyFilters();
+    $scope.fetchAndUpdate();
   };
 
 
@@ -857,7 +834,7 @@ dcp.controller('developerMaterialsController',
   /*
     Get latest materials on page load
   */
-  window.setTimeout($scope.filter.restore, 0);
+  // window.setTimeout($scope.filter.restore, 0);
 
 }]);
 

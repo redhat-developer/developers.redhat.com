@@ -8,7 +8,7 @@ dcp.service('searchService', function($http, $q) {
 
   this.getData = function(filter) {
     var deferred = $q.defer();
-    $http.get(app.dcp2.url.events, { params : filter }).success(function(data){
+    $http.get(app.dcp.url.events, { params : filter }).success(function(data){
       deferred.resolve(data);
     });
     return deferred.promise;
@@ -96,11 +96,11 @@ dcp.controller('eventsController', function($scope, searchService, helpers) {
 
   $scope.getEvents = function() {
 
+
     $scope.monthKeys = [];
     $scope.events = {}; // keyed by monthKeys
 
     searchService.getData($scope.filter).then(function(data){
-
       var i = 0;
       var item = null;
 

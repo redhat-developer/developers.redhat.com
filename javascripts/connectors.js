@@ -94,7 +94,7 @@ app.connectors = {
      * @param {Array.<string>=} featuredIDs
      */
     connectorFilter : function(query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
-        var url = app.dcp2.url.connectors;
+        var url = app.dcp.url.connectors;
 
         var request_data = {};
 
