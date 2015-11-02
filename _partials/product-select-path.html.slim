@@ -4,7 +4,7 @@
   ul.product-langs.small-block-grid-1.large-block-grid-5
     - page.parent.product.get_started_paths.each do |path|
       li
-        a(href="#{site.base_url}/products/#{page.parent.product.id}/get-started-rhel7-#{path.id}")
+        a(href="#{site.base_url}/products/#{page.parent.product.id}/#{path.default_file}")
           .product-lang
             .lang-logo
               img(src=cdn("#{site.base_url}/images/products/multipath/#{path.id}-logo.png") alt="#{path.name} Logo")

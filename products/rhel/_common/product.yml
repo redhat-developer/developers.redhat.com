@@ -123,11 +123,16 @@ get_started_multipath: true
 get_started_paths:
   - id: "cpp"
     name: CPP
+    default_file: get-started-rhel7-cpp
   - id: "perl"
     name: Perl
+    default_file: get-started-rhel7-perl
   - id: "php"
     name: PHP
+    default_file: get-started-rhel7-php
   - id: "python"
     name: Python
+    default_file: get-started-rhel7-python
   - id: "ruby"
     name: Ruby
+    default_file: get-started-rhel7-ruby

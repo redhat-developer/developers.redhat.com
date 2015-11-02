@@ -2002,9 +2002,23 @@ label.inline{
   .content {
     padding-top: 0;
   }
+  pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
   code{
     border: none;
     padding: 0.125rem 0 0.0625rem;
+    word-break: normal;
+    white-space: pre;
   }
 } 
 
+.listingblock {
+  .content pre {
+    font-size: 90%;
+    line-height: 1.45;
+  }
+}

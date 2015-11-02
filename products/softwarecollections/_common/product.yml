@@ -71,11 +71,16 @@ get_started_multipath: true
 get_started_paths:
   - id: "nodejs"
     name: Node.js
+    default_file: get-started-rhel7-nodejs
   - id: "perl"
     name: Perl
+    default_file: get-started-rhel7-perl
   - id: "php"
     name: PHP
+    default_file: get-started-rhel7-php
   - id: "python"
     name: Python
+    default_file: get-started-rhel7-python
   - id: "ruby"
     name: Ruby
+    default_file: get-started-rhel7-ruby
