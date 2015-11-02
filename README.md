@@ -107,13 +107,17 @@ This will take a while the first time. This starts all required services and the
 NOTE: When `preview` is run, you may see errors from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
 
 ###Important Control.rb commands
-Run the unit tests
+Run the unit tests (also available using `guard` locally).
 
 `bundle exec ./control.rb -t`
 
 To build and start all services:
 
 `bundle exec ./control.rb --run-the-stack`
+
+To run the acceptance tests (where HOST_TO_TEST is the host you are interested in:
+
+`bundle exec ./control.rb ---acceptance_test_target[=HOST_TO_TEST]`
 
 To build the docker images:
 
