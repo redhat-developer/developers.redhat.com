@@ -87,11 +87,11 @@
 .large-24
   .large-7.columns#show-entries
     label.inline Show
-    select(name="show-entries" ng-model="pagination.size" ng-change="filter.applyFilters()")
-      option(value="size10") 10
-      option(value="size15") 15
-      option(value="size20") 20
-      option(value="size25") 25
+    select(name="show-entries" ng-model="pagination.size" ng-change="fetchAndUpdate();")
+      option(value="10") 10
+      option(value="15") 15
+      option(value="20") 20
+      option(value="25") 25
     label.inline entries
     br
     p Showing {{(paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber}} to {{ Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber}} of {{data.total | safeNumber}} entries

@@ -16,7 +16,7 @@
       .large-8.columns.left.date-filter
         label(for="publish-date")
           strong Publish Date
-        input(type="range" id="publish-date" name="filter-publish-date" ng-change="filter.updateDate(); filter.applyFilters()" ng-model="data.dateNumber" value="0" max="4" ng-init="filter.updateSkillLevel();")
+        input(type="range" id="publish-date" name="filter-publish-date" ng-change="filter.updateDate(); filter.applyFilters()" ng-model="data.dateNumber" value="0" max="4")
         span.skill-display
           | {{data.displayDate || 'All'}}
 

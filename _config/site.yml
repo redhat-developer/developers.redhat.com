@@ -53,15 +53,12 @@ profile_base: &profile
 
 profiles:
   development: &development
-    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
-    dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
-    dcp2_base_url: http://dcp2-searchisko.rhcloud.com/
-    dcp2_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://it-developers.stage.redhat.com
-
     log_faraday: true
     push_to_searchisko: false
     metrics: false
@@ -95,10 +92,8 @@ profiles:
   # Pull Request configuration
   staging_docker:
     <<: *profile
-    dcp_base_url: http://searchisko:8080/
-    dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
-    dcp2_base_url: http://dcp2-searchisko.rhcloud.com/
-    dcp2_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
     cache_type: :local
     metrics: true
     deploy:
@@ -108,10 +103,8 @@ profiles:
   # Pull Request configuration
   staging:
     <<: *profile
-    dcp_base_protocol_relative_url: //<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
-    dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
-    dcp2_base_url: http://dcp2-searchisko.rhcloud.com/
-    dcp2_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
@@ -127,10 +120,8 @@ profiles:
     base_url: http://it-developers.stage.redhat.com/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://it-developers.stage.redhat.com
-    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
-    dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
-    dcp2_base_url: http://dcp.stage.jboss.org/
-    dcp2_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     metrics: true
@@ -146,10 +137,8 @@ profiles:
     base_url: http://it-developers-pr.stage.redhat.com/integrations/cdk_beta
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://it-developers.stage.redhat.com
-    dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
-    dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
-    dcp2_base_url: http://dcp.stage.jboss.org/
-    dcp2_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     metrics: false
@@ -161,10 +150,8 @@ profiles:
   production:
     <<: *profile
     base_url: http://developers.redhat.com/
-    dcp_base_protocol_relative_url: //dcp.jboss.org/
-    dcp_base_url: http://dcp.jboss.org/
-    dcp2_base_protocol_relative_url: //dcp2.jboss.org/
-    dcp2_base_url: http://dcp2.jboss.org/
+    dcp_base_protocol_relative_url: //dcp2.jboss.org/
+    dcp_base_url: http://dcp2.jboss.org/
     require_tag: true
     metrics: true
     disqus: jdf
