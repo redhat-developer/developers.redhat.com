@@ -56,9 +56,6 @@ app.buzz = {
     if(tags){
       var tagsString = "";
       for (var i = 0; i < tags.length; i++) {
-        if (tags[i].contains(" ")) {
-          tags[i] = "\"" + tags[i] + "\"";
-        }
         if (i > 0) {
           tagsString += " ";
         }
