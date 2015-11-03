@@ -18,7 +18,13 @@ Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
 
 Capybara.configure do |config|
-  host_to_test = ENV['HOST_TO_TEST'] ||= 'http://docker:32768'
+  puts "~~~~~~~~~~~~~~~~~~~~~~~~IT WAS:#{ENV['HOST_TO_TEST']}"
+  if ENV['HOST_TO_TEST']== ''
+    host_to_test = "http://docker:#{ENV['AWESTRUCT_HOST_PORT']}"
+  else
+    host_to_test = ENV['HOST_TO_TEST']
+  end
+  puts "~~~~~~~~~~~~~~~~~~~~~~~~IT is:#{host_to_test}"
   config.app_host = host_to_test
   config.run_server = false
   config.default_driver = (ENV['DRIVER'] ||= 'poltergeist').to_sym

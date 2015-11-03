@@ -79,6 +79,8 @@ GEM
     chromedriver-helper (0.0.6)
       nokogiri
     chunky_png (1.3.5)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
     cliver (0.3.2)
     coderay (1.1.0)
     colorize (0.7.7)
@@ -358,6 +360,7 @@ DEPENDENCIES
   capybara (~> 2.5)
   capybara-screenshot (~> 1.0.11)
   chromedriver-helper (= 0.0.6)
+  climate_control
   compass (~> 1.0)
   cucumber (~> 2.0)
   cuke_sniffer (~> 0.0.8)
@@ -397,3 +400,6 @@ DEPENDENCIES
   therubyracer
   uglifier (~> 2.0.1)
   wraith (~> 1.3.0)
+
+BUNDLED WITH
+   1.10.6

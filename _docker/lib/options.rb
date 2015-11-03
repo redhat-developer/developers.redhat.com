@@ -20,7 +20,7 @@ class Options
       end
 
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
-        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
+        tasks[:unit_tests] = ['--no-deps', '--rm', 'awestruct', "bundle exec rake test"]
         tasks[:decrypt] = true
         tasks[:set_ports] = true
         tasks[:build] = true
@@ -28,7 +28,7 @@ class Options
 
       opts.on('-b', '--build', 'Build the containers') do |b|
         tasks[:decrypt] = true
-        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
+        tasks[:unit_tests] = ['--no-deps', '--rm', 'awestruct', "bundle exec rake test"]
         tasks[:set_ports] = true
         tasks[:build] = true
       end
@@ -61,17 +61,22 @@ class Options
         tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-pr,build,#{pr}] clean deploy[staging_docker]"]
         tasks[:kill_all] = true
         tasks[:build] = true
-        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
+        tasks[:unit_tests] = ['--no-deps', '--rm', 'awestruct', "bundle exec rake test"]
         tasks[:set_ports] = true
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
-      opts.on('--acceptance_test_target[=HOST_TO_TEST]', String, 'runs the cucumber features. If you do not specify HOST_TO_TEST then http://localhost:32768 is used') do |f|
-        ENV['HOST_TO_TEST'] = f ||= 'http://localhost:32768'
+      opts.on('--acceptance_test_docker', String, 'runs the cucumber features against the local running docker stack.') do
+        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "--service-ports", "awestruct_acceptance", "bundle exec rake features"]
+        tasks[:build] = true
+        tasks[:unit_tests] = ['--no-deps', '--rm', 'awestruct', "bundle exec rake test"]
+      end
+
+      opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |f|
+        ENV['HOST_TO_TEST'] = f
         tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"]
         tasks[:build] = true
-        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
-        tasks[:set_ports] = true
+        tasks[:unit_tests] = ['--no-deps', '--rm', 'awestruct', "bundle exec rake test"]
       end
 
       opts.on('--docker-nightly', 'build for PR Staging') do |pr|
@@ -79,14 +84,14 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:set_ports] = true
-        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
+        tasks[:unit_tests] = ['--no-deps', '--rm', 'awestruct', "bundle exec rake test"]
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
         tasks[:decrypt] = true
         tasks[:set_ports] = true
-        tasks[:unit_tests] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "bundle exec rake test"]
+        tasks[:unit_tests] = ['--no-deps', '--rm', 'awestruct', "bundle exec rake test"]
         tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
