@@ -1,255 +1,258 @@
-doctype html
-/[if IE 8]
-  | <html class="ie8 lt-ie9" lang="en">
-/[if IE 9]
-  | <html class="ie9" lang="en">
-/! [if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]
+-if site.drupal_base_url
+  = content
+-else
+  doctype html
+  /[if IE 8]
+    | <html class="ie8 lt-ie9" lang="en">
+  /[if IE 9]
+    | <html class="ie9" lang="en">
+  /! [if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]
 
-head
-  - if site.metrics
-    - if site.dtm_code
-      / Adobe DTM staging
-      script src="#{site.dtm_code}"
-  meta charset='utf-8'
-  meta name='google-site-verification' content='bxtQxPXTaA2g5bXw_buofCT53_Uwp1fGAu9uHSA0UWc'
-  meta name='viewport' content='width=device-width, initial-scale=1.0'
-  meta name='twitter:card' content="#{page.twitter_card || 'summary'}"
-  meta property='og:type' content="#{page.og_type || 'website'}"
-  meta name='twitter:site' content='@rhdevelopers'
-  meta name='twitter:image:src' content="#{page.image || 'http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg'}"
-  meta property='og:image' content="#{page.image || 'http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg'}"
-  meta property='og:url' content="#{site.base_url}#{page.url}"
-  meta property='og:determiner' content="#{page.og_determiner || 'the'}"
-  meta property='og:site_name' content='Red Hat Developers'
-  title= page.title || site.title
-  meta name='twitter:title' content="#{page.title || site.title}"
-  meta property='og:title' content="#{page.title || site.title}"
-  - if page.description
-    meta name='description' content=page.description
-    meta name='twitter:description' content=page.description
-    meta property='og:description' content=page.description
-  - if !page.author_name.nil?
-    meta name='author' content=page.author_name
-  - elsif !page.author.nil?
-    - if !page.author['sys_title'].nil?
-      meta name='author' content=page.author['sys_title']
-    - if !page.author['social'].nil?
-      - if !page.author['social']['twitter'].nil?
-        meta name='twitter:creator' content="@#{page.author['social']['twitter']['username']}"
-  - if site.keywords
-    meta name='keywords' content=site.keywords
-  - if page.twitter_card == 'player'
-    meta name='twitter:player' content="#{page.video_url}"
-    meta name='twitter:player:height' content=page.video_height
-    meta name='twitter:player:width' content=page.video_width
-  - if page.og_type == 'video'
-    meta property='video:duration' content=page.video_duration_in_seconds
-    meta property='og:updated_time' content=page.published_date
-    meta property='og:video:width' content=page.video_width
-    meta property='og:video:height' content=page.video_height
-    meta property='og:video:url' content="#{page.video_url}"
-    - if !page.author.nil?
+  head
+    - if site.metrics
+      - if site.dtm_code
+        / Adobe DTM staging
+        script src="#{site.dtm_code}"
+    meta charset='utf-8'
+    meta name='google-site-verification' content='bxtQxPXTaA2g5bXw_buofCT53_Uwp1fGAu9uHSA0UWc'
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+    meta name='twitter:card' content="#{page.twitter_card || 'summary'}"
+    meta property='og:type' content="#{page.og_type || 'website'}"
+    meta name='twitter:site' content='@rhdevelopers'
+    meta name='twitter:image:src' content="#{page.image || 'http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg'}"
+    meta property='og:image' content="#{page.image || 'http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg'}"
+    meta property='og:url' content="#{site.base_url}#{page.url}"
+    meta property='og:determiner' content="#{page.og_determiner || 'the'}"
+    meta property='og:site_name' content='Red Hat Developers'
+    title= page.title || site.title
+    meta name='twitter:title' content="#{page.title || site.title}"
+    meta property='og:title' content="#{page.title || site.title}"
+    - if page.description
+      meta name='description' content=page.description
+      meta name='twitter:description' content=page.description
+      meta property='og:description' content=page.description
+    - if !page.author_name.nil?
+      meta name='author' content=page.author_name
+    - elsif !page.author.nil?
+      - if !page.author['sys_title'].nil?
+        meta name='author' content=page.author['sys_title']
       - if !page.author['social'].nil?
-        - if !page.author['social']['facebook'].nil?
-          meta property='og:video:actor' content=page.author['social']['facebook']['username']
-  - if page.og_type == 'article'
-    meta property='og:article:published_time' content=page.published_date
-    - if page.expiration_date
-      meta property='og:article:expiration_time' content=page.expiration_date
-    - if !page.author.nil?
-      - if !page.author['social'].nil?
-        - if !page.author['social']['facebook'].nil?
-          meta property='og:article:actor' content=page.author['social']['facebook']['username']
-    meta property='og:article:section' content='Technology'
-  - if site.url
-    link rel='canonical' href=site.url
-  = stylesheets "all" do
-    link rel='stylesheet' type='text/css' href="#{site.base_url}/stylesheets/app.css"
+        - if !page.author['social']['twitter'].nil?
+          meta name='twitter:creator' content="@#{page.author['social']['twitter']['username']}"
+    - if site.keywords
+      meta name='keywords' content=site.keywords
+    - if page.twitter_card == 'player'
+      meta name='twitter:player' content="#{page.video_url}"
+      meta name='twitter:player:height' content=page.video_height
+      meta name='twitter:player:width' content=page.video_width
+    - if page.og_type == 'video'
+      meta property='video:duration' content=page.video_duration_in_seconds
+      meta property='og:updated_time' content=page.published_date
+      meta property='og:video:width' content=page.video_width
+      meta property='og:video:height' content=page.video_height
+      meta property='og:video:url' content="#{page.video_url}"
+      - if !page.author.nil?
+        - if !page.author['social'].nil?
+          - if !page.author['social']['facebook'].nil?
+            meta property='og:video:actor' content=page.author['social']['facebook']['username']
+    - if page.og_type == 'article'
+      meta property='og:article:published_time' content=page.published_date
+      - if page.expiration_date
+        meta property='og:article:expiration_time' content=page.expiration_date
+      - if !page.author.nil?
+        - if !page.author['social'].nil?
+          - if !page.author['social']['facebook'].nil?
+            meta property='og:article:actor' content=page.author['social']['facebook']['username']
+      meta property='og:article:section' content='Technology'
+    - if site.url
+      link rel='canonical' href=site.url
+    = stylesheets "all" do
+      link rel='stylesheet' type='text/css' href="#{site.base_url}/stylesheets/app.css"
 
-  /[if lt IE 9]
-    script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
+    /[if lt IE 9]
+      script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
 
-body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_class}")
-  - if site.metrics
-    - if site.dtm_code
-      / Run Adobe DTM staging
+  body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_class}")
+    - if site.metrics
+      - if site.dtm_code
+        / Run Adobe DTM staging
+        javascript:
+          _satellite.pageBottom();
+
+      / All metrics and tracking are run via Google Tag Manager
       javascript:
-        _satellite.pageBottom();
-      
-    / All metrics and tracking are run via Google Tag Manager
-    javascript:
-      dataLayer = [{'channel' : 'developer'}];
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-NJWS5L');
-    noscript
-      iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"
+        dataLayer = [{'channel' : 'developer'}];
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NJWS5L');
+      noscript
+        iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"
 
-  - if site.under_development
-    = partial 'under-development.html.slim', parent: page
+    - if site.under_development
+      = partial 'under-development.html.slim', parent: page
 
- 
-  .site-wrapper
-    header.main.clearfix
-      .row
-        nav.secondary-nav
-          ul.menu-right
-            / li: a
-            /   i.fa.fa-search
-            li.login: a LOGIN 
-            li.login-divider &nbsp; |
-            li.register: a REGISTER
-            li.logged-in
-              a.logged-in-name(href="#")
-              a.logout(href="#") Logout
-        nav.primary-nav
-          h1.logo
-            a(href="/")Red Hat Developers
-            a.nav-toggle
-              i.fa.fa-bars
-              i.fa.fa-times
-          ul.nav.nav-tabs
-            - currentPage = page.url
-            - for pageName in ['solutions', 'products', 'downloads']
-              li(class=(currentPage.include?(pageName) ? 'active' : ''))
-                a(href="#{site.base_url}/#{pageName}/") #{pageName.capitalize}
-          ul.menu-right
-            li: a(href="#{site.base_url}/resources/") Resources
-            li: a(href="#{site.base_url}/projects/") Community
-            li: a(href="#{site.base_url}/events/") Events
-            li: a(href="http://developerblog.redhat.com") Blogs
 
-    .wrapper.clearfix
-      - if (site.protected.include?("#{page.url}"))
-          .protected
-      .content-wrapper 
-        = content
-    footer.bottom
-      .row
-        .large-4.columns
-          a(href="https://www.redhat.com")
-            img(src=cdn("#{site.base_url}/images/branding/RHLogo_white.svg") class="rh-logo" alt="Red Hat")
-        .large-20.columns
-          h3 Quick Links
-          ul.inline-list.quick-links
-            li
-              a(href="https://access.redhat.com/security/team/contact/") Report a Security Problem
-            li
-              a(href="http://www.redhat.com/en/services/consulting")
-                | Consulting Solutions
-                i.fa.fa-external-link
-            li
-              a(href="http://www.redhat.com/en/services/training")
-                | Training
-                i.fa.fa-external-link
-            li
-              a(href="mailto:developer@redhat.com") Contact Us
+    .site-wrapper
+      header.main.clearfix
+        .row
+          nav.secondary-nav
+            ul.menu-right
+              / li: a
+              /   i.fa.fa-search
+              li.login: a LOGIN
+              li.login-divider &nbsp; |
+              li.register: a REGISTER
+              li.logged-in
+                a.logged-in-name(href="#")
+                a.logout(href="#") Logout
+          nav.primary-nav
+            h1.logo
+              a(href="/")Red Hat Developers
+              a.nav-toggle
+                i.fa.fa-bars
+                i.fa.fa-times
+            ul.nav.nav-tabs
+              - currentPage = page.url
+              - for pageName in ['solutions', 'products', 'downloads']
+                li(class=(currentPage.include?(pageName) ? 'active' : ''))
+                  a(href="#{site.base_url}/#{pageName}/") #{pageName.capitalize}
+            ul.menu-right
+              li: a(href="#{site.base_url}/resources/") Resources
+              li: a(href="#{site.base_url}/projects/") Community
+              li: a(href="#{site.base_url}/events/") Events
+              li: a(href="http://developerblog.redhat.com") Blogs
 
-          / p.feedback
-          /   a ☹
-          /   | or
-          /   a ☺
-          /   | We want your feedback.
-      .row.legal
-        .large-8.medium-24.right.columns
-          a.summit-logo(href="http://www.redhat.com/summit/")
-            img(src=cdn("#{site.base_url}/images/design/logo-summit.png") alt="Red Hat Summit")
-          a(href="http://www.devnation.org/")
-            img(src=cdn("#{site.base_url}/images/design/logo_devnation_footer.png") alt="Red Hat Summit")
-          ul.social-nav
-            li: a(href="https://plus.google.com/103877536668756379905/posts")
-              i.fa.fa-google-plus
-            / li: a
-            /   i.fa.fa-linkedin-square
-            li: a(href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q")
-              i.fa.fa-youtube
-            li: a(href="https://www.facebook.com/RedHatDeveloperProgram")
-              i.fa.fa-facebook
-            li: a(href="https://twitter.com/rhdevelopers")
-              i.fa.fa-twitter
-            / li: a
-            /   i.fa.fa-vimeo-square
-        .large-16.columns
-          ul.inline-list
-            li
-              a.copyright Copyright &copy; 2015 Red Hat Inc.
-            li
-              a(href="http://www.redhat.com/en/about/privacy-policy") Privacy statement
-            li
-              a(href="http://www.redhat.com/en/about/terms-use") Terms of use  &nbsp;&nbsp;|
-            li
-              a(href="http://www.redhat.com/en/about/all-policies-guidelines") All policies and guidelines
+      .wrapper.clearfix
+        - if (site.protected.include?("#{page.url}"))
+            .protected
+        .content-wrapper
+          = content
+      footer.bottom
+        .row
+          .large-4.columns
+            a(href="https://www.redhat.com")
+              img(src=cdn("#{site.base_url}/images/branding/RHLogo_white.svg") class="rh-logo" alt="Red Hat")
+          .large-20.columns
+            h3 Quick Links
+            ul.inline-list.quick-links
+              li
+                a(href="https://access.redhat.com/security/team/contact/") Report a Security Problem
+              li
+                a(href="http://www.redhat.com/en/services/consulting")
+                  | Consulting Solutions
+                  i.fa.fa-external-link
+              li
+                a(href="http://www.redhat.com/en/services/training")
+                  | Training
+                  i.fa.fa-external-link
+              li
+                a(href="mailto:developer@redhat.com") Contact Us
 
-  .overlay
-    .overlay-wrap
-      .overlay-inner
-        a.overlay-close &times;
-        .overlay-content.row
+            / p.feedback
+            /   a ☹
+            /   | or
+            /   a ☺
+            /   | We want your feedback.
+        .row.legal
+          .large-8.medium-24.right.columns
+            a.summit-logo(href="http://www.redhat.com/summit/")
+              img(src=cdn("#{site.base_url}/images/design/logo-summit.png") alt="Red Hat Summit")
+            a(href="http://www.devnation.org/")
+              img(src=cdn("#{site.base_url}/images/design/logo_devnation_footer.png") alt="Red Hat Summit")
+            ul.social-nav
+              li: a(href="https://plus.google.com/103877536668756379905/posts")
+                i.fa.fa-google-plus
+              / li: a
+              /   i.fa.fa-linkedin-square
+              li: a(href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q")
+                i.fa.fa-youtube
+              li: a(href="https://www.facebook.com/RedHatDeveloperProgram")
+                i.fa.fa-facebook
+              li: a(href="https://twitter.com/rhdevelopers")
+                i.fa.fa-twitter
+              / li: a
+              /   i.fa.fa-vimeo-square
+          .large-16.columns
+            ul.inline-list
+              li
+                a.copyright Copyright &copy; 2015 Red Hat Inc.
+              li
+                a(href="http://www.redhat.com/en/about/privacy-policy") Privacy statement
+              li
+                a(href="http://www.redhat.com/en/about/terms-use") Terms of use  &nbsp;&nbsp;|
+              li
+                a(href="http://www.redhat.com/en/about/all-policies-guidelines") All policies and guidelines
 
-  #fb-root
+    .overlay
+      .overlay-wrap
+        .overlay-inner
+          a.overlay-close &times;
+          .overlay-content.row
 
-  / Page Experiments
-  - unless site.experiment_id.nil?
-    script src="//www.google-analytics.com/cx/api.js?experiment=#{site.experiment_id}"
-  script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"
-  = javascripts "bottom" do
-    / Load jQuery, CORS support for jquery (IE 8/9)
-    script src="#{site.base_url}/javascripts/vendor/jquery.js"
-    script src="#{site.base_url}/javascripts/vendor/jquery.xdomainrequest.js"
-    / Load our basic JS setup
-    script src="#{site.base_url}/javascripts/namespace.js"
-    script src="#{site.base_url}/javascripts/extensions.js"
-    / Load any JS which is going to make AJAX calls for page load
-    / First load SSO, it needs to make two calls
-    script src="#{site.base_url}/javascripts/vendor/keycloak.js"
-    script src="#{site.base_url}/javascripts/sso.js"
-    / Now load anything that is going to query the DCP
-    script src="#{site.base_url}/javascripts/dcp.js"
-    script src="#{site.base_url}/javascripts/buzz.js"
-    script src="#{site.base_url}/javascripts/jquery-deparam.js"
-    script src="#{site.base_url}/javascripts/developer-materials.angular.js"
-    script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
-    script src="#{site.base_url}/javascripts/projects.js"
-    script src="#{site.base_url}/javascripts/books.js"
-    script src="#{site.base_url}/javascripts/rating.js"
-    / Kick off polyfiller, as it needs to download resources
-    script src="#{site.base_url}/javascripts/vendor/modernizr-custom.js"
-    script src="#{site.base_url}/javascripts/vendor/polyfiller.js"
-    script src="#{site.base_url}/javascripts/polyfiller-init.js"
-    / Load everything else
-    script src="#{site.base_url}/javascripts/foundation/foundation.js"
-    script src="#{site.base_url}/javascripts/foundation/foundation.tab.js"
-    script src="#{site.base_url}/javascripts/foundation/foundation.reveal.js"
-    script src="#{site.base_url}/javascripts/foundation/foundation.tooltip.js"
-    script src="#{site.base_url}/javascripts/foundation/foundation.dropdown.js"
-    script src="#{site.base_url}/javascripts/foundation/foundation.equalizer.js"
-    script src="#{site.base_url}/javascripts/vendor/swipe.js"
-    script src="#{site.base_url}/javascripts/mobile.js"
-    script src="#{site.base_url}/javascripts/vendor/jquery.resize.js"
-    script src="#{site.base_url}/javascripts/vendor/jquery.timeago.js"
-    script src="#{site.base_url}/javascripts/vendor/socialite.min.js"
-    script src="#{site.base_url}/javascripts/vendor/jquery.paging.min.js"
-    script src="#{site.base_url}/javascripts/vendor/ytembed.js"
-    script src="#{site.base_url}/javascripts/terms-and-conditions.js"
-    script src="#{site.base_url}/javascripts/search.js"
-    script src="#{site.base_url}/javascripts/os-filter.js"
-    script src="#{site.base_url}/javascripts/social.js"
-    script src="#{site.base_url}/javascripts/visual.js"
-    script src="#{site.base_url}/javascripts/microsite.js"
-    script src="#{site.base_url}/javascripts/connectors.js"
-    script src="#{site.base_url}/javascripts/experiments.js"
-    script src="#{site.base_url}/javascripts/overlay.js"
-    script src="#{site.base_url}/javascripts/devnation2015.js"
-    script src="#{site.base_url}/javascripts/book-download.js"
-    script src="#{site.base_url}/javascripts/jira-collector.js"
-  - unless page.extra_javascripts.nil?
-    - page.extra_javascripts.each do |id|
-      = deferred_javascripts id
+    #fb-root
 
-  / Disabled, pending reimplementation of Share This functionality
-  /script src="http://platform.linkedin.com/in.js"
-  /script src="http://apis.google.com/js/plusone.js"
-  /script src="http://platform.twitter.com/widgets.js"
+    / Page Experiments
+    - unless site.experiment_id.nil?
+      script src="//www.google-analytics.com/cx/api.js?experiment=#{site.experiment_id}"
+    script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"
+    = javascripts "bottom" do
+      / Load jQuery, CORS support for jquery (IE 8/9)
+      script src="#{site.base_url}/javascripts/vendor/jquery.js"
+      script src="#{site.base_url}/javascripts/vendor/jquery.xdomainrequest.js"
+      / Load our basic JS setup
+      script src="#{site.base_url}/javascripts/namespace.js"
+      script src="#{site.base_url}/javascripts/extensions.js"
+      / Load any JS which is going to make AJAX calls for page load
+      / First load SSO, it needs to make two calls
+      script src="#{site.base_url}/javascripts/vendor/keycloak.js"
+      script src="#{site.base_url}/javascripts/sso.js"
+      / Now load anything that is going to query the DCP
+      script src="#{site.base_url}/javascripts/dcp.js"
+      script src="#{site.base_url}/javascripts/buzz.js"
+      script src="#{site.base_url}/javascripts/jquery-deparam.js"
+      script src="#{site.base_url}/javascripts/developer-materials.angular.js"
+      script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
+      script src="#{site.base_url}/javascripts/projects.js"
+      script src="#{site.base_url}/javascripts/books.js"
+      script src="#{site.base_url}/javascripts/rating.js"
+      / Kick off polyfiller, as it needs to download resources
+      script src="#{site.base_url}/javascripts/vendor/modernizr-custom.js"
+      script src="#{site.base_url}/javascripts/vendor/polyfiller.js"
+      script src="#{site.base_url}/javascripts/polyfiller-init.js"
+      / Load everything else
+      script src="#{site.base_url}/javascripts/foundation/foundation.js"
+      script src="#{site.base_url}/javascripts/foundation/foundation.tab.js"
+      script src="#{site.base_url}/javascripts/foundation/foundation.reveal.js"
+      script src="#{site.base_url}/javascripts/foundation/foundation.tooltip.js"
+      script src="#{site.base_url}/javascripts/foundation/foundation.dropdown.js"
+      script src="#{site.base_url}/javascripts/foundation/foundation.equalizer.js"
+      script src="#{site.base_url}/javascripts/vendor/swipe.js"
+      script src="#{site.base_url}/javascripts/mobile.js"
+      script src="#{site.base_url}/javascripts/vendor/jquery.resize.js"
+      script src="#{site.base_url}/javascripts/vendor/jquery.timeago.js"
+      script src="#{site.base_url}/javascripts/vendor/socialite.min.js"
+      script src="#{site.base_url}/javascripts/vendor/jquery.paging.min.js"
+      script src="#{site.base_url}/javascripts/vendor/ytembed.js"
+      script src="#{site.base_url}/javascripts/terms-and-conditions.js"
+      script src="#{site.base_url}/javascripts/search.js"
+      script src="#{site.base_url}/javascripts/os-filter.js"
+      script src="#{site.base_url}/javascripts/social.js"
+      script src="#{site.base_url}/javascripts/visual.js"
+      script src="#{site.base_url}/javascripts/microsite.js"
+      script src="#{site.base_url}/javascripts/connectors.js"
+      script src="#{site.base_url}/javascripts/experiments.js"
+      script src="#{site.base_url}/javascripts/overlay.js"
+      script src="#{site.base_url}/javascripts/devnation2015.js"
+      script src="#{site.base_url}/javascripts/book-download.js"
+      script src="#{site.base_url}/javascripts/jira-collector.js"
+    - unless page.extra_javascripts.nil?
+      - page.extra_javascripts.each do |id|
+        = deferred_javascripts id
+
+    / Disabled, pending reimplementation of Share This functionality
+    /script src="http://platform.linkedin.com/in.js"
+    /script src="http://apis.google.com/js/plusone.js"
+    /script src="http://platform.twitter.com/widgets.js"
   

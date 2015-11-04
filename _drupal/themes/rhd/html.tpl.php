@@ -41,22 +41,99 @@
  *
  * @ingroup themeable
  */
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
-
-<head profile="<?php print $grddl_profile; ?>">
-  <?php print $head; ?>
-  <title><?php print $head_title; ?></title>
-  <?php print $styles; ?>
-  <?php print $scripts; ?>
+?>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--><html lang="en"> <!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="google-site-verification" content="bxtQxPXTaA2g5bXw_buofCT53_Uwp1fGAu9uHSA0UWc">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="twitter:card" content="summary">
+<meta property="og:type" content="website">
+<meta name="twitter:site" content="@rhdevelopers">
+<meta name="twitter:image:src" content="http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg">
+<meta property="og:image" content="http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/social/images/RHD_twitteravatar.jpg">
+<meta property="og:url" content="http://developers.redhat.com/">
+<meta property="og:determiner" content="the">
+<meta property="og:site_name" content="Red Hat Developers">
+<title>Red Hat Developers</title>
+<meta name="twitter:title" content="Red Hat Developers">
+<meta property="og:title" content="Red Hat Developers">
+<meta name="description" content="The simple, modern &amp; productive way to build apps and infrastructure.">
+<meta name="twitter:description" content="The simple, modern &amp; productive way to build apps and infrastructure.">
+<meta property="og:description" content="The simple, modern &amp; productive way to build apps and infrastructure.">
+<link rel="stylesheet" type="text/css" href="//static.jboss.org/rhd/stylesheets/all-92.css">
+<!--[if lt IE 9]><script type="text/javascript" src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
-<body class="<?php print $classes; ?>" <?php print $attributes;?>>
-  <div id="skip-link">
-    <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
-  </div>
-  <?php print $page_top; ?>
+<body class="home fullbleed">
+<script>dataLayer = [{'channel' : 'developer'}];
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NJWS5L');</script><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"></iframe></noscript>
+<div class="site-wrapper">
+<header class="main clearfix"><div class="row">
+<nav class="secondary-nav"><ul class="menu-right">
+<li class="login"><a>LOGIN </a></li>
+<li class="login-divider">  |</li>
+<li class="register"><a>REGISTER</a></li>
+<li class="logged-in">
+<a class="logged-in-name" href="#"></a><a class="logout" href="#">Logout</a>
+</li>
+</ul></nav><nav class="primary-nav"><h1 class="logo">
+<a href="/">Red Hat Developers</a><a class="nav-toggle"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+</h1>
+<ul class="nav nav-tabs">
+<li><a href="http://developers.redhat.com/solutions/">Solutions</a></li>
+<li><a href="http://developers.redhat.com/products/">Products</a></li>
+<li><a href="http://developers.redhat.com/downloads/">Downloads</a></li>
+</ul>
+<ul class="menu-right">
+<li><a href="http://developers.redhat.com/resources/">Resources</a></li>
+<li><a href="http://developers.redhat.com/projects/">Community</a></li>
+<li><a href="http://developers.redhat.com/events/">Events</a></li>
+<li><a href="http://developerblog.redhat.com">Blogs</a></li>
+</ul></nav>
+</div></header>
+
+  <?php //print $page_top; ?>
   <?php print $page; ?>
-  <?php print $page_bottom; ?>
+  <?php //print $page_bottom; ?>
+
+<footer class="bottom"><div class="row">
+<div class="large-4 columns"><a href="https://www.redhat.com"><img src="//static.jboss.org/rhd/fonts/images_branding_RHLogo_white-3.svg" class="rh-logo" alt="Red Hat"></a></div>
+<div class="large-20 columns">
+<h3>Quick Links</h3>
+<ul class="inline-list quick-links">
+<li><a href="https://access.redhat.com/security/team/contact/">Report a Security Problem</a></li>
+<li><a href="http://www.redhat.com/en/services/consulting">Consulting Solutions<i class="fa fa-external-link"></i></a></li>
+<li><a href="http://www.redhat.com/en/services/training">Training<i class="fa fa-external-link"></i></a></li>
+<li><a href="mailto:developer@redhat.com">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="row legal">
+<div class="large-8 medium-24 right columns">
+<a class="summit-logo" href="http://www.redhat.com/summit/"><img src="//static.jboss.org/rhd/images/images_design_logo-summit-2.png" alt="Red Hat Summit"></a><a href="http://www.devnation.org/"><img src="//static.jboss.org/rhd/images/images_design_logo_devnation_footer-2.png" alt="Red Hat Summit"></a><ul class="social-nav">
+<li><a href="https://plus.google.com/103877536668756379905/posts"><i class="fa fa-google-plus"></i></a></li>
+<li><a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q"><i class="fa fa-youtube"></i></a></li>
+<li><a href="https://www.facebook.com/RedHatDeveloperProgram"><i class="fa fa-facebook"></i></a></li>
+<li><a href="https://twitter.com/rhdevelopers"><i class="fa fa-twitter"></i></a></li>
+</ul>
+</div>
+<div class="large-16 columns"><ul class="inline-list">
+<li><a class="copyright">Copyright © 2015 Red Hat Inc.</a></li>
+<li><a href="http://www.redhat.com/en/about/privacy-policy">Privacy statement</a></li>
+<li><a href="http://www.redhat.com/en/about/terms-use">Terms of use    |</a></li>
+<li><a href="http://www.redhat.com/en/about/all-policies-guidelines">All policies and guidelines</a></li>
+</ul></div>
+</div></footer>
+</div>
+<div class="overlay"><div class="overlay-wrap"><div class="overlay-inner">
+<a class="overlay-close">×</a><div class="overlay-content row"></div>
+</div></div></div>
+<div id="fb-root"></div>
+<script src="//www.google-analytics.com/cx/api.js?experiment=U10jDQ5OSNyz_vAuuUdggg"></script><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script><script src="//static.jboss.org/rhd/javascripts/bottom-80.js"></script>
 </body>
 </html>
