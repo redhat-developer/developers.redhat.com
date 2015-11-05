@@ -27,7 +27,7 @@ app.sso = function () {
             });
             $('li.register a, a.keycloak-url').on('click',function(e){
                 e.preventDefault();
-                keycloak.login({ action : 'register' });
+                keycloak.login({ action : 'register', redirectUri : 'http://developers.redhat.com/confirmation' });
             });
         }
     }
