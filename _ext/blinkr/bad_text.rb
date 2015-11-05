@@ -19,7 +19,7 @@ module JBoss
           if node.text?
             PATTERNS.each do |pattern|
               if pattern.match(node.text)
-                errors << Blinkr::Error.new({:severity => :warning,
+                errors << ::Blinkr::Error.new({:severity => :warning,
                                              :category => 'Content',
                                              :type => 'Bad Text Detected',
                                              :url => url,
