@@ -102,8 +102,8 @@ profiles:
   # Pull Request configuration
   staging:
     <<: *profile
-    dcp_base_protocol_relative_url: //10.3.9.71:32778/
-    dcp_base_url: http://10.3.9.71:32778/
+    dcp_base_protocol_relative_url: //<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
+    dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
     dcp2_base_url: http://dcp2-searchisko.rhcloud.com/
     dcp2_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
     metrics: false
