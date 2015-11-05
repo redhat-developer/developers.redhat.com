@@ -140,6 +140,10 @@ To run the acceptance tests (where HOST_TO_TEST is the host you are interested i
 
 `bundle exec ./control.rb ---acceptance_test_target[=HOST_TO_TEST]`
 
+To run the acceptance tests against the locally running docker stack:
+
+`bundle exec ./control.rb ---acceptance_test_docker`
+
 To build the docker images:
 
 `bundle exec ./control.rb -b`
