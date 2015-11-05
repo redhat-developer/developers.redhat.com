@@ -1,0 +1,68 @@
+---
+layout: base
+body_class: fullbleed
+primary_nav_hidden: true
+interpolate: true
+---
+
+.wide.wide-hero.vjbug(class="#{page.hero_class}")==hero
+
+#vJBug-microsite
+  section
+    - page.vjbug.next_event.each do |a|
+      .row
+        .large-24.columns
+          h5.caps Next Live Session
+        .large-20.small-24.columns
+          h2.caps #{a.title}
+        .large-4.small-24.columns.vjbug-date
+          span
+            i.fa.fa-calendar.fa-2x.right
+          span
+            // Displays event's date and time in the user's timezone at the time of the event
+            javascript:
+              var date = new Date("#{a.date}");
+              var timezone = (String(String(date).split("(")[1]).split(")")[0]);
+              var d = date.toLocaleDateString();
+              var t = date.toLocaleTimeString();
+              t = t.replace(/\u200E/g, '');
+              t = t.replace(/^([^\d]*\d{1,2}:\d{1,2}):\d{1,2}([^\d]*)$/, '$1$2');
+              document.write('<h6>' + d + '<br>' + t + ' ' + timezone + '</h6>');
+      .row
+        .large-15.columns.event-video
+          = video_player(site.videos["#{a.youtube_id}"])
+        .large-9.columns.chat
+          iframe.embedded-chat(src="https://kiwiirc.com/client/irc.kiwiirc.com/?&theme=mini#vjbug")
+      .row
+        .large-24.columns.divider
+          - if a.speaker
+            p 
+              | Speaker:
+              strong  #{a.speaker}
+          p #{a.abstract}
+          - if a.speaker
+            p #{a.speaker_intro}
+          a.button(href='http://www.meetup.com/JBoss-User-Group-Worldwide/events/#{a.meetup_id}/') RSVP  
+  section
+      .row
+        .large-24.columns
+          h5.caps Past Events
+          br
+          ul.events-list
+           - page.vjbug.past_events.each do |c|
+            li.single-event
+              .row
+                .large-7.columns
+                  a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
+                    img(src='http://img.youtube.com/vi/#{c.youtube_id}/0.jpg' alt='#{c.title}')
+                .large-17.columns
+                  a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
+                    h4.caps #{c.title}
+                  - if c.speaker
+                    p
+                      | Speaker:
+                      strong  #{c.speaker}
+                  p #{c.date}
+                  p #{c.abstract}
+                  - if c.speaker
+                    p #{c.speaker_intro}
