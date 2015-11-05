@@ -1,3 +1,15 @@
+.wide-hero.vjbug {
+  background-image: cdn('../images/design/vjbug_microsite_banner_desktop.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 242px;
+  @include tablet-portrait-and-down {
+    background: cdn('../images/design/vjbug_microsite_banner_mobile.png') top center / cover repeat-x;
+    min-height: 115px;
+  }
+}
+
 #vJBug-microsite {
   margin-top: 2em;
   .divider {
