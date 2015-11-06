@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative '../lib/options.rb'
+require_relative 'test_helper.rb'
 
 class TestOptions < Minitest::Test
     def test_add
