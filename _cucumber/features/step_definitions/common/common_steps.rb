@@ -1,3 +1,7 @@
+Then(/^(I|they) should see the ([^"]*) page title$/) do |negate, page_title|
+  expect(@page.current_page.title).to have_text(page_title.upcase)
+end
+
 Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
   table.raw.each do |row|
     tab = row.first
