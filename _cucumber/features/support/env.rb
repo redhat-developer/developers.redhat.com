@@ -16,7 +16,6 @@ require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 
 SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
-
 Capybara.configure do |config|
 
   if ENV['HOST_TO_TEST'] == ''
@@ -42,7 +41,7 @@ end
 
 Capybara.register_driver :poltergeist do |app|
   #The ssl options below allow us to call searchisko (operating from a different host
-  Capybara::Poltergeist::Driver.new(app, { :phantomjs_options => ['--debug=no', '--load-images=no', '--ignore-ssl-errors=yes', '--ssl-protocol=TLSv1'], :js_errors => false })
+  Capybara::Poltergeist::Driver.new(app, {:phantomjs_options => ['--debug=no', '--load-images=no', '--ignore-ssl-errors=yes', '--ssl-protocol=TLSv1'], :js_errors => false})
 end
 
 Capybara.register_driver :firefox do |app|

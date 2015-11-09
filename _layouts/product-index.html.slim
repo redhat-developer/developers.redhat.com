@@ -25,7 +25,7 @@ layout: technology-base
           - product = site.products[p]
           .development-tool.divider
             h4
-              a(href="#{site.base_url}/products/#{product.id}/")
+              a(href="#{site.base_url}/products/#{product.id}/" id="#{product.id}" )
                 = product.name
             .row
               .large-16.columns
@@ -33,7 +33,7 @@ layout: technology-base
                 p
                   strong
                   - if(product.has_download_page)
-                    a(href="#{site.base_url}/products/#{product.id}/download/")
+                    a(href="#{site.base_url}/products/#{product.id}/download/" id="download-#{product.id}")
                       |  DOWNLOADS
                   - solutions = site.solutions.select {|_,s| s.related_products.include? product.id}
                   - unless solutions.empty?
@@ -45,17 +45,17 @@ layout: technology-base
                         - unless i >= (solutions.keys.size - 1)
                           ' ,
               .large-8.columns
-                a.button(href="#{site.base_url}/products/#{product.id}/get-started/") GET STARTED
+                a.button(href="#{site.base_url}/products/#{product.id}/get-started/" id="get-started-with-#{product.id}") GET STARTED
                 .tool-links
                   ul.inline-list
                     li
                     - if(product.has_docsandapis_page)
-                      a(href="#{site.base_url}/products/#{product.id}/docs-and-apis/")
+                      a(href="#{site.base_url}/products/#{product.id}/docs-and-apis/" id="#{product.id}docs-and-apis")
                           i.fa.fa-file-text-o
                           |  Docs and APIs
                     - if site.engine.page_by_source_path("products/#{product.id}/learn")
                       li
-                        a(href="#{site.base_url}/products/#{product.id}/learn/")
+                        a(href="#{site.base_url}/products/#{product.id}/learn/" id="learn-#{product.id}")
                           i.fa.fa-files-o
                           |  Learn
 

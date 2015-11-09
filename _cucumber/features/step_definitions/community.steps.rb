@@ -1,7 +1,3 @@
-Then(/^I should see the ([^"]*) page title$/) do |page_title|
-  expect(@page.current_page.title).to have_text(page_title.upcase)
-end
-
 Then(/^I should see at least "([^"]*)" promoted links$/) do |links|
   expect(@page.community).to have_promoted_links :minimum => links.to_i
 end
