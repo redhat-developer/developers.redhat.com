@@ -19,7 +19,7 @@ SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
 
 Capybara.configure do |config|
 
-  if ENV['HOST_TO_TEST']== ''
+  if ENV['HOST_TO_TEST'] == ''
     host_to_test = "http://docker:#{ENV['AWESTRUCT_HOST_PORT']}"
   else
     host_to_test = ENV['HOST_TO_TEST']
