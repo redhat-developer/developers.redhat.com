@@ -5,27 +5,50 @@ Then(/^I should see the following main products sections:$/) do |table|
   end
 end
 
-Then(/^I should see "([^"]*)" products$/) do |products|
-  expect(@page.products).to have_products_sections count: products
+Then(/^I should see a list of available products$/) do
+  @page.products.available_products.should =~ @product_names
+  expect(@page.products).to have_products_sections count: @product_names.size
 end
 
-Then(/^I should see a list of available products$/) do
-  @page.products.available_products.should =~ get_products
-  expect(@page.products).to have_products_sections count: get_products.count
+Then(/^each product title should link to the relevant product overview page$/) do
+  @product_ids.each do |product_id|
+    expect(@page.products.send("product_#{product_id}_link")['href']).to include "/products/#{product_id}/"
+  end
 end
 
 Then(/^I should see a 'Get started' button for each available product$/) do
-  expect(@page.products).to have_getting_started_links count: get_products.count
+  @product_ids.each do |product_id|
+    expect(@page.products.send("get_started_with_#{product_id}_button")).to have_text 'GET STARTED'
+    expect(@page.products.send("get_started_with_#{product_id}_button")['href']).to include "/products/#{product_id}/get-started/"
+  end
 end
 
-When(/^a product has a learn link$/) do
-  #p products
-
-
-  #@learn_link_product_type, @learn_link_product_id = learn_links?
+When(/^products have a learn link available$/) do
 end
 
-Then(/^I should see a learn link for that product$/) do
-  expect(@page.products).to have_learn_links count: learn_links
+Then(/^I should see a learn link for each product$/) do
+  @products_with_learn_link.each do |product_id|
+    expect(@page.products.send("learn_#{product_id}_link")).to have_text 'Learn'
+    expect(@page.products.send("learn_#{product_id}_link")['href']).to include "/products/#{product_id}/learn/"
+  end
 end
 
+When(/^the products have Docs and API's available$/) do
+end
+
+Then(/^I should see a Docs and API's link for each product$/) do
+  @products_with_docs.each do |product_id|
+    expect(@page.products.send("#{product_id}_docs_and_apis")).to have_text 'Docs and APIs'
+    expect(@page.products.send("#{product_id}_docs_and_apis")['href']).to include "/products/#{product_id}/docs-and-apis/"
+  end
+end
+
+When(/^the products have Downloads available$/) do
+end
+
+Then(/^I should see a Download link for each product$/) do
+  @products_with_downloads.each do |product_id|
+    expect(@page.products.send("download_#{product_id}")).to have_text 'DOWNLOADS'
+    expect(@page.products.send("download_#{product_id}")['href']).to include "/products/#{product_id}/download/"
+  end
+end

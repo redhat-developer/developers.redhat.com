@@ -50,7 +50,7 @@ layout: technology-base
                   ul.inline-list
                     li
                     - if(product.has_docsandapis_page)
-                      a(href="#{site.base_url}/products/#{product.id}/docs-and-apis/" id="#{product.id}docs-and-apis")
+                      a(href="#{site.base_url}/products/#{product.id}/docs-and-apis/" id="#{product.id}-docs-and-apis")
                           i.fa.fa-file-text-o
                           |  Docs and APIs
                     - if site.engine.page_by_source_path("products/#{product.id}/learn")

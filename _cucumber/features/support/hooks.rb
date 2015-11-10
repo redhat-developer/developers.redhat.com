@@ -8,6 +8,14 @@ Before do
   end
 end
 
+Before('@products, @downloads') do
+  @product_ids = get_products[0]
+  @product_names = get_products[1]
+  @products_with_learn_link = get_products_with_learn_links[0]
+  @products_with_docs = get_products_with_docs[0]
+  @products_with_downloads = get_products_with_downloads[0]
+end
+
 After do |scenario|
   if scenario.failed?
     Capybara.using_session(Capybara::Screenshot.final_session_name) do

@@ -1,3 +1,5 @@
+@products
+
 Feature: Home Page Smoke Test
 
   In order to find out more about available Red Hat products,
@@ -14,15 +16,25 @@ Feature: Home Page Smoke Test
       | INTEGRATION AND AUTOMATION       |
     And I should see a list of available products
 
-  @wip
-  Scenario: If available a product should have a 'Learn now' link
+  Scenario: Each available product title should link to the relevant product overview page
     Given I am on the Products page
-    When a product has a learn link
-    #Then I should see a learn link for that product
+    Then each product title should link to the relevant product overview page
 
   Scenario: Each available product should contain a 'Get started' link
     Given I am on the Products page
     Then I should see a 'Get started' button for each available product
 
+  Scenario: If available a product has a learn more option a 'Learn now' link should be displayed
+    Given I am on the Products page
+    When products have a learn link available
+    Then I should see a learn link for each product
 
+  Scenario: If available a product has Docs and API's then a 'Docs and API's' link should be displayed
+    Given I am on the Products page
+    When the products have Docs and API's available
+    Then I should see a Docs and API's link for each product
 
+  Scenario: If available a product has Downloads available then a ' DOWNLOADS' link should be displayed
+    Given I am on the Products page
+    When the products have Docs and API's available
+    Then I should see a Download link for each product

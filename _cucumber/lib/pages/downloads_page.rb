@@ -10,13 +10,12 @@ class DownloadsPage < BasePage
   elements :product_downloads, 'h5 > a'
   elements :other_resources, :xpath, '//*[@id="other-resources"]/ul/li'
 
-  PRODUCTS.each_with_index do |product, i|
-    element :"#{product.downcase.tr(' ', '_')}_download_link", :xpath, "(//a[contains(text(),'Download Latest')])[#{i+1}]"
-  end
+  # PRODUCTS.each_with_index do |product, i|
+  #   element :"#{product.downcase.tr(' ', '_')}_download_link", :xpath, "(//a[contains(text(),'Download Latest')])[#{i+1}]"
+  # end
 
   def initialize(driver)
     super
-    warn('WARNING => New products have been added to developers.redhat.com/products directory') unless get_products.count == PRODUCTS.count
   end
 
   def open
