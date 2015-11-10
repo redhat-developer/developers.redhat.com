@@ -1,7 +1,20 @@
+awestruct_acceptance:
+  build: ./awestruct
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
+  external_links:
+    - docker_awestruct_run_1:docker
+  volumes:
+    - ../:/home/awestruct/developer.redhat.com
+  environment:
+    - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
+    - HOST_TO_TEST
 awestruct:
   build: ./awestruct
   ports:
-    - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:4242"
+    - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
   <% if ENV['ghprbPullId'] %>
   labels:
     - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"

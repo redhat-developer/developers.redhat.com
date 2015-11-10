@@ -138,7 +138,11 @@ To build and start all services:
 
 To run the acceptance tests (where HOST_TO_TEST is the host you are interested in:
 
-`bundle exec ./control.rb ---acceptance_test_target[=HOST_TO_TEST]`
+`bundle exec ./control.rb --acceptance_test_target[=HOST_TO_TEST]`
+
+To run the acceptance tests against the locally running docker stack:
+
+`bundle exec ./control.rb --acceptance_test_docker`
 
 To build the docker images:
 

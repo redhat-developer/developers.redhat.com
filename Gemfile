@@ -48,6 +48,7 @@ gem 'rake', '~>10.4'
 gem 'aweplug', github: 'awestruct/aweplug'
 
 group :test do
+  gem 'climate_control'
   gem 'guard'
   gem 'guard-minitest'
   gem 'launchy', '~>2.4'

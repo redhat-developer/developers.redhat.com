@@ -154,7 +154,6 @@ if tasks[:build]
 
   target_gemfile = FileHelpers.open_or_new(docker_dir + '/Gemfile')
   target_gemlock = FileHelpers.open_or_new(docker_dir + '/Gemfile.lock')
-
   #Only copy if the file has changed. Otherwise docker won't cache optimally
   FileHelpers.copy_if_changed(parent_gemfile, target_gemfile)
   FileHelpers.copy_if_changed(parent_gemlock, target_gemlock)
@@ -171,7 +170,6 @@ end
 
 if tasks[:unit_tests]
   puts "Running the unit tests"
-
   execute_docker_compose :run, tasks[:unit_tests]
 end
 
