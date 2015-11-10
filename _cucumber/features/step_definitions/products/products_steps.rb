@@ -52,3 +52,12 @@ Then(/^I should see a Download link for each product$/) do
     expect(@page.products.send("download_#{product_id}")['href']).to include "/products/#{product_id}/download/"
   end
 end
+
+When(/^I click on the product link for "(.*)"$/) do |product_id|
+  @page.products.send("product_#{product_id}_link").click
+  @selected_product_id = product_id
+end
+
+Then(/^I should be directed the product overview page$/) do
+  expect(page.current_url).to include "/products/#{@selected_product_id}/overview/"
+end
