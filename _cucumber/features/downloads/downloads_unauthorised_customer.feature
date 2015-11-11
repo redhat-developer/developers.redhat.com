@@ -1,3 +1,5 @@
+@downloads
+
 Feature: Download Page Smoke Test
 
   In order to try out Red Hat software,

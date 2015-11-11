@@ -29,7 +29,7 @@ Then(/^I should see a 'Get started' button for each available product$/) do
   end
 end
 
-When(/^products have a learn link available$/) do
+When(/^products have a Learn link available$/) do
 end
 
 Then(/^I should see a 'Learn' link for each product$/) do

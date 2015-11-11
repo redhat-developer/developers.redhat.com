@@ -11,10 +11,10 @@ end
 Before('@products, @downloads') do
   @product_ids = get_products[0]
   @product_names = get_products[1]
-  @products_with_learn_link = get_products_with_learn_links[0]
-  @products_with_docs = get_products_with_docs[0]
-  @products_with_downloads = get_products_with_downloads[0]
-  @products_with_buzz = get_products_with_buzz[0]
+  @products_with_learn_link = get_products_with_links('learn.html.slim')[0]
+  @products_with_docs = get_products_with_links('docs-and-apis.adoc')[0]
+  @products_with_downloads = get_products_with_links('download.adoc')[0]
+  @products_with_buzz = get_products_with_links('buzz.html.slim')[0]
 end
 
 After do |scenario|

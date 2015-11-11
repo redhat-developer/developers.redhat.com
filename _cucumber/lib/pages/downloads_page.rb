@@ -2,8 +2,11 @@ require_relative 'base_page.rb'
 require_relative '../../../_cucumber/lib/helpers/products_helper.rb'
 
 class DownloadsPage < BasePage
-  include ProductsHelper
   set_url '/downloads/'
+
+  class << self
+    include ProductsHelper
+  end
 
   element  :products, '#downloads'
   elements :download_latest_links, '.fa-download'
