@@ -35,6 +35,10 @@ interpolate: true
             a href="#featured-speakers"
               i.fa.fa-film.fa-2x
               |  14 Featured Red Hat Speakers
+          li
+            a href="#devoxx4kids"
+              i.fa.fa-child.fa-2x
+              |  Devoxx4Kids
       .large-12.columns
         ul.nav-list
           li
@@ -88,7 +92,15 @@ interpolate: true
                     p #{a.date} - #{a.location}
                 .row  
                   p.large-24.columns #{a.description}
-  section.inverse#modern-javaee
+  section.inverse#devoxx4kids
+    .row
+      .large-16.columns
+        h2 DEVOXX4KIDS
+        p Red Hat was excited to present local Devoxx4Kids chapters with donations to help them further their mission to introduce teenagers to programming and robotics in a fun way.  Thanks Devoxx4Kids for letting Red Hat be involved in your efforts.
+      .large-8.columns
+        img(src=cdn("#{site.base_url}/images/events/devoxx/2015/devoxx4kids.jpg") alt="Devoxx4Kids")
+
+  section#modern-javaee
     .row
       .large-24.columns
         h2 MEET MARKUS EISELE & GET HIS BOOK
