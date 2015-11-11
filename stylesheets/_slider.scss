@@ -125,34 +125,20 @@
     }
   }
 
-  .slide--javaone {
-    background:cdn("../images/slider/RHDev_homecarousel_desktop_javaone_bg_10262015.png") center;
+  .slide--devoxx {
+    background:cdn("../images/slider/RHDev_homecarousel_desktop_devoxx.png") center;
     background-size: cover;
-    span {
-      float: right;
-      padding-right: 33px;
-      font-weight: 600;
-    }
     h2 {
       color:white;
       line-height: 1;
-      font-size: 55px;;
+      font-size: 60px;;
     }
     p {
       font-size: 30px;
-    }
-    strong {
-      margin-right: 15px;
-    }
-    @include tablet-landscape-and-down {
-      span {
-        float: none;
-        padding-right: 0;
-        display: inline-block;
-      }
+      font-weight: 600;
     }
     @include mobile-landscape-and-down {
-      background-image:cdn("../images/slider/RHDev_homecarousel_mobile_javaone_bg_10262015.png");
+      background-image:cdn("../images/slider/RHDev_homecarousel_mobile_devoxx.png");
     }
   }
 
