@@ -10,6 +10,12 @@ Then(/^I should see a list of available products$/) do
   expect(@page.products).to have_products_sections count: @product_names.size
 end
 
+Then(/^I should see a description of available products$/) do
+  @product_ids.each do |product_id|
+    expect(@page.products.send("#{product_id}_section")).to have_text(get_product(product_id, 'name'))
+  end
+end
+
 Then(/^each product title should link to the relevant product overview page$/) do
   @product_ids.each do |product_id|
     expect(@page.products.send("product_#{product_id}_link")['href']).to include "/products/#{product_id}/"

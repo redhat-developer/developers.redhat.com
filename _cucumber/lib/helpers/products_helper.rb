@@ -1,5 +1,17 @@
 module ProductsHelper
 
+  def get_product(product_id, info)
+    data = YAML.load_file("products/#{product_id}/_common/product.yml")
+    case info
+      when 'name'
+        return data['index']['desc']
+      when 'description'
+        return data['index']['desc']
+      else
+        raise("#{info} was not a valid product item, please check Products helper module in /lib/helpers")
+    end
+  end
+
   def get_products
     product_type = []
     product_id = []

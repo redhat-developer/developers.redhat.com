@@ -15,6 +15,7 @@ Feature: Home Page Smoke Test
       | JBOSS DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION       |
     And I should see a list of available products
+    And I should see a description of available products
 
   Scenario: Each available product title should link to the relevant product overview page
     Given I am on the Products page

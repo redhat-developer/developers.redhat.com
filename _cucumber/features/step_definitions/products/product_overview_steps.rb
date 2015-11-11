@@ -21,7 +21,7 @@ Then(/^I should see a side-nav with the following options:$/) do |table|
         if @products_with_learn_link.include? @selected_product
           expect(@page.product_overview).to have_side_nav_learn_link
         else
-          expect(@page.product_overview).to have_side_nav_learn_link
+          expect(@page.product_overview).not_to have_side_nav_learn_link
         end
       when 'Download'
         if @products_with_downloads.include? @selected_product

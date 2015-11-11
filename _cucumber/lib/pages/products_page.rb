@@ -19,6 +19,7 @@ class ProductsPage < BasePage
 
   get_products[0].each do |product_id|
     # define elements for each available product
+    element :"#{product_id}_section", "#development-tool-#{product_id}"
     element :"get_started_with_#{product_id}_button", "#get-started-with-#{product_id}"
     element :"product_#{product_id}_link", "##{product_id}"
     element :"learn_#{product_id}_link", "#learn-#{product_id}"
