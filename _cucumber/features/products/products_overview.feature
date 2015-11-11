@@ -38,6 +38,7 @@ Feature: Product overview page
       | Docs and APIs |
       | Learn         |
       | Download      |
+      | Buzz          |
 
   Examples: RedHat products
     | product id          |

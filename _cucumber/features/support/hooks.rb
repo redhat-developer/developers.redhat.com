@@ -14,6 +14,7 @@ Before('@products, @downloads') do
   @products_with_learn_link = get_products_with_learn_links[0]
   @products_with_docs = get_products_with_docs[0]
   @products_with_downloads = get_products_with_downloads[0]
+  @products_with_buzz = get_products_with_buzz[0]
 end
 
 After do |scenario|

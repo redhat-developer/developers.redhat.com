@@ -29,6 +29,13 @@ Then(/^I should see a side-nav with the following options:$/) do |table|
         else
           expect(@page.product_overview).not_to have_side_nav_download_link
         end
+
+      when 'Buzz'
+        if @products_with_buzz.include? @selected_product
+          expect(@page.product_overview).to have_side_nav_buzz_link
+        else
+          expect(@page.product_overview).not_to have_side_nav_buzz_link
+        end
     end
   end
 end

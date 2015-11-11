@@ -12,7 +12,7 @@ end
 
 Then(/^I should see a description of available products$/) do
   @product_ids.each do |product_id|
-    expect(@page.products.send("#{product_id}_section")).to have_text(get_product(product_id, 'name'))
+    expect(@page.products.send("#{product_id}_section")).to have_text(get_product(product_id, 'description'))
   end
 end
 
@@ -32,7 +32,7 @@ end
 When(/^products have a learn link available$/) do
 end
 
-Then(/^I should see a learn link for each product$/) do
+Then(/^I should see a 'Learn' link for each product$/) do
   @products_with_learn_link.each do |product_id|
     expect(@page.products.send("learn_#{product_id}_link")).to have_text 'Learn'
     expect(@page.products.send("learn_#{product_id}_link")['href']).to include "/products/#{product_id}/learn/"
@@ -42,7 +42,7 @@ end
 When(/^the products have Docs and API's available$/) do
 end
 
-Then(/^I should see a Docs and API's link for each product$/) do
+Then(/^I should see a 'Docs and APIs' link for each product$/) do
   @products_with_docs.each do |product_id|
     expect(@page.products.send("#{product_id}_docs_and_apis")).to have_text 'Docs and APIs'
     expect(@page.products.send("#{product_id}_docs_and_apis")['href']).to include "/products/#{product_id}/docs-and-apis/"
@@ -52,7 +52,7 @@ end
 When(/^the products have Downloads available$/) do
 end
 
-Then(/^I should see a Download link for each product$/) do
+Then(/^I should see a 'Download' link for each product$/) do
   @products_with_downloads.each do |product_id|
     expect(@page.products.send("download_#{product_id}")).to have_text 'DOWNLOADS'
     expect(@page.products.send("download_#{product_id}")['href']).to include "/products/#{product_id}/download/"

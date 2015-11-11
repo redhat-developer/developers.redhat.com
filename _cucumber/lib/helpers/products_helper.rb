@@ -72,6 +72,22 @@ module ProductsHelper
     return product_id, product_type
   end
 
+  def get_products_with_buzz
+    product_type = []
+    product_id = []
+    if Dir.glob(File.join('products', '**', 'buzz.html.slim')).each do |learn|
+      path_to_product = learn.gsub('/buzz.html.slim', '')
+      Dir.glob("#{path_to_product}/_common/product.yml").each do |f|
+        product_id << path_to_product.gsub('products/', '')
+        data = YAML.load_file(f)
+        product_type << data['name']
+      end
+    end
+    end
+    raise("There was a problem returning the products that have buzz files available, please check Products helper module in /lib/helpers") unless product_type.size == product_id.size
+    return product_id, product_type
+  end
+
 
 end
 

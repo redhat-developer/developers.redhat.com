@@ -28,14 +28,14 @@ Feature: Home Page Smoke Test
   Scenario: If available a product has a learn more option a 'Learn now' link should be displayed
     Given I am on the Products page
     When products have a learn link available
-    Then I should see a learn link for each product
+    Then I should see a 'Learn' link for each product
 
   Scenario: If available a product has Docs and API's then a 'Docs and API's' link should be displayed
     Given I am on the Products page
     When the products have Docs and API's available
-    Then I should see a Docs and API's link for each product
+    Then I should see a 'Docs and APIs' link for each product
 
   Scenario: If available a product has Downloads available then a ' DOWNLOADS' link should be displayed
     Given I am on the Products page
     When the products have Docs and API's available
-    Then I should see a Download link for each product
+    Then I should see a 'Download' link for each product
