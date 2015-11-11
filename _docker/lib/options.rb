@@ -53,7 +53,7 @@ class Options
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
         tasks[:drupal] = true
-        tasks[:supporting_services] += %w(drupal drupalmysql)
+        tasks[:supporting_services] += %w(drupal drupalpgsql)
         tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]']
       end
 
