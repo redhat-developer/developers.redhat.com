@@ -1,5 +1,4 @@
-<?php
-
+{#
 /**
  * @file
  * Default theme implementation to display the basic html structure of a single
@@ -41,7 +40,7 @@
  *
  * @ingroup themeable
  */
-?>
+#}
 <!DOCTYPE html>
 <!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--><html lang="en"> <!--<![endif]--><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -97,9 +96,7 @@
 </ul></nav>
 </div></header>
 
-  <?php //print $page_top; ?>
-  <?php print $page; ?>
-  <?php //print $page_bottom; ?>
+{{ page }}
 
 <footer class="bottom"><div class="row">
 <div class="large-4 columns"><a href="https://www.redhat.com"><img src="//static.jboss.org/rhd/fonts/images_branding_RHLogo_white-3.svg" class="rh-logo" alt="Red Hat"></a></div>
