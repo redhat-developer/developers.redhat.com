@@ -496,7 +496,11 @@ require 'tmpdir'
 class Git
   def extract_issues(branch, not_on)
     # Read the changes
+    puts "~~~~Running git --no-pager log #{branch} --not #{not_on}"
     changes = `git --no-pager log #{branch} --not #{not_on}`
+    puts changes
+
+    p changes.scan(JIRA::KEY_PATTERN).flatten.uniq
     changes.scan(JIRA::KEY_PATTERN).flatten.uniq
   end
 end
