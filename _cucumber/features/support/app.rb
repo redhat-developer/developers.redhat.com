@@ -28,11 +28,6 @@ class App
     @current_page = @products
   end
 
-  def product_overview
-    @product_overview ||= ProductOverviewPage.new(@driver)
-    @current_page = @product_overview
-  end
-
   def downloads
     @downloads ||= DownloadsPage.new(@driver)
     @current_page = @downloads
