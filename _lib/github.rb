@@ -10,6 +10,10 @@ class GitHub
     Octokit.pull_requests("#{org}/#{repo}", :state => 'closed')
   end
 
+  def self.update_status(org, repo, sha, state, options = {})
+    Octokit.create_status("#{org}/#{repo}", sha, state, options)
+  end
+
   def self.comment_on_pull(org, repo, pr_number, comment)
     Octokit.add_comment("#{org}/#{repo}", pr_number, comment)
   end

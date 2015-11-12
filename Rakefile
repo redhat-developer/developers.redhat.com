@@ -1,4 +1,5 @@
 #For instructions on usage see the README file
+
 require "minitest/reporters"
 require 'rake/testtask'
 require_relative './_lib/github.rb'
@@ -12,11 +13,21 @@ $awestruct_cmd = nil
 $remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
 
+def wrap_with_progress(param1, block)
+  begin
+    puts 'hi'
+    block.call
+    puts 'hi'
+  rescue => e
+    puts 'hi'
+  end
+end
+
 Rake::TestTask.new do |t|
   t.libs = ["_docker/lib"]
   t.warning = false
   t.verbose = true
-  t.test_files = FileList['_docker/test/*.rb'] #Let's add more files here!
+  t.test_files = FileList['_docker/test/*.rb', '_tests/*.rb'] #Let's add more files here!
 end
 
 desc 'Setup the environment to run Awestruct'
@@ -75,6 +86,16 @@ desc 'Generate the site using the defined profile, or development if none is giv
 task :gen, [:profile] => :check do |task, args|
   run_awestruct "-P #{args[:profile] || 'development'} -g --force -q"
 end
+def wrap_with_progress(param1, block)
+  begin
+    puts 'hi'
+    block.call
+    puts 'hi'
+  rescue => e
+    puts 'hi'
+  end
+end
+
 
 desc "Push local commits to #{$remote}/master"
 task :push, [:profile, :tag_name] => :init do |task, args|
