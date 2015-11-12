@@ -60,39 +60,7 @@ interpolate: true
           br
           | Meet our engineers, grab a beer and talk about the problems you are trying to solve.
 
-  section#featured-speakers
-    .row
-      .large-24.column
-        h2 RED HAT FEATURED SPEAKERS
-
-        ul.speakers-list
-          - page.devoxx_be.featured_speakers.each do |a|
-            li.row
-              .large-3.small-10.columns
-                - unless !a.speaker_img
-                  img(src=cdn("#{site.base_url}/images/events/devoxx/2015/#{a.speaker_img}") alt="#{a.speaker_name} #{a.speaker_lastname}")
-                - else
-                  i.fa.fa-user.fa-5x.user-default
-              .large-4.small-14.columns
-                - unless a.multiple_speakers
-                  p #{a.speaker_name}
-                  strong #{a.speaker_lastname}
-                - unless !a.multiple_speakers
-                  p
-                    | #{a.multiple_speakers.speaker_name_1}
-                    strong  #{a.multiple_speakers.speaker_lastname_1}
-                    |  and #{a.multiple_speakers.speaker_name_2}
-                    strong  #{a.multiple_speakers.speaker_lastname_2}
-                p #{a.speaker_title}
-              .large-17.columns
-                .row.talk-info
-                  .large-24.columns
-                    h4 #{a.title}
-                  .large-24.columns
-                    p #{a.date} - #{a.location}
-                .row  
-                  p.large-24.columns #{a.description}
-  section.inverse#devoxx4kids
+  section#devoxx4kids
     .row
       .large-16.columns
         h2 DEVOXX4KIDS
@@ -100,8 +68,18 @@ interpolate: true
       .large-8.columns
         img(src=cdn("#{site.base_url}/images/events/devoxx/2015/devoxx4kids.jpg") alt="Devoxx4Kids")
 
-  section#modern-javaee
+  section.inverse
     .row
+      .large-15.columns
+        h2.caps Become a Red Hat Developer
+        h4 Share more. Learn more. Code more.
+        p Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications. Join now for free!
+      .large-9.columns
+        a.button.button--join-today.keycloak-url(href="#")
+          | Join Today - It's Free!
+
+  section#modern-javaee
+    .row.divider
       .large-4.columns
         a(href='#{site.base_url}/promotions/distributed-javaee-architecture/')
           img(src=cdn("#{site.base_url}/images/promotions/modern-java-ee-design-patterns-redhat.jpg") alt="Modern Java EE Design Patterns")
@@ -115,3 +93,45 @@ interpolate: true
           |  or on Twitter
           a href="https://twitter.com/myfear"  @myfear
           | .
+
+  section#featured-speakers
+    .row
+      .large-24.column
+        h2.caps Watch our sessions now
+        ul.speakers-list
+          - page.devoxx_be.featured_speakers.each do |a|
+            li.row
+              .large-7.columns
+                .row
+                  .large-8.small-10.columns
+                    - unless !a.speaker_img
+                      img.speaker-img(src=cdn("#{site.base_url}/images/events/devoxx/2015/#{a.speaker_img}") alt="#{a.speaker_name} #{a.speaker_lastname}")
+                    - else
+                      i.fa.fa-user.fa-5x.user-default
+                  .large-16.small-14.columns
+                    - unless a.multiple_speakers
+                      p #{a.speaker_name}
+                      strong #{a.speaker_lastname}
+                    - unless !a.multiple_speakers
+                      p
+                        | #{a.multiple_speakers.speaker_name_1}
+                        strong  #{a.multiple_speakers.speaker_lastname_1}
+                        |  and #{a.multiple_speakers.speaker_name_2}
+                        strong  #{a.multiple_speakers.speaker_lastname_2}
+                    p #{a.speaker_title}
+              .large-17.columns
+                .row.talk-info
+                  .large-24.columns
+                    h4 #{a.title}
+                  .large-24.columns
+                    p #{a.date} - #{a.location}
+                .row
+                  .large-24.column
+                    .video-wrapper
+                      - if a.youtube_id
+                        .row.columns
+                          a(href='#{site.base_url}/video/youtube/#{a.youtube_id}')
+                            img.video-thumb(src='http://img.youtube.com/vi/#{a.youtube_id}/0.jpg' alt='#{a.title}')
+                          a.button(href='#{site.base_url}/video/youtube/#{a.youtube_id}') watch now
+                    .desc-wrapper
+                      p #{a.description}
