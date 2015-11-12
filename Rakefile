@@ -253,12 +253,14 @@ task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   # Link pull requests to JIRA
   linked_issues = jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
   # Add links to JIRA to pull requests
+  msg "Calling GitHub.link_issues"
   GitHub.link_issues('redhat-developer', 'developers.redhat.com', args[:pull_request], linked_issues)
   msg "Successfully commented JIRA issue list on https://github.com/redhat-developer/developers.redhat.com/pull/#{args[:pull_request]}"
 end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
 task :reap_old_pulls, [:pr_prefix] do |task, args|
+  msg "Calling GitHub.list_closed_pulls"
   reap = GitHub.list_closed_pulls('redhat-developer', 'developers.redhat.com')
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
@@ -316,6 +318,7 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generat
     rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_base_path}")
   end
   rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
+  msg "Calling GitHub.comment_on_pull"
   GitHub.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
 end
 
@@ -337,6 +340,7 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |tas
   end
   rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
   report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
+  msg "Calling GitHub.comment_on_pull"
   GitHub.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Blinkr: #{args[:new]}/#{report_path}/#{report_filename}")
 end
 
