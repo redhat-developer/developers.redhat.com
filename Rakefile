@@ -624,9 +624,12 @@ class JIRA
   end
 
   def link_pull_requests_if_unlinked(issues, pull_request)
+    puts "~~~HERE2 #{issues}"
     linked_issues = []
     issues.each do |k|
+      puts "~~~HERE3 #{k}"
       pr = linked_pull_request k
+      puts "~~~HERE4 #{pr}"
       if pr.nil?
         url = "#{@jira_issue_base_url}#{k}/transitions"
         body = %Q{
