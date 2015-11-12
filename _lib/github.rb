@@ -26,6 +26,7 @@ class GitHub
 
   def self.link_issues(org, repo, pull, issues)
     puts "~~~~~~~~~link_issues "
+    puts "~~~~~~~#{issues.size}:issues #{issues}"
     if issues.length > 0
       issue_list = issues.collect {|i| %Q{<a href="https://issues.jboss.org/browse/} + i + %Q{">} + i + %Q{</a>}}.join(", ")
     GitHub.comment_on_pull(org, repo, pull, "Related issue#{issues.length > 1 ? 's' : ''}: #{issue_list}")
