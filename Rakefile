@@ -656,6 +656,7 @@ class JIRA
         linked_issues << k
       end
     end
+    puts "HERE5 #{linked_issues}"
     linked_issues
   end
 end
