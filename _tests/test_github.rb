@@ -51,4 +51,12 @@ class TestGitHub < Minitest::Test
     Octokit.expects(:add_comment).with("foo/bar", pr_number, expectedComment)
     GitHub.link_issues('foo', 'bar', pr_number, issues)
   end
+
+  def test_status_update
+    sha = 7777
+    state = "pending"
+    options = {:context => "mock tests", :target_url => "www.example.com", :description => "Short Desc"}
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options)
+    GitHub.update_status('foo', 'bar', sha, state, options)
+  end
 end
