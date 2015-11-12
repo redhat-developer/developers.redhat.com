@@ -653,10 +653,11 @@ class JIRA
           msg "Error linking https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
           msg "Request body: #{body}"
         end
+        puts "HERE5 #{k}"
         linked_issues << k
       end
     end
-    puts "HERE5 #{linked_issues}"
+    puts "HERE6 #{linked_issues}"
     linked_issues
   end
 end
