@@ -1,47 +1,7 @@
-# This file is a rake build file. The purpose of this file is to simplify
-# setting up and using Awestruct. It's not required to use Awestruct, though it
-# does save you time (hopefully). If you don't want to use rake, just ignore or
-# delete this file.
-#
-# If you're just getting started, execute this command to install Awestruct and
-# the libraries on which it depends:
-#
-#  rake setup
-#
-# The setup task installs the necessary libraries according to which Ruby
-# environment you are using. If you want the libraries kept inside the project,
-# execute this command instead:
-#
-#  rake setup[local]
-#
-# IMPORTANT: To install gems, you'll need development tools on your machine,
-# which include a C compiler, the Ruby development libraries and some other
-# development libraries as well.
-#
-# There are also tasks for running Awestruct. The build will auto-detect
-# whether you are using Bundler and, if you are, wrap calls to awestruct in
-# `bundle exec`.
-#
-# To run in Awestruct in development mode, execute:
-#
-#  rake
-#
-# To clean the generated site before you build, execute:
-#
-#  rake clean preview
-#
-# To deploy using the production profile, execute:
-#
-#  rake deploy
-#
-# To get a list of all tasks, execute:
-#
-#  rake -T
-#
-# Now you're Awestruct with rake!
-
+#For instructions on usage see the README file
 require "minitest/reporters"
 require 'rake/testtask'
+require_relative './_lib/github.rb'
 
 load './_cucumber/cucumber.rake'
 
@@ -289,19 +249,20 @@ desc 'Link pull requests to JIRAs.'
 task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   jira = JIRA.new
   git = Git.new
-  github = GitHub.new
 
   # Link pull requests to JIRA
   linked_issues = jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
+  puts "~~~~HERE #{linked_issues}"
   # Add links to JIRA to pull requests
-  github.link_issues('redhat-developer', 'developers.redhat.com', args[:pull_request], linked_issues)
+  msg "Calling GitHub.link_issues"
+  GitHub.link_issues('redhat-developer', 'developers.redhat.com', args[:pull_request], linked_issues)
+  msg "Successfully commented JIRA issue list on https://github.com/redhat-developer/developers.redhat.com/pull/#{args[:pull_request]}"
 end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
 task :reap_old_pulls, [:pr_prefix] do |task, args|
-  github = GitHub.new
-  date_range = (DateTime.now.prev_month)..(DateTime.now.prev_day 7)
-  reap = github.list_closed_pulls('redhat-developer', 'developers.redhat.com', date_range)
+  msg "Calling GitHub.list_closed_pulls"
+  reap = GitHub.list_closed_pulls('redhat-developer', 'developers.redhat.com')
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
     reap.each do |p|
@@ -358,8 +319,8 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generat
     rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_base_path}")
   end
   rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
-  github = GitHub.new
-  github.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
+  msg "Calling GitHub.comment_on_pull"
+  GitHub.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
 end
 
 desc 'Run blinkr'
@@ -380,8 +341,8 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |tas
   end
   rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
   report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
-  github = GitHub.new
-  github.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Blinkr: #{args[:new]}/#{report_path}/#{report_filename}")
+  msg "Calling GitHub.comment_on_pull"
+  GitHub.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Blinkr: #{args[:new]}/#{report_path}/#{report_filename}")
 end
 
 # Execute Awestruct
@@ -536,77 +497,13 @@ require 'tmpdir'
 class Git
   def extract_issues(branch, not_on)
     # Read the changes
+    puts "~~~~Running git --no-pager log #{branch} --not #{not_on}"
     changes = `git --no-pager log #{branch} --not #{not_on}`
+    puts changes
+
+    p changes.scan(JIRA::KEY_PATTERN).flatten.uniq
     changes.scan(JIRA::KEY_PATTERN).flatten.uniq
   end
-end
-
-class GitHub
-  def initialize
-    @github_base_url = 'https://api.github.com/'
-  end
-
-  def list_closed_pulls(org, repo, date_range)
-    pulls = []
-    pulls << _list_closed_pulls("#{@github_base_url}repos/#{org}/#{repo}/pulls?state=closed&sort=updated", date_range)
-    pulls.flatten.uniq
-  end
-
-  def _list_closed_pulls(url, date_range)
-    resp = get(url)
-    pulls = []
-    if resp.is_a?(Net::HTTPSuccess)
-      json = JSON.parse(resp.body)
-      json.each do |p|
-        pulls << p['number'] if date_range.cover? DateTime.parse(p['closed_at'])
-      end
-      if resp.key? 'Link'
-        links = {}
-        resp['Link'].split(',').collect do |s|
-          a = s.split(';')
-          k = a[1][6..-2]
-          links[k] = a[0][(a[0].index('<') + 1)..(a[0].rindex('>') - 1)]
-        end
-        if links['next']
-          pulls << _list_closed_pulls(links['next'], date_range)
-        end
-      end
-    else
-      msg "Error requesting cosed pulls from github. Status code #{resp.code}. Error message #{resp.body}"
-    end
-    pulls
-  end
-
-  def link_issues(org, repo, pull, issues)
-    if issues.length > 0
-      issue_list = issues.collect {|i| %Q{<a href="https://issues.jboss.org/browse/} + i + %Q{">} + i + %Q{</a>}}.join(", ")
-      comment_on_pull(org, repo, pull, "Related issue#{issues.length > 1 ? 's' : ''}: #{issue_list}")
-      msg "Successfully commented JIRA issue list on https://github.com/redhat-developer/developers.redhat.com/pull/#{pull}"
-    end
-  end
-
-  def comment_on_pull(org, repo, pull, comment)
-    uri = URI.parse("#{@github_base_url}repos/#{org}/#{repo}/issues/#{pull}/comments")
-    req = Net::HTTP::Post.new uri
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    req['Authorization'] = "token #{ENV['github_token']}"
-    req.body = {:body => comment}.to_json
-    http.request(req)
-  end
-
-  def get(url)
-    uri = URI.parse(url)
-    req = Net::HTTP::Get.new uri
-    http = Net::HTTP.new(uri.host, uri.port)
-    if uri.scheme == 'https'
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    end
-    http.request(req)
-  end
-
 end
 
 class Jenkins
@@ -727,9 +624,12 @@ class JIRA
   end
 
   def link_pull_requests_if_unlinked(issues, pull_request)
+    puts "~~~HERE2 #{issues}"
     linked_issues = []
     issues.each do |k|
+      puts "~~~HERE3 #{k}"
       pr = linked_pull_request k
+      puts "~~~HERE4 #{pr}"
       if pr.nil?
         url = "#{@jira_issue_base_url}#{k}/transitions"
         body = %Q{
@@ -753,9 +653,11 @@ class JIRA
           msg "Error linking https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
           msg "Request body: #{body}"
         end
+        puts "HERE5 #{k}"
         linked_issues << k
       end
     end
+    puts "HERE6 #{linked_issues}"
     linked_issues
   end
 end
