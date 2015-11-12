@@ -252,6 +252,7 @@ task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
 
   # Link pull requests to JIRA
   linked_issues = jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
+  puts "~~~~HERE #{linked_issues}"
   # Add links to JIRA to pull requests
   msg "Calling GitHub.link_issues"
   GitHub.link_issues('redhat-developer', 'developers.redhat.com', args[:pull_request], linked_issues)
