@@ -23,7 +23,7 @@ layout: technology-base
       - category.products.each do |p|
         - if site.products[p]
           - product = site.products[p]
-          .development-tool.divider
+          .development-tool.divider(class=('indent-product' if product.indented_product?))
             h4
               a(href="#{site.base_url}/products/#{product.id}/")
                 = product.name
