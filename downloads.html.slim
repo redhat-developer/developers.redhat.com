@@ -32,15 +32,16 @@ description: Discover the product downloads available from JBoss, and locate the
             .row
               .large-16.columns
                 h5
-                  a(href="#{site.base_url}/products/#{product.id}/")
+                  a(id="#{product.id}-overview" href="#{site.base_url}/products/#{product.id}/")
                     = product.name
               .large-8.columns
+              .large-8.columns
                 - if product.default_download_artifact && product.current_version
-                  a(href="#{product.default_download_artifact.url}")
+                  a(id="download-#{product.id}" href="#{product.default_download_artifact.url}")
                     i.fa.fa-download
                     |  Download Latest
                 - else
-                  a(href="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}")
+                  a(id="download-#{product.id}" href="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}")
                     i.fa.fa-download
                     |  Download Latest
   .large-7.columns#other-resources

@@ -1,5 +1,3 @@
-$: << File.dirname(__FILE__)+'/../../lib'
-
 require 'capybara'
 require 'capybara/cucumber'
 require 'capybara/poltergeist'
@@ -15,7 +13,6 @@ require 'site_prism'
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
-
 
 Capybara.configure do |config|
 
@@ -63,4 +60,3 @@ end
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   driver.browser.save_screenshot path
 end
-

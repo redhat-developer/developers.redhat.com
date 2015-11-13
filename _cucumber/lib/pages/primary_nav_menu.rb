@@ -2,6 +2,9 @@ require_relative 'base_page.rb'
 
 class PrimaryNav < BasePage
 
+  element :login_link, '.login'
+  element :register, '.register'
+
   PRIMARY_NAV_TABS   = %i[Solutions Products Downloads Resources Community Events Blogs]
 
   PRIMARY_NAV_TABS.each do |tab|

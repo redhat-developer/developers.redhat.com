@@ -8,14 +8,15 @@ class DownloadsPage < BasePage
     include ProductsHelper
   end
 
-  element  :products, '#downloads'
   elements :download_latest_links, '.fa-download'
   elements :product_downloads, 'h5 > a'
   elements :other_resources, :xpath, '//*[@id="other-resources"]/ul/li'
 
-  # PRODUCTS.each_with_index do |product, i|
-  #   element :"#{product.downcase.tr(' ', '_')}_download_link", :xpath, "(//a[contains(text(),'Download Latest')])[#{i+1}]"
-  # end
+  get_products[0].each do |product_id|
+    # define elements for each available download
+   element :"#{product_id.downcase.tr(' ', '_')}_overview_link", "##{product_id}-overview"
+   element :"#{product_id.downcase.tr(' ', '_')}_download_link", "#download-#{product_id}"
+  end
 
   def initialize(driver)
     super
@@ -34,7 +35,7 @@ class DownloadsPage < BasePage
   end
 
   def other_resources_links
-    other_resources.map { |link| p link.text }
+    other_resources.map { |link| link.text }
   end
 
 end
