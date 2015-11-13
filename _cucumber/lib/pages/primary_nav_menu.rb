@@ -4,6 +4,8 @@ class PrimaryNav < BasePage
 
   element :login_link, '.login'
   element :register, '.register'
+  element :logged_in_name, '.logged-in-name'
+  element :logout_link, '.logout'
 
   PRIMARY_NAV_TABS   = %i[Solutions Products Downloads Resources Community Events Blogs]
 
