@@ -13,6 +13,12 @@ class App
     @current_page = @primary_nav
   end
 
+  def login_page
+    @login_page ||= LoginPage.new(@driver)
+    @current_page = @login_page
+  end
+
+
   def home
     @home ||= Home.new(@driver)
     @current_page = @home
