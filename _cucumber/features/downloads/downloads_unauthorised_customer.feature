@@ -16,7 +16,7 @@ Feature: Download Page - Unauthorised customer
   Scenario: Unauthorised customer should see a list of 'Other developer resources'
     Given an unauthorised customer is on the site
     When they are on on the Downloads page
-    Then the following "Other developer resources" links should be displayed:
+    Then the following 'Other developer resources' links should be displayed:
       | Red Hat Docker Repository |
       | Container development kit |
       | Building Linux RPMs       |

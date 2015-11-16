@@ -9,6 +9,7 @@ require 'fileutils'
 require 'rubocop'
 require 'capybara-screenshot/cucumber'
 require 'site_prism'
+require 'rest-client'
 
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }

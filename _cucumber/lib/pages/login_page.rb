@@ -22,11 +22,6 @@ class LoginPage < BasePage
     Home.new(@driver).open
     nav_bar = PrimaryNav.new(@driver)
     nav_bar.login_link.click
-    page_loaded?
-  end
-
-  def page_loaded?
-    wait_for_ajax
     wait_for_login_with_existing_account
   end
 
@@ -44,10 +39,12 @@ class LoginPage < BasePage
 
   def login(username, password)
     login_with_existing_account.click
-    wait_for_username_field
-    username_field.set username
-    password_field.set password
+    wait_for_username_field(6)
+
+    username_field.set(username)
+    password_field.set(password)
     login_button.click
+
     nav_bar = PrimaryNav.new(@driver)
     nav_bar.wait_until_logout_link_visible(10)
   end
