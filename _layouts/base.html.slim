@@ -110,6 +110,9 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
             li.login: a LOGIN 
             li.login-divider &nbsp; |
             li.register: a REGISTER
+            li.search-wrapper
+              form.search-bar[accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit"]
+                input.user-success[type="text" placeholder="Filter by keyword" id="search_list_text"]
             li.logged-in
               a.logged-in-name(href="#")
               a.logout(href="#") Logout
@@ -253,6 +256,7 @@ body(class="#{page.url.gsub('/','').split('.').first || 'home'} #{page.body_clas
     script src="#{site.base_url}/javascripts/devnation2015.js"
     script src="#{site.base_url}/javascripts/book-download.js"
     script src="#{site.base_url}/javascripts/jira-collector.js"
+    script src="#{site.base_url}/javascripts/searchpage.js"
   - unless page.extra_javascripts.nil?
     - page.extra_javascripts.each do |id|
       = deferred_javascripts id
