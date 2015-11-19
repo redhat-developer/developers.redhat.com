@@ -4,8 +4,6 @@ require 'cucumber/rake/task'
 require 'parallel'
 require 'fileutils'
 
-task default: :features
-
 Cucumber::Rake::Task.new(:wip) do |t|
   t.cucumber_opts = '_cucumber -r _cucumber/features/ --profile wip'
 end
