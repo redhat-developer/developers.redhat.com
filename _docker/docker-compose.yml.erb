@@ -9,7 +9,6 @@ awestruct_acceptance:
   volumes:
     - ../:/home/awestruct/developer.redhat.com
   environment:
-    - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
     - HOST_TO_TEST
 awestruct:
   build: ./awestruct
