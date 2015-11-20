@@ -41,7 +41,7 @@ end
 
 desc 'Setup the environment to run Awestruct'
 task :test do |task, args|
-  wrap_with_progress(ENV['sha'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing')
+  wrap_with_progress(ENV['sha1'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing')
   #wrap_with_progress('a3cf37970812d7f5597c955bb675f26a05e2abc1', Rake::Task[:internal_test_task], "http://www.google.com", "Acceptance Tests", 'Acceptance testing')
 end
 
