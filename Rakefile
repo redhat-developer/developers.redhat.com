@@ -41,6 +41,8 @@ end
 
 desc 'Setup the environment to run Awestruct'
 task :test do |task, args|
+  def self.comment_on_pull(org, repo, pr_number, comment)
+  GitHub.comment_on_pull($github_org, $github_repo, 586, "Can I comment")
   wrap_with_progress(ENV['sha1'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing')
   #wrap_with_progress('a3cf37970812d7f5597c955bb675f26a05e2abc1', Rake::Task[:internal_test_task], "http://www.google.com", "Acceptance Tests", 'Acceptance testing')
 end
