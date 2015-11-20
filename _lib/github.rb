@@ -3,6 +3,7 @@ require 'octokit'
 class GitHub
 
   Octokit.configure do |c|
+    puts "Access token #{ENV['github_token'].size}"
     c.access_token = ENV['github_token']
   end
 
