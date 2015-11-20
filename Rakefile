@@ -288,7 +288,7 @@ task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   linked_issues = jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
   # Add links to JIRA to pull requests
   GitHub.link_issues($github_org, $github_repo, args[:pull_request], linked_issues)
-  msg "Successfully commented JIRA issue list on https://github.com/#{$github_org}/#{github_repo}/pull/#{args[:pull_request]}"
+  msg "Successfully commented JIRA issue list on https://github.com/#{$github_org}/#{$github_repo}/pull/#{args[:pull_request]}"
 end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
