@@ -15,6 +15,8 @@ load './_cucumber/cucumber.rake'
 
 $github_org = "redhat-developer"
 $github_repo = "developers.redhat.com"
+#$github_org = "ollyjshaw"
+#$github_repo = "elasticsearch_cheat_sheet"
 $resources = ['stylesheets', 'javascripts', 'images']
 $use_bundle_exec = true
 $install_gems = ['awestruct -v "~> 0.5.3"', 'rb-inotify -v "~> 0.9.0"']
@@ -22,19 +24,25 @@ $awestruct_cmd = nil
 $remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
 
-def wrap_with_progress(message, rake_task)
+def wrap_with_progress(sha, rake_task, target_url, context, description)
   begin
-    puts message
+    puts "SHA #{sha}"
+    options = {:context => context, :description => description, :target_url => target_url}
+    puts GitHub.update_status($github_org, $github_repo, sha, "pending", options)
     rake_task.invoke
-    puts message
+    puts "~~~~~~Done OK"
+    GitHub.update_status($github_org, $github_repo, sha, "success", options)
   rescue => e
-    puts message
+    puts "~~~~~~~~~Some Error"
+    puts GitHub.update_status($github_org, $github_repo, sha, "failure", options)
+    puts '~~~~~~~Posted the message'
   end
 end
 
 desc 'Setup the environment to run Awestruct'
 task :test do |task, args|
-  wrap_with_progress("Running test", Rake::Task[:internal_test_task])
+  wrap_with_progress(ENV['sha'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing')
+  #wrap_with_progress('a3cf37970812d7f5597c955bb675f26a05e2abc1', Rake::Task[:internal_test_task], "http://www.google.com", "Acceptance Tests", 'Acceptance testing')
 end
 
 Rake::TestTask.new do |t|
