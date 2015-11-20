@@ -164,6 +164,10 @@
                 url += '&kc_idp_hint=' + options.idpHint;
             }
 
+            if (options && options.scope) {
+                url += '&scope=' + options.scope;
+            }
+
             return url;
         }
 
@@ -177,6 +181,18 @@
                 + '?redirect_uri=' + encodeURIComponent(adapter.redirectUri(options));
 
             return url;
+        }
+
+        kc.register = function (options) {
+            return adapter.register(options);
+        }
+
+        kc.createRegisterUrl = function(options) {
+            if (!options) {
+                options = {};
+            }
+            options.action = 'register';
+            return kc.createLoginUrl(options);
         }
 
         kc.createAccountUrl = function(options) {
@@ -261,7 +277,7 @@
                 throw 'Not authenticated';
             }
 
-            var expiresIn = kc.tokenParsed['exp'] - (new Date().getTime() / 1000);
+            var expiresIn = kc.tokenParsed['exp'] - (new Date().getTime() / 1000) + kc.timeSkew;
             if (minValidity) {
                 expiresIn -= minValidity;
             }
@@ -299,11 +315,18 @@
                             params += '&client_id=' + encodeURIComponent(kc.clientId);
                         }
 
+                        var timeLocal = new Date().getTime();
+
                         req.onreadystatechange = function () {
                             if (req.readyState == 4) {
                                 if (req.status == 200) {
+                                    timeLocal = (timeLocal + new Date().getTime()) / 2;
+
                                     var tokenResponse = JSON.parse(req.responseText);
                                     setToken(tokenResponse['access_token'], tokenResponse['refresh_token'], tokenResponse['id_token']);
+
+                                    kc.timeSkew = Math.floor(timeLocal / 1000) - kc.tokenParsed.iat;
+
                                     kc.onAuthRefreshSuccess && kc.onAuthRefreshSuccess();
                                     for (var p = refreshQueue.pop(); p != null; p = refreshQueue.pop()) {
                                         p.setSuccess(true);
@@ -385,11 +408,18 @@
 
                 req.withCredentials = true;
 
+                var timeLocal = new Date().getTime();
+
                 req.onreadystatechange = function() {
                     if (req.readyState == 4) {
                         if (req.status == 200) {
+                            timeLocal = (timeLocal + new Date().getTime()) / 2;
+
                             var tokenResponse = JSON.parse(req.responseText);
                             setToken(tokenResponse['access_token'], tokenResponse['refresh_token'], tokenResponse['id_token']);
+
+                            kc.timeSkew = Math.floor(timeLocal / 1000) - kc.tokenParsed.iat;
+
                             kc.onAuthSuccess && kc.onAuthSuccess();
                             promise && promise.setSuccess();
                         } else {
@@ -742,6 +772,11 @@
                         return createPromise().promise;
                     },
 
+                    register: function(options) {
+                        window.location.href = kc.createRegisterUrl(options);
+                        return createPromise().promise;
+                    },
+
                     accountManagement : function() {
                         window.location.href = kc.createAccountUrl();
                         return createPromise().promise;
@@ -838,6 +873,16 @@
                         });
 
                         return promise.promise;
+                    },
+
+                    register : function() {
+                        var registerUrl = kc.createRegisterUrl();
+                        var ref = window.open(registerUrl, '_blank', 'location=no');
+                        ref.addEventListener('loadstart', function(event) {
+                            if (event.url.indexOf('http://localhost') == 0) {
+                                ref.close();
+                            }
+                        });
                     },
 
                     accountManagement : function() {

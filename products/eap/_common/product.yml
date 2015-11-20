@@ -28,6 +28,32 @@ guides:
 default_download_artifact_type: installer
 description: 'An application platform for hosting your apps that provides an innovative modular, cloud-ready architecture, powerful management and automation, and world class developer productivity.'
 downloads:
+  7.0.0.Alpha:
+    description: Major release of JBoss EAP 7.x series
+    tag_line: Featuring Java EE 7 Support. Try it today!
+    release_date: 2015-11-11
+    assets:
+      zip:
+        name: Zip Files
+        artifacts:
+          zip:
+            size: 172mb
+      maven_repo:
+        size: 304mb
+        name: Maven Repository
+      quickstarts:
+        size: 9mb
+      source:
+        size: 20mb
+      javadoc:
+        size: 177mb
+      documentation:
+        name: Documentation
+        artifacts:
+          getting_started_guide:
+            url: https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/7/html/Getting_Started_Guide/index.html
+      release_notes:
+        url: https://access.redhat.com/articles/2049143            
   6.4.0.GA:
     description: Minor release of JBoss EAP 6.x series
     tag_line: Featuring many updates, including targeted support of Java 8 and updated database certifications. Try it today!

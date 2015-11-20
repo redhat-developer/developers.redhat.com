@@ -30,15 +30,16 @@
   }
   .session-list {
     .session {
-      background: $grey-2;
+      background: $grey-1;
       margin: 0 1.5% 20px 0;
       padding: 25px;
-      a.watch-now {
-        display: inline-block;
+      .watch-now {
         text-align: right;
-        width: 100%;
       }
     }
+  }
+  .site-header p {
+    font-size: 1.2em;
   }
   ul {
     list-style: none;
@@ -56,16 +57,11 @@
       }
     }
   }
-  .event-header {
-    margin-bottom: 25px;
-    .javaone-date {
-      .large-6 {
-        padding-right: 0;
-        text-align: right;
-      }
-      h6{
-        display: inline;
-      }
+  .javaone-date {
+    margin-top: 15px;
+    h6, i.fa{
+      display: inline;
+      color: $white;
     }
   }
   a.rsvp-btn {
@@ -94,6 +90,14 @@
         position: relative;
         top: 8px;
       }
+    }
+  }
+  .past-events {
+    margin-top: 1em;
+  }
+  @include mobile-landscape-and-down {
+    .past-events a{
+      display: block;
     }
   }
   @include tablet-portrait-and-down {

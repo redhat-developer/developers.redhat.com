@@ -4,8 +4,6 @@ require 'cucumber/rake/task'
 require 'parallel'
 require 'fileutils'
 
-task default: :features
-
 Cucumber::Rake::Task.new(:wip) do |t|
   t.cucumber_opts = '_cucumber -r _cucumber/features/ --profile wip'
 end
@@ -19,7 +17,8 @@ task :cleanup do
 end
 
 task :parallel_features do
-  system "parallel_cucumber _cucumber/features/ -o \"-p parallel\" -n 20"
+  result = system "parallel_cucumber _cucumber/features/ -o \"-p parallel\" -n 20"
+  result
 end
 
 task :parallel_smoke do
@@ -31,7 +30,9 @@ task :rerun do
     puts '========= No failures. Everything Passed ========='
   else
     puts '========= Re-running Failed Scenarios ========='
-    system 'bundle exec cucumber @cucumber_failures.log -f pretty'
+    exit_code = system 'bundle exec cucumber @cucumber_failures.log -f pretty'
+    result = $?.success?
+    fail ('Cucumber tests failed') if exit_code == false && result == false
   end
 end
 

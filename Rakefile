@@ -424,7 +424,7 @@ def which(cmd, opts = {})
 end
 
 def awestruct_port(profile)
-  if profile.to_sym == :docker || :drupal
+  if profile.to_sym == :docker || profile.to_sym == :drupal
     #If we're in docker we want to run the whole awestruct preview on the same port
     ENV['AWESTRUCT_HOST_PORT']
   else

@@ -29,6 +29,9 @@ guides:
   Package_Manifest:
   Kernel_Crash_Dump_Guide:
   Performance_Tuning_Guide:
+    formats:
+      html:
+      pdf:
 downloads:
 upstream_projects:
 get_started_multipath: true
@@ -36,7 +39,7 @@ hide_rhel_tabs: true
 get_started_paths:
   - id: "nodejs"
     name: Node.js
-    default_file: get-started-nodejs  
+    default_file: get-started-nodejs
   - id: "python"
     default_file: get-started-python
     name: Python

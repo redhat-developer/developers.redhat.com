@@ -4,74 +4,59 @@ body_class: fullbleed
 primary_nav_hidden: true
 interpolate: true
 hero_class: javaone
+title: JavaOne
 ---
 
 .wide.wide-hero(class="#{page.hero_class}")==hero
 
 #javaone-microsite
-  section
+  section.site-header
     .row
-      .event-header
-        .large-12.small-24.columns
-          h2 RED HAT AT JAVA ONE
-        .large-6.small-24.columns
-          = partial("share.html.slim", :url => "#{site.base_url}#{page.url}", :title => "#{page.title}")
-        .large-6.small-24.columns.javaone-date
-          .large-6.small-3.columns
-            i.fa.fa-calendar.fa-2x
-          .large-18.small-21.columns
-            h6 Sunday, October 25 - Thursday, October 29
+      .large-18.small-24.columns
+        h2 RED HAT AT JAVA ONE
+      .large-6.small-24.columns
+        = partial("share.html.slim", :url => "#{site.base_url}#{page.url}", :title => "#{page.title}")
       .large-24.column
-        span
-          p
-            | It's that time again. Red Hat is going to be at JavaOne, big-time. Sessions, a mini-theater, and yes ... 
-            strong a chance to meet Red Hat Engineers!
+        p It's a wrap! JavaOne 2015 may be over, but you can still catch the presentations on microservices, OpenShift 3, WildFly, Docker and more.
     .row.event-nav
-      .large-12.columns
+      .large-24.columns
         ul.nav-list
-          li
-            a href="#kickoff-drinkup" 
-              i.fa.fa-glass.fa-2x
-              |  Kickoff Drink-up at Mikkeller Bar
           li
             a href="#minibooth-sessions" 
               i.fa.fa-film.fa-2x
-              |  Mini-Booth sessions, live-streamed and on demand
+              |  Mini-Booth Session Recordings
           li
             a href="#featured-speakers" 
               i.fa.fa-group.fa-2x
               |  Featured Red Hat Speakers
-  section.inverse#kickoff-drinkup
-    .row
-      .large-16.columns
-        h2 JOIN THE KICKOFF DRINK-UP
-      .large-8.columns
-        h4.right
-          i.fa.fa-map-marker
-          |  Mikkeller Bar SF, 34 Mason St
-          br
-        h5.right Sunday Oct. 25, 6:00 PM - 9:00 PM
-      .large-24.column
+        br
         p
-          | Thanks for all who made it out to our kickoff drink-up Sunday night!  We were psyched to see friends old and new over some quality beers and grub.  If you missed out - don’t fret.  It’s not to late to catch the engineers behind your favorite projects at our 
-          a> href="#minibooth-sessions" Mini-Booth sessions.
+          | Looking for a session from a past JavaOne event? Check out the
+          a href='#previous-events'  Previous JavaOne Events
+          |  section below for more information. 
+  section.inverse
+    .row
+      .large-15.small-24.columns
+        h2.caps JavaOne 2015
+      .large-9.small-24.columns.javaone-date
+        i.fa.fa-calendar.fa-2x
+        h6  Sunday, October 25 - Thursday, October 29, 2015
   section#minibooth-sessions
     .row
-      .large-14.columns
-        h2 MINIBOOTH SESSIONS
-      .large-10.columns
-        h5 THIS YEAR - LIVE STREAMED & ON DEMAND!
       .large-24.columns
+        h3 MINIBOOTH SESSIONS
+        br
         ul.session-list.small-block-grid-1.large-block-grid-2
           - page.javaone.minibooth_sessions.each do |session|
             li
               .session
-                a.watch-now(href="#{session.url}")
-                  i.fa.fa-video-camera
-                  |  Watch now
+                .watch-now
+                  a(href="#{session.url}")
+                    i.fa.fa-video-camera
+                    |  Watch now
                 .large-24
                   h4 #{session.title}
-                  h5 #{session.date}  -  #{session.speaker}
+                  h6 #{session.date}  -  #{session.speaker}
                   p #{session.description}
   section.inverse#featured-speakers
     .row
@@ -88,7 +73,7 @@ hero_class: javaone
                 p #{speaker.speaker_title}
               .large-17.columns
                 .row.talk-info
-                  .large-13.columns
+                  .columns class="#{speaker.url.nil? ? 'large-24' : 'large-13'}"
                     h4 #{speaker.title}
                   - unless !speaker.url  
                     .large-11.columns(href="#{speaker.url}")
@@ -97,3 +82,33 @@ hero_class: javaone
                     p #{speaker.date} - #{speaker.location}
                 .row  
                   p.large-24.columns #{speaker.description}
+  section.inverse-light#previous-events
+    .row
+      .large-24.columns
+        h3.caps PREVIOUS JAVAONE EVENTS
+      .large-24.columns
+        ul.past-events
+          li 
+             p
+              a(href='http://www.jboss.org/events/javaone/2014') JavaOne 2014
+              | &emsp;September 28 - October 2, 2014 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2013') JavaOne 2013
+              | &emsp;September 22 - September 26, 2013 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2012') JavaOne 2012
+              | &emsp;September 30 - October 4, 2012 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2011') JavaOne 2011
+              | &emsp;October 2 - October 6, 2011 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2010') JavaOne 2010
+              | &emsp;September 19 - September 23, 2010 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2009') JavaOne 2009
+              | &emsp;June 2 - June 5, 2009 | San Francisco                       

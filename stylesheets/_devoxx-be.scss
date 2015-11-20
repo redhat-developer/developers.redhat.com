@@ -44,7 +44,19 @@
       li img {
         display: block;
         float: left;
-        height:120px
+      }
+    }
+    .desc-wrapper, .video-wrapper {
+      display: inline;
+      .video-thumb {
+        max-width: 200px;
+        margin: .4em 1em .4em 0;
+      }
+      .button {
+        clear: both;
+        display: block;
+        max-width: 200px;
+        margin-bottom: 10px;
       }
     }
   }
@@ -63,6 +75,9 @@
   ul.speakers-list {
     li {
       margin-top: 30px;
+      .speaker-img {
+        max-width: 80px;
+      }
     }
     p, h4 {
         margin-bottom: 0;
@@ -81,9 +96,25 @@
       margin-left: 18%;
     }
   }
+  .divider {
+    border-bottom: 1px solid $grey-4;
+    padding-bottom: 2em;
+  }
+  .button.button--join-today {
+    margin: 2em auto 0 auto;
+    display: block;
+    max-width:300px;
+  }
   @include tablet-portrait-and-down {
     .talk-info {
       margin-top: 10px;
+    }
+    .speakers-list li {
+      padding-bottom: 15px;
+      border-bottom: 1px solid $grey-4;
+      &:last-child {
+        border: none;
+      }
     }
   }
 }
