@@ -36,6 +36,7 @@ gem 'sass', '~> 3.4', '< 3.4.6'
 gem 'activesupport', '> 3.1', '< 4.2.0' # Used in aweplug by ruby-duration
 gem 'compass', '~> 1.0'
 gem 'rake', '~>10.4'
+gem "octokit", "~> 4.0"
 
 # To use Aweplug code from a different location:
 #
@@ -65,6 +66,7 @@ group :test do
   gem 'chromedriver-helper', '0.0.6'
   gem 'capybara-screenshot', '~> 1.0.11'
   gem 'site_prism', '~> 2.7'
+  gem 'mocha'
  end
 
 group :development do
