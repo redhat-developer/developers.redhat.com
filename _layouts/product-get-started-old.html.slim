@@ -12,6 +12,7 @@ br
 - if !page.product.skip_installation_instructions
   = partial "os-selector.html.slim"  
 
+#get-started-instructions
   h3.divider#installation-instructions Instructions for Installation
   
   ol
@@ -58,20 +59,20 @@ br
         | For more details, view the 
         a href="#{page.product.documentation_url}" Product Documentation
         | .
-
-- if !page.product.skip_maven_instructions
-  - if page._configure_apache_maven 
-    - unless page._configure_apache_maven.strip.empty?
+#get-started-instructions
+  - if !page.product.skip_maven_instructions
+    - if page._configure_apache_maven 
+      - unless page._configure_apache_maven.strip.empty?
+        h3.divider#configure-maven Configure Apache&trade; Maven
+        = page._configure_apache_maven
+    - else 
       h3.divider#configure-maven Configure Apache&trade; Maven
-      = page._configure_apache_maven
-  - else 
-    h3.divider#configure-maven Configure Apache&trade; Maven
-    = partial "maven_repository_instructions.adoc"
+      = partial "maven_repository_instructions.adoc"
 
-- if page._extra_section
-  - if page._extra_section_title
-    h3.divider#ExtraSection #{page._extra_section_title}
-  = page._extra_section
+  - if page._extra_section
+    - if page._extra_section_title
+      h3.divider#ExtraSection #{page._extra_section_title}
+    = page._extra_section
 
 div(ng-app="dcp")
   .developer-materials(ng-controller="developerMaterialsController")
