@@ -1,3 +1,9 @@
+require 'net/http'
+require 'uri'
+require 'json'
+require 'date'
+require 'tmpdir'
+
 class JIRA
 
   KEY_PATTERN = /(?:[[:punct:]]|\s|^)([A-Z]+-[0-9]+)(?=[[:punct:]]|\s|$)/
