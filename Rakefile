@@ -35,8 +35,11 @@ end
 
 desc 'Setup the environment to run Awestruct'
 task :test do |task, args|
-  GitHub.comment_on_pull($github_org, $github_repo, ENV['ghprbPullId'], "Can I comment")
-  wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing')
+  if ENV['ghprbActualCommit'].to_s != ''
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing')
+  else
+    Rake::Task[:internal_test_task].invoke
+  end
 end
 
 Rake::TestTask.new do |t|
