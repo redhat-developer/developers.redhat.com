@@ -3,8 +3,8 @@ require 'octokit'
 class GitHub
 
   Octokit.configure do |c|
-    puts "Access token #{ENV['github_token'].size}"
-    c.access_token = ENV['github_token']
+    puts "Access token #{ENV['github_status_api_token'].size}"
+    c.access_token = ENV['github_status_api_token']
   end
 
   def self.list_closed_prs(org, repo)
