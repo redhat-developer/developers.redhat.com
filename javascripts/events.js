@@ -28,9 +28,15 @@ dcp.service('searchService', function($http, $q) {
 
     var deferred = $q.defer();
     // app.dcp.url.search = 'http://dcpbeta-searchisko.rhcloud.com/v1/rest/search'; // temp overwrite for staging data
-    $http.get(app.dcp.url.search, { params : query }).success(function(data){
-      deferred.resolve(data);
-    });
+    $http.get(app.dcp.url.search, {params: query})
+        .success(function (data) {
+          deferred.resolve(data);
+        })
+        .error(function () {
+          $(".ng-scope[ng-controller='eventsController']").empty();
+          $(".ng-scope[ng-controller='eventsController']").html(app.dcp.error_message);
+        });
+
     return deferred.promise;
   };
 
