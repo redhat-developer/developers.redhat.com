@@ -13,19 +13,19 @@ layout: technology-base
   /       li.active
   /         a(href='#temp1') By Category
   /       li
-  /         a(href='#temp2') A-Z 
-.row.development-tools 
+  /         a(href='#temp2') A-Z
+.row.development-tools
   - site.categories.each do |category|
     .large-24.development-tool-category
       .large-24.category-label(id="#{category.name.to_s}")
-        h5 
+        h5
           = category.name.to_s.gsub('_', ' ').upcase
       - category.products.each do |p|
         - if site.products[p]
           - product = site.products[p]
-          .development-tool.divider
+          .development-tool.divider(id="development-tool-#{product.id}")
             h4
-              a(href="#{site.base_url}/products/#{product.id}/")
+              a(id="#{product.id}" href="#{site.base_url}/products/#{product.id}/")
                 = product.name
             .row
               .large-16.columns
@@ -33,7 +33,7 @@ layout: technology-base
                 p
                   strong
                   - if(product.has_download_page)
-                    a(href="#{site.base_url}/products/#{product.id}/download/")
+                    a(id="download-#{product.id}" href="#{site.base_url}/products/#{product.id}/download/")
                       |  DOWNLOADS
                   - solutions = site.solutions.select {|_,s| s.related_products.include? product.id}
                   - unless solutions.empty?
@@ -45,17 +45,17 @@ layout: technology-base
                         - unless i >= (solutions.keys.size - 1)
                           ' ,
               .large-8.columns
-                a.button(href="#{site.base_url}/products/#{product.id}/get-started/") GET STARTED
+                a.button(id="get-started-with-#{product.id}" href="#{site.base_url}/products/#{product.id}/get-started/") GET STARTED
                 .tool-links
                   ul.inline-list
                     li
                     - if(product.has_docsandapis_page)
-                      a(href="#{site.base_url}/products/#{product.id}/docs-and-apis/")
+                      a(id="#{product.id}-docs-and-apis" href="#{site.base_url}/products/#{product.id}/docs-and-apis/")
                           i.fa.fa-file-text-o
                           |  Docs and APIs
                     - if site.engine.page_by_source_path("products/#{product.id}/learn")
                       li
-                        a(href="#{site.base_url}/products/#{product.id}/learn/")
+                        a(id="learn-#{product.id}" href="#{site.base_url}/products/#{product.id}/learn/")
                           i.fa.fa-files-o
                           |  Learn
 

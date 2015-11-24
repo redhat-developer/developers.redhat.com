@@ -1,12 +1,24 @@
 next_event:
+  - title: An Enterprise Developer’s Journey to the IoT
+    date: 12/17/2015 6:00:00 PM UTC
+    youtube_id: https://www.youtube.com/v=YoC0vDIWpC8
+    meetup_id: '226969315'
+    abstract:
+        "The current hype around the Internet of Things (IoT) has led to a substantial amount of innovation thanks to open source software, open hardware, open standards, and community inspiration. <br><br>
+        In this session, we will explore how you can use open source software to incorporate the physical world (the “Things”) into your traditional enterprise IT infrastructure. We will walk the path from a typical enterprise developer’s current focus on web desktop applications to mobile and devices, specifically developer prototyping platforms like Raspberry Pi, Intel Edison, Arduino, Particle.io, and several others.<br><br>
+        Learn how to connect the physical world to your enterprise middleware backbone via sensors and actuators."
+    speaker: Burr Sutter
+    speaker_intro:
+        "Burr Sutter: Technologist, innovator, creator, catalyst, an evangelist, product manager, teacher, and 'internal start-up' leader with the vision to see tomorrow's technology and the ability to focus and energize the engineers who build it and the communities who use it.<br><br>
+        Areas of expertise include Java EE, SOA, Business Rules, BPM, PaaS, Mobile and IoT."
+past_events:
   - title: Messaging for IoT
-    date: 11/10/2015 6:00:00 PM UTC
-    youtube_id: https://www.youtube.com/v=E68L26GmQNs
+    date: Nov, 10 2015
+    youtube_id: E68L26GmQNs
     meetup_id: '226138425'
     abstract: Scale changes everything. What once was quite adequate for enterprise messaging can't scale to support "Internet of Things". We need new protocols, patterns and architectures to support this new world. This session will start with basic introduction to the concept of Internet of Things. Next it will discuss general technical challenges involved with the concept and explain why it is becoming mainstream now. Now we&rsquo;re ready to start talking about solutions. We will introduce some messaging patterns (like telemetry and command/control) and protocols (such as MQTT and AMQP) used in these scenarios. Finally we will see how Apache ActiveMQ is gearing up for this race. We will show tips for horizontal and vertical scaling of the broker, related projects that can help with deployments and what the future development road map looks like.
     speaker: Martyn Taylor
     speaker_intro: Martyn Taylor is a senior software engineer at Red Hat, with over 7 years&rsquo; experience working on cloud, middleware and messaging software. Martyn currently works on the Apache ActiveMQ suite of projects.
-past_events:
   - title: JGroups - An effective framework for cluster communication
     date: Oct 6, 2015
     youtube_id: GhGqkH7YRFk

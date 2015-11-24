@@ -19,17 +19,17 @@ class BasePage < SitePrism::Page
     wait_for_ajax
   end
 
-  def title
-    p_title.text
-  end
-
-  private
-
   def wait_for_ajax
     Timeout.timeout(Capybara.default_max_wait_time) do
       loop until finished_all_ajax_requests?
     end
   end
+
+  def title
+    p_title.text
+  end
+
+  private
 
   def finished_all_ajax_requests?
     page.evaluate_script('jQuery.active') == 0
