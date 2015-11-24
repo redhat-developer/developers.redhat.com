@@ -354,3 +354,5 @@ If you get this error, you may be seeing it because your SSL cert file is out of
 2. Setting the environment variable SSL_CERT_FILE to the /path/to/file/cacert.pem
 
 Alternatively, see the following for how to fix: http://railsapps.github.io/openssl-certificate-verify-failed.html
+
+Just a little change
