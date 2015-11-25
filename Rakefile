@@ -105,6 +105,13 @@ task :preview, [:profile] => :check do |task, args|
   run_awestruct "-P #{profile} -a -s --force -q --auto --livereload -b 0.0.0.0 -p #{awestruct_running_port}"
 end
 
+desc 'Build and preview the site locally in development mode without live reload to allow test to work'
+task :preview_no_reload, [:profile] => :check do |task, args|
+  profile = args[:profile] || 'development'
+  awestruct_running_port = awestruct_port(profile)
+  run_awestruct "-P #{profile} -a -s --force -q --auto -b 0.0.0.0 -p #{awestruct_running_port}"
+end
+
 desc 'Generate the site using the defined profile, or development if none is given'
 task :gen, [:profile] => :check do |task, args|
   run_awestruct "-P #{args[:profile] || 'development'} -g --force -q"
@@ -408,10 +415,17 @@ def run_awestruct(args)
 
   if ENV['site_base_path']
     base_url = ENV['site_base_path']
-    base_url = "#{base_url}/#{ENV['site_path_suffix']}" if ENV['site_path_suffix']
+
+    if ENV['site_path_suffix'].to_s != ''
+      base_url = "#{base_url}/#{ENV['site_path_suffix']}"
+    end
   end
+
   args ||= "" # Make sure that args is initialized
-  args << " --url " + base_url if base_url
+
+  if base_url.to_s != ''
+    args << " --url " + base_url
+  end
   msg "Executing awestruct with args #{args}"
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
     raise "Error executing awestruct"

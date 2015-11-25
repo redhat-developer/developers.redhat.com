@@ -20,7 +20,7 @@ SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
 Capybara.configure do |config|
 
   if ENV['HOST_TO_TEST'] == ''
-    host_to_test = "http://docker:#{ENV['AWESTRUCT_HOST_PORT']}"
+    host_to_test = "http://developers.redhat.com"
   else
     host_to_test = ENV['HOST_TO_TEST']
   end
@@ -28,7 +28,7 @@ Capybara.configure do |config|
   config.app_host = host_to_test
   config.run_server = false
   config.default_driver = (ENV['DRIVER'] ||= 'poltergeist').to_sym
-  config.default_max_wait_time = 10
+  config.default_max_wait_time = 5
   config.save_and_open_page_path = SCREENSHOT_DIRECTORY
   Capybara::Screenshot.prune_strategy = :keep_last_run
   puts " . . . Running smoke tests against #{host_to_test}  . . . "
