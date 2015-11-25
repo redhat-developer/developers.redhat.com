@@ -1,17 +1,64 @@
 awestruct_acceptance:
   build: ./awestruct
+  command:
+     - /home/awestruct/developer.redhat.com/_cucumber/docker_run.sh
   <% if ENV['ghprbPullId'] %>
   labels:
     - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
   <% end %>
-  external_links:
-    - docker_awestruct_run_1:docker
+  links:
+    - awestruct_preview_no_reload:docker
   volumes:
     - ../:/home/awestruct/developer.redhat.com
   environment:
+    - HOST_TO_TEST=http://docker:<%=ENV['AWESTRUCT_HOST_PORT']%>
+    - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
+awestruct_preview_no_reload:
+  build: ./awestruct
+  command:
+    - "rake git_setup clean preview_no_reload[docker]"
+  expose:
+    - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
+  ports:
+    - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
+  links:
+    - drupal
+    - searchisko
+  privileged: true
+  volumes:
+    - ../:/home/awestruct/developer.redhat.com
+  environment:
+    - google_api_key
+    - dcp_user
+    - dcp_password
+    - vimeo_client_secret
+    - vimeo_access_token_secret
+    - vimeo_access_token
+    - cache_password
+    - cache_url
+    - site_base_path
+    - site_path_suffix
+    - cdn_prefix
+    - cache_user
+    - github_token
+    - drupal_user
+    - drupal_password
+    - ACCESSIBLE_SLAVE_IP
+    - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
+    - SEARCHISKO_HOST_PORT=<%=ENV['SEARCHISKO_HOST_PORT']%>
+    - DRUPAL_HOST_PORT=<%=ENV['DRUPAL_HOST_PORT']%>
+    - DRUPAL_HOST_IP
     - HOST_TO_TEST
 awestruct:
   build: ./awestruct
+  command:
+    - "rake git_setup clean preview[docker]"
+  expose:
+    - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
   ports:
     - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
   <% if ENV['ghprbPullId'] %>
