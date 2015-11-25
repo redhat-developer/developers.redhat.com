@@ -28,15 +28,15 @@ RUN bundle install -j 10
 
 WORKDIR /var/www/html
 
-RUN pear channel-discover pear.drush.org && pear install drush/drush
-ADD awestruct_push-7.x-1.0-beta4.tar /var/www/html/sites/all/modules
-COPY httpd.conf /etc/httpd/conf/httpd.conf
-EXPOSE 80
+#RUN pear channel-discover pear.drush.org && pear install drush/drush
+#ADD awestruct_push-7.x-1.0-beta4.tar /var/www/html/sites/all/modules
+#COPY httpd.conf /etc/httpd/conf/httpd.conf
+#EXPOSE 80
 
 # Add the site themes
-VOLUME /var/www/html/sites/all/themes
+#VOLUME /var/www/html/sites/all/themes
 
 # Add the script(s)
-VOLUME /opt/drupal/bin
+#VOLUME /opt/drupal/bin
 
-CMD ["/bin/bash", "/drupal/bin/run.sh"]
+#CMD ["/bin/bash", "/drupal/bin/run.sh"]
