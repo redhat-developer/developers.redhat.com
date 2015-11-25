@@ -1,50 +1,21 @@
-# This file is a rake build file. The purpose of this file is to simplify
-# setting up and using Awestruct. It's not required to use Awestruct, though it
-# does save you time (hopefully). If you don't want to use rake, just ignore or
-# delete this file.
-#
-# If you're just getting started, execute this command to install Awestruct and
-# the libraries on which it depends:
-#
-#  rake setup
-#
-# The setup task installs the necessary libraries according to which Ruby
-# environment you are using. If you want the libraries kept inside the project,
-# execute this command instead:
-#
-#  rake setup[local]
-#
-# IMPORTANT: To install gems, you'll need development tools on your machine,
-# which include a C compiler, the Ruby development libraries and some other
-# development libraries as well.
-#
-# There are also tasks for running Awestruct. The build will auto-detect
-# whether you are using Bundler and, if you are, wrap calls to awestruct in
-# `bundle exec`.
-#
-# To run in Awestruct in development mode, execute:
-#
-#  rake
-#
-# To clean the generated site before you build, execute:
-#
-#  rake clean preview
-#
-# To deploy using the production profile, execute:
-#
-#  rake deploy
-#
-# To get a list of all tasks, execute:
-#
-#  rake -T
-#
-# Now you're Awestruct with rake!
-
+#bla bla bla
+#For instructions on usage see the README file
 require "minitest/reporters"
 require 'rake/testtask'
+require 'net/http'
+require 'uri'
+require 'json'
+require 'date'
+require 'tmpdir'
+
+require_relative './_lib/github'
+require_relative './_lib/jenkins'
+require_relative './_lib/jira'
 
 load './_cucumber/cucumber.rake'
 
+$github_org = "redhat-developer"
+$github_repo = "developers.redhat.com"
 $resources = ['stylesheets', 'javascripts', 'images']
 $use_bundle_exec = true
 $install_gems = ['awestruct -v "~> 0.5.3"', 'rb-inotify -v "~> 0.9.0"']
@@ -52,11 +23,32 @@ $awestruct_cmd = nil
 $remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
 
+def wrap_with_progress(sha, rake_task, target_url, context, description)
+  begin
+    options = {:context => context, :description => description, :target_url => target_url}
+    GitHub.update_status($github_org, $github_repo, sha, "pending", options)
+    rake_task.invoke
+    GitHub.update_status($github_org, $github_repo, sha, "success", options)
+  rescue => e
+    puts GitHub.update_status($github_org, $github_repo, sha, "failure", options)
+  end
+end
+
+desc 'Setup the environment to run Awestruct'
+task :test do |task, args|
+  if ENV['ghprbActualCommit'].to_s != ''
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing')
+  else
+    Rake::Task[:internal_test_task].invoke
+  end
+end
+
 Rake::TestTask.new do |t|
+  t.name = :internal_test_task
   t.libs = ["_docker/lib"]
   t.warning = false
   t.verbose = true
-  t.test_files = FileList['_docker/test/*.rb'] #Let's add more files here!
+  t.test_files = FileList['_docker/test/*.rb', '_tests/*.rb'] #Let's add more files here!
 end
 
 desc 'Setup the environment to run Awestruct'
@@ -289,19 +281,17 @@ desc 'Link pull requests to JIRAs.'
 task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   jira = JIRA.new
   git = Git.new
-  github = GitHub.new
 
   # Link pull requests to JIRA
   linked_issues = jira.link_pull_requests_if_unlinked(git.extract_issues('HEAD', args[:not_on]), args[:pull_request])
   # Add links to JIRA to pull requests
-  github.link_issues('redhat-developer', 'developers.redhat.com', args[:pull_request], linked_issues)
+  GitHub.link_issues($github_org, $github_repo, args[:pull_request], linked_issues)
+  msg "Successfully commented JIRA issue list on https://github.com/#{$github_org}/#{$github_repo}/pull/#{args[:pull_request]}"
 end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
 task :reap_old_pulls, [:pr_prefix] do |task, args|
-  github = GitHub.new
-  date_range = (DateTime.now.prev_month)..(DateTime.now.prev_day 7)
-  reap = github.list_closed_pulls('redhat-developer', 'developers.redhat.com', date_range)
+  reap = GitHub.list_closed_pulls($github_org, $github_repo)
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
     reap.each do |p|
@@ -358,8 +348,7 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generat
     rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_base_path}")
   end
   rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
-  github = GitHub.new
-  github.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
+  GitHub.comment_on_pull($github_org, $github_repo, args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
 end
 
 desc 'Run blinkr'
@@ -380,8 +369,7 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |tas
   end
   rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
   report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
-  github = GitHub.new
-  github.comment_on_pull('redhat-developer', 'developers.redhat.com', args[:pull], "Blinkr: #{args[:new]}/#{report_path}/#{report_filename}")
+  GitHub.comment_on_pull($github_org, $github_repo, args[:pull], "Blinkr: #{args[:new]}/#{report_path}/#{report_filename}")
 end
 
 # Execute Awestruct
@@ -393,7 +381,7 @@ def run_awestruct(args)
   end
   args ||= "" # Make sure that args is initialized
   args << " --url " + base_url if base_url
-  msg "Executing awestruct with args #{args}" 
+  msg "Executing awestruct with args #{args}"
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
     raise "Error executing awestruct"
   end
@@ -527,235 +515,10 @@ def merge_data(existing, new)
   end
 end
 
-require 'net/http'
-require 'uri'
-require 'json'
-require 'date'
-require 'tmpdir'
-
 class Git
   def extract_issues(branch, not_on)
     # Read the changes
     changes = `git --no-pager log #{branch} --not #{not_on}`
     changes.scan(JIRA::KEY_PATTERN).flatten.uniq
-  end
-end
-
-class GitHub
-  def initialize
-    @github_base_url = 'https://api.github.com/'
-  end
-
-  def list_closed_pulls(org, repo, date_range)
-    pulls = []
-    pulls << _list_closed_pulls("#{@github_base_url}repos/#{org}/#{repo}/pulls?state=closed&sort=updated", date_range)
-    pulls.flatten.uniq
-  end
-
-  def _list_closed_pulls(url, date_range)
-    resp = get(url)
-    pulls = []
-    if resp.is_a?(Net::HTTPSuccess)
-      json = JSON.parse(resp.body)
-      json.each do |p|
-        pulls << p['number'] if date_range.cover? DateTime.parse(p['closed_at'])
-      end
-      if resp.key? 'Link'
-        links = {}
-        resp['Link'].split(',').collect do |s|
-          a = s.split(';')
-          k = a[1][6..-2]
-          links[k] = a[0][(a[0].index('<') + 1)..(a[0].rindex('>') - 1)]
-        end
-        if links['next']
-          pulls << _list_closed_pulls(links['next'], date_range)
-        end
-      end
-    else
-      msg "Error requesting cosed pulls from github. Status code #{resp.code}. Error message #{resp.body}"
-    end
-    pulls
-  end
-
-  def link_issues(org, repo, pull, issues)
-    if issues.length > 0
-      issue_list = issues.collect {|i| %Q{<a href="https://issues.jboss.org/browse/} + i + %Q{">} + i + %Q{</a>}}.join(", ")
-      comment_on_pull(org, repo, pull, "Related issue#{issues.length > 1 ? 's' : ''}: #{issue_list}")
-      msg "Successfully commented JIRA issue list on https://github.com/redhat-developer/developers.redhat.com/pull/#{pull}"
-    end
-  end
-
-  def comment_on_pull(org, repo, pull, comment)
-    uri = URI.parse("#{@github_base_url}repos/#{org}/#{repo}/issues/#{pull}/comments")
-    req = Net::HTTP::Post.new uri
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    req['Authorization'] = "token #{ENV['github_token']}"
-    req.body = {:body => comment}.to_json
-    http.request(req)
-  end
-
-  def get(url)
-    uri = URI.parse(url)
-    req = Net::HTTP::Get.new uri
-    http = Net::HTTP.new(uri.host, uri.port)
-    if uri.scheme == 'https'
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    end
-    http.request(req)
-  end
-
-end
-
-class Jenkins
-
-  def initialize
-    @jenkins_base_url = ENV['jenkins_base_url'] || 'http://jenkins.mw.lab.eng.bos.redhat.com/hudson/'
-    unless ENV['jenkins_username'] && ENV['jenkins_password']
-    end
-  end
-
-  def read_changes(job, build_number)
-    url = @jenkins_base_url
-    url << "job/#{job}/#{build_number}/api/json?wrapper=changes"
-    uri = URI.parse(url)
-    req = Net::HTTP::Get.new(uri.path)
-    if ENV['jenkins_username'] && ENV['jenkins_password']
-      req.basic_auth ENV['jenkins_username'], ENV['jenkins_password']
-    end
-    http = Net::HTTP.new(uri.host, uri.port)
-    if uri.scheme == 'https'
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    end
-    resp = http.request(req)
-    issues = []
-    commits = []
-    if resp.is_a?(Net::HTTPSuccess)
-        json = JSON.parse(resp.body)
-        json['changeSet']['items'].each do |item|
-          commits << item['commitId']
-          issues << item['comment'].scan(JIRA::KEY_PATTERN)
-        end
-    else
-      msg "Error loading changes from Jenkins using #{url}. Status code #{resp.code}. Error message #{resp.body}"
-    end
-    # There can be multiple comments per issue
-    {:issues => issues.flatten.uniq, :commits => commits}
-  end
-
-end
-
-class JIRA
-
-  KEY_PATTERN = /(?:[[:punct:]]|\s|^)([A-Z]+-[0-9]+)(?=[[:punct:]]|\s|$)/
-
-  def initialize
-    @jira_base_url = ENV['jira_base_url'] || 'https://issues.jboss.org/'
-    @jira_issue_base_url = "#{@jira_base_url}rest/api/2/issue/"
-    unless ENV['jira_username'] && ENV['jira_password']
-      abort 'Must provide jira_username and jira_password environment variables'
-    end
-  end
-
-  def comment_issues(issues, comment)
-    issues.each do |k|
-      url = "#{@jira_issue_base_url}#{k}/comment"
-      body = %Q{{ "body": "#{comment}"}}
-      resp = post(url, body)
-      if resp.is_a?(Net::HTTPSuccess)
-        msg "Successfully commented on #{k}"
-      else
-        msg "Error commenting on #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
-        msg "Request body: #{body}"
-      end
-    end
-  end
-
-  def issue_status(issue)
-    url = "#{@jira_issue_base_url}#{issue}?fields=status"
-    resp = get(url)
-    if resp.is_a?(Net::HTTPSuccess)
-      json = JSON.parse(resp.body)
-      if json['fields'] && json['fields']['status'] && json['fields']['status']['name']
-        json['fields']['status']['name']
-      else
-        msg "Error fetching status of #{issue} from JIRA. Status field not present"
-        -1
-      end
-    else
-      msg "Error fetching status of #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
-      -1
-    end
-  end
-
-  def linked_pull_request(issue)
-    url = "#{@jira_issue_base_url}#{issue}?fields=customfield_12310220"
-    resp = get(url)
-    if resp.is_a?(Net::HTTPSuccess)
-      json = JSON.parse(resp.body)
-      if json['fields'] && json['fields']['customfield_12310220']
-        json['fields']['customfield_12310220']
-      end
-    else
-      msg "Error fetching linked pull request for #{issue} from JIRA. Status code #{resp.code}. Error message #{resp.body}"
-      -1
-    end
-  end
-
-  def post(url, body)
-    uri = URI.parse(url)
-    req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
-    req.basic_auth ENV['jira_username'], ENV['jira_password']
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    req.body = body
-    http.request(req)
-  end
-
-  def get(url)
-    uri = URI.parse(url)
-    req = Net::HTTP::Get.new(uri.path, initheader = {'Content-Type' =>'application/json'})
-    req.basic_auth ENV['jira_username'], ENV['jira_password']
-    http = Net::HTTP.new(uri.host, uri.port)
-    if uri.scheme == 'https'
-      http.use_ssl = true
-    end
-    http.request(req)
-  end
-
-  def link_pull_requests_if_unlinked(issues, pull_request)
-    linked_issues = []
-    issues.each do |k|
-      pr = linked_pull_request k
-      if pr.nil?
-        url = "#{@jira_issue_base_url}#{k}/transitions"
-        body = %Q{
-          {
-            "update": {
-              "customfield_12310220": [
-                {
-                  "set": "https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request}"
-                }
-              ]
-            },
-            "transition": {
-              "id": "131"
-            }
-          }
-        }
-        resp = post(url, body)
-        if resp.is_a?(Net::HTTPSuccess)
-          msg "Successfully linked https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k}"
-        else
-          msg "Error linking https://github.com/redhat-developer/developers.redhat.com/pull/#{pull_request} to #{k} in JIRA. Status code #{resp.code}. Error message #{resp.body}"
-          msg "Request body: #{body}"
-        end
-        linked_issues << k
-      end
-    end
-    linked_issues
   end
 end
