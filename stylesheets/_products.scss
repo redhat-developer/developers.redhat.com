@@ -91,6 +91,17 @@
     padding-bottom: 5px;
     height: auto;
   }
+  .indent-product {
+    margin-left: 2em;
+    .large-8 {
+      margin-left: -.7em;
+    }
+    @include tablet-landscape-and-down {
+      .large-8 {
+        margin-left: 0;
+      }
+    }
+  }
 }
 #development-tool {
   .download-link{
