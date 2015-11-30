@@ -1,103 +1,204 @@
-.cta-items {
-  display:flex;
-  & > li {
-    display:flex;
-    img {
-      height:100px;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      width:100%;
+// NEW HOMEPAGE STYLES
+.home .wrapper {
+  padding-bottom: 0;
+}
+.homepage-main {
+  color: $white;
+  background: cdn('../images/design/RHD_homepage_hero_desktop_cdk2.png') top center / cover repeat-x;
+  background-color: #136691;
+  .homepage-cta {
+    min-height: 460px;
+    padding: 34px 0;
+    .tagline {
+      color: $white;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    a.button {
+      display: table;
+      margin: 15px auto 0 auto;
+      background-color: #f07b00;
+      min-width: 250px;
+    }
+  }
+  .homepage-getstarted {
+    min-height: 460px;
+    padding: 15px 20px;
+    background-color: rgba(6, 59, 86, 0.73);
+    @include tablet-landscape-and-down {
+      background-color: #094665;
+    }
+    h5 {
+      color: #eaa400;
+      margin-top: 10px;
+    }
+    a {
+      color: $white;
+      &:hover, &:focus, &:active {
+        color: #E0E0E0;
+      }
+    }
+    ul {
+      list-style-type: none;
+      li {
+        text-indent: -1.4em;
+        :before {
+          font-family: 'FontAwesome';
+          content: '\f0a9';
+          float: left;
+          width: 1.4em;
+          color: #eaa400;
+        }
+      }
+    }
+    .video-thumb p{
+      margin-top: 8px;
     }
   }
 }
-.cta-item {
-  flex:1;
-  background:#e6e7e8;
-  padding:20px 10px 40px 10px;
-  text-align: center;
-  p {
-    font-size: 20px;
-    margin: 0;
 
+.spotlights-container {
+  margin: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.spotlight-item {
+  width: calc(20% - 16px);
+  margin: 8px;
+  .cut-image {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
   }
-  i {
-    font-size: 150px;
-    line-height: 1;
+  .cut-image::before {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-left: 10px solid white;
+    border-top: 10px solid white;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+  .cut-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 0;
+    width: 0;
+    border-left: 15px solid transparent;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid white;
+    border-right: 15px solid white;
   }
 }
 
-
-.button.button--solution {
-  background:#6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
-  width: 100%;
-  padding-top:30px;
-  padding-bottom:30px;
-  padding-left: 20px;
-  padding-right: 10px;
-  text-align:left;
-  &:hover {
-    background:darken(#6abcd3,10%) cdn("../images/design/stars-texture.png") bottom right no-repeat;
+ul.homepage-resources {
+  list-style: none;
+  li {
+    border-bottom: 1px solid $grey-2;
+    padding: 10px 0 12px 0;
+    &:last-child {
+      border-bottom: none;
+    }
   }
-  &.clear {
-    color:#0088ce;
+  span {
+    display: inline-table;
+      i {
+        margin-right: 10px;
+        position: relative;
+        top: 5px;
+        color: $grey-3;
+        &.fa-2x {
+          font-size: 1.5em;
+        }
+      }
+  }
+  a.title {
+    display: block;
+    overflow: hidden;
+    max-width: 420px;
+    line-height: 1.5em;
+    max-height: 3em;
+    text-overflow: ellipsis;
+  }
+  .date{
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 88%;
+    margin-bottom: 0;
+  }
+}
+
+.inverse {
+  background-color: $grey-8;
+  padding: 25px 0;
+  h2, h3, h4, h5, h6, a, p {
+    color: $white;
+  }
+  a.button {
+    display: block;
+    margin: 0 auto;
+    max-width: 260px;
+  }
+  .inverse-spotlights {
     text-align: center;
-    font-size: 20px;
-    &:hover {
-      background:none;
+    .large-8 {
+      padding: 20px !important;
+      margin: 15px!important;
+      background-color: $grey-2;
+      width: 30%;
+    }
+    i, h6 {
+      color: $grey-7;
     }
   }
 }
 
-.button.button--join-today {
-  position: relative;
-  margin:0 80px;
-  display: block;
-  max-width:400px;
-}
-
-h2.home-title {
-  padding:40px 0 20px 0;
-}
-
+// NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
-  .button.button--join-today {
-    top:0;
-    margin:20px 0;
+  .video-thumb {
+    img {
+      max-width: 300px;
+    }
   }
+  span.type-icon {
+    display: none !important;
+  }
+  .spotlight-item {
+    width: calc(33.333% - 16px);
+    margin: 8px;
+  }
+}
 
-  .cta-items {
-    flex-direction: column;
-    .cta-item {
-      overflow: hidden;
+@include tablet-portrait-and-down {
+  .homepage-main {
+    background: cdn('../images/design/RHD_homepage_hero_mobile_cdk2.png') top center repeat-x;
+    background-color: #136691;
+    .homepage-cta {
+      padding: 7% 10px;
     }
-    & > li {
-      display: block;
-      p {
-        text-align:left;
-      }
-
-      width: 100%;
-      img {
-        float:left;
-        height:auto;
-        width:20%;
-        margin-right: 20px;
-        max-height:100px;
-      }
-    }
+  }
+  a.title {
+    max-width: 100%;
   }
 }
 
 @include mobile-landscape-and-down {
-  .cta-items {
-    & > li {
-      img {
-        float:none;
-      }
-      p {
-        text-align: center;
-      }
+  .inverse-spotlights .large-8 {
+    width: 90% !important;
+    padding: 2em !important;
+  }
+  .spotlights-container {
+    flex-direction: column;
+  }
+  .spotlight-item {
+    width: calc(100% - 16px);
+    margin: 8px;
+    .cut-image::before, .cut-image::after {
+      display: none;
     }
   }
 }
-
