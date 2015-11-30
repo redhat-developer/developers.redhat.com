@@ -4,12 +4,14 @@
 }
 .homepage-main {
   color: $white;
-  background-image: cdn('../images/design/RHDev_homehero_desktop_yearend2015.png');
+  background: cdn('../images/design/RHD_homepage_hero_desktop_cdk2.png') top center / cover repeat-x;
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: rgb(86, 15, 3);
+  background-color: #136691;
   .homepage-cta {
+    min-height: 460px;
+    padding: 34px 0;
     .tagline {
       color: $white;
       text-align: center;
@@ -18,7 +20,7 @@
     a.button {
       display: table;
       margin: 15px auto 0 auto;
-      background-color: $white;
+      background-color: #f07b00;
       color: $red;
       min-width: 250px;
       position: relative;
@@ -27,11 +29,11 @@
     }
   }
   .homepage-getstarted {
-    min-height: 445px;
+    min-height: 460px;
     padding: 15px 20px;
-    background-color: rgba(86, 15, 3, 0.73);
+    background-color: rgba(6, 59, 86, 0.73);
     @include tablet-landscape-and-down {
-      background-color: rgb(86, 15, 3);
+      background-color: #094665;
     }
     h5 {
       color: #eaa400;
@@ -44,25 +46,20 @@
       }
     }
     ul {
-      margin-bottom: 10px;
+      list-style-type: none;
+      li {
+        text-indent: -1.4em;
+        :before {
+          font-family: 'FontAwesome';
+          content: '\f0a9';
+          float: left;
+          width: 1.4em;
+          color: #eaa400;
+        }
+      }
     }
-    .video-thumb {
-      img {
-        max-width: 225px;
-      }
-      p{
-        margin-top: 8px;
-        margin-bottom: 10px;
-      }
-    }
-    a.learn-more {
-      text-transform: uppercase;
-      color: #eaa400;
-      font-weight: 700;
-      float: right;
-      i {
-        margin-left: 5px;
-      }
+    .video-thumb p{
+      margin-top: 8px;
     }
   }
 }
@@ -179,19 +176,6 @@ ul.homepage-resources {
 
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
-  .homepage-main {
-    background: cdn('../images/design/RHDev_homehero_tablet_yearend2015.png') top center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: #560f03;
-    .homepage-cta {
-      height: 575px;
-      a.button {
-        left: 0;
-        top: 500px;
-      }
-    }
-  }
   .video-thumb {
     img {
       max-width: 300px;
@@ -204,19 +188,14 @@ ul.homepage-resources {
     width: calc(33.333% - 16px);
     margin: 8px;
   }
-  .homepage-getstarted a.learn-more {
-    float: none !important;
-  }
 }
 
 @include tablet-portrait-and-down {
   .homepage-main {
+    background: cdn('../images/design/RHD_homepage_hero_mobile_cdk2.png') top center repeat-x;
+    background-color: #136691;
     .homepage-cta {
-      height: 470px;
-      a.button {
-        left: 0;
-        top: 370px;
-      }
+      padding: 7% 10px;
     }
   }
   a.title {
@@ -228,16 +207,20 @@ ul.homepage-resources {
   }
 }
 
+
 @include mobile-landscape-and-down {
-  .homepage-main {
-    background: cdn('../images/design/RHDev_homehero_mobile_yearend2015.png');
-    background-size: initial;
-    .homepage-cta {
-      height: 500px;
-      a.button {
-        margin-top: 5px;
-        top:450px;
-      }
+  .inverse-spotlights .large-8 {
+    width: 90% !important;
+    padding: 2em !important;
+  }
+  .spotlights-container {
+    flex-direction: column;
+  }
+  .spotlight-item {
+    width: calc(100% - 16px);
+    margin: 8px;
+    .cut-image::before, .cut-image::after {
+      display: none;
     }
   }
   .spotlights-container {
