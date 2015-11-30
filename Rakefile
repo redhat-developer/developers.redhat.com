@@ -22,13 +22,16 @@ $awestruct_cmd = nil
 $remote = ENV['DEFAULT_REMOTE'] || 'origin'
 task :default => :preview
 
-def wrap_with_progress(sha, rake_task, target_url, context, description)
+def wrap_with_progress(sha, rake_task, target_url, context, description, args)
   begin
-    options = {:context => context, :description => description, :target_url => target_url}
+    options = {:context => context, :description => "#{description} pending", :target_url => target_url}
     GitHub.update_status($github_org, $github_repo, sha, "pending", options)
-    rake_task.invoke
+    rake_task.invoke(*args.to_a)
+    options[:description] = "#{description} finished ok!"
     GitHub.update_status($github_org, $github_repo, sha, "success", options)
   rescue => e
+    puts e
+    options[:description] = "#{description} failed"
     puts GitHub.update_status($github_org, $github_repo, sha, "failure", options)
   end
 end
@@ -36,7 +39,7 @@ end
 desc 'Setup the environment to run Awestruct'
 task :test do |task, args|
   if ENV['ghprbActualCommit'].to_s != ''
-    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing')
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing', args)
   else
     Rake::Task[:internal_test_task].invoke
   end
@@ -128,9 +131,18 @@ task :tag, [:profile, :tag_name] do |task, args|
   end
 end
 
-desc 'Generate the site and deploy using the given profile'
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
-  msg 'running deploy'
+  msg "running deploy task with #{args}"
+  if ENV['ghprbActualCommit'].to_s != ''
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_deploy_task], "#{ENV['site_base_path']}/#{ENV['site_path_suffix']}", "Site Deploy", 'Site deployement', args)
+  else
+    Rake::Task[:internal_test_task].invoke(args)
+  end
+end
+
+desc 'Generate the site and deploy using the given profile'
+task :internal_deploy_task, [:profile, :tag_name] do |task, args|
+  msg "running internal deploy task with #{args}"
   msg "SEARCHISKO_HOST_PORT: #{ENV['SEARCHISKO_HOST_PORT']}"
   # Delay awestruct failing the build until after we rsync files, if we are staging.
   # Allows errors to be viewed
