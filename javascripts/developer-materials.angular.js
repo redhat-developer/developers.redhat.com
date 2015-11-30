@@ -47,9 +47,13 @@ dcp.service('materialService',function($http, $q) {
     var deferred = $q.defer();
     // app.dcp.url.search = "//dcp.jboss.org/v1/rest/search"; // testing with live data
     // query = decodeURIComponent(query);
-    $http.get(app.dcp.url.search, { params : query }).success(function(data){
-      deferred.resolve(data);
-    });
+    $http.get(app.dcp.url.search, { params : query }).success(
+        function (data) {
+          deferred.resolve(data);
+        })
+        .error(function () {
+          $(".panel[ng-hide='data.materials.length']").replaceWith(app.dcp.error_message);
+        });
     return deferred.promise;
   }
 
