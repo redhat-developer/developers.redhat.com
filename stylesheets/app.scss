@@ -2024,3 +2024,42 @@ label.inline{
     line-height: 1.45;
   }
 }
+
+.button.button--solution {
+  background:#6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
+  width: 100%;
+  padding-top:30px;
+  padding-bottom:30px;
+  padding-left: 20px;
+  padding-right: 10px;
+  text-align:left;
+  &:hover {
+    background:darken(#6abcd3,10%) cdn("../images/design/stars-texture.png") bottom right no-repeat;
+  }
+  &.clear {
+    color:#0088ce;
+    text-align: center;
+    font-size: 20px;
+    &:hover {
+      background:none;
+    }
+  }
+}
+
+.button.button--join-today {
+  position: relative;
+  margin:0 80px;
+  display: block;
+  max-width:400px;
+}
+
+h2.home-title {
+  padding:40px 0 20px 0;
+}
+
+@include tablet-landscape-and-down {
+  .button.button--join-today {
+    top:0;
+    margin:20px 0;
+  }
+}

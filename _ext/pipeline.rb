@@ -44,6 +44,13 @@ Awestruct::Extensions::Pipeline.new do
                                                        worksheet_title: 'Events',
                                                        col_labels: true,
                                                        by: 'row')
+  
+  # Load 'Our Picks' for homepage from a google spreadsheet
+  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'our_picks',
+                                                       key: '1al_cs2glMaSBymmNFCiy1OboxAD6jv3YAwB1FrMVffE',
+                                                       worksheet_title: 'Our Picks',
+                                                       col_labels: true,
+                                                       by: 'row')
 
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'book_isbns',
                                                        key: '1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g',
