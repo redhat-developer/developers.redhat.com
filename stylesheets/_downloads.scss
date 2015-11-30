@@ -46,6 +46,17 @@
         font-size: 30px;
       }
     }
+    .indent-product {
+      margin-left: 1em;
+      .large-8 {
+        margin-left: -.7em;
+      }
+      @include tablet-landscape-and-down {
+        .large-8 {
+          margin-left: 0;
+        }
+      }
+    }
   }
   #other-resources {
     .category-label {
