@@ -11,13 +11,6 @@ description: Discover the product downloads available from JBoss, and locate the
     .large-14.columns
       asciidoc:
         Registration is required. Downloads require accepting the terms and conditions of the Red Hat Developer Program which provides $0 subscriptions for development use only. If you have a Red Hat commercial subscription, visit http://access.redhat.com/site/downloads[the customer portal] for more downloads.
-  / .row
-  /   .large-24.columns.band-tabs
-  /     ul.nav.nav-tabs
-  /       li.active
-  /         a(href='#temp1') By Category
-  /       li
-  /         a(href='#temp2') A-Z 
 
 .row#downloads
   .large-17.columns
@@ -37,6 +30,10 @@ description: Discover the product downloads available from JBoss, and locate the
               .large-8.columns
                 - if product.default_download_artifact && product.current_version
                   a(href="#{product.default_download_artifact.url}")
+                    i.fa.fa-download
+                    |  Download Latest
+                - if product.id == 'cdk'
+                  a(href="#{site.base_url}/products/#{product.id}/download")
                     i.fa.fa-download
                     |  Download Latest
                 - else
