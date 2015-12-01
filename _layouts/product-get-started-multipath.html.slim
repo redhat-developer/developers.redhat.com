@@ -28,6 +28,10 @@ type: Get Started
 
   .os-tabs.tabs-content
     section.content.active(role="tabpanel" aria-hidden="false")
+        - if page._before_you_begin_section
+          .large-24#BeforeYouBeginSection
+            h4 Before you begin 
+            = page._before_you_begin_section  
         - if page._prerequisites_section
           .large-24#PrerequisitesSection.gs-prerequisites
             - if page._prerequisites_section_title
