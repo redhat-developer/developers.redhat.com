@@ -28,7 +28,7 @@ Capybara.configure do |config|
   config.app_host = host_to_test
   config.run_server = false
   config.default_driver = (ENV['DRIVER'] ||= 'poltergeist').to_sym
-  config.default_max_wait_time = 60
+  config.default_max_wait_time = 10
   config.save_and_open_page_path = SCREENSHOT_DIRECTORY
   Capybara::Screenshot.prune_strategy = :keep_last_run
   puts " . . . Running smoke tests against #{host_to_test}  . . . "
