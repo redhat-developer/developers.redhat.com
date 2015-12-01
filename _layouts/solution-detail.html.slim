@@ -7,12 +7,13 @@ layout: solution
 .row
   .large-24.columns
     .solution-header
-      .row
-        - if page.solution.sub_title
-          .large-17.columns.subtitle-wrapper
-            h2 #{page.solution.sub_title}
-        .large-7.columns
-          = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
+      -if page.solution.id != 'containers'
+        .row
+          - if page.solution.sub_title
+            .large-17.columns.subtitle-wrapper
+              h2 #{page.solution.sub_title}
+          .large-7.columns
+            = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
 
     - if page.solution.speech_bubble || page._overview
       .row
@@ -102,9 +103,10 @@ layout: solution
 
     - if page._extra_section
       .row
-        - if page._extra_section_title
-          h3.divider#ExtraSection #{page._extra_section_title}
-        = page._extra_section
+        .large-24.columns
+          - if page._extra_section_title
+            h3#ExtraSection #{page._extra_section_title}
+          = page._extra_section
     .row
       .large-24.columns
         - if page.solution.has_partial
