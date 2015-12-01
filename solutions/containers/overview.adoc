@@ -1,29 +1,16 @@
-= Containers
-:awestruct-layout: solution-detail
+:awestruct-layout: solution-overview
 :awestruct-interpolate: true
 
 
-== Header
-=== So, what are containers??
+[.large-19.columns]
+Linux® containers, sometimes referred to as Docker, is a software packaging concept that keeps applications and their runtime components together by combining lightweight application isolation with an image-based deployment method. Containers introduce autonomy for applications by packaging apps with the libraries and other binaries on which they depend. This avoids conflicts between apps that otherwise rely on key components of the underlying host operating system. Containers do not contain an (OS) kernel, which makes them faster and more agile than virtual machines. However, it does mean that all containers on a host must use the same kernel.
 
-[.large-16.columns.ov-block]
+[.large-5.columns]
+image:#{cdn(site.base_url + '/images/solutions/container/container-overview.png')}[Containers structure]
+
+[.large-24.columns]
 --
-Linux containers keep applications and their runtime components together by combining lightweight application isolation with an image-based deployment method. Containers introduce autonomy for applications by packaging apps with the libraries and other binaries on which they depend. This avoids conflicts between apps that otherwise rely on key components of the underlying host operating system. Containers do not contain a(n) (OS) kernel, which makes them faster and more agile than virtual machines. However, it does mean that all containers on a host must use the same kernel.
+At Red Hat, the same containers can run on Red Hat Enterprise Linux, OpenShift Enterprise, Red Hat Enterprise Linux Atomic Host, and Red Hat Atomic Enterprise - whether they are on-premise or in the cloud. And in deployment, Red Hat utilizes Kubernetes, an important component for building scalable multi-container applications.
+
+For developing Docker-based container apps, the link:#{site.base_url}/products/cdk/[Red Hat Container Development Kit (CDK)] is our answer to support this solution. It simplifies the setup and configuration of your container development environment and gets you on your way to building container-based (aka Docker) applications.
 --
-
-[.large-8.columns.ov-img]
-image:#{cdn(site.base_url + '/images/solutions/container/solutions_illustrations_container.png')}["Containers Icon"]
-
-[.large-24.columns.panel.callout.containers-callout]
---
-*Survey results* +
-*Top 3 container benefits for application developers:*
-
-* Higher quality releases
-* Better application scalability
-* Greater application isolation
-
-_Base: 194 IT operations and development decision-makers at enterprises in APAC, EMEA, and North America Source: A commissioned study conducted by Forrester Consulting on behalf of Red Hat, January 2015_
---
-
-link:#{site.base_url}/containers/adoption[Learn more...]
