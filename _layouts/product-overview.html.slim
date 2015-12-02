@@ -14,22 +14,6 @@ h2#overview Overview
   .large-13.columns
     .large-24
       = page._overview
-    .large-24.multi-ul
-      / Horrible hack, couldn't find a better way
-      - unless page.product.forum.nil?
-        asciidoc:
-          - Discuss on the link:#{page.product.forum.url}[#{page.product.abbreviated_name} Forums]
-      - unless page.product.skip_quickstart_link
-        asciidoc:        
-          - Get started with one of our many link:../learn?quickstarts[quickstarts].
-
-      - if page.product.has_docsandapis_page
-        asciidoc:  
-          - View the link:#{page.product.documentation_url}[#{page.product.abbreviated_name} Documentation]
-        a.moreinfolink(href="../docs-and-apis/")
-          | View Docs and APIs
-          i.fa.fa-angle-double-right
-
   .large-11.columns.product-video
     = video_player(video(page.product.intro_video)) if page.product.intro_video
     = video_player(site.videos["#{page.product.intro_youtube}"]) if page.product.intro_youtube
