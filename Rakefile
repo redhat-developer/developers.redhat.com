@@ -41,7 +41,7 @@ task :test do |task, args|
   if ENV['ghprbActualCommit'].to_s != ''
     wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing', args)
   else
-    Rake::Task[:internal_test_task].invoke
+    Rake::Task[:internal_test_task].invoke(args)
   end
 end
 
