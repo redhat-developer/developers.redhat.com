@@ -1,25 +1,17 @@
 :awestruct-layout: product-download-custom
 
-=== Prerequisites
+== Download
 
-Anyone with one of the following subscriptions can use the CDK for Docker container application development:
+For a limited time, Red Hat is providing a complimentary Red Hat Developer Suite subscription so that you may develop Docker container applications using the Red Hat Container Development Kit.
 
-* link:https://www.redhat.com/apps/store/developers/rhel_developer_suite.html[Red Hat Enterprise Linux Developer Suite]
-* link:https://www.redhat.com/apps/store/developers/rhel_developer_support_professional.html[Red Hat Enterprise Linux Developer Support Professional]
-* link:https://www.redhat.com/apps/store/developers/rhel_developer_support_enterprise.html[Red Hat Enterprise Linux Developer Support Enterprise]
-* link:https://connect.redhat.com/zones/containers[Red Hat Connect for Technology Partners subscription]
-
-[.callout-light]
-*Note:* Red Hat may also occasionally provide a promotion which includes a no-charge version of the RHEL Developer Suite in order to test the CDK.
-
-== Installers and Images for Red Hat CDK
+=== Installers and Images for Red Hat CDK
 
 Once you have a subscriptions in place (see above), CDK setup is easy to do Docker container development on your Windows, MacOS, or Linux machine. Download the following items in the order below:
 
-=== Step 1 - Container Development Kit (CDK)
+==== 1. Container Development Kit (CDK)
 link:https://developers.redhat.com/download-manager/file/cdk-2.0.0-beta3.zip[Red Hat Container Development Kit (CDK) 2]
 
-=== Step 2 - Vagrant
+==== 2. Vagrant
 Download one of the following from the Vagrant website based upon your operating system.
 
 * link:http://www.vagrantup.com/downloads.html[Vagrant for Windows 7 and up]
@@ -29,25 +21,26 @@ Download one of the following from the Vagrant website based upon your operating
 
 *Vagrant for Fedora, Ubuntu and Linux are included. See the installation guide.
 
-=== Step 3 - Vagrant Boxes
+==== 3. Vagrant Boxes
 Download one of the following Vagrant Boxes based upon your platform and hypervisor of choice.
 
-[frame="topbot", options="header"]
-|==========================
-|        |KVM (Libvirt)  |VirtualBox |VMware
-|RHEL 7 / OpenShift 3       |link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-libvirt.box[Download]  |link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[Download] |link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[Download]
-|==========================
+*RHEL 7 / OpenShift 3*
+
+* link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[Download VirtualBox]
+* link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[Download VMware]
+* link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-libvirt.box[Download KVM (Libvirt)]
 
 [.callout-light]
 *NOTE:*  In order to run Vagrant, you must sign the Developer Suite terms and conditions. If you have not done this already, log in to the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the RHEL Developer Suite Terms & Conditions].
 
-=== Step 4 - Run Vagrant add
-1.  vagrant add <blah blah>
-2. vagrant up
-3. vagrant ssh
+==== 4. Start the Vagrant box
+1. Change to the sub-directory `components/rhel/rhel-ose`. Alternatively, copy the `Vagrantfile` in that directory to a working directory of your choosing.
+2. Start the box by entering `vagrant up`. Note: the `Vagrantfile` needs to be in the current directory when entering vagrant commands without specifying a box name or a path to the `Vagrantfile`.
+
+You should now be able to log into the vagrant box using `vagrant ssh`.
 
 [id='DockerImages']
-=== Step 5 - Docker images
+==== 5. Docker images
 Here are some of the available images for creating Docker apps for *RHEL and/or OpenShift Enterprise*.  See the link:https://access.redhat.com/search/#/container-images[Red Hat Registry] for a complete list, as well as other options available in beta versions.
 
 *Languages and frameworks*
