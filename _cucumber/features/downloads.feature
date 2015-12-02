@@ -7,4 +7,3 @@ Feature: Download Page Smoke Test
   Scenario: Sanity check
     Given I am on the Downloads page
     Then I should see the Downloads page title
-    And I should see "16" download latest links
