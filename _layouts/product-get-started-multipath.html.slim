@@ -4,7 +4,6 @@ status: green
 type: Get Started
 ---
 - page.description = "Learn how to install and start using #{page.product.abbreviated_name}."
-= partial 'getstarted-thankyou.html.slim', {'parent' => page}
 
 .large-24
   h2.gs-header Great, you've selected #{page._path_name}
@@ -28,6 +27,10 @@ type: Get Started
 
   .os-tabs.tabs-content
     section.content.active(role="tabpanel" aria-hidden="false")
+        - if page._before_you_begin_section
+          .large-24#BeforeYouBeginSection
+            h4 Before you begin 
+            = page._before_you_begin_section  
         - if page._prerequisites_section
           .large-24#PrerequisitesSection.gs-prerequisites
             - if page._prerequisites_section_title
