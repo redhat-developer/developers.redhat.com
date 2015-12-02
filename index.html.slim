@@ -11,24 +11,24 @@ section.homepage-main
     .large-16.columns.homepage-cta
       img.mobile(src=cdn("#{site.base_url}/images/design/RHD_homehero_mobile_cdk2_text.png") alt="Red Hat Container Development Kit 2 Beta is Here")
       img.desktop(src=cdn("#{site.base_url}/images/design/RHD_homehero_desktop_cdk2_text.png") alt="Red Hat Container Development Kit 2 Beta is Here")
-      a.button href='' Learn More
+      a.button href='#{site.base_url}/products/cdk/get-started' Get Started
+      p First 500 downloads include a RHEL Developer Subscription - for free!
     .large-8.columns.homepage-getstarted
       h5.caps Get Started
       ul
-        li
-          a href='#{site.base_url}/products/cdk/get-started/' Need RHEL to test CDK?  Get it free today.
-        li
-          a href='#{site.base_url}/products/cdk/get-started/' Download and install the CDK; build your first Docker container app
-        li
-          a href='https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/7/container-development-kit-guide/container-development-kit-guide' CDK guide with recommended practices
-        li
-          a href='https://developerblog.redhat/com/tags/containers' Recent Docker container articles
+        li Easily develop from Windows, MacOS, RHEL, and more
+        li Deploy to Red Hat platforms including RHEL, Atomic Host, and now, OpenShift Enterprise 3
+        li Utilize new configuration tools based on Nulecule
+        li ISVs - certify your container apps
+      a.learn-more href='#{site.base_url}/products/cdk/overview'
+        | Learn More
+        i.fa.fa-arrow-circle-right
+      .clearfix
       h5.caps Accelerate Your Development
-      .row
-        .medium-12.small-24.columns
-          a.video-thumb(href='')
-            img(src='http://img.youtube.com/vi/DGoqrqSLQtg/0.jpg' alt='Video Title')
-            p Watch how to set up the CDK
+      .medium-16.small-24.columns
+        a.video-thumb(href='#{site.base_url}/video/youtube/DGoqrqSLQtg')
+          img(src='http://img.youtube.com/vi/DGoqrqSLQtg/0.jpg' alt='Video Title')
+          p Watch how to set up the CDK
 
 .row
   .large-24
@@ -83,9 +83,9 @@ section.register-spotlight.inverse
       h2 Join Red Hat Developers
       h4 Share more. Learn more. Code more.
       .row
-        .large-12.columns
+        .large-14.columns
           p Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications. Join now for free!
-        .large-12.columns
+        .large-10.columns
           a.button Join Today - It's Free!
       .row.inverse-spotlights
         .large-8.small-24.columns
