@@ -1,4 +1,3 @@
-#For instructions on usage see the README file
 require "minitest/reporters"
 require 'rake/testtask'
 require 'net/http'
