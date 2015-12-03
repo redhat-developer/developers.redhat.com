@@ -1,6 +1,7 @@
 = Ticket Monster tutorial 
 :awestruct-layout: ticket-monster
 :awestruct-description: Ticket Monster is a moderately complex application that demonstrates how to build modern applications using JBoss web technologies.
+:awestruct-interpolate: true
 
 == Intro
 
@@ -12,7 +13,8 @@ Ticket Monster is a *moderately complex application* that *demonstrates* how to 
 
 See what capabiltiies are built into Ticket Monster with our Openshift instance.
 
-pass:[<a href="http://ticketmonster-jdf.rhcloud.com/"><i class="fa fa-desktop fa-9x fa-fw"></i></a>]
+pass:[<a href="http://ticketmonster-jdf.rhcloud.com/"><img src="#{cdn(site.base_url + '/images/ticketmonster/ticket_monster-preview.png')}" alt="Preview it"></a>]
+
 
 == Followit
 
@@ -20,7 +22,7 @@ pass:[<a href="http://ticketmonster-jdf.rhcloud.com/"><i class="fa fa-desktop fa
 
 Walk through the tutorial to see what Ticket Monster will teach you.
 
-pass:[<a href="whatisticketmonster"><i class="fa fa-book fa-9x fa-fw"></i></a>]
+pass:[<a href="whatisticketmonster"><img src="#{cdn(site.base_url + '/images/ticketmonster/ticket_monster_follow.png')}" alt="Follow it"></a>]
 
 == Downloadit
 
@@ -29,7 +31,7 @@ pass:[<a href="whatisticketmonster"><i class="fa fa-book fa-9x fa-fw"></i></a>]
 Download Ticket Monster and get started with our tutorial. You can also use Ticket Monster as a base to build your own application.
 pass:[<a href="https://github.com/jboss-developer/ticket-monster" style="float:right; text-align:right;"><i class="fa fa-github">&nbsp;</i>Fork us</a>]
 
-pass:[<a href="https://github.com/jboss-developer/ticket-monster/archive/2.7.0.Final-with-tutorials.zip"><i class="fa fa-download fa-9x fa-fw"></i></a>]
+pass:[<a href="https://github.com/jboss-developer/ticket-monster/archive/2.7.0.Final-with-tutorials.zip"><img src="#{cdn(site.base_url + '/images/ticketmonster/ticket_monster_download.png')}" alt="Download it"></a>]
 
 
 == Outline

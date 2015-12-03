@@ -1,0 +1,29 @@
+.hero.hero-ticketmonster {
+  background: cdn('../images/ticketmonster/ticket_monster-headerbg.png') repeat-x;
+  border:0;
+  padding: 20px;
+  padding-top: 40px;
+  min-height: 230px;
+  margin-bottom: 60px;
+  h2.blowout {
+    color:white;
+    line-height:1;
+    font-size: 70px;
+    text-shadow: 3px 3px #063a63;
+  }
+  p {
+    color:white;
+    font-size: 20px;
+  }
+  .row {
+    @extend .grow;
+  }
+}
+#ticket-monster-content {
+  .ticket-monster-links {
+    margin-bottom: 20px;
+    img {
+      max-width: 250px;
+    }
+  }
+}
