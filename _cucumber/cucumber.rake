@@ -36,7 +36,17 @@ task :rerun do
   end
 end
 
-task :features => [:cleanup, :parallel_features, :rerun]
+task :features => [:cleanup, :parallel_features, :rerun] do |t, args|
+  if ENV['ghprbActualCommit'].to_s != ''
+    puts "==== sending progress to github"
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_features_task], ENV["BUILD_URL"], "Acceptance Tests", 'Acceptance tests', args)
+  else
+    Rake::Task[:internal_test_task].invoke(args)
+  end
+end
+
+task :internal_features_task => [:cleanup, :parallel_features, :rerun]
+
 task :smoke => [:cleanup, :parallel_smoke, :rerun]
 
 
