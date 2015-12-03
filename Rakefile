@@ -136,7 +136,7 @@ task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   if ENV['ghprbActualCommit'].to_s != ''
     wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_deploy_task], "#{ENV['site_base_path']}/#{ENV['site_path_suffix']}", "Site Preview", 'Site preview deployement', args)
   else
-    Rake::Task[:internal_deploy_task].invoke(args)
+    Rake::Task[:internal_deploy_task].invoke(*args.to_a)
   end
 end
 
