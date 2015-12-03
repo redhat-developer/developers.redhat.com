@@ -1,0 +1,26 @@
+:awestruct-layout: solution-benefits
+:awestruct-interpolate: true
+
+=== Containers support modern application development trends.
+A recent Forrester Consulting study asked IT decision-makers "For which workloads or application use cases have you used/do you anticipate to use containers?"
+
+image:#{cdn(site.base_url + '/images/solutions/container/container_adoption_1.png')}["Containers development trends"]
+
+Base: 194 IT operations and development decision-makers at enterprises in APAC, EMEA, and North America Source: A commissioned study conducted by Forrester Consulting on behalf of Red Hat, January 2015
+
+==== Learn more
+
+* link:http://rhelblog.redhat.com/2015/07/29/architecting-containers-part-1-user-space-vs-kernel-space/[Architecting Containers Part 1: Why Understanding User Space vs. Kernel Space Matters]
+* link:http://rhelblog.redhat.com/2015/09/17/architecting-containers-part-2-why-the-user-space-matters-2/[Architecting Containers Part 2: Why the User Space Matters]
+* link:http://rhelblog.redhat.com/2015/11/10/architecting-containers-part-3-how-the-user-space-affects-your-application/[Architecting Containers Part 3: How the User Space Affects Your Application]
+* link:http://developerblog.redhat.com/2015/09/24/cant-we-just-run-boot2docker-in-production/[Can’t We Just Run Boot2Docker in Production?]
+
+=== Containers can be safe and secure with the right security and certificates.
+You must make sure that container images running in your infrastructure are safe to consume and certified to run wherever they are deployed.
+
+* Article: Lars Herrmann for Venture Beat, link:http://venturebeat.com/2014/12/16/whats-in-a-container-you-dont-know-and-thats-a-problem/["What’s in a container? You don’t know. And that’s a problem."] Dec 16, 2014
+* link:http://developerblog.redhat.com/2014/11/06/introducing-a-super-privileged-container-concept/[Introducing a _Super_ Privileged Container Concept]
+* link:https://www.redhat.com/en/about/videos/super-privileged-containers-2015-red-hat-summit[Red Hat Summit 2015 video: Super Privileged Container]
+* Opensource.com: link:http://opensource.com/business/14/7/docker-security-selinux[Containers don’t contain] Containers only improve the isolation of applications so treat privileged processes inside a container the same way you’d treat them outside of it. This article reveals why containers and SELinux are a perfect (and easy) combo. By Daniel Walsh, Red Hat.
+* link:http://blog.docker.com/2014/07/new-dockercon-video-docker-security-renamed-from-docker-and-selinux/[SELinux for security] - DockerCon 2014. Docker Security, SELinux can provide a security framework to help isolate Linux containers and support higher levels of security. by: Daniel Walsh for Opensource.com, "Bringing new security features to Docker," Sep 3, 2014.
+* *Video:* link:https://www.youtube.com/embed/zWGFqMuEHdw[Docker and SELinux by Daniel Walsh from Red Hat]
