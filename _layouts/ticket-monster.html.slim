@@ -1,43 +1,35 @@
 ---
 layout: base
 ---
-.row
-  h2.large-title#ticket-monster Ticket Monster
-.row.content
-  .large-24.columns
-    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/resources/" Get Started
-        meta itemprop="position" content="1"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/ticket-monster/" Ticket Monster
-        meta itemprop="position" content="2"
 
-.row
-  .ticket-monster-items
-    = page._intro
+.hero.hero-wide.hero-ticketmonster
+  .row
+    .large-11.columns
+      h2.blowout Ticket Monster
+    .large-13.columns
+      p 
+        |
+        = page._intro
 
-.row.ticket-monster-links
-  .large-8.columns.text-center
-    = page._previewit
+#ticket-monster-content
+  .row.ticket-monster-links
+    .large-8.columns.text-center
+      = page._previewit
 
-  .large-8.columns.text-center
-    = page._followit
+    .large-8.columns.text-center
+      = page._followit
 
-  .large-8.columns.text-center
-    = page._downloadit
+    .large-8.columns.text-center
+      = page._downloadit
 
-hr
-br
-br
+  .row
+    .large-10.columns.callout-light
+      = page._outline
 
-.row
-  .large-8.columns.panel.radius
-    = page._outline
-
-  .large-16.columns
-    a.right.button(href="http://docs.jboss.org/jbossdeveloper/2.7/ticket-monster-2.7.0.Final.pdf" target="_blank") Download the Instructions
-    h3#follow-along Follow along with video
-
-    .flex-video.large.24
-      = page._followalong
+    .large-14.columns
+      br
+      a.right.button(href="http://docs.jboss.org/jbossdeveloper/2.7/ticket-monster-2.7.0.Final.pdf" target="_blank") Download the Instructions
+      h3#follow-along Follow along with video
+      br
+      .flex-video.large.24
+        = page._followalong
