@@ -89,6 +89,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "devoxx-be";
 @import "confirmation";
 @import "vjbug";
+@import "ticket-monster";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -2023,4 +2024,11 @@ label.inline{
     font-size: 90%;
     line-height: 1.45;
   }
+}
+
+.callout-light {
+  background-color: #f0f0f0;
+  border: 1px solid #efeff0;
+  padding: 20px;
+  margin: 15px 0;
 }
