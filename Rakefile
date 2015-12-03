@@ -381,7 +381,7 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |tas
 
     unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url} #{verbose_switch}"
       options[:description] = "Blinkr failed (bundle error)"
-      puts GitHub.update_status($github_org, $github_repo, sha, "failure", options)
+      puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
       exit 1
     end
 
@@ -392,12 +392,14 @@ task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |tas
     rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
     report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
 
-    options[:description] = "Blinkr report available at #{args[:new]}/#{report_path}/#{report_filename}"
+    # TODO: At some point, when we don't have any errors, we'll want to parse the json or something and look for errors, then we can send a fail to the status
+    options[:description] = "Blinkr report successful"
+    options[:target_url] = "#{args[:new]}/#{report_path}/#{report_filename}"
     puts GitHub.update_status($github_org, $github_repo, sha, "success", options)
   rescue => e
     puts e
     options[:description] = "Blinkr failed (#{e.message})"
-    puts GitHub.update_status($github_org, $github_repo, sha, "failure", options)
+    puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
   end
 end
 
