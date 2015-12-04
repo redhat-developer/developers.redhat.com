@@ -70,8 +70,6 @@ class Options
 
       opts.on('--acceptance_test_docker', String, 'runs the cucumber features against the local running docker stack.') do
         tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "--service-ports", "awestruct_acceptance", "bundle exec rake features"]
-        tasks[:build] = true
-        tasks[:unit_tests] = unit_test_tasks
       end
 
       opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |f|

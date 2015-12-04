@@ -80,8 +80,6 @@ class TestOptions < Minitest::Test
     def test_acceptance_test_target_task_default_value
       ClimateControl.modify HOST_TO_TEST: nil, AWESTRUCT_HOST_PORT: '32768' do
         tasks = Options.parse (["--acceptance_test_docker"])
-        assert(tasks[:build])
-        assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
         refute(tasks[:set_ports])
         assert_equal(nil, ENV['HOST_TO_TEST'])
         assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct_acceptance", "bundle exec rake features"], tasks[:acceptance_test_target_task])

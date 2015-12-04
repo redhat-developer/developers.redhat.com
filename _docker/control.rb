@@ -47,7 +47,7 @@ def set_ports
   ports_to_set = port_names.select{ |x| !ENV[x] }
 
   # We have to reverse the logic in `is_port_open` because if nothing is listening, we can use it
-  available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(ports_to_set.size).force
+  available_ports = (32769..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(ports_to_set.size).force
   ports_to_set.each_with_index do |name, index|
     puts "#{name} available at #{available_ports[index]}"
     ENV[name] = available_ports[index].to_s
@@ -191,7 +191,7 @@ end
 
 if tasks[:awestruct_command_args]
   puts 'running awestruct command'
-  execute_docker_compose :run, tasks[:awestruct_command_args]
+  execute_docker_compose :up, "awestruct_preview"
 end
 
 if tasks[:acceptance_test_target_task]
