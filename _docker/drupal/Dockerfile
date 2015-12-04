@@ -9,6 +9,6 @@ COPY run.sh /
 COPY db-check.php /
 
 # Adding the awestruct module
-ADD awestruct-8.x-1.0-dev.tar.gz /var/www/html/modules/custom
+#COPY awestruct /var/www/html/modules/custom/awestruct
 
 CMD ["/bin/bash", "/run.sh"]

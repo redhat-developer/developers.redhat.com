@@ -1,3 +1,6 @@
+# Make sure we have the most up-to-date drupal console
+drupal self-update
+
 echo "Attempting to connect to pgsql, waiting until it comes up if needed..."
 
 php -f /db-check.php
