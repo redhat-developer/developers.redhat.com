@@ -81,7 +81,7 @@ module JBoss
       end
 
       def transform site, page, content
-        if site.drupal_base_url && page.output_extension.include?('htm')
+        if page.output_extension.include?('htm') && (page.output_path =~ /web-and-api-development\/overview/ || page.output_path =~ /distributed-javaee-architecture/)
           resp = nil
           begin
             resp = @drupal.send_page page, content
