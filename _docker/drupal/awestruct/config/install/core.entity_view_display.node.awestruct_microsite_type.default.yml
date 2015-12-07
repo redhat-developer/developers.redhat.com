@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.awestruct_microsite_type.body
+    - node.type.awestruct_microsite_type
+  module:
+    - text
+    - user
+id: node.awestruct_microsite_type.default
+targetEntityType: node
+bundle: awestruct_microsite_type
+mode: default
+content:
+  body:
+    type: text_default
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
+

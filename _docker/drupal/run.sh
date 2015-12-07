@@ -13,10 +13,8 @@ chown -R root:root sites
 
 drupal site:install standard --db-type=pgsql --db-host=$DRUPALPGSQL_PORT_5432_TCP_ADDR --db-port=$DRUPALPGSQL_PORT_5432_TCP_PORT --db-name=$DB_NAME --db-user=$DB_USER --db-pass=$DB_PASSWORD --account-name=admin --account-mail="admin@example.com" --site-name="Drupal 8 Testing" --site-mail="test@example.com" --account-pass=admin --langcode=en -n
 
-drupal module:install serialization basic_auth hal rest
-
 # install the awestruct module in drupal
-#drupal module:install awestruct
+drupal module:install awestruct rest hal serialization basic_auth
 
 drupal theme:install --set-default -- rhd
 

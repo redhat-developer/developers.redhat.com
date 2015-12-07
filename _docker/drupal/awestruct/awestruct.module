@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Contains awestruct.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function awestruct_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the awestruct module.
+    case 'help.page.awestruct':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Awestruct types and fields') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function awestruct_theme() {
+  // TODO: I may need to do something here to enable templates for the different types
+  $theme = [];
+
+  return $theme;
+}

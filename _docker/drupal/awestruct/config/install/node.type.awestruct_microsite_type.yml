@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Awestruct Microsite Content Type'
+type: awestruct_microsite_type
+description: "A microsite isn't much more than raw content"
+help: 'Add a new instance of this type to create a new microsite'
+new_revision: false
+preview_mode: 1
+display_submitted: false
+
