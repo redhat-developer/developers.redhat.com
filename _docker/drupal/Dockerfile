@@ -1,4 +1,4 @@
-FROM drupal:8.0.0
+FROM drupal:8
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 LABEL version="dev"
