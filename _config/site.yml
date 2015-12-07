@@ -108,6 +108,7 @@ profiles:
     dcp2_base_url: http://dcp2-searchisko.rhcloud.com/
     dcp2_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
     metrics: false
+    adobe_target: true
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg
