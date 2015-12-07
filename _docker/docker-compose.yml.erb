@@ -54,10 +54,10 @@ drupal:
   ports:
     - "<%= ENV['DRUPAL_HOST_PORT'] %>:80"
   links:
-    - drupalmysql
+    - drupalpgsql
   volumes:
-    - ../_drupal/themes/:/var/www/html/sites/all/themes
-    - ../_drupal/scripts/:/drupal/bin
+    - ../_drupal/themes/:/var/www/html/themes
+  #  - ../_drupal/scripts/:/drupal/bin
   <% if ENV['ghprbPullId'] %>
   labels:
     - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
@@ -68,21 +68,19 @@ drupal:
     - DB_USER=drupal
     - DB_PASSWORD=drupal
   privileged: true
-drupalmysql:
-  image: mysql:5.6
+drupalpgsql:
+  image: postgres:9.4
   <% if ENV['ghprbPullId'] %>
   labels:
     - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
   <% end %>
   environment:
-    - MYSQL_DATABASE=drupal
-    - MYSQL_USER=drupal
-    - MYSQL_PASSWORD=drupal
-    - MYSQL_ROOT_PASSWORD=superdupersecret
+    - POSTGRES_USER=drupal
+    - POSTGRES_PASSWORD=drupal
   ports:
-    - "<%= ENV['DRUPALMYSQL_HOST_PORT'] %>:3306"
+    - "<%= ENV['DRUPALPGSQL_HOST_PORT'] %>:5432"
   expose:
-    - "3306"  
+    - "5432"
 mysql:
   image: mysql:5.6
   <% if ENV['ghprbPullId'] %>
