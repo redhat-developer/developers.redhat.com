@@ -339,8 +339,12 @@
     display: inline;
     margin-right: 5px;
   }
-  ol li p, ul li p{
-    margin-bottom: 1rem;
+  ul, ol {
+    margin-top: 15px;
+    li p, li p{
+      margin-bottom: 5px;
+      margin-left: 1em;
+    }
   }
   .content-img img {
     margin-top: 15px;
