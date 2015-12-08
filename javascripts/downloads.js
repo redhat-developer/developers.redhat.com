@@ -27,7 +27,6 @@ app.downloads.createDownloadTable = function(products) {
     $.each(product.files,function(j,file) {
 
       var versionName = product.versionName;
-      console.log(product.releaseDate);
       var date = new Date(product.releaseDate);
       var dateString = ([date.getFullYear(), date.getMonth() + 1, date.getDate()].map(function(int) {
         return (int < 10 ? '0' + int : int);
@@ -131,10 +130,19 @@ app.downloads.display = function(data) {
     $(this).next('table').toggle();
   });
 
+  // We split this into two parts - everything up to and including the latest GA, and everything after it
+  for (var i = 0; i < productArray.length; i++) {
+    var match = productArray[i].versionName.match(/alpha|beta/gi);
+    if(!match) {
+      break;
+    }
+  };
+
+  var end = i + 1;
 
   // create the featured downloads table
-  var $latestDownloadsTable = app.downloads.createDownloadTable(productArray.slice(0,1)); // Item 1
-  var $allDownloadsTable = app.downloads.createDownloadTable(productArray.slice(1)); // Item 2 - end
+  var $latestDownloadsTable = app.downloads.createDownloadTable(productArray.slice(0,end));
+  var $allDownloadsTable = app.downloads.createDownloadTable(productArray.slice(end));
 
   // put everything into an element
   $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTable, $toggleLink, $allDownloadsTable)
