@@ -27,6 +27,31 @@ class TestOptions < Minitest::Test
 
       tasks = Options.parse (["--run-the-stack"])
       assert(tasks[:decrypt])
+
+      tasks = Options.parse (['-u'])
+      assert(tasks[:decrypt])
+
+      tasks = Options.parse (['-t'])
+      assert(tasks[:decrypt])
+
+      tasks = Options.parse (['--drupal'])
+      assert(tasks[:decrypt])
+
+      tasks = Options.parse %w(-d 127.0.0.1)
+      assert_nil(tasks[:decrypt])
+
+      tasks = Options.parse %w(--stage-pr 1)
+      assert_nil(tasks[:decrypt])
+
+      tasks = Options.parse %w(--acceptance_test_docker)
+      assert_nil(tasks[:decrypt])
+
+      tasks = Options.parse %w(--acceptance_test_target 127.0.0.1)
+      assert_nil(tasks[:decrypt])
+
+      tasks = Options.parse %w(--docker-nightly)
+      assert_nil(tasks[:decrypt])
+
     end
 
     def test_set_ports
@@ -38,6 +63,9 @@ class TestOptions < Minitest::Test
       assert(tasks[:set_ports])
 
       tasks = Options.parse (["--run-the-stack"])
+      assert(tasks[:set_ports])
+
+      tasks = Options.parse %w(-u)
       assert(tasks[:set_ports])
     end
 
@@ -64,6 +92,10 @@ class TestOptions < Minitest::Test
 
       tasks = Options.parse (["--run-the-stack"])
       assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
+
+      tasks = Options.parse (['-u'])
+      assert_includes tasks[:supporting_services], 'drupal'
+      assert_includes tasks[:supporting_services], 'drupalpgsql'
     end
 
     def test_awestruct_command
@@ -75,6 +107,16 @@ class TestOptions < Minitest::Test
       assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
       tasks = Options.parse (["-g"])
       assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[docker]'], tasks[:awestruct_command_args])
+
+      tasks = Options.parse %w(-p -u)
+      ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"].each do |commands|
+        assert_includes tasks[:awestruct_command_args], commands
+      end
+
+      tasks = Options.parse %w(-g -u)
+      ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"].each do |commands|
+        assert_includes tasks[:awestruct_command_args], commands
+      end
     end
 
     def test_acceptance_test_target_task_default_value
@@ -136,6 +178,19 @@ class TestOptions < Minitest::Test
     def test_docker_url
       tasks = Options.parse (["-d", "SOMETHING"])
       assert_equal("SOMETHING",tasks[:docker])
+    end
+
+    def test_drupal
+      tasks = Options.parse (['-u'])
+      assert_includes tasks, :drupal
+      assert_equal tasks[:drupal], true
+
+      assert_includes tasks, :supporting_services
+      assert_includes tasks[:supporting_services], 'drupal'
+      assert_includes tasks[:supporting_services], 'drupalpgsql'
+
+      assert_includes tasks, :awestruct_command_args
+      assert_includes tasks[:awestruct_command_args], 'rake git_setup clean gen[drupal]'
     end
 
     private def expected_unit_test_tasks

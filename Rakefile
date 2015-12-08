@@ -364,23 +364,43 @@ end
 
 desc 'Run blinkr'
 task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |task, args|
-  $staging_config ||= config 'staging'
-  base_path = "#{args[:pr_prefix]}/#{args[:pull]}"
-  base_url = "#{args[:new]}/#{base_path}/#{args[:build_prefix]}/#{args[:build]}/"
-  report_base_path = "#{base_path}/blinkr"
-  report_path = "#{report_base_path}/#{args[:build]}"
-  verbose_switch = args[:verbose] == 'verbose' ? '-v' : ''
-  FileUtils.rm_rf("_tmp/blinkr")
-  FileUtils.mkdir_p("_tmp/blinkr")
-  unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url} #{verbose_switch}"
-    exit 1
+  sha = ENV['ghprbActualCommit']
+  options = {:context => 'Blinkr', :description => 'Blinkr pending', :target_url => ENV["BUILD_URL"]}
+
+  begin
+    GitHub.update_status($github_org, $github_repo, sha, "pending", options)
+
+    $staging_config ||= config 'staging'
+    base_path = "#{args[:pr_prefix]}/#{args[:pull]}"
+    base_url = "#{args[:new]}/#{base_path}/#{args[:build_prefix]}/#{args[:build]}/"
+    report_base_path = "#{base_path}/blinkr"
+    report_path = "#{report_base_path}/#{args[:build]}"
+    verbose_switch = args[:verbose] == 'verbose' ? '-v' : ''
+    FileUtils.rm_rf("_tmp/blinkr")
+    FileUtils.mkdir_p("_tmp/blinkr")
+
+    unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url} #{verbose_switch}"
+      options[:description] = "Blinkr failed (bundle error)"
+      puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
+      exit 1
+    end
+
+    Dir.mktmpdir do |empty_dir|
+      rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_base_path}")
+    end
+
+    rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
+    report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
+
+    # TODO: At some point, when we don't have any errors, we'll want to parse the json or something and look for errors, then we can send a fail to the status
+    options[:description] = "Blinkr report successful"
+    options[:target_url] = "#{args[:new]}/#{report_path}/#{report_filename}"
+    puts GitHub.update_status($github_org, $github_repo, sha, "success", options)
+  rescue => e
+    puts e
+    options[:description] = "Blinkr failed (#{e.message})"
+    puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
   end
-  Dir.mktmpdir do |empty_dir|
-    rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_base_path}")
-  end
-  rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
-  report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
-  GitHub.comment_on_pull($github_org, $github_repo, args[:pull], "Blinkr: #{args[:new]}/#{report_path}/#{report_filename}")
 end
 
 # Execute Awestruct
