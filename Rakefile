@@ -329,38 +329,41 @@ task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
   end
 end
 
-desc 'Generate a wraith config file'
-task :generate_wraith_config, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
+desc 'Run wraith'
+task :wraith do |t, args|
   require 'yaml/store'
 
   cfg = '_wraith/configs/config.yaml'
-  FileUtils.cp '_wraith/configs/template_config.yaml', cfg
+
+  p '. . . . . . Deleting old config and logs . . . . . . '
+  File.delete(cfg) if File.exist?(cfg)
+  p '. . . . . . Creating new config file with new HOST_TO_TEST . . . . . . '
+  FileUtils.cp('_wraith/configs/template_config.yaml', cfg)
   config = YAML::Store.new(cfg)
 
-  new_path = "#{args[:new]}/#{args[:pr_prefix]}/#{args[:pull]}/#{args[:build_prefix]}/#{args[:build]}"
+  if ENV['HOST_TO_TEST'] == ''
+    host_to_test = "http://docker:#{ENV['AWESTRUCT_HOST_PORT']}"
+  else
+    host_to_test = ENV['HOST_TO_TEST']
+  end
 
   config.transaction do
-    config['domains']['production'] = args[:old]
-    config['domains']['pull-request'] = new_path
-    config['sitemap'] = "#{new_path}/sitemap.xml"
+    config['domains']['pull-request'] = host_to_test
+    config['sitemap'] = "#{host_to_test}/sitemap.xml"
   end
+
+  if ENV['ghprbActualCommit'].to_s != ''
+    p '. . . . . sending progress to github . . . . .'
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_wraith_task], ENV['BUILD_URL'], 'Visual Diff Tests', 'Visual Diff Tests', args)
+  else
+    Rake::Task[:internal_test_task].invoke(args)
+  end
+  Dir.chdir('_wraith')
+  exit_status = system 'bundle exec wraith capture config'
+  exit(exit_status)
 end
 
-desc 'Run wraith'
-task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generate_wraith_config do |task, args|
-  $staging_config ||= config 'staging'
-  Dir.chdir("_wraith")
-  unless system "bundle exec wraith capture config"
-    exit 1
-  end
-  wraith_base_path = "#{args[:pr_prefix]}/#{args[:pull]}/wraith"
-  wraith_path = "#{wraith_base_path}/#{args[:build]}"
-  Dir.mktmpdir do |empty_dir|
-    rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_base_path}")
-  end
-  rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
-  GitHub.comment_on_pull($github_org, $github_repo, args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
-end
+task :internal_wraith_task => [:wraith]
 
 desc 'Run blinkr'
 task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |task, args|
