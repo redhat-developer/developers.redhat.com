@@ -131,7 +131,14 @@ task :tag, [:profile, :tag_name] do |task, args|
   end
 end
 
-task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
+desc 'Clears all status to pending'
+task :clear_status do |task, args|
+  msg "clearing all status for #{ENV['ghprbActualCommit']}"
+  options = {:context => context, :description => "#{description} cleared", :target_url => target_url}
+  GitHub.update_status($github_org, $github_repo, sha, "pending", options)
+end
+
+task :deploy, [:profile, :tag_name] => [:check, :tag, :push, :clear_status] do |task, args|
   msg "running deploy task with #{args}"
   if ENV['ghprbActualCommit'].to_s != ''
     wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_deploy_task], "#{ENV['site_base_path']}/#{ENV['site_path_suffix']}", "Site Preview", 'Site preview deployement', args)
