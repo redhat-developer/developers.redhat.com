@@ -109,6 +109,7 @@ class TestOptions < Minitest::Test
       assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[docker]'], tasks[:awestruct_command_args])
 
       tasks = Options.parse %w(-p -u)
+      # If we're using drupal, we don't need to do a preview in awestruct
       ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"].each do |commands|
         assert_includes tasks[:awestruct_command_args], commands
       end
@@ -165,6 +166,9 @@ class TestOptions < Minitest::Test
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
       assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
+
+      tasks = Options.parse %w(-u --run-the-stack)
+      assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]'], tasks[:awestruct_command_args])
     end
 
     def test_test_task
@@ -188,9 +192,6 @@ class TestOptions < Minitest::Test
       assert_includes tasks, :supporting_services
       assert_includes tasks[:supporting_services], 'drupal'
       assert_includes tasks[:supporting_services], 'drupalpgsql'
-
-      assert_includes tasks, :awestruct_command_args
-      assert_includes tasks[:awestruct_command_args], 'rake git_setup clean gen[drupal]'
     end
 
     private def expected_unit_test_tasks
