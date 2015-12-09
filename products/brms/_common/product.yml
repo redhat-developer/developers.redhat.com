@@ -2,8 +2,8 @@ name: Red Hat JBoss BRMS
 abbreviated_name: JBoss BRMS
 product_logo: brms.png
 has_installer: true
-current_version: 6.1.0.GA
-documentation_minor_version: 6.1
+current_version: 6.2.0.GA
+documentation_minor_version: 6.2
 xpaas_url: https://developers.openshift.com/en/xpaas-business-rules-management-system.html
 intro_video: https://vimeo.com/143059985
 vimeo_album: http://vimeo.com/album/2982444
@@ -31,6 +31,29 @@ default_download_artifact_type: installer
 description: 'Quickly create and change business rules with this business rules management system.'
 downloads:
   # 6.0.2 is an exclusion to the "no micros through $0 dev program
+  6.2.0.GA:
+    description: Red Hat JBoss BRMS 6.0.2 is an incremental bug fix release over the 6.0.1 version.
+    tag_line: An integrated and flexible User Interface - Business Central.  One place for all authoring, analyzing, managing and testing business rules, an updated repository infrastructure that is user friendly and provides enterprise flexibility and an enhanced rules execution algorithms and language features that deliver higher performance.
+    release_date: 2015-12-07
+    assets:
+      installer:
+        size: 250mb
+      zip:
+        artifacts:
+          deployable:
+            size: 176mb
+      zip_planner:
+        size: 94mb
+        name: Optaplanner
+      example:
+        size: 4mb
+        name: Quickstarts
+      zip_supplemental:
+        size: 63mb
+        name: Supplemental Tools
+      release_notes:
+      source:
+        size: 152mb
   6.1.0.GA:
     description: Red Hat JBoss BRMS 6.0.2 is an incremental bug fix release over the 6.0.1 version.
     tag_line: Built in centralized decision server, collaborative user interface, expanded platform certifications and enhanced stability of the platform. Includes full support for Business Resource Planner that offers ability to build resource optimized solutions.
