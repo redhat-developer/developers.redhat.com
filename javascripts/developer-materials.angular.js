@@ -243,13 +243,13 @@ dcp.factory('helper', function() {
     };
 
     this.availableFormats = [
-      { value : "jbossdeveloper_quickstart" , "name" : "Quickstart", "description" : "Single use-case code examples tested with the latest stable product releases" },
+      { value : "quickstart" , "name" : "Quickstart", "description" : "Single use-case code examples tested with the latest stable product releases" },
       { value : "video" , "name" : "Video", "description" : "Short tutorials and presentations for Red Hat JBoss Middleware products and upstream projects" },
       { value : "demo" , "name" : "Demo", "description" : "Full applications that show what you can achieve with Red Hat JBoss Middleware" },
       { value : "jbossdeveloper_example" , "name" : "Tutorial", "description" : "Guided content, teaching you how to build complex applications from the ground up" },
       { value : "jbossdeveloper_archetype" , "name" : "Archetype", "description" : "Maven Archetypes for building Red Hat JBoss Middleware applications" },
       { value : "jbossdeveloper_bom" , "name" : "BOM", "description" : "Maven BOMs for managing dependencies within Red Hat JBoss Middleware applications" },
-      { value : "jbossdeveloper_quickstart_early_access" , "name" : "Early Access", "description" : "Single use-case code examples demonstrating features not yet available in a product release" },
+      { value : "quickstart_early_access" , "name" : "Early Access", "description" : "Single use-case code examples demonstrating features not yet available in a product release" },
       { value : "article" , "name" : "Articles (Premium)", "description" : "Technical articles and best practices for Red Hat JBoss Middleware products" },
       { value : "solution" , "name" : "Solutions (Premium)", "description" : "Answers to questions or issues you may be experiencing" }
     ];
