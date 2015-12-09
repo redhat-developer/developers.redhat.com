@@ -1,25 +1,17 @@
 # Add as many domains as necessary. Key will act as a label
 domains:
-  production: "http://developers.redhat.com/"
-  pull-request: <%= ENV['HOST_TO_TEST'] %>
-
-# (optional) JavaScript file to execute before taking screenshot of every path.
-# Can be used to reload current page with headers specified, or to dynamically
-# AJAX in content, or all manner of other uses!
-before_capture: "javascript/snap.js"
+  production:  "http://developers.redhat.com"
+  pull-request: "https://it-developers.stage.redhat.com"
 
 # A list of URLs to skip when spidering.
-# Ruby regular expressions can be used, if prefixed with `!ruby/regexp` as defined in the YAML Cookbook​.
-# See http://www.yaml.org/YAML_for_ruby.html#regexps
 spider_skips:
-  - !ruby/regexp /^\/http://developerblog.redhat.com/*\/$/
   - !ruby/regexp /^\/video\/((?!91710755).)*\/$/
   - !ruby/regexp /^\/quickstarts\/((?!eap\/kitchensink).)*\/*$/
   - !ruby/regexp /^\/boms\/((?!eap\/jboss-javaee-6_0).)*\/*$/
   - !ruby/regexp /^\/archetypes\/((?!eap\/jboss-javaee6-webapp-archetype).)*\/*$/
 
 # the filename of the spider file to use. Default: spider.txt
-spider_file: example_com_spider.txt
+spider_file: spider.txt
 
 # the number of days to keep the site spider file
 spider_days: 10
@@ -39,19 +31,11 @@ screen_widths:
   - 1024
   - 1280
 
-# the engine to run Wraith with. Examples: 'phantomjs', 'casperjs', 'slimerjs'
+# the engine to run Wraith with.
 browser: "phantomjs"
-
-# the directory that your base screenshots will be stored in
-history_dir: 'shots_base'
 
 # the directory that your latest screenshots will be stored in
 directory: 'shots'
-
-gallery:
-  template: 'slideshow_template' # 'basic_template' (default)
-  thumb_width: 200
-  thumb_height: 200
 
 # choose how results are displayed in the gallery (default is `alphanumeric` if omitted)
 # Different screen widths are always grouped together.

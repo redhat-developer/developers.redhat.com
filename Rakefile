@@ -329,23 +329,19 @@ task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
   end
 end
 
-desc 'Run wraith'
+desc 'Run wraith visual diff tests'
 task :wraith do |t, args|
   require 'yaml/store'
-
-  cfg = '_wraith/configs/config.yaml'
-
-  p '. . . . . . Deleting old config and logs . . . . . . '
-  File.delete(cfg) if File.exist?(cfg)
-  p '. . . . . . Creating new config file with new HOST_TO_TEST . . . . . . '
-  FileUtils.cp('_wraith/configs/template_config.yaml', cfg)
-  config = YAML::Store.new(cfg)
 
   if ENV['HOST_TO_TEST'] == ''
     host_to_test = "http://docker:#{ENV['AWESTRUCT_HOST_PORT']}"
   else
     host_to_test = ENV['HOST_TO_TEST']
   end
+
+  cfg = '_wraith/configs/config.yaml'
+  FileUtils.cp '_wraith/configs/template_config.yaml', cfg
+  config = YAML::Store.new(cfg)
 
   config.transaction do
     config['domains']['pull-request'] = host_to_test
@@ -358,6 +354,7 @@ task :wraith do |t, args|
   else
     Rake::Task[:internal_test_task].invoke(args)
   end
+
   Dir.chdir('_wraith')
   exit_status = system 'bundle exec wraith capture config'
   exit(exit_status)
