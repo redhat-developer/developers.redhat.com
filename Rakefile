@@ -352,7 +352,7 @@ task :wraith do |t, args|
     p '. . . . . sending progress to github . . . . .'
     wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_wraith_task], ENV['BUILD_URL'], 'Visual Diff Tests', 'Visual Diff Tests', args)
   else
-    Rake::Task[:internal_test_task].invoke(args)
+    Rake::Task[:internal_wraith_task].invoke(args)
   end
 
   Dir.chdir('_wraith')
