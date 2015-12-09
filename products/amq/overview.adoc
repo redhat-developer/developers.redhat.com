@@ -4,7 +4,7 @@
 
 == Overview
 
-JBoss A-MQ is a high performance, flexible messaging platform that delivers information safely, reliably and enables Internet of Things (IoT). JBoss A-MQ can be deployed, and easily managed, in any configuration so you can deploy a network of brokers across your infrastructure whether they are on premise, in the Cloud, or in a hybrid configuration.
+link:http://www.redhat.com/products/jbossenterprisemiddleware/amq/[JBoss A-MQ] is a lightweight, high performance, flexible messaging platform that delivers information safely, reliably and connects Internet of Things (IoT). JBoss A-MQ can be deployed, and easily managed, in different configurations so you can deploy a network of brokers across your infrastructure whether they are on premise, in the Cloud, or in a hybrid configuration.
 
 JBoss A-MQ for xPaaS extends the messaging capabilities to OpenShift Platform-as-a-Service (PaaS) solution.
 
@@ -41,7 +41,7 @@ image:#{cdn(site.base_url + '/images/icons/products/products_cloud.png')}["Cloud
 
 == Detail
 
-Core messaging is provided by Apache ActiveMQ supporting different messaging paradigms like publish-subscribe, point-to-point, store-and-forward. Multi-protocol support (JMS 1.1, TCP, SSL, STOMP, NMS) and multi-client support (Java, C, C++) enables real-time messaging with all enterprise assets. In addition JBoss A-MQ is hosted on a lightweight OSGI-based runtime container, Apache Karaf. Fuse IDE is available along with JBDS to provide an easy-to-use integration development environment.
+Core messaging is provided by Apache ActiveMQ supporting different messaging paradigms like publish-subscribe, point-to-point, store-and-forward. Multi-protocol support (JMS 1.1, TCP, SSL, STOMP, NMS) and multi-client support (Java, C, C++) enables real-time messaging with all enterprise assets. In addition JBoss A-MQ is hosted on a lightweight OSGI-based runtime container, Apache Karaf. JBoss A-MQ is also supported to work with certified Java EE platform, link:http://www.redhat.com/en/technologies/jboss-middleware/application-platform[Red Hat JBoss Enterprise Application Platform]. JBoss Developer Studio provides an easy-to-use integration development environment built on Eclipse. 
 
 We encourage you to download JBoss A-MQ, and see for yourself if it meets your needs.
 
