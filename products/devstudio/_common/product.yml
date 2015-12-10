@@ -1,7 +1,7 @@
 name: Red Hat JBoss Developer Studio
 abbreviated_name: JBoss Developer Studio
 product_logo: developer-studio.png
-current_version: 9.0.0.GA
+current_version: 9.0.0-CVE-2015-7501.GA
 intro_video: https://vimeo.com/95444954
 vimeo_album: http://vimeo.com/album/2982449
 youtube_album: https://www.youtube.com/playlist?list=PLf3vm0UK6HKrxJ9OtX2Zmgw3nyeYs0QGR
@@ -17,14 +17,24 @@ guides:
 default_download_artifact_type: jar_universal
 description: 'A development environment with superior support for your entire development lifecycle.'
 downloads:
+  9.0.0-CVE-2015-7501.GA:
+    release_date: 2015-12-08
+    description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.5.1 Mars.1.
+    assets:
+      jar_universal:
+        name: Installer With EAP 6.4.0 CVE-2015-7501 (2015-12-08)
+        size: 633mb
+        type: jar
+        url: https://www.jboss.org/download-manager/content/origin/files/sha256/1e/1efef4d2b109efd9e8136d02067a8d62e00621e5b2b1530811bf52b5aa2fca6f/jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar
   9.0.0.GA:
     release_date: 2015-10-06
     description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.5.1 Mars.1.
     assets:
       jar_universal:
-        name: Installer With EAP
-        size: 634mb
+        name: Installer With EAP 6.4.0
+        size: 633mb
         type: jar
+        url: https://www.jboss.org/download-manager/content/origin/files/sha256/4f/4fe77f731aa2a46a4d8568786c0c7c2d486e0926025d06a95360e9e767a2af94/jboss-devstudio-9.0.0.GA-installer-eap.jar
       standalone_jar:
         name: Stand-alone Installer
         size: 489mb
