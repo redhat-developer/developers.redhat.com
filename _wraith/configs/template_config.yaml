@@ -6,16 +6,15 @@ domains:
 fuzz: 20%
 mode: diffs_only
 screen_widths:
-  - 600x768
   - 1280
 spider_days: 1
 spider_file: spider.txt
 spider_skips:
   - !ruby/regexp /^\/video\/((?!91710755).)*\//
+  - !ruby/regexp /^\/video\/(.*)\/(.*)\//
   - !ruby/regexp /^\/quickstarts\/((eap\/kitchensink).*)*\/*\//
   - !ruby/regexp /^\/boms\/((eap\/jboss-javaee-6_0).*)*\/*\//
   - !ruby/regexp /^\/archetypes\/((?!eap\/jboss-javaee6-webapp-archetype).*)*\/*\//
   - !ruby/regexp /^\/Guardfile$/
-  - !ruby/regexp /^http:\/\/static\.jboss\.org\/rhd\/javascripts\/((bottom).*)\.js:(.*)$/
-  - !ruby/regexp /^https:\/\/f\.vimeocdn\.com\/p\/(.*).(.*).(.*)\/js\/player\.js:(.*)$/
+  - !ruby/regexp /^https:\/\/f\.vimeocdn\.com\/p\/2.10.4\/js\/player\.js:.*$/
 threshold: 5
