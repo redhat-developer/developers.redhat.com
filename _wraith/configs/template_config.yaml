@@ -8,7 +8,7 @@ mode: diffs_only
 screen_widths:
   - 600x768
   - 1280
-spider_days: 10
+spider_days: 1
 spider_file: spider.txt
 spider_skips:
   - !ruby/regexp /^\/video\/((?!91710755).)*\//
