@@ -5,10 +5,10 @@ domains:
 
 # A list of URLs to skip when spidering.
 spider_skips:
-  - !ruby/regexp /^\/video\/((?!91710755).)*\/$/
-  - !ruby/regexp /^\/quickstarts\/((?!eap\/kitchensink).)*\/*$/
-  - !ruby/regexp /^\/boms\/((?!eap\/jboss-javaee-6_0).)*\/*$/
-  - !ruby/regexp /^\/archetypes\/((?!eap\/jboss-javaee6-webapp-archetype).)*\/*$/
+  - !ruby/regexp /^\/video\//
+  - !ruby/regexp /^\/quickstarts\//
+  - !ruby/regexp /^\/boms\//
+  - !ruby/regexp /^\/archetypes\//
 
 # the filename of the spider file to use. Default: spider.txt
 spider_file: spider.txt
