@@ -71,21 +71,21 @@ d. Click the _Install_ button.
 
 == Step2 Content
 
-1. Download link:http://developers.redhat.com/download-manager/file/jboss-fuse-6.2.0.GA-full_zip.zip[JBoss Fuse 6.2.0.GA]
+1. Download link:http://developers.redhat.com/download-manager/file/jboss-fuse-6.2.1.GA-full_zip.zip[JBoss Fuse 6.2.1.GA]
 +
 *For Mac / Windows Development Hosts:*
 +
-Go to the folder you have downloaded JBoss Fuse and double click on *jboss-fuse-full-6.2.0.redhat-133.zip*
+Go to the folder you have downloaded JBoss Fuse and double click on *jboss-fuse-full-6.2.1.redhat-084.zip*
 +
 *For Linux Development Hosts:*
 +
 Go to the folder where you have downloaded JBoss Fuse and unzip it +
 +
 ----
-unzip jboss-fuse-full-6.2.0.redhat-133.zip
+unzip jboss-fuse-full-6.2.1.redhat-084.zip
 ----
 +
-Edit `jboss-fuse-full-6.2.0.redhat-133/etc/users.properties` and uncomment the _admin_ user on the last line.
+Edit `jboss-fuse-full-6.2.1.redhat-084/etc/users.properties` and uncomment the _admin_ user on the last line.
 +
 2. In JBoss Developer Studio locate the _Servers_ tab and click on _New server_ button. Select *JBoss Fuse 6.2 Server*. Change the _Server name_ to *jboss-fuse* and click _Next_.
 3. On the _JBoss Fuse Runtime_ window, select the folder where you installed JBoss Fuse and click _Finish_.
@@ -135,6 +135,9 @@ The series walks you through each step of the application development lifecycle,
 
 | Innovate further. Try, experiment, test, deploy.
 | https://vimeo.com/101266094[Video]
+
+| Alternate running environment (or container)
+| link:https://vimeo.com/146080419[Video 7 Running integration on Jboss EAP]
 |===
 
 == More Resources
