@@ -145,7 +145,7 @@ profiles:
     build_threads: 1
     deploy:
       <<: *deploy
-      path: /stg_htdocs/it-rhd-stg-main/integrations/cdk_beta
+      path: /stg_htdocs/it-rhd-stg/integrations/cdk_beta
       
   production:
     <<: *profile
