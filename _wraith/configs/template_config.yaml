@@ -9,6 +9,7 @@ spider_skips:
   - !ruby/regexp /^\/quickstarts\//
   - !ruby/regexp /^\/boms\//
   - !ruby/regexp /^\/archetypes\//
+  - !ruby/regexp /^\/guardfile\//
 
 # the filename of the spider file to use. Default: spider.txt
 spider_file: spider.txt
