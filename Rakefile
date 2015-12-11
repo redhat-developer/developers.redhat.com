@@ -333,7 +333,7 @@ desc 'Run wraith'
 task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generate_wraith_config do |task, args|
   require 'yaml/store'
   sha = ENV['ghprbActualCommit']
-  options = {:context => 'Blinkr', :description => 'Wraith pending', :target_url => ENV['BUILD_URL']}
+  options = {:context => 'Wraith', :description => 'Wraith pending', :target_url => ENV['BUILD_URL']}
 
   begin
     GitHub.update_status($github_org, $github_repo, sha, 'pending', options)
