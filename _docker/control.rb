@@ -197,7 +197,6 @@ end
 if tasks[:awestruct_up_service]
   puts 'bringing up awestruct service'
   execute_docker_compose :up, tasks[:awestruct_up_service]
-  puts '~~~~ brought it up'
 end
 
 if tasks[:acceptance_test_target_task]
