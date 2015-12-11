@@ -1,4 +1,5 @@
 :awestruct-layout: product-download-custom
+:awestruct-interpolate: true
 
 == Download
 
@@ -9,7 +10,7 @@ For a limited time, Red Hat is providing a complimentary Red Hat Developer Suite
 Once you have a subscriptions in place (see above), CDK setup is easy to do Docker container development on your Windows, MacOS, or Linux machine. Download the following items in the order below:
 
 ==== 1. Container Development Kit (CDK)
-link:https://developers.redhat.com/download-manager/file/cdk-2.0.0-beta3.zip[Red Hat Container Development Kit (CDK) 2]
+link:#{site.download_manager_file_base_url}/cdk-2.0.0-beta3.zip[Red Hat Container Development Kit (CDK) 2]
 
 ==== 2. Vagrant
 Download one of the following from the Vagrant website based upon your operating system.
@@ -26,9 +27,9 @@ Download one of the following Vagrant Boxes based upon your platform and hypervi
 
 *RHEL 7 / OpenShift 3*
 
-* link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[Download VirtualBox]
-* link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[Download VMware]
-* link:https://developers.redhat.com/download-manager/file/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-libvirt.box[Download KVM (Libvirt)]
+* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[Download VirtualBox]
+* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[Download VMware]
+* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-libvirt.box[Download KVM (Libvirt)]
 
 [.callout-light]
 *NOTE:*  In order to run Vagrant, you must sign the Developer Suite terms and conditions. If you have not done this already, log in to the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the RHEL Developer Suite Terms & Conditions].
