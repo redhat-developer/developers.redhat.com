@@ -1,3 +1,4 @@
+---
 browser: phantomjs
 directory: shots
 domains:
@@ -17,4 +18,5 @@ spider_skips:
   - !ruby/regexp /^\/archetypes\/((?!eap\/jboss-javaee6-webapp-archetype).*)*\/*\//
   - !ruby/regexp /^\/Guardfile$/
   - !ruby/regexp /^https:\/\/f\.vimeocdn\.com\/p\/2.10.4\/js\/player\.js:.*$/
+  - !ruby/regexp /f\.vimeocdn\.com/
 threshold: 5

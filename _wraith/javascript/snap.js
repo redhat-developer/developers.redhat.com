@@ -76,7 +76,7 @@ function debounced_render() {
     }
 
     // Sometimes, straggling requests never make it back, in which
-    // case, timeout after 5 seconds and render the page anyway
+    // case, timeout after 7 seconds and render the page anyway
     final_timeout = setTimeout(function() {
         console.log('Snapping ' + url + ' at width ' + view_port_width);
         page.render(image_name);
