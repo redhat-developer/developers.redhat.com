@@ -71,3 +71,4 @@ app.mktg_ops.elqFormName = "#{site.elq_form_name || %Q{jboss-org-integration-san
 app.ssoConfig = {};
 app.ssoConfig.account_url = '#{site.keycloak_account_url}';
 app.ssoConfig.auth_url = '#{site.keycloak_auth_url}';
+app.ssoConfig.confirmation = '#{site.base_url}/confirmation';

@@ -133,7 +133,7 @@ profiles:
   # Integration Staging: CDK Beta
   integration_cdk_beta:
     <<: *profile
-    base_url: http://it-developers.stage.redhat.com/integrations/cdk_beta
+    base_url: http://it-developers-pr.stage.redhat.com/integrations/cdk_beta
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
@@ -145,7 +145,7 @@ profiles:
     build_threads: 1
     deploy:
       <<: *deploy
-      path: /stg_htdocs/it-rhd-stg-main/integrations/cdk_beta
+      path: /stg_htdocs/it-rhd-stg/integrations/cdk_beta
       
   production:
     <<: *profile
