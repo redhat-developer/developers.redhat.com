@@ -330,7 +330,7 @@ task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
 end
 
 desc 'Run wraith'
-task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generate_wraith_config do |task, args|
+task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
   require 'yaml/store'
   sha = ENV['ghprbActualCommit']
   options = {:context => 'Wraith', :description => 'Wraith pending', :target_url => ENV['BUILD_URL']}
