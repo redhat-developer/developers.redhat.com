@@ -46,9 +46,14 @@
     ul {
       margin-bottom: 10px;
     }
-    .video-thumb p{
-      margin-top: 8px;
-      margin-bottom: 10px;
+    .video-thumb {
+      img {
+        max-width: 225px;
+      }
+      p{
+        margin-top: 8px;
+        margin-bottom: 10px;
+      }
     }
     a.learn-more {
       text-transform: uppercase;
@@ -160,6 +165,16 @@ ul.homepage-resources {
       color: $grey-7;
     }
   }
+  .banner-icons {
+    color: $white;
+    text-align: center;
+    margin: 2em 0;
+    img {
+      display: block;
+      margin: 1em auto 0 auto;
+      max-width: 250px;
+    }
+  }
 }
 
 // NEW MOBILE HOMEPAGE STYLES
@@ -207,6 +222,10 @@ ul.homepage-resources {
   a.title {
     max-width: 100%;
   }
+  .inverse-spotlights .large-8 {
+    width: 90% !important;
+    padding: 2em !important;
+  }
 }
 
 @include mobile-landscape-and-down {
@@ -220,10 +239,6 @@ ul.homepage-resources {
         top:450px;
       }
     }
-  }
-  .inverse-spotlights .large-8 {
-    width: 90% !important;
-    padding: 2em !important;
   }
   .spotlights-container {
     flex-direction: column;
