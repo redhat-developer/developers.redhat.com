@@ -3,21 +3,19 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.awestruct_microsite_type
+    - node.type.rhd_solution_overview
   module:
     - text
-id: node.awestruct_microsite_type.body
+id: node.rhd_solution_overview.body
 field_name: body
 entity_type: node
-bundle: awestruct_microsite_type
+bundle: rhd_solution_overview
 label: Body
-description: 'Main content of the microsite'
-required: true
+description: ''
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   display_summary: true
-third_party_settings: {  }
 field_type: text_with_summary
-

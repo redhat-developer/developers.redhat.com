@@ -2,19 +2,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.awestruct_microsite_type.body
-    - node.type.awestruct_microsite_type
+    - field.field.node.rhd_solution_overview.body
+    - node.type.rhd_solution_overview
   module:
     - path
     - text
-id: node.awestruct_microsite_type.default
+id: node.rhd_solution_overview.default
 targetEntityType: node
-bundle: awestruct_microsite_type
+bundle: rhd_solution_overview
 mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 0
+    weight: 31
     settings:
       rows: 9
       summary_rows: 3
@@ -29,6 +29,18 @@ content:
     type: path
     weight: 30
     settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 15
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 16
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -45,7 +57,4 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden:
-  promote: true
-  sticky: true
-
+hidden: {  }

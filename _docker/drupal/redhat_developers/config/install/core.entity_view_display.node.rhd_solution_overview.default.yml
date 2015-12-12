@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rhd_solution_overview.body
+    - node.type.rhd_solution_overview
+  module:
+    - text
+    - user
+id: node.rhd_solution_overview.default
+targetEntityType: node
+bundle: rhd_solution_overview
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  links: true

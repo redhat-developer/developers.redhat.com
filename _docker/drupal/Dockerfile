@@ -9,6 +9,6 @@ COPY run.sh /
 COPY db-check.php /
 
 # Adding the awestruct module
-COPY awestruct /var/www/html/modules/custom/awestruct
+COPY redhat_developers /var/www/html/modules/custom/redhat_developers
 
 CMD ["/bin/bash", "/run.sh"]

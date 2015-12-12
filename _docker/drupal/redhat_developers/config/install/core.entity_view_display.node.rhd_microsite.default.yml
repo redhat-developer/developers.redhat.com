@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.awestruct_microsite_type.body
-    - node.type.awestruct_microsite_type
+    - field.field.node.rhd_microsite.body
+    - node.type.rhd_microsite
   module:
     - text
     - user
-id: node.awestruct_microsite_type.default
+id: node.rhd_microsite.default
 targetEntityType: node
-bundle: awestruct_microsite_type
+bundle: rhd_microsite
 mode: default
 content:
   body:

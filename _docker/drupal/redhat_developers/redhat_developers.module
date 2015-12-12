@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Contains redhat_developers.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function redhat_developers_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the redhat_developers module.
+    case 'help.page.redhat_developers':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('redhat_developers types and fields') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function redhat_developers_theme($existing, $type, $theme, $path) {
+    return array(
+        'node__rhd_solution_overview' => array('render element' => 'elements')
+    );
+}
+
