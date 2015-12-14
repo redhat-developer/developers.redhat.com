@@ -1,0 +1,150 @@
+---
+layout: base
+body_class: fullbleed
+title: Red Hat Developers Content Contributors
+---
+
+section.contributors-main
+  .row
+    .large-16.columns.contrubutors-title
+      h2 Red Hat Developers Content Contributors
+      h4 Share more. Learn more. Code More. 
+    .large-8.columns.contributors-cta
+      h5.caps Become a Content Contributor!
+      p It’s easy to get started with 3 ways to contribute: General contributor, Most Valuable Contributor and Developers on the Street. 
+      a.button href='signup' Sign Me Up!
+
+section
+  .row.contributers-sec1
+    .large-24.columns
+      h3 Welcome to Red Hat Developers Content Contributors
+      br
+    .large-10.columns
+      p.text
+        | Red Hat believes in and is founded on community.  Combining the community within Red Hat and outside of Red Hat makes the content better, more interesting, and frankly, makes us all smarter.
+      p.text
+        | You don’t have to consider yourself a great writer to participate. You can contribute what you have done, seen or tried.  Blogs, demos, videos, stories, conference experiences – they all provide value to the community.  It doesn’t have to be fancy, just authentic.
+    .large-14.columns 
+      .row.benefits
+        .large-24.columns
+          h4 There are many benefits to contributing!
+        .large-8.small-24.columns
+          span.left
+            img(src=cdn("#{site.base_url}/images/content-contributors/red_1.png"))
+          span
+            h6.caps Build your personal brand
+          p Share your work with the world. Whether you want to be a blogger, present at conferences or set yourself up for your next role your brand is key.
+        .large-8.small-24.columns
+          span.left
+            img(src=cdn("#{site.base_url}/images/content-contributors/red_2.png"))
+          span
+            h6.caps Extend your reach
+          p Let us put the power of our team behind your content and help you reach new audiences.
+        .large-8.small-24.columns
+          span.left
+            img(src=cdn("#{site.base_url}/images/content-contributors/red_3.png"))
+          span
+            h6.caps Get swag &amp; opportunities
+          p Earn your way to great swag, the chance to get a free DevNation ticket or be invited to join our advisory board.
+
+section.contributers-sec2
+  .row
+    .large-24.columns
+      h2 Contributor Options
+  .row
+    .large-8.small-24.columns
+      img(src=cdn("#{site.base_url}/images/content-contributors/wc_icon.png"))
+      h4 General Contributor
+      p Contributes content once or twice a year
+    .large-8.small-24.columns
+      img(src=cdn("#{site.base_url}/images/content-contributors/mvc_icon.png"))
+      h4 Most Valuable Contributor (MVC)
+      ul
+        li Contributes semi-regularly
+        li Earns points for swag with each contribution
+        li Opportunity to earn free DevNation tickets
+        li Potentially earn invitation to join the Red Hat Developers Content Advisory Board
+    .large-8.small-24.columns
+      img(src=cdn("#{site.base_url}/images/content-contributors/dots_icon.png"))
+      h4 Developer on the Street (DOTS)
+      ul
+        li Contributes recaps from conferences
+        li Provides presentation decks to be shared (if relevant)
+        li Earns swag
+        li Submits short pieces about sessions, events or meet-ups
+
+section.contributers-sec3
+  .row
+    .large-24.columns
+      h2 It’s your choice!
+      h2.caps WHICH OPTIONS ARE RIGHT FOR YOU?
+    .large-12.columns
+      p Wondering where to start as a contributor?  Get started finding your match by selecting one of the options below.  And the good news, you can switch between programs as your schedule allows.  No change request needed.
+  
+  .row
+    form#contributorsQuiz
+      .large-24.columns
+        h3 How often would you like to contribute content?        
+      .cc-selector
+        .large-10.small-24.columns.cc-question
+          input(id="q1a1" type="radio" name="Q1" value="q1a1")
+          label(class="answer-cc radio-clock" for="q1a1") 
+            div.label-text
+              img.unchecked(src=cdn("#{site.base_url}/images/content-contributors/unchecked.png"))
+              img.checked(src=cdn("#{site.base_url}/images/content-contributors/checked.png"))
+              p I&#39;m interested in contributing semi-regularly and earning points for swag.
+          
+        .large-4.small-24.columns
+          h2.cc-or or
+        
+        .large-10.small-24.columns.cc-question
+          input(id="q1a2" type="radio" name="Q1" value="q1a2")
+          label(class="answer-cc radio-calendar"for="q1a2")
+            div.label-text
+              img.unchecked(src=cdn("#{site.base_url}/images/content-contributors/unchecked.png"))
+              img.checked(src=cdn("#{site.base_url}/images/content-contributors/checked.png"))
+              p I&#39;m only interested in contributing once or twice a year.
+      
+
+      .large-24.columns
+        h3 Do you attend conferences and meet-ups?
+      .cc-selector
+        .large-10.small-24.columns.cc-question
+          input(id="q2a1" type="radio" name="Q2" value="q2a1")
+          label(class="answer-cc radio-podium-woman" for="q2a1") 
+            div.label-text
+              img.unchecked(src=cdn("#{site.base_url}/images/content-contributors/unchecked.png"))
+              img.checked(src=cdn("#{site.base_url}/images/content-contributors/checked.png"))
+              p  I present at or attend conferences and meet-ups.
+        
+        .large-4.small-24.columns
+          h2.cc-or or
+        
+        .large-10.small-24.columns.cc-question
+          input(id="q2a2" type="radio" name="Q2" value="q2a2")
+          label(class="answer-cc radio-podium-empty"for="q2a2")
+            div.label-text
+              img.unchecked(src=cdn("#{site.base_url}/images/content-contributors/unchecked.png"))
+              img.checked(src=cdn("#{site.base_url}/images/content-contributors/checked.png"))
+              p  I do not attend conferences and meet-ups.
+  
+    .large-24.columns
+      .answer-block
+        h3.result-title
+        p.result-text
+        a.button(href='signup') Sign Me Up!
+
+section.contributers-sec4
+  .row
+    .large-10.columns
+      h2 Have a question?
+    .large-13.columns
+      p 
+        | If you have any additional questions about being a Red Hat Developers Content Contributor, you can email
+        a href="mailto:ecurley@redhat.com"  ecurley@redhat.com
+        |.
+
+= javascripts('index', true) do
+  script src="#{site.base_url}/javascripts/vendor/class.create.js"
+  script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
+  script src="#{site.base_url}/javascripts/contributors-quiz.js"
