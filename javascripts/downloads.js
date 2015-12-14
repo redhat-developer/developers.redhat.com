@@ -140,12 +140,23 @@ app.downloads.display = function(data) {
 
   var end = i + 1;
 
-  // create the featured downloads table
-  var $latestDownloadsTable = app.downloads.createDownloadTable(productArray.slice(0,end));
+  // create the featured downloads tables
+  var currentDownloads = productArray.slice(0,end);
+  
+  /* loop through all the curent downloads and make their own table */
+  var $latestDownloadsTables = $("<div>");
+  currentDownloads.forEach(function(product){
+    console.log(product);
+    $latestDownloadsTables.append( app.downloads.createDownloadTable([product]) );
+  });
+
+  // var $latestDownloadsTable = app.downloads.createDownloadTable();
+  
+  // past downloads table
   var $allDownloadsTable = app.downloads.createDownloadTable(productArray.slice(end));
 
   // put everything into an element
-  $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTable, $toggleLink, $allDownloadsTable)
+  $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTables, $toggleLink, $allDownloadsTable)
 
   // put it into the DOM
   $('.product-downloads').html($downloads);
