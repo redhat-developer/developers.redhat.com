@@ -16,11 +16,21 @@ class GitHub
     Octokit.pull_requests("#{org}/#{repo}", :state => 'closed')
   end
 
+  def self.all_status_to_pending(org, repo, sha, target_url)
+
+    @@valid_contexts.each do |context|
+      options = {:context => context, :target_url => target_url, :description => "Pending"}
+      Octokit.create_status("#{org}/#{repo}", sha, "pending", options)
+    end
+  end
+
   def self.update_status(org, repo, sha, state, options = {})
     status = options[:context]
+
     if (!@@valid_contexts.include?(status))
       raise GitHubExceptions::UnknownStatus.new
     end
+
     Octokit.create_status("#{org}/#{repo}", sha, state, options)
   end
 
