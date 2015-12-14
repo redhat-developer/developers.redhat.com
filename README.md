@@ -2,6 +2,8 @@
 
 Powering the [Red Hat Developers site](http://developers.redhat.com/).
 
+The docker stuff will go here [READ IT](_docker/README.md)
+
 ## Developer setup
 We recommend that Docker be used in development. This simplifies the setup, and makes your development environment consistent with other developers and our CI servers. The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
 
