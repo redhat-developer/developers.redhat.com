@@ -8,7 +8,7 @@ head
       clientId: 'web'
     });
 
-    var redirectUri = 'http://developers.redhat.com/confirmation';
+    var redirectUri = app.ssoConfig.confirmation;
 
     keycloak.init().success(function (authenticated) {
       if (!authenticated) {
