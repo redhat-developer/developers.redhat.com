@@ -6,118 +6,117 @@ title: Red Hat Developers
 description: The simple, modern & productive way to build apps and infrastructure.
 ---
 
-/ Hero Slider
-.slider-wrapper.hero-wide
-  .slider#slider(data-pause-on-hover="true" data-timeout="5000")
-    .swipe-wrap
-
-        /  slide - Devoxx
-        .slide.slide--devoxx
-          .row
-            .large-15.columns.small-centered
-              h2 Game Changing DevOps
-              p Red Hat Developers at Devoxx
-              a.button.inverse(href="#{site.base_url}/events/devoxx/2015") Learn More
-
-        /  slide - Signup for RedHat Developers
-        .slide.slide--redhatdevelopers
-          .row
-            .large-24.columns.slide-text
-              .row
-                h2.slide__heading Become a Red Hat Developer. <br> Register Today!
-              .row.center
-                .large-12.columns
-                  p Red Hat delivers the resources and ecosystem of experts to help developers be more productive and build great solutions.
-                .large-12.columns
-                  a.button.inverse.keycloak-url(href="") Register For Free!
-
-        /  slide - DevNation
-        .slide.slide--devnation
-          .row
-            .large-12.columns
-              img(src=cdn("#{site.base_url}/images/slider/RHDev_homecarousel_docker_logo_09252015.png"))
-            .large-12.columns.slide-text
-              h2 Docker images in 5 minutes or less
-              h4 See how Docker can increase your productivity
-              a.button(href="#{site.base_url}/video/youtube/czH9qZUusLs/") Watch now.
-            
-        /  slide - atomic
-        .slide.slide--atomic
-          .row
-            .large-9.columns
-              img(src=cdn("#{site.base_url}/images/slider/RH_atomic_bug_2cBlue_text_rgb.svg"))
-            .large-15.columns
-              h2 Announcing Red Hat<br>Container Platforms and Tools!
-              p Make applications and more portable with Red Hat container platforms and tools
-              p Get Started with Atomic
-              a.button(href="#{site.base_url}/containers/") Hello World
-
-        /  slide - Modern Java EE Design Patterns
-        .slide.slide--modernjava
-          .row
-            .large-11.columns
-              h2 Modern Java EE Design Patterns
-              p Learn how to build microservice-based architectures on top of Java EE
-              a.button.inverse(href="#{site.base_url}/promotions/distributed-javaee-architecture/") Download free book
-            .large-4.columns
-              img(src=cdn("#{site.base_url}/images/slider/homepage_carousel_distributed-javaee-architecture.png"))
-
-  .slider-controls
-    .text-pagination
+section.homepage-main
+  .row
+    .large-16.columns.homepage-cta
+      a.button href='http://wp.me/p2WBxv-1KtN' Learn More
+    .large-8.columns.homepage-getstarted
+      h5.caps Get Started
       ul
-        li.slider-item.arrow
-          a.slider-prev(data-direction="prev")
-            i.fa.fa-arrow-circle-left.fa-2x
-        li.slider-item.slider-pager-active: a(href="#" data-index="0")
-          strong Red Hat Developers at Devoxx
-        li.slider-item: a(href="#" data-index="1")
-          strong Register today for Red Hat Developers
-        li.slider-item: a(href="#" data-index="2")
-          strong Docker images in 5 minutes or less
-        li.slider-item: a(href="#" data-index="3")
-          strong Announcing Red Hat Container Platforms and Tools
-        li.slider-item: a(href="#" data-index="4")
-          strong Download Modern Java EE Design Patterns
-        li.slider-item.arrow
-          a.slider-next(data-direction="next")
-            i.fa.fa-arrow-circle-right.fa-2x
+        li 
+          a href='#{site.base_url}/register' Red Hat Developers launches
+        li 
+          a href='http://developerblog.redhat.com/2015/10/12/optimizing-twelve-factor-app-red-hat-openshift/' OpenShift Enterprise 3 takes off
+        li 
+          a href='#{site.base_url}/promotions/distributed-javaee-architecture/' New book: Modern JavaEE Design Patterns
+        li 
+          a href='#{site.base_url}/products/mobileplatform/get-started' Hello World for Red Hat Mobile Application Platform
+        li 
+          a href='http://developerblog.redhat.com/2015/11/04/red-hat-microsoft-making-dot-net-on-linux-for-enterprises/' Microsoft and Red Hat partner
+      .clearfix
+      h5.caps Accelerate Your Development
+      .medium-20.small-24.columns
+        a.video-thumb(href='#{site.base_url}/video/youtube/GCtpncA0Ea0')
+          img(src=cdn("#{site.base_url}/images/design/burr_video_thumbnail.png") alt="Video Thumbnail Img")
+          p 2015 JBoss Red Hat Keynote Demo
 
 .row
-  .large-24.columns
-    h2.home-title.caps Become a Red Hat Developer
-  .large-12.columns
-    h4 Share more. Learn more. Code more.
-    p Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications. Join now for free!
-
-  .large-12.columns
-    a.button.button--join-today.keycloak-url(href="#")
-      | Join Today - It's Free!
-  .large-24.columns
-    ul.medium-block-grid-3.cta-items
-      li
-        .cta-item
-          img(src=cdn("#{site.base_url}/images/design/rh-icon-download.svg"))
-          p Get immediate access to download Red Hat® products
-      li
-        .cta-item
-          img(src=cdn("#{site.base_url}/images/design/rh-icon-cloud.svg"))
-          p Launch your new apps in the cloud on Red Hat® OpenShift
-      li
-        .cta-item
-          img(src=cdn("#{site.base_url}/images/design/rh-icon-piggybank.svg"))
-          p Offers and discounts on products, services, training, & events
+  .large-24
+    .spotlights-container
+      a.spotlight-item href='#{site.base_url}/events/devoxx/2015/'
+        .cut-image
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_devoxxbe2015.png") alt="Devoxx Be")
+        span Red Hat Developers at Devoxx
+      a.spotlight-item.keycloak-url href=''
+        .cut-image
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_joinrhd.png") alt="Join RHD")
+        span Register today for Red Hat Developers
+      a.spotlight-item href='#{site.base_url}/images/slider/RHDev_homecarousel_docker_logo_09252015.png'
+        .cut-image
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_docker.png") alt="Docker")
+        span Docker images in 5 minutes or less
+      a.spotlight-item href='#{site.base_url}/containers/'
+        .cut-image
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_atomic.png") alt="Atomic")
+        span Announcing Red Hat Container Platforms and Tools
+      a.spotlight-item href='#{site.base_url}/promotions/distributed-javaee-architecture/'
+        .cut-image
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_modernee.png") alt="Modern Java EE Design Patterns")
+        span Download Modern Java EE Design Patterns
 
 .row
-  .large-24.columns
-    h2.home-title.caps I'm interested in…
-.row
-  .large-6.columns
-    p Red Hat technologies work together to provide developers a powerful platform for solving today's challenges.
-  .large-18.columns
-    ul.medium-block-grid-3.small-block-grid-1
-      li: a.button.button--solution(href="#{site.base_url}/containers/") Containers
-      li: a.button.button--solution(href="#{site.base_url}/devops/") DevOps
-      li: a.button.button--solution(href="#{site.base_url}/mobile/") Mobile
-      li: a.button.button--solution(href="#{site.base_url}/web-and-api-development/") Web Development + APIs
-      li: a.button.button--solution(href="#{site.base_url}/enterprise-java/") Enterprise Java
-      li: a.button.clear.button--solution(href="#{site.base_url}/solutions/") See All Solutions ▶
+  .medium-12.columns
+    h4.caps Suggested
+    ul.homepage-resources
+      - site.our_picks.first(4).each do |k,v|
+        li
+          span.type-icon
+            - if v['type'] == 'article-blog'
+              i.fa.fa-globe.fa-2x
+            - if v['type'] == 'book'
+              i.fa.fa-book.fa-2x
+            - if v['type'] == 'video'
+              i.fa.fa-video-camera.fa-2x
+          span
+            a.title(href="#{v['url']}") #{v['title']}
+            p.date #{v['date']}
+
+  .medium-12.columns
+    h4.caps Latest
+    div(ng-app="dcp")
+      div(ng-controller="developerMaterialsController")
+        = partial 'newest-resources.html.slim'
+
+section.register-banner.inverse
+  .row
+    .large-24.column
+      h2 Join Red Hat Developers
+      h4 Share more. Learn more. Code more.
+      .row
+        .large-14.columns
+          p Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications. Join now for free!
+        .large-10.columns
+          a.button(href="#{site.base_url}/register") Join Today - It&apos;s Free!
+      .row.inverse-spotlights
+        .large-8.small-24.columns
+          i.fa.fa-download.fa-5x
+          h6.center Get immediate access to download Red Hat® products
+        .large-8.small-24.columns
+          i.fa.fa-cloud-upload.fa-5x
+          h6.center Launch your new apps in the cloud on Red Hat® OpenShift
+        .large-8.small-24.columns
+          i.fa.fa-dollar.fa-5x
+          h6.center Offers and discounts on products, services, training, & events
+
+section.contributors-banner.inverse
+  .row
+    .large-24.column
+      h2 Become a content contributor and get swag.
+      h4 Share more. Learn more. Code more.
+      .row
+        .large-14.columns
+          p Our content is only as good as its contributors and we'd like to feature yours. Anything from blogs, videos, demos, photos, screenshots, and more that can help enterprise developers do their jobs faster.
+          p It's easy to get started with three ways to contribute.
+        .large-10.columns
+          a.button(href="#{site.base_url}/community/contributor") Learn More
+      .row.banner-icons
+        .large-8.small-24.columns
+          img(src=cdn("#{site.base_url}/images/content-contributors/wc_icon.png"))
+          h3 General Contributor
+        .large-8.small-24.columns
+          img(src=cdn("#{site.base_url}/images/content-contributors/mvc_icon.png"))
+          h3 Most Valuable Contributor
+        .large-8.small-24.columns
+          img(src=cdn("#{site.base_url}/images/content-contributors/dots_icon.png"))
+          h3 Developer on the Street
+
