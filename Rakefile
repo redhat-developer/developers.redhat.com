@@ -38,10 +38,10 @@ end
 
 desc 'Setup the environment to run Awestruct'
 task :test do |task, args|
-  if ENV['ghprbActualCommit'].to_s != ''
-    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing', args)
-  else
+  if ENV['ghprbActualCommit'].empty?
     Rake::Task[:internal_test_task].invoke(args)
+  else
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing', args)
   end
 end
 
@@ -140,10 +140,10 @@ end
 
 task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
   msg "running deploy task with #{args}"
-  if ENV['ghprbActualCommit'].to_s != ''
-    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_deploy_task], "#{ENV['site_base_path']}/#{ENV['site_path_suffix']}", "Site Preview", 'Site preview deployement', args)
-  else
+  if ENV['ghprbActualCommit'].empty?
     Rake::Task[:internal_deploy_task].invoke(*args.to_a)
+  else
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_deploy_task], "#{ENV['site_base_path']}/#{ENV['site_path_suffix']}", "Site Preview", 'Site preview deployement', args)
   end
 end
 
@@ -416,14 +416,14 @@ def run_awestruct(args)
   if ENV['site_base_path']
     base_url = ENV['site_base_path']
 
-    if ENV['site_path_suffix'].to_s != ''
+    unless ENV['site_path_suffix'].empty?
       base_url = "#{base_url}/#{ENV['site_path_suffix']}"
     end
   end
 
   args ||= "" # Make sure that args is initialized
 
-  if base_url.to_s != ''
+  unless base_url.empty?
     args << " --url " + base_url
   end
   msg "Executing awestruct with args #{args}"
