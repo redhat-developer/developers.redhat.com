@@ -330,7 +330,7 @@ task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
 end
 
 desc 'Run wraith'
-task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
+task :wraith, [:new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
   require 'yaml/store'
   sha = ENV['ghprbActualCommit']
   options = {:context => 'Wraith', :description => 'Wraith pending', :target_url => ENV['BUILD_URL']}
@@ -340,7 +340,9 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] do |task, a
 
     $staging_config ||= config 'staging'
     wraith_base_path = "#{args[:pr_prefix]}/#{args[:pull]}/wraith"
-    wraith_path = "#{wraith_base_path}/#{args[:build]}"
+    p "Wraith base path #{wraith_base_path}"
+    wraith_path = "#{wraith_base_path}/#{args[:build]} !!!!!!!!!!!!!!!!!!"
+    p "Wraith path #{wraith_path} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     FileUtils.rm_rf('_tmp/wraith')
     FileUtils.mkdir_p('_tmp/wraith')
 
@@ -349,9 +351,10 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] do |task, a
     config = YAML::Store.new(cfg)
 
     new_path = "#{args[:new]}/#{args[:pr_prefix]}/#{args[:pull]}/#{args[:build_prefix]}/#{args[:build]}"
+    p "New path #{new_path} ========================================================"
     config.transaction do
       config['domains']['pull-request'] = new_path
-      config['sitemap'] = "#{base_url}/sitemap.xml"
+      config['sitemap'] = "#{new_path}/sitemap.xml"
     end
 
     Dir.chdir('_wraith')
