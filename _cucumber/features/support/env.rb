@@ -19,8 +19,8 @@ SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
 
 Capybara.configure do |config|
 
-  if ENV['HOST_TO_TEST'] == ''
-    host_to_test = "http://developers.redhat.com"
+  if ENV['HOST_TO_TEST'].to_s.empty?
+    raise "please provide a variable for HOST_TO_TEST"
   else
     host_to_test = ENV['HOST_TO_TEST']
   end
