@@ -3,7 +3,7 @@ browser: phantomjs
 directory: shots
 domains:
   production: "http://developers.redhat.com/"
-  pull-request: "https://it-developers.stage.redhat.com/"
+  pull-request: "http://it-developers.stage.redhat.com/"
 fuzz: 20%
 mode: diffs_only
 screen_widths:
