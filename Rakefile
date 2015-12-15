@@ -131,7 +131,15 @@ task :tag, [:profile, :tag_name] do |task, args|
   end
 end
 
-task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
+desc 'Clears all status to pending'
+task :clear_status do |task, args|
+  if ENV['ghprbActualCommit'].to_s != ''
+    msg "clearing all status for #{ENV['ghprbActualCommit']}"
+    GitHub.all_status_to_pending($github_org, $github_repo, ENV['ghprbActualCommit'], ENV['BUILD_URL'])
+  end
+end
+
+task :deploy, [:profile, :tag_name] => [:check, :tag, :push]  do |task, args|
   msg "running deploy task with #{args}"
   if ENV['ghprbActualCommit'].to_s != ''
     wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_deploy_task], "#{ENV['site_base_path']}/#{ENV['site_path_suffix']}", "Site Preview", 'Site preview deployement', args)
@@ -316,7 +324,7 @@ task :reap_old_pulls, [:pr_prefix] do |task, args|
 end
 
 desc 'Make sure Pull Request dirs exist'
-task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
+task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] => :clear_status do |task, args|
   msg 'running create_pr_dirs'
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
