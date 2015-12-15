@@ -66,3 +66,6 @@ interpolate: true
                   p #{c.abstract}
                   - if c.speaker
                     p #{c.speaker_intro}
+
+= javascripts('index', true) do
+  script src="#{site.base_url}/javascripts/vjbug-jira-collector.js"
