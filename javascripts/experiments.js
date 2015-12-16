@@ -25,6 +25,8 @@ app.pageVariations = [
 ];
 
 $(function() {
-  var chosenVariation = cxApi.chooseVariation();
-  app.pageVariations[chosenVariation]();
+  if(typeof cxApi !== 'undefined') {
+    var chosenVariation = cxApi.chooseVariation();
+    app.pageVariations[chosenVariation]();
+  }
 });

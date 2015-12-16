@@ -38,10 +38,10 @@ end
 
 desc 'Setup the environment to run Awestruct'
 task :test do |task, args|
-  if ENV['ghprbActualCommit'].to_s != ''
-    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing', args)
-  else
+  if ENV['ghprbActualCommit'].to_s.empty?
     Rake::Task[:internal_test_task].invoke(args)
+  else
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_test_task], ENV["BUILD_URL"], "Unit Tests", 'Unit testing', args)
   end
 end
 
@@ -105,6 +105,13 @@ task :preview, [:profile] => :check do |task, args|
   run_awestruct "-P #{profile} -a -s --force -q --auto --livereload -b 0.0.0.0 -p #{awestruct_running_port}"
 end
 
+desc 'Build and preview the site locally in development mode without live reload to allow test to work'
+task :preview_no_reload, [:profile] => :check do |task, args|
+  profile = args[:profile] || 'development'
+  awestruct_running_port = awestruct_port(profile)
+  run_awestruct "-P #{profile} -a -s --force -q --auto -b 0.0.0.0 -p #{awestruct_running_port}"
+end
+
 desc 'Generate the site using the defined profile, or development if none is given'
 task :gen, [:profile] => :check do |task, args|
   run_awestruct "-P #{args[:profile] || 'development'} -g --force -q"
@@ -131,12 +138,20 @@ task :tag, [:profile, :tag_name] do |task, args|
   end
 end
 
-task :deploy, [:profile, :tag_name] => [:check, :tag, :push] do |task, args|
-  msg "running deploy task with #{args}"
+desc 'Clears all status to pending'
+task :clear_status do |task, args|
   if ENV['ghprbActualCommit'].to_s != ''
-    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_deploy_task], "#{ENV['site_base_path']}/#{ENV['site_path_suffix']}", "Site Preview", 'Site preview deployement', args)
-  else
+    msg "clearing all status for #{ENV['ghprbActualCommit']}"
+    GitHub.all_status_to_pending($github_org, $github_repo, ENV['ghprbActualCommit'], ENV['BUILD_URL'])
+  end
+end
+
+task :deploy, [:profile, :tag_name] => [:check, :tag, :push]  do |task, args|
+  msg "running deploy task with #{args}"
+  if ENV['ghprbActualCommit'].to_s.empty?
     Rake::Task[:internal_deploy_task].invoke(*args.to_a)
+  else
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_deploy_task], "#{ENV['site_base_path']}/#{ENV['site_path_suffix']}", "Site Preview", 'Site preview deployement', args)
   end
 end
 
@@ -316,7 +331,7 @@ task :reap_old_pulls, [:pr_prefix] do |task, args|
 end
 
 desc 'Make sure Pull Request dirs exist'
-task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
+task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] => :clear_status do |task, args|
   msg 'running create_pr_dirs'
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
@@ -408,10 +423,17 @@ def run_awestruct(args)
 
   if ENV['site_base_path']
     base_url = ENV['site_base_path']
-    base_url = "#{base_url}/#{ENV['site_path_suffix']}" if ENV['site_path_suffix']
+
+    unless ENV['site_path_suffix'].to_s.empty?
+      base_url = "#{base_url}/#{ENV['site_path_suffix']}"
+    end
   end
+
   args ||= "" # Make sure that args is initialized
-  args << " --url " + base_url if base_url
+
+  unless base_url.to_s.empty?
+    args << " --url " + base_url
+  end
   msg "Executing awestruct with args #{args}"
   unless system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
     raise "Error executing awestruct"

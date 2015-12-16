@@ -1,0 +1,8 @@
+ul.homepage-resources
+  li(ng-repeat="item in data.displayedMaterials | noURL | limitTo: 4")
+    span.type-icon
+      i.fa.fa-globe.fa-2x(ng-show="item.fields.sys_type !== 'video'")
+      i.fa.fa-video-camera.fa-2x(ng-show="item.fields.sys_type == 'video'")
+    span
+      a.title(ng-href="{{item.fields.sys_url_view | urlFix}}" ) {{item.fields.sys_title}}
+      p.date {{item.fields.sys_created | timeAgo}}

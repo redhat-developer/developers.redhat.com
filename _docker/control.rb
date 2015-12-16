@@ -194,8 +194,12 @@ if tasks[:awestruct_command_args]
   execute_docker_compose :run, tasks[:awestruct_command_args]
 end
 
+if tasks[:awestruct_up_service]
+  puts 'bringing up awestruct service'
+  execute_docker_compose :up, tasks[:awestruct_up_service]
+end
+
 if tasks[:acceptance_test_target_task]
   puts 'running features task'
   execute_docker_compose :run, tasks[:acceptance_test_target_task]
 end
-

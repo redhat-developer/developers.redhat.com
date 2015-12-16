@@ -1,103 +1,253 @@
-.cta-items {
-  display:flex;
-  & > li {
-    display:flex;
-    img {
-      height:100px;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      width:100%;
+// NEW HOMEPAGE STYLES
+.home .wrapper {
+  padding-bottom: 0;
+}
+.homepage-main {
+  color: $white;
+  background-image: cdn('../images/design/RHDev_homehero_desktop_yearend2015.png');
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(86, 15, 3);
+  .homepage-cta {
+    .tagline {
+      color: $white;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    a.button {
+      display: table;
+      margin: 15px auto 0 auto;
+      background-color: $white;
+      color: $red;
+      min-width: 250px;
+      position: relative;
+      top: 365px;
+      left: 140px;
     }
   }
-}
-.cta-item {
-  flex:1;
-  background:#e6e7e8;
-  padding:20px 10px 40px 10px;
-  text-align: center;
-  p {
-    font-size: 20px;
-    margin: 0;
-
-  }
-  i {
-    font-size: 150px;
-    line-height: 1;
-  }
-}
-
-
-.button.button--solution {
-  background:#6abcd3 cdn("../images/design/stars-texture.png") bottom right no-repeat;
-  width: 100%;
-  padding-top:30px;
-  padding-bottom:30px;
-  padding-left: 20px;
-  padding-right: 10px;
-  text-align:left;
-  &:hover {
-    background:darken(#6abcd3,10%) cdn("../images/design/stars-texture.png") bottom right no-repeat;
-  }
-  &.clear {
-    color:#0088ce;
-    text-align: center;
-    font-size: 20px;
-    &:hover {
-      background:none;
+  .homepage-getstarted {
+    min-height: 445px;
+    padding: 15px 20px;
+    background-color: rgba(86, 15, 3, 0.73);
+    @include tablet-landscape-and-down {
+      background-color: rgb(86, 15, 3);
     }
-  }
-}
-
-.button.button--join-today {
-  position: relative;
-  margin:0 80px;
-  display: block;
-  max-width:400px;
-}
-
-h2.home-title {
-  padding:40px 0 20px 0;
-}
-
-@include tablet-landscape-and-down {
-  .button.button--join-today {
-    top:0;
-    margin:20px 0;
-  }
-
-  .cta-items {
-    flex-direction: column;
-    .cta-item {
-      overflow: hidden;
+    h5 {
+      color: #eaa400;
+      margin-top: 10px;
     }
-    & > li {
-      display: block;
-      p {
-        text-align:left;
+    a {
+      color: $white;
+      &:hover, &:focus, &:active {
+        color: #E0E0E0;
       }
-
-      width: 100%;
+    }
+    ul {
+      margin-bottom: 10px;
+    }
+    .video-thumb {
       img {
-        float:left;
-        height:auto;
-        width:20%;
-        margin-right: 20px;
-        max-height:100px;
+        max-width: 225px;
+      }
+      p{
+        margin-top: 8px;
+        margin-bottom: 10px;
       }
     }
+    a.learn-more {
+      text-transform: uppercase;
+      color: #eaa400;
+      font-weight: 700;
+      float: right;
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.spotlights-container {
+  margin: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.spotlight-item {
+  width: calc(20% - 16px);
+  margin: 8px;
+  .cut-image {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .cut-image::before {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-left: 10px solid white;
+    border-top: 10px solid white;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+  .cut-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 0;
+    width: 0;
+    border-left: 15px solid transparent;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid white;
+    border-right: 15px solid white;
+  }
+}
+
+ul.homepage-resources {
+  list-style: none;
+  li {
+    border-bottom: 1px solid $grey-2;
+    padding: 10px 0 12px 0;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  span {
+    display: inline-table;
+      i {
+        margin-right: 10px;
+        position: relative;
+        top: 5px;
+        color: $grey-3;
+        &.fa-2x {
+          font-size: 1.5em;
+        }
+      }
+  }
+  a.title {
+    display: block;
+    overflow: hidden;
+    max-width: 420px;
+    line-height: 1.5em;
+    max-height: 3em;
+    text-overflow: ellipsis;
+  }
+  .date{
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 88%;
+    margin-bottom: 0;
+  }
+}
+
+.inverse {
+  background-color: $grey-8;
+  padding: 25px 0;
+  h2, h3, h4, h5, h6, a, p {
+    color: $white;
+  }
+  a.button {
+    display: block;
+    margin: 0 auto;
+    max-width: 260px;
+  }
+  .inverse-spotlights {
+    text-align: center;
+    .large-8 {
+      padding: 20px !important;
+      margin: 15px!important;
+      background-color: $grey-2;
+      width: 30%;
+    }
+    i, h6 {
+      color: $grey-7;
+    }
+  }
+  .banner-icons {
+    color: $white;
+    text-align: center;
+    margin: 1em 0 2em 0;
+    img {
+      display: block;
+      margin: 1em auto 0 auto;
+      max-width: 250px;
+    }
+  }
+}
+
+// NEW MOBILE HOMEPAGE STYLES
+@include tablet-landscape-and-down {
+  .homepage-main {
+    background: cdn('../images/design/RHDev_homehero_tablet_yearend2015.png') top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #560f03;
+    .homepage-cta {
+      height: 575px;
+      a.button {
+        left: 0;
+        top: 500px;
+      }
+    }
+  }
+  .video-thumb {
+    img {
+      max-width: 300px;
+    }
+  }
+  span.type-icon {
+    display: none !important;
+  }
+  .spotlight-item {
+    width: calc(33.333% - 16px);
+    margin: 8px;
+  }
+  .homepage-getstarted a.learn-more {
+    float: none !important;
+  }
+}
+
+@include tablet-portrait-and-down {
+  .homepage-main {
+    .homepage-cta {
+      height: 470px;
+      a.button {
+        left: 0;
+        top: 370px;
+      }
+    }
+  }
+  a.title {
+    max-width: 100%;
+  }
+  .inverse-spotlights .large-8 {
+    width: 90% !important;
+    padding: 2em !important;
   }
 }
 
 @include mobile-landscape-and-down {
-  .cta-items {
-    & > li {
-      img {
-        float:none;
-      }
-      p {
-        text-align: center;
+  .homepage-main {
+    background: cdn('../images/design/RHDev_homehero_mobile_yearend2015.png');
+    background-size: initial;
+    .homepage-cta {
+      height: 500px;
+      a.button {
+        margin-top: 5px;
+        top:450px;
       }
     }
   }
+  .spotlights-container {
+    flex-direction: column;
+  }
+  .spotlight-item {
+    width: calc(100% - 16px);
+    margin: 8px;
+    .cut-image::before, .cut-image::after {
+      display: none;
+    }
+  }
 }
-
