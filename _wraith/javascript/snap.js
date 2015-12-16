@@ -25,7 +25,7 @@ page.settings.userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleW
 // page.customHeaders = {
 
 //      'X-Candy-OVERRIDE': 'https://api.live.bbc.co.uk/'
- 
+
 //  };
 
 // If you want to set a cookie, just add your details below in the following way.
@@ -42,44 +42,44 @@ page.settings.userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleW
 // });
 
 page.onResourceRequested = function(req) {
-  current_requests += 1;
+    current_requests += 1;
 };
 
 page.onResourceReceived = function(res) {
-  if (res.stage === 'end') {
-    current_requests -= 1;
-    debounced_render();
-  }
+    if (res.stage === 'end') {
+        current_requests -= 1;
+        debounced_render();
+    }
 };
 
 page.open(url, function(status) {
-  if (status !== 'success') {
-    console.log('Error with page ' + url);
-    phantom.exit();
-  }
+    if (status !== 'success') {
+        console.log('Error with page ' + url);
+        phantom.exit();
+    }
 });
 
 
 function debounced_render() {
-  clearTimeout(last_request_timeout);
-  clearTimeout(final_timeout);
+    clearTimeout(last_request_timeout);
+    clearTimeout(final_timeout);
 
-  // If there's no more ongoing resource requests, wait for 1 second before
-  // rendering, just in case the page kicks off another request
-  if (current_requests < 1) {
-      clearTimeout(final_timeout);
-      last_request_timeout = setTimeout(function() {
-          console.log('Snapping ' + url + ' at width ' + view_port_width);
-          page.render(image_name);
-          phantom.exit();
-      }, 1000);
-  }
+    // If there's no more ongoing resource requests, wait for 1 second before
+    // rendering, just in case the page kicks off another request
+    if (current_requests < 1) {
+        clearTimeout(final_timeout);
+        last_request_timeout = setTimeout(function() {
+            console.log('Snapping ' + url + ' at width ' + view_port_width);
+            page.render(image_name);
+            phantom.exit();
+        }, 1000);
+    }
 
-  // Sometimes, straggling requests never make it back, in which
-  // case, timeout after 5 seconds and render the page anyway
-  final_timeout = setTimeout(function() {
-    console.log('Snapping ' + url + ' at width ' + view_port_width);
-    page.render(image_name);
-    phantom.exit();
-  }, 5000);
+    // Sometimes, straggling requests never make it back, in which
+    // case, timeout after 7 seconds and render the page anyway
+    final_timeout = setTimeout(function() {
+        console.log('Snapping ' + url + ' at width ' + view_port_width);
+        page.render(image_name);
+        phantom.exit();
+    }, 7000);
 }

@@ -1,48 +1,22 @@
-#Headless browser option
-browser:
-  webkit: "phantomjs"
-  # gecko: "slimerjs"
-
-#If you want to have multiple snapping files, set the file name here
-snap_file: "javascript/snap.js"
-
-# Type the name of the directory that shots will be stored in
-directory:
-  - 'shots'
-
-# Add only 2 domains, key will act as a label
+---
+browser: phantomjs
+directory: shots
 domains:
-  production: "http://www.jboss.org"
-  pull-request: "http://www-stg.jboss.org/pr/323/build/194"
-
-#Type screen widths below, here are a couple of examples
-screen_widths:
-  - 1200
-
-#Type page URL paths below, here are a couple of examples
-#paths:
-#  home: /
-
-# If you don't want to name the paths explicitly you can use a yaml
-# collection as follows, and names will be derived by replacing / with _
-#
-# paths:
-#  - /imghp
-#  - /maps
-
-#Amount of fuzz ImageMagick will use
-fuzz: '20%'
-
-#Set the number of days to keep the site spider file
-spider_days:
-  - 10
-
-sitemap: http://www-stg.jboss.org/pr/323/build/194/sitemap.xml
-
-spider_skips:
-  - !ruby/regexp /^\/video\/((?!91710755).)*\/$/
-  - !ruby/regexp /^\/quickstarts\/((?!eap\/kitchensink).)*\/*$/
-  - !ruby/regexp /^\/boms\/((?!eap\/jboss-javaee-6_0).)*\/*$/
-  - !ruby/regexp /^\/archetypes\/((?!eap\/jboss-javaee6-webapp-archetype).)*\/*$/
-
+  production: "http://developers.redhat.com/"
+  pull-request: "http://it-developers.stage.redhat.com/"
+fuzz: 20%
 mode: diffs_only
+screen_widths:
+  - 1280
+spider_days: 1
+spider_file: spider.txt
+spider_skips:
+  - !ruby/regexp /^\/video\/((?!91710755).)*\//
+  - !ruby/regexp /^\/video\/(.*)\/(.*)\//
+  - !ruby/regexp /^\/quickstarts\/((eap\/kitchensink).*)*\/*\//
+  - !ruby/regexp /^\/boms\/((eap\/jboss-javaee-6_0).*)*\/*\//
+  - !ruby/regexp /^\/archetypes\/((?!eap\/jboss-javaee6-webapp-archetype).*)*\/*\//
+  - !ruby/regexp /^\/Guardfile$/
+  - !ruby/regexp /^https:\/\/f\.vimeocdn\.com\/p\/2.10.4\/js\/player\.js:.*$/
+  - !ruby/regexp /f\.vimeocdn\.com/
+threshold: 5

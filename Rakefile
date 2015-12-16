@@ -344,37 +344,55 @@ task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] => :clear_status do |ta
   end
 end
 
-desc 'Generate a wraith config file'
-task :generate_wraith_config, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
-  require 'yaml/store'
-
-  cfg = '_wraith/configs/config.yaml'
-  FileUtils.cp '_wraith/configs/template_config.yaml', cfg
-  config = YAML::Store.new(cfg)
-
-  new_path = "#{args[:new]}/#{args[:pr_prefix]}/#{args[:pull]}/#{args[:build_prefix]}/#{args[:build]}"
-
-  config.transaction do
-    config['domains']['production'] = args[:old]
-    config['domains']['pull-request'] = new_path
-    config['sitemap'] = "#{new_path}/sitemap.xml"
-  end
-end
-
 desc 'Run wraith'
-task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generate_wraith_config do |task, args|
-  $staging_config ||= config 'staging'
-  Dir.chdir("_wraith")
-  unless system "bundle exec wraith capture config"
-    exit 1
+task :wraith, [:new, :pr_prefix, :build_prefix, :pull, :build] do |task, args|
+  require 'yaml/store'
+  sha = ENV['ghprbActualCommit']
+  options = {:context => 'Wraith', :description => 'Wraith pending', :target_url => ENV['BUILD_URL']}
+
+  begin
+    GitHub.update_status($github_org, $github_repo, sha, 'pending', options)
+
+    $staging_config ||= config 'staging'
+    wraith_base_path = "#{args[:pr_prefix]}/#{args[:pull]}/wraith"
+    p "Wraith base path #{wraith_base_path}"
+    wraith_path = "#{wraith_base_path}/#{args[:build]} !!!!!!!!!!!!!!!!!!"
+    p "Wraith path #{wraith_path} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    FileUtils.rm_rf('_tmp/wraith')
+    FileUtils.mkdir_p('_tmp/wraith')
+
+    cfg = '_wraith/configs/config.yaml'
+    FileUtils.cp '_wraith/configs/template_config.yaml', cfg
+    config = YAML::Store.new(cfg)
+
+    new_path = "#{args[:new]}/#{args[:pr_prefix]}/#{args[:pull]}/#{args[:build_prefix]}/#{args[:build]}"
+    p "New path #{new_path} ========================================================"
+    config.transaction do
+      config['domains']['pull-request'] = new_path
+      config['sitemap'] = "#{new_path}/sitemap.xml"
+    end
+
+    Dir.chdir('_wraith')
+    unless system 'bundle exec wraith capture config'
+      options[:description] = 'Wraith failed (bundle error)'
+      puts GitHub.update_status($github_org, $github_repo, sha, 'error', options)
+      exit 1
+    end
+
+    Dir.mktmpdir do |empty_dir|
+      rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_base_path}")
+    end
+    rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
+
+    options[:description] = 'Wraith report successful'
+    options[:target_url] = "#{args[:new]}/#{wraith_path}/gallery.html"
+    puts GitHub.update_status($github_org, $github_repo, sha, 'success', options)
+
+  rescue => e
+    puts e
+    options[:description] = "Wraith failed (#{e.message})"
+    puts GitHub.update_status($github_org, $github_repo, sha, 'error', options)
   end
-  wraith_base_path = "#{args[:pr_prefix]}/#{args[:pull]}/wraith"
-  wraith_path = "#{wraith_base_path}/#{args[:build]}"
-  Dir.mktmpdir do |empty_dir|
-    rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_base_path}")
-  end
-  rsync(local_path: 'shots', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{wraith_path}")
-  GitHub.comment_on_pull($github_org, $github_repo, args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
 end
 
 desc 'Run blinkr'

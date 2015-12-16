@@ -78,7 +78,7 @@ group :development do
 end
 
 group :vdiff do
-  gem 'wraith', '~> 1.3.0'
+  gem 'wraith', '~> 3.0', '>= 3.0.4'
 end
 
 group :health do
