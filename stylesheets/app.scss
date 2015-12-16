@@ -91,6 +91,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "vjbug";
 @import "ticket-monster";
 @import "content-contributors";
+@import "videos";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -1426,6 +1427,19 @@ span.asterisk {
       display: none;
     }
   }
+  &.visible-by-default {
+    padding-left:0;
+    p {
+      display: none;
+    }
+    .social-buttons {
+      li {
+        display:inline-block;
+        width: auto;
+        float:left;
+      }
+    }
+  }
   p {
     position: absolute;
     top:0;
@@ -1461,15 +1475,15 @@ span.asterisk {
   // all importants override social network defaults
   float: left;
   margin-bottom: 5px;
-  width:50% !important;
+  width:50%;
   height:30px;
   &:nth-child(odd) {
-    float: left !important;
-    text-align: left !important;
+    float: left;
+    text-align: left;
   }
   &:nth-child(even) {
-    float: right !important;
-    text-align: right !important;
+    float: right;
+    text-align: right;
   }
 }
 .facebook-share-button {

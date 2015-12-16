@@ -1,4 +1,4 @@
-.share-this
+.share-this(class="#{page.className}")
   p
     i.fa.fa-share
     | Share This
@@ -12,10 +12,10 @@
         span.vhidden
           | Share on Facebook
     li
-      a(href="https://plus.google.com/share?url=#{page.url}" class="socialite googleplus-one" data-size="tall" data-annotation="inline" data-width="60" data-href="#{site.base_url}/#{page.output_page.output_path}" rel="nofollow" target="_blank")
-        span.vhidden
-          | Share on Google+
-    li
       a(href="http://www.linkedin.com/shareArticle?mini=true&url=#{page.url}&title=#{page.title}" class="socialite linkedin-share" data-url="#{site.base_url}/#{page.output_page.output_path}" data-counter="right" rel="nofollow" target="_blank")
         span.vhidden
           | Share on LinkedIn
+    li
+      a(href="https://plus.google.com/share?url=#{page.url}" class="socialite googleplus-one" data-size="tall" data-annotation="inline" data-width="60" data-href="#{page.url}" rel="nofollow" target="_blank")
+        span.vhidden
+          | Share on Google+

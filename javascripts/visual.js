@@ -120,6 +120,12 @@ app.stickyNav = function(className, headerElement) {
     window.location.hash = header;
   }).wrap('<div class="styled-select mobile-selector">');
 
+  // toggle visibility of full transcript 
+  $('.transcript-toggle-more').on('click',function(e) {
+    e.preventDefault();
+    $('.transcript-wrap').toggleClass('transcript-wrap--open');
+  });
+
 }
 
 /*
