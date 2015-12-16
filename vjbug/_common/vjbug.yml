@@ -16,6 +16,7 @@ past_events:
     date: Nov, 10 2015
     youtube_id: E68L26GmQNs
     meetup_id: '226138425'
+    slides_id: 'messaging-for-iot-55150266'
     abstract: Scale changes everything. What once was quite adequate for enterprise messaging can't scale to support "Internet of Things". We need new protocols, patterns and architectures to support this new world. This session will start with basic introduction to the concept of Internet of Things. Next it will discuss general technical challenges involved with the concept and explain why it is becoming mainstream now. Now we&rsquo;re ready to start talking about solutions. We will introduce some messaging patterns (like telemetry and command/control) and protocols (such as MQTT and AMQP) used in these scenarios. Finally we will see how Apache ActiveMQ is gearing up for this race. We will show tips for horizontal and vertical scaling of the broker, related projects that can help with deployments and what the future development road map looks like.
     speaker: Martyn Taylor
     speaker_intro: Martyn Taylor is a senior software engineer at Red Hat, with over 7 years&rsquo; experience working on cloud, middleware and messaging software. Martyn currently works on the Apache ActiveMQ suite of projects.
@@ -31,6 +32,7 @@ past_events:
   - title: Apache Lucene for Java EE developers
     date: Jul 14, 2015
     youtube_id: -QNHMZmVehE
+    slides_id: 'apache-lucene-for-java-ee-developers'
     abstract:
         "Apache Lucene is the de-facto standard open source library for Java developers to implement full-text-search capabilities.<br><br>
         While it’s thriving in its field, it is rarely mentioned in the scope of Java EE development.<br>
@@ -39,6 +41,7 @@ past_events:
   - title: What's New in WildFly 9
     date:  Jun 16, 2015
     youtube_id: mJjZ661h-As
+    slides_id: 'whats-new-in-wildfly-9-50589236'
     abstract:
         "This session covers new improvements that will be introduced in WildFly 9:<br>
         <ul><li>Wildfly-core will be extracted from the codebase and the ability to assemble a server on top of it will be introduced. WildFly 9 will be provided in two versions: Wildfly Web and Wildfly Full but users will be able to create their custom packaging of WildFly.</li>
@@ -50,6 +53,7 @@ past_events:
   - title: 'Narayana 5: The premier open source transaction manager'
     date: May 12, 2015
     youtube_id: Rwat1AKHkXE
+    slides_id: 'j-bug-ncl-narayana-may-2015'
     abstract:
         "In this JBug, Tom will use an example driven format to illustrate some of the new features that have been added into Narayana recently. We will look at:<br>
         <ol><li>Why you need a transaction manager - a brief revision course</li>
@@ -59,6 +63,7 @@ past_events:
   - title: Hacking on WildFly 9
     date: Apr 21, 2015
     youtube_id: Uxqq6NFdvTo
+    slides_id: 'hacking-on-wildfly-9'
     abstract:
         "Join us for this interactive event and get your hands dirty with some WildFly 9 hacking!<br><br>
         Our host Kabir Khan will explain how you can contribute to the WildFly project at many different levels, from properly reporting bugs in the forums and issue tracker, to actually being able to submit a pull request.<br><br>
@@ -80,6 +85,7 @@ past_events:
   - title: Implementing your own Google App Engine
     date: Mar 10, 2015
     youtube_id: epYpOWyf7uM
+    slides_id: 'implementing-your-own-google-app-engine'
     abstract:
         "Google App Engine (GAE) is a popular PaaS offering. Where its scalable and reliable environment is hidden behind a custom API. This makes GAE apps hard to port over to other non-GAE environments.<br><br>
         But what if one could implement such similar environment? And you could simply move your GAE application’s .war file to this new environment and it would just work?<br><br>
@@ -100,6 +106,7 @@ past_events:
   - title: 'Ceylon From Here to Infinity: The Big Picture and What&rsquo;s Coming'
     date: Feb 12, 2015
     youtube_id: bHFkj38VbUU
+    slides_id: '2015-02ukjugs'
     abstract:
         "Ceylon is a new modern, elegant programming language for the JVM and JavaScript VM, designed for team work. But it's more than that, it is a full platform with modularity, an SDK, tools and IDEs.<br><br>
         We will present Ceylon the language, the platform, and its ecosystem. You will see everything from starting a new project in the IDE to publishing it on Herd, our module repository, including using the SDK. We will also discuss the ongoing Ceylon projects such as the build system, Vert.x integration or Cayla, the new web framework.<br><br>
@@ -107,6 +114,7 @@ past_events:
   - title: 'Apache DeltaSpike: The CDI toolbox'
     date: Jan 20, 2015
     youtube_id: QbNdFvNPvVU
+    slides_id: 'apache-delta-spike'
     abstract:
         "CDI portable extensions are one of greatest features of Java EE allowing the platform to be extended in a clean and portable way. But allowing extension is just part of the story. CDI opens the door to a whole new eco-system for Java EE, but it’s not the role of the specification to create these extensions.<br><br>
         Apache DeltaSpike is the project that leads this brand new eco-system by providing useful extension modules for CDI applications as well as tools to ease the creation of new ones.<br><br>
@@ -116,6 +124,7 @@ past_events:
   - title: 'CDI (Part 2): The Advanced Features'
     date: Dec 8, 2014
     youtube_id: LFDSPWI9zV4
+    slides_id: 'cdi-the-advanced-features'
     abstract:
         "This presentation introduces the advanced features of CDI (Contexts and Dependency Injection). It was presented by Antoine Sabot-Durand, the co-spec lead for CDI.<br><br>
         In less than five years of existence, Contexts and Dependency Injection (CDI) has become one of the major specifications in Java EE. However, its advanced features are still not well known among the majority of the developers, who see it as a simple Dependency Injection solution. In this session, we’ll deep dive into advanced features like the CDI SPI and portable extensions. Then we'll view some examples of how CDI can be used to extend, in a portable way, the Java EE stack."
@@ -123,6 +132,7 @@ past_events:
   - title: 'CDI (Part 1): Introduction to CDI'
     date: Dec 2, 2014
     youtube_id: E0lhfKIHclc
+    slides_id: 'introduction-to-cdi-42356193'
     abstract: 'This presentation provides an introduction to CDI (Contexts and Dependency Injection), covering the basic and intermediate features.'
     speaker: Antoine Sabot-Durand
   - title: Case Studies in Testable Java EE Development
@@ -140,6 +150,7 @@ past_events:
   - title: Testing the Enterprise layers, with Arquillian
     date: Oct 21, 2014
     youtube_id: YKZU9XNRRNY
+    slides_id: 'testing-the-enterprise-layers-presentations'
     abstract:
         "Arquillian is an innovative and highly extensible testing platform for the JVM that enables developers to easily create automated integration, functional and acceptance tests for Java middleware, from Java EE and beyond.<br><br>
         For years we've been exploring how to layer and separate our code to test in isolation on the unit level. We've kept integration and functional testing as a big ball of mud; jumping straight from unit to full system testing. But can we apply some of the same lessons learned from unit to integration testing?"
