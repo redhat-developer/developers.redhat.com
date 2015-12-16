@@ -6,7 +6,8 @@ interpolate: true
  * Set up namespace and static vars
  */
 
-var app = window.app = {};
+var app = window.app || {};
+
 /*
   Website Cache
 */
