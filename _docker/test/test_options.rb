@@ -134,10 +134,21 @@ class TestOptions < Minitest::Test
       end
     end
 
+    def test_run_pr_reap
+      tasks = Options.parse (["--docker-pr-reap"])
+      refute(tasks[:acceptance_test_target_task])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"], tasks[:awestruct_command_args])
+      refute(tasks[:kill_all])
+      refute(tasks[:unit_tests], expected_unit_test_tasks)
+      assert(tasks[:set_ports])
+      assert(tasks[:build])
+      assert_empty(tasks[:supporting_services])
+    end
+
     def test_run_docker_nightly
       tasks = Options.parse (["--docker-nightly"])
       refute_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"], tasks[:acceptance_test_target_task])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean reap_old_pulls[pr] deploy[staging_docker]"], tasks[:awestruct_command_args])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
       assert(tasks[:kill_all])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert(tasks[:set_ports])
