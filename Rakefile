@@ -318,6 +318,7 @@ end
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
 task :reap_old_pulls, [:pr_prefix] do |task, args|
   reap = GitHub.list_closed_pulls($github_org, $github_repo)
+  msg "There are #{reap.size} issues to reap"
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
     reap.each do |p|

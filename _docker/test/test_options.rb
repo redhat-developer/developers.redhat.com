@@ -137,7 +137,7 @@ class TestOptions < Minitest::Test
     def test_run_docker_nightly
       tasks = Options.parse (["--docker-nightly"])
       refute_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"], tasks[:acceptance_test_target_task])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean reap_old_pulls[pr] deploy[staging_docker]"], tasks[:awestruct_command_args])
       assert(tasks[:kill_all])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert(tasks[:set_ports])
