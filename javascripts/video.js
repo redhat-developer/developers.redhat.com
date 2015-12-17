@@ -26,9 +26,10 @@ app.video.displayRelated = function($el, videos) {
   var html = '';
 
   var html = videos.map(function(video) {
+    var videoUrl = video.fields.sys_url_view.replace(/^.*\/video/, app.baseUrl + "video")
     var li = [
       '<li>',
-        '<a href="' + video.fields.sys_url_view + '">',
+        '<a href="' + videoUrl + '">',
           '<img src="'+video.fields.thumbnail+'">',
           '<h4>'+video.fields.sys_title+'</h4>',
         '</a>',
