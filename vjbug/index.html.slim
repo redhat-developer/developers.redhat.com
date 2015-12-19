@@ -30,13 +30,26 @@ title: vJBug
         .medium-9.columns
           iframe.embedded-chat(src="https://kiwiirc.com/client/irc.kiwiirc.com/?&theme=mini#vjbug")
         .large-24.columns
-          a.button.enlarge-video(data-reveal-id="videoModal")Enlarge video
+          span.left
+            a.button.enlarge-video(data-reveal-id="videoModal")Enlarge video
+          span
+            .session-links.y-centered
+              - if a.slides_id
+                a(href='http://www.slideshare.net/vjbug/#{a.slides_id}')
+                  i.fa.fa-folder-o
+                  |  Slides
       .row
         .large-24.columns.divider
           - if a.speaker
             p 
               | Speaker:
               strong  #{a.speaker}
+          - if a.demo_links
+            h6.caps Demo Links:
+            ul.demo-links
+              - a.demo_links.each do |b|
+                li
+                  a(href='#{b.url}') #{b.url}
           p #{a.abstract}
           - if a.speaker
             p #{a.speaker_intro}
