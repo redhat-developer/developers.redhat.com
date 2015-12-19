@@ -47,6 +47,9 @@
       display: inline;
     }    
   }
+  ul.demo-links {
+    margin-bottom: 2em;
+  }
   ul.events-list {
     list-style: none;
     margin-left: 0;
@@ -65,8 +68,14 @@
       }
     }
   }
+  .session-links.y-centered {
+    margin-top: 7px;
+  }
   #hiddenDate {
     display: none;
+  }
+  a.enlarge-video {
+    margin-right: 20px;
   }
 }
 
