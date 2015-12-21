@@ -116,7 +116,11 @@ app.buzz = {
             }
             d.updatedDate = jQuery.timeago(new Date(d.sys_created));
             d.sys_description = d.sys_description[0].substr(0,197) + '...';
-            d.permanentLink = "//planet.jboss.org/post/" + d.sys_content_id;
+            if (d.sys_url_view[0].startsWith('http://developerblog.redhat.com')) {
+              d.permanentLink = d.sys_url_view;
+            } else {
+              d.permanentLink = "//planet.jboss.org/post/" + d.sys_content_id;
+            }
             html += tmpl.template(d);
         }
 

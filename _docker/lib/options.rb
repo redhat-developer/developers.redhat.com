@@ -62,16 +62,32 @@ class Options
       end
 
       opts.on('--acceptance_test_docker', String, 'runs the cucumber features against the local running docker stack.') do
-        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "--service-ports", "awestruct_acceptance", "bundle exec rake features"]
+        tasks[:kill_all] = true
+        tasks[:decrypt] = true
+        tasks[:set_ports] = true
+        tasks[:build] = true
+        tasks[:awestruct_up_service] =  %w(-d awestruct_preview_no_reload)
+        tasks[:unit_tests] = unit_test_tasks
+        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance"]
+      end
+
+      opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |f|
+        if f.start_with?("http://docker")
+          raise OptionParser::InvalidArgument.new("can't currently test docker, try --acceptance_test_docker")
+        end
+
+        ENV['HOST_TO_TEST'] = f
+        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "awestruct", "bundle exec rake features"]
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
       end
 
-      opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |f|
-        ENV['HOST_TO_TEST'] = f
-        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"]
+      opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
+        tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"]
+        tasks[:supporting_services] = []
         tasks[:build] = true
-        tasks[:unit_tests] = unit_test_tasks
+        tasks[:set_ports] = true
       end
 
       opts.on('--docker-nightly', 'build for PR Staging') do |pr|
@@ -124,8 +140,7 @@ class Options
   end
 
   def self.unit_test_tasks
-    ['--no-deps', '--rm', 'awestruct', "bundle exec rake test"]
+    ['--no-deps', '--rm', 'awestruct_acceptance', "bundle exec rake test"]
   end
 
 end
-

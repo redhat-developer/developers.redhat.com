@@ -44,7 +44,7 @@ class TestOptions < Minitest::Test
       assert_nil(tasks[:decrypt])
 
       tasks = Options.parse %w(--acceptance_test_docker)
-      assert_nil(tasks[:decrypt])
+      assert(tasks[:decrypt])
 
       tasks = Options.parse %w(--acceptance_test_target 127.0.0.1)
       assert_nil(tasks[:decrypt])
@@ -120,24 +120,30 @@ class TestOptions < Minitest::Test
       end
     end
 
-    def test_acceptance_test_target_task_default_value
-      ClimateControl.modify HOST_TO_TEST: nil, AWESTRUCT_HOST_PORT: '32768' do
-        tasks = Options.parse (["--acceptance_test_docker"])
-        assert(tasks[:build])
-        assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-        refute(tasks[:set_ports])
-        assert_equal(nil, ENV['HOST_TO_TEST'])
-        assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct_acceptance", "bundle exec rake features"], tasks[:acceptance_test_target_task])
-      end
-    end
-
     def test_acceptance_test_target_task
       tasks = Options.parse (["--acceptance_test_target=http://example.com"])
       assert(tasks[:build])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert_equal('http://example.com', ENV['HOST_TO_TEST'])
       refute(tasks[:set_ports])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake features"], tasks[:acceptance_test_target_task])
+      assert_equal(["--no-deps", "--rm", "awestruct", "bundle exec rake features"], tasks[:acceptance_test_target_task])
+    end
+
+    def test_acceptance_test_target_task_at_docker
+      assert_raises OptionParser::InvalidArgument do 
+        tasks = Options.parse (["--acceptance_test_target=http://docker:8888"])
+      end
+    end
+
+    def test_run_pr_reap
+      tasks = Options.parse (["--docker-pr-reap"])
+      refute(tasks[:acceptance_test_target_task])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"], tasks[:awestruct_command_args])
+      refute(tasks[:kill_all])
+      refute(tasks[:unit_tests], expected_unit_test_tasks)
+      assert(tasks[:set_ports])
+      assert(tasks[:build])
+      assert_empty(tasks[:supporting_services])
     end
 
     def test_run_docker_nightly
@@ -163,12 +169,28 @@ class TestOptions < Minitest::Test
     def test_run_the_stack
       tasks = Options.parse (["--run-the-stack"])
       assert(tasks[:kill_all])
+      assert(tasks[:decrypt])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
       assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
 
       tasks = Options.parse %w(-u --run-the-stack)
       assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]'], tasks[:awestruct_command_args])
+    end
+
+    def test_acceptance_test_target_task_default_value
+      ClimateControl.modify HOST_TO_TEST: nil, AWESTRUCT_HOST_PORT: '32768' do
+        tasks = Options.parse (["--acceptance_test_docker"])
+        assert(tasks[:kill_all])
+        assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+        assert(tasks[:decrypt])
+        assert(tasks[:set_ports])
+        assert(tasks[:build])
+        assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
+        assert_equal(tasks[:awestruct_up_service], %w(-d awestruct_preview_no_reload))
+        refute(tasks[:awestruct_command_args])
+        assert_equal(["--rm", "awestruct_acceptance"], tasks[:acceptance_test_target_task])
+      end
     end
 
     def test_test_task
@@ -195,7 +217,6 @@ class TestOptions < Minitest::Test
     end
 
     private def expected_unit_test_tasks
-      ['--no-deps', '--rm', 'awestruct', 'bundle exec rake test']
+      ['--no-deps', '--rm', 'awestruct_acceptance', 'bundle exec rake test']
     end
 end
-

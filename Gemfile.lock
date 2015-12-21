@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: b9b386021c88eff7086fd04f130626a8a6829d2d
+  revision: a05d111bc1cdced301610bbfe75ea37cdc29d3c2
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -36,7 +36,7 @@ GEM
       nokogiri (>= 1.3.0)
       robotex (>= 1.0.0)
     ansi (1.5.0)
-    asciidoctor (1.5.2)
+    asciidoctor (1.5.3)
     ast (2.1.0)
     astrolabe (1.3.1)
       parser (~> 2.2)
@@ -63,8 +63,7 @@ GEM
       slim (~> 3.0)
       typhoeus (~> 0.7)
     builder (3.2.2)
-    byebug (5.0.0)
-      columnize (= 0.9.0)
+    byebug (8.1.0)
     capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -84,7 +83,6 @@ GEM
     cliver (0.3.2)
     coderay (1.1.0)
     colorize (0.7.7)
-    columnize (0.9.0)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -183,7 +181,7 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.13)
-    listen (3.0.3)
+    listen (3.0.4)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     little-plugger (1.1.4)
@@ -198,7 +196,7 @@ GEM
     mime-types (2.1)
     mini_portile (0.6.2)
     minitest (5.8.2)
-    minitest-reporters (1.1.4)
+    minitest-reporters (1.1.5)
       ansi
       builder
       minitest (>= 5.0)
@@ -209,14 +207,14 @@ GEM
     multi_test (0.1.2)
     multipart-post (2.0.0)
     nenv (0.2.0)
-    netrc (0.10.3)
+    netrc (0.11.0)
     nokogiri (1.5.11)
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.3.6)
       ruby-hmac (>= 0.3.1)
-    octokit (4.1.1)
+    octokit (4.2.0)
       sawyer (~> 0.6.0, >= 0.5.3)
     oga (1.3.1)
       ast
@@ -239,8 +237,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.2.0)
-      byebug (~> 5.0)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
       pry (~> 0.10)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -308,7 +306,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
-    site_prism (2.7)
+    site_prism (2.8)
       addressable (>= 2.3.3, < 3.0)
       capybara (>= 2.1, < 3.0)
     slim (3.0.6)
@@ -333,7 +331,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.1)
     websocket (1.2.2)
-    websocket-driver (0.6.2)
+    websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     wraith (1.3.7)
@@ -405,6 +403,3 @@ DEPENDENCIES
   therubyracer
   uglifier (~> 2.0.1)
   wraith (~> 1.3.0)
-
-BUNDLED WITH
-   1.10.6

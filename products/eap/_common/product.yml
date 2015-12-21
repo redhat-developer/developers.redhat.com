@@ -1,8 +1,7 @@
 name: Red Hat JBoss Enterprise Application Platform
 abbreviated_name: JBoss EAP
 product_logo: enterprise-app-platform.png
-current_version: 6.4.0.GA
-has_installer: true
+current_version: 6.4.0.CVE-2015-7501
 # EAP is still using an old name for docs on the customer portal
 documentation_path: JBoss_Enterprise_Application_Platform
 xpaas_url: https://www.openshift.com/developers/jboss
@@ -12,6 +11,10 @@ youtube_album: https://www.youtube.com/playlist?list=PLf3vm0UK6HKpAr_6VUi6nkoSQD
 index:
   desc: |
     Host your apps in an innovative, modular, cloud-ready architecture with powerful management, automation and developer productivity.
+buzz_tags:
+  - eap
+  - jboss
+  - jboss eap
 guides:
   Release_Notes:
   Administration_and_Configuration_Guide:
@@ -25,9 +28,30 @@ guides:
   Security_Guide:
   Getting_Started_Guide:
 # EAP has an installer, we want to default to that
-default_download_artifact_type: installer
+default_download_artifact_type: zip
 description: 'An application platform for hosting your apps that provides an innovative modular, cloud-ready architecture, powerful management and automation, and world class developer productivity.'
 downloads:
+  7.0.0.Beta:
+    description: Major release of JBoss EAP 7.x series
+    tag_line: Featuring support for Java EE 7, high performance Undertow web server, port reduction, and more. Try it today!
+    release_date: 2015-12-16
+    assets:
+      zip:
+        name: Zip Files
+        artifacts:
+          zip:
+            size: 150mb
+      maven_repo:
+        size: 250mb
+        name: Maven Repository
+      quickstarts:
+        size: 9mb
+      source:
+        size: 20mb
+      javadoc:
+        size: 173mb
+      release_notes:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0.beta/700-beta-release-notes/                  
   7.0.0.Alpha:
     description: Major release of JBoss EAP 7.x series
     tag_line: Featuring Java EE 7 Support. Try it today!
@@ -54,6 +78,16 @@ downloads:
             url: https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/7/html/Getting_Started_Guide/index.html
       release_notes:
         url: https://access.redhat.com/articles/2049143            
+  6.4.0.CVE-2015-7501:
+    description: Minor release of JBoss EAP 6.x series
+    tag_line: Featuring many updates, including targeted support of Java 8 and updated database certifications. Try it today!
+    release_date: 2015-04-16
+    assets:
+      zip:
+        size: 146mb
+        name: Patched 6.4.0 Zip File
+      patch_note:
+        url: https://access.redhat.com/solutions/2045023 
   6.4.0.GA:
     description: Minor release of JBoss EAP 6.x series
     tag_line: Featuring many updates, including targeted support of Java 8 and updated database certifications. Try it today!

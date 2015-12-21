@@ -52,11 +52,55 @@ class TestGitHub < Minitest::Test
     GitHub.link_issues('foo', 'bar', pr_number, issues)
   end
 
+  def test_rejects_unknown_status
+    assert_raises GitHubExceptions::UnknownStatus do
+      sha = 7777
+      state = "pending"
+      options = {:context => "mock tests", :target_url => "www.example.com", :description => "Short Desc"}
+      GitHub.update_status('foo', 'bar', sha, state, options)
+    end
+  end
+
+  def test_status_update_contexts
+    sha = 7777
+    state = "pending"
+    options = {:context => "Unit Tests", :target_url => "www.example.com", :description => "Short Desc"}
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options)
+    GitHub.update_status('foo', 'bar', sha, state, options)
+
+    options = {:context => "Site Preview", :target_url => "www.example.com", :description => "Short Desc"}
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options)
+    GitHub.update_status('foo', 'bar', sha, state, options)
+
+    options = {:context => "Blinkr", :target_url => "www.example.com", :description => "Short Desc"}
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options)
+    GitHub.update_status('foo', 'bar', sha, state, options)
+
+    options = {:context => "Acceptance Tests", :target_url => "www.example.com", :description => "Short Desc"}
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options)
+    GitHub.update_status('foo', 'bar', sha, state, options)
+  end
+
   def test_status_update
     sha = 7777
     state = "pending"
-    options = {:context => "mock tests", :target_url => "www.example.com", :description => "Short Desc"}
+    options = {:context => "Unit Tests", :target_url => "www.example.com", :description => "Short Desc"}
     Octokit.expects(:create_status).with('foo/bar', sha, state, options)
     GitHub.update_status('foo', 'bar', sha, state, options)
+  end
+
+  def test_set_all_status_to_pending
+    sha = 7777
+    state = "pending"
+    target_url = "www.example.com"
+    options1 = {:context => "Unit Tests", :target_url => "www.example.com", :description => "Pending"}
+    options2 = {:context => "Acceptance Tests", :target_url => "www.example.com", :description => "Pending"}
+    options3 = {:context => "Blinkr", :target_url => "www.example.com", :description => "Pending"}
+    options4 = {:context => "Site Preview", :target_url => "www.example.com", :description => "Pending"}
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options1)
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options2)
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options3)
+    Octokit.expects(:create_status).with('foo/bar', sha, state, options4)
+    GitHub.all_status_to_pending('foo', 'bar', sha, target_url)
   end
 end
