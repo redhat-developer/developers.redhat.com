@@ -1,12 +1,11 @@
-uuid: 64444071-f191-4284-ad37-5555f0bb02bc
 langcode: en
 status: true
 dependencies:
   config:
-    - filter.format.basic_html
+    - filter.format.rhd_html
   module:
     - ckeditor
-format: basic_html
+format: rhd_html
 editor: ckeditor
 settings:
   toolbar:

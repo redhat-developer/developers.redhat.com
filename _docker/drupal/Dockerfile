@@ -10,5 +10,7 @@ COPY db-check.php /
 
 # Adding the awestruct module
 COPY redhat_developers /var/www/html/modules/custom/redhat_developers
+COPY layoutmanager /var/www/html/modules/custom/layoutmanager
+COPY basewidget /var/www/html/modules/custom/basewidget
 
 CMD ["/bin/bash", "/run.sh"]
