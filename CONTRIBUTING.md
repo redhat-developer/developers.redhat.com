@@ -367,9 +367,11 @@ This section covers miscellaneous contributions that can be made.
 ### How to add an Event
 To have a new Event added to the Events page and (optionally) the homepage:
 
-1. Add the event details to the [Events spreadsheet](https://docs.google.com/spreadsheets/d/12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k/edit#gid=1609962398)
+1. Open the [Events spreadsheet](https://docs.google.com/spreadsheets/d/12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k/edit#gid=1609962398)
+1.1 Scroll to the bottom and add a row for each event you want to add. Make sure you don't partially enter the event as the data will go live on the next build
+1.2 Wait for upto 6hrs and then check the event is present.
 
-If you don't have access:
+If you don't have access to the spreadsheet:
 
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa)
 
