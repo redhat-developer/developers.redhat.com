@@ -6,6 +6,7 @@ Before do
   else
     @driver.browser.manage.delete_all_cookies
   end
+  visit('/')
 end
 
 Before('@products, @downloads') do
@@ -15,6 +16,27 @@ Before('@products, @downloads') do
   @products_with_docs = get_products_with_links('docs-and-apis.adoc')[0]
   @products_with_downloads = get_products_with_links('download.adoc')[0]
   @products_with_buzz = get_products_with_links('buzz.html.slim')[0]
+end
+
+Before('@accepted_terms') do
+  data = Customer::ACCOUNT[:accepted_terms]
+  @email_address = data[:email]
+  @password = data[:password]
+end
+
+Before('@password_reset') do
+  data = Customer::ACCOUNT[:password_reset]
+  @email_address = data[:email]
+  @password = data[:password]
+end
+
+Before('@customer') do
+  @customer = generate_customer
+end
+
+After('@logout') do
+  user_logout unless @redirect_url == '' || @redirect_url.nil?
+  Home.new(@driver).physical_logout
 end
 
 After do |scenario|
@@ -34,4 +56,9 @@ After do |scenario|
       end
     end
   end
+end
+
+def user_logout
+  visit("https://it-developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
+  Home.new(@driver).wait_for_ajax
 end

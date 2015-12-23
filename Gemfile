@@ -67,7 +67,9 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0.11'
   gem 'site_prism', '~> 2.7'
   gem 'mocha'
- end
+  gem 'gmail', '~> 0.6.0'
+  gem 'faker', '~> 1.6', '>= 1.6.1'
+end
 
 group :development do
   gem 'rb-inotify', require: false

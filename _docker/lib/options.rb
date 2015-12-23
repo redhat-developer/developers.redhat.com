@@ -61,7 +61,8 @@ class Options
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
       end
 
-      opts.on('--acceptance_test_docker', String, 'runs the cucumber features against the local running docker stack.') do
+      opts.on('--acceptance_test_docker [=PARALLEL_TEST]', String, 'runs the cucumber features against the local running docker stack.') do |parallel='false'|
+        ENV['PARALLEL_TEST'] = parallel
         tasks[:kill_all] = true
         tasks[:decrypt] = true
         tasks[:set_ports] = true
@@ -69,16 +70,17 @@ class Options
         tasks[:awestruct_up_service] =  %w(-d awestruct_preview_no_reload)
         tasks[:unit_tests] = unit_test_tasks
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
-        tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance"]
+        tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
       end
 
-      opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |f|
-        if f.start_with?("http://docker")
+      opts.on('--acceptance_test_target HOST_TO_TEST [=PARALLEL_TEST]', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |h, parallel='false'|
+        if h.start_with?("http://docker")
           raise OptionParser::InvalidArgument.new("can't currently test docker, try --acceptance_test_docker")
         end
 
-        ENV['HOST_TO_TEST'] = f
-        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "awestruct", "bundle exec rake features"]
+        ENV['HOST_TO_TEST'] = h
+        ENV['PARALLEL_TEST'] = parallel
+        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "awestruct", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
       end

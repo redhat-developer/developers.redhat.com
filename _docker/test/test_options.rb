@@ -125,8 +125,9 @@ class TestOptions < Minitest::Test
       assert(tasks[:build])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert_equal('http://example.com', ENV['HOST_TO_TEST'])
+      assert_equal('false', ENV['PARALLEL_TEST'])
       refute(tasks[:set_ports])
-      assert_equal(["--no-deps", "--rm", "awestruct", "bundle exec rake features"], tasks[:acceptance_test_target_task])
+      assert_equal(["--no-deps", "--rm", "awestruct", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])
     end
 
     def test_acceptance_test_target_task_at_docker
@@ -180,16 +181,17 @@ class TestOptions < Minitest::Test
 
     def test_acceptance_test_target_task_default_value
       ClimateControl.modify HOST_TO_TEST: nil, AWESTRUCT_HOST_PORT: '32768' do
-        tasks = Options.parse (["--acceptance_test_docker"])
+        tasks = Options.parse (["--acceptance_test_docker", "true"])
         assert(tasks[:kill_all])
         assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
         assert(tasks[:decrypt])
         assert(tasks[:set_ports])
+        assert_equal('true', ENV['PARALLEL_TEST'])
         assert(tasks[:build])
         assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
         assert_equal(tasks[:awestruct_up_service], %w(-d awestruct_preview_no_reload))
         refute(tasks[:awestruct_command_args])
-        assert_equal(["--rm", "awestruct_acceptance"], tasks[:acceptance_test_target_task])
+        assert_equal(["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])
       end
     end
 

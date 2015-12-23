@@ -21,6 +21,7 @@ remote = "-r _cucumber/features/ --format ParallelTests::Cucumber::FailuresLogge
 
 default: <%= default_options %> <%= exclusions %>
 html: --format --out reports/test-report.html
+features: <%= default_options %> <%= exclusions %> -f rerun --out rerun.txt
 wip: -t @wip
 smoke: -t @smoke
 parallel_html: --format html --out _cucumber/reports/process<%= ENV['TEST_ENV_NUMBER'] %>.html
