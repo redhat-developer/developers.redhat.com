@@ -1,5 +1,3 @@
-$: << File.dirname(__FILE__)+'/../../lib'
-
 require 'capybara'
 require 'capybara/cucumber'
 require 'capybara/poltergeist'
@@ -11,11 +9,13 @@ require 'fileutils'
 require 'rubocop'
 require 'capybara-screenshot/cucumber'
 require 'site_prism'
+require 'gmail'
+require 'faker'
 
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
+require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/customer')
 SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
-
 
 Capybara.configure do |config|
 
@@ -51,7 +51,7 @@ Capybara.register_driver :firefox do |app|
 end
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes])
 end
 
 # Required so that Screenshot works with the "firefox" driver
