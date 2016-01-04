@@ -2,8 +2,6 @@
 
 Powering the [Red Hat Developers site](http://developers.redhat.com/).
 
-The docker stuff will go here [READ IT](_docker/README.md)
-
 ## Developer setup
 We recommend that Docker be used in development. This simplifies the setup, and makes your development environment consistent with other developers and our CI servers. The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
 
@@ -16,6 +14,8 @@ You should be running a bash shell (Linux or OSX) and you will require: git and 
 If you are on a mac then brew is required to install some dependant packages. Brew is like apt-get or yum for mac. [Follow their instructions](http://brew.sh/) and make sure that `brew doctor` completes without error.
 ### Docker
 Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
+
+Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md)
 
 ### Docker Compose
 OSX: Docker compose will have been installed as part of the docker toolbox.
