@@ -347,9 +347,9 @@ Otherwise, the data is being pulled from the project's Magnolia page:
 By default, project data is pulled from the project's Magnolia page. To start using a project.properties file for your project:
 
 1. Produce a properties file for your project and host it somewhere. For example, in GitHub.
-  1. See the [Netty properties file](https://github.com/jboss-developer/project-properties/blob/master/netty.properties) for an example. 
-2. If your project is not on here: http://www-beta.jboss.org/projects/ and you think it should be, make sure to tell us when you submit your data.
-3. Send a url to your properties file to help@jboss.org
+ 1. See the [Netty properties file](https://github.com/jboss-developer/project-properties/blob/master/netty.properties) for an example. 
+ 2. If your project is not on here: http://www-beta.jboss.org/projects/ and you think it should be, make sure to tell us when you submit your data.
+ 3. Send a url to your properties file to help@jboss.org
 
 
 ### <a name="icon"></a> How to Change an Upstream Project's Icon
@@ -367,9 +367,11 @@ This section covers miscellaneous contributions that can be made.
 ### How to add an Event
 To have a new Event added to the Events page and (optionally) the homepage:
 
-1. Add the event details to the [Events spreadsheet](https://docs.google.com/spreadsheets/d/12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k/edit#gid=1609962398)
+1. Open the [Events spreadsheet](https://docs.google.com/spreadsheets/d/12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k/edit#gid=1609962398)
+  1. Scroll to the bottom and add a row for each event you want to add. Make sure you don't partially enter the event as the data will go live on the next build
+1.2 Wait for upto 6hrs and then check the event is present.
 
-If you don't have access:
+If you don't have access to the spreadsheet:
 
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa)
 
