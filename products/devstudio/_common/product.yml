@@ -18,6 +18,31 @@ guides:
 default_download_artifact_type: jar_universal
 description: 'A development environment with superior support for your entire development lifecycle.'
 downloads:
+  9.1.0.Beta1:
+    release_date: 2015-12-21
+    description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.5.1 Mars.1.
+    assets:
+      jar_universal:
+        name: Installer With EAP 6.4.0 CVE-2015-7501
+        size: 646MB
+        type: jar
+        filename: jboss-devstudio-9.1.0.Beta1-installer-eap.jar
+      standalone_jar:
+        name: Stand-alone Installer
+        size: 501MB
+        type: jar
+      standalone_zip_update:
+        name: Update Site Zip
+        size: 523MB
+        type: zip
+      standalone_zip_central:
+        name: JBoss Central Zip
+        size: 154MB
+        type: zip
+      source:
+        name: Source Zip
+        size: 224MB
+        type: zip
   9.0.0-CVE-2015-7501.GA:
     release_date: 2015-12-08
     description: An IDE that gives you everything you need to build rich web and enterprise Java applications. Built on Eclipse 4.5.1 Mars.1.
