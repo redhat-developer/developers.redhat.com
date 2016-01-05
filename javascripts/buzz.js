@@ -96,7 +96,11 @@ app.buzz = {
         // PLM: Do we really need to do this?
         $( function() {
           app.buzz.infiniteScrollCalled = false;
+          app.buzz.noScroll = false;
           var hits = data.hits.hits;
+          if(hits.length < 8) {
+            app.buzz.noScroll = true;
+          }
           if(keyword && keyword.length) {
             app.search.format(keyword,hits, $('.buzz-filters .searchResults'));
           }
@@ -176,7 +180,7 @@ app.buzz = {
         var scrollTop = win.scrollTop();
         var buzzBottom = $buzz.position().top + $buzz.height();
 
-        if((scrollBottom + offset > buzzBottom) && !app.buzz.infiniteScrollCalled && buzzFlag) {
+        if((scrollBottom + offset > buzzBottom) && !app.buzz.infiniteScrollCalled && buzzFlag && !app.buzz.noScroll) {
           
           // limit the number of times it can be called to once per second
           buzzFlag = false;
