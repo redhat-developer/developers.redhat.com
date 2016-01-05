@@ -66,3 +66,13 @@
       background: #43aac7 cdn("../images/design/stars-texture.png") bottom right no-repeat;}
     }
 }
+
+.has-download, .no-download {
+  display: none;
+}
+
+.download-links {
+  a + a {
+    margin-left: 10px;
+  }
+}

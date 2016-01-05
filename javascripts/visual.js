@@ -13,19 +13,6 @@ app.init = function() {
   $(document).foundation();
 
   /*
-     Show more downloads table
-  */
-
-  var moreDownloadsLink = $('.view-older-downloads');
-  if(moreDownloadsLink.length) {
-    // moreDownloadsLink.next('table').hide();
-    moreDownloadsLink.on('click touchstart',function(e) {
-      e.preventDefault();
-      moreDownloadsLink.next('table').toggle();
-    })
-  }
-
-  /*
    * Product Page demo toggle
    */
   $('table.demos a.view-more').on('click',function(e){
