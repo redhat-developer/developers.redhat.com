@@ -248,6 +248,17 @@
                     <eviction strategy="NONE"/>
                 </local-cache>
             </cache-container>
+            <cache-container name="security" default-cache="auth-cache">
+                <local-cache name="auth-cache" batching="true">
+                    <expiration lifespan="10000"/>
+                </local-cache>
+            </cache-container>
+            <cache-container name="searchisko">
+                <local-cache name="searchisko-user-roles">
+                    <!-- Expiration - 30 mins - should be same as session expiration -->
+                    <expiration lifespan="1800000"/>
+                </local-cache>
+            </cache-container>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:jaxrs:1.0"/>
         <subsystem xmlns="urn:jboss:domain:jca:1.1">
@@ -315,21 +326,19 @@
                         <policy-module code="Delegating" flag="required"/>
                     </authorization>
                 </security-domain>
-                <security-domain name="SearchiskoSecurityDomain">
+                <security-domain name="SearchiskoSecurityDomain" cache-type="infinispan">
                     <authentication>
                         <login-module code="org.searchisko.api.security.jaas.ProviderLoginModule" flag="sufficient">
                         </login-module>
-                        
                         <login-module code="org.searchisko.api.security.jaas.ContributorCasLoginModule" flag="required">
-                            <module-option name="ticketValidatorClass"
-                            value="org.jasig.cas.client.validation.Cas20ServiceTicketValidator"/>
-                            <module-option name="tolerance" value="20000"/>
-                            <module-option name="defaultRoles" value="contributor"/>
-                            <module-option name="roleAttributeNames" value=""/>
+                            <module-option name="ticketValidatorClass" value="org.jasig.cas.client.validation.Cas20ServiceTicketValidator" />
+                            <module-option name="tolerance" value="20000" />
+                            <module-option name="defaultRoles" value="contributor" />
+                            <module-option name="roleAttributeNames" value="" />
                             <module-option name="principalGroupName" value="CallerPrincipal"/>
                             <module-option name="roleGroupName" value="Roles"/>
-                            <module-option name="cacheAssertions" value="true"/>
-                            <module-option name="cacheTimeout" value="480"/>
+                            <module-option name="cacheAssertions" value="true" />
+                            <module-option name="cacheTimeout" value="480" />
                         </login-module>
                     </authentication>
                 </security-domain>
