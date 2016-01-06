@@ -65,7 +65,7 @@ function addWidget(editor, name, definition) {
       menu_wrapper.className = "btn-group btn-group-sm basewidget-menu-wrapper";
       menu_wrapper.style.display = "block";
       menu_wrapper.style.position = "absolute";
-      menu_wrapper.style.top = "-30px";
+      menu_wrapper.style.bottom = "-50px";
       menu_wrapper.style.left = "20px";
 
       var createButton = function (definition) {
@@ -74,8 +74,8 @@ function addWidget(editor, name, definition) {
         button.type = "button";
         button.className = "btn btn-default";
         button.onclick = definition.onClick.bind(this);
-        var icon = document.createElement('span');
-        icon.className = "glyphicon" + definition.icon;
+        var icon = document.createElement('i');
+        icon.className = "fa " + definition.icon;
         button.appendChild(icon);
         var textNode = document.createTextNode(definition.label);
         button.appendChild(textNode);
@@ -85,7 +85,7 @@ function addWidget(editor, name, definition) {
       var buttons = [];
       buttons.push(createButton({
         label: 'remove',
-        icon: '',
+        icon: 'fa-trash-o',
         onClick: function () {
           this.repository.del(this);
         }.bind(this)
@@ -98,7 +98,7 @@ function addWidget(editor, name, definition) {
             if (configuration.defaultButtons.edit.onClick) {
               buttons.push(createButton({
                 label: 'edit',
-                icon: 'glyphicon-edit',
+                icon: 'fa-edit',
                 onClick: configuration.defaultButtons.edit.onClick.bind(this)
               }));
             }
@@ -120,8 +120,7 @@ function addWidget(editor, name, definition) {
 
     }.bind(this);
 
-    var removeToolbar = function () {
-      var toolbar = document.getElementById('configToolbar-panel');
+    var removeToolbar = function (toolbar) {
       if (toolbar) {
         toolbar.parentNode.removeChild(toolbar);
       }
@@ -130,14 +129,14 @@ function addWidget(editor, name, definition) {
     this.wrapper.$.onmouseenter = function (event) {
       var toolbar = document.getElementById('configToolbar-panel');
       if (toolbar) {
-        removeToolbar();
+        removeToolbar(toolbar);
       }
       // Because we postpone the removal of the toolbar
       // we need to be sure that we will create the new one after the delayed removal.
       setTimeout(function () {
         toolbar = document.getElementById('configToolbar-panel');
         if (toolbar) {
-          removeToolbar();
+          removeToolbar(toolbar);
         }
         createToolbar();
       }, 200);

@@ -352,7 +352,7 @@ function LayoutBuilder() {
           '<div class="layout-column-one layout-column-editable"><p>Column One</p></div>'+
         '</div>'+
         '<div class="small-{size2} medium-{size2} large-{size2} columns">'+
-          '<div class="layout-column-one layout-column-editable"><p>Column Two</p></div>'+
+          '<div class="layout-column-two layout-column-editable"><p>Column Two</p></div>'+
         '</div>'+
       '</div>'+
     '</div>'));
@@ -362,10 +362,10 @@ function LayoutBuilder() {
           '<div class="layout-column-one layout-column-editable"><p>Column One</p></div>'+
         '</div>'+
         '<div class="small-{size2} medium-{size2} large-{size2} columns layout-column">'+
-          '<div class="layout-column-one layout-column-editable"><p>Column Two</p></div>'+
+          '<div class="layout-column-two layout-column-editable"><p>Column Two</p></div>'+
         '</div>'+
         '<div class="small-{size3} medium-{size3} large-{size3} columns layout-column">'+
-          '<div class="layout-column-one layout-column-editable"><p>Column Three</p></div>'+
+          '<div class="layout-column-three layout-column-editable"><p>Column Three</p></div>'+
         '</div>'+
       '</div>'+
     '</div>'));
