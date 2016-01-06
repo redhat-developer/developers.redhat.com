@@ -7,6 +7,12 @@ interpolate: true
  */
 
 var app = window.app = {};
+
+/*
+  Base URL
+*/
+app.baseUrl = "#{site.base_url}";
+
 /*
   Website Cache
 */
