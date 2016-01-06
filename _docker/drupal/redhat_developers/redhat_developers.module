@@ -23,12 +23,3 @@ function redhat_developers_help($route_name, RouteMatchInterface $route_match) {
   }
 }
 
-/**
- * Implements hook_theme().
- */
-function redhat_developers_theme($existing, $type, $theme, $path) {
-    return array(
-        'node__rhd_solution_overview' => array('render element' => 'elements')
-    );
-}
-

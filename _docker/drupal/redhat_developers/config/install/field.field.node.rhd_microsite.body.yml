@@ -6,7 +6,7 @@ dependencies:
     - node.type.rhd_microsite
   module:
     - text
-id: node.rhd_microsite_type.body
+id: node.rhd_microsite.body
 field_name: body
 entity_type: node
 bundle: rhd_microsite
@@ -18,5 +18,4 @@ default_value: {  }
 default_value_callback: ''
 settings:
   display_summary: true
-third_party_settings: {  }
 field_type: text_with_summary
