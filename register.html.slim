@@ -1,5 +1,6 @@
 html
 head
+  script src="#{site.base_url}/javascripts/namespace.js"
   script src="//static.jboss.org/rhd/1.2-build-1200/javascripts/vendor/keycloak.js"
   javascript:
     var keycloak = Keycloak({
@@ -8,7 +9,7 @@ head
       clientId: 'web'
     });
 
-    var redirectUri = 'http://developers.redhat.com/confirmation';
+    var redirectUri = app.ssoConfig.confirmation;
 
     keycloak.init().success(function (authenticated) {
       if (!authenticated) {
