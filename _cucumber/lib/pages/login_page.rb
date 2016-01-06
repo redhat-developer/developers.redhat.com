@@ -30,7 +30,6 @@ class LoginPage < BasePage
       login_link.click
       loaded?('Login | Red Hat Developers')
     end
-    return_redirect_url
   end
 
   def with_existing_account(username, password)
@@ -40,18 +39,6 @@ class LoginPage < BasePage
     password_field.set(password)
     login_button.click
     wait_for_ajax
-  end
-
-  private
-
-  def return_redirect_url
-    # get redirect url for logout method
-    redirect_url = CGI::parse(current_url).to_h
-    strip_url = redirect_url['redirect_uri'].to_s.gsub('?redirect_fragment=!', '')
-    url = strip_url.delete('\[()]""')
-    encoded_url = CGI.escape(url)
-    # return encoded url for logout method
-    return encoded_url
   end
 
 end

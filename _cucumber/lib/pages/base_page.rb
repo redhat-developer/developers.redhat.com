@@ -2,17 +2,15 @@ require 'rspec'
 
 class BasePage < SitePrism::Page
   include Capybara::DSL
-
   attr_reader :driver
 
-  PRIMARY_NAV_ACTIONS = %i[register login logout]
-  PRIMARY_NAV_TABS = %i[Solutions Products Downloads Resources Community Events Blogs]
-
-  PRIMARY_NAV_ACTIONS.each do |action|
+  primary_nav_actions = %i[register login logout]
+  primary_nav_actions.each do |action|
     element :"#{action}_link", ".#{action}"
   end
 
-  PRIMARY_NAV_TABS.each do |tab|
+  primary_nav_tabs = %i[Solutions Products Downloads Resources Community Events Blogs]
+  primary_nav_tabs.each do |tab|
     element :"primary_nav_#{tab.downcase}_link", :xpath, "//nav[@class='primary-nav']//ul/li/*[contains(text(),'#{tab}')]"
   end
 
@@ -32,8 +30,8 @@ class BasePage < SitePrism::Page
     if Capybara.current_driver == 'poltergeist'.to_sym
       raise("There was a problem loading the page, expected status code to be 200, but was #{page.status_code}") unless page.status_code.eql?(200)
     end
-    raise("Expected page title to be #{title}, but was #{page.title}") unless page.has_title?(title).eql?(true)
     wait_for_ajax
+    raise("Expected page title to be #{title}, but was #{page.title}") unless page.has_title?(title).eql?(true)
   end
 
   def title
@@ -49,7 +47,7 @@ class BasePage < SitePrism::Page
   end
 
   def physical_logout
-    try(3) {
+    logout(3) {
       if logged_in?.eql?(true)
         logout_link.click
         wait_for_ajax
@@ -74,12 +72,11 @@ class BasePage < SitePrism::Page
     page.evaluate_script('jQuery.active') == 0
   end
 
-  def try(i)
+  def logout(i)
     count = 0; logged_out = false
     until logged_out == true || count == i
-      p ' . . . User is not logged out, retrying . . .'
       logged_out = yield
-      sleep(3)
+      sleep(1)
       count += 1
     end
     if logged_out.eql?(false)

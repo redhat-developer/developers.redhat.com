@@ -35,8 +35,27 @@ Before('@customer') do
 end
 
 After('@logout') do
-  user_logout unless @redirect_url == '' || @redirect_url.nil?
+  user_logout
   Home.new(@driver).physical_logout
+end
+
+Before do
+  if Dir.exist?(DownloadHelper::PATH.to_s)
+    p 'Downloads exist, removing'
+    clear_downloads
+  end
+end
+
+After do |scenario|
+  if scenario.failed? && Dir.exist?(DownloadHelper::PATH.to_s)
+    clear_downloads
+    p 'Removed downloads'
+  else
+    if Dir.exist?(DownloadHelper::PATH.to_s)
+      clear_downloads
+      p 'Removed downloads'
+    end
+  end
 end
 
 After do |scenario|
@@ -60,7 +79,7 @@ end
 
 def user_logout
   if Capybara.app_host == 'http://developers.redhat.com/'
-    visit("https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
+    visit('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fdevelopers.redhat.com%2F%3Fredirect_fragment%3D!')
   else
     visit("https://it-developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
   end
