@@ -55,6 +55,9 @@ def set_ports
 end
 
 def execute_docker_compose(cmd, args = [])
+  #if ENV['AWESTRUCT_HOST_PORT'].to_s == ''
+    #ENV['AWESTRUCT_HOST_PORT'] = "32768"
+  #end
   Kernel.abort('Error running docker-compose') unless Kernel.system *['docker-compose', cmd.to_s, *args]
 end
 
@@ -84,7 +87,7 @@ def block_wait_drupal_started
   docker_drupal = Docker::Container.all(filters: {label: ['com.docker.compose.service=drupal']}.to_json).first
   until docker_drupal.json['NetworkSettings']['Ports']
     sleep(5)
-    docker_drupal = Docker::Container.get('docker_drupal_1')
+    docker_drupal = Docker::Container.get("#{project_name}_drupal_1")
   end
 
   # Check to see if Drupal is accepting connections before continuing
@@ -102,9 +105,18 @@ def block_wait_drupal_started
   end
 end
 
+private def project_name
+  if ENV['COMPOSE_PROJECT_NAME'].to_s == ''
+    "docker"
+  else
+    ENV['COMPOSE_PROJECT_NAME']
+  end
+end
+
 def block_wait_searchisko_configure_finished
   begin
-    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
+    compose_project_name = project_name
+    configure_service = Docker::Container.get("#{compose_project_name}_searchiskoconfigure_1")
   rescue Excon::Errors::SocketError => se
     puts se.backtrace
     puts('There has been a problem with your CA certs, are you developing using boot2docker?')
@@ -119,7 +131,7 @@ def block_wait_searchisko_configure_finished
   while configure_service.info['State']['Running']
     # TODO We need to figure out if the container has actually died, if it died print an error and abort
     sleep 5
-    configure_service = Docker::Container.get('docker_searchiskoconfigure_1')
+    configure_service = Docker::Container.get("#{project_name}_searchiskoconfigure_1")
   end
 end
 
