@@ -38,6 +38,7 @@ gem 'compass', '~> 1.0'
 gem 'rake', '~>10.4'
 gem "octokit", "~> 4.0"
 gem 'docker-api', :require => 'docker'
+gem 'uuid'
 
 # To use Aweplug code from a different location:
 #
@@ -60,7 +61,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
   gem 'capybara', '~>2.5'
-  gem 'selenium-webdriver', '~> 2.48.0'
+  gem 'selenium-webdriver', '~> 2.48.1'
   gem 'parallel_tests', '~> 1.9.0'
   gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'

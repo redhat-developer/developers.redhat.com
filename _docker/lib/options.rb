@@ -69,7 +69,11 @@ class Options
         tasks[:build] = true
         tasks[:awestruct_up_service] =  %w(-d awestruct_preview_no_reload)
         tasks[:unit_tests] = unit_test_tasks
+<<<<<<< HEAD
+        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure selenium)
+=======
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+>>>>>>> added selenium server standlone for firefox
         tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
       end
 
@@ -98,7 +102,11 @@ class Options
         tasks[:build] = true
         tasks[:set_ports] = true
         tasks[:unit_tests] = unit_test_tasks
+<<<<<<< HEAD
+        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure selenium)
+=======
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+>>>>>>> added selenium server standlone for firefox
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|

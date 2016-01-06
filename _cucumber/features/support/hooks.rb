@@ -39,6 +39,25 @@ After('@logout') do
   Home.new(@driver).physical_logout
 end
 
+Before do
+  if Dir.exist?(DownloadHelper::PATH.to_s)
+    p 'Downloads exist, removing'
+    clear_downloads
+  end
+end
+
+After do |scenario|
+  if scenario.failed? && Dir.exist?(DownloadHelper::PATH.to_s)
+    clear_downloads
+    p 'Removed downloads'
+  else
+    if Dir.exist?(DownloadHelper::PATH.to_s)
+      clear_downloads
+      p 'Removed downloads'
+    end
+  end
+end
+
 After do |scenario|
   if scenario.failed?
     Capybara.using_session(Capybara::Screenshot.final_session_name) do

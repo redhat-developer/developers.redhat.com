@@ -91,7 +91,7 @@ class TestOptions < Minitest::Test
       assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
 
       tasks = Options.parse (["--run-the-stack"])
-      assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
+      assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure ))
 
       tasks = Options.parse (['-u'])
       assert_includes tasks[:supporting_services], 'drupal'
@@ -127,6 +127,7 @@ class TestOptions < Minitest::Test
       assert_equal('http://example.com', ENV['HOST_TO_TEST'])
       assert_equal('false', ENV['PARALLEL_TEST'])
       refute(tasks[:set_ports])
+      assert_equal(tasks[:supporting_services], %w(-d selenium-firefox))
       assert_equal(["--no-deps", "--rm", "awestruct", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])
     end
 
@@ -186,7 +187,7 @@ class TestOptions < Minitest::Test
         assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
         assert(tasks[:decrypt])
         assert(tasks[:set_ports])
-        assert_equal('true', ENV['PARALLEL_TEST'])
+        assert_equal('false', ENV['PARALLEL_TEST'])
         assert(tasks[:build])
         assert_equal(tasks[:supporting_services], %w(-d elasticsearch mysql searchisko searchiskoconfigure))
         assert_equal(tasks[:awestruct_up_service], %w(-d awestruct_preview_no_reload))

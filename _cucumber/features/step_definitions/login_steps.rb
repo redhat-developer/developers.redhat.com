@@ -54,3 +54,9 @@ end
 When(/^I update my password$/) do
   @page.password_reset.update_password
 end
+
+When(/^I click on the Create account link$/) do
+  @page.login.register_link.click
+  @page.registration.loaded?('Register | Red Hat Developers')
+end
+
