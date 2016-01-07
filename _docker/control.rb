@@ -39,7 +39,7 @@ def set_ports
     'MYSQL_HOST_PORT', 'ES_HOST_PORT1', 'ES_HOST_PORT2', 'SEARCHISKO_HOST_PORT']
 
   #We only set ports for ENVs not already set.
-  ports_to_set = port_names.select{ |x| ENV[x].to_s != '' }
+  ports_to_set = port_names.select{ |x| ENV[x].to_s == '' }
 
   # We have to reverse the logic in `is_port_open` because if nothing is listening, we can use it
   available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(ports_to_set.size).force
