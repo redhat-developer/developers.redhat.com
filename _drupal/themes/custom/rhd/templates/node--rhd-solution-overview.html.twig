@@ -67,14 +67,16 @@ node.isPromoted() ? 'node--promoted',
 node.isSticky() ? 'node--sticky',
 not node.isPublished() ? 'node--unpublished',
 view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-] %}
+]
+%}
+{% set solution_name_hyphen = content.field_solution_name['#items'].getValue()|first.value|lower|split(" ")|join("-") %}
 {{ attach_library('classy/node') }}
 <div class="solution-hero hero">
     <div class="row">
         <div class="large-24">
             <ul class="breadcrumbs" itemscope="" itemtype="http://schema.org/BreadcrumbList">
                 <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <a href="http://docker:32769/solutions/" itemprop="item">Solutions</a>
+                    <a href="/solutions" itemprop="item">Solutions</a>
                     <meta itemprop="position" content="1">
                 </li>
                 <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
@@ -92,13 +94,10 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     <div class="large-4 medium-7 small-24 columns nav-breakpoint">
         <ul class="side-nav">
             <li class="side-nav-toggle"><a href="#">Menu</a></li>
-            <li class="active">TODO: Add nav - {{ content.field_solution_name | lower }}</li>
-            {#
-            <li class="active"><a href="{{ content.field_solution_name|split(' ')|join('-') }}">Overview</a></li>
-            <li><a href="../adoption/">Adoption</a></li>
-            <li><a href="../learn/">Learn</a></li>
-            <li><a href="../buzz/">Buzz</a></li>
-            #}
+            <li class="active"><a href="/{{ solution_name_hyphen }}/overview">Overview</a></li>
+            <li><a href="/{{ solution_name_hyphen }}/adoption/">Adoption</a></li>
+            <li><a href="/{{ solution_name_hyphen }}/learn/">Learn</a></li>
+            <li><a href="/{{ solution_name_hyphen }}/buzz/">Buzz</a></li>
         </ul>
     </div>
     <div class="large-20 medium-17 small-24 columns nav-breakpoint">
