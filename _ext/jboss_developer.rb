@@ -340,6 +340,10 @@ module Aweplug
                     :path => {:alias => File.join('/', path)}
                   }
 
+        if page.drupal_type == 'rhd_solution_overview'
+          payload[:field_solution_name] = [{:value => page.solution.name }]
+          payload[:field_solution_tag_line] = [{:value => page.solution.long_description }]
+        end
         # TODO: cache this so we know to update or create
         post 'entity', 'node', payload
       end
