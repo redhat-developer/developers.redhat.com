@@ -98,7 +98,7 @@ def block_wait_drupal_started
   end
 end
 
-private def roject_name
+private def project_name
   if ENV['COMPOSE_PROJECT_NAME'].to_s == ''
     "docker"
   else
