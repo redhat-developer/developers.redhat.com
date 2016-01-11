@@ -6,7 +6,7 @@ Prerequisites &#38; Required Dependencies Checklist
 
 == Prerequisites section
 1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
-2. JBoss&#174; Developer Studio 8.1
+2. JBoss&#174; Developer Studio 9.0
 
 == Step1 Duration
 10 minutes
@@ -21,11 +21,11 @@ Prerequisites &#38; Required Dependencies Checklist
 
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
-2.  Download link:http://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-standalone_jar.jar?tp=fuse[JBoss Developer Studio 8.1.0.GA] 
+2.  Download link:https://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-jar_universal.jar?tp=fuse[JBoss Developer Studio 8.1.0.GA]
 3.  Run JBoss Developer Studio installer +
 For Mac / Windows Development Hosts:
 a.  Go to the folder you have downloaded JBoss Developer Studio:
-...  Right Click on *jboss-devstudio-8.1.0.GA-installer-standalone.jar*
+...  Right Click on *jboss-devstudio-8.1.0.GA-jar_universal.jar*
 ... Select _"Open With -> Jar Launcher"_
 +
 For Linux Development Hosts:
@@ -33,7 +33,7 @@ For Linux Development Hosts:
 Go to the folder where you have downloaded JBoss Developer Studio, and execute the
 installer +
 +
-`java -jar jboss-devstudio-8.1.0.GA-installer-standalone.jar`
+`java -jar jboss-devstudio-8.1.0.GA-jar_universal.jar`
 +
 *Note:* This will execute the JBoss Developer Studio installation wizard. +
 4.  Start JBoss Developer Studio. +
@@ -94,7 +94,7 @@ TIP: We recommend you select Java SE-1.7 as your execution environment.
 +
 image:#{cdn(site.base_url + '/images/products/fuse/get-started-fuse-runtime.png')}[Create a JBoss Fuse Server]
 4. On Servers tab, click on the green start button to start the Fuse Server.
-+	
++
 NOTE: It’s safe to say yes if you receive a warning that “The authenticity of host 'localhost' can't be established.”
 +
 5. Create a new fabric. JBoss Fuse comes with Fuse Fabric which can be created by executing the following command from the Shell tab:
