@@ -15,6 +15,8 @@ If you are on a mac then brew is required to install some dependant packages. Br
 ### Docker
 Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
 
+Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md)
+
 ### Docker Compose
 OSX: Docker compose will have been installed as part of the docker toolbox.
 
@@ -326,6 +328,22 @@ If you add a new recipient to the file, ensure you update the list above.
 
 ## <a name="CommonIssues"></a>Common issues
 This area documents fixes to common issues:
+
+### 'undefined method `[]' for nil:NilClass'
+
+If running in docker you may get the error:
+```
+Internal Server Error
+
+undefined method `[]' for nil:NilClass
+```
+This is a current issue with the system [https://issues.jboss.org/browse/RHD-1365]. If you get this error then please stop and then remove the docker containers. So, for each container id run
+```
+docker kill ALL_THE_IDs
+docker rm ALL_THE_IDs
+```
+If you work out a better fix, then please update.
+
 
 ### 'Illegal instruction: 4'
 There is an [issue on older macs](https://github.com/docker/compose/issues/271) where docker compose will not run. The only way around this is to install docker-compose via pip (Python's package manager). This can be done as follows:
