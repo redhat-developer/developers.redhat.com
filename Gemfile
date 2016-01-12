@@ -50,6 +50,7 @@ gem 'aweplug', github: 'awestruct/aweplug'
 
 group :test do
   gem 'climate_control'
+  gem 'docker-api'
   gem 'guard'
   gem 'guard-minitest'
   gem 'launchy', '~>2.4'
