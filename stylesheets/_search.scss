@@ -1,3 +1,6 @@
+/* 
+  Search Form - used on the Buzz page and the header
+*/
 form.search {
   position: relative;
   input.query {
@@ -65,6 +68,31 @@ form.search {
         }
       }
     }
+  }
+}
+
+form.header-search {
+  position: relative;
+  z-index: 2;
+  margin-left: 20px;
+   &:before {
+    content: "\f002";
+    font-family: 'FontAwesome';
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    padding:10px;
+   }
+  input {
+     display:inline-block;
+     padding: 10px 10px 10px 25px;
+     line-height: 1;
+     position: relative;
+     min-width:300px;
+     margin-bottom: 0;
+  }
+  button {
+    position: absolute;
   }
 }
 
