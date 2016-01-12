@@ -6,7 +6,7 @@ Prerequisites
 
 == Prerequisites section
 1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
-2. JBoss&#174; Developer Studio 9.0
+2. JBoss&#174; Developer Studio 8.1
 
 == Step1 Duration
 10 minutes
@@ -20,11 +20,11 @@ Prerequisites
 == Step1 Content
 
 1. *Install JBoss Developer Studio*
-a. Download link:https://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-jar_universal.jar?tp=amq[JBoss Developer Studio 8.1.0.GA] and execute its installer.
-* On Mac / Windows development hosts: Right click on `jboss-devstudio-8.1.0.GA-jar_universal.jar`, select _Open With -> Jar Launcher_
+a. Download link:#{download_manager_file_base_url}/jboss-devstudio-8.1.0.GA-jar_universal.jar?tp=amq[JBoss Developer Studio 8.1.0.GA] and execute its installer.
+* On Mac / Windows development hosts: Right click on `jboss-devstudio-8.1.0.GA-installer-eap.jar`, select _Open With -> Jar Launcher_
 * On Red Hat Enterprise Linux: Use the terminal to go to the folder where you have downloaded JBoss Developer Studio, and execute the installer with the following command:
 +
-`java -jar jboss-devstudio-8.1.0.GA-jar_universal.jar`
+`java -jar jboss-devstudio-8.1.0.GA-installer-eap.jar`
 +
 b. The installation wizard will walk through various steps.
 ... On Introduction screen Click _N​ext_
@@ -71,7 +71,7 @@ TIP: You can also copy the settings.xml file to your maven home directory `(USER
 1. *Download and extract:*
 +
 a. Download the latest version of Red Hat JBoss A-MQ. The latest
-at the time of this writing is link:http://developers.redhat.com/download-manager/file/jboss-amq-6.2.1.GA.zip[Red Hat JBoss A-MQ 6.2.1 GA].
+at the time of this writing is link:#{download_manager_file_base_url}/jboss-amq-6.2.1.GA.zip[Red Hat JBoss A-MQ 6.2.1 GA].
 b. Unzip JBoss-AQ to your favorite destination. The document will refer to this directory as AMQ_HOME (We use C:\opt\redhat\jboss-amq on Windows.)
 * On Windows or Mac, you can extract the contents of the ZIP archive by double clicking on the ZIP file.
 * On Red Hat Enterprise Linux, open a terminal window in the target machine and navigate to where the ZIP file was downloaded. Extract the ZIP file by executing the following command:
