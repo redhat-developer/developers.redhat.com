@@ -321,6 +321,7 @@ module Aweplug
         opts.merge({:no_cache => true, :logger => @logger})
         @faraday = Aweplug::Helpers::FaradayHelper.default(opts[:base_url], opts)
         @faraday.basic_auth(opts[:drupal_user], opts[:drupal_password])
+        @faraday.builder.delete(Faraday::Response::RaiseError) #remove response status checking since data not in the cache isn't necessarily an error.
         @base_url = opts[:base_url]
         #session_info = JSON.parse (login opts[:drupal_user], opts[:drupal_password]).body
         #@cookie = "#{session_info['session_name']}=#{session_info['sessid']}"
@@ -331,7 +332,7 @@ module Aweplug
         path = page.output_path.chomp('/index.html')
         path = path[1..-1] if path.starts_with? '/'
         payload = {:title => [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
-                   :_links => {:type => {:href => File.join(@base_url, '/rest/type/node/page')}}, # TODO: make this configurable
+                   :_links => {:type => {:href => File.join(@base_url, '/rest/type/node/', page.drupal_type)}},
                    :body => [{:value => content,
                               :summary => page.description,
                               :format => "full_html"}],
@@ -339,6 +340,10 @@ module Aweplug
                     :path => {:alias => File.join('/', path)}
                   }
 
+        if page.drupal_type == 'rhd_solution_overview'
+          payload[:field_solution_name] = [{:value => page.solution.name }]
+          payload[:field_solution_tag_line] = [{:value => page.solution.long_description }]
+        end
         # TODO: cache this so we know to update or create
         post 'entity', 'node', payload
       end

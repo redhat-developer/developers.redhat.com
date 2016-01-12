@@ -195,6 +195,7 @@ end
 
 if tasks[:awestruct_command_args]
   puts 'running awestruct command'
+  block_wait_drupal_started if tasks[:drupal]
   execute_docker_compose :run, tasks[:awestruct_command_args]
 end
 

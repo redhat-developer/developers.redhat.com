@@ -1,14 +1,16 @@
-FROM drupal:8.0.0
+FROM drupal:8
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 LABEL version="dev"
 
-#RUN curl -LSs http://drupalconsole.com/installer | php && mv console.phar /usr/local/bin/drupal
+RUN php -r "readfile('http://drupalconsole.com/installer');" > drupal.phar && mv drupal.phar /usr/local/bin/drupal && chmod +x /usr/local/bin/drupal
 
-#COPY run.sh /
-#COPY db-check.php /
+COPY run.sh /
+COPY db-check.php /
 
 # Adding the awestruct module
-#COPY awestruct /var/www/html/modules/custom/awestruct
+COPY redhat_developers /var/www/html/modules/custom/redhat_developers
+COPY layoutmanager /var/www/html/modules/custom/layoutmanager
+COPY basewidget /var/www/html/modules/custom/basewidget
 
-#CMD ["/bin/bash", "/run.sh"]
+CMD ["/bin/bash", "/run.sh"]

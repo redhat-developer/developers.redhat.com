@@ -1,0 +1,10 @@
+global-styling:
+  version: 1.x-dev
+  # This should be all of the style sheets broken up according to smaccs
+  css:
+    base:
+      css/base/all.css: {}
+  dependencies:
+    - system/admin
+
+# We should also be adding all of our javascripts here too

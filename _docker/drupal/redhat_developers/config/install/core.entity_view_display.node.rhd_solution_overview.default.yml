@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rhd_solution_overview.body
+    - field.field.node.rhd_solution_overview.field_solution_name
+    - field.field.node.rhd_solution_overview.field_solution_tag_line
+    - node.type.rhd_solution_overview
+  module:
+    - text
+    - user
+id: node.rhd_solution_overview.default
+targetEntityType: node
+bundle: rhd_solution_overview
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  field_solution_name:
+    type: string
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_solution_tag_line:
+    type: string
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  links: true

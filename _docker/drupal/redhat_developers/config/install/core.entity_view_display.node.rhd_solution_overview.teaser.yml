@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.rhd_solution_overview.body
+    - field.field.node.rhd_solution_overview.field_solution_name
+    - field.field.node.rhd_solution_overview.field_solution_tag_line
+    - node.type.rhd_solution_overview
+  module:
+    - text
+    - user
+id: node.rhd_solution_overview.teaser
+targetEntityType: node
+bundle: rhd_solution_overview
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  field_solution_name: true
+  field_solution_tag_line: true

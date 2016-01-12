@@ -37,20 +37,12 @@ class Options
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
-        if tasks[:drupal].nil?
-          tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[docker]"]
-        else
-          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
-        end
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[profile]"]
       end
 
       opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
         tasks[:decrypt] = true
-        if tasks[:drupal].nil?
-          tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
-        else
-          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
-        end
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
@@ -58,7 +50,6 @@ class Options
         tasks[:drupal] = true
         tasks[:set_ports] = true
         tasks[:supporting_services] += %w(drupal drupalpgsql)
-        tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]']
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -115,11 +106,7 @@ class Options
         tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
-        if tasks[:drupal].nil?
-          tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
-        else
-          tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
-        end
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
       # No argument, shows at tail.  This will print an options summary.
@@ -137,6 +124,18 @@ class Options
 
     #Flag to see if anything was set it supporting_services
     tasks[:should_start_supporting_services] = tasks[:supporting_services].size > 1
+
+    # change the profile awestruct runs with
+    if tasks[:awestruct_command_args]
+      if tasks[:drupal]
+        tasks[:awestruct_command_args][-1].gsub! 'profile', 'drupal'
+        tasks[:awestruct_command_args][-1].gsub! 'preview', 'gen'
+        tasks[:awestruct_command_args].delete '--no-deps'
+      else
+        tasks[:awestruct_command_args][-1].gsub! 'profile', 'docker'
+      end
+    end
+
     tasks
   end
 
