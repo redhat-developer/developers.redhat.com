@@ -67,15 +67,28 @@
   }
 }
 
+.spotlights {
+  background:black cdn("../images/design/dotted_lipne-white.svg") left no-repeat;
+  padding: 20px 0;
+}
+
 .spotlights-container {
-  margin: 30px 0;
   display: flex;
   flex-wrap: wrap;
 }
 
 .spotlight-item {
   width: calc(20% - 16px);
-  margin: 8px;
+  padding: 0 12px;
+  border-right: 1px solid $trim-grey;
+  color:white;
+  &:hover {
+    color:white;
+    background:lighten(black, 10%);
+  }
+  &:last-child {
+    border-right:0;
+  }
   .cut-image {
     position: relative;
     overflow: hidden;

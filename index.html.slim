@@ -30,6 +30,7 @@ section.homepage-main
           img(src=cdn("#{site.base_url}/images/design/burr_video_thumbnail.png") alt="Video Thumbnail Img")
           p 2015 JBoss Red Hat Keynote Demo
 
+<<<<<<< 39117b42fde4328b25acf7e984cbe157af33c55b
 .row
   .large-24
     .spotlights-container
@@ -37,26 +38,22 @@ section.homepage-main
         .cut-image
           img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_rheap7beta_01112016.png") alt="EAP 7 Beta")
         span EAP 7 Beta Now Available!
-      a.spotlight-item.keycloak-url href=''
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_joinrhd.png") alt="Join RHD")
+      a.spotlight-item href='#{site.base_url}/events/devoxx/2015/'
+        img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_devoxxbe2015.png") alt="Devoxx Be")
         span Register today for Red Hat Developers
       a.spotlight-item href='#{site.base_url}/video/youtube/czH9qZUusLs/'
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_docker.png") alt="Docker")
+        img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_docker.png") alt="Docker")
         span Docker images in 5 minutes or less
       a.spotlight-item href='#{site.base_url}/containers/'
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_atomic.png") alt="Atomic")
+        img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_atomic.png") alt="Atomic")
         span Announcing Red Hat Container Platforms and Tools
       a.spotlight-item href='#{site.base_url}/promotions/distributed-javaee-architecture/'
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_modernee.png") alt="Modern Java EE Design Patterns")
+        img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_modernee.png") alt="Modern Java EE Design Patterns")
         span Download Modern Java EE Design Patterns
 
 .row
   .medium-12.columns
-    h4.caps Suggested
+    h4.caps Our Picks
     ul.homepage-resources
       - site.our_picks.first(4).each do |k,v|
         li
@@ -72,7 +69,7 @@ section.homepage-main
             p.date #{v['date']}
 
   .medium-12.columns
-    h4.caps Latest
+    h4.caps Trending
     div(ng-app="dcp")
       div(ng-controller="developerMaterialsController")
         = partial 'newest-resources.html.slim'
