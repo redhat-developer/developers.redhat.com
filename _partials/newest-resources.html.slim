@@ -1,5 +1,5 @@
 ul.homepage-resources
-  li(ng-repeat="item in data.displayedMaterials | noURL | limitTo: 4")
+  li(ng-repeat="item in data.latestMaterials | noURL | limitTo: 4")
     span.type-icon
       i.fa.fa-globe.fa-2x(ng-show="item.fields.sys_type !== 'video'")
       i.fa.fa-video-camera.fa-2x(ng-show="item.fields.sys_type == 'video'")
