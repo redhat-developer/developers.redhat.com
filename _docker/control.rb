@@ -50,7 +50,7 @@ def set_ports
 end
 
 def execute_docker_compose(cmd, args = [])
-  puts "args to docker compise are #{args}"
+  puts "args to docker compose are #{args}"
   Kernel.abort('Error running docker-compose') unless Kernel.system *['docker-compose', cmd.to_s, *args]
 end
 

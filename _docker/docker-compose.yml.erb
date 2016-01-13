@@ -1,4 +1,30 @@
-awestruct_acceptance:
+awestruct_unit_tests:
+  build: ./awestruct
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
+  volumes:
+    - ../:/home/awestruct/developer.redhat.com
+
+awestruct_acceptance_remote_host:
+  build: ./awestruct
+  command:
+     - /home/awestruct/developer.redhat.com/_cucumber/docker_run.sh
+
+  <% if ENV['ghprbPullId'] %>
+  labels:
+    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
+  <% end %>
+  links:
+    - selenium-<%=ENV['RHD_SELENIUM_DRIVER']%>:driver
+  volumes:
+    - ../:/home/awestruct/developer.redhat.com
+  environment:
+    - "<%= ENV['HOST_TO_TEST']%>"
+    - SELENIUM_HOST=http://driver:4444/wd/hub
+
+awestruct_acceptance_docker_internal:
   build: ./awestruct
   command:
      - /home/awestruct/developer.redhat.com/_cucumber/docker_run.sh
@@ -8,11 +34,16 @@ awestruct_acceptance:
   <% end %>
   links:
     - awestruct_preview_no_reload:docker
+    - selenium-<%=ENV['RHD_SELENIUM_DRIVER']%>:driver
   volumes:
     - ../:/home/awestruct/developer.redhat.com
   environment:
     - HOST_TO_TEST=http://docker:<%=ENV['AWESTRUCT_HOST_PORT']%>
     - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
+    - SELENIUM_HOST=http://driver:4444/wd/hub
+    - RHD_SELENIUM_DRIVER
+    - PARALLEL_TEST
+
 awestruct_preview_no_reload:
   build: ./awestruct
   command:
@@ -52,6 +83,7 @@ awestruct_preview_no_reload:
     - DRUPAL_HOST_PORT=<%=ENV['DRUPAL_HOST_PORT']%>
     - DRUPAL_HOST_IP
     - HOST_TO_TEST
+
 awestruct:
   build: ./awestruct
   command:
@@ -92,6 +124,7 @@ awestruct:
     - DRUPAL_HOST_PORT=<%=ENV['DRUPAL_HOST_PORT']%>
     - DRUPAL_HOST_IP
     - HOST_TO_TEST
+
 drupal:
   build: ./drupal
   expose:
@@ -167,3 +200,20 @@ searchiskoconfigure:
   links:
    - mysql
    - searchisko
+
+selenium-firefox:
+  image: selenium/standalone-firefox
+  expose:
+    - "4444"
+  links:
+   - awestruct_preview_no_reload:docker
+
+selenium-chrome:
+  image: selenium/standalone-chrome:2.48.2
+  expose:
+    - "4444"
+  links:
+   - awestruct_preview_no_reload:docker
+  volumes:
+  - /dev/shm:/dev/shm
+

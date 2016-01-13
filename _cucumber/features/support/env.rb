@@ -20,47 +20,48 @@ SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
 Capybara.configure do |config|
 
   if ENV['HOST_TO_TEST'].to_s.empty?
-    raise "please provide a variable for HOST_TO_TEST"
+    raise 'please provide a variable for HOST_TO_TEST'
   else
     host_to_test = ENV['HOST_TO_TEST']
   end
 
   config.app_host = host_to_test
   config.run_server = false
-  config.default_driver = (ENV['DRIVER'] ||= 'poltergeist').to_sym
-  config.default_max_wait_time = 5
+  config.default_driver = (ENV['RHD_SELENIUM_DRIVER'] ||= 'local_chrome').to_sym
+  config.default_max_wait_time = 6
   config.save_and_open_page_path = SCREENSHOT_DIRECTORY
+
   Capybara::Screenshot.prune_strategy = :keep_last_run
   puts " . . . Running features against #{host_to_test}  . . . "
   puts ' . . . To change this use the Environment variable HOST_TO_TEST . . . '
   puts ' . . . E.g bundle exec features HOST_TO_TEST=http://the_host_you_want:8080 . . .'
   puts " . . . Running features using #{config.default_driver} . . . "
-  puts ' . . . To switch browser use the Environment variable DRIVER . . . '
-  puts ' . . . E.g. bundle exec features DRIVER=firefox . . . '
   puts " . . . Screenshot directory location: #{SCREENSHOT_DIRECTORY} . . . "
-end
 
-Capybara.register_driver :poltergeist do |app|
-  #The ssl options below allow us to call searchisko (operating from a different host
-  Capybara::Poltergeist::Driver.new(app, {:phantomjs_options => ['--debug=no', '--load-images=no', '--ignore-ssl-errors=yes', '--ssl-protocol=TLSv1'], :js_errors => false})
 end
 
 Capybara.register_driver :firefox do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.firefox
+  Capybara::Selenium::Driver.new(app, :url => ENV['SELENIUM_HOST'], :browser => :remote, :desired_capabilities => capabilities)
+end
+
+Capybara.register_driver :chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome('chromeOptions' => {'args' => ['test-type','whitelisted-ips=comma-separated-ips']})
+  Capybara::Selenium::Driver.new(app, :url => ENV['SELENIUM_HOST'], :browser => :remote, :desired_capabilities => capabilities)
+end
+
+Capybara.register_driver :local_firefox do |app|
   profile = Selenium::WebDriver::Firefox::Profile.new
   Capybara::Selenium::Driver.new(app, :profile => profile)
 end
 
-Capybara.register_driver :chrome do |app|
+Capybara.register_driver :local_chrome do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes])
 end
 
-# Required so that Screenshot works with the "firefox" driver
-Capybara::Screenshot.register_driver(:firefox) do |driver, path|
-  driver.browser.save_screenshot path
+drivers = [:firefox, :local_firefox, :chrome, :local_chrome]
+drivers.each do |d|
+  Capybara::Screenshot.register_driver(d) do |driver, path|
+    driver.browser.save_screenshot path
+  end
 end
-
-# Required so that Screenshot works with the "chrome" driver
-Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-  driver.browser.save_screenshot path
-end
-
