@@ -2,7 +2,7 @@ require 'mocha/mini_test'
 require 'minitest/autorun'
 require 'sawyer'
 require 'climate_control'
-require_relative '../lib/reaper.rb'
+require_relative '../_lib/reaper.rb'
 require_relative 'test_helper.rb'
 
 class TestOptions < Minitest::Test

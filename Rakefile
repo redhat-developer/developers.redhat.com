@@ -7,6 +7,7 @@ require 'json'
 require 'date'
 require 'tmpdir'
 
+require_relative './_lib/reaper'
 require_relative './_lib/github'
 require_relative './_lib/jenkins'
 require_relative './_lib/jira'
