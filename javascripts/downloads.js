@@ -1,6 +1,6 @@
 app.downloads = {};
 
-app.downloads.url = app.baseUrl + '/download-manager/rest/available/';
+app.downloads.url = app.downloadManagerBaseUrl + '/download-manager/rest/available/';
 
 app.downloads.createDownloadTable = function(products) {
 
