@@ -6,7 +6,7 @@ Prerequisites &#38; Required Dependencies Checklist
 
 == Prerequisites section
 1. Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
-2. JBoss&#174; Developer Studio 8.1 with EAP
+2. JBoss&#174; Developer Studio 9.0 with EAP
 
 == Step1 Duration
 10 minutes
@@ -20,11 +20,11 @@ Prerequisites &#38; Required Dependencies Checklist
 == Step1 Content
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
-2.  Download link:http://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-standalone_jar.jar?tp=eap[JBoss Developer Studio 8.1.0.GA with EAP]
+2.  Download link:https://developers.redhat.com/download-manager/content/origin/files/sha256/1e/1efef4d2b109efd9e8136d02067a8d62e00621e5b2b1530811bf52b5aa2fca6f/jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar?tp=eap[JBoss Developer Studio 9.0.0.GA with EAP]
 3.  Run  installer +
 For Mac / Windows Development Hosts:
 a.  Go to the folder you have downloaded JBoss Developer Studio:
-...  Right Click on *jboss-devstudio-8.1.0.GA-installer-eap.jar*
+...  Right Click on *jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar*
 ... Select _"Open With -> Jar Launcher"_
 +
 For Linux Development Hosts:
@@ -32,7 +32,7 @@ For Linux Development Hosts:
 Go to the folder where you have downloaded JBoss Developer Studio, and execute the
 installer +
 +
-`java -jar jboss-devstudio-8.1.0.GA-installer-eap.jar`
+`java -jar jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar`
 +
 *Note:* This will execute the JBoss Developer Studio installation wizard. Common
 Installation Steps: +
