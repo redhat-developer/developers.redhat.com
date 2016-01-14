@@ -14,7 +14,7 @@ require_relative './_lib/jira'
 
 load './_cucumber/cucumber.rake'
 
-$github_org = "redhat-developer"
+$github_org = "ollyjshaw"
 $github_repo = "developers.redhat.com"
 $resources = ['stylesheets', 'javascripts', 'images']
 $use_bundle_exec = true
@@ -318,6 +318,8 @@ end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago in docker'
 task :reap_old_pulls_docker do |task|
+  #TODO please change back to other REPO!!!!
+  puts "~~~~~~~~#{$github_org} #{$github_repo}"
   reap = GitHub.list_closed_pulls($github_org, $github_repo)
   Reaper.kill_and_remove_prs(reap)
 end
