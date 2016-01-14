@@ -85,6 +85,13 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
       end
 
+      opts.on('--docker-pr-reap-docker', 'Reap Old Pull Requests Docker') do |pr|
+        tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct_basic", "bundle exec rake reap_old_pulls_docker"]
+        tasks[:supporting_services] = []
+        tasks[:build] = true
+        tasks[:set_ports] = true
+      end
+
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
         tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"]
         tasks[:supporting_services] = []

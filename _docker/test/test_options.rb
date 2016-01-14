@@ -146,6 +146,17 @@ class TestOptions < Minitest::Test
       assert(tasks[:build])
       assert_empty(tasks[:supporting_services])
     end
+    
+    def test_run_pr_reap
+      tasks = Options.parse (["--docker-pr-reap-docker"])
+      refute(tasks[:acceptance_test_target_task])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct_basic", "bundle exec rake reap_old_pulls_docker"], tasks[:awestruct_command_args])
+      refute(tasks[:kill_all])
+      refute(tasks[:unit_tests])
+      assert(tasks[:set_ports])
+      assert(tasks[:build])
+      assert_empty(tasks[:supporting_services])
+    end
 
     def test_run_docker_nightly
       tasks = Options.parse (["--docker-nightly"])
