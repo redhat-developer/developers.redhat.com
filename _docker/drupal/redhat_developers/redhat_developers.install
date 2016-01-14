@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Steps to perform after an install of the module.
+ */
+use \Drupal\file\Entity\File;
+
+function redhat_developers_install() {
+  require_once DRUPAL_ROOT . '/core/includes/file.inc';
+
+  $mask = '/.*\.(png|jpg|jpeg|gif|svg)/';
+  $site_images = file_scan_directory('/tmp/images', $mask, array());
+
+  foreach ($site_images as $image) {
+    $uri = file_unmanaged_copy($image->uri, 'public://', FILE_EXISTS_ERROR);
+
+    if ($uri !== FALSE) {
+      $file = File::create([
+        'uri' => $uri,
+        'status' => FILE_STATUS_PERMANENT,
+        'filename' => $image->filename,
+        'filemime' => \Drupal::service('file.mime_type.guesser')->guess($uri),
+        'filesize' => filesize($uri)
+      ]);
+      $file->save();
+    }
+  }
+}
