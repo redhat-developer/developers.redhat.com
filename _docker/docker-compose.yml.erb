@@ -102,6 +102,7 @@ drupal:
     - drupalpgsql
   volumes:
     - ../_drupal/themes/:/var/www/html/themes
+    - ../images:/tmp/images
   #  - ../_drupal/scripts/:/drupal/bin
   <% if ENV['ghprbPullId'] %>
   labels:
