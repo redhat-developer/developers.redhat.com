@@ -315,6 +315,12 @@ task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   msg "Successfully commented JIRA issue list on https://github.com/#{$github_org}/#{$github_repo}/pull/#{args[:pull_request]}"
 end
 
+desc 'Remove staged pull builds for pulls closed more than 7 days ago in docker'
+task :reap_old_pulls_docker do |task|
+  reap = GitHub.list_closed_pulls($github_org, $github_repo)
+  Reaper.kill_and_remove_prs(reap)
+end
+
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
 task :reap_old_pulls, [:pr_prefix] do |task, args|
   reap = GitHub.list_closed_pulls($github_org, $github_repo)

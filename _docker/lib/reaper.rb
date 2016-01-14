@@ -2,7 +2,7 @@ require 'docker'
 
 class Reaper
 
-  def self.killprs(prs_to_reap)
+  def self.kill_and_remove_prs(prs_to_reap)
     containers = Docker::Container.all
     to_kill = extract_prs(containers, prs_to_reap)
     ids = to_kill.map{|c| c.id}

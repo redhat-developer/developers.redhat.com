@@ -37,7 +37,7 @@ class TestOptions < Minitest::Test
     containers = prs.map{|pr| MyFakeContainer.new(pr)}
     Docker::Container.stubs(:all).returns containers
 
-    pulls = Reaper.killprs(prs)
+    pulls = Reaper.kill_and_remove_prs(prs)
 
 
     assert_equal(['id1', 'id2', 'id3'], pulls)
@@ -50,7 +50,7 @@ class TestOptions < Minitest::Test
     containers = prs.map{|pr| MyFakeContainer.new(pr)}
     Docker::Container.stubs(:all).returns containers
 
-    pulls = Reaper.killprs([6.7,8])
+    pulls = Reaper.kill_and_remove_prs([6.7,8])
 
     assert_equal([], pulls)
     assert(containers.none?{|x| x.removed})
@@ -63,7 +63,7 @@ class TestOptions < Minitest::Test
     containers.push(MyFakeContainer.new(99))
     Docker::Container.stubs(:all).returns containers
 
-    pulls = Reaper.killprs(prs)
+    pulls = Reaper.kill_and_remove_prs(prs)
 
     assert_equal(['id1', 'id2', 'id3'], pulls)
     assert_equal([false, true, true, true, false], containers.map{|x| x.removed})
