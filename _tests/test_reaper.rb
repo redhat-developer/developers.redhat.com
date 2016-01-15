@@ -27,11 +27,6 @@ class TestOptions < Minitest::Test
     end
   end
 
-  #containers = Docker::Container.all(all: true)
-  #to_kill = containers.select{|x| x.info["Labels"]["com.docker.compose.project"]=="rhdpr655"}
-  #to_kill.each{|x| x.kill}
-  #to_kill.each{|x| x.remove}
-
   def test_reap_of_existing
     prs = [1,2,3]
     containers = prs.map{|pr| MyFakeContainer.new(pr)}
