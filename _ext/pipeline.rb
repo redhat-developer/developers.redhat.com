@@ -29,6 +29,7 @@ require 'events'
 require 'vault'
 require 'aweplug/helpers/define'
 require 'active_support' # HACK for autosupport required by duration
+require 'slim/include'
 
 Awestruct::Extensions::Pipeline.new do
   
