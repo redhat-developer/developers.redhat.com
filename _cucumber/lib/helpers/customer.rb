@@ -2,19 +2,19 @@ module Customer
 
   ACCOUNT = {
       accepted_terms: {
-          email: 'accepted_terms_test_user@example.com',
+          email: 'uk.redhat.test.user+accepted-terms@gmail.com',
           password: 'P@$$word01',
-          name: 'WALTER WHITE'
+          name: 'TEST USER-ACCEPTED-TERMS'
       },
       not_accepted_terms: {
-          email: 'not_accepted_term_test_user@example.com',
+          email: 'uk.redhat.test.user+not-accepted-terms@gmail.com',
           password: 'P@$$word01',
-          name: 'JESSE PINKMAN'
+          name: 'TEST USER-NOT-ACCEPTED-TERMS'
       },
       password_reset: {
           email: 'redhat-developers-testers+94hl7e5x0h@redhat.com',
           password: 'P@$$word01',
-          name: 'REDHAT TEST-USER'
+          name: 'TEST USER'
       }
   }
 
