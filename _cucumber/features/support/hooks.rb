@@ -59,6 +59,11 @@ After do |scenario|
 end
 
 def user_logout
-  visit("https://it-developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
+  if Capybara.app_host == 'http://developers.redhat.com/'
+    visit("https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
+  else
+    visit("https://it-developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
+  end
   Home.new(@driver).wait_for_ajax
+  sleep(1)
 end

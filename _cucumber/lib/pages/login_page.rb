@@ -23,7 +23,6 @@ class LoginPage < BasePage
 
   def open
     Home.new(@driver).open
-    raise('Customer was already logged in from previous session!') unless logged_out?.eql?(true)
     login_link.click
     begin
       loaded?('Login | Red Hat Developers')
