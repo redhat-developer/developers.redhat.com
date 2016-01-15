@@ -33,11 +33,11 @@ Then(/^the 'Download Latest' links for available products$/) do
 end
 
 When(/^(I|they) click 'Download Latest' for ([^"]*)$/) do |negate, product_id|
+  @page.downloads.send("wait_until_#{product_id.downcase.tr(' ', '_')}_download_link_visible").click
   @page.downloads.send("#{product_id.downcase.tr(' ', '_')}_download_link").click
 end
 
 Then(/^the following 'Other developer resources' links should be displayed:$/) do |table|
-  expect(page).to have_text title.upcase
   table.raw.each do |row|
     link = row.first
     expect(@page.downloads.other_resources_links).to include link.upcase

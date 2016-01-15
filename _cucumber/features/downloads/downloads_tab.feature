@@ -7,15 +7,13 @@ Feature: Download Page - Unauthorised customer
   I want to be able to see a list of available downloads.
 
   Scenario: Unauthorised customer should see a list of available downloads from RedHat.
-    Given an unauthorised customer is on the site
-    When they are on the Downloads page
-    Then they should see the Downloads page title
+    Given I am on the Downloads page
+    Then I should see the Downloads page title
     And a list of products available for download
     And the 'Download Latest' links for available products
 
   Scenario: Unauthorised customer should see a list of 'Other developer resources'
-    Given an unauthorised customer is on the site
-    When they are on the Downloads page
+    Given I am on the Downloads page
     Then the following 'Other developer resources' links should be displayed:
       | Red Hat Docker Repository |
       | Container development kit |
@@ -23,10 +21,9 @@ Feature: Download Page - Unauthorised customer
       | Developing with OpenShift |
 
   Scenario Outline: Unauthorized user attempts to download RedHat products via Download Manager
-    Given an unauthorised customer is on the site
-    And they are on the Downloads page
-    When they click 'Download Latest' for <product>
-    Then they should be redirected to the Developers.redhat Login Page
+    Given I am on the Downloads page
+    When I click 'Download Latest' for <product>
+    Then I should be redirected to the Developers.redhat Login Page
 
   Examples: Infrastructure Management content/products
     | product   |
