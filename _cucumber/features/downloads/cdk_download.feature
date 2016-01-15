@@ -73,5 +73,3 @@ Feature: Red Hat Container Development Kit (CDK) download
     And I accept the terms and conditions
     Then I should see the eap get started page with a confirmation message Thank you for downloading Enterprise Application Server
     And the eap download should initiate
-
-

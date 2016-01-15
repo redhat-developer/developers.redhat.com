@@ -8,14 +8,14 @@ Feature: Download Page - Unauthorised customer
 
   Scenario: Unauthorised customer should see a list of available downloads from RedHat.
     Given an unauthorised customer is on the site
-    When they are on on the Downloads page
+    When they are on the Downloads page
     Then they should see the Downloads page title
     And a list of products available for download
     And the 'Download Latest' links for available products
 
   Scenario: Unauthorised customer should see a list of 'Other developer resources'
     Given an unauthorised customer is on the site
-    When they are on on the Downloads page
+    When they are on the Downloads page
     Then the following 'Other developer resources' links should be displayed:
       | Red Hat Docker Repository |
       | Container development kit |
