@@ -1,3 +1,16 @@
+Given(/^an (authorised|unauthorised) customer is on the site(?: who (has|has not) accepted RedHat Terms)?$/) do |customer, terms|
+  @page.login_page.open
+
+  if customer.eql?('authorised')
+    case terms
+      when 'has'
+        @page.login_page.login_with('accepted_terms')
+      when 'has not'
+        @page.login_page.login_with('not_accepted_terms')
+    end
+  end
+end
+
 Given(/a registered customer has logged in$/) do
   @redirect_url = @page.login.open
   @page.login.with_existing_account(@email_address, @password)
