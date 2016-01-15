@@ -9,8 +9,8 @@ class GitHub
   @@valid_contexts = ['Unit Tests', 'Site Preview', 'Acceptance Tests', 'Blinkr']
 
   Octokit.configure do |c|
-    puts "±±±±±± #{ENV['github_status_api_token']}"
     c.access_token = ENV['github_status_api_token']
+    c.connection_options[:ssl] = { :verify => false }
   end
 
   def self.list_closed_prs(org, repo)
