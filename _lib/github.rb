@@ -10,6 +10,9 @@ class GitHub
 
   Octokit.configure do |c|
     c.access_token = ENV['github_status_api_token']
+    #TODO there is an issue on RHD-01 and RHD-02 that is preventing us
+    #doing this properly [https://issues.jboss.org/browse/RHD-1380]
+    c.connection_options[:ssl] = { :verify => false }
   end
 
   def self.list_closed_prs(org, repo)

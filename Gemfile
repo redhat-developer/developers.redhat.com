@@ -37,6 +37,7 @@ gem 'activesupport', '> 3.1', '< 4.2.0' # Used in aweplug by ruby-duration
 gem 'compass', '~> 1.0'
 gem 'rake', '~>10.4'
 gem "octokit", "~> 4.0"
+gem 'docker-api', :require => 'docker'
 
 # To use Aweplug code from a different location:
 #
@@ -86,4 +87,3 @@ end
 group :health do
   gem 'blinkr', '~> 0.3'
 end
-
