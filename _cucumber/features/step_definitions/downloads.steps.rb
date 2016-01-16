@@ -4,7 +4,7 @@ end
 
 Then(/^I should see the ([^"]*) download overview page$/) do |product_id|
   @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
-  expect(page.current_url).to include "#{Capybara.app_host}/products/#{product_id}/download/"
+  expect(page.current_url).to include "/products/#{product_id}/download/"
 end
 
 When(/^I click to download the latest version of "([^"]*)"$/) do |product|

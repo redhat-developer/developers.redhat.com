@@ -1,5 +1,5 @@
 Given(/^I register a new account$/) do
-  @redirect_url = @page.registration.open
+  @page.registration.open
 
   @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:country], @customer[:password], @customer[:password])
   @page.registration.create_account

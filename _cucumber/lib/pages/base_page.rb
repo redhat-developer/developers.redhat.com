@@ -49,7 +49,7 @@ class BasePage < SitePrism::Page
   end
 
   def physical_logout
-    try(3) {
+    logout(3) {
       if logged_in?.eql?(true)
         logout_link.click
         wait_for_ajax
@@ -74,10 +74,10 @@ class BasePage < SitePrism::Page
     page.evaluate_script('jQuery.active') == 0
   end
 
-  def try(i)
+  def logout(i)
     count = 0; logged_out = false
     until logged_out == true || count == i
-      p ' . . . User is not logged out, retrying . . .'
+      p " . . . logout attempt #{i}. . ."
       logged_out = yield
       sleep(3)
       count += 1
