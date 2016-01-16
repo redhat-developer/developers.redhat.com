@@ -19,18 +19,3 @@ Feature: Download Page - Unauthorised customer
       | Container development kit |
       | Building Linux RPMs       |
       | Developing with OpenShift |
-
-  Scenario Outline: Unauthorized user attempts to download RedHat products via Download Manager
-    Given I am on the Downloads page
-    When I click 'Download Latest' for <product>
-    Then I should be redirected to the Developers.redhat Login Page
-
-  Examples: Infrastructure Management content/products
-    | product   |
-    | devstudio |
-    | eap       |
-    | datagrid  |
-    | fuse      |
-    | bpmsuite  |
-    | brms      |
-    | datavirt  |
