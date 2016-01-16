@@ -8,7 +8,8 @@ Then(/^I should see the ([^"]*) download overview page$/) do |product_id|
 end
 
 When(/^I click to download the latest version of "([^"]*)"$/) do |product|
-  find('a', text: product, :match => :prefer_exact).click
+  version, url = get_featured_download_for(get_product_id(product))
+  @page.download_overview.click_featured_download_for(product, version, url)
 end
 
 Then(/^the ([^"]*) download (should|should not) initiate$/) do |product_id, negate|
@@ -32,18 +33,12 @@ Then(/^the 'Download Latest' links for available products$/) do
   expect(@page.downloads).to have_download_latest_links :count => @product_names.size
 end
 
-When(/^(I|they) click 'Download Latest' for ([^"]*)$/) do |negate, product_id|
-  @page.downloads.send("wait_until_#{product_id.downcase.tr(' ', '_')}_download_link_visible").click
-  @page.downloads.send("#{product_id.downcase.tr(' ', '_')}_download_link").click
-end
-
 Then(/^the following 'Other developer resources' links should be displayed:$/) do |table|
   table.raw.each do |row|
     link = row.first
     expect(@page.downloads.other_resources_links).to include link.upcase
   end
 end
-
 
 Then(/^I submit my company name and country$/) do
   @page.update_details.with(@customer[:company_name], @customer[:country])

@@ -11,22 +11,19 @@ class ProductOverviewPage < BasePage
 
   SIDE_NAV_LINKS = ['Overview', 'Get Started', 'Docs and APIs', 'Learn', 'Download', 'Buzz']
   SIDE_NAV_LINKS.each do |el|
-   element :"side_nav_#{el.downcase.tr(' ', '_')}_link", :xpath, "//*[@class='side-nav']//a[contains(text(),'#{el}')]"
+    element :"side_nav_#{el.downcase.tr(' ', '_')}_link", :xpath, "//*[@class='side-nav']//a[contains(text(),'#{el}')]"
   end
 
-  # get_products[0].each do |product_id|
-  #   element :"#{product_id}_product_overview_page", ".products#{product_id}overview"
-  # end
-  element :cdk_product_overview_page, ".productscdkoverview"
+  get_products[0].each do |product_id|
+    element :"#{product_id}_product_overview_page", ".products#{product_id}overview"
+  end
 
-  # get_products[0].each do |product_id|
-  #   element :"#{product_id}_product_overview_page", ".products#{product_id}overview"
-  # end
-  element :cdk_get_started_page, ".productscdkget-started"
-  element :eap_get_started_page, ".productseapget-started"
+  get_products[0].each do |product_id|
+    element :"#{product_id}_get_started_page", ".products#{product_id}get-started"
+  end
+
   element :thank_you_section, '#downloadthankyou'
   element :thank_you_text, '#thank-you'
-
 
   def initialize(driver)
     super

@@ -1,22 +1,17 @@
 require_relative 'base_page.rb'
-require_relative '../../../_cucumber/lib/helpers/products_helper.rb'
+require_relative '../../../_cucumber/lib/helpers/downloads_helper.rb'
 
 class DownloadsPage < BasePage
   set_url '/downloads/'
 
   class << self
-    include ProductsHelper
+    include DownloadHelper
   end
 
+  elements :fetching_download_spinner, '.fa-refresh'
   elements :download_latest_links, '.fa-download'
   elements :product_downloads, 'h5 > a'
   elements :other_resources, :xpath, '//*[@id="other-resources"]/ul/li'
-
-  get_products[0].each do |product_id|
-    # define elements for each available download
-    element :"#{product_id.downcase.tr(' ', '_')}_overview_link", "##{product_id}-overview"
-    element :"#{product_id.downcase.tr(' ', '_')}_download_link", "#download-#{product_id}"
-  end
 
   def initialize(driver)
     super
@@ -25,6 +20,7 @@ class DownloadsPage < BasePage
   def open
     load
     loaded?('Downloads available from JBoss')
+    wait_until_download_latest_links_visible(30)
   end
 
   def available_downloads
