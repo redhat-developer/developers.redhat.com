@@ -7,7 +7,7 @@ Then(/^I should see the ([^"]*) download overview page$/) do |product_id|
   expect(page.current_url).to include "/products/#{product_id}/download/"
 end
 
-When(/^I click to download the latest version of "([^"]*)"$/) do |product|
+When(/^I click to download the featured download of "([^"]*)"$/) do |product|
   version, url = get_featured_download_for(get_product_id(product))
   @page.download_overview.click_featured_download_for(product, version, url)
 end
