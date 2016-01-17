@@ -26,6 +26,7 @@ Feature: Download Page - An authorised customer downloads from available downloa
 
   @customer
   @logout
+  @wip
   Scenario Outline: Newly registered RHD navigates to product Download page and clicks on download, enters their Company and Country but but does NOT accept Redhat T&C's should not initiate download.
     Given I register a new account
     And I am on the Download Overview page for <product_id>

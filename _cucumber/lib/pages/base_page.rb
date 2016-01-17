@@ -2,17 +2,15 @@ require 'rspec'
 
 class BasePage < SitePrism::Page
   include Capybara::DSL
-
   attr_reader :driver
 
-  PRIMARY_NAV_ACTIONS = %i[register login logout]
-  PRIMARY_NAV_TABS = %i[Solutions Products Downloads Resources Community Events Blogs]
-
-  PRIMARY_NAV_ACTIONS.each do |action|
+  primary_nav_actions = %i[register login logout]
+  primary_nav_actions.each do |action|
     element :"#{action}_link", ".#{action}"
   end
 
-  PRIMARY_NAV_TABS.each do |tab|
+  primary_nav_tabs = %i[Solutions Products Downloads Resources Community Events Blogs]
+  primary_nav_tabs.each do |tab|
     element :"primary_nav_#{tab.downcase}_link", :xpath, "//nav[@class='primary-nav']//ul/li/*[contains(text(),'#{tab}')]"
   end
 
@@ -77,9 +75,8 @@ class BasePage < SitePrism::Page
   def logout(i)
     count = 0; logged_out = false
     until logged_out == true || count == i
-      p " . . . logout attempt #{i}. . ."
       logged_out = yield
-      sleep(3)
+      sleep(1)
       count += 1
     end
     if logged_out.eql?(false)
