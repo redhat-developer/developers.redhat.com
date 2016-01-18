@@ -5,6 +5,7 @@ end
 Then(/^I should see the ([^"]*) download overview page$/) do |product_id|
   @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
   expect(page.current_url).to include "/products/#{product_id}/download/"
+  @page.current_page.wait_for_ajax
 end
 
 When(/^I click to download the featured download of "([^"]*)"$/) do |product|
