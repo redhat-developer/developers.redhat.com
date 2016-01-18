@@ -1894,7 +1894,6 @@ h1.logo {
 
 
 nav.primary-nav {
-  padding:5px 0;
   overflow: hidden;
   @extend .column;
 }
@@ -1921,33 +1920,22 @@ ul.menu-right {
   padding-top: 15px;
   li {
     display: inline;
-    margin-right: 64px;
+    margin-right: 20px;
     &:last-child {
       margin-right: 0;
     }
     a {
       color:white;
       position: relative;
-      font-size: 22px;
-      font-weight: 300;
+      font-size: 25px;
+      font-weight: 100;
+      padding: 5px 5px 13px 5px;
       text-transform: uppercase;
-      &:after {
-        position: absolute;
-        left:0;
-        content : '';
-        display: block;
-        height:4px;
-        bottom:-6px;
-        width:30px;
-        background:$headline-grey;
-      }
-      &:hover:after {
-        background:$red;
-      }
     }
     &.active {
-      a:after {
-        background:$red;
+      a {
+        border-left:12px solid $red;
+        color:$gold;
       }
     }
   }

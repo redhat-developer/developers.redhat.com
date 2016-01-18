@@ -17,14 +17,32 @@
 }
 
 .product-header{
+  color:white;
   h2 {
-    color: $red;
+    color: white;
+    font-weight: 900;
   }
   h3 {
     font-weight: 100;
+    color:#D5D5D5;
   }
   @include desktop-and-down {
     padding:20px;
+  }
+}
+
+.product-hero {
+  background:#424242;
+  border-bottom:10px solid #8FD102;
+  color:white;
+  padding:20px 0;
+  .breadcrumbs {
+    a {
+      color:white;
+      &:before {
+        color:white;
+      }
+    }
   }
 }
 
