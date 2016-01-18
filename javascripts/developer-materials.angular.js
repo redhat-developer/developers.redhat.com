@@ -29,6 +29,29 @@ dcp.config(function($provide){
 */
 dcp.service('materialService',function($http, $q) {
 
+  this.getDcp2Blogpost = function(){
+    var query = {
+      "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_created", "author", "sys_tags", "sys_content_id"],
+      "size" : 5,
+      "sys_type" : "blogpost",
+      "sortBy" : "new-create"
+    };
+
+    var deferred = $q.defer();
+
+    $http.get(app.dcp2.url.search, { params : query }).success(
+        function (data) {
+          deferred.resolve(data);
+        })
+        .error(function () {
+          $(".panel[ng-hide='data.materials.length']").replaceWith(app.dcp.error_message);
+        });
+    return deferred.promise;
+
+
+
+  };
+
   this.getMaterials = function(searchTerms, project) {
     var query = {
       "field"  : ["sys_author", "target_product", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_tags", "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg", "experimental"],
@@ -708,6 +731,317 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
   /*
     Get latest materials on page load
   */
+  window.setTimeout($scope.filter.restore, 0);
+
+});
+
+dcp.controller('latestMaterialsController', function($scope, materialService) {
+
+  window.scope = $scope;
+  $scope.data = {};
+  $scope.filters = {};
+  $scope.randomize = false;
+  $scope.pagination = {
+    size : 10
+  };
+
+  // Add Math object to $scope so we can use it directly in Angular expressions
+  // like: {{ Math.min(data.materials.length, paginate.currentPage * pagination.size) }}
+  // This might not be clean technique from Angular perspective (more clear would be
+  // to do all required calculations in controller and not the view)
+  $scope.Math = Math;
+
+  /*
+   Handle Pagination
+   */
+  $scope.paginate = function(page) {
+    $scope.pagination.size = ($scope.pagination.viewall ? 500 : $scope.pagination.size);
+    var startAt = (page * $scope.pagination.size) - $scope.pagination.size;
+    var endAt = page * $scope.pagination.size;
+    var pages = Math.ceil($scope.data.materials.length / $scope.pagination.size);
+
+    // do nothing if we have no more pages
+    if(page > pages || page < 1 || typeof page === "string") {
+      return;
+    }
+
+    $scope.paginate.pages = pages;
+    // $scope.paginate.pagesArray = new Array(pages);
+    $scope.paginate.currentPage = page;
+
+    // $scope.data.displayedMaterials = [];
+    $scope.data.displayedMaterials = $scope.data.materials.slice(startAt,endAt);
+
+    // pagination display logic
+    $scope.paginate.pagesArray = app.utils.diplayPagination($scope.paginate.currentPage, pages, 4);
+
+    // next tick
+    window.setTimeout(function() {
+      app.dcp.resolveContributors();
+    },0);
+  }
+
+  /*
+   Handle Filters
+   */
+  $scope.filters = {}; // stores data
+  $scope.filter = {}; // stores util functions
+
+
+
+  $scope.filters.sys_tags = [];
+  $scope.filters.sys_type = [];
+
+
+
+
+  $scope.filter.applyFilters = function() {
+    $scope.data.displayedMaterials = [];
+    $scope.data.loading = true;
+    var q = "";
+
+
+    materialService.getMaterials(q, $scope.filters.project).then(function(data){
+      $scope.data.materials = data.hits.hits;
+      // http://www.codinghorror.com/blog/2007/12/the-danger-of-naivete.html
+      // explicity check for true, or "true" as it comes in as a string
+      if ($scope.randomize == true) {
+        $scope.data.materials = (function knuthfisheryates(arr) {
+          var i, temp, j, len = arr.length;
+          for (i = 0; i < len; i++) {
+            j = ~~(Math.random() * (i + 1));
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+          }
+          return arr;
+        })($scope.data.materials);
+      }
+
+      $scope.paginate(1); // start at page 1
+      $scope.filter.group();
+      /*
+       Promise has been returned from dcp1 - now we need updated blogposts from dcp2
+       */
+      materialService.getDcp2Blogpost().then(function(data){
+        var blogposts = data.hits.hits;
+        /*
+         Only take blogposts with valid dates
+         */
+        var validBlogPosts = [];
+        angular.forEach(blogposts, function(blogpost){
+          var valid = true;
+          if(blogpost.fields.sys_created !== undefined && moment().diff(blogpost.fields.sys_created.toString(), 'days') < 0){
+            valid = false;
+          }
+          angular.forEach(blogpost.fields, function(key, value){
+            var keyString = key.toString();
+            if(value == "sys_url_view" && !(keyString.startsWith('http://developerblog.redhat.com'))){
+              keyString = "//planet.jboss.org/post/" + blogpost.fields.sys_content_id;
+            }
+            blogpost.fields[value] = keyString;
+          });
+          if(valid){
+            validBlogPosts.push(blogpost);
+          }
+
+        });
+        $scope.data.latestMaterials = $scope.filter.mergeResults($scope.data.displayedMaterials, validBlogPosts)
+        $scope.data.loading = false;
+
+      });
+
+
+    });
+
+    $scope.filter.mergeResults = function(dest, src){
+      for(i=0; i < src.length; i++) {
+        dest.push(src[i]);
+
+      }
+      dest.sort(function (a, b) {
+        return (a.fields.sys_created < b.fields.sys_created ? 1 : -1);
+      });
+      return dest;
+
+    }
+    // save search in local storage
+    $scope.filter.store();
+    // update the page hash
+    window.location.hash = "!" + $.param($scope.filters);
+
+  }
+
+  /*
+   groups the items together by type so we can provide a count
+   */
+  $scope.filter.group = function() {
+    $scope.data.groups = {};
+    for (var i = 0; i < $scope.data.materials.length; i++) {
+      (function(sys_type, sys_tags){
+
+        // group the types (formats)
+        if($scope.data.groups[sys_type] >= 0) {
+          $scope.data.groups[sys_type]++;
+        }
+        else {
+          $scope.data.groups[sys_type] = 0;
+        }
+
+        // group the tags (topics)
+        if(sys_tags) {
+
+          // we prefix the index with tag- because "demo" is both a tag and a topic
+          for (var i = 0; i < sys_tags.length; i++) {
+            if($scope.data.groups['tag-' + sys_tags[i]] >= 0) {
+              $scope.data.groups['tag-' + sys_tags[i]]++;
+            }
+            else {
+              $scope.data.groups['tag-' + sys_tags[i]] = 0;
+            }
+          };
+
+        }
+
+      })($scope.data.materials[i].fields.sys_type, $scope.data.materials[i].fields.sys_tags);
+    };
+  }
+
+  $scope.filter.store = function() {
+    // check if we have local storage, abort if not
+    // if(!window.localStorage || $scope.filters.project || $scope.filters.solution) { return; }
+    // store them in local storage
+    window.localStorage[$scope.data.pageType + '-filters'] = JSON.stringify(scope.filters);
+    window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] = new Date().getTime();
+  }
+
+  $scope.filter.restore = function() {
+    // restore and set
+    $scope.data.skillNumber = 0;
+    $scope.data.dateNumber = 0;
+
+    if(window.localStorage.layout === 'grid' || window.localStorage.layout === 'list') {
+      $scope.data.layout = window.localStorage.layout;
+    } else {
+      $scope.data.layout = 'list';
+    }
+
+    // if we are on a project page, skip restoring
+    // if($scope.filters.project || $scope.filters.solution) {
+    //   $scope.filter.applyFilters(); // run without restoring filters
+    //   return;
+    // }
+
+    // check if we have window hash,  local storage or any stored filters, abort if not
+    if(!window.location.hash && (!window.localStorage || !window.localStorage[$scope.data.pageType + '-filters'])) {
+      $scope.filter.applyFilters(); // run with no filters
+      return;
+    }
+
+    if(window.location.hash) {
+      var hashFilters = window.location.hash.replace('#!','');
+      var filters = deparam(hashFilters);
+
+      // check for single string sys_type
+      if(typeof filters.sys_type === "string") {
+        // convert to array with 1 item
+        var filterArr = [];
+        filterArr.push(filters.sys_type);
+        filters.sys_type = filterArr;
+      }
+
+      $scope.filters = filters;
+
+      // restore skill level slider
+      if($scope.filters.level) {
+        var labels = ["All", "Beginner", "Intermediate", "Advanced"];
+        var idx = labels.indexOf($scope.filters.level);
+        if(idx>=0) {
+          $scope.data.skillNumber = idx;
+        }
+        $scope.filter.updateSkillLevel();
+      }
+
+      // restore date slider to closest match
+      if($scope.filters.sys_created) {
+        var parts = scope.filters.sys_created.replace('>=','').split('-'); // YYYY MM DD
+        var d = new Date(parts[0], parts[1], parts[2]); // Year, month date
+        var now = new Date().getTime();
+        var ago = now - d;
+        var daysAgo = Math.floor(ago / 1000 / 60 / 60 / 24);
+
+        if(daysAgo <= 1) {
+          $scope.data.dateNumber = 4;
+        } else if(daysAgo > 1 && daysAgo <= 7) {
+          $scope.data.dateNumber = 3;
+        } else if(daysAgo > 7 && daysAgo <= 30) {
+          $scope.data.dateNumber = 2;
+        } else {
+          $scope.data.dateNumber = 1;
+        }
+        $scope.filter.updateDate();
+      }
+
+    }
+    else if(window.localStorage && window.localStorage[$scope.data.pageType + '-filters']) {
+      // only restore if less than 2 hours old
+      var now = new Date().getTime();
+      var then = window.localStorage[$scope.data.pageType + '-filtersTimeStamp'] || 0;
+
+      if((now - then) < 7200000) { // 2 hours
+        $scope.filters = JSON.parse(window.localStorage[$scope.data.pageType + '-filters']);
+      }
+    }
+
+    $scope.filter.applyFilters();
+  }
+
+
+  $scope.chosen = function() {
+    $('select.chosen').unbind().chosen().change(function() {
+      var tags = $(this).val();
+      if(tags) {
+        $scope.filters.sys_tags = tags;
+      }
+      else {
+        delete $scope.filters.sys_tags;
+      }
+      $scope.$apply();
+      $scope.filter.applyFilters()
+    }).trigger('chosen:updated');
+  }
+
+  /*
+   Update chosen when the available topics update
+   */
+  $scope.$watch('data.availableTopics',function(){
+    // next tick
+    window.setTimeout(function(){
+      $scope.chosen();
+    },0);
+  });
+
+  /*
+   Update chosen when the counts update
+   */
+  $scope.$watch('data.groups',function() {
+    window.setTimeout(function() {
+      $(".chosen").trigger("chosen:updated");
+    },0);
+  });
+
+  /*
+   Watch for the layout to change and update localstorage
+   */
+  $scope.$watch('data.layout',function(newVal, oldVal) {
+    if($scope.data.layout) {
+      window.localStorage.layout = $scope.data.layout;
+    }
+  });
+
+  /*
+   Get latest materials on page load
+   */
   window.setTimeout($scope.filter.restore, 0);
 
 });
