@@ -120,6 +120,7 @@
 
 ul.homepage-resources {
   list-style: none;
+  margin: 0;
   li {
     border-bottom: 1px solid $grey-2;
     padding: 10px 0 12px 0;
@@ -133,7 +134,7 @@ ul.homepage-resources {
         margin-right: 10px;
         position: relative;
         top: 5px;
-        color: $grey-3;
+        color: $link;
         &.fa-2x {
           font-size: 1.5em;
         }
@@ -142,10 +143,10 @@ ul.homepage-resources {
   a.title {
     display: block;
     overflow: hidden;
-    max-width: 420px;
-    line-height: 1.5em;
+    line-height: 1.5;
     max-height: 3em;
     text-overflow: ellipsis;
+    font-weight: bold;
   }
   .date{
     display: inline-block;
@@ -153,6 +154,10 @@ ul.homepage-resources {
     font-size: 88%;
     margin-bottom: 0;
   }
+}
+
+.picks-and-trending {
+  padding:20px 0;
 }
 
 .inverse {
