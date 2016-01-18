@@ -10,6 +10,7 @@ slim:
     '(': ')'
     '[': ']'
 download_manager_file_base_url: //developers.redhat.com/download-manager/file/
+download_manager_base_url: https://developers.redhat.com
 product_documentation_base_url: https://access.redhat.com/site/documentation/en-US/
 product_forum_base_url: https://developer.jboss.org/en/products/
 vimeo_client_id: 2589d6592dfd44bfec54f22edf766aedaf0fd5d7
@@ -56,6 +57,11 @@ profiles:
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     dcp2_base_url: http://dcp2-searchisko.rhcloud.com/
     dcp2_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
+    download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://it-developers.stage.redhat.com
+
     log_faraday: true
     push_to_searchisko: false
     metrics: false
@@ -116,6 +122,10 @@ profiles:
     dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
     dcp2_base_url: http://dcp2-searchisko.rhcloud.com/
     dcp2_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
+    download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://it-developers.stage.redhat.com
     metrics: false
     deploy:
       <<: *deploy
@@ -126,6 +136,7 @@ profiles:
     <<: *profile
     base_url: http://it-developers.stage.redhat.com/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://it-developers.stage.redhat.com
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     dcp2_base_url: http://dcp.stage.jboss.org/
@@ -144,6 +155,7 @@ profiles:
     <<: *profile
     base_url: http://it-developers-pr.stage.redhat.com/integrations/cdk_beta
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://it-developers.stage.redhat.com
     dcp_base_url: http://dcpbeta-searchisko.rhcloud.com/
     dcp_base_protocol_relative_url: //dcpbeta-searchisko.rhcloud.com/
     dcp2_base_url: http://dcp.stage.jboss.org/

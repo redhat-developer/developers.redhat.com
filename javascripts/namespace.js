@@ -14,6 +14,11 @@ var app = window.app = {};
 app.baseUrl = "#{site.base_url}";
 
 /*
+ Download Manager Base URL
+ */
+app.downloadManagerBaseUrl = "#{site.download_manager_base_url}";
+
+/*
   Website Cache
 */
 app.cache = {};

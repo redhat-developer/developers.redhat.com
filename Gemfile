@@ -37,6 +37,7 @@ gem 'activesupport', '> 3.1', '< 4.2.0' # Used in aweplug by ruby-duration
 gem 'compass', '~> 1.0'
 gem 'rake', '~>10.4'
 gem "octokit", "~> 4.0"
+gem 'docker-api', :require => 'docker'
 
 # To use Aweplug code from a different location:
 #
@@ -67,7 +68,9 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0.11'
   gem 'site_prism', '~> 2.7'
   gem 'mocha'
- end
+  gem 'gmail', '~> 0.6.0'
+  gem 'faker', '~> 1.6', '>= 1.6.1'
+end
 
 group :development do
   gem 'rb-inotify', require: false
@@ -84,4 +87,3 @@ end
 group :health do
   gem 'blinkr', '~> 0.3'
 end
-

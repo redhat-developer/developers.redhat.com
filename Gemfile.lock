@@ -113,6 +113,9 @@ GEM
     curb (0.8.8)
     daybreak (0.3.0)
     diff-lcs (1.2.5)
+    docker-api (1.24.1)
+      excon (>= 0.38.0)
+      json
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
     em-websocket (0.5.1)
@@ -124,6 +127,8 @@ GEM
     eventmachine (1.0.9.1)
     execjs (2.6.0)
     extlib (0.9.16)
+    faker (1.6.1)
+      i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.10.0)
@@ -132,6 +137,11 @@ GEM
     formatador (0.2.5)
     gherkin (3.2.0)
     git (1.2.9.1)
+    gmail (0.6.0)
+      gmail_xoauth (>= 0.3.0)
+      mail (>= 2.2.1)
+    gmail_xoauth (0.4.1)
+      oauth (>= 0.3.6)
     google-api-client (0.8.6)
       activesupport (>= 3.2)
       addressable (~> 2.3)
@@ -373,7 +383,10 @@ DEPENDENCIES
   cuke_sniffer (~> 0.0.8)
   curb (~> 0.8.5)
   daybreak
+  docker-api
+  faker (~> 1.6, >= 1.6.1)
   git (~> 1.2.5)
+  gmail (~> 0.6.0)
   google-api-client (~> 0.8)
   gpgme (~> 2.0)
   guard

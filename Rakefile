@@ -7,6 +7,7 @@ require 'json'
 require 'date'
 require 'tmpdir'
 
+require_relative './_lib/reaper'
 require_relative './_lib/github'
 require_relative './_lib/jenkins'
 require_relative './_lib/jira'
@@ -313,6 +314,12 @@ task :link_pull_requests_from_git_log, [:pull_request, :not_on] do |task, args|
   # Add links to JIRA to pull requests
   GitHub.link_issues($github_org, $github_repo, args[:pull_request], linked_issues)
   msg "Successfully commented JIRA issue list on https://github.com/#{$github_org}/#{$github_repo}/pull/#{args[:pull_request]}"
+end
+
+desc 'Remove staged pull builds for pulls closed more than 7 days ago in docker'
+task :reap_old_pulls_docker do |task|
+  reap = GitHub.list_closed_pulls($github_org, $github_repo)
+  Reaper.kill_and_remove_prs(reap)
 end
 
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
