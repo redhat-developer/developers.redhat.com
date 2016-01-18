@@ -62,6 +62,8 @@ module DownloadHelper
         'brms'
       when 'Data Virtualization'
         'datavirt'
+      when 'Red Hat Container Development Kit (CDK) 2'
+        'cdk'
       else
         raise "No mapping for #{product}"
     end
