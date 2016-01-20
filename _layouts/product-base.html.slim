@@ -7,21 +7,21 @@ secondary_section: supported-products
 /If you are aren't sure which product layout to use, you probably want 'product', not this one!
 - page.title = "#{page.product.abbreviated_name} - #{page.type}"
 
-.row.content
-  .large-24
-    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/products/" Products
-        meta itemprop="position" content="1"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a href="#{site.base_url}/products/#{page.product.id}/overview" #{page.product.abbreviated_name}
-        meta itemprop="position" content="2"
-.row
-  .large-24.product-header
-    h2 #{page.product.name}
-    h3#product #{page.product.description}
+section(class="product-header #{page.product.product_category}")
+  .row
+    .large-24
+      ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
+        li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+          a itemprop="item" href="#{site.base_url}/products/" Products
+          meta itemprop="position" content="1"
+        li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+          a href="#{site.base_url}/products/#{page.product.id}/overview" #{page.product.abbreviated_name}
+          meta itemprop="position" content="2"
+    .large-24
+      h2 #{page.product.name}
+      h3#product #{page.product.description}
 
-.row#hero-try-or-buy
+#hero-try-or-buy(class="row #{page.product.product_category}")
   .large-24.columns.hello-world
     .small-24.large-6.columns
       h2 Hello World!
