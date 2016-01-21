@@ -72,6 +72,7 @@ profiles:
     port: <%= ENV['AWESTRUCT_HOST_PORT'] %>
     dcp_base_url: http://searchisko:8080/
     dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    push_to_searchisko: true
 
   drupal:
     <<: *docker
