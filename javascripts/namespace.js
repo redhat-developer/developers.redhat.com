@@ -27,6 +27,7 @@ app.tabzilla.middlewareLogo = "#{cdn(site.base_url + '/images/branding/RHJB_Midd
   JS templates
 */
 app.templates = {};
+app.templates.searchpageTemplate = '#{partial "searchpage.html.slim"}';
 app.templates.miniBuzzTemplate = '#{partial "mini_buzz_template.html.slim"}';
 app.templates.productBuzzTemplate = '#{partial "product_buzz_template.html.slim"}';
 app.templates.buzzTemplate = '#{partial "buzz_template.html.slim"}';

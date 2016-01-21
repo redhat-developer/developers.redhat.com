@@ -1,0 +1,116 @@
+---
+layout: base
+title: Search Results
+---
+
+.row#searchpage
+  .large-5.columns
+    .divider
+      span Filter By
+      span
+        a.right(href='') Clear All
+
+    .accordion
+      .filter-container
+        input.filter-toggle(type="checkbox")
+        label.filter-label Topic
+        div.filter-content
+          ul
+            li
+              input(type="checkbox")
+              label Containers
+            li
+              input(type="checkbox")
+              label DevOps
+            li
+              input(type="checkbox")
+              label Enterprise Java
+            li
+              input(type="checkbox")
+              label Mobile
+
+      .filter-container
+        input.filter-toggle(type="checkbox")
+        label.filter-label Resource Type
+        div.filter-content
+          ul
+            li
+              input(type="checkbox")
+              label Article
+            li
+              input(type="checkbox")
+              label Blog
+            li
+              input(type="checkbox")
+              label Code Artifact
+            li
+              input(type="checkbox")
+              label Presentation
+
+      .filter-container
+        input.filter-toggle(type="checkbox")
+        label.filter-label Publish Date
+        div.filter-content
+          select
+            option(value='1') ALL
+            option(value='1') Last 7 days
+            option(value='1') Last 30 days
+            option(value='1') This month
+            option(value='1') -- Custom --
+
+      .filter-container
+        input.filter-toggle(type="checkbox")
+        label.filter-label Author
+        div.filter-content
+          ul
+            li
+              input(type="checkbox")
+              label Author Name
+            li
+              input(type="checkbox")
+              label Author Name
+            li
+              input(type="checkbox")
+              label Author Name
+
+      .filter-container
+        input.filter-toggle(type="checkbox")
+        label.filter-label Product
+        div.filter-content
+          ul
+            li
+              input(type="checkbox")
+              label JBoss
+            li
+              input(type="checkbox")
+              label EAP
+            li
+              input(type="checkbox")
+              label Enterprise Java
+            li
+              input(type="checkbox")
+              label Mobile
+
+  .large-13.columns.searchpage-middle
+    .row
+      .large-21.columns
+        form.search-bar(accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit")
+          input.user-success(type="text" placeholder="Filter by keyword" id="search_list_text")
+        /.large-3.columns
+          / button.button.postfix(type="submit")
+          /   i.fa.fa-search
+      / .large-24.columns.divider
+      /   strong Showing ## of ### results
+
+      / .large-24.columns
+      /   p.sort-by
+      /     | Sort results by
+      /     select.tiny
+      /       option(value='1') most recent
+      /     | and show
+      /     select
+      /       option(value='1') 10
+      /     | results per page.
+
+      .large-24.columns.searchpage-results-container
+        span.loader
