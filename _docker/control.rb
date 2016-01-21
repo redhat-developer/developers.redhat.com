@@ -187,7 +187,9 @@ if tasks[:should_start_supporting_services]
 
   execute_docker_compose :up, ['--force-recreate'].concat(tasks[:supporting_services])
 
-  block_wait_searchisko_configure_finished()
+  if tasks[:supporting_services].include? "searchiskoconfigure"
+    block_wait_searchisko_configure_finished()
+  end
 
   # Check to see if Drupal is accepting connections before continuing
   block_wait_drupal_started if tasks[:drupal]
