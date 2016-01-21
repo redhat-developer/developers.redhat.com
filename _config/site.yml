@@ -105,8 +105,8 @@ profiles:
   # Pull Request configuration
   staging:
     <<: *profile
-    dcp_base_protocol_relative_url: //<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
-    dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
+    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
