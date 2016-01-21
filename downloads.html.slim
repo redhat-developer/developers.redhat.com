@@ -28,21 +28,14 @@ description: Discover the product downloads available from JBoss, and locate the
                   a(href="#{site.base_url}/products/#{product.id}/")
                     = product.name
               .large-8.columns
-                a(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
-                  i.fa.fa-refresh.fa-spin
-                  |  Fetching Latest Download...
-                - if product.default_download_artifact && product.current_version
-                  a(href="#{product.default_download_artifact.url}")
-                    i.fa.fa-download
-                    |  Download Latest
-                - elsif product.id == 'cdk'
+                - if product.id == 'cdk'
                   a(href="#{site.base_url}/products/#{product.id}/download")
                     i.fa.fa-download
                     |  Download Latest
                 - else
-                  a(href="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}")
-                    i.fa.fa-download
-                    |  Download Latest
+                  a(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
+                    i.fa.fa-refresh.fa-spin
+                    |  Fetching Latest Download...
   .large-7.columns#other-resources
     h5.category-label OTHER DEVELOPER RESOURCES
     ul
