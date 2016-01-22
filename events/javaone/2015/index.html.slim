@@ -51,7 +51,7 @@ title: JavaOne
             li
               .session
                 .watch-now
-                  a(href="#{session.url}")
+                  a(href="#{site.base_url}/#{session.url}")
                     i.fa.fa-video-camera
                     |  Watch now
                 .large-24
@@ -75,8 +75,8 @@ title: JavaOne
                 .row.talk-info
                   .columns class="#{speaker.url.nil? ? 'large-24' : 'large-13'}"
                     h4 #{speaker.title}
-                  - unless !speaker.url  
-                    .large-11.columns(href="#{speaker.url}")
+                  - unless !speaker.url
+                    .large-11.columns(href="#{site.base_url}/#{speaker.url}")
                       a Stream the mini-booth version of this session
                   .large-24.columns
                     p #{speaker.date} - #{speaker.location}

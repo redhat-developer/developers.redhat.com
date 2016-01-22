@@ -43,7 +43,7 @@ Hello World and your first application
 
 In this step, you will download and install the latest updates from Red Hat for your system. In the process, you will verify that your system has a current Red Hat subscription and is able to receive updates.
 
-First, start a _Terminal_ window from the _Application_ menu.  Then after using `su` to change to the root user ID, use `subscription-manager` to verify that you have access to Red Hat Software Repositories. 
+First, start a _Terminal_ window from the _Application_ menu.  Then after using `su` to change to the root user ID, use `subscription-manager` to verify that you have access to Red Hat Software Repositories.
 
 [.code-block]
 ```
@@ -118,7 +118,7 @@ link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/ht
 
 ### Become a Red Hat developer: developers.redhat.com
 
-Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:http://developers.redhat.com/[developers.redhat.com].
+Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:#{site.base_url}/[developers.redhat.com].
 
 *Learn about Red Hat Software Collections*
 
@@ -152,7 +152,7 @@ Use `pass:[g++] -v` to see what version you have installed.
 [.code-block]
 ```
 $ pass:[g++] -v
-gcc version 4.8.3 20140911 (Red Hat 4.8.3-9) (GCC) 
+gcc version 4.8.3 20140911 (Red Hat 4.8.3-9) (GCC)
 ```
 +
 3. How can I obtain a newer version of GCC/pass:[G++]?
