@@ -47,7 +47,7 @@ gem 'docker-api', :require => 'docker'
 # From a location on your disk:
 #
 # gem 'aweplug', github: 'awestruct/aweplug'
-gem 'aweplug', github: 'wesbos/aweplug', :branch => 'dcp2-updates'
+gem 'aweplug', github: 'paulrobinson/aweplug', :branch => 'RHD-933'
 
 group :test do
   gem 'climate_control'
