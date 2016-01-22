@@ -382,7 +382,7 @@ First, create the graphics and upload them:
 
 1. Create two header PNG graphics. One for JBoss Developer (http://www.jboss.org/events) and one for Red Hat Developers (http://developers.redhat.com/events). NOTE: they MUST be PNG graphics, JPEG is not supported.
 2. Upload the JBoss Developer graphic to `filemgmt.jboss.org:/static_htdocs/_root/images/events/event_<image id>.png`. It is important that you follow the same naming convention as used by the other images. This is because the page that will display the image uses this pattern to predict the image's URL.
-3. Upload the JBoss Developer graphic to `filemgmt.jboss.org:/static_htdocs/_root/images/rhd/events/event_<image id>.png`. It is important that you follow the same naming convention as used by the other images. This is because the page that will display the image uses this pattern to predict the image's URL.
+3. Upload the Red Hat Developers graphic to `filemgmt.jboss.org:/static_htdocs/_root/images/rhd/events/event_<image id>.png`. It is important that you follow the same naming convention as used by the other images. This is because the page that will display the image uses this pattern to predict the image's URL.
 
 Now update the Spreadsheet to make the new header graphic option available. 
 
