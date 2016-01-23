@@ -6,5 +6,10 @@ global-styling:
       css/base/all.css: {}
   dependencies:
     - system/admin
+  js:
+    js/angular.min.js: {}
+    js/all.min.js: {}
+  dependencies:
+    - core/jquery
 
 # We should also be adding all of our javascripts here too
