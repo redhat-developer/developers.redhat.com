@@ -1,7 +1,3 @@
----
-interpolate: true
----
-
 var dcp = angular.module('dcp', []);
 
 /*
@@ -64,26 +60,7 @@ dcp.service('materialService',function($http, $q) {
 */
 dcp.filter('thumbnailURL',function(){
   return function(item) {
-    var thumbnails = {
-      // jboss
-      "jbossdeveloper_quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
-      "jbossdeveloper_archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
-      "jbossdeveloper_bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
-      "jbossdeveloper_demo" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_demo.png')}",
-      // futurerproof for when jboss goes unprefixed
-      "quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
-      "archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
-      "bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
-      "demo" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_demo.png')}",
-      // redhat
-      "solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
-      "article" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}",
-      // need icons?
-      "rht_knowledgebase_article" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}",
-      "rht_knowledgebase_solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
-      "jbossdeveloper_vimeo" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}",
-      "jbossdeveloper_connector" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}"
-    };
+    var thumbnails = app.dcp.thumbnails;
     if(item.fields.thumbnail) {
       return item.fields.thumbnail;
     }
@@ -210,7 +187,7 @@ dcp.filter('urlFix', function() {
     else if (str.contains("access.redhat.com") || str.contains("hub-osdevelopers.rhcloud.com")) {
       return str;
     } else {
-      return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+)?/, '#{site.base_url}');
+      return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+)?/, app.baseUrl);
     }
   }
 });
@@ -336,7 +313,7 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
   $scope.filters = {}; // stores data
   $scope.filter = {}; // stores util functions
 
-  $scope.data.availableTopics = #{site.dev_mat_techs.flatten.uniq.sort};
+  $scope.data.availableTopics = app.dcp.availableTopics;
 
   $scope.data.availableFormats = [
     { value : "quickstart" , "name" : "Quickstart", "description" : "Single use-case code examples tested with the latest stable product releases" },

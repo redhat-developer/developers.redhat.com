@@ -1,7 +1,3 @@
----
-interpolate: true
----
-
 /* Source: http://yvoschaap.com */
 /* Build first in '06 */
 /* 1/4/2015: upgraded to YouTube API v3 */
@@ -290,7 +286,7 @@ var ytEmbed = {
                         }));
                     }
                 } else {
-                    a.setAttribute('href', '#{site.base_url}/video/youtube/' + id);
+                    a.setAttribute('href', app.baseUrl + '/video/youtube/' + id);
                 }
 
                 var span = document.createElement('span');

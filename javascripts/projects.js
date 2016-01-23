@@ -1,7 +1,3 @@
----
-interpolate: true
----
-
 app.project = {
   getCorrectUrl : function (linkUrl) {
     if ($.isArray(linkUrl) && linkUrl.length > 0) {
@@ -93,8 +89,7 @@ app.project = {
       this.projectFilter();
   },
   fallbackImage: function(el) {
-    var src = "#{cdn( site.base_url + '/images/design/projects/default_200x150.png')}";
-    el.src = src;
+    el.src = app.projects.defaultImage;
   },
   format : function(data, container, thumbnailSize) {
     if (data.responses) {
