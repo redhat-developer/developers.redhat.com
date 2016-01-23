@@ -1,5 +1,6 @@
 var gulp = require ('gulp'); 
 var plugins = require('gulp-load-plugins')();
+var del = require('del');
 
 var globs = {
   // TODO: Need to find a fix for adobe analytics
@@ -63,7 +64,7 @@ gulp.task('scripts',function() {
     .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
     .pipe(plugins.concat('all.js'))
     .pipe(plugins.injectString.wrap('(function($){', '})(jQuery);'))
-    //.pipe(plugins.uglify())
+    .pipe(plugins.uglify())
     .pipe(plugins.rename('all.min.js'))
     .pipe(gulp.dest('_drupal/themes/custom/rhd/js/'));
 });
@@ -71,9 +72,13 @@ gulp.task('scripts',function() {
 gulp.task('sass', function() {
   gulp.src(globs.styles)
     .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
-    .pipe(plugins.sass({outputStyle: 'compressed', outFile: 'app.css'}))
+    .pipe(plugins.sass({outputStyle: 'compressed'}))
     .pipe(gulp.dest('_drupal/themes/custom/rhd/css/base'));
 });
 
-gulp.task('default', ['scripts', 'sass']);
+gulp.task('clean', function() {
+  return del(['_drupal/themes/custom/rhd/css/base/*.css','_drupal/themes/custom/rhd/js/all.min.js']);
+});
+
+gulp.task('default', ['clean', 'scripts', 'sass']);
 
