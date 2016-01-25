@@ -45,6 +45,13 @@ class Options
         tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
+      opts.on('--drupal-nightly', 'Start up and enable drupal') do |u|
+        tasks[:drupal] = true
+        tasks[:kill_all] = true
+        tasks[:set_ports] = true
+        tasks[:supporting_services] += %w(drupal drupalpgsql)
+      end
+
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
         tasks[:decrypt] = true
         tasks[:drupal] = true

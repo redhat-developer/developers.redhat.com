@@ -53,7 +53,7 @@ Note: If your system uses Red Hat Network (RHN) Classic instead of Red Hat Subsc
 Red Hat Subscription Manager can be started from the _System_ -> _Administration_ subgroup of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
 
 Select _Repositories_ from the _System_ menu of the subscription manager. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-6-rpms_ and _rhel-6-server-optional-rpms_. If you are using a desktop version of Red Hat Enterprise Linux, the repositories will be named _rhel-desktop-rhscl-6-rpms_ and _rhel-6-desktop-optional-rpms_. +
- 
+
 If you don’t see any RHSCL repositories in the list, your subscription might not include it.
 [.content-img]
 image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel6/rhel-6-Manage-repositories-rhscl.png')}[Manage Repositories]
@@ -173,7 +173,7 @@ When you deliver an application that uses RHSCL packages, a best practice is to 
 
 *Learn Node.js and JavaScript using NodeSchool.io tutorials* +
 
-Now that you have Node.js installed, use the tutorials from link:http://nodeschool.io/#workshopper-list[nodeschool.io] to learn Node.js and JavaScript. You need to have already run `scl enable nodejs010 bash` or have added Node.js permanently to your development environment.  
+Now that you have Node.js installed, use the tutorials from link:http://nodeschool.io/#workshopper-list[nodeschool.io] to learn Node.js and JavaScript. You need to have already run `scl enable nodejs010 bash` or have added Node.js permanently to your development environment.
 
 Install the JavaScript and Node.js tutorials into your current directory:
 [.code-block]
@@ -214,7 +214,7 @@ _Developers should read this guide to get a more complete understanding of how s
 
 ### Become a Red Hat developer: developers.redhat.com
 
-Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:http://developers.redhat.com/[developers.redhat.com].
+Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:#{site.base_url}/[developers.redhat.com].
 
 ## Faq section title
 [[troubleshooting]]Troubleshooting and FAQ

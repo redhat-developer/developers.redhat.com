@@ -369,11 +369,33 @@ To have a new Event added to the Events page and (optionally) the homepage:
 
 1. Open the [Events spreadsheet](https://docs.google.com/spreadsheets/d/12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k/edit#gid=1609962398)
   1. Scroll to the bottom and add a row for each event you want to add. Make sure you don't partially enter the event as the data will go live on the next build
-1.2 Wait for upto 6hrs and then check the event is present.
+  2. Wait for upto 6hrs and then check the event is present.
 
 If you don't have access to the spreadsheet:
 
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa)
+
+### How to add a Event Card Graphic
+In the event spreadsheet there are several event card graphics to choose from. This section describes how to add a new one. This process should be completed by the visual design team.
+
+First, create the graphics and upload them:
+
+1. Create two header PNG graphics. One for JBoss Developer (http://www.jboss.org/events) and one for Red Hat Developers (http://developers.redhat.com/events). NOTE: they MUST be PNG graphics, JPEG is not supported.
+2. Upload the JBoss Developer graphic to `filemgmt.jboss.org:/static_htdocs/_root/images/events/event_<image id>.png`. It is important that you follow the same naming convention as used by the other images. This is because the page that will display the image uses this pattern to predict the image's URL.
+3. Upload the Red Hat Developers graphic to `filemgmt.jboss.org:/static_htdocs/_root/images/rhd/events/event_<image id>.png`. It is important that you follow the same naming convention as used by the other images. This is because the page that will display the image uses this pattern to predict the image's URL.
+
+Now update the Spreadsheet to make the new header graphic option available. 
+
+1. Open the [Events spreadsheet](https://docs.google.com/spreadsheets/d/12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k/edit#gid=1609962398)
+2. Select the *entire* image column, by clicking on the Column's label at the top. Most likely this will be 'F'.
+3. Right-click on one of the selected cells and select 'Data Validation...'
+4. Check 'Events!F:F' is set in the 'Cell Selection' field
+5. Add the `<image id>` part of the image path to the `Criteria` field. Remember to prefix with a comma character. If you are confused, take a look at how the other images are configured.
+6. Click `ok`
+7. You should see a warning: `You’re trying to edit part of this sheet that shouldn’t be changed accidentally. Edit anyway?`. Select `OK` as this type of change is allowed.
+8. Update the `image` field of any events that should use the new image.
+
+This update will be visable after the next site build. Typically this takes upto 6hrs.
 
 ### How to add a book
 To add a book to http://developers.redhat.com/books:

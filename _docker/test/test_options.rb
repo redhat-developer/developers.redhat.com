@@ -218,6 +218,18 @@ class TestOptions < Minitest::Test
       assert_includes tasks[:supporting_services], 'drupalpgsql'
     end
 
+    def test_drupal_nightly
+      tasks = Options.parse (['--drupal-nightly'])
+      assert_includes tasks, :drupal
+      assert_equal tasks[:drupal], true
+
+      refute(tasks[:decrypt])
+      assert(tasks[:kill_all])
+      assert_includes tasks, :supporting_services
+      assert_includes tasks[:supporting_services], 'drupal'
+      assert_includes tasks[:supporting_services], 'drupalpgsql'
+    end
+
     private def expected_unit_test_tasks
       ['--no-deps', '--rm', 'awestruct_acceptance', 'bundle exec rake test']
     end
