@@ -7,6 +7,7 @@ require 'compass'
 require 'asciidoctor'
 require 'asciidoctor/extensions'
 require 'pathname'
+require 'fileutils'
 
 module JBoss
   module Developer
@@ -317,6 +318,7 @@ module Aweplug
         unless [:drupal_user, :drupal_password].all? {|required| opts.key? required}
           raise 'Missing drupal credentials'
         end
+        FileUtils.mkdir_p '_tmp'
         @logger = Logger.new('_tmp/drupal8.log', 'daily')
         opts.merge({:no_cache => true, :logger => @logger})
         @faraday = Aweplug::Helpers::FaradayHelper.default(opts[:base_url], opts)
