@@ -1,4 +1,99 @@
 // Products
+
+.hero.hero-products {
+  background: cdn('../images/design/RHDev_indeximage_desktop_products.png') top center / cover repeat-x;
+  border:0;
+  padding: 20px;
+  padding-top: 40px;
+  min-height: 230px;
+  @include tablet-portrait-and-down {
+    background: cdn('../images/design/RHDev_indeximage_mobile_products.png') top center / cover repeat-x;
+    margin: -15px;
+    h2.blowout {
+      padding-top: 20px !important;
+    }
+  }
+  h2.blowout {
+    color:white;
+    line-height:1;
+    font-size: 70px;
+    text-shadow: 3px 3px #063a63;
+  }
+  p {
+    color:white;
+    font-size: 20px;
+  }
+  .row {
+    @extend .grow;
+  }
+}
+
+.product-header {
+  background-position: top center;
+  background-size: cover;
+  background-repeat: repeat-x;
+
+  &.amq {background-image: cdn('../images/design/products/prod_header_jboss_amq.png');}
+  &.atomic {background-image: cdn('../images/design/products/prod_header_rhel_atomic_host.png');}
+  &.bpmsuite {background-image: cdn('../images/design/products/prod_header_jboss_bpm_suite.png');}
+  &.brms {background-image: cdn('../images/design/products/prod_header_jboss_brms.png');}
+  &.datagrid {background-image: cdn('../images/design/products/prod_header_jboss_data_grid.png');}
+  &.datavirt {background-image: cdn('../images/design/products/prod_header_jboss_data_virt.png');}
+  &.developertoolset {background-image: cdn('../images/design/products/prod_header_rh_developer_toolset.png');}
+  &.devstudio {background-image: cdn('../images/design/products/prod_header_jboss_devstudio.png');}
+  &.eap {background-image: cdn('../images/design/products/prod_header_jboss_eap.png');}
+  &.fuse {background-image: cdn('../images/design/products/prod_header_jboss_fuse.png');}
+  &.mobileplatform {background-image: cdn('../images/design/products/prod_header_rh_mobile_app_platform.png');}
+  &.openshift {background-image: cdn('../images/design/products/prod_header_openshift_enterprise.png');}
+  &.rhel {background-image: cdn('../images/design/products/prod_header_rhel.png');}
+  &.satellite {background-image: cdn('../images/design/products/prod_header_rh_satellite.png');}
+  &.softwarecollections {background-image: cdn('../images/design/products/prod_header_rh_software_collections.png');}
+  &.webserver {background-image: cdn('../images/design/products/prod_header_jboss_webserver.png');}
+
+  @include tablet-portrait-and-down {
+    &.amq {background-image: cdn('../images/design/products/productheader_tablet_jboss_amq.png');}
+    &.atomic {background-image: cdn('../images/design/products/productheader_tablet_rhel_atomic_host.png');}
+    &.bpmsuite {background-image: cdn('../images/design/products/productheader_tablet_jboss_bpm_suite.png');}
+    &.brms {background-image: cdn('../images/design/products/productheader_tablet_jboss_brms.png');}
+    &.datagrid {background-image: cdn('../images/design/products/productheader_tablet_jboss_data_grid.png');}
+    &.datavirt {background-image: cdn('../images/design/products/productheader_tablet_jboss_data_virt.png');}
+    &.developertoolset {background-image: cdn('../images/design/products/productheader_tablet_rh_developer_toolset.png');}
+    &.devstudio {background-image: cdn('../images/design/products/productheader_tablet_jboss_devstudio.png');}
+    &.eap {background-image: cdn('../images/design/products/productheader_tablet_jboss_eap.png');}
+    &.fuse {background-image: cdn('../images/design/products/productheader_tablet_jboss_fuse.png');}
+    &.mobileplatform {background-image: cdn('../images/design/products/productheader_tablet_rh_mobile_app_platform.png');}
+    &.openshift {background-image: cdn('../images/design/products/productheader_tablet_openshift_enterprise.png');}
+    &.rhel {background-image: cdn('../images/design/products/productheader_tablet_rhel.png');}
+    &.satellite {background-image: cdn('../images/design/products/productheader_tablet_rh_satellite.png');}
+    &.softwarecollections {background-image: cdn('../images/design/products/productheader_tablet_rh_software_collections.png');}
+    &.webserver {background-image: cdn('../images/design/products/productheader_tablet_jboss_webserver.png');}
+  }
+  @include mobile-portrait-and-down {
+    &.amq {background-image: cdn('../images/design/products/productheader_mobile_jboss_amq.png');}
+    &.atomic {background-image: cdn('../images/design/products/productheader_mobile_rhel_atomic_host.png');}
+    &.bpmsuite {background-image: cdn('../images/design/products/productheader_mobile_jboss_bpm_suite.png');}
+    &.brms {background-image: cdn('../images/design/products/productheader_mobile_jboss_brms.png');}
+    &.datagrid {background-image: cdn('../images/design/products/productheader_mobile_jboss_data_grid.png');}
+    &.datavirt {background-image: cdn('../images/design/products/productheader_mobile_jboss_data_virt.png');}
+    &.developertoolset {background-image: cdn('../images/design/products/productheader_mobile_rh_developer_toolset.png');}
+    &.devstudio {background-image: cdn('../images/design/products/productheader_mobile_jboss_devstudio.png');}
+    &.eap {background-image: cdn('../images/design/products/productheader_mobile_jboss_eap.png');}
+    &.fuse {background-image: cdn('../images/design/products/productheader_mobile_jboss_fuse.png');}
+    &.mobileplatform {background-image: cdn('../images/design/products/productheader_mobile_rh_mobile_app_platform.png');}
+    &.openshift {background-image: cdn('../images/design/products/productheader_mobile_openshift_enterprise.png');}
+    &.rhel {background-image: cdn('../images/design/products/productheader_mobile_rhel.png');}
+    &.satellite {background-image: cdn('../images/design/products/productheader_mobile_rh_satellite.png');}
+    &.softwarecollections {background-image: cdn('../images/design/products/productheader_mobile_rh_software_collections.png');}
+    &.webserver {background-image: cdn('../images/design/products/productheader_mobile_jboss_webserver.png');}
+  }
+}
+
+
+
+
+
+
+
 .product {
   .toolbar {
     text-align: right;
@@ -196,34 +291,6 @@
     a:first-of-type{margin-right: 15px;}
   }
 }
-.hero.hero-products {
-  background: cdn('../images/design/RHDev_indeximage_desktop_products.png') top center / cover repeat-x;
-  border:0;
-  padding: 20px;
-  padding-top: 40px;
-  min-height: 230px;
-  @include tablet-portrait-and-down {
-    background: cdn('../images/design/RHDev_indeximage_mobile_products.png') top center / cover repeat-x;
-    margin: -15px;
-    h2.blowout {
-      padding-top: 20px !important;
-    }
-  }
-  h2.blowout {
-    color:white;
-    line-height:1;
-    font-size: 70px;
-    text-shadow: 3px 3px #063a63;
-  }
-  p {
-    color:white;
-    font-size: 20px;
-  }
-  .row {
-    @extend .grow;
-  }
-}
-
 
 .band-tabs {
   .nav-tabs {
