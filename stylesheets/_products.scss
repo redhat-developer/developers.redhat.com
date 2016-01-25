@@ -1,5 +1,4 @@
 // Products
-
 .hero.hero-products {
   background: cdn('../images/design/RHDev_indeximage_desktop_products.png') top center / cover repeat-x;
   border:0;
@@ -88,11 +87,28 @@
   }
 }
 
+.product-graphics {
+  background-position: left top, right bottom;
+  background-repeat: no-repeat;
+  
+  &.storage-and-big-data {
+    background-image: cdn('../images/design/products/dotted_lines_top_left_orange.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+  }
+  &.it-infrastructure {
+    background-image: cdn('../images/design/products/dotted_lines_top_left_blue.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+  }
+  &.application-development {
+    background-image: cdn('../images/design/products/dotted_lines_top_left_green.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+  }
+}
 
-
-
-
-
+@include tablet-landscape-and-down {
+  .product-graphics {
+    &.storage-and-big-data, &.it-infrastructure, &.application-development {
+      background-image: none;
+    }
+  }
+} 
 
 .product {
   .toolbar {
@@ -123,7 +139,7 @@
     border-bottom: 9px solid #F0AB00;
   }
   &.it-infrastructure {
-    border-bottom: 9px solid #00B9E4;
+    border-bottom: 9px solid #0088ce;
   }
   &.application-development {
     border-bottom: 9px solid #92D400;
@@ -161,12 +177,14 @@
 }
 
 #hero-try-or-buy {
-  margin: 15px auto 40px auto;
+  margin: 0 auto 40px auto;
+  padding-top: 15px;
+
   &.storage-and-big-data {
     border-bottom: 1px dashed #F0AB00;
   }
   &.it-infrastructure {
-    border-bottom: 1px dashed #00B9E4;
+    border-bottom: 1px dashed #0088ce;
   }
   &.application-development {
     border-bottom: 1px dashed #92D400;
@@ -178,6 +196,9 @@
   }
   p {
     margin-bottom: 0;
+    &.caps {
+      text-transform: uppercase;
+    }
   }
   .hello-world{
     @extend .flex-center;
