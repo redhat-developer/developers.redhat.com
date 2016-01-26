@@ -386,43 +386,49 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generat
 end
 
 desc 'Run blinkr'
-task :blinkr, [:new, :pr_prefix, :build_prefix, :pull, :build, :verbose] do |task, args|
+task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
+  host_to_test = args[:host_to_test]
+  report_path = args[:report_path]
+  puts "Host to test is #{host_to_test}"
+  puts "Report path is #{report_path}"
   sha = ENV['ghprbActualCommit']
   options = {:context => 'Blinkr', :description => 'Blinkr pending', :target_url => ENV["BUILD_URL"]}
 
   begin
-    GitHub.update_status($github_org, $github_repo, sha, "pending", options)
+    #GitHub.update_status($github_org, $github_repo, sha, "pending", options)
 
     $staging_config ||= config 'staging'
-    base_path = "#{args[:pr_prefix]}/#{args[:pull]}"
-    base_url = "#{args[:new]}/#{base_path}/#{args[:build_prefix]}/#{args[:build]}/"
-    report_base_path = "#{base_path}/blinkr"
-    report_path = "#{report_base_path}/#{args[:build]}"
     verbose_switch = args[:verbose] == 'verbose' ? '-v' : ''
     FileUtils.rm_rf("_tmp/blinkr")
     FileUtils.mkdir_p("_tmp/blinkr")
 
-    unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{base_url} #{verbose_switch}"
-      options[:description] = "Blinkr failed (bundle error)"
-      puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
-      exit 1
-    end
+    #unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{host_to_test} #{verbose_switch}"
+      #options[:description] = "Blinkr failed (bundle error)"
+    #  puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
+      #exit 1
+    #end
 
-    Dir.mktmpdir do |empty_dir|
-      rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_base_path}")
-    end
+    empt = Dir.mktmpdir
+    out = FileUtils.mkdir_p(File.join(empt, "base", report_path)).first
+    puts out
+    out_for_sync = empt + "/./" + "base/" + report_path
+    puts "out_for_sync is "
+    puts out_for_sync
+    puts 'version 1'
 
+
+    rsync_create_dirs(local_path: out_for_sync, host: $staging_config.deploy.host, remote_path:"#{$staging_config.deploy.path}/")
     rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
     report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
 
     # TODO: At some point, when we don't have any errors, we'll want to parse the json or something and look for errors, then we can send a fail to the status
     options[:description] = "Blinkr report successful"
     options[:target_url] = "#{args[:new]}/#{report_path}/#{report_filename}"
-    puts GitHub.update_status($github_org, $github_repo, sha, "success", options)
+    #puts GitHub.update_status($github_org, $github_repo, sha, "success", options)
   rescue => e
     puts e
     options[:description] = "Blinkr failed (#{e.message})"
-    puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
+    #puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
   end
 end
 
@@ -497,6 +503,21 @@ def rsync(local_path:, host:, remote_path:, delete: false, excludes: [], dry_run
   end
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
   cmd = "rsync --partial --archive --checksum --compress --omit-dir-times #{'--quiet' unless verbose} #{'--verbose' if verbose} #{'--dry-run' if dry_run} #{'--ignore-non-existing' if ignore_non_existing} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
+  puts "Rsync command: #{cmd}"
+  msg "Rsync command: #{cmd}" if verbose
+  unless open3(cmd) == 0
+    msg "error executing rsync, exiting"
+    exit 1
+  end
+end
+
+def rsync_create_dirs(local_path:, host:, remote_path:)
+  unless File.exist?(ENV['HOME']+'/.ssh/id_rsa')
+    abort("#{ENV['HOME']}+'/.ssh/id_rsa' does not exists. Rsync will fail")
+  end
+  msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
+  cmd = "rsync -r --checksum --compress --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --relative #{local_path} #{host}:#{remote_path}"
+  puts "Rsync command: #{cmd}"
   msg "Rsync command: #{cmd}" if verbose
   unless open3(cmd) == 0
     msg "error executing rsync, exiting"
