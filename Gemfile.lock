@@ -25,7 +25,7 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
-    activesupport (4.1.14)
+    activesupport (4.1.14.1)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -162,8 +162,13 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
+<<<<<<< HEAD
     gpgme (2.0.12)
       mini_portile2 (~> 2.1.0)
+=======
+    gpgme (2.0.10)
+      mini_portile (>= 0.5.0)
+>>>>>>> origin/master
     guard (2.13.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
@@ -213,9 +218,15 @@ GEM
     metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (2.1)
+<<<<<<< HEAD
     mini_portile2 (2.1.0)
     minitest (5.8.3)
     minitest-reporters (1.1.7)
+=======
+    mini_portile (0.6.2)
+    minitest (5.8.4)
+    minitest-reporters (1.1.5)
+>>>>>>> origin/master
       ansi
       builder
       minitest (>= 5.0)

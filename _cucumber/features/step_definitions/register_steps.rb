@@ -4,12 +4,12 @@ When(/^I complete the registration form$/) do
 end
 
 When(/^I should receive an email containing an account verification link$/) do
-  verify_account_link = get_email
+  verify_account_link = get_email(@customer[:email])
   expect(verify_account_link.to_s).to include('email-verification?')
 end
 
 When(/^I navigate to the verify account URL$/) do
-  verify_account_link = get_email
+  verify_account_link = get_email(@customer[:email])
   url = verify_account_link.to_s.gsub(Capybara.app_host, '')
   visit(url)
   @page.current_page.wait_for_ajax
