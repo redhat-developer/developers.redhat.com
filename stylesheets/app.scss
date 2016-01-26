@@ -54,9 +54,9 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 // @import "sprites";
 @import "mq-mixins";
 @import "jboss-mixins";
-// @import "navigation";
 @import "slider";
 @import "home";
+@import "header";
 @import "solutions";
 @import "events";
 @import "buzz";
@@ -1849,97 +1849,6 @@ small {
 h1 { font-size: 42px; }
 h2 { font-size: 42px; }
 
-header.main {
-  font-size: 2rem;
-  background:$dark-gray;
-}
-
-nav.secondary-nav {
-  background:none;
-  overflow: hidden;
-  padding:10px 0;
-  @extend .column;
-  position: relative;
-  z-index:99;
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    padding: 0;
-    display:inline-block;
-  }
-  a {
-    color:white;
-    font-size: 12px;
-    text-transform: uppercase;
-  }
-}
-
-
-h1.logo {
-  font-size: 20px;
-  float: left;
-  margin-right: 60px;
-  a {
-    color:white;
-    background: cdn('../images/branding/RHDevelopers_RGB_Default.svg') center no-repeat;
-    text-indent:-9999px;
-    position: relative;
-    display: block;
-    width:155px;
-    height:56px;
-  }
-}
-
-
-nav.primary-nav {
-  overflow: hidden;
-  @extend .column;
-}
-
-ul.menu-right {
-  float:right;
-  margin: 0;
-  padding: 15px 0 0 0;
-  li {
-    display: inline-block;
-    a {
-      text-transform: uppercase;
-      color:white;
-      font-weight: 300;
-      font-size: 13px;
-      margin-left: 20px;
-    }
-  }
-}
-
-.nav-tabs {
-  margin: 0;
-  float: right;
-  padding-top: 15px;
-  li {
-    display: inline;
-    margin-right: 20px;
-    &:last-child {
-      margin-right: 0;
-    }
-    a {
-      color:white;
-      position: relative;
-      font-size: 25px;
-      font-weight: 100;
-      padding: 5px 5px 13px 5px;
-      text-transform: uppercase;
-    }
-    &.active {
-      a {
-        border-left:12px solid $red;
-        color:$gold;
-      }
-    }
-  }
-}
 
 label.inline{
   display: inline-block;

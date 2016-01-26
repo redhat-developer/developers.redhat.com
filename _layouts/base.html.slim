@@ -106,31 +106,86 @@
     .site-wrapper
       header.main.clearfix
         .row
-          nav.secondary-nav
-            ul.menu-right
-              / li: a
-              /   i.fa.fa-search
+          h1.logo
+            a(href="#{site.base_url}") Red Hat Developers
+            a.nav-toggle
+              i.fa.fa-bars
+              i.fa.fa-times
+              | Menu
+          nav.accounts
+            ul
               li.login: a LOGIN
               li.login-divider &nbsp; |
               li.register: a REGISTER
               li.logged-in
                 a.logged-in-name(href="#")
                 a.logout(href="#") Logout
-              li.search-wrap
-                form.header-search
-                  input(type="search" name="q" placeholder="Search for Answers, Videos, Etc.")
-          nav.primary-nav
-            h1.logo
-              a(href="#{site.base_url}")Red Hat Developers
-              a.nav-toggle
-                i.fa.fa-bars
-                i.fa.fa-times
-            ul.nav.nav-tabs
-              - currentPage = page.url
-              - pages = { 'Topics' => 'solutions', 'Products' => 'products', 'Resources' => 'resources', 'Community' => 'projects', 'Downloads' => 'downloads'}
-              - pages.each do |name, slug|
-                li(class=(currentPage.include?(slug) ? 'active' : ''))
-                  a(href="#{site.base_url}/#{slug}/") #{name}
+          nav.mega-menu
+            ul
+              li.has-sub-nav
+                a(href="#")
+                  | Topics
+                  i.fa.fa-angle-down
+                ul.sub-nav
+                  li: a(href="#") Containers
+                  li: a(href="#") Mobile
+                  li: a(href="#") DevOps
+                  li: a(href="#") Web and API Development
+                  li: a(href="#") Enterprise Java
+                  li: a(href="#") Internet of Things
+              li.has-sub-nav
+                a(href="#")
+                  | Technologies
+                  i.fa.fa-angle-down
+                .sub-nav
+                  .sub-nav-group
+                    span.heading Infrastrucure
+                    a(href="#") Red Hat Enterprise Linux
+                    a(href="#") Red Hat Developer Toolkit
+                    a(href="#") Red Hat Software Collections
+                    a(href="#") Red Hat Container Development Kit
+                  .sub-nav-group
+                    span.heading Cloud
+                    a(href="#") OpenShift Enterprise by Red Hat
+                  .sub-nav-group
+                    span.heading Mobile
+                    a(href="#") Red Hat Mobile Application Platform
+                  .sub-nav-group
+                    span.heading Middleware
+                    a(href="#") Red Hat JBoss Developer Studio
+                    a(href="#") Red Hat JBoss JBoss Enterprise Application Platform
+                    a(href="#") Red Hat JBoss Fuse
+                    a(href="#") Red Hat JBoss Web Server
+                    a(href="#") Red Hat JBoss BPM Suite
+                    a(href="#") Red Hat JBoss BRMS
+                    a(href="#") Red Hat JBoss Data Grid
+                    a(href="#") Red Hat JBoss A-MQ
+                    a(href="#") Red Hat JBoss Data Virtualization
+              li.has-sub-nav
+                a(href="#")
+                  | Community
+                  i.fa.fa-angle-down
+                ul.sub-nav.pull-right
+                  li
+                    a(href="#")
+                      | Events
+                      span.page-description Find the latest conferences, meetups, and virtual seminars
+                  li
+                    a(href="#")
+                      | Stack Overflow Questions & Answers
+                      span.page-description Get your questions answered by the community or Red Hat
+                  li
+                    a(href="#")
+                      | Open Source Communities
+                      span.page-description Community Projects that Red Hat participates in
+                  li
+                    a(href="#")
+                      | RHD Contributors Program
+                      span.page-description Contribute your content to the Red Hat Developers website
+              li
+                a(href="#") Resources
+              li
+                a(href="#") Downloads
 
       .wrapper.clearfix
         - if (site.protected.include?("#{page.url}"))
@@ -158,6 +213,11 @@
               li
                 a(href="mailto:developer@redhat.com") Contact Us
 
+            / p.feedback
+            /   a ☹
+            /   | or
+            /   a ☺
+            /   | We want your feedback.
         .row.legal
           .large-8.medium-24.right.columns
             a.summit-logo(href="http://www.redhat.com/summit/")
