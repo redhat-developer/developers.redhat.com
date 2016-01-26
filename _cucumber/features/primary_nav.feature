@@ -1,3 +1,4 @@
+@smoke
 Feature: Home Page Smoke Test
 
   In order to know the developer site has been built correctly

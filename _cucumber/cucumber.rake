@@ -5,10 +5,6 @@ require 'parallel'
 require 'fileutils'
 require_relative './rake/test_runner'
 
-Cucumber::Rake::Task.new(:wip) do |t|
-  t.cucumber_opts = '_cucumber -r _cucumber/features/ --profile wip'
-end
-
 desc 'Run all scenarios. To run tests in non parallel mode set environment variable ENV[PARALLEL_TEST]=false'
 task :features do |t, args|
 
@@ -27,7 +23,21 @@ task :features do |t, args|
     profile = 'parallel'
   end
 
-  exit_status = runner.run(profile)
+  if ENV['CUCUMBER_TAGS'].to_s.empty?
+    tags = nil
+  else
+    if ENV['CUCUMBER_TAGS'].include?(',')
+      tags = ENV['CUCUMBER_TAGS'].split(',')
+    else
+      tags = ENV['CUCUMBER_TAGS']
+    end
+    known_good_cucumber_tags = %w(@wip @smoke @cdk_beta @ignore)
+    unless known_good_cucumber_tags.any? { |tag| tags.include?(tag) }
+      raise("#{tags} was not found within known good cucumber tags. If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake!")
+    end
+  end
+
+  exit_status = runner.run(profile, tags.join(','))
   p "exit status was #{exit_status}"
   exit(exit_status)
 end

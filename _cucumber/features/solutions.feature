@@ -4,6 +4,7 @@ Feature: Solutions Smoke Test
   As generic site visitor
   I want to be able to see a list of available solutions.
 
+  @smoke
   Scenario: All titles present
     Given I am on the Solutions page
     Then I should see the Solutions page title

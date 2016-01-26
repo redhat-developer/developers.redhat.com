@@ -6,6 +6,7 @@ Feature: Login Page
 
   @accepted_terms
   @logout
+  @smoke
   Scenario: A customer has correct login credentials
     Given I am on the Login page
     When I try to log in with a valid password
@@ -33,6 +34,7 @@ Feature: Login Page
 
   @password_reset
   @teardown
+  @wip1
   Scenario: A customer who has forgotten their login details can request a password reset
     Given I am on the Login page
     When I request a password reset
@@ -41,6 +43,7 @@ Feature: Login Page
 
   @password_reset
   @logout
+  @wip
   Scenario: A customer can successfully reset their password
     Given I am on the Login page
     And I request a password reset
