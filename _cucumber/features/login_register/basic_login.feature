@@ -37,7 +37,6 @@ Feature: Login Page
     Given I am on the Login page
     When I request a password reset
     Then I should see a confirmation message: "You should receive an email shortly with further instructions."
-    And I should receive an email containing a password reset link
 
   @password_reset
   @logout

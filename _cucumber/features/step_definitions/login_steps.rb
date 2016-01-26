@@ -41,12 +41,12 @@ And(/^I (request a password reset|reset my password)$/) do |negate|
 end
 
 And(/^I should receive an email containing a password reset link$/) do
-  password_reset_link = get_email
+  password_reset_link = get_email(@customer[:email])
   expect(password_reset_link.to_s).to include('reset-credentials?')
 end
 
 When(/^I navigate to the password reset URL$/) do
-  password_reset_link = get_email
+  password_reset_link = get_email(@email_address)
   url = password_reset_link.to_s.gsub(Capybara.app_host, '')
   visit(url)
 end
