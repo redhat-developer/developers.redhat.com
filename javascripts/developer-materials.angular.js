@@ -551,6 +551,9 @@ dcp.controller('developerMaterialsController',
     );
 
     $scope.params.size  = $scope.pagination.size;
+    
+    // fold in initial project 
+    $scope.params.project = $scope.filters.project;
 
     // Go get new materials and display them
     materialService.getMaterials($scope.params)
