@@ -41,7 +41,7 @@ And(/^I (request a password reset|reset my password)$/) do |negate|
 end
 
 And(/^I should receive an email containing a password reset link$/) do
-  password_reset_link = get_email(@customer[:email])
+  password_reset_link = get_email(@email_address)
   expect(password_reset_link.to_s).to include('reset-credentials?')
 end
 
