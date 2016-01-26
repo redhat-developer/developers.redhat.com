@@ -703,6 +703,9 @@ dcp.controller('developerMaterialsController',
   };
 
   $scope.goToPage = function(page) {
+    if(typeof page !== 'number') {
+      return;
+    }
     $scope.paginate.currentPage = page;
     $scope.processPagination_();
   };
