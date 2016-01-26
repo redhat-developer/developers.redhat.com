@@ -1,5 +1,19 @@
+Given(/^I register a new account$/) do
+  @page.registration.open
+
+  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:country], @customer[:password], @customer[:password])
+  @page.registration.create_account
+
+  verify_account_link = get_email
+  url = verify_account_link.to_s.gsub(Capybara.app_host, '')
+  visit(url)
+  @page.current_page.wait_for_ajax
+
+  expect(@page.current_page).to be_logged_in
+end
+
 When(/^I complete the registration form$/) do
-  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:password], @customer[:password])
+  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:country], @customer[:password], @customer[:password])
   @page.registration.create_account
 end
 
@@ -20,6 +34,6 @@ Then(/^I should see the following confirmation message: (.*)/) do |message|
 end
 
 When(/^I try to enter passwords that do not match$/) do
-  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:password], 'password')
+  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:country], @customer[:password], 'password')
   @page.registration.create_account
 end
