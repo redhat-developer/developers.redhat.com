@@ -27,7 +27,7 @@ module Customer
     }
   end
 
-  def get_email
+  def get_email(email_address)
     tries = 0
     begin
       tries += 1
@@ -41,11 +41,11 @@ module Customer
         raise('Test user was not logged into gmail after 10 attempts!')
       end
     end
-    try(6) { @email = @gmail.inbox.emails(:unread, from: 'no-reply@redhat.com').last }
+    try(6) { @email = @gmail.inbox.emails(:unread, to: email_address).last }
     message_body = @email.message.body.raw_source
     url = message_body.scan(/https?:\/\/[\S]+/).first
     # delete all mails and close the gmail session
-    @gmail.inbox.find(:from => 'no-reply@redhat.com').each do |email|
+    @gmail.inbox.find(:to => email_address).each do |email|
       email.delete!
     end
     @gmail.logout
@@ -53,7 +53,8 @@ module Customer
     encoded_url = URI.encode(url)
     URI.parse(encoded_url)
     # return valid URI
-    p encoded_url
+    p "Customers email was: #{email_address}"
+    p "Verification url was: #{encoded_url}"
     return encoded_url.gsub('<', '')
   end
 

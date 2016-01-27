@@ -92,6 +92,9 @@ def block_wait_drupal_started
   # Add this to the ENV so we can pass it to the awestruct build
   ENV['DRUPAL_HOST_IP'] = drupal_ip
 
+  # Add the drupal cdn prefix
+  ENV['cdn_prefix'] = 'sites/default/files'
+
   up = false
   until up do
     up = is_port_open?(drupal_ip, drupal_port)
@@ -192,7 +195,9 @@ if tasks[:should_start_supporting_services]
 
   execute_docker_compose :up, ['--force-recreate'].concat(tasks[:supporting_services])
 
-  block_wait_searchisko_configure_finished()
+  if tasks[:supporting_services].include? "searchiskoconfigure"
+    block_wait_searchisko_configure_finished()
+  end
 
   # Check to see if Drupal is accepting connections before continuing
   block_wait_drupal_started if tasks[:drupal]
