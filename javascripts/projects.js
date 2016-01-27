@@ -22,7 +22,7 @@ app.project = {
   },
   projectFilter : function(filters, keyword, container, thumbnailSize) {
 
-    var url = app.dcp2.url.project;
+    var url = app.dcp.url.project;
 
     // Pass search params to GTM for analytics
     window.dataLayer = window.dataLayer || [];

@@ -140,15 +140,6 @@ mysql:
     - MYSQL_ROOT_PASSWORD=superdupersecret
   ports:
     - "<%= ENV['MYSQL_HOST_PORT'] %>:3306"
-elasticsearch:
-  build: ./elasticsearch
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
-  ports:
-   - "<%= ENV['ES_HOST_PORT1'] %>:9200"
-   - "<%= ENV['ES_HOST_PORT2'] %>:9300"
 searchisko:
   build: ./searchisko
   ports:
@@ -163,7 +154,6 @@ searchisko:
     - DB_PASSWORD=searchisko
   links:
    - mysql
-   - elasticsearch
 searchiskoconfigure:
   build: ./searchisko_configure
   <% if ENV['ghprbPullId'] %>
@@ -176,5 +166,4 @@ searchiskoconfigure:
     - DB_PASSWORD=searchisko
   links:
    - mysql
-   - elasticsearch
    - searchisko

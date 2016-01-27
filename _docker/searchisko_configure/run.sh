@@ -22,7 +22,7 @@ function do_index {
   TASK_OUTCOME=
   while [ "$DONE" == "false" ]; do
 
-    TASK_OUTCOME=$(curl -s -X GET "http://$SEARCHISKO_PORT_8080_TCP_ADDR:8080/v1/rest/tasks/task/$TASK_ID" --user jbossorg:jbossorgjbossorg | awk -F 'taskStatus' '{ print $2 }' | awk -F '"' '{ print $3 }')
+    TASK_OUTCOME=$(curl -s -X GET "http://$SEARCHISKO_PORT_8080_TCP_ADDR:8080/v2/rest/tasks/task/$TASK_ID" --user jbossorg:jbossorgjbossorg | awk -F 'taskStatus' '{ print $2 }' | awk -F '"' '{ print $3 }')
 
     echo $TASK_OUTCOME
     if [ "$TASK_OUTCOME" == "FINISHED_OK" ]; then
@@ -39,22 +39,22 @@ function do_index {
 
 function reindex_from_persistence {
   CONTENT_TYPE=$1
-  do_index $CONTENT_TYPE "$searchiskourl/v1/rest/tasks/task/reindex_from_persistence" '{ "sys_content_type": "'$CONTENT_TYPE'" }'
+  do_index $CONTENT_TYPE "$searchiskourl/v2/rest/tasks/task/reindex_from_persistence" '{ "sys_content_type": "'$CONTENT_TYPE'" }'
 }
 
 function reindex_project {
   CONTENT_TYPE=$1
-  do_index $CONTENT_TYPE "$searchiskourl/v1/rest/tasks/task/reindex_project" '{}'
+  do_index $CONTENT_TYPE "$searchiskourl/v2/rest/tasks/task/reindex_project" '{}'
 }
 
 function reindex_contributor {
   CONTENT_TYPE=$1
-  do_index $CONTENT_TYPE "$searchiskourl/v1/rest/tasks/task/reindex_contributor" '{}'
+  do_index $CONTENT_TYPE "$searchiskourl/v2/rest/tasks/task/reindex_contributor" '{}'
 }
 
 
 
-esurl="http://$SEARCHISKO_PORT_8080_TCP_ADDR:8080/v1/rest/sys/es/search"
+esurl="http://$SEARCHISKO_PORT_8080_TCP_ADDR:8080/v2/rest/sys/es/search"
 esusername=jbossorg
 espassword=jbossorgjbossorg
 
@@ -64,7 +64,7 @@ searchiskopassword=jbossorgjbossorg
 
 
 echo "========  Waiting for Searchisko to boot ======="
-while [ "$(curl -sL -w "%{http_code}\\n" http://$SEARCHISKO_PORT_8080_TCP_ADDR:8080/v1/rest/sys/info -o /dev/null)" != "200" ]; do
+while [ "$(curl -sL -w "%{http_code}\\n" http://$SEARCHISKO_PORT_8080_TCP_ADDR:8080/v2/rest/sys/info -o /dev/null)" != "200" ]; do
         sleep 1
         echo "waiting..."
 done;
@@ -73,7 +73,7 @@ echo "Searchisko ready"
 echo ========== Initializing Elasticsearch cluster ===========
 echo Using Elasticsearch http connector URL base: ${esurl}
 
-# These steps must be run in a precise order. See README herei https://github.com/searchisko/configuration/tree/v1.1.1
+# These steps must be run in a precise order. See README here https://github.com/searchisko/configuration/tree/v1.1.1
 cd /tmp/configuration
 
 echo ========== Runing index_templates/index_templates ===========
@@ -104,6 +104,11 @@ popd
 echo ========== Runing data/config/init-config.sh ===========
 pushd data/config/
 ./init-config.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword}
+popd
+
+echo ========== Runing data/config/init-queries.sh ===========
+pushd data/query/
+./init-queries.sh ${searchiskourl} ${searchiskousername} ${searchiskopassword}
 popd
 
 wait
