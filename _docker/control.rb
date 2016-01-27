@@ -92,6 +92,9 @@ def block_wait_drupal_started
   # Add this to the ENV so we can pass it to the awestruct build
   ENV['DRUPAL_HOST_IP'] = drupal_ip
 
+  # Add the drupal cdn prefix
+  ENV['cdn_prefix'] = 'sites/default/files'
+
   up = false
   until up do
     up = is_port_open?(drupal_ip, drupal_port)
