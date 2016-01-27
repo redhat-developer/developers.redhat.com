@@ -6,4 +6,7 @@ do
   sleep 5
 done
 echo "connected successfully"
-bundle exec rake features
+echo "Executing tests using:${RHD_SELENIUM_DRIVER} browser"
+echo "Executing tests with parallel mode set to:${PARALLEL_TEST}"
+
+bundle exec rake features RHD_SELENIUM_DRIVER=$RHD_SELENIUM_DRIVER PARALLEL_TEST=$PARALLEL_TEST

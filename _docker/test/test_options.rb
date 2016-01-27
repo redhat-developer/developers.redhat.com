@@ -121,13 +121,34 @@ class TestOptions < Minitest::Test
     end
 
     def test_acceptance_test_target_task
-      tasks = Options.parse (["--acceptance_test_target=http://example.com"])
-      assert(tasks[:build])
-      assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-      assert_equal('http://example.com', ENV['HOST_TO_TEST'])
-      assert_equal('false', ENV['PARALLEL_TEST'])
-      refute(tasks[:set_ports])
-      assert_equal(["--no-deps", "--rm", "awestruct", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])
+      ClimateControl.modify RHD_SELENIUM_DRIVER: 'firefox', PARALLEL_TEST: 'true' do
+        tasks = Options.parse (["--acceptance_test_target=http://example.com"])
+        assert(tasks[:build])
+        assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+        assert_equal('http://example.com', ENV['HOST_TO_TEST'])
+        assert_equal('firefox', ENV['RHD_SELENIUM_DRIVER'])
+        assert_equal('true', ENV['PARALLEL_TEST'])
+        assert(tasks[:set_ports])
+        assert_equal(tasks[:supporting_services], ["-d", "selenium-#{ENV['RHD_SELENIUM_DRIVER']}"])
+        assert_equal(["--no-deps", "--rm", "awestruct_acceptance_remote_host", "bundle exec rake features HOST_TO_TEST=http://example.com RHD_SELENIUM_DRIVER=#{ENV['RHD_SELENIUM_DRIVER']} PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])
+      end
+    end
+
+    def test_acceptance_test_target_task_default_value
+      ClimateControl.modify HOST_TO_TEST: nil, AWESTRUCT_HOST_PORT: '32768', RHD_SELENIUM_DRIVER: 'firefox', PARALLEL_TEST: 'true' do
+        tasks = Options.parse (["--acceptance_test_docker"])
+        assert(tasks[:kill_all])
+        assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+        assert(tasks[:decrypt])
+        assert(tasks[:set_ports])
+        assert(tasks[:build])
+        assert_equal('firefox', ENV['RHD_SELENIUM_DRIVER'])
+        assert_equal('true', ENV['PARALLEL_TEST'])
+        assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
+        refute(tasks[:awestruct_up_service])
+        refute(tasks[:awestruct_command_args])
+        assert_equal(["--rm", "awestruct_acceptance_docker_internal"], tasks[:acceptance_test_target_task])
+      end
     end
 
     def test_acceptance_test_target_task_at_docker
@@ -179,22 +200,6 @@ class TestOptions < Minitest::Test
       assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]'], tasks[:awestruct_command_args])
     end
 
-    def test_acceptance_test_target_task_default_value
-      ClimateControl.modify HOST_TO_TEST: nil, AWESTRUCT_HOST_PORT: '32768' do
-        tasks = Options.parse (["--acceptance_test_docker", "true"])
-        assert(tasks[:kill_all])
-        assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-        assert(tasks[:decrypt])
-        assert(tasks[:set_ports])
-        assert_equal('true', ENV['PARALLEL_TEST'])
-        assert(tasks[:build])
-        assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
-        assert_equal(tasks[:awestruct_up_service], %w(-d awestruct_preview_no_reload))
-        refute(tasks[:awestruct_command_args])
-        assert_equal(["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])
-      end
-    end
-
     def test_test_task
       tasks = Options.parse(["-t"])
       assert(tasks[:build])
@@ -231,6 +236,7 @@ class TestOptions < Minitest::Test
     end
 
     private def expected_unit_test_tasks
-      ['--no-deps', '--rm', 'awestruct_acceptance', 'bundle exec rake test']
+      ['--no-deps', '--rm', 'awestruct_unit_tests', 'bundle exec rake test']
     end
+
 end

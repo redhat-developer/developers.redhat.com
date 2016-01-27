@@ -68,28 +68,45 @@ class Options
         tasks[:supporting_services] += %w(mysql searchisko searchiskoconfigure)
       end
 
-      opts.on('--acceptance_test_docker [=PARALLEL_TEST]', String, 'runs the cucumber features against the local running docker stack.') do |parallel='false'|
-        ENV['PARALLEL_TEST'] = parallel
+      opts.on('--acceptance_test_docker', String, 'runs the cucumber features against the local running docker stack.') do
+        if ENV['RHD_SELENIUM_DRIVER'].to_s.empty?
+          ENV['RHD_SELENIUM_DRIVER']='firefox'
+        end
+
+        if ENV['PARALLEL_TEST'].to_s.empty?
+          ENV['PARALLEL_TEST']='true'
+        end
+
         tasks[:kill_all] = true
         tasks[:decrypt] = true
         tasks[:set_ports] = true
         tasks[:build] = true
-        tasks[:awestruct_up_service] =  %w(-d awestruct_preview_no_reload)
         tasks[:unit_tests] = unit_test_tasks
         tasks[:supporting_services] += %w(mysql searchisko searchiskoconfigure)
-        tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
+        tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance_docker_internal"]
       end
 
-      opts.on('--acceptance_test_target HOST_TO_TEST [=PARALLEL_TEST]', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |h, parallel='false'|
-        if h.start_with?("http://docker")
+      opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |host|
+        ENV['HOST_TO_TEST'] = host
+
+        if ENV['RHD_SELENIUM_DRIVER'].to_s.empty?
+          ENV['RHD_SELENIUM_DRIVER']='firefox'
+        end
+
+        if ENV['PARALLEL_TEST'].to_s.empty?
+          ENV['PARALLEL_TEST']='true'
+        end
+
+        if host.start_with?("http://docker")
           raise OptionParser::InvalidArgument.new("can't currently test docker, try --acceptance_test_docker")
         end
 
-        ENV['HOST_TO_TEST'] = h
-        ENV['PARALLEL_TEST'] = parallel
-        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "awestruct", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
-        tasks[:build] = true
-        tasks[:unit_tests] = unit_test_tasks
+         tasks[:unit_tests] = unit_test_tasks
+         tasks[:kill_all] = true
+         tasks[:set_ports] = true
+         tasks[:build] = true
+         tasks[:supporting_services] += ["selenium-#{ENV['RHD_SELENIUM_DRIVER']}"]
+         tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "awestruct_acceptance_remote_host", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_SELENIUM_DRIVER=#{ ENV['RHD_SELENIUM_DRIVER']} PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
       end
 
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
@@ -149,7 +166,7 @@ class Options
   end
 
   def self.unit_test_tasks
-    ['--no-deps', '--rm', 'awestruct_acceptance', "bundle exec rake test"]
+    ['--no-deps', '--rm', 'awestruct_unit_tests', 'bundle exec rake test']
   end
 
 end
