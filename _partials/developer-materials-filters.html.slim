@@ -7,16 +7,16 @@
         label.right.inline(for="filter-by")
           strong Filter By:
         button.filters-apply.filter-toggle Apply
-        input(type="text" id="filter-by" placeholder="Keyword" name="filter-text" class="keyword" ng-model="filters.query" ng-change="filter.applyFilters()" ng-model-options="{debounce:300, blur:0}")
+        input(type="text" id="filter-by" placeholder="Keyword" name="filter-text" class="keyword" ng-model="filters.query" ng-change="filter.applyFilters()" ng-model-options="{debounce:300}")
 
       .large-8.columns
-        select(ng-options="item.value as item.name for item in data.availableFormats" ng-model="filters.sys_type" ng-change="filter.applyFilters()")
+        select(ng-options="item.value as item.name for item in data.availableFormats" ng-model="data.sys_type_string" ng-change="filter.applyFilters()")
           option(value="") Choose a Format
 
       .large-8.columns.left.date-filter
         label(for="publish-date")
           strong Publish Date
-        input(type="range" id="publish-date" name="filter-publish-date" ng-change="filter.updateDate(); filter.applyFilters()" ng-model="data.dateNumber" value="0" max="4")
+        input(type="range" id="publish-date" name="filter-publish-date" ng-change="filter.updateDate(); filter.applyFilters()" ng-model="data.dateNumber" value="0" max="4" ng-init="filter.updateSkillLevel();")
         span.skill-display
           | {{data.displayDate || 'All'}}
 

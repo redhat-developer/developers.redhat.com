@@ -1,20 +1,8 @@
 app.connectors = {
-
-    /**
-     * Constants used to determine order of query result hits.
-     *
-     * @const
-     */
-    orderBy: {
-        PRIORITY: 'priority',
-        SYS_TITLE: 'sys_title'
-    },
-
     open: function (html) {
         $('.overlay-content').html(html);
         $('body').addClass('overlay-open');
     },
-
     close: function () {
         $('body').removeClass('overlay-open');
         $('.overlay-content').empty();
@@ -66,7 +54,7 @@ app.connectors = {
     orderByPriority: function(e) {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.PRIORITY);
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, 'priority');
 
         $('.connectors-order a').removeClass('active');
         $('.order-priority').addClass('active');
@@ -75,45 +63,29 @@ app.connectors = {
     orderByAlpha: function(e) {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
-        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.SYS_TITLE);
+        app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, 'sys_title');
         $('.connectors-order a').removeClass('active');
         $('.order-alpha').addClass('active');
     },
 
-    /**
-     * Parameters 'query', 'target_product', 'orderBy' and 'featuredIDs' determine input parameters
-     * for connectors query (see [1]).
-     *
-     * [1] https://github.com/searchisko/configuration/blob/master/data/query/connectors.md
-     *
-     * @param {string} query
-     * @param {!HTMLElement} container
-     * @param {string} target_product
-     * @param {string} thumbnailSize
-     * @param {string=} orderBy
-     * @param {Array.<string>=} featuredIDs
-     */
-    connectorFilter : function(query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
-        var url = app.dcp.url.connectors;
+    connectorFilter : function(keyword, container, target_product, thumbnailSize, orderBy) {
+        //Currently the only way to specify no limit
+        var maxResults = 500;
+        var url = app.dcp.url.search;
 
-        var request_data = {};
-
-        if (query) {
-            request_data.query = query;
-        }
-
-        if (target_product) {
-            request_data.target_product = target_product;
-        }
-
-        if (orderBy && orderBy == this.orderBy.SYS_TITLE) {
-            request_data.sortAlpha = true;
-        }
+        //Query returns items where any of the three target products are set to the required product.
+        var query = ["(sys_content_type: jbossdeveloper_connector AND (target_product_1: " + target_product + " OR target_product_2: " + target_product + " OR target_product_3: " + target_product + "))"];
 
         //And specify the connector IDs if specified.
-        if (featuredIDs && $.isArray(featuredIDs) && featuredIDs.length > 0) {
-            request_data.id = featuredIDs;
+        if (keyword) {
+            query += " AND (" + keyword + ")";
         }
+        
+        var request_data = {
+            "field"  : ["_source"],
+            "query" : query,
+            "size" : maxResults
+        };
 
         // append loading class to wrapper
         $("ul.connector-results").addClass('loading');
@@ -124,28 +96,27 @@ app.connectors = {
             data : request_data,
             container : container,
             thumbnailSize : thumbnailSize,
+            orderBy: orderBy,
             error : function() {
                 $('ul.connector-results').html(app.dcp.error_message);
             }
         }).done(function(data){
             var container = this.container || $('ul.connector-results');
             var thumbnailSize = this.thumbnailSize || "200x150";
-            app.connectors.format(data, container, thumbnailSize);
+            var orderBy = this.orderBy || "priority";
+            app.connectors.format(data, container, thumbnailSize, orderBy);
         });
     },
 
-    /**
-     *
-     * @param {*} data
-     * @param {!HTMLElement} container
-     * @param {string} thumbnailSize
-     */
-    format: function (data, container, thumbnailSize) {
+    format: function (data, container, thumbnailSize, orderBy) {
         if (data.responses) {
             var hits = data.responses[0].hits.hits;
         } else {
             var hits = data.hits.hits;
         }
+
+        // Note: we might be able to get rid of sortJsonArrayByProperty function after migration to Searchisko 2.
+        hits.sortJsonArrayByProperty("_source." + orderBy);
 
         var html = "";
         // loop over every hit
@@ -221,10 +192,10 @@ $(function () {
      */
     var featuredConnectorIds = $('.featured-connector-ids');
     if(featuredConnectorIds.length) {
-        var featuredIds = JSON.parse(featuredConnectorIds.text());
-        if ($.isArray(featuredIds) && featuredIds.length > 0) {
-            app.connectors.connectorFilter(null, $('ul.featured-connectors-results'), targetProductFilter, '500x400', null, featuredIds);
-        }
+        var queryVal = JSON.parse(featuredConnectorIds.text()).join(' OR ');
+        var query = "sys_content_id:("+queryVal+")";
+
+        app.connectors.connectorFilter(query, $('ul.featured-connectors-results'), targetProductFilter, '500x400');
     }
 });
 
