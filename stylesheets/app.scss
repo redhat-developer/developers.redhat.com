@@ -500,13 +500,6 @@ body.fullbleed {
   }
 }
 
-.spotlights {
-  margin:30px auto;
-  img {
-    width: 100%;
-  }
-}
-
 // Updates
 .update {
   padding-right: 1em;
@@ -1856,45 +1849,21 @@ small {
 h1 { font-size: 42px; }
 h2 { font-size: 42px; }
 
-// New Nav
-
 header.main {
-  background:white;
   font-size: 2rem;
-  background: linear-gradient(to bottom,  #ffffff 0%,#fefeff 38%,#e7f6f9 100%); /* W3C */
-  border-bottom: 1px solid #D1E7EE;
+  background:$dark-gray;
 }
-
 
 nav.secondary-nav {
   background:none;
   overflow: hidden;
-  padding:0;
+  padding:10px 0;
   @extend .column;
-  margin-bottom: -27px;
   position: relative;
   z-index:99;
   ul {
     margin: 0;
     padding: 0;
-    float:left;
-    &.menu-left {
-      a {
-        margin-right: 20px;
-        font-weight: 600;
-      }
-    }
-    &.menu-right {
-      float: right;
-      a {
-        margin-left:30px;
-        font-size: 12px;
-        color:$dark-gray;
-      }
-      .register a {
-        margin-left: 10px;
-      }
-    }
   }
   li {
     padding: 0;
@@ -1925,59 +1894,48 @@ h1.logo {
 
 
 nav.primary-nav {
-  padding:25px 0;
   overflow: hidden;
   @extend .column;
-  ul.menu-right {
-    float:right;
-    margin: 0;
-    padding: 15px 0 0 0;
-    li {
-      display: inline-block;
-      a {
-        text-transform: uppercase;
-        color:$headline-grey;
-        font-weight: 900;
-        font-size: 13px;
-        margin-left: 20px;
-      }
+}
+
+ul.menu-right {
+  float:right;
+  margin: 0;
+  padding: 15px 0 0 0;
+  li {
+    display: inline-block;
+    a {
+      text-transform: uppercase;
+      color:white;
+      font-weight: 300;
+      font-size: 13px;
+      margin-left: 20px;
     }
   }
 }
 
 .nav-tabs {
   margin: 0;
-  float: left;
+  float: right;
   padding-top: 15px;
   li {
     display: inline;
-    margin-right: 64px;
+    margin-right: 20px;
     &:last-child {
       margin-right: 0;
     }
     a {
-      color:$headline-grey;
+      color:white;
       position: relative;
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 25px;
+      font-weight: 100;
+      padding: 5px 5px 13px 5px;
       text-transform: uppercase;
-      &:after {
-        position: absolute;
-        left:0;
-        content : '';
-        display: block;
-        height:4px;
-        bottom:-6px;
-        width:30px;
-        background:$headline-grey;
-      }
-      &:hover:after {
-        background:$red;
-      }
     }
     &.active {
-      a:after {
-        background:$red;
+      a {
+        border-left:12px solid $red;
+        color:$gold;
       }
     }
   }

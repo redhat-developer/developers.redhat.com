@@ -116,6 +116,9 @@
               li.logged-in
                 a.logged-in-name(href="#")
                 a.logout(href="#") Logout
+              li.search-wrap
+                form.header-search
+                  input(type="search" name="q" placeholder="Search for Answers, Videos, Etc.")
           nav.primary-nav
             h1.logo
               a(href="#{site.base_url}")Red Hat Developers
@@ -124,14 +127,10 @@
                 i.fa.fa-times
             ul.nav.nav-tabs
               - currentPage = page.url
-              - for pageName in ['solutions', 'products', 'downloads']
-                li(class=(currentPage.include?(pageName) ? 'active' : ''))
-                  a(href="#{site.base_url}/#{pageName}/") #{pageName.capitalize}
-            ul.menu-right
-              li: a(href="#{site.base_url}/resources/") Resources
-              li: a(href="#{site.base_url}/projects/") Community
-              li: a(href="#{site.base_url}/events/") Events
-              li: a(href="http://developerblog.redhat.com") Blogs
+              - pages = { 'Topics' => 'solutions', 'Products' => 'products', 'Resources' => 'resources', 'Community' => 'projects', 'Downloads' => 'downloads'}
+              - pages.each do |name, slug|
+                li(class=(currentPage.include?(slug) ? 'active' : ''))
+                  a(href="#{site.base_url}/#{slug}/") #{name}
 
       .wrapper.clearfix
         - if (site.protected.include?("#{page.url}"))
@@ -159,11 +158,6 @@
               li
                 a(href="mailto:developer@redhat.com") Contact Us
 
-            / p.feedback
-            /   a ☹
-            /   | or
-            /   a ☺
-            /   | We want your feedback.
         .row.legal
           .large-8.medium-24.right.columns
             a.summit-logo(href="http://www.redhat.com/summit/")
