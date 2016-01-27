@@ -126,22 +126,31 @@ ul.project-social {
 }
 
 .hero.hero-projects {
-  background: cdn('../images/design/RHDev_indeximage_desktop_community.png') top center / cover repeat-x;
+  background: cdn('../images/design/RHDev_pageheader_upstream_desktop.png') top center / cover no-repeat;
   content : ':4242';
   border:0;
-  margin-bottom: 40px;
-  padding:20px;
-  min-height: 185px;
-  @media (max-width: 970px){
-    background: cdn('../images/design/RHDev_indeximage_mobile_community.png') top center / cover repeat-x;
-    margin: -15px;
-    margin-bottom: 40px;
-  }
-  h2.blowout {
+  min-height: 220px;
+  margin-bottom: 0;
+
+  h2 {
     color:white;
-    font-size: 70px;
-    text-shadow: 3px 3px #063a63;
-    margin-top: 25px;
+    font-size: 5em;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  @include tablet-portrait-and-down {
+    background: cdn('../images/design/RHDev_pageheader_upstream_tablet.png') top center / cover no-repeat;
+    min-height: auto;
+    h2 {
+      margin-top: 10px;
+    }
+  }
+  @include mobile-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_upstream_mobile.png') top center / cover no-repeat;
+    h2 {
+      font-size: 4em;
+    }
   }
   p {
     color: white;
