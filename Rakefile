@@ -408,17 +408,18 @@ task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
       #exit 1
     #end
 
-    empt = Dir.mktmpdir
-    out = FileUtils.mkdir_p(File.join(empt, "base", report_path)).first
-    puts out
-    out_for_sync = empt + "/./" + "base/" + report_path
-    puts "out_for_sync is "
-    puts out_for_sync
-    puts 'version 1'
+    empty_dir = Dir.mktmpdir
+
+    ordered = report_path.split("/").select{|x| x != ""}
+
+    builtupPath = ""
+    ordered.each do |p|
+      built_up += "/#{p}"
+      rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}#{builtupPath}")
+    end
 
 
-    rsync_create_dirs(local_path: out_for_sync, host: $staging_config.deploy.host, remote_path:"#{$staging_config.deploy.path}/")
-    rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}/#{report_path}")
+    rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}#{builtupPath}")
     report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
 
     # TODO: At some point, when we don't have any errors, we'll want to parse the json or something and look for errors, then we can send a fail to the status
@@ -503,20 +504,6 @@ def rsync(local_path:, host:, remote_path:, delete: false, excludes: [], dry_run
   end
   msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
   cmd = "rsync --partial --archive --checksum --compress --omit-dir-times #{'--quiet' unless verbose} #{'--verbose' if verbose} #{'--dry-run' if dry_run} #{'--ignore-non-existing' if ignore_non_existing} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{'--delete ' if delete} #{excludes.collect { |e| "--exclude " + e}.join(" ")} #{local_path}/ #{host}:#{remote_path}"
-  puts "Rsync command: #{cmd}"
-  msg "Rsync command: #{cmd}" if verbose
-  unless open3(cmd) == 0
-    msg "error executing rsync, exiting"
-    exit 1
-  end
-end
-
-def rsync_create_dirs(local_path:, host:, remote_path:)
-  unless File.exist?(ENV['HOME']+'/.ssh/id_rsa')
-    abort("#{ENV['HOME']}+'/.ssh/id_rsa' does not exists. Rsync will fail")
-  end
-  msg "Deploying #{local_path} to #{host}:#{remote_path} via rsync"
-  cmd = "rsync -r --checksum --compress --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --relative #{local_path} #{host}:#{remote_path}"
   puts "Rsync command: #{cmd}"
   msg "Rsync command: #{cmd}" if verbose
   unless open3(cmd) == 0
