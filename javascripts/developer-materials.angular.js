@@ -187,7 +187,7 @@ dcp.filter('urlFix', function() {
     else if (str.contains("access.redhat.com") || str.contains("hub-osdevelopers.rhcloud.com")) {
       return str;
     } else {
-      return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+)?/, app.baseUrl);
+      return str.replace(/^http(s)?:\/\/(\w|\.|\-|:)*(\/pr\/\d+\/build\/\d+)?(\/docker-nightly)?/, app.baseUrl);
     }
   }
 });
