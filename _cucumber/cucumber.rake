@@ -30,9 +30,9 @@ task :features do |t, args|
   else
     if ENV['CUCUMBER_TAGS'].include?(',')
       tags = ENV['CUCUMBER_TAGS'].split(',')
-      a = known_good_cucumber_tags.to_set
-      b = tags.to_set
-      unless b.subset?(a)
+      expected_tags = known_good_cucumber_tags.to_set
+      actual_tags = tags.to_set
+      unless actual_tags.subset?(expected_tags)
         raise("Expected tag string '#{tags}' was not found within known good cucumber tags. \n
                Expected tags were #{known_good_cucumber_tags} \n
                If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake")
