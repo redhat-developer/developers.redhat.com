@@ -414,7 +414,7 @@ task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
 
     builtupPath = ""
     ordered.each do |p|
-      built_up += "/#{p}"
+      builtupPath += "/#{p}"
       rsync(local_path: empty_dir, host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}#{builtupPath}")
     end
 
