@@ -416,8 +416,6 @@ task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
     FileUtils.rm_rf("_tmp/blinkr")
     FileUtils.mkdir_p("_tmp/blinkr")
 
-    report_path = create_subdirectories_for_rync(report_path)
-
     unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{host_to_test} #{verbose_switch}"
       options[:description] = "Blinkr failed (bundle error)"
       if should_update_status
@@ -426,7 +424,11 @@ task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
       exit 1
     end
 
-    rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}#{report_path}")
+    if report_path != ""
+      report_path = create_subdirectories_for_rync(report_path)
+      rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}#{report_path}")
+    end
+
     report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
 
     # TODO: At some point, when we don't have any errors, we'll want to parse the json or something and look for errors, then we can send a fail to the status
