@@ -402,11 +402,11 @@ task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
     FileUtils.rm_rf("_tmp/blinkr")
     FileUtils.mkdir_p("_tmp/blinkr")
 
-    #unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{host_to_test} #{verbose_switch}"
-      #options[:description] = "Blinkr failed (bundle error)"
+    unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{host_to_test} #{verbose_switch}"
+      options[:description] = "Blinkr failed (bundle error)"
     #  puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
-      #exit 1
-    #end
+      exit 1
+    end
 
     empty_dir = Dir.mktmpdir
 
