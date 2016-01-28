@@ -3,6 +3,7 @@ require 'cucumber'
 require 'cucumber/rake/task'
 require 'parallel'
 require 'fileutils'
+require 'set'
 require_relative './rake/test_runner'
 
 desc 'Run all scenarios. To run tests in non parallel mode set environment variable ENV[PARALLEL_TEST]=false'
@@ -23,21 +24,31 @@ task :features do |t, args|
     profile = 'parallel'
   end
 
+  known_good_cucumber_tags = %w(@wip @smoke @cdk_beta @ignore)
   if ENV['CUCUMBER_TAGS'].to_s.empty?
     tags = nil
   else
     if ENV['CUCUMBER_TAGS'].include?(',')
       tags = ENV['CUCUMBER_TAGS'].split(',')
+      a = known_good_cucumber_tags.to_set
+      b = tags.to_set
+      unless b.subset?(a)
+        raise("Expected tag string '#{tags}' was not found within known good cucumber tags. \n
+               Expected tags were #{known_good_cucumber_tags} \n
+               If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake")
+      end
+      tags = tags.join(',')
     else
       tags = ENV['CUCUMBER_TAGS']
-    end
-    known_good_cucumber_tags = %w(@wip @smoke @cdk_beta @ignore)
-    unless known_good_cucumber_tags.any? { |tag| tags.include?(tag) }
-      raise("#{tags} was not found within known good cucumber tags. If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake!")
+      unless known_good_cucumber_tags.include?(tags)
+        raise("Expected tag '#{tags}' was not found within known good cucumber tags. \n
+               Expected tags were #{known_good_cucumber_tags} \n
+               If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake")
+      end
     end
   end
 
-  exit_status = runner.run(profile, tags.join(','))
+  exit_status = runner.run(profile, tags)
   p "exit status was #{exit_status}"
   exit(exit_status)
 end
