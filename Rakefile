@@ -385,6 +385,10 @@ task :wraith, [:old, :new, :pr_prefix, :build_prefix, :pull, :build] => :generat
   GitHub.comment_on_pull($github_org, $github_repo, args[:pull], "Visual diff: #{args[:new]}/#{wraith_path}/gallery.html")
 end
 
+create_subdirectories_for_rync do
+
+end
+
 desc 'Run blinkr'
 task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
   host_to_test = args[:host_to_test]
