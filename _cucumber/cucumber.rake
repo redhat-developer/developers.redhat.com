@@ -5,10 +5,14 @@ require 'parallel'
 require 'fileutils'
 require_relative './rake/test_runner'
 
-Cucumber::Rake::Task.new(:wip) do |t|
+Cucumber::Rake::Task.new(:debug) do |t|
   t.cucumber_opts = '_cucumber -r _cucumber/features/ --profile wip'
 end
 
+task :debug, :times do |task,args|
+  puts "Executing scenario: #{args[:times]} times"
+  args[:times].to_i.times { Rake::Task[:features].execute }
+end
 desc 'Run all scenarios. To run tests in non parallel mode set environment variable ENV[PARALLEL_TEST]=false'
 task :features do |t, args|
 

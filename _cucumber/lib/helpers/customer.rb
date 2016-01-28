@@ -12,7 +12,7 @@ module Customer
           name: 'TEST USER-NOT-ACCEPTED-TERMS'
       },
       password_reset: {
-          email: 'redhat-developers-testers+94hl7e5x0h@redhat.com',
+          email: %w(redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+309mnmdlbk@redhat.com redhat-developers-testers+16w9dg8gbh@redhat.com redhat-developers-testers+fbdtyoup2g@redhat.com).sample,
           password: 'P@$$word01',
           name: 'TEST USER'
       }
