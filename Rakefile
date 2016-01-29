@@ -424,7 +424,7 @@ task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
       exit 1
     end
 
-    if report_path != ""
+    if report_path.to_s != ""
       report_path = create_subdirectories_for_rync(report_path)
       rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}#{report_path}")
     end
