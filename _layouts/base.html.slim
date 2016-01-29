@@ -110,21 +110,24 @@
 
     .site-wrapper
       header.main.clearfix
-        .row
-          h1.logo
-            a(href="#{site.base_url}") Red Hat Developers
-            a.nav-toggle
-              i.fa.fa-bars
-              i.fa.fa-times
-              | Menu
+        .row.header-wrap
           nav.accounts
             ul
-              li.login: a LOGIN
-              li.login-divider &nbsp; |
-              li.register: a REGISTER
+              li.login: a Login
+              li.register: a Register
               li.logged-in
                 a.logged-in-name(href="#")
+              li.logged-in
                 a.logout(href="#") Logout
+            form.search
+              input(type="search" placeholder="Search for Answers, Videos, Etc…")
+          .logo-wrap
+            h1.logo
+              a(href="#{site.base_url}" title="Red Hat Developers")
+                img(src=cdn("#{site.base_url}/images/design/RHD-logo.svg") alt="Red Hat Developers")
+            a.nav-toggle(href="#")
+              | Menu
+              i.fa.fa-angle-down
           nav.mega-menu
             ul
               li.has-sub-nav

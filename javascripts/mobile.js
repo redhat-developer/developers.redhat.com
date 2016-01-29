@@ -114,7 +114,9 @@ app.createSlider = function($el) {
   /*
     Toggle mobile Nav
   */
-  $('.nav-toggle').on('click touchend',function(){
+  $('.nav-toggle').on('click touchend',function(e){
+    console.log("testing");
+     e.preventDefault();
      if (!app.fastClick) {
        // we're binding to touchstart and click. If we have a touchstart, don't also run on click
        app.fastClick = true;
