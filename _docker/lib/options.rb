@@ -17,7 +17,7 @@ class Options
         tasks[:decrypt] = true
         tasks[:set_ports] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:supporting_services] += %w(mysql searchisko searchiskoconfigure)
       end
 
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
@@ -65,7 +65,7 @@ class Options
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:set_ports] = true
-        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:supporting_services] += %w(mysql searchisko searchiskoconfigure)
       end
 
       opts.on('--acceptance_test_docker [=PARALLEL_TEST]', String, 'runs the cucumber features against the local running docker stack.') do |parallel='false'|
@@ -76,7 +76,7 @@ class Options
         tasks[:build] = true
         tasks[:awestruct_up_service] =  %w(-d awestruct_preview_no_reload)
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:supporting_services] += %w(mysql searchisko searchiskoconfigure)
         tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
       end
 
@@ -105,7 +105,7 @@ class Options
         tasks[:build] = true
         tasks[:set_ports] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:supporting_services] += %w(mysql searchisko searchiskoconfigure)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
@@ -114,7 +114,7 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(elasticsearch mysql searchisko searchiskoconfigure)
+        tasks[:supporting_services] += %w(mysql searchisko searchiskoconfigure)
         tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 

@@ -44,7 +44,8 @@ module JBoss
           articles = []
           solutions = []
           site.products = {}
-          forum_counts = Hash[JSON.load(@searchisko.search({facet:'per_project_counts', sys_type:'forumthread', size:1}).body)['facets']['per_project_counts']['terms'].map(&:values).map(&:flatten)]
+          # This has been updated for DCP2 → http://dcp2-searchisko.rhcloud.com/v2/rest/search?sys_type=forumthread&agg=per_project_counts&size=1
+          # forum_counts = Hash[JSON.load(@searchisko.search({sys_type:'forumthread', size:1, agg:'per_project_counts'}).body)['aggregations']['per_project_counts']['per_project_counts_filter']['per_project_counts_buckets']['buckets'].map(&:values).map(&:flatten)]
           site.pages.each do |page|
             if !page.product.nil? && page.relative_source_path.start_with?('/products')
               product = page.product
@@ -59,17 +60,6 @@ module JBoss
                 end
                 docs(product, site)
                 downloads(product, site)
-                if forum_counts.has_key? id
-                  product.forum = OpenStruct.new({
-                          :count => forum_counts[product.dcp_project_code],
-                          :histogram => forum_histogram(product, site),
-                          :name => product.dcp_project_code,
-                          :url => "#{site.product_forum_base_url}#{product.id}",
-                          :description => product.description
-                      })
-
-                end
-
                 
                 product.buzz_tags ||= product.id
                 add_video product.vimeo_album, site, product: id, push_to_searchisko: @push_to_searchisko if product.vimeo_album
@@ -136,29 +126,6 @@ module JBoss
               end
             end
           end
-        end
-
-        def forum_histogram(product, site)
-          resp = @searchisko.search({activity_date_interval: 'month', facet:'activity_dates_histogram', 
-                                    sys_type:'forumthread', project: product.dcp_project_code, size:0})
-          histogram = JSON.load(resp.body)['facets']['activity_dates_histogram']['entries']
-          endDate = DateTime.now
-          d = endDate.prev_month
-          res = [['Day', 'Count']]
-          while d <= endDate do
-            d1 = d
-            d = d.next_day
-            t1 = d1.to_time.to_i * 1000
-            t2 = d.to_time.to_i * 1000
-            count = 0
-            histogram.each do |e|
-              if e['time'] > t1 && e['time'] <= t2
-                count = e['count']
-              end
-            end
-            res << [d1.iso8601, count]
-          end
-          res
         end
 
         def downloads(product, site)
