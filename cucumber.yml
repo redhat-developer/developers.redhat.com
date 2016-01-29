@@ -11,20 +11,12 @@ Dir.mkdir("out") rescue ""
 Dir.mkdir($output_folder) rescue ""
 
 default_options = "-r _cucumber/features/ --strict -f pretty"
-exclusions = "-t ~@wip -t ~@todo"
-exclusions_nonparallel = "-t ~@wip -t ~@todo"
-exclusions_in_progress = "-t ~@wip -t ~@todo"
-slow = "-r _cucumber/features/ --format pretty"
-remote = "-r _cucumber/features/ --format ParallelTests::Cucumber::FailuresLogger --out _cucumber/parallel_cucumber_failures.log -f pretty"
 
 %>
 
-default: <%= default_options %> <%= exclusions %>
+default: <%= default_options %>
 html: --format --out reports/test-report.html
-features: <%= default_options %> <%= exclusions %> -f rerun --out rerun.txt
-wip: -t @wip
-smoke: -t @smoke
+features: <%= default_options %> -f rerun --out rerun.txt
 parallel_html: --format html --out _cucumber/reports/process<%= ENV['TEST_ENV_NUMBER'] %>.html
 pretty: -f pretty
 parallel: -r _cucumber/features/ --format pretty --profile parallel_html --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log
-parallel_smoke: --profile smoke -r _cucumber/features/ --format pretty --profile parallel_html --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log

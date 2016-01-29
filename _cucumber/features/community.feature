@@ -1,3 +1,4 @@
+@smoke
 Feature: Community Page Smoke Test
   In order to see other projects in the Red Hat community
   As generic site visitor
