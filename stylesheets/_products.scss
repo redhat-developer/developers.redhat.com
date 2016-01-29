@@ -128,18 +128,13 @@
 }
 
 .product-header{
-  color:white;
-  h2 {
-    color: white;
-    font-weight: 900;
-  }
   background-color: rgba(0, 0, 0, 0.77);
   padding: 20px 0;
   &.storage-and-big-data {
     border-bottom: 9px solid #F0AB00;
   }
   &.it-infrastructure {
-    border-bottom: 9px solid #0088ce;
+    border-bottom: 9px solid #00B9E4;
   }
   &.application-development {
     border-bottom: 9px solid #92D400;
@@ -151,28 +146,12 @@
     text-transform: uppercase;
   }
   h3 {
-    color: $grey-4;
+    color: $grey-3;
     font-weight: 100;
-    color:#D5D5D5;
     margin-bottom: 0;
   }
   @include desktop-and-down {
     padding:20px;
-  }
-}
-
-.product-hero {
-  background:#424242;
-  border-bottom:10px solid #8FD102;
-  color:white;
-  padding:20px 0;
-  .breadcrumbs {
-    a {
-      color:white;
-      &:before {
-        color:white;
-      }
-    }
   }
 }
 
@@ -236,7 +215,6 @@
     }
   }
 }
-
 
 .product-placeholder{
   width: 100%;
