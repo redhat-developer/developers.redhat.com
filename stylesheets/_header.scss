@@ -26,13 +26,12 @@ header.main {
 }
 
 .mega-menu {
-  clear: both;
-  @extend .clearfix;
+  float:right;
   a {
     font-weight: 100;
     color:white;
     font-size: 25px;
-    padding:10px 20px;
+    padding:10px 12px;
   }
 
   li.heading {
@@ -43,7 +42,6 @@ header.main {
     float:right;
     position: relative;
     & > li {
-      margin-left: 20px;
       &:first-child {
         margin-left: 0;
       }
@@ -125,14 +123,104 @@ header.main {
 }
 
 /* 
+  Search
+ */
+
+nav.accounts {
+  text-align: right;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(flex-end);
+  padding:5px 0;
+  ul {
+    display: inline-block;
+    li:first-child a {
+      border-left: 0;
+    }
+    a {
+      color:white;
+      border-left:1px solid white;
+      padding: 0 10px;
+      line-height:1;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+  }
+  .search {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  input {
+    font-size: 12px;
+    padding:2px 5px 2px 5px;
+    width:auto;
+    min-width:250px;
+    margin: 0;
+    &:placeholder-shown {
+      text-transform: uppercase;
+    }
+  }
+}
+
+/* 
+  Layout
+ */
+
+.header-wrap {
+  @include flexbox;
+  @include flex-wrap(wrap);
+}
+
+.mega-menu {
+  @include flexbox;
+  @include align-items(flex-end);
+  @include justify-content(flex-end);
+  @include flex(1); // take all the extra space
+}
+
+
+nav.accounts {
+  width: 100%;
+}
+
+.logo-wrap {
+  @include flex(0); // take no extra space
+}
+
+/* 
+  Logo
+ */
+
+h1.logo {
+ float: left;
+ width:300px;
+ margin: 0;
+ margin-top: -30px;
+}
+
+nav.accounts {
+  float: right;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+
+/* 
   Mobile
  */
 
 @include tablet-portrait-and-down {
   header.main {
     background:black;
+    h1.logo {
+      margin:0;
+      padding-left:0 !important;
+    }
     ul {
       float:none;
+      min-width: 100%;
       li {
         display: block;
         float:none;
@@ -147,7 +235,7 @@ header.main {
   }
   
   .mega-menu {
-    
+    min-width: 100%;
     & > ul {
       & > li {
         &:hover, &.sub-nav-open {
@@ -202,24 +290,61 @@ header.main {
       display: block;
     }
   }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  nav.accounts {
+    padding:0;
+    form.search {
+      display: none;
+    }
+    ul {
+      width: 100%;
+      background:$grey-6;
+      @include flexbox;
+      li {
+        @include flex(1);
+        text-align: center;
+        border:0;
+        border-right:1px solid black;
+        &:last-child {
+          border-right: 0;
+        }
+        a {
+          display: block;
+          border:0;
+          padding: 20px 10px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .logo-wrap {
+    width: 100%;
+    @include flex(1);
+    @include flexbox;
+    @include justify-content(space-between);
+
+  }
+  .nav-toggle {
+    @include align-self(center);
+    display: inline-block;
+    color:white;
+    text-transform: uppercase;
+    &:hover, &:focus {
+      color:white;
+    }
+    i {
+      color:$grey-6;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+
+
+
 }
-
-/* 
-  Logo
- */
-
-//  h1.logo {
-//    font-size: 20px;
-//    float: left;
-//    margin-right: 60px;
-//    a {
-//      color:white;
-//      background: cdn('../images/branding/RHDevelopers_RGB_Default.svg') center no-repeat;
-//      text-indent:-9999px;
-//      position: relative;
-//      display: block;
-//      width:155px;
-//      height:56px;
-//    }
-//  }
 
