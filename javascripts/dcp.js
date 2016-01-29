@@ -22,6 +22,8 @@ app.dcp.authStatus = function() {
 /*
  * Resolve an array of contributors, and replace any
  * span.contributor[data-sys-contributor=<contributor>] elements in the current page
+ * TODO: If we need this still, migrate to DCP2
+ * http://dcp2-searchisko.rhcloud.com/v2/rest/search?sys_type=contributor_profile&field=sys_url_view&field=sys_title&field=_source
  */
 app.dcp.resolveContributors = function(sysContributors) {
 

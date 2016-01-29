@@ -4,5 +4,5 @@ ul.homepage-resources
       i.fa.fa-globe.fa-2x(ng-show="item.fields.sys_type !== 'video'")
       i.fa.fa-video-camera.fa-2x(ng-show="item.fields.sys_type == 'video'")
     span
-      a.title(ng-href="{{item.fields.sys_url_view | urlFix}}" ) {{item.fields.sys_title}}
+      a.title(ng-href="{{item.fields.sys_url_view | urlFix}}" ) {{item.fields.sys_title | firstIfArray}}
       p.date {{item.fields.sys_created | timeAgo}}
