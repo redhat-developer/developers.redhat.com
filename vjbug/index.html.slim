@@ -91,6 +91,12 @@ title: vJBug
                       strong  #{c.speaker}
                   p #{c.date}
                   p #{c.abstract}
+                  - if c.demo_links
+                    h6.caps Demo Links:
+                    ul.demo-links
+                      - c.demo_links.each do |e|
+                        li
+                          a(href='#{e.url}') #{e.url}
                   - if c.speaker
                     p #{c.speaker_intro}
 
