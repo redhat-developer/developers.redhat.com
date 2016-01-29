@@ -399,9 +399,13 @@ def create_subdirectories_for_rync(path_to_create)
 end
 
 desc 'Run blinkr'
-task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
+task :blinkr, [:host_to_test, :report_path, :report_host, :verbose] do |task, args|
   host_to_test = args[:host_to_test]
+  puts "host_to_test: #{host_to_test}"
   report_path = args[:report_path]
+  puts "report_path: #{report_path}"
+  report_host = args[:report_host]
+  puts "report_host: #{report_host}"
   sha = ENV['ghprbActualCommit']
   should_update_status = sha.to_s != ""
   options = {:context => 'Blinkr', :description => 'Blinkr pending', :target_url => ENV["BUILD_URL"]}
@@ -424,16 +428,16 @@ task :blinkr, [:host_to_test, :report_path, :verbose] do |task, args|
       exit 1
     end
 
-    if report_path.to_s != ""
+    if report_path.to_s != "" && report_host.to_s != ""
+      report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
       report_path = create_subdirectories_for_rync(report_path)
       rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}#{report_path}")
+      options[:target_url] = "#{report_host}/#{report_path}/#{report_filename}"
     end
-
-    report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
 
     # TODO: At some point, when we don't have any errors, we'll want to parse the json or something and look for errors, then we can send a fail to the status
     options[:description] = "Blinkr report successful"
-    options[:target_url] = "#{args[:new]}/#{report_path}/#{report_filename}"
+
     if should_update_status
       puts GitHub.update_status($github_org, $github_repo, sha, "success", options)
     end
