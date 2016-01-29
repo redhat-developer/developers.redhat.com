@@ -12,7 +12,7 @@ module Customer
           name: 'TEST USER-NOT-ACCEPTED-TERMS'
       },
       password_reset: {
-          email: 'redhat-developers-testers+94hl7e5x0h@redhat.com',
+          email: %w(redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+309mnmdlbk@redhat.com redhat-developers-testers+16w9dg8gbh@redhat.com redhat-developers-testers+fbdtyoup2g@redhat.com redhat-developers-testers+0c454lss3r@redhat.com redhat-developers-testers+s01kvdw5oh@redhat.com redhat-developers-testers+0enem3f750@redhat.com redhat-developers-testers+s6vbvqai66@redhat.com redhat-developers-testers+zmqgdx7ie3@redhat.com redhat-developers-testers+k0k481z5d7@redhat.com").sample,
           password: 'P@$$word01',
           name: 'TEST USER'
       }
@@ -27,7 +27,7 @@ module Customer
     }
   end
 
-  def get_email
+  def get_email(email_address)
     tries = 0
     begin
       tries += 1
@@ -41,11 +41,11 @@ module Customer
         raise('Test user was not logged into gmail after 10 attempts!')
       end
     end
-    try(6) { @email = @gmail.inbox.emails(:unread, from: 'no-reply@redhat.com').last }
+    try(6) { @email = @gmail.inbox.emails(:unread, to: email_address).last }
     message_body = @email.message.body.raw_source
     url = message_body.scan(/https?:\/\/[\S]+/).first
     # delete all mails and close the gmail session
-    @gmail.inbox.find(:from => 'no-reply@redhat.com').each do |email|
+    @gmail.inbox.find(:to => email_address).each do |email|
       email.delete!
     end
     @gmail.logout
@@ -53,7 +53,8 @@ module Customer
     encoded_url = URI.encode(url)
     URI.parse(encoded_url)
     # return valid URI
-    p encoded_url
+    p "Customers email was: #{email_address}"
+    p "Verification url was: #{encoded_url}"
     return encoded_url.gsub('<', '')
   end
 

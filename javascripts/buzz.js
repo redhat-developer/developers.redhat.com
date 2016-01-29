@@ -69,7 +69,7 @@ app.buzz = {
     window.dataLayer.push({'event': 'buzz-search'});
 
     $.ajax({
-        url : app.dcp2.url.search,
+        url : app.dcp.url.search,
         dataType: 'json',
         data : {
           "field"  : ["sys_url_view", "sys_title", "sys_contributors", "sys_description", "sys_created", "author", "sys_tags", "sys_content_id"],

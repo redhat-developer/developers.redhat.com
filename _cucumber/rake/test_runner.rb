@@ -8,8 +8,11 @@ class TestRunner
     Dir.mkdir('_cucumber/reports')
   end
 
-  def run(profile, tag=nil)
-    tag_string = (tag.nil?) ? '' : " -t #{tag}"
+  def run(profile, tag)
+
+    unless tag.eql?(nil)
+      tag_string = "--tags #{tag}"
+    end
 
     #cleanup the previous run reports
     cleanup
@@ -19,16 +22,16 @@ class TestRunner
 
     if profile.eql?('parallel')
       if tag.eql?(nil)
-        system("parallel_cucumber _cucumber/features/ -o \" -p #{profile}\" -n 2")
+        system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 2")
       else
-        system("parallel_cucumber _cucumber/features/ -o \" -p #{profile}\" -n 2\" #{tag_string}")
+        system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 2")
       end
       # rerun any failed scenarios
     else
       if tag.eql?(nil)
         system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
       else
-        system("cucumber _cucumber -r _cucumber/features/ -p #{profile}\" #{tag_string}")
+        system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
       end
     end
     rerun(profile)

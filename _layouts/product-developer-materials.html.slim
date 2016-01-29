@@ -14,5 +14,3 @@ div(ng-app="dcp")
       .developer-materials-results-wrapper data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}';filters.randomize = false; data.pageType = '#{page.product.dcp_project_code}';"
         = partial 'developer-materials-results.html.slim'
 
-    = javascripts("developer-materials-filter", true) do
-      script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
