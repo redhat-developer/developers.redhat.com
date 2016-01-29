@@ -12,7 +12,7 @@ app.searchpage = {
     },
     fetch: function (tmpl, container, query, itemCount, append, from) {
 
-        itemCount = itemCount || 8;
+        itemCount = itemCount || 10;
 
 
         container.addClass('search-page-loading');
@@ -25,15 +25,16 @@ app.searchpage = {
 
         // perform ajax request
         $.ajax({
-            url: app.dcp.url.search,
+            //url: app.dcp.url.search,
+            url: "http://dcp.stage.jboss.org/v2/rest/search",
             dataType: 'json',
             data: {
-                "field"  : ["sys_author", "target_product", "contributors", "duration", "github_repo_url", "level", "sys_contributors",  "sys_created", "sys_description", "sys_title", "sys_tags", "sys_url_view", "thumbnail", "sys_type", "sys_rating_num", "sys_rating_avg", "experimental"],
+                "field"  : ["sys_url_view", "sys_title", "sys_type", "sys_description"],
                 "query": query,
-                "content_provider" : ["jboss-developer", "rht", "openshift"],
+                "type" : ["rht_website"],
                 "size" : itemCount,
-                "sortBy" : "new-create",
-                "from" : from || 0 // for pagination
+                "from" : from || 0, // for pagination
+                "query_highlight" : true
 
             },
             beforeSend: function () {
@@ -44,8 +45,11 @@ app.searchpage = {
 
                 var html = "";
                 for (var i = 0; i < hits.length; i++) {
-                    var d = hits[i].fields;
+
+                    var fields = hits[i].fields;
+                    var highlight = hits[i].highlight;
                     // This regex will parse an email like "John Smith <john.smith@acme.com>", giving you two matches "John Smith" and "john.smith@acme.corp"
+                    /*
                     var pat = /(?:([^"]+))? <?(.*?@[^>,]+)>?,? ?/g;
                     d.authorName = "";
                     d.authorMail = "";
@@ -56,10 +60,21 @@ app.searchpage = {
                     if(!d.authorName) {
                         d.authorName = d.author;
                     }
-                    d.updatedDate = jQuery.timeago(new Date(d.sys_created));
+                    */
                     //d.sys_description = d.sys_description.substr(0,197) + '...';
-                    d.searchLink = d.sys_url_view;
-                    html += tmpl.template(d);
+                    fields.searchLink = fields.sys_url_view;
+                    
+                    if (highlight.sys_description) {
+                        fields.sys_description = highlight.sys_description;
+                    } else if (!fields.sys_description) {
+                        fields.sys_description = "";
+                    }
+
+                    if (highlight.sys_title) {
+                        fields.sys_title = highlight.sys_title;
+                    }
+                    
+                    html += tmpl.template(fields);
                 }
 
                     // Inject HTML into the DOM
@@ -120,7 +135,7 @@ app.searchpage = {
     var name = loc.substring(loc.indexOf("=")+1).replace('\/','');
 
     // Begin initial search
-    app.searchpage.fetch(app.templates.searchpageTemplate, $search, name, 4);
+    app.searchpage.fetch(app.templates.searchpageTemplate, $search, name, 10);
 
     app.searchpage.infiniteScrollCalled = false;
 
@@ -141,7 +156,7 @@ app.searchpage = {
             app.searchpage.infiniteScrollCalled = true;
             var from = $('.searchpage-results-container > div').length;
 
-            app.searchpage.fetch(app.templates.searchpageTemplate, $search, name, 8, true, from, function() {
+            app.searchpage.fetch(app.templates.searchpageTemplate, $search, name, 10, true, from, function() {
                 if(win.scrollTop() < 400){
                     win.scrollTop(scrollTop);
 
