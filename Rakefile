@@ -401,8 +401,11 @@ end
 desc 'Run blinkr'
 task :blinkr, [:host_to_test, :report_path, :report_host, :verbose] do |task, args|
   host_to_test = args[:host_to_test]
+  puts "host_to_test: #{host_to_test}"
   report_path = args[:report_path]
+  puts "report_path: #{report_path}"
   report_host = args[:report_host]
+  puts "report_host: #{report_host}"
   sha = ENV['ghprbActualCommit']
   should_update_status = sha.to_s != ""
   options = {:context => 'Blinkr', :description => 'Blinkr pending', :target_url => ENV["BUILD_URL"]}
