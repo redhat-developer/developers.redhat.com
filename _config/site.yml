@@ -100,7 +100,7 @@ profiles:
       :cdn_out_dir: *dev_cdn_out_dir
       :cdn_version: *dev_cdn_version
 
-  # Pull Request configuration
+  # Pull Request configuration (with Docker)
   staging_docker:
     <<: *profile
     dcp_base_url: http://dcp2-searchisko.rhcloud.com/
@@ -112,11 +112,11 @@ profiles:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg
 
-  # Pull Request configuration
+  # Pull Request configuration (Not with Docker)
   staging:
     <<: *profile
-    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
-    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
+    dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
