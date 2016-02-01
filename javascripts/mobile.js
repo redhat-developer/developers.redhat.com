@@ -111,34 +111,35 @@ app.createSlider = function($el) {
     }
 
 
-  /*
-    Toggle mobile Nav
-  */
-  $('.nav-toggle').on('click touchend',function(e){
-    console.log("testing");
-     e.preventDefault();
-     if (!app.fastClick) {
-       // we're binding to touchstart and click. If we have a touchstart, don't also run on click
-       app.fastClick = true;
-       setTimeout(function(){ app.fastClick = false; }, 100);
-       $('body').toggleClass('nav-open');
-     }
-  });
-
-  /*
-    Mobile Nav dropdown
-  */
-
-  $('.has-sub-nav').on('click touchend',function(e){
-      if (!app.fastClick) {
-        // we're binding to touchstart and click. If we have a touchstart, don't also run on click
-        app.fastClick = true;
-        setTimeout(function(){ app.fastClick = false; }, 100);
-        // close others
-        $('.sub-nav-open').not(this).removeClass('sub-nav-open');
-        // open this one
-        $(this).toggleClass('sub-nav-open');
-      }
-  });
 })();
 
+/*
+  Toggle mobile Nav
+*/
+
+$('.nav-toggle').on('click touchend',function(e){
+   e.preventDefault();
+   if (!app.fastClick) {
+     // we're binding to touchstart and click. If we have a touchstart, don't also run on click
+     app.fastClick = true;
+     setTimeout(function(){ app.fastClick = false; }, 100);
+     $('body').toggleClass('nav-open');
+   }
+});
+
+/*
+  Mobile Nav dropdown
+*/
+
+$('.has-sub-nav').on('click touchend',function(e){
+    e.preventDefault();
+    if (!app.fastClick) {
+      // we're binding to touchstart and click. If we have a touchstart, don't also run on click
+      app.fastClick = true;
+      setTimeout(function(){ app.fastClick = false; }, 100);
+      // close others
+      $('.sub-nav-open').not(this).removeClass('sub-nav-open');
+      // open this one
+      $(this).toggleClass('sub-nav-open');
+    }
+});

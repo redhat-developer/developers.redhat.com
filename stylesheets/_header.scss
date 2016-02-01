@@ -175,7 +175,7 @@ nav.accounts {
   @include flexbox;
   @include align-items(flex-end);
   @include justify-content(flex-end);
-  @include flex(1); // take all the extra space
+  @include flex(1 0 100%); // take all the extra space
 }
 
 
