@@ -1,29 +1,46 @@
 // Products
 .hero.hero-products {
-  background: cdn('../images/design/RHDev_indeximage_desktop_products.png') top center / cover repeat-x;
+  background: cdn('../images/design/RHDev_pageheader_productsoverview_desktop.png') top center / cover no-repeat;
+  content : ':4242';
   border:0;
-  padding: 20px;
-  padding-top: 40px;
-  min-height: 230px;
-  @include tablet-portrait-and-down {
-    background: cdn('../images/design/RHDev_indeximage_mobile_products.png') top center / cover repeat-x;
-    margin: -15px;
-    h2.blowout {
-      padding-top: 20px !important;
-    }
-  }
-  h2.blowout {
+  min-height: 220px;
+  margin-bottom: 0;
+
+  h2 {
     color:white;
-    line-height:1;
-    font-size: 70px;
-    text-shadow: 3px 3px #063a63;
+    font-size: 5em;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
   }
   p {
-    color:white;
-    font-size: 20px;
+    color: white;
+    font-size: 1.1em;
+    margin: 20px 0;
+    max-width: 350px;
+    a, a:active, a:focus, a:hover{
+      color: white;
+    }
+  }
+  @include tablet-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_productsoverview_tablet.png') top center / cover no-repeat;
+    min-height: auto;
+    h2 {
+      margin-top: 10px;
+    }
+    p {
+      margin: 0 15px 20px 15px;
+      max-width: 100%;
+    }
+  }
+  @include mobile-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_productsoverview_mobile.png') top center / cover no-repeat;
+    h2 {
+      font-size: 3em;
+    }
   }
   .row {
-    @extend .grow;
+    @extend .flex-center;
   }
 }
 
@@ -128,18 +145,13 @@
 }
 
 .product-header{
-  color:white;
-  h2 {
-    color: white;
-    font-weight: 900;
-  }
   background-color: rgba(0, 0, 0, 0.77);
   padding: 20px 0;
   &.storage-and-big-data {
     border-bottom: 9px solid #F0AB00;
   }
   &.it-infrastructure {
-    border-bottom: 9px solid #0088ce;
+    border-bottom: 9px solid #00B9E4;
   }
   &.application-development {
     border-bottom: 9px solid #92D400;
@@ -151,28 +163,12 @@
     text-transform: uppercase;
   }
   h3 {
-    color: $grey-4;
+    color: $grey-3;
     font-weight: 100;
-    color:#D5D5D5;
     margin-bottom: 0;
   }
   @include desktop-and-down {
     padding:20px;
-  }
-}
-
-.product-hero {
-  background:#424242;
-  border-bottom:10px solid #8FD102;
-  color:white;
-  padding:20px 0;
-  .breadcrumbs {
-    a {
-      color:white;
-      &:before {
-        color:white;
-      }
-    }
   }
 }
 
@@ -236,7 +232,6 @@
     }
   }
 }
-
 
 .product-placeholder{
   width: 100%;
@@ -330,7 +325,7 @@
   .tool-links{
     padding: 15px 15px;
     text-align: center;
-    a:first-of-type{margin-right: 15px;}
+    li:last-child{margin-left: 8px;}
   }
 }
 

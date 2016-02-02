@@ -8,7 +8,7 @@ secondary_section: supported-products
 - page.title = "#{page.product.abbreviated_name} - #{page.type}"
 - page.product.highlight_colour = '#8FD102' unless page.product.highlight_colour
 
-section(class="product-header #{page.product.product_category}" style="border-bottom-color:#{page.product.highlight_colour};")
+section(class="product-header #{page.product.id} #{page.product.product_category}")
   .row
     .large-24
       ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
@@ -18,8 +18,7 @@ section(class="product-header #{page.product.product_category}" style="border-bo
         li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
           a href="#{site.base_url}/products/#{page.product.id}/overview" #{page.product.abbreviated_name}
           meta itemprop="position" content="2"
-  .row
-    .large-24.product-header
+    .large-24
       h2 #{page.product.name}
       h3#product #{page.product.description}
 
