@@ -100,11 +100,16 @@ profiles:
       :cdn_out_dir: *dev_cdn_out_dir
       :cdn_version: *dev_cdn_version
 
-  # Pull Request configuration (with Docker)
+  # Docker staging configuration (PR and Nightly)
   staging_docker:
     <<: *profile
     dcp_base_url: http://<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
+    download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://it-developers.stage.redhat.com
+
     cache_type: :local
     metrics: true
     deploy:
