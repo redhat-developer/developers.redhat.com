@@ -61,23 +61,32 @@ var globs = {
 
 gulp.task('scripts',function() {
   gulp.src(globs.scripts)
+    // Uncomment this if you need source maps
+    //.pipe(plugins.sourcemaps.init())
     .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
     .pipe(plugins.concat('all.js'))
-    .pipe(plugins.injectString.wrap('(function($){', '})(jQuery);'))
+    .pipe(plugins.injectString.wrap('(function($, jQuery){', '})(jQuery,jQuery);'))
     .pipe(plugins.uglify())
     .pipe(plugins.rename('all.min.js'))
+    // Uncomment this if you need source maps
+    //.pipe(plugins.sourcemaps.write())
     .pipe(gulp.dest('_drupal/themes/custom/rhd/js/'));
 });
 
 gulp.task('sass', function() {
   gulp.src(globs.styles)
+    // Uncomment this if you need source maps
+    //.pipe(plugins.sourcemaps.init())
     .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
     .pipe(plugins.sass({outputStyle: 'compressed'}))
+    // Uncomment this if you need source maps
+    //.pipe(plugins.sourcemaps.write())
     .pipe(gulp.dest('_drupal/themes/custom/rhd/css/base'));
 });
 
 gulp.task('clean', function() {
-  return del(['_drupal/themes/custom/rhd/css/base/*.css','_drupal/themes/custom/rhd/js/all.min.js']);
+  return del(['_drupal/themes/custom/rhd/css/base/*.css',
+              '_drupal/themes/custom/rhd/js/all.min.js']);
 });
 
 gulp.task('default', ['clean', 'scripts', 'sass']);

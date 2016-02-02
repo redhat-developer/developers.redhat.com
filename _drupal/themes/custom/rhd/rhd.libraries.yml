@@ -1,15 +1,13 @@
-global-styling:
-  version: 1.x-dev
+base-theme:
   # This should be all of the style sheets broken up according to smaccs
   css:
     base:
       css/base/app.css: {}
-  dependencies:
-    - system/admin
   js:
     js/angular.min.js: {}
     js/all.min.js: {}
   dependencies:
     - core/jquery
+    - core/drupal
+    - core/drupalSettings
 
-# We should also be adding all of our javascripts here too
