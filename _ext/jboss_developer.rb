@@ -82,7 +82,7 @@ module JBoss
       end
 
       def transform site, page, content
-        if page.output_extension.include?('htm') && (page.output_path =~ /web-and-api-development\/overview/ || page.output_path =~ /distributed-javaee-architecture/)
+        if page.output_extension.include?('htm')
           resp = nil
           begin
             resp = @drupal.send_page page, content
@@ -333,6 +333,7 @@ module Aweplug
       def send_page page, content
         path = page.output_path.chomp('/index.html')
         path = path[1..-1] if path.starts_with? '/'
+        drupal_type = page.drupal_type || 'page'
         payload = {:title => [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
                    :_links => {:type => {:href => File.join(@base_url, '/rest/type/node/', page.drupal_type)}},
                    :body => [{:value => content,
@@ -342,7 +343,7 @@ module Aweplug
                     :path => {:alias => File.join('/', path)}
                   }
 
-        if page.drupal_type == 'rhd_solution_overview'
+        if drupal_type == 'rhd_solution_overview'
           payload[:field_solution_name] = [{:value => page.solution.name }]
           payload[:field_solution_tag_line] = [{:value => page.solution.long_description }]
         end
