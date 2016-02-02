@@ -100,7 +100,7 @@ profiles:
       :cdn_out_dir: *dev_cdn_out_dir
       :cdn_version: *dev_cdn_version
 
-  # Pull Request configuration (with Docker)
+  # Docker staging configuration (PR and Nightly)
   staging_docker:
     <<: *profile
     dcp_base_url: http://dcp2-searchisko.rhcloud.com/
