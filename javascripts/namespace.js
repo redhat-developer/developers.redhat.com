@@ -1,7 +1,3 @@
----
-interpolate: true
----
-
 /*
  * Set up namespace and static vars
  */
@@ -22,6 +18,10 @@ app.downloadManagerBaseUrl = "#{site.download_manager_base_url}";
   Website Cache
 */
 app.cache = {};
+
+// tabzilla info
+app.tabzilla = {};
+app.tabzilla.middlewareLogo = "#{cdn(site.base_url + '/images/branding/RHJB_Middleware_Logotype.png')}";
 
 /*
   JS templates
@@ -56,18 +56,39 @@ app.dcp.url.connectors= '#{site.dcp_base_protocol_relative_url}v2/rest/search/co
 app.dcp.error_message = "<div class='dcp-error-message'>It appears we're unable to access this data right now. Look at <a href='http://twitter.com/jbossorg' target=_blank>@jbossorg</a> to see if there is scheduled maintenance, or try again shortly.</div>";
 app.dcp.url.developer_materials= '#{site.dcp_base_protocol_relative_url}v2/rest/search/developer_materials';
 
+app.dcp.availableTopics = #{JSON.dump(site.dev_mat_techs.flatten.uniq.sort)};
+app.dcp.thumbnails = {
+    // jboss
+    "jbossdeveloper_quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
+    "jbossdeveloper_archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
+    "jbossdeveloper_bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
+    "jbossdeveloper_demo" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_demo.png')}",
+    // futurerproof for when jboss goes unprefixed
+    "quickstart" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_quickstart.png')}",
+    "archetype" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_archetype.png')}",
+    "bom" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_bom.png')}",
+    "demo" : "#{cdn( site.base_url + '/images/design/get-started/jbossdeveloper_demo.png')}",
+    // redhat
+    "solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
+    "article" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}",
+    // need icons?
+    "rht_knowledgebase_article" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}",
+    "rht_knowledgebase_solution" : "#{cdn( site.base_url + '/images/design/get-started/solution.png')}",
+    "jbossdeveloper_vimeo" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}",
+    "jbossdeveloper_connector" : "#{cdn( site.base_url + '/images/design/get-started/article.png')}"
+};
+
 /*
   Products
 */
-
-app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'] || '_none'}; map; })}
+app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'] || '_none'}; map; })};
 
 
 /*
  * Marketing ops
  */
 app.mktg_ops = {};
-app.mktg_ops.elqFormName = "#{site.elq_form_name || %Q{jboss-org-integration-sandbox}}"
+app.mktg_ops.elqFormName = "#{site.elq_form_name || %Q{jboss-org-integration-sandbox}}";
 
 
 /*
@@ -76,4 +97,7 @@ app.mktg_ops.elqFormName = "#{site.elq_form_name || %Q{jboss-org-integration-san
 app.ssoConfig = {};
 app.ssoConfig.account_url = '#{site.keycloak_account_url}';
 app.ssoConfig.auth_url = '#{site.keycloak_auth_url}';
-app.ssoConfig.confirmation = '#{site.base_url}/confirmation';
+app.ssoConfig.confirmation = '#{site.base_url}/confirmation'; 
+
+app.projects = {};
+app.projects.defaultImage = "#{cdn( site.base_url + '/images/design/projects/default_200x150.png')}";

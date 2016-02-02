@@ -114,6 +114,15 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
 
 We've found that left over containers from previously failed attempts can cause problems. Docker will give an output on how it reccomends you deal with this. Please follow the advice there.
 
+### Node.js install
+
+If you're using the Drupal containers you will need to install Node.js and npm.
+
+1. Please follow https://nodejs.org/en/ for downloads and install of node and npm.
+2. Execute the following command to get the node environment setup:
+
+    npm install
+
 ###Run the stack!
 _NOTE:_ You must be connected to the Red Hat VPN to build the Docker images.
 

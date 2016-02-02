@@ -1,6 +1,3 @@
----
-interpolate: true
----
 /* global app */
 
 app.search = {
