@@ -103,7 +103,7 @@ profiles:
   # Docker staging configuration (PR and Nightly)
   staging_docker:
     <<: *profile
-    dcp_base_url: http://<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    dcp_base_url: http://searchisko:8080/
     dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
