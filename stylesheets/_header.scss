@@ -1,8 +1,9 @@
 header.main {
   font-size: 2rem;
-  background:$dark-gray;
+  background:$dark-gray url('../images/design/dotted_line-darkgrey.svg') no-repeat;
   position: relative;
   z-index: 2;
+  background-size:1250px;
   /* Resets */
   ul {
     margin:0;
@@ -34,9 +35,6 @@ header.main {
     padding:10px 12px;
   }
 
-  li.heading {
-    text-align: left;
-  }
   // top level
   & > ul {
     float:right;
@@ -45,7 +43,7 @@ header.main {
       &:first-child {
         margin-left: 0;
       }
-      &:hover, &.sub-nav-open {
+      &:hover {
         & > a {
           color:$dark-grey;  
           background:white;
@@ -60,8 +58,14 @@ header.main {
           display: block;
         }
       }
-      & > a:focus + .sub-nav {
-        display:block;
+      // & > a:focus + .sub-nav {
+      //   display:block;
+      // }
+      & > a {
+        text-transform: uppercase; // top level links
+      }
+      &.active > a {
+        color:$gold;
       }
     }
   }
@@ -81,7 +85,7 @@ header.main {
   column-count:2;
   -webkit-column-rule:1px dashed $grey-3;
   -webkit-column-gap:50px;
-  background:white url('../images/design/dotted_line-grey.svg') bottom right no-repeat;
+  background:white cdn('../images/design/dotted_line-grey.svg') bottom right no-repeat;
   background-position: bottom -200px right -200px;
   background-size:1000px;
   &.pull-right {
@@ -98,15 +102,16 @@ header.main {
     color:$blue;
     display: block;
     font-weight:900;
-  }
-  .heading {
-    font-size:14px;
-    text-transform: uppercase;
-    &:after {
-      content:"›";
-      font-size:1.3em;
-      font-weight:100;
-      margin-left: 5px;
+    &.heading {
+      font-size:14px;
+      text-transform: uppercase;
+      font-weight: 200;
+      &:after {
+        content:"›";
+        font-size:1.3em;
+        font-weight:100;
+        margin-left: 5px;
+      }
     }
   }
   span.page-description {
@@ -120,6 +125,7 @@ header.main {
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
   break-inside: avoid;
+  margin-bottom: 10px;
 }
 
 /* 
@@ -144,6 +150,7 @@ nav.accounts {
       line-height:1;
       font-size: 11px;
       text-transform: uppercase;
+      font-weight: 900;
     }
   }
   .search {
@@ -175,7 +182,7 @@ nav.accounts {
   @include flexbox;
   @include align-items(flex-end);
   @include justify-content(flex-end);
-  @include flex(1 0 100%); // take all the extra space
+  @include flex(1 0 auto); // take all the extra space
 }
 
 
@@ -254,6 +261,11 @@ nav.accounts {
     li {
       float:none;
     }
+    li.sub-nav-open {
+      .sub-nav {
+        display: block;
+      }
+    }
     .sub-nav {
       padding:0;
       border-bottom: 0;
@@ -327,7 +339,7 @@ nav.accounts {
     @include flex(1);
     @include flexbox;
     @include justify-content(space-between);
-
+    order:-1; // put above the bar
   }
   .nav-toggle {
     @include align-self(center);
@@ -348,3 +360,11 @@ nav.accounts {
 
 }
 
+@include mobile-landscape-and-down {
+  h1.logo {
+    max-width:230px;
+  }
+  .nav-toggle {
+    font-size: 20px;
+  }
+}
