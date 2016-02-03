@@ -139,18 +139,21 @@ ul.project-social {
     text-transform: uppercase;
     font-weight: 600;
   }
+  @include tablet-landscape-and-down {
+    h2 {
+      font-size: 4em;
+    }
+  }
   @include tablet-portrait-and-down {
     background: cdn('../images/design/RHDev_pageheader_upstream_tablet.png') top center / cover no-repeat;
     min-height: auto;
     h2 {
       margin-top: 10px;
+      line-height: 1;
     }
   }
   @include mobile-landscape-and-down {
     background: cdn('../images/design/RHDev_pageheader_upstream_mobile.png') top center / cover no-repeat;
-    h2 {
-      font-size: 4em;
-    }
   }
   p {
     color: white;
