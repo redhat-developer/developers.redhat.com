@@ -53,8 +53,8 @@ profile_base: &profile
 
 profiles:
   development: &development
-    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
-    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    dcp_base_url: http://dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
@@ -136,8 +136,8 @@ profiles:
     base_url: http://it-developers.stage.redhat.com/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://it-developers.stage.redhat.com
-    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
-    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    dcp_base_url: http://dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     metrics: true
