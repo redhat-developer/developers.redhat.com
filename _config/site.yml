@@ -100,23 +100,27 @@ profiles:
       :cdn_out_dir: *dev_cdn_out_dir
       :cdn_version: *dev_cdn_version
 
-  # Pull Request configuration
+  # Docker staging configuration (PR and Nightly)
   staging_docker:
     <<: *profile
-    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
-    dcp_base_url: http://searchisko:8080/
+    dcp_base_url: http://<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
+    download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://it-developers.stage.redhat.com
+
     cache_type: :local
     metrics: true
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg
 
-  # Pull Request configuration
+  # Pull Request configuration (Not with Docker)
   staging:
     <<: *profile
-    dcp_base_url: http://dcp2-searchisko.rhcloud.com/
-    dcp_base_protocol_relative_url: //dcp2-searchisko.rhcloud.com/
+    dcp_base_protocol_relative_url: //<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
+    dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
     keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
     download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
