@@ -67,12 +67,12 @@
   }
 }
 
-.spotlights {
-  background:black cdn("../images/design/dotted_line-white.svg") left no-repeat;
-  padding: 20px 0;
-}
 
 .spotlights-container {
+  background:black cdn("../images/design/dotted_line-darkgrey.svg") left no-repeat;
+  background-position:-200px 0;
+  background-size:1500px;
+  padding: 20px 0;
   display: flex;
   flex-wrap: wrap;
 }
@@ -80,7 +80,7 @@
 .spotlight-item {
   width: calc(20% - 16px);
   padding: 0 12px;
-  border-right: 1px solid $trim-grey;
+  border-right: 1px solid $dark-grey;
   color:white;
   &:hover {
     color:white;
