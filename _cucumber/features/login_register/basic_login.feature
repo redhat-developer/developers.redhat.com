@@ -34,6 +34,7 @@ Feature: Login Page
 
   @password_reset
   @teardown
+  @ignore
   Scenario: A customer who has forgotten their login details can request a password reset
     Given I am on the Login page
     When I request a password reset
@@ -42,6 +43,7 @@ Feature: Login Page
 
   @password_reset
   @logout
+  @ignore
   Scenario: A customer can successfully reset their password
     Given I am on the Login page
     And I request a password reset

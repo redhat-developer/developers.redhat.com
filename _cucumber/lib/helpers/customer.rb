@@ -28,7 +28,7 @@ module Customer
   end
 
   def get_email(email_address)
-    p "Generated customers email was: #{email_address}"
+    p "Customers email was: #{email_address}"
     tries = 0
     begin
       tries += 1
