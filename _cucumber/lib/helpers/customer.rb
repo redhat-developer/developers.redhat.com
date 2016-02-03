@@ -28,6 +28,7 @@ module Customer
   end
 
   def get_email(email_address)
+    p "Customers email was: #{email_address}"
     tries = 0
     begin
       tries += 1
@@ -53,7 +54,6 @@ module Customer
     encoded_url = URI.encode(url)
     URI.parse(encoded_url)
     # return valid URI
-    p "Customers email was: #{email_address}"
     p "Verification url was: #{encoded_url}"
     return encoded_url.gsub('<', '')
   end
