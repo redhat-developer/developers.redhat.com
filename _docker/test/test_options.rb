@@ -100,7 +100,7 @@ class TestOptions < Minitest::Test
 
     def test_awestruct_command
       tasks = Options.parse (["--stage-pr", "6"])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
       tasks = Options.parse (["--run-the-stack"])
       assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
       tasks = Options.parse (["-p"])
