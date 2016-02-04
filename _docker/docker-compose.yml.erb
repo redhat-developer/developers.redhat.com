@@ -92,6 +92,9 @@ awestruct:
     - DRUPAL_HOST_PORT=<%=ENV['DRUPAL_HOST_PORT']%>
     - DRUPAL_HOST_IP
     - HOST_TO_TEST
+    - ghprbActualCommit
+    - github_status_api_token
+    - BUILD_URL
 drupal:
   build: ./drupal
   expose:
