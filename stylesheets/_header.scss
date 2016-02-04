@@ -1,9 +1,9 @@
 header.main {
   font-size: 2rem;
-  background:$dark-gray url('../images/design/dotted_line-darkgrey.svg') no-repeat;
+  background:$dark-gray url('../images/design/RHD-header-bg.svg') no-repeat;
   position: relative;
   z-index: 2;
-  background-size:1250px;
+  background-position:center;
   /* Resets */
   ul {
     margin:0;
@@ -192,6 +192,7 @@ nav.accounts {
 
 .logo-wrap {
   @include flex(0); // take no extra space
+  flex-basis:auto;
 }
 
 /* 
