@@ -1,6 +1,6 @@
 name: Web and API Development
 sub_title: Build your web applications and APIs with Red Hat
-long_description: "The web isn’t just one language or technology - why should your development be limited to one?"
+long_description: "Red Hat development tools enable you to build modern web applications. (It's time.)"
 icon: icon-rh-icon-development-model
 tags:
   - Web
@@ -35,3 +35,100 @@ related_products:
   - openshift
   - devstudio
   - developertoolset
+primary_promo:
+  - title: Building the modern web
+    description: "Build and manage web applications in your choice of modern languages ranging from Java to Ruby, up through Python and Node.js."
+    link_1:
+      name: "Your web app in a Docker image in 5 minutes."
+      url: '/video/youtube/czH9qZUusLs/'
+    link_2:
+      name: "Register today to learn more about Red Hat and Web apps."
+      url: '/register'
+    link_3:
+      name: "Join us at DevNation in San Francisco, June 2016"
+      url: http://www.devnation.org/
+    tags:
+      - Web
+      - API
+      - Languages
+secondary_promo:
+  - title: Apache Tomcat
+    url: 'https://developers.openshift.com/en/tomcat-overview.html'
+    description: "Apache Tomcat, the popular open source software implementation of the Java Servlet and JavaServer Pages technologies available via JBoss Web Server and OpenShift."
+    tags:
+      - Tomcat
+      - OpenShift
+      - JBoss
+      - Web server
+tertiary_tall_promo:
+  - title: 'Java on OpenShift'
+    url: 'https://developers.openshift.com/en/java-overview.html'
+    description: "With OpenShift you can easily deploy and run Java applications using your favorite application servers and frameworks. Want a JBoss server running Spring backed by MySQL? Or maybe you’re looking for GlassFish with Scala and MongoDB?"
+    tags:
+      - Java
+      - JBoss
+      - OpenShift
+      - Web
+tertiary_promo:
+  - title: 'Node.js on RHEL 7'
+    url: '/products/softwarecollections/get-started-rhel7-nodejs/'
+    description: "Get started with Node.js 0.10 in under 10 minutes."
+    tags:
+      - Node.js
+      - Web
+  - title: 'Getting Started with Fuse'
+    url: '/products/fuse/get-started/'
+    description: "An easy-to-use framework for quicker integration and seamlessly created APIs."
+    tags:
+      - Web
+      - API
+      - Fuse
+      - integration
+  - title: 'JBoss RESTful Web Services User Guide'
+    url: 'http://docs.jboss.org/tools/3.3.0.Final/en/resful_web_services_user_guide/html_single/'
+    description: "A JAX-RS-based framework developed as a part of the JBoss Application Server. "
+    tags:
+      - REST
+      - JBoss
+      - Web
+      - API
+  - title: 'Build your web applications in a container'
+    url: '/containers'
+    description: "Learn about Linux containers (aka Docker) and microservices."
+    tags:
+      - Containers
+      - Microservices
+right_side_promo:
+  - title: Follow Red Hat
+    section_1:
+      title: "Transform the way you deliver web apps"
+      sub_title: "Let us show you the Red Hat way"
+    button:
+      label: Get Started
+      url: '/web-and-api-development/overview/'
+    section_2:
+      title: Technologies
+      links:
+        - name: Get Started with Java
+          url: ' '
+        - name: Get Started with Python
+          url:  '/products/softwarecollections/get-started-rhel7-python/'
+        - name: Get Started with Ruby
+          url:  '/products/softwarecollections/get-started-rhel7-ruby/'
+        - name: Get Started with PHP
+          url:  '/products/softwarecollections/get-started-rhel7-php/'
+        - name: Get Started with Node.js
+          url:  '/products/softwarecollections/get-started-rhel7-nodejs/'
+        - name: Get Started with Perl
+          url:  '/products/softwarecollections/get-started-rhel7-perl/'          
+    section_3:
+      title: Follow our communities
+      links:
+        - name: OpenShift Origin
+          url:  'https://www.openshift.org/'
+        - name: Wildfly
+          url:  'http://wildfly.org/'
+        - name: Learn
+          url: '/resources/#!query=web-and-api-development'
+        #- name: Buzz
+        #  url: '/web-and-api-development/buzz/'
