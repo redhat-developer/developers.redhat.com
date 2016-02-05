@@ -61,6 +61,14 @@ class Options
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
         tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,#{pr}] clean deploy[staging_docker]"]
+        if ENV['CPUS_TO_USE'].to_s != ""
+
+          #This relates to the --cpu-quota flag in docker run.
+          #which uses Limit CPU CFS (Completely Fair Scheduler) quota
+          #https://docs.docker.com/engine/reference/commandline/run/
+          docker_cpu_number = 100000 * ENV['CPUS_TO_USE'].to_i
+          tasks[:awestruct_command_args].unshift "--cpu-quota=#{docker_cpu_number}"
+        end
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks

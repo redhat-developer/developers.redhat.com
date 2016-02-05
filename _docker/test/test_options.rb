@@ -168,6 +168,22 @@ class TestOptions < Minitest::Test
       assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
     end
 
+    def test_run_stage_pr_throttled
+      ClimateControl.modify CPUS_TO_USE: "5" do
+        tasks = Options.parse (["--stage-pr", "6"])
+        assert(tasks[:kill_all])
+        assert_equal(["--cpu-quota=500000", "--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
+        assert(tasks[:build])
+        assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+        assert(tasks[:set_ports])
+        assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
+      end
+      ClimateControl.modify CPUS_TO_USE: "24" do
+        tasks = Options.parse (["--stage-pr", "6"])
+        assert_equal(["--cpu-quota=2400000", "--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
+      end
+    end
+
     def test_run_the_stack
       tasks = Options.parse (["--run-the-stack"])
       assert(tasks[:kill_all])
