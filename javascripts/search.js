@@ -62,7 +62,7 @@ app.search = {
   });
 
   // listen to key events on the search form and the buzz filter page
-  $('form.search, form.buzz-filters').on('keyup','input',function(e) {
+  $('form.search').on('keyup','input',function(e) {
     var form = $(this).parent();
     /*
       Check for enter / return key 
