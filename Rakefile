@@ -38,7 +38,7 @@ def wrap_with_progress(sha, rake_task, target_url, context, description, args)
 end
 
 desc 'Setup the environment to run Awestruct'
-task :test do |task, args|
+task :test => :clear_status do |task, args|
   if ENV['ghprbActualCommit'].to_s.empty?
     Rake::Task[:internal_test_task].invoke(args)
   else
@@ -339,7 +339,7 @@ task :reap_old_pulls, [:pr_prefix] do |task, args|
 end
 
 desc 'Make sure Pull Request dirs exist'
-task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] => :clear_status do |task, args|
+task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
   msg 'running create_pr_dirs'
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
