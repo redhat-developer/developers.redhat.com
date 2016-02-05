@@ -59,7 +59,7 @@ class Options
         tasks[:supporting_services] += %w(drupal drupalpgsql)
       end
 
-      opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging, pass a CPUS_TO_USE env varable to throttle by CPU') do |pr|
+      opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
         tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,#{pr}] clean deploy[staging_docker]"]
         if ENV['CPUS_TO_USE'].to_s != ""
 
