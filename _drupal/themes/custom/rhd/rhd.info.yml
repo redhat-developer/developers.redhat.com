@@ -2,10 +2,11 @@ name: RHD Theme
 type: theme
 description: Red Hat Developers Theme
 base theme: classy
+package: rhd
 core: 8.x
 version: 1.0-dev
 libraries:
-  - rhd/global-styling
+  - rhd/base-theme
 stylesheets-remove:
   - core/assets/vendor/normalize-css/normalize.css
   - core/modules/system/css/system.module.css
@@ -17,3 +18,5 @@ regions:
   header: 'Header'
   content: 'Content'
   footer: 'Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'

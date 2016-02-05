@@ -161,6 +161,11 @@ if tasks[:build]
   puts 'Building...'
   docker_dir = 'awestruct'
 
+  if tasks[:drupal]
+    puts 'Building CSS and JS for drupal'
+    Kernel.abort('Error build CSS / JS for drupal') unless Kernel.system 'gulp'
+  end
+
   parent_gemfile = File.open '../Gemfile'
   parent_gemlock = File.open '../Gemfile.lock'
 

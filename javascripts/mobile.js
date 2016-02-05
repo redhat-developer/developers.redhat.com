@@ -44,7 +44,7 @@ app.createSlider = function($el) {
     if(shouldShuffle) {
       var slides = $sliderEl.find('.slide');
       slides = slides.sort(function() {
-        return .5 - Math.random();
+        return 0.5 - Math.random();
       });
 
       $sliderEl.find('.swipe-wrap').html(slides);
@@ -121,7 +121,7 @@ app.createSlider = function($el) {
        setTimeout(function(){ app.fastClick = false; }, 100);
        $('body').toggleClass('nav-open');
      }
-    return false
+    return false;
   });
 
   /*
@@ -135,7 +135,7 @@ app.createSlider = function($el) {
         setTimeout(function(){ app.fastClick = false; }, 100);
         $(this).parent().toggleClass('sub-nav-open');
       }
-     return false
+     return false;
   });
 })();
 

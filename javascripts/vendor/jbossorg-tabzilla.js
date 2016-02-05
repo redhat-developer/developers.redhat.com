@@ -1,6 +1,3 @@
----
-interpolate: true
----
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -351,13 +348,13 @@ Tabzilla.content =
 +'  <p class="overview">Learn more about Red Hat and our open source communities:</p>'
 +'  <div class="row-fluid">'
 +'    <span class="span4 middlewarelogo">'
-+'      <img src="#{cdn(site.base_url + '/images/branding/RHJB_Middleware_Logotype.png')}" alt="Red Hat JBoss MIDDLEWARE" />'
++'      <img src="' + app.tabzilla.middleware-logo + '" alt="Red Hat JBoss MIDDLEWARE" />'
 +'    </span>'
 +'    <span class="span4">'
 +'      <ul class="level1">'
-+'        <li class="leaf"><a href="#{site.base_url}/technology">Red Hat JBoss Middleware Overview</a></li>'
-+'        <li class="leaf"><a href="#{site.base_url}/products">Red Hat JBoss Middleware Products</a></li>'
-+'        <li class="leaf"><a href="#{site.base_url}/projects">Red Hat JBoss Projects & Standards</a></li>'
++'        <li class="leaf"><a href="' + app.baseUrl + '/technology">Red Hat JBoss Middleware Overview</a></li>'
++'        <li class="leaf"><a href="' + app.baseUrl + '/products">Red Hat JBoss Middleware Products</a></li>'
++'        <li class="leaf"><a href="' + app.baseUrl + '/projects">Red Hat JBoss Projects & Standards</a></li>'
 +'      </ul>'
 +'    </span>'
 +'    <span class="span4">'
