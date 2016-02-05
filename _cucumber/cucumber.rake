@@ -18,7 +18,7 @@ task :features do |t, args|
 
   runner = TestRunner.new
 
-  if ENV['PARALLEL_TEST'].eql?('false')
+  if ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
     profile = 'features'
   else
     profile = 'parallel'
