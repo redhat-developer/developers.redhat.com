@@ -48,6 +48,9 @@ awestruct:
   build: ./awestruct
   command:
     - "rake git_setup clean preview[docker]"
+  <% if ENV['CPU_QUOTA'] %>
+  cpu_quota: <%=ENV['CPU_QUOTA']%>
+  <% end %>
   expose:
     - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
   ports:
