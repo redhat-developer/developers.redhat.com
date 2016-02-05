@@ -161,6 +161,7 @@ class TestOptions < Minitest::Test
     def test_run_stage_pr
       tasks = Options.parse (["--stage-pr", "6"])
       assert(tasks[:kill_all])
+      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
       assert(tasks[:build])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert(tasks[:set_ports])
