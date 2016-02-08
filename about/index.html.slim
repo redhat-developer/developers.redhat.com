@@ -9,7 +9,7 @@ title: About Us
 section.about-header
   .row
     .large-24.columns.about-title
-      h3 The community for you to
+      h3 Your community to
       h2 
         | Learn, Code, and
         br
@@ -19,7 +19,7 @@ section.about-header
 section.about-sec1
   .row
     .large-24.columns
-      h2 Why
+      h2 What’s this about?
       h4 
         | (Management put a lot of time on this, so we have to include it.)
       p We want to provide a complete experience to enable enterprise developers to envision, create and maintain high-value enterprise software.
@@ -67,17 +67,17 @@ section.about-sec5
       h2 Living the Dream
       h4 
         | (also known as the fun part)
-      p It keeps you up at night and then occupies your dreams: You aspire to deliver high-value software on-time and on-budget, but technology is always changing and evolving. We're here to help you honor your commitments and to make sure you achieve your goals.
+      p You aspire to deliver high-value software on-time and on-budget, but technology is always changing and evolving. We're here to help you stay current and hone the skills you use to achieve your goals.
     .large-8.columns.about-icon
-      img(src='#{site.base_url}/images/design/about/about_learn.png' alt='Learn More')
+      img(src=cdn("#{site.base_url}/images/design/about/about_learn.png") alt='Learn More')
       h4 Learn More
       p No need to learn from scratch, but benefit from the experts - get the most in-depth technical content about our tool portfolio. (You’ll need to register, but it’s easy.)
     .large-8.columns.about-icon
-      img(src='#{site.base_url}/images/design/about/about_code.png' alt='Code More')
+      img(src=cdn("#{site.base_url}/images/design/about/about_code.png") alt='Code More')
       h4 Code More
       p Be more productive and more quickly with accelerated guides, plus get free access to the developer tools you need. (You’ll still need to register, really easy.)
     .large-8.columns.about-icon
-      img(src='#{site.base_url}/images/design/about/about_share.png' alt='Share More')
+      img(src=cdn("#{site.base_url}/images/design/about/about_share.png") alt='Share More')
       h4 Share More
       p 
         | As a bit of incentive, we’ll give you swag when you share your sample code, presentations, blogs, videos, etc.  Join
@@ -86,11 +86,11 @@ section.about-sec5
 
 section.about-sec6
   .row
-    .large-24.columns
-      h2 Be More
-      h3 Join today.
-      p 
-        | (It will only cost you your email)
+    .large-12.medium-24.columns
+      h2 Join today
+      h3 
+        | (so you can learn, code, and share more).
+    .large-12.medium-24.columns
       a.button(href='#{site.base_url}/register') Register Now
 
 section.about-sec7
@@ -103,19 +103,10 @@ section.about-sec7
       ul.small-block-grid-2.medium-block-grid-4.large-block-grid-6.team-members
         - page.about.each do |a|
           li
-            img(src='#{site.base_url}/images/design/about/photos/#{a.photo}')
+            img(src=cdn("#{site.base_url}/images/design/about/photos/#{a.photo}") alt='#{a.name}')
             span
               p.name #{a.name}
               - if a.twitter_handle
                 a(href='https://twitter.com/#{a.twitter_handle}')
                   i.fa.fa-twitter
               p.title #{a.title}
-
-
-
-
-
-
-
-
-
