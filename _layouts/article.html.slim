@@ -31,7 +31,8 @@ layout: base
     .collapse.large-24
       .gsi-meta
         ul
-          li by
+          li: strong By #{page.author}
+
           /   li
           /     strong
           /       ' Author:
@@ -62,13 +63,8 @@ layout: base
     = partial("share.html.slim", :url => "#{site.base_url}#{page.output_path}", :title => "#{page.title}")
     strong Tags:
     ul.inline-list
-      li: a(href="#") JBoss
-      li: a(href="#") EAP
-      li: a(href="#") JBoss
-      li: a(href="#") JBoss
-      li: a(href="#") JBoss
-      li: a(href="#") JBoss
-      li: a(href="#") JBoss
+      - page.tags.each do |tag|
+        li #{tag}
 
   .row.content
     .columns.large-24
