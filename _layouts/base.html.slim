@@ -131,15 +131,15 @@
           nav.mega-menu
             ul
               li.has-sub-nav(class=(page.url.include?('topics') ? 'active' : ''))
-                a(href="#{site.base_url}/topics")
+                a(href="#")
                   | Topics
                   i.fa.fa-angle-down
                 div.sub-nav
-                  a(href="#{site.base_url}/topics") Containers
-                  a(href="#{site.base_url}/topics") Mobile
-                  a(href="#{site.base_url}/topics") DevOps
-                  a(href="#{site.base_url}/topics") Web and API Development
-                  a(href="#{site.base_url}/topics") Enterprise Java
+                  a(href="#{site.base_url}/containers") Containers
+                  a(href="#{site.base_url}/mobile") Mobile
+                  a(href="#{site.base_url}/devops") DevOps
+                  a(href="#{site.base_url}/web-and-api-development") Web and API Development
+                  a(href="#{site.base_url}/enterprise-java") Enterprise Java
               li.has-sub-nav(class=(page.url.include?('products') ? 'active' : ''))
                 a(href="#{site.base_url}/products")
                   | Technologies
@@ -173,14 +173,14 @@
                   | Community
                   i.fa.fa-angle-down
                 .sub-nav.pull-right
-                  a(href="#")
+                  a(href="#{site.base_url}/events")
                     | Events
                     span.page-description Find the latest conferences, meetups, and virtual seminars
                   a(href="#{site.base_url}/blog")
                     | Developer Blog
                     span.page-description Insights & news on Red Hat devleoper tools, platforms and more
                   .sub-nav-group
-                    a(href="#{site.base_url}/blog")
+                    a(href="#{site.base_url}/projects")
                       | Open Source Communities
                       span.page-description Community Projects that Red Hat participates in
                   a(href="#{site.base_url}/community/contributor/")

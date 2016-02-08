@@ -143,3 +143,9 @@ $('.has-sub-nav').on('click touchend',function(e){
       $(this).toggleClass('sub-nav-open');
     }
 });
+
+$('.mega-menu > ul > li > a').on('click',function(e) {
+  if(this.href.match(/#$/))  {
+    e.preventDefault();
+  }
+});
