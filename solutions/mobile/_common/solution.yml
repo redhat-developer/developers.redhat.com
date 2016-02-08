@@ -11,15 +11,13 @@ related_products:
 primary_promo:
   - title: Forget the buzzwords. 
     description: "Dive into the technology using what you already know.  Support Mobile with a collabortive back-end framework - using the toolkits you know and like"
-    link_1:
-      name: "Your web app in a Docker image in 5 minutes."
-      url: '/video/youtube/czH9qZUusLs/'
-    link_2:
-      name: "Register today to learn more about Red Hat and Web apps."
-      url: '/register'
-    link_3:
-      name: "Join us at DevNation in San Francisco, June 2016"
-      url: http://www.devnation.org/
+    links:
+      - name: "Your web app in a Docker image in 5 minutes."
+        local_url: '/video/youtube/czH9qZUusLs/'
+      - name: "Register today to learn more about Red Hat and Web apps."
+        local_url: '/register'
+      - name: "Join us at DevNation in San Francisco, June 2016"
+        url: http://www.devnation.org/
     tags:
       - Mobile
       - FeedHenry
@@ -47,17 +45,17 @@ tertiary_promo:
       - Cordova
       - Aerogear
   - title: 'Developing for Internet of Things and Mobile'
-    url: '/video/youtube/oc9FfO6Itkg'
+    local_url: '/video/youtube/oc9FfO6Itkg'
     description: "An excellent and dynamic presentation by Scott Stark & Burr Sutter."
     tags:
       - Mobile
   - title: 'Building a Mobile Application in 24 Minutes'
-    url: '/video/youtube/Q37niG_hCcA'
+    local_url: '/video/youtube/Q37niG_hCcA'
     description: "Develop a mobile app that connects to a secured Java EE backend."
     tags:
       - Mobile
   - title: 'Get Started w/ Red Hat Mobile Application Platform'
-    url: '/products/mobileplatform/get-started/#!'
+    local_url: '/products/mobileplatform/get-started/#!'
     description: "Get started on Red Hat Mobile Application Platform (FeedHenry). "
     tags:
       - Mobile
@@ -91,6 +89,6 @@ right_side_promo:
         - name: Cordova
           url:  'https://cordova.apache.org/'
         - name: Learn
-          url: '/products/mobileplatform/learn'
+          local_url: '/products/mobileplatform/learn'
         - name: Buzz
-          url: '/products/mobileplatform/buzz'
+          local_url: '/products/mobileplatform/buzz'

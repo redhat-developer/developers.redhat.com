@@ -38,15 +38,13 @@ related_products:
 primary_promo:
   - title: Building the modern web
     description: "Build and manage web applications in your choice of modern languages ranging from Java to Ruby, up through Python and Node.js."
-    link_1:
-      name: "Your web app in a Docker image in 5 minutes."
-      url: '/video/youtube/czH9qZUusLs/'
-    link_2:
-      name: "Register today to learn more about Red Hat and Web apps."
-      url: '/register'
-    link_3:
-      name: "Join us at DevNation in San Francisco, June 2016"
-      url: http://www.devnation.org/
+    links:
+      - name: "Your web app in a Docker image in 5 minutes."
+        local_url: '/video/youtube/czH9qZUusLs/'
+      - name: "Register today to learn more about Red Hat and Web apps."
+        local_url: '/register'
+      - name: "Join us at DevNation in San Francisco, June 2016"
+        url: http://www.devnation.org/
     tags:
       - Web
       - API
@@ -71,13 +69,13 @@ tertiary_tall_promo:
       - Web
 tertiary_promo:
   - title: 'Node.js on RHEL 7'
-    url: '/products/softwarecollections/get-started-rhel7-nodejs/'
+    local_url: '/products/softwarecollections/get-started-rhel7-nodejs/'
     description: "Get started with Node.js 0.10 in under 10 minutes."
     tags:
       - Node.js
       - Web
   - title: 'Getting Started with Fuse'
-    url: '/products/fuse/get-started/'
+    local_url: '/products/fuse/get-started/'
     description: "An easy-to-use framework for quicker integration and seamlessly created APIs."
     tags:
       - Web
@@ -93,7 +91,7 @@ tertiary_promo:
       - Web
       - API
   - title: 'Build your web applications in a container'
-    url: '/containers'
+    local_url: '/containers'
     description: "Learn about Linux containers (aka Docker) and microservices."
     tags:
       - Containers
@@ -112,15 +110,15 @@ right_side_promo:
         - name: Get Started with Java
           url: ' '
         - name: Get Started with Python
-          url:  '/products/softwarecollections/get-started-rhel7-python/'
+          local_url:  '/products/softwarecollections/get-started-rhel7-python/'
         - name: Get Started with Ruby
-          url:  '/products/softwarecollections/get-started-rhel7-ruby/'
+          local_url:  '/products/softwarecollections/get-started-rhel7-ruby/'
         - name: Get Started with PHP
-          url:  '/products/softwarecollections/get-started-rhel7-php/'
+          local_url:  '/products/softwarecollections/get-started-rhel7-php/'
         - name: Get Started with Node.js
-          url:  '/products/softwarecollections/get-started-rhel7-nodejs/'
+          local_url:  '/products/softwarecollections/get-started-rhel7-nodejs/'
         - name: Get Started with Perl
-          url:  '/products/softwarecollections/get-started-rhel7-perl/'          
+          local_url:  '/products/softwarecollections/get-started-rhel7-perl/'          
     section_3:
       title: Follow our communities
       links:
@@ -129,6 +127,6 @@ right_side_promo:
         - name: Wildfly
           url:  'http://wildfly.org/'
         - name: Learn
-          url: '/resources/#!query=web-and-api-development'
+          local_url: '/resources/#!query=web-and-api-development'
         #- name: Buzz
-        #  url: '/web-and-api-development/buzz/'
+        #  local_url: '/web-and-api-development/buzz/'

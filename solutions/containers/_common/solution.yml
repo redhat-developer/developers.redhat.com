@@ -15,15 +15,13 @@ related_products:
 primary_promo:
   - title: Containers 
     description: "Linux containers (sometimes called Docker) keep applications and their runtime components together by combining lightweight application isolation with an image-based deployment method."
-    link_1:
-      name: "Docker images in 5 minutes or less."
-      url: '/video/youtube/czH9qZUusLs'
-    link_2:
-      name: "Register today to learn more about Red Hat and Web apps."
-      url: '/register'
-    link_3:
-      name: "Join us at DevNation in San Francisco, June 2016"
-      url: http://www.devnation.org/
+    links:
+      - name: "Docker images in 5 minutes or less."
+        local_url: '/video/youtube/czH9qZUusLs'
+      - name: "Register today to learn more about Red Hat and Web apps."
+        local_url: '/register'
+      - name: "Join us at DevNation in San Francisco, June 2016"
+        url: 'http://www.devnation.org/'
     tags:
       - Containers
       - DevOps
@@ -38,7 +36,7 @@ secondary_promo:
       - PaaS
 tertiary_tall_promo:
   - title: 'Microservices & you: Practical introduction'
-    url: '/video/youtube/hy9aVrTNufQ'
+    local_url: '/video/youtube/hy9aVrTNufQ'
     description: "Steven Pousty and Grant Shipley introduce the basic ideas behind microservices, discuss pros and cons of using them, and build an application with a focus on how a microservices architecture."
     tags:
       - Containers
@@ -46,7 +44,7 @@ tertiary_tall_promo:
       - OpenShift
 tertiary_promo:
   - title: 'JBoss on Docker - at a glance'
-    url: '/2015/01/14/jboss-on-docker-at-a-glance/'
+    url: 'http://developerblog.redhat.com/2015/01/14/jboss-on-docker-at-a-glance/'
     description: "Summary: get started with Java EE, WildFly and Microservices on Docker."
     tags:
       - Containers
@@ -67,7 +65,7 @@ tertiary_promo:
       - Docker
   - title: 'Introduction to Container Development Kit (CDK)'
     url: 'https://docs.google.com/document/d/115tRFRLqTdsQpmVxHzrbwQGL9JucKwGm_qOmT0qm6dg/edit'
-    description: "lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor..."
+    description: "Set up a consistent dev. environment for Windows [tm], Mac OS, or Linux."
     tags:
       - Containers
       - CDK
@@ -104,7 +102,7 @@ right_side_promo:
         - name: Project Atomic
           url:  'projectatomic.org'
         - name: Learn
-          url:  '/resources/#!query=containers'
+          local_url:  '/resources/#!query=containers'
         #- name: Buzz
         #  url:  '/containers/buzz/'
 
