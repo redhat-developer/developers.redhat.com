@@ -54,9 +54,9 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 // @import "sprites";
 @import "mq-mixins";
 @import "mixins";
-// @import "navigation";
 @import "slider";
 @import "home";
+@import "header";
 @import "solutions";
 @import "events";
 @import "buzz";
@@ -93,6 +93,8 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "content-contributors";
 @import "videos";
 @import "judcon-brno";
+@import "topics";
+@import "about";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -497,13 +499,6 @@ body.fullbleed {
       font-size: emCalc(25);
       margin:0 auto 21px auto;
     }
-  }
-}
-
-.spotlights {
-  margin:30px auto;
-  img {
-    width: 100%;
   }
 }
 
@@ -1856,132 +1851,6 @@ small {
 h1 { font-size: 42px; }
 h2 { font-size: 42px; }
 
-// New Nav
-
-header.main {
-  background:white;
-  font-size: 2rem;
-  background: linear-gradient(to bottom,  #ffffff 0%,#fefeff 38%,#e7f6f9 100%); /* W3C */
-  border-bottom: 1px solid #D1E7EE;
-}
-
-
-nav.secondary-nav {
-  background:none;
-  overflow: hidden;
-  padding:0;
-  @extend .column;
-  margin-bottom: -27px;
-  position: relative;
-  z-index:99;
-  ul {
-    margin: 0;
-    padding: 0;
-    float:left;
-    &.menu-left {
-      a {
-        margin-right: 20px;
-        font-weight: 600;
-      }
-    }
-    &.menu-right {
-      float: right;
-      a {
-        margin-left:30px;
-        font-size: 12px;
-        color:$dark-gray;
-      }
-      .register a {
-        margin-left: 10px;
-      }
-    }
-  }
-  li {
-    padding: 0;
-    display:inline-block;
-  }
-  a {
-    color:white;
-    font-size: 12px;
-    text-transform: uppercase;
-  }
-}
-
-
-h1.logo {
-  font-size: 20px;
-  float: left;
-  margin-right: 60px;
-  a {
-    color:white;
-    background: cdn('../images/branding/RHDevelopers_RGB_Default.svg') center no-repeat;
-    text-indent:-9999px;
-    position: relative;
-    display: block;
-    width:155px;
-    height:56px;
-  }
-}
-
-
-nav.primary-nav {
-  padding:25px 0;
-  overflow: hidden;
-  @extend .column;
-  ul.menu-right {
-    float:right;
-    margin: 0;
-    padding: 15px 0 0 0;
-    li {
-      display: inline-block;
-      a {
-        text-transform: uppercase;
-        color:$headline-grey;
-        font-weight: 900;
-        font-size: 13px;
-        margin-left: 20px;
-      }
-    }
-  }
-}
-
-.nav-tabs {
-  margin: 0;
-  float: left;
-  padding-top: 15px;
-  li {
-    display: inline;
-    margin-right: 64px;
-    &:last-child {
-      margin-right: 0;
-    }
-    a {
-      color:$headline-grey;
-      position: relative;
-      font-size: 22px;
-      font-weight: 600;
-      text-transform: uppercase;
-      &:after {
-        position: absolute;
-        left:0;
-        content : '';
-        display: block;
-        height:4px;
-        bottom:-6px;
-        width:30px;
-        background:$headline-grey;
-      }
-      &:hover:after {
-        background:$red;
-      }
-    }
-    &.active {
-      a:after {
-        background:$red;
-      }
-    }
-  }
-}
 
 label.inline{
   display: inline-block;
@@ -2004,7 +1873,7 @@ label.inline{
 .overlay-content {
   position: relative;
   top: 5px;
-} 
+}
 
 // Fixes styles for Notes, Tips, and Warnings in asciidocs
 .admonitionblock {
@@ -2033,7 +1902,7 @@ label.inline{
     word-break: normal;
     white-space: pre;
   }
-} 
+}
 
 .listingblock {
   .content pre {

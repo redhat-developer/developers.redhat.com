@@ -110,33 +110,86 @@
 
     .site-wrapper
       header.main.clearfix
-        .row
-          nav.secondary-nav
-            ul.menu-right
-              / li: a
-              /   i.fa.fa-search
-              li.login: a LOGIN
-              li.login-divider &nbsp; |
-              li.register: a REGISTER
+        .row.header-wrap
+          nav.accounts
+            ul
+              li.login: a Login
+              li.register: a Register
               li.logged-in
                 a.logged-in-name(href="#")
+              li.logged-in
                 a.logout(href="#") Logout
-          nav.primary-nav
+            form.search
+              input(type="search" placeholder="Search for Answers, Videos, Etc…")
+          .logo-wrap
             h1.logo
-              a(href="#{site.base_url}")Red Hat Developers
-              a.nav-toggle
-                i.fa.fa-bars
-                i.fa.fa-times
-            ul.nav.nav-tabs
-              - currentPage = page.url
-              - for pageName in ['solutions', 'products', 'downloads']
-                li(class=(currentPage.include?(pageName) ? 'active' : ''))
-                  a(href="#{site.base_url}/#{pageName}/") #{pageName.capitalize}
-            ul.menu-right
-              li: a(href="#{site.base_url}/resources/") Resources
-              li: a(href="#{site.base_url}/projects/") Community
-              li: a(href="#{site.base_url}/events/") Events
-              li: a(href="http://developerblog.redhat.com") Blogs
+              a(href="#{site.base_url}" title="Red Hat Developers")
+                img(src=cdn("#{site.base_url}/images/design/RHD-logo.svg") alt="Red Hat Developers")
+            a.nav-toggle(href="#")
+              | Menu
+              i.fa.fa-angle-down
+          nav.mega-menu
+            ul
+              li.has-sub-nav(class=(page.url.include?('topics') ? 'active' : ''))
+                a(href="#{site.base_url}/topics")
+                  | Topics
+                  i.fa.fa-angle-down
+                div.sub-nav
+                  a(href="#{site.base_url}/topics") Containers
+                  a(href="#{site.base_url}/topics") Mobile
+                  a(href="#{site.base_url}/topics") DevOps
+                  a(href="#{site.base_url}/topics") Web and API Development
+                  a(href="#{site.base_url}/topics") Enterprise Java
+              li.has-sub-nav(class=(page.url.include?('products') ? 'active' : ''))
+                a(href="#{site.base_url}/products")
+                  | Technologies
+                  i.fa.fa-angle-down
+                .sub-nav
+                  .sub-nav-group
+                    a.heading(href="#{site.base_url}/products#infrastructure_management") Infrastrucure
+                    a(href="#{site.base_url}/products/rhel/overview/") Red Hat Enterprise Linux
+                    a(href="#{site.base_url}/products/developertoolset/overview/") Red Hat Developer Toolkit
+                    a(href="#{site.base_url}/products/softwarecollections/overview/") Red Hat Software Collections
+                    a(href="#{site.base_url}/products/atomic/overview/") Red Hat Container Development Kit
+                  .sub-nav-group
+                    a.heading(href="#{site.base_url}/products#cloud_products") Cloud
+                    a(href="#{site.base_url}/products/openshift/overview/") OpenShift Enterprise by Red Hat
+                  .sub-nav-group
+                    a.heading(href="#{site.base_url}/products#mobile") Mobile
+                    a(href="#{site.base_url}/products/mobileplatform/overview/") Red Hat Mobile Application Platform
+                  .sub-nav-group
+                    a.heading(href="#{site.base_url}/products#jboss_development_and_management") Middleware
+                    a(href="#{site.base_url}/products/devstudio/overview/") Red Hat JBoss Developer Studio
+                    a(href="#{site.base_url}/products/eap/overview/") Red Hat JBoss JBoss Enterprise Application Platform
+                    a(href="#{site.base_url}/products/fuse/overview/") Red Hat JBoss Fuse
+                    a(href="#{site.base_url}/products/webserver/overview/") Red Hat JBoss Web Server
+                    a(href="#{site.base_url}/products/bpmsuite/overview/") Red Hat JBoss BPM Suite
+                    a(href="#{site.base_url}/products/brms/overview/") Red Hat JBoss BRMS
+                    a(href="#{site.base_url}/products/datagrid/overview/") Red Hat JBoss Data Grid
+                    a(href="#{site.base_url}/products/amq/overview/") Red Hat JBoss A-MQ
+                    a(href="#{site.base_url}/products/datavirt/overview/") Red Hat JBoss Data Virtualization
+              li.has-sub-nav(class=(page.url.include?('community') ? 'active' : ''))
+                a(href="#")
+                  | Community
+                  i.fa.fa-angle-down
+                .sub-nav.pull-right
+                  a(href="#")
+                    | Events
+                    span.page-description Find the latest conferences, meetups, and virtual seminars
+                  / a(href="#")
+                  /   | Stack Overflow Questions & Answers
+                  /   span.page-description Get your questions answered by the community or Red Hat
+                  .sub-nav-group
+                    a(href="#{site.base_url}/blog")
+                      | Open Source Communities
+                      span.page-description Community Projects that Red Hat participates in
+                  a(href="#{site.base_url}/community/contributor/")
+                    | RHD Contributors Program
+                    span.page-description Contribute your content to the Red Hat Developers website
+              li(class=(page.url.include?('resources') ? 'active' : ''))
+                a(href="#{site.base_url}/resources/") Resources
+              li(class=(page.url.include?('downloads') ? 'active' : ''))
+                a(href="#{site.base_url}/downloads/") Downloads
 
       .wrapper.clearfix
         - if (site.protected.include?("#{page.url}"))
@@ -164,11 +217,6 @@
               li
                 a(href="mailto:developer@redhat.com") Contact Us
 
-            / p.feedback
-            /   a ☹
-            /   | or
-            /   a ☺
-            /   | We want your feedback.
         .row.legal
           .large-8.medium-24.right.columns
             a.summit-logo(href="http://www.redhat.com/summit/")
