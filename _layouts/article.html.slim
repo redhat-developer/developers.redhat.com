@@ -25,7 +25,7 @@ layout: base
       li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
         a itemprop="item" href="#{site.base_url}#{page.output_path}" #{page.title}
         meta itemprop="position" content="4"
-    
+
     h2.large-title#developer-materials= page.title
 
     .collapse.large-24
@@ -83,7 +83,7 @@ layout: base
       .columns.medium-16.gsi.fetch-toc
         = page.content
 
-        
+
 
 = javascripts("developer-material", true) do
   script src="#{site.base_url}/javascripts/vendor/highlight.min.js"

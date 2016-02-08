@@ -45,7 +45,7 @@ header.main {
       }
       &:hover {
         & > a {
-          color:$dark-grey;  
+          color:$dark-grey;
           background:white;
         }
         a {
@@ -128,7 +128,7 @@ header.main {
   margin-bottom: 10px;
 }
 
-/* 
+/*
   Search
  */
 
@@ -169,7 +169,7 @@ nav.accounts {
   }
 }
 
-/* 
+/*
   Layout
  */
 
@@ -195,7 +195,7 @@ nav.accounts {
   flex-basis:auto;
 }
 
-/* 
+/*
   Logo
  */
 
@@ -215,7 +215,7 @@ nav.accounts {
 }
 
 
-/* 
+/*
   Mobile
  */
 
@@ -241,18 +241,18 @@ nav.accounts {
       }
     }
   }
-  
+
   .mega-menu {
     min-width: 100%;
     & > ul {
       & > li {
         &:hover, &.sub-nav-open {
-          
+
         }
         &.sub-nav-open > a, & > a,  {
           padding-left: 20px;
           text-transform: uppercase;
-          color:white;  
+          color:white;
           background:black;
           border-top: 1px solid $grey-5;
         }
@@ -310,6 +310,7 @@ nav.accounts {
 
   nav.accounts {
     padding:0;
+    display: none;
     form.search {
       display: none;
     }
