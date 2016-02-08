@@ -18,6 +18,9 @@
     h2 {
       font-size: 3em;
     }
+    .about-title {
+      margin-top: 50%;
+    }
   }
 }
 
@@ -61,7 +64,7 @@
     float: right;
     margin-right: 15%;
   }
-  @include tablet-portrait-and-down {
+  @include tablet-landscape-and-down {
     .float-content {
       float: none;
       margin-right: 0;
@@ -137,15 +140,15 @@
     margin-bottom: 0;
   }
   img {
-    max-width: 250px;
+    max-width: 200px;
     display: block;
-    margin: 0 auto;
+    margin: 5px auto;
   }
   p {
     font-size: 1.2em;
     max-width: 800px;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     font-weight: 600;
   }
   .about-icon {
@@ -162,7 +165,7 @@
 .about-sec6 {
   padding: 50px 0;
   background-color: #afb1b2;
-  h2, h3, p {
+  h2, h3 {
     color: $white;
   }
   h2 {
@@ -171,15 +174,21 @@
     font-size: 4em;
   }
   h3 {
-    margin-bottom: 0;
+    font-weight: 100;
+    margin-bottom: 25px;
   }
   a.button {
     width: 350px;
     display: block;
-    margin: 0 auto;
+    margin: 9% auto 0 auto;
   }
-  p {
-    font-size: 1.2em;
+  @include tablet-landscape-and-down {
+    a.button {
+      margin: 0 auto;
+    }
+    h2, h3 {
+      text-align: center;
+    }
   }
 }
 
