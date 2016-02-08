@@ -9,6 +9,9 @@ awestruct_acceptance:
   environment:
     - HOST_TO_TEST=http://docker:<%=ENV['AWESTRUCT_HOST_PORT']%>
     - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
+    - ghprbActualCommit
+    - github_status_api_token
+    - BUILD_URL
 awestruct_preview_no_reload:
   build: ./awestruct
   command:
