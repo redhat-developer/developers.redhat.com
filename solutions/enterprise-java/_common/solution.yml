@@ -17,21 +17,19 @@ related_products:
 primary_promo:
   - title: Red Hat JBoss EAP
     description: "An application platform that provides an innovative modular, cloud-ready architecture; powerful management and automation; and world class developer productivity."
-    link_1:
-      name: "Infographic: Accelerate App development w/ EAP"
-      url: 'https://www.redhat.com/cms/public/Jaen%20Swart_Devops%20with%20EAP%20and%20Openshift.pdf'
-    link_2:
-      name: "Register today to learn more about Red Hat and Web apps."
-      url: '/register'
-    link_3:
-      name: "Join us at DevNation in San Francisco, June 2016"
-      url: http://www.devnation.org/
+    links:
+      - name: "Infographic: Accelerate App development w/ EAP"
+        url: 'https://www.redhat.com/cms/public/Jaen%20Swart_Devops%20with%20EAP%20and%20Openshift.pdf'
+      - name: "Register today to learn more about Red Hat and Web apps."
+        local_url: '/register'
+      - name: "Join us at DevNation in San Francisco, June 2016"
+        url: http://www.devnation.org/
     tags:
       - EAP
       - JBoss
 secondary_promo:
   - title: Get started with JBoss EAP 7 Beta
-    url: '/products/eap/updates/'
+    local_url: '/products/eap/updates/'
     description: "JBoss Enterprise Application Platform 7 Beta offers a fresh foundation for enterprise Java applications to thrive in a world of CI/CD, DevOps, cloud, containers, and microservices. Supports Java EE 7 and Java SE 8."
     tags:
       - EAP
@@ -57,18 +55,18 @@ tertiary_promo:
       - EAP
       - Forum
   - title: 'Getting Started with EAP'
-    url: '/products/eap/get-started/'
+    local_url: '/products/eap/get-started/'
     description: "Get yourself set-up with EAP in 35 minutes. "
     tags:
       - EAP
   - title: 'An introduction to JBoss EAP'
-    url: '/video/vimeo/95462201/'
+    local_url: '/video/vimeo/95462201/'
     description: "Jason Greene explains the uses and value of JBoss EAP."
     tags:
       - JBoss
       - video
   - title: 'Learn from our sample application, Ticket Monster'
-    url: '/ticket-monster/'
+    local_url: '/ticket-monster/'
     description: "A moderately complex applications using JBoss web technologies."
     tags:
       - JBoss
@@ -86,11 +84,11 @@ right_side_promo:
       title: Development teams need to...
       links:
         - name: Accelerate Development
-          url: '/enterprise-java/adoption/#accelerate'
+          local_url: '/enterprise-java/adoption/#accelerate'
         - name: Integrate
-          url:  '/enterprise-java/adoption/#integrate'
+          local_url:  '/enterprise-java/adoption/#integrate'
         - name: Automate
-          url:  '/enterprise-java/adoption/#automate'
+          local_url:  '/enterprise-java/adoption/#automate'
     section_3:
       title: Follow our communities
       links:
@@ -103,8 +101,8 @@ right_side_promo:
         - name: RESTEasy
           url:  'https://jboss.org/resteasy'
         - name: more... 
-          url: '/products/eap/community/'
+          local_url: '/products/eap/community/'
         - name: Learn
-          url: '/products/eap/learn'
+          local_url: '/products/eap/learn'
         - name: Buzz
-          url: '/products/eap/buzz'
+          local_url: '/products/eap/buzz'
