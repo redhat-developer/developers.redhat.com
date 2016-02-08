@@ -40,7 +40,7 @@ app.createSlider = function($el) {
       Shuffle if we need to
     */
     var shouldShuffle = $sliderEl.data('shuffle');
-    
+
     if(shouldShuffle) {
       var slides = $sliderEl.find('.slide');
       slides = slides.sort(function() {
@@ -111,31 +111,34 @@ app.createSlider = function($el) {
     }
 
 
-  /*
-    Toggle mobile Nav
-  */
-  $('.nav-toggle').on('click touchend',function(){
-     if (!app.fastClick) {
-       // we're binding to touchstart and click. If we have a touchstart, don't also run on click
-       app.fastClick = true;
-       setTimeout(function(){ app.fastClick = false; }, 100);
-       $('body').toggleClass('nav-open');
-     }
-    return false;
-  });
-
-  /*
-    Mobile Nav dropdown
-  */
-
-  $('li.has-dropdown span.drop-down-arrow').on('click touchend',function(e){
-      if (!app.fastClick) {
-        // we're binding to touchstart and click. If we have a touchstart, don't also run on click
-        app.fastClick = true;
-        setTimeout(function(){ app.fastClick = false; }, 100);
-        $(this).parent().toggleClass('sub-nav-open');
-      }
-     return false;
-  });
 })();
 
+/*
+  Toggle mobile Nav
+*/
+
+$('.nav-toggle').on('click touchend',function(e){
+   if (!app.fastClick) {
+     // we're binding to touchstart and click. If we have a touchstart, don't also run on click
+     app.fastClick = true;
+     setTimeout(function(){ app.fastClick = false; }, 100);
+     $('body').toggleClass('nav-open');
+   }
+});
+
+/*
+  Mobile Nav dropdown
+*/
+
+$('.has-sub-nav').on('click touchend',function(e){
+    // e.preventDefault();
+    if (!app.fastClick) {
+      // we're binding to touchstart and click. If we have a touchstart, don't also run on click
+      app.fastClick = true;
+      setTimeout(function(){ app.fastClick = false; }, 100);
+      // close others
+      $('.sub-nav-open').not(this).removeClass('sub-nav-open');
+      // open this one
+      $(this).toggleClass('sub-nav-open');
+    }
+});

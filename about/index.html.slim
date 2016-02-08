@@ -1,0 +1,121 @@
+---
+layout: base
+body_class: fullbleed
+primary_nav_hidden: true
+interpolate: true
+title: About Us
+---
+
+section.about-header
+  .row
+    .large-24.columns.about-title
+      h3 The community for you to
+      h2 
+        | Learn, Code, and
+        br
+        |  Share -
+        i  Faster
+
+section.about-sec1
+  .row
+    .large-24.columns
+      h2 Why
+      h4 
+        | (Management put a lot of time on this, so we have to include it.)
+      p We want to provide a complete experience to enable enterprise developers to envision, create and maintain high-value enterprise software.
+
+section.about-sec2
+  .row
+    .large-24.columns
+      h2 Our Story
+      h3 
+        | (We’re motivated - how about you?)
+      .row
+        .large-12.medium-24.columns.float-content
+          p Red Hat has historically been known for (or synonymous with) Open Source and Linux, but over the years we’ve also become known for other technologies such as middleware (JBoss), cloud (OpenShift, OpenStack), mobile (FeedHenry), containers (Docker) and more.  When used in combination, they provide a robust development portfolio for you to build enterprise applications. But as these and other technologies continue to evolve, how and when do you know when to adopt which versions? This can be time consuming. And this is how we view our role.
+          p 
+            | We are motivated by an unquenchable, maniacal focus to vastly redefine and improve the software developer experience. We’ll take what is rough and immature, and refine into something that is useful for building enterprise apps. Then, when we combine these technologies with humans (you) who have the spark of creation, we’ll collectively have an ever-increasing impact on the world's future economy.
+            b  As a result, you’re going to lead the way in a completely free and accessible way.
+section.about-sec3
+  .row
+    .large-24.columns
+      h2 Who should join?
+      h4 
+        | (Red Hat Developers is for you)
+      p Join if you’re a developer, software engineer, web designer, front end designer, UX designer, computer scientist, architect, tester, product manager, project manager or team lead. (Not one of these? Want to be? Close enough?  Then you’re welcome, too.)
+      a.button(href='#{site.base_url}/register') Register Now
+section.about-sec4
+  .row
+    .large-24.columns
+      h2 Built on open source
+      span
+        h4 Differentiatingly different.
+        h5 
+          |  (So you say.)
+      h5 Being an open source company, we can do things that other developer programs don’t (or can’t or won’t):
+      .row
+        .large-14.medium-24.columns.float-content
+          ul
+            li We give away ALL of our code.  Have at it.
+            li It’s all about the community. That means you.
+            li We’re global and always online. Well, we do take turns.
+            li We’ll improve code together. We will code side-by-side with you.
+            li Our process is completely open and transparent: you can see the engineer working on YOUR issue, communicate with them, follow the code branch closely, test and provide feedback.
+section.about-sec5
+  .row
+    .large-24.columns
+      h2 Living the Dream
+      h4 
+        | (also known as the fun part)
+      p It keeps you up at night and then occupies your dreams: You aspire to deliver high-value software on-time and on-budget, but technology is always changing and evolving. We're here to help you honor your commitments and to make sure you achieve your goals.
+    .large-8.columns.about-icon
+      img(src='#{site.base_url}/images/design/about/about_learn.png' alt='Learn More')
+      h4 Learn More
+      p No need to learn from scratch, but benefit from the experts - get the most in-depth technical content about our tool portfolio. (You’ll need to register, but it’s easy.)
+    .large-8.columns.about-icon
+      img(src='#{site.base_url}/images/design/about/about_code.png' alt='Code More')
+      h4 Code More
+      p Be more productive and more quickly with accelerated guides, plus get free access to the developer tools you need. (You’ll still need to register, really easy.)
+    .large-8.columns.about-icon
+      img(src='#{site.base_url}/images/design/about/about_share.png' alt='Share More')
+      h4 Share More
+      p 
+        | As a bit of incentive, we’ll give you swag when you share your sample code, presentations, blogs, videos, etc.  Join
+        a(href='#{site.base_url}/community/contributor/')  Red Hat Developers content contributor
+        | . (Today?)
+
+section.about-sec6
+  .row
+    .large-24.columns
+      h2 Be More
+      h3 Join today.
+      p 
+        | (It will only cost you your email)
+      a.button(href='#{site.base_url}/register') Register Now
+
+section.about-sec7
+  .row
+    .large-24.columns
+      h2 Our Team
+      h4 
+        | (You may be sorry you asked)
+      p We're a talented group (humble, too) of developers, architects, designers, testers, product managers, project managers, and team leads, who are passionate about creating new things and making everyone's lives better through technology.
+      ul.small-block-grid-2.medium-block-grid-4.large-block-grid-6.team-members
+        - page.about.each do |a|
+          li
+            img(src='#{site.base_url}/images/design/about/photos/#{a.photo}')
+            span
+              p.name #{a.name}
+              - if a.twitter_handle
+                a(href='https://twitter.com/#{a.twitter_handle}')
+                  i.fa.fa-twitter
+              p.title #{a.title}
+
+
+
+
+
+
+
+
+

@@ -1,35 +1,43 @@
 .hero.hero-downloads {
-  background: cdn('../images/design/RHDev_indeximage_desktop_downloads.png') top center / cover no-repeat;
+  background: cdn('../images/design/RHDev_pageheader_downloads_desktop.png') top center / cover no-repeat;
+  content : ':4242';
   border:0;
-  padding: 20px;
-  padding-top: 40px;
-  min-height: 230px;
-  @include tablet-portrait-and-down {
-    background: cdn('../images/design/RHDev_indeximage_mobile_downloads.png') top center / cover no-repeat;
-    margin: -15px;
-    h2.blowout {
-      padding-top: 20px !important;
-      font-size: 40px !important;
-    }
-    .columns {
-      padding: 0;
-    }
-  }
-  h2.blowout {
+  min-height: 220px;
+  margin-bottom: 0;
+
+  h2 {
     color:white;
-    line-height:1;
-    font-size: 70px;
-    text-shadow: 3px 3px #063a63;
+    font-size: 5em;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
   }
   p {
-    color:white;
-    font-size: 20px;
+    color: white;
+    font-size: 1.1em;
+    margin: 20px 0;
     a, a:active, a:focus, a:hover{
       color: white;
     }
   }
+  @include tablet-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_downloads_tablet.png') top center / cover no-repeat;
+    min-height: auto;
+    h2 {
+      margin-top: 10px;
+    }
+    p {
+      margin: 0 15px 20px 15px;
+    }
+  }
+  @include mobile-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_downloads_mobile.png') top center / cover no-repeat;
+    h2 {
+      font-size: 4em;
+    }
+  }
   .row {
-    @extend .grow;
+    @extend .flex-center;
   }
 }
 

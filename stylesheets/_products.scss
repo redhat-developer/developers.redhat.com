@@ -1,4 +1,132 @@
 // Products
+.hero.hero-products {
+  background: cdn('../images/design/RHDev_pageheader_productsoverview_desktop.png') top center / cover no-repeat;
+  content : ':4242';
+  border:0;
+  min-height: 220px;
+  margin-bottom: 0;
+
+  h2 {
+    color:white;
+    font-size: 5em;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  p {
+    color: white;
+    font-size: 1.1em;
+    margin: 20px 0;
+    max-width: 350px;
+    a, a:active, a:focus, a:hover{
+      color: white;
+    }
+  }
+  @include tablet-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_productsoverview_tablet.png') top center / cover no-repeat;
+    min-height: auto;
+    h2 {
+      margin-top: 10px;
+    }
+    p {
+      margin: 0 15px 20px 15px;
+      max-width: 100%;
+    }
+  }
+  @include mobile-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_productsoverview_mobile.png') top center / cover no-repeat;
+    h2 {
+      font-size: 3em;
+    }
+  }
+  .row {
+    @extend .flex-center;
+  }
+}
+
+.product-header {
+  background-position: top center;
+  background-size: cover;
+  background-repeat: repeat-x;
+
+  &.amq {background-image: cdn('../images/design/products/prod_header_jboss_amq.png');}
+  &.atomic {background-image: cdn('../images/design/products/prod_header_rhel_atomic_host.png');}
+  &.bpmsuite {background-image: cdn('../images/design/products/prod_header_jboss_bpm_suite.png');}
+  &.brms {background-image: cdn('../images/design/products/prod_header_jboss_brms.png');}
+  &.datagrid {background-image: cdn('../images/design/products/prod_header_jboss_data_grid.png');}
+  &.datavirt {background-image: cdn('../images/design/products/prod_header_jboss_data_virt.png');}
+  &.developertoolset {background-image: cdn('../images/design/products/prod_header_rh_developer_toolset.png');}
+  &.devstudio {background-image: cdn('../images/design/products/prod_header_jboss_devstudio.png');}
+  &.eap {background-image: cdn('../images/design/products/prod_header_jboss_eap.png');}
+  &.fuse {background-image: cdn('../images/design/products/prod_header_jboss_fuse.png');}
+  &.mobileplatform {background-image: cdn('../images/design/products/prod_header_rh_mobile_app_platform.png');}
+  &.openshift {background-image: cdn('../images/design/products/prod_header_openshift_enterprise.png');}
+  &.rhel {background-image: cdn('../images/design/products/prod_header_rhel.png');}
+  &.satellite {background-image: cdn('../images/design/products/prod_header_rh_satellite.png');}
+  &.softwarecollections {background-image: cdn('../images/design/products/prod_header_rh_software_collections.png');}
+  &.webserver {background-image: cdn('../images/design/products/prod_header_jboss_webserver.png');}
+
+  @include tablet-portrait-and-down {
+    &.amq {background-image: cdn('../images/design/products/productheader_tablet_jboss_amq.png');}
+    &.atomic {background-image: cdn('../images/design/products/productheader_tablet_rhel_atomic_host.png');}
+    &.bpmsuite {background-image: cdn('../images/design/products/productheader_tablet_jboss_bpm_suite.png');}
+    &.brms {background-image: cdn('../images/design/products/productheader_tablet_jboss_brms.png');}
+    &.datagrid {background-image: cdn('../images/design/products/productheader_tablet_jboss_data_grid.png');}
+    &.datavirt {background-image: cdn('../images/design/products/productheader_tablet_jboss_data_virt.png');}
+    &.developertoolset {background-image: cdn('../images/design/products/productheader_tablet_rh_developer_toolset.png');}
+    &.devstudio {background-image: cdn('../images/design/products/productheader_tablet_jboss_devstudio.png');}
+    &.eap {background-image: cdn('../images/design/products/productheader_tablet_jboss_eap.png');}
+    &.fuse {background-image: cdn('../images/design/products/productheader_tablet_jboss_fuse.png');}
+    &.mobileplatform {background-image: cdn('../images/design/products/productheader_tablet_rh_mobile_app_platform.png');}
+    &.openshift {background-image: cdn('../images/design/products/productheader_tablet_openshift_enterprise.png');}
+    &.rhel {background-image: cdn('../images/design/products/productheader_tablet_rhel.png');}
+    &.satellite {background-image: cdn('../images/design/products/productheader_tablet_rh_satellite.png');}
+    &.softwarecollections {background-image: cdn('../images/design/products/productheader_tablet_rh_software_collections.png');}
+    &.webserver {background-image: cdn('../images/design/products/productheader_tablet_jboss_webserver.png');}
+  }
+  @include mobile-portrait-and-down {
+    &.amq {background-image: cdn('../images/design/products/productheader_mobile_jboss_amq.png');}
+    &.atomic {background-image: cdn('../images/design/products/productheader_mobile_rhel_atomic_host.png');}
+    &.bpmsuite {background-image: cdn('../images/design/products/productheader_mobile_jboss_bpm_suite.png');}
+    &.brms {background-image: cdn('../images/design/products/productheader_mobile_jboss_brms.png');}
+    &.datagrid {background-image: cdn('../images/design/products/productheader_mobile_jboss_data_grid.png');}
+    &.datavirt {background-image: cdn('../images/design/products/productheader_mobile_jboss_data_virt.png');}
+    &.developertoolset {background-image: cdn('../images/design/products/productheader_mobile_rh_developer_toolset.png');}
+    &.devstudio {background-image: cdn('../images/design/products/productheader_mobile_jboss_devstudio.png');}
+    &.eap {background-image: cdn('../images/design/products/productheader_mobile_jboss_eap.png');}
+    &.fuse {background-image: cdn('../images/design/products/productheader_mobile_jboss_fuse.png');}
+    &.mobileplatform {background-image: cdn('../images/design/products/productheader_mobile_rh_mobile_app_platform.png');}
+    &.openshift {background-image: cdn('../images/design/products/productheader_mobile_openshift_enterprise.png');}
+    &.rhel {background-image: cdn('../images/design/products/productheader_mobile_rhel.png');}
+    &.satellite {background-image: cdn('../images/design/products/productheader_mobile_rh_satellite.png');}
+    &.softwarecollections {background-image: cdn('../images/design/products/productheader_mobile_rh_software_collections.png');}
+    &.webserver {background-image: cdn('../images/design/products/productheader_mobile_jboss_webserver.png');}
+  }
+}
+
+.product-graphics {
+  background-position: left top, right bottom;
+  background-repeat: no-repeat;
+  
+  &.storage-and-big-data {
+    background-image: cdn('../images/design/products/dotted_lines_top_left_orange.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+  }
+  &.it-infrastructure {
+    background-image: cdn('../images/design/products/dotted_lines_top_left_blue.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+  }
+  &.application-development {
+    background-image: cdn('../images/design/products/dotted_lines_top_left_green.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+  }
+}
+
+@include tablet-landscape-and-down {
+  .product-graphics {
+    &.storage-and-big-data, &.it-infrastructure, &.application-development {
+      background-image: none;
+    }
+  }
+} 
+
 .product {
   .toolbar {
     text-align: right;
@@ -17,14 +145,91 @@
 }
 
 .product-header{
+  background-color: rgba(0, 0, 0, 0.77);
+  padding: 20px 0;
+  &.storage-and-big-data {
+    border-bottom: 9px solid #F0AB00;
+  }
+  &.it-infrastructure {
+    border-bottom: 9px solid #00B9E4;
+  }
+  &.application-development {
+    border-bottom: 9px solid #92D400;
+  }
+  h2, .breadcrumbs > *:before, .breadcrumbs a {
+    color: $white;
+  }
   h2 {
-    color: $red;
+    text-transform: uppercase;
   }
   h3 {
+    color: $grey-3;
     font-weight: 100;
+    margin-bottom: 0;
   }
   @include desktop-and-down {
     padding:20px;
+  }
+}
+
+#hero-try-or-buy {
+  margin: 0 auto 40px auto;
+  padding-top: 15px;
+
+  &.storage-and-big-data {
+    border-bottom: 1px dashed #F0AB00;
+  }
+  &.it-infrastructure {
+    border-bottom: 1px dashed #0088ce;
+  }
+  &.application-development {
+    border-bottom: 1px dashed #92D400;
+  }
+  .button {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: .7rem;
+  }
+  p {
+    margin-bottom: 0;
+    &.caps {
+      text-transform: uppercase;
+    }
+  }
+  .hello-world{
+    @extend .flex-center;
+    align-items: center;
+    margin-bottom: 1em;
+    & > div:first-child {
+      text-align: center;
+    }
+    h2{
+      color: $grey-7;
+      font-size: 37px;
+      margin-bottom: 0;
+    }
+
+    @media only screen and (max-width: 64em) {
+      margin-bottom: 15px;
+      small {
+        display: block;
+      }
+      p {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .outside-links a{
+    text-align: left;
+    display: block;
+    padding: 5px 16px;
+    color: $grey-7;
+    p {
+      color: #0088ce;
+    }
+    i {
+      margin-left: 5px;
+    }
   }
 }
 
@@ -53,7 +258,9 @@
   .feature-text {
     text-align: center;
     h4{
-      font-size: 1.2rem;
+      font-size: 1em;
+      text-transform: uppercase;
+      color: $red;
     }
     .paragraph{
       text-align: left;
@@ -118,37 +325,9 @@
   .tool-links{
     padding: 15px 15px;
     text-align: center;
-    a:first-of-type{margin-right: 15px;}
+    li:last-child{margin-left: 8px;}
   }
 }
-.hero.hero-products {
-  background: cdn('../images/design/RHDev_indeximage_desktop_products.png') top center / cover repeat-x;
-  border:0;
-  padding: 20px;
-  padding-top: 40px;
-  min-height: 230px;
-  @include tablet-portrait-and-down {
-    background: cdn('../images/design/RHDev_indeximage_mobile_products.png') top center / cover repeat-x;
-    margin: -15px;
-    h2.blowout {
-      padding-top: 20px !important;
-    }
-  }
-  h2.blowout {
-    color:white;
-    line-height:1;
-    font-size: 70px;
-    text-shadow: 3px 3px #063a63;
-  }
-  p {
-    color:white;
-    font-size: 20px;
-  }
-  .row {
-    @extend .grow;
-  }
-}
-
 
 .band-tabs {
   .nav-tabs {
@@ -201,55 +380,6 @@
       a {
         font-size: 1em;
       }
-    }
-  }
-}
-
-#hero-try-or-buy {
-  border-top:1px solid #a3dbe8;
-  border-bottom:1px solid #a3dbe8;
-  padding: 0 40px;
-  margin:40px auto;
-  .button {
-    width: 100%;
-    margin-bottom: 5px;
-    padding: .7rem;
-  }
-  p {
-    margin-bottom: 0;
-  }
-  .hello-world{
-    @extend .flex-center;
-    align-items: center;
-    & > div:first-child {
-      text-align: center;
-    }
-    h2{
-      color: #146691;
-      font-size: 37px;
-      margin-bottom: 0;
-    }
-
-    @media only screen and (max-width: 64em) {
-      margin-bottom: 15px;
-      small {
-        display: block;
-      }
-      p {
-        margin-bottom: 10px;
-      }
-    }
-  }
-  .outside-links a{
-    text-align: left;
-    display: block;
-    padding: 5px 16px;
-    color: $grey-7;
-    p {
-      color: #0088ce;
-    }
-    i {
-      margin-left: 5px;
     }
   }
 }

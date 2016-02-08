@@ -1,6 +1,6 @@
 name: Enterprise Java
 sub_title: Build your enterprise Java apps faster and lighter with community powered innovation
-long_description: Choose from a family of lightweight, cloud-friendly, enterprise-grade products that help organizations innovate faster, in a smarter way. 
+long_description: "Skip the noise that can come with developing apps, and instead focus on building apps."
 icon: icon-rh-icon-application
 buzz_tags:
   - Enterprise Java
@@ -14,3 +14,95 @@ related_products:
   - fuse
   - brms
   - bpmsuite
+primary_promo:
+  - title: Red Hat JBoss EAP
+    description: "An application platform that provides an innovative modular, cloud-ready architecture; powerful management and automation; and world class developer productivity."
+    links:
+      - name: "Infographic: Accelerate App development w/ EAP"
+        url: 'https://www.redhat.com/cms/public/Jaen%20Swart_Devops%20with%20EAP%20and%20Openshift.pdf'
+      - name: "Register today to learn more about Red Hat and Web apps."
+        local_url: '/register'
+      - name: "Join us at DevNation in San Francisco, June 2016"
+        url: http://www.devnation.org/
+    tags:
+      - EAP
+      - JBoss
+secondary_promo:
+  - title: Get started with JBoss EAP 7 Beta
+    local_url: '/products/eap/updates/'
+    description: "JBoss Enterprise Application Platform 7 Beta offers a fresh foundation for enterprise Java applications to thrive in a world of CI/CD, DevOps, cloud, containers, and microservices. Supports Java EE 7 and Java SE 8."
+    tags:
+      - EAP
+      - DevOps
+      - cloud
+      - containers
+      - microservices
+      - CI/CD
+tertiary_tall_promo:
+  - title: 'JBoss EAP 6.4 on OpenShift'
+    url: 'https://hub.openshift.com/quickstarts/95-jboss-eap-6-4'
+    description: "Lightweight and enterprise-class, JBoss EAP for xPaaS is the only mainstream Java EE 6 application platform available for private and public clouds."
+    tags:
+      - Java
+      - JBoss
+      - OpenShift
+      - Web
+tertiary_promo:
+  - title: 'JBoss EAP Forum'
+    url: 'https://developer.jboss.org/en/products/eap'
+    description: "See what your colleagues are discussing regarding JBoss EAP."
+    tags:
+      - EAP
+      - Forum
+  - title: 'Getting Started with EAP'
+    local_url: '/products/eap/get-started/'
+    description: "Get yourself set-up with EAP in 35 minutes. "
+    tags:
+      - EAP
+  - title: 'An introduction to JBoss EAP'
+    local_url: '/video/vimeo/95462201/'
+    description: "Jason Greene explains the uses and value of JBoss EAP."
+    tags:
+      - JBoss
+      - video
+  - title: 'Learn from our sample application, Ticket Monster'
+    local_url: '/ticket-monster/'
+    description: "A moderately complex applications using JBoss web technologies."
+    tags:
+      - JBoss
+      - EAP
+      - OpenShift
+right_side_promo:
+  - title: Follow Red Hat
+    section_1:
+      title: "Enterprise Java at your fingertips"
+      sub_title: "Build better and adapt quickly with enterprise Java."
+    button:
+      label: Get Started
+      url: '/products/eap/overview'
+    section_2:
+      title: Development teams need to...
+      links:
+        - name: Accelerate Development
+          local_url: '/enterprise-java/adoption/#accelerate'
+        - name: Integrate
+          local_url: '/enterprise-java/adoption/#integrate'
+        - name: Automate
+          local_url: '/enterprise-java/adoption/#automate'
+    section_3:
+      title: Follow our communities
+      links:
+        - name: Wildfly
+          url: 'http://www.wildfly.org/'
+        - name: JBoss OSGI
+          url: 'https://jboss.org/jbossas/osgi'
+        - name: JBoss microcontainer
+          url: 'https://jboss.org/jbossmc'
+        - name: RESTEasy
+          url: 'https://jboss.org/resteasy'
+        - name: more... 
+          local_url: '/products/eap/community/'
+        - name: Learn
+          local_url: '/products/eap/learn'
+        - name: Buzz
+          local_url: '/products/eap/buzz'
