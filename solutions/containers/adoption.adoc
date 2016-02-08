@@ -7,22 +7,6 @@ Begin with this handy Red Hat guide: https://access.redhat.com/articles/881893[G
 
 == Developing for containers
 
-'''
-
-=== Which use-case is for you?
-
-There are two ways to begin your Red Hat container development, but regardless of approach, your containerized applications will be deployable on Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and OpenShift V3. These tools are provided as a convenience and are optional, not required, to containerizing and certifying your applications.
-
-[.large-12.columns]
-*1. Native RHEL development* +
-Setting up Red Hat containers on Red Hat Enterprise Linux is easy and there are a number of development tools for you to containerize your application and after you install your hypervisor.  For example, all of the Red Hat Software Collections have dockerfiles to help you get started including Python, Ruby, PostgreSQL, MongoDB, Apache server, JBoss Middleware and more.
-
-[.large-12.columns]
-*2. Off-platform development via the Red Hat Container Development Kit* +
-Red Hat also provides resources for creating RHEL-based containerized applications from non-Red Hat platforms such as Microsoft Windows, Mac, and other Linux development platforms.  In this case, the Red Hat Container Development Kit (see below) utilizes Vagrant to easily set up your environment so that developing on different desktops will have the same experience of containerizing your apps for Red Hat Containers.
-
-'''
-
 === Red Hat Container Developer Kit - set up your container dev environment
 
 The Red Hat Container Developer Kit (CDK) is a collection of developer tools, Vagrantfiles and plug-ins, RHEL images, and documentation.  This collection will enable application developers to more easily create container-based applications for use with Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, or OpenShift V3. Rather than starting from scratch, developers who are using Windows, Mac, Fedora, and other Linux distributions can take advantage of pre-configured CDK images and pre-tested Vagrant files to make installing Red Hat Enterprise Linux containers and developing container-based applications as quick and easy as possible. Technology partners that have joined the Container Zone have access CDK content.
