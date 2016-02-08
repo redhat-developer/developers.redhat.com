@@ -15,15 +15,13 @@ related_products:
 primary_promo:
   - title: Containers 
     description: "Linux containers (sometimes called Docker) keep applications and their runtime components together by combining lightweight application isolation with an image-based deployment method."
-    link_1:
-      name: "Docker images in 5 minutes or less."
-      url: '/video/youtube/czH9qZUusLs'
-    link_2:
-      name: "Register today to learn more about Red Hat and Web apps."
-      url: '/register'
-    link_3:
-      name: "Join us at DevNation in San Francisco, June 2016"
-      url: http://www.devnation.org/
+    links:
+      - name: "Docker images in 5 minutes or less."
+        local_url: '/video/youtube/czH9qZUusLs'
+      - name: "Register today to learn more about Red Hat and Web apps."
+        local_url: '/register'
+      - name: "Join us at DevNation in San Francisco, June 2016"
+        url: 'http://www.devnation.org/'
     tags:
       - Containers
       - DevOps
@@ -38,7 +36,7 @@ secondary_promo:
       - PaaS
 tertiary_tall_promo:
   - title: 'Microservices & you: Practical introduction'
-    url: '/video/youtube/hy9aVrTNufQ'
+    local_url: '/video/youtube/hy9aVrTNufQ'
     description: "Steven Pousty and Grant Shipley introduce the basic ideas behind microservices, discuss pros and cons of using them, and build an application with a focus on how a microservices architecture."
     tags:
       - Containers
@@ -46,14 +44,14 @@ tertiary_tall_promo:
       - OpenShift
 tertiary_promo:
   - title: 'JBoss on Docker - at a glance'
-    url: '/2015/01/14/jboss-on-docker-at-a-glance/'
+    url: 'http://developerblog.redhat.com/2015/01/14/jboss-on-docker-at-a-glance/'
     description: "Summary: get started with Java EE, WildFly and Microservices on Docker."
     tags:
       - Containers
       - Microservices
       - JBoss
   - title: 'Setting up Python 3.4 image on RHEL 7'
-    url: ' '
+    url: '#'
     description: "Install Python 3.4 in a container on RHEL 7 in 10 minutes."
     tags:
       - Containers
@@ -67,7 +65,7 @@ tertiary_promo:
       - Docker
   - title: 'Introduction to Container Development Kit (CDK)'
     url: 'https://docs.google.com/document/d/115tRFRLqTdsQpmVxHzrbwQGL9JucKwGm_qOmT0qm6dg/edit'
-    description: "lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor..."
+    description: "Set up a consistent dev. environment for Windows [tm], Mac OS, or Linux."
     tags:
       - Containers
       - CDK
@@ -77,7 +75,7 @@ right_side_promo:
       title: "Opinionated starter set"
       links:
         - name: Introduction to container terminology
-          url:  'http://developerblog.redhat.com/2016/01/13/a-practical-introduction-to-docker-container-terminology/'
+          url: 'http://developerblog.redhat.com/2016/01/13/a-practical-introduction-to-docker-container-terminology/'
     button:
       label: Get Started
       url: '/containers/overview/'
@@ -87,30 +85,23 @@ right_side_promo:
         - name: EAP
           url: 'https://access.redhat.com/search/#/container-images?q=eap&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
         - name: Ruby
-          url:  'https://access.redhat.com/search/#/container-images?q=ruby&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
+          url: 'https://access.redhat.com/search/#/container-images?q=ruby&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
         - name: GCC (Dev. Toolset)
-          url:  'https://access.redhat.com/search/#/container-images?q=devtoolset&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
+          url: 'https://access.redhat.com/search/#/container-images?q=devtoolset&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
         - name: Python
-          url:  'https://access.redhat.com/search/#/container-images?q=python&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
+          url: 'https://access.redhat.com/search/#/container-images?q=python&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
         - name: PHP
           url: 'https://access.redhat.com/search/#/container-images?q=php&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
         - name: Node.js
-          url:  'https://access.redhat.com/search/#/container-images?q=nodejs&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
+          url: 'https://access.redhat.com/search/#/container-images?q=nodejs&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
         - name: Perl
-          url:  'https://access.redhat.com/search/#/container-images?q=perl&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
+          url: 'https://access.redhat.com/search/#/container-images?q=perl&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
     section_3:
       title: Red Hat Container Images
       links:
         - name: Project Atomic
-          url:  'projectatomic.org'
+          url: 'projectatomic.org'
         - name: Learn
-          url:  '/resources/#!query=containers'
+          local_url: '/resources/#!query=containers'
         #- name: Buzz
-        #  url:  '/containers/buzz/'
-
-
-
-
-
-
-
+        #  url: '/containers/buzz/'
