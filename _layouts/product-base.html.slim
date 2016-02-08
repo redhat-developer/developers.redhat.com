@@ -12,9 +12,7 @@ section(class="product-header #{page.product.id} #{page.product.product_category
   .row
     .large-24
       ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
-        li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-          a itemprop="item" href="#{site.base_url}/products/" Products
-          meta itemprop="position" content="1"
+        li Products
         li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
           a href="#{site.base_url}/products/#{page.product.id}/overview" #{page.product.abbreviated_name}
           meta itemprop="position" content="2"

@@ -401,8 +401,10 @@ ul.solutions {
   }
   .breadcrumbs {
 
-    li:before, a {
+    li, li:before, a {
       color:white;
+      text-transform: none;
+      font-size: 14px;
     }
   }
   .row {

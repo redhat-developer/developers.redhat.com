@@ -156,8 +156,13 @@
   &.application-development {
     border-bottom: 9px solid #92D400;
   }
-  h2, .breadcrumbs > *:before, .breadcrumbs a {
+  h2, .breadcrumbs > *:before, .breadcrumbs a{
     color: $white;
+  }
+  .breadcrumbs li {
+    color: $white;
+    text-transform: none;
+    font-size: 14px;
   }
   h2 {
     text-transform: uppercase;

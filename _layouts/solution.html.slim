@@ -2,147 +2,23 @@
 layout: technology-base
 ---
 
-- page.title = "Red Hat Developers Topic: #{page.solution.name}"
+.solution-hero.hero
+  .row
+    .large-24
+      ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
+        li Topics
+        li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+          a itemprop="item" href="#{site.base_url}/#{page.solution.id}/" #{page.solution.name}
+          meta itemprop="position" content="2"
+      h2 #{page.solution.name}
+      h5.description #{page.solution.long_description}
 
--if site.drupal_base_url
-  =content
--else
-  section(class="topics-header #{page.solution.id}")
-    .row
-      .large-24
-        h2 #{page.solution.name}
-        h4#topic #{page.solution.long_description}
+.row
+  .large-4.medium-7.small-24.columns.nav-breakpoint
+    = partial 'solution-left-menu.html.slim', {'parent' => page}
 
-  // Static promotional items
-  section.topics-dotted-graphics 
-    .row.topics-main
-      .large-6.columns.right
-        
-        - page.solution.right_side_promo.each do |e|
-          .right-side-promo
-            .row
-              .large-24.columns
-                h4 #{e.title}
-              .large-24.medium-8.columns
-                - if e.section_1
-                  h5 #{e.section_1.title}
-                  - if e.section_1.sub_title
-                    h6 #{e.section_1.sub_title}
-                  - if e.section_1.links
-                    ul
-                      - e.section_1.links.each do |link|
-                        li
-                          - if link.local_url
-                            a(href="#{site.base_url}#{link.local_url}") #{link.name}
-                          - elsif link.url
-                            a(href="#{link.url}") #{link.name}
-                a.button(href='#{site.base_url}#{e.button.url}') #{e.button.label}
-              .large-24.medium-8.columns  
-                - if e.section_2
-                  h5 #{e.section_2.title}
-                  ul
-                    - e.section_2.links.each do |link|
-                      li
-                        - if link.local_url
-                          a(href="#{site.base_url}#{link.local_url}") #{link.name}
-                        - elsif link.url 
-                          a(href="#{link.url}") #{link.name}
-              .large-24.medium-8.columns  
-                - if e.section_3
-                  h5 #{e.section_3.title}
-                  ul
-                    - e.section_3.links.each do |link|
-                      li
-                        - if link.local_url
-                          a(href="#{site.base_url}#{link.local_url}") #{link.name}
-                        - elsif link.url 
-                          a(href="#{link.url}") #{link.name}
-      .large-18.columns
-        .row
-          // Main promotional item
-          .medium-16.columns
-            div(class="main-promo #{page.solution.id}")
-              - page.solution.primary_promo.each do |a|
-                span
-                  h3 #{a.title}
-                  p.description #{a.description} 
-                  span.promo-tags
-                    .promo-tags-label Tags:
-                    ul
-                      - a.tags.each do |tag|
-                        li
-                          a(href='#{site.base_url}/resources/#!query=#{tag}') #{tag}
-                .row.promo-links
-                  - if a.links
-                    - a.links.each do |link|
-                      .large-8.columns
-                        - if link.local_url
-                          a(href="#{site.base_url}#{link.local_url}") #{link.name}
-                        - elsif link.url
-                          a(href="#{link.url}") #{link.name}           
+  .large-20.medium-17.small-24.columns.nav-breakpoint
+    =content
 
-          // Secondary promotional item
-          .medium-8.columns
-            - page.solution.secondary_promo.each do |b|
-              .secondary-promo
-                - if b.local_url
-                  a(href="#{site.base_url}#{b.local_url}")
-                    h4 #{b.title}
-                - elsif b.url
-                  a(href="#{b.url}")
-                    h4 #{b.title}
-                p #{b.description} 
-                span.promo-tags
-                  .promo-tags-label Tags:
-                  ul
-                    - b.tags.each do |tag|
-                      li
-                        a(href='#{site.base_url}/resources/#!query=#{tag}') #{tag}
-        .row
-          // Tertiary promotional items (Two rows of three items)
-          .large-8.columns
-            - page.solution.tertiary_tall_promo.each do |c|
-              .tertiary-tall-promo
-                - if c.local_url
-                  a(href="#{site.base_url}#{c.local_url}")
-                    h4 #{c.title}
-                - elsif c.url
-                  a(href="#{c.url}")
-                    h4 #{c.title}
-                p #{c.description} 
-                span.promo-tags
-                  .promo-tags-label Tags:
-                  ul
-                    - c.tags.each do |tag|
-                      li
-                        a(href='#{site.base_url}/resources/#!query=#{tag}') #{tag}   
-
-          .large-16.columns
-            .row
-              - page.solution.tertiary_promo.each do |d|
-                .large-12.columns
-                  .tertiary-promo
-                    - if d.local_url
-                      a(href="#{site.base_url}#{d.local_url}")
-                        h5 #{d.title}
-                        p #{d.description} 
-                    - elsif d.url
-                      a(href="#{d.url}")
-                        h5 #{d.title}
-                        p #{d.description} 
-                    span.promo-tags
-                      .promo-tags-label Tags:
-                      ul
-                        - d.tags.each do |tag|
-                          li
-                            a(href='#{site.base_url}/resources/#!query=#{tag}') #{tag}                       
-
-      // Topics resource boxes should use the partial 'topics_resources'
-      
-      / .large-24.columns
-      /   .row
-      /     .buzz-container.buzz-loading(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
-      /       span.loader
-
-  = javascripts("solutions", true) do
-    script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
+= javascripts("solutions", true) do
+  script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
