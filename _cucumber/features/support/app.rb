@@ -38,9 +38,9 @@ class App
     @current_page = @solutions
   end
 
-  def products
-    @products ||= ProductsPage.new(@driver)
-    @current_page = @products
+  def technologies
+    @technologies ||= Technologies.new(@driver)
+    @current_page = @technologies
   end
 
   def product_overview
