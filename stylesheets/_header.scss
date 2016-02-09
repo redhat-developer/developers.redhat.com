@@ -28,6 +28,7 @@ header.main {
 
 .mega-menu {
   float:right;
+  max-width:100%;
   a {
     font-weight: 100;
     color:white;
@@ -246,8 +247,16 @@ nav.accounts {
     min-width: 100%;
     & > ul {
       & > li {
-        &:hover, &.sub-nav-open {
-
+        // disable hover styles on mobile
+        &:hover {
+          background:black;
+          & > a {
+            background:none;
+            color:white;
+          }
+          .sub-nav {
+            display: none;
+          }
         }
         &.sub-nav-open > a, & > a,  {
           padding-left: 20px;
@@ -264,7 +273,7 @@ nav.accounts {
     }
     li.sub-nav-open {
       .sub-nav {
-        display: block;
+        display: block !important;
       }
     }
     .sub-nav {
@@ -357,6 +366,9 @@ nav.accounts {
       margin-right: 5px;
     }
   }
+
+  // disable desktop hover styles
+
 
 
 

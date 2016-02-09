@@ -131,21 +131,20 @@ $('.nav-toggle').on('click touchend',function(e){
   Mobile Nav dropdown
 */
 
-$('.has-sub-nav').on('click touchend',function(e){
-    // e.preventDefault();
-    if (!app.fastClick) {
-      // we're binding to touchstart and click. If we have a touchstart, don't also run on click
-      app.fastClick = true;
-      setTimeout(function(){ app.fastClick = false; }, 100);
-      // close others
-      $('.sub-nav-open').not(this).removeClass('sub-nav-open');
-      // open this one
-      $(this).toggleClass('sub-nav-open');
-    }
+$('.has-sub-nav').on('click',function(e){
+    // we're binding to touchstart and click. If we have a touchstart, don't also run on click
+    app.fastClick = true;
+    setTimeout(function(){ app.fastClick = false; }, 100);
+    // close others
+    $('.sub-nav-open').not(this).removeClass('sub-nav-open');
+    // open this one
+    $(this).toggleClass('sub-nav-open');
 });
 
+/* Top level */
 $('.mega-menu > ul > li > a').on('click',function(e) {
-  if(this.href.match(/#$/))  {
+  var breakpoint = 768;
+  if(this.href.match(/#$/) || window.innerWidth <= breakpoint)  {
     e.preventDefault();
   }
 });
