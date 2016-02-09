@@ -117,6 +117,11 @@
   &.application-development {
     background-image: cdn('../images/design/products/dotted_lines_top_left_green.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
   }
+
+  .row.content {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
 }
 
 @include tablet-landscape-and-down {
@@ -366,7 +371,7 @@
   }
 }
 
-.tabs-sm {
+.multipath-tabs-sm {
   margin-bottom: 15px;
   padding-left: 0;
   padding-bottom: 12px;
@@ -376,11 +381,17 @@
       display: none;
     }
     li {
+      max-width: 100px;
+      display: inline;
       margin-right: 10px;
       padding: 15px 20px 15px 10px;
       &.active {
         border: 1px solid #BDBDBD;
         border-bottom-color: $white;
+        a {
+          padding-bottom: 4px;
+          border-bottom: 3px solid $red;
+        }
       }
       a {
         font-size: 1em;
