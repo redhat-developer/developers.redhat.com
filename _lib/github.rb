@@ -15,8 +15,8 @@ class GitHub
     c.connection_options[:ssl] = { :verify => false }
   end
 
-  def self.list_closed_prs(org, repo)
-    Octokit.pull_requests("#{org}/#{repo}", :state => 'closed')
+  def self.list_closed_prs(org, repo, per_page)
+    Octokit.pull_requests("#{org}/#{repo}", :state => 'closed', :per_page => per_page)
   end
 
   def self.all_status_to_pending(org, repo, sha, target_url)
@@ -41,9 +41,9 @@ class GitHub
     Octokit.add_comment("#{org}/#{repo}", pr_number, comment)
   end
 
-  def self.list_closed_pulls(org, repo)
+  def self.list_closed_pulls(org, repo, per_page = 100)
     #this api call gives us the last 30 pull requests that have been closed(/merged)
-    pulls = GitHub.list_closed_prs(org, repo)
+    pulls = GitHub.list_closed_prs(org, repo, per_page)
     pulls.collect { |pr| pr.number }
   end
 
