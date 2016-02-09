@@ -117,7 +117,6 @@ dcp.service('materialService', function($http, $q) {
     this.deferred_ = $q.defer();
     var promise = this.deferred_.promise;
 
-    // app.dcp.url.search = "//dcp.jboss.org/v1/rest/search"; // testing with live data
     // query = decodeURIComponent(query);
     var deferred = this.deferred_;
     $http.get(app.dcp.url.developer_materials, { params : query, timeout: promise })

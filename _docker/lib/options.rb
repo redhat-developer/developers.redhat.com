@@ -60,7 +60,7 @@ class Options
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
-        tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-pr,build,#{pr}] clean deploy[staging_docker]"]
+        tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,#{pr}] clean deploy[staging_docker]"]
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
@@ -68,7 +68,7 @@ class Options
         tasks[:supporting_services] += %w(mysql searchisko searchiskoconfigure)
       end
 
-      opts.on('--acceptance_test_docker [=PARALLEL_TEST]', String, 'runs the cucumber features against the local running docker stack.') do |parallel='false'|
+      opts.on('--acceptance_test_docker [PARALLEL_TEST]', String, 'runs the cucumber features against the local running docker stack.') do |parallel='false'|
         ENV['PARALLEL_TEST'] = parallel
         tasks[:kill_all] = true
         tasks[:decrypt] = true
@@ -80,7 +80,7 @@ class Options
         tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
       end
 
-      opts.on('--acceptance_test_target HOST_TO_TEST [=PARALLEL_TEST]', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |h, parallel='false'|
+      opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |h, parallel='false'|
         if h.start_with?("http://docker")
           raise OptionParser::InvalidArgument.new("can't currently test docker, try --acceptance_test_docker")
         end

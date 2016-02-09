@@ -16,10 +16,18 @@ end
 class TestGitHub < Minitest::Test
   def test_list_closed_prs
     prs = [ResourceStub.new(5), ResourceStub.new(4), ResourceStub.new(3), ResourceStub.new(2), ResourceStub.new(1)]
-    Octokit.stubs(:pull_requests).with("foo/bar", :state => 'closed').returns prs
+    Octokit.stubs(:pull_requests).with("foo/bar", :state => 'closed', :per_page => 100).returns prs
 
     pulls = GitHub.list_closed_pulls('foo', 'bar')
     assert_equal(pulls, [5,4,3,2,1])
+  end
+
+  def test_list_closed_prs_with_perpage_param
+    prs = [ResourceStub.new(5), ResourceStub.new(4)]
+    Octokit.stubs(:pull_requests).with("foo/bar", :state => 'closed', :per_page => 2).returns prs
+
+    pulls = GitHub.list_closed_pulls('foo', 'bar', 2)
+    assert_equal(pulls, [5,4])
   end
 
   def test_comment_on_pull

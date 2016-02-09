@@ -34,7 +34,7 @@ class TestRunner
         system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
       end
     end
-    rerun(profile)
+    rerun(profile) unless tag.eql?('@wip')
     $?.exitstatus
   end
 
