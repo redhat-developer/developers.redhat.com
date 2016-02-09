@@ -18,7 +18,7 @@ primary_promo:
     links:
       - name: "Docker images in 5 minutes or less."
         local_url: '/video/youtube/czH9qZUusLs'
-      - name: "Register today to learn more about Red Hat and Web apps."
+      - name: "Register and learn more about Web apps."
         local_url: '/register'
       - name: "Join us at DevNation in San Francisco, June 2016"
         url: 'http://www.devnation.org/'
@@ -45,7 +45,7 @@ tertiary_tall_promo:
 tertiary_promo:
   - title: 'JBoss on Docker - at a glance'
     url: 'http://developerblog.redhat.com/2015/01/14/jboss-on-docker-at-a-glance/'
-    description: "Summary: get started with Java EE, WildFly and Microservices on Docker."
+    description: "Get started with Java EE, WildFly and Microservices on Docker."
     tags:
       - Containers
       - Microservices
@@ -64,8 +64,8 @@ tertiary_promo:
       - RHEL
       - Docker
   - title: 'Introduction to Container Development Kit (CDK)'
-    url: 'https://docs.google.com/document/d/115tRFRLqTdsQpmVxHzrbwQGL9JucKwGm_qOmT0qm6dg/edit'
-    description: "Set up a consistent dev. environment for Windows [tm], Mac OS, or Linux."
+    local_url: '/containers/adoption/'
+    description: "Set up a dev. environment for Windows&#8482;, Mac OS, or Linux."
     tags:
       - Containers
       - CDK
@@ -97,10 +97,12 @@ right_side_promo:
         - name: Perl
           url: 'https://access.redhat.com/search/#/container-images?q=perl&p=1&sort=relevant&rows=12&srch=any&documentKind=ImageRepository'
     section_3:
-      title: Red Hat Container Images
+      title: Community
       links:
         - name: Project Atomic
           url: 'projectatomic.org'
+    section_4:
+      links:
         - name: Learn
           local_url: '/resources/#!query=containers'
         - name: Buzz

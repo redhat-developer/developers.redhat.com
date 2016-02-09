@@ -1,6 +1,6 @@
 name: DevOps
 sub_title: Innovate at the speed of open source with DevOps
-long_description: "At Red Hat we do Dev, and Ops, and DevOps. (Do you have a Brent?  Read the Phoenix Project to find out.)"
+long_description: "At Red Hat we do Dev, Ops, and DevOps. (Do you have a Brent?  Read the Phoenix Project to find out.)"
 icon: icon-rh-icon-control-panel
 tags:
   - DevOps
@@ -20,7 +20,7 @@ primary_promo:
     links:
       - name: "Accelerate DevOps with OpenShift."
         url: 'https://www.redhat.com/cms/public/Jaen%20Swart_Devops%20with%20EAP%20and%20Openshift.pdf'
-      - name: "Register today to learn more about Red Hat and Web apps."
+      - name: "Register and learn more about DevOps."
         local_url: '/register'
       - name: "Join us at DevNation in San Francisco, June 2016"
         url: http://www.devnation.org/
@@ -45,7 +45,7 @@ tertiary_tall_promo:
 tertiary_promo:
   - title: 'Continuous Delivery on OpenShift using Jenkins'
     url: 'https://blog.openshift.com/continuous-delivery-on-openshift/'
-    description: "See code promoted across build, development, QA, and production."
+    description: "See code promoted across build, dev., QA, and prod."
     tags:
       - Containers
       - DevOps
@@ -65,8 +65,8 @@ tertiary_promo:
       - DevOps
       - Java
   - title: 'Using containers for DevOps'
-    url: '#'
-    description: "Visit our Containers Topic - containerize your apps, get into microservices."
+    local_url: '/containers/'
+    description: "Containerize your apps, launch into microservices."
     tags:
       - Containers
       - Microservices
@@ -104,6 +104,8 @@ right_side_promo:
           url: '#'
         - name: FeedHenry
           url: '#'
+    section_4:
+      links:
         - name: Learn
           local_url: '/resources/#!query=devops'
         - name: Buzz

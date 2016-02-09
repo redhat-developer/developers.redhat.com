@@ -47,7 +47,7 @@
   span.promo-tags {
     position: absolute;
     bottom: 16px;
-    .promo-tags-label, ul li a {
+    .promo-tags-label, ul li {
       font-size: 13px;
       display: inline;
       color: $white;
@@ -60,6 +60,8 @@
         display: inline;
         &:after {
           content: ", ";
+          position: relative;
+          left: -2px;
         }
       }
       li:last-child{
@@ -104,6 +106,7 @@
         color: $white;
         text-decoration: underline;
         font-size: 13px;
+        line-height: 0;
       }
     }
     span.promo-tags {
@@ -173,14 +176,14 @@
       max-height: 3em;
       color: #424242;
     }
-    .promo-tags .promo-tags-label, .promo-tags ul li a {
+    .promo-tags .promo-tags-label, .promo-tags ul li{
       color: #424242;
     }
     &:hover, &:active, &:focus {
-      border: none;
+      border: 2px solid #0089d0;
       background-color: #0089d0;
       cursor: pointer;
-      a, p, h4, h5, .promo-tags-label, ul li a, .promo-tags ul li:after{
+      a, p, h4, h5, .promo-tags-label, ul li , .promo-tags ul li:after{
         color: $white;
       }
     }
@@ -209,6 +212,12 @@
     a.button {
       display: block;
     }
+    ul.sec-4-links {
+      margin-left: 0;
+      li a {
+        text-transform: uppercase;
+      }
+    }
     @include tablet-landscape-and-down {
       height: auto;
       background-size: 30%;
@@ -217,4 +226,8 @@
   .external-link:after {
     display: none;
   }
+}
+
+.promo-tags {
+  max-width: 85%;
 }
