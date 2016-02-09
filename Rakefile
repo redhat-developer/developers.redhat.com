@@ -38,7 +38,7 @@ def wrap_with_progress(sha, rake_task, target_url, context, description, args)
 end
 
 desc 'Setup the environment to run Awestruct'
-task :test do |task, args|
+task :test => :clear_status do |task, args|
   if ENV['ghprbActualCommit'].to_s.empty?
     Rake::Task[:internal_test_task].invoke(args)
   else
@@ -339,7 +339,7 @@ task :reap_old_pulls, [:pr_prefix] do |task, args|
 end
 
 desc 'Make sure Pull Request dirs exist'
-task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] => :clear_status do |task, args|
+task :create_pr_dirs, [:pr_prefix, :build_prefix, :pull] do |task, args|
   msg 'running create_pr_dirs'
   $staging_config ||= config 'staging'
   Dir.mktmpdir do |empty_dir|
@@ -408,10 +408,12 @@ task :blinkr, [:host_to_test, :report_path, :report_host, :verbose] do |task, ar
   puts "report_host: #{report_host}"
   sha = ENV['ghprbActualCommit']
   should_update_status = sha.to_s != ""
+  puts "should_update_status:#{should_update_status}"
   options = {:context => 'Blinkr', :description => 'Blinkr pending', :target_url => ENV["BUILD_URL"]}
 
   begin
     if should_update_status
+      puts "adding pending to status"
       GitHub.update_status($github_org, $github_repo, sha, "pending", options)
     end
 
@@ -423,6 +425,7 @@ task :blinkr, [:host_to_test, :report_path, :report_host, :verbose] do |task, ar
     unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{host_to_test} #{verbose_switch}"
       options[:description] = "Blinkr failed (bundle error)"
       if should_update_status
+        puts "adding error to status"
         puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
       end
       exit 1
@@ -439,12 +442,14 @@ task :blinkr, [:host_to_test, :report_path, :report_host, :verbose] do |task, ar
     options[:description] = "Blinkr report successful"
 
     if should_update_status
+      puts "adding success to status"
       puts GitHub.update_status($github_org, $github_repo, sha, "success", options)
     end
   rescue => e
     puts e
     options[:description] = "Blinkr failed (#{e.message})"
     if should_update_status
+      puts "adding error to status"
       puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
     end
   end

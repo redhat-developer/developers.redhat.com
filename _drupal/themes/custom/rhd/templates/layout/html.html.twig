@@ -48,6 +48,7 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,7 +62,7 @@
     <meta property="og:url" content="http://developers.redhat.com/">
     <meta property="og:determiner" content="the">
     <meta property="og:site_name" content="Red Hat Developers">
-    <title>Red Hat Developers</title>
+    <title>{{ head_title|safe_join(' | ')}}</title>
     <meta name="twitter:title" content="Red Hat Developers">
     <meta property="og:title" content="Red Hat Developers">
     <meta name="description" content="The simple, modern &amp; productive way to build apps and infrastructure.">
@@ -106,7 +107,9 @@
             </div>
         </header>
 
+        {{ page_top}}
         {{ page }}
+        {{ page_bottom}}
 
         <footer class="bottom">
             <div class="row">
@@ -152,6 +155,11 @@
                     </ul>
                 </div>
             </div>
+            {% if page.footer %}
+                {% block footer %}
+                    {{ page.footer }}
+                {% endblock %}
+            {% endif %}
         </footer>
     </div>
     <div class="overlay">

@@ -1,5 +1,7 @@
 -if site.drupal_base_url
   = content
+  script
+    include javascripts/namespace.js
 -else
   doctype html
   /[if IE 8]
@@ -13,6 +15,9 @@
       - if site.dtm_code
         / Adobe DTM staging
         script src="#{site.dtm_code}"
+    / include Adobe A/B testing inline
+    script
+      include javascripts/vendor/adobe-ab-testing.js
     meta charset='utf-8'
     meta name='google-site-verification' content='bxtQxPXTaA2g5bXw_buofCT53_Uwp1fGAu9uHSA0UWc'
     meta name='viewport' content='width=device-width, initial-scale=1.0'
@@ -203,12 +208,14 @@
     #fb-root
 
     script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"
+    script
+      include javascripts/namespace.js
     = javascripts "bottom" do
       / Load jQuery, CORS support for jquery (IE 8/9)
       script src="#{site.base_url}/javascripts/vendor/jquery.js"
       script src="#{site.base_url}/javascripts/vendor/jquery.xdomainrequest.js"
       / Load our basic JS setup
-      script src="#{site.base_url}/javascripts/namespace.js"
+      / script src="#{site.base_url}/javascripts/namespace.js"
       script src="#{site.base_url}/javascripts/extensions.js"
       / Load any JS which is going to make AJAX calls for page load
       / First load SSO, it needs to make two calls

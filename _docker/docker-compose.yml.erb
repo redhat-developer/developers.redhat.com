@@ -2,10 +2,6 @@ awestruct_acceptance:
   build: ./awestruct
   command:
      - /home/awestruct/developer.redhat.com/_cucumber/docker_run.sh
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
   links:
     - awestruct_preview_no_reload:docker
   volumes:
@@ -13,6 +9,9 @@ awestruct_acceptance:
   environment:
     - HOST_TO_TEST=http://docker:<%=ENV['AWESTRUCT_HOST_PORT']%>
     - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
+    - ghprbActualCommit
+    - github_status_api_token
+    - BUILD_URL
 awestruct_preview_no_reload:
   build: ./awestruct
   command:
@@ -21,10 +20,6 @@ awestruct_preview_no_reload:
     - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
   ports:
     - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
   links:
     - drupal
     - searchisko
@@ -56,14 +51,13 @@ awestruct:
   build: ./awestruct
   command:
     - "rake git_setup clean preview[docker]"
+  <% if ENV['CPU_QUOTA'] %>
+  cpu_quota: <%=ENV['CPU_QUOTA']%>
+  <% end %>
   expose:
     - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
   ports:
     - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
   links:
     - drupal
     - searchisko
@@ -107,10 +101,6 @@ drupal:
     - ../_drupal/themes/:/var/www/html/themes
     - ../images:/tmp/images
   #  - ../_drupal/scripts/:/drupal/bin
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
   environment:
     - DB_NAME=drupal
     # TODO: We could probably take these out and move them to secrets.yml.gpg if they aren't there already
@@ -118,10 +108,6 @@ drupal:
     - DB_PASSWORD=drupal
 drupalpgsql:
   image: postgres:9.4
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
   environment:
     - POSTGRES_USER=drupal
     - POSTGRES_PASSWORD=drupal
@@ -131,10 +117,6 @@ drupalpgsql:
     - "5432"
 mysql:
   image: mysql:5.6
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
   volumes:
     - ./searchisko_configure:/etc/mysql/conf.d
   environment:
@@ -148,10 +130,6 @@ searchisko:
   build: ./searchisko
   ports:
    - "<%= ENV['SEARCHISKO_HOST_PORT'] %>:8080"
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
   environment:
     - DB_NAME=searchisko
     - DB_USER=searchisko
@@ -160,10 +138,6 @@ searchisko:
    - mysql
 searchiskoconfigure:
   build: ./searchisko_configure
-  <% if ENV['ghprbPullId'] %>
-  labels:
-    - "com.develpers.redhat.pr=<%=ENV['ghprbPullId']%>"
-  <% end %>
   environment:
     - DB_NAME=searchisko
     - DB_USER=searchisko

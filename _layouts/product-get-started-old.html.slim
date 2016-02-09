@@ -46,9 +46,14 @@ br
           = page._extra_installation_instructions
     - else 
       li
-        asciidoc:
-          #{page.product.abbreviated_name} is only available through a full Red Hat subscription. Download #{page.product.abbreviated_name} by
-          https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[logging in to the Red Hat Customer Portal]  and downloading it from there.
+        - if page.product.full_subscription_required
+          asciidoc:
+            #{page.product.abbreviated_name} is only available through a full Red Hat subscription. Download #{page.product.abbreviated_name} by 
+            https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[logging in to the Red Hat Customer Portal] and downloading it from there.            
+
+        - else 
+          asciidoc:
+
     - if page.product.guides['Getting_Started_Guide']
       p
         | For more details, view the 

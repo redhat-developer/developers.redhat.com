@@ -73,8 +73,11 @@ echo "Searchisko ready"
 echo ========== Initializing Elasticsearch cluster ===========
 echo Using Elasticsearch http connector URL base: ${esurl}
 
-# These steps must be run in a precise order. See README here https://github.com/searchisko/configuration/tree/v1.1.1
+# These steps must be run in a precise order. See README here https://github.com/searchisko/configuration/tree/v2.1.2
 cd /tmp/configuration
+
+echo "========  Getting latest Searchisko config ======="
+git pull --rebase
 
 echo ========== Runing index_templates/index_templates ===========
 pushd index_templates/
