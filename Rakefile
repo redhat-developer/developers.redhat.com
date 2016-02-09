@@ -115,7 +115,7 @@ end
 
 desc 'Generate the site using the defined profile, or development if none is given'
 task :gen, [:profile] => :check do |task, args|
-  run_awestruct "-P #{args[:profile] || 'development'} -g --force -q"
+  run_awestruct "-P #{args[:profile] || 'development'} -g --force -q -w"
 end
 
 desc "Push local commits to #{$remote}/master"
@@ -163,7 +163,7 @@ task :internal_deploy_task, [:profile, :tag_name] do |task, args|
   # Delay awestruct failing the build until after we rsync files, if we are staging.
   # Allows errors to be viewed
   begin
-    run_awestruct "-P #{args[:profile]} -g --force"
+    run_awestruct "-P #{args[:profile]} -g --force -w"
   rescue
     if args[:profile] != 'production'
       msg 'awestruct_failed'
