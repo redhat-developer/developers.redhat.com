@@ -16,7 +16,7 @@ type: Get Started
       .row.sp-header
         = page._path_intro_section 
   - unless page.product.hide_rhel_tabs
-    .large-24.columns.tabs-sm
+    .large-24.columns.multipath-tabs-sm
       - currentPage = page.url
       - k = currentPage.rpartition("-")
       - pathName = k[-1];
