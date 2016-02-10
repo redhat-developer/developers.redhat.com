@@ -1,7 +1,7 @@
 .topics-header {
   background-color: rgba(0, 0, 0, 0.77);
-  padding: 20px;
-
+  padding: 35px 35px 20px 35px;
+  margin: -15px -15px 0 -15px;
   background-position: top center;
   background-size: cover;
   background-repeat: repeat-x;
@@ -14,7 +14,9 @@
     background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_mobile.png');
     display: block;
   }
-  
+  @include tablet-landscape-and-down {
+    padding-top: 20px;
+  }
   @include mobile-landscape-and-down {
     &.containers {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_containers.png');}
     &.devops {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_devops.png');}
