@@ -8,7 +8,6 @@ app = window.app || {};
 app.latest = {};
 
 app.latest.fetch = function() {
-  /*TODO: replace this with staging */
   $.getJSON(app.dcp.url.search + '/resources?newFirst=true&size10=true',function(data){
     if(data.hits && data.hits.hits) {
       app.latest.render(data.hits.hits);
