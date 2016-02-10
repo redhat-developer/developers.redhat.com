@@ -221,12 +221,13 @@ class TestOptions < Minitest::Test
 
     def test_drupal_nightly
       tasks = Options.parse (['--drupal-nightly'])
-      assert_includes tasks, :drupal
       assert_equal tasks[:drupal], true
-
       refute(tasks[:decrypt])
       assert(tasks[:kill_all])
-      assert_includes tasks, :supporting_services
+      assert_includes tasks[:supporting_services], 'mysql'
+      assert_includes tasks[:supporting_services], 'searchiskoconfigure'
+      assert_includes tasks[:supporting_services], 'searchisko'
+      assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]'], tasks[:awestruct_command_args])
       assert_includes tasks[:supporting_services], 'drupal'
       assert_includes tasks[:supporting_services], 'drupalpgsql'
     end
