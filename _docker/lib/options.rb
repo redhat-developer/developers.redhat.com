@@ -47,6 +47,7 @@ class Options
 
       opts.on('--drupal-nightly', 'Start up and enable drupal') do |u|
         tasks[:drupal] = true
+        tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:set_ports] = true
         tasks[:supporting_services] += %w(drupal drupalpgsql mysql searchiskoconfigure searchisko)

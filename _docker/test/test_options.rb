@@ -224,6 +224,7 @@ class TestOptions < Minitest::Test
       assert_equal tasks[:drupal], true
       refute(tasks[:decrypt])
       assert(tasks[:kill_all])
+      assert(tasks[:build])
       assert_includes tasks[:supporting_services], 'mysql'
       assert_includes tasks[:supporting_services], 'searchiskoconfigure'
       assert_includes tasks[:supporting_services], 'searchisko'
