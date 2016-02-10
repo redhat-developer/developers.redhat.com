@@ -2,18 +2,13 @@
 layout: technology-base
 ---
 
-.solution-hero.hero
+section(class="topics-header #{page.solution.id}")
   .row
     .large-24
-      ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
-        li Topics
-        li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-          a itemprop="item" href="#{site.base_url}/#{page.solution.id}/" #{page.solution.name}
-          meta itemprop="position" content="2"
       h2 #{page.solution.name}
-      h5.description #{page.solution.long_description}
+      h4#topic #{page.solution.long_description}
 
-.row
+.row.solution-content
   .large-4.medium-7.small-24.columns.nav-breakpoint
     = partial 'solution-left-menu.html.slim', {'parent' => page}
 

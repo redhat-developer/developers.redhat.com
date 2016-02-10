@@ -48,6 +48,7 @@
   background-position: top center;
   background-size: cover;
   background-repeat: repeat-x;
+  margin: -15px -15px 0 -15px;
 
   &.amq {background-image: cdn('../images/design/products/prod_header_jboss_amq.png');}
   &.atomic {background-image: cdn('../images/design/products/prod_header_rhel_atomic_host.png');}
@@ -117,6 +118,12 @@
   &.application-development {
     background-image: cdn('../images/design/products/dotted_lines_top_left_green.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
   }
+
+  .row.content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding-top: 40px;
+  }
+
 }
 
 @include tablet-landscape-and-down {
@@ -146,12 +153,12 @@
 
 .product-header{
   background-color: rgba(0, 0, 0, 0.77);
-  padding: 20px 0;
+  padding: 35px 15px 15px 15px;
   &.storage-and-big-data {
     border-bottom: 9px solid #F0AB00;
   }
   &.it-infrastructure {
-    border-bottom: 9px solid #00B9E4;
+    border-bottom: 9px solid #0088ce;
   }
   &.application-development {
     border-bottom: 9px solid #92D400;
@@ -178,8 +185,9 @@
 }
 
 #hero-try-or-buy {
-  margin: 0 auto 40px auto;
+  margin: 0 auto;
   padding-top: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
 
   &.storage-and-big-data {
     border-bottom: 1px dashed #F0AB00;
@@ -303,6 +311,17 @@
     padding-bottom: 5px;
     height: auto;
   }
+  .indent-product {
+    margin-left: 2em;
+    .large-8 {
+      margin-left: -.7em;
+    }
+    @include tablet-landscape-and-down {
+      .large-8 {
+        margin-left: 0;
+      }
+    }
+  }
 }
 #development-tool {
   .download-link{
@@ -366,7 +385,7 @@
   }
 }
 
-.tabs-sm {
+.multipath-tabs-sm {
   margin-bottom: 15px;
   padding-left: 0;
   padding-bottom: 12px;
@@ -376,11 +395,17 @@
       display: none;
     }
     li {
+      max-width: 100px;
+      display: inline;
       margin-right: 10px;
       padding: 15px 20px 15px 10px;
       &.active {
         border: 1px solid #BDBDBD;
         border-bottom-color: $white;
+        a {
+          padding-bottom: 4px;
+          border-bottom: 3px solid $red;
+        }
       }
       a {
         font-size: 1em;

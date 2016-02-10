@@ -54,6 +54,17 @@ section.topics-dotted-graphics
                         a(href="#{site.base_url}#{link.local_url}") #{link.name}
                       - elsif link.url 
                         a(href="#{link.url}") #{link.name}
+            .large-24.medium-8.columns  
+              - if e.section_4
+                - if e.section_4.title
+                  h5 #{e.section_4.title}
+                ul.sec-4-links
+                  - e.section_4.links.each do |link|
+                    li
+                      - if link.local_url
+                        a(href="#{site.base_url}#{link.local_url}") #{link.name}
+                      - elsif link.url 
+                        a(href="#{link.url}") #{link.name}
     .large-18.columns
       .row
         // Main promotional item
@@ -67,8 +78,7 @@ section.topics-dotted-graphics
                   .promo-tags-label Tags:
                   ul
                     - a.tags.each do |tag|
-                      li
-                        a(href='#{site.base_url}/resources/#!query=#{tag}') #{tag}
+                      li #{tag}
               .row.promo-links
                 - if a.links
                   - a.links.each do |link|
@@ -81,58 +91,54 @@ section.topics-dotted-graphics
         // Secondary promotional item
         .medium-8.columns
           - page.solution.secondary_promo.each do |b|
-            .secondary-promo
-              - if b.local_url
-                a(href="#{site.base_url}#{b.local_url}")
-                  h4 #{b.title}
-              - elsif b.url
-                a(href="#{b.url}")
-                  h4 #{b.title}
-              p #{b.description} 
-              span.promo-tags
-                .promo-tags-label Tags:
-                ul
-                  - b.tags.each do |tag|
-                    li
-                      a(href='#{site.base_url}/resources/#!query=#{tag}') #{tag}
+            - if b.local_url
+              - promo_url = (site.base_url + "/" + b.local_url)
+            - else
+              - promo_url = b.url
+            a(href="#{promo_url}")
+              .secondary-promo
+                h4 #{b.title}
+                p #{b.description}
+                span.promo-tags
+                  .promo-tags-label Tags:
+                  ul
+                    - b.tags.each do |tag|
+                      li #{tag}
       .row
         // Tertiary promotional items (Two rows of three items)
         .large-8.columns
           - page.solution.tertiary_tall_promo.each do |c|
-            .tertiary-tall-promo
-              - if c.local_url
-                a(href="#{site.base_url}#{c.local_url}")
-                  h4 #{c.title}
-              - elsif c.url
-                a(href="#{c.url}")
-                  h4 #{c.title}
-              p #{c.description} 
-              span.promo-tags
-                .promo-tags-label Tags:
-                ul
-                  - c.tags.each do |tag|
-                    li
-                      a(href='#{site.base_url}/resources/#!query=#{tag}') #{tag}   
+            - if c.local_url
+              - promo_url = (site.base_url + "/" + c.local_url)
+            - else
+              - promo_url = c.url
+            a(href="#{promo_url}")
+              .tertiary-tall-promo
+                h4 #{c.title}
+                p #{c.description}
+                span.promo-tags
+                  .promo-tags-label Tags:
+                  ul
+                    - c.tags.each do |tag|
+                      li #{tag}   
 
         .large-16.columns
           .row
             - page.solution.tertiary_promo.each do |d|
               .large-12.columns
-                .tertiary-promo
-                  - if d.local_url
-                    a(href="#{site.base_url}#{d.local_url}")
-                      h5 #{d.title}
-                      p #{d.description} 
-                  - elsif d.url
-                    a(href="#{d.url}")
-                      h5 #{d.title}
-                      p #{d.description} 
-                  span.promo-tags
-                    .promo-tags-label Tags:
-                    ul
-                      - d.tags.each do |tag|
-                        li
-                          a(href='#{site.base_url}/resources/#!query=#{tag}') #{tag}                       
+                - if d.local_url
+                  - promo_url = (site.base_url + "/" + d.local_url)
+                - else
+                  - promo_url = d.url
+                a(href="#{promo_url}")
+                  .tertiary-promo
+                    h5 #{d.title}
+                    p #{d.description}
+                    span.promo-tags
+                      .promo-tags-label Tags:
+                      ul
+                        - d.tags.each do |tag|
+                          li #{tag}                       
 
     // Topics resource boxes should use the partial 'topics_resources'
     
