@@ -3,6 +3,7 @@ require 'aweplug/helpers/cdn'
 require 'aweplug/helpers/resources'
 require 'aweplug/helpers/png'
 require 'aweplug/helpers/drupal_service'
+require 'awestruct/util/exception_helper'
 require 'compass'
 require 'asciidoctor'
 require 'asciidoctor/extensions'
@@ -87,8 +88,9 @@ module JBoss
           begin
             resp = @drupal.send_page page, content
           rescue Exception => e
+            ::Awestruct::ExceptionHelper.log_building_error e, page.relative_source_path
             puts "Error pushing to drupal #{page.output_path} : #{e.message}"
-            puts "Error making drupal request to '#{page.output_path}'. Status: #{resp.status}.  Params: #{params}. Response body: #{resp.body}"
+            puts "Error making drupal request to '#{page.output_path}'. Response: #{resp}"
           end
         end
         content # Don't mess up the content locally in _site
@@ -335,7 +337,7 @@ module Aweplug
         path = path[1..-1] if path.starts_with? '/'
         drupal_type = page.drupal_type || 'page'
         payload = {:title => [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
-                   :_links => {:type => {:href => File.join(@base_url, '/rest/type/node/', page.drupal_type)}},
+                   :_links => {:type => {:href => File.join(@base_url, '/rest/type/node/', drupal_type)}},
                    :body => [{:value => content,
                               :summary => page.description,
                               :format => "full_html"}],
