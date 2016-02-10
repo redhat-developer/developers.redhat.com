@@ -126,23 +126,21 @@ ul.homepage-resources {
   list-style: none;
   margin: 0;
   li {
-    border-bottom: 1px solid $grey-2;
-    padding: 10px 0 12px 0;
+    @include flexbox;
+    margin-bottom: 10px;
     &:last-child {
       border-bottom: none;
     }
-  }
-  span {
-    display: inline-table;
-      i {
-        margin-right: 10px;
-        position: relative;
-        top: 5px;
-        color: $link;
-        &.fa-2x {
-          font-size: 1.5em;
-        }
-      }
+    i {
+      font-size: 35px;
+      margin-right: 10px;
+      color:#1C93D3;
+      position: relative;
+      top:-5px;
+    }
+    a {
+      color:#1C93D3;
+    }
   }
   a.title {
     display: block;
@@ -152,16 +150,22 @@ ul.homepage-resources {
     text-overflow: ellipsis;
     font-weight: bold;
   }
+
   .date{
-    display: inline-block;
+    display: block;
+    color:black;
     margin-right: 20px;
-    font-size: 88%;
+    font-size: 11px;
     margin-bottom: 0;
   }
 }
 
-.picks-and-trending {
+.featured-and-latest {
   padding:20px 0;
+  h4 {
+    font-weight: 600;
+    font-size: 20px;
+  }
 }
 
 .inverse {

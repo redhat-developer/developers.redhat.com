@@ -13,15 +13,15 @@ section.homepage-main
     .large-8.columns.homepage-getstarted
       h5.caps Get Started
       ul
-        li 
+        li
           a href='#{site.base_url}/register' Red Hat Developers launches
-        li 
+        li
           a href='http://developerblog.redhat.com/2015/10/12/optimizing-twelve-factor-app-red-hat-openshift/' OpenShift Enterprise 3 takes off
-        li 
+        li
           a href='#{site.base_url}/promotions/distributed-javaee-architecture/' New book: Modern Java EE Design Patterns
-        li 
+        li
           a href='#{site.base_url}/products/mobileplatform/get-started' Hello World for Red Hat Mobile Application Platform
-        li 
+        li
           a href='http://developerblog.redhat.com/2015/11/04/red-hat-microsoft-making-dot-net-on-linux-for-enterprises/' Microsoft and Red Hat partner
       .clearfix
       h5.caps Accelerate Your Development
@@ -50,9 +50,12 @@ section.homepage-main
           img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_modernee.png") alt="Modern Java EE Design Patterns")
           span Download Modern Java EE Design Patterns
 
-.row.picks-and-trending
+.row.featured-and-latest
+  .large-24.columns
+    h3.caps Cool Stuff You Should Know...
   .medium-12.columns
-    h4.caps Our Picks
+    p Knowledge should be shared, and with so much to learn, do and accomplish having a starting point is key. With suggested content — our favorite pieces — and easy access to the latest content on the site, you can jump in quickly and easily.
+    h4.caps Featured Content
     ul.homepage-resources
       - site.our_picks.first(4).each do |k,v|
         li
@@ -68,10 +71,8 @@ section.homepage-main
             p.date #{v['date']}
 
   .medium-12.columns
-    h4.caps Trending
-    div(ng-app="dcp")
-      div(ng-controller="developerMaterialsController")
-        = partial 'newest-resources.html.slim'
+    h4.caps Latest Content
+    ul.homepage-resources.homepage-resources-latest
 
 section.register-banner.inverse
   .row
