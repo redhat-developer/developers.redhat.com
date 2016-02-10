@@ -1,7 +1,7 @@
 require_relative 'base_page'
 require_relative '../../../_cucumber/lib/helpers/products_helper'
 
-class ProductsPage < BasePage
+class Technologies < BasePage
 
   class << self
     include ProductsHelper

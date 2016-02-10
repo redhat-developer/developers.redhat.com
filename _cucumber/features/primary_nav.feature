@@ -8,19 +8,14 @@ Feature: Home Page Smoke Test
   Scenario Outline: All titles present
     Given I am on the <page> page
     Then I should see a primary nav bar with the following tabs:
-      | Solutions |
-      | Products  |
-      | Downloads |
-      | Resources |
-      | Community |
-      | Events    |
-      | Blogs     |
+      | Topics       |
+      | Technologies |
+      | Community    |
+      | Resources    |
+      | Downloads    |
 
   Examples: developers.redhat.com primary navigation bar links
-    | page      |
-    | Solutions |
-    | Products  |
-    | Downloads |
-    | resources |
-    | Community |
-    | Events    |
+    | page         |
+    | Technologies |
+    | Resources    |
+    | Downloads    |
