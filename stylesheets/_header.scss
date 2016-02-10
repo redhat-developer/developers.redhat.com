@@ -40,6 +40,9 @@ header.main {
   & > ul {
     float:right;
     position: relative;
+    .indent {
+      margin-left: 15px;
+    }
     & > li {
       &:first-child {
         margin-left: 0;

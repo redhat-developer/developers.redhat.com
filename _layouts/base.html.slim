@@ -146,10 +146,10 @@
                   i.fa.fa-angle-down
                 .sub-nav
                   .sub-nav-group
-                    a.heading(href="#{site.base_url}/products#infrastructure_management") Infrastrucure
+                    a.heading(href="#{site.base_url}/products#infrastructure_management") Infrastructure
                     a(href="#{site.base_url}/products/rhel/overview/") Red Hat Enterprise Linux
-                    a(href="#{site.base_url}/products/developertoolset/overview/") Red Hat Developer Toolkit
-                    a(href="#{site.base_url}/products/softwarecollections/overview/") Red Hat Software Collections
+                    a.indent(href="#{site.base_url}/products/developertoolset/overview/") Red Hat Developer Toolkit
+                    a.indent(href="#{site.base_url}/products/softwarecollections/overview/") Red Hat Software Collections
                     / a(href="#{site.base_url}/products/atomic/overview/") Red Hat Container Development Kit
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#cloud_products") Cloud
@@ -173,19 +173,19 @@
                   | Community
                   i.fa.fa-angle-down
                 .sub-nav.pull-right
+                  a(href="#{site.base_url}/blog")
+                    | Developers Blog
+                    span.page-description Insights & news on Red Hat devleoper tools, platforms and more
                   a(href="#{site.base_url}/events")
                     | Events
                     span.page-description Find the latest conferences, meetups, and virtual seminars
-                  a(href="#{site.base_url}/blog")
-                    | Developer Blog
-                    span.page-description Insights & news on Red Hat devleoper tools, platforms and more
                   .sub-nav-group
                     a(href="#{site.base_url}/projects")
                       | Open Source Communities
                       span.page-description Community Projects that Red Hat participates in
                   a(href="#{site.base_url}/community/contributor/")
-                    | RHD Contributors Program
-                    span.page-description Contribute your content to the Red Hat Developers website
+                    | Content Contributors
+                    span.page-description Share your knowledge. Contribute content to Red Hat Developers.
               li(class=(page.url.include?('resources') ? 'active' : ''))
                 a(href="#{site.base_url}/resources/") Resources
               li(class=(page.url.include?('downloads') ? 'active' : ''))
