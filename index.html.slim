@@ -65,18 +65,13 @@ section.homepage-main
     p Knowledge should be shared, and with so much to learn, do and accomplish having a starting point is key. With suggested content — our favorite pieces — and easy access to the latest content on the site, you can jump in quickly and easily.
     h4.caps Featured Content
     ul.homepage-resources
-      - site.our_picks.first(4).each do |k,v|
+      - site.our_picks.first(3).each do |k,v|
         li
-          span.type-icon
-            - if v['type'] == 'article-blog'
-              i.fa.fa-globe.fa-2x
-            - if v['type'] == 'book'
-              i.fa.fa-book.fa-2x
-            - if v['type'] == 'video'
-              i.fa.fa-video-camera.fa-2x
+          img.resource-thumbnail(src="#{v['thumbnail']}")
           span
             a.title(href="#{v['url']}") #{v['title']}
             p.date #{v['date']}
+            p.author By #{v['author']}
 
   .medium-12.columns
     h4.caps Latest Content

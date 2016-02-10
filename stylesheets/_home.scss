@@ -130,9 +130,16 @@ ul.homepage-resources {
   margin: 0;
   li {
     @include flexbox;
+    @include align-items(flex-start);
     margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed $grey;
     &:last-child {
       border-bottom: none;
+    }
+    img {
+      max-width:150px;
+      margin-right: 10px;
     }
     i {
       font-size: 35px;
@@ -153,6 +160,9 @@ ul.homepage-resources {
     text-overflow: ellipsis;
     font-weight: bold;
   }
+  .author {
+    margin: 0;
+  }
 
   .date{
     display: block;
@@ -160,6 +170,13 @@ ul.homepage-resources {
     margin-right: 20px;
     font-size: 11px;
     margin-bottom: 0;
+  }
+
+  &.homepage-resources-latest {
+    li {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
   }
 }
 

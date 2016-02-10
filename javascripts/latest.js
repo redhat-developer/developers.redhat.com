@@ -8,7 +8,8 @@ app = window.app || {};
 app.latest = {};
 
 app.latest.fetch = function() {
-  $.getJSON('http://dcp2.jboss.org/v2/rest/search/resources?newFirst=true&size10=true',function(data){
+  /*TODO: replace this with staging */
+  $.getJSON(app.dcp.url.search + '/resources?newFirst=true&size10=true',function(data){
     if(data.hits && data.hits.hits) {
       app.latest.render(data.hits.hits);
     }
@@ -16,7 +17,6 @@ app.latest.fetch = function() {
 }
 
 app.latest.render = function(materials) {
-  console.log("Render called");
   var html = [];
   materials.forEach(function(material){
     var type = material.fields.sys_type[0];
