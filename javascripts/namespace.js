@@ -54,6 +54,7 @@ app.dcp.url.events= '#{site.dcp_base_protocol_relative_url}v2/rest/search/events
 app.dcp.url.connectors= '#{site.dcp_base_protocol_relative_url}v2/rest/search/connectors';
 app.dcp.error_message = "<div class='dcp-error-message'>It appears we're unable to access this data right now. Look at <a href='http://twitter.com/jbossorg' target=_blank>@jbossorg</a> to see if there is scheduled maintenance, or try again shortly.</div>";
 app.dcp.url.developer_materials= '#{site.dcp_base_protocol_relative_url}v2/rest/search/developer_materials';
+app.dcp.excludeResourceTags = ["red hat", "Red Hat", "redhat"];
 
 app.dcp.availableTopics = #{JSON.dump(site.dev_mat_techs.flatten.uniq.sort)};
 app.dcp.thumbnails = {
