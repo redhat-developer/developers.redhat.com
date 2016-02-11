@@ -12,7 +12,7 @@ layout: technology-base
   - site.categories.each do |category|
     .large-24.development-tool-category
       .large-24.category-label(id="#{category.name.to_s}")
-        h5(id="#{category.name.to_s}")
+        h5
           = category.name.to_s.gsub('_', ' ').upcase
       - category.products.each do |p|
         - if site.products[p]

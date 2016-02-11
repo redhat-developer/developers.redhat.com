@@ -6,7 +6,7 @@ Then(/^I should see the following main products sections:$/) do |table|
 end
 
 Then(/^I should see a list of available products$/) do
-  expect(@page.technologies).to have_products_sections count: @product_names.size
+  expect(@page.technologies.products_sections.size).to eq @product_names.size
   @page.technologies.available_products.should =~ @product_names
 end
 

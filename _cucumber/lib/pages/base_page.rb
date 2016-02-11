@@ -68,6 +68,11 @@ class BasePage < SitePrism::Page
     page.has_css?(css_selector, :visible => negate)
   end
 
+  def hover_over_nav_menu(tab)
+    find(:xpath, "//*[@class='has-sub-nav']//a[contains(text(),'#{tab}')]").hover
+    sleep(1)
+  end
+
   private
 
   def finished_all_ajax_requests?
