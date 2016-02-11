@@ -1,7 +1,7 @@
 kramdown:
   :input: 'QuickStartParser'
 generation:
-  :in_threads: <%= ENV['AWE_PROC_COUNT'] || Parallel.processor_count * 10 %>
+  :in_processes: 5
 asciidoctor:
   :attributes:
     sectanchors: ''
