@@ -120,7 +120,9 @@ echo ========== Run indexers ===========
 
 #No Content Provider
 reindex_project 'sys_projects'
-reindex_contributor 'sys_contributors'
+
+#Contributors (not needed by RHD site)
+#reindex_contributor 'sys_contributors'
 
 # jbossdeveloper
 reindex_from_persistence 'jbossdeveloper_quickstart' &
@@ -135,8 +137,8 @@ reindex_from_persistence 'jbossdeveloper_book' &
 reindex_from_persistence 'jbossdeveloper_connector' &
 reindex_from_persistence 'jbossdeveloper_event' &
 
-# jbossforge
-reindex_from_persistence 'jbossforge_addon' &
+# jbossforge (not needed by RHD site)
+#reindex_from_persistence 'jbossforge_addon' &
 
 # jbossorg
 reindex_from_persistence 'jbossorg_blog' &
