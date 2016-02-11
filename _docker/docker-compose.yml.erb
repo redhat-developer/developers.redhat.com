@@ -100,6 +100,7 @@ drupal:
   volumes:
     - ../_drupal/themes/:/var/www/html/themes
     - ../images:/tmp/images
+    - ../stylesheets:/tmp/stylesheets
   #  - ../_drupal/scripts/:/drupal/bin
   environment:
     - DB_NAME=drupal
