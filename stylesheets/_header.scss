@@ -381,7 +381,7 @@ nav.accounts {
 
   .logo-wrap {
     width: 100%;
-    @include flex(1);
+    @include flex(1 0 auto);
     @include flexbox;
     @include justify-content(space-between);
     order:-1; // put above the bar
