@@ -306,6 +306,19 @@ nav.accounts {
     }
   }
 
+  // grey out rest of the website
+  .mega-menu:after {
+    display: block;
+    content: '';
+    background:rgba(0,0,0,0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
   .sub-nav {
     width: 100%;
     position: relative;
