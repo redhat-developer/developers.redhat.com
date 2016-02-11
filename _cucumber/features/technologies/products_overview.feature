@@ -18,9 +18,7 @@ Feature: Product overview page
 
   Examples: RedHat products
     | product id          |
-    | atomic              |
     | rhel                |
-    | satellite           |
     | developertoolset    |
     | softwarecollections |
     | openshift           |
