@@ -249,6 +249,9 @@ nav.accounts {
   .mega-menu {
     min-width: 100%;
     & > ul {
+      .indent {
+        margin: 0;
+      }
       & > li {
         // disable hover styles on mobile
         &:hover {
@@ -256,6 +259,10 @@ nav.accounts {
           & > a {
             background:none;
             color:white;
+            i {
+              color:$grey-6;
+              transform:none;
+            }
           }
           .sub-nav {
             display: none;
@@ -277,6 +284,10 @@ nav.accounts {
     li.sub-nav-open {
       .sub-nav {
         display: block !important;
+      }
+      i {
+        color:$red !important;
+        transform:rotateX(180deg) !important;
       }
     }
     .sub-nav {
