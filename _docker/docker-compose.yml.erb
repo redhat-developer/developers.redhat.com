@@ -51,9 +51,6 @@ awestruct:
   build: ./awestruct
   command:
     - "rake git_setup clean preview[docker]"
-  <% if ENV['CPU_QUOTA'] %>
-  cpu_quota: <%=ENV['CPU_QUOTA']%>
-  <% end %>
   expose:
     - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
   ports:
@@ -89,6 +86,10 @@ awestruct:
     - ghprbActualCommit
     - github_status_api_token
     - BUILD_URL
+    <% if ENV['AWE_PROC_COUNT'].to_s != "" %>
+    - AWE_PROC_COUNT
+    <% end %>
+
 drupal:
   build: ./drupal
   expose:

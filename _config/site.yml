@@ -1,5 +1,7 @@
 kramdown:
   :input: 'QuickStartParser'
+generation:
+  :in_processes: <%= ENV['AWE_PROC_COUNT'] || Parallel.processor_count %>
 asciidoctor:
   :attributes:
     sectanchors: ''
@@ -147,7 +149,6 @@ profiles:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg-main
 
-      
   production:
     <<: *profile
     base_url: http://developers.redhat.com/
