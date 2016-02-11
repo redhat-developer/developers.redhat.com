@@ -49,7 +49,7 @@ module JBoss
 
 
             # Iterate over all pages
-            Parallel.each(site.pages, in_threads: (site.build_threads || 0)) do |page|
+            Parallel.each(site.pages, site.generation) do |page|
               # Check if there is a _common directory in the hierarchy of directories above this one
               dir_map.each do |parent, vars| 
                 if page.source_path =~ /^#{site.dir}\/#{parent}/
