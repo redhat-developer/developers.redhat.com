@@ -39,4 +39,10 @@ app.latest.render = function(materials) {
   $('.homepage-resources-latest').html(html.join(''));
 }
 
-app.latest.fetch();
+$(function() {
+  var $latestResourceList = $('.homepage-resources-latest');
+  // check if we are on a page that needs this to run
+  if($latestResourceList.length) {
+    app.latest.fetch();
+  }
+});
