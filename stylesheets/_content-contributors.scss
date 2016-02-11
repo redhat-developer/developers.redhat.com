@@ -3,7 +3,7 @@
 }
 
 .contributors-main {
-  background: cdn('../images/content-contributors/content-contributors-banner.png') top center / cover no-repeat;
+  background: cdn('../images/design/RHDev_pageheader_contributors_desktop.png') top center / cover no-repeat;
   h2, h3, h4, h5, p {
     color: $white;
   }
@@ -22,7 +22,16 @@
     }
   }
 }
-
+@include tablet-landscape-and-down {
+  .contributors-main {
+    background: cdn('../images/design/RHDev_pageheader_contributors_tablet.png') top center / cover no-repeat;
+  }
+}
+@include mobile-landscape-and-down {
+  .contributors-main {
+    background: cdn('../images/design/RHDev_pageheader_contributors_mobile.png') top center / cover no-repeat;
+  } 
+}
 .contributers-sec1 {
   padding: 50px 0;
   h4 {
