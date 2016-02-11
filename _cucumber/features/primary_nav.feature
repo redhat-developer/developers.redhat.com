@@ -17,7 +17,6 @@ Feature: Site navigation menu
     | Resources    |
     | Downloads    |
 
-  @wip
   Scenario Outline: Hovering over the TOPICS menu should display additional sub-menu with options
     Given I am on the <page> page
     When I hover over the Topics menu item

@@ -13,7 +13,7 @@ class CommunityPage < BasePage
 
   def open
     load
-    loaded? 'Upstream Community'
+    loaded? 'Upstream Communities'
   end
 
   def clear_filters
