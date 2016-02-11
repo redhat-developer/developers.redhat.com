@@ -13,6 +13,14 @@
 }
 
 
+@include tablet-landscape-and-down {
+
+  body .atlwdg-popup {
+    width:95%;
+    margin:2.5%;
+  }
+}
+
 @include tablet-portrait-and-down {
 
   // Everything
@@ -87,6 +95,7 @@
     }
   }
 
+
 } // end mq
 
 @include mobile-portrait-and-down {
@@ -158,7 +167,7 @@
   }
 }
 
-@media #{$large-only} { 
+@media #{$large-only} {
   ul.side-nav {
     margin-left: -29px;
   }
