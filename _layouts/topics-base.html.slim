@@ -140,12 +140,8 @@ section.topics-dotted-graphics
                         - d.tags.each do |tag|
                           li #{tag}                       
 
-    // Topics resource boxes should use the partial 'topics_resources'
-    
-    / .large-24.columns
-    /   .row
-    /     .buzz-container.buzz-loading(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
-    /       span.loader
+  .row#topic-resources(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
+    ul.topic-resources.topic-resources-list.small-block-grid-1.medium-block-grid-2.large-block-grid-4
 
 = javascripts("solutions", true) do
   script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"

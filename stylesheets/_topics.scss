@@ -191,11 +191,14 @@
     position: relative;
     p {
       font-size: 1em;
-      text-overflow: ellipsis;
-      overflow: hidden;
       line-height: 1.4;
-      max-height: 3em;
       color: #424242;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 43px;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
     .promo-tags .promo-tags-label, .promo-tags ul li{
       color: #424242;
@@ -248,7 +251,70 @@
     display: none;
   }
 }
-
+ul.topic-resources.topic-resources-list{
+  list-style: none;
+  padding-left: 10px;
+  li {
+    display: inline-block;
+    background-color: #FFFFFF;
+    height: 193px;
+    width: calc(25% - 34px);
+    margin: 16px;
+    padding: 15px;
+    border: 2px solid #d5d5d5;
+  }
+  h5 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 50px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  p.description {
+    font-size: 1em;
+    line-height: 1.4;
+    color: #424242;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 43px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  p.tags {
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #424242;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 16px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    position: relative;
+    bottom: -16px;
+  }
+  li:hover, li:active, li:focus {
+    border: 2px solid #0089d0;
+    background-color: #0089d0;
+    cursor: pointer;
+    a, p, h4, h5, p.description, p.tags{
+      color: $white;
+    }
+  }
+}
+@include tablet-portrait-and-down {
+  ul.topic-resources.topic-resources-list li {
+    width: calc(50% - 34px);
+  }
+}
+@include mobile-landscape-and-down {
+  ul.topic-resources.topic-resources-list li {
+    width: calc(100% - 34px);
+  }
+}
 .promo-tags {
   max-width: 85%;
 }
