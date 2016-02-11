@@ -13,7 +13,7 @@ function redhat_developers_install() {
   require_once DRUPAL_ROOT . '/core/includes/file.inc';
 
   // Find all the images from the /tmp/images directory
-  $mask = '/.*\.(png|jpg|jpeg|gif|svg)/';
+  $mask = '/.*\.(png|jpg|jpeg|gif|svg|eot|ttf|woff)/';
   $site_images = file_scan_directory('/tmp/images', $mask, array());
 
   foreach ($site_images as $image) {
