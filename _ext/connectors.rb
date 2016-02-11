@@ -12,7 +12,7 @@ module JBoss
       def execute site
         searchisko = Aweplug::Helpers::Searchisko.default site, 0
 
-        Parallel.each(site.fuse_connectors, in_threads: (site.generation || 0)) do |(id, data)|
+        Parallel.each(site.fuse_connectors, site.generation) do |(id, data)|
 
           searchisko_hash = data.collect { |(key, value)|
 
