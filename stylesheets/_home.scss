@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-color: rgb(11, 8, 21);
   .homepage-cta {
-    margin: 5% auto;
+    margin: 8% auto;
     img {
       display: inline-block;
       vertical-align: middle;
@@ -51,21 +51,15 @@
     }
     .video-thumb {
       img {
-        max-width: 225px;
+        max-width: 185px;
       }
       p{
         margin-top: 8px;
         margin-bottom: 10px;
       }
     }
-    a.learn-more {
-      text-transform: uppercase;
-      color: #eaa400;
-      font-weight: 700;
-      float: right;
-      i {
-        margin-left: 5px;
-      }
+    .external-link:after {
+      display: none;
     }
   }
 }
