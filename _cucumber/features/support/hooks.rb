@@ -48,6 +48,11 @@ After('@logout') do
   Home.new(@driver).physical_logout
 end
 
+After('@mobile_logout') do
+  user_logout unless @redirect_url == '' || @redirect_url.nil?
+  Home.new(@driver).mobile_logout
+end
+
 After do |scenario|
   if scenario.failed?
     Capybara.using_session(Capybara::Screenshot.final_session_name) do

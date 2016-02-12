@@ -70,6 +70,17 @@ class BasePage < SitePrism::Page
     }
   end
 
+  def mobile_logout
+    try(3) {
+      if logged_in?.eql?(true)
+        logout_link.click
+        wait_for_ajax
+      end
+      toggle_menu
+      logged_out?
+    }
+  end
+
   def wait_for_ajax
     Timeout.timeout(30) do
       loop until finished_all_ajax_requests?
@@ -94,10 +105,12 @@ class BasePage < SitePrism::Page
 
   def toggle_menu_and_tap(tab)
     toggle_menu
-    send("primary_nav_#{tab.downcase}_link").click
-    sleep 3
-    send("primary_nav_#{tab.downcase}_link").click
-    sleep 3
+    case tab
+      when 'Login' || 'Register' || 'Logout'
+        send("#{tab.downcase}_link").click
+      else
+        send("primary_nav_#{tab.downcase}_link").click
+    end
   end
 
   private

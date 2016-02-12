@@ -1,6 +1,16 @@
 @smoke
 Feature: Site navigation menu
 
+  @mobile
+  @accepted_terms
+  @mobile_logout
+  Scenario: A customer has correct login credentials can log in on mobile/tablet devices.
+    Given I am on the Home page
+    And I tap on Login menu item
+    When I try to log in with a valid password
+    And I tap on Menu menu item
+    Then the loginadd attempt should be successful
+
   Scenario Outline: Primary navigation menu is visible
     Given I am on the <page> page
     Then I should see a primary nav bar with the following tabs:
@@ -125,7 +135,7 @@ Feature: Site navigation menu
   @mobile
   Scenario Outline: Hovering over the COMMUNITIES menu should display additional sub-menu with options
     Given I am on the <page> page
-    When I hover over the Community menu item
+    When I tap on Community menu item
     Then I should see the following Community sub-menu items:
       | Developers Blog         |
       | Events                  |
