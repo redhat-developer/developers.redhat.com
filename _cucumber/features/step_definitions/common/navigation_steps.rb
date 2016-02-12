@@ -16,11 +16,6 @@ Then(/^(I|they) should be logged (in|out)$/) do |negate, status|
 end
 
 Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
-
-  if @page.current_page.has_nav_toggle?
-    @page.current_page.toggle_menu
-  end
-
   table.raw.each do |row|
     tab = row.first
     case tab
@@ -38,6 +33,14 @@ end
 
 When(/^I hover over the ([^"]*) menu item$/) do |menu_item|
   @page.current_page.hover_over_nav_menu(menu_item)
+end
+
+When(/^I tap on ([^"]*) menu item$/) do |menu_item|
+  if menu_item.eql?('Menu')
+    @page.current_page.toggle_menu
+  else
+    @page.current_page.toggle_menu_and_tap(menu_item)
+  end
 end
 
 Then(/^I should see the following (Topics|Technologies|Community) sub\-menu items:$/) do |tab, table|

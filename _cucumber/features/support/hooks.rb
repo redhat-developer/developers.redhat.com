@@ -78,11 +78,11 @@ def user_logout
 end
 
 def resize_window_to_mobile
-  resize_window_by(640, 480)
+  resize_window_by(375, 627)
 end
 
 def resize_window_to_tablet
-  resize_window_by(960, 640)
+  resize_window_by(768, 1024)
 end
 
 def resize_window_default

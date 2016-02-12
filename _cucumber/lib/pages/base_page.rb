@@ -92,6 +92,14 @@ class BasePage < SitePrism::Page
     sleep(0.5)
   end
 
+  def toggle_menu_and_tap(tab)
+    toggle_menu
+    send("primary_nav_#{tab.downcase}_link").click
+    sleep 3
+    send("primary_nav_#{tab.downcase}_link").click
+    sleep 3
+  end
+
   private
 
   def finished_all_ajax_requests?

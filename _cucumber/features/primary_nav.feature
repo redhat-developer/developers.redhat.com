@@ -20,6 +20,7 @@ Feature: Site navigation menu
   @mobile
   Scenario Outline: Primary navigation is hidden behind a menu when on mobile devices
     Given I am on the <page> page
+    When I tap on Menu menu item
     Then I should see a primary nav bar with the following tabs:
       | Topics       |
       | Technologies |
@@ -37,6 +38,24 @@ Feature: Site navigation menu
   Scenario Outline: Hovering over the TOPICS menu should display additional sub-menu with options
     Given I am on the <page> page
     When I hover over the Topics menu item
+    Then I should see the following Topics sub-menu items:
+      | Containers              |
+      | Mobile                  |
+      | DevOps                  |
+      | Web and API Development |
+      | Enterprise Java         |
+
+  Examples: developers.redhat.com primary navigation bar links
+    | page         |
+    | Home         |
+    | Technologies |
+    | Resources    |
+    | Downloads    |
+
+  @mobile
+  Scenario Outline: Tapping TOPICS from drop down menu on Mobile/Tablet should display additional topics
+    Given I am on the <page> page
+    When I tap on Topics menu item
     Then I should see the following Topics sub-menu items:
       | Containers              |
       | Mobile                  |
@@ -69,6 +88,23 @@ Feature: Site navigation menu
     | Resources    |
     | Downloads    |
 
+  @mobile
+  Scenario Outline: Tapping TECHNOLOGIES from drop down menu on Mobile/Tablet should display additional topics
+    Given I am on the <page> page
+    When I tap on Technologies menu item
+    Then I should see the following Technologies sub-menu items:
+      | INFRASTRUCTURE |
+      | CLOUD          |
+      | MOBILE         |
+      | MIDDLEWARE     |
+
+  Examples: developers.redhat.com primary navigation bar links
+    | page         |
+    | Home         |
+    | Technologies |
+    | Resources    |
+    | Downloads    |
+
   Scenario Outline: Hovering over the COMMUNITIES menu should display additional sub-menu with options
     Given I am on the <page> page
     When I hover over the Community menu item
@@ -85,3 +121,21 @@ Feature: Site navigation menu
     | Technologies |
     | Resources    |
     | Downloads    |
+
+  @mobile
+  Scenario Outline: Hovering over the COMMUNITIES menu should display additional sub-menu with options
+    Given I am on the <page> page
+    When I hover over the Community menu item
+    Then I should see the following Community sub-menu items:
+      | Developers Blog         |
+      | Events                  |
+      | Open Source Communities |
+      | Content Contributors    |
+
+  Examples: developers.redhat.com primary navigation bar links
+    | page         |
+    | Home         |
+    | Technologies |
+    | Resources    |
+    | Downloads    |
+
