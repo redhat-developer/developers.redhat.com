@@ -9,7 +9,7 @@ Feature: Site navigation menu
     And I tap on Login menu item
     When I try to log in with a valid password
     And I tap on Menu menu item
-    Then the loginadd attempt should be successful
+    Then the login attempt should be successful
 
   Scenario Outline: Primary navigation menu is visible
     Given I am on the <page> page
