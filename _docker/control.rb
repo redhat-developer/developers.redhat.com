@@ -180,7 +180,7 @@ if tasks[:build]
   puts 'Building base Java docker image...'
   execute_docker(:build, '--tag=developer.redhat.com/java', './java')
   puts 'Building base Ruby docker image...'
-  execute_docker(:build, '--tag=developer.redhat.com/ruby', './ruby')
+  execute_docker(:build, '--tag=developer.redhat.com/ruby23', './ruby')
   puts 'Building services...'
   execute_docker_compose :build
 end
