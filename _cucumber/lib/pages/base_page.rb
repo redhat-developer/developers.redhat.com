@@ -5,20 +5,20 @@ class BasePage < SitePrism::Page
 
   attr_reader :driver
 
-  PRIMARY_NAV_ACTIONS = %i[register login logout]
-  PRIMARY_NAV_TABS = %i[Solutions Products Downloads Resources Community Events Blogs]
+  primary_nav_actions = %i[register login logout]
+  primary_nav_tabs = %i[Topics Technologies Community Resources Downloads]
 
-  PRIMARY_NAV_ACTIONS.each do |action|
+  primary_nav_actions.each do |action|
     element :"#{action}_link", ".#{action}"
   end
 
-  PRIMARY_NAV_TABS.each do |tab|
-    element :"primary_nav_#{tab.downcase}_link", :xpath, "//nav[@class='primary-nav']//ul/li/*[contains(text(),'#{tab}')]"
+  primary_nav_tabs.each do |tab|
+    element :"primary_nav_#{tab.downcase}_link", :xpath, "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{tab.capitalize}')]"
   end
 
   element :logged_in?, '.logged-in'
   element :logged_in_name_link, '.logged-in-name'
-  element :p_title, '.blowout'
+  element :p_title, '.hero'
   element :loading_spinner, '.results loading'
   element :verification_message, '#kc-feedback-wrapper'
   element :logged_in_state, '.login'
@@ -66,6 +66,11 @@ class BasePage < SitePrism::Page
 
   def visible?(negate, css_selector)
     page.has_css?(css_selector, :visible => negate)
+  end
+
+  def hover_over_nav_menu(tab)
+    find(:xpath, "//*[@class='has-sub-nav']//a[contains(text(),'#{tab}')]").hover
+    sleep(1)
   end
 
   private
