@@ -19,8 +19,6 @@ Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
   table.raw.each do |row|
     tab = row.first
     case tab
-      when 'Technologies'
-        expect(@page.current_page.primary_nav_technologies_link['href']).to eq "#{Capybara.app_host}/products"
       when 'Resources'
         expect(@page.current_page.primary_nav_resources_link['href']).to eq "#{Capybara.app_host}/resources/"
       when 'Downloads'
