@@ -16,6 +16,11 @@ Then(/^(I|they) should be logged (in|out)$/) do |negate, status|
 end
 
 Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
+
+  if @page.current_page.has_nav_toggle?
+    @page.current_page.toggle_menu
+  end
+
   table.raw.each do |row|
     tab = row.first
     case tab
@@ -23,6 +28,8 @@ Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
         expect(@page.current_page.primary_nav_technologies_link['href']).to eq "#{Capybara.app_host}/products"
       when 'Resources'
         expect(@page.current_page.primary_nav_resources_link['href']).to eq "#{Capybara.app_host}/resources/"
+      when 'Downloads'
+        expect(@page.current_page.primary_nav_downloads_link['href']).to eq "#{Capybara.app_host}/downloads/"
       else
         expect(@page.current_page).to send("have_primary_nav_#{tab.downcase}_link")
     end

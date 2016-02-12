@@ -10,6 +10,14 @@ Before do
   visit('/')
 end
 
+Before('@mobile') do
+  resize_window_to_mobile
+end
+
+After('@mobile') do
+  resize_window_default
+end
+
 Before('@products, @downloads') do
   @product_ids = get_products[0]
   @product_names = get_products[1]
@@ -67,4 +75,24 @@ def user_logout
   end
   Home.new(@driver).wait_for_ajax
   sleep(1)
+end
+
+def resize_window_to_mobile
+  resize_window_by(640, 480)
+end
+
+def resize_window_to_tablet
+  resize_window_by(960, 640)
+end
+
+def resize_window_default
+  resize_window_by(1024, 768)
+end
+
+def resize_window_by(width, height)
+  if Capybara.current_driver == 'poltergeist'.to_sym
+    @driver.resize(width, height)
+  else
+    @driver.browser.manage.window.resize_to(width, height)
+  end
 end

@@ -21,6 +21,8 @@ class BasePage < SitePrism::Page
     element :"#{topic}_link", "#topic-#{topic}"
   end
 
+  element :nav_toggle, '.nav-toggle'
+  element :nav_open, '.nav-open'
   element :logged_in?, '.logged-in'
   element :logged_in_name_link, '.logged-in-name'
   element :p_title, '.hero'
@@ -81,6 +83,13 @@ class BasePage < SitePrism::Page
   def hover_over_nav_menu(tab)
     find(:xpath, "//*[@class='has-sub-nav']//a[contains(text(),'#{tab}')]").hover
     sleep(1)
+  end
+
+  def toggle_menu
+    wait_until_nav_toggle_visible(6)
+    nav_toggle.click
+    wait_until_nav_open_visible(6)
+    sleep(0.5)
   end
 
   private

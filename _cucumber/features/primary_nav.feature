@@ -17,6 +17,23 @@ Feature: Site navigation menu
     | Resources    |
     | Downloads    |
 
+  @mobile
+  Scenario Outline: Primary navigation is hidden behind a menu when on mobile devices
+    Given I am on the <page> page
+    Then I should see a primary nav bar with the following tabs:
+      | Topics       |
+      | Technologies |
+      | Community    |
+      | Resources    |
+      | Downloads    |
+
+  Examples: developers.redhat.com primary navigation bar links
+    | page         |
+    | Home         |
+    | Technologies |
+    | Resources    |
+    | Downloads    |
+
   Scenario Outline: Hovering over the TOPICS menu should display additional sub-menu with options
     Given I am on the <page> page
     When I hover over the Topics menu item
