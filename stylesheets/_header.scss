@@ -1,6 +1,6 @@
 header.main {
   font-size: 2rem;
-  background:$dark-gray url('../images/design/RHD-header-bg.svg') no-repeat;
+  background:$dark-gray cdn('../images/design/RHD-header-bg.svg') no-repeat;
   position: relative;
   z-index: 2;
   background-position:center;
@@ -32,8 +32,8 @@ header.main {
   a {
     font-weight: 100;
     color:white;
-    font-size: 25px;
-    padding:10px 12px;
+    font-size: 23px;
+    padding:10px;
   }
 
   // top level
@@ -249,6 +249,9 @@ nav.accounts {
   .mega-menu {
     min-width: 100%;
     & > ul {
+      .indent {
+        margin: 0;
+      }
       & > li {
         // disable hover styles on mobile
         &:hover {
@@ -256,6 +259,10 @@ nav.accounts {
           & > a {
             background:none;
             color:white;
+            i {
+              color:$grey-6;
+              transform:none;
+            }
           }
           .sub-nav {
             display: none;
@@ -278,10 +285,17 @@ nav.accounts {
       .sub-nav {
         display: block !important;
       }
+      i {
+        color:$red !important;
+        transform:rotateX(180deg) !important;
+      }
     }
     .sub-nav {
       padding:0;
       border-bottom: 0;
+      .page-description {
+        display: none;
+      }
     }
     a {
       display: block;
@@ -301,6 +315,23 @@ nav.accounts {
     .accounts, .mega-menu {
       display: block;
     }
+  }
+
+  .sub-nav-group {
+    margin-bottom: 0;
+  }
+
+  // grey out rest of the website
+  .mega-menu:after {
+    display: block;
+    content: '';
+    background:rgba(0,0,0,0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
   }
 
   .sub-nav {
@@ -350,7 +381,7 @@ nav.accounts {
 
   .logo-wrap {
     width: 100%;
-    @include flex(1);
+    @include flex(1 0 auto);
     @include flexbox;
     @include justify-content(space-between);
     order:-1; // put above the bar

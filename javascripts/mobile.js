@@ -117,34 +117,23 @@ app.createSlider = function($el) {
   Toggle mobile Nav
 */
 
-$('.nav-toggle').on('click touchend',function(e){
+app.touchSupport = ('ontouchstart' in window) || (window.DocumentTouch && document instanceof DocumentTouch);
+
+$('.nav-toggle').on('click',function(e){
    e.preventDefault();
-   if (!app.fastClick) {
-     // we're binding to touchstart and click. If we have a touchstart, don't also run on click
-     app.fastClick = true;
-     setTimeout(function(){ app.fastClick = false; }, 100);
-     $('body').toggleClass('nav-open');
-   }
+   $('body').toggleClass('nav-open');
 });
 
 /*
   Mobile Nav dropdown
 */
 
-$('.has-sub-nav').on('click',function(e){
-    // we're binding to touchstart and click. If we have a touchstart, don't also run on click
-    app.fastClick = true;
-    setTimeout(function(){ app.fastClick = false; }, 100);
-    // close others
-    $('.sub-nav-open').not(this).removeClass('sub-nav-open');
-    // open this one
-    $(this).toggleClass('sub-nav-open');
-});
-
-/* Top level */
-$('.mega-menu > ul > li > a').on('click',function(e) {
-  var breakpoint = 768;
-  if(this.href.match(/#$/) || window.innerWidth <= breakpoint)  {
-    e.preventDefault();
-  }
+$('.has-sub-nav').unbind().on('click',function(e){
+    if(app.touchSupport) {
+      e.preventDefault(); // stop it from changing the page on mobile
+      // close others
+      $('.sub-nav-open').not(this).removeClass('sub-nav-open');
+      // open this one
+      $(this).toggleClass('sub-nav-open');
+    }
 });
