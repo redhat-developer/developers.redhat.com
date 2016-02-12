@@ -336,7 +336,7 @@ Minimally the following list of recipients is required to encrypt the file:
 If you add a new recipient to the file, ensure you update the list above.
 
 ## Updating the Staging Integration Branch
-it-developers.stage.redhat.com hosts a build of the site that uses staging instances of Download Manager and KeyCloak. After the migration to DCP 2, it will also use the staging instance of the DCP. The purpose of this environment is to test new versions of the back-end services before they go into production. 
+developers.stage.redhat.com hosts a build of the site that uses staging instances of Download Manager and KeyCloak. After the migration to DCP 2, it will also use the staging instance of the DCP. The purpose of this environment is to test new versions of the back-end services before they go into production. 
 
 This build is also used for long-term site changes that need to be tested by the wider team, prior to going live into production. Currently it is being used for the CDK 2 Beta site changes. These changes live on the `cdk_beta` branch which needs to be regularly updated with new commits in the `master` branch. 
 
