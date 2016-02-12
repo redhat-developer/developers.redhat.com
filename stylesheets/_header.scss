@@ -248,6 +248,10 @@ nav.accounts {
 
   .mega-menu {
     min-width: 100%;
+    a.hide-on-mobile {
+      display: none;
+    }
+
     & > ul {
       .indent {
         margin: 0;
@@ -306,7 +310,6 @@ nav.accounts {
       padding:10px 10px 10px 40px;
     }
   }
-
   .accounts, .mega-menu {
     display: none;
   }
@@ -339,17 +342,18 @@ nav.accounts {
     position: relative;
     -webkit-column-count:1;
     column-count:1;
-    .heading {
-      background:black;
+    a.heading {
       color:white;
-      padding:5px;
       display: block;
+      font-size: 20px;
     }
   }
 
   .nav-toggle {
     display: block;
   }
+
+
 
   nav.accounts {
     padding:0;
@@ -401,7 +405,6 @@ nav.accounts {
     }
   }
 
-  // disable desktop hover styles
 
 
 
