@@ -128,12 +128,14 @@ $('.nav-toggle').on('click',function(e){
   Mobile Nav dropdown
 */
 
-$('.has-sub-nav').unbind().on('click',function(e){
-    if(app.touchSupport) {
+$('.has-sub-nav > a').on('click',function(e){
+    console.log("sub nav opener clicked");
+    if(app.touchSupport || window.innerWidth <= 768) {
+      console.log("it's touch");
       e.preventDefault(); // stop it from changing the page on mobile
       // close others
-      $('.sub-nav-open').not(this).removeClass('sub-nav-open');
+      $('.sub-nav-open').not($(this).parent()).removeClass('sub-nav-open');
       // open this one
-      $(this).toggleClass('sub-nav-open');
+      $(this).parent().toggleClass('sub-nav-open');
     }
 });
