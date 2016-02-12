@@ -11,10 +11,10 @@ section(class="topics-header #{page.solution.id}")
       h4#topic #{page.solution.long_description}
 
 // Static promotional items
-section.topics-dotted-graphics 
+section.topics-dotted-graphics
   .row.topics-main
     .large-6.columns.right
-      
+
       - page.solution.right_side_promo.each do |e|
         .right-side-promo
           .row
@@ -34,7 +34,7 @@ section.topics-dotted-graphics
                         - elsif link.url
                           a(href="#{link.url}") #{link.name}
               a.button(href='#{site.base_url}#{e.button.url}') #{e.button.label}
-            .large-24.medium-8.columns  
+            .large-24.medium-8.columns
               - if e.section_2
                 h5 #{e.section_2.title}
                 ul
@@ -42,9 +42,9 @@ section.topics-dotted-graphics
                     li
                       - if link.local_url
                         a(href="#{site.base_url}#{link.local_url}") #{link.name}
-                      - elsif link.url 
+                      - elsif link.url
                         a(href="#{link.url}") #{link.name}
-            .large-24.medium-8.columns  
+            .large-24.medium-8.columns
               - if e.section_3
                 h5 #{e.section_3.title}
                 ul
@@ -52,19 +52,19 @@ section.topics-dotted-graphics
                     li
                       - if link.local_url
                         a(href="#{site.base_url}#{link.local_url}") #{link.name}
-                      - elsif link.url 
+                      - elsif link.url
                         a(href="#{link.url}") #{link.name}
-            .large-24.medium-8.columns  
-              - if e.section_4
-                - if e.section_4.title
-                  h5 #{e.section_4.title}
-                ul.sec-4-links
-                  - e.section_4.links.each do |link|
-                    li
-                      - if link.local_url
-                        a(href="#{site.base_url}#{link.local_url}") #{link.name}
-                      - elsif link.url 
-                        a(href="#{link.url}") #{link.name}
+            / .large-24.medium-8.columns
+            /   - if e.section_4
+            /     - if e.section_4.title
+            /       h5 #{e.section_4.title}
+            /     ul.sec-4-links
+            /       - e.section_4.links.each do |link|
+            /         li
+            /           - if link.local_url
+            /             a(href="#{site.base_url}#{link.local_url}") #{link.name}
+            /           - elsif link.url
+            /             a(href="#{link.url}") #{link.name}
     .large-18.columns
       .row
         // Main promotional item
@@ -73,13 +73,14 @@ section.topics-dotted-graphics
             - page.solution.primary_promo.each do |a|
               span
                 h3 #{a.title}
-                p.description #{a.description} 
+                p.description #{a.description}
                 - if a.tags
                   span.promo-tags
                     .promo-tags-label Tags:
                     ul
                       - a.tags.each do |tag|
                         li #{tag}
+
               .row.promo-links
                 - if a.links
                   - a.links.each do |link|
@@ -87,7 +88,7 @@ section.topics-dotted-graphics
                       - if link.local_url
                         a(href="#{site.base_url}#{link.local_url}") #{link.name}
                       - elsif link.url
-                        a(href="#{link.url}") #{link.name}           
+                        a(href="#{link.url}") #{link.name}
 
         // Secondary promotional item
         .medium-8.columns
@@ -123,7 +124,7 @@ section.topics-dotted-graphics
                     .promo-tags-label Tags:
                     ul
                       - c.tags.each do |tag|
-                        li #{tag}   
+                        li #{tag}
 
         .large-16.columns
           .row
@@ -142,7 +143,7 @@ section.topics-dotted-graphics
                         .promo-tags-label Tags:
                         ul
                           - d.tags.each do |tag|
-                            li #{tag}                       
+                            li #{tag}
 
   .row#topic-resources(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
     ul.topic-resources.topic-resources-list.small-block-grid-1.medium-block-grid-2.large-block-grid-4
