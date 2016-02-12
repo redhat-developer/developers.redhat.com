@@ -21,7 +21,11 @@ Capybara.configure do |config|
   if ENV['HOST_TO_TEST'].to_s.empty?
     raise "please provide a variable for HOST_TO_TEST"
   else
-    host_to_test = ENV['HOST_TO_TEST']
+    if ENV['HOST_TO_TEST'][-1, 1] == '/'
+      host_to_test = ENV['HOST_TO_TEST'].chomp('/')
+    else
+      host_to_test = ENV['HOST_TO_TEST']
+    end
   end
 
   config.app_host = host_to_test

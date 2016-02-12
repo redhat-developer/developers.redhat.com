@@ -4,6 +4,7 @@ Before do
   if Capybara.current_driver == 'poltergeist'.to_sym
     @driver.clear_cookies
   else
+    @driver.browser.manage.window.maximize
     @driver.browser.manage.delete_all_cookies
   end
   visit('/')
