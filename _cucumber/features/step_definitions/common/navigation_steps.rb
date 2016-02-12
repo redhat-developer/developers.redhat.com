@@ -33,34 +33,25 @@ When(/^I hover over the ([^"]*) menu item$/) do |menu_item|
   @page.current_page.hover_over_nav_menu(menu_item)
 end
 
-Then(/^I should see the following Topics sub\-menu items:$/) do |table|
+Then(/^I should see the following (Topics|Technologies|Community) sub\-menu items:$/) do |tab, table|
+  sub_menu_items = []
   table.raw.each do |row|
-    sub_menu_items = row.first
-    expect(page).to have_text(sub_menu_items)
+    table_items = row.first
+    sub_menu_items << table_items
   end
-end
-
-Then(/^I should see the following sub\-menu items:$/) do |table|
-  table.raw.each do |row|
-    sub_menu_items = row.first
-    expect(page).to have_text(sub_menu_items)
-  end
+  expect(@page.current_page.send("sub_nav_#{tab.downcase}").map { |name| name.text }).to eq sub_menu_items
 end
 
 And(/^the sub\-menu should include a list of available technologies$/) do
-  expect(page).to have_text @product_names
+  expect(@page.current_page.sub_technologies_links.map { |name| name.text }).to include @product_names
 end
 
-Then(/^I should see the following sub-menu items and their description:$/) do |table|
-  data = table.transpose.raw.inject({}) do |hash, column|
-    column.reject!(&:empty?)
-    hash[column.shift] = column
-    hash
-  end
-  data['name'].each do |name|
-    data['description'].each do |desc|
-      expect(page).to have_text(name)
-      expect(page).to have_text(desc)
+Then(/^I should see the following Community sub-menu items and their description:$/) do |table|
+  links = []
+  table.hashes.each do |row|
+    @page.current_page.sub_nav_communities.each do |link|
+      links << link.text
     end
+    expect(links).to include("#{row['name']} #{row['description']}")
   end
 end

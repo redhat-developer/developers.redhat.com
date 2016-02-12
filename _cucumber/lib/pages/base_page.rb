@@ -7,6 +7,7 @@ class BasePage < SitePrism::Page
 
   primary_nav_actions = %i[register login logout]
   primary_nav_tabs = %i[Topics Technologies Community Resources Downloads]
+  primary_nav_topics_items = %i[Containers Mobile DevOps Web and API Development Enterprise Java]
 
   primary_nav_actions.each do |action|
     element :"#{action}_link", ".#{action}"
@@ -16,6 +17,10 @@ class BasePage < SitePrism::Page
     element :"primary_nav_#{tab.downcase}_link", :xpath, "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{tab.capitalize}')]"
   end
 
+  primary_nav_topics_items.each do |topic|
+    element :"#{topic}_link", "#topic-#{topic}"
+  end
+
   element :logged_in?, '.logged-in'
   element :logged_in_name_link, '.logged-in-name'
   element :p_title, '.hero'
@@ -23,6 +28,11 @@ class BasePage < SitePrism::Page
   element :verification_message, '#kc-feedback-wrapper'
   element :logged_in_state, '.login'
   element :login_divider, '.login-divider'
+  elements :sub_nav_topics, '#sub-nav-topics a'
+  elements :sub_nav_technologies, '#sub-nav-technologies .sub-nav-group .heading'
+  elements :sub_nav_communities, '#sub-nav-community a'
+  elements :community_description, '.page-description'
+  elements :sub_technologies_links, '#sub-nav-technologies .sub-nav-group a'
 
   def initialize(driver)
     @driver = driver

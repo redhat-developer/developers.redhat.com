@@ -134,17 +134,17 @@
                 a(href="#")
                   | Topics
                   i.fa.fa-angle-down
-                div.sub-nav
-                  a(href="#{site.base_url}/containers") Containers
-                  a(href="#{site.base_url}/mobile") Mobile
-                  a(href="#{site.base_url}/devops") DevOps
-                  a(href="#{site.base_url}/web-and-api-development") Web and API Development
-                  a(href="#{site.base_url}/enterprise-java") Enterprise Java
+                div.sub-nav(id="sub-nav-topics")
+                  a(href="#{site.base_url}/containers" id="topic-containers") Containers
+                  a(href="#{site.base_url}/mobile" id="topic-mobile") Mobile
+                  a(href="#{site.base_url}/devops" id="topic-devops") DevOps
+                  a(href="#{site.base_url}/web-and-api-development" id="topic-web-and-api-development") Web and API Development
+                  a(href="#{site.base_url}/enterprise-java" id="topic-enterprise_java") Enterprise Java
               li.has-sub-nav(class=(page.url.include?('products') ? 'active' : ''))
                 a(href="#{site.base_url}/products")
                   | Technologies
                   i.fa.fa-angle-down
-                .sub-nav
+                .sub-nav(id="sub-nav-technologies")
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#infrastructure_management") Infrastructure
                     a(href="#{site.base_url}/products/rhel/overview/") Red Hat Enterprise Linux
@@ -172,10 +172,10 @@
                 a(href="#")
                   | Community
                   i.fa.fa-angle-down
-                .sub-nav.pull-right
-                  a(href="#{site.base_url}/blog")
+                .sub-nav.pull-right(id="sub-nav-community")
+                  a.community(href="#{site.base_url}/blog")
                     | Developers Blog
-                    span.page-description Insights & news on Red Hat devleoper tools, platforms and more
+                    span.page-description Insights & news on Red Hat developer tools, platforms and more
                   a(href="#{site.base_url}/events")
                     | Events
                     span.page-description Find the latest conferences, meetups, and virtual seminars
