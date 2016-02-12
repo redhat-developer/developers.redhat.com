@@ -74,11 +74,12 @@ section.topics-dotted-graphics
               span
                 h3 #{a.title}
                 p.description #{a.description} 
-                span.promo-tags
-                  .promo-tags-label Tags:
-                  ul
-                    - a.tags.each do |tag|
-                      li #{tag}
+                - if a.tags
+                  span.promo-tags
+                    .promo-tags-label Tags:
+                    ul
+                      - a.tags.each do |tag|
+                        li #{tag}
               .row.promo-links
                 - if a.links
                   - a.links.each do |link|
@@ -99,11 +100,12 @@ section.topics-dotted-graphics
               .secondary-promo
                 h4 #{b.title}
                 p #{b.description}
-                span.promo-tags
-                  .promo-tags-label Tags:
-                  ul
-                    - b.tags.each do |tag|
-                      li #{tag}
+                - if b.tags
+                  span.promo-tags
+                    .promo-tags-label Tags:
+                    ul
+                      - b.tags.each do |tag|
+                        li #{tag}
       .row
         // Tertiary promotional items (Two rows of three items)
         .large-8.columns
@@ -116,11 +118,12 @@ section.topics-dotted-graphics
               .tertiary-tall-promo
                 h4 #{c.title}
                 p #{c.description}
-                span.promo-tags
-                  .promo-tags-label Tags:
-                  ul
-                    - c.tags.each do |tag|
-                      li #{tag}   
+                - if c.tags
+                  span.promo-tags
+                    .promo-tags-label Tags:
+                    ul
+                      - c.tags.each do |tag|
+                        li #{tag}   
 
         .large-16.columns
           .row
@@ -134,11 +137,12 @@ section.topics-dotted-graphics
                   .tertiary-promo
                     h5 #{d.title}
                     p #{d.description}
-                    span.promo-tags
-                      .promo-tags-label Tags:
-                      ul
-                        - d.tags.each do |tag|
-                          li #{tag}                       
+                    - if d.tags
+                      span.promo-tags
+                        .promo-tags-label Tags:
+                        ul
+                          - d.tags.each do |tag|
+                            li #{tag}                       
 
   .row#topic-resources(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
     ul.topic-resources.topic-resources-list.small-block-grid-1.medium-block-grid-2.large-block-grid-4
