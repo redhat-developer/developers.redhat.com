@@ -254,6 +254,8 @@
 ul.topic-resources.topic-resources-list{
   list-style: none;
   padding-left: 10px;
+  max-height: 691px;
+  overflow: hidden;
   li {
     display: inline-block;
     background-color: #FFFFFF;
@@ -305,14 +307,21 @@ ul.topic-resources.topic-resources-list{
     }
   }
 }
+
 @include tablet-portrait-and-down {
-  ul.topic-resources.topic-resources-list li {
-    width: calc(50% - 34px);
+  ul.topic-resources.topic-resources-list {
+    max-height: 2266px;
+    li {
+      width: calc(50% - 34px);
+    }
   }
 }
 @include mobile-landscape-and-down {
-  ul.topic-resources.topic-resources-list li {
-    width: calc(100% - 34px);
+  ul.topic-resources.topic-resources-list {
+    height: 3605px;
+    li {
+      width: calc(100% - 34px);
+    }
   }
 }
 .promo-tags {

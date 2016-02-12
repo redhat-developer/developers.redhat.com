@@ -42,7 +42,7 @@ app.topics.render = function(materials) {
     // var tags = item.fields.sys_tags.join(', ')
     var item = [
       '<a href="' + material.fields.sys_url_view[0] + '">',
-        '<li>',
+        '<li class="large-6 columns">',
           '<h5>',
             material.fields.sys_title[0],
           '</h5>',
