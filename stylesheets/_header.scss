@@ -351,6 +351,9 @@ nav.accounts {
       color:white;
       display: block;
       font-size: 20px;
+      &:after {
+        display: none;
+      }
     }
   }
 
