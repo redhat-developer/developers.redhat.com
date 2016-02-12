@@ -2,6 +2,14 @@
 Feature: Site navigation menu
 
   @mobile
+  Scenario: A customer has correct login credentials can log in on mobile/tablet devices.
+    Given I am on the Home page
+    When I tap on Menu menu item
+    Then I should see a primary nav bar with the following tabs:
+      | Login     |
+      | Register  |
+
+  @mobile
   @accepted_terms
   @mobile_logout
   Scenario: A customer has correct login credentials can log in on mobile/tablet devices.

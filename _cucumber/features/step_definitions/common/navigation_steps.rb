@@ -19,6 +19,10 @@ Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
   table.raw.each do |row|
     tab = row.first
     case tab
+      when 'Login'
+        expect(@page.current_page.has_login_link?).to eq true
+      when 'Register'
+        expect(@page.current_page.has_register_link?).to eq true
       when 'Resources'
         expect(@page.current_page.primary_nav_resources_link['href']).to eq "#{Capybara.app_host}/resources/"
       when 'Downloads'
