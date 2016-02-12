@@ -107,7 +107,7 @@ Feature: Site navigation menu
     | Downloads    |
 
   @mobile
-  Scenario Outline: Tapping TECHNOLOGIES from drop down menu on Mobile/Tablet should display additional topics
+  Scenario Outline: Tapping TECHNOLOGIES from drop down menu on Mobile/Tablet should display additional technologies
     Given I am on the <page> page
     When I tap on Technologies menu item
     Then I should see the following Technologies sub-menu items:
@@ -141,7 +141,7 @@ Feature: Site navigation menu
     | Downloads    |
 
   @mobile
-  Scenario Outline: Hovering over the COMMUNITIES menu should display additional sub-menu with options
+  Scenario Outline: Tapping COMMUNITY from drop down menu on Mobile/Tablet should display additional communities
     Given I am on the <page> page
     When I tap on Community menu item
     Then I should see the following Community sub-menu items:
@@ -156,4 +156,3 @@ Feature: Site navigation menu
     | Technologies |
     | Resources    |
     | Downloads    |
-
