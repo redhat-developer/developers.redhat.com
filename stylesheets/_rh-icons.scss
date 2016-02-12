@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: "rh-icons";
-  src: cdn("./rh-icons/rh-icons.eot");
-  src: cdn("./rh-icons/rh-icons.eot?#iefix") format("embedded-opentype"),
-       cdn("./rh-icons/rh-icons.woff") format("woff"),
-       cdn("./rh-icons/rh-icons.ttf") format("truetype"),
-       cdn("./rh-icons/rh-icons.svg#rh-icons") format("svg");
+  src: cdn("./fonts/rh-icons.eot");
+  src: cdn("./fonts/rh-icons.eot?#iefix") format("embedded-opentype"),
+       cdn("./fonts/rh-icons.woff") format("woff"),
+       cdn("./fonts/rh-icons.ttf") format("truetype"),
+       cdn("./fonts/rh-icons.svg#rh-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,12 @@
 [data-icon]:before { content: attr(data-icon); }
 
 [data-icon]:before,
+.icon-RHDev_-resources_icons_article:before,
+.icon-RHDev_-resources_icons_blogpost:before,
+.icon-RHDev_-resources_icons_book:before,
+.icon-RHDev_-resources_icons_demo:before,
+.icon-RHDev_-resources_icons_getstarted:before,
+.icon-RHDev_-resources_icons_video:before,
 .icon-rh-icon-aed:before,
 .icon-rh-icon-alert-downtime:before,
 .icon-rh-icon-application:before,
@@ -250,6 +256,12 @@
   font-smoothing: antialiased;
 }
 
+.icon-RHDev_-resources_icons_article:before { content: "\f1d5"; }
+.icon-RHDev_-resources_icons_blogpost:before { content: "\f1db"; }
+.icon-RHDev_-resources_icons_book:before { content: "\f1d7"; }
+.icon-RHDev_-resources_icons_demo:before { content: "\f1dc"; }
+.icon-RHDev_-resources_icons_getstarted:before { content: "\f1d9"; }
+.icon-RHDev_-resources_icons_video:before { content: "\f1da"; }
 .icon-rh-icon-aed:before { content: "\f100"; }
 .icon-rh-icon-alert-downtime:before { content: "\f101"; }
 .icon-rh-icon-application:before { content: "\f102"; }

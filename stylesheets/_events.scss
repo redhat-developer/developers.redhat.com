@@ -199,22 +199,28 @@ h4.events-header.divider {
 }
 
 .hero.hero-events {
-  background: cdn('../images/design/RHDev_indeximage_desktop_events.png') top center / cover no-repeat;
+  background: cdn('../images/design/RHDev_pageheader_events_desktop.png') top center / cover no-repeat;
   content : ':4242';
   border:0;
-  margin-bottom: 70px;
-  padding:20px;
-  min-height: 185px;
-  @include tablet-portrait-and-down {
-    background: cdn('../images/design/RHDev_indeximage_mobile_events.png') top center / cover no-repeat;
-    margin: -15px;
-    margin-bottom: 40px;
-  }
-  h2.blowout {
+  min-height: 240px;
+  margin-bottom: 0;
+
+  h2 {
     color:white;
-    font-size: 70px;
-    text-shadow: 3px 3px #063a63;
-    margin-top: 25px;
+    font-size: 5em;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  @include tablet-portrait-and-down {
+    background: cdn('../images/design/RHDev_pageheader_events_tablet.png') top center / cover no-repeat;
+    min-height: auto;
+    h2 {
+      margin-top: 10px;
+    }
+  }
+  @include mobile-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_events_mobile.png') top center / cover no-repeat;
   }
   p {
     color: white;

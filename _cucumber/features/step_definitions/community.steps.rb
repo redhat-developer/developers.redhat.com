@@ -3,7 +3,7 @@ Then(/^I should see at least "([^"]*)" promoted links$/) do |links|
 end
 
 Then(/^I should see at least "([^"]*)" community links$/) do |links|
-  expect(@page.community).to have_community_links :minimum => links.to_i
+  @page.community.wait_for_community_links 30, :minimum => links.to_i
 end
 
 Then(/^I should see some well known projects such as:$/) do |table|

@@ -54,3 +54,7 @@ task :features do |t, args|
 end
 
 task :internal_features_task => [:features]
+
+Cucumber::Rake::Task.new(:wip) do |t|
+  t.cucumber_opts = '_cucumber -r _cucumber/features/ --tags @wip'
+end
