@@ -71,7 +71,7 @@ Capybara.register_driver :browserstack do |app|
   Capybara::Selenium::Driver.new(app, :browser => :remote, :url => url, :desired_capabilities => config)
 end
 
-browsers = [:poltergeist, :firefox, :chrome, :browserstack]
+browsers = [:firefox, :chrome]
 browsers.each do |browser|
   Capybara::Screenshot.register_driver(browser) do |driver, path|
     driver.browser.save_screenshot path
