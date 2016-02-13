@@ -1,19 +1,20 @@
 Feature: Site navigation menu
 
   @mobile
+  @javascript
   Scenario: A customer has correct login credentials can log in on mobile/tablet devices.
     Given I am on the Home page
     When I tap on Menu menu item
     Then I should see a primary nav bar with the following tabs:
-      | Login     |
-      | Register  |
+      | Login    |
+      | Register |
 
+  @javascript
   @mobile
   @accepted_terms
-  @mobile_logout
+  @logout
   Scenario: A customer has correct login credentials can log in on mobile/tablet devices.
-    Given I am on the Home page
-    And I tap on Login menu item
+    Given I am on the Login page
     When I try to log in with a valid password
     And I tap on Menu menu item
     Then the login attempt should be successful
@@ -28,13 +29,12 @@ Feature: Site navigation menu
       | Downloads    |
 
   Examples: developers.redhat.com primary navigation bar links
-    | page         |
-    | Home         |
-    | Technologies |
-    | Resources    |
-    | Downloads    |
+    | page      |
+    | Home      |
+    | Resources |
 
   @mobile
+  @javascript
   Scenario Outline: Primary navigation is hidden behind a menu when on mobile devices
     Given I am on the <page> page
     When I tap on Menu menu item
@@ -46,12 +46,13 @@ Feature: Site navigation menu
       | Downloads    |
 
   Examples: developers.redhat.com primary navigation bar links
-    | page         |
-    | Home         |
-    | Technologies |
-    | Resources    |
-    | Downloads    |
+    | page      |
+    | Home      |
+    | Resources |
+    | Downloads |
 
+  @desktop
+  @javascript
   Scenario Outline: Hovering over the TOPICS menu should display additional sub-menu with options
     Given I am on the <page> page
     When I hover over the Topics menu item
@@ -63,13 +64,13 @@ Feature: Site navigation menu
       | Enterprise Java         |
 
   Examples: developers.redhat.com primary navigation bar links
-    | page         |
-    | Home         |
-    | Technologies |
-    | Resources    |
-    | Downloads    |
+    | page      |
+    | Home      |
+    | Resources |
+    | Downloads |
 
   @mobile
+  @javascript
   Scenario Outline: Tapping TOPICS from drop down menu on Mobile/Tablet should display additional topics
     Given I am on the <page> page
     When I tap on Topics menu item
@@ -81,13 +82,14 @@ Feature: Site navigation menu
       | Enterprise Java         |
 
   Examples: developers.redhat.com primary navigation bar links
-    | page         |
-    | Home         |
-    | Technologies |
-    | Resources    |
-    | Downloads    |
+    | page      |
+    | Home      |
+    | Resources |
+    | Downloads |
 
   @products
+  @desktop
+  @javascript
   Scenario Outline: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
     Given I am on the <page> page
     When I hover over the Technologies menu item
@@ -99,13 +101,13 @@ Feature: Site navigation menu
     And the sub-menu should include a list of available technologies
 
   Examples: developers.redhat.com primary navigation bar links
-    | page         |
-    | Home         |
-    | Technologies |
-    | Resources    |
-    | Downloads    |
+    | page      |
+    | Home      |
+    | Resources |
+    | Downloads |
 
   @mobile
+  @javascript
   Scenario Outline: Tapping TECHNOLOGIES from drop down menu on Mobile/Tablet should display additional technologies
     Given I am on the <page> page
     When I tap on Technologies menu item
@@ -116,12 +118,13 @@ Feature: Site navigation menu
       | MIDDLEWARE     |
 
   Examples: developers.redhat.com primary navigation bar links
-    | page         |
-    | Home         |
-    | Technologies |
-    | Resources    |
-    | Downloads    |
+    | page      |
+    | Home      |
+    | Resources |
+    | Downloads |
 
+  @desktop
+  @javascript
   Scenario Outline: Hovering over the COMMUNITIES menu should display additional sub-menu with options
     Given I am on the <page> page
     When I hover over the Community menu item
@@ -133,13 +136,13 @@ Feature: Site navigation menu
       | Content Contributors    | Share your knowledge. Contribute content to Red Hat Developers. |
 
   Examples: developers.redhat.com primary navigation bar links
-    | page         |
-    | Home         |
-    | Technologies |
-    | Resources    |
-    | Downloads    |
+    | page      |
+    | Home      |
+    | Resources |
+    | Downloads |
 
   @mobile
+  @javascript
   Scenario Outline: Tapping COMMUNITY from drop down menu on Mobile/Tablet should display additional communities
     Given I am on the <page> page
     When I tap on Community menu item
@@ -150,8 +153,7 @@ Feature: Site navigation menu
       | Content Contributors    |
 
   Examples: developers.redhat.com primary navigation bar links
-    | page         |
-    | Home         |
-    | Technologies |
-    | Resources    |
-    | Downloads    |
+    | page      |
+    | Home      |
+    | Resources |
+    | Downloads |

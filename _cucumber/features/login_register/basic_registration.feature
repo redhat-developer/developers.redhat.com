@@ -5,6 +5,7 @@ Feature: Basic personal registration
   So that I can use its services.
 
   @customer
+  @javascript
   Scenario: Customer registers
     Given I am on the Registration page
     When I complete the registration form
@@ -13,6 +14,7 @@ Feature: Basic personal registration
 
   @customer
   @logout
+  @javascript
   Scenario: Customer verifies their account
     Given I am on the Registration page
     And I complete the registration form
@@ -20,6 +22,7 @@ Feature: Basic personal registration
     Then I should be logged in
 
   @customer
+  @javascript
   Scenario: Password validation
     Given I am on the Registration page
     When I try to enter passwords that do not match

@@ -16,13 +16,6 @@ RUN wget http://prdownloads.sourceforge.net/optipng/optipng-0.7.5.tar.gz?downloa
 WORKDIR /tmp/optipng-0.7.5
 RUN ./configure && make && make install
 
-WORKDIR /tmp
-RUN yum install -y fontconfig freetype && \
-    wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 && \
-    mkdir -p /opt/phantomjs && \
-    tar -xjvf /tmp/phantomjs-1.9.8-linux-x86_64.tar.bz2 -C /opt/phantomjs/ && \
-    cp /opt/phantomjs/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
-
 RUN adduser --system --uid=1000 --home-dir /home/awestruct --shell /bin/bash -m -U awestruct
 
 USER awestruct
