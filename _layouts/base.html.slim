@@ -135,7 +135,7 @@
                 a(href="#")
                   | Topics
                   i.fa.fa-angle-down
-                div.sub-nav
+                div.sub-nav(id="sub-nav-topics")
                   a(href="#{site.base_url}/containers") Containers
                   a(href="#{site.base_url}/mobile") Mobile
                   a(href="#{site.base_url}/devops") DevOps
@@ -145,7 +145,7 @@
                 a(href="#")
                   | Technologies
                   i.fa.fa-angle-down
-                .sub-nav
+                .sub-nav(id="sub-nav-technologies")
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#infrastructure_management") Infrastructure
                     a.hide-on-mobile(href="#{site.base_url}/products/rhel/overview/") Red Hat Enterprise Linux
@@ -173,7 +173,7 @@
                 a(href="#")
                   | Community
                   i.fa.fa-angle-down
-                .sub-nav.pull-right
+                .sub-nav.pull-right(id="sub-nav-community")
                   a(href="http://developers.redhat.com/blog")
                     | Developers Blog
                     span.page-description Insights & news on Red Hat developer tools, platforms and more
