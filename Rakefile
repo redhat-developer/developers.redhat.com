@@ -322,6 +322,15 @@ task :reap_old_pulls_docker do |task|
   Reaper.kill_and_remove_prs(reap)
 end
 
+desc "Kill a particular pull request, helpful as docker compose wont stop 'run' commands"
+task :reap_pr_docker, [:pr] do |task, args|
+  pr = args[:pr]
+  puts "Going to kill #{pr}"
+  as_array = [pr]
+  Reaper.kill_and_remove_prs(as_array)
+end
+
+
 desc 'Remove staged pull builds for pulls closed more than 7 days ago'
 task :reap_old_pulls, [:pr_prefix] do |task, args|
   reap = GitHub.list_closed_pulls($github_org, $github_repo)

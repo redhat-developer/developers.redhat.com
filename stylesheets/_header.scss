@@ -86,9 +86,14 @@ header.main {
   margin:0;
   color:$blue;
   -webkit-column-count:2;
+  -moz-column-count:2;
   column-count:2;
   -webkit-column-rule:1px dashed $grey-3;
+  -moz-column-rule:1px dashed $grey-3;
+  column-rule:1px dashed $grey-3;
   -webkit-column-gap:50px;
+  -moz-column-gap:50px;
+  column-gap:50px;
   background:white cdn('../images/design/dotted_line-grey.svg') bottom right no-repeat;
   background-position: bottom -200px right -200px;
   background-size:1000px;
@@ -248,6 +253,10 @@ nav.accounts {
 
   .mega-menu {
     min-width: 100%;
+    a.hide-on-mobile {
+      display: none;
+    }
+
     & > ul {
       .indent {
         margin: 0;
@@ -306,7 +315,6 @@ nav.accounts {
       padding:10px 10px 10px 40px;
     }
   }
-
   .accounts, .mega-menu {
     display: none;
   }
@@ -339,17 +347,18 @@ nav.accounts {
     position: relative;
     -webkit-column-count:1;
     column-count:1;
-    .heading {
-      background:black;
+    a.heading {
       color:white;
-      padding:5px;
       display: block;
+      font-size: 20px;
     }
   }
 
   .nav-toggle {
     display: block;
   }
+
+
 
   nav.accounts {
     padding:0;
@@ -401,7 +410,6 @@ nav.accounts {
     }
   }
 
-  // disable desktop hover styles
 
 
 

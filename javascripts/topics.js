@@ -39,10 +39,19 @@ app.topics.render = function(materials) {
     var type = material.fields.sys_type[0];
     var timeStamp = new Date(material.fields.sys_created[0]);
     var timeAgo = $.timeago(timeStamp);
-    // var tags = item.fields.sys_tags.join(', ')
+
+    if (material.fields.sys_type[0] == 'blogpost'){
+      if ((material.fields.sys_url_view[0].startsWith('http://developerblog.redhat.com')) || (material.fields.sys_url_view[0].startsWith('http://feedproxy.google.com')) ) {
+        material.fields.sys_url_view[0] = material.fields.sys_url_view[0];
+      } else {
+        var post_id = /-(.+)/.exec(material._id)[1];
+        material.fields.sys_url_view[0] = "//planet.jboss.org/post/" + post_id;
+      }
+    }
+
     var item = [
       '<a href="' + material.fields.sys_url_view[0] + '">',
-        '<li>',
+        '<li class="large-6 columns">',
           '<h5>',
             material.fields.sys_title[0],
           '</h5>',

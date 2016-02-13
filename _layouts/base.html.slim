@@ -73,6 +73,7 @@
       link rel='canonical' href=site.url
     = stylesheets "all" do
       link rel='stylesheet' type='text/css' href="#{site.base_url}/stylesheets/app.css"
+    link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
 
     /[if lt IE 9]
       script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'
@@ -141,39 +142,39 @@
                   a(href="#{site.base_url}/web-and-api-development") Web and API Development
                   a(href="#{site.base_url}/enterprise-java") Enterprise Java
               li.has-sub-nav(class=(page.url.include?('products') ? 'active' : ''))
-                a(href="#{site.base_url}/products")
+                a(href="#")
                   | Technologies
                   i.fa.fa-angle-down
                 .sub-nav(id="sub-nav-technologies")
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#infrastructure_management") Infrastructure
-                    a(href="#{site.base_url}/products/rhel/overview/") Red Hat Enterprise Linux
-                    a.indent(href="#{site.base_url}/products/developertoolset/overview/") Red Hat Developer Toolkit
-                    a.indent(href="#{site.base_url}/products/softwarecollections/overview/") Red Hat Software Collections
+                    a.hide-on-mobile(href="#{site.base_url}/products/rhel/overview/") Red Hat Enterprise Linux
+                    a.hide-on-mobile.indent(href="#{site.base_url}/products/developertoolset/overview/") Red Hat Developer Toolkit
+                    a.hide-on-mobile.indent(href="#{site.base_url}/products/softwarecollections/overview/") Red Hat Software Collections
                     / a(href="#{site.base_url}/products/atomic/overview/") Red Hat Container Development Kit
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#cloud_products") Cloud
-                    a(href="#{site.base_url}/products/openshift/overview/") OpenShift Enterprise by Red Hat
+                    a.hide-on-mobile(href="#{site.base_url}/products/openshift/overview/") OpenShift Enterprise by Red Hat
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#mobile") Mobile
-                    a(href="#{site.base_url}/products/mobileplatform/overview/") Red Hat Mobile Application Platform
+                    a.hide-on-mobile(href="#{site.base_url}/products/mobileplatform/overview/") Red Hat Mobile Application Platform
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#jboss_development_and_management") Middleware
-                    a(href="#{site.base_url}/products/devstudio/overview/") Red Hat JBoss Developer Studio
-                    a(href="#{site.base_url}/products/eap/overview/") Red Hat JBoss JBoss Enterprise Application Platform
-                    a(href="#{site.base_url}/products/fuse/overview/") Red Hat JBoss Fuse
-                    a(href="#{site.base_url}/products/webserver/overview/") Red Hat JBoss Web Server
-                    a(href="#{site.base_url}/products/bpmsuite/overview/") Red Hat JBoss BPM Suite
-                    a(href="#{site.base_url}/products/brms/overview/") Red Hat JBoss BRMS
-                    a(href="#{site.base_url}/products/datagrid/overview/") Red Hat JBoss Data Grid
-                    a(href="#{site.base_url}/products/amq/overview/") Red Hat JBoss A-MQ
-                    a(href="#{site.base_url}/products/datavirt/overview/") Red Hat JBoss Data Virtualization
+                    a.hide-on-mobile(href="#{site.base_url}/products/devstudio/overview/") Red Hat JBoss Developer Studio
+                    a.hide-on-mobile(href="#{site.base_url}/products/eap/overview/") Red Hat JBoss JBoss Enterprise Application Platform
+                    a.hide-on-mobile(href="#{site.base_url}/products/fuse/overview/") Red Hat JBoss Fuse
+                    a.hide-on-mobile(href="#{site.base_url}/products/webserver/overview/") Red Hat JBoss Web Server
+                    a.hide-on-mobile(href="#{site.base_url}/products/bpmsuite/overview/") Red Hat JBoss BPM Suite
+                    a.hide-on-mobile(href="#{site.base_url}/products/brms/overview/") Red Hat JBoss BRMS
+                    a.hide-on-mobile(href="#{site.base_url}/products/datagrid/overview/") Red Hat JBoss Data Grid
+                    a.hide-on-mobile(href="#{site.base_url}/products/amq/overview/") Red Hat JBoss A-MQ
+                    a.hide-on-mobile(href="#{site.base_url}/products/datavirt/overview/") Red Hat JBoss Data Virtualization
               li.has-sub-nav(class=(page.url.include?('community') ? 'active' : ''))
                 a(href="#")
                   | Community
                   i.fa.fa-angle-down
                 .sub-nav.pull-right(id="sub-nav-community")
-                  a.community(href="#{site.base_url}/blog")
+                  a(href="http://developers.redhat.com/blog")
                     | Developers Blog
                     span.page-description Insights & news on Red Hat developer tools, platforms and more
                   a(href="#{site.base_url}/events")

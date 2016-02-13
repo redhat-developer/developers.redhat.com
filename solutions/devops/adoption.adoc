@@ -60,7 +60,7 @@ The continuous integration server parses the test reports and provides feedback 
 
 [discrete]
 ==== [[continuous-delivery]]Continuous Delivery
-[[configuration-as-code]][[server-provisioning]]An environment provisioning tool—such as link:#{site.base_url}/products/satellite[Red Hat Satellite], link:https://access.redhat.com/documentation/en-US/Red_Hat_Network_Satellite/5.3/html/Reference_Guide/ch-cobbler.html[Cobbler], link:http://docs.ansible.com/index.html[Ansible], link:https://access.redhat.com/articles/1138393[Puppet], or link:https://learn.chef.io/learn-the-basics/rhel/[Chef] to create the environments in which to test the software against one or more versions of an operating system.
+[[configuration-as-code]][[server-provisioning]]An environment provisioning tool—such as link:https://access.redhat.com/documentation/en-US/Red_Hat_Network_Satellite/5.3/html/Reference_Guide/ch-cobbler.html[Cobbler], link:http://docs.ansible.com/index.html[Ansible], link:https://access.redhat.com/articles/1138393[Puppet], or link:https://learn.chef.io/learn-the-basics/rhel/[Chef] to create the environments in which to test the software against one or more versions of an operating system.
 
 |=======
 |link:https://www.redhat.com/en/about/events/expediting-devops-and-continuous-delivery-paas[Expediting DevOps and continuous delivery with PaaS]
@@ -99,7 +99,7 @@ The build manager—such as link:http://ant.apache.org[Apache Ant], link:http://
 ==== [[containers]]Containers
 Deploy a secure, integrated host platform that is designed to run container images with optimizations for scalability, density, and performance.
 
-Build and run image-based containers using the docker service, accessible through the link:https://access.redhat.com/solutions/265523[Extras] channel as part of a link:#{site.base_url}/products/rhel[Red Hat Enterprise Linux] subscription or choose link:#{site.base_url}/products/atomic[Red Hat Enterprise Linux Atomic Host], a secure, lightweight and minimized footprint operating system that is optimized to run Linux containers.
+Build and run image-based containers using the docker service, accessible through the link:https://access.redhat.com/solutions/265523[Extras] channel as part of a link:#{site.base_url}/products/rhel[Red Hat Enterprise Linux] subscription.
 
 |=======
 |link:https://www.redhat.com/en/insights/containers[Transform application delivery with containers]

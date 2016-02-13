@@ -237,6 +237,29 @@ dcp.factory('helper', function() {
       return this.VALID_URL_PARAMS_.indexOf(key) >= 0;
     };
 
+    /**
+    * Removes redundant/unnecessary tags and returns new tag list.  If the list does not contain
+    * undesirable tags items, return the list as is.
+    *
+    * @param {*} input
+    * @return {*}
+    */
+    this.removeTagItems = function(input) {
+      var indexes = [];
+
+      if ($.isArray(input) && input.length > 0) {
+        var excludes = app.dcp.excludeResourceTags;
+        angular.forEach(input, function(str){
+          var index = excludes.indexOf(str);
+          if(index == -1) {
+            indexes.push(str);
+          }
+
+        })
+      }
+      return indexes.join(',');
+    };
+
     this.availableFormats = [
       { value : "quickstart" , "name" : "Quickstart", "description" : "Single use-case code examples tested with the latest stable product releases" },
       { value : "video" , "name" : "Video", "description" : "Short tutorials and presentations for Red Hat JBoss Middleware products and upstream projects" },
@@ -386,6 +409,13 @@ dcp.filter('noURL', function() {
         return filterArray;
     }
 });
+
+dcp.filter('removeExcludedTags', ['helper', function(helper) {
+    return function(input) {
+        return helper.removeTagItems(input);
+    }
+}]);
+
 
 /*
   Filter to use the correct location for links coming from searchisko.

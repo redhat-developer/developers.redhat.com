@@ -16,6 +16,7 @@ app.latest.fetch = function() {
 }
 
 app.latest.render = function(materials) {
+  materials = materials.slice(0,6);
   var html = [];
   materials.forEach(function(material){
     var type = material.fields.sys_type[0];

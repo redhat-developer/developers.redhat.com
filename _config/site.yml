@@ -1,5 +1,7 @@
 kramdown:
   :input: 'QuickStartParser'
+generation:
+  :in_processes: <%= ENV['AWE_PROC_COUNT'] || Parallel.processor_count %>
 asciidoctor:
   :attributes:
     sectanchors: ''
@@ -55,10 +57,10 @@ profiles:
   development: &development
     dcp_base_url: http://dcp.stage.jboss.org/
     dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
-    keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
-    keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
-    download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
-    download_manager_base_url: https://it-developers.stage.redhat.com
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://developers.stage.redhat.com
     log_faraday: true
     push_to_searchisko: false
     metrics: false
@@ -105,10 +107,10 @@ profiles:
     <<: *profile
     dcp_base_url: http://searchisko:8080/
     dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
-    keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
-    keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
-    download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
-    download_manager_base_url: https://it-developers.stage.redhat.com
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://developers.stage.redhat.com
 
     cache_type: :local
     metrics: true
@@ -121,10 +123,10 @@ profiles:
     <<: *profile
     dcp_base_protocol_relative_url: //<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
     dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
-    keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
-    keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
-    download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
-    download_manager_base_url: https://it-developers.stage.redhat.com
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://developers.stage.redhat.com
     metrics: false
     deploy:
       <<: *deploy
@@ -133,13 +135,13 @@ profiles:
   # Main staging configuration (on IT's Infr)
   staging_main_it:
     <<: *profile
-    base_url: http://it-developers.stage.redhat.com/
-    download_manager_file_base_url: //it-developers.stage.redhat.com/download-manager/file/
-    download_manager_base_url: https://it-developers.stage.redhat.com
+    base_url: http://developers.stage.redhat.com/
+    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://developers.stage.redhat.com
     dcp_base_url: http://dcp.stage.jboss.org/
     dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
-    keycloak_account_url: https://it-developers.stage.redhat.com/auth/realms/rhd/account/
-    keycloak_auth_url: https://it-developers.stage.redhat.com/auth/
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
     metrics: true
     build_threads: 1
     dtm_code: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
@@ -147,7 +149,6 @@ profiles:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg-main
 
-      
   production:
     <<: *profile
     base_url: http://developers.redhat.com/

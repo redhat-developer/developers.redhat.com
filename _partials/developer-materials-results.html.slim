@@ -33,7 +33,7 @@
         tr.material(ng-repeat="item in data.displayedMaterials | noURL" class="get-started-placeholder-{{item.fields.sys_type}}")
           / Topics
           td.topics
-            | {{item.fields.sys_tags.join(', ')}}
+            | {{item.fields.sys_tags | removeExcludedTags}}
           / Title
           td.title
             p
