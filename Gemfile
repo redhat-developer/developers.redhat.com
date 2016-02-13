@@ -70,6 +70,7 @@ group :test do
   gem 'mocha'
   gem 'gmail', '~> 0.6.0'
   gem 'faker', '~> 1.6', '>= 1.6.1'
+  gem 'nenv', '~> 0.3.0'
 end
 
 group :development do
