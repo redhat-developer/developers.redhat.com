@@ -14,7 +14,7 @@ default_options = "-r _cucumber/features/ --strict -f pretty"
 
 %>
 
-default: <%= default_options %>
+default: <%= default_options %> --tags ~@password_reset
 html: --format --out reports/test-report.html
 features: <%= default_options %> -f rerun --out rerun.txt
 parallel_html: --format html --out _cucumber/reports/process<%= ENV['TEST_ENV_NUMBER'] %>.html
