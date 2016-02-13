@@ -59,8 +59,8 @@ group :test do
   gem 'poltergeist', '~> 1.7.0'
   gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
-  gem 'capybara', '~> 2.6', '>= 2.6.2'
-  gem 'selenium-webdriver', '=2.49'
+  gem 'capybara', '~>2.5'
+  gem 'selenium-webdriver', '~> 2.48.0'
   gem 'parallel_tests', '~> 1.9.0'
   gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'
@@ -70,7 +70,6 @@ group :test do
   gem 'mocha'
   gem 'gmail', '~> 0.6.0'
   gem 'faker', '~> 1.6', '>= 1.6.1'
-  gem 'nenv', '~> 0.3.0'
 end
 
 group :development do
