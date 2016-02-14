@@ -91,11 +91,7 @@ def resize_window_to_tablet
 end
 
 def resize_window_default
-  if Capybara.current_driver == 'poltergeist'.to_sym
-    resize_window_by(1920, 6000)
-  else
-    resize_window_by(1024, 768)
-  end
+  resize_window_by(1400,1000)
 end
 
 def resize_window_by(width, height)

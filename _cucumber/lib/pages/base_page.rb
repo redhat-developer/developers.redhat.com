@@ -32,7 +32,7 @@ class BasePage < SitePrism::Page
   element :login_divider, '.login-divider'
   elements :sub_nav_topics, '#sub-nav-topics a'
   elements :sub_nav_technologies, '#sub-nav-technologies .sub-nav-group .heading'
-  elements :sub_nav_communities, '#sub-nav-community a'
+  elements :sub_nav_community, '#sub-nav-community a'
   elements :community_description, '.page-description'
   elements :sub_technologies_links, '#sub-nav-technologies .sub-nav-group a'
 
@@ -81,12 +81,6 @@ class BasePage < SitePrism::Page
     }
   end
 
-  def wait_for_ajax
-    Timeout.timeout(30) do
-      loop until finished_all_ajax_requests?
-    end
-  end
-
   def visible?(negate, css_selector)
     page.has_css?(css_selector, :visible => negate)
   end
@@ -98,18 +92,30 @@ class BasePage < SitePrism::Page
 
   def toggle_menu
     wait_until_nav_toggle_visible(6)
-    nav_toggle.click
+    click_menu_item('menu')
     wait_until_nav_open_visible(6)
-    sleep(0.5)
   end
 
   def toggle_menu_and_tap(tab)
     toggle_menu
-    case tab
-      when 'Login' || 'Register' || 'Logout'
-        send("#{tab.downcase}_link").click
+    click_menu_item(tab.downcase)
+  end
+
+  def open_login_register(tab)
+    if has_nav_toggle?
+      toggle_menu_and_tap(tab)
+    else
+      if Capybara.current_driver == 'poltergeist'.to_sym
+        page.find(".#{tab}").trigger('click')
       else
-        send("primary_nav_#{tab.downcase}_link").click
+        page.find(".#{tab}").click
+      end
+    end
+  end
+
+  def wait_for_ajax
+    Timeout.timeout(30) do
+      loop until finished_all_ajax_requests?
     end
   end
 
@@ -132,4 +138,22 @@ class BasePage < SitePrism::Page
     end
   end
 
+  def click_menu_item(action)
+    case action
+      when 'menu'
+        if Capybara.current_driver == 'poltergeist'.to_sym
+          page.find('.nav-toggle').trigger('click')
+        else
+          page.find('.nav-toggle').click
+        end
+      when 'login' || 'register' || 'logout'
+          page.find(".#{action}").click
+      else
+        if Capybara.current_driver == 'poltergeist'.to_sym
+          find(:xpath, "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{action.capitalize}')]").trigger('click')
+        else
+          find(:xpath, "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{action.capitalize}')]").click
+        end
+    end
+  end
 end
