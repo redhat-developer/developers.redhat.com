@@ -1,4 +1,5 @@
 @smoke
+
 Feature: Site navigation menu
 
   @mobile
@@ -89,6 +90,7 @@ Feature: Site navigation menu
     | Downloads    |
 
   @products
+  @wip
   Scenario Outline: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
     Given I am on the <page> page
     When I hover over the Technologies menu item
@@ -102,7 +104,6 @@ Feature: Site navigation menu
   Examples: developers.redhat.com primary navigation bar links
     | page         |
     | Home         |
-    | Technologies |
     | Resources    |
     | Downloads    |
 
@@ -119,7 +120,6 @@ Feature: Site navigation menu
   Examples: developers.redhat.com primary navigation bar links
     | page         |
     | Home         |
-    | Technologies |
     | Resources    |
     | Downloads    |
 

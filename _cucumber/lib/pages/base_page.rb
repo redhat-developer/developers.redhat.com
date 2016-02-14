@@ -86,7 +86,11 @@ class BasePage < SitePrism::Page
   end
 
   def hover_over_nav_menu(tab)
-    find(:xpath, "//*[@class='has-sub-nav']//a[contains(text(),'#{tab}')]").hover
+    begin
+      find(:xpath, "//*[@class='has-sub-nav']//a[contains(text(),'#{tab}')]").hover
+    rescue
+      find(:xpath, "//*[@class='has-sub-nav']//a[contains(text(),'#{tab}')]").trigger('mousemove')
+    end
     sleep(1)
   end
 
@@ -106,7 +110,11 @@ class BasePage < SitePrism::Page
       toggle_menu_and_tap(tab)
     else
       if Capybara.current_driver == 'poltergeist'.to_sym
-        page.find(".#{tab}").trigger('click')
+        begin
+          page.find(".#{tab}").click
+        rescue
+          page.find(".#{tab}").trigger('click')
+        end
       else
         page.find(".#{tab}").click
       end
@@ -147,7 +155,11 @@ class BasePage < SitePrism::Page
           page.find('.nav-toggle').click
         end
       when 'login' || 'register' || 'logout'
+        begin
           page.find(".#{action}").click
+        rescue
+          page.find(".#{action}").trigger('click')
+        end
       else
         if Capybara.current_driver == 'poltergeist'.to_sym
           find(:xpath, "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{action.capitalize}')]").trigger('click')
