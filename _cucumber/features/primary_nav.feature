@@ -90,7 +90,6 @@ Feature: Site navigation menu
     | Downloads    |
 
   @products
-  @wip
   Scenario Outline: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
     Given I am on the <page> page
     When I hover over the Technologies menu item
