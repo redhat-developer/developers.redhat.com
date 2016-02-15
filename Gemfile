@@ -14,7 +14,8 @@ end
 
 # GEMS
 #gem 'awestruct', '0.5.7'
-gem 'awestruct', github: 'lightguard/awestruct', branch: 'feature/perf-testing-large-site', ref: 'f86c082c954712748650bb51231e645c073ba180'
+gem 'awestruct', github: 'lightguard/awestruct', branch: 'feature/perf-testing-large-site'
+#gem 'awestruct', path: '~/projects/ruby/awestruct'
 gem 'slim', '~> 3.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 1.5.0'
