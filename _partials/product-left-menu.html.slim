@@ -2,7 +2,8 @@
 / Note that you must pass in a reference to the parent page, as the param 'parent'
 /Define left navigation items for the products. Maybe this should move to a yml file?
 - page.product_subsection = page.parent.output_path[/^\/products\/[a-z]+\/([^\/]+)/, 1]
-- page.nav_items = {"overview" => "Overview", "get-started" => "Get Started", "docs-and-apis" => "Docs and APIs", "connectors" => "Connectors" , "learn" => "Learn", "community" => "Community", "download" => "Download ", "buzz" => "Buzz",  "updates" => "Updates"}
+
+- page.nav_items = {"overview" => "Overview", "get-started" => "Get Started", "docs-and-apis" => "Docs and APIs", "connectors" => "Connectors" , "learn" => "Learn", "community" => "Community", "download" => "Download ", "resources" => "Resources ", "updates" => "Updates ", "buzz" => "Buzz"}
 
 /The menu items, created by iterating over the array defined above
 ul.side-nav
@@ -26,6 +27,14 @@ ul.side-nav
         | #{v}  
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "download" && page.parent.product.has_download_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+        | #{v}
+        i.fa.fa-caret-right.fa-lg
+    - elsif (k == "resources" && page.parent.product.has_resources_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+        | #{v}
+        i.fa.fa-caret-right.fa-lg
+    - elsif (k == "updates" && page.parent.product.has_updates_page)
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
