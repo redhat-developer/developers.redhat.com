@@ -1,0 +1,24 @@
+:awestruct-layout: product-community-custom
+:awestruct-interpolate: true
+
+[.large-4.columns]
+image::#{cdn(site.base_url + '/images/design/projects/project-atomic.png')}[Project Atomic Logo]
+
+[.large-20.columns]
+*Project Atomic* +
+Red Hat is working with the open source community through Project Atomic to help create industry-wide Linux container standards. Project Atomic helps make sure that common containers work with trusted operating system platforms. By working towards compatibility and coordinating standards, Project Atomic helps Red Hat and other vendors deliver a comprehensive hosting architecture that’s modern, reliable, and secure. Learn more about link:http://www.projectatomic.io[Project Atomic].
+
+[.large-12.columns]
+--
+*Nulecule* +
+Nulecule defines a pattern and model for packaging complex multi-container applications, referencing all their dependencies, including orchestration metadata in a container image for building, deploying, monitoring, and active management.
+The Nulecule specification enables complex applications to be defined, packaged and distributed using standard container technologies. The resulting container includes dependencies while supporting multiple orchestration providers and ability to specify resource requirements. The Nulecule specification also supports aggregation of multiple composite applications. The Nulecule specification is container and orchestration agnostic, enabling the use of any container and orchestration engine.  link:http://www.projectatomic.io/docs/nulecule/[Learn more about Nulecule].
+--
+
+[.large-12.columns]
+--
+*Atomic App* +
+With Atomic App, which is based on Nulecule, you can use existing containers as building blocks for your new application product or project.
+
+Databases, web servers, and other common components are vital parts of applications and services. Utilizing existing containers to provide these core infrastructure components lets you focus more on building the stuff that matters and less time packaging and setting up the common plumbing required. link:http://www.projectatomic.io/docs/atomicapp[Learn more about Atomic App].
+--

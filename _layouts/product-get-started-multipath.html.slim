@@ -4,7 +4,6 @@ status: green
 type: Get Started
 ---
 - page.description = "Learn how to install and start using #{page.product.abbreviated_name}."
-= partial 'getstarted-thankyou.html.slim', {'parent' => page}
 
 .large-24
   h2.gs-header Great, you've selected #{page._path_name}
@@ -28,11 +27,15 @@ type: Get Started
 
   .os-tabs.tabs-content
     section.content.active(role="tabpanel" aria-hidden="false")
+        - if page._before_you_begin_section
+          .large-24#BeforeYouBeginSection
+            h4 Before you begin
+            = page._before_you_begin_section
         - if page._prerequisites_section
           .large-24#PrerequisitesSection.gs-prerequisites
             - if page._prerequisites_section_title
               h4 #{page._prerequisites_section_title}
-            = page._prerequisites_section  
+            = page._prerequisites_section
           .row(data-equalizer)
             .large-8.columns.step-cards(data-equalizer-watch)
               a.card(href="#Step1")
@@ -127,7 +130,7 @@ type: Get Started
           - if page._more_resources
             .large-24#MoreResources
               h4 Want to know more about what you can do with #{page.product.abbreviated_name}?
-              = page._more_resources  
+              = page._more_resources
 
           - if page._faq_section
             .large-24#FaqSection.gs-faq

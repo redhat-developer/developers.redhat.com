@@ -4,16 +4,16 @@
 }
 .homepage-main {
   color: $white;
-  background-image: cdn('../images/design/RHDev_homehero_desktop_javaeebook.png');
-  background-position: top center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: rgb(11, 8, 21);
+  background: cdn('../images/design/RHD_homepage_hero_desktop_cdk2.png') top center / cover no-repeat;
+  background-color: #136691;
   .homepage-cta {
-    margin: 8% auto;
+    padding: 28px 0;
     img {
       display: inline-block;
       vertical-align: middle;
+      &.mobile {
+        display: none;
+      }
     }
     span {
       padding-left: 30px;
@@ -26,18 +26,26 @@
       margin-left: 20px;
     }
     a.button {
-      background-color: $white;
-      color: $red;
+      display: table;
+      margin: 15px auto 0 auto;
+      background-color: #f07b00;
       min-width: 250px;
-      margin-left: 20px;
+    }
+    p {
+      font-weight: 600;
+      text-align: center;
+      margin-top: 6px;
     }
   }
   .homepage-getstarted {
     min-height: 322px;
     padding: 15px 20px;
-    background-color: rgb(11, 8, 21);
+    background-color: rgba(6, 59, 86, 0.73);
+    @include tablet-landscape-and-down {
+      background-color: #094665;
+    }
     h5 {
-      color: #eaa400;
+      color: $white;
       margin-top: 10px;
     }
     a {
@@ -62,9 +70,16 @@
       display: none;
     }
   }
+  a.learn-more {
+    text-transform: uppercase;
+    color: #eaa400;
+    font-weight: 700;
+    float: right;
+    i {
+      margin-left: 5px;
+    }
+  }
 }
-
-
 
 .spotlights-wrap {
   background:black cdn("../images/design/RHDev_homepage_promobkg.svg") left center no-repeat;
@@ -249,15 +264,11 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background: cdn('../images/design/RHDev_homehero_tablet_javaeebook.png') top center / cover;
-    .homepage-cta {
-      img {
-        margin-left: 0;
-      }
+    .homepage-cta img {
+      display: block;
+      margin: 0 auto;
     }
-  }
-  .video-thumb {
-    img {
+    .video-thumb img {
       max-width: 300px;
     }
   }
@@ -274,18 +285,6 @@ ul.homepage-resources {
 }
 
 @include tablet-portrait-and-down {
-  .homepage-main {
-    .homepage-cta {
-      span h2 {
-        font-size: 2em;
-      }
-      img {
-        max-width: 120px;
-        margin-left: 50px;
-        margin-bottom: 20px;
-      }
-    }
-  }
   a.title {
     max-width: 100%;
   }
@@ -296,9 +295,13 @@ ul.homepage-resources {
 }
 
 @include mobile-landscape-and-down {
-  .homepage-main {
-    background: cdn('../images/design/RHDev_homehero_mobile_javaeebook.png');
-    background-size: cover;
+  .homepage-main .homepage-cta {
+    img.desktop {
+      display: none;
+    }
+    img.mobile {
+      display: block;
+    }
   }
   .spotlights-container {
     flex-direction: column;

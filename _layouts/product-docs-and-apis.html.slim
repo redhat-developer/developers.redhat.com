@@ -25,12 +25,14 @@ h3#documentation #{page.product.abbreviated_name} #{page.product.current_version
           li
             a(href="#{format.url}") #{format.name}
 
-.more-guides
-  a(href="#{page.product.documentation_url}") See all Documentation versions
+- unless page.product.id == 'cdk'
+  .more-guides
+    a(href="#{page.product.documentation_url}") See all Documentation versions
 
-- unless !page._red_hat_jboss_supported_configurations || page._red_hat_jboss_supported_configurations.empty?
-  h3#redhat-supported-configurations Red Hat JBoss Supported Configurations
-  = page._red_hat_jboss_supported_configurations
+  - unless !page._red_hat_jboss_supported_configurations || page._red_hat_jboss_supported_configurations.empty?
+    br
+    h3#redhat-supported-configurations Red Hat JBoss Supported Configurations
+    = page._red_hat_jboss_supported_configurations
 
-- unless !page._extra_configurations || page._extra_configurations.empty?
-  = page._extra_configurations
+  - unless !page._extra_configurations || page._extra_configurations.empty?
+    = page._extra_configurations
