@@ -6,7 +6,6 @@ require 'capybara/poltergeist'
 require 'selenium-webdriver'
 require 'require_all'
 require 'fileutils'
-require 'rubocop'
 require 'capybara-screenshot/cucumber'
 require 'site_prism'
 require 'gmail'
@@ -22,7 +21,11 @@ Capybara.configure do |config|
   if ENV['HOST_TO_TEST'].to_s.empty?
     raise "please provide a variable for HOST_TO_TEST"
   else
-    host_to_test = ENV['HOST_TO_TEST']
+    if ENV['HOST_TO_TEST'][-1, 1] == '/'
+      host_to_test = ENV['HOST_TO_TEST'].chomp('/')
+    else
+      host_to_test = ENV['HOST_TO_TEST']
+    end
   end
 
   config.app_host = host_to_test
@@ -54,13 +57,23 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes])
 end
 
-# Required so that Screenshot works with the "firefox" driver
-Capybara::Screenshot.register_driver(:firefox) do |driver, path|
-  driver.browser.save_screenshot path
+Capybara.register_driver :browserstack do |app|
+  job_name = "RHD cucumber-tests running in BrowserStack - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
+
+  stack_to_use = ENV['BS_BROWSER'] || 'firefox'
+  json = JSON.load(open('_cucumber/browserstack/browsers.json'))
+  config = json[stack_to_use]
+  config['browserstack.debug'] = 'true'
+  config['project'] = job_name
+  config['acceptSslCerts'] = 'true'
+  config['browserstack.local'] = 'true'
+  url = "http://#{ENV['BS_USERNAME']}:#{ENV['BS_AUTHKEY']}@hub.browserstack.com/wd/hub"
+  Capybara::Selenium::Driver.new(app, :browser => :remote, :url => url, :desired_capabilities => config)
 end
 
-# Required so that Screenshot works with the "chrome" driver
-Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-  driver.browser.save_screenshot path
+browsers = [:poltergeist, :firefox, :chrome, :browserstack]
+browsers.each do |browser|
+  Capybara::Screenshot.register_driver(browser) do |driver, path|
+    driver.browser.save_screenshot path
+  end
 end
-
