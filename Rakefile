@@ -163,7 +163,7 @@ task :internal_deploy_task, [:profile, :tag_name] do |task, args|
   # Delay awestruct failing the build until after we rsync files, if we are staging.
   # Allows errors to be viewed
   begin
-    run_awestruct "-P #{args[:profile]} -g --force -w"
+    run_awestruct "-P #{args[:profile]} -g --force -w --perf"
   rescue
     if args[:profile] != 'production'
       msg 'awestruct_failed'
