@@ -1,4 +1,3 @@
-@smoke
 Feature: Site navigation menu
 
   @mobile
