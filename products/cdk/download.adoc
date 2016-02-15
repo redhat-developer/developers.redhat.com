@@ -1,0 +1,78 @@
+:awestruct-layout: product-download-custom
+:awestruct-interpolate: true
+
+== Download
+
+For a limited time, Red Hat is providing a complimentary Red Hat Developer Suite subscription so that you may develop Docker container applications using the Red Hat Container Development Kit.
+
+=== Installers and Images for Red Hat CDK
+
+Once you have a subscriptions in place (see above), CDK setup is easy to do Docker container development on your Windows, MacOS, or Linux machine. Download the following items in the order below:
+
+==== 1. Container Development Kit (CDK)
+link:#{site.download_manager_file_base_url}/cdk-2.0.0-beta3.zip[Red Hat Container Development Kit (CDK) 2]
+
+==== 2. Vagrant
+Download one of the following from the Vagrant website based upon your operating system.
+
+* link:http://www.vagrantup.com/downloads.html[Vagrant for Windows 7 and up]
+* link:http://www.vagrantup.com/downloads.html[Vagrant for Mac OS X]
+* link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[Vagrant for RHEL (64 bit)]
+* link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[Vagrant for CentOS (64 bit)]
+
+*Vagrant for Fedora, Ubuntu and Linux are included. See the installation guide.
+
+==== 3. Vagrant Boxes
+Download one of the following Vagrant Boxes based upon your platform and hypervisor of choice.
+
+*RHEL 7 / OpenShift 3*
+
+* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[Download VirtualBox]
+* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[Download VMware]
+* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-libvirt.box[Download KVM (Libvirt)]
+
+[.callout-light]
+*NOTE:*  In order to run Vagrant, you must sign the Developer Suite terms and conditions. If you have not done this already, log in to the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the RHEL Developer Suite Terms & Conditions].
+
+==== 4. Start the Vagrant box
+1. Change to the sub-directory `components/rhel/rhel-ose`. Alternatively, copy the `Vagrantfile` in that directory to a working directory of your choosing.
+2. Start the box by entering `vagrant up`. Note: the `Vagrantfile` needs to be in the current directory when entering vagrant commands without specifying a box name or a path to the `Vagrantfile`.
+
+You should now be able to log into the vagrant box using `vagrant ssh`.
+
+[id='DockerImages']
+==== 5. Docker images
+Here are some of the available images for creating Docker apps for *RHEL and/or OpenShift Enterprise*.  See the link:https://access.redhat.com/search/#/container-images[Red Hat Registry] for a complete list, as well as other options available in beta versions.
+
+*Languages and frameworks*
+[frame="topbot", options="header"]
+|==========================
+|Technology |Description  |Docker Pull instruction
+|rhscl/python-27-rhel7 |Python 2.7 platform for building and running applications |docker pull rhscl/python-27-rhel7
+|rhscl/python-34-rhel7 |Python 3.4 platform for building and running applications |docker pull rhscl/python-34-rhel7
+|openshift3/nodejs-010-rhel7 |Node.js 0.10 platform for building and running applications |docker pull openshift3/nodejs-010-rhel7
+|rhscl/ruby-22-rhel7 |Ruby 2.2 platform for building and running applications |docker pull rhscl/ruby-22-rhel7
+|rhscl/ror-41-rhel7 |Platform for building and running Ruby on Rails 4.1 applications |docker pull rhscl/ror-41-rhel7
+|rhscl/perl-520-rhel7 |Perl 5.20 platform for building and running applications |docker pull rhscl/perl-520-rhel7
+|rhscl/php-56-rhel7 |PHP 5.6 platform for building and running applications |docker pull rhscl/php-56-rhel7
+|rhscl/devtoolset-4-toolchain-rhel7 |Developer toolset 4 toolchain (includes GCC 5.2, Eclipse, etc.) |docker pull rhscl/devtoolset-4-toolchain-rhel7
+|==========================
+
+*Databases*
+[frame="topbot", options="header"]
+|==========================
+|Database |Description  |Docker Pull instruction
+|rhscl/mariadb-100-rhel7 |MariaDB 10.0 SQL database server |docker pull rhscl/mariadb-100-rhel7
+|rhscl/mongodb-26-rhel7 |MongoDB 2.6 NoSQL database server |docker pull rhscl/mongodb-26-rhel7
+|rhscl/mysql-56-rhel7 |MySQL 5.6 SQL database server |docker pull rhscl/mysql-56-rhel7
+|rhscl/postgresql-94-rhel7 |PostgreSQL 9.4 SQL database server |docker pull rhscl/postgresql-94-rhel7
+|==========================
+
+*Web and proxy servers*
+[frame="topbot", options="header"]
+|==========================
+|Database |Description  |Docker Pull instruction
+|rhscl/nginx-16-rhel7 |Nginx 1.6 server and a reverse proxy server |docker pull rhscl/nginx-16-rhel7
+|rhscl/httpd-24-rhel7 |Apache HTTP 2.4 Server |docker pull rhscl/httpd-24-rhel7
+|rhscl/passenger-40-rhel7 |Phusion Passenger® 3.0 web server and application server |docker pull rhscl/passenger-40-rhel7
+|==========================
