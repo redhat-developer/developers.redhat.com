@@ -1,5 +1,5 @@
 # Gemfile
-source "https://rubygems.org"
+source "http://rubygems.org" # Try this without ssl for now
 
 # Platform helpers
 def windows_only(require_as)
