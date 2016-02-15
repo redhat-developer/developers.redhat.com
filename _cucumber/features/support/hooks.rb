@@ -91,7 +91,7 @@ def resize_window_to_tablet
 end
 
 def resize_window_default
-  resize_window_by(1024, 768)
+  resize_window_by(1400,1000)
 end
 
 def resize_window_by(width, height)

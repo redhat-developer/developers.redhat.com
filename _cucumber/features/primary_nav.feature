@@ -1,4 +1,5 @@
 @smoke
+
 Feature: Site navigation menu
 
   @mobile
@@ -102,7 +103,6 @@ Feature: Site navigation menu
   Examples: developers.redhat.com primary navigation bar links
     | page         |
     | Home         |
-    | Technologies |
     | Resources    |
     | Downloads    |
 
@@ -119,7 +119,6 @@ Feature: Site navigation menu
   Examples: developers.redhat.com primary navigation bar links
     | page         |
     | Home         |
-    | Technologies |
     | Resources    |
     | Downloads    |
 

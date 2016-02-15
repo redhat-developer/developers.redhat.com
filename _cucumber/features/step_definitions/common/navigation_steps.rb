@@ -46,22 +46,29 @@ When(/^I tap on ([^"]*) menu item$/) do |menu_item|
 end
 
 Then(/^I should see the following (Topics|Technologies|Community) sub\-menu items:$/) do |tab, table|
-  sub_menu_items = []
+  @sub_menu_items = []
   table.raw.each do |row|
     table_items = row.first
-    sub_menu_items << table_items
+    @sub_menu_items << table_items
   end
-  expect(@page.current_page.send("sub_nav_#{tab.downcase}").map { |name| name.text }).to eq sub_menu_items
+  expect(@page.current_page.send("sub_nav_#{tab.downcase}").map { |name| name.text }).to eq @sub_menu_items
 end
 
 And(/^the sub\-menu should include a list of available technologies$/) do
-  expect(@page.current_page.sub_technologies_links.map { |name| name.text }).to include @product_names
+  product_links = []
+  @page.current_page.sub_technologies_links.each do |link|
+    product_links << link.text
+  end
+  @sub_menu_items.each do |heading|
+    product_links.delete(heading)
+  end
+  product_links.should =~ @product_names
 end
 
 Then(/^I should see the following Community sub-menu items and their description:$/) do |table|
   links = []
   table.hashes.each do |row|
-    @page.current_page.sub_nav_communities.each do |link|
+    @page.current_page.sub_nav_community.each do |link|
       links << link.text
     end
     expect(links).to include("#{row['name']} #{row['description']}")
