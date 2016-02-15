@@ -6,7 +6,6 @@ Feature: Login Page
 
   @accepted_terms
   @logout
-  @smoke
   Scenario: A customer has correct login credentials
     Given I am on the Login page
     When I try to log in with a valid password
