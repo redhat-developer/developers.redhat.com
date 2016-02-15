@@ -108,15 +108,12 @@ app.project = {
 
       var template = "<li class=\"upstream\">"
         + "<div class=\"defaultprojectimage\">"
-        + "<a class=\"image-link\" href=\""
-        + app.project.getCorrectUrl(props.sys_url_view)
-        + "\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "' alt='" + props.projectName + "'></a></div>"
-        + "<h5 class=\"solution-name\"><a class=\"solution-name-link\" href=\""
-        + app.project.getCorrectUrl(props.sys_url_view) + "\">"
-        + props.projectName + "</a></h3><p></p>";
+        + "<p class=\"image-link\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "' alt='" + props.projectName + "'></p></div>"
+        + "<h5 class=\"solution-name\"><p class=\"solution-name-link\">"
+        + props.projectName + "</p></h3><p></p><a class=\"solution-overlay-learn\">Learn more</a>";
 
       if (props.downloadsLink) {
-        template += "<a class=\"upstream-download button tiny\" href=\""
+        template += " | <a href=\""
           + app.project.getCorrectUrl(props.downloadsLink) + "\">Download</a>";
       }
 
@@ -326,7 +323,7 @@ $(function() {
     Modal Box
   */
 
-  $('ul.results, ul.featured-projects-results').on('click','li.upstream a',function(e) {
+  $('ul.results, ul.featured-projects-results').on('click','li.upstream a.solution-overlay-learn',function(e) {
     e.preventDefault();
     var html = $(this).parents('li').find('.project-content').html();
     app.overlay.open(html);
