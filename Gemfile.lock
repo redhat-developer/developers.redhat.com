@@ -20,7 +20,8 @@ GIT
 
 GIT
   remote: git://github.com/lightguard/awestruct.git
-  revision: f598e45aa23c43a84c8fc3c93a2598d946055949
+  revision: f86c082c954712748650bb51231e645c073ba180
+  ref: f86c082c954712748650bb51231e645c073ba180
   branch: feature/perf-testing-large-site
   specs:
     awestruct (0.6.0.alpha)
@@ -202,9 +203,9 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.13)
-    listen (3.0.5)
+    listen (3.0.6)
       rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9)
+      rb-inotify (>= 0.9.7)
     little-plugger (1.1.4)
     log4r (1.1.10)
     logging (2.0.0)
@@ -229,7 +230,7 @@ GEM
     multi_json (1.11.2)
     multi_test (0.1.2)
     multipart-post (2.0.0)
-    nenv (0.2.0)
+    nenv (0.3.0)
     netrc (0.11.0)
     nokogiri (1.5.11)
     notiffany (0.0.8)
@@ -272,7 +273,7 @@ GEM
     rb-fchange (0.0.6)
       ffi
     rb-fsevent (0.9.7)
-    rb-inotify (0.9.5)
+    rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     ref (2.0.0)
     require_all (1.3.3)

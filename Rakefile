@@ -115,7 +115,7 @@ end
 
 desc 'Generate the site using the defined profile, or development if none is given'
 task :gen, [:profile] => :check do |task, args|
-  run_awestruct "-P #{args[:profile] || 'development'} -g --force -q --output-dir /tmp/jporter/developers.redhat.com"
+  run_awestruct "-P #{args[:profile] || 'development'} -g --force -q -w"
 end
 
 desc "Push local commits to #{$remote}/master"
