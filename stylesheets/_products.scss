@@ -91,6 +91,17 @@
     padding-bottom: 5px;
     height: auto;
   }
+  .indent-product {
+    margin-left: 2em;
+    .large-8 {
+      margin-left: -.7em;
+    }
+    @include tablet-landscape-and-down {
+      .large-8 {
+        margin-left: 0;
+      }
+    }
+  }
 }
 #development-tool {
   .download-link{
@@ -227,6 +238,7 @@
     h2{
       color: #146691;
       font-size: 37px;
+      line-height: 1.2;
       margin-bottom: 0;
     }
 
@@ -251,6 +263,9 @@
     i {
       margin-left: 5px;
     }
+  }
+  .caps {
+    text-transform: uppercase;
   }
 }
 

@@ -9,26 +9,26 @@ description: The simple, modern & productive way to build apps and infrastructur
 section.homepage-main
   .row
     .large-16.columns.homepage-cta
-      a.button href='http://wp.me/p2WBxv-1KtN' Learn More
+      img.mobile(src=cdn("#{site.base_url}/images/design/RHD_homehero_mobile_cdk2_text.png") alt="Red Hat Container Development Kit 2 Beta is Here")
+      img.desktop(src=cdn("#{site.base_url}/images/design/RHD_homehero_desktop_cdk2_text.png") alt="Red Hat Container Development Kit 2 Beta is Here")
+      a.button href='#{site.base_url}/products/cdk/get-started' Get Started
+      p First 500 downloads include a RHEL Developer Subscription - for free!
     .large-8.columns.homepage-getstarted
       h5.caps Get Started
       ul
-        li 
-          a href='#{site.base_url}/register' Red Hat Developers launches
-        li 
-          a href='http://developerblog.redhat.com/2015/10/12/optimizing-twelve-factor-app-red-hat-openshift/' OpenShift Enterprise 3 takes off
-        li 
-          a href='#{site.base_url}/promotions/distributed-javaee-architecture/' New book: Modern Java EE Design Patterns
-        li 
-          a href='#{site.base_url}/products/mobileplatform/get-started' Hello World for Red Hat Mobile Application Platform
-        li 
-          a href='http://developerblog.redhat.com/2015/11/04/red-hat-microsoft-making-dot-net-on-linux-for-enterprises/' Microsoft and Red Hat partner
+        li Easily develop from Windows, MacOS, RHEL, and more
+        li Deploy to Red Hat platforms including RHEL, Atomic Host, and now, OpenShift Enterprise 3
+        li Utilize new configuration tools based on Nulecule
+        li ISVs - certify your container apps
+      a.learn-more href='#{site.base_url}/products/cdk/overview'
+        | Learn More
+        i.fa.fa-arrow-circle-right
       .clearfix
       h5.caps Accelerate Your Development
-      .medium-20.small-24.columns
-        a.video-thumb(href='#{site.base_url}/video/youtube/GCtpncA0Ea0')
-          img(src=cdn("#{site.base_url}/images/design/burr_video_thumbnail.png") alt="Video Thumbnail Img")
-          p 2015 JBoss Red Hat Keynote Demo
+      .medium-16.small-24.columns
+        a.video-thumb(href='#{site.base_url}/video/youtube/DGoqrqSLQtg')
+          img(src='http://img.youtube.com/vi/DGoqrqSLQtg/0.jpg' alt='Video Title')
+          p Watch how to set up the CDK
 
 .row
   .large-24
@@ -119,4 +119,3 @@ section.contributors-banner.inverse
         .large-8.small-24.columns
           img(src=cdn("#{site.base_url}/images/content-contributors/dots_icon.png"))
           h3 Developer on the Street
-

@@ -82,11 +82,17 @@ module JBoss
                 if File.exists?('./products/' + id + '/learn.html.slim')
                   product.send('has_learn_page=', true)
                 end
-                if File.exists?('./products/' + id + '/community.html.slim')
+                if File.exists?('./products/' + id + '/community.html.slim') || File.exists?('./products/' + id + '/community.adoc')
                   product.send('has_community_page=', true)
                 end
                 if File.exists?('./products/' + id + '/download.adoc')
                   product.send('has_download_page=', true)
+                end
+                if File.exists?('./products/' + id + '/resources.adoc')
+                  product.send('has_resources_page=', true)
+                end
+                if File.exists?('./products/' + id + '/updates.adoc')
+                  product.send('has_updates_page=', true)
                 end
                 if File.exists?('./products/' + id + '/docs-and-apis.adoc')
                   product.send('has_docsandapis_page=', true)

@@ -6,5 +6,8 @@ layout: product-base
 
 .large-4.medium-7.small-24.columns.nav-breakpoint
   = partial 'product-left-menu.html.slim', {'parent' => page}
+  - if page.product.id == 'cdk'
+    = partial 'product-cdk-stackoverflow.html.slim', {'parent' => page}
+
 .large-20.medium-17.small-24.columns.text-content.nav-breakpoint
   = content
