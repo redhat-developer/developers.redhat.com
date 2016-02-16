@@ -1,31 +1,17 @@
 :awestruct-layout: product-get-started-multipath
 :awestruct-interpolate: true
 
-## Before You Begin section
-You must have one of the following subscriptions in order to be able to use the CDK for Docker container application development:
-
-* link:https://www.redhat.com/apps/store/developers/rhel_developer_suite.html[Red Hat Enterprise Linux Developer Suite]
-* link:https://www.redhat.com/apps/store/developers/rhel_developer_support_professional.html[Red Hat Enterprise Linux Developer Support Professional]
-* link:https://www.redhat.com/apps/store/developers/rhel_developer_support_enterprise.html[Red Hat Enterprise Linux Developer Support Enterprise]
-* link:https://connect.redhat.com/zones/containers[Red Hat Connect for Technology Partners subscription]
-
-[.callout-light]
-*NOTE:* Red Hat may also occasionally provide a promotion which includes a no-charge version of the RHEL Developer Suite in order to test the CDK.
+## Path Name
+Node.js
 
 ## Path Intro section
-Get started building Node.js applications in docker containers on Red Hat Enterprise Linux in under 15 minutes.
+Get started building Node.js applications in docker formatted containers using the Red Hat Container Development CDK (CDK) 2.0
 
 ## Prerequisites section title
 Introduction and Prerequisites
 
 ## Prerequisites section
-In this tutorial, you will learn how to start building Node.js applications in docker containers on Red Hat Enterprise Linux. In order to be able to build and run containers you will install `docker` on your Red Hat Enterprise Linux 7 system.
-
-[*FIXME Confirm: I think docker is only available on RHEL 7 server. Docker is not available on desktop. I haven't tried workstation. I haven't changed the prerequisites to reflect that yet.*]
-
-You will need a current Red Hat subscription that allows you to download software and updates from Red Hat. If you are interested in purchasing a Red Hat subscription for development, the link:https://www.redhat.com/apps/store/developers/rhel_developer_suite.html[Red Hat Developer Suite] is an affordable choice that includes Red Hat Enterprise Linux Server, Atomic Host, Red Hat Developer Toolset (DTS), and Red Hat Software Collections (RHSCL). For developer support with a guaranteed response time service-level agreement (SLA), Red Hat Developer Workstation Professional or Enterprise subscriptions are available.
-
-If you don’t have a Red Hat Enterprise Linux subscription, you can try it for free. Get started with an evaluation at link:https://access.redhat.com/products/red-hat-enterprise-linux/evaluation[]. Select the _Red Hat Enterprise Linux Developer Workstation_ option to ensure your evaluation will include both RHSCL and DTS. See link:#{site.base_url}/products/rhel/get-started[ _Get Started with Red Hat Enterprise Linux_ ] for an overview of installing Red Hat Enterprise Linux for development.
+In this tutorial, you will learn how to start building Node.js applications in docker formatted containers using the Red Hat Container Development Kit (CDK) 2.0 on Red Hat Enterprise Linux. You need to have CDK 2.0 installed and should have downloaded the Red Hat Enterprise Linux vagrant box for your system. See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK 2.0 Installation Guide] for more information. 
 
 If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
 
@@ -33,7 +19,7 @@ If you encounter difficulties at any point, see <<troubleshooting,Troubleshootin
 5 minutes
 
 ## Step1 Title
-Prepare your system
+Start the vagrant box
 
 ## Step2 Duration
 5 minutes
@@ -49,100 +35,99 @@ Build Hello World in a container
 
 ## Step1 Content
 
-In this step, you will configure your system to build and run docker containers. In the process, you will add the necessary software repositories, verify that your system has a current Red Hat subscription, and is able to receive updates from Red Hat.
+The steps in this tutorial run on Red Hat Enterprise Linux (RHEL) inside the vagrant box is part of CDK. The vagrant box has docker, kubernetes, and OpenShift installed and configured for running containers. You will enter the commands in this tutorial after logging into the box with `vagrant ssh`.
 
-First, you will add two additional Red Hat software repositories that aren't enabled by default. Your system needs to be already registered with Red Hat. Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
+Open a _Terminal_ or _Command_ window to enter the commands in this tutorial.
 
-### Using the Red Hat Subscription Manager GUI
+If you haven't already installed the CDK, follow the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide]. An overview of the steps:
 
-Red Hat Subscription Manager can be started from the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
+. Install a virtualization provider (hypervisor) for your system such as VirtualBox, VMware, or KVM/libvirt.
+. Install Vagrant, from link:http://vagrantup.com/[vagrantup.com], or from your operating system's packages.
+. From link:https://access.redhat.com/downloads/content/293/ver=2/rhel---7/2.0.0/x86_64/product-software[Red Hat Customer Portal] download _Red Hat Container Tools_ (cdk-2.0.0.zip) and the _RHEL 7.2 Vagrant box_ that matches your virtualization provider: VirtualBox, VMare, or KVM/libvirt.
+. Unzip `cdk-2.0.0.zip` into a directory of your choosing.
+. Install the vagrant plugins `vagrant-registration` and `vagrant-adbinfo`.  The plugins are located in the `plugins` directory of the CDK zip file.
+. Add the _RHEL 7.2 Vagrant box_ to Vagrant with the command `vagrant add --name cdkv2 _path to downloaded .box file_`.
 
-Select _Repositories_ from the _System_ menu of the subscription manager. In the list of repositories, check the _Enabled_ column for _rhel-7-server-optional-rpms_ and _rhel-7-server-extras-rpms_. After clicking, it might take several seconds for the check mark to appear in the enabled column. If you are using the desktop or workstation version of Red Hat Enterprise Linux, the repositories will have _desktop_ or _workstation_ in the name instead of _server_. +
 
-### Using subscription-manager from the command line
+### Start the vagrant box
 
-You can add or remove software repositories from the command line using the `subscription-manager` tool. Start a _Terminal_ window if you don't already have one open. Use `su` to become the root user.  Use `subscription-manager --list` option to to view the available software repositories.
+To start the vagrant box:
 
-[.code-block]
+. Change to the directory where you unpacked the CDK zip file.
+. Change to the sub-directory `components/rhel/rhel-ose`. Alternatively, copy the `Vagrantfile` in that directory to a working directory of your choosing.
+. Start the box by entering `vagrant up`. Note: the `Vagrantfile` needs to be in the current directory when entering vagrant commands without specifying a box name or a path to the `Vagrantfile`.
+. You will be prompted to register the RHEL Vagrant box during startup. You will need to enter your username and password for the customer portal, link:https://access.redhat.com/[access.redhat.com]. The box must be registered to download software from Red Hat. The registration plugin will attach the box to a Red Hat subscription when it starts up and release it when the box is shutdown using the `vagrant halt` command.
+
+When starting the vagrant box, a number of log messages will be displayed. Most of these are informational, however you should review the output if the box fails to start. Below is the output from a typical `vagrant up`:
+
 ```
-$ su -
-# subscription-manager repos --list
-```
-
-Enable the two additional repositories. If you are using a desktop or workstation edition of Red Hat Enterprise Linux, change `-server-` to `-desktop-` or `-workstation-` in the following commands:
-
-[.code-block]
-```
-# subscription-manager repos --enable rhel-7-server-extras-rpms
-# subscription-manager repos --enable rhel-7-server-optional-rpms
-```
-
-### Install docker and start the docker daemon
-
-In the next step you will:
-. update your system with any available software updates
-. install _docker_, and a few additional rpms using _yum_
-. configure the _docker_ daemon to start at boot time
-. start the _docker_ daemon
-
-
-If you don't have a root _Terminal_ window open, start a _Terminal_ window and become the root user with `su`.
-
-Now download and install any available updates by running `yum update`.  If updates are available, `yum` will list them and ask if it is OK to proceed.
-
-[.code-block]
-```
-$ su -
-# yum update
-```
-
-Install `docker` and necessary additional rpms:
-
-[.code-block]
-```
-# yum install docker device-mapper-libs device-mapper-event-libs
-```
-
-Enable the docker daemon to start at boot time and start it now:
-
-[.code-block]
-```
-# systemctl enable docker.service
-# systemctl start docker.service
-```
-
-Now verify that the docker daemon is running:
-
-[.code-block]
-```
-# systemctl status docker.service
+$ vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Clearing any previously set forwarded ports...
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+    default: Adapter 2: hostonly
+==> default: Forwarding ports...
+    default: 22 => 2222 (adapter 1)
+==> default: Running 'pre-boot' VM customizations...
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default: Warning: Connection timeout. Retrying...
+    default: Warning: Connection timeout. Retrying...
+    default: Warning: Remote connection disconnect. Retrying...
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+    default: No guest additions were detected on the base box for this VM! Guest
+    default: additions are required for forwarded ports, shared folders, host only
+    default: networking, and more. If SSH fails on this machine, please install
+    default: the guest additions and repackage the box to continue.
+    default:
+    default: This is not an error message; everything may continue to work properly,
+    default: in which case you may ignore this message.
+==> default: Configuring and enabling network interfaces...
+==> default: Registering box with vagrant-registration...
+    default: Would you like to register the system now (default: yes)? [y|n]y
+    default: username: _your username_
+    default: password: _your password_
+==> default: Rsyncing folder: /cygdrive/c/cdk2/components/rhel/rhel-ose/ => /vagrant
+==> default: Running provisioner: shell...
+    default: Running: inline script
+==> default: Created symlink from /etc/systemd/system/multi-user.target.wants/openshift.service to /etc/systemd/system/openshift.service.
 ```
 
-Your system is now ready to build and run docker formatted containers. If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+You should now be able to log into the vagrant box using `vagrant ssh`.
+
 
 ## Step2 Content
 
-This step will download and install Node.js using a container from the Red Hat container registry. Installing the Node.js container will make Node.js available for other containers on your system to use. Because containers run in isolated environments, your host system will not be altered by the installation. You must use `docker` commands to use or view the container's content.
+This step will download and install Node.js using a container image from the Red Hat Atomic Registry, a repository of container images. Installing the Node.js container will make Node.js available for use by other containers on your system. Because containers run in isolated environments, your host system will not be altered by the installation. You will use `docker` commands to interact with and view the container's contents.
 
-The commands shown in this section can be used to download and install other containers, like application containers you build. Containers can specify that they require other containers to be installed, which can happen automatically. For example, you can specify in the `Dockerfile` that is used to describe and build your container that your application requires Node.js. Then, when someone installs your container, their system will automatically download the required Node.js container directly from the Red Hat container registry.
+The commands shown in this section can be used to download and install other container images, like application containers you build. Containers can specify that they require other containers to be installed, which can happen automatically. For example, you can specify in the `Dockerfile` that is used to describe and build your container that your application requires Node.js. Then, when someone installs your container, their system will automatically download the required Node.js container directly from the Red Hat Atomic Registry.
 
-The Node.js container is part of Red Hat Software Collections, which provides the latest development technologies for Red Hat Enterprise Linux. Access to the Red Hat Software Collections (RHSCL) is included with many Red Hat Enterprise Linux (RHEL) subscriptions. For more information about which subscriptions include RHSCL, see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
+// The Node.js container image is part of Red Hat Software Collections, which provides the latest development technologies for Red Hat Enterprise Linux. Access to the Red Hat Software Collections (RHSCL) is included with many Red Hat Enterprise Linux (RHEL) subscriptions. For more information about which subscriptions include RHSCL, see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
 
-If you don't have a root _Terminal_ window open, start a _Terminal_ window and become the root user with `su`.
+Run all of the following commands on Red Hat Enterprise Linux inside the vagrant box. If you haven't logged into the vagrant box, open a _Terminal_ or _Command_ window and change to the directory `cdk/components/rhel-ose/Vagrantfile`.  Log in with `vagrant ssh`
 
-To download and install the Node.js container, use the following command:
 
-`docker pull registry.access.redhat.com/openshift3/nodejs-010-rhel7`
+To download and install the Node.js container image, use the following command:
 
-The `docker images` command should show the container image that was installed as well as any others that are on your system.
+`$ docker pull registry.access.redhat.com/openshift3/nodejs-010-rhel7`
 
-`# docker images`
+The `docker images` command lists the container images that are present on your system:
 
-Now start a bash shell inside the Node.js container to have a look around. The shell prompt changes, which is an indication that you are typing at the shell inside the container. A `ps -ef` shows the only thing running inside the container is `bash` and `ps`. Type `exit` to leave the container's bash shell.
+`$ docker images`
+
+The list will include those you've downloaded and any containers previously installed on your system. The CDK vagrant box includes software components that are distributed as container images.
+
+Now start a `bash` shell to have a look around inside a container that uses the Node.js container image. The shell prompt changes, which is an indication that you are typing at the shell inside the container. A `ps -ef` shows the only thing running inside the container is `bash` and `ps`. Type `exit` to leave the container's bash shell.
 
 [.code-block]
 ```
-# docker run -it openshift3/nodejs-010-rhel7 /bin/bash
+$ docker run -it openshift3/nodejs-010-rhel7 /bin/bash
 bash-4.2$ which node
 /opt/rh/nodejs010/root/usr/bin/node
 bash-4.2$ node --version
@@ -154,18 +139,18 @@ default     14     1  0 14:42 ?        00:00:00 ps -ef
 bash-4.2$ exit
 ```
 
-The prior `docker run` command created a container to run your command, keep any state, and isolate it from the rest of the system. You can view the list of running containers with `docker ps`. To see all of the containers that have been created, including those that have exited, use `docker ps -a`.
+The prior `docker run` command created a container to run your command, keep any state, and isolate it from the rest of the system. You can view the list of running containers with `docker ps`. To see all of the containers that have been created, including those that have exited, use `docker ps -a`. Depending on which Vagrantfile you used there may be a number of other containers running such as containers used to create an OpenShift environment.
 
 You can restart the container that was created above with `docker start`. Containers are referred to by name. Docker will automatically generate a name if you don't provide one. Once the container has been restarted, `docker attach` will let you interact with the shell running inside of it.  See the following example:
  
 [.code-block]
 ```
-# docker ps -a
-CONTAINER ID        IMAGE                         COMMAND                CREATED              STATUS                          PORTS               NAMES
-84458ca538fb        openshift3/nodejs-010-rhel7   "container-entrypoin   About a minute ago   Exited (0) About a minute ago                       nostalgic_ritchie
-# docker start nostalgic_ritchie
-high_kowalevski
-# docker attach nostalgic_ritchie
+$ docker ps -a
+CONTAINER ID        IMAGE                        COMMAND                  CREATED              STATUS                          PORTS               NAMES
+84458ca538fb        openshift3/nodejs-010-rhel7   "container-entrypoin   About a minute ago   Exited (0) About a minute ago                       determined_mayer
+$ docker start determined_mayer
+determined_mayer
+$ docker attach determined_mayer
 ```
 
 At this point you are connected to the running shell inside the container. When you attach you won't see the command prompt, so hit Enter to get it to print another one.
@@ -178,20 +163,21 @@ UID        PID  PPID  C STIME TTY          TIME CMD
 default      1     0  0 14:44 ?        00:00:00 /bin/bash
 default     11     1  0 14:45 ?        00:00:00 ps -ef
 bash-4.2$ exit
+
 ```
 
-Since bash was told to `exit`, the container will no longer be running. This can be verified with `docker ps -a`. Containers that are no longer needed can be cleaned up with `docker rm _<container-name>_`.
+Since the only process in the container, `bash`, was told to `exit` the container will no longer be running. This can be verified with `docker ps -a`. Containers that are no longer needed can be cleaned up with `docker rm _<container-name>_`.
 
-`docker rm nostalgic_ritchie`
+`$ docker rm determined_mayer`
 
-To see what other containers are available in the Red Hat container registry, use one or more of the following searches:
+To see what other container images are available in the Red Hat container registry, use one or more of the following searches:
 
 [.code-block]
 ```
-# docker search registry.access.redhat.com/openshift3
-# docker search registry.access.redhat.com/rhscl
-# docker search registry.access.redhat.com/jboss
-# docker search registry.access.redhat.com/rhel
+$ docker search registry.access.redhat.com/rhscl
+$ docker search registry.access.redhat.com/openshift3
+$ docker search registry.access.redhat.com/rhel
+$ docker search registry.access.redhat.com/jboss
 ```
 
 If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
@@ -199,7 +185,9 @@ If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
 ## Step3 Content
 
-In this step, you will create a tiny Hello World container that uses Node.js as a web server. Once created, the container can be run on other systems that have `docker` installed.  You will need to create several files in an empty directory using your favorite editor, including a `Dockerfile` that describes the container. You don't need to be running under the root user to create the files, but you will need root privileges to run the `docker` commands.
+In this step, you will create a tiny Hello World container that uses Node.js as a web server. Once created, the container can be run on other systems that have `docker` installed.  You will need to create several files in an empty directory using your favorite editor, including a `Dockerfile` that describes how to build the container image.
+
+Note: you can edit files on your host system that can be synchronized to your vagrant box with `vagrant rsync`. For more information see _Vagrant synchronizad folders_ in the _CDK Installation Guide_. 
 
 First, create an empty directory, and then create a file named `Dockerfile` with the following contents, but change the `MAINTAINER` line to have your name and email address:
 
@@ -207,7 +195,7 @@ First, create an empty directory, and then create a file named `Dockerfile` with
 ----
 FROM openshift3/nodejs-010-rhel7
 
-MAINTAINER Shadow Man "shadow-man@redhat.com"
+MAINTAINER Your Name "your-email@example.com"
 
 EXPOSE 8000
 
@@ -216,7 +204,7 @@ COPY . /opt/app-root/src
 CMD /bin/bash -c 'node hello-http.js'
 ----
 
-Create the file `hello-http.js` with the following contents:
+Create the file `hello-http.js` in the same directory as the `Dockerfile`:
 
 .hello-http.js
 ----
@@ -229,29 +217,26 @@ console.log('Server running at http://127.0.0.1:8000/');
 ----
 
 
-Now build the container image using `docker build`. You will need to be root using `su` or `sudo` in the directory you created that contains `Dockerfile` and `index.html`.
+Now build the container image using `docker build`.
 
-`# docker build -t _myname_/nodeweb .`
+`$ docker build -t _myname_/nodeweb .`
 
 
 You can see the container image that was created using the following command:
 
-[.code-block]
-```
-# docker images
-```
+`$ docker images`
 
-Now run the container using `docker run`. The Node.js http.server module will create a tiny web server that listens on port 8000 inside the container.  The `run` command will map port 8000 on the host machine to port 8000 inside the container.
+Now run the container using `docker run`. The Node.js http server module will create a tiny web server that listens on port 8000 inside the container.  The `run` command will map port 8000 on the host machine to port 8000 inside the container.
 
-`# docker run -d -p 8000:8000 _myname_/nodeweb`
+`$ docker run -d -p 8000:8000 --name helloweb _myname_/nodeweb`
 
-The run command returns a ID for the container that you can ignore.  To check that the container is running, use `docker ps`.  Take note of the name docker assigned to the running container.
+The run command returns a unique ID for the container, which you can ignore. To check that the container is running, use `docker ps`. The output should show a container named `helloweb` that is running the `_myname_/nodeweb` container image you created.
 
 [.code-block]
 ```
-# docker ps
-CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                              NAMES
-4edf44433b27        myname/nodeweb      "container-entrypoin   30 seconds ago      Up 29 seconds       0.0.0.0:8000->8000/tcp, 8080/tcp   modest_cori
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
+c7885aa23773        myname/nodeweb    "container-entrypoint"   6 seconds ago       Up 4 seconds        0.0.0.0:8000->8000/tcp, 8080/tcp   helloweb
 ```
 
 Use `curl` to access the Node.js web server:
@@ -262,29 +247,36 @@ Use `curl` to access the Node.js web server:
 Hello, Red Hat Developers World!
 ```
 
-When you are done, stop the running container with the following command using the name obtained from running `docker ps`:
+Note: you should also be able to access the Node.js web server running inside your container from the browser on your host machine. The `rhel-ose/Vagrantfile` sets the vagrant box's IP address to 10.1.2.2. The url to use on your host system is `link:http://10.1.2.2:8000/[]`.
 
-[.code-block]
-```
-# docker kill modest_cori
-```
+To view the logs from the running container use `docker logs _<container-name>_`:
+
+`$ docker logs helloweb`
+
+When you are done, stop the running container:
+
+`$ docker stop helloweb`
+
+The `helloweb` container will be retained until you remove it with `docker rm`. You can restart the container with `docker start helloweb`. Note: A subsequent `docker run` will generate an error if a container with the same name already exists.
+
+You can view information about a container using `docker inspect`:
+
+`$ docker inspect _myname_/nodeweb`
+
+The output is a JSON structure that is easily readable. The _Config_ section has details of the container's runtime environment such as environment variables and default command. Note that much of the information in the container's configuration was inherited from the parent container, which in this case is the Node.js runtime container.
+
+Finally, when the application container images you create are ready, you can distribute them by pushing them to a public or private container registry. Your containers will then be available to install on other systems using `docker pull`.
 
 
 ## Where to go next?
 
-* link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/[Red Hat Enterprise Linux Atomic Host 7 Getting Started with Containers] - This document covers working with and deploying containers on both Red Hat Enterprise Linux and Red Hat Enterprise Linux Atomic Host. It also provides information on orchestrating multi-container environments with _kubernetes_. See <<About 
+* link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit] -- contains detailed information on the components that make up the CDK along with instructions on how to interact with containers in the CDK environment.
 
-* link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/[Red Hat Enterprise Linux 7.2 Release Notes] - includes information on recent updates to the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/atomic_host_and_containers.html[container tools included in Red Hat Enterprise Linux and Atomic Host].
+* Container Development Guide (under development) -- Provides guidance for more advanced container development. It illustrates the different ways of creating containers to run with Docker, Kubernetes, Nulecule, Atomic and other container run-time environments.
 
-### About Red Hat Enterprise Linux Atomic Host
+* link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/[Red Hat Enterprise Linux Atomic Host 7 Getting Started with Containers] -- This document covers working with and deploying containers on both Red Hat Enterprise Linux and Red Hat Enterprise Linux Atomic Host. It also provides information on orchestrating multi-container environments with _kubernetes_.
 
-Atomic Host is specifically optimized for deploying Linux containers in environments like Infrastructure as a Service (IaaS) clouds. Atomic Host's minimal footprint contains only the software needed to efficiently host containers. Atomic Host isn't intended for software development activities as it doesn't include development tools or a graphical user interface.
-
-During software development it is suggested that you use Red Hat Enterprise Linux, which is suitable for many purposes including desktop and server installations. You can build and run containers on Red Hat Enterprise Linux, see link:https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems]. The steps to build a container image that include your application can be automated with a Dockerfile. 
-
-After your application is packaged in a container you should test it on Atomic Host to ensure that it is ready for deployment. In addition to minimized footprint, production environments built for running containers benefit from Atomic Host's enhanced security and atomic update and rollback capability.
-
-Developers who are creating continuous integration/continuous delivery (CI/CD) environments will want to consider containers deployed on Atomic Host. This allows test environments to be quickly created while minimizing system resource requirements.
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/[Red Hat Enterprise Linux 7.2 Release Notes] -- includes information on recent updates to the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/atomic_host_and_containers.html[container tools included in Red Hat Enterprise Linux and Atomic Host].
 
 
 ## More Resources
@@ -296,21 +288,12 @@ Red Hat delivers the resources and ecosystem of experts to help you be more prod
 *Follow the Red Hat Developer Blog* +
 link:http://developerblog.redhat.com/[]
 
-
-
 ## Faq section title
 [[troubleshooting]]Troubleshooting and FAQ
 
 ## Faq section
-. My system is unable to download updates from Red Hat.
-+
-Your system must be registered with Red Hat using `subscription-manager register`. You need to have a current Red Hat subscription or an evaluation.
 
-. I don't have a current Red Hat subscription, can I get an evaluation?
-+
-If you don’t have a Red Hat Enterprise Linux subscription, you can try it for free. Get started with an evaluation at link:https://access.redhat.com/products/red-hat-enterprise-linux/evaluation[]. Select the _Red Hat Enterprise Linux Developer Workstation_ option to ensure your evaluation will include both RHSCL and DTS. See link:#{site.base_url}/products/rhel/get-started[ _Get Started with Red Hat Enterprise Linux_ ] for an overview of installing Red Hat Enterprise Linux for development.
-+
-. How do I tell there is a container image available that has a newer version of Node.js 3?
+. How do I tell if there is a container image available that has a newer version of Node.js?
 +
 How can I see what other container images are available?
 +
@@ -320,19 +303,15 @@ To see what other containers are available in the Red Hat container registry, us
 +
 [.code-block]
 ```
-# docker search registry.access.redhat.com/openshift3
-# docker search registry.access.redhat.com/rhscl
-# docker search registry.access.redhat.com/rhel
-# docker search registry.access.redhat.com/jboss
+$ docker search registry.access.redhat.com/rhscl
+$ docker search registry.access.redhat.com/openshift3
+$ docker search registry.access.redhat.com/rhel
+$ docker search registry.access.redhat.com/jboss
 ```
-. Can I run and build docker containers on Red Hat Enterprise Linux?
 +
-Red Hat Enterprise Linux includes docker, but it is not installed by default. See link:https://access.redhat.com/articles/881893#get[Getting Docker on RHEL 7] in the article link:https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems].
 . Where can I learn more about delivering applications with Linux containers?
 +
-If you haven't already joined the link:http://developers.redhat.com/[Red Hat Developers program], sign up at link:http://developers.redhat.com/[developers.redhat.com]. Membership is free.+
-link:https://access.redhat.com/articles/1483053[Recommended Practices for Container Development] and many other container articles are available from the link:https://access.redhat.com/[Red Hat Customer Portal].+
-If you are a Red Hat Technology Partner, visit the link:https://access.redhat.com/articles/1483053[Container Zone] at the link:http://connect.redhat.com/[Red Hat Connect for Technology Partners] web site.
-. `yum` is unable to find the `docker` rpm.
+If you haven't already joined the link:http://developers.redhat.com/[Red Hat Developers program], sign up at link:http://developers.redhat.com/[developers.redhat.com]. Membership is free. +
+link:https://access.redhat.com/articles/1483053[Recommended Practices for Container Development] and many other container articles are available from the link:https://access.redhat.com/[Red Hat Customer Portal].
 +
-[*FIXME - Confirm: I think docker is only available for RHEL 7 server*]
+If you are a Red Hat Technology Partner, visit the link:https://access.redhat.com/articles/1483053[Container Zone] at the link:http://connect.redhat.com/[Red Hat Connect for Technology Partners] web site.
