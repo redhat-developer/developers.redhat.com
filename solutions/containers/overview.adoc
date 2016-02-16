@@ -9,6 +9,10 @@
 [.large-16.columns.ov-block]
 --
 Linux containers keep applications and their runtime components together by combining lightweight application isolation with an image-based deployment method. Containers introduce autonomy for applications by packaging apps with the libraries and other binaries on which they depend. This avoids conflicts between apps that otherwise rely on key components of the underlying host operating system. Containers do not contain a(n) (OS) kernel, which makes them faster and more agile than virtual machines. However, it does mean that all containers on a host must use the same kernel.
+
+At Red Hat, the same containers can run on Red Hat Enterprise Linux, OpenShift Enterprise, Red Hat Enterprise Linux Atomic Host, and Red Hat Atomic Enterprise - whether they are on-premise or in the cloud. Kubernetes, an important component for building scalable multi-container applications, is part of our solution. 
+
+For developing Docker-based container apps, the link:#{site.base_url}/containers/adoption/[Red Hat Container Development Kit (CDK)] is our solution. It simplifies the setup and configuration of your container development environment and gets you on your way to building container-based (aka Docker) applications. 
 --
 
 [.large-8.columns.ov-img]
