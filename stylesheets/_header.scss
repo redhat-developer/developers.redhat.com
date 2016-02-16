@@ -152,6 +152,10 @@ nav.accounts {
     li:first-child a {
       border-left: 0;
     }
+    a.logged-in-name{
+      border-left: none;
+    }
+
     a {
       color:white;
       border-left:1px solid white;
