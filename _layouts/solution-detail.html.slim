@@ -20,21 +20,21 @@ layout: solution
                 = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
 
         - if page.solution.speech_bubble || page._overview
-        .row
-          .large-8.columns
-            img(src=cdn(site.base_url + "/images/solutions/#{page.solution.id}/thumb_400x300.png") alt="#{page.solution.id}")
-            - if page.solution.image_link
-              a.button.button--clear(href="#{page.solution.image_link.url}")
-                i.fa.fa-arrow-circle-down
-                = page.solution.image_link.description
-          .large-16.columns
-            - if page.solution.speech_bubble
-              blockquote.speech-bubble
-                p #{page.solution.speech_bubble.quote}
-                cite #{page.solution.speech_bubble.author}
-            - else
-              = page._overview
-  
+          .row
+            .large-8.columns
+              img(src=cdn(site.base_url + "/images/solutions/#{page.solution.id}/thumb_400x300.png") alt="#{page.solution.id}")
+              - if page.solution.image_link
+                a.button.button--clear(href="#{page.solution.image_link.url}")
+                  i.fa.fa-arrow-circle-down
+                  = page.solution.image_link.description
+            .large-16.columns
+              - if page.solution.speech_bubble
+                blockquote.speech-bubble
+                  p #{page.solution.speech_bubble.quote}
+                  cite #{page.solution.speech_bubble.author}
+              - else
+                = page._overview
+
       - if page._header
         div
         - if page._call_out
