@@ -49,7 +49,7 @@ gem 'docker-api', :require => 'docker'
 # From a location on your disk:
 #
 #gem 'aweplug', github: 'awestruct/aweplug'
-gem 'aweplug', github: 'awestruct/aweplug'
+gem 'aweplug', github: 'lightguard/aweplug'
 
 group :test do
   gem 'climate_control'
