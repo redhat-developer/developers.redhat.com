@@ -1,3 +1,34 @@
+.hero.hero-resources {
+  background: cdn('../images/design/RHDev_pageheader_resources_desktop.png') top center / cover no-repeat;
+  content : ':4242';
+  border:0;
+  margin-bottom: 0;
+
+  h2 {
+    color:white;
+    font-size: 5em;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  @include tablet-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_resources_tablet.png') top center / cover no-repeat;
+    min-height: auto;
+    h2 {
+      margin-top: 10px;
+    }
+  }
+  @include mobile-landscape-and-down {
+    background: cdn('../images/design/RHDev_pageheader_resources_mobile.png') top center / cover no-repeat;
+    h2 {
+      font-size: 4em;
+    }
+  }
+  .row {
+    @extend .flex-center;
+  }
+}
+
 .developer-materials-sidebar {
   @extend .large-6;
   @extend .columns;
