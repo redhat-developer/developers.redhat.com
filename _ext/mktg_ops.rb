@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'yaml'
+require 'pstore'
 require 'digest'
 
 module JBoss::Developer::MktgOps
@@ -9,7 +9,7 @@ module JBoss::Developer::MktgOps
 
     def initialize site
       # Configure our output file
-      @yml = YAML::Store.new Pathname.new(site.config.output_dir).join("mktg_ops.yml")
+      @yml = PStore.new Pathname.new(site.config.output_dir).join("mktg_ops.store")
       @yml.transaction do
         @yml[:assets] ||= {}
         @yml[:external_links] ||= {}
