@@ -558,9 +558,9 @@ ul.product-langs {
   margin-top: 25px !important;
   li {
     background-color: $grey-2;
-    height: 165px;
-    padding: 35px 0;
+    padding: 50px 0 35px 0;
     margin: 10px 20px 10px 0;
+    width: 195px;
     list-style: none;
     &:before {
       display: none;
@@ -578,7 +578,19 @@ ul.product-langs {
       text-align: center;
       color: $red;
       font-weight: 100;
+      margin: 0 5px;
     }
+  }
+  @include tablet-landscape-and-down {
+    li {
+      width: calc(33% - 20px);
+      min-height: 189px;
+    }
+  }
+  @include mobile-landscape-and-down {
+    li {
+      width: calc(50% - 20px);
+    }    
   }
 }
 
