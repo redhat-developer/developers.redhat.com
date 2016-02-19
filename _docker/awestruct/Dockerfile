@@ -1,4 +1,4 @@
-FROM developer.redhat.com/ruby
+FROM developer.redhat.com/ruby23
 MAINTAINER Jason Porter <jporter@redhat.com>
 
 # Prevent encoding errors
