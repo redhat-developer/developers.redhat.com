@@ -3,19 +3,19 @@
 
 == Download
 
-=== Installers and Images for Red Hat CDK
-
 The CDK makes it easy to get started building containers on Microsoft Windows, Apple Mac OS X, or Linux. After you have your Red Hat developer subscription, download the following components to get started.
 
 See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[Container Development Installation Guide] for complete installation instructions.
 
-==== 1. Vagrant and virtualization platform (hypervisor)
+=== 1. Virtualization platform (hypervisor)
 
 The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtual machine (VM). You will need a virtualization platform (hypervisor) to run the VM. First, install your choice of:
 
 * link:http://virtualbox.org/[VirtualBox]
 * link:http://vmware.com/[VMware]
 * Linux KVM/libvirt
+
+=== 2. Vagrant
 
 Next, download link:http://www.vagrantup.com/downloads.html[Vagrant], an open-source tool for creating and distributing portable development environments.
 
@@ -30,13 +30,13 @@ If you are using:
 * CentOS Linux, link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[install the Vagrant software collection].
 * Fedora 23, install the Vagrant packages included with Fedora using `dnf`.
 
-For other Linux distribution, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from link:https://vagrantup.com/downloads.html[vagrantup.com].
+For other Linux distributions, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from link:https://vagrantup.com/downloads.html[vagrantup.com].
 
-==== 2. Red Hat Enterprise Linux CDK download
+=== 3. Red Hat Enterprise Linux CDK download
 
-From the Red Hat CDK 2 download page you need to download two files:
+From the link:https://access.redhat.com/downloads/content/293/ver=2/rhel---7/2.0.0/x86_64/product-software[Red Hat CDK 2 download page] you need to download two files:
 
-* First, download link:#{site.download_manager_file_base_url}/cdk-2.0.0-beta4.zip[Red Hat Container Tools] to get the CDK components to be installed on your system.
+* First, download link:#{site.download_manager_file_base_url}/cdk-2.0.0-beta4.zip[Red Hat Container Tools] to get the CDK `.zip` file containing components to be unpacked on your host system.
 * Second, download the Red Hat Enterprise Linux CDK Vagrant Box that matches your virtualization platform:
   * link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[VirtualBox]
   * link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[VMware]
