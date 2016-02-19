@@ -5,42 +5,58 @@
 
 === Installers and Images for Red Hat CDK
 
-Once you have a subscriptions in place (see above), CDK setup is easy to do Docker container development on your Windows, MacOS, or Linux machine. Download the following items in the order below:
+The CDK makes it easy to get started building containers on Microsoft Windows, Apple Mac OS X, or Linux. After you have your Red Hat developer subscription, download the following components to get started.
 
-==== 1. Container Development Kit (CDK)
-link:#{site.download_manager_file_base_url}/cdk-2.0.0-beta3.zip[Red Hat Container Development Kit (CDK) 2]
+See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[Container Development Installation Guide] for complete installation instructions.
 
-==== 2. Vagrant
-Download one of the following from the Vagrant website based upon your operating system.
+==== 1. Vagrant and virtualization platform (hypervisor)
 
-* link:http://www.vagrantup.com/downloads.html[Vagrant for Windows 7 and up]
-* link:http://www.vagrantup.com/downloads.html[Vagrant for Mac OS X]
-* link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[Vagrant for RHEL (64 bit)]
-* link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[Vagrant for CentOS (64 bit)]
+The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtual machine (VM). You will need a virtualization platform (hypervisor) to run the VM. First, install your choice of:
 
-*Vagrant for Fedora, Ubuntu and Linux are included. See the installation guide.
+* link:http://virtualbox.org/[VirtualBox]
+* link:http://vmware.com/[VMware]
+* Linux KVM/libvirt
 
-==== 3. Vagrant Boxes
-Download one of the following Vagrant Boxes based upon your platform and hypervisor of choice.
-
-*RHEL 7 / OpenShift 3*
-
-* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[Download VirtualBox]
-* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[Download VMware]
-* link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-libvirt.box[Download KVM (Libvirt)]
+Next, download link:http://www.vagrantup.com/downloads.html[Vagrant], an open-source tool for creating and distributing portable development environments.
 
 [.callout-light]
-*NOTE:*  In order to run Vagrant, you must sign the Developer Suite terms and conditions. If you have not done this already, log in to the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the RHEL Developer Suite Terms & Conditions].
+*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1*. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
 
-==== 4. Start the Vagrant box
-1. Change to the sub-directory `components/rhel/rhel-ose`. Alternatively, copy the `Vagrantfile` in that directory to a working directory of your choosing.
-2. Start the box by entering `vagrant up`. Note: the `Vagrantfile` needs to be in the current directory when entering vagrant commands without specifying a box name or a path to the `Vagrantfile`.
+If you are using:
 
-You should now be able to log into the vagrant box using `vagrant ssh`.
+* Microsoft Windows 7 and later, link://https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi[download the MSI universal installer].
+* Apple Mac OS X, link:https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.dmg[down the DMG universal installer].
+link:http://www.vagrantup.com/downloads.html[Vagrant for Mac OS X]
+* Red Hat Enterprise Linux, link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[install the Vagrant software collection].
+* CentOS Linux, link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[install the Vagrant software collection].
+* Fedora 23, install the Vagrant packages included with Fedora.
+* another Linux distribution, check your distribution's packages or download a `.deb` or `.rpm` package from link:https://vagrantup.com/downloads.html[vagrantup.com]
 
-[id='DockerImages']
-==== 5. Docker images
-Here are some of the available images for creating Docker apps for *RHEL and/or OpenShift Enterprise*.  See the link:https://access.redhat.com/search/#/container-images[Red Hat Registry] for a complete list, as well as other options available in beta versions.
+
+==== 2. Red Hat Enterprise Linux CDK Download
+
+From the Red Hat CDK 2 download page you need to download two files:
+* First, download link:#{site.download_manager_file_base_url}/cdk-2.0.0-beta4.zip[Red Hat Container Tools] to get the CDK components to be installed on your system.
+* Second, download the Red Hat Enterprise Linux CDK Vagrant Box that matches your virtualization platform:
+  * link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[VirtualBox]
+  * link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[VMware]
+  * link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-libvirt.box[KVM (Libvirt)]
+
+
+== Getting started
+
+To get started using the Red Hat CDK:
+
+* Follow the instructions in the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[Container Development Installation Guide] to install the CDK.
+* Read the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit] to learn what is included with the CDK and how to use it.
+
+[.callout-light]
+*NOTE:*  In order to run the Red Hat Enterprise Linux Vagrant box, you must have signed the Developer Suite terms and conditions. If you have not done this already, log in to the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the Red Hat Enterprise Linux Developer Suite Terms & Conditions].
+
+
+== Container images available from Red Hat 
+
+Here are some of the container images available from Red Hat. See the link:https://access.redhat.com/search/#/container-images[Red Hat Registry] for a complete list, as well as other options available in beta versions.
 
 *Languages and frameworks*
 [frame="topbot", options="header"]
