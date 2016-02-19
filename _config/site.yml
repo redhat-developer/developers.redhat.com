@@ -1,5 +1,7 @@
 kramdown:
   :input: 'QuickStartParser'
+generation:
+  :in_processes: <%= ENV['AWE_PROC_COUNT'] || Parallel.processor_count %>
 asciidoctor:
   :attributes:
     sectanchors: ''
