@@ -36,11 +36,8 @@ For other Linux distributions, install Vagrant using the packages included with 
 
 From the link:https://access.redhat.com/downloads/content/293/ver=2/rhel---7/2.0.0/x86_64/product-software[Red Hat CDK 2 download page] you need to download two files:
 
-* First, download link:#{site.download_manager_file_base_url}/cdk-2.0.0-beta4.zip[Red Hat Container Tools] to get the CDK `.zip` file containing components to be unpacked on your host system.
-* Second, download the Red Hat Enterprise Linux CDK Vagrant Box that matches your virtualization platform:
-** link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[VirtualBox]
-** link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-vmware-fusion.box[VMware]
-** link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-libvirt.box[KVM (Libvirt)]
+* First, download _Red Hat Container Tools_ to get the CDK `.zip` file containing components to be unpacked on your host system.
+* Second, download the _Red Hat Enterprise Linux 7.2 CDK Vagrant Box_ that matches your virtualization platform: VirtualBox, VMware, or libvirt (KVM).  
 
 
 == Getting started
