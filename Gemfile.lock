@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/awestruct/aweplug.git
-  revision: b71f92e35a5f7a95324d193fb7267ce277d4a952
+  revision: 0344a74bc0141d4acba9f2d5f0d6fca97976f82a
   specs:
     aweplug (1.0.0.a24)
       curb (~> 0.8.5)
@@ -17,6 +17,26 @@ GIT
       typhoeus (~> 0.7)
       uglifier (~> 2.0.1)
       xml-simple (~> 1.1)
+
+GIT
+  remote: git://github.com/lightguard/awestruct.git
+  revision: 1e8d7b90006bdc8b2562d2e697cf6f59f3ba5bae
+  branch: feature/perf-testing-large-site
+  specs:
+    awestruct (0.6.0.alpha)
+      asciidoctor (~> 1.5, >= 1.5.2)
+      git (~> 1.2, >= 1.2.6)
+      guard (~> 2.13, >= 2.13.0)
+      guard-livereload (~> 2.1, >= 2.1.2)
+      haml (~> 4.0, >= 4.0.5)
+      listen (>= 2.7.1, <= 4.0)
+      logging (~> 2.0)
+      mime-types (~> 2.1)
+      oga (~> 1.3)
+      parallel (~> 1.1, > 1.1.1)
+      rack (~> 1.5, >= 1.5.2)
+      rest-client (~> 1.7, >= 1.7.2)
+      tilt (~> 2.0, >= 2.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -44,20 +64,6 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    awestruct (0.5.7)
-      asciidoctor (~> 1.5, >= 1.5.2)
-      git (~> 1.2, >= 1.2.6)
-      guard (~> 2.13, >= 2.13.0)
-      guard-livereload (~> 2.1, >= 2.1.2)
-      haml (~> 4.0, >= 4.0.5)
-      listen (>= 2.7.1, <= 4.0)
-      logging (~> 2.0)
-      mime-types (~> 2.1)
-      oga (~> 1.3)
-      parallel (~> 1.1, > 1.1.1)
-      rack (~> 1.5, >= 1.5.2)
-      rest-client (~> 1.7, >= 1.7.2)
-      tilt (~> 2.0, >= 2.0.1)
     blinkr (0.3.9)
       nokogiri (~> 1.5)
       parallel (~> 1.3)
@@ -373,7 +379,7 @@ DEPENDENCIES
   activesupport (> 3.1, < 4.2.0)
   asciidoctor (~> 1.5.0)
   aweplug!
-  awestruct (= 0.5.7)
+  awestruct!
   blinkr (~> 0.3)
   capybara (~> 2.5)
   capybara-screenshot (~> 1.0.11)
@@ -423,3 +429,6 @@ DEPENDENCIES
   therubyracer
   uglifier (~> 2.0.1)
   wraith (~> 1.3.0)
+
+BUNDLED WITH
+   1.11.2
