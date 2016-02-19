@@ -5,7 +5,7 @@
 
 The CDK makes it easy to get started building containers on Microsoft Windows, Apple Mac OS X, or Linux. After you have your Red Hat developer subscription, download the following components to get started.
 
-See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[Container Development Installation Guide] for complete installation instructions.
+See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[Container Development Kit Installation Guide] for complete installation instructions.
 
 === 1. Virtualization platform (hypervisor)
 
@@ -17,18 +17,18 @@ The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtua
 
 === 2. Vagrant
 
-Next, download link:http://www.vagrantup.com/downloads.html[Vagrant], an open-source tool for creating and distributing portable development environments.
+Next, download link:http://www.vagrantup.com/[Vagrant], an open source tool for creating and distributing portable development environments. All of the VM configuration detalis on your development system will be handled for you by Vagrant.
 
 [.callout-light]
 *NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1*. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
 
 If you are using:
 
-* Microsoft Windows 7 and later, link://https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi[download the Vagrant `.msi` universal installer].
-* Apple Mac OS X, link:https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.dmg[down the Vagrant `.dmg` universal installer].
-* Red Hat Enterprise Linux, link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[install the Vagrant software collection].
-* CentOS Linux, link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[install the Vagrant software collection].
-* Fedora 23, install the Vagrant packages included with Fedora using `dnf`.
+* Microsoft Windows 7 and later, link:https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi[download the Vagrant `.msi` universal installer].
+* Apple Mac OS X, link:https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.dmg[download the Vagrant `.dmg` universal installer].
+* Red Hat Enterprise Linux, install the _Vagrant software collection_ using the instructions in the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[CDK Installation Guide].
+* CentOS Linux, install the _Vagrant software collection_ using the instructions in the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[CDK Installation Guide].
+* Fedora 23, install the Vagrant packages included with Fedora using `dnf` 
 
 For other Linux distributions, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from link:https://vagrantup.com/downloads.html[vagrantup.com].
 
@@ -36,8 +36,8 @@ For other Linux distributions, install Vagrant using the packages included with 
 
 From the link:https://access.redhat.com/downloads/content/293/ver=2/rhel---7/2.0.0/x86_64/product-software[Red Hat CDK 2 download page] you need to download two files:
 
-* First, download _Red Hat Container Tools_ to get the CDK `.zip` file containing components to be unpacked on your host system.
-* Second, download the _Red Hat Enterprise Linux 7.2 CDK Vagrant Box_ that matches your virtualization platform: VirtualBox, VMware, or libvirt (KVM).  
+* First, download _Red Hat Container Tools_. You will get a `.zip` file containing CDK components that should be unpacked on your development (host) system.
+* Second, download the _Red Hat Enterprise Linux 7.2 CDK Vagrant Box_ that matches your virtualization platform, e.g., VirtualBox, VMware, or libvirt (KVM).
 
 
 == Getting started
@@ -45,7 +45,7 @@ From the link:https://access.redhat.com/downloads/content/293/ver=2/rhel---7/2.0
 To get started using the Red Hat CDK:
 
 * Follow the instructions in the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[Container Development Installation Guide] to install the CDK.
-* Read the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit] to learn what is included with the CDK and how to use it.
+* Read link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit] to learn what is included with the CDK and how to use it.
 
 [.callout-light]
 *NOTE:*  In order to run the Red Hat Enterprise Linux Vagrant box, you must have signed the Developer Suite terms and conditions. If you have not done this already, log into the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the Red Hat Enterprise Linux Developer Suite Terms & Conditions].
@@ -53,7 +53,7 @@ To get started using the Red Hat CDK:
 
 == Container images available from Red Hat 
 
-Here are some of the container images available from the link:https://access.redhat.com/search/\#/container-images[Red Hat Container Registry], link:https://registry.acess.redhat.com/[registry.access.redhat.com]. A full, searchable list, is available on the link:https://access.redhat.com/search/#/container-images[Red Hat Customer Portal].
+Here are some of the container images available from the Red Hat Container Registry, link:https://registry.access.redhat.com/[registry.access.redhat.com]. A full, searchable list, is available on the link:https://access.redhat.com/search/#/container-images[Red Hat Customer Portal].
 
 *Languages and frameworks*
 [frame="topbot", options="header"]
@@ -83,7 +83,7 @@ Here are some of the container images available from the link:https://access.red
 [frame="topbot", options="header"]
 |==========================
 |Description  |Installation
-|Nginx 1.6 server and a reverse proxy server |docker pull rhscl/nginx-16-rhel7
+|NGINX 1.6 server and a reverse proxy server |docker pull rhscl/nginx-16-rhel7
 |Apache HTTP 2.4 Server |docker pull rhscl/httpd-24-rhel7
-|Phusion Passenger® 3.0 web server and application server |docker pull rhscl/passenger-40-rhel7
+|Phusion Passenger 3.0 web server and application server |docker pull rhscl/passenger-40-rhel7
 |==========================
