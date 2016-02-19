@@ -24,18 +24,18 @@ Next, download link:http://www.vagrantup.com/downloads.html[Vagrant], an open-so
 
 If you are using:
 
-* Microsoft Windows 7 and later, link://https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi[download the MSI universal installer].
-* Apple Mac OS X, link:https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.dmg[down the DMG universal installer].
-link:http://www.vagrantup.com/downloads.html[Vagrant for Mac OS X]
+* Microsoft Windows 7 and later, link://https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi[download the Vagrant `.msi` universal installer].
+* Apple Mac OS X, link:https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.dmg[down the Vagrant `.dmg` universal installer].
 * Red Hat Enterprise Linux, link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[install the Vagrant software collection].
 * CentOS Linux, link:http://mirror.centos.org/centos-7/7/sclo/x86_64/sclo/[install the Vagrant software collection].
-* Fedora 23, install the Vagrant packages included with Fedora.
-* another Linux distribution, check your distribution's packages or download a `.deb` or `.rpm` package from link:https://vagrantup.com/downloads.html[vagrantup.com]
+* Fedora 23, install the Vagrant packages included with Fedora using `dnf`.
 
+For other Linux distribution, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from link:https://vagrantup.com/downloads.html[vagrantup.com].
 
-==== 2. Red Hat Enterprise Linux CDK Download
+==== 2. Red Hat Enterprise Linux CDK download
 
 From the Red Hat CDK 2 download page you need to download two files:
+
 * First, download link:#{site.download_manager_file_base_url}/cdk-2.0.0-beta4.zip[Red Hat Container Tools] to get the CDK components to be installed on your system.
 * Second, download the Red Hat Enterprise Linux CDK Vagrant Box that matches your virtualization platform:
   * link:#{site.download_manager_file_base_url}/rhel-cdk-kubernetes-7.2-6.x86_64.vagrant-virtualbox.box[VirtualBox]
@@ -51,17 +51,17 @@ To get started using the Red Hat CDK:
 * Read the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit] to learn what is included with the CDK and how to use it.
 
 [.callout-light]
-*NOTE:*  In order to run the Red Hat Enterprise Linux Vagrant box, you must have signed the Developer Suite terms and conditions. If you have not done this already, log in to the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the Red Hat Enterprise Linux Developer Suite Terms & Conditions].
+*NOTE:*  In order to run the Red Hat Enterprise Linux Vagrant box, you must have signed the Developer Suite terms and conditions. If you have not done this already, log into the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the Red Hat Enterprise Linux Developer Suite Terms & Conditions].
 
 
 == Container images available from Red Hat 
 
-Here are some of the container images available from Red Hat. See the link:https://access.redhat.com/search/#/container-images[Red Hat Registry] for a complete list, as well as other options available in beta versions.
+Here are some of the container images available from Red Hat to get you started. See the link:https://access.redhat.com/search/#/container-images[Red Hat Container Registry] for a complete list, as well as other options available in beta versions.
 
 *Languages and frameworks*
 [frame="topbot", options="header"]
 |==========================
-|Technology |Description  |Docker Pull instruction
+|Technology |Description  |Installation
 |rhscl/python-27-rhel7 |Python 2.7 platform for building and running applications |docker pull rhscl/python-27-rhel7
 |rhscl/python-34-rhel7 |Python 3.4 platform for building and running applications |docker pull rhscl/python-34-rhel7
 |openshift3/nodejs-010-rhel7 |Node.js 0.10 platform for building and running applications |docker pull openshift3/nodejs-010-rhel7
@@ -75,7 +75,7 @@ Here are some of the container images available from Red Hat. See the link:https
 *Databases*
 [frame="topbot", options="header"]
 |==========================
-|Database |Description  |Docker Pull instruction
+|Database |Description  |Installation
 |rhscl/mariadb-100-rhel7 |MariaDB 10.0 SQL database server |docker pull rhscl/mariadb-100-rhel7
 |rhscl/mongodb-26-rhel7 |MongoDB 2.6 NoSQL database server |docker pull rhscl/mongodb-26-rhel7
 |rhscl/mysql-56-rhel7 |MySQL 5.6 SQL database server |docker pull rhscl/mysql-56-rhel7
@@ -85,7 +85,7 @@ Here are some of the container images available from Red Hat. See the link:https
 *Web and proxy servers*
 [frame="topbot", options="header"]
 |==========================
-|Database |Description  |Docker Pull instruction
+|Database |Description  |Installation
 |rhscl/nginx-16-rhel7 |Nginx 1.6 server and a reverse proxy server |docker pull rhscl/nginx-16-rhel7
 |rhscl/httpd-24-rhel7 |Apache HTTP 2.4 Server |docker pull rhscl/httpd-24-rhel7
 |rhscl/passenger-40-rhel7 |Phusion Passenger® 3.0 web server and application server |docker pull rhscl/passenger-40-rhel7
