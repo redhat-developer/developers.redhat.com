@@ -626,3 +626,22 @@ ul.product-langs {
     margin-bottom: 5px;
   }
 }
+
+.top-section {
+  span {
+    display: inline;
+    &.product-video {
+      width: 415px;
+      margin-left: 20px;
+    }
+  }
+}
+@include mobile-landscape-and-down {
+  .top-section span {
+    display: block;
+    &.product-video {
+      width: 340px;
+      margin-left: 0;
+    }
+  }
+}

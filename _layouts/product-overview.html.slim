@@ -11,12 +11,12 @@ image: http://design.jboss.org/redhatdeveloper/website/redhatdeveloper_1_0/socia
 h2#overview Overview
 
 .row
-  .large-13.columns
-    .large-24
+  .large-24.columns.top-section
+    span.right.product-video
+      = video_player(video(page.product.intro_video)) if page.product.intro_video
+      = video_player(site.videos["#{page.product.intro_youtube}"]) if page.product.intro_youtube
+    span
       = page._overview
-  .large-11.columns.product-video
-    = video_player(video(page.product.intro_video)) if page.product.intro_video
-    = video_player(site.videos["#{page.product.intro_youtube}"]) if page.product.intro_youtube
 
 br
 .row#product-features
