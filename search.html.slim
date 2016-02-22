@@ -3,114 +3,147 @@ layout: base
 title: Search Results
 ---
 
-.row#searchpage
-  .large-5.columns
-    .divider
-      span Filter By
-      span
-        a.right(href='') Clear All
+div(ng-app="search")
+  .row#searchpage(ng-controller="SearchController")
+    .large-5.columns
+      .divider
+        span Filter By
+        span
+          a.right(href='') Clear All
 
-    .accordion
-      .filter-container
-        input.filter-toggle(type="checkbox")
-        label.filter-label Topic
-        div.filter-content
-          ul
-            li
-              input(type="checkbox")
-              label Containers
-            li
-              input(type="checkbox")
-              label DevOps
-            li
-              input(type="checkbox")
-              label Enterprise Java
-            li
-              input(type="checkbox")
-              label Mobile
+      .accordion
+        .filter-container
+          input.filter-toggle(type="checkbox")
+          label.filter-label Topic
+          div.filter-content
+            ul
+              li
+                input(type="checkbox")
+                label Containers
+              li
+                input(type="checkbox")
+                label DevOps
+              li
+                input(type="checkbox")
+                label Enterprise Java
+              li
+                input(type="checkbox")
+                label Mobile
 
-      .filter-container
-        input.filter-toggle(type="checkbox")
-        label.filter-label Resource Type
-        div.filter-content
-          ul
-            li
-              input(type="checkbox")
-              label Article
-            li
-              input(type="checkbox")
-              label Blog
-            li
-              input(type="checkbox")
-              label Code Artifact
-            li
-              input(type="checkbox")
-              label Presentation
+        .filter-container
+          input.filter-toggle(type="checkbox")
+          label.filter-label Resource Type
+          div.filter-content
+            ul
+              li
+                input(type="checkbox")
+                label Article
+              li
+                input(type="checkbox")
+                label Blog
+              li
+                input(type="checkbox")
+                label Code Artifact
+              li
+                input(type="checkbox")
+                label Presentation
 
-      .filter-container
-        input.filter-toggle(type="checkbox")
-        label.filter-label Publish Date
-        div.filter-content
-          select
-            option(value='1') ALL
-            option(value='1') Last 7 days
-            option(value='1') Last 30 days
-            option(value='1') This month
-            option(value='1') -- Custom --
+        .filter-container
+          input.filter-toggle(type="checkbox")
+          label.filter-label Publish Date
+          div.filter-content
+            select
+              option(value='1') ALL
+              option(value='1') Last 7 days
+              option(value='1') Last 30 days
+              option(value='1') This month
+              option(value='1') -- Custom --
 
-      .filter-container
-        input.filter-toggle(type="checkbox")
-        label.filter-label Author
-        div.filter-content
-          ul
-            li
-              input(type="checkbox")
-              label Author Name
-            li
-              input(type="checkbox")
-              label Author Name
-            li
-              input(type="checkbox")
-              label Author Name
+        .filter-container
+          input.filter-toggle(type="checkbox")
+          label.filter-label Author
+          div.filter-content
+            ul
+              li
+                input(type="checkbox")
+                label Author Name
+              li
+                input(type="checkbox")
+                label Author Name
+              li
+                input(type="checkbox")
+                label Author Name
 
-      .filter-container
-        input.filter-toggle(type="checkbox")
-        label.filter-label Product
-        div.filter-content
-          ul
-            li
-              input(type="checkbox")
-              label JBoss
-            li
-              input(type="checkbox")
-              label EAP
-            li
-              input(type="checkbox")
-              label Enterprise Java
-            li
-              input(type="checkbox")
-              label Mobile
+        .filter-container
+          input.filter-toggle(type="checkbox")
+          label.filter-label Product
+          div.filter-content
+            ul
+              li
+                input(type="checkbox")
+                label JBoss
+              li
+                input(type="checkbox")
+                label EAP
+              li
+                input(type="checkbox")
+                label Enterprise Java
+              li
+                input(type="checkbox")
+                label Mobile
 
-  .large-13.columns.searchpage-middle
-    .row
-      .large-21.columns
-        form.search-bar(accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit")
-          input.user-success(type="text" placeholder="Filter by keyword" id="search_list_text")
-        /.large-3.columns
-          / button.button.postfix(type="submit")
-          /   i.fa.fa-search
-      / .large-24.columns.divider
-      /   strong Showing ## of ### results
+    .large-13.columns.searchpage-middle
+      .row
+        .large-21.columns
+          form.search-bar(role="search" ng-submit="updateSearch()")
+            input.user-success(type="text" placeholder="Filter by keyword" id="search_list_text" ng-model="params.query")
+          /.large-3.columns
+            / button.button.postfix(type="submit")
+            /   i.fa.fa-search
+        / .large-24.columns.divider
+        /   strong Showing ## of ### results
 
-      / .large-24.columns
-      /   p.sort-by
-      /     | Sort results by
-      /     select.tiny
-      /       option(value='1') most recent
-      /     | and show
-      /     select
-      /       option(value='1') 10
-      /     | results per page.
+        / .large-24.columns
+        /   p.sort-by
+        /     | Sort results by
+        /     select.tiny
+        /       option(value='1') most recent
+        /     | and show
+        /     select
+        /       option(value='1') 10
+        /     | results per page.
 
-      .large-24.columns.searchpage-results-container
-        span.loader
+        .large-24.columns.searchpage-results-container
+          / span.loader
+          .sorting
+            p
+              | Sort results by
+              select(ng-model="params.sortby" ng-change="updateSearch()")
+                option(value="new") Most Recent
+                option(value="old") Least Recent
+              | and show
+              select(ng-model="params.size" ng-change="updateSearch()")
+                option(value="5") 5
+                option(value="5") 10
+                option(value="25") 25
+                option(value="50") 50
+                option(value="100") 100
+              | results per page
+          .result(ng-repeat="result in results")
+            h3 {{result._source.sys_title}}
+            p {{result._source.sys_description}}
+
+          nav#paginator
+            ul.pagination
+              li(ng-class="{unavailable: paginate.currentPage < 2}")
+                a(ng-click="goToPage('first')") First
+              li(ng-class="{unavailable: paginate.currentPage < 2}")
+                a(ng-click="goToPage('prev')") Previous
+              li(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}")
+                a(ng-click="goToPage(page)" data-page="{{page}}")
+                  | {{page}}
+              li(ng-class="{unavailable: paginate.currentPage >= paginate.pages}")
+                a(ng-click="goToPage('next')") Next
+              li(ng-class="{unavailable: paginate.currentPage  == paginate.pages}")
+                a(ng-click="goToPage('last')") Last
+

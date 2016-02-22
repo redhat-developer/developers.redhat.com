@@ -6,7 +6,7 @@ jQuery.ajaxSettings.traditional = true;
 
 String.prototype.format = function() {
   var args = arguments;
-  return this.replace(/{(\d+)}/g, function(match, number) { 
+  return this.replace(/{(\d+)}/g, function(match, number) {
     return typeof args[number] != 'undefined'
       ? args[number]
       : match
@@ -79,22 +79,22 @@ Array.prototype.peek = function() {
 // John Resig - http://ejohn.org/ - MIT Licensed
 (function(){
   var cache = {};
- 
+
   String.prototype.template = function (data) {
     // Figure out if we're getting a template, or if we need to
     // load the template - and be sure to cache the result.
     var fn = !/\W/.test(this) ?
       cache[this] = cache[this] ||
         tmpl(document.getElementById(this).innerHTML) :
-     
+
       // Generate a reusable function that will serve as a template
       // generator (and which will be cached).
       new Function("obj",
         "var p=[],print=function(){p.push.apply(p,arguments);};" +
-       
+
         // Introduce the data as local variables using with(){}
         "with(obj){p.push('" +
-       
+
         // Convert the template into pure JavaScript
         this
           .replace(/[\r\t\n]/g, " ")
@@ -105,7 +105,7 @@ Array.prototype.peek = function() {
           .split("!>").join("p.push('")
           .split("\r").join("\\'")
       + "');}return p.join('');");
-   
+
     // Provide some basic currying to the user
     return data ? fn( data ) : fn;
   };
@@ -136,7 +136,7 @@ app.utils.getParametersFromHash = function() {
       urlParams = {};
 
 
-  
+
   while (match = search.exec(query)) {
      urlParams[decode(match[1])] = decode(match[2]);
   }
@@ -253,3 +253,27 @@ function roundHalf(num) {
     return html;
 }
 
+
+if (typeof Object.assign != 'function') {
+  (function () {
+    Object.assign = function (target) {
+      'use strict';
+      if (target === undefined || target === null) {
+        throw new TypeError('Cannot convert undefined or null to object');
+      }
+
+      var output = Object(target);
+      for (var index = 1; index < arguments.length; index++) {
+        var source = arguments[index];
+        if (source !== undefined && source !== null) {
+          for (var nextKey in source) {
+            if (source.hasOwnProperty(nextKey)) {
+              output[nextKey] = source[nextKey];
+            }
+          }
+        }
+      }
+      return output;
+    };
+  })();
+}
