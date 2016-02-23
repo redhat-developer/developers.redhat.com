@@ -9,114 +9,102 @@ description: The simple, modern & productive way to build apps and infrastructur
 section.homepage-main
   .row
     .large-16.columns.homepage-cta
-      a.button href='http://wp.me/p2WBxv-1KtN' Learn More
+      img(src=cdn("#{site.base_url}/images/design/RHDev_homehero_javaeebook_book.png") alt="Distributed JavaEE Architecture")
+      span
+        h2
+          | Book:
+          br
+          | Modern Java EE
+          br
+          | Design Patterns
+        a.button href='#{site.base_url}/promotions/distributed-javaee-architecture/' Download Now
     .large-8.columns.homepage-getstarted
-      h5.caps Get Started
-      ul
-        li 
-          a href='#{site.base_url}/register' Red Hat Developers launches
-        li 
-          a href='http://developerblog.redhat.com/2015/10/12/optimizing-twelve-factor-app-red-hat-openshift/' OpenShift Enterprise 3 takes off
-        li 
-          a href='#{site.base_url}/promotions/distributed-javaee-architecture/' New book: Modern Java EE Design Patterns
-        li 
-          a href='#{site.base_url}/products/mobileplatform/get-started' Hello World for Red Hat Mobile Application Platform
-        li 
-          a href='http://developerblog.redhat.com/2015/11/04/red-hat-microsoft-making-dot-net-on-linux-for-enterprises/' Microsoft and Red Hat partner
-      .clearfix
-      h5.caps Accelerate Your Development
-      .medium-20.small-24.columns
-        a.video-thumb(href='#{site.base_url}/video/youtube/GCtpncA0Ea0')
-          img(src=cdn("#{site.base_url}/images/design/burr_video_thumbnail.png") alt="Video Thumbnail Img")
-          p 2015 JBoss Red Hat Keynote Demo
+      .row
+        .large-24.medium-12.columns
+          h5.caps Get Started with Enterprise Java
+          ul
+            li
+              a href='http://www.jboss.org/ticket-monster/' Learn Enterprise Java with a Full Scale Application Tutorial
+            li
+              a href='https://blog.openshift.com/a-java-ee-7-application-on-openshift-3-with-jboss-tools/' Run your first app on the Cloud
+            li
+              a href='http://developerblog.redhat.com/2016/01/25/run-your-first-java-ee-application-with-jboss-eap-7-beta/' Run your first Enterprise Java application on JBoss EAP 7 Beta
+            li
+              a href='http://forge.jboss.org/document/hands-on-lab' Get started with Java EE faster, using JBoss Forge
+            li
+              a href='http://www.jboss.org/products/brms/get-started/#!project=brms' Manage Enterprise Business rules with JBoss BRMS
+        .large-24.medium-12.columns
+          .clearfix
+          h5.caps Accelerate Your Development
+          .medium-20.small-24.columns
+            a.video-thumb(href='#{site.base_url}/video/youtube/Cl3SiavsBF4')
+              img.video-thumb(src=cdn("#{site.base_url}/images/branding/RHDev_homeherovideo_jbosseap7beta.png") alt='Video Thumbnail Img')
+              p Video: Getting started with JBoss EAP 7 Beta
 
-.row
-  .large-24
-    .spotlights-container
-      a.spotlight-item href='#{site.base_url}/products/eap/download/'
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_rheap7beta_01112016.png") alt="EAP 7 Beta")
-        span EAP 7 Beta Now Available!
-      a.spotlight-item.keycloak-url href=''
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_joinrhd.png") alt="Join RHD")
-        span Register today for Red Hat Developers
-      a.spotlight-item href='#{site.base_url}/video/youtube/czH9qZUusLs/'
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_docker.png") alt="Docker")
-        span Docker images in 5 minutes or less
-      a.spotlight-item href='#{site.base_url}/events/judcon/2016/brno/'
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_judcon2016brno.png") alt="JUDCon 2016:Brno")
-        span JUDCon hits Brno in February
-      a.spotlight-item href='#{site.base_url}/promotions/distributed-javaee-architecture/'
-        .cut-image
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_modernee.png") alt="Modern Java EE Design Patterns")
-        span Download Modern Java EE Design Patterns
+.spotlights-wrap
+  .row
+    .large-24
+      .spotlights-container
+        a.spotlight-item href='#{site.base_url}/about'
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_whatisrhd.png") alt="What is RHD?")
+          span What is Red Hat Developers?
+        a.spotlight-item href='https://rh2016.smarteventscloud.com/portal/createAccount.ww?'
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_devnation_generic.png") alt="DevNation Registration")
+          span Why wait when you can register now?
+        a.spotlight-item href='#{site.base_url}/enterprise-java/'
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_diveintojava.png") alt="Java")
+          span Dive into Enterprise Java
+        a.spotlight-item href='http://developerblog.redhat.com/2016/01/18/jboss-eap-7-beta-is-now-available/'
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_eap7betaishere.png") alt="Eap7 Beta")
+          span JBoss EAP 7 beta is here
+        a.spotlight-item href='http://wp.me/p2WBxv-1KWJ'
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_containercourse.png") alt="Containers course")
+          span New no-cost containers course from Red Hat Training
 
-.row
+.row.featured-and-latest
+  .large-24.columns
+    h3.caps Cool Stuff You Should Know...
   .medium-12.columns
-    h4.caps Suggested
+    p Knowledge should be shared, and with so much to learn, do and accomplish having a starting point is key. With suggested content — our favorite pieces — and easy access to the latest content on the site, you can jump in quickly and easily.
+    h4.caps Featured Content
     ul.homepage-resources
-      - site.our_picks.first(4).each do |k,v|
+      - site.our_picks.first(3).each do |k,v|
         li
-          span.type-icon
-            - if v['type'] == 'article-blog'
-              i.fa.fa-globe.fa-2x
-            - if v['type'] == 'book'
-              i.fa.fa-book.fa-2x
-            - if v['type'] == 'video'
-              i.fa.fa-video-camera.fa-2x
+          img.resource-thumbnail(src="#{v['thumbnail']}")
           span
             a.title(href="#{v['url']}") #{v['title']}
             p.date #{v['date']}
+            p.author By #{v['author']}
 
   .medium-12.columns
-    h4.caps Latest
-    div(ng-app="dcp")
-      div(ng-controller="developerMaterialsController")
-        = partial 'newest-resources.html.slim'
+    h4.caps Latest Content
+    ul.homepage-resources.homepage-resources-latest
 
 section.register-banner.inverse
   .row
-    .large-24.column
-      h2 Join Red Hat Developers
-      h4 Share more. Learn more. Code more.
-      .row
-        .large-14.columns
-          p Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications. Join now for free!
-        .large-10.columns
-          a.button(href="#{site.base_url}/register") Join Today - It&apos;s Free!
-      .row.inverse-spotlights
-        .large-8.small-24.columns
-          i.fa.fa-download.fa-5x
-          h6.center Get immediate access to download Red Hat® products
-        .large-8.small-24.columns
-          i.fa.fa-cloud-upload.fa-5x
-          h6.center Launch your new apps in the cloud on Red Hat® OpenShift
-        .large-8.small-24.columns
-          i.fa.fa-dollar.fa-5x
-          h6.center Offers and discounts on products, services, training, & events
-
-section.contributors-banner.inverse
-  .row
-    .large-24.column
-      h2 Become a content contributor and get swag.
-      h4 Share more. Learn more. Code more.
-      .row
-        .large-14.columns
-          p Our content is only as good as its contributors and we'd like to feature yours. Anything from blogs, videos, demos, photos, screenshots, and more that can help enterprise developers do their jobs faster.
-          p It's easy to get started with three ways to contribute.
-        .large-10.columns
-          a.button(href="#{site.base_url}/community/contributor") Learn More
-      .row.banner-icons
-        .large-8.small-24.columns
-          img(src=cdn("#{site.base_url}/images/content-contributors/wc_icon.png"))
-          h3 General Contributor
-        .large-8.small-24.columns
-          img(src=cdn("#{site.base_url}/images/content-contributors/mvc_icon.png"))
-          h3 Most Valuable Contributor
-        .large-8.small-24.columns
-          img(src=cdn("#{site.base_url}/images/content-contributors/dots_icon.png"))
-          h3 Developer on the Street
-
+    .large-24.columns.home-join-img
+      img.desktop(src=cdn("#{site.base_url}/images/design/RHDev_homepage_jointext_desktop.svg") alt="Join RHD")
+      img.mobile(src=cdn("#{site.base_url}/images/design/RHDev_homepage_jointext_mobile.svg") alt="Join RHD")
+  .row.home-jointext
+    .large-10.columns
+      a.button(href="#{site.base_url}/register") Join Today - It&apos;s Free!
+    .large-14.columns
+      p
+        | Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications.
+        a(href="#{site.base_url}/register")
+          span.text-blue  Join now for free!
+      p
+        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_download.svg") alt="Download icon")
+        |  Get immediate access to
+        b  download
+        |  Red Hat&#174; products
+      p
+        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_cloud.svg") alt="Download icon")
+        |  Launch your new apps in the
+        b  cloud
+        |  on Red Hat&#174; OpenShift
+      p
+        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_lowercost.svg") alt="Download icon")
+        |  Offers and
+        b  discounts
+        |  on products, services, training, & events

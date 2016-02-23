@@ -9,7 +9,7 @@ class Reaper
 
     puts "Going to kill and remove #{ids.join(',')}"
 
-    to_kill.each do |c| 
+    to_kill.each do |c|
       puts "Killing and removing #{c.id}"
       c.kill
       c.remove

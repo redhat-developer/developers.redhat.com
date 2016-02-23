@@ -42,7 +42,9 @@ header.row
   .large-18.columns
    = video_player(page.video)
   .large-6.columns
-    p #{page.video.full_description}
+    - if (page.video.full_description)
+      - full_description = page.video.full_description.gsub!("\n", "<br>")
+    p #{full_description}
     - if page.video.tags.present?
       strong.list-title Tags:
       ul.video-tags.inline-list

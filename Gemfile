@@ -1,5 +1,6 @@
 # Gemfile
 source "https://rubygems.org"
+#source "http://rubygems.org" # Try this without ssl for now
 
 # Platform helpers
 def windows_only(require_as)
@@ -13,7 +14,9 @@ def darwin_only(require_as)
 end
 
 # GEMS
-gem 'awestruct', '0.5.7'
+#gem 'awestruct', '0.5.7'
+gem 'awestruct', github: 'lightguard/awestruct', branch: 'feature/perf-testing-large-site'
+#gem 'awestruct', path: '~/projects/ruby/awestruct'
 gem 'slim', '~> 3.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 1.5.0'
@@ -46,7 +49,6 @@ gem 'docker-api', :require => 'docker'
 #
 # From a location on your disk:
 #
-#gem 'aweplug', github: 'awestruct/aweplug'
 gem 'aweplug', github: 'awestruct/aweplug'
 
 group :test do

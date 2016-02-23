@@ -4,9 +4,18 @@ Before do
   if Capybara.current_driver == 'poltergeist'.to_sym
     @driver.clear_cookies
   else
+    @driver.browser.manage.window.maximize
     @driver.browser.manage.delete_all_cookies
   end
   visit('/')
+end
+
+Before('@mobile') do
+  resize_window_to_mobile
+end
+
+After('@mobile') do
+  resize_window_default
 end
 
 Before('@products, @downloads') do
@@ -39,6 +48,11 @@ After('@logout') do
   Home.new(@driver).physical_logout
 end
 
+After('@mobile_logout') do
+  user_logout unless @redirect_url == '' || @redirect_url.nil?
+  Home.new(@driver).mobile_logout
+end
+
 After do |scenario|
   if scenario.failed?
     Capybara.using_session(Capybara::Screenshot.final_session_name) do
@@ -62,8 +76,28 @@ def user_logout
   if Capybara.app_host == 'http://developers.redhat.com/'
     visit("https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
   else
-    visit("https://it-developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
+    visit("https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=#{@redirect_url}%3Fredirect_fragment%3D!")
   end
   Home.new(@driver).wait_for_ajax
   sleep(1)
+end
+
+def resize_window_to_mobile
+  resize_window_by(375, 627)
+end
+
+def resize_window_to_tablet
+  resize_window_by(768, 1024)
+end
+
+def resize_window_default
+  resize_window_by(1024, 768)
+end
+
+def resize_window_by(width, height)
+  if Capybara.current_driver == 'poltergeist'.to_sym
+    @driver.resize(width, height)
+  else
+    @driver.browser.manage.window.resize_to(width, height)
+  end
 end

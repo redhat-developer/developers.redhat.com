@@ -6,7 +6,7 @@ description: Discover the events and webinars featuring talks about JBoss produc
 .hero.hero-wide.hero-events
   .row
     .large-24.columns
-      h2.blowout Events
+      h2 Events
 
 .row(ng-app="dcp")
   .large-24.columns
@@ -64,7 +64,7 @@ description: Discover the events and webinars featuring talks about JBoss produc
                       span.day
                         | {{event.start_date | moment:'DD'}}
                       span.end-day
-                        | -{{event._source.end_date | moment:'DD'}}
+                        | -{{event.end_date | moment:'DD'}}
                     span.end(ng-class="{'same-month': (event.start_date | moment:'MMM') == (event.end_date | moment:'MMM')}")
                       | {{event.end_date | moment:'MMM DD'}}
               .event-body
