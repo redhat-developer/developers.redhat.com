@@ -187,7 +187,7 @@
                   a(href="#{site.base_url}/community/contributor/")
                     | Content Contributors
                     span.page-description Share your knowledge. Contribute content to Red Hat Developers.
-              li(class=(page.url.include?('resources') ? 'active' : ''))
+              li(class=((page.url.include?('/resources')) && !(page.url.include?('/products/')) ? 'active' : ''))
                 a(href="#{site.base_url}/resources/") Resources
               li(class=(page.url.include?('downloads') ? 'active' : ''))
                 a(href="#{site.base_url}/downloads/") Downloads
