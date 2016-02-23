@@ -46,7 +46,7 @@ ul.side-nav
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
-    - elsif (k != "buzz" && k != "learn" && k != "connectors" && k != "community" && k != "download" && k != "updates" && k != "docs-and-apis")
+    - elsif (k != "buzz" && k != "learn" && k != "connectors" && k != "community" && k != "download" && k != "resources" && k != "updates" && k != "docs-and-apis")
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
