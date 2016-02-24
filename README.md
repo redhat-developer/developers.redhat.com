@@ -17,7 +17,7 @@ Follow the instructions to install the latest docker for your system [here] (htt
 
 Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md)
 
-### Docker Compose
+### Docker Compose DONT MERGE
 OSX: Docker compose will have been installed as part of the docker toolbox.
 
 Non-OSX:Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
