@@ -64,9 +64,8 @@ gulp.task('scripts',function() {
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.init())
     .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
+    .pipe(plugins.injectString.prepend('var $ = jQuery;'))
     .pipe(plugins.concat('all.js'))
-    .pipe(plugins.injectString.wrap('(function($, jQuery){', '})(jQuery,jQuery);'))
-    .pipe(plugins.uglify())
     .pipe(plugins.rename('all.min.js'))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
