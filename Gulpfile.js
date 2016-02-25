@@ -1,6 +1,8 @@
 var gulp = require ('gulp'); 
 var plugins = require('gulp-load-plugins')();
 var del = require('del');
+var sass = require("node-sass");
+var sassUtils = require("node-sass-utils")(sass);
 
 var globs = {
   // TODO: Need to find a fix for adobe analytics
@@ -79,6 +81,11 @@ gulp.task('sass', function() {
     //.pipe(plugins.sourcemaps.init())
     .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
     .pipe(plugins.sass({outputStyle: 'compressed'}))
+    .pipe(plugins.sass({outputStyle: 'compressed', functions: {
+      'cdn($src)': function(src) {
+        return sassUtils.castToSass("url(/sites/default/files/" + sassUtils.sassString(src).replace(/\.\.\/images\//, 'images_').replace(/\.\/fonts/, 'fonts').replace(/\.\//, '').replace(/\//g, '_') + ")");
+      }
+    }}))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
     .pipe(gulp.dest('_drupal/themes/custom/rhd/css/base'));
