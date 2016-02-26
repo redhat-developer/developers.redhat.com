@@ -19,12 +19,21 @@ module Customer
   }
 
   def generate_customer
+
     {
         email: "redhat-developers-testers+#{Faker::Lorem.characters(10)}@redhat.com",
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        password: 'P@$$word01'
+        password: Faker::Internet.password,
+        company_name: Faker::Company.name,
+        address_line_one: Faker::Address.street_address,
+        city: Faker::Address.city_prefix,
+        postal_code: Faker::Address.postcode,
+        country: ['United States', 'Czech Republic', 'China', 'France', 'Germany', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Spain', 'United Kingdom'].sample,
+        phone_number: '0191 1111111'
+
     }
+
   end
 
   def get_email(email_address)

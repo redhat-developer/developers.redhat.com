@@ -55,6 +55,19 @@ end
 
 task :internal_features_task => [:features]
 
+
+# the below tasks can be used during development/debugging of new or existing features.
+
+desc 'When working on new or updating existing features, tag the scenario(s) with @wip. And execute by `bundle exec rake wip HOST_TO_TEST=http://example.com`'
 Cucumber::Rake::Task.new(:wip) do |t|
   t.cucumber_opts = '_cucumber -r _cucumber/features/ --tags @wip'
+end
+
+desc 'Run a single scenario multiple times'
+Cucumber::Rake::Task.new(:debugger) do |t|
+  t.cucumber_opts = '_cucumber -r _cucumber/features/ --tags @debug'
+end
+task :debug, :times do |task, args|
+  puts "Executing scenario tagged with @debug #{args[:times]} times"
+  args[:times].to_i.times { Rake::Task[:debugger].execute }
 end
