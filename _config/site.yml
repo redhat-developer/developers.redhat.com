@@ -154,7 +154,7 @@ profiles:
       path: /stg_htdocs/it-rhd-stg-main
 
   # Octopus integration configuration
-  staging_main_it:
+  octopus:
     <<: *staging_main_it
     deploy:
       <<: *deploy
