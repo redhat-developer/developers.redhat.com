@@ -51,7 +51,7 @@ class Options
         tasks[:kill_all] = true
         tasks[:set_ports] = true
         tasks[:supporting_services] += %w(drupal drupalpgsql mysql searchiskoconfigure searchisko)
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
       end
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|

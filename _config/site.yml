@@ -78,7 +78,7 @@ profiles:
 
   drupal:
     <<: *docker
-    base_url: http://<%= ENV['DRUPAL_HOST_IP'] %>:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    base_url: http://<%= ENV['DRUPAL_HOST_IP'] || ENV['HOSTNAME']%>:<%= ENV['DRUPAL_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
     # In Drupal, Drupal will be the cdn
     cdn_http_base: &drupal_cdn_http_base http://<%= ENV['DRUPAL_HOST_IP'] %>:<%= ENV['DRUPAL_HOST_PORT'] %>/
