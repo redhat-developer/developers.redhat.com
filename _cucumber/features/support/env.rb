@@ -36,17 +36,8 @@ Capybara.configure do |config|
     end
   end
 
-  if ENV['RHD_DRIVER'].to_s.empty?
-    config.default_driver = :mechanize
-    config.javascript_driver = :selenium
-  elsif ENV['CI'] == 'true'
-    config.default_driver = :mechanize
-    config.javascript_driver = ENV['RHD_DRIVER'].to_sym
-  else
-    config.default_driver = ENV['RHD_DRIVER'].to_sym
-    config.javascript_driver = ENV['RHD_DRIVER'].to_sym
-  end
-
+  config.default_driver = (ENV['RHD_DEFAULT_DRIVER'] || 'mechanize').to_sym
+  config.javascript_driver = (ENV['RHD_JS_DRIVER'] || 'selenium').to_sym
   config.app_host = host_to_test
   config.run_server = false
   config.app = 'RHD'
