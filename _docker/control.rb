@@ -163,7 +163,8 @@ if tasks[:build]
 
   if tasks[:drupal]
     puts 'Building CSS and JS for drupal'
-    Kernel.abort('Error build CSS / JS for drupal') unless Kernel.system 'gulp'
+    out, status = Open3.capture2e 'gulp'
+    Kernel.abort("Error building CSS / JS for drupal: #{out}") unless status.success?
   end
 
   parent_gemfile = File.open '../Gemfile'
