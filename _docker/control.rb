@@ -163,7 +163,7 @@ if tasks[:build]
 
   if tasks[:drupal]
     puts 'Building CSS and JS for drupal'
-    out, status = Open3.capture2e 'gulp'
+    out, status = Open3.capture2e '$(npm bin)/gulp'
     Kernel.abort("Error building CSS / JS for drupal: #{out}") unless status.success?
   end
 
