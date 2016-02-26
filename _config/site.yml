@@ -153,6 +153,13 @@ profiles:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg-main
 
+  # Octopus integration configuration
+  staging_main_it:
+    <<: *staging_main_it
+    deploy:
+      <<: *deploy
+      path: /stg_htdocs/it-rhd-stg/integration/octopus
+
   production:
     <<: *profile
     base_url: http://developers.redhat.com/
