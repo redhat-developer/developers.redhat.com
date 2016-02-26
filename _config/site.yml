@@ -152,6 +152,7 @@ profiles:
   # Octopus integration configuration
   octopus:
     <<: *staging_main_it
+    base_url: http://developers-pr.stage.redhat.com/integration/octopus/
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg/integration/octopus
