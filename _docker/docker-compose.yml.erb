@@ -118,9 +118,9 @@ drupalpgsql:
   expose:
     - "5432"
 mysql:
-  image: mysql:5.6
+  build: mysql
   volumes:
-    - ./searchisko_configure:/etc/mysql/conf.d
+    - ./mysql:/etc/mysql/conf.d
   environment:
     - MYSQL_DATABASE=searchisko
     - MYSQL_USER=searchisko
@@ -138,12 +138,4 @@ searchisko:
     - DB_PASSWORD=searchisko
   links:
    - mysql
-searchiskoconfigure:
-  build: ./searchisko_configure
-  environment:
-    - DB_NAME=searchisko
-    - DB_USER=searchisko
-    - DB_PASSWORD=searchisko
-  links:
-   - mysql
-   - searchisko
+
