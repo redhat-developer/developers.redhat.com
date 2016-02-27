@@ -1,5 +1,5 @@
 Given(/^(I am|they are) on the ([^"]*) page$/) do |negate, page|
-  @redirect_url = @page.send(page.downcase.tr(' ', '_')).open
+  @page.send(page.downcase.tr(' ', '_')).open
 end
 
 And(/^(I|they) click the (Login|Logout|Register) link$/) do |negate, link|
@@ -20,13 +20,13 @@ Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
     tab = row.first
     case tab
       when 'Login'
-        expect(@page.current_page.has_login_link?).to eq true
+        expect(@page.current_page).to have_login_link
       when 'Register'
-        expect(@page.current_page.has_register_link?).to eq true
+        expect(@page.current_page).to have_register_link
       when 'Resources'
-        expect(@page.current_page.primary_nav_resources_link['href']).to eq "#{Capybara.app_host}/resources/"
+        expect(@page.current_page.primary_nav_resources_link['href']).to include "#{Capybara.app_host.gsub('https://', '')}/resources/"
       when 'Downloads'
-        expect(@page.current_page.primary_nav_downloads_link['href']).to eq "#{Capybara.app_host}/downloads/"
+        expect(@page.current_page.primary_nav_downloads_link['href']).to include "#{Capybara.app_host.gsub('https://', '')}/downloads/"
       else
         expect(@page.current_page).to send("have_primary_nav_#{tab.downcase}_link")
     end
@@ -46,22 +46,30 @@ When(/^I tap on ([^"]*) menu item$/) do |menu_item|
 end
 
 Then(/^I should see the following (Topics|Technologies|Community) sub\-menu items:$/) do |tab, table|
-  sub_menu_items = []
+  @sub_menu_items = []
   table.raw.each do |row|
     table_items = row.first
-    sub_menu_items << table_items
+    @sub_menu_items << table_items
   end
-  expect(@page.current_page.send("sub_nav_#{tab.downcase}").map { |name| name.text }).to eq sub_menu_items
+  @page.current_page.send("wait_for_sub_nav_#{tab.downcase}")
+  expect(@page.current_page.send("sub_nav_#{tab.downcase}").map { |name| name.text }).to eq @sub_menu_items
 end
 
 And(/^the sub\-menu should include a list of available technologies$/) do
-  expect(@page.current_page.sub_technologies_links.map { |name| name.text }).to include @product_names
+  product_links = []
+  @page.current_page.sub_technologies_links.each do |link|
+    product_links << link.text
+  end
+  @sub_menu_items.each do |heading|
+    product_links.delete(heading)
+  end
+  product_links.should =~ @product_names
 end
 
 Then(/^I should see the following Community sub-menu items and their description:$/) do |table|
   links = []
   table.hashes.each do |row|
-    @page.current_page.sub_nav_communities.each do |link|
+    @page.current_page.sub_nav_community.each do |link|
       links << link.text
     end
     expect(links).to include("#{row['name']} #{row['description']}")

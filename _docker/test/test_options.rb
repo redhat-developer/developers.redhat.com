@@ -121,17 +121,19 @@ class TestOptions < Minitest::Test
     end
 
     def test_acceptance_test_target_task
-      tasks = Options.parse (["--acceptance_test_target=http://example.com"])
-      assert(tasks[:build])
-      assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-      assert_equal('http://example.com', ENV['HOST_TO_TEST'])
-      assert_equal('false', ENV['PARALLEL_TEST'])
-      refute(tasks[:set_ports])
-      assert_equal(["--no-deps", "--rm", "awestruct", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])
+      ClimateControl.modify PARALLEL_TEST: 'true' do
+        tasks = Options.parse (["--acceptance_test_target=http://example.com"])
+        assert(tasks[:build])
+        assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+        assert_equal('http://example.com', ENV['HOST_TO_TEST'])
+        assert_equal('true', ENV['PARALLEL_TEST'])
+        refute(tasks[:set_ports])
+        assert_equal(["--no-deps", "--rm", "awestruct", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])
+      end
     end
 
     def test_acceptance_test_target_task_at_docker
-      assert_raises OptionParser::InvalidArgument do 
+      assert_raises OptionParser::InvalidArgument do
         tasks = Options.parse (["--acceptance_test_target=http://docker:8888"])
       end
     end
@@ -181,7 +183,7 @@ class TestOptions < Minitest::Test
     end
 
     def test_acceptance_test_target_task_default_value
-      ClimateControl.modify HOST_TO_TEST: nil, AWESTRUCT_HOST_PORT: '32768' do
+      ClimateControl.modify HOST_TO_TEST: nil, AWESTRUCT_HOST_PORT: '32768', PARALLEL_TEST: 'true' do
         tasks = Options.parse (["--acceptance_test_docker", "true"])
         assert(tasks[:kill_all])
         assert_equal(tasks[:unit_tests], expected_unit_test_tasks)

@@ -23,7 +23,6 @@ end
 
 Then(/^I should see a 'Get started' button for each available product$/) do
   @product_ids.each do |product_id|
-    expect(@page.technologies.send("get_started_with_#{product_id}_button")).to have_text 'GET STARTED'
     expect(@page.technologies.send("get_started_with_#{product_id}_button")['href']).to include "/products/#{product_id}/get-started/"
   end
 end
@@ -33,7 +32,6 @@ end
 
 Then(/^I should see a 'Learn' link for each product$/) do
   @products_with_learn_link.each do |product_id|
-    expect(@page.technologies.send("learn_#{product_id}_link")).to have_text 'Learn'
     expect(@page.technologies.send("learn_#{product_id}_link")['href']).to include "/products/#{product_id}/learn/"
   end
 end
@@ -43,7 +41,6 @@ end
 
 Then(/^I should see a 'Docs and APIs' link for each product$/) do
   @products_with_docs.each do |product_id|
-    expect(@page.technologies.send("#{product_id}_docs_and_apis")).to have_text 'Docs and APIs'
     expect(@page.technologies.send("#{product_id}_docs_and_apis")['href']).to include "/products/#{product_id}/docs-and-apis/"
   end
 end
@@ -53,7 +50,6 @@ end
 
 Then(/^I should see a 'Download' link for each product$/) do
   @products_with_downloads.each do |product_id|
-    expect(@page.technologies.send("download_#{product_id}")).to have_text 'DOWNLOADS'
     expect(@page.technologies.send("download_#{product_id}")['href']).to include "/products/#{product_id}/download/"
   end
 end

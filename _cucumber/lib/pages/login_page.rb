@@ -23,7 +23,7 @@ class LoginPage < BasePage
 
   def open
     Home.new(@driver).open
-    login_link.click
+    open_login_register('login')
     begin
       loaded?('Login | Red Hat Developers')
     rescue
