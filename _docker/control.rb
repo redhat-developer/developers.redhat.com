@@ -109,27 +109,6 @@ private def project_name
   end
 end
 
-def block_wait_searchisko_configure_finished
-  begin
-    configure_service = Docker::Container.get("#{project_name}_searchiskoconfigure_1")
-  rescue Excon::Errors::SocketError => se
-    puts se.backtrace
-    puts('There has been a problem with your CA certs, are you developing using boot2docker?')
-    puts('If so set your DOCKER_SSL_VERIFY environment variable to false')
-    puts('E.g export DOCKER_SSL_VERIFY=false')
-    exit #quit the whole thing
-  end
-
-  puts 'Waiting to proceed until searchiskoconfigure has completed'
-
-  # searchiskoconfigure takes a while, we need to wait to proceed
-  while configure_service.info['State']['Running']
-    # TODO We need to figure out if the container has actually died, if it died print an error and abort
-    sleep 5
-    configure_service = Docker::Container.get("#{project_name}_searchiskoconfigure_1")
-  end
-end
-
 tasks = Options.parse ARGV
 
 if(tasks.empty?)
@@ -195,10 +174,6 @@ if tasks[:should_start_supporting_services]
   puts 'Starting up services...'
 
   execute_docker_compose :up, ['--force-recreate'].concat(tasks[:supporting_services])
-
-  if tasks[:supporting_services].include? "searchiskoconfigure"
-    block_wait_searchisko_configure_finished()
-  end
 
   # Check to see if Drupal is accepting connections before continuing
   block_wait_drupal_started if tasks[:drupal]

@@ -12,6 +12,12 @@ awestruct_acceptance:
     - ghprbActualCommit
     - github_status_api_token
     - BUILD_URL
+    - RHD_DRIVER
+    - PARALLEL_TEST
+    - RHD_BS_BROWSER
+    - RHD_BS_USERNAME
+    - RHD_BS_AUTHKEY
+
 awestruct_preview_no_reload:
   build: ./awestruct
   command:
@@ -118,9 +124,9 @@ drupalpgsql:
   expose:
     - "5432"
 mysql:
-  image: mysql:5.6
+  build: mysql
   volumes:
-    - ./searchisko_configure:/etc/mysql/conf.d
+    - ./mysql:/etc/mysql/conf.d
   environment:
     - MYSQL_DATABASE=searchisko
     - MYSQL_USER=searchisko
@@ -138,12 +144,4 @@ searchisko:
     - DB_PASSWORD=searchisko
   links:
    - mysql
-searchiskoconfigure:
-  build: ./searchisko_configure
-  environment:
-    - DB_NAME=searchisko
-    - DB_USER=searchisko
-    - DB_PASSWORD=searchisko
-  links:
-   - mysql
-   - searchisko
+

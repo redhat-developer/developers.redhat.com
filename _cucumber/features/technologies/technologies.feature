@@ -1,5 +1,4 @@
 @products
-
 Feature: Home Page Smoke Test
 
   In order to find out more about available Red Hat products,
