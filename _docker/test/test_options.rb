@@ -88,10 +88,10 @@ class TestOptions < Minitest::Test
 
     def test_supporting_services
       tasks = Options.parse (["-r"])
-      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
+      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
 
       tasks = Options.parse (["--run-the-stack"])
-      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
+      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
 
       tasks = Options.parse (['-u'])
       assert_includes tasks[:supporting_services], 'drupal'
@@ -157,7 +157,7 @@ class TestOptions < Minitest::Test
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert(tasks[:set_ports])
       assert(tasks[:build])
-      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
+      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
     end
 
     def test_run_stage_pr
@@ -167,7 +167,7 @@ class TestOptions < Minitest::Test
       assert(tasks[:build])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert(tasks[:set_ports])
-      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
+      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
     end
 
     def test_run_the_stack
@@ -175,7 +175,7 @@ class TestOptions < Minitest::Test
       assert(tasks[:kill_all])
       assert(tasks[:decrypt])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
+      assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
       assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
 
       tasks = Options.parse %w(-u --run-the-stack)
@@ -191,7 +191,7 @@ class TestOptions < Minitest::Test
         assert(tasks[:set_ports])
         assert_equal('true', ENV['PARALLEL_TEST'])
         assert(tasks[:build])
-        assert_equal(tasks[:supporting_services], %w(-d mysql searchisko searchiskoconfigure))
+        assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
         assert_equal(tasks[:awestruct_up_service], %w(-d awestruct_preview_no_reload))
         refute(tasks[:awestruct_command_args])
         assert_equal(["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"], tasks[:acceptance_test_target_task])

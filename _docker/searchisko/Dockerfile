@@ -13,7 +13,7 @@ RUN curl http://download.eng.bos.redhat.com/brewroot/packages/org.searchisko-par
     rm /searchisko.rpm
 
 ADD ./overlay /
-RUN unzip /searchisko_2.sql.zip
+ADD searchisko_es_data.tar.gz /
 
 EXPOSE 8080 8080
 
