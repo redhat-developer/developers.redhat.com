@@ -86,7 +86,7 @@ def block_wait_drupal_started
   # Check to see if Drupal is accepting connections before continuing
   puts 'Waiting to proceed until Drupal is up'
   drupal_port80_info = docker_drupal.json['NetworkSettings']['Ports']['80/tcp'].first
-  drupal_ip = "docker"
+  drupal_ip = ENV['DRUPAL_HOST_IP'] || 'docker'
   drupal_port = drupal_port80_info['HostPort']
 
   # Add this to the ENV so we can pass it to the awestruct build
