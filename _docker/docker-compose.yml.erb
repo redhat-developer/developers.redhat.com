@@ -134,6 +134,8 @@ mysql:
     - MYSQL_ROOT_PASSWORD=superdupersecret
   ports:
     - "<%= ENV['MYSQL_HOST_PORT'] %>:3306"
+  expose:
+    - "3306"
 searchisko:
   build: ./searchisko
   ports:
