@@ -2,6 +2,8 @@ skips:
     # localhost:8xxx addresses are extensively used in quickstart readmes
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
+    # 10.1.2.2:8080 addresse used in CDK get-started
+  - http://10.1.2.2:8000/
     # -YOUR_DOMAIN_NAME.rhcloud.com is used in quickstart readmes
   - !ruby/regexp /-YOUR_DOMAIN_NAME\.rhcloud\.com/
     # -YOUR_DOMAIN.rhcloud.com using in ticket monster
