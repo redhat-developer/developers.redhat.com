@@ -146,6 +146,21 @@ ul.homepage-resources {
       position: relative;
       top:-5px;
     }
+    p.description {
+      font-family: inherit;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      text-rendering: optimizeLegibility;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      max-height: 50px;
+      overflow: hidden;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+
+    }
     a {
       color:#1C93D3;
     }

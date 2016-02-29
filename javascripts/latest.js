@@ -21,14 +21,14 @@ app.latest.render = function(materials) {
   materials.forEach(function(material){
     var type = material.fields.sys_type[0];
     var timeStamp = new Date(material.fields.sys_created[0]);
-    var timeAgo = $.timeago(timeStamp);
+    var formattedDate = moment(timeStamp).format('ll')
     var item = [
       '<li>',
         '<i class="icon-RHDev_-resources_icons_'+ type +'"></i>',
         '<a href="' + material.fields.sys_url_view[0] + '" class="title">',
           material.fields.sys_title[0],
           '<p class="date">',
-            timeAgo,
+           formattedDate,
           '</p>',
         '</a>',
       '</li>'
