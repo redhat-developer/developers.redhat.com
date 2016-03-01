@@ -38,10 +38,3 @@ Then(/^I should see a side-nav with the following options:$/) do |table|
     end
   end
 end
-
-Then(/^I should see the ([^"]*) get started page(?: with a confirmation message (.*))?$/) do |product_id, message|
-  @page.product_overview.send("wait_until_#{product_id}_get_started_page_visible")
-  if message
-    expect(@page.product_overview.thank_you_text.text).to eq message
-  end
-end

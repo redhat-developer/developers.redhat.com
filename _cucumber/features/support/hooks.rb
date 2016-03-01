@@ -42,17 +42,12 @@ After('@logout') do
   Home.new(@driver).physical_logout
 end
 
-Before do
-  if Dir.exist?(DownloadHelper::PATH.to_s)
-    p 'Downloads folder still exists, removing . . .'
-    clear_downloads
-  end
+Before('@product_download') do
+  clear_downloads
 end
 
-After('@downloads') do
-  if Dir.exist?(DownloadHelper::PATH.to_s)
-    clear_downloads
-  end
+After('@product_download') do
+  clear_downloads
 end
 
 After do |scenario|

@@ -3,7 +3,7 @@ Given(/^(I am|they are on) on the Download Overview page for ([^"]*)$/) do |nega
 end
 
 Then(/^I should see the ([^"]*) download overview page$/) do |product_id|
-  @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
+  #@page.download_overview.send("wait_until_#{product_id}_download_page_visible")
   expect(page.current_url).to include "/products/#{product_id}/download/"
   @page.current_page.wait_for_ajax
 end
@@ -17,12 +17,12 @@ Then(/^the ([^"]*) download (should|should not) initiate$/) do |product_id, nega
   if negate.eql?('should')
     expect(downloading?(product_id)).to be true
   else
-    expect(downloads.empty?).to be true
+    expect(downloading?(product_id)).to be false
   end
 end
 
 Then(/^I should see "([^"]*)" download latest links$/) do |downloads|
-  @page.downloads.wait_for_download_latest_link 30, :count => downloads.to_i
+  @page.downloads.wait_for_download_latest_links 30, :count => downloads.to_i
 end
 
 Then(/^a list of products available for download$/) do
@@ -43,5 +43,4 @@ end
 
 Then(/^I submit my company name and country$/) do
   @page.update_details.with(@customer[:company_name], @customer[:country])
-  @page.downloads.wait_for_download_latest_link 30, :count => downloads.to_i
 end

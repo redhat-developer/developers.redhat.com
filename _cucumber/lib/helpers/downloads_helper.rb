@@ -3,15 +3,16 @@ module DownloadHelper
   TIMEOUT = 30
   PATH = File.join(Dir.pwd, '_cucumber/tmp/downloads')
 
+  extend self
+
   def download_manager_base_url
-    if Capybara.app_host == 'http://developers.redhat.com/' || 'https://developers.redhat.com/'
-      'https://developers.redhat.com/download-manager/rest/available'
-    else
-      'https://developers.stage.redhat.com/download-manager/rest/available'
+    case Capybara.app_host.to_s
+      when 'http://developers.redhat.com/', 'https://developers.redhat.com/'
+        'https://developers.redhat.com/download-manager/rest/available'
+      else
+        'https://developers.stage.redhat.com/download-manager/rest/available'
     end
   end
-
-  extend self
 
   def get_download_data(url)
     response = RestClient::Request.execute(method: :get, url: url, verify_ssl: false, headers: {:accept => :json})
@@ -30,20 +31,38 @@ module DownloadHelper
     return download_version, download_url
   end
 
-  def downloads
+  def download_dir
     Dir.glob("#{PATH}/*")
   end
 
+  def download_path
+    wait_for_download
+    download_dir.first
+  end
+
+  def downloaded?
+    download_dir.any? && !downloading?
+  end
+
   def downloading?(product_id)
-    Timeout.timeout(TIMEOUT) do
+    wait_for_downloading {
       downloaded_file_size = Dir[File.join(PATH, '**', '*')].count { |file| File.file?(file) }
-      sleep 0.1 until downloaded_file_size == 1 && (downloads.first.include?(product_id) || downloads.grep(/\.crdownload$/).any?)
+      downloaded_file_size == 1 && (download_dir.first.include?(product_id) || download_dir.grep(/\.crdownload$/).any?)
+    }
+  end
+
+  def wait_for_downloading(i = TIMEOUT)
+    count = 0; downloading = false
+    until downloading == true || count == i
+      downloading = yield
+      sleep(1)
+      count += 1
     end
-    downloads.grep(/\.crdownload$/).any?
+    downloading
   end
 
   def clear_downloads
-    FileUtils.rm_rf(PATH)
+    FileUtils.rm_f(download_dir)
   end
 
   def get_product_id(product)
@@ -62,7 +81,7 @@ module DownloadHelper
         'brms'
       when 'Data Virtualization'
         'datavirt'
-      when 'Red Hat Container Development Kit (CDK) 2'
+      when 'Red Hat Container Development Kit (CDK)'
         'cdk'
       else
         raise "No mapping for #{product}! See Downloads Helper"

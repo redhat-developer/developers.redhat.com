@@ -73,6 +73,11 @@ class App
     @current_page = @downloads
   end
 
+  def get_started
+    @get_started ||= GetStartedPage.new(@driver)
+    @current_page = @get_started
+  end
+
   def resources
     @resources ||= ResourcesPage.new(@driver)
     @current_page = @resources

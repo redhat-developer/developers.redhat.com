@@ -59,3 +59,7 @@ When(/^I click on the Create account link$/) do
   @page.login.register_link.click
   @page.registration.loaded?('Register | Red Hat Developers')
 end
+
+Then(/^(I|they) should be redirected to the Developers.redhat Login Page$/) do |negate|
+  expect(@page.login).to respond_to :wait_for_login_with_existing_account
+end
