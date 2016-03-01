@@ -30,6 +30,8 @@ skips:
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Security\+Token\+Server\+%28STS%29+/
 #    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
+# 10.1.2.2:8080 addresse used in CDK get-started
+  - http://10.1.2.2:8000/
 ignores:
   - code: 202
   - code: 203
