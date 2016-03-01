@@ -5,120 +5,106 @@ title: Search Results
 
 div(ng-app="search")
   .row#searchpage(ng-controller="SearchController")
-    .large-5.columns
-      .divider
-        span Filter By
-        span
-          a.right(href='') Clear All
+    / .large-5.columns
+      / .divider
+      /   span Filter By
+      /   span
+      /     a.right(href='') Clear All
 
-      .accordion
-        .filter-container
-          input.filter-toggle(type="checkbox")
-          label.filter-label Topic
-          div.filter-content
-            ul
-              li
-                input(type="checkbox")
-                label Containers
-              li
-                input(type="checkbox")
-                label DevOps
-              li
-                input(type="checkbox")
-                label Enterprise Java
-              li
-                input(type="checkbox")
-                label Mobile
+      / .accordion
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Topic
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Containers
+      /         li
+      /           input(type="checkbox")
+      /           label DevOps
+      /         li
+      /           input(type="checkbox")
+      /           label Enterprise Java
+      /         li
+      /           input(type="checkbox")
+      /           label Mobile
 
-        .filter-container
-          input.filter-toggle(type="checkbox")
-          label.filter-label Resource Type
-          div.filter-content
-            ul
-              li
-                input(type="checkbox")
-                label Article
-              li
-                input(type="checkbox")
-                label Blog
-              li
-                input(type="checkbox")
-                label Code Artifact
-              li
-                input(type="checkbox")
-                label Presentation
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Resource Type
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Article
+      /         li
+      /           input(type="checkbox")
+      /           label Blog
+      /         li
+      /           input(type="checkbox")
+      /           label Code Artifact
+      /         li
+      /           input(type="checkbox")
+      /           label Presentation
 
-        .filter-container
-          input.filter-toggle(type="checkbox")
-          label.filter-label Publish Date
-          div.filter-content
-            select
-              option(value='1') ALL
-              option(value='1') Last 7 days
-              option(value='1') Last 30 days
-              option(value='1') This month
-              option(value='1') -- Custom --
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Publish Date
+      /     div.filter-content
+      /       select
+      /         option(value='1') ALL
+      /         option(value='1') Last 7 days
+      /         option(value='1') Last 30 days
+      /         option(value='1') This month
+      /         option(value='1') -- Custom --
 
-        .filter-container
-          input.filter-toggle(type="checkbox")
-          label.filter-label Author
-          div.filter-content
-            ul
-              li
-                input(type="checkbox")
-                label Author Name
-              li
-                input(type="checkbox")
-                label Author Name
-              li
-                input(type="checkbox")
-                label Author Name
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Author
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
 
-        .filter-container
-          input.filter-toggle(type="checkbox")
-          label.filter-label Product
-          div.filter-content
-            ul
-              li
-                input(type="checkbox")
-                label JBoss
-              li
-                input(type="checkbox")
-                label EAP
-              li
-                input(type="checkbox")
-                label Enterprise Java
-              li
-                input(type="checkbox")
-                label Mobile
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Product
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label JBoss
+      /         li
+      /           input(type="checkbox")
+      /           label EAP
+      /         li
+      /           input(type="checkbox")
+      /           label Enterprise Java
+      /         li
+      /           input(type="checkbox")
+      /           label Mobile
 
-    .large-13.columns.searchpage-middle
+    .large-24.columns.searchpage-middle
       .row
-        .large-21.columns
+        .large-24.columns
           form.search-bar(role="search" ng-submit="updateSearch()")
             input.user-success(type="text" placeholder="Filter by keyword" id="search_list_text" ng-model="params.query")
-          /.large-3.columns
-            / button.button.postfix(type="submit")
-            /   i.fa.fa-search
-        / .large-24.columns.divider
-        /   strong Showing ## of ### results
-
-        / .large-24.columns
-        /   p.sort-by
-        /     | Sort results by
-        /     select.tiny
-        /       option(value='1') most recent
-        /     | and show
-        /     select
-        /       option(value='1') 10
-        /     | results per page.
-
-        .large-24.columns.searchpage-results-container
-          / span.loader
+        .large-18.columns.searchpage-results-container
           .sorting
+            h3 {{totalCount}} results found for "{{params.query}}"
+            hr
             p
               | Sort results by
-              select(ng-model="params.sortby" ng-change="updateSearch()")
+              select(ng-model="params.sortBy" ng-change="updateSearch()")
+                option(value="score") Relevance
                 option(value="new") Most Recent
                 option(value="old") Least Recent
               | and show
@@ -129,11 +115,23 @@ div(ng-app="search")
                 option(value="50") 50
                 option(value="100") 100
               | results per page
-          .result(ng-repeat="result in results")
-            h3 {{result._source.sys_title}}
-            p {{result._source.sys_description}}
+          / span.loader
+          span.loader(ng-show="loading")
+          .results(ng-class="loading ? 'invisible' : ''")
+            .result(ng-repeat="result in results" ng-init="r = result.fields")
+              h4
+                a(href="{{r.sys_url_view[0]}}") {{r.sys_title[0]}}
+              section.meta-data
+                span.created-date {{r.sys_updated[0] | timeAgo}}
+              p {{r.sys_description[0]}}
+              .tags-list
+                p
+                  | Topics:&nbsp;
+                  span.tag(ng-repeat="tag in r.sys_tags") {{tag}}
 
-          nav#paginator
+
+          nav#paginator(ng-hide="loading")
+            span Showing {{params.from + 1}}-{{params.from + params.size}} of  {{totalCount}} results
             ul.pagination
               li(ng-class="{unavailable: paginate.currentPage < 2}")
                 a(ng-click="goToPage('first')") First
@@ -146,4 +144,6 @@ div(ng-app="search")
                 a(ng-click="goToPage('next')") Next
               li(ng-class="{unavailable: paginate.currentPage  == paginate.pages}")
                 a(ng-click="goToPage('last')") Last
+        .large-6.columns
+          p Banner goes here...
 

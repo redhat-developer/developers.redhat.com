@@ -68,4 +68,9 @@ class App
     @current_page = @events
   end
 
+  # def search
+  #   @events ||= SearchPage.new(@driver)
+  #   @current_page = @search
+  # end
+
 end

@@ -8,13 +8,13 @@ search.service('searchService',function($http, $q) {
 
     // fold in params with defaults
     var search = Object.assign(params, {
-      field: '_source',
+      // field: '_source',
+      field: ['sys_url_view', 'sys_title', 'sys_updated', 'sys_description', 'sys_tags'],
       agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
     });
 
     $http.get(app.dcp.url.search, { params: search })
       .success(function(data){
-        console.log("Data came back", data);
         deferred.resolve(data);
       })
       .error(function (err) {
@@ -25,44 +25,62 @@ search.service('searchService',function($http, $q) {
 });
 
 
+/*
+  Filter to return human readable time ago
+*/
+search.filter('timeAgo', function() {
+  return function(timestamp){
+    var date = new Date(timestamp);
+    return $.timeago(date);
+  }
+});
+
+
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
 
 
 function searchCtrlFunc($scope, searchService) {
+  var search = window.location.search.split('=');
+  var q = '';
+  if(search) {
+    q = search.pop(); // last one
+  }
   /* default */
   $scope.params = {
-    query: 'testing 123',
-    sortby: 'new',
+    query: q,
+    sortBy: 'score',
     size: 5,
     from: 0
   }
 
   window.s = $scope; // debug
 
+  $scope.paginate = {
+    currentPage: 1
+  }
 
+  $scope.loading = true;
 
   $scope.updateSearch = function() {
+    $scope.loading = true;
     searchService.getSearchResults($scope.params).then(function(data) {
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
       $scope.buildPagination(); // update pagination
+      $scope.loading = false;
     });
   }
 
   /*
    Handle Pagination
    */
-  $scope.buildPagination = function(page) {
-    page = page || 1;
+  $scope.buildPagination = function() {
+
+    var page = $scope.paginate.currentPage;
+
     var startAt = (page * $scope.totalCount) - $scope.params.size;
     var endAt = page * $scope.params.size;
     var pages = Math.ceil($scope.totalCount / $scope.params.size);
-
-    // do nothing if we have no more pages
-    if(page > pages || page < 1 || typeof page === "string") {
-      return;
-    }
-
 
     $scope.paginate = {
       currentPage: page,
@@ -76,10 +94,26 @@ function searchCtrlFunc($scope, searchService) {
   */
 
   $scope.goToPage = function(page) {
-    console.log("Changing the page...", page);
-    $scope.params.from = page * $scope.params.size;
-    $scope.updateSearch();
+    switch(page) {
+      case 'first':
+        page = 1;
+        break;
+      case 'prev':
+        page = $scope.paginate.currentPage - 1;
+        break;
+      case 'next':
+        page = $scope.paginate.currentPage + 1;
+        break;
+      case 'last':
+        page = Math.ceil($scope.totalCount / $scope.params.size);
+        break;
+      default:
+        break;
+    }
+
+    $scope.params.from = (page * $scope.params.size) - $scope.params.size;
     $scope.paginate.currentPage = page;
+    $scope.updateSearch();
   };
 
   $scope.updateSearch(); // run on pageload TODO: move to ng-init
