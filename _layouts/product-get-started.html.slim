@@ -8,14 +8,17 @@ type: Get Started
 
 #get-started-instructions.tthw-steps(data-spy="scroll" data-target="#steps-scroll")
   .row
-    .large-17.columns#get-started 
-      h2 Get Started
+    .large-17.columns#get-started
+      - unless page.product.id == 'rhel'
+        h2 Get Started
     .large-7.columns
       - if !page.product.skip_installation_instructions
         = partial "os-selector.html.slim"
 
-  - if page.product.get_started_multipath
+  - if page.product.get_started_multipath && page.product.id != 'rhel'
     = partial "product-select-path.html.slim", {'parent' => page}
+  - elsif page.product.id == 'rhel'
+    = partial "product-big-daddy.html.slim", {'parent' => page}
   - else
     - if page._prerequisites_section
       .large-24#PrerequisitesSection.gs-prerequisites
@@ -128,4 +131,3 @@ type: Get Started
   script src="#{site.base_url}/javascripts/vendor/class.create.js"
   script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
   script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"      
-

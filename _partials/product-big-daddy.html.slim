@@ -1,0 +1,22 @@
+.large-24
+  h3 Step 1 - Get RHEL
+  a(href='#{site.base_url}/download-manager/link/1350474' target="_blank")Get Red Hat Enterprise Linux
+  br
+  br
+  h3 Step 2 - Select Installation Option
+  a(href='#{site.base_url}' target="_blank")Developer Quick Start: Install RHEL 7
+  br
+  a(href='#{site.base_url}' target="_blank")Developer Quick Start: Install RHEL 7 in a VirtualBox VM
+  br
+  a(href='#{site.base_url}' target="_blank")Developer Quick Start: Install RHEL 7 in a VMware VM
+  br
+  br
+  h3 Step 3 - Choose Language and Related Development Tools
+  ul.product-langs
+    - page.parent.product.get_started_paths.each do |path|
+      li.large-6.columns
+        a(href="#{site.base_url}/products/#{page.parent.product.id}/#{path.default_file}")
+          .product-lang
+            .lang-logo
+              img(src=cdn("#{site.base_url}/images/products/multipath/#{path.id}-logo.png") alt="#{path.name} Logo")
+            h5.prod-lang-name #{path.name}
