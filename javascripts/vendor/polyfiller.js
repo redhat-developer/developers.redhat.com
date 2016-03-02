@@ -98,7 +98,7 @@
   var addTest = Modernizr.addTest;
   var Object = window.Object;
   var addSource = function(text){
-    return text +"\n//# sourceURL="+this.url;
+    return text +"\n/" + "/# sourceURL="+this.url; // Hack for drupal stripping comments
   };
   var getAutoEnhance = function(prop){
     return !webCFG.enhanceAuto && prop == 'auto' ? false : prop;

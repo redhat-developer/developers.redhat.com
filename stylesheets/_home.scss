@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-color: rgb(11, 8, 21);
   .homepage-cta {
-    margin: 8% auto;
+    margin: 5% auto;
     img {
       display: inline-block;
       vertical-align: middle;
@@ -51,15 +51,21 @@
     }
     .video-thumb {
       img {
-        max-width: 185px;
+        max-width: 225px;
       }
       p{
         margin-top: 8px;
         margin-bottom: 10px;
       }
     }
-    .external-link:after {
-      display: none;
+    a.learn-more {
+      text-transform: uppercase;
+      color: #eaa400;
+      font-weight: 700;
+      float: right;
+      i {
+        margin-left: 5px;
+      }
     }
   }
 }
@@ -67,8 +73,7 @@
 
 
 .spotlights-wrap {
-  background:black cdn("../images/design/RHDev_homepage_promobkg.svg") left center no-repeat;
-  background-size: 45%;
+  background:black cdn("../images/design/dotted_line-darkgrey.svg") left no-repeat;
 }
 
 .spotlights-container {
@@ -80,19 +85,16 @@
 }
 
 .spotlight-item {
-  width: calc(20% - 16px);
+  width: calc(20%);
   padding: 0 12px;
   border-right: 1px solid $dark-grey;
   color:white;
   &:hover {
     color:white;
-    opacity:0.6;
+    background:lighten(black, 10%);
   }
   &:last-child {
     border-right:0;
-  }
-  img {
-    padding-bottom: 5px;
   }
   .cut-image {
     position: relative;
@@ -145,6 +147,21 @@ ul.homepage-resources {
       color:$dark-grey;
       position: relative;
       top:-5px;
+    }
+    p.description {
+      font-family: inherit;
+      font-weight: normal;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      text-rendering: optimizeLegibility;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      max-height: 50px;
+      overflow: hidden;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+
     }
     a {
       color:#1C93D3;
@@ -249,15 +266,11 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background: cdn('../images/design/RHDev_homehero_tablet_javaeebook.png') top center / cover;
-    .homepage-cta {
-      img {
-        margin-left: 0;
-      }
+    .homepage-cta img {
+      display: block;
+      margin: 0 auto;
     }
-  }
-  .video-thumb {
-    img {
+    .video-thumb img {
       max-width: 300px;
     }
   }
@@ -274,18 +287,6 @@ ul.homepage-resources {
 }
 
 @include tablet-portrait-and-down {
-  .homepage-main {
-    .homepage-cta {
-      span h2 {
-        font-size: 2em;
-      }
-      img {
-        max-width: 120px;
-        margin-left: 50px;
-        margin-bottom: 20px;
-      }
-    }
-  }
   a.title {
     max-width: 100%;
   }
@@ -296,9 +297,13 @@ ul.homepage-resources {
 }
 
 @include mobile-landscape-and-down {
-  .homepage-main {
-    background: cdn('../images/design/RHDev_homehero_mobile_javaeebook.png');
-    background-size: cover;
+  .homepage-main .homepage-cta {
+    img.desktop {
+      display: none;
+    }
+    img.mobile {
+      display: block;
+    }
   }
   .spotlights-container {
     flex-direction: column;

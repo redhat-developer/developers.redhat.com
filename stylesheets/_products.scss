@@ -54,6 +54,7 @@
   &.atomic {background-image: cdn('../images/design/products/prod_header_rhel_atomic_host.png');}
   &.bpmsuite {background-image: cdn('../images/design/products/prod_header_jboss_bpm_suite.png');}
   &.brms {background-image: cdn('../images/design/products/prod_header_jboss_brms.png');}
+  &.cdk {background-image: cdn('../images/design/products/RHDev_productheader_desktop_cdk.png');}
   &.datagrid {background-image: cdn('../images/design/products/prod_header_jboss_data_grid.png');}
   &.datavirt {background-image: cdn('../images/design/products/prod_header_jboss_data_virt.png');}
   &.developertoolset {background-image: cdn('../images/design/products/prod_header_rh_developer_toolset.png');}
@@ -72,6 +73,7 @@
     &.atomic {background-image: cdn('../images/design/products/productheader_tablet_rhel_atomic_host.png');}
     &.bpmsuite {background-image: cdn('../images/design/products/productheader_tablet_jboss_bpm_suite.png');}
     &.brms {background-image: cdn('../images/design/products/productheader_tablet_jboss_brms.png');}
+    &.cdk {background-image: cdn('../images/design/products/RHDev_productheader_tablet_cdk.png');}
     &.datagrid {background-image: cdn('../images/design/products/productheader_tablet_jboss_data_grid.png');}
     &.datavirt {background-image: cdn('../images/design/products/productheader_tablet_jboss_data_virt.png');}
     &.developertoolset {background-image: cdn('../images/design/products/productheader_tablet_rh_developer_toolset.png');}
@@ -90,6 +92,7 @@
     &.atomic {background-image: cdn('../images/design/products/productheader_mobile_rhel_atomic_host.png');}
     &.bpmsuite {background-image: cdn('../images/design/products/productheader_mobile_jboss_bpm_suite.png');}
     &.brms {background-image: cdn('../images/design/products/productheader_mobile_jboss_brms.png');}
+    &.cdk {background-image: cdn('../images/design/products/RHDev_productheader_mobile_cdk.png');}
     &.datagrid {background-image: cdn('../images/design/products/productheader_mobile_jboss_data_grid.png');}
     &.datavirt {background-image: cdn('../images/design/products/productheader_mobile_jboss_data_virt.png');}
     &.developertoolset {background-image: cdn('../images/design/products/productheader_mobile_rh_developer_toolset.png');}
@@ -555,9 +558,9 @@ ul.product-langs {
   margin-top: 25px !important;
   li {
     background-color: $grey-2;
-    height: 165px;
-    padding: 35px 0;
+    padding: 50px 0 35px 0;
     margin: 10px 20px 10px 0;
+    width: 195px;
     list-style: none;
     &:before {
       display: none;
@@ -575,7 +578,19 @@ ul.product-langs {
       text-align: center;
       color: $red;
       font-weight: 100;
+      margin: 0 5px;
     }
+  }
+  @include tablet-landscape-and-down {
+    li {
+      width: calc(33% - 20px);
+      min-height: 189px;
+    }
+  }
+  @include mobile-landscape-and-down {
+    li {
+      width: calc(50% - 20px);
+    }    
   }
 }
 
@@ -609,5 +624,24 @@ ul.product-langs {
 .product-updates {
   .ulist li {
     margin-bottom: 5px;
+  }
+}
+
+.top-section {
+  span {
+    display: inline;
+    &.product-video {
+      width: 415px;
+      margin-left: 20px;
+    }
+  }
+}
+@include mobile-landscape-and-down {
+  .top-section span {
+    display: block;
+    &.product-video {
+      width: 340px;
+      margin-left: 0;
+    }
   }
 }

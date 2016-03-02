@@ -22,6 +22,7 @@ app.sso = function () {
         } else {
             $('li.login, section.register-banner').show();
             $('li.logged-in, section.contributors-banner').hide();
+            $('li.logged-in').hide();
             $('li.login a').on('click',function(e){
                 e.preventDefault();
                 keycloak.login();

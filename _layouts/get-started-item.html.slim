@@ -16,15 +16,6 @@ issues: [DEVELOPER-179, DEVELOPER-77, DEVELOPER-202]
 - page.og_type = 'article'
 .row
   h2.large-title#developer-materials Developer Materials
-.row.grow.content
-  .large-24.columns
-    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/resources/" Resources
-        meta itemprop="position" content="2"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}#{page.output_path}" #{page.metadata[:title]}
-        meta itemprop="position" content="3"
 .row itemscope="" itemtype="http://schema.org/Article"
   .collapse.large-24
     h2.divider#start itemprop="name" #{page.metadata[:title]}

@@ -1,24 +1,16 @@
-require 'rspec'
-
 class BasePage < SitePrism::Page
   include Capybara::DSL
 
   attr_reader :driver
 
   primary_nav_actions = %i[register login logout]
-  primary_nav_tabs = %i[Topics Technologies Community Resources Downloads]
-  primary_nav_topics_items = %i[Containers Mobile DevOps Web and API Development Enterprise Java]
-
   primary_nav_actions.each do |action|
     element :"#{action}_link", ".#{action}"
   end
 
+  primary_nav_tabs = %i[Topics Technologies Community Resources Downloads]
   primary_nav_tabs.each do |tab|
     element :"primary_nav_#{tab.downcase}_link", :xpath, "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{tab.capitalize}')]"
-  end
-
-  primary_nav_topics_items.each do |topic|
-    element :"#{topic}_link", "#topic-#{topic}"
   end
 
   element :nav_toggle, '.nav-toggle'
@@ -32,7 +24,7 @@ class BasePage < SitePrism::Page
   element :login_divider, '.login-divider'
   elements :sub_nav_topics, '#sub-nav-topics a'
   elements :sub_nav_technologies, '#sub-nav-technologies .sub-nav-group .heading'
-  elements :sub_nav_communities, '#sub-nav-community a'
+  elements :sub_nav_community, '#sub-nav-community a'
   elements :community_description, '.page-description'
   elements :sub_technologies_links, '#sub-nav-technologies .sub-nav-group a'
   element :search_field, '.user-success'
@@ -42,15 +34,12 @@ class BasePage < SitePrism::Page
   end
 
   def loaded?(title)
-    if Capybara.current_driver == 'poltergeist'.to_sym
-      raise("There was a problem loading the page, expected status code to be 200, but was #{page.status_code}") unless page.status_code.eql?(200)
-    end
+    wait_for_ajax  unless page.title.include?('not available') || page.title.include?('Problem loading page')
     raise("Expected page title to be #{title}, but was #{page.title}") unless page.has_title?(title).eql?(true)
-    wait_for_ajax
   end
 
   def title
-    p_title.text
+    page.find('h2').text
   end
 
   def logged_in?
@@ -61,69 +50,75 @@ class BasePage < SitePrism::Page
     visible?(false, '.logged-in') && visible?(false, '.logout') && visible?(true, '.login') && visible?(true, '.register')
   end
 
-  def physical_logout
-    try(3) {
-      if logged_in?.eql?(true)
-        logout_link.click
-        wait_for_ajax
-      end
-      logged_out?
-    }
-  end
-
-  def mobile_logout
-    try(3) {
-      if logged_in?.eql?(true)
-        logout_link.click
-        wait_for_ajax
-      end
-      toggle_menu
-      logged_out?
-    }
-  end
-
-  def wait_for_ajax
-    Timeout.timeout(30) do
-      loop until finished_all_ajax_requests?
-    end
-  end
-
-  def visible?(negate, css_selector)
-    page.has_css?(css_selector, :visible => negate)
-  end
-
   def hover_over_nav_menu(tab)
     find(:xpath, "//*[@class='has-sub-nav']//a[contains(text(),'#{tab}')]").hover
-    sleep(1)
   end
 
   def toggle_menu
     wait_until_nav_toggle_visible(6)
-    nav_toggle.click
+    nav_toggle.click unless has_nav_open?
     wait_until_nav_open_visible(6)
-    sleep(0.5)
+    sleep(1.5) #for menu to drop down
   end
 
-  def toggle_menu_and_tap(tab)
+  def toggle_menu_and_tap(link)
+    link = link.downcase
     toggle_menu
-    case tab
-      when 'Login' || 'Register' || 'Logout'
-        send("#{tab.downcase}_link").click
+    case link
+      when 'login', 'register', 'logout'
+        send("wait_until_#{link}_link_visible")
+        send("#{link}_link").click
       else
-        send("primary_nav_#{tab.downcase}_link").click
+        send("wait_until_primary_nav_#{link}_link_visible")
+        send("primary_nav_#{link}_link").click
+    end
+  end
+
+  def open_login_register(link)
+    if has_nav_toggle?
+      toggle_menu_and_tap(link)
+    else
+      send("#{link}_link").click
+      wait_for_ajax
+    end
+  end
+
+  def physical_logout
+    unless page.title.include?('not available') || page.title.include?('Problem loading page')
+      try(3) {
+        if has_nav_toggle?
+          toggle_menu
+        end
+        if logged_in?.eql?(true)
+          logout_link.click
+          wait_for_ajax
+        end
+        logged_out?
+      }
+    end
+  end
+
+  def wait_for_ajax(timeout = 60, message = nil)
+    end_time = ::Time.now + timeout
+    unless Capybara.current_driver == :mechanize
+      until ::Time.now > end_time
+        return if finished_all_ajax_requests?
+        sleep 0.5
+      end
+      message = "Timed out after #{timeout} waiting for ajax requests to complete" unless message
+      raise(message)
     end
   end
 
   private
 
   def finished_all_ajax_requests?
-    page.evaluate_script('jQuery.active') == 0
+    page.execute_script("return window.jQuery != undefined && jQuery.active == 0")
   end
 
   def try(i)
     count = 0; logged_out = false
     until logged_out == true || count == i
-      p ' . . . User is not logged out, retrying . . .'
       logged_out = yield
       sleep(3)
       count += 1
@@ -131,6 +126,10 @@ class BasePage < SitePrism::Page
     if logged_out.eql?(false)
       raise("User was not logged out after #{count} attempts")
     end
+  end
+
+  def visible?(negate, css_selector)
+    page.has_css?(css_selector, :visible => negate)
   end
 
 end

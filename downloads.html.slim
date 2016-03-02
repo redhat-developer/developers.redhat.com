@@ -1,16 +1,13 @@
 ---
 layout: base
-title: Downloads available from JBoss
-description: Discover the product downloads available from JBoss, and locate the upstream projects they are based on.
+title: Downloads | Red Hat Developers
+description: Discover the product downloads available from Red Hat, and locate the upstream projects they are based on.
 ---
 
 .hero.hero-wide.hero-downloads
   .row
     .large-12.medium-24.columns#downloads
       h2 Downloads
-    .large-12.medium-24.columns
-      asciidoc:
-        Registration is required. Downloads require accepting the terms and conditions of the Red Hat Developer Program which provides $0 subscriptions for development use only. If you have a Red Hat commercial subscription, visit http://access.redhat.com/site/downloads[the customer portal] for more downloads.
 
 .row#downloads
   .large-17.columns
@@ -22,15 +19,20 @@ description: Discover the product downloads available from JBoss, and locate the
         - category.products.each do |p|
           - if site.products[p]
             - product = site.products[p]
-            .row
+            .row(class=('indent-product' if product.indented_product?))
               .large-16.columns
                 h5
                   a(href="#{site.base_url}/products/#{product.id}/")
                     = product.name
               .large-8.columns
-                a(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
-                  i.fa.fa-refresh.fa-spin
-                  |  Fetching Latest Download...
+                - if product.id == 'cdk'
+                  a(href="#{site.base_url}/products/#{product.id}/download")
+                    i.fa.fa-download
+                    |  Download Latest
+                - else
+                  a(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
+                    i.fa.fa-refresh.fa-spin
+                    |  Fetching Latest Download...
   .large-7.columns#other-resources
     h5.category-label OTHER DEVELOPER RESOURCES
     ul

@@ -12,7 +12,7 @@ class DownloadsPage < BasePage
 
   def open
     load
-    loaded?('Downloads available from JBoss')
+    loaded?('Downloads | Red Hat Developers')
   end
 
 end

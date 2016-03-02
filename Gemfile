@@ -1,19 +1,24 @@
 # Gemfile
-source "https://rubygems.org"
+source "http://rubygems.org"
+#source "http://rubygems.org" # Try this without ssl for now
 
 # Platform helpers
 def windows_only(require_as)
   RbConfig::CONFIG['host_os'] =~ /mingw|mswin/i ? require_as : false
 end
+
 def linux_only(require_as)
   RbConfig::CONFIG['host_os'] =~ /linux/ ? require_as : false
 end
+
 def darwin_only(require_as)
   RbConfig::CONFIG['host_os'] =~ /darwin/ ? require_as : false
 end
 
 # GEMS
-gem 'awestruct', '0.5.7'
+#gem 'awestruct', '0.5.7'
+gem 'awestruct', github: 'lightguard/awestruct', branch: 'feature/perf-testing-large-site'
+#gem 'awestruct', path: '~/projects/ruby/awestruct'
 gem 'slim', '~> 3.0'
 gem 'kramdown', '~> 1.0.1'
 gem 'asciidoctor', '~> 1.5.0'
@@ -38,6 +43,7 @@ gem 'compass', '~> 1.0'
 gem 'rake', '~>10.4'
 gem "octokit", "~> 4.0"
 gem 'docker-api', :require => 'docker'
+gem 'uuid'
 
 # To use Aweplug code from a different location:
 #
@@ -46,7 +52,6 @@ gem 'docker-api', :require => 'docker'
 #
 # From a location on your disk:
 #
-#gem 'aweplug', github: 'awestruct/aweplug'
 gem 'aweplug', github: 'awestruct/aweplug'
 
 group :test do
@@ -59,8 +64,9 @@ group :test do
   gem 'poltergeist', '~> 1.7.0'
   gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
-  gem 'capybara', '~>2.5'
-  gem 'selenium-webdriver', '~> 2.48.0'
+  gem 'capybara', '~> 2.6', '>= 2.6.2'
+  gem 'capybara-mechanize', '~> 1.5'
+  gem 'selenium-webdriver', '~> 2.48.1'
   gem 'parallel_tests', '~> 1.9.0'
   gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'

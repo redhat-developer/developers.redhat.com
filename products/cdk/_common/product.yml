@@ -1,0 +1,60 @@
+name: Red Hat Container Development Kit
+abbreviated_name: Container Development Kit
+product_logo: 
+indented_product: true
+current_version: 
+product_category: it-infrastructure
+intro_video: https://www.youtube.com/v=DGoqrqSLQtg 
+vimeo_album: 
+youtube_album: 
+index:
+  desc: |
+    Quickly setup your development environment for building secure Docker-based applications.
+buzz_tags:
+  - containers
+guides:
+  CDK_2_Installation_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/7/container-development-kit-installation-guide/container-development-kit-installation-guide
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_Enterprise_Linux_Atomic_Host-7-Container_Development_Kit_Installation_Guide-en-US/Red_Hat_Enterprise_Linux_Atomic_Host-7-Container_Development_Kit_Installation_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_Enterprise_Linux_Atomic_Host-7-Container_Development_Kit_Installation_Guide-en-US/Red_Hat_Enterprise_Linux_Atomic_Host-7-Container_Development_Kit_Installation_Guide-en-US.epub
+  CDK_2_Getting_Started_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/7/getting-started-with-container-development-kit/getting-started-with-container-development-kit
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_Enterprise_Linux_Atomic_Host-7-Getting_Started_with_Container_Development_Kit-en-US/Red_Hat_Enterprise_Linux_Atomic_Host-7-Getting_Started_with_Container_Development_Kit-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_Enterprise_Linux_Atomic_Host-7-Getting_Started_with_Container_Development_Kit-en-US/Red_Hat_Enterprise_Linux_Atomic_Host-7-Getting_Started_with_Container_Development_Kit-en-US.epub
+default_download_artifact_type: zip
+description:
+downloads:
+upstream_projects:
+featured_items:
+  - image_url: http://design.jboss.org/jbossdeveloper/sitedesign/jbossdeveloper_1_0/makerfiles/images/developermaterials_datagrid.png
+    url: /quickstarts/datagrid/helloworld-jdg
+    text: Get started with Data Grid with this basic Infinispan example
+evaluation: 
+skip_installation_instructions: true
+skip_maven_instructions: true
+get_started_multipath: true
+get_started_paths:
+  - id: "nodejs"
+    name: Node.js
+    default_file: get-started-cdk2-nodejs
+  - id: "php"
+    name: PHP
+    default_file: get-started-cdk2-php
+  - id: "python"
+    name: Python
+    default_file: get-started-cdk2-python
+  - id: "ruby"
+    name: Ruby
+    default_file: get-started-cdk2-ruby

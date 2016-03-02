@@ -1,0 +1,28 @@
+:awestruct-layout: product-updates
+:awestruct-interpolate: true
+:leveloffset: 1
+
+=== The Red Hat Container Development Kit 2 (CDK 2) is now available for beta testing!
+December 2015
+
+The beta release of the Red Hat Container Development Kit 2 enables developers to take advantage of pre-configured images and tools to accelerate the development of container-based applications that can be deployed across Red Hat’s portfolio of container hosts and platforms - including OpenShift Enterprise 3 - from the comfort of your own laptop.
+
+New components in CDK 2 include:
+
+* Support for the Nulecule specification.  What is Nulecule?  Nulecule defines a pattern and model for packaging complex multi-container applications, referencing all their dependencies, including orchestration metadata in a container image for building, deploying, monitoring, and active management.  
+* Atomic App - Red Hat’s reference implementation of the Nulecule Specification. It can be used to accelerate the development of container-based applications. Atomic App itself is packaged and is included as a container.
+* Image Factory (imagefactory-v2c) - a tool to accelerate the importing and conversion of disk images (e.g. virtual machine images) into Docker base images - complete with appropriate metadata.
+* Vagrant plug-in for Eclipse Docker Tooling - allows users to connect the Eclipse Docker tooling to the Docker daemon running in your CDK VM.
+
+Hypervisor support includes Vagrantfiles for KVM, VirtualBox, and now with CDK 2, VMware.
+
+Red Hat Software Collections are available as container images for use with the Red Hat Container Development Kit via the Red Hat Registry.  Red Hat Software Collections are inclusive of the latest stable versions of web development tools, dynamic languages, and open source databases.
+
+Create your own private container registry with available tools. 
+
+See the link:#{site.base_url}/products/cdk/get-started[Get Started] to make your way into Docker containers.
+
+=== Red Hat introduces CDK for easy Docker app development
+March 2015
+
+The initial version of CDK was the first to set up a Docker container development environment for Windows, MacOS, and Linux.  Supported hypervisors were Virtualbox and KVM.  Given the latest enhancements, developers are encouraged to use the CDK 2 beta (above).
