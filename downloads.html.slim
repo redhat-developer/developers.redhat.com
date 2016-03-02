@@ -19,27 +19,26 @@ description: Discover the product downloads available from Red Hat, and locate t
         - category.products.each do |p|
           - if site.products[p]
             - product = site.products[p]
-            .row(class=('indent-product' if product.indented_product?))
-              .large-16.columns
-                h5
-                  a(href="#{site.base_url}/products/#{product.id}/")
-                    = product.name
-              .large-8.columns
-                - if product.id == 'cdk'
-                  a(href="#{site.base_url}/products/#{product.id}/download")
-                    i.fa.fa-download
-                    |  Download Latest
-                - else
-                  a(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
-                    i.fa.fa-refresh.fa-spin
-                    |  Fetching Latest Download...
+            - unless product.id == 'developertoolset' || product.id == 'softwarecollections'
+              .row(class=('indent-product' if product.indented_product?))
+                .large-16.columns
+                  h5
+                    a(href="#{site.base_url}/products/#{product.id}/")
+                      = product.name
+                      - if product.id == 'rhel' || product.id == 'cdk'
+                        small = product.name_append
+                .large-8.columns
+                  - if product.id == 'cdk'
+                    a(href="#{site.base_url}/products/#{product.id}/download")
+                      i.fa.fa-download
+                      |  Download Latest
+                  - else
+                    a(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
+                      i.fa.fa-refresh.fa-spin
+                      |  Fetching Latest Download...
   .large-7.columns#other-resources
     h5.category-label OTHER DEVELOPER RESOURCES
     ul
-      li
-        a.button(href='https://connect.redhat.com/zones/containers') 
-          | Container development kit 
-          i.fa.fa-external-link
       li
         a.button(href='https://access.redhat.com/articles/216643') 
           | Building Linux RPMs 
