@@ -57,10 +57,8 @@ end
 
 CHROME_PREFS = {
     'download' => {
-        'default_directory' => DownloadHelper::PATH.to_s,
         'prompt_for_download' => false,
-        'directory_upgrade' => true,
-        'extensions_to_open' => '',
+        'default_directory' => DownloadHelper::PATH.to_s,
     },
     'profile' => {
         'default_content_settings' => {'multiple-automatic-downloads' => 1},
@@ -70,8 +68,7 @@ CHROME_PREFS = {
     },
     'safebrowsing' => {
         'enabled' => true,
-    }
-
+    },
 }
 
 Capybara.register_driver :selenium do |app|
@@ -84,6 +81,7 @@ Capybara.register_driver :selenium_remote do |app|
   job_name = "RHD Acceptance Tests Using Chrome Download profile - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
   config = Selenium::WebDriver::Remote::Capabilities.chrome
   config['chromeOptions'] = {'prefs' => CHROME_PREFS}
+  config['chromeOptions']['args'] = %w[--disable-popup-blocking --ignore-ssl-errors --disable-download-protection]
   config['browser'] = 'Chrome'
   config['browser_version'] = '48.0'
   config['os'] = 'Windows'

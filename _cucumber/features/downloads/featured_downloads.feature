@@ -6,7 +6,7 @@ Feature: Download Page - An authorised customer downloads from available downloa
   As a develpers.redhat.com site visitor,
   I want to be able to register and download the Red Hat products.
 
-  @customer @javascript @logout
+  @customer @javascript @logout @wip
   Scenario: Newly registered RHD navigates to Download tab and clicks on 'Download latest'
     Given I register a new account
     And I am on the Download Overview page for eap
