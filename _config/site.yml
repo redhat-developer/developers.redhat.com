@@ -75,6 +75,7 @@ profiles:
     dcp_base_url: http://searchisko:8080/
     dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     push_to_searchisko: true
+    build_threads: 1
 
   drupal:
     <<: *docker
