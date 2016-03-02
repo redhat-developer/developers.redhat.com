@@ -35,6 +35,7 @@ class BasePage < SitePrism::Page
   elements :sub_nav_communities, '#sub-nav-community a'
   elements :community_description, '.page-description'
   elements :sub_technologies_links, '#sub-nav-technologies .sub-nav-group a'
+  element :search_field, '.user-success'
 
   def initialize(driver)
     @driver = driver

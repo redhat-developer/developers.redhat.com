@@ -1,5 +1,5 @@
 When(/^I search for "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+  @page.search.search_field.set arg1
 end
 
 Then(/^the search results page is displayed$/) do
