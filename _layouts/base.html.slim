@@ -169,7 +169,7 @@
                     a.hide-on-mobile(href="#{site.base_url}/products/datagrid/overview/") Red Hat JBoss Data Grid
                     a.hide-on-mobile(href="#{site.base_url}/products/amq/overview/") Red Hat JBoss A-MQ
                     a.hide-on-mobile(href="#{site.base_url}/products/datavirt/overview/") Red Hat JBoss Data Virtualization
-              li.has-sub-nav(class=(page.url.include?('community') ? 'active' : ''))
+              li.has-sub-nav(class=((page.url.include?('/community')) && !(page.url.include?('/products/')) ? 'active' : ''))
                 a(href="#")
                   | Community
                   i.fa.fa-angle-down
