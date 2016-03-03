@@ -99,6 +99,11 @@ class BasePage < SitePrism::Page
     end
   end
 
+  def search_for(query)
+    nav_search_field.set query
+    find('.user-search').native.send_keys(:return)
+  end
+
   def wait_for_ajax(message = nil)
     if Capybara.app_host.eql?('http://0.0.0.0:4242/') || Capybara.app_host.include?('docker')
       timeout = 120

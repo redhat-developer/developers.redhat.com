@@ -17,6 +17,7 @@ require 'rest-client'
 require 'json'
 require 'uuid'
 require 'fileutils'
+require 'pry'
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/customer')

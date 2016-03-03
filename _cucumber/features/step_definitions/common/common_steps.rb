@@ -17,3 +17,8 @@ end
 Then(/^the max characters for the search box should be "([^"]*)" characters\.$/) do |max_length|
   expect(@page.current_page.nav_search_field['maxlength']).to eq max_length
 end
+
+Then(/^I should placeholder text within the search field "([^"]*)"$/) do |hint|
+  expect(@page.current_page.nav_search_field['placeholder']).to eq hint
+end
+

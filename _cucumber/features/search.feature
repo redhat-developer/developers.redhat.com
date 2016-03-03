@@ -7,6 +7,7 @@ Feature: Search Page
     Given I am on the <page> page
     Then the search field should be displayed within the site header
     And the max characters for the search box should be "128" characters.
+    And I should placeholder text within the search field "Filter by keyword"
 
   Examples: of developers.redhat.com pages
     | page         |
@@ -15,29 +16,31 @@ Feature: Search Page
     | Resources    |
     | Downloads    |
 
+  @javascript
   Scenario: Search field is hidden within the site header on search page.
     Given I am on the Home page
     When I search for "Containers"
     Then the search results page is displayed
     And the search field should not be displayed within the site header
 
+  @javascript @wip
   Scenario: I search for developer related content - I will see all entries ordered by Most recent.
     Given I am on the Home page
     When I search for "EAP"
-    Then I should see "10" results containing "EAP"
+    Then I should see "5" results containing "EAP"
     And the results will be ordered by most recent first
 
   # Query: Needs approval by Tiffany
   Scenario: I search for developer related content - I will see all entries ordered by Title.
     Given I am on the Home page
     When I search for "Fuse"
-    Then I should see "10" results containing "Fuse"
+    Then I should see "5" results containing "Fuse"
     And the results will be ordered by title
 
   Scenario: Search results should be listed with tags
     Given I am on the Home page
     When I search for "Containers"
-    Then I should see "10" results containing "Containers"
+    Then I should see "5" results containing "Containers"
     And tags related to "Containers"
 
   Scenario: I search for something should return *no* entries, such as "bfehwfbhbn"
