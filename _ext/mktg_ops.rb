@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'yaml'
+require 'yaml/store'
 require 'digest'
 
 module JBoss::Developer::MktgOps

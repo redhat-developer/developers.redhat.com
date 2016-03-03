@@ -117,7 +117,7 @@
               - unless page.url.include?('search')
                 li.search-wrapper
                   form.search-bar[accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit"]
-                    input.user-success[type="text" placeholder="Filter by keyword" id="search_list_text" name="q"]
+                    input.user-search[type="text" placeholder="Filter by keyword" id="search_list_text" name="q" maxlength="128"]
               li.login: a Log In
               li.register: a Register
               li.logged-in
@@ -155,7 +155,7 @@
                     a.hide-on-mobile(href="#{site.base_url}/products/rhel/overview/") Red Hat Enterprise Linux
                     a.hide-on-mobile.indent(href="#{site.base_url}/products/developertoolset/overview/") Red Hat Developer Toolset
                     a.hide-on-mobile.indent(href="#{site.base_url}/products/softwarecollections/overview/") Red Hat Software Collections
-                    / a(href="#{site.base_url}/products/atomic/overview/") Red Hat Container Development Kit
+                    a.hide-on-mobile.indent(href="#{site.base_url}/products/cdk/overview/") Red Hat Container Development Kit
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#cloud_products") Cloud
                     a.hide-on-mobile(href="#{site.base_url}/products/openshift/overview/") OpenShift Enterprise by Red Hat
@@ -191,7 +191,7 @@
                   a(href="#{site.base_url}/community/contributor/")
                     | Content Contributors
                     span.page-description Share your knowledge. Contribute content to Red Hat Developers.
-              li(class=(page.url.include?('resources') ? 'active' : ''))
+              li(class=((page.url.include?('/resources')) && !(page.url.include?('/products/')) ? 'active' : ''))
                 a(href="#{site.base_url}/resources/") Resources
               li(class=(page.url.include?('downloads') ? 'active' : ''))
                 a(href="#{site.base_url}/downloads/") Downloads

@@ -49,19 +49,26 @@ app.topics.render = function(materials) {
       }
     }
 
+    var title = material.fields.sys_title[0];
+    //if (title.length > 46) {
+    //  title = title.substring(0, 46).trim() + "..."
+    //}
+    var tags = material.fields.sys_tags.join(', ').substr(0, 30);
+    // Make sure that we only display full words.
+    tags = tags.substr(0, Math.min(tags.length, tags.lastIndexOf(",")));
     var item = [
       '<a href="' + material.fields.sys_url_view[0] + '">',
-        '<li class="large-6 columns">',
-          '<h5>',
-            material.fields.sys_title[0],
-          '</h5>',
-          '<p class="description">',
-            material.fields.sys_description[0],
-          '</p>',
-          '<p class="tags">Tags: ',
-            material.fields.sys_tags.join(', '),
-          '</p>',
-        '</li>',
+      '<li class="large-6 columns">',
+      '<h5>',
+      title,
+      '</h5>',
+      '<p class="description">',
+      material.fields.sys_description[0],
+      '</p>',
+      '<p class="tags">Tags: ',
+      tags + "...",
+      '</p>',
+      '</li>',
       '</a>'
     ].join('');
 
@@ -69,6 +76,7 @@ app.topics.render = function(materials) {
   });
 
   $('.topic-resources-list').html(html.join(''));
+
 }
 
 $(function() {
@@ -78,3 +86,4 @@ $(function() {
     app.topics.fetch();
   }
 });
+

@@ -30,6 +30,8 @@ skips:
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Security\+Token\+Server\+%28STS%29+/
 #    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
+# 10.1.2.2:8080 addresse used in CDK get-started
+  - http://10.1.2.2:8000/
 ignores:
   - code: 202
   - code: 203
@@ -114,6 +116,7 @@ ignores:
   - url: https://developer.jboss.org/people/nzhu #Not an error
   - url: https://developer.jboss.org/people/mmusgrov #Not an error
   - url: https://garage.netty.io/teamcity #Not an error
+  - url: http://developers.redhat.com/blog #Not an error
 # ---------------BELOW ARE CURRENT OUTSTANDING ISSUES--------------------------
   - url: https://devstudio.jboss.com/central/install?connectors=org.jboss.tools.aerogear.hybrid #JIRA Ticket Outstanding - To be fixed
   - url: https://github.com/jboss-developer/jboss-sandbox-quickstarts/fork_select #JIRA Ticket Outstanding
