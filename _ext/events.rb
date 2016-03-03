@@ -19,9 +19,9 @@ module JBoss
 
           case key
             when 'start_date'
-              ['start_date', DateTime.parse(value).to_json]
+              ['start_date', DateTime.parse(value)]
             when 'end_date'
-              ['end_date', DateTime.parse(value).to_json]
+              ['end_date', DateTime.parse(value)]
             when 'title'
               [:sys_title, value]
             when 'description'
