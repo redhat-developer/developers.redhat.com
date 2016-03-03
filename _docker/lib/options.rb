@@ -37,12 +37,12 @@ class Options
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[profile]"]
+        tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[profile]"]
       end
 
       opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
         tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
+        tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
       opts.on('--drupal-nightly', 'Start up and enable drupal') do |u|
@@ -124,7 +124,7 @@ class Options
         tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:supporting_services] += %w(mysql searchisko)
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
+        tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
       # No argument, shows at tail.  This will print an options summary.
