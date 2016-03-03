@@ -1,0 +1,21 @@
+uuid: f9fa289d-3e89-45a7-bf01-1c9cc6bc5579
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_containers_short_summary
+    - node.type.container_news
+  module:
+    - text
+id: node.container_news.field_containers_short_summary
+field_name: field_containers_short_summary
+entity_type: node
+bundle: container_news
+label: 'Short Summary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

@@ -1,0 +1,23 @@
+uuid: 18e98c29-b08c-4043-8c00-fd5f0e5e8e7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_container_external_link
+    - node.type.container_news
+  module:
+    - link
+id: node.container_news.field_container_external_link
+field_name: field_container_external_link
+entity_type: node
+bundle: container_news
+label: 'Content Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

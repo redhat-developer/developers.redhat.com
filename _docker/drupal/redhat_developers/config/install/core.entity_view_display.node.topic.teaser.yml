@@ -1,0 +1,19 @@
+uuid: a5a32a17-193b-4fd0-8a54-844962aefd35
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.topic.field_sub_title
+    - node.type.topic
+  module:
+    - user
+id: node.topic.teaser
+targetEntityType: node
+bundle: topic
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  field_sub_title: true

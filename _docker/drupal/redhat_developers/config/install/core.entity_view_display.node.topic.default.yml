@@ -1,0 +1,23 @@
+uuid: 7e7715b4-b37d-4f5a-a500-cdbe08336926
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.topic.field_sub_title
+    - node.type.topic
+  module:
+    - text
+    - user
+id: node.topic.default
+targetEntityType: node
+bundle: topic
+mode: default
+content:
+  field_sub_title:
+    weight: 101
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+hidden:
+  links: true
