@@ -37,7 +37,7 @@ app.termsAndConditions = {
     }
 
     if(!tcWhenSigned) {
-      $('.downloadthankyou p, .thankyoupanels').hide();
+      $('.downloadthankyou p, .thankyoupanels, #StepOneCompleted').hide();
       $('#download-problems').show();
     }
 
@@ -51,6 +51,7 @@ app.termsAndConditions = {
 
     if (tcDownloadFileName) {
       $('div#downloadthankyou').show('slow');
+      $('#StepOneCompleted').show('slow');
     }
 
     if (tcDownloadURL &&
