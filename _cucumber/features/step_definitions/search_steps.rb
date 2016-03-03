@@ -1,13 +1,9 @@
-When(/^I search for "([^"]*)"$/) do |arg1|
-  @page.search.search_field.set arg1
+When(/^I search for "([^"]*)"$/) do |search_string|
+  @page.current_page.nav_search_field.set search_string
 end
 
 Then(/^the search results page is displayed$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
 
-Then(/^the search field should not be displayed within the site header$/) do
-  pending # Write code here that turns the phrase above into concrete actions
 end
 
 Then(/^I should see "([^"]*)" results containing "([^"]*)"$/) do |arg1, arg2|

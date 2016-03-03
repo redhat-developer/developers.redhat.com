@@ -3,8 +3,6 @@ Feature: Search Page
   I want to have the option to search for developer related content.
   So that I can find specific information.
 
-  @javascript
-  @wip
   Scenario Outline: Search field is visible within the site header.
     Given I am on the <page> page
     Then the search field should be displayed within the site header
@@ -107,7 +105,7 @@ Feature: Search Page
       | Next |
       | Last |
     And the following links should be disabled:
-      | First        |
+      | First    |
       | Previous |
 
   Scenario: Search box is displayed within the search page
@@ -128,7 +126,7 @@ Feature: Search Page
     When I click on the search button
     Then nothing will happen and no search will be initiated
 
-  @manual_test
+  @manual
   Scenario: Search page should be bookmarkable
     Given I am on the Search page
     And I search for "Containers"
@@ -136,8 +134,10 @@ Feature: Search Page
     Then the bookmark should be added to my bookmarks
     And the search criteria is added to the URL
 
-  @manual_test
+  @manual
   Scenario: Revisiting a previously bookmarked search should redisplay the search page including the search query.
     Given I visit a previous search from a bookmark
     Then the Search page should be displayed
     And the search query is replayed.
+
+

@@ -26,8 +26,8 @@ SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
 Capybara.configure do |config|
 
   if ENV['HOST_TO_TEST'].to_s.empty?
-    # default to staging
-    host_to_test = 'https://developers.stage.redhat.com'
+    # default to localhost
+    host_to_test = 'http://0.0.0.0:4242/'
   else
     if ENV['HOST_TO_TEST'][-1, 1] == '/'
       host_to_test = ENV['HOST_TO_TEST'].chomp('/')
@@ -41,9 +41,13 @@ Capybara.configure do |config|
   config.app_host = host_to_test
   config.run_server = false
   config.app = 'RHD'
-  config.default_max_wait_time = 6
-  config.save_and_open_page_path = SCREENSHOT_DIRECTORY
+  if host_to_test.eql?('http://0.0.0.0:4242/') || host_to_test.include?('docker')
+    config.default_max_wait_time = 60
+  else
+    config.default_max_wait_time = 6
+  end
 
+  config.save_and_open_page_path = SCREENSHOT_DIRECTORY
   Capybara::Screenshot.prune_strategy = :keep_last_run
 
   puts " . . . Running features against #{host_to_test}  . . . "

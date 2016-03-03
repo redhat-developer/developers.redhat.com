@@ -117,7 +117,7 @@
               - unless page.url.include?('search')
                 li.search-wrapper
                   form.search-bar[accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit"]
-                    input.user-success[type="text" placeholder="Filter by keyword" id="search_list_text" name="q"]
+                    input.user-search[type="text" placeholder="Filter by keyword" id="search_list_text" name="q" maxlength="128"]
               li.login: a Log In
               li.register: a Register
               li.logged-in
