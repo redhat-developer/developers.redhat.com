@@ -50,7 +50,7 @@ def set_ports
 end
 
 def execute_docker_compose(cmd, args = [])
-  puts "args to docker-compose are #{args}"
+  puts "args to docker-compose command '#{cmd}' are '#{args}'"
   Kernel.abort('Error running docker-compose') unless Kernel.system *['docker-compose', cmd.to_s, *args]
 end
 
@@ -132,8 +132,9 @@ if tasks[:set_ports]
 end
 
 if tasks[:kill_all]
-  puts 'Killing docker services...'
+  puts 'Killing and removing docker services...'
   execute_docker_compose :stop
+  execute_docker_compose :rm, ['-v', '-f']
 end
 
 if tasks[:build]
