@@ -3,9 +3,8 @@ Given(/^(I am|they are on) on the Download Overview page for ([^"]*)$/) do |nega
 end
 
 Then(/^I should see the ([^"]*) download overview page$/) do |product_id|
-  #@page.download_overview.send("wait_until_#{product_id}_download_page_visible")
+  @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
   expect(page.current_url).to include "/products/#{product_id}/download/"
-  @page.current_page.wait_for_ajax
 end
 
 When(/^I click to download the featured download of "([^"]*)"$/) do |product|
@@ -13,11 +12,12 @@ When(/^I click to download the featured download of "([^"]*)"$/) do |product|
   @page.download_overview.click_featured_download_for(product, version, url)
 end
 
-Then(/^the ([^"]*) download (should|should not) initiate$/) do |product_id, negate|
+Then(/^the download (should|should not) initiate$/) do |negate|
+  download_dir = downloading?
   if negate.eql?('should')
-    expect(downloading?(product_id)).to be true
+    expect(File.size(download_dir.first) > 0).to be true
   else
-    expect(downloading?(product_id)).to be false
+    expect(download_dir.empty?).to be false
   end
 end
 

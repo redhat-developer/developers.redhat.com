@@ -13,7 +13,7 @@ Feature: Red Hat Container Development Kit (CDK) download
     And I click to download the featured download of "Red Hat Container Development Kit (CDK)"
     When I upgrade my account and accept the terms and conditions
     Then I should see the cdk get started page with a confirmation message Thank you for downloading Red Hat Container Development Kit (CDK)
-    And the cdk download should initiate
+    And the download should initiate
 
   @customer @logout @javascript
   Scenario: Newly registered RHD navigates to CDK Download page and clicks on download, upgrades account, but does NOT accept Redhat T&C's should not initiate CDK download.
@@ -22,7 +22,7 @@ Feature: Red Hat Container Development Kit (CDK) download
     When I click to download the featured download of "Red Hat Container Development Kit (CDK)"
     And I upgrade my account and don't accept the terms and conditions
     Then I should see the cdk download overview page
-    And the cdk download should not initiate
+    And the download should not initiate
 
   @customer @logout @javascript
   Scenario: Unauthorised customer who has navigated directly to CDK Download overview page clicks on download, registers, upgrades account, and accepts Redhat T&C's should initiate CDK download.
@@ -34,7 +34,7 @@ Feature: Red Hat Container Development Kit (CDK) download
     And I navigate to the verify account URL
     And I upgrade my account and accept the terms and conditions
     Then I should see the cdk get started page with a confirmation message Thank you for downloading Red Hat Container Development Kit (CDK)
-    And the cdk download should initiate
+    And the download should initiate
 
   @customer @logout @javascript
   Scenario: Unauthorised customer who has navigated directly to CDK Download overview page clicks on download, registers, upgrades account, but does NOT accept Redhat T&C's should not initiate CDK download.
@@ -46,11 +46,11 @@ Feature: Red Hat Container Development Kit (CDK) download
     And I navigate to the verify account URL
     And I upgrade my account but don't accept the terms and conditions
     Then I should see the cdk download overview page
-    And the cdk download should not initiate
+    And the download should not initiate
 
   @customer @logout @javascript
   Scenario: Authorised customer can register who has previosly accepted Redhat T&C's can download redhat CDK.
     Given a registered customer has logged in
     And I am on the Download Overview page for cdk
     When I click to download the featured download of "Red Hat Container Development Kit (CDK)"
-    Then the cdk download should initiate
+    Then the download should initiate

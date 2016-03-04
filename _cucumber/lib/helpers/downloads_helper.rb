@@ -1,7 +1,6 @@
 module DownloadHelper
 
   TIMEOUT = 30
-  PATH = File.join(Dir.pwd, '_cucumber/tmp/downloads')
 
   extend self
 
@@ -31,38 +30,18 @@ module DownloadHelper
     return download_version, download_url
   end
 
-  def download_dir
-    Dir.glob("#{PATH}/*")
-  end
-
-  def download_path
-    wait_for_download
-    download_dir.first
-  end
-
-  def downloaded?
-    download_dir.any? && !downloading?
-  end
-
-  def downloading?(product_id)
-    wait_for_downloading {
-      downloaded_file_size = Dir[File.join(PATH, '**', '*')].count { |file| File.file?(file) }
-      downloaded_file_size == 1 && (download_dir.first.include?(product_id) || download_dir.grep(/\.crdownload$/).any?)
-    }
+  def downloading?
+    Dir.glob("#{@download_dir}/*")
   end
 
   def wait_for_downloading(i = TIMEOUT)
     count = 0; downloading = false
     until downloading == true || count == i
       downloading = yield
-      sleep(1)
+      sleep(0.5)
       count += 1
     end
     downloading
-  end
-
-  def clear_downloads
-    FileUtils.rm_f(download_dir)
   end
 
   def get_product_id(product)

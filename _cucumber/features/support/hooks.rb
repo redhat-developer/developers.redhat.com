@@ -42,14 +42,6 @@ After('@logout') do
   Home.new(@driver).physical_logout
 end
 
-Before('@product_download') do
-  clear_downloads
-end
-
-After('@product_download') do
-  clear_downloads
-end
-
 After do |scenario|
   if scenario.failed?
     puts "The test failed on page: #{page.title}"
