@@ -48,6 +48,7 @@ search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc
 
 function searchCtrlFunc($scope, searchService) {
   var search = window.location.search.split('=');
+  console.log(search);
   var q = '';
   if(search) {
     q = search.pop(); // last one
@@ -70,6 +71,7 @@ function searchCtrlFunc($scope, searchService) {
 
   $scope.updateSearch = function() {
     $scope.loading = true;
+    history.pushState($scope.params,$scope.params.query,'/search/?q=' + $scope.params.query);
     searchService.getSearchResults($scope.params).then(function(data) {
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
@@ -115,6 +117,7 @@ function searchCtrlFunc($scope, searchService) {
         page = Math.ceil($scope.totalCount / $scope.params.size);
         break;
       default:
+        return; // stop it
         break;
     }
 

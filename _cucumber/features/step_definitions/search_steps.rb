@@ -72,7 +72,9 @@ Then(/^the following links should be disabled:$/) do |table|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then(/^I should see pagination with "([^"]*)" pages with ellipsis$/) do |arg1|
+Then(/^I should see pagination with "([^"]*)" pages with ellipsis$/) do |pageNum|
+    selector = "[data-page=\"#{pageNum}\"]"
+    expect(@page.search.pagination).should have_css(selector)
   pending # Write code here that turns the phrase above into concrete actions
 end
 
@@ -88,7 +90,7 @@ Given(/^I have previously searched for "([^"]*)"$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When(/^I click on the "([^"]*)" link$/) do |arg1|
+When(/^I click on the "([^"]*)" link$/) do |link|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
