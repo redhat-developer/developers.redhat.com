@@ -19,7 +19,7 @@ class Registration < BasePage
 
   def open
     Home.new(@driver).open
-    register_link.click
+    open_login_register('register')
     begin
       loaded?('Register | Red Hat Developers')
     rescue

@@ -9,7 +9,7 @@ search.service('searchService',function($http, $q) {
     // fold in params with defaults
     var search = Object.assign(params, {
       // field: '_source',
-      field: ['sys_url_view', 'sys_title', 'sys_updated', 'sys_description', 'sys_tags'],
+      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags'],
       agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
     });
 
@@ -35,6 +35,13 @@ search.filter('timeAgo', function() {
   }
 });
 
+search.filter('timestamp', function() {
+  return function(timestamp){
+    var date = new Date(timestamp);
+    return date.getTime();
+  }
+});
+
 
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
 
@@ -48,7 +55,7 @@ function searchCtrlFunc($scope, searchService) {
   /* default */
   $scope.params = {
     query: q,
-    sortBy: 'score',
+    sortBy: 'new',
     size: 5,
     from: 0
   }

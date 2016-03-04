@@ -1,7 +1,7 @@
 ---
 layout: get-involved-base
-title: Events featuring JBoss
-description: Discover the events and webinars featuring talks about JBoss products and upstream projects.
+title: Events featuring Red Hat
+description: Discover the events and webinars featuring talks about Red Hat products and upstream projects.
 ---
 .hero.hero-wide.hero-events
   .row
@@ -64,7 +64,7 @@ description: Discover the events and webinars featuring talks about JBoss produc
                       span.day
                         | {{event.start_date | moment:'DD'}}
                       span.end-day
-                        | -{{event._source.end_date | moment:'DD'}}
+                        | -{{event.end_date | moment:'DD'}}
                     span.end(ng-class="{'same-month': (event.start_date | moment:'MMM') == (event.end_date | moment:'MMM')}")
                       | {{event.end_date | moment:'MMM DD'}}
               .event-body

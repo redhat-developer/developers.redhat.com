@@ -17,8 +17,8 @@ function setup_mac {
 function commit_cdn {
 
   ## Commit back CDN changes
-  git add _cdn/cdn.yml
-  git commit -m "Update cdn.yml" || true
+  git add _cdn/cdn.store
+  git commit -m "Update cdn.store" || true
   # Fetch any changes made since the build changed
   git pull --rebase origin HEAD
   git push origin HEAD

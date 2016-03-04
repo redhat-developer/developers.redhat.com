@@ -9,7 +9,7 @@ class ResourcesPage < BasePage
 
   def open
     load
-    loaded?('Discover the developer materials JBoss has to offer')
+    loaded?('Discover the developer materials Red Hat has to offer')
   end
 
 end
