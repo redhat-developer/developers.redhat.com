@@ -228,7 +228,6 @@ class TestOptions < Minitest::Test
       assert(tasks[:kill_all])
       assert(tasks[:build])
       assert_includes tasks[:supporting_services], 'mysql'
-      assert_includes tasks[:supporting_services], 'searchiskoconfigure'
       assert_includes tasks[:supporting_services], 'searchisko'
       assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]'], tasks[:awestruct_command_args])
       assert_includes tasks[:supporting_services], 'drupal'
