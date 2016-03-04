@@ -37,8 +37,8 @@ app.termsAndConditions = {
     }
 
     if(!tcWhenSigned) {
-      $('.downloadthankyou p, .thankyoupanels, #StepOneCompleted').hide();
-      $('#download-problems').show();
+      $('.downloadthankyou p, .thankyoupanels, #StepOneCompleted, #StepCompletedHeader').hide();
+      $('#download-problems, #StepOneUnfinished, #StepOneUnfinishedHeader').show();
     }
 
     if (tcEndsIn) {
@@ -50,8 +50,8 @@ app.termsAndConditions = {
     }
 
     if (tcDownloadFileName) {
-      $('div#downloadthankyou').show('slow');
-      $('#StepOneCompleted').show('slow');
+      $('div#downloadthankyou, #StepOneCompleted, #StepCompletedHeader').show('slow');
+      $('#StepOneUnfinished, #StepOneUnfinishedHeader').hide('slow');
     }
 
     if (tcDownloadURL &&

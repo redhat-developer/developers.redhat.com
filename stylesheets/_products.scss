@@ -645,3 +645,27 @@ ul.product-langs {
     }
   }
 }
+
+#StepOneCompleted a, #StepCompletedHeader{
+  background-color: #5ba425 !important;
+  h2, h4, i, p, .step-num {
+    color: #a3d900 !important;
+  }
+  .fa-check-circle {
+    color: $white !important;
+  }
+}
+
+#StepOneCompleted:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'FontAwesome';
+  color: white;
+  padding: 25% 45%;
+  font-size: 5em;
+  content: "\f058";
+  z-index: 9999;
+}
