@@ -4,33 +4,40 @@
 }
 .homepage-main {
   color: $white;
-  background: cdn('../images/design/RHD_homepage_hero_desktop_cdk2.png') top center / cover no-repeat;
-  background-color: #136691;
+  background-image: cdn('../images/design/RHDev_homehero_desktop_javaeebook.png');
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(11, 8, 21);
   .homepage-cta {
-    padding: 28px 0;
+    margin: 5% auto;
     img {
       display: inline-block;
       vertical-align: middle;
-      &.mobile {
-        display: none;
-      }
+    }
+    span {
+      padding-left: 30px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    span h2 {
+      color: $white;
+      text-transform: uppercase;
+      margin-left: 20px;
     }
     a.button {
-      display: table;
-      margin: 15px auto 0 auto;
-      background-color: #f07b00;
+      background-color: $white;
+      color: $red;
       min-width: 250px;
+      margin-left: 20px;
     }
   }
   .homepage-getstarted {
     min-height: 322px;
     padding: 15px 20px;
-    background-color: rgba(6, 59, 86, 0.73);
-    @include tablet-landscape-and-down {
-      background-color: #094665;
-    }
+    background-color: rgb(11, 8, 21);
     h5 {
-      color: $white;
+      color: #eaa400;
       margin-top: 10px;
     }
     a {
@@ -44,31 +51,29 @@
     }
     .video-thumb {
       img {
-        max-width: 185px;
+        max-width: 225px;
       }
       p{
         margin-top: 8px;
         margin-bottom: 10px;
       }
     }
-    .external-link:after {
-      display: none;
-    }
-  }
-  a.learn-more {
-    text-transform: uppercase;
-    color: #eaa400;
-    font-weight: 700;
-    float: right;
-    i {
-      margin-left: 5px;
+    a.learn-more {
+      text-transform: uppercase;
+      color: #eaa400;
+      font-weight: 700;
+      float: right;
+      i {
+        margin-left: 5px;
+      }
     }
   }
 }
 
+
+
 .spotlights-wrap {
-  background:black cdn("../images/design/RHDev_homepage_promobkg.svg") left center no-repeat;
-  background-size: 45%;
+  background:black cdn("../images/design/dotted_line-darkgrey.svg") left no-repeat;
 }
 
 .spotlights-container {
@@ -86,13 +91,10 @@
   color:white;
   &:hover {
     color:white;
-    opacity:0.6;
+    background:lighten(black, 10%);
   }
   &:last-child {
     border-right:0;
-  }
-  img {
-    padding-bottom: 5px;
   }
   .cut-image {
     position: relative;

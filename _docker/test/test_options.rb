@@ -100,13 +100,13 @@ class TestOptions < Minitest::Test
 
     def test_awestruct_command
       tasks = Options.parse (["--stage-pr", "6"])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
+      assert_equal(["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
       tasks = Options.parse (["--run-the-stack"])
-      assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
+      assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
       tasks = Options.parse (["-p"])
-      assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
+      assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
       tasks = Options.parse (["-g"])
-      assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[docker]'], tasks[:awestruct_command_args])
+      assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[docker]'], tasks[:awestruct_command_args])
 
       tasks = Options.parse %w(-p -u)
       # If we're using drupal, we don't need to do a preview in awestruct
@@ -152,7 +152,7 @@ class TestOptions < Minitest::Test
     def test_run_docker_nightly
       tasks = Options.parse (["--docker-nightly"])
       refute_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"], tasks[:acceptance_test_target_task])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
+      assert_equal(["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
       assert(tasks[:kill_all])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert(tasks[:set_ports])
@@ -163,7 +163,7 @@ class TestOptions < Minitest::Test
     def test_run_stage_pr
       tasks = Options.parse (["--stage-pr", "6"])
       assert(tasks[:kill_all])
-      assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
+      assert_equal(["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
       assert(tasks[:build])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert(tasks[:set_ports])
@@ -176,7 +176,7 @@ class TestOptions < Minitest::Test
       assert(tasks[:decrypt])
       assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
       assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
-      assert_equal(['--no-deps', '--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
+      assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
 
       tasks = Options.parse %w(-u --run-the-stack)
       assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]'], tasks[:awestruct_command_args])

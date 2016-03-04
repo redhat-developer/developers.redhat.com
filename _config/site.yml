@@ -64,6 +64,7 @@ profiles:
     log_faraday: true
     push_to_searchisko: false
     metrics: false
+    client_side_error_logging: false
     authenticate_google_books_api: false
     build_threads: 0
     cache_type: :local
@@ -114,6 +115,7 @@ profiles:
 
     cache_type: :local
     metrics: true
+    client_side_error_logging: true
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg
@@ -128,6 +130,7 @@ profiles:
     download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://developers.stage.redhat.com
     metrics: false
+    client_side_error_logging: true
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg
@@ -143,6 +146,7 @@ profiles:
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
     metrics: true
+    client_side_error_logging: true
     build_threads: 1
     dtm_code: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
     deploy:
@@ -156,6 +160,7 @@ profiles:
     dcp_base_url: http://dcp2.jboss.org/
     require_tag: true
     metrics: true
+    client_side_error_logging: true
     disqus: jdf
     dtm_mode: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
 

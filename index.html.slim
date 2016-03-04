@@ -9,28 +9,37 @@ description: The simple, modern & productive way to build apps and infrastructur
 section.homepage-main
   .row
     .large-16.columns.homepage-cta
-      img.mobile(src=cdn("#{site.base_url}/images/design/RHD_homehero_mobile_cdk2_text.png") alt="Red Hat Container Development Kit 2 Beta is Here")
-      img.desktop(src=cdn("#{site.base_url}/images/design/RHD_homehero_desktop_cdk2_text.png") alt="Red Hat Container Development Kit 2 Beta is Here")
-      a.button href='#{site.base_url}/products/cdk/get-started' Get Started
+      img(src=cdn("#{site.base_url}/images/design/RHDev_homehero_javaeebook_book.png") alt="Distributed JavaEE Architecture")
+      span
+        h2
+          | Book:
+          br
+          | Modern Java EE
+          br
+          | Design Patterns
+        a.button href='#{site.base_url}/promotions/distributed-javaee-architecture/' Download Now
     .large-8.columns.homepage-getstarted
       .row
         .large-24.medium-12.columns
-          h5.caps Get Started
+          h5.caps Get Started with Enterprise Java
           ul
-            li Easily develop from Windows, MacOS, RHEL, and more
-            li Deploy to Red Hat platforms including RHEL, Atomic Host, and now, OpenShift Enterprise 3
-            li Utilize new configuration tools based on Nulecule
-            li ISVs - certify your container apps
-          a.learn-more href='#{site.base_url}/products/cdk/overview'
-            | Learn More
-            i.fa.fa-arrow-circle-right
+            li
+              a href='http://www.jboss.org/ticket-monster/' Learn Enterprise Java with a Full Scale Application Tutorial
+            li
+              a href='https://blog.openshift.com/a-java-ee-7-application-on-openshift-3-with-jboss-tools/' Run your first app on the Cloud
+            li
+              a href='http://developerblog.redhat.com/2016/01/25/run-your-first-java-ee-application-with-jboss-eap-7-beta/' Run your first Enterprise Java application on JBoss EAP 7 Beta
+            li
+              a href='http://forge.jboss.org/document/hands-on-lab' Get started with Java EE faster, using JBoss Forge
+            li
+              a href='http://www.jboss.org/products/brms/get-started/#!project=brms' Manage Enterprise Business rules with JBoss BRMS
         .large-24.medium-12.columns
           .clearfix
           h5.caps Accelerate Your Development
-          .medium-16.small-24.columns
-            a.video-thumb(href='#{site.base_url}/video/youtube/DGoqrqSLQtg')
-              img(src='http://img.youtube.com/vi/DGoqrqSLQtg/0.jpg' alt='Video Title')
-              p Watch how to set up the CDK
+          .medium-20.small-24.columns
+            a.video-thumb(href='#{site.base_url}/video/youtube/Cl3SiavsBF4')
+              img.video-thumb(src=cdn("#{site.base_url}/images/branding/RHDev_homeherovideo_jbosseap7beta.png") alt='Video Thumbnail Img')
+              p Video: Getting started with JBoss EAP 7 Beta
 
 .spotlights-wrap
   .row
@@ -39,12 +48,12 @@ section.homepage-main
         a.spotlight-item href='#{site.base_url}/about'
           img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_whatisrhd.png") alt="What is RHD?")
           span What is Red Hat Developers?
-        a.spotlight-item href='https://rh2016.smarteventscloud.com/portal/createAccount.ww?'
+        a.spotlight-item href='http://www.devnation.org/'
           img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_devnation_generic.png") alt="DevNation Registration")
           span Why wait when you can register now?
-        a.spotlight-item href='#{site.base_url}/enterprise-java/'
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_diveintojava.png") alt="Java")
-          span Dive into Enterprise Java
+        a.spotlight-item href='#{site.base_url}/products/cdk/get-started/'
+          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_cdk2.png") alt="Red Hat Container Development Kit 2 Beta is Here")
+          span Red Hat CDK 2 beta is here
         a.spotlight-item href='http://developerblog.redhat.com/2016/01/18/jboss-eap-7-beta-is-now-available/'
           img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_eap7betaishere.png") alt="Eap7 Beta")
           span JBoss EAP 7 beta is here
