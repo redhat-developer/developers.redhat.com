@@ -33,8 +33,6 @@ And(/^the following error message should be displayed: (.*)$/) do |message|
 end
 
 And(/^I (request a password reset|reset my password)$/) do |negate|
-  @page.login.login_with_existing_account.click
-  @page.login.wait_for_ajax
   click_link('Forgot Password?')
   @page.current_page.wait_for_ajax
   @page.forgot_password.enter_email(@email_address)
