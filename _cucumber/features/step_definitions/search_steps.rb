@@ -59,38 +59,35 @@ Then(/^I should see pagination with "([^"]*)" pages$/) do |numPages|
   expect(@page.search.pagination_numbers.length).to eq(2)
 end
 
-Then(/^the following links should be enabled:$/) do |table|
+Then(/^the following links should be (enabled|disabled):$/) do |option, table|
   @page.search.wait_until_search_results_container_visible
-  table.raw.each do |row|
-    selector = "#pagination-#{row.first.downcase}.available"
-    expect(@page.search.pagination).should have_css(selector)
+  table.raw.each do |links|
+    link = links.first
+    expect(@page.search).to send("have_#{link.downcase}_link_#{option}")
   end
 end
 
-Then(/^the following links should be disabled:$/) do |table|
-  # table is a Cucumber::Core::Ast::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
 Then(/^I should see pagination with "([^"]*)" pages with ellipsis$/) do |pageNum|
-    selector = "[data-page=\"#{pageNum}\"]"
-    expect(@page.search.pagination).should have_css(selector)
-  pending # Write code here that turns the phrase above into concrete actions
+  @page.search.wait_until_search_results_container_visible
+  expect(@page.search).to have_pagination_5
 end
 
 Then(/^the ellipsis should not be clickable$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(true) # how do I test for this??
 end
 
 Then(/^I should see pagination with "([^"]*)" pages without ellipsis$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Given(/^I have previously searched for "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
+  @page.search.goToSearchPage(search_string)
+  @page.search.wait_until_search_results_container_visible 30, :count => results.to_i
+
 end
 
 When(/^I click on the "([^"]*)" link$/) do |link|
+  @page.search[link].click
   pending # Write code here that turns the phrase above into concrete actions
 end
 

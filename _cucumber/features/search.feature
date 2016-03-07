@@ -57,7 +57,7 @@ Feature: Search Page
     When I search for "burlington"
     Then I should not see pagination with page numbers
 
-  @javascript @wip
+  @javascript
   Scenario: I search for something that returns two pages of results only should display pagination with two pages
     Given I am on the Home page
     When I search for "hamilton"
@@ -69,6 +69,7 @@ Feature: Search Page
       | First    |
       | Previous |
 
+  @javascript
   Scenario: I search for something that returns ten (or more) pages of results should display pagination with ellipsis
     Given I am on the Home page
     When I search for "code"
@@ -93,6 +94,7 @@ Feature: Search Page
   #     | First    |
   #     | Previous |
 
+  @javascript @wip
   Scenario: When I search for something displaying more than one page of results - clicking on the ‘Next’ link takes me to the next set of results.
     Given I have previously searched for "code"
     When I click on the "Next" link

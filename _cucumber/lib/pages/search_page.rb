@@ -17,6 +17,20 @@ class SearchPage < BasePage
   element :First, '#pagination-first'
   element :Last, '#pagination-last'
 
+  element :next_link_enabled, '#pagination-next.available'
+  element :next_link_disabled, '#pagination-next.unavailable'
+
+  element :last_link_enabled, '#pagination-last.available'
+  element :last_link_disabled, '#pagination-last.unavailable'
+
+  element :previous_link_enabled, '#pagination-prev.available'
+  element :previous_link_disabled, '#pagination-prev.unavailable'
+
+  element :first_link_enabled, '#pagination-first.available'
+  element :first_link_disabled, '#pagination-first.unavailable'
+
+  element :pagination_5, '[data-page="5"]'
+
   def initialize(driver)
     super
     wait_for_ajax
