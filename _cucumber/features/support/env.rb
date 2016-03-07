@@ -97,12 +97,11 @@ Capybara.register_driver :selenium_remote do |app|
 end
 
 Capybara.register_driver :mechanize do |app|
+  $VERBOSE = nil
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
   I_KNOW_THAT_OPENSSL_VERIFY_PEER_EQUALS_VERIFY_NONE_IS_WRONG = nil
   driver = Capybara::Mechanize::Driver.new(app)
   driver.configure do |agent|
-    # Configure other Mechanize options here.
-    agent.log = Logger.new "mech.log"
     agent.user_agent_alias = 'Windows Chrome'
   end
   driver

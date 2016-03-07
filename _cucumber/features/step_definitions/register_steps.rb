@@ -1,5 +1,5 @@
 When(/^I complete the registration form$/) do
-  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:company], @customer[:password], @customer[:password])
+  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:company_name], @customer[:password], @customer[:password])
   @page.registration.create_account
 end
 
@@ -20,7 +20,7 @@ Then(/^I should see the following confirmation message: (.*)/) do |message|
 end
 
 When(/^I try to enter passwords that do not match$/) do
-  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:company], @customer[:password], 'password')
+  @page.registration.fill_in_form(@customer[:first_name], @customer[:last_name], @customer[:email], @customer[:company_name], @customer[:password], 'password')
   @page.registration.create_account
 end
 
