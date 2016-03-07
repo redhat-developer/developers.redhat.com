@@ -9,9 +9,11 @@ class Registration < BasePage
   element :email_field, '#email'
   element :password_field, '#password'
   element :password_confirm_field, '#password-confirm'
+  element :company_field, "input[id='user.attributes.company']"
   element :country_dropdown, "select[id='user.attributes.country']"
-  element :finish_button, ".button[value='Finish']"
+  element :finish_button, ".button[value='Create my account']"
   element :confirmation, '#kc-content'
+  element :password_confirm_field_error, '#password-confirm-error'
 
   def initialize(driver)
     super
@@ -28,10 +30,11 @@ class Registration < BasePage
     end
   end
 
-  def fill_in_form(first_name, last_name, email, country=COUNTRY, password, password_confirmation)
+  def fill_in_form(first_name, last_name, email, company, country=COUNTRY, password, password_confirmation)
     first_name_field.set first_name
     last_name_field.set last_name
     email_field.set email
+    company_field.set company
     country_dropdown.select country
     password_field.set password
     password_confirm_field.set password_confirmation
