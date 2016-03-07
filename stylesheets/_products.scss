@@ -646,24 +646,86 @@ ul.product-langs {
   }
 }
 
-#StepOneCompleted a, #StepCompletedHeader{
-  background-color: #5ba425 !important;
+.collapsable {
+  input#stepOne, input#stepTwo, input#stepThree {
+    display: none;
+    visibility: hidden;
+  }
+
+  .collapse-icon{
+    display: inline-block;
+    float: right;
+    &:before{
+      font-family: 'FontAwesome';
+      font-size: 1.8em;
+      color: $white;
+      content: "\f107";
+    }
+  }
+
+  input[type="checkbox"] + label, input[type="radio"] + label {
+    width: 100%;
+    margin: 0;
+  }
+
+  #expandStepOne, #expandStepTwo, #expandStepThree {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+  }
+
+  #stepOne:checked ~ label, #stepTwo:checked ~ label, #stepThree:checked ~ label {
+    .collapse-icon{
+      display: inline-block;
+      float: right;
+      &:before{
+        font-family: 'FontAwesome';
+        font-size: 1.8em;
+        color: $white;
+        content: "\f106";
+      }
+    }
+  }
+
+  #stepOne:checked ~ #expandStepOne, #stepTwo:checked ~ #expandStepTwo, #stepThree:checked ~ #expandStepThree {
+    height: auto;
+  }
+}
+
+.download-completed-box a, .download-completed{
+  background-color: #d5d5d5 !important;
   h2, h4, i, p, .step-num {
-    color: #a3d900 !important;
+    color: #afb1b2 !important;
   }
   .fa-check-circle {
     color: $white !important;
   }
 }
 
-#StepOneCompleted:after {
+.download-completed .collapse-icon:before, 
+.download-completed #stepOne:checked ~ label .collapse-icon:before, 
+.download-completed #stepTwo:checked ~ label .collapse-icon:before, 
+.download-completed #stepThree:checked ~ label .collapse-icon:before {
+  color: #424242 !important;
+}
+
+.download-completed .step-num:before{
+  font-family: 'FontAwesome';
+  color: #424242;
+  font-size: 1em;
+  content: "\f058";
+  z-index: 9999;
+  margin-right: 5px;
+}
+
+.download-completed-box:after {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   font-family: 'FontAwesome';
-  color: white;
+  color: #424242;
   padding: 25% 45%;
   font-size: 5em;
   content: "\f058";

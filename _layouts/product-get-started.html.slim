@@ -23,21 +23,7 @@ type: Get Started
           h4 #{page._prerequisites_section_title}
         = page._prerequisites_section  
     .row(data-equalizer)
-      .large-8.columns#StepOneUnfinished.step-cards(data-equalizer-watch)
-        a.card(href="#Step1")
-          .row
-            .small-4.large-4.columns
-              h2.step-num 1.
-            .small-20.large-20.columns
-              - if !page._step1_title
-                h4 Set up your Dev Environment
-              - else
-                h4 #{page._step1_title}
-          .row
-            .large-24.columns
-              - if page._step1_duration
-                i.fa.fa-clock-o  #{page._step1_duration}
-      .large-8.columns#StepOneCompleted.hide.step-cards(data-equalizer-watch)
+      .large-8.columns.step-cards(data-equalizer-watch)
         a.card(href="#Step1")
           .row
             .small-4.large-4.columns
@@ -80,20 +66,9 @@ type: Get Started
               - if page._step3_duration
                 i.fa.fa-clock-o  #{page._step3_duration}
 
-    .large-24.step-header#StepOneUnfinishedHeader
+    .large-24.step-header#Step1
       h4 
         .step-num 1.
-        - if !page._step1_title
-          h4 Set up your Dev Environment
-        - else
-          h4 #{page._step1_title}
-        .duration
-          - if page._step1_duration
-            i.fa.fa-clock-o  #{page._step1_duration}
-    .large-24.step-header#StepCompletedHeader.hide
-      h4 
-        i.fa.fa-check-circle
-        .step-num  1.
         - if !page._step1_title
           h4 Set up your Dev Environment
         - else
@@ -153,4 +128,3 @@ type: Get Started
   script src="#{site.base_url}/javascripts/vendor/class.create.js"
   script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
   script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"      
-
