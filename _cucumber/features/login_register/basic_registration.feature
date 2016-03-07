@@ -8,8 +8,7 @@ Feature: Basic personal registration
   Scenario: Customer registers
     Given I am on the Registration page
     When I complete the registration form
-    Then I should see a verification message: "You need to verify your email address to activate your account."
-    And I should receive an email containing an account verification link
+    Then I should receive an email containing an account verification link
 
   @customer @logout @javascript
   Scenario: Customer verifies their account
