@@ -27,8 +27,8 @@ SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
 Capybara.configure do |config|
 
   if ENV['HOST_TO_TEST'].to_s.empty?
-    # default to staging
-    host_to_test = 'https://developers.stage.redhat.com'
+    # default to localhost
+    host_to_test = 'http://0.0.0.0:4242'
   else
     if ENV['HOST_TO_TEST'][-1, 1] == '/'
       host_to_test = ENV['HOST_TO_TEST'].chomp('/')
