@@ -4,20 +4,24 @@ Feature: Basic personal registration
   I want to register,
   So that I can use its services.
 
-  @customer @javascript
+  @customer
+  @javascript
   Scenario: Customer registers
     Given I am on the Registration page
     When I complete the registration form
     Then I should receive an email containing an account verification link
 
-  @customer @logout @javascript
+  @customer
+  @logout
+  @javascript
   Scenario: Customer verifies their account
     Given I am on the Registration page
     And I complete the registration form
     When I navigate to the verify account URL
     Then I should be logged in
 
-  @customer @javascript
+  @customer
+  @javascript
   Scenario: Password validation
     Given I am on the Registration page
     When I try to enter passwords that do not match
