@@ -1,3 +1,5 @@
+require_relative 'base_page'
+
 class PasswordReset < BasePage
 
   element :new_password_field, '#password-new'
