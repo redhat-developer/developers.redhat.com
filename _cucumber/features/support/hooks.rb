@@ -42,19 +42,6 @@ After('@logout') do
   Home.new(@driver).physical_logout
 end
 
-Before do
-  if Dir.exist?(DownloadHelper::PATH.to_s)
-    p 'Downloads folder still exists, removing . . .'
-    clear_downloads
-  end
-end
-
-After('@downloads') do
-  if Dir.exist?(DownloadHelper::PATH.to_s)
-    clear_downloads
-  end
-end
-
 After do |scenario|
   if scenario.failed?
     puts "The test failed on page: #{page.title}"
