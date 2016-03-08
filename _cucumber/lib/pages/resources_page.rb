@@ -1,4 +1,4 @@
-require_relative 'base_page.rb'
+require_relative 'base_page'
 
 class ResourcesPage < BasePage
   set_url '/resources/'
