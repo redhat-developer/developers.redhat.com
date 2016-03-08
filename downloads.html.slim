@@ -25,8 +25,8 @@ description: Discover the product downloads available from Red Hat, and locate t
                   h5
                     a(href="#{site.base_url}/products/#{product.id}/")
                       = product.name
-                      - if product.id == 'rhel' || product.id == 'cdk'
-                        small = product.name_append
+                  - if product.id == 'rhel' || product.id == 'cdk'
+                    p = product.name_append
                 .large-8.columns
                   - if product.id == 'cdk'
                     a(href="#{site.base_url}/products/#{product.id}/download")
