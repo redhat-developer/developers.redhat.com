@@ -81,23 +81,24 @@ type: Get Started
             - if page._step4_duration
               i.fa.fa-clock-o  #{page._step4_duration}              
   .collapsable
-    input#stepOne(type='checkbox' checked)
-    label(for='stepOne')
-      .large-24.step-header.pending-download#Step1
-        h4 
-          .step-num 1.
-          - if !page._step1_title
-            h4 Set up your Dev Environment
-          - else
-            h4 #{page._step1_title}
-          .duration
-            - if page._step1_duration
-              i.fa.fa-clock-o  #{page._step1_duration}
-          .collapse-icon
-    div#expandStepOne
-      - if page._step1_content
-        .large-24#Step1Content
-          = page._step1_content
+    .pending-download
+      input#stepOne(type='checkbox' checked)
+      label(for='stepOne')
+        .large-24.step-header#Step1
+          h4 
+            .step-num 1.
+            - if !page._step1_title
+              h4 Set up your Dev Environment
+            - else
+              h4 #{page._step1_title}
+            .duration
+              - if page._step1_duration
+                i.fa.fa-clock-o  #{page._step1_duration}
+            .collapse-icon
+      div#expandStepOne
+        - if page._step1_content
+          .large-24#Step1Content
+            = page._step1_content
 
     input#stepTwo(type='checkbox' checked)
     label(for='stepTwo')
@@ -170,31 +171,33 @@ type: Get Started
         .large-24#Step4Content
           = page._step4_content
       - if page.product.get_started_paths  
-        .large-24.columns.multipath-tabs-sm.tabs-lang
-          ul.tabs.nav-tabs#rhelTabs(data-tab role="tablist")
+        .medium-3.columns.lang-tabs
+          ul.tabs.vertical#rhelTabs(data-tab)
             - page.product.get_started_paths.each do |path|
               li(role="presentation" class=(path.id.eql?('cpp') ? 'active' : ''))
                 a(href="#panel-#{path.id}" role="tab" data-toggle="tab" aria-controls="panel-#{path.id}") #{path.name}
-        .tabs-content.tabs-lang
-          - page.product.get_started_paths.each do |path|
-            section(role="tabpanel" aria-hidden="false" class=(path.id.eql?('cpp') ? 'active content' : 'content') id="panel-#{path.id}")
-              - q = path.id
-              - if q == 'cpp'
-                = page._cpp_tab
-              - elsif q == 'java'
-                = page._java_tab
-              - elsif q == 'nodejs'
-                = page._nodejs_tab
-              - elsif q == 'perl'
-                = page._perl_tab                
-              - elsif q == 'php'
-                = page._php_tab
-              - elsif q == 'python'
-                = page._python_tab
-              - elsif q == 'ruby'
-                = page._ruby_tab
+        .medium-21.columns
+          .tabs-content.rhel-tabs-cont
+            - page.product.get_started_paths.each do |path|
+              section(role="tabpanel" aria-hidden="false" class=(path.id.eql?('cpp') ? 'active content' : 'content') id="panel-#{path.id}")
+                - q = path.id
+                - if q == 'cpp'
+                  = page._cpp_tab
+                - elsif q == 'java'
+                  = page._java_tab
+                - elsif q == 'nodejs'
+                  = page._nodejs_tab
+                - elsif q == 'perl'
+                  = page._perl_tab                
+                - elsif q == 'php'
+                  = page._php_tab
+                - elsif q == 'python'
+                  = page._python_tab
+                - elsif q == 'ruby'
+                  = page._ruby_tab
         - if page._tabs_footnote
-          = page._tabs_footnote
+          .large-24.columns
+            = page._tabs_footnote
 
   - if page._extra_section
     - if page._extra_section_title

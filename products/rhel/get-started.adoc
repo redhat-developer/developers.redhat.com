@@ -1,26 +1,14 @@
 :awestruct-layout: product-get-started-rhel
 :awestruct-interpolate: true
 
-## Step1 Duration
-10-20 minutes (verify?)
-
 ## Step1 Title
-Obtain Red Hat Enterprise Linux
-
-## Step2 Duration
-30-60 minutes (verify?)
+Download Red Hat Enterprise Linux
 
 ## Step2 Title
 Install Red Hat Enterprise Linux
 
-## Step3 Duration
-10 minutes (verify?)
-
 ## Step3 Title
 Getting ready for software development
-
-## Step4 Duration
-10 minutes (verify?)
 
 ## Step4 Title
 Set up your programming language
@@ -107,7 +95,7 @@ If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
 ## Step2 Virtualbox Content
 
-*Step Two Virtual Box Content will go here*
+*Step Two VirtualBox Content will go here*
 
 ## Step2 Vmware Content
 
@@ -208,7 +196,7 @@ If you don’t see any RHSCL repositories in the list, your subscription might n
 
 ## Step3 Virtualbox Content
 
-*Step Three Virtual Box Content will go here*
+*Step Three VirtualBox Content will go here*
 
 ## Step3 Vmware Content
 
@@ -220,113 +208,113 @@ In this step you will select your programming language and then set up and run a
 
 ## CPP Tab
 
-[.large-18.columns]
-*GCC via Red Hat Developer Toolset on RHEL 7* _Recommended_
+[.large-17.columns]
+*GCC via Red Hat Developer Toolset on RHEL 7* _Recommended_ +
 Developed by the GNU project as the free compiler of the GNU system, it includes front ends for C, C++, and Fortran.  Also includes Eclipse, GDB, SystemTap, Oprofile, Valgrind and much more.
-[.large-6.columns.tc-button]
+[.large-7.columns.tc-button]
 link:#{site.base_url}/products/rhel/get-started-rhel7-cpp/[Get Started]
 
 ## Java Tab
 
-[.large-18.columns]
+[.large-17.columns]
 *Java on RHEL 7 with OpenJDK 8* +
 OpenJDK (Open Java Development Kit) is a free and open source implementation of the Java Platform, Standard Edition (Java SE). 
-[.large-6.columns.tc-button]
+[.large-7.columns.tc-button]
 link:#{site.base_url}/products/rhel/get-started-rhel7-java/[Get Started]
 
 
 ## Nodejs Tab
 
-[.large-18.columns]
+[.large-17.columns]
 *Node.js 0.10 update for RHEL 7 (yearly updates)* _Recommended_ +
 Node.js® is an event-driven I/O server-side JavaScript runtime that is lightweight and efficient.
-[.large-6.columns.tc-button]
+[.large-7.columns.tc-button]
 link:#{site.base_url}/products/softwarecollections/get-started-rhel6-nodejs/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *Node.js 0.10 docker image for RHEL 7* +
 This is the same version as above, but packaged in docker image format.
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/rhel/get-started-dcr7-nodejs/[Get Started]
 
 ## Perl Tab
 
-[.large-18.columns]
+[.large-17.columns]
 *Perl 5.20 update for  RHEL 7* _Recommended_ +
 Perl 5 is a highly capable, feature-rich programming language with over 27 years of development, and available on over 100 platforms.
-[.large-6.columns.tc-button]
+[.large-7.columns.tc-button]
 link:#{site.base_url}/products/softwarecollections/get-started-rhel7-perl/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *Perl 5.16 default on RHEL 7* +
 Supported for the entire life of RHEL 7.
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/rhel/get-started-rhel7-perl/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *Perl 5.20 docker image for RHEL 7* (docker pull rhscl/perl-520-rhel7) +
 This is the same version as above, but packaged in docker image format.
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/rhel/get-started-rhel7-perl/[Get Started]
 
 ## PHP Tab
 
-[.large-18.columns]
+[.large-17.columns]
 *PHP 5.4 default on RHEL 7* _Recommended_ +
 PHP is a popular server-side HTML embedded scripting language that is especially suited to web development, and the foundation for WordPress and Drupal.
-[.large-6.columns.tc-button]
+[.large-7.columns.tc-button]
 link:#{site.base_url}/products/rhel/get-started-rhel7-php/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *PHP 5.6 on RHEL 7* +
 Updated yearly to stay current with the upstream.
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/softwarecollections/get-started-rhel7-php/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *PHP 5.6 docker image for RHEL 7* +
 This is the same version as above, but packaged in docker image format.
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/rhel/get-started-dcr7-php/[Get Started]
 
 ## Python Tab
 
-[.large-18.columns]
+[.large-17.columns]
 *Python 2.7 default on RHEL 7* _Recommended_ +
 Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its built-in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development and integration.
-[.large-6.columns.tc-button]
+[.large-7.columns.tc-button]
 link:#{site.base_url}/products/rhel/get-started-rhel7-python/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *Python 3.4 on RHEL 7* +
 Updated yearly to stay current with the upstream.
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/softwarecollections/get-started-rhel7-python/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *Python 3.4 docker image for RHEL 7* +
 This is the same version as above, but packaged in docker image format.
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/rhel/get-started-dcr7-python/[Get Started]
 
 ## Ruby Tab
 
-[.large-18.columns]
+[.large-17.columns]
 *Ruby 2.2 on RHEL 7* _Recommended_ +
 Ruby is a dynamic, open source scripting language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write. Updated yearly.
-[.large-6.columns.tc-button]
+[.large-7.columns.tc-button]
 link:#{site.base_url}/products/softwarecollections/get-started-rhel7-ruby/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *Ruby 2.0 default on RHEL 7* +
 Supported for the entire life of RHEL 7
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/rhel/get-started-rhel7-ruby/[Get Started]
 
-[.large-18.columns]
+[.large-17.columns]
 *Ruby 2.2 docker image for RHEL 7* +
 Same Ruby 2.2 as above in docker format. Get Ruby-on-Rails [docker pull rhscl/ror-41-rhel7)].
-[.large-6.columns.tc-link]
+[.large-7.columns.tc-link]
 link:#{site.base_url}/products/rhel/get-started-dcr7-ruby/[Get Started]
 
 ## Tabs Footnote
