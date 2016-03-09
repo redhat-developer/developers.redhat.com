@@ -14,20 +14,8 @@ layout: base
 - page.og_type = 'article'
 
 .row.grow.content
-  .large-20.columns
-    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/resources/" Resources
-        meta itemprop="position" content="2"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/articles/" Articles
-        meta itemprop="position" content="3"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}#{page.output_path}" #{page.title}
-        meta itemprop="position" content="4"
-
-    h2.large-title#developer-materials= page.title
-
+  h2.large-title#developer-materials= page.title
+  .large-19.columns
     .collapse.large-24
       .gsi-meta
         ul
@@ -59,7 +47,7 @@ layout: base
           /   li: strong
           /     | Target Product:
           /     span itemprop="about" =(page.metadata[:target_product].is_a?(String) ? page.metadata[:target_product] : page.metadata[:target_product].join(", "))
-  .large-4.columns
+  .large-5.columns
     = partial("share.html.slim", :url => "#{site.base_url}#{page.output_path}", :title => "#{page.title}")
     strong Tags:
     ul.inline-list
@@ -79,9 +67,6 @@ layout: base
       .columns.medium-16.gsi.fetch-toc
         = page.content
 
-
-
 = javascripts("developer-material", true) do
   script src="#{site.base_url}/javascripts/vendor/highlight.min.js"
   script src="#{site.base_url}/javascripts/highlight-init.js"
-
