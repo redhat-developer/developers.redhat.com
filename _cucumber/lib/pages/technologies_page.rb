@@ -11,7 +11,7 @@ class Technologies < BasePage
 
   elements :products_sections, '.development-tool'
   elements :products_link, 'h4 > a'
-  element :infrastructure_management, '#infrastructure_management'
+  element :infrastructure, '#infrastructure'
   element :cloud_products, '#cloud_products'
   element :mobile, '#mobile'
   element :jboss_dev_and_management, '#jboss_development_and_management'
@@ -38,7 +38,7 @@ class Technologies < BasePage
 
   def product_titles
     titles = []
-    elements = [infrastructure_management, cloud_products, mobile, jboss_dev_and_management, integration_and_automation]
+    elements = [infrastructure, cloud_products, mobile, jboss_dev_and_management, integration_and_automation]
     elements.each { |el| titles << el.text }
     titles
   end
