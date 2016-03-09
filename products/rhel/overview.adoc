@@ -5,13 +5,26 @@
 
 == Overview
 
-When developing applications for Red Hat Enterprise Linux®, developers have two major tools chains to utilize.
+=== Exclusive for Red Hat® Developers community members
 
-First, Red Hat Enterprise Linux has a base tool chain that are included with the same support lifecycle.  If you’re building device drivers or need tools that will be supported for 10 years, the Red Hat Enterprise Linux base tool chain will be right for you. With RHEL 7, these include gcc 4.8, Python 2.7, Ruby 2.0, PHP 5.4, Perl 5.16, MariaDB, PostgreSQL 9.2, and Apache 2.4.
+*Red Hat Developers members can now link:https://developers.redhat.com/download-manager/link/1350474[download] the no-cost Red Hat Enterprise Linux® Developer Suite subscription for development purposes.* The Red Hat Enterprise Linux Developer Suite subscription includes: +
 
-Second, for developers who are looking for updated tools, Red Hat® Software Collections and Red Hat Developer Toolset deliver the latest stable versions of dynamic languages, open source databases, web development tools, and other important development resources that can be deployed alongside those included in the Red Hat Enterprise Linux® base tool chain. Red Hat Developer Toolset (for gcc development) and Red Hat Software Collections (for scripting languages, databases, etc.) are available via select Red Hat Enterprise Linux subscriptions, and are updated yearly with two- and three-year life cycles (respectively) to allow rapid innovation without sacrificing stability.
+Through the Red Hat Developers program, the no-cost Red Hat Enterprise Linux Developer Suite provides application developers with the following products and components: +
 
-Red Hat Developer Toolset and Red Hat Software Collections (RHSCL) allow you to build and concurrently install multiple versions of the same software components on your system. Packages built using software collections technology do not overwrite system files and can depend on other software collections.  In addition, dockerfiles are available for each Software Collection component for developing in containers, and are identical to the development stacks available on OpenShift.  This means you can develop or deploy on either Red Hat Enterprise Linux or OpenShift.
+** *Red Hat Enterprise Linux Server* - An application development entitlement to the world’s leading enterprise Linux platform.
+** *Development tools with long-term support* - Each major Red Hat Enterprise Linux release includes a broad set of tools that, like the operating system, are supported for 10 years; including Python, PHP, Ruby, and many more. For Java, both OpenJDK versions 7 (1.7) and 8 (1.8).
+** *Development tools with frequent updates* - Numerous programming languages, databases, web servers, and development tools are updated yearly with the most recent, stable versions, and are packaged via link:#{site.base_url}/products/softwarecollections/overview/[Red Hat Software Collections] and link:#{site.base_url}/products/developertoolset/overview/[Red Hat Developer Toolset].
+** *Red Hat add-ons* - numerous add-ons are included to help developers create applications that support specific enterprise use cases, including resilient storage, scalable file systems, high-performance networking and many more.
+** *System updates* - Updates to the latest versions of Red Hat Enterprise Linux Server plus patches and access to knowledgebase articles are included with the developer subscription.
 
-For details, visit the #{site.base_url}/products/developertoolset/overview/[Red Hat Developer Toolset] and Red Hat Software Collections sections.
+Red Hat Enterprise Linux Developer Suite includes access to multiple versions of Red Hat Enterprise Linux, including Red Hat Enterprise Linux 5, 6, and 7.
 
+*NOTE:* Red Hat Enterprise Linux Developer Suite subscriptions are for development purposes only; the terms of use are defined in the Red Hat Developers program terms and conditions, and the Red Hat legal agreement for Subscription Services, Appendix 1.
+
+==== Developing container-based applications
+
+Container images and Dockerfiles are available for most Red Hat Software Collections and Red Hat Developer Toolset components. These resources make it easy to build containerized applications using traditional tools. For anyone seeking to create containerized applications for deployment to Red Hat’s ecosystem of container hosts and platforms - we recommend you use the link:#{site.base_url}/products/cdk/overview/[Red Hat Container Development Kit] (CDK) which includes access to Red Hat Enterprise Linux Server, OpenShift Enterprise 3, and a number of other tools via the Red Hat Container Registry.
+
+[.panel.callout.text-center]
+*New to Red Hat Enterprise Linux?* +
+link:#{site.base_url}/articles/rhel-what-you-need-to-know[Here’s what you need to know.]
