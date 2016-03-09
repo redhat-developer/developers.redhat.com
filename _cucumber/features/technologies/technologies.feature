@@ -9,8 +9,9 @@ Feature: Home Page Smoke Test
     Given I am on the Technologies page
     Then I should see the Technologies page title
     And I should see the following main products sections:
-      | INFRASTRUCTURE MANAGEMENT        |
+      | INFRASTRUCTURE                   |
       | CLOUD PRODUCTS                   |
+      | MOBILE                           |
       | JBOSS DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION       |
     And I should see a list of available products
