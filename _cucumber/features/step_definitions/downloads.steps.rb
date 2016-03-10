@@ -3,8 +3,14 @@ Given(/^(I am|they are on) on the Download Overview page for ([^"]*)$/) do |nega
 end
 
 Then(/^I should see the ([^"]*) download overview page$/) do |product_id|
-  expect(page.current_url).to include "/products/#{product_id}/download/"
-  @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
+  # Temporary hack until selenium issue: Permission denied to access property "__raven__" (Selenium::WebDriver::Error::UnknownError) is removed.
+  begin
+    expect(page.current_url).to include "/products/#{product_id}/download/"
+    @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
+  rescue
+    expect(page.current_url).to include "/products/#{product_id}/download/"
+    @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
+  end
 end
 
 When(/^I click to download the featured download of "([^"]*)"$/) do |product|

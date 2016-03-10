@@ -39,7 +39,12 @@ Before('@customer') do
 end
 
 After('@logout') do
-  Home.new(@driver).physical_logout
+  # Temporary hack until selenium issue: Permission denied to access property "__raven__" (Selenium::WebDriver::Error::UnknownError) is removed.
+  begin
+    Home.new(@driver).physical_logout
+  rescue
+    Home.new(@driver).physical_logout
+  end
 end
 
 After do |scenario|
