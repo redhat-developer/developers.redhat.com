@@ -1,30 +1,31 @@
 :awestruct-layout: article
-:author: Mike Guerette
-:title: 
+:awestruct-interpolate: true
 :awestruct-tags: [RHEL, get started]
-
-== Getting Red Hat Enterprise Linux Developer Suite: What you need to know
+:author: Red Hat Developers Team
+:title: "Getting Red Hat Enterprise Linux Developer Suite: What you need to know"
+:awestruct-published: March 14, 2016
+:awestruct-last_updated: March 14, 2016
 
 For developers, getting Red Hat Enterprise Linux is now easier than ever thanks to the  availability of the no-cost Red Hat Enterprise Linux Developer Suite subscription option for developers.
 
-=== Get the software
+== Get the software
 
 1. Join the Red Hat Developer Program and register at link:#{site.base_url}/register[developers.redhat.com] to get a subscription. Each system that runs Red Hat Enterprise Linux will need a subscription.
 2. link:#{site.base_url}/download-manager/link/1350474[Download] Red Hat Enterprise Linux Server
 3. link:#{site.base_url}/products/rhel/get-started/[Install] Red Hat Enterprise Linux Server using one of our guides. For Microsoft Windows, Apple Mac OS, or other Linux users, our guides cover creating a virtual machine (VM) with VirtualBox, Hyper-V, or installing on a physical system.
 4. After installation, you will be prompted to register your system with the Red Hat Customer Portal. This will attach your system to your subscription, which enables the system to download updates and additional software from Red Hat.
 
-=== Development software and software repositories
+== Development software and software repositories
 
 For developers, Red Hat Enterprise Linux includes a large amount of software such as compilers, dynamic languages, development tools, databases, web servers and other middleware. Available software is grouped into software repositories that are used to segregate packages by type, source, or support life cycle. After installation only the base Red Hat Enterprise Linux software repositories are enabled. Additional software is made available for installation by enabling additional repositories. The software in other repositories may not be supported by Red Hat or may have different life cycles.
 
-=== Updated development tools: Red Hat Software Collections
+== Updated development tools: Red Hat Software Collections
 
 Red Hat Software Collections (RHSCL) provides a set of development tools such as compilers, dynamic languages, and database servers, that are updated yearly. These tools are available as packages in the RHSCL software repository, They can be installed alongside those included with Red Hat Enterprise Linux after enabling the RHSCL software repository.
 
 Since the base packages included with Red Hat Enterprise Linux are supported for 10 years, updated packages will be made available to address critical bug fixes and security updates as needed during the 10 year lifecycle. RHSCL packages are only supported for two to three years depending on the package. Developers are free to choose which package is appropriate for their applications.
 
-=== Red Hat Enterprise Linux releases and lifecycle
+== Red Hat Enterprise Linux releases and lifecycle
 
 Releases of Red Hat Enterprise Linux have a version number, such as 7.2, which indicates both a major release number, in this case 7, and an update (or minor version) number, in this case 2. 
 
@@ -32,6 +33,6 @@ Minor releases (.1, .2, .3, etc.) will be made throughout the 10 year period. Up
 
 For more information see link:https://access.redhat.com/support/policy/updates/errata[Red Hat Enterprise Linux Life Cycle] and link:https://access.redhat.com/articles/3078[Red Hat Enterprise Linux Release Dates].
 
-=== Hello World quick starts
+== Hello World quick starts
 
 Install software and build a “Hello World” application in minutes using our link:#{site.base_url}/products/rhel/docs-and-apis/[quick starts for Red Hat Enterprise Linux] and link:#{site.base_url}/products/softwarecollections/get-started/[Red Hat Software Collections]. Guides are available for C++, Java, Node.js, Perl, PHP, Python, and Ruby. 
