@@ -26,5 +26,6 @@ end
 
 
 Then(/^I should see a warning that "([^"]*)"$/) do |field_warning|
+  @page.registration.wait_until_password_confirm_field_error_visible
   expect(@page.registration.password_confirm_field_error).to have_text field_warning
 end
