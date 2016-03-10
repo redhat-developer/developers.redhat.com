@@ -66,7 +66,7 @@ group :test do
   gem 'rspec', '~>3.3'
   gem 'capybara', '~> 2.6', '>= 2.6.2'
   gem 'capybara-mechanize', '~> 1.5'
-  gem 'selenium-webdriver', '~> 2.52'
+  gem 'selenium-webdriver', '>= 2.52'
   gem 'parallel_tests', '~> 1.9.0'
   gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'
