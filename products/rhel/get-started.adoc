@@ -15,19 +15,9 @@ Set up your programming language
 
 ## Step1 Content
 
-In this step, you will download Red Hat Enterprise Linux from the Red Hat customer portal, link:https://access.redhat.com/[access.redhat.com]. The steps are:
+In this step, you will register for a Red Hat Enterprise Linux Developer Suite Subscription and download Red Hat Enterprise Linux Server.
 
-. Log in to link:https://access.redhat.com/[access.redhat.com].
-+
-If you don't have an account, link:https://www.redhat.com/wapps/ugc/register.html[register to create one].
-+
-. Download the _binary DVD .iso file_ for link:https://access.redhat.com/downloads/content/69/ver=/rhel---7/x86_64/product-downloads[Red Hat Enterprise Linux Server].
-+
-On the download page, under _Product Variant_ select _Red Hat Enterprise Linux Server_. Choosing the _Server_ edition gives you the widest range of software to develop and test with. During installation you will choose the _Server with a GUI_ option for a full graphical desktop.
-+
-Under _Version_ select the latest released (non-beta) version of Red Hat Enterprise Linux 7. The _Architecture_ selection should be set to _x86_64_.
-+
-Click the _Download Now_ button for _Binary DVD_ installer. The file size should be between 3 and 4 GBs. Do not select the much smaller _Boot ISO_ as it doesn't contain the installation software.
+Download the link:https://developers.stage.redhat.com/download-manager/file/rhel-server-7.2-x86_64-boot.iso[Red Hat Enterprise Linux Server. binary DVD] `.iso` file.
 
 Instructions for making a bootable https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-making-media.html#sect-making-cd-dvd-media[DVD] or https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-making-usb-media.html[USB] drive can be found in the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-making-media.html[Red Hat Enterprise Linux Installation Guide].
 
@@ -103,7 +93,9 @@ If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
 ## Step3 Baremetal Content
 
-This section provides an overview of post-installation steps that prepare your system for software development.  After the system reboots, you will be prompted to accept the license agreement and register the system.
+This section provides an overview of post-installation steps that prepare your system for software development. After the system reboots, you will be prompted to accept the license agreement and register the system.
+
+Note: Before registration can proceed, you will be required to agree to the terms and conditions at link:https://www.redhat.com/wapps/ugc/[www.redhat.com/wapps/ugc/] if you haven't already done so. [*FIXME* hopefully this can be deleted.]
 
 [.content-img]
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-13-firstboot-config.png')}[Screenshot Installation Complete]
@@ -123,8 +115,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-15b-subscr
 +
 . Click _Finish configuration_ when you are done.
 +
-// If you are using an evaluation, you must first agree to the terms and conditions at link:https://www.redhat.com/wapps/ugc/[www.redhat.com/wapps/ugc/].
-+
+
 . Log in to the system with the username and password you created during installation.
 +
 If you didn't create a regular user, you will need to log in as root and create a user. See <<troubleshooting,Troubleshooting and FAQ>>.
@@ -154,35 +145,7 @@ Now download and install any available updates by running `yum update`.  If upda
 
 ### Enable additional software repositories
 
-In this step you will configure your system to obtain software from the RHSCL software repository. The RHSCL repository includes the both the RHSCL software collections as well as DTS (the Red Hat Developer Toolset). RHSCL includes the latest stable versions of dynamic languages, open source databases, and web development tools that can be deployed alongside those included in Red Hat Enterprise Linux. DTS provides the latest, stable, open source C and {cpp} compilers and complementary development tools, including Eclipse.  
-
-Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
-
-#### Using the Red Hat Subscription Manager GUI
-
-Red Hat Subscription Manager can be started from the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
-
-. On the Subscription Manager _System_ menu, select _Repositories_.
-. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-7-rpms_ and _rhel-7-server-optional-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the _Enabled_ column. +
- 
-If you don’t see any RHSCL repositories in the list, your subscription might not include it.
-[.content-img]
-image:#{cdn(site.base_url + '/images/products/softwarecollections/softwarecollections_install_1.png')}[Manage Repositories]
-
-See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
-
-
-#### Using subscription-manager from the command line
-
-You can add or remove software repositories from the command line using the `subscription-manager` tool as the root user. Use the `--list` option to view the available software repositories and verify that you have access to RHSCL, which includes DTS:
-
-[.code-block]
-```
-$ su -
-# subscription-manager repos --list | egrep rhscl
-```
-
-If you don’t see any RHSCL repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
+In this step you will configure your system to obtain software from the _Optional RPMs_ and _RHSCL_ software repositories. The _Optional RPMs_ repository includes a number of development packages. The RHSCL repository includes the both the RHSCL software collections as well as DTS (the Red Hat Developer Toolset).
 
 [.code-block]
 ```
@@ -337,10 +300,6 @@ link:http://developerblog.redhat.com/[]
 . My system is unable to download updates from Red Hat.
 +
 Your system must be registered with Red Hat using `subscription-manager register`. You need to have a current Red Hat subscription.
-
-. As a developer, how can I get a Red Hat Enterprise Linux subscription?
-+
-If you don’t have a Red Hat Enterprise Linux subscription, get link:https://developers.redhat.com/products/rhel/download/[Red Hat Enterprise Developer Suite] after registering at link:https://developers.redhat.com/[developers.redhat.com]. Red Hat Enterprise Linux Developer Suite includes Red Hat Enterprise Linux Server, Red Hat Software Collections and Red Hat Developer Toolset.
 +
 . The RHSCL repository is not available or is not found on my system.
 +
@@ -363,8 +322,8 @@ Where can I get an IDE for C/C++ development on Red Hat Enterprise Linux 7?
 +
 Red Hat Developer Toolset provides the latest, stable, open source C and {cpp} compilers and complementary development tools including Eclipse. DTS enables developers to compile applications once and deploy across multiple versions of Red Hat Enterprise Linux. The Red Hat Developer Toolset uses Red Hat Software Collections to install a parallel set of packages in `/opt/rh` where they will not override the system packages that come with Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
 +
-See [*FIXME -- Get started developing with C++ and Eclipse from the Red Hat Developer Toolset.  -- ADD LINK TO GET STARTED SITE*]
-
+See link:http://developers.redhat.com/products/developertoolset/get-started-rhel7-cpp/[Get started developing with C++ and Eclipse from the Red Hat Developer Toolset]
++
 . I've got a text-based login screen, how do I get a graphical one?
 +
 During installation of Red Hat Enterprise Linux Server, selecting the _Server with a GUI_ software option will install a full graphical desktop and configure it to start at boot time. You can install the graphical desktop with `yum install` after registering your system with Red Hat. Log in to the system as the `root` user, then use the following commands:
@@ -374,7 +333,7 @@ During installation of Red Hat Enterprise Linux Server, selecting the _Server wi
 # yum groupinstall 'Server with GUI'
 # yum install @gnome-desktop @x11 @internet-browser
 ```
-When complete, type `systemctl reboot` to reboot your system.  When the system restarts, you should see a graphical login screen. [*FIXME* Note: I didn't give this much testing]
+When complete, type `systemctl reboot` to reboot your system.  When the system restarts, you should see a graphical login screen.
 
 . How do I install the C/{cpp} compiler?
 +
