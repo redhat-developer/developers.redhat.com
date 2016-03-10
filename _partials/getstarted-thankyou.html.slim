@@ -1,11 +1,11 @@
 .downloadthankyou#downloadthankyou.hide
   .thankyouclose
     a(href="#" onClick="$('div#downloadthankyou').hide('slow');")
-  h2#thank-you Thank you for downloading #{page.parent.product.name}
+  h2#thank-you Thank you for downloading 
   p#download-problems
     | Your download should start automatically. If you have any problems with the download, please use the
     /Link url is set by javascript
-    a(id="tcDownloadLink" href="") direct link
+    a(id="tcDownloadLink" href="")  direct link
     |.
   - if page.parent.product.id != 'rhel'
     br
