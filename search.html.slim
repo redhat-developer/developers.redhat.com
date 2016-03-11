@@ -139,7 +139,7 @@ div(ng-app="search")
                 a(ng-click="goToPage('first')") First
               li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
                 a(ng-click="goToPage('prev')") Previous
-              li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}")
+              li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
                 a(ng-click="goToPage(page)" data-page="{{page}}")
                   | {{page}}
               li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")

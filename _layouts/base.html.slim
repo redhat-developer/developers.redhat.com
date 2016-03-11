@@ -116,8 +116,10 @@
             ul
               - unless page.url.include?('search')
                 li.search-wrapper
-                  form.search-bar[accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit"]
-                    input.user-search[type="text" placeholder="Filter by keyword" id="search_list_text" name="q" maxlength="128"]
+                  form.search-bar(accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit")
+                    input.user-search(type="text" placeholder="Filter by keyword" id="search_list_text" name="q" maxlength="128" required)
+                    button(type="submit" id="search-button")
+                      i.fa.fa-search
               li.login: a Log In
               li.register: a Register
               li.logged-in

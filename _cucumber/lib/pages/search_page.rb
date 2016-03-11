@@ -6,6 +6,7 @@ class SearchPage < BasePage
   element :search_form, '#search_list_text'
   elements :search_results_container, '.search-results-loaded'
   elements :search_results, '.result'
+  elements :search_button, '#search-button'
   elements :timestamps, '[data-updated]'
   elements :tags, '.tags-list'
   element :results_title, '.results-title'
@@ -29,11 +30,30 @@ class SearchPage < BasePage
   element :first_link_enabled, '#pagination-first.available'
   element :first_link_disabled, '#pagination-first.unavailable'
 
-  element :pagination_5, '[data-page="5"]'
+  element :current_link, '.current a'
+
+  element :pagination_1, 'a[data-page="1"]'
+  element :pagination_2, 'a[data-page="2"]'
+  element :pagination_3, 'a[data-page="3"]'
+  element :pagination_4, 'a[data-page="4"]'
+  element :pagination_5, 'a[data-page="5"]'
+  element :pagination_6, 'a[data-page="6"]'
+  element :pagination_7, 'a[data-page="7"]'
+  element :pagination_8, 'a[data-page="8"]'
+  element :pagination_9, 'a[data-page="9"]'
+  element :pagination_10, 'a[data-page="10"]'
+  element :pagination_11, 'a[data-page="11"]'
+  element :pagination_12, 'a[data-page="12"]'
+  element :pagination_13, 'a[data-page="13"]'
+
 
   def initialize(driver)
     super
     wait_for_ajax
+  end
+
+  def goToSearchPage(q)
+    visit "/search/?q=#{q}"
   end
 
   def open

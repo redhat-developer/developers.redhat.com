@@ -82,34 +82,34 @@ end
 
 Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
   @page.search.goToSearchPage(search_string)
-  @page.search.wait_until_search_results_container_visible 30, :count => results.to_i
-
+  @page.search.wait_until_search_results_container_visible
 end
 
 When(/^I click on the "([^"]*)" link$/) do |link|
-  @page.search[link].click
-  pending # Write code here that turns the phrase above into concrete actions
+  @page.search.send("#{link}").click
 end
 
-Then(/^I should see page "([^"]*)" of the results$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I should see page "([^"]*)" of the results$/) do |pageNum|
+  expect(@page.search.current_link['data-page']).to eq("#{pageNum}")
 end
 
-Given(/^I am on page "([^"]*)" of the results$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Given(/^I am on page "([^"]*)" of the results$/) do |pageNum|
+  # TODO: None of these "clicks" work..
+  @page.search.send("pagination_#{pageNum}").click
+  @page.search.wait_until_search_results_container_visible
+  expect(@page.search.current_link['data-page']).to eq("#{pageNum}")
 end
 
 Given(/^the search box is empty$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@page.search.search_form.value).to be ''
 end
 
 When(/^I click on the search button$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @page.search.search_button.click
 end
 
 Then(/^nothing will happen and no search will be initiated$/) do
+  # TODO: HOW do I test this?
   pending # Write code here that turns the phrase above into concrete actions
 end
-
-# @page.current_page.current_url.should include("/search/?q=#{@search_string}")
 

@@ -94,7 +94,7 @@ Feature: Search Page
   #     | First    |
   #     | Previous |
 
-  @javascript @wip
+  @javascript
   Scenario: When I search for something displaying more than one page of results - clicking on the ‘Next’ link takes me to the next set of results.
     Given I have previously searched for "code"
     When I click on the "Next" link
@@ -105,8 +105,9 @@ Feature: Search Page
       | Next     |
       | Last     |
 
+  @javascript
   Scenario: When I previously clicked on the 'Next' link - clicking on the ‘Previous’ link takes back to the previous set of results.
-    Given I have previously searched for "?"
+    Given I have previously searched for "code"
     And I am on page "2" of the results
     When I click on the "Previous" link
     Then I should see page "1" of the results
@@ -117,6 +118,7 @@ Feature: Search Page
       | First    |
       | Previous |
 
+  @javascript @wip
   Scenario: Search box is displayed within the search page
     Given I am on the Search page
     When I search for "Containers"

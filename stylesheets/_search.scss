@@ -196,6 +196,27 @@ form.header-search {
   }
 }
 
+
+.search-bar {
+  position: relative;
+  input[type="text"] {
+    padding-left:30px;
+  }
+  #search-button {
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    margin:0;
+    padding:0 10px;
+    background:none;
+    color:#919191;
+    width:auto;
+    height:auto;
+    line-height:1;
+  }
+}
+
 .search input[type=text]:focus {
   width: 100% !important;
 }
