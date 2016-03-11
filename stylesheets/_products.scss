@@ -689,6 +689,10 @@ ul.product-langs {
   #stepOne:checked ~ #expandStepOne, #stepTwo:checked ~ #expandStepTwo, #stepThree:checked ~ #expandStepThree,  #stepFour:checked ~ #expandStepFour {
     height: auto;
   }
+  .tabs-content {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .download-completed {
