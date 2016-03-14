@@ -25,7 +25,8 @@ app.termsAndConditions = {
     var tcDownloadURL = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadURL'));
     var tcDownloadFileName = $.encoder.canonicalize(app.termsAndConditions.urlParam('tcDownloadFileName'));
     var product = $.encoder.canonicalize(app.termsAndConditions.urlParam('p'));
-    var tcProduct = $.encoder.canonicalize(product).replace(/\+/g, ' ');
+    var tcProduct = $.encoder.canonicalize(product) || '';
+    tcProduct = tcProduct.replace(/\+/g, ' ');
 
 
     if (tcWhenSigned) {
@@ -51,6 +52,10 @@ app.termsAndConditions = {
 
     if (tcDownloadFileName) {
       $('div#downloadthankyou').show('slow');
+      $('.pending-download-box').addClass('download-completed-box');
+      $('.pending-download').addClass('download-completed');
+      // $('.download-completed-box').removeClass('pending-download-box');
+      // $('.download-completed').removeClass('pending-download');
     }
 
     if (tcDownloadURL &&
@@ -101,7 +106,7 @@ app.termsAndConditions = {
 $(function() {
 
   //The download is now triggered from the success callback from KeyCloak in sso.js. This ensures that KeyCloak is initialised before doing the download.
-  
+
   //Display the Ts&Cs banner
   if ($('#_developer_program_terms_conditions').length) {
     app.termsAndConditions.banner();
