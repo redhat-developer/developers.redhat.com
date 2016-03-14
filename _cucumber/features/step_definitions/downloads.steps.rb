@@ -1,4 +1,4 @@
-Given(/^(I am|they are on) on the Download Overview page for ([^"]*)$/) do |negate, product_id|
+Given(/^(I am|they are on) on the Product Download page for ([^"]*)$/) do |negate, product_id|
   @page.download_overview.open(product_id)
 end
 
@@ -47,5 +47,14 @@ Then(/^the following 'Other developer resources' links should be displayed:$/) d
 end
 
 Then(/^I submit my company name and country$/) do
-  @page.update_details.with(@customer[:company_name], @customer[:country])
+  @page.update_details.with(@site_user[:company_name], @site_user[:country])
+end
+
+
+Given(/^an authorized customer has previously downloaded eap$/) do
+  step 'Given I register a new account'
+  step 'And I am on the Product Download page for eap'
+  step 'When I click to download the featured download of "Enterprise Application Server"'
+  step 'And I accept the terms and conditions'
+  step 'Then I should see the eap get started page with a confirmation message "Thank you for downloading Enterprise Application Server"'
 end

@@ -1,7 +1,7 @@
 require_relative 'base_page'
 require_relative '../../../_cucumber/lib/helpers/products_helper.rb'
 
-class DownloadOverviewPage < BasePage
+class ProductDownloadPage < BasePage
   set_url "/products{/product}/download"
 
   class << self

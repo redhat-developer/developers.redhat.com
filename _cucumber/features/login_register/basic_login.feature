@@ -30,7 +30,7 @@ Feature: Login Page
   @logout
   @javascript
   Scenario: Successful logout
-    Given a registered customer has logged in
+    Given a registered visitor has logged in
     And they are on the Home page
     When they click the Logout link
     Then they should be logged out

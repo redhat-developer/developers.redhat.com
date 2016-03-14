@@ -1,4 +1,4 @@
-Then(/^I should see the ([^"]*) get started page(?: with a confirmation message (.*))?$/) do |product_id, message|
+Then(/^I should see the ([^"]*) get started page(?: with a confirmation message "(.*))?"$/) do |product_id, message|
 
   # TODO - temporary hack until the download manager redirects to staging PR.
   if Capybara.app_host.include?('-pr')

@@ -6,7 +6,7 @@ Feature: Download Page - Unauthorised customer
 
   @downloads
   @javascript
-  Scenario: Unauthorised customer should see a list of available downloads from RedHat.
+  Scenario: Unauthorised customer should see a list of available downloads from Red Hat.
     Given I am on the Downloads page
     Then I should see the Downloads page title
     And a list of products available for download

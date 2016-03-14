@@ -20,7 +20,7 @@ require 'fileutils'
 require 'pry'
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
-require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/customer')
+require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/site_user')
 require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/downloads_helper')
 
 Capybara.configure do |config|

@@ -33,11 +33,6 @@ class App
     @current_page = @upgrade_account
   end
 
-  def update_details
-    @update_details ||= UpdateCountryAndCompany.new(@driver)
-    @current_page = @update_details
-  end
-
   def terms_and_conditions
     @terms_and_conditions ||= TermsAndConditions.new(@driver)
     @current_page = @terms_and_conditions
@@ -64,7 +59,7 @@ class App
   end
 
   def download_overview
-    @download_overview ||= DownloadOverviewPage.new(@driver)
+    @download_overview ||= ProductDownloadPage.new(@driver)
     @current_page = @download_overview
   end
 

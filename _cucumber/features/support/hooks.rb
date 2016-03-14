@@ -23,19 +23,19 @@ Before('@products, @downloads') do
 end
 
 Before('@accepted_terms') do
-  data = Customer::ACCOUNT[:accepted_terms]
+  data = SiteUser::ACCOUNT[:accepted_terms]
   @email_address = data[:email]
   @password = data[:password]
 end
 
 Before('@password_reset') do
-  data = Customer::ACCOUNT[:password_reset]
+  data = SiteUser::ACCOUNT[:password_reset]
   @email_address = data[:email]
   @password = data[:password]
 end
 
-Before('@customer') do
-  @customer = generate_customer
+Before('@site_user') do
+  @site_user = generate_user
 end
 
 After('@logout') do

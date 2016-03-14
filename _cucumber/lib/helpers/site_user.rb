@@ -1,4 +1,4 @@
-module Customer
+module SiteUser
 
   ACCOUNT = {
       accepted_terms: {
@@ -18,7 +18,7 @@ module Customer
       }
   }
 
-  def generate_customer
+  def generate_user
 
     {
         email: "redhat-developers-testers+#{Faker::Lorem.characters(10)}@redhat.com",
@@ -84,4 +84,4 @@ module Customer
 
 end
 
-World(Customer)
+World(SiteUser)
