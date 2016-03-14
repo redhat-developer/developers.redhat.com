@@ -28,6 +28,16 @@ class App
     @current_page = @registration
   end
 
+  def upgrade_account
+    @upgrade_account ||= UpgradeAccount.new(@driver)
+    @current_page = @upgrade_account
+  end
+
+  def terms_and_conditions
+    @terms_and_conditions ||= TermsAndConditions.new(@driver)
+    @current_page = @terms_and_conditions
+  end
+
   def home
     @home ||= Home.new(@driver)
     @current_page = @home
@@ -48,9 +58,19 @@ class App
     @current_page = @product_overview
   end
 
+  def download_overview
+    @download_overview ||= ProductDownloadPage.new(@driver)
+    @current_page = @download_overview
+  end
+
   def downloads
     @downloads ||= DownloadsPage.new(@driver)
     @current_page = @downloads
+  end
+
+  def get_started
+    @get_started ||= GetStartedPage.new(@driver)
+    @current_page = @get_started
   end
 
   def resources

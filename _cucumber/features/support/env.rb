@@ -17,17 +17,17 @@ require 'rest-client'
 require 'json'
 require 'uuid'
 require 'fileutils'
+require 'pry'
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
-require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/customer')
+require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/site_user')
 require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/downloads_helper')
-SCREENSHOT_DIRECTORY = '_cucumber/screenshots'
 
 Capybara.configure do |config|
 
   if ENV['HOST_TO_TEST'].to_s.empty?
-    # default to staging
-    host_to_test = 'https://developers.stage.redhat.com'
+    # default to localhost
+    host_to_test = 'http://0.0.0.0:4242'
   else
     if ENV['HOST_TO_TEST'][-1, 1] == '/'
       host_to_test = ENV['HOST_TO_TEST'].chomp('/')
@@ -42,58 +42,12 @@ Capybara.configure do |config|
   config.run_server = false
   config.app = 'RHD'
   config.default_max_wait_time = 6
-  config.save_and_open_page_path = SCREENSHOT_DIRECTORY
-
+  config.save_and_open_page_path = '_cucumber/screenshots'
   Capybara::Screenshot.prune_strategy = :keep_last_run
 
   puts " . . . Running features against #{host_to_test}  . . . "
   puts ' . . . To change this use the Environment variable HOST_TO_TEST . . . '
   puts ' . . . E.g bundle exec features HOST_TO_TEST=http://the_host_you_want:8080 . . .'
-  puts " . . . Running features using #{config.default_driver} . . . "
-  puts ' . . . To switch browser use the Environment variable RHD_DRIVER . . . '
-  puts ' . . . E.g. bundle exec features RHD_DRIVER=selenium . . . '
-  puts " . . . Screenshot directory location: #{SCREENSHOT_DIRECTORY} . . . "
-end
-
-CHROME_PREFS = {
-    'download' => {
-        'default_directory' => DownloadHelper::PATH.to_s,
-        'prompt_for_download' => false,
-        'directory_upgrade' => true,
-        'extensions_to_open' => '',
-    },
-    'profile' => {
-        'default_content_settings' => {'multiple-automatic-downloads' => 1},
-        'default_content_setting_values' => {'automatic_downloads' => 1},
-        'password_manager_enabled' => false,
-        'gaia_info_picture_url' => true,
-    },
-    'safebrowsing' => {
-        'enabled' => true,
-    }
-
-}
-
-Capybara.register_driver :selenium do |app|
-  caps = Selenium::WebDriver::Remote::Capabilities.chrome
-  caps['chromeOptions'] = {'prefs' => CHROME_PREFS}
-  Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes], :desired_capabilities => caps)
-end
-
-Capybara.register_driver :selenium_remote do |app|
-  job_name = "RHD Acceptance Tests Using Chrome Download profile - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
-  config = Selenium::WebDriver::Remote::Capabilities.chrome
-  config['chromeOptions'] = {'prefs' => CHROME_PREFS}
-  config['browser'] = 'Chrome'
-  config['browser_version'] = '48.0'
-  config['os'] = 'Windows'
-  config['os_version'] = '10'
-  config['browserstack.debug'] = 'true'
-  config['project'] = job_name
-  config['acceptSslCerts'] = 'true'
-  config['browserstack.local'] = 'true'
-  url = "http://#{ENV['RHD_BS_USERNAME']}:#{ENV['RHD_BS_AUTHKEY']}@hub.browserstack.com/wd/hub"
-  Capybara::Selenium::Driver.new(app, :browser => :remote, :url => url, :desired_capabilities => config)
 end
 
 Capybara.register_driver :mechanize do |app|
@@ -102,14 +56,49 @@ Capybara.register_driver :mechanize do |app|
   I_KNOW_THAT_OPENSSL_VERIFY_PEER_EQUALS_VERIFY_NONE_IS_WRONG = nil
   driver = Capybara::Mechanize::Driver.new(app)
   driver.configure do |agent|
-    agent.user_agent_alias = 'Windows Chrome'
+    agent.user_agent_alias = 'Windows Mozilla'
   end
   driver
 end
 
+Capybara.register_driver :selenium do |app|
+  @download_dir = File.join(Dir.pwd, '_cucumber/tmp')
+  FileUtils.mkdir_p(@download_dir)
+  profile = Selenium::WebDriver::Firefox::Profile.new
+  profile['browser.download.dir'] = @download_dir
+  profile['browser.download.folderList'] = 2
+  profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/zip, application/java-archive, application/octet-stream, application/jar, images/jpeg, application/pdf'
+  profile['pdfjs.disabled'] = true
+  Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile)
+end
+
+Capybara.register_driver :selenium_remote do |app|
+  job_name = "RHD Acceptance Tests - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
+  @download_dir = File.join(Dir.pwd, '_cucumber/tmp')
+  FileUtils.mkdir_p(@download_dir)
+
+  profile = Selenium::WebDriver::Firefox::Profile.new
+  profile['browser.download.dir'] = @download_dir
+  profile['browser.download.folderList'] = 2
+  profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/zip, application/java-archive, application/octet-stream, application/jar, images/jpeg, application/pdf'
+  profile['pdfjs.disabled'] = true
+
+  caps = Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
+  caps['browser'] = 'Firefox'
+  caps['browser_version'] = '44.0'
+  caps['os'] = 'Windows'
+  caps['os_version'] = '10'
+  caps['project'] = job_name
+  caps['browserstack.debug'] = 'true'
+  caps['acceptSslCerts'] = 'true'
+  caps['browserstack.local'] = 'true'
+  url = "http://#{ENV['RHD_BS_USERNAME']}:#{ENV['RHD_BS_AUTHKEY']}@hub.browserstack.com/wd/hub"
+  Capybara::Selenium::Driver.new(app, :browser => :remote, :url => url, :desired_capabilities => caps)
+end
+
 Capybara.register_driver :browserstack do |app|
   job_name = "RHD Acceptance Tests - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
-  stack_to_use = ENV['RHD_BS_BROWSER'] || 'chrome'
+  stack_to_use = ENV['RHD_BS_BROWSER'] || 'firefox'
   json = JSON.load(open('_cucumber/browserstack/browsers.json'))
   config = json[stack_to_use]
   config['browserstack.debug'] = 'true'
@@ -120,10 +109,21 @@ Capybara.register_driver :browserstack do |app|
   Capybara::Selenium::Driver.new(app, :browser => :remote, :url => url, :desired_capabilities => config)
 end
 
-
 browsers = [:selenium, :selenium_remote, :browserstack]
 browsers.each do |browser|
   Capybara::Screenshot.register_driver(browser) do |driver, path|
     driver.browser.save_screenshot path
+  end
+end
+
+After do
+  if defined?(@download_dir) && Dir.exist?(@download_dir)
+    FileUtils.rm_rf(@download_dir)
+  end
+end
+
+at_exit do
+  if defined?(@download_dir) && Dir.exist?(@download_dir)
+    FileUtils.rm_rf(@download_dir)
   end
 end
