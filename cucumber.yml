@@ -10,13 +10,13 @@ html_rerun_output = "#{$output_folder}/report_rerun.html"
 Dir.mkdir("out") rescue ""
 Dir.mkdir($output_folder) rescue ""
 
-default_options = "-r _cucumber/features/ --strict -f pretty"
+default_options = "-r _cucumber/features/ --strict -f pretty --tags ~@ignore"
 
 %>
 
 default: <%= default_options %>
 html: --format --out reports/test-report.html
-features: <%= default_options %> -f rerun --out rerun.txt
-parallel_html: --format html --out _cucumber/reports/process<%= ENV['TEST_ENV_NUMBER'] %>.html
+features: <%= default_options %> -f rerun --out rerun.txt --tags ~@ignore
+parallel_html: --format html --tags ~@ignore --out _cucumber/reports/process<%= ENV['TEST_ENV_NUMBER'] %>.html
 pretty: -f pretty
-parallel: -r _cucumber/features/ --format pretty --profile parallel_html --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log
+parallel: -r _cucumber/features/ --format pretty --tags ~@ignore --profile parallel_html --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log

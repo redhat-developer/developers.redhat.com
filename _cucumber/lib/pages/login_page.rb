@@ -4,7 +4,6 @@ require 'cgi'
 class LoginPage < BasePage
 
   element :title, '.centered-title'
-  element :login_with_existing_account, '#social-email'
   element :username_field, '#username'
   element :password_field, '#password'
   element :login_button, '#kc-login'
@@ -34,8 +33,6 @@ class LoginPage < BasePage
   end
 
   def with_existing_account(username, password)
-    wait_for_login_with_existing_account
-    login_with_existing_account.click
     username_field.set(username)
     password_field.set(password)
     login_button.click

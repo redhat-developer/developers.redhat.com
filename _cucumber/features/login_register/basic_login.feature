@@ -30,7 +30,7 @@ Feature: Login Page
   @logout
   @javascript
   Scenario: Successful logout
-    Given a registered customer has logged in
+    Given a registered visitor has logged in
     And they are on the Home page
     When they click the Logout link
     Then they should be logged out
@@ -41,7 +41,7 @@ Feature: Login Page
   Scenario: A customer who has forgotten their login details can request a password reset
     Given I am on the Login page
     When I request a password reset
-    Then I should see a confirmation message: "You should receive an email shortly with further instructions."
+    Then I should see a confirmation message: "You will receive an email shortly with instructions on how to create a new password. TIP: Check your junk or spam folder if you are unable to find the email."
     And I should receive an email containing a password reset link
 
   @password_reset

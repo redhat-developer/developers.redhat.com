@@ -1,3 +1,5 @@
+require_relative 'base_page'
+
 class ForgotPassword < BasePage
 
   element :reset_password_page, '.login-reset-password'

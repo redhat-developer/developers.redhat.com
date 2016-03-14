@@ -24,7 +24,7 @@ task :features do |t, args|
     profile = 'parallel'
   end
 
-  known_good_cucumber_tags = %w(@wip @smoke @cdk_beta @ignore)
+  known_good_cucumber_tags = %w(@wip @smoke @desktop @mobile @ignore)
   if ENV['CUCUMBER_TAGS'].to_s.empty?
     tags = nil
   else
