@@ -8,9 +8,12 @@ RUN php -r "readfile('https://drupalconsole.com/installer');" > drupal.phar && m
 COPY run.sh /
 COPY db-check.php /
 
-# Adding the awestruct module
-COPY redhat_developers /var/www/html/modules/custom/redhat_developers
-COPY layoutmanager /var/www/html/modules/custom/layoutmanager
-COPY basewidget /var/www/html/modules/custom/basewidget
+# Adding the custom modules
+COPY modules/custom/redhat_developers /var/www/html/modules/custom/redhat_developers
+COPY modules/custom/layoutmanager /var/www/html/modules/custom/layoutmanager
+COPY modules/custom/basewidget /var/www/html/modules/custom/basewidget
+
+# Adding the theme, we can override for development
+COPY themes/custom/rhd /var/www/html/themes/custom/rhd
 
 CMD ["/bin/bash", "/run.sh"]
