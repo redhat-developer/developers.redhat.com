@@ -15,6 +15,5 @@ Feature: Download Page - Unauthorised customer
   Scenario: Unauthorised customer should see a list of 'Other developer resources'
     Given I am on the Downloads page
     Then the following 'Other developer resources' links should be displayed:
-      | Container development kit |
       | Building Linux RPMs       |
       | Developing with OpenShift |
