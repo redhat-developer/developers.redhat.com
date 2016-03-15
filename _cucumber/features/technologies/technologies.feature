@@ -1,4 +1,5 @@
 @products
+
 Feature: Home Page Smoke Test
 
   In order to find out more about available Red Hat products,
@@ -38,4 +39,4 @@ Feature: Home Page Smoke Test
   Scenario: If available a product has Downloads available then a 'DOWNLOADS' link should be displayed
     Given I am on the Technologies page
     When the products have Downloads available
-    Then I should see a 'Download' link for each product
+    Then I should see a 'Downloads' link for each product
