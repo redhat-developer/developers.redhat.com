@@ -115,13 +115,13 @@ services:
       - "<%= ENV['DRUPAL_HOST_PORT'] %>:80"
     links:
       - drupalpgsql
-  <% unless ENV['JENKINS_HOME'] %>
     volumes:
-      - ./drupal/themes/:/var/www/html/themes
       - ../images:/tmp/images
       - ../stylesheets:/tmp/stylesheets
+    <% unless ENV['JENKINS_HOME'] %>
+      - ./drupal/themes/:/var/www/html/themes
       - ./drupal/modules/custom/:/var/www/html/modules/custom
-  <% end %>
+    <% end %>
     environment:
       - DB_NAME=drupal
       # TODO: We could probably take these out and move them to secrets.yml.gpg if they aren't there already
