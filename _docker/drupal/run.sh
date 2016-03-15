@@ -11,7 +11,7 @@ done
 
 chown -R root:root sites
 
-drupal site:install standard --db-type=pgsql --db-host=drupalpgsql --db-port=$DRUPALPGSQL_PORT_5432_TCP_PORT --db-name=$DB_NAME --db-user=$DB_USER --db-pass=$DB_PASSWORD --account-name=admin --account-mail="admin@example.com" --site-name="Red Hat Developers" --site-mail="test@example.com" --account-pass=admin --langcode=en -n
+drupal site:install standard --db-type=pgsql --db-host=drupalpgsql --db-port=5432 --db-name=$DB_NAME --db-user=$DB_USER --db-pass=$DB_PASSWORD --account-name=admin --account-mail="admin@example.com" --site-name="Red Hat Developers" --site-mail="test@example.com" --account-pass=admin --langcode=en -n
 
 drupal theme:install --set-default rhd
 

@@ -1,8 +1,20 @@
 <?php
-  try {
-    $DBH = new PDO("pgsql:host=$_ENV[DRUPALPGSQL_PORT_5432_TCP_ADDR];dbname=$_ENV[DB_NAME]", $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
-    $DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-  } catch(PDOException $e) {
+/**
+ * Basic database connectivity test
+ *
+ * @category Script
+ * @package  None
+ * @author   Jason Porter <jporter@redhat.com>
+ * @license  http://example.com None
+ * @link     None
+ */
+try {
+    $DBH = new PDO(
+        "pgsql:host=drupalpgsql;dbname=$_ENV[DB_NAME]",
+        $_ENV['DB_USER'], $_ENV['DB_PASSWORD']
+    );
+    $DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
     exit(1);
-  }
+}
 ?>
