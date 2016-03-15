@@ -5,19 +5,11 @@ Feature: Basic personal registration
   So that I can use its services.
 
   @site_user
-  @javascript
-  Scenario: Customer registers
-    Given I am on the Registration page
-    When I complete the registration form
-    Then I should receive an email containing an account verification link
-
-  @site_user
   @logout
   @javascript
   Scenario: Customer verifies their account
     Given I am on the Registration page
     And I complete the registration form
-    When I navigate to the verify account URL
     Then I should be logged in
 
   @site_user
