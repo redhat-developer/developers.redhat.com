@@ -177,7 +177,7 @@ end
 if tasks[:should_start_supporting_services]
   puts 'Starting up services...'
 
-  execute_docker_compose :up, ['--force-recreate'].concat(tasks[:supporting_services])
+  execute_docker_compose :up, ['--force-recreate', '--verbose'].concat(tasks[:supporting_services])
 end
 
 if tasks[:awestruct_command_args]
