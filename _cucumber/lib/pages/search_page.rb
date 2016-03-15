@@ -6,7 +6,7 @@ class SearchPage < BasePage
   element :search_form, '#search_list_text'
   element :results_title, '.results-title'
   element :results_sub_title, '.results-sub-title'
-  element :pagination, '#paginator'
+  element :pagination, '.pagination'
   elements :search_results_container, '.search-results-loaded'
   elements :search_results, '.result'
   elements :search_button, '#search-button'
@@ -18,7 +18,10 @@ class SearchPage < BasePage
   pagination_links.each do |link|
     element :"#{link}_link_enabled", "#pagination-#{link}.available"
     element :"#{link}_link_disabled", "#pagination-#{link}.unavailable"
-    element :"#{link}_link", "#pagination-#{link}"
+  end
+
+  (0..15).each do |pagination|
+    element :"pagination_#{pagination}", "#pagination-#{pagination}"
   end
 
   element :current_link, '.current a'
@@ -28,13 +31,15 @@ class SearchPage < BasePage
     wait_for_ajax
   end
 
-  def goToSearchPage(q)
+  def go_to_search_page(q)
    visit "/search/?q=#{q}"
    loaded?('Search Results')
   end
 
   def click_pagination(page_number)
-    find('a', "#{page_number}").click
+    page = page_number.to_i-1
+    send("wait_until_pagination_#{page}_visible")
+    send("pagination_#{page}").click
   end
 
 end
