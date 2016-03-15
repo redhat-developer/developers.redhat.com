@@ -51,7 +51,7 @@ end
 
 def execute_docker_compose(cmd, args = [])
   puts "args to docker-compose command '#{cmd}' are '#{args}'"
-  Kernel.abort('Error running docker-compose') unless Kernel.system *['docker-compose', cmd.to_s, *args]
+  Kernel.abort('Error running docker-compose') unless Kernel.system *['docker-compose --verbose', cmd.to_s, *args]
 end
 
 def execute_docker(cmd, *args)
