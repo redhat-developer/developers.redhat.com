@@ -29,6 +29,10 @@ description: Discover the product downloads available from Red Hat, and locate t
                   a(href="#{site.base_url}/products/#{product.id}/download")
                     i.fa.fa-download
                     |  Download Latest
+                - elsif product.id == 'rhel'
+                  a(href="#{product.customer_portal_download_url}")
+                    i.fa.fa-download
+                    |  Download Latest
                 - else
                   a(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
                     i.fa.fa-refresh.fa-spin
