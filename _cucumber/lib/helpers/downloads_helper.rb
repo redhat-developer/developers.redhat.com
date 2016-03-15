@@ -46,7 +46,7 @@ module DownloadHelper
     products.each do |product|
       product_name << get_product_by_id(product)
     end
-    product_name
+    return products, product_name
   end
 
   def download_dir

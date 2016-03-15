@@ -48,8 +48,9 @@ end
 When(/^the products have Downloads available$/) do
 end
 
-Then(/^I should see a 'Download' link for each product$/) do
-  @products_with_downloads.each do |product_id|
+Then(/^I should see a 'Downloads' link for each product$/) do
+  products_with_downloads = @technologies_with_downloads - ['mobileplatform']
+  products_with_downloads.each do |product_id|
     expect(@page.technologies.send("download_#{product_id}")['href']).to include "/products/#{product_id}/download/"
   end
 end
