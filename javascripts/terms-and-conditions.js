@@ -52,6 +52,10 @@ app.termsAndConditions = {
 
     if (tcDownloadFileName) {
       $('div#downloadthankyou').show('slow');
+      $('.pending-download-box').addClass('download-completed-box');
+      $('.pending-download').addClass('download-completed');
+      // $('.download-completed-box').removeClass('pending-download-box');
+      // $('.download-completed').removeClass('pending-download');
     }
 
     if (tcDownloadURL &&
