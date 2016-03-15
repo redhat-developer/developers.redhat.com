@@ -123,11 +123,22 @@ skip_maven_instructions: true
 other_product: true
 upstream_projects:
   - fedora
-get_started_multipath: true
+rhel_install_paths:
+  - id: "bare_metal"
+    name: Bare Metal
+  - id: "hyper_v"
+    name: Hyper-V
+  - id: "virtual_box"
+    name: VirtualBox
+  - id: "vmware"
+    name: VMware
 get_started_paths:
   - id: "cpp"
     name: C++
     default_file: get-started-rhel7-cpp
+  - id: "java"
+    name: Java
+    default_file: get-started-rhel7-java  
   - id: "perl"
     name: Perl
     default_file: get-started-rhel7-perl
