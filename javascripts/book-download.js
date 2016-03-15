@@ -22,9 +22,14 @@ app.bookDownload = {
         tcDownloadURL.startsWith('https://access.cdn.redhat.com/')) {
       tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
 
+      $('.promotion-header').prepend("<div class='alert-box success'><p><a href='"+tcDownloadURL+"'>Click here</a> if your download does not begin automatically.</p></div>")
+
       $("a#tcDownloadLink").attr("href", tcDownloadURL);
 
-      $.fileDownload(tcDownloadURL);
+      if(!app.utils.isMobile.any()){
+        // only try download on desktop - mobile users will tap the banner
+        $.fileDownload(tcDownloadURL);
+      }
 
       // Inform GTM that we have requested a product download
       window.dataLayer = window.dataLayer || [];

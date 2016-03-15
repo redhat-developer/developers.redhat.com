@@ -1,5 +1,5 @@
-Given(/a registered customer has logged in$/) do
-  @redirect_url = @page.login.open
+Given(/a registered visitor has logged in$/) do
+  @page.login.open
   @page.login.with_existing_account(@email_address, @password)
   expect(@page.current_page).to be_logged_in
 end
@@ -51,4 +51,13 @@ end
 
 When(/^I update my password$/) do
   @page.password_reset.update_password
+end
+
+When(/^I click on the Create account link$/) do
+  @page.login.register_link.click
+  @page.registration.loaded?('Register | Red Hat Developers')
+end
+
+Then(/^(I|they) should be redirected to the RHD Log in page$/) do |negate|
+  expect(@page.login).to respond_to :wait_for_login_with_existing_account
 end
