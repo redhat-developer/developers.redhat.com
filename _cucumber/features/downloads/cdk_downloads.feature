@@ -37,8 +37,6 @@ Feature: Red Hat Container Development Kit (CDK) download
     Then I should be redirected to the RHD Log in page
     When I click on the Create account link
     And I complete the registration form
-    Then I should receive an email containing an account verification link
-    When I navigate to the verify account URL
     And I upgrade my account and accept the terms and conditions
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Container Development Kit (CDK)"
     And the download should initiate
@@ -52,8 +50,6 @@ Feature: Red Hat Container Development Kit (CDK) download
     Then I should be redirected to the RHD Log in page
     When I click on the Create account link
     And I complete the registration form
-    Then I should receive an email containing an account verification link
-    When I navigate to the verify account URL
     And I upgrade my account but don't accept the terms and conditions
     Then I should see the cdk download overview page
     And the download should not initiate
