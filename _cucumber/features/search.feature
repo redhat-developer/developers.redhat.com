@@ -106,6 +106,7 @@ Feature: Search Page
       | Last     |
 
   @javascript
+  @wip
   Scenario: When I previously clicked on the 'Next' link - clicking on the ‘Previous’ link takes back to the previous set of results.
     Given I have previously searched for "code"
     And I am on page "2" of the results
@@ -118,7 +119,7 @@ Feature: Search Page
       | First    |
       | Previous |
 
-  @javascript @wip
+  @javascript
   Scenario: Search box is displayed within the search page
     Given I am on the Search page
     When I search for "Containers"

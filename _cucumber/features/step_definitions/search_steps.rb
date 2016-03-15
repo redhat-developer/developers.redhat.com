@@ -93,11 +93,10 @@ Then(/^I should see page "([^"]*)" of the results$/) do |pageNum|
   expect(@page.search.current_link['data-page']).to eq("#{pageNum}")
 end
 
-Given(/^I am on page "([^"]*)" of the results$/) do |pageNum|
-  # TODO: None of these "clicks" work..
-  @page.search.send("pagination_#{pageNum}").click
+Given(/^I am on page "([^"]*)" of the results$/) do |page_number|
+  @page.search.click_pagination(page_number)
   @page.search.wait_until_search_results_container_visible
-  expect(@page.search.current_link['data-page']).to eq("#{pageNum}")
+  expect(@page.search.current_link['data-page']).to eq("#{page_number}")
 end
 
 Given(/^the search box is empty$/) do
