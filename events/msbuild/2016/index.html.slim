@@ -1,0 +1,108 @@
+---
+layout: base
+body_class: fullbleed
+primary_nav_hidden: true
+interpolate: true
+hero_class: msbuild
+title: MS Build
+---
+
+.wide.wide-hero(class="#{page.hero_class}")==hero
+
+#msbuild-microsite
+  section.site-header
+    .row
+      .large-18.small-24.columns
+        h2 Red Hat at Microsoft Build 2016
+      .large-6.small-24.columns
+        = partial("share.html.slim", :url => "#{site.base_url}#{page.url}", :title => "#{page.title}")
+      .large-24.column
+        p You may have heard that Microsoft &#9829;s Linux.  This year Red Hat is joining Microsoft at Build to demonstrate how you can use .NET on Linux.
+    .row.event-nav
+      .large-24.columns
+        ul.nav-list
+          li
+            a href="#redhat-booth" 
+              i.fa.fa-comments-o.fa-2x
+              |  Visit the Red Hat booth
+          li
+            a href="#its-a-party" 
+              i.fa.fa-glass.fa-2x
+              |  Get an invite as Red Hat co-hosts cocktail hour
+          li
+            a href="#meet-the-team" 
+              i.fa.fa-users.fa-2x
+              |  Meet the Red Hat Developer team
+
+  section.inverse
+    .row
+      .large-15.small-24.columns
+        h2.caps MICROSOFT BUILD 2016
+      .large-9.small-24.columns.msbuild-date
+        i.fa.fa-calendar.fa-2x
+        h6  Wednesday, March 30 - Friday, April 1, 2016
+  section#redhat-booth
+    .row
+      .large-24.columns
+        h2 Red Hat Booth
+        h4 Stop by the Red Hat booth and check out:
+        br
+        .row
+          .large-6.columns
+            strong .NET on Red Hat Enterprise Linux
+            p See a practical application of .NET on Red Hat Enterprise Linux and learn how you can get started.
+          .large-6.columns
+            strong Take your skills to the next level
+            p Learn how you can use .NET with Red Hat to further your abilities and get your job done faster.
+          .large-6.columns
+            strong Access your getting started kit
+            p We aren’t coming empty handed.  Stop by to get your easy to use .NET on Red Hat swag kit.
+          .large-6.columns
+            strong Join Red Hat Developers
+            p A developers community build by and for developers to give you access to products, materials and more.        
+  section.inverse#its-a-party
+    .row
+      .large-24.column
+        h2  It’s a Party
+        h4 We enjoy a good social hour as much as the next person, so join us.
+        p Red Hat is partnering with Perfecto and InCycle for a cocktail event at Roy’s Restaurant.  Stop by the booth for your chance to score an invite to this exclusive event.
+        
+  section#meet-the-team
+    .row
+      .large-24.columns
+        h3.caps Meet the Red Hat Developer Team
+        ul.small-block-grid-2.medium-block-grid-4.large-block-grid-6.msb-team-members
+          - page.msbuild.each do |a|
+            li
+              - if a.photo
+                img(src=cdn("#{site.base_url}/images/events/msbuild/#{a.photo}") alt='#{a.name}')
+              span
+                p.name #{a.name}
+                - if a.title
+                  p.title #{a.title}
+  section.inverse
+    .row
+      .large-24.column
+        h2  Join us at DevNation 2016
+        h4 Want to get hands on with .NET on Red Hat?  We will have multiple opportunities at DevNation 2016.  Join us.
+        br
+        .row
+          .large-8.columns
+            h5 
+              | Moscone Center in San Francisco
+              br
+              | June 26 - 29, 2016
+          .large-6.columns
+            a.button(href='https://rh2016.smarteventscloud.com/portal/registration/devnation') Register Now
+  section.connect-with-us
+    .row
+      .large-24.columns
+        h2 Connect With Us
+        h4 We're everywhere that you are, so stop by and say "hi".
+        ul.social-links
+          li: a(href="https://www.facebook.com/RedHatDeveloperProgram")
+            i.fa.fa-facebook
+          li: a(href="https://twitter.com/rhdevelopers")
+            i.fa.fa-twitter
+          li: a(href="https://plus.google.com/103877536668756379905/posts")
+            i.fa.fa-google-plus
