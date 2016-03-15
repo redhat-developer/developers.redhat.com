@@ -77,8 +77,9 @@ def is_port_open?(host, port)
 end
 
 def block_wait_drupal_started
-  docker_drupal = Docker::Container.all(filters: {label: ['com.docker.compose.service=drupal']}.to_json).first
+  docker_drupal = Docker::Container.get("#{project_name}_drupal_1")
   until docker_drupal.json['NetworkSettings']['Ports']
+    puts 'Finding port info for drupal container...'
     sleep(5)
     docker_drupal = Docker::Container.get("#{project_name}_drupal_1")
   end
@@ -95,9 +96,11 @@ def block_wait_drupal_started
   # Add the drupal cdn prefix
   ENV['cdn_prefix'] = 'sites/default/files'
 
+  puts "Testing drupal access via #{drupal_ip}:#{drupal_port}"
   up = false
   until up do
     up = is_port_open?(drupal_ip, drupal_port)
+    sleep(5)
   end
 end
 
@@ -175,14 +178,11 @@ if tasks[:should_start_supporting_services]
   puts 'Starting up services...'
 
   execute_docker_compose :up, ['--force-recreate'].concat(tasks[:supporting_services])
-
-  # Check to see if Drupal is accepting connections before continuing
-  block_wait_drupal_started if tasks[:drupal]
 end
 
 if tasks[:awestruct_command_args]
-  puts 'running awestruct command'
   block_wait_drupal_started if tasks[:drupal]
+  puts 'running awestruct command'
   execute_docker_compose :run, tasks[:awestruct_command_args]
 end
 
