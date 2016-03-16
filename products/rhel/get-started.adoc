@@ -1,1 +1,666 @@
-:awestruct-layout: product-get-started
+:awestruct-layout: product-get-started-rhel
+:awestruct-interpolate: true
+
+## Step1 Title
+Download Red Hat Enterprise Linux
+
+## Step2 Title
+Install Red Hat Enterprise Linux
+
+## Step3 Title
+Getting ready for software development
+
+## Step4 Title
+Set up your programming language
+
+## Step1 Content
+
+In this step, you will register for a Red Hat Enterprise Linux Developer Suite Subscription and download Red Hat Enterprise Linux Server.
+
+Download the link:https://developers.stage.redhat.com/download-manager/file/rhel-server-7.2-x86_64-boot.iso[Red Hat Enterprise Linux Server. binary DVD] `.iso` file.
+
+Instructions for making a bootable https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-making-media.html#sect-making-cd-dvd-media[DVD] or https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-making-usb-media.html[USB] drive can be found in the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-making-media.html[Red Hat Enterprise Linux Installation Guide].
+
+If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+## Step2 Baremetal Content
+
+This section provides a brief overview of the steps for installing Red Hat Enterprise Linux. Detailed instructions can be found in the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide].
+
+There are a few key steps to remember during the installation process:
+
+. You will need to select an _Installation destination_, which is the disk or partition(s) where the software will be installed. *The disk or partition(s) you select will be overwritten.* Make sure you understand your selection before starting the installation to avoid accidental data loss.
+. You should configure networking under _Network and host name_ before starting the installation. You will need access to the Internet to complete registration and download additional software. The network can be configured after the system is installed. However, the steps are more straightforward during installation.
+. Select _Server with a GUI_ under _Software Selection_ so the system will boot into the full graphical environment after installation. By default, Red Hat Enterprise Linux Server will not install a graphical desktop.
+. Create your primary user account during installation: After the installation begins, you will be instructed to set a password for the root account and be given the opportunity to create a regular user account. You should create a user before the installation process completes. The regular user will be your primary login for development. The root account should only be used for system administration tasks. If you don't create a user before the installation completes, you will need to reboot and then log in as root to create user accounts.
+
+### Installation instructions
+
+. Start the system from the bootable disk and select _Install Red Hat Enterprise Linux_.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-01-boot-dvd.png')}[Screenshot Boot Splash]
++
+. Select your preferred language and keyboard layout to use during installation.
+. Under _Localization_ review the settings and make any necessary changes for date and time, language, and keyboard layout. Note: The _Done_ button to return to the _Installation summary_ screen is located in the upper left corner of the screen.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-03-install-options-first.png')}[Screenshot Installation Options]
++
+. Perform the follow steps to make your software selection:
+.. Click _Software selection_.
+.. On the next screen, under _Software selection_, in the _Base environment_ list on the left, select _Server with GUI_.
+.. In the list _Add-ons for selected environment_ on the right, select _Development tools_.
+.. Click the _Done_ button. Note: After returning to the _Installation summary_ screen it will take several seconds to validate your choices.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-04-software-selection.png')}[Screenshot Software Selection]
++
+. Click _Installation destination_ to specify which disk or partition(s) to install the software on. Note: It is important that you understand the choices that you are making in this section to avoid accidental data loss. It is strongly recommended that you read the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html[Installation Destination] section of the the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide]. The installation destination should be at least 16 GB or larger to accommodate the OS, graphical desktop, and development tools.
++
+. Click _Network & host name_ to configure the network. If the system has more than one network adapter, select it from the list on the left. Then click the _On/Off_ button on the right to enable the network adapter. Click _Configure_ to review and/or change the default settings for the network adapter. Optionally, set a _Host name_ for the system. Before leaving this screen, make sure there is at least one network adapter enabled with the switch in the _On_ position. A network connection will be required to register the system and download system updates.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-07-network.png')}[Screenshot Network Configuration]
++
+. Click _KDump_ to disable KDump and free up memory. Click the box next to _Enable kdump_ so that it is no longer checked.  Then click _Done_.
+. Click the _Begin installation_ button when you are ready to start the actual installation.
+. On the next screen, while the installation is running, click _User creation_ to create the user ID you will use to log in for normal work.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-09-user-before.png')}[Screenshot User Creation]
++
+. Click _Root password_ to set the password for the root user. Note: If you choose a password that the system considers to be weak, you will need to click _Done_ twice.
+. After the installation process completes, click the _Reboot_ button.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-12-install-finished.png')}[Screenshot Installation Complete]
+
+
+If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+## Step2 Hyperv Content
+
+*Step Two Hyper-V Content will go here*
+
+## Step2 Virtualbox Content
+
+This step provides an overview of the key steps for installing link:http://developers.redhat.com/products/rhel/overview/[Red Hat Enterprise Linux Server] in a link:https://www.virtualbox.org/[VirtualBox] Virtual Machine (VM) so you can get started with software development. The VM you create will give you a Red Hat Enterprise Linux development environment that you can use on your system running Microsoft Windows, Mac OS X, Ubuntu, or other Linux.
+
+### Overview of steps
+
+. Download and install VirtualBox.
+. Configure a VM to run Red Hat Enterprise Linux.
+. Boot the VM using the ISO file you downloaded in step 1 as a virtual DVD.
+. Install Red Hat Enterprise Linux.
+
+Note: This tutorial does not replace the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide] or link:https://www.virtualbox.org/manual/UserManual.html[VirtualBox User Manual]. Instead, this tutorial provides an overview of the key steps for software developers. For detailed instructions, see the respective manaul.
+
+A few things to keep in mind:
+
+* You will be using the Server edition of Red Hat Enterprise Linux. This provides you with the widest range of software to develop and test with.
+* The VM will have a full graphical desktop. You will select _Server with a GUI_ during installation.
+* After installation, you will configure additional software repositories that will provide you access to optional development software such as RHSCL and DTS.
+
+### System Requirements
+
+The requirements for your physical system that will host the Red Hat Enterprise Linux VM are:
+
+* a 64-bit x86 machine with hardware virtualization assistance (Intel VT-X or AMD-V).
+* An link:https://www.virtualbox.org/manual/ch01.html#hostossupport[operating system supported by VirtualBox] such as Microsoft Windows 7 or later, Apple Mac OS X 10.8 or later, Ubuntu Linux 12.04 or later.
+* 4 GB RAM (8 GB preferred).
+* 24 GB of available disk space for the VM, the installation ISO file, and VirtualBox.
+* A processor with hardware virtualization assistance (Intel VT-x or AMD-V).
+
+
+If you encounter difficulties at any point in this tutorial, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+
+### Download and install VirtualBox
+
+This guide uses VirtualBox is 5.0.x. You may also use VirtualBox 4.3.x though there will be some minor differences from what is described here. Older versions of VirtualBox may work but have not been tested.
+
+#### Microsoft Windows or Apple Mac OS X
+
+Go to the link:https://www.virtualbox.org/wiki/Downloads[VirtualBox Download page] and download the installer for your system. After the download completes, click on the downloaded `.exe` or `.dmg` file to start the installation. During the installation you will need to agree to using administrative privileges for a number of the steps.
+
+#### Ubuntu Linux and other Linux systems
+
+Ubuntu Linux and other Linux distributions includes packages for VirtualBox that you can install using your regular package management commands. On Ubuntu Linux use the following command:
+
+`$ sudo apt-get install virtualbox`
+
+If your distribution doesn’t include VirtualBox packages or the packages are older than VirtualBox 4.3.x, see the VirtualBox for Linux download page to download a package for your system.
+
+#### Optional step: Install VirtualBox Extension Pack
+
+A extension package is available for VirtualBox that provides support for USB devices, remote desktop access via RDP, and PXE boot. The software is provided in binary form as it is not open-source. The extension package is available on the link:https://www.virtualbox.org/wiki/Downloads[VirtualBox Download page]. 
+
+#### Enable Intel VT-x or AMD-V Virtualizatoin in BIOS/UEFI
+
+Intel and AMD processors have hardware extensions for accelerating virtualization. On some systems this support may be disabled by default in the system’s BIOS/UEFI.  To enable the extensions, you might have to go into the system’s BIOS/UEFI setup configuration at boot time. Consult your system’s hardware documentation for more information.
+
+#### Disable Microsoft Hyper-V to avoid conflicts with VirtualBox
+
+On some Microsoft Windows systems it may be necessary to disable Microsoft Hyper-V virtualization in order to use VirtualBox. Only one virtualization platform, or hypervisor, can be active on a host system at a time. While hypervisors like VirtualBox only take control of the host system’s hardware virtualization capabilities when they are actually running a VM, Microsoft Hyper-V takes control at boot time. In order to use VirtualBox, Hyper-V must either be disabled or uninstalled. Consult Microsoft’s  documentation for more information. Note: if you are interested in using Microsoft Hyper-V instead of VirtualBox, check the link:http://developers.redhat.com/[Red Hat Developers site] for more information. 
+
+#### Create and configure a VM in VirtualBox
+
+In this step you will create and configure the VM that will run Red Hat Enterprise Linux. The system you are running VirtualBox on is called the _host system_. Note: VirtualBox refers to the VM running Red Hat Enterprise Linux as the _guest system_. However, most of the options to control the VM are under the _Machine_ menu entry.
+
+First, launch VirtualBox from your system’s menu. On some systems, the menu entry will be called _Oracle VM VirtualBox_.
+
+Before you create any VMs, you may wish to change where VirtualBox stores the files that are used as virtual hard disks for the VMs you create. By default, VirtualBox places these files in your home directory. You will need at least 16 GB of available space. To change the location, select _Preferences_ from the _File_ menu. Under _General_, change _Default Machine Folder_ to your preferred location.
+
+Click the _New_ button to create a new VM. A series of dialog boxes will come up for you to configure the VM:
+
+. On the _Create Virtual Machine_ dialog:
+.. Enter _RHEL_ as the name or part of the name. This will be the name of the created VM in VirtualBox. Including _RHEL_ will automatically set VM  _Type_ and _Version_.
+.. Ensure that _Type_ is set to _Linux_ and _Version_ is set to _Red Hat (64-bit)_.
+.. Click _Next_.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/vbox/ubuntu-vbox-02-create.png')}[Screenshot Boot Splash]
++
+. Set the VM memory size ro _4096 MB_ on the _Memory size_ dialog. This value can be changed later. Then, cloick _Next_.
+
+
+Next you will configure the new VM's virtual hard disk. The size of the virtual hard disk, should be a minimum of 16 GB. While this setting can be changed later, it is a multi-step process not covered by this guide. Therefore it is recommended that you size the virtual hard disk to be large enough for your software development activities. Note: The space on your host system's physical disk will not be allocated until it is used by the VM. Complete the next set of dialogs to configure the virtual hard disk:
+
+. Select _Create a virtual hard disk now_ on the _Hard disk_ dialog. Then, click _Create_ to move to the next dialog.
+. Select _VDI (VirtualBox Disk Image)_ on the _Hard disk file type_ dialog. Then, click _Next_.
+. Select _Dynamically allocated_ on the _Storage on physical hard disk_ dialog. Then, click _Next_.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/vbox/ubuntu-vbox-05-hd4.png')}[Screenshot HD Dynamic]
+. On the _File location and size+ dialog:
+.. Change the _name_ and _location_ if desired.
+.. Set the _size_ to be a minimum of _16 GB_.
+.. Click _Create_.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/vbox/ubuntu-vbox-05-hd2.png')}[Screenshot File Location]
+
+
+At this point the basic VM configuration has been completed, however additional configuration is necessary. Click to select the new VM so that it is highlighted, then click the Settings button. Make the following changes:
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/vbox/ubuntu-vbox-06-settings1.png')}[Screenshot VM Created]
+
+. Select the _General_ group, then click the _Advanced_ tab. Enable copy-and-paste between the host system and the VM by setting _Shared Clipboard_ and _Drag’n’Drop_ to _Bidirectional_.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/vbox/ubuntu-vbox-06-settings2.png')}[Screenshot Settings Advanced]
++
+. By default, the VM will have a single virtual processor. If your system has multiple processors or cores, you can add more. Select the _System_ group, then click the _Processor_ tab. Adjust _Processors_ to the desired value.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/vbox/ubuntu-vbox-06-settings3.png')}[Screenshot Settings Processor]
++
+. In the _Network_ group, under the _Adapter 1_ tab, you can configure the VM’s networking configuration. See _VirtualBox Networking_ below for more information.
+
+Next, configure the VM to use the Red Hat Enterprise Linux Server binary DVD ISO file as a virtual CD/DVD:
+
+. Select the _Storage_ section of the _VM Settings_ dialog.
+. Under _Controller: IDE_, select the CD icon that says _Empty_ next to it.
+. On the right side, under _Attributes_, click the CD icon on the far right. 
+. Select _Choose Virtual Optical Disk File_.
+. Navigate to the Red Hat Enterprise Linux Server binary DVD ISO file that you downloaded earlier.
+. Click _OK_ to close the VM settings dialog.
+
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/vbox/ubuntu-vbox-06-settings4.png')}[Screenshot Settings RHEL DVD]
+
+
+#### Create a shared folder between the host system and the VM (Optional)
+
+You may create a folder that is shared between your host system and the Red Hat Enterprise Linux VM. This makes it easy to share files such as source code between the two systems. The configuration for shared folders can be performed now or anytime later.
+
+Shared folders will only be available on the VM after the _VirtualBox Guest Additions_ software is installed on the VM. Installation of VirtualBox Guest Additions is covered later with the other Red Hat Enterprise Linux post-installation steps.
+
+To add a shared folder:
+
+. Select your _RHEL VM_ in VirtualBox, the click the _Settings_ button.
+. Select the _Shared Folders_ group.
+. Click the folder icon with a _+_ in the upper right corner.
+. In the _Add Share_ dialog:
+.. Enter the path on the host system in the _Folder Path_.
+.. Ehter a name without spaces for the shared folder on the VM.
+. Click _OK_ to close the _VM Settings_ dialog.
+
+
+### Boot the VM and install Red Hat Enterprise Linux
+
+To start the VM and begin installation, start VirtualBox if it isn’t already running, then select your VM and click the Start button. The VM should now boot up from the Red Hat Enterprise Linux Server DVD.
+
+This section provides a brief overview of the steps for installing Red Hat Enterprise Linux. Detailed instructions can be found in the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide].
+
+There are a few key steps to remember during the installation process:
+
+. The _Installation destination_ will be the virtual hard disk you created for the VM.
+. You should configure networking under _Network and host name_ before starting the installation. You will need access to the Internet to complete registration and download additional software. The network can be configured after the system is installed. However, the steps are more straightforward during installation.
+. Select _Server with a GUI_ under _Software Selection_ so the system will boot into the full graphical environment after installation. By default, Red Hat Enterprise Linux Server will not install a graphical desktop.
+. Create your primary user account during installation: After the installation begins, you will be instructed to set a password for the root account and be given the opportunity to create a regular user account. You should create a user before the installation process completes. The regular user will be your primary login for development. The root account should only be used for system administration tasks. If you don't create a user before the installation completes, you will need to reboot and then log in as root to create user accounts.
+
+// BEGIN STEP 2 - KEEP THIS IN SYNC WITH BARE METAL
+### Installation instructions
+
+. Start the system from the bootable disk and select _Install Red Hat Enterprise Linux_.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-01-boot-dvd.png')}[Screenshot Boot Splash]
++
+. Select your preferred language and keyboard layout to use during installation.
+. Under _Localization_ review the settings and make any necessary changes for date and time, language, and keyboard layout. Note: The _Done_ button to return to the _Installation summary_ screen is located in the upper left corner of the screen.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-03-install-options-first.png')}[Screenshot Installation Options]
++
+. Perform the follow steps to make your software selection:
+.. Click _Software selection_.
+.. On the next screen, under _Software selection_, in the _Base environment_ list on the left, select _Server with GUI_.
+.. In the list _Add-ons for selected environment_ on the right, select _Development tools_.
+.. Click the _Done_ button. Note: After returning to the _Installation summary_ screen it will take several seconds to validate your choices.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-04-software-selection.png')}[Screenshot Software Selection]
++
+. Click _Installation destination_ to specify which disk or partition(s) to install the software on. Note: It is important that you understand the choices that you are making in this section to avoid accidental data loss. It is strongly recommended that you read the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html[Installation Destination] section of the the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide]. The installation destination should be at least 16 GB or larger to accommodate the OS, graphical desktop, and development tools.
++
+. Click _Network & host name_ to configure the network. If the system has more than one network adapter, select it from the list on the left. Then click the _On/Off_ button on the right to enable the network adapter. Click _Configure_ to review and/or change the default settings for the network adapter. Optionally, set a _Host name_ for the system. Before leaving this screen, make sure there is at least one network adapter enabled with the switch in the _On_ position. A network connection will be required to register the system and download system updates.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-07-network.png')}[Screenshot Network Configuration]
++
+. Click _KDump_ to disable KDump and free up memory. Click the box next to _Enable kdump_ so that it is no longer checked.  Then click _Done_.
+. Click the _Begin installation_ button when you are ready to start the actual installation.
+. On the next screen, while the installation is running, click _User creation_ to create the user ID you will use to log in for normal work.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-09-user-before.png')}[Screenshot User Creation]
++
+. Click _Root password_ to set the password for the root user. Note: If you choose a password that the system considers to be weak, you will need to click _Done_ twice.
+. After the installation process completes, click the _Reboot_ button.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-12-install-finished.png')}[Screenshot Installation Complete]
+
+
+If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+// END STEP 2 - KEEP THIS IN SYNC WITH BARE METAL
+
+
+## Step2 Vmware Content
+
+*Step Two VMware Content will go here*
+
+## Step3 Baremetal Content
+
+This section provides an overview of post-installation steps that prepare your system for software development. After the system reboots, you will be prompted to accept the license agreement and register the system.
+
+Note: Before registration can proceed, you will be required to agree to the terms and conditions at link:https://www.redhat.com/wapps/ugc/[www.redhat.com/wapps/ugc/] if you haven't already done so. [*FIXME* hopefully this can be deleted.]
+
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-13-firstboot-config.png')}[Screenshot Installation Complete]
+
+. Click _License information_ to go the license acceptance screen.
+.. Click the checkbox to accept the license.
+.. Click _Done_ in the upper left corner to return to the configuration screen.
+. If you didn't configure a network during installation, click _Network and host name_ to configure your network connection.
+. Click to On the _Subscription Management Registration_ screen
+.. if you need to configure an HTTP proxy server, click _Configure Proxy_
+.. Click _Next_ to move the next screen.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-15b-subscription-credentials.png')}[Screenshot Installation Complete]
+. Register your system with Red Hat. Use the same username and password that you created for the Red Hat Customer Portal.  Note: For this step to succeed, you must have configured your network connection.
+.. If you have more than one subscription available, select which subscription to attach this installation to
+.. Click _Done_.
++
+. Click _Finish configuration_ when you are done.
++
+
+. Log in to the system with the username and password you created during installation.
++
+If you didn't create a regular user, you will need to log in as root and create a user. See <<troubleshooting,Troubleshooting and FAQ>>.
++
+If you get a text-based login screen instead of a graphical one, see <<troubleshooting,Troubleshooting and FAQ>>.
++
+. Select your preferred language.
+
+
+### Install the latest updates
+
+In this step, you will download and install the latest updates for your system from Red Hat. In the process, you will verify that your system has a current Red Hat subscription and is able to receive updates.
+
+First, start a _Terminal_ window from the _Application_ menu.  Then, after using `su` to change to the root user ID, use `subscription-manager` to verify that you have access to Red Hat software repositories. 
+
+[.code-block]
+```
+$ su -
+# subscription-manager repos --list-enabled
+```
+
+If you don’t see any enabled repositories, your system might not be registered with Red Hat or might not have a valid subscription. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
+
+Now download and install any available updates by running `yum update`.  If updates are available, `yum` will list them and ask if it is OK to proceed.
+
+`# yum update`
+
+### Enable additional software repositories
+
+In this step you will configure your system to obtain software from the _Optional RPMs_ and _RHSCL_ software repositories. The _Optional RPMs_ repository includes a number of development packages. The RHSCL repository includes the both the RHSCL software collections as well as DTS (the Red Hat Developer Toolset).
+
+[.code-block]
+```
+# subscription-manager repos --enable rhel-server-rhscl-7-rpms
+# subscription-manager repos --enable rhel-7-server-optional-rpms
+```
+
+## Step3 Hyperv Content
+
+*Step Three Hyper-V Content will go here*
+
+## Step3 Virtualbox Content
+
+This section has a number of post-installation steps that complete the installation of Red Hat Enterprise Linux and prepare it for software development. The steps are:
+
+. Accept the license agreements and register the system with the Red Hat Subscription Management..
+. Install the latest software updates and VirtualBox Guest Additions.
+. Add additional software repositories containing development software.
+
+
+### Complete installation and register the system
+
+After installation, during the first boot of the system, you will be asked to accept the license agreement and register the system with Red Hat Subscription Management. Completing these steps are required for your system to download software from Red Hat.
+
+
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-13-firstboot-config.png')}[Screenshot Installation Complete]
+
+. Click _License information_ to go the license acceptance screen.
+.. Click the checkbox to accept the license.
+.. Click _Done_ in the upper left corner to return to the configuration screen.
+. If you didn't configure a network during installation, click _Network and host name_ to configure your network connection.
+. Click to On the _Subscription Management Registration_ screen
+.. if you need to configure an HTTP proxy server, click _Configure Proxy_
+.. Click _Next_ to move the next screen.
++
+[.content-img]
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-15b-subscription-credentials.png')}[Screenshot Installation Complete]
+. Register your system with Red Hat. Use the same username and password that you created for the Red Hat Customer Portal.  Note: For this step to succeed, you must have configured your network connection.
+.. If you have more than one subscription available, select which subscription to attach this installation to
+.. Click _Done_.
++
+. Click _Finish configuration_ when you are done.
++
+// If you are using an evaluation, you must first agree to the terms and conditions at link:https://www.redhat.com/wapps/ugc/[www.redhat.com/wapps/ugc/].
++
+. Log in to the system with the username and password you created during installation.
++
+If you didn't create a regular user, you will need to log in as root and create a user. See <<troubleshooting,Troubleshooting and FAQ>>.
++
+If you get a text-based login screen instead of a graphical one, see <<troubleshooting,Troubleshooting and FAQ>>.
++
+. Select your preferred language.
+
+### Disable lock screen and screen power saving
+
+For security and to save energy, the default configuration of Red Hat Enterpise Linux is to lock the screen and turn the screen off when idle. On a VM, it is best to disable these features since the host system will control screen locking and power saving.
+
+To disable these features, from the desktop _Application_ menu, select the _System Tools_ group, then select _Settings_. Follow these steps in the _Settings_ application.
+
+. Click the _Privacy_ icon to bring up the _Privacy_ dialog.
+. Click on _Screen Lock_ to bring up the _Screen Lock_ dialog.
+. Click on the _On/Off_ switch to the right of _Automatic Screen Lock_.
+. Click the _X_ in the upper right hand corner to dismiss the _Screen Lock_ dialog.
+. Click the _<_ button in the upper left corner of the _Privacy_ dialog to go back to the main _Settings_ screen.
+. Click on the _Power_ icon to open the _Power settings_ dialog.
+. Click the menu button to the right of _Blank screen_. Select _Never_ from the list of choices.
+. Finally, Click the ‘X’ in the upper right hand corner to close the _Settings_ application.
+
+
+### Install the latest updates
+
+In this step, you will download and install the latest updates for your system from Red Hat. In the process, you will verify that your system has a current Red Hat subscription and is able to receive updates.
+
+First, start a _Terminal_ window from the _Application_ menu.  Then, after using `su` to change to the root user ID, use `subscription-manager` to verify that you have access to Red Hat software repositories. 
+
+[.code-block]
+```
+$ su -
+# subscription-manager repos --list-enabled
+```
+
+If you don’t see any enabled repositories, your system might not be registered with Red Hat or might not have a valid subscription. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
+
+Now download and install any available updates by running `yum update`.  If updates are available, `yum` will list them and ask if it is OK to proceed.
+
+`# yum update`
+
+### Enable additional software repositories
+
+In this step you will configure your system to obtain software from the _Optional RPMs_ and _RHSCL_ software repositories. The _Optional RPMs_ repository includes a number of development packages. The RHSCL repository includes the both the RHSCL software collections as well as DTS (the Red Hat Developer Toolset).
+
+[.code-block]
+```
+# subscription-manager repos --enable rhel-server-rhscl-7-rpms
+# subscription-manager repos --enable rhel-7-server-optional-rpms
+```
+
+### Install VirtualBox Guest Additions
+
+VirtualBox Guest Additions provides a number of enhancements including shared folders, better video support and mouse pointer integration. The software is packaged as an ISO file, which will be used on the VM as a virtual CD. The VirtualBox desktop will load the virtual CD when you select _Insert Guest Additions CD image_ from the _Devices_ menu of the VM window. You should do this step after when Red Hat Enterprise Linux is running, after logging in, with the full graphical desktop running. The graphical desktop will prompt you to automatically run the software on the CD image.
+
+Once the installation is complete reboot the VM.  To do this using the command line:
+
+`# reboot`
+
+
+### VirtualBox Networking
+
+The default VirtualBox network configuration is for the VM to share the host system’s network connection(s) and IP address using network address translation (NAT). This is the easiest to manage and will be fine for many uses. Using NAT, the VM will be able to access resources on your network or the Internet. However services, such as a web server, running inside the VM won’t be directly accessible from outside of the VM.
+
+You can make specific services on the VM accessible using port forwarding. For example you can configure port forwarding so that port 8080 on your host system maps to port 80 on the VM.
+
+Alternatively, you can attach the VM to directly network by sharing the network adapter from the host system as a bridged network adapter. In this configuration, the VM gets its own IP address, usually using your network’s DHCP server. The VM appears on the network the same way a physical computer would with its own hardware MAC address. The host’s network adapter is shared by a device driver that is installed by VirtualBox. The VM’s virtual network adapter can only be bridged to one physical network adapter at a time. If your system has more than one network adapter you need to choose which one to attach to. If your system switches between wired and wireless connections, you will need to switch bridged adapters for the VM.
+
+Networking, both physical and virtual, is a large topic beyond the scope of this guide. For more information see link:https://www.virtualbox.org/manual/ch06.html[Virtual Networking] in the link:https://www.virtualbox.org/manual/[VirtualBox User Manual].
+
+// End of VirtualBOX tab
+
+## Step3 Vmware Content
+
+*Step Three VMware Content will go here*
+
+## Step4 Content
+
+In this step you will select your programming language and then set up and run a simple “Hello, World” application.  You have a choice for traditional development or do a docker pull for building in containers.
+
+## CPP Tab
+
+[.large-17.columns.recommended]
+*GCC via Red Hat Developer Toolset on RHEL 7* [red]_Recommended_ +
+Developed by the GNU project as the free compiler of the GNU system, it includes front ends for C, C++, and Fortran.  Also includes Eclipse, GDB, SystemTap, Oprofile, Valgrind and much more.
+[.large-7.columns.tc-button]
+link:#{site.base_url}/products/rhel/get-started-rhel7-cpp/[Get Started]
+
+## Java Tab
+
+[.large-17.columns.recommended]
+*Java on RHEL 7 with OpenJDK 8* +
+OpenJDK (Open Java Development Kit) is a free and open source implementation of the Java Platform, Standard Edition (Java SE). 
+[.large-7.columns.tc-button]
+link:#{site.base_url}/products/rhel/get-started-rhel7-java/[Get Started]
+
+
+## Nodejs Tab
+
+[.large-17.columns.recommended]
+*Node.js 0.10 update for RHEL 7 (yearly updates)* [red]_Recommended_ +
+Node.js® is an event-driven I/O server-side JavaScript runtime that is lightweight and efficient.
+[.large-7.columns.tc-button]
+link:#{site.base_url}/products/softwarecollections/get-started-rhel6-nodejs/[Get Started]
+
+[.large-17.columns]
+*Node.js 0.10 docker image for RHEL 7* +
+This is the same version as above, but packaged in docker image format.
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/rhel/get-started-dcr7-nodejs/[Get Started]
+
+## Perl Tab
+
+[.large-17.columns.recommended]
+*Perl 5.20 update for  RHEL 7* [red]_Recommended_ +
+Perl 5 is a highly capable, feature-rich programming language with over 27 years of development, and available on over 100 platforms.
+[.large-7.columns.tc-button]
+link:#{site.base_url}/products/softwarecollections/get-started-rhel7-perl/[Get Started]
+
+[.large-17.columns]
+*Perl 5.16 default on RHEL 7* +
+Supported for the entire life of RHEL 7.
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/rhel/get-started-rhel7-perl/[Get Started]
+
+[.large-17.columns]
+*Perl 5.20 docker image for RHEL 7* (docker pull rhscl/perl-520-rhel7) +
+This is the same version as above, but packaged in docker image format.
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/rhel/get-started-rhel7-perl/[Get Started]
+
+## PHP Tab
+
+[.large-17.columns.recommended]
+*PHP 5.4 default on RHEL 7* [red]_Recommended_ +
+PHP is a popular server-side HTML embedded scripting language that is especially suited to web development, and the foundation for WordPress and Drupal.
+[.large-7.columns.tc-button]
+link:#{site.base_url}/products/rhel/get-started-rhel7-php/[Get Started]
+
+[.large-17.columns]
+*PHP 5.6 on RHEL 7* +
+Updated yearly to stay current with the upstream.
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/softwarecollections/get-started-rhel7-php/[Get Started]
+
+[.large-17.columns]
+*PHP 5.6 docker image for RHEL 7* +
+This is the same version as above, but packaged in docker image format.
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/rhel/get-started-dcr7-php/[Get Started]
+
+## Python Tab
+
+[.large-17.columns.recommended]
+*Python 2.7 default on RHEL 7* [red]_Recommended_ +
+Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its built-in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development and integration.
+[.large-7.columns.tc-button]
+link:#{site.base_url}/products/rhel/get-started-rhel7-python/[Get Started]
+
+[.large-17.columns]
+*Python 3.4 on RHEL 7* +
+Updated yearly to stay current with the upstream.
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/softwarecollections/get-started-rhel7-python/[Get Started]
+
+[.large-17.columns]
+*Python 3.4 docker image for RHEL 7* +
+This is the same version as above, but packaged in docker image format.
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/rhel/get-started-dcr7-python/[Get Started]
+
+## Ruby Tab
+
+[.large-17.columns.recommended]
+*Ruby 2.2 on RHEL 7* [red]_Recommended_ +
+Ruby is a dynamic, open source scripting language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write. Updated yearly.
+[.large-7.columns.tc-button]
+link:#{site.base_url}/products/softwarecollections/get-started-rhel7-ruby/[Get Started]
+
+[.large-17.columns]
+*Ruby 2.0 default on RHEL 7* +
+Supported for the entire life of RHEL 7
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/rhel/get-started-rhel7-ruby/[Get Started]
+
+[.large-17.columns]
+*Ruby 2.2 docker image for RHEL 7* +
+Same Ruby 2.2 as above in docker format. Get Ruby-on-Rails [docker pull rhscl/ror-41-rhel7)].
+[.large-7.columns.tc-link]
+link:#{site.base_url}/products/rhel/get-started-dcr7-ruby/[Get Started]
+
+## Tabs Footnote
+
+In addition to the above, see the entire list of software collections including databases (MongoDB, PostgreSQL, etc), web servers (Apache httpd, Nginx, etc.), and more, view the link:https://access.redhat.com/sites/default/files/pages/attachments/red-hat-software-collections-technology-brief-new.pdf[Red Hat Software Collections Technology Brief].
+
+## More Resources
+
+### Become a Red Hat developer: developers.redhat.com
+
+Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:http://developers.redhat.com/[developers.redhat.com].
+
+*Follow the Red Hat Developer Blog* +
+link:http://developerblog.redhat.com/[]
+
+## Faq section title
+[[troubleshooting]]Troubleshooting and FAQ
+
+## Faq section
+. My system is unable to download updates from Red Hat.
++
+Your system must be registered with Red Hat using `subscription-manager register`. You need to have a current Red Hat subscription.
++
+. The RHSCL repository is not available or is not found on my system.
++
+The name of the repository depends on whether you have a server, workstation, or desktop version of Red Hat Enterprise Linux installed.
++
+Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. For developers, Red Hat Enterprise Linux Developer Suite includes both RHSCL and DTS.
++
+See link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
++
+. How do I get newer versions of languages like Perl, PHP, Python, and Ruby in Red Hat Enterprise Linux?
++
+How can I get Python 3 on Red Hat Enterprise Linux
++
+link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Red Hat Software Collections] delivers the latest, stable versions of dynamic languages, open source databases, and web development tools that can be deployed alongside those included in Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
+. How can I get Eclipse installed on Red Hat Enterprise Linux?
++
+How can I get a newer C/C++ compiler for Red Hat Enterprise Linux 7?
++
+Where can I get an IDE for C/C++ development on Red Hat Enterprise Linux 7?
++
+Red Hat Developer Toolset provides the latest, stable, open source C and {cpp} compilers and complementary development tools including Eclipse. DTS enables developers to compile applications once and deploy across multiple versions of Red Hat Enterprise Linux. The Red Hat Developer Toolset uses Red Hat Software Collections to install a parallel set of packages in `/opt/rh` where they will not override the system packages that come with Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
++
+See link:http://developers.redhat.com/products/developertoolset/get-started-rhel7-cpp/[Get started developing with C++ and Eclipse from the Red Hat Developer Toolset]
++
+. I've got a text-based login screen, how do I get a graphical one?
++
+During installation of Red Hat Enterprise Linux Server, selecting the _Server with a GUI_ software option will install a full graphical desktop and configure it to start at boot time. You can install the graphical desktop with `yum install` after registering your system with Red Hat. Log in to the system as the `root` user, then use the following commands:
++
+[.code-block]
+```
+# yum groupinstall 'Server with GUI'
+# yum install @gnome-desktop @x11 @internet-browser
+```
+When complete, type `systemctl reboot` to reboot your system.  When the system restarts, you should see a graphical login screen.
+
+. How do I install the C/{cpp} compiler?
++
+During installation, selecting the _Development tools_ software option installs the C/{cpp} compiler GCC/pass:[G++] and other related development tools. You can install these tools with `yum install` after registering your system with Red Hat. Log in to the system as the `root` user then use the following command:
++
+[.code-block]
+```
+# yum install @development
+```
+. I didn't configure a network connection during installation, how do I this on a running system?
++
+Registration fails with the message that _subscription.rhn.redhat.com is unreachable_, how do I resolve this?
++
+If you did not configure a network connection during installation or the configuration was unsuccessful, see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/index.html[Red Hat Enterprise Linux Networking Guide] for information on configuring networking using either graphical or command-line tools.
+
+. How do I register my system after installation?
++
+Use Red Hat Subscription Manager, which can be started from the system menu as a graphical tool, or from the command line using the following command:
++
+`# subscription-manager register --auto-attach`
++
+For more information see link:https://access.redhat.com/solutions/253273[How to register and subscribe a system to the Red Hat Customer Portal using Red Hat Subscription Manager].

@@ -31,12 +31,12 @@ Then(/^I should see "([^"]*)" download latest links$/) do |downloads|
 end
 
 Then(/^a list of products available for download$/) do
-  expect(@page.downloads).to have_product_downloads :count => @product_names.size
-  @page.downloads.available_downloads.should =~ @product_names
+  expect(@page.downloads).to have_product_downloads :count => @available_downloads[0].size
+  @page.downloads.available_downloads.should =~ @available_downloads[1]
 end
 
 Then(/^the 'Download Latest' links for available products$/) do
-  expect(@page.downloads).to have_download_latest_links :count => @product_names.size
+  expect(@page.downloads).to have_download_latest_links :count => @available_downloads[0].size
 end
 
 Then(/^the following 'Other developer resources' links should be displayed:$/) do |table|
