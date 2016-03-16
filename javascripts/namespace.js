@@ -19,9 +19,6 @@ app.downloadManagerBaseUrl = "#{site.download_manager_base_url}";
 */
 app.cache = {};
 
-// tabzilla info
-app.tabzilla = {};
-app.tabzilla.middlewareLogo = "#{cdn(site.base_url + '/images/branding/RHJB_Middleware_Logotype.png')}";
 
 /*
   JS templates
@@ -97,7 +94,7 @@ app.mktg_ops.elqFormName = "#{site.elq_form_name || %Q{jboss-org-integration-san
 app.ssoConfig = {};
 app.ssoConfig.account_url = '#{site.keycloak_account_url}';
 app.ssoConfig.auth_url = '#{site.keycloak_auth_url}';
-app.ssoConfig.confirmation = '#{site.base_url}/confirmation'; 
+app.ssoConfig.confirmation = '#{site.base_url}/confirmation';
 
 app.projects = {};
 app.projects.defaultImage = "#{cdn( site.base_url + '/images/design/projects/default_200x150.png')}";
