@@ -8,10 +8,10 @@ type: Get Started
 
 #get-started-instructions.rhel-custom.tthw-steps(data-spy="scroll" data-target="#steps-scroll")
   .row
-    .large-17.columns#get-started 
+    .large-17.columns#get-started
       h2 Get Started
 
-  - if page.product.rhel_install_paths  
+  - if page.product.rhel_install_paths
     .large-24.columns.multipath-tabs-sm
       ul.tabs.nav-tabs(data-tab role="tablist")
         - page.product.rhel_install_paths.each do |rpath|
@@ -22,7 +22,7 @@ type: Get Started
     .large-24#PrerequisitesSection.gs-prerequisites
       - if page._prerequisites_section_title
         h4 #{page._prerequisites_section_title}
-      = page._prerequisites_section  
+      = page._prerequisites_section
   .row(data-equalizer)
     .large-6.columns.step-cards.pending-download-box(data-equalizer-watch)
       a.card(href="#Step1")
@@ -79,13 +79,13 @@ type: Get Started
         .row
           .large-24.columns
             - if page._step4_duration
-              i.fa.fa-clock-o  #{page._step4_duration}              
+              i.fa.fa-clock-o  #{page._step4_duration}
   .collapsable
     .pending-download
       input#stepOne(type='checkbox' checked)
       label(for='stepOne')
         .large-24.step-header#Step1
-          h4 
+          h4
             .step-num 1.
             - if !page._step1_title
               h4 Set up your Dev Environment
@@ -103,7 +103,7 @@ type: Get Started
     input#stepTwo(type='checkbox' checked)
     label(for='stepTwo')
       .large-24.step-header#Step2
-        h4 
+        h4
           .step-num 2.
           - if !page._step2_title
             h4 Install, Configure, and Verify
@@ -130,7 +130,7 @@ type: Get Started
     input#stepThree(type='checkbox' checked)
     label(for='stepThree')
       .large-24.step-header#Step3
-        h4 
+        h4
           .step-num 3.
           - if !page._step3_title
             h4 Build your first #{page.product.abbreviated_name} application
@@ -156,7 +156,7 @@ type: Get Started
     input#stepFour(type='checkbox' checked)
     label(for='stepFour')
       .large-24.step-header#Step4
-        h4 
+        h4
           .step-num 4.
           - if !page._step4_title
             h4 Step Four Cool Title
