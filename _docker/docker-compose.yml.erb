@@ -19,9 +19,6 @@ services:
       - RHD_BS_BROWSER
       - RHD_BS_USERNAME
       - RHD_BS_AUTHKEY
-    networks:
-      - front
-      - back
 
   awestruct_preview_no_reload:
     build: ./awestruct
@@ -58,9 +55,7 @@ services:
       - DRUPAL_HOST_PORT=<%=ENV['DRUPAL_HOST_PORT']%>
       - DRUPAL_HOST_IP
       - HOST_TO_TEST
-    networks:
-      - front
-      - back
+
   awestruct:
     build: ./awestruct
     command:
@@ -103,9 +98,6 @@ services:
       <% if ENV['AWE_PROC_COUNT'].to_s != "" %>
       - AWE_PROC_COUNT
       <% end %>
-    networks:
-      - front
-      - back
 
   drupal:
     build: ./drupal
@@ -127,9 +119,7 @@ services:
       # TODO: We could probably take these out and move them to secrets.yml.gpg if they aren't there already
       - DB_USER=drupal
       - DB_PASSWORD=drupal
-    networks:
-      - front
-      - back
+
   drupalpgsql:
     image: postgres:9.4
     environment:
@@ -139,8 +129,7 @@ services:
       - "<%= ENV['DRUPALPGSQL_HOST_PORT'] %>:5432"
     expose:
       - "5432"
-    networks:
-      - back
+
   mysql:
     build: mysql
     volumes:
@@ -154,8 +143,7 @@ services:
       - "<%= ENV['MYSQL_HOST_PORT'] %>:3306"
     expose:
       - "3306"
-    networks:
-      - back
+
   searchisko:
     build: ./searchisko
     ports:
@@ -166,9 +154,4 @@ services:
       - DB_PASSWORD=searchisko
     links:
      - mysql
-    networks:
-      - back
-networks:
-  front:
-  back:
   
