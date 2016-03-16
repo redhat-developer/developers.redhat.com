@@ -14,13 +14,13 @@ description: Discover the events and webinars featuring talks about Red Hat prod
       .slider#slider.slider-side-by-side(data-timeout="3000", data-shuffle="true")
         .swipe-wrap
           .slide
+            a(href="#{site.base_url}/events/msbuild/2016/")
+              img.mobile(src=cdn("#{site.base_url}/images/slider/RHDev_eventshero_mobile_480x500_build2016.png") alt="Microsoft Build 2016")
+              img.desktop(src=cdn("#{site.base_url}/images/slider/RHDev_eventshero_desktop_1175x400_build2016.png") alt="Microsoft Build 2016")
+          .slide
             a(href="http://www.devnation.org/")
               img.mobile(src=cdn("#{site.base_url}/images/slider/RHDev_eventshero_devnation_mobile_01042016.png") alt="An Open Source Conference, By And For Developers Across The Globe")
-              img.desktop(src=cdn("#{site.base_url}/images/slider/RHDev_eventshero_devnation_desktop_01042016.png") alt="An Open Source Conference, By And For Developers Across The Globe")
-          .slide
-            a(href="#{site.base_url}/events/judcon/2016/brno/")
-              img.mobile(src=cdn("#{site.base_url}/images/slider/RHDev_eventshero_mobile2.png") alt="JUDCon is coming to town!")
-              img.desktop(src=cdn("#{site.base_url}/images/slider/RHDev_eventshero_desktop_h250px.png") alt="JUDCon is coming to town!")      
+              img.desktop(src=cdn("#{site.base_url}/images/slider/RHDev_eventshero_devnation_desktop_01042016.png") alt="An Open Source Conference, By And For Developers Across The Globe")      
       .slider-pager
       .slider-controls
         a.slider-prev(data-direction="prev")
