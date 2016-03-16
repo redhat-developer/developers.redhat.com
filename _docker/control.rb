@@ -90,9 +90,6 @@ def block_wait_drupal_started
   drupal_ip = ENV['DRUPAL_HOST_IP'] || 'docker'
   drupal_port = drupal_port80_info['HostPort']
 
-  # Add this to the ENV so we can pass it to the awestruct build
-  ENV['DRUPAL_HOST_IP'] = drupal_ip
-
   # Add the drupal cdn prefix
   ENV['cdn_prefix'] = 'sites/default/files'
 
@@ -102,6 +99,9 @@ def block_wait_drupal_started
     up = is_port_open?(drupal_ip, drupal_port)
     sleep(5)
   end
+
+  # Add this to the ENV so we can pass it to the awestruct build
+  ENV['DRUPAL_HOST_IP'] = ENV['HOSTNAME'] # somewhat of a hack to make this work on Jenkins
 end
 
 private def project_name
