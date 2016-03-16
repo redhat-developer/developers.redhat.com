@@ -346,13 +346,12 @@ If merge conflicts exist, you will need to do the fiollowing steps to fix the co
 
 1. If you don't have this branch already fetched on your laptop, run:
 
-        git fetch upstream <branch name>
-        git checkout upstream/<branch name>
-        git checkout -b <branch name>
+        git fetch upstream
+        git checkout -b <branch name> upstream/<branch name>
 
 2. Now merge the master branch:
 
-        git pull upstream master
+        git merge upstream master
       
 3. Fix any merge conflicts
 4. Push the branch to your fork.
