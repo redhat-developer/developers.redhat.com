@@ -64,7 +64,6 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "get-started";
 @import "picker";
 @import "forms";
-@import "tabzilla";
 @import "get-involved";
 @import "developer-materials";
 @import "theme-light";
@@ -95,6 +94,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "topics";
 @import "about";
 @import "articles";
+@import "msbuild";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
