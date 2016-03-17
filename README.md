@@ -79,7 +79,9 @@ cd developers.redhat.com
 git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
 ```
 ### Set up
-Download the [Searchisko data dump](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko_2.sql.zip) and copy to `_docker/searchisko/overlay/searchisko_2.sql.zip`
+Download the [MySQL data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_mysql_data.tar.gz) and copy to `_docker/mysql/searchisko_mysql_data.tar.gz`.
+
+Download the [ElasticSearch data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_es_data.tar.gz) and copy to `_docker/searchisko/searchisko_es_data.tar.gz`.
 
 Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Docker-machine, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `docker-machine ip default`
 
