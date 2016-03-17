@@ -351,7 +351,7 @@ If merge conflicts exist, you will need to do the fiollowing steps to fix the co
 
 2. Now merge the master branch:
 
-        git merge upstream master
+        git merge upstream/master
       
 3. Fix any merge conflicts
 4. Push the branch to your fork.
