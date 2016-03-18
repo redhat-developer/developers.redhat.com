@@ -13,75 +13,60 @@ layout: base
 - page.og_determiner = 'auto'
 - page.og_type = 'article'
 
-.row.grow.content
-  .large-20.columns
-    ul.breadcrumbs itemscope="" itemtype="http://schema.org/BreadcrumbList"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/resources/" Resources
-        meta itemprop="position" content="2"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}/articles/" Articles
-        meta itemprop="position" content="3"
-      li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-        a itemprop="item" href="#{site.base_url}#{page.output_path}" #{page.title}
-        meta itemprop="position" content="4"
-
-    h2.large-title#developer-materials= page.title
-
-    .collapse.large-24
-      .gsi-meta
-        ul
-          li: strong By #{page.author}
-
-          /   li
-          /     strong
-          /       ' Author:
-          /       = partial "contributor.html.slim", {:contributor => page.metadata[:author], :basic => true}
-          / - if page.metadata[:contributors] && !page.metadata[:contributors].empty?
-          /   li: strong
-          /     ' Contributors:
-          /     = page.metadata[:contributors].collect { |c| partial("contributor.html.slim", {:contributor => c, :basic => true, :itemprop => 'contributor'})}.join(", ")
-          / - unless page.metadata[:published].nil?
-          /   - page.published_date = page.metadata[:published].iso8601
-          /   li
-          /     strong
-          /       ' Published:
-          /       span itemprop="dateModified" = page.metadata[:published].strftime('%b %d, %Y')
-          / - if page.metadata[:level] && !page.metadata[:level].empty?
-          /   li: strong
-          /     | Level:
-          /       #{page.metadata[:level]}
-          / - if page.metadata[:technologies] && !page.metadata[:technologies].empty?
-          /   li: strong
-          /     | Technologies:
-          /     = page.metadata[:technologies].collect { |t| %Q{<span itemprop="about">#{t}</span>}}.join(", ")
-          / - if page.metadata[:target_product] && !page.metadata[:target_product].empty?
-          /   li: strong
-          /     | Target Product:
-          /     span itemprop="about" =(page.metadata[:target_product].is_a?(String) ? page.metadata[:target_product] : page.metadata[:target_product].join(", "))
-  .large-4.columns
-    = partial("share.html.slim", :url => "#{site.base_url}#{page.output_path}", :title => "#{page.title}")
+.row.content#rhd-article  
+  .large-19.columns
+    h2#developer-materials= page.title
+    .gsi-meta.article-info
+      ul
+        li: strong By #{page.author}
+        .right
+          li: small Published: #{page.published}
+          / li: small Last Updated: #{page.last_updated}
+        /   li
+        /     strong
+        /       ' Author:
+        /       = partial "contributor.html.slim", {:contributor => page.metadata[:author], :basic => true}
+        / - if page.metadata[:contributors] && !page.metadata[:contributors].empty?
+        /   li: strong
+        /     ' Contributors:
+        /     = page.metadata[:contributors].collect { |c| partial("contributor.html.slim", {:contributor => c, :basic => true, :itemprop => 'contributor'})}.join(", ")
+        / - unless page.metadata[:published].nil?
+        /   - page.published_date = page.metadata[:published].iso8601
+        /   li
+        /     strong
+        /       ' Published:
+        /       span itemprop="dateModified" = page.metadata[:published].strftime('%b %d, %Y')
+        / - if page.metadata[:level] && !page.metadata[:level].empty?
+        /   li: strong
+        /     | Level:
+        /       #{page.metadata[:level]}
+        / - if page.metadata[:technologies] && !page.metadata[:technologies].empty?
+        /   li: strong
+        /     | Technologies:
+        /     = page.metadata[:technologies].collect { |t| %Q{<span itemprop="about">#{t}</span>}}.join(", ")
+        / - if page.metadata[:target_product] && !page.metadata[:target_product].empty?
+        /   li: strong
+        /     | Target Product:
+        /     span itemprop="about" =(page.metadata[:target_product].is_a?(String) ? page.metadata[:target_product] : page.metadata[:target_product].join(", "))
+  .large-5.columns
+    = partial("share.html.slim", :url => "#{site.base_url}#{page.output_path}", :title => "#{page.title}", :className => 'visible-by-default')
     strong Tags:
-    ul.inline-list
+    ul.inline-list.article-tags
       - page.tags.each do |tag|
         li #{tag}
 
-  .row.content
-    .columns.large-24
-      .columns.medium-4
-        ul.toc.gsi-nav
-          li TOC GOES HERE!
-          = page.sections
-          / - if page.metadata[:toc]
-          /   - for link in page.metadata[:toc]
-          /     li: a href="##{link[:id]}" #{link[:text]}
-        br
-      .columns.medium-16.gsi.fetch-toc
-        = page.content
-
-
+  .clearfix
+  .medium-4.columns
+    ul.toc.gsi-nav
+      li TOC GOES HERE!
+      = page.sections
+      / - if page.metadata[:toc]
+      /   - for link in page.metadata[:toc]
+      /     li: a href="##{link[:id]}" #{link[:text]}
+    br
+  .medium-15.columns.gsi.fetch-toc.article-content
+    = page.content
 
 = javascripts("developer-material", true) do
   script src="#{site.base_url}/javascripts/vendor/highlight.min.js"
   script src="#{site.base_url}/javascripts/highlight-init.js"
-
