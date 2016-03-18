@@ -659,7 +659,7 @@ ul.product-langs {
       font-family: 'FontAwesome';
       font-size: 1.8em;
       color: $white;
-      content: "\f106";
+      content: "\f107";
     }
   }
 
@@ -682,7 +682,7 @@ ul.product-langs {
         font-family: 'FontAwesome';
         font-size: 1.8em;
         color: $white;
-        content: "\f107";
+        content: "\f106";
       }
     }
   }
@@ -715,11 +715,11 @@ ul.product-langs {
     margin-right: 5px;
   }
   .collapse-icon:before {
-    content: "\f107";
+    content: "\f106";
   }
   #stepOne:checked ~ label{
     .collapse-icon:before {
-      content: "\f106";
+      content: "\f107";
     }
   }
   #stepOne:checked ~ #expandStepOne {
@@ -755,8 +755,14 @@ ul.product-langs {
 }
 
 #get-started-instructions.rhel-custom {
+  img {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    max-width: 540px;
+  }
   .card {
     padding: 22px 15px;
+    min-height: 166px;
     .step-num {
       font-size: 35px;
     }
