@@ -79,7 +79,9 @@ cd developers.redhat.com
 git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
 ```
 ### Set up
-Download the [Searchisko data dump](https://github.com/redhat-developer/dcp-dumps/raw/master/searchisko_2.sql.zip) and copy to `_docker/searchisko/overlay/searchisko_2.sql.zip`
+Download the [MySQL data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_mysql_data.tar.gz) and copy to `_docker/mysql/searchisko_mysql_data.tar.gz`.
+
+Download the [ElasticSearch data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_es_data.tar.gz) and copy to `_docker/searchisko/searchisko_es_data.tar.gz`.
 
 Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Docker-machine, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `docker-machine ip default`
 
@@ -338,29 +340,27 @@ If you add a new recipient to the file, ensure you update the list above.
 ## Updating the Staging Integration Branch
 developers.stage.redhat.com hosts a build of the site that uses staging instances of Download Manager and KeyCloak. After the migration to DCP 2, it will also use the staging instance of the DCP. The purpose of this environment is to test new versions of the back-end services before they go into production. 
 
-This build is also used for long-term site changes that need to be tested by the wider team, prior to going live into production. Currently it is being used for the CDK 2 Beta site changes. These changes live on the `cdk_beta` branch which needs to be regularly updated with new commits in the `master` branch. 
+This build is also used for long-term site changes that need to be tested by the wider team, prior to going live into production.
 
-The simplest way to update the branch, is by raising a PR from 'master' onto `cdk_beta` branch. This can simply be merged, if there are no merge conflicts. Use [this link](https://github.com/redhat-developer/developers.redhat.com/compare/cdk_beta...master?expand=1) to raise the PR. 
+The simplest way to update the branch, is by raising a PR from 'master' onto the new long running branch. This can simply be merged, if there are no merge conflicts. 
 
 If merge conflicts exist, you will need to do the fiollowing steps to fix the conflicts:
 
 1. If you don't have this branch already fetched on your laptop, run:
 
-        git fetch upstream cdk_beta
-        git checkout upstream/cdk_beta
-        git checkout -b cdk_beta
+        git fetch upstream
+        git checkout -b <branch name> upstream/<branch name>
 
-2. Now rebase the branch:
+2. Now merge the master branch:
 
-        git pull --rebase upstream master
+        git merge upstream/master
       
 3. Fix any merge conflicts
 4. Push the branch to your fork.
 
-        git push <your fork alias> cdk_beta
+        git push <your fork alias> <branch name>
       
-5. Raise a PR from your `cdk_beta` branch onto the `cdk_beta` branch in upstream. Note that the PR tests will fail, as they don't expect a PR to be raised on a branch other than 'master'.
-      
+5. Raise a PR from your branch onto the long running branch in upstream. Note that the PR tests will fail, as they don't expect a PR to be raised on a branch other than 'master'.
 
 ## <a name="CommonIssues"></a>Common issues
 This area documents fixes to common issues:
