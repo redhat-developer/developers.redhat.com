@@ -96,7 +96,7 @@ div(ng-app="search")
       .row
         .large-24.columns
           form.search-bar(role="search" ng-submit="updateSearch()")
-            input.user-success(type="text" placeholder="Filter by keyword" id="search_list_text" ng-model="params.query")
+            input.user-success.user-search(required type="text" placeholder="Filter by keyword" id="search_list_text" ng-model="params.query")
         .large-18.columns.searchpage-results-container
           .sorting
             h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{params.query}}"

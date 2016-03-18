@@ -94,14 +94,13 @@ Then(/^I should see page "([^"]*)" of the results$/) do |pageNum|
 end
 
 Given(/^I am on page "([^"]*)" of the results$/) do |pageNum|
-  # TODO: None of these "clicks" work..
   @page.search.send("pagination_#{pageNum}").click
   @page.search.wait_until_search_results_container_visible
   expect(@page.search.current_link['data-page']).to eq("#{pageNum}")
 end
 
 Given(/^the search box is empty$/) do
-  expect(@page.search.search_form.value).to be ''
+  expect(@page.search.search_form.value).to eq('')
 end
 
 When(/^I click on the search button$/) do
@@ -109,7 +108,6 @@ When(/^I click on the search button$/) do
 end
 
 Then(/^nothing will happen and no search will be initiated$/) do
-  # TODO: HOW do I test this?
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(true)
+  # TODO: HOW do I test that nothing happened?
 end
-

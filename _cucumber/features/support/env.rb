@@ -41,18 +41,8 @@ Capybara.configure do |config|
   config.app_host = host_to_test
   config.run_server = false
   config.app = 'RHD'
-<<<<<<< HEAD
-  if host_to_test.eql?('http://0.0.0.0:4242/') || host_to_test.include?('docker')
-    config.default_max_wait_time = 60
-  else
-    config.default_max_wait_time = 6
-  end
-
-  config.save_and_open_page_path = SCREENSHOT_DIRECTORY
-=======
   config.default_max_wait_time = 6
   config.save_and_open_page_path = '_cucumber/screenshots'
->>>>>>> upstream/master
   Capybara::Screenshot.prune_strategy = :keep_last_run
 
   puts " . . . Running features against #{host_to_test}  . . . "

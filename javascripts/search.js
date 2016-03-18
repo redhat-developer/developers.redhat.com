@@ -103,6 +103,7 @@ function searchCtrlFunc($scope, searchService) {
   */
 
   $scope.goToPage = function(page) {
+
     switch(page) {
       case 'first':
         page = 1;
@@ -117,9 +118,10 @@ function searchCtrlFunc($scope, searchService) {
         page = Math.ceil($scope.totalCount / $scope.params.size);
         break;
       default:
-        return; // stop it
         break;
     }
+
+    if(typeof page !== 'number') return;
 
     $scope.params.from = (page * $scope.params.size) - $scope.params.size;
     $scope.paginate.currentPage = page;

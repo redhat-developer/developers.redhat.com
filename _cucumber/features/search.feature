@@ -16,14 +16,14 @@ Feature: Search Page
     | Resources    |
     | Downloads    |
 
-  @javascript
+  @javascript @wip
   Scenario: Search field is hidden within the site header on search page.
     Given I am on the Home page
     When I search for "Containers"
     Then the search results page is displayed
     And the search field should not be displayed within the site header
 
-  @javascript
+  @javascript @wip
   Scenario: I search for developer related content - I will see all entries ordered by Most recent.
     Given I am on the Home page
     When I search for "EAP"
@@ -37,14 +37,14 @@ Feature: Search Page
     Then I should see "5" results containing "Fuse"
     And the results will be ordered by title
 
-  @javascript
+  @javascript @wip
   Scenario: Search results should be listed with tags
     Given I am on the Home page
     When I search for "Containers"
     Then I should see "5" results containing "Container"
     # And tags related to "Containers" # Skipping - not all items are tagged with "containers"
 
-  @javascript
+  @javascript @wip
   Scenario: I search for something should return *no* entries, such as "bfehwfbhbn"
     Given I am on the Home page
     When I search for "bfehwfbhbn"
@@ -57,7 +57,7 @@ Feature: Search Page
     When I search for "burlington"
     Then I should not see pagination with page numbers
 
-  @javascript
+  @javascript @wip
   Scenario: I search for something that returns two pages of results only should display pagination with two pages
     Given I am on the Home page
     When I search for "hamilton"
@@ -69,7 +69,7 @@ Feature: Search Page
       | First    |
       | Previous |
 
-  @javascript
+  @javascript @wip
   Scenario: I search for something that returns ten (or more) pages of results should display pagination with ellipsis
     Given I am on the Home page
     When I search for "code"
@@ -94,7 +94,7 @@ Feature: Search Page
   #     | First    |
   #     | Previous |
 
-  @javascript
+  @javascript @wip
   Scenario: When I search for something displaying more than one page of results - clicking on the ‘Next’ link takes me to the next set of results.
     Given I have previously searched for "code"
     When I click on the "Next" link
@@ -105,7 +105,7 @@ Feature: Search Page
       | Next     |
       | Last     |
 
-  @javascript
+  @javascript @wip
   Scenario: When I previously clicked on the 'Next' link - clicking on the ‘Previous’ link takes back to the previous set of results.
     Given I have previously searched for "code"
     And I am on page "2" of the results
@@ -120,19 +120,21 @@ Feature: Search Page
 
   @javascript @wip
   Scenario: Search box is displayed within the search page
-    Given I am on the Search page
+    Given I have previously searched for "code"
     When I search for "Containers"
-    Then I should see "10" results containing "Containers"
+    Then I should see "10" results containing "container"
     And the results will be ordered by most recent first
 
+  @javascript @wip
   Scenario: Clicking on the Search button in the Nav bar should not do anything when no search term is entered.
     Given I am on the Home page
     And the search box is empty
     When I click on the search button
     Then nothing will happen and no search will be initiated
 
+  @javascript @wip
   Scenario: Clicking on the Search button on the search page should not do anything when no search term is entered.
-    Given I am on the Search page
+    Given I have previously searched for "code"
     And the search box is empty
     When I click on the search button
     Then nothing will happen and no search will be initiated

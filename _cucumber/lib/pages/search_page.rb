@@ -6,7 +6,7 @@ class SearchPage < BasePage
   element :search_form, '#search_list_text'
   elements :search_results_container, '.search-results-loaded'
   elements :search_results, '.result'
-  elements :search_button, '#search-button'
+  element :search_button, '#search-button'
   elements :timestamps, '[data-updated]'
   elements :tags, '.tags-list'
   element :results_title, '.results-title'
