@@ -4,7 +4,7 @@
 }
 .homepage-main {
   color: $white;
-  background-image: cdn('../images/design/RHDev_homehero_desktop_javaeebook.png');
+  background-image: cdn('../images/design/RHDev_homehero_desktop_javaeebook.jpg');
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -89,9 +89,13 @@
   padding: 0 12px;
   border-right: 1px solid $dark-grey;
   color:white;
+  img{
+    &:hover {
+      opacity: 0.7;
+    }
+  }
   &:hover {
     color:white;
-    background:lighten(black, 10%);
   }
   &:last-child {
     border-right:0;

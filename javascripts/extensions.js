@@ -238,6 +238,19 @@ app.utils.diplayPagination = function(currentPage, totalPages, pagesToShow) {
   return display;
 };
 
+app.utils.isMobile = {
+  Android: function() {
+    return !!navigator.userAgent.match(/Android/i);
+  },
+  iOS: function() {
+    return !!navigator.userAgent.match(/iPhone|iPad|iPod/i);
+  },
+  any: function() {
+    return (app.utils.isMobile.Android() || app.utils.isMobile.iOS());
+  }
+}
+
+
 // TODO Move this somewhere else
 function roundHalf(num) {
     var num = Math.round(num*2)/2;

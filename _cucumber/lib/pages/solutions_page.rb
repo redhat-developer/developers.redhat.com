@@ -1,4 +1,4 @@
-require_relative 'base_page.rb'
+require_relative 'base_page'
 
 class SolutionsPage < BasePage
   set_url '/solutions/'

@@ -4,7 +4,7 @@ head
     include javascripts/vendor/keycloak.js
   javascript:
     var keycloak = Keycloak({
-      url: "https://developers.redhat.com/auth",
+      url: "#{site.keycloak_auth_url}",
       realm: 'rhd',
       clientId: 'web'
     });
