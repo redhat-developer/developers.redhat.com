@@ -334,6 +334,7 @@ Minimally the following list of recipients is required to encrypt the file:
 * Ian Hamilton <ian.ross.hamilton@gmail.com> (ID: 0xE48F54FDCAB257C5 created at Tue  6 Oct 15:16:26 2015)
 * Libor Krzyžanek <libor@krzyzanek.com> (ID: 0x0C3FF1F29223684E created at Thu 22 Oct 11:37:43 2015)
 * Vlastimil Elias <velias@redhat.com> (ID: 0x1104635722CBE84A created at Fri 20 May 09:58:18 2011)
+* Rob Blake <rblake@redhat.com> (ID: 0xD7CE3349F64B3AB5 created at Mon 21 Mar 14:16:17 2016)
 
 If you add a new recipient to the file, ensure you update the list above.
 
