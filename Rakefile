@@ -165,13 +165,8 @@ task :internal_deploy_task, [:profile, :tag_name] do |task, args|
   begin
     run_awestruct "-P #{args[:profile]} -g --force -w"
   rescue
-    if args[:profile] != 'production'
-      msg 'awestruct_failed'
-      awestruct_failed = true
-    else
-      msg 'awestruct_failed, exit'
-      exit 1
-    end
+    msg 'awestruct_failed, exit'
+    exit 1
   end
 
   $config ||= config args[:profile]
