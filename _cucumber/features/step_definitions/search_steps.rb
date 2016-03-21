@@ -48,14 +48,14 @@ Then(/^below a I should see a message "([^"]*)"$/) do |message|
 end
 
 Then(/^there will be no results displayed$/) do
-  expect(@page.search.has_no_search_results_container?)
+  expect(@page.search).to have_no_search_results_container
 end
 
 Then(/^I should not see pagination with page numbers$/) do
-  expect(@page.search.has_no_pagination?)
+  expect(@page.search).to have_no_pagination
 end
 
-Then(/^I should see pagination with "([^"]*)" pages$/) do |numPages|
+Then(/^I should see pagination with "([^"]*)" pages$/) do |page_num|
   expect(@page.search.pagination_numbers.length).to eq(2)
 end
 
@@ -63,7 +63,11 @@ Then(/^the following links should be (enabled|disabled):$/) do |option, table|
   @page.search.wait_until_search_results_container_visible
   table.raw.each do |links|
     link = links.first
-    expect(@page.search).to send("have_#{link.downcase}_link_#{option}")
+    if link.eql?('Previous')
+      expect(@page.search).to send("have_prev_link_#{option.downcase}")
+    else
+      expect(@page.search).to send("have_#{link.downcase}_link_#{option.downcase}")
+    end
   end
 end
 
@@ -81,7 +85,7 @@ Then(/^I should see pagination with "([^"]*)" pages without ellipsis$/) do |arg1
 end
 
 Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
-  @page.search.goToSearchPage(search_string)
+  @page.search.go_to_search_page(search_string)
   @page.search.wait_until_search_results_container_visible
 end
 
@@ -93,10 +97,10 @@ Then(/^I should see page "([^"]*)" of the results$/) do |pageNum|
   expect(@page.search.current_link['data-page']).to eq("#{pageNum}")
 end
 
-Given(/^I am on page "([^"]*)" of the results$/) do |pageNum|
-  @page.search.send("pagination_#{pageNum}").click
+Given(/^I am on page "([^"]*)" of the results$/) do |page_number|
+  @page.search.click_pagination(page_number)
   @page.search.wait_until_search_results_container_visible
-  expect(@page.search.current_link['data-page']).to eq("#{pageNum}")
+  expect(@page.search.current_link['data-page']).to eq("#{page_number}")
 end
 
 Given(/^the search box is empty$/) do
