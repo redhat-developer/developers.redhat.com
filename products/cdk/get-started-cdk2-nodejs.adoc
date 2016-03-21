@@ -43,7 +43,7 @@ If you haven't already installed the CDK, follow the link:https://access.redhat.
 
 . Install a virtualization provider (hypervisor) for your system such as VirtualBox, VMware, or KVM/libvirt.
 . Install Vagrant, from link:http://vagrantup.com/[vagrantup.com], or from your operating system's packages.
-. From link:https://developers.redhat.com/download-manager/link/1209573[Red Hat Customer Portal] download _Red Hat Container Tools_ (cdk-2.0.0.zip) and the _RHEL 7.2 Vagrant box_ that matches your virtualization provider: VirtualBox, VMare, or KVM/libvirt.
+. From link:https://access.redhat.com/downloads/content/293/ver=2/rhel---7/2.0.0/x86_64/product-software[Red Hat Customer Portal] download _Red Hat Container Tools_ (cdk-2.0.0.zip) and the _RHEL 7.2 Vagrant box_ that matches your virtualization provider: VirtualBox, VMare, or KVM/libvirt.
 . Unzip `cdk-2.0.0.zip` into a directory of your choosing.
 . Install the vagrant plugins `vagrant-registration` and `vagrant-adbinfo`.  The plugins are located in the `plugins` directory of the CDK zip file.
 . Add the _RHEL 7.2 Vagrant box_ to Vagrant with the command `vagrant add --name cdkv2 _path to downloaded .box file_`.
