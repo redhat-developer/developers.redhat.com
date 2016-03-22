@@ -2,25 +2,34 @@ name: Red Hat Developer
 type: profile
 description: Install profile for the developers.redhat.com website
 core: 8.x
+distribution:
+  name: Red Hat Developers
 
 dependencies:
+# - action # maybe this will be useful?
   - automated_cron
   - block
   - breakpoint
   - ckeditor
+  - color
   - config
+  - comment
+  - contact
   - contextual
   - block_content
   - dblog
+  - dynamic_page_cache
+  - editor
   - field
   - field_ui
   - filter
   - help
   - history
-  - dynamic_page_cache
-  - page_cache
+  - image
+  - menu_link_content
   - menu_ui
   - node
+  - page_cache
   - path
   - quickedit
   - rdf
@@ -28,22 +37,24 @@ dependencies:
   - statistics
   - system
   - taxonomy
-  - editor
   - toolbar
   - update
   - user
+  - search
   - views
   - views_ui
   - layoutmanager
   - datetime
   - file
-  - image
   - link
   - options
   - text
-  - redhat_developers
   - hal
   - basic_auth
   - rest
   - serialization
-
+#  - redhat_developers
+themes:
+#  - rhd
+  - bartik
+  - seven

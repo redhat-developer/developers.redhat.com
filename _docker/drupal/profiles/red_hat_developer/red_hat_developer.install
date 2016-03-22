@@ -17,5 +17,8 @@ function red_hat_developer_install() {
   include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
   standard_install();
 
-  // Add code here to make nodes, terms, etc.
+  // Setting the front page to /
+  $site = \Drupal::configFactory()->getEditable('system.site');
+  $site->set('page.front', '/');
+  $site->save(TRUE);
 }
