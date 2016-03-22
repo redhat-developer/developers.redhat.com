@@ -1,0 +1,48 @@
+#rhd-article {
+  padding-top: 2em;
+
+  .article-info{
+    border: none;
+    background: $grey-3;
+    padding: 7px 5px;
+    margin-bottom: 2.5em;
+    ul li {
+      width: auto;
+      margin-right: 15px;
+    }
+  }
+  .article-content {
+    h2 {
+      border-bottom: 1px solid #d5d5d5;
+      margin-bottom: 20px;
+      padding-bottom: 5px;
+      font-weight: 100;
+      font-size: 1.9em;
+    }
+    h3 {
+      border-bottom: none;
+      font-size: 1.7em;
+      padding-bottom: 0;
+      margin-bottom: 10px;
+    }
+  }
+  .share-this {
+    padding-left: 0;
+    margin: 1em 0 2em 0;
+  }
+
+  ul.article-tags {
+    li:not(:first-child) {
+      margin-left: 10px;
+    }
+    li:after{
+      content: ", ";
+      position: relative;
+    }
+    li:last-child{
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

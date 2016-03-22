@@ -8,7 +8,7 @@ type: Get Started
 
 #get-started-instructions.tthw-steps(data-spy="scroll" data-target="#steps-scroll")
   .row
-    .large-17.columns#get-started 
+    .large-17.columns#get-started
       h2 Get Started
     .large-7.columns
       - if !page.product.skip_installation_instructions
@@ -21,7 +21,7 @@ type: Get Started
       .large-24#PrerequisitesSection.gs-prerequisites
         - if page._prerequisites_section_title
           h4 #{page._prerequisites_section_title}
-        = page._prerequisites_section  
+        = page._prerequisites_section
     .row(data-equalizer)
       .large-8.columns.step-cards(data-equalizer-watch)
         a.card(href="#Step1")
@@ -67,7 +67,7 @@ type: Get Started
                 i.fa.fa-clock-o  #{page._step3_duration}
 
     .large-24.step-header#Step1
-      h4 
+      h4
         .step-num 1.
         - if !page._step1_title
           h4 Set up your Dev Environment
@@ -81,7 +81,7 @@ type: Get Started
         = page._step1_content
 
     .large-24.step-header#Step2
-      h4 
+      h4
         .step-num 2.
         - if !page._step2_title
           h4 Install, Configure, and Verify
@@ -95,7 +95,7 @@ type: Get Started
         = page._step2_content
 
     .large-24.step-header#Step3
-      h4 
+      h4
         .step-num 3.
         - if !page._step3_title
           h4 Build your first #{page.product.abbreviated_name} application
@@ -128,4 +128,3 @@ type: Get Started
   script src="#{site.base_url}/javascripts/vendor/class.create.js"
   script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
   script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"      
-
