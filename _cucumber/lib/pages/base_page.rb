@@ -22,6 +22,8 @@ class BasePage < SitePrism::Page
   element :verification_message, '#kc-feedback-wrapper'
   element :logged_in_state, '.login'
   element :login_divider, '.login-divider'
+  element :nav_search_field, '.user-search'
+
   elements :sub_nav_topics, '#sub-nav-topics a'
   elements :sub_nav_technologies, '#sub-nav-technologies .sub-nav-group .heading'
   elements :sub_nav_community, '#sub-nav-community a'
@@ -33,7 +35,7 @@ class BasePage < SitePrism::Page
   end
 
   def loaded?(title)
-    wait_for_ajax  unless page.title.include?('not available') || page.title.include?('Problem loading page')
+    wait_for_ajax unless page.title.include?('not available') || page.title.include?('Problem loading page')
     raise("Expected page title to be #{title}, but was #{page.title}") unless page.has_title?(title).eql?(true)
   end
 
@@ -97,7 +99,18 @@ class BasePage < SitePrism::Page
     end
   end
 
-  def wait_for_ajax(timeout = 60, message = nil)
+  def search_for(query)
+    nav_search_field.set query
+    find('.user-search').native.send_keys(:return)
+  end
+
+  def wait_for_ajax(message = nil)
+    if Capybara.app_host.eql?('http://0.0.0.0:4242/') || Capybara.app_host.include?('docker')
+      timeout = 120
+    else
+      timeout = 60
+    end
+
     end_time = ::Time.now + timeout
     unless Capybara.current_driver == :mechanize
       until ::Time.now > end_time
