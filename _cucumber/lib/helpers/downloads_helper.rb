@@ -1,3 +1,5 @@
+require 'yaml'
+
 module DownloadHelper
 
   TIMEOUT = 30
@@ -28,6 +30,23 @@ module DownloadHelper
       download_url = data[0]['featuredArtifact']['url']
     end
     return download_version, download_url
+  end
+
+  def get_available_downloads
+    products = []
+    data = YAML.load_file('_config/categories.yml')
+    data.each do |product|
+      products << product['products']
+    end
+    products = products.flatten
+    products -= ['developertoolset', 'softwarecollections']
+
+    # now get product names
+    product_name = []
+    products.each do |product|
+      product_name << get_product_by_id(product)
+    end
+    return products, product_name
   end
 
   def download_dir

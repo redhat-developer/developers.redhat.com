@@ -16,13 +16,10 @@ Feature: Product overview page
       | Download      |
       | Buzz          |
 
-  Examples: RedHat products
+  Examples: Red Hat products
     | product id          |
     | rhel                |
-    | developertoolset    |
-    | softwarecollections |
     | openshift           |
-    | mobileplatform      |
     | devstudio           |
     | eap                 |
     | datagrid            |

@@ -1,33 +1,25 @@
 .downloadthankyou#downloadthankyou.hide
   .thankyouclose
     a(href="#" onClick="$('div#downloadthankyou').hide('slow');")
-  h2#thank-you Thank you for downloading
+  h2#thank-you Thank you for downloading 
   p#download-problems
-    | Problems with the download? Please use this 
+    | Your download should start automatically. If you have any problems with the download, please use the
     /Link url is set by javascript
-    a(id="tcDownloadLink" href="") direct link
+    a(id="tcDownloadLink" href="")  direct link
     |.
+  - if page.parent.product.id != 'rhel'
     br
     br
-  .large-24.thankyoupanels
-    .row.panel
-      .large-2.columns
-        i.fa.fa-file-text.fa-2x
-      .large-22.columns
-        p
-          | By downloading this product you have agreed with our 
-          a(href="#{site.base_url}/terms-and-conditions/")terms and conditions 
-          | on 
-          span(id="tcWhenSigned")
-          |. You will be notified again in 
-          span(id="tcEndsIn")
-          | after your subscription ends. 
-    br
-    .row.panel
-      .large-2.columns
-        i.fa.fa-question-circle.fa-2x
-      .large-22.columns
-        p
-          | Ready to share the product with your Ops staff?  Get an evaluation of  
-          a(href="#{page.parent.product.evaluation}") #{page.parent.product.abbreviated_name}
-          |.
+    .large-24.thankyoupanels
+      .row
+        .large-2.columns
+          i.fa.fa-file-text.fa-2x
+        .large-22.columns
+          p
+            | By downloading this product you have agreed with our 
+            a(href="#{site.base_url}/terms-and-conditions/")terms and conditions 
+            | on 
+            span(id="tcWhenSigned")
+            |. You will be notified again in 
+            span(id="tcEndsIn")
+            | after your subscription ends. 

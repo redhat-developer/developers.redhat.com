@@ -15,9 +15,8 @@ type: Get Started
       .row.sp-header
         = page._path_intro_section 
   - currentPage = page.url
-  - k = currentPage.rpartition("-")
-  - pathName = k[-1]; 
-  - if currentPage.include?('rhel7') || currentPage.include?('rhel6')
+  - pathName = ((currentPage.rpartition("-"))[-1]).chomp("/");
+  - if (currentPage.include?('rhel7') || currentPage.include?('rhel6')) && pathName != 'java'
     .large-24.columns.multipath-tabs-sm
       ul.tabs.nav-tabs(data-tab role="tablist")
         li(class=(currentPage.include?('rhel7') ? 'active' : '') role="presentation")
