@@ -116,7 +116,10 @@ type: Get Started
     div#expandStepTwo
       .tabs-content
         - page.product.rhel_install_paths.each do |rpath|
-          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare_metal') ? 'active content' : 'content') id="panel-#{rpath.id}")
+          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare_metal') ? 'active content' : 'content') id="panel-#{rpath.id}") 
+            - if page._step2_pre_install
+              .large-24#Step2PreInstall
+                = page._step2_pre_install
             - q = rpath.id
             - if q == 'bare_metal'
               = page._step2_baremetal_content

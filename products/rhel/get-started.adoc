@@ -20,6 +20,20 @@ In this step, you will download Red Hat Enterprise Linux Server. For the downloa
 
 Download the #{site.download_manager_base_url}/download-manager/file/rhel-server-7.2-x86_64-dvd.iso[Red Hat Enterprise Linux Server DVD] `.iso` file.
 
+## Step2 Pre Install
+
+BEFORE INSTALLATION:
+
+1. Go to the Red Hat Customer Portal, https://access.redhat.com/login[access.redhat.com, window='_blank'], to complete your registration.
+2. Log in using your newly created (or existing Red Hat) username and password.
+3. Click on the box "By proceeding, I acknowledge that I have read the above agreements and consent to their terms."
+4. Accept the Optional Terms and Conditions
+
+The Red Hat Customer Portal is where you will find knowledgebase articles, downloads for other Red Hat productions, and subscription management tools. If you get an error when logging in or do not see the form to access the terms and conditions, wait 5 minutes and try again.
+
+image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/goto-portal-and-register.png')}[Screenshot Go to Portal and Register]
+
+
 ## Step2 Baremetal Content
 
 This section provides an overview of the key steps for installing Red Hat Enterprise Linux so you can get started with software development. Note: This tutorial does not replace the https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide, window='_blank'].  Instead, this tutorial provides an overview of the key steps for software developers. For detailed instructions, see the respective manual.
