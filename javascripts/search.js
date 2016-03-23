@@ -58,7 +58,9 @@ function searchCtrlFunc($scope, searchService) {
     query: q,
     sortBy: 'new',
     size: 5,
-    from: 0
+    from: 0,
+    sys_type : [],
+    sys_project : ''
   }
 
   window.s = $scope; // debug
@@ -71,7 +73,7 @@ function searchCtrlFunc($scope, searchService) {
 
   $scope.updateSearch = function() {
     $scope.loading = true;
-    history.pushState($scope.params,$scope.params.query,'/search/?q=' + $scope.params.query);
+    // history.pushState($scope.params,$scope.params.query,'/search/?q=' + $scope.params.query);
     searchService.getSearchResults($scope.params).then(function(data) {
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
@@ -127,6 +129,28 @@ function searchCtrlFunc($scope, searchService) {
     $scope.paginate.currentPage = page;
     $scope.updateSearch();
   };
+
+
+   $scope.toggleSelection = function toggleSelection(event) {
+
+    var checkbox = event.target;
+    var topicNames = checkbox.value.split(' ');
+
+    if (checkbox.checked) {
+      $scope.params.sys_type = $scope.params.sys_type.concat(topicNames);
+    }
+    else {
+      // TODO: polyfill forEach
+      topicNames.forEach(function(topic) {
+        var idx = $scope.params.sys_type.indexOf(topic);
+        $scope.params.sys_type.splice(idx, 1);
+      });
+    }
+   };
+
+   /*
+      Date Filter Dropbon
+   */
 
   $scope.updateSearch(); // run on pageload TODO: move to ng-init
 }
@@ -272,4 +296,3 @@ function searchCtrlFunc($scope, searchService) {
 //   });
 
 // })();
-

@@ -1,5 +1,206 @@
 ---
-layout: developer-materials
+layout: base
 title: Discover the developer materials Red Hat has to offer
 description: Red Hat has extensive materials to help you get started. On offer are quickstarts, tutorials, videos, articles and more.
 ---
+
+div(ng-app="search")
+  .row#searchpage(ng-controller="SearchController")
+    pre {{params | json}}
+    .large-24.column
+      .type-filters
+        label(id="blog")
+          | Blog Posts
+          input(type="checkbox" value="blogpost" ng-checked="params.sys_type.indexOf('blogpost') > -1" ng-click="toggleSelection($event)" )
+        label(id="book")
+          | Book
+          input(type="checkbox" value="book" ng-checked="params.sys_type.indexOf('book') > -1" ng-click="toggleSelection($event)" )
+        label(id="code artifact")
+          | Code Artifact
+          input(type="checkbox" value="demo" ng-checked="params.sys_type.indexOf('demo') > -1" ng-click="toggleSelection($event)" )
+        label(id="get-started")
+          | Get Started
+          input(type="checkbox" value="quickstart jbossdeveloper_quickstart" ng-checked="params.sys_type.indexOf('quickstart') > -1" ng-click="toggleSelection($event)" )
+        label(id="video")
+          | Video
+          input(type="checkbox" value="video" ng-checked="params.sys_type.indexOf('video') > -1" ng-click="toggleSelection($event)" )
+
+    / .large-5.columns
+      / .divider
+      /   span Filter By
+      /   span
+      /     a.right(href='') Clear All
+
+      / .accordion
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Topic
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Containers
+      /         li
+      /           input(type="checkbox")
+      /           label DevOps
+      /         li
+      /           input(type="checkbox")
+      /           label Enterprise Java
+      /         li
+      /           input(type="checkbox")
+      /           label Mobile
+
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Resource Type
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Article
+      /         li
+      /           input(type="checkbox")
+      /           label Blog
+      /         li
+      /           input(type="checkbox")
+      /           label Code Artifact
+      /         li
+      /           input(type="checkbox")
+      /           label Presentation
+
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Publish Date
+      /     div.filter-content
+      /       select
+      /         option(value='1') ALL
+      /         option(value='1') Last 7 days
+      /         option(value='1') Last 30 days
+      /         option(value='1') This month
+      /         option(value='1') -- Custom --
+
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Author
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
+
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Product
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label JBoss
+      /         li
+      /           input(type="checkbox")
+      /           label EAP
+      /         li
+      /           input(type="checkbox")
+      /           label Enterprise Java
+      /         li
+      /           input(type="checkbox")
+      /           label Mobile
+
+    .large-24.columns.searchpage-middle
+      .row
+        .large-24.columns
+          form.search-bar(role="search" ng-submit="updateSearch()")
+            input(type="text" placeholder="Filter by keyword" ng-model="params.query")
+            select(ng-model="params.sys_project")
+              option(value="") Select Product...
+              option(value="eap") JBoss Enterprise Application Platform
+              option(value="webserver") JBoss Web Server
+              option(value="datagrid") JBoss Data Grid
+              option(value="portal") JBoss Portal
+              option(value="fsw") JBoss Fuse Service Works
+              option(value="datavirt") JBoss Data Virtualization
+              option(value="fuse") JBoss Fuse
+              option(value="amq") JBoss A-MQ
+              option(value="brms") JBoss BRMS
+              option(value="bpmsuite") JBoss BPM Suite
+              option(value="devstudio") JBoss Developer Studio
+
+            Label Publish Date
+
+            select(ng-model="params.activity_date_interval")
+              option(value="") Filter by Date
+              option(value="year") Past Year
+              option(value="quarter") Past Quarter
+              option(value="month") Past Month
+              option(value="week") Past Week
+              option(value="day") Past Day
+              option(value="custom") Custom
+
+            div(ng-show="params.activity_date_interval === 'custom'")
+              label Start Date
+              input(type="date" ng-model="params.activity_date_from")
+              label End Date
+              input(type="date" ng-model="params.activity_date_to")
+
+        .large-18.columns.searchpage-results-container
+          .sorting
+            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{params.query}}"
+            h3.results-title(ng-if="totalCount <= 0") No results found
+            h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
+            hr
+            p
+              | Sort results by
+              select(ng-model="params.sortBy" ng-change="updateSearch()")
+                option(value="score") Relevance
+                option(value="new") Most Recent
+                option(value="old") Least Recent
+              | and show
+              select(ng-model="params.size" ng-change="updateSearch()")
+                option(value="5") 5
+                option(value="5") 10
+                option(value="25") 25
+                option(value="50") 50
+                option(value="100") 100
+              | results per page
+          / span.loader
+          span.loader(ng-show="loading")
+          .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
+            .result(ng-repeat="result in results" ng-init="r = result.fields")
+              h4
+                a(href="{{r.sys_url_view[0]}}") {{r.sys_title[0]}}
+              section.meta-data
+                span.created-date(data-updated="{{r.sys_last_activity_date[0] | timestamp}}") {{r.sys_last_activity_date[0] | timeAgo}}
+              p {{r.sys_description[0]}}
+              .tags-list
+                p
+                  | Topics:&nbsp;
+                  span.tag(ng-repeat="tag in r.sys_tags")  {{tag}}
+
+
+          nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
+            span Showing {{params.from + 1}}-{{params.from + params.size}} of  {{totalCount}} results
+            ul.pagination
+              li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
+                a(ng-click="goToPage('first')") First
+              li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
+                a(ng-click="goToPage('prev')") Previous
+              li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
+                a(ng-click="goToPage(page)" data-page="{{page}}")
+                  | {{page}}
+              li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
+                a(ng-click="goToPage('next')") Next
+              li#pagination-last(ng-class="paginate.currentPage  == paginate.pages ? 'unavailable': 'available'")
+                a(ng-click="goToPage('last')") Last
+        .large-6.columns
+          p Banner goes here...
+
+
+
+= javascripts("developer-materials-filter", true) do
+  script src="#{site.base_url}/javascripts/jdfadvise.js"
