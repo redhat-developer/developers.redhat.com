@@ -11,7 +11,7 @@ layout: solution
     .large-24.columns
       .solution-header
         .row
-          -if page.solution.id != 'containers'
+          -if !page.solution.skip_initial_heading
             .row
               - if page.solution.sub_title
                 .large-17.columns.subtitle-wrapper
