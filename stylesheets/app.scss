@@ -151,6 +151,9 @@ button, .button {
   &.large {
     padding: 0.6em 0.9em;
   }
+  &.long {
+    padding: .6em 5em;
+  }
   & + button, & + .button {
     margin-left: 20px;
   }
