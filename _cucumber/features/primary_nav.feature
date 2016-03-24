@@ -62,6 +62,7 @@ Feature: Site navigation menu
       | DevOps                  |
       | Web and API Development |
       | Enterprise Java         |
+      | .Net                    |
 
   Examples: developers.redhat.com primary navigation bar links
     | page      |
@@ -80,6 +81,7 @@ Feature: Site navigation menu
       | DevOps                  |
       | Web and API Development |
       | Enterprise Java         |
+      | .Net                    |
 
   Examples: developers.redhat.com primary navigation bar links
     | page      |
