@@ -34,7 +34,6 @@ end
 
 And(/^I (request a password reset|reset my password)$/) do |negate|
   click_link('Forgot Password?')
-  @page.current_page.wait_for_ajax
   @page.forgot_password.enter_email(@email_address)
 end
 
@@ -55,9 +54,8 @@ end
 
 When(/^I click on the Create account link$/) do
   @page.login.register_link.click
-  @page.registration.loaded?('Register | Red Hat Developers')
 end
 
 Then(/^(I|they) should be redirected to the RHD Log in page$/) do |negate|
-  expect(@page.login).to respond_to :wait_for_login_with_existing_account
+  expect(@page.login).to have_login_with_existing_account
 end

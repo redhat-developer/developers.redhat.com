@@ -19,7 +19,8 @@ class DownloadsPage < BasePage
 
   def open
     load
-    loaded?('Downloads | Red Hat Developers')
+    wait_for_ajax
+    verify_page('Downloads | Red Hat Developers')
   end
 
   def available_downloads

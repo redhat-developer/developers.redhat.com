@@ -62,8 +62,6 @@ module SiteUser
     encoded_url = URI.encode(url)
     URI.parse(encoded_url)
     # return valid URI
-    p "Customers email was: #{email_address}"
-    p "Verification url was: #{encoded_url}"
     return encoded_url.gsub('<', '')
   end
 
@@ -72,7 +70,6 @@ module SiteUser
   def try(i)
     count = 0; email = nil
     until email != nil || count == i
-      p ' . . . waiting for email . . .'
       email = yield
       sleep 10
       count += 1

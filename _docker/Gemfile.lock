@@ -1,14 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    docker-api (1.22.2)
+    docker-api (1.28.0)
       excon (>= 0.38.0)
       json
-    excon (0.45.4)
-    gpgme (2.0.9)
-      mini_portile (>= 0.5.0)
+    excon (0.49.0)
+    gpgme (2.0.12)
+      mini_portile2 (~> 2.1.0)
     json (1.8.3)
-    mini_portile (0.6.2)
+    mini_portile2 (2.1.0)
 
 PLATFORMS
   ruby
@@ -18,4 +18,4 @@ DEPENDENCIES
   gpgme (~> 2.0)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
