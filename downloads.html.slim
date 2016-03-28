@@ -52,11 +52,6 @@ description: Discover the product downloads available from Red Hat, and locate t
                   | &nbsp;
 
                 .large-5.columns
-                  - if product.id == 'cdk'
-                    a.button(href="#{site.base_url}/products/#{product.id}/download")
-                      i.fa.fa-download
-                      |  Download
-                  - else
                     a.button(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
                       i.fa.fa-refresh.fa-spin
                       |  Fetching...
