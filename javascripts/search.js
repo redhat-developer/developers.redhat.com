@@ -9,11 +9,13 @@ search.service('searchService',function($http, $q) {
     // fold in params with defaults
     var search = Object.assign(params, {
       // field: '_source',
-      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags'],
+      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags','sys_project'],
       agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
     });
 
-    $http.get(app.dcp.url.search, { params: search })
+    var endpoint = (!!window.location.pathname.match(/\/search/) ? app.dcp.url.search : app.dcp.url.developer_materials);
+
+    $http.get(endpoint, { params: search })
       .success(function(data){
         deferred.resolve(data);
       })
@@ -60,7 +62,7 @@ function searchCtrlFunc($scope, searchService) {
     size: 5,
     from: 0,
     sys_type : [],
-    sys_project : ''
+    project : ''
   }
 
   window.s = $scope; // debug
@@ -71,10 +73,24 @@ function searchCtrlFunc($scope, searchService) {
 
   $scope.loading = true;
 
+  /*
+    Clean Params
+  */
+
+  $scope.cleanParams = function(p) {
+      var params = Object.assign({}, p);
+      // if "custom" is selected, remove it
+      if(params.activity_date_interval && params.activity_date_interval === 'custom') {
+        delete params.activity_date_interval;
+      }
+      return params;
+  }
+
   $scope.updateSearch = function() {
     $scope.loading = true;
+    var params = $scope.cleanParams($scope.params);
     // history.pushState($scope.params,$scope.params.query,'/search/?q=' + $scope.params.query);
-    searchService.getSearchResults($scope.params).then(function(data) {
+    searchService.getSearchResults(params).then(function(data) {
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
       $scope.buildPagination(); // update pagination

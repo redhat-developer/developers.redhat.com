@@ -117,7 +117,7 @@ div(ng-app="search")
         .large-24.columns
           form.search-bar(role="search" ng-submit="updateSearch()")
             input(type="text" placeholder="Filter by keyword" ng-model="params.query")
-            select(ng-model="params.sys_project")
+            select(ng-model="params.project")
               option(value="") Select Product...
               option(value="eap") JBoss Enterprise Application Platform
               option(value="webserver") JBoss Web Server
@@ -172,6 +172,7 @@ div(ng-app="search")
           span.loader(ng-show="loading")
           .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
             .result(ng-repeat="result in results" ng-init="r = result.fields")
+              pre {{r | json}}
               h4
                 a(href="{{r.sys_url_view[0]}}") {{r.sys_title[0]}}
               section.meta-data
