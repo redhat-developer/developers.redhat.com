@@ -25,6 +25,7 @@ description: Discover the product downloads available from Red Hat, and locate t
 
 .row#downloads
   .large-24.columns
+    h3.downloads-header All Downloads
     - site.categories.each do |category|
       .download-list
         .large-24.category-label(id="#{category.name.to_s}")

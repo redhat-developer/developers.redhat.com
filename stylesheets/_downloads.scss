@@ -1,14 +1,12 @@
 .hero.hero-downloads {
-  background: cdn('../images/design/RHDev_pageheader_downloads_desktop.png') top center / cover no-repeat;
-  content : ':4242';
+  background: cdn('../images/design/RHDev_pageheader_downloads_desktop.png') top center repeat-x;
   border:0;
-  min-height: 220px;
   margin-bottom: 0;
 
   h2 {
     color:white;
     font-size: 5em;
-    margin-top: 10px;
+    margin:0;
     text-transform: uppercase;
     font-weight: 600;
   }
@@ -42,6 +40,10 @@
 }
 
 // Downloads
+h3.downloads-header {
+  text-transform: uppercase;
+  margin:30px 0;
+}
 #downloads {
   width: 100%;
   .download-list {
@@ -52,7 +54,7 @@
       display: none;
     }
     hr {
-      margin: 1rem;
+      margin: 2rem 1rem;
     }
     .category-label {
       margin-bottom: 20px;
@@ -121,10 +123,11 @@
 
 
 .most-popular-downloads {
-  background:#242424;
+  background:#E6E7E8 cdn("../images/design/dotted_line-white.svg") no-repeat;
   padding:20px 0;
+  background-size:1200px;
   h3 {
-    color:white;
+    color:#242424;
     text-transform: uppercase;
   }
 }
@@ -132,6 +135,8 @@
 .popular-download-box {
   background:white;
   padding:20px;
+  border:1px solid #DEDEDE;
+  margin-bottom: 20px;
   .button {
     width: 100%;
     margin-bottom: 0;
