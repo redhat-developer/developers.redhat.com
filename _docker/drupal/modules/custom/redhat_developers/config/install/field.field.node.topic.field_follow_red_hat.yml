@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_follow_red_hat
+    - node.type.topic
+  module:
+    - text
+id: node.topic.field_follow_red_hat
+field_name: field_follow_red_hat
+entity_type: node
+bundle: topic
+label: 'Follow Red Hat'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

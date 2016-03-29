@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tertiary_promo
+    - node.type.container_news
+    - node.type.topic
+id: node.topic.field_tertiary_promo
+field_name: field_tertiary_promo
+entity_type: node
+bundle: topic
+label: 'Tertiary Promo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      container_news: container_news
+    sort:
+      field: _none
+field_type: entity_reference
