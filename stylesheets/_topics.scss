@@ -128,14 +128,14 @@
   }
 
   .secondary-promo {
-    background: #f0ab00 cdn("../images/design/topics/dotted_lines_white.png") left top / 80% no-repeat;
+    background-color: #ec7a08;
     color: $white;
     height: 400px;
     margin: 16px 0;
     padding: 25px;
     position: relative;
     &:hover{
-      background: #ec7a08;
+      opacity: .8;
       
     }
     h4 {
@@ -160,15 +160,14 @@
     }
   }
   .tertiary-tall-promo {
-    background: #92d400 cdn("../images/design/topics/dotted_lines_white.png") left top / 80% no-repeat;
+    background-color: #3f9c35;
     color: $white;
     height: 418px;
     margin: 16px 0;
     padding: 25px;
     position: relative;
     &:hover{
-      background: #3f9c35;
-
+      opacity: .8;
     }
 
     p {
@@ -211,8 +210,8 @@
       color: #424242;
     }
     &:hover, &:active, &:focus {
-      border: 2px solid #0089d0;
-      background-color: #0089d0;
+      border: 2px solid #a3dbe8;
+      background-color: #a3dbe8;
       cursor: pointer;
       a, p, h4, h5, .promo-tags-label, ul li , .promo-tags ul li:after{
         color: $white;
@@ -309,8 +308,8 @@ ul.topic-resources.topic-resources-list{
     bottom: -16px;
   }
   li:hover, li:active, li:focus {
-    border: 2px solid #0089d0;
-    background-color: #0089d0;
+    border: 2px solid #a3dbe8;
+    background-color: #a3dbe8;
     cursor: pointer;
     a, p, h4, h5, p.description, p.tags{
       color: $white;

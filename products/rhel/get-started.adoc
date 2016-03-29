@@ -634,7 +634,7 @@ To start the VM and begin installation:
 
 The VM should now boot up from the Red Hat Enterprise Linux Server DVD `.iso` file.
 
-Note: When you click inside the VM window, the keyboard and mouse will be captured by the VM until you hit _Ctrl_ and _Alt_ on Windows or the left option key on the Mac. When the system is fully installed this will no longer be necessary. See <<Open VM Tools replaces VMware Tools for Linux>>. 
+Note: When you click inside the VM window, the keyboard and mouse will be captured by the VM until you hit _Ctrl_ and _Alt_ on Windows or _Ctrl_ and the _Command_ key (&#8984;) on the Mac. When the system is fully installed this will no longer be necessary. See <<Open VM Tools replaces VMware Tools for Linux>>. 
 
 This section provides a brief overview of the steps for installing Red Hat Enterprise Linux. Detailed instructions can be found in the https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide, window='_blank'].
 
@@ -980,7 +980,7 @@ Enhanced VM integration is available by installing VirtualBox Guest Additions on
 * Folders that are shared from the host system to the VM. This can be helpful for making your source code available on the VM.
 * Ability to dynamically resize the VM's window which will change the size of the graphical desktop inside the VM.
 
-VirtualBox Guest Additions are packaged as an ISO file, which will be used on the VM as a virtual CD. VirtualBox will load the virtual CD when you select _Insert Guest Additions CD image_ from the menu. To install VirtualBox Guest Editions:
+VirtualBox Guest Additions are packaged as a `.iso` file, which will be used on the VM as a virtual CD. VirtualBox will load the virtual CD when you select _Insert Guest Additions CD image_ from the menu. To install VirtualBox Guest Editions:
 
 * You need to be logged into Red Hat Enterprise Linux with the graphical desktop running.
 * You need to have installed _Development Tools_ during installation. The development tools are used to compile the VirtualBox drivers.
@@ -1129,11 +1129,98 @@ Networking, both physical and virtual, is a large topic beyond the scope of this
 
 ### Open VM Tools replaces VMware Tools for Linux
 
-Red Hat Enterprise Linux includes _Open VM Tools_ which replaces the VMware's Operating System Specific Tools (OST), also known as VMware Tools for Linux_. You do not need to install VMware Tools as the functionality is implemented in the open source packages that are included with Red Hat Enterprise Linux. These tools are services and drivers that are installed in the guest operating system under the VM to:
+Red Hat Enterprise Linux includes Open VM Tools which replaces the VMware's Operating System Specific Tools (OST), also known as VMware Tools for Linux. You do not need to install VMware Tools as the functionality is implemented in the open source packages that are included with Red Hat Enterprise Linux. These tools are services and drivers that are installed in the guest operating system under the VM to:
 
-* improve performance.
-* provide better desktop integration.
-* allow shared folders between the host and the VM.
+* Enable copy-and-paste between the host system and the VM. 
+* Provide better mouse pointer integration.
+* Allow resizing of the VM window which will change the size of VM's graphical desktop.
+* Improve VM performance.
+
+Open VM Tools does not currently include the driver that is needed for shared folders. To enable shared folders you need to run the VMware Tools installer.
+
+
+### Enable VMware shared folders
+
+You may create a folder that is shared between your host system and the Red Hat Enterprise Linux VM. This makes it easy to share files such as source code between the two systems. Enabling VMware shared folders requires installing the VMware Host Guest File System (VMHGFS) driver on the VM. The VMHGFS driver is included with VMware Tools. By default, the VMware Tools installer will install the VMHGFS driver and leave the existing installation of Open VM Tools intact. This is the suggested configuration for enabling shared folders.
+
+
+To install VMHGFS:
+
+. VMware Tools are packaged as a `.iso` file, which will be used on the VM as a virtual CD. VMware will load the virtual CD when you select _Install VMware Tools_.
++
+For VMware Player on Windows, select _Manage_ from the _Player_ menu. Then select _Install VMware Tools_.
++
+For VMware Fusion on Mac OS, select _Install VMware Tools_ from the _Virtual Machine_ menu. Then click _Install_ on the pop-up.
++
+. Dismiss the _Open with Files_ pop-up on the VM  by clicking on the _X_.
+. If VMware adds a message at the bottom of the VM window, dismiss it by clicking on the _X_. 
+. Open a _Terminal_ window in the VM from the _Applications_ menu.
+. Change to the root user with `su -`. You will need to enter the root password.
+. Enter the following commands:
+
+[.code-block]
+```
+# mkdir /mnt/cd
+# mount -o ro /dev/sr0 /mnt/cd
+# cd /tmp
+# mkdir vmware-tools
+# cd vmware-tools
+# ls /mnt/cd/*.tar.gz
+```
+
+In the directory listing, make a note of the exact file name of the `.tar.gz` file to use in the next command as the version number may have changed.
+
+`# tar xvzf /mnt/cd/VMwareTools-10.0.5-3228253.tar.gz`
+
+Enter the follow command to start the VMware Tools installer:
+
+[.code-block]
+```
+# cd vmware-tools-distrib
+# ./vmware-install.pl
+```
+
+The installer will ask a series of questions. Accept all the default choices by hitting the return key *with the exception* of _Would you like to enable VMware automatic kernel modules?_. Answer _yes_ to enable automatic kernel modules.
+
+When the installer is finished, eject the virtual CD:
+
+`# eject`
+
+
+#### Create a shared folder mapping (Microsoft Windows)
+
+. From the _Player_ menu, select _Manage_, then select _Virtual Machine Settings_.
+. Select the _Options_ tab on the left from the _VM Settings_ dialog.
+. Select _Shared Folders_ in the list on the left.
+. Select _Always Enabled_ under _Folder Sharing_ on the right.
+. Click the _Add_ button.
+. On the _Add Shared Folder Wizard_, click _Next_.
+. Click _Browse_ and navigate to the folder you wish to share.
+. Enter the name for the shared folder on VM. Do not use spaces.
+. Click _Next_.
+. On the _Specify Shared Folder Attributes:
+.. Make sure _Enable this share_ is checked.
+.. Optionally, check _Read-only_ if you want to prevent the VM from being able to modify the shared folder.
+.. Click _Finish_.
+. Click _OK_ to close the _Virtual Machine Settings_ dialog.
+
+On the VM the path to the shared folders will be `/mnt/hgfs/<folder name>`.
+
+#### Create a shared folder mapping (Mac OS X)
+
+. Click the _Settings (Wrench icon)_ button.
+. Click the _Sharing_ icon under _System Settings_.
+. On the _Sharing_ dialog:
+.. Make sure _Enabled Shared Folders_ is checked.
+.. Click the _+_ button.
+.. Navigate to the folder you wish to share.
+.. Click _Add_.
+. Optionally, change the name of the shared folder by clicking in the _Name_ column. Do not use spaces in the name.
+. If you want to prevent the VM from modifying the folder, select _Read Only_ in the _Permissions_ column.
+. Close the _Sharing_ dialog.
+
+On the VM the path to the shared folders will be `/mnt/hgfs/<folder name>`.
+
 
 ## Step4 Content
 
