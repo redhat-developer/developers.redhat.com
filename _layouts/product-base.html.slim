@@ -15,7 +15,7 @@ section(class="product-header #{page.product.id} #{page.product.product_category
       h3#product #{page.product.description}
 
 section(class="product-graphics #{page.product.product_category}")
-  - unless page.url.include?('/products/rhel/get-started')
+  - unless page.url.include?('get-started')
     #hero-try-or-buy(class="row #{page.product.product_category}")
       .large-24.columns.hello-world
         .small-24.large-6.columns
