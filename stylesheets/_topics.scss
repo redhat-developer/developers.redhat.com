@@ -1,6 +1,6 @@
 .topics-header {
   background-color: rgba(0, 0, 0, 0.77);
-  padding: 35px 35px 20px 35px;
+  padding: 20px 35px 20px 35px;
   background-position: top center;
   background-size: cover;
   background-repeat: repeat-x;
@@ -9,6 +9,7 @@
   &.devops {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_devops.png');}
   &.enterprise-java {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_java.png');}
   &.web-and-api-development {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_webapi.png');}
+  &.dotnet {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_dotnet.png');}
   &.mobile {
     background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_mobile.png');
     display: block;
@@ -21,6 +22,7 @@
     &.devops {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_devops.png');}
     &.enterprise-java {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_java.png');}
     &.web-and-api-development {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_webapi.png');}
+    &.dotnet {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_dotnet.png');}
     &.mobile {
       background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_mobile.png');
       display: block;
@@ -86,6 +88,7 @@
     &.devops {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_devops.png');}
     &.enterprise-java {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_java.png');}
     &.web-and-api-development {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_webapi.png');}
+    &.dotnet {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_3col_dotnet.png');}
     &.mobile {
       background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_mobile.png');
       display: block;
@@ -335,4 +338,36 @@ ul.topic-resources.topic-resources-list{
 }
 .promo-tags {
   max-width: 85%;
+}
+
+// Styles for custom .NET Topics page
+#dotNet .topics-main {
+  .right-side-promo {
+    height: 418px;
+    h4 {
+      font-size: 1.2em;
+    }
+  }
+  .main-promo {
+    background-size: 26%, contain;
+    height: 330px;
+    span.promo-tags {
+      position: absolute;
+    }
+
+  }
+  .secondary-promo {
+    height: 330px;
+  }
+  ul.social-links {
+    margin-top: 10px;
+    margin-left: 0;
+    li {
+      display: inline;
+      margin-right: 7px;
+      a i{
+        color: #0089d0;
+      }
+    }
+  }
 }
