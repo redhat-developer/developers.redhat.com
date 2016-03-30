@@ -12,27 +12,34 @@ title: MS Build
 #msbuild-microsite
   section.site-header
     .row
-      .large-18.small-24.columns
+      .large-18.columns
         h2 Red Hat at Microsoft Build 2016
-      .large-6.small-24.columns
+      .large-6.small-24.columns.right
         = partial("share.html.slim", :url => "#{site.base_url}#{page.url}", :title => "#{page.title}")
-      .large-24.column
+        .card.green
+          p 
+            strong Got a USB at the booth? Use this username and password.
+            br
+            | username: redhat
+            br
+            | password: P2ssw0rd
+      .large-18.small-24.columns
         p You may have heard that Microsoft &#9829;'s Linux. Come visit us at Microsoft Build and see it for yourself. This year Red Hat is joining Microsoft to show you how you can solve real world business challenges using .NET on Red Hat Enterprise Linux.
-    .row.event-nav
-      .large-24.columns
-        ul.nav-list
-          li
-            a href="#redhat-booth" 
-              i.fa.fa-comments-o.fa-2x
-              |  Let us show you how you can get started. Come visit the Red Hat booth.
-          li
-            a href="#its-a-party" 
-              i.fa.fa-glass.fa-2x
-              |  Want to join us for Happy Hour? Request an invite in the booth!
-          li
-            a href="#meet-the-team" 
-              i.fa.fa-users.fa-2x
-              |  Meet the team.
+        .row.event-nav
+          .large-24.columns
+            ul.nav-list
+              li
+                a href="#redhat-booth" 
+                  i.fa.fa-comments-o.fa-2x
+                  |  Let us show you how you can get started. Come visit the Red Hat booth.
+              li
+                a href="#its-a-party" 
+                  i.fa.fa-glass.fa-2x
+                  |  Want to join us for Happy Hour? Request an invite in the booth!
+              li
+                a href="#meet-the-team" 
+                  i.fa.fa-users.fa-2x
+                  |  Meet the team.
 
   section.inverse
     .row
