@@ -99,27 +99,14 @@ section.topics-dotted-graphics#dotNet
             .right-side-promo
               .row
                 .large-24.columns
-                  h4 #{e.title}
-                .large-24.medium-8.columns
-                  .row
-                    - if e.section_1.links
-                      ul
-                        - e.section_1.links.each do |link|
-                          li
-                            - if link.local_url
-                              a(href="#{site.base_url}#{link.local_url}") #{link.name}
-                            - elsif link.url
-                              a(href="#{link.url}") #{link.name}
-                  strong Follow us on Social.
-                  ul.social-links
-                    li: a(href="https://plus.google.com/103877536668756379905/posts")
-                      i.fa.fa-google-plus-square.fa-2x
-                    li: a(href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q")
-                      i.fa.fa-youtube-square.fa-2x
-                    li: a(href="https://www.facebook.com/RedHatDeveloperProgram")
-                      i.fa.fa-facebook-square.fa-2x
-                    li: a(href="https://twitter.com/rhdevelopers")
-                      i.fa.fa-twitter-square.fa-2x
+                  - if e.section_2
+                    h4.caps #{e.section_2.title}
+                    .usb-login
+                      p #{e.section_2.content}
+                      p 
+                        | Then follow
+                        a href='#{site.base_url}/products/rhel/get-started/#Step3'  these instructions
+                        |  to get started.
 
   .row#topic-resources(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
     ul.topic-resources.topic-resources-list.small-block-grid-1.medium-block-grid-2.large-block-grid-4
