@@ -715,7 +715,7 @@ After installation, during the first boot of the system, you will be asked to ac
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-13-firstboot-config.png')}[Screenshot Installation Complete]
 
 [.callout-light]
-*Note:* In some cases, when booting the system for the first time, you may not see the graphical post-installation screen shown above. If you see a text-based license acceptance prompt follow the instructions in <<Complete installation and register the system (alternate)>> instead.
+*Note:* In some cases, when booting the system for the first time, you may not see the graphical post-installation screen shown above. If you see a text-based license acceptance prompt follow the instructions in <<baremetal-alternate-license,Complete installation and register the system (alternate)>> instead.
 
 
 . Click _License information_ to go the license acceptance screen.
@@ -756,6 +756,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-72
 Proceed to <<Install the latest updates>>
 
 
+[[baremetal-alternate-license]]
 ### Complete installation and register the system (alternate)
 
 In some cases, when booting the system for the first time, you may not see the graphical post-installation  screen. If you see a text-based license acceptance prompt as shown below, follow these alternate instructions:
@@ -867,7 +868,7 @@ After installation, during the first boot of the system, you will be asked to ac
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-13-firstboot-config.png')}[Screenshot Installation Complete]
 
 [.callout-light]
-*Note:* In some cases, when booting the system for the first time, you may not see the graphical post-installation screen shown above. If you see a text-based license acceptance prompt follow the instructions in <<Complete installation and register the system (alternate)>> instead.
+*Note:* In some cases, when booting the system for the first time, you may not see the graphical post-installation screen shown above. If you see a text-based license acceptance prompt follow the instructions in <<hyperv-alternate-license,Complete installation and register the system (alternate)>> instead.
 
 
 . Click _License information_ to go the license acceptance screen.
@@ -905,7 +906,10 @@ You are now logged into Red Hat Enterprise Linux. The _Getting Started_ page of 
 
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-72-desktop.png')}[Screenshot Red Hat Enterprise desktop]
 
+Proceed to <<hyperv-lockscreen,Disable lock screen and screen power saving>>.
 
+
+[[hyperv-alternate-license]]
 ### Complete installation and register the system (alternate)
 
 In some cases, when booting the system for the first time, you may not see the graphical post-installation  screen. If you see a text-based license acceptance prompt as shown below, follow these alternate instructions:
@@ -964,6 +968,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72-alt-lic
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72-alt-license/rhel_vbox_alt_07_register_done.png')}[Screenshot alternate register attach]
 
 
+[[hyperv-lockscreen]]
 ### Disable lock screen and screen power saving
 
 For security and to save energy, the default configuration of Red Hat Enterprise Linux is to lock the screen and turn the screen off when idle. On a VM, it is best to disable these features since the host system will control screen locking and power saving.
@@ -1016,6 +1021,7 @@ Finally, reboot the VM. You can do this from the VM's desktop by clicking the do
 
 `# reboot`
 
+
 ## Step3 Virtualbox Content
 
 This section has a number of post-installation steps that complete the installation of Red Hat Enterprise Linux and prepare it for software development. The steps are:
@@ -1032,7 +1038,7 @@ After installation, during the first boot of the system, you will be asked to ac
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-13-firstboot-config.png')}[Screenshot Installation Complete]
 
 [.callout-light]
-*Note:* In some cases, when booting the system for the first time, you may not see the graphical post-installation screen shown above. If you see a text-based license acceptance prompt follow the instructions in <<Complete installation and register the system (alternate)>> instead.
+*Note:* In some cases, when booting the system for the first time, you may not see the graphical post-installation screen shown above. If you see a text-based license acceptance prompt follow the instructions in <<virtualbox-alternate-license>>Complete installation and register the system (alternate)>> instead.
 
 
 . Click _License information_ to go the license acceptance screen.
@@ -1070,7 +1076,10 @@ You are now logged into Red Hat Enterprise Linux. The _Getting Started_ page of 
 
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-72-desktop.png')}[Screenshot Red Hat Enterprise desktop]
 
+Proceed to <<virtualbox-lockscreen,Disable lock screen and screen power saving>>.
 
+
+[[virtualbox-alternate-license]]
 ### Complete installation and register the system (alternate)
 
 In some cases, when booting the system for the first time, you may not see the graphical post-installation  screen. If you see a text-based license acceptance prompt as shown below, follow these alternate instructions:
@@ -1129,6 +1138,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72-alt-lic
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72-alt-license/rhel_vbox_alt_07_register_done.png')}[Screenshot alternate register attach]
 
 
+[[virtualbox-lockscreen]]
 ### Disable lock screen and screen power saving
 
 For security and to save energy, the default configuration of Red Hat Enterprise Linux is to lock the screen and turn the screen off when idle. On a VM, it is best to disable these features since the host system will control screen locking and power saving.
@@ -1239,7 +1249,7 @@ After installation, during the first boot of the system, you will be asked to ac
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-13-firstboot-config.png')}[Screenshot Installation Complete]
 
 [.callout-light]
-*Note:* In some cases, when booting the system for the first time, you may not see the graphical post-installation screen shown above. If you see a text-based license acceptance prompt follow the instructions in <<Complete installation and register the system (alternate)>> instead.
+*Note:* In some cases, when booting the system for the first time, you may not see the graphical post-installation screen shown above. If you see a text-based license acceptance prompt follow the instructions in <<vmware-alternate-license,Complete installation and register the system (alternate)>> instead.
 
 . Click _License information_ to go the license acceptance screen.
 .. Click the check box to accept the license.
@@ -1276,7 +1286,10 @@ You are now logged into Red Hat Enterprise Linux. The _Getting Started_ page of 
 
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-72-desktop.png')}[Screenshot Red Hat Enterprise desktop]
 
+Proceed to <<vmware-lockscreen,Disable lock screen and screen power saving>>.
 
+
+[[vmware-alternate-license]]
 ### Complete installation and register the system (alternate)
 
 In some cases, when booting the system for the first time, you may not see the graphical post-installation  screen. If you see a text-based license acceptance prompt as shown below, follow these alternate instructions:
@@ -1335,6 +1348,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72-alt-lic
 image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72-alt-license/rhel_vbox_alt_07_register_done.png')}[Screenshot alternate register attach]
 
 
+[[vmware-lockscreen]]
 ### Disable lock screen and screen power saving
 
 For security and to save energy, the default configuration of Red Hat Enterprise Linux is to lock the screen and turn the screen off when idle. On a VM, it is best to disable these features since the host system will control screen locking and power saving.
