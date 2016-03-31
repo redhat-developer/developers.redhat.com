@@ -4,38 +4,43 @@
 }
 .homepage-main {
   color: $white;
-  background-image: cdn('../images/design/RHDev_homehero_desktop_javaeebook.jpg');
+  background-image: cdn('../images/design/homepage-hero/RHDev_homehero_desktop_net_octopus.png');
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: rgb(11, 8, 21);
   .homepage-cta {
-    margin: 5% auto;
+    margin: 4% auto;
     img {
       display: inline-block;
       vertical-align: middle;
+      &.mobile {
+        display: none;
+      }
     }
     span {
-      padding-left: 30px;
       display: inline-block;
       vertical-align: middle;
     }
-    span h2 {
-      color: $white;
+    h2 {
+      color: #9fdbe8;
       text-transform: uppercase;
       margin-left: 20px;
+      font-weight: 700;
+      line-height: 1.1;
+      font-size: 2em;
+      max-width: 355px;
+      display: block;
+      margin: .3em auto .5em auto;
     }
     a.button {
-      background-color: $white;
-      color: $red;
       min-width: 250px;
-      margin-left: 20px;
     }
   }
   .homepage-getstarted {
-    min-height: 322px;
-    padding: 15px 20px;
-    background-color: rgb(11, 8, 21);
+    min-height: 356px;
+    padding: 20px;
+    background-color: rgba(11, 8, 21, 0.84);
     h5 {
       color: #eaa400;
       margin-top: 10px;
@@ -271,6 +276,10 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
+    background-image: cdn('../images/design/homepage-hero/RHDev_homehero_tablet_net_octopus.png');
+    .homepage-getstarted {
+      min-height: 240px;
+    }
     .homepage-cta img {
       display: block;
       margin: 0 auto;
@@ -299,15 +308,18 @@ ul.homepage-resources {
     width: 90% !important;
     padding: 2em !important;
   }
+  .homepage-main {
+    .homepage-cta img {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 @include mobile-landscape-and-down {
-  .homepage-main .homepage-cta {
-    img.desktop {
-      display: none;
-    }
-    img.mobile {
-      display: block;
+  .homepage-main {
+    background-image: cdn('../images/design/homepage-hero/RHDev_homehero_mobile_net_octopus.png');
+    .homepage-getstarted {
+      background-color: rgb(11, 8, 21);
     }
   }
   .spotlights-container {
