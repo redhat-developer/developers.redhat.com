@@ -1,18 +1,18 @@
-<div class="large-12 columns">
-    <div class="tertiary-promo">
-        <a href="{{ content.field_container_external_link[0]['#url'] }}"
-           title="{{ content.field_container_external_link[0]['#title'] }}"
-           target="{{ content.field_container_external_link[0]['attributes']['target'] }}">
-            <h5>{{ content.field_container_external_link[0]['#title'] }}</h5>
-            {{ content.field_containers_short_summary }}
-            {% if content.field_container_tags %}
-                <span class="promo-tags">
+<div{{ attributes }}>
+    {{ title_prefix }}
+    <a href="{{ content.field_container_external_link[0]['#url'] }}"
+       title="{{ content.field_container_external_link[0]['#title'] }}"
+       target="{{ content.field_container_external_link[0]['attributes']['target'] }}">
+        <h5{{ title_attributes }}>{{ content.field_container_external_link[0]['#title'] }}</h5>
+        {{ content.field_containers_short_summary }}
+        {% if content.field_container_tags %}
+            <span class="promo-tags">
                     <span class="promo-tags-label">Tags: </span>
                     <ul>
                         {{ content.field_container_tags }}
                     </ul>
                 </span>
-            {% endif %}
-        </a>
-    </div>
+        {% endif %}
+    </a>
+    {{ title_suffix }}
 </div>
