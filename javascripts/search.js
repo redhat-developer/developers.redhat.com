@@ -58,10 +58,9 @@ function searchCtrlFunc($scope, searchService) {
     query: q,
     sortBy: 'new',
     size: 5,
-    from: 0
+    from: 0,
+    type: 'rht_website'
   }
-
-  window.s = $scope; // debug
 
   $scope.paginate = {
     currentPage: 1
