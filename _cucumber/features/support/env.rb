@@ -27,8 +27,7 @@ Capybara.configure do |config|
 
   if ENV['HOST_TO_TEST'].to_s.empty?
     # default to localhost
-    host_to_test = 'http://developers-pr.stage.redhat.com/pr/975/build/720'
-    #host_to_test = 'http://0.0.0.0:4242'
+    host_to_test = 'http://0.0.0.0:4242'
   else
     if ENV['HOST_TO_TEST'][-1, 1] == '/'
       host_to_test = ENV['HOST_TO_TEST'].chomp('/')
