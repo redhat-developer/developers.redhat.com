@@ -19,7 +19,6 @@ class DownloadsPage < BasePage
 
   def open
     load
-    wait_for_ajax
     verify_page('Downloads | Red Hat Developers')
   end
 
