@@ -38,14 +38,12 @@ description: Discover the product downloads available from Red Hat, and locate t
               .row(class=('indent-product' if product.indented_product?))
                 hr
                 .large-24.column
-                  h5
-                    a(href="#{site.base_url}/products/#{product.id}/")
-                      = product.name
+                  h5 = product.name
                 .large-10.columns
                   - if product.id == 'rhel' || product.id == 'cdk'
                     p = product.name_append
                   - else
-                    p = product.description
+                    p = product['index']['description']
                   a(href="#{site.base_url}/products/#{product.id}/") Learn More
                 .large-9.center.columns
                   p(data-download-id-version="#{product.id}")
