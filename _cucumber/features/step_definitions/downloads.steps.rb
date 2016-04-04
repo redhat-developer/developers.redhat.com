@@ -35,7 +35,7 @@ Then(/^a list of products available for download$/) do
   @page.downloads.available_downloads.should =~ @available_downloads[1]
 end
 
-Then(/^the 'Download Latest' links for available products$/) do
+Then(/^a 'Download' link for each available product$/) do
   expect(@page.downloads).to have_download_latest_links :count => @available_downloads[0].size
 end
 
