@@ -1,0 +1,151 @@
+---
+layout: base
+title: Search Results
+---
+
+div(ng-app="search")
+  .row#searchpage(ng-controller="SearchController")
+    / .large-5.columns
+      / .divider
+      /   span Filter By
+      /   span
+      /     a.right(href='') Clear All
+
+      / .accordion
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Topic
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Containers
+      /         li
+      /           input(type="checkbox")
+      /           label DevOps
+      /         li
+      /           input(type="checkbox")
+      /           label Enterprise Java
+      /         li
+      /           input(type="checkbox")
+      /           label Mobile
+
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Resource Type
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Article
+      /         li
+      /           input(type="checkbox")
+      /           label Blog
+      /         li
+      /           input(type="checkbox")
+      /           label Code Artifact
+      /         li
+      /           input(type="checkbox")
+      /           label Presentation
+
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Publish Date
+      /     div.filter-content
+      /       select
+      /         option(value='1') ALL
+      /         option(value='1') Last 7 days
+      /         option(value='1') Last 30 days
+      /         option(value='1') This month
+      /         option(value='1') -- Custom --
+
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Author
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
+      /         li
+      /           input(type="checkbox")
+      /           label Author Name
+
+      /   .filter-container
+      /     input.filter-toggle(type="checkbox")
+      /     label.filter-label Product
+      /     div.filter-content
+      /       ul
+      /         li
+      /           input(type="checkbox")
+      /           label JBoss
+      /         li
+      /           input(type="checkbox")
+      /           label EAP
+      /         li
+      /           input(type="checkbox")
+      /           label Enterprise Java
+      /         li
+      /           input(type="checkbox")
+      /           label Mobile
+
+    .large-24.columns.searchpage-middle
+      .row
+        .large-24.columns
+          form.search-bar(role="search" ng-submit="updateSearch()")
+            input.user-success.user-search(required type="text" placeholder="Filter by keyword" id="search_list_text" ng-model="params.query")
+        .large-18.columns.searchpage-results-container
+          .sorting
+            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{params.query}}"
+            h3.results-title(ng-if="totalCount <= 0") No results found
+            h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
+            hr
+            p
+              | Sort results by
+              select(ng-model="params.sortBy" ng-change="updateSearch()")
+                option(value="score") Relevance
+                option(value="new") Most Recent
+                option(value="old") Least Recent
+              | and show
+              select(ng-model="params.size" ng-change="updateSearch()")
+                option(value="5") 5
+                option(value="5") 10
+                option(value="25") 25
+                option(value="50") 50
+                option(value="100") 100
+              | results per page
+          / span.loader
+          span.loader(ng-show="loading")
+          .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
+            .result(ng-repeat="result in results" ng-init="r = result.fields")
+              h4
+                a(href="{{r.sys_url_view[0]}}") {{r.sys_title[0]}}
+              / section.meta-data
+                / span.created-date(data-updated="{{r.sys_last_activity_date[0] | timestamp}}") {{r.sys_last_activity_date[0] | timeAgo}}
+              p {{r.sys_description[0]}}
+              .tags-list
+                p
+                  | Topics:&nbsp;
+                  span.tag(ng-repeat="tag in r.sys_tags")  {{tag}}
+
+
+          nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
+            span Showing {{params.from + 1}}-{{params.from + params.size}} of  {{totalCount}} results
+            ul.pagination
+              li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
+                a(ng-click="goToPage('first')") First
+              li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
+                a(ng-click="goToPage('prev')") Previous
+              li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
+                a(ng-click="goToPage(page)" data-page="{{page}}")
+                  | {{page}}
+              li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
+                a(ng-click="goToPage('next')") Next
+              li#pagination-last(ng-class="paginate.currentPage  == paginate.pages ? 'unavailable': 'available'")
+                a(ng-click="goToPage('last')") Last
+        .large-6.columns
+          p Banner goes here...
+
