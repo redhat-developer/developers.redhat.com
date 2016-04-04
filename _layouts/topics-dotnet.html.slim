@@ -22,7 +22,7 @@ section.topics-dotted-graphics#dotNet
               span
                 h3 #{a.title}
                 p.description #{a.description}
-                a.button.inverse(href='#{site.base_url}/webinars/net-on-rhel-sneak-peek') Register Now
+                a.button.inverse.right(href='#{site.base_url}/webinars/net-on-rhel-sneak-peek') Register Now
                 .clearfix
                 - if a.tags
                   span.promo-tags
@@ -50,7 +50,11 @@ section.topics-dotted-graphics#dotNet
             a(href="#{promo_url}")
               .secondary-promo
                 h4 #{b.title}
-                p #{b.description}
+                p New to Red Hat?
+                a(href='#')
+                  |  Download 
+                  i.fa.fa-download
+                p  Red Hat Enterprise Linux now to get started.
                 - if b.tags
                   span.promo-tags
                     .promo-tags-label Tags:
