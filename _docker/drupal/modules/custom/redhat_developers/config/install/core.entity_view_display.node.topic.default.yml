@@ -3,9 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.topic.field_follow_red_hat
+    - field.field.node.topic.field_promo_body
+    - field.field.node.topic.field_promo_links
+    - field.field.node.topic.field_promo_title
+    - field.field.node.topic.field_secondary_promo
     - field.field.node.topic.field_sub_title
+    - field.field.node.topic.field_tags
+    - field.field.node.topic.field_tertiary_promo
     - node.type.topic
   module:
+    - link
     - text
     - user
 id: node.topic.default
@@ -13,11 +21,65 @@ targetEntityType: node
 bundle: topic
 mode: default
 content:
+  field_follow_red_hat:
+    type: text_default
+    weight: 0
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_promo_body:
+    type: basic_string
+    weight: 0
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_promo_links:
+    type: link_separate
+    weight: 0
+    label: visually_hidden
+    settings:
+      trim_length: 255
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+  field_promo_title:
+    type: string
+    weight: 0
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_secondary_promo:
+    type: entity_reference_entity_view
+    weight: 0
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
   field_sub_title:
     weight: 101
-    label: hidden
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+  field_tags:
+    type: entity_reference_entity_view
+    weight: 0
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_tertiary_promo:
+    type: entity_reference_entity_view
+    weight: 0
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
 hidden:
   links: true
