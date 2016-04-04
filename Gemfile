@@ -76,6 +76,7 @@ group :test do
   gem 'mocha'
   gem 'gmail', '~> 0.6.0'
   gem 'faker', '~> 1.6', '>= 1.6.1'
+  gem 'report_builder'
 end
 
 group :development do
