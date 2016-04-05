@@ -9,7 +9,7 @@ class ResourcesPage < BasePage
 
   def open
     load
-    loaded?('Discover the developer materials Red Hat has to offer')
+    verify_page('Discover the developer materials Red Hat has to offer')
   end
 
 end

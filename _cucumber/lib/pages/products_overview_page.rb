@@ -23,7 +23,6 @@ class ProductOverviewPage < BasePage
 
   def open(page)
     load(product: page)
-    wait_for_ajax
   end
 
 end

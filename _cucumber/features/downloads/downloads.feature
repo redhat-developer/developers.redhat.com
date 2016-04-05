@@ -4,13 +4,11 @@ Feature: Download Page - Unauthorised customer
   As generic site visitor,
   I want to be able to see a list of available downloads.
 
-  @downloads
-  @javascript
+  @downloads @javascript
   Scenario: Unauthorised customer should see a list of available downloads from Red Hat.
     Given I am on the Downloads page
-    Then I should see the Downloads page title
-    And a list of products available for download
-    And the 'Download Latest' links for available products
+    Then I should see a list of products that are available to download
+    And each available product download should contain a 'Download Latest' link
 
   Scenario: Unauthorised customer should see a list of 'Other developer resources'
     Given I am on the Downloads page

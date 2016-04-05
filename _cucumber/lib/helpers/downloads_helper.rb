@@ -2,7 +2,7 @@ require 'yaml'
 
 module DownloadHelper
 
-  TIMEOUT = 30
+  TIMEOUT = 12
 
   extend self
 
@@ -47,27 +47,6 @@ module DownloadHelper
       product_name << get_product_by_id(product)
     end
     return products, product_name
-  end
-
-  def download_dir
-    Dir.glob("#{@download_dir}").count { |file| File.file?(file) }
-  end
-
-  def downloading?
-    dir = download_dir
-    wait_for_downloading {
-      dir == 1
-    }
-  end
-
-  def wait_for_downloading(i = TIMEOUT)
-    count = 0; downloading = 1
-    until downloading == 1 || count == i
-      downloading = yield
-      sleep(0.5)
-      count += 1
-    end
-    downloading.eql?(1)
   end
 
   def get_product_id(product)

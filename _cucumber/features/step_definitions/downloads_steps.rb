@@ -1,4 +1,4 @@
-Given(/^(I am|they are on) on the Product Download page for ([^"]*)$/) do |negate, product_id|
+Given(/^I am on the Product Download page for ([^"]*)$/) do |product_id|
   @page.download_overview.open(product_id)
 end
 
@@ -20,22 +20,19 @@ end
 
 Then(/^the download (should|should not) initiate$/) do |negate|
   if negate.eql?('should')
-    expect(downloading?).to eq true
+    raise("Download was not initiated! There were #{Dir.glob("#{$download_dir}/*").count} files found in the download directory") unless downloading? == true
   else
-    expect(download_dir).to eq 0
+    files = Dir["#{$download_dir}/*"].size
+    expect(files).to be 0
   end
 end
 
-Then(/^I should see "([^"]*)" download latest links$/) do |downloads|
-  @page.downloads.wait_for_download_latest_links 30, :count => downloads.to_i
-end
-
-Then(/^a list of products available for download$/) do
+Then(/^I should see a list of products that are available to download$/) do
   expect(@page.downloads).to have_product_downloads :count => @available_downloads[0].size
   @page.downloads.available_downloads.should =~ @available_downloads[1]
 end
 
-Then(/^the 'Download Latest' links for available products$/) do
+Then(/^each available product download should contain a 'Download Latest' link$/) do
   expect(@page.downloads).to have_download_latest_links :count => @available_downloads[0].size
 end
 
