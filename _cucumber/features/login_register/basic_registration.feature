@@ -10,8 +10,8 @@ Feature: Basic personal registration
     And I complete the registration form
     Then I should be logged in
 
-  @site_user @javascript @ignore
+  @site_user @javascript
   Scenario: Password validation
     Given I am on the Registration page
     When I try to enter passwords that do not match
-    Then I should see a warning that "Passwords don't match"
+    Then I should see a warning that "FAIL FAIL FAIL"
