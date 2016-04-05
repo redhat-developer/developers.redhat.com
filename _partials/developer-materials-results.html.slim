@@ -1,8 +1,5 @@
 .large-24
-  .panel(ng-hide="data.materials.length") Sorry there were no results, please modify your search query.
-
-  .developer-material-results(ng-hide="!data.materials.length")
-    img.loader(src=cdn("#{site.base_url}/images/icons/ajax-loader.gif") ng-show="data.loading")
+  .developer-material-results
     / .developer-materials-options(ng-hide="data.loading")
 
     /   input(type="checkbox" id="showall" name="showall" value="500" ng-model="pagination.viewall" ng-change="paginate(1)")
@@ -19,7 +16,7 @@
     /     i.fa.fa-align-justify
     /     |  List
 
-    table.developer-materials-grid(ng-hide="data.layout === 'grid' || !data.layout || data.loading")
+    table.developer-materials-grid(ng-hide="data.layout === 'grid' || !data.layout")
       thead
         tr
           td.topics Topics
@@ -30,7 +27,8 @@
           td.format Format
           td.publish-date Publish Date
       tbody
-        tr.material(ng-repeat="item in data.displayedMaterials | noURL" class="get-started-placeholder-{{item.fields.sys_type}}")
+        img.loader(src=cdn("#{site.base_url}/images/icons/ajax-loader.gif") ng-show="data.loading")
+        tr.material(ng-show="!data.loading" ng-repeat="item in data.displayedMaterials | noURL" class="get-started-placeholder-{{item.fields.sys_type}}")
           / Topics
           td.topics
             | {{item.fields.sys_tags | removeExcludedTags}}
@@ -84,7 +82,8 @@
           p
             | {{item.fields.sys_description | truncate}}
             | &hellip;
-.large-24
+  .panel(ng-hide="data.materials.length || data.loading") Sorry there were no results, please modify your search query.
+.large-24(ng-hide="data.loading")
   .large-7.columns#show-entries
     label.inline Show
     select(name="show-entries" ng-model="pagination.size" ng-change="fetchAndUpdate();")
