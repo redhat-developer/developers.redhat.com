@@ -3,8 +3,6 @@ MAINTAINER Jason Porter <jporter@redhat.com>
 
 LABEL version="dev"
 
-RUN php -r "readfile('https://drupalconsole.com/installer');" > drupal.phar && mv drupal.phar /usr/local/bin/drupal && chmod +x /usr/local/bin/drupal
-
 COPY run.sh /
 COPY db-check.php /
 

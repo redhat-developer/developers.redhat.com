@@ -1,3 +1,6 @@
+# Download and install drupal console
+php -r "readfile('https://drupalconsole.com/installer');" > drupal.phar && mv drupal.phar /usr/local/bin/drupal && chmod +x /usr/local/bin/drupal
+
 # Make sure we have the most up-to-date drupal console
 drupal self-update
 
