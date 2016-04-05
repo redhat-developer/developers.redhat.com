@@ -120,6 +120,8 @@ We've found that left over containers from previously failed attempts can cause 
 
 If you're using the Drupal containers you will need to install Node.js and npm.
 
+_NOTE:_ Node.js and npm both need to be installed on the host machine, not in the docker container. 
+
 1. Please follow https://nodejs.org/en/ for downloads and install of node and npm.
 2. Execute the following command to get the node environment setup:
 
