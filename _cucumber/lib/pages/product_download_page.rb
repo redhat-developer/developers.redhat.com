@@ -18,11 +18,10 @@ class ProductDownloadPage < BasePage
 
   def open(page)
     load(product: page)
-    wait_for_ajax
   end
 
   def click_featured_download_for(product, version,  url)
     page.click_link("Download #{product} #{version}", :href => url)
-    wait_for_ajax
   end
+
 end

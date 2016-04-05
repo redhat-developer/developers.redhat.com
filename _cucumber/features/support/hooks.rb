@@ -40,17 +40,13 @@ Before('@site_user') do
 end
 
 After('@logout') do
-  # Temporary hack until selenium issue: Permission denied to access property "__raven__" (Selenium::WebDriver::Error::UnknownError) is removed.
-  begin
-    Home.new(@driver).physical_logout
-  rescue
-    Home.new(@driver).physical_logout
-  end
+  @page.current_page.physical_logout
 end
 
 After do |scenario|
   if scenario.failed?
     puts "The test failed on page: #{page.title}"
+    puts "The test failed on url: #{page.current_url}"
     Capybara.using_session(Capybara::Screenshot.final_session_name) do
       filename_prefix = Capybara::Screenshot.filename_prefix_for(:cucumber, scenario)
 

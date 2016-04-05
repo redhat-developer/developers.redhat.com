@@ -33,7 +33,7 @@ class Technologies < BasePage
 
   def open
     load
-    loaded?('Red Hat Products')
+    verify_page('Red Hat Products')
   end
 
   def product_titles

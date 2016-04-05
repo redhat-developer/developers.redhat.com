@@ -19,7 +19,7 @@ class DownloadsPage < BasePage
 
   def open
     load
-    loaded?('Downloads | Red Hat Developers')
+    verify_page('Downloads | Red Hat Developers')
   end
 
   def available_downloads

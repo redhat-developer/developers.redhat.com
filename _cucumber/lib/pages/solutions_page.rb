@@ -12,7 +12,7 @@ class SolutionsPage < BasePage
 
   def open
     load
-    loaded?('Technology Solutions')
+    verify_page('Technology Solutions')
   end
 
 end
