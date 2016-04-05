@@ -14,4 +14,4 @@ Feature: Basic personal registration
   Scenario: Password validation
     Given I am on the Registration page
     When I try to enter passwords that do not match
-    Then I should see a warning that "Passwords don't match"
+    Then I should see a warning that "FAIL FAIL FAIL"

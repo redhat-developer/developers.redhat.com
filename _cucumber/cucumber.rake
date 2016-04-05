@@ -1,24 +1,17 @@
 require 'rubygems'
-require 'cucumber'
-require 'cucumber/rake/task'
 require 'parallel'
 require 'fileutils'
-require_relative './rake/test_runner'
 
-desc 'Run all scenarios. To run tests in non parallel mode set environment variable ENV[PARALLEL_TEST]=false'
-task :features do |t, args|
+task :cleanup do
+  p '. . . . Deleting old reports and logs . . . .'
+  FileUtils.rm_rf('_cucumber/reports')
+  File.delete('rerun.txt') if File.exist?('rerun.txt')
+  File.delete('cucumber_failures.log') if File.exist?('cucumber_failures.log')
+  File.new('cucumber_failures.log', 'w')
+  Dir.mkdir('_cucumber/reports')
+end
 
-  puts " . . . Running features against #{ENV['HOST_TO_TEST']}  . . . "
-
-  if ENV['ghprbActualCommit'].to_s != ''
-    p '. . . . sending progress to github . . . . '
-    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_features_task], ENV['BUILD_URL'], 'Acceptance Tests', 'Acceptance tests', args)
-  else
-    Rake::Task[:internal_test_task].invoke(args)
-  end
-
-  runner = TestRunner.new
-
+task :suite do
   unless ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
     profile = 'parallel'
   end
@@ -29,17 +22,41 @@ task :features do |t, args|
     tags = ENV['CUCUMBER_TAGS']
   end
 
-  exit_status = runner.run(profile, tags)
-  exit(exit_status)
+  unless tags.eql?(nil)
+    tag_string = "--tags #{tags}"
+  end
+
+  if profile.eql?('parallel')
+    if tags.eql?(nil)
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
+    else
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
+    end
+  else
+    if tag.eql?(nil)
+      system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
+    else
+      system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
+    end
+  end
+  $?.exitstatus
 end
 
-task :internal_features_task => [:features]
+task :features => [:cleanup, :suite] do |t, args|
+  if ENV['ghprbActualCommit'].to_s.empty?
+    Rake::Task[:internal_features_task].invoke(args)
+  else
+    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_features_task], ENV['BUILD_URL'], 'Acceptance Tests', 'Acceptance tests', args)
+  end
+end
 
-task :wip do |t|
+task :internal_features_task => [:cleanup, :suite]
+
+task :wip do
   system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
 end
 
-task :debugger do |t|
+task :debugger do
   system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
