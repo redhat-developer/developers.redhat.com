@@ -4,6 +4,7 @@
   background-position: top center;
   background-size: cover;
   background-repeat: repeat-x;
+  margin: -15px -15px 0 -15px;
 
   &.containers {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_containers.png');}
   &.devops {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_devops.png');}
@@ -75,7 +76,7 @@
   }
   .main-promo{
     background-color: #0089d0;
-    background-position: left top, right top;
+    background-position: left top, right bottom;
     background-size: 45%, contain;
     background-repeat: no-repeat;
     color: $white;
@@ -88,10 +89,15 @@
     &.devops {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_devops.png');}
     &.enterprise-java {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_java.png');}
     &.web-and-api-development {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_webapi.png');}
-    &.dotnet {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_3col_dotnet.png');}
     &.mobile {
       background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_mobile.png');
       display: block;
+    }
+    &.dotnet {
+      background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_3col_dotnet.png');
+      p.description {
+        font-size: 1.3em;
+      }
     }
 
     h3 {
@@ -124,6 +130,9 @@
     }
     @include tablet-landscape-and-down {
       background-size: 30%, contain;
+      &.dotnet {
+        min-height: 445px;
+      }
     }
     @include mobile-landscape-and-down {
       height: auto;
@@ -141,6 +150,11 @@
       opacity: .8;
       
     }
+    &.dotnet {
+      a, a i {
+        color: $white;
+      }
+    }
     h4 {
       color: $white;
       text-transform: uppercase;
@@ -157,9 +171,15 @@
     }
     @include tablet-landscape-and-down {
       background-size: 30%;
+      &.dotnet {
+        min-height: 445px;
+      }
     }
     @include tablet-portrait-and-down {
       height: auto;
+      &.dotnet {
+        min-height: 200px;
+      }
     }
   }
   .tertiary-tall-promo {
@@ -350,14 +370,10 @@ ul.topic-resources.topic-resources-list{
   }
   .main-promo {
     background-size: 26%, contain;
-    height: 330px;
+    height: 400px;
     span.promo-tags {
       position: absolute;
     }
-
-  }
-  .secondary-promo {
-    height: 330px;
   }
   ul.social-links {
     margin-top: 10px;

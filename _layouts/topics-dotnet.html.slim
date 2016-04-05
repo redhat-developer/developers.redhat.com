@@ -22,7 +22,11 @@ section.topics-dotted-graphics#dotNet
               span
                 h3 #{a.title}
                 p.description #{a.description}
-                a.button.inverse.right(href='#{site.base_url}/webinars/net-on-rhel-sneak-peek') Register Now
+                .row
+                  .large-16.columns
+                    p #{a.sub_description}
+                  .large-8.columns
+                    a.button.inverse.right(href='#{site.base_url}/webinars/registration-confirmation') Register Now
                 .clearfix
                 - if a.tags
                   span.promo-tags
@@ -44,23 +48,22 @@ section.topics-dotted-graphics#dotNet
         .medium-6.columns
           - page.solution.secondary_promo.each do |b|
             - if b.local_url
-              - promo_url = (site.base_url + "/" + b.local_url)
+              - download_url = (site.base_url + "/" + b.local_url)
             - else
-              - promo_url = b.url
-            a(href="#{promo_url}")
-              .secondary-promo
-                h4 #{b.title}
-                p New to Red Hat?
-                a(href='#')
-                  |  Download 
-                  i.fa.fa-download
-                p  Red Hat Enterprise Linux now to get started.
-                - if b.tags
-                  span.promo-tags
-                    .promo-tags-label Tags:
-                    ul
-                      - b.tags.each do |tag|
-                        li #{tag}
+              - download_url = b.url
+            div(class='secondary-promo #{page.solution.id}')
+              h4 #{b.title}
+              p #{b.description}
+              a(href='#{download_url}')
+                i.fa.fa-download
+                |  Download now
+              .clearfix
+              - if b.tags
+                span.promo-tags
+                  .promo-tags-label Tags:
+                  ul
+                    - b.tags.each do |tag|
+                      li #{tag}
       .row
         // Tertiary promotional items (Two rows of three items)
         .large-6.columns
