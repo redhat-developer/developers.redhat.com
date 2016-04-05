@@ -10,6 +10,7 @@ vimeo_album: https://vimeo.com/album/3555906
 skip_installation_instructions: true
 skip_maven_instructions: true
 skip_quickstart_link: true
+skip_default_docs_and_apis: true
 buzz_tags:
   - rhel
   - rhel7
@@ -17,107 +18,6 @@ buzz_tags:
 index:
   desc:
     The leading enterprise operating system to speed application delivery across physical, virtual, and cloud environments.
-guides:
-  Release_Notes:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.0_Release_Notes
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/7.0_Release_Notes
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/7.0_Release_Notes/Red_Hat_Enterprise_Linux-7-7.0_Release_Notes-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/7.0_Release_Notes/Red_Hat_Enterprise_Linux-7-7.0_Release_Notes-en-US.pdf
-  Installation_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/Installation_Guide
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/Installation_Guide/Red_Hat_Enterprise_Linux-7-Installation_Guide-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Installation_Guide/Red_Hat_Enterprise_Linux-7-Installation_Guide-en-US.pdf
-  Migration_Planning_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Migration_Planning_Guide
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/Migration_Planning_Guide
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/Migration_Planning_Guide/Red_Hat_Enterprise_Linux-7-Migration_Planning_Guide-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Migration_Planning_Guide/Red_Hat_Enterprise_Linux-7-Migration_Planning_Guide-en-US.pdf
-  Windows_Integration_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Windows_Integration_Guide
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/Windows_Integration_Guide
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/Windows_Integration_Guide/Red_Hat_Enterprise_Linux-7-Windows_Integration_Guide-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Windows_Integration_Guide/Red_Hat_Enterprise_Linux-7-Windows_Integration_Guide-en-US.pdf
-  SystemTap_Beginners_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SystemTap_Beginners_Guide
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/SystemTap_Beginners_Guide
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/SystemTap_Beginners_Guide/Red_Hat_Enterprise_Linux-7-SystemTap_Beginners_Guide-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/SystemTap_Beginners_Guide/Red_Hat_Enterprise_Linux-7-SystemTap_Beginners_Guide-en-US.pdf
-  SystemTap_Tapset_Reference:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SystemTap_Tapset_Reference
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/SystemTap_Tapset_Reference
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/SystemTap_Tapset_Reference/Red_Hat_Enterprise_Linux-7-SystemTap_Tapset_Reference-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/SystemTap_Tapset_Reference/Red_Hat_Enterprise_Linux-7-SystemTap_Tapset_Reference-en-US.pdf
-  Resource_Management_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Resource_Management_Guide
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/Resource_Management_Guide
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/Resource_Management_Guide/Red_Hat_Enterprise_Linux-7-Resource_Management_Guide-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Resource_Management_Guide/Red_Hat_Enterprise_Linux-7-Resource_Management_Guide-en-US.pdf
-  Developer_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Developer_Guide
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/Developer_Guide
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/Developer_Guide/Red_Hat_Enterprise_Linux-7-Developer_Guide-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Developer_Guide/Red_Hat_Enterprise_Linux-7-Developer_Guide-en-US.pdf
-  Virtualization_Getting_Started_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Virtualization_Getting_Started_Guide
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/Virtualization_Getting_Started_Guide
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/Virtualization_Getting_Started_Guide/Red_Hat_Enterprise_Linux-7-Virtualization_Getting_Started_Guide-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Virtualization_Getting_Started_Guide/Red_Hat_Enterprise_Linux-7-Virtualization_Getting_Started_Guide-en-US.pdf
-  Virtualization_Deployment_and_Administration_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Virtualization_Deployment_and_Administration_Guide
-      html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html-single/Virtualization_Deployment_and_Administration_Guide
-      epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/epub/Virtualization_Deployment_and_Administration_Guide/Red_Hat_Enterprise_Linux-7-Virtualization_Deployment_and_Administration_Guide-en-US.epub
-      pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/pdf/Virtualization_Deployment_and_Administration_Guide/Red_Hat_Enterprise_Linux-7-Virtualization_Deployment_and_Administration_Guide-en-US.pdf
 description: 'The world’s leading enterprise Linux platform'
 skip_maven_instructions: true
 other_product: true
