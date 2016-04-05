@@ -35,18 +35,11 @@ Build Hello World in a container
 
 ## Step1 Content
 
-The steps in this tutorial run on Red Hat Enterprise Linux (RHEL) inside the vagrant box is part of CDK. The vagrant box has docker, kubernetes, and OpenShift installed and configured for running containers. You will enter the commands in this tutorial after logging into the box with `vagrant ssh`.
+The steps in this tutorial run on Red Hat Enterprise Linux (RHEL) inside the vagrant box. The vagrant box includes docker, OpenShift Enterprise, and kubernetes.. You will enter the commands in this tutorial after logging into the box with `vagrant ssh`.
 
-Open a _Terminal_ or _Command_ window to enter the commands in this tutorial.
+Open a _Terminal_ or _Command_ window to enter the commands in this tutorial. On Windows, using _Cygwin Terminal_ instead of a _cmd.exe_ window is suggested.
 
-If you haven't already installed the CDK, follow the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide]. An overview of the steps:
-
-. Install a virtualization provider (hypervisor) for your system such as VirtualBox, VMware, or KVM/libvirt.
-. Install Vagrant, from link:http://vagrantup.com/[vagrantup.com], or from your operating system's packages.
-. From link:https://access.redhat.com/downloads/content/293/ver=2/rhel---7/2.0.0/x86_64/product-software[Red Hat Customer Portal] download _Red Hat Container Tools_ (cdk-2.0.0.zip) and the _RHEL 7.2 Vagrant box_ that matches your virtualization provider: VirtualBox, VMare, or KVM/libvirt.
-. Unzip `cdk-2.0.0.zip` into a directory of your choosing.
-. Install the vagrant plugins `vagrant-registration` and `vagrant-adbinfo`.  The plugins are located in the `plugins` directory of the CDK zip file.
-. Add the _RHEL 7.2 Vagrant box_ to Vagrant with the command `vagrant add --name cdkv2 _path to downloaded .box file_`.
+If you haven't already installed the CDK, follow the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide].
 
 
 ### Start the vagrant box
@@ -56,7 +49,9 @@ To start the vagrant box:
 . Change to the directory where you unpacked the CDK zip file.
 . Change to the sub-directory `components/rhel/rhel-ose`. Alternatively, copy the `Vagrantfile` in that directory to a working directory of your choosing.
 . Start the box by entering `vagrant up`. Note: the `Vagrantfile` needs to be in the current directory when entering vagrant commands without specifying a box name or a path to the `Vagrantfile`.
-. You will be prompted to register the RHEL Vagrant box during startup. You will need to enter your username and password for the customer portal, link:https://access.redhat.com/[access.redhat.com]. The box must be registered to download software from Red Hat. The registration plugin will attach the box to a Red Hat subscription when it starts up and release it when the box is shutdown using the `vagrant halt` command.
+. You will be prompted to register the Vagrant box with Red Hat Subscription Management during startup. This is required to allow the box to download software from Red Hat by attaching it to your Red Hat subscription. You will need to enter your Red Hat username and password.
++
+The vagrant registration plugin will automatically attach the box to your Red Hat subscription when it starts up and release it when the box is shutdown using the `vagrant halt` command.
 
 When starting the vagrant box, a number of log messages will be displayed. Most of these are informational, however you should review the output if the box fails to start. Below is the output from a typical `vagrant up`:
 
@@ -303,6 +298,7 @@ Red Hat delivers the resources and ecosystem of experts to help you be more prod
 
 *Follow the Red Hat Developer Blog* +
 link:http://developerblog.redhat.com/[]
+
 
 
 ## Faq section title
