@@ -101,7 +101,7 @@ def block_wait_drupal_started
   end
 
   # Add this to the ENV so we can pass it to the awestruct build
-  ENV['DRUPAL_HOST_IP'] = ENV['HOSTNAME'] # somewhat of a hack to make this work on Jenkins
+  ENV['DRUPAL_HOST_IP'] = drupal_ip # somewhat of a hack to make this work on Jenkins
 end
 
 private def project_name
