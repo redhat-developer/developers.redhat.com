@@ -165,7 +165,7 @@ type: Get Started
               ul.tabs.vertical(data-tab)
                 - page.product.get_started_paths.each do |path|
                   li(role="presentation" class=(path.id.eql?('nodejs') ? 'active' : ''))
-                    a(href="#panel-#{path.id}" role="tab" data-toggle="tab" aria-controls="panel-#{path.id}") #{path.id}
+                    a(href="#panel-#{path.id}" role="tab" data-toggle="tab" aria-controls="panel-#{path.id}") #{path.name}
             .medium-21.columns
               .tabs-content.rhel-tabs-cont
                 - page.product.get_started_paths.each do |path|

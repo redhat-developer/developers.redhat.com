@@ -28,7 +28,7 @@ Note: Later in this guide, you will need the Red Hat username and password you c
 
 The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the CDK you will need:
 
-. A virtualization platform: http://virtualbox.org/[VirtualBox, window='_blank'], https://www.vmware.com/products/desktop-virtualization.html[VMware, , window='_blank'], or Linux KVM/libvirt
+. A virtualization platform: http://virtualbox.org/[VirtualBox, window='_blank'], https://www.vmware.com/products/desktop-virtualization.html[VMware, window='_blank'], or Linux KVM/libvirt
 . http://www.vagrantup.com/[Vagrant, window='_blank'], an open source tool for creating and distributing portable development environments.
 . The CDK Red Hat Enterprise Linux Vagrant box that matches your virtualization platform.
 . https://www.cygwin.com/[Cygwin, window='_blank'] (Microsoft Windows only) to provide `ssh` and `rsync`.
@@ -46,20 +46,20 @@ Note: If you are using Microsoft Windows, Apple Mac OS X, or a Linux distributio
 
 ### Install Vagrant
 
-Next, download http://www.vagrantup.com/[Vagrant]. All of the VM configuration details on your development system will be handled for you by Vagrant.
+Next, download http://www.vagrantup.com/[Vagrant, window='_blank']. All of the VM configuration details on your development system will be handled for you by Vagrant.
 
 [.callout-light]
 *NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1*. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
 
 If you are using:
 
-* Microsoft Windows 7 and later, https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi[download the Vagrant `.msi` universal installer].
-* Apple Mac OS X, https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.dmg[download the Vagrant `.dmg` universal installer].
-* Red Hat Enterprise Linux, install the _Vagrant software collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide].
-* CentOS Linux, install the _Vagrant software collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide].
-* Fedora 23, install the Vagrant packages included with Fedora using `dnf`. See the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide].
+* Microsoft Windows 7 and later, https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi[download the Vagrant `.msi` universal installer, window='_blank'].
+* Apple Mac OS X, https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.dmg[download the Vagrant `.dmg` universal installer, window='_blank'].
+* Red Hat Enterprise Linux, install the _Vagrant software collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide, window='_blank'].
+* CentOS Linux, install the _Vagrant software collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide, window='_blank'].
+* Fedora 23, install the Vagrant packages included with Fedora using `dnf`. See the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide, window='_blank'].
 
-For other Linux distributions, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from https://vagrantup.com/downloads.html[vagrantup.com].
+For other Linux distributions, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from https://vagrantup.com/downloads.html[vagrantup.com, window='_blank'].
 
 
 ### Install Cygwin on Microsoft Windows
