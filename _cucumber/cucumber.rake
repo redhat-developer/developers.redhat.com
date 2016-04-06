@@ -12,17 +12,17 @@ task :cleanup do
 end
 
 task :suite do
-  raise("FAIL!")
-  # unless ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
-  #   profile = 'parallel'
-  # end
-  #
-  # if ENV['CUCUMBER_TAGS'].to_s.empty?
-  #   tags = nil
-  # else
-  #   tags = ENV['CUCUMBER_TAGS']
-  # end
-  # run(profile, tags)
+  unless ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
+    profile = 'parallel'
+  end
+
+  if ENV['CUCUMBER_TAGS'].to_s.empty?
+    tags = nil
+  else
+    tags = ENV['CUCUMBER_TAGS']
+  end
+  status_code = run(profile, tags)
+  raise('Cucumber tests failed!') if status_code != 0
 end
 
 task :features do |t, args|
