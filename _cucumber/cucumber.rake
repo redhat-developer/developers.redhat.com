@@ -28,18 +28,18 @@ task :suite do
 
   if profile.eql?('parallel')
     if tags.eql?(nil)
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
+      status = system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
     else
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
+      status = system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
     end
   else
     if tag.eql?(nil)
-      system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
+      status = system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
     else
-      system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
+      status = system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
     end
   end
-  $?.exitstatus
+  raise('Cucumber tests failed!') if status == false
 end
 
 task :features do |t, args|
