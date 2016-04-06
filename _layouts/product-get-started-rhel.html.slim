@@ -128,7 +128,9 @@ type: Get Started
             - elsif q == 'virtual_box'
               = page._step2_virtualbox_content
             - elsif q == 'vmware'
-              = page._step2_vmware_content                
+              = page._step2_vmware_content
+            - elsif q == 'kvm'
+              = page._step2_kvm_content              
 
     input#stepThree(type='checkbox' checked)
     label(for='stepThree')
@@ -155,7 +157,9 @@ type: Get Started
             - elsif q == 'virtual_box'
               = page._step3_virtualbox_content
             - elsif q == 'vmware'
-              = page._step3_vmware_content  
+              = page._step3_vmware_content
+            - elsif q == 'kvm'
+              = page._step3_kvm_content
     input#stepFour(type='checkbox' checked)
     label(for='stepFour')
       .large-24.step-header#Step4
