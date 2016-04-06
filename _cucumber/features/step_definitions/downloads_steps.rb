@@ -27,13 +27,17 @@ Then(/^the download (should|should not) initiate$/) do |negate|
   end
 end
 
-Then(/^I should see a list of products that are available to download$/) do
+Then(/^a list of products available for download$/) do
   expect(@page.downloads).to have_product_downloads :count => @available_downloads[0].size
   @page.downloads.available_downloads.should =~ @available_downloads[1]
 end
 
-Then(/^each available product download should contain a 'Download Latest' link$/) do
-  expect(@page.downloads).to have_download_latest_links :count => @available_downloads[0].size
+Then(/^a 'DOWNLOAD' button for each available product Download$/) do
+  expect(@page.downloads).to have_download_latest_btn :count => @available_downloads[0].size
+end
+
+Then(/^a 'DOWNLOAD' button for each Most Popular Download$/) do
+  expect(@page.downloads).to have_most_popular_download_btn :count => 4
 end
 
 Then(/^the following 'Other developer resources' links should be displayed:$/) do |table|
@@ -47,11 +51,18 @@ Then(/^I submit my company name and country$/) do
   @page.update_details.with(@site_user[:company_name], @site_user[:country])
 end
 
-
 Given(/^an authorized customer has previously downloaded eap$/) do
   step 'Given I register a new account'
   step 'And I am on the Product Download page for eap'
   step 'When I click to download the featured download of "Enterprise Application Server"'
   step 'And I accept the terms and conditions'
   step 'Then I should see the eap get started page with a confirmation message "Thank you for downloading Enterprise Application Server"'
+end
+
+And(/^a "([^"]*)" Downloads section with the following Downloads:$/) do |title, table|
+  table.raw.each do |row|
+    table_items = row.first
+    expect(@page.downloads.most_popular_downloads_section).to have_text(title)
+    expect(@page.downloads.most_popular_downloads_section).to have_text(table_items)
+  end
 end

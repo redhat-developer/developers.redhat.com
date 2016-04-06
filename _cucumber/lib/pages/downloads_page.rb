@@ -8,9 +8,11 @@ class DownloadsPage < BasePage
     include DownloadHelper
   end
 
+  element :most_popular_downloads_section, '.most-popular-downloads'
   elements :fetching_download_spinner, '.fa-refresh'
-  elements :download_latest_links, '.fa-download'
-  elements :product_downloads, 'h5 > a'
+  elements :download_latest_btn, '#downloads .fa-download'
+  elements :most_popular_download_btn, '.most-popular-downloads .fa-download'
+  elements :product_downloads, '#downloads h5'
   elements :other_resources, :xpath, '//*[@id="other-resources"]/ul/li'
 
   def initialize(driver)
