@@ -22,24 +22,9 @@ task :suite do
     tags = ENV['CUCUMBER_TAGS']
   end
 
-  unless tags.eql?(nil)
-    tag_string = "--tags #{tags}"
-  end
-
-  if profile.eql?('parallel')
-    if tags.eql?(nil)
-      status = system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
-    else
-      status = system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
-    end
-  else
-    if tag.eql?(nil)
-      status = system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
-    else
-      status = system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
-    end
-  end
-  raise('Cucumber tests failed!') if status == false
+  # exit_status = run(profile, tags)
+  # exit(exit_status)
+  run(profile, tags)
 end
 
 task :features do |t, args|
@@ -64,4 +49,25 @@ end
 task :debug, :times do |task, args|
   puts "Executing scenario tagged with @debug #{args[:times]} times"
   args[:times].to_i.times { Rake::Task[:debugger].execute }
+end
+
+def run(profile, tag)
+  unless tag.eql?(nil)
+    tag_string = "--tags #{tag}"
+  end
+
+  if profile.eql?('parallel')
+    if tag.eql?(nil)
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
+    else
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
+    end
+  else
+    if tag.eql?(nil)
+      system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
+    else
+      system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
+    end
+  end
+  $?.exitstatus
 end
