@@ -14,7 +14,7 @@ Feature: Login Page
   Scenario: A customer has incorrect login credentials (the password is incorrect)
     Given I am on the Login page
     When I try to log in with an incorrect password
-    Then the following error message should be displayed: Invalid login or password.
+    Then the following error message should be displayed: fail
 
   @accepted_terms @javascript
   Scenario: A customer tries to login with an invalid email address (e.g. xxx@xx)
