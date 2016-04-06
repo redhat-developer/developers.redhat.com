@@ -296,7 +296,6 @@ A few things to keep in mind:
 The requirements for your physical system that will host the Red Hat Enterprise Linux VM are:
 
 * a 64-bit x86 machine with hardware virtualization assistance (Intel VT-X or AMD-V).
-* An https://www.virtualbox.org/manual/ch01.html#hostossupport[operating system supported by VirtualBox, window='_blank'] such as Microsoft Windows 7 or later, Apple Mac OS X 10.8 or later, Ubuntu Linux 12.04 or later.
 * 4 GB RAM (8 GB preferred).
 * 24 GB of available disk space for the VM and the installation ISO file.
 
@@ -333,7 +332,7 @@ Optionally, add your user id to the `libvirtd` and `kvm` groups to enable runnin
 # usermod -a -G libvirt,kvm
 ```
 
-Note: you will need log out and back in again for the group change to take affect.
+Note: you will need to log out and back in again for the group change to take affect.
 
 
 #### CentOS 7
@@ -358,7 +357,7 @@ Optionally, add your user id to the `libvirtd` and `kvm` groups to enable runnin
 # usermod -a -G libvirt,kvm
 ```
 
-Note: you will need log out and back in again for the group change to take affect.
+Note: you will need to log out and back in again for the group change to take affect.
 
 
 #### Ubuntu 14.04
@@ -371,7 +370,7 @@ $ sudo -i
 
 // *FIXME* Check that libvirtd is running
 
-Optionally, Add your user id to the `libvirtd` and `kvm` groups to enable running KVM virtualization as a non-root user. If `$USER` doesn't contain your username, enter your username instead:
+Optionally, add your user id to the `libvirtd` and `kvm` groups to enable running KVM virtualization as a non-root user. If `$USER` doesn't contain your username, enter your username instead:
 
 [.code-block]
 ```
@@ -381,7 +380,7 @@ Optionally, Add your user id to the `libvirtd` and `kvm` groups to enable runnin
 ```
 // *FIXME* check this, can I just use usermod -a -G libvirt,kvm instead?
 
-Note: you will need log out and back in again for the group change to take affect.
+Note: you will need to log out and back in again for the group change to take affect.
 
 
 ### Create and configure a VM
@@ -989,7 +988,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-15
 .. Enter your Red Hat username and password. This is the login that you use for Red Hat sites such as the Red Hat Customer Portal, https://access.redhat.com/[access.redhat.com, window='_blank'].
 .. Optionally, enter a _System Name_ that will be used to identify this system on the Red Hat Customer Portal.
 .. Click _Register_.
-.. On the next screen you will be shown the list of subscriptions that are available to your user Id. If you have more than one subscription available, select which subscription to attach this system to.
+.. On the next screen you will be shown the list of subscriptions that are available to your user ID. If you have more than one subscription available, select which subscription to attach this system to.
 .. Click _Attach_.
 .. Click _Done_.
 +
@@ -1144,7 +1143,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-15
 .. Enter your Red Hat username and password. This is the login that you use for Red Hat sites such as the Red Hat Customer Portal, https://access.redhat.com/[access.redhat.com, window='_blank'].
 .. Optionally, enter a _System Name_ that will be used to identify this system on the Red Hat Customer Portal.
 .. Click _Register_.
-.. On the next screen you will be shown the list of subscriptions that are available to your user Id. If you have more than one subscription available, select which subscription to attach this system to.
+.. On the next screen you will be shown the list of subscriptions that are available to your user ID. If you have more than one subscription available, select which subscription to attach this system to.
 .. Click _Attach_.
 .. Click _Done_.
 +
@@ -1314,7 +1313,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-15
 .. Enter your Red Hat username and password. This is the login that you use for Red Hat sites such as the Red Hat Customer Portal, https://access.redhat.com/[access.redhat.com, window='_blank'].
 .. Optionally, enter a _System Name_ that will be used to identify this system on the Red Hat Customer Portal.
 .. Click _Register_.
-.. On the next screen you will be shown the list of subscriptions that are available to your user Id. If you have more than one subscription available, select which subscription to attach this system to.
+.. On the next screen you will be shown the list of subscriptions that are available to your user ID. If you have more than one subscription available, select which subscription to attach this system to.
 .. Click _Attach_.
 .. Click _Done_.
 +
@@ -1452,7 +1451,7 @@ In this step you will configure your system to obtain software from the _Optiona
 
 The default network configuration is for the VM to share the host system’s network connection(s) and IP address using network address translation (NAT). This is the easiest to manage and will be fine for many uses. Using NAT, the VM will be able to access resources on your network or the Internet. However services, such as a web server, running inside the VM won’t be directly accessible from outside of the VM.
 
-Alternatively, you can attach the VM to directly network by sharing the network adapter from the host system as a bridged network adapter. In this configuration, the VM gets its own IP address, usually using your network’s DHCP server. The VM appears on the network the same way a physical computer would with its own hardware MAC address. The host’s network adapter is shared by a device driver that is installed by VirtualBox. The VM’s virtual network adapter can only be bridged to one physical network adapter at a time. If your system has more than one network adapter you need to choose which one to attach to. If your system switches between wired and wireless connections, you will need to switch bridged adapters for the VM.
+Alternatively, you can attach the VM to directly network by sharing the network adapter from the host system as a bridged network adapter. In this configuration, the VM gets its own IP address, usually using your network’s DHCP server. The VM appears on the network the same way a physical computer would with its own hardware MAC address. The host’s network adapter is shared by creating a network bridge. The VM’s virtual network adapter can only be bridged to one physical network adapter at a time. If your system has more than one network adapter you need to choose which one to attach to. If your system switches between wired and wireless connections, you will need to switch bridged adapters for the VM.
 
 Networking, both physical and virtual, is a large topic beyond the scope of this guide. For more information see your system's documentation.
 
@@ -1496,7 +1495,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-15
 .. Enter your Red Hat username and password. This is the login that you use for Red Hat sites such as the Red Hat Customer Portal, https://access.redhat.com/[access.redhat.com, window='_blank'].
 .. Optionally, enter a _System Name_ that will be used to identify this system on the Red Hat Customer Portal.
 .. Click _Register_.
-.. On the next screen you will be shown the list of subscriptions that are available to your user Id. If you have more than one subscription available, select which subscription to attach this system to.
+.. On the next screen you will be shown the list of subscriptions that are available to your user ID. If you have more than one subscription available, select which subscription to attach this system to.
 .. Click _Attach_.
 .. Click _Done_.
 +
@@ -1706,7 +1705,7 @@ image:#{cdn(site.base_url + '/images/products/rhel/rhel7-install/rhel-72/rhel-15
 .. Enter your Red Hat username and password. This is the login that you use for Red Hat sites such as the Red Hat Customer Portal, https://access.redhat.com/[access.redhat.com, window='_blank'].
 .. Optionally, enter a _System Name_ that will be used to identify this system on the Red Hat Customer Portal.
 .. Click _Register_.
-.. On the next screen you will be shown the list of subscriptions that are available to your user Id. If you have more than one subscription available, select which subscription to attach this system to.
+.. On the next screen you will be shown the list of subscriptions that are available to your user ID. If you have more than one subscription available, select which subscription to attach this system to.
 .. Click _Attach_.
 .. Click _Done_.
 +
