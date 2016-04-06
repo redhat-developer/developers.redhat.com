@@ -21,10 +21,8 @@ task :suite do
   else
     tags = ENV['CUCUMBER_TAGS']
   end
-
-  # exit_status = run(profile, tags)
-  # exit(exit_status)
-  run(profile, tags)
+  exit_status = run(profile, tags)
+  exit(exit_status)
 end
 
 task :features do |t, args|
