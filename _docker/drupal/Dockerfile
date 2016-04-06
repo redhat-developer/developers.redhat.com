@@ -13,4 +13,6 @@ COPY redhat_developers /var/www/html/modules/custom/redhat_developers
 COPY layoutmanager /var/www/html/modules/custom/layoutmanager
 COPY basewidget /var/www/html/modules/custom/basewidget
 
+VOLUME /var/www/html
+
 CMD ["/bin/bash", "/run.sh"]
