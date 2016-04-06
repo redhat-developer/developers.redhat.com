@@ -8,7 +8,7 @@ Feature: Home Page Smoke Test
 
   Scenario: Product landing page should display a list of available products separated by sections.
     Given I am on the Technologies page
-    Then I should see the Technologies page title
+    Then I should see the Red Hat Products page title
     And I should see the following main products sections:
       | INFRASTRUCTURE             |
       | INTEGRATION AND AUTOMATION |
