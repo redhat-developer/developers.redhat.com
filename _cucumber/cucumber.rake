@@ -22,7 +22,7 @@ task :suite do
     tags = ENV['CUCUMBER_TAGS']
   end
   status_code = run(profile, tags)
-  raise('Cucumber tests failed!') if status_code != 0
+  raise('Cucumber tests failed!') if status_code != 0 rescue exit(1)
 end
 
 task :features do |t, args|
