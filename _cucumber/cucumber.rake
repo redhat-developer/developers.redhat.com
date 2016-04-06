@@ -42,10 +42,11 @@ task :suite do
   $?.exitstatus
 end
 
-task :features => [:cleanup, :suite] do |t, args|
+task :features do |t, args|
   if ENV['ghprbActualCommit'].to_s.empty?
     Rake::Task[:internal_features_task].invoke(args)
   else
+    p 'Sending progress to Github . . . '
     wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_features_task], ENV['BUILD_URL'], 'Acceptance Tests', 'Acceptance tests', args)
   end
 end
