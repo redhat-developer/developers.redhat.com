@@ -211,9 +211,3 @@ After do
     FileUtils.rm_rf(Dir.glob("#{$download_dir}/*"))
   end
 end
-
-at_exit do
-  if defined?($download_dir) && Dir.exist?($download_dir)
-    FileUtils.rm_rf($download_dir)
-  end
-end
