@@ -19,7 +19,6 @@ class GetStartedPage < BasePage
 
   def initialize(driver)
     super
-    wait_for_ajax
   end
 
   section :thank_you_section, DownloadConfirmationSection, '.downloadthankyou'

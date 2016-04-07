@@ -3,11 +3,12 @@ require 'cucumber'
 require 'cucumber/rake/task'
 require 'parallel'
 require 'fileutils'
-require 'set'
 require_relative './rake/test_runner'
 
 desc 'Run all scenarios. To run tests in non parallel mode set environment variable ENV[PARALLEL_TEST]=false'
 task :features do |t, args|
+
+  puts " . . . Running features against #{ENV['HOST_TO_TEST']}  . . . "
 
   if ENV['ghprbActualCommit'].to_s != ''
     p '. . . . sending progress to github . . . . '
@@ -18,55 +19,30 @@ task :features do |t, args|
 
   runner = TestRunner.new
 
-  if ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
-    profile = 'features'
-  else
+  unless ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
     profile = 'parallel'
   end
 
-  known_good_cucumber_tags = %w(@wip @smoke @desktop @mobile @ignore)
   if ENV['CUCUMBER_TAGS'].to_s.empty?
     tags = nil
   else
-    if ENV['CUCUMBER_TAGS'].include?(',')
-      tags = ENV['CUCUMBER_TAGS'].split(',')
-      expected_tags = known_good_cucumber_tags.to_set
-      actual_tags = tags.to_set
-      unless actual_tags.subset?(expected_tags)
-        raise("Expected tag string '#{tags}' was not found within known good cucumber tags. \n
-               Expected tags were #{known_good_cucumber_tags} \n
-               If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake")
-      end
-      tags = tags.join(',')
-    else
-      tags = ENV['CUCUMBER_TAGS']
-      unless known_good_cucumber_tags.include?(tags)
-        raise("Expected tag '#{tags}' was not found within known good cucumber tags. \n
-               Expected tags were #{known_good_cucumber_tags} \n
-               If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake")
-      end
-    end
+    tags = ENV['CUCUMBER_TAGS']
   end
 
   exit_status = runner.run(profile, tags)
-  p "exit status was #{exit_status}"
   exit(exit_status)
 end
 
 task :internal_features_task => [:features]
 
-
-# the below tasks can be used during development/debugging of new or existing features.
-
-desc 'When working on new or updating existing features, tag the scenario(s) with @wip. And execute by `bundle exec rake wip HOST_TO_TEST=http://example.com`'
-Cucumber::Rake::Task.new(:wip) do |t|
-  t.cucumber_opts = '_cucumber -r _cucumber/features/ --tags @wip'
+task :wip do |t|
+  system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
 end
 
-desc 'Run a single scenario multiple times'
-Cucumber::Rake::Task.new(:debugger) do |t|
-  t.cucumber_opts = '_cucumber -r _cucumber/features/ --tags @debug'
+task :debugger do |t|
+  system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
+
 task :debug, :times do |task, args|
   puts "Executing scenario tagged with @debug #{args[:times]} times"
   args[:times].to_i.times { Rake::Task[:debugger].execute }

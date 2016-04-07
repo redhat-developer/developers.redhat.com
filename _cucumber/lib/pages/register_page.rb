@@ -12,6 +12,7 @@ class Registration < BasePage
   element :finish_button, ".button[value='Create my account']"
   element :confirmation, '#kc-content'
   element :password_confirm_field_error, '#password-confirm-error'
+  element :registration_confirmation, '#registration-confirmation'
 
   def initialize(driver)
     super
@@ -19,29 +20,22 @@ class Registration < BasePage
 
   def open
     open_login_register('register')
-    begin
-      loaded?('Register | Red Hat Developers')
-    rescue
-      open_login_register('register')
-      loaded?('Register | Red Hat Developers')
-    end
+    verify_page('Register | Red Hat Developers')
   end
 
-
   def fill_in_form(first_name, last_name, email, company, country, password, password_confirmation)
-    country_dropdown.select country
-    sleep(1) #for country drop down to close as it is sometimes getting in the way of clicking the create account link
     email_field.set email
     password_field.set password
     password_confirm_field.set password_confirmation
     first_name_field.set first_name
     last_name_field.set last_name
     company_field.set company
+    country_dropdown.select country
+    has_country_dropdown? :text => country
   end
 
   def create_account
     finish_button.click
-    wait_for_ajax
   end
 
 end

@@ -1,4 +1,4 @@
-Given(/^(I am|they are on) on the Product Overview page for each (.*)$/) do |negate, product_id|
+Given(/^I am on the Product Overview page for each (.*)$/) do |product_id|
   @page.product_overview.open(product_id)
   @selected_product = product_id
 end

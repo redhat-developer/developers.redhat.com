@@ -17,12 +17,12 @@ app.downloads.createDownloadTable = function(products) {
   head.append(row);
   $table.append(head);
 
-  // clear out row after it's appended 
+  // clear out row after it's appended
   row = null;
 
   // loop over each product and append to the table
   $.each(products, function(i,product){
-    
+
     // loop over each file inside each product
     $.each(product.files,function(j,file) {
 
@@ -58,7 +58,7 @@ app.downloads.createDownloadTable = function(products) {
 
       lastVersionName = product.versionName;
       lastDescription = file.description;
-      
+
     }); // end each file
 
   }); // end each product
@@ -142,7 +142,7 @@ app.downloads.display = function(data) {
 
   // create the featured downloads tables
   var currentDownloads = productArray.slice(0,end);
-  
+
   /* loop through all the curent downloads and make their own table */
   var $latestDownloadsTables = $("<div>");
   currentDownloads.forEach(function(product){
@@ -151,7 +151,7 @@ app.downloads.display = function(data) {
   });
 
   // var $latestDownloadsTable = app.downloads.createDownloadTable();
-  
+
   // past downloads table
   var $allDownloadsTable = app.downloads.createDownloadTable(productArray.slice(end));
 
@@ -160,13 +160,13 @@ app.downloads.display = function(data) {
 
   // put it into the DOM
   $('.product-downloads').html($downloads);
-  
+
 }
 
 app.downloads.populateLinks = function() {
 
   var links = $('[data-download-id]');
-  
+
   if(!links.length) {
     return;
   }
@@ -176,10 +176,16 @@ app.downloads.populateLinks = function() {
     // get data
     $.getJSON(app.downloads.url + productCode,function(data) {
       var $el = $(el);
-      $el.html('<i class="fa fa-download"></i> Download Latest');
-      
+      $el.html('<i class="fa fa-download"></i> Download');
+
       if(data[0] && data[0].featuredArtifact && data[0].featuredArtifact.url) {
+        // find the date:
+        var timeStamp = new Date(data[0].featuredArtifact.releaseDate);
+        var releaseDate = app.utils.getMonth(timeStamp.getMonth()) + ' ' + timeStamp.getDay() + ', ' + timeStamp.getFullYear();
+
         $el.attr('href',data[0].featuredArtifact.url);
+        $('[data-download-id-version="'+productCode+'"]').text('Version: ' + data[0].featuredArtifact.versionName);
+        $('[data-download-id-release="'+productCode+'"]').text(releaseDate);
       } else {
         $el.attr('href', $el.data('fallback-url'));
       }
@@ -198,7 +204,7 @@ $(function() {
     $.getJSON(app.downloads.url + productCode,function(data) {
       if(!data.length) {
         $('.no-download').show();
-        return; 
+        return;
       }
       $('.has-download').show();
       app.downloads.display(data);

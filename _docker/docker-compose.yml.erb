@@ -1,11 +1,10 @@
+<<<<<<< HEAD
 version: '2'
 services:
-  awestruct_acceptance:
+  awestruct_unit_tests:
     build: ./awestruct
     command:
        - /home/awestruct/developer.redhat.com/_cucumber/docker_run.sh
-    links:
-      - awestruct_preview_no_reload:docker
     volumes:
       - ../:/home/awestruct/developer.redhat.com
     environment:
@@ -15,10 +14,23 @@ services:
       - github_status_api_token
       - BUILD_URL
       - RHD_DRIVER
-      - PARALLEL_TEST
-      - RHD_BS_BROWSER
-      - RHD_BS_USERNAME
-      - RHD_BS_AUTHKEY
+
+  awestruct_acceptance_test:
+    build: ./awestruct
+    command:
+      - /home/awestruct/developer.redhat.com/_cucumber/docker_run_remote_host.sh
+    volumes:
+      - ../:/home/awestruct/developer.redhat.com
+    links:
+      - selhub:hub
+    environment:
+      - ghprbActualCommit
+      - CUCUMBER_TAGS
+      - HOST_TO_TEST
+      - SELENIUM_HOST=http://hub:4444/wd/hub
+      - RHD_JS_DRIVER
+      - RHD_DEFAULT_DRIVER
+      - RHD_DOCKER_DRIVER
 
   awestruct_preview_no_reload:
     build: ./awestruct
@@ -155,3 +167,29 @@ services:
     links:
      - mysql
   
+  selhub:
+    image: selenium/hub
+    restart: always
+    ports:
+      - "<%= ENV['SELENIUM_HUB_PORT'] %>:4444"
+    privileged: true
+    environment:
+      - GRID_BROWSER_TIMEOUT=100000
+      - GRID_TIMEOUT=90000
+
+  docker_firefox:
+    image: selenium/node-firefox
+    volumes:
+      - ../_cucumber/tmp_rhd_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_rhd_downloads
+    links:
+     - selhub:hub
+
+  docker_chrome:
+    image: selenium/node-chrome
+    volumes:
+       - ../_cucumber/tmp_rhd_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_rhd_downloads
+    links:
+     - selhub:hub
+    environment:
+     - DBUS_SESSION_BUS_ADDRESS=/dev/null
+
