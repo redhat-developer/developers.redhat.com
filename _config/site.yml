@@ -82,7 +82,7 @@ profiles:
     base_url: http://<%= ENV['DRUPAL_HOST_IP'] || 'docker' %>:<%= ENV['DRUPAL_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
     # In Drupal, Drupal will be the cdn
-    cdn_http_base: &drupal_cdn_http_base http://<%= ENV['DRUPAL_HOST_IP'] %>:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    cdn_http_base: &drupal_cdn_http_base http://<%= ENV['DRUPAL_HOST_IP'] || 'docker'%>:<%= ENV['DRUPAL_HOST_PORT'] %>/
     cdn_out_dir: &drupal_cdn_out_dir _site
     cdn_version: &drupal_cdn_version false
     # This may not be needed, but as long as we're still building the css in awestruct we'll need it
