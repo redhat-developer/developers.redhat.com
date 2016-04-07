@@ -3,5 +3,4 @@ MAINTAINER rblake@redhat.com
 WORKDIR /developers.redhat.com
 COPY docker-entrypoint.sh .
 COPY drupal-backup.sh .
-ENTRYPOINT ["/bin/bash", "docker-entrypoint.sh"]
-CMD ["backup"]
+ENTRYPOINT ["/bin/bash", "docker-entrypoint.sh", "backup"]
