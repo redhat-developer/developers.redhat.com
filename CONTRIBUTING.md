@@ -299,6 +299,22 @@ To add or remove from this list:
 3. Edit the value of the `upstream_projects` key in the product's `product.yml` file. As an example, here is [JBoss EAP's product.yml](https://github.com/redhat-developer/developers.redhat.com/blob/master/products/eap/_common/product.yml)
 4. [Raise a PR](#fixing) for your change.
 
+### How to fix a broken link in an upstream project in Magnolia
+Access to magnolia needs to be granted by an administrator before changes can be made to the project file. Super user status is required to make the necessary changes.
+
+1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) for the change request. Include:
+ 1. The name of the project(s) to add/remove
+ 2. The name of the product you want modifying
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
+3. Log into magnolia and navigate to the project that contains the broken link
+ 1. Right click on the product and click open page.
+ 2. Select the edit button above the navigation bar (you may need to manipulate the css to see the edit button).
+ 3. Select the tab that contains the broke link.
+ 4. Remove the broken link and save your changes.
+ 5. From the magnolia admin console, highlight the product page that you changed and click "Activate changes"
+4. Contact Paul Robinson and ask to have the cache reset.
+5. Once the cache has been reset, check Blinkr report on a new PR to make sure invalid links were removed.
+
 ### How to add/remove 'Featured Video' to the 'Resources' page
 Upto three videos can be added to the 'Featured Videos' area.
 To add/remove them:
