@@ -310,12 +310,13 @@ Intel and AMD processors have hardware extensions for accelerating virtualizatio
 
 Install the KVM and virtualization tools for your Linux system. Then, start `libvirtd`.
 
+
 #### Fedora 23
 
 [.code-block]
 ```
-$ su
-# dnf install qemu-kvm bridge-utils @virtualization
+$ su -
+# dnf install @virtualization
 # systemctl enable libvirtd
 # systemctl start libvirtd
 ```
@@ -324,12 +325,12 @@ Check that libvirtd is running:
 
 `# systemctl status libvirtd`
 
-Optionally, add your user id to the `libvirtd` and `kvm` groups to enable running KVM virtualization as a non-root user. If `$USER` doesn't contain your username, enter your username instead:
+Optionally, add your user id to the `libvirtd` group to enable running KVM virtualization without being prompted for a passowrd. If `$USER` doesn't contain your username, enter your username instead:
 
 [.code-block]
 ```
 # echo $USER
-# usermod -a -G libvirt,kvm
+# usermod -a -G libvirt $USER
 ```
 
 Note: you will need to log out and back in again for the group change to take affect.
@@ -339,7 +340,8 @@ Note: you will need to log out and back in again for the group change to take af
 
 [.code-block]
 ```
-# yum install qemu-kvm @virtualization
+$ su -
+# yum install @virtualization
 # systemctl enable libvirtd
 # systemctl start libvirtd
 ```
@@ -348,13 +350,12 @@ Check that libvirtd is running:
 
 `# systemctl status libvirtd`
 
-
-Optionally, add your user id to the `libvirtd` and `kvm` groups to enable running KVM virtualization as a non-root user. If `$USER` doesn't contain your username, enter your username instead:
+Optionally, add your user id to the `libvirtd` groups to enable running KVM virtualization without being prompted for a password. If `$USER` doesn't contain your username, enter your username instead:
 
 [.code-block]
 ```
 # echo $USER
-# usermod -a -G libvirt,kvm
+# usermod -a -G libvirt $USER
 ```
 
 Note: you will need to log out and back in again for the group change to take affect.
@@ -365,20 +366,20 @@ Note: you will need to log out and back in again for the group change to take af
 [.code-block]
 ```
 $ sudo -i
-# apt-get install qemu-kvm bridge-utils libvirt-bin virt-manager virtinst
+# apt-get install qemu-kvm bridge-utils libvirt-bin virt-manager virtinst virt-viewer
 ```
 
-// *FIXME* Check that libvirtd is running
+Check that libvirtd is running:
 
-Optionally, add your user id to the `libvirtd` and `kvm` groups to enable running KVM virtualization as a non-root user. If `$USER` doesn't contain your username, enter your username instead:
+`# /etc/init.d/libvirt-bin status`
+
+Optionally, add your user id to the `libvirtd` group to enable running KVM virtualization as a non-root user. If `$USER` doesn't contain your username, enter your username instead:
 
 [.code-block]
 ```
 # echo $USER
-# adduser $USER libvirtd
-# adduser $USER kvm
+# usermod -a -G libvirt $USER 
 ```
-// *FIXME* check this, can I just use usermod -a -G libvirt,kvm instead?
 
 Note: you will need to log out and back in again for the group change to take affect.
 
@@ -391,21 +392,35 @@ Instructions are provided for creating the VM using the `virt-manager` or from t
 
 #### Using `virt-install` (command line)
 
-Use the following command to create a VM and start installing Red Hat Enterprise Linux.
+Use the following command to create a VM and start installing Red Hat Enterprise Linux. 
+
+Fedora 23 and CentOS 7:
+
+Note: you need to run `virt-install` as the root user.
 
 [.code-block]
 ```
-$ virt-install --name RHEL --ram 2048 --disk size=20,format=qcow2 --vcpus 2 \
+# virt-install --name rhel --ram 2048 --disk size=20,format=qcow2 --vcpus 2 \
        --cdrom rhel-server-7.2_x86-64-dvd.iso \
        --virt-type kvm --os-variant rhel7 --graphics spice
 ```
+
+Ubuntu 14.04:
+
+[.code-block]
+```
+$ virt-install --name rhel --ram 2048 --disk size=20,path=$HOME/rhelvm.sda --vcpus 2 \
+       --cdrom rhel-server-7.2_x86-64-dvd.iso \
+       --virt-type kvm --os-variant rhel7
+```
+
 
 After creating the VM, `virt-install` will automatically start `virt-viewer` to give you access to the VM's console. Proceed to <<kvm-boot-install, Install Red Hat Enterprise Linux>>.
 
 
 #### Using the `virt-manager` GUI
 
-To create a VM using the `virt-manager` GUI, start _Virtual Machine Manager_ from the system menu or enter the command `virt-manager`. If you didn't enable non-root users to use KVM/libvirt, use `su -c virt-manager` or `sudo virt-manager`.
+To create a VM using the `virt-manager` GUI, start _Virtual Machine Manager_ from the system menu or enter the command `virt-manager`.
 
 . When `virt-manager` opens, it will show the available hypervisor connections. If you don't see _QEMU/KVM_ listed:
 .. Select _New Connection_ from the _File_ menu.
