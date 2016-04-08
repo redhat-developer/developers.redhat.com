@@ -13,10 +13,10 @@ type: Get Started
 
   - if page.product.rhel_install_paths
     .large-24.columns.multipath-tabs-sm
-      ul.tabs.nav-tabs(data-tab role="tablist")
+      ul.tabs.nav-tabs(data-tab role="tablist" data-options="deep_linking:true;scroll_to_content:false")
         - page.product.rhel_install_paths.each do |rpath|
           li(role="presentation" class=(rpath.id.eql?('bare_metal') ? 'active' : ''))
-            a(href="#panel-#{rpath.id}" role="tab" data-toggle="tab" aria-controls="panel-#{rpath.id}") #{rpath.name}
+            a(href="##{rpath.id}" role="tab" data-toggle="tab" aria-controls="#{rpath.id}") #{rpath.name}
 
   - if page._prerequisites_section
     .large-24#PrerequisitesSection.gs-prerequisites
@@ -116,7 +116,7 @@ type: Get Started
     div#expandStepTwo
       .tabs-content
         - page.product.rhel_install_paths.each do |rpath|
-          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare_metal') ? 'active content' : 'content') id="panel-#{rpath.id}") 
+          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare_metal') ? 'active content' : 'content') id="#{rpath.id}") 
             - if page._step2_pre_install
               .large-24#Step2PreInstall
                 = page._step2_pre_install
@@ -125,7 +125,7 @@ type: Get Started
               = page._step2_baremetal_content
             - elsif q == 'hyper_v'
               = page._step2_hyperv_content
-            - elsif q == 'virtual_box'
+            - elsif q == 'virtualbox'
               = page._step2_virtualbox_content
             - elsif q == 'vmware'
               = page._step2_vmware_content
@@ -148,13 +148,13 @@ type: Get Started
     div#expandStepThree
       .tabs-content
         - page.product.rhel_install_paths.each do |rpath|
-          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare_metal') ? 'active content' : 'content') id="panel-#{rpath.id}")
+          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare_metal') ? 'active content' : 'content') id="#{rpath.id}")
             - q = rpath.id
             - if q == 'bare_metal'
               = page._step3_baremetal_content
             - elsif q == 'hyper_v'
               = page._step3_hyperv_content
-            - elsif q == 'virtual_box'
+            - elsif q == 'virtualbox'
               = page._step3_virtualbox_content
             - elsif q == 'vmware'
               = page._step3_vmware_content
