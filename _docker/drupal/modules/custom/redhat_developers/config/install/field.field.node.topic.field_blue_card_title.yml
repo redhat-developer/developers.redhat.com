@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_promo_title
+    - field.storage.node.field_blue_card_title
     - node.type.topic
-id: node.topic.field_promo_title
-field_name: field_promo_title
+id: node.topic.field_blue_card_title
+field_name: field_blue_card_title
 entity_type: node
 bundle: topic
-label: 'Promo Title'
+label: 'Blue Card Title'
 description: ''
 required: true
 translatable: false

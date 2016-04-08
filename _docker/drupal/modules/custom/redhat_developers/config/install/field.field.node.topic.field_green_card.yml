@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_tertiary_promo
-    - node.type.container_news
+    - field.storage.node.field_green_card
+    - node.type.promotion_card
     - node.type.topic
-id: node.topic.field_tertiary_promo
-field_name: field_tertiary_promo
+id: node.topic.field_green_card
+field_name: field_green_card
 entity_type: node
 bundle: topic
-label: 'Tertiary Promo'
+label: 'Green Card'
 description: ''
 required: false
 translatable: false
@@ -19,7 +19,7 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
-      container_news: container_news
+      promotion_card: promotion_card
     sort:
       field: _none
 field_type: entity_reference

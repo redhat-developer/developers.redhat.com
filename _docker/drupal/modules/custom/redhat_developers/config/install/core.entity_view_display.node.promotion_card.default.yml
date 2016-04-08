@@ -3,17 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.container_news.field_container_external_link
-    - field.field.node.container_news.field_container_tags
-    - field.field.node.container_news.field_containers_short_summary
-    - node.type.container_news
+    - field.field.node.promotion_card.field_container_external_link
+    - field.field.node.promotion_card.field_container_tags
+    - field.field.node.promotion_card.field_containers_short_summary
+    - node.type.promotion_card
   module:
     - link
     - text
     - user
-id: node.container_news.default
+id: node.promotion_card.default
 targetEntityType: node
-bundle: container_news
+bundle: promotion_card
 mode: default
 content:
   field_container_external_link:

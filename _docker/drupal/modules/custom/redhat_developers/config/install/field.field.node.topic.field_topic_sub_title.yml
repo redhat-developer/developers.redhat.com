@@ -3,16 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_sub_title
+    - field.storage.node.field_topic_sub_title
     - node.type.topic
   module:
     - text
-id: node.topic.field_sub_title
-field_name: field_sub_title
+id: node.topic.field_topic_sub_title
+field_name: field_topic_sub_title
 entity_type: node
 bundle: topic
-label: field_sub_title
-description: ''
+label: field_topic_sub_title
+description: 'Topic Sub Title'
 required: false
 translatable: true
 default_value: {  }

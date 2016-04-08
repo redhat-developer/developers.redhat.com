@@ -3,14 +3,15 @@ status: true
 dependencies:
   module:
     - node
-    - text
-id: node.field_sub_title
-field_name: field_sub_title
+id: node.field_blue_card_title
+field_name: field_blue_card_title
 entity_type: node
-type: text
+type: string
 settings:
   max_length: 255
-module: text
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

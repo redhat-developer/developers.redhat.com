@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_containers_short_summary
-    - node.type.container_news
+    - node.type.promotion_card
   module:
     - text
-id: node.container_news.field_containers_short_summary
+id: node.promotion_card.field_containers_short_summary
 field_name: field_containers_short_summary
 entity_type: node
-bundle: container_news
+bundle: promotion_card
 label: 'Short Summary'
 description: ''
 required: false

@@ -3,15 +3,13 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_promo_title
-field_name: field_promo_title
+    - text
+id: node.field_grey_card
+field_name: field_grey_card
 entity_type: node
-type: string
-settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
-module: core
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

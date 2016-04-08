@@ -4,14 +4,14 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_container_tags
-    - node.type.container_news
+    - node.type.promotion_card
     - taxonomy.vocabulary.tags
   content:
     - 'taxonomy_term:tags:cd77c78d-fb7f-4b46-a000-a7fff0bee6b2'
-id: node.container_news.field_container_tags
+id: node.promotion_card.field_container_tags
 field_name: field_container_tags
 entity_type: node
-bundle: container_news
+bundle: promotion_card
 label: tags
 description: ''
 required: false

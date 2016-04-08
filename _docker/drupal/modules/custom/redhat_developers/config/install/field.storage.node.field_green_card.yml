@@ -3,13 +3,13 @@ status: true
 dependencies:
   module:
     - node
-    - text
-id: node.field_follow_red_hat
-field_name: field_follow_red_hat
+id: node.field_green_card
+field_name: field_green_card
 entity_type: node
-type: text_long
-settings: {  }
-module: text
+type: entity_reference
+settings:
+  target_type: node
+module: core
 locked: false
 cardinality: 1
 translatable: true

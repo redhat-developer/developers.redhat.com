@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_container_external_link
-    - node.type.container_news
+    - node.type.promotion_card
   module:
     - link
-id: node.container_news.field_container_external_link
+id: node.promotion_card.field_container_external_link
 field_name: field_container_external_link
 entity_type: node
-bundle: container_news
+bundle: promotion_card
 label: 'Content Link'
 description: ''
 required: false

@@ -2,16 +2,17 @@ langcode: en
 status: true
 dependencies:
   module:
-    - link
     - node
-id: node.field_promo_links
-field_name: field_promo_links
+    - text
+id: node.field_topic_sub_title
+field_name: field_topic_sub_title
 entity_type: node
-type: link
-settings: {  }
-module: link
+type: text
+settings:
+  max_length: 255
+module: text
 locked: false
-cardinality: 6
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
