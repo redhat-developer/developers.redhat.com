@@ -1,2 +1,2 @@
-default: -r _cucumber/features/ --strict -f pretty --tags ~@ignore --format json -o cucumber.json
-parallel: -r _cucumber/features/ -f progress --tags ~@ignore --format json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
+default: -r _cucumber/features/--strict -f pretty --tags ~@ignore --format json -o _cucumber/reports/cucumber.json
+parallel:  -r _cucumber/features/ -f progress --tags ~@ignore --format json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
