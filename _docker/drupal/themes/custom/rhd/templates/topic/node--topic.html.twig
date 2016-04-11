@@ -73,7 +73,7 @@ other methods (such as node.delete) will result in an exception.
                 {{ title_prefix }}
                 <h2{{ title_attributes }}>{{ label }}</h2>
                 {{ title_suffix }}
-                <h4 id="topic">{{ content.field_sub_title }}</h4>
+                <h4 id="topic">{{ content.field_topic_sub_title }}</h4>
             </div>
         </div>
     </section>
@@ -83,7 +83,7 @@ other methods (such as node.delete) will result in an exception.
                 <div class="right-side-promo">
                     <div class="row">
                         <div class="large-24 medium-8 columns">
-                            {{ content.field_follow_red_hat }}
+                            {{ content.field_grey_card }}
                         </div>
                     </div>
                 </div>
@@ -93,19 +93,23 @@ other methods (such as node.delete) will result in an exception.
                     {# Main promotional item #}
                     <div class="medium-16 columns">
                         <div class="main-promo {{ topic_name }}">
-                            <h3>{{ content.field_promo_title }}</h3>
-                            <p class="description">
-                                {{ content.field_promo_body }}
-                            </p>
-                            <span class="promo-tags"><span class="promo-tags-label">Tags:</span>
+                            <h3>{{ content.field_blue_card_title }}</h3>
+                            <div class="description">
+                                {{ content.field_blue_card_description }}
+                            </div>
+                            <div class="promo-tags"><span class="promo-tags-label">Tags:</span>
                                 {{ content.field_tags }}
-                            </span>
+                            </div>
+                            <div class="row promo-links">
+                                {# TODO: I will need to add a new field override for the links #}
+                                {{ content.field_blue_card_links }}
+                            </div>
                         </div>
                     </div>
                     {# Secondary promotional item #}
                     <div class="medium-8 columns">
                         <div class="secondary-promo">
-                            {{ content.field_secondary_promo }}
+                            {{ content.field_orange_card }}
                         </div>
                     </div>
                 </div>
@@ -114,12 +118,23 @@ other methods (such as node.delete) will result in an exception.
                     <div class="large-8 columns">
                         {# Tall promos #}
                         <div class="tertiary-tall-promo">
-                            {{ content.field_tertiary_promo }}
+                            {{ content.field_green_card }}
                         </div>
                     </div>
                     <div class="large-16 columns">
                         <div class="row">
-                            {{ content.views_block__container_news_block_1 }}
+                            <div class="large-12 columns">
+                                {{ content.field_top_left_white_card }}
+                            </div>
+                            <div class="large-12 columns">
+                                {{ content.field_top_right_white_card }}
+                            </div>
+                            <div class="large-12 columns">
+                                {{ content.field_bottom_left_white_card }}
+                            </div>
+                            <div class="large-12 columns">
+                                {{ content.field_bottom_right_white_card }}
+                            </div>
                         </div>
                     </div>
                 </div>

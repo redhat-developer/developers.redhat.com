@@ -1,14 +1,15 @@
+uuid: 3c5708e5-7ffc-4534-9800-c4369a4251ec
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_blue_card_description
-field_name: field_blue_card_description
+id: node.field_top_left_white_card
+field_name: field_top_left_white_card
 entity_type: node
-type: string_long
+type: entity_reference
 settings:
-  case_sensitive: false
+  target_type: node
 module: core
 locked: false
 cardinality: 1

@@ -3,31 +3,31 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.topic.field_grey_card
-    - field.field.node.topic.field_blue_card
+    - field.field.node.topic.field_blue_card_description
     - field.field.node.topic.field_blue_card_links
     - field.field.node.topic.field_blue_card_title
-    - field.field.node.topic.field_orange_card
-    - field.field.node.topic.field_topic_sub_title
-    - field.field.node.topic.field_tags
+    - field.field.node.topic.field_bottom_left_white_card
+    - field.field.node.topic.field_bottom_right_white_card
     - field.field.node.topic.field_green_card
+    - field.field.node.topic.field_grey_card
+    - field.field.node.topic.field_orange_card
+    - field.field.node.topic.field_tags
+    - field.field.node.topic.field_top_left_white_card
+    - field.field.node.topic.field_top_right_white_card
+    - field.field.node.topic.field_topic_sub_title
     - node.type.topic
   module:
     - link
     - text
     - user
+_core:
+  default_config_hash: 4njgUCzhN00Mykgnojq4I6g4gxDvvDoj6djWOq_3CFQ
 id: node.topic.default
 targetEntityType: node
 bundle: topic
 mode: default
 content:
-  field_grey_card:
-    type: text_default
-    weight: 0
-    label: visually_hidden
-    settings: {  }
-    third_party_settings: {  }
-  field_blue_card:
+  field_blue_card_description:
     type: basic_string
     weight: 0
     label: visually_hidden
@@ -51,28 +51,22 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_orange_card:
-    type: entity_reference_entity_view
-    weight: 0
+  field_bottom_left_white_card:
+    weight: 104
     label: visually_hidden
     settings:
-      view_mode: default
+      view_mode: teaser
       link: false
     third_party_settings: {  }
-  field_topic_sub_title:
-    weight: 101
-    label: visually_hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-  field_tags:
     type: entity_reference_entity_view
-    weight: 0
+  field_bottom_right_white_card:
+    weight: 105
     label: visually_hidden
     settings:
-      view_mode: default
+      view_mode: teaser
       link: false
     third_party_settings: {  }
+    type: entity_reference_entity_view
   field_green_card:
     type: entity_reference_entity_view
     weight: 0
@@ -81,5 +75,49 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+  field_grey_card:
+    type: text_default
+    weight: 0
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_orange_card:
+    type: entity_reference_entity_view
+    weight: 0
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_tags:
+    type: entity_reference_entity_view
+    weight: 0
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_top_left_white_card:
+    weight: 102
+    label: visually_hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+  field_top_right_white_card:
+    weight: 103
+    label: visually_hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+  field_topic_sub_title:
+    weight: 101
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
 hidden:
   links: true

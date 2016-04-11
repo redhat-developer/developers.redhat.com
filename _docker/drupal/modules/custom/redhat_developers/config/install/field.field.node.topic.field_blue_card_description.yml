@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_blue_card
+    - field.storage.node.field_blue_card_description
     - node.type.topic
-id: node.topic.field_blue_card
-field_name: field_blue_card
+id: node.topic.field_blue_card_description
+field_name: field_blue_card_description
 entity_type: node
 bundle: topic
 label: 'Blue Card Description'

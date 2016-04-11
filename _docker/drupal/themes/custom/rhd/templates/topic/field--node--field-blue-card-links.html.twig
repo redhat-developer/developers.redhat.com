@@ -38,44 +38,18 @@
  * @ingroup themeable
  */
 #}
-{%
-set classes = [
+{% set classes = [
 'field',
 'field--name-' ~ field_name|clean_class,
 'field--type-' ~ field_type|clean_class,
 'field--label-' ~ label_display,
-]
-%}
-{%
-set title_classes = [
+] %}
+{% set title_classes = [
 'field__label',
 label_display == 'visually_hidden' ? 'visually-hidden',
-]
-%}
-
-{% if label_hidden %}
-    {% if multiple %}
-        <span{{ attributes.addClass(classes, 'field__items') }}>
-            {% for item in items %}
-                <span{{ item.attributes.addClass('field__item') }}>{{ item.content }}</span>
-            {% endfor %}
-        </span>
-    {% else %}
-        {% for item in items %}
-            <span{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</span>
-        {% endfor %}
-    {% endif %}
-{% else %}
-    <span{{ attributes.addClass(classes) }}>
-        <span{{ title_attributes.addClass(title_classes) }}>{{ label }}</span>
-        {% if multiple %}
-        <span class="field__items">
-            {% endif %}
-            {% for item in items %}
-                <span{{ item.attributes.addClass('field__item') }}>{{ item.content }}</span>
-            {% endfor %}
-            {% if multiple %}
-        </span>
-        {% endif %}
-    </span>
-{% endif %}
+] %}
+<div{{ attributes.addClass(classes, 'field__items') }}>
+    {% for item in items %}
+        <div{{ item.attributes.addClass(['field__item', 'large-8', 'medium-8', 'columns']) }}>{{ item.content }}</div>
+    {% endfor %}
+</div>
