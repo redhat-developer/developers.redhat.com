@@ -229,7 +229,7 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-    .promo-tags .promo-tags-label, .promo-tags ul li{
+    .promo-tags .promo-tags-label, .promo-tags ul li, .promo-tags .field_item {
       color: #424242;
     }
     &:hover, &:active, &:focus {
@@ -393,4 +393,10 @@ ul.topic-resources.topic-resources-list{
 }
 .topics-main .right-side-promo .usb-login ul li {
   margin-bottom: 0;
+}
+
+// HACK!! Working around the css / layout for drupal
+.topics-main .contextual-region .promo-tags {
+  position: inherit;
+  bottom: inherit;
 }
