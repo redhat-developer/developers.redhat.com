@@ -65,7 +65,8 @@ var globs = {
     'javascripts/contributors-quiz.js',
     'javascripts/vjbug-jira-collector.js',
     'javascripts/vjbug.js',
-    '!javascripts/namespace.js', 
+    'javascripts/tabs.js',
+    '!javascripts/namespace.js',
     '!javascripts/adobe-analytics.js'
   ],
   "styles": ['stylesheets/*.scss']
