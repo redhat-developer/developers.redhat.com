@@ -35,21 +35,6 @@
   }
 }
 
-.get-started-content {
-  padding-top: 15px;
-  text-align: center;
-  p {
-    margin:0;
-  }
-  .button {
-    font-size: emCalc(28);
-    font-weight: 100;
-    padding: 20px;
-    margin-top: 10px;
-    margin-bottom: 0;
-
-  }
-}
 
 a.get-started-example {
   background:cdn("../images/design/get-started/bg-squares.jpg");
@@ -397,13 +382,17 @@ ul.toc {
       margin-left: 1em;
     }
   }
-  .content-img img {
+  .get-started-content img {
     margin-top: 15px;
     margin-bottom: 20px;
     max-width: 540px;
   }
   .content-img-sm img {
     max-width: 300px;
+  }
+  .content-img-xs img {
+    max-width: 35px;
+    margin: 0;
   }
   table {
     width: 100%;
@@ -619,4 +608,23 @@ ul.toc {
   }
 }
 
-
+@include mobile-landscape-and-down {
+  #get-started-instructions {
+    ul li p, ol li p {
+      word-wrap: break-word;
+    }
+  }
+  .product-updates iframe {
+    max-width: 100%;
+  }
+  .downloads-table {
+    table thead tr th {
+      padding: 5px;
+    }
+  }
+}
+@include tablet-landscape-and-down {
+  .get-started-content img{
+    width: 100%;
+  }
+}
