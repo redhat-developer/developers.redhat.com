@@ -180,7 +180,8 @@ docker_firefox:
 docker_chrome:
   image: selenium/node-chrome
   volumes:
-     - ../_cucumber/tmp_rhd_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_rhd_downloads
+   - /dev/shm:/dev/shm
+   - ../_cucumber/tmp_rhd_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_rhd_downloads
   links:
    - selhub:hub
   environment:
