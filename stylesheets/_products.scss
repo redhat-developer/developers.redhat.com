@@ -678,3 +678,15 @@ ul.product-langs {
     color: #424242;
   }
 }
+
+@include mobile-landscape-and-down {
+  table.downloads-table {
+    thead tr th {
+      padding: 5px;
+    }
+    .download-links a, .download-links a + a {
+      display: block;
+      margin-left: 0;
+    }
+  }
+}
