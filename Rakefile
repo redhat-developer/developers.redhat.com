@@ -564,7 +564,7 @@ def load_site_yaml(yaml_path, profile = nil)
   if ( File.exist?( yaml_path ) )
     require 'yaml'
     require 'erb'
-    data = YAML.load( ERB.new(File.read( yaml_path ), nil, '<>') )
+    data = YAML.load( ERB.new(File.read( yaml_path ), nil, '<>').result )
     if ( profile )
       profile_data = {}
       data.each do |k,v|
