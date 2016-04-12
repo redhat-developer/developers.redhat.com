@@ -563,6 +563,7 @@ def load_site_yaml(yaml_path, profile = nil)
   config = Awestruct::AStruct.new
   if ( File.exist?( yaml_path ) )
     require 'yaml'
+    require 'erb'
     data = YAML.load( ERB.new(File.read( yaml_path ), nil, '<>') )
     if ( profile )
       profile_data = {}
