@@ -99,6 +99,43 @@ Capybara.register_driver :selenium_remote do |app|
   Capybara::Selenium::Driver.new(app, :browser => :remote, :url => url, :desired_capabilities => caps)
 end
 
+Capybara.register_driver :selenium_remote_chrome do |app|
+  job_name = "RHD Acceptance Tests - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
+  $download_dir = File.join("#{Dir.pwd}/_cucumber", 'tmp_rhd_downloads')
+  FileUtils.mkdir_p $download_dir
+  raise('Download directory was not created!') unless Dir.exist?($download_dir)
+
+  prefs = {
+      'download' => {
+          'prompt_for_download' => false,
+          'default_directory' => $download_dir,
+      },
+      'profile' => {
+          'default_content_settings' => {'multiple-automatic-downloads' => 1},
+          'default_content_setting_values' => {'automatic_downloads' => 1},
+          'password_manager_enabled' => false,
+          'gaia_info_picture_url' => true,
+      },
+      'safebrowsing' => {
+          'enabled' => true,
+      },
+  }
+
+  caps = Selenium::WebDriver::Remote::Capabilities.chrome
+  caps['chromeOptions'] = {'prefs' => prefs}
+  caps['chromeOptions']['args'] = %w[--disable-popup-blocking --ignore-ssl-errors --disable-download-protection]
+  caps['browser'] = 'Chrome'
+  caps['browser_version'] = '49.0'
+  caps['os'] = 'Windows'
+  caps['os_version'] = '10'
+  caps['project'] = job_name
+  caps['browserstack.debug'] = 'true'
+  caps['acceptSslCerts'] = 'true'
+  caps['browserstack.local'] = 'true'
+  url = "http://#{ENV['RHD_BS_USERNAME']}:#{ENV['RHD_BS_AUTHKEY']}@hub.browserstack.com/wd/hub"
+  Capybara::Selenium::Driver.new(app, :browser => :remote, :url => url, :desired_capabilities => caps)
+end
+
 Capybara.register_driver :selenium_chrome do |app|
   $download_dir = File.join("#{Dir.pwd}/_cucumber", 'tmp_rhd_downloads')
   FileUtils.mkdir_p $download_dir
@@ -178,7 +215,7 @@ Capybara.register_driver :docker_chrome do |app|
   Capybara::Selenium::Driver.new(app, :browser => :remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
 end
 
-browsers = [:selenium_firefox, :selenium_remote, :selenium_chrome, :browserstack, :docker_firefox, :docker_chrome]
+browsers = [:selenium_firefox, :selenium_remote, :selenium_remote_chrome, :selenium_chrome, :browserstack, :docker_firefox, :docker_chrome]
 browsers.each do |browser|
   Capybara::Screenshot.register_driver(browser) do |driver, path|
     driver.browser.save_screenshot path
