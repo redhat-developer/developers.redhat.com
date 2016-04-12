@@ -53,7 +53,6 @@ Red Hat Subscription Manager can be started from the _System_ -> _Administration
 . In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-6-rpms_ and _rhel-6-server-optional-rpms_. If you are using a desktop version of Red Hat Enterprise Linux, the repositories will be named _rhel-desktop-rhscl-6-rpms_ and _rhel-6-desktop-optional-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the enabled column. +
 
 If you don’t see any RHSCL repositories in the list, your subscription might not include it.
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel6/rhel-6-Manage-repositories-rhscl.png')}[Manage Repositories]
 
 See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
@@ -142,9 +141,7 @@ The following steps will create and run a {cpp} Hello World project using the sa
 .. Click the _Run_ button.
 
 +
-You will see "Hello, Red Hat Developers World" in the _Console_ tab on the lower half of the Eclipse window. You may want to make the Eclipse window larger, or make the Console pane larger to see more of the output from the build and run steps.
-
-[.content-img]
+You will see "Hello, Red Hat Developers World" in the _Console_ tab on the lower half of the Eclipse window. You may want to make the Eclipse window larger, or make the Console pane larger to see more of the output from the build and run steps. +
 image:#{cdn(site.base_url + '/images/products/developertoolset/rhel-6-dts-eclipse-3.png')}[Eclipse Project]
 
 For more information, see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Eclipse-Use.html[Using Eclipse] section of the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/index.html[Red Hat Developer Toolset 3.1 User Guide].

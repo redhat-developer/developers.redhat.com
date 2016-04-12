@@ -48,7 +48,6 @@
   background-position: top center;
   background-size: cover;
   background-repeat: repeat-x;
-  margin: -15px -15px 0 -15px;
 
   &.amq {background-image: cdn('../images/design/products/prod_header_jboss_amq.png');}
   &.atomic {background-image: cdn('../images/design/products/prod_header_rhel_atomic_host.png');}
@@ -156,7 +155,7 @@
 
 .product-header{
   background-color: rgba(0, 0, 0, 0.77);
-  padding: 35px 15px 15px 15px;
+  padding: 20px 15px 15px 15px;
   &.storage-and-big-data {
     border-bottom: 9px solid #F0AB00;
   }
@@ -599,11 +598,6 @@ ul.product-langs {
 }
 
 #get-started-instructions.rhel-custom {
-  img {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    max-width: 540px;
-  }
   .card {
     padding: 22px 15px;
     min-height: 166px;
@@ -682,5 +676,17 @@ ul.product-langs {
   width: 100%;
   caption {
     color: #424242;
+  }
+}
+
+@include mobile-landscape-and-down {
+  table.downloads-table {
+    thead tr th {
+      padding: 5px;
+    }
+    .download-links a, .download-links a + a {
+      display: block;
+      margin-left: 0;
+    }
   }
 }

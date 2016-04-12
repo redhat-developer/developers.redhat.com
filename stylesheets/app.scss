@@ -963,6 +963,7 @@ body.mobile {
       }
       p {
         margin:0;
+        word-wrap: break-word;
       }
     }
   }
@@ -2005,6 +2006,10 @@ h2.home-title {
   padding:40px 0 20px 0;
 }
 
+.literalblock {
+  word-wrap: break-word;
+}
+
 @include tablet-landscape-and-down {
   .button.button--join-today {
     top:0;
@@ -2016,3 +2021,6 @@ h2.home-title {
   background: none;
 }
 
+.content code {
+  word-wrap: break-word;
+}

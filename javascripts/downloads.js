@@ -5,7 +5,7 @@ app.downloads.url = app.downloadManagerBaseUrl + '/download-manager/rest/availab
 app.downloads.createDownloadTable = function(products) {
 
   var lastVersionName, lastDescription, row;
-  var $table = $('<table>').addClass('large-24 small-24 columns');
+  var $table = $('<table>').addClass('large-24 small-24 columns downloads-table');
 
   // create headers
   var headers = ['Version' ,'Release Date' ,'Description' ,'Download'].map(function(text){

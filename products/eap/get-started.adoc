@@ -44,11 +44,9 @@ b.  Click _Configure Maven Repositories…_ button.
 c.  Click _Add Repository_ and select the
 *redhat-techpreview-all-repository* profile and then click Ok. +
 +
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-1.png')}[Add Maven Repository]
 d.  Click Finish +
 +
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-2.png')}[Configure Maven Repository]
 e.  Answer _"Yes"_ for the question if you want to update settings.xml
 file.
@@ -65,11 +63,11 @@ the following steps.
 1.  In JBoss Developer Studio, Open the _JBoss Central view._ +
 ... Select _"Open With -> Jar  Open the _JBoss Central view._ +
 *Note:* If the _JBoss Central_ view is not visible, please click the
+[.content-img-xs]
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-3.png')}[menu icon] icon on the main menu bar.
 2.  Under the _"Start from a sample"_ section, select Web
 Applications, and click on the *_helloworld_* quickstart application. +
 +
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-4.png')}[JBoss Central]
 3.  Click on _Finish._ This will download the helloworld application and
 it’s maven dependencies.
@@ -78,7 +76,6 @@ a dialog telling you your project is ready. Just click _Finish._
 5.  On the _Servers_ tab, select _jboss-eap_ and click on the green
 start button to start the EAP server. +
 +
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-5.png')}[EAP Server]
 6.  Once the server has been started, select the _jboss-helloworld_
 application on the _Project Explorer._
