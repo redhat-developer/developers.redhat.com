@@ -96,6 +96,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "articles";
 @import "msbuild";
 @import "font-awesome";
+@import "devoxxfrance";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -2023,4 +2024,30 @@ h2.home-title {
 
 .content code {
   word-wrap: break-word;
+}
+
+.connect-with-us {
+  padding: 50px 0;
+  background-color: $red;
+  h2 {
+    color: $white;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  h4 {
+    font-weight: 200;
+    color: $white;
+  }
+  ul.social-links {
+    list-style: none;
+    max-width: 225px;
+    display: block;
+    margin: 15px auto 0 auto;
+    li, li a {
+      display: inline;
+      color: $white;
+      font-size: 1.8em;
+      margin-right: 15px;
+    }
+  }
 }
