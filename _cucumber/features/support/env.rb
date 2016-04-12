@@ -41,7 +41,7 @@ Capybara.configure do |config|
   config.app_host = host_to_test
   config.run_server = false
   config.app = 'RHD'
-  config.default_max_wait_time = 6
+  config.default_max_wait_time = 12
   config.save_and_open_page_path = '_cucumber/screenshots'
   Capybara::Screenshot.prune_strategy = :keep_last_run
 end
@@ -126,8 +126,8 @@ Capybara.register_driver :selenium_remote_chrome do |app|
   caps['chromeOptions']['args'] = %w[--disable-popup-blocking --ignore-ssl-errors --disable-download-protection]
   caps['browser'] = 'Chrome'
   caps['browser_version'] = '49.0'
-  caps['os'] = 'Windows'
-  caps['os_version'] = '10'
+  caps['os'] = 'OS X'
+  caps['os_version'] = 'El Capitan'
   caps['project'] = job_name
   caps['browserstack.debug'] = 'true'
   caps['acceptSslCerts'] = 'true'
