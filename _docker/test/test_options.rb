@@ -120,6 +120,8 @@ class TestOptions < Minitest::Test
   def test_acceptance_test_target_task
     ClimateControl.modify PARALLEL_TEST: 'true', RHD_JS_DRIVER: 'docker_chrome', RHD_DEFAULT_DRIVER: 'mechanize' do
       tasks = Options.parse (["--acceptance_test_target=http://example.com"])
+      assert(tasks[:set_ports])
+      assert(tasks[:build])
       assert_equal('http://example.com', ENV['HOST_TO_TEST'])
       assert_equal('true', ENV['PARALLEL_TEST'])
       assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
