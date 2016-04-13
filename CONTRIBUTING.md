@@ -403,7 +403,7 @@ Note: Please specify if the new slider image is supposed to replace one of the e
 ### How to Add a New Image to the Events Page Slider
 1. Create the two new PNG images: desktop size (1175px × 250px) and mobile size (480px × 500px)
 2. Upload the images to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/events
-3. In GitHub, go (to the events template)[https://github.com/redhat-developer/developers.redhat.com/blob/master/events.html.slim] and edit the image links under the desired .slide
+3. In GitHub, go [to the events template](https://github.com/redhat-developer/developers.redhat.com/blob/master/events.html.slim) and edit the image links under the desired .slide
 
         a(href="#{site.base_url}/events/msbuild/2016/")
           img.mobile(src=“http://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
@@ -498,6 +498,7 @@ The homepage’s Promo Items are the five items located under the main hero in t
 
 ### How to Request a Change in the Homepage Featured Content Section
 [Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request, specifying:
+
 1. Date, title, author
 2. Type (article-blog, book, or video)
 3. Link to the thumbnail image. Note: the image must be uploaded to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/feature
