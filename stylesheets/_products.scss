@@ -48,7 +48,6 @@
   background-position: top center;
   background-size: cover;
   background-repeat: repeat-x;
-  margin: -15px -15px 0 -15px;
 
   &.amq {background-image: cdn('../images/design/products/prod_header_jboss_amq.png');}
   &.atomic {background-image: cdn('../images/design/products/prod_header_rhel_atomic_host.png');}
@@ -135,7 +134,7 @@
       background-image: none;
     }
   }
-} 
+}
 
 .product {
   .toolbar {
@@ -156,7 +155,7 @@
 
 .product-header{
   background-color: rgba(0, 0, 0, 0.77);
-  padding: 35px 15px 15px 15px;
+  padding: 20px 15px 15px 15px;
   &.storage-and-big-data {
     border-bottom: 9px solid #F0AB00;
   }
@@ -388,162 +387,6 @@
   }
 }
 
-.multipath-tabs-sm {
-  margin-bottom: 15px;
-  padding-left: 0;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #BDBDBD;
-  ul {
-    li:before {
-      display: none;
-    }
-    li {
-      max-width: 100px;
-      display: inline;
-      margin-right: 10px;
-      padding: 15px 20px 15px 10px;
-      &.active {
-        border: 1px solid #BDBDBD;
-        border-bottom-color: $white;
-        a {
-          padding-bottom: 4px;
-          border-bottom: 3px solid $red;
-        }
-      }
-      a {
-        font-size: 1em;
-      }
-    }
-  }
-}
-
-#get-started h2{
-  margin-bottom: 1rem;
-}
-
-#get-started-instructions {
-  .gs-prerequisites h4 p, .gs-faq h4 p {
-    font-weight: 800;
-    color: #252527;
-    font-size: 1.4375rem;
-    margin-bottom: .5rem;
-  }
-  .gs-prerequisites ol {
-    margin-bottom: 2.25rem;
-    p {
-      margin-bottom: 0;
-    }
-  } 
-  .card {
-    background-color: #3999cb;
-    color: $white;
-    border: none;
-    -webkit-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
-    -o-transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
-    transition: color 0.5s ease,background 0.5s ease,border-color 0.5s ease;
-    height: 95%;
-    h4 {
-      color: $white;
-    }
-    @include tablet-landscape-and-down {
-      h4 {
-        padding-top: 15px;
-      }
-    }
-    i {
-      float: right;
-      font-size: .9rem;
-    }
-    .paragraph, .paragraph p {
-      display: inline-block;
-      font-size: .9rem;
-      margin-bottom: 0;
-    }
-    &:hover {
-      background-color: #2d7195;
-      .step-num {
-        color: #3999cb;
-      }
-      .paragraph, .paragraph p, h4, i {
-        color: #a3dbe8;
-      }
-    }
-    .step-duration {
-      position: relative;
-      top: 20px;
-    }
-  }
-  .step-header {
-    background-color: #3999cb;
-    color: $white;
-    border: none;
-    padding: 5px 15px;
-    margin: 3.2rem 0 1rem;
-    h4 {
-      color: $white;
-      margin-bottom: 0;
-      display: inline-block;
-    }
-    .duration {
-      display: inline;
-      font-size: .9rem;
-      margin-left: 10px;
-      bottom: 2px;
-      position: relative;
-      color: #aae3ec;
-      .paragraph, .paragraph p {
-        display: inline;
-        font-size: .9rem;
-      }
-    }
-  }
-  .step-num {
-    color: #aae3ec;
-    display: inline;
-    margin-right: 5px;
-  }
-  ul, ol {
-    margin-top: 15px;
-    li p, li p{
-      margin-bottom: 5px;
-      margin-left: 1em;
-    }
-  }
-  .content-img img {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    max-width: 540px;
-  }
-  .content-img-sm img {
-    max-width: 300px;
-  }
-  table {
-    width: 100%;
-  }
-  #MoreResources {
-    border: 5px solid #e6e7e8;
-    padding: 1.5rem;
-    margin: 3rem 0;
-    ul li:before{ 
-      display: none;
-    }
-  }
-  mark {
-    background: transparent;
-    color: inherit;
-    font-weight: inherit;
-    font-style: inherit;
-  }
-
-  h4 p, .card h4 > .paragraph p {
-    font-size: 1.4375rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 0;
-  }
-}
-
-
 @include desktop-and-down {
   #hero-try-or-buy {
     padding: 0;
@@ -590,7 +433,7 @@ ul.product-langs {
   @include mobile-landscape-and-down {
     li {
       width: calc(50% - 20px);
-    }    
+    }
   }
 }
 
@@ -755,11 +598,6 @@ ul.product-langs {
 }
 
 #get-started-instructions.rhel-custom {
-  img {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    max-width: 540px;
-  }
   .card {
     padding: 22px 15px;
     min-height: 166px;
@@ -830,6 +668,25 @@ ul.product-langs {
     .tc-link {
       margin-top: 15px;
       text-align: center;
+    }
+  }
+}
+
+.docs-and-apis-ec table{
+  width: 100%;
+  caption {
+    color: #424242;
+  }
+}
+
+@include mobile-landscape-and-down {
+  table.downloads-table {
+    thead tr th {
+      padding: 5px;
+    }
+    .download-links a, .download-links a + a {
+      display: block;
+      margin-left: 0;
     }
   }
 }

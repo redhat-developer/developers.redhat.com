@@ -250,6 +250,11 @@ app.utils.isMobile = {
   }
 }
 
+app.utils.getMonth = function(monthNum) {
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return months[monthNum];
+}
+
 
 // TODO Move this somewhere else
 function roundHalf(num) {

@@ -6,7 +6,7 @@ type: Get Started
 - page.description = "Learn how to install and start using #{page.product.abbreviated_name}."
 = partial 'getstarted-thankyou.html.slim', {'parent' => page}
 
-#get-started-instructions.rhel-custom.tthw-steps(data-spy="scroll" data-target="#steps-scroll")
+#get-started-instructions.four-steps.tthw-steps(data-spy="scroll" data-target="#steps-scroll")
   .row
     .large-17.columns#get-started
       h2 Get Started
@@ -80,7 +80,7 @@ type: Get Started
           .large-24.columns
             - if page._step4_duration
               i.fa.fa-clock-o  #{page._step4_duration}
-  .collapsable
+  .collapsable.get-started-content
     .pending-download
       input#stepOne(type='checkbox' checked)
       label(for='stepOne')
@@ -128,7 +128,9 @@ type: Get Started
             - elsif q == 'virtual_box'
               = page._step2_virtualbox_content
             - elsif q == 'vmware'
-              = page._step2_vmware_content                
+              = page._step2_vmware_content
+            - elsif q == 'kvm'
+              = page._step2_kvm_content              
 
     input#stepThree(type='checkbox' checked)
     label(for='stepThree')
@@ -155,7 +157,9 @@ type: Get Started
             - elsif q == 'virtual_box'
               = page._step3_virtualbox_content
             - elsif q == 'vmware'
-              = page._step3_vmware_content  
+              = page._step3_vmware_content
+            - elsif q == 'kvm'
+              = page._step3_kvm_content
     input#stepFour(type='checkbox' checked)
     label(for='stepFour')
       .large-24.step-header#Step4
