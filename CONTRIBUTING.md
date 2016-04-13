@@ -475,6 +475,24 @@ The homepage’s Promo Items are the five items located under the main hero in t
           span TEXT UNDER THE IMAGE GOES HERE
 5. Raise a pull request for your change.
 
+
+### How to Request a Change in the Homepage Featured Content Section
+[Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request, specifying:
+1. Date, title, author
+2. Type (article-blog, book, or video)
+3. Link to the thumbnail image. Note: the image must be uploaded to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/feature
+4. The text that will be placed next to the image.
+5. The URL to the page that will be linked from the image and the text below it.
+
+### How to Change One of the Items in the Homepage Featured Content Section
+1. Open the [Featured Content spreadsheet](https://docs.google.com/spreadsheets/d/1al_cs2glMaSBymmNFCiy1OboxAD6jv3YAwB1FrMVffE/edit#gid=1609962398)
+  1. If you don't have access to the spreadsheet: [Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa)
+2. To add a new Featured Content item, create a new row and fill out all of the fields in the row (Date, Title, Type, Author, URL, Thumbnail, Description). 
+Make sure you don't partially fill out the fields as the data will go live on the next build.
+3. Wait for upto 6hrs and then check the new item is present in the homepage.
+
+Note: only the first three row items will be displayed on the homepage, so one of the rows already in the spreadsheet will need to be removed/replaced.
+
 ## How to Create a 'Solution'
 The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/redhat-developer/developers.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required.
 
