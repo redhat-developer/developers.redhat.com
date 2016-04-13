@@ -48,7 +48,7 @@ section.wide.wide-hero(class="#{page.hero_class}")
       .large-24.columns
         h2 Red Hat Booth
         h4 Make DevOps work for you!
-        p Stop by the booth, get some swag and learn how you DevOps can help you develop and deliver applications faster.  With Red Hat JBoss Middleware, OpenShift by Red Hat and Red Hat Developers you can get access to what you need to do your job faster. 
+        p Stop by the booth, get some swag and learn how DevOps can help you develop and deliver applications faster.  With Red Hat JBoss Middleware, OpenShift by Red Hat and Red Hat Developers you can get access to what you need to do your job faster. 
 
   section.dark-blue#featured-speakers
     .row
@@ -73,7 +73,8 @@ section.wide.wide-hero(class="#{page.hero_class}")
                     .large-24.columns
                       p #{speaker.date}
                 .row  
-                  p.large-24.columns #{speaker.abstract}
+                  .large-24.columns.abstract 
+                    p #{speaker.abstract}
   section.connect-with-us
     .row
       .large-12.columns
