@@ -455,6 +455,26 @@ On approval of the change:
     4. Remember to set the link, image and alt text for the banner you are adding.
 3. [Raise a PR](#fixing) for your change.
 
+### How to Request a Change to One of the Homepage Promo Items
+The homepage’s Promo Items are the five items located under the main hero in the homepage. Each one has an image, a URL to link to, and a small description or caption.
+
+1. [Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request, specifying:
+  1. The URL for the image. Note: the image must be uploaded to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/promo
+  2. The text that will be placed below the image.
+  3. The URL to the page that will be linked from the image and the text below it.
+2. If the person creating the Jira issue is not the same person who will be reviewing the change, please specify who the reviewer will be.
+
+### How to Change One of the Homepage Promo Items
+1. Create the PNG image 465px × 300px
+2. Upload it to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/promo
+3. Go to the ‘spotlights-container’ section in  the [homepage's layout](https://github.com/redhat-developer/developers.redhat.com/blob/master/index.html.slim)
+4. Edit the promo item that will be replaced. Update the URL to the page that will be linked from the image, the text below the image, and the URL to the image
+
+        a.spotlight-item href='#{site.base_url}/path/to/site'
+          img(src=”LINK TO IMAGE” alt="UPDATE THE IMAGES ALT TEXT")
+          span TEXT UNDER THE IMAGE GOES HERE
+5. Raise a pull request for your change.
+
 ## How to Create a 'Solution'
 The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/redhat-developer/developers.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required.
 
