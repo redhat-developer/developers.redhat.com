@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_grey_card
+    - node.type.topic
+  module:
+    - text
+id: node.topic.field_grey_card
+field_name: field_grey_card
+entity_type: node
+bundle: topic
+label: 'Grey Card'
+description: 'Grey Card on the left, typically contains the "Follow Red Hat" text'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

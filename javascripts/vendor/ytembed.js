@@ -3,15 +3,16 @@
 /* 1/4/2015: upgraded to YouTube API v3 */
 /* 6/5/2015: added back views and duration  */
 /* 9/9/2015: Modifed by Wes Bos → Changed youtube links to redhat links */
+/* 4/6/2016: Modified by Jason Porter - commented out the function binding, it doesn't appear needed and breaks Drupal quickedit */
 
-Function.prototype.bind = function(obj, args) {
-    var method = this,
-        temp = function() {
-            return method.call(obj, args);
-        };
-
-    return temp;
-};
+//Function.prototype.bind = function(obj, args) {
+//    var method = this,
+//        temp = function() {
+//            return method.call(obj, args);
+//        };
+//
+//    return temp;
+//};
 
 var ytEmbed = {
 

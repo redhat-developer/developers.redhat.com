@@ -150,7 +150,7 @@
                 </drivers>
                 <datasource jndi-name="java:jboss/datasources/SearchiskoDS" pool-name="SearchiskoDS" enabled="true"
                     use-java-context="true">
-                    <connection-url>jdbc:mysql://${env.MYSQL_PORT_3306_TCP_ADDR}:3306/${env.DB_NAME}</connection-url>
+                    <connection-url>jdbc:mysql://mysql:3306/${env.DB_NAME}</connection-url>
                     <connection-property name="autoReconnect">true</connection-property>
                     <connection-property name="useUnicode">true</connection-property>
                     <connection-property name="characterEncoding">UTF-8</connection-property>

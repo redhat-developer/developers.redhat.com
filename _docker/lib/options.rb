@@ -47,9 +47,11 @@ class Options
 
       opts.on('--drupal-nightly', 'Start up and enable drupal') do |u|
         tasks[:drupal] = true
+        tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:set_ports] = true
-        tasks[:supporting_services] += %w(drupal drupalpgsql)
+        tasks[:supporting_services] += %w(drupal drupalpgsql mysql searchisko)
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
       end
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
