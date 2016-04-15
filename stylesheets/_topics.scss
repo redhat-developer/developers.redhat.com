@@ -104,7 +104,7 @@
       color: $white;
       text-transform: uppercase;
     }
-    p.description {
+    p.description, .description {
       font-size: 1.5em;
       line-height: 1.3;
       overflow: hidden;
@@ -159,7 +159,7 @@
       color: $white;
       text-transform: uppercase;
     }
-    p {
+    p, .description {
       font-size: 1.2em;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -193,7 +193,7 @@
       opacity: .8;
     }
 
-    p {
+    p, .description {
       line-height: 1.3;
       font-size: 1.2em;
       overflow: hidden;
@@ -218,7 +218,7 @@
     padding: 15px;
     border: 2px solid $grey-3;
     position: relative;
-    p {
+    p, .description {
       font-size: 1em;
       line-height: 1.4;
       color: #424242;
@@ -229,7 +229,7 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-    .promo-tags .promo-tags-label, .promo-tags ul li{
+    .promo-tags .promo-tags-label, .promo-tags ul li, .promo-tags .field_item {
       color: #424242;
     }
     &:hover, &:active, &:focus {
@@ -393,4 +393,10 @@ ul.topic-resources.topic-resources-list{
 }
 .topics-main .right-side-promo .usb-login ul li {
   margin-bottom: 0;
+}
+
+// HACK!! Working around the css / layout for drupal
+.topics-main .contextual-region .promo-tags {
+  position: inherit;
+  bottom: inherit;
 }

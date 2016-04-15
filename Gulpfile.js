@@ -55,7 +55,18 @@ var globs = {
     'javascripts/vendor/jquery.filedownload.js',
     'javascripts/vendor/highlight.min.js',
     'javascripts/vendor/highlight-init.js',
-    '!javascripts/namespace.js', 
+    'javascripts/vendor/moment.js',
+    'javascripts/vendor/picker.js',
+    'javascripts/vendor/picker.date.js',
+    'javascripts/topics.js',
+    'javascripts/datepicker-init.js',
+    'javascripts/latest.js',
+    'javascripts/events.js',
+    'javascripts/contributors-quiz.js',
+    'javascripts/vjbug-jira-collector.js',
+    'javascripts/vjbug.js',
+    'javascripts/tabs.js',
+    '!javascripts/namespace.js',
     '!javascripts/adobe-analytics.js'
   ],
   "styles": ['stylesheets/*.scss']
@@ -71,7 +82,7 @@ gulp.task('scripts',function() {
     .pipe(plugins.rename('all.min.js'))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest('_drupal/themes/custom/rhd/js/'));
+    .pipe(gulp.dest('_docker/drupal/themes/custom/rhd/js/'));
 });
 
 gulp.task('sass', function() {
@@ -87,12 +98,12 @@ gulp.task('sass', function() {
     }}))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest('_drupal/themes/custom/rhd/css/base'));
+    .pipe(gulp.dest('_docker/drupal/themes/custom/rhd/css/base'));
 });
 
 gulp.task('clean', function() {
-  return del(['_drupal/themes/custom/rhd/css/base/*.css',
-              '_drupal/themes/custom/rhd/js/all.min.js']);
+  return del(['_docker/drupal/themes/custom/rhd/css/base/*.css',
+              '_docker/drupal/themes/custom/rhd/js/all.min.js']);
 });
 
 gulp.task('default', ['clean', 'scripts', 'sass']);

@@ -1,6 +1,9 @@
 app.vjbug = {
   processDate: function () {
     var eventDate = document.getElementById('hiddenDate');
+    if (eventDate === null)
+      return;
+
     var eventDate = new Date(eventDate.innerHTML);
 
     // Format and isplay the date

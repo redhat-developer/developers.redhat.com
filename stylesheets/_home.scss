@@ -2,6 +2,7 @@
 .home .wrapper {
   padding-bottom: 0;
 }
+
 .homepage-main {
   color: $white;
   background-image: cdn('../images/design/homepage-hero/RHDev_homehero_desktop_projectoctopus.png');
@@ -48,7 +49,7 @@
       img {
         max-width: 225px;
       }
-      p{
+      p {
         margin-top: 8px;
         margin-bottom: 10px;
       }
@@ -65,15 +66,13 @@
   }
 }
 
-
-
 .spotlights-wrap {
-  background:black cdn("../images/design/dotted_line-darkgrey.svg") left no-repeat;
+  background: black cdn("../images/design/dotted_line-darkgrey.svg") left no-repeat;
 }
 
 .spotlights-container {
-  background-position:-200px 0;
-  background-size:1500px;
+  background-position: -200px 0;
+  background-size: 1500px;
   padding: 20px 0;
   display: flex;
   flex-wrap: wrap;
@@ -83,18 +82,18 @@
   width: calc(20%);
   padding: 0 12px;
   border-right: 1px solid $dark-grey;
-  color:white;
-  img{
+  color: white;
+  img {
     padding-bottom: 10px;
     &:hover {
       opacity: 0.7;
     }
   }
   &:hover {
-    color:white;
+    color: white;
   }
   &:last-child {
-    border-right:0;
+    border-right: 0;
   }
   .cut-image {
     position: relative;
@@ -138,15 +137,15 @@ ul.homepage-resources {
       border-bottom: none;
     }
     img {
-      width:150px;
+      width: 150px;
       margin-right: 10px;
     }
     i {
       font-size: 35px;
       margin-right: 10px;
-      color:$dark-grey;
+      color: $dark-grey;
       position: relative;
-      top:-5px;
+      top: -5px;
     }
     p.description {
       font-family: inherit;
@@ -164,7 +163,7 @@ ul.homepage-resources {
 
     }
     a {
-      color:#1C93D3;
+      color: #1C93D3;
     }
   }
   a.title {
@@ -177,9 +176,9 @@ ul.homepage-resources {
     margin: 0;
   }
 
-  .date{
+  .date {
     display: block;
-    color:black;
+    color: black;
     margin-right: 20px;
     font-size: 14px;
     margin-bottom: 0;
@@ -194,7 +193,7 @@ ul.homepage-resources {
 }
 
 .featured-and-latest {
-  padding:30px 0;
+  padding: 30px 0;
   h4 {
     font-weight: 600;
     font-size: 20px;
@@ -219,7 +218,7 @@ ul.homepage-resources {
     text-align: center;
     .large-8 {
       padding: 20px !important;
-      margin: 15px!important;
+      margin: 15px !important;
       background-color: $grey-2;
       width: 30%;
     }
@@ -316,3 +315,27 @@ ul.homepage-resources {
     }
   }
 }
+
+.drupal-header {
+  z-index: 100;
+  width: 300px;
+  padding: 20px;
+  position: fixed;
+  transition: all 0.4s;
+  transform: translateX(-100%);
+  &.open {
+    transform: translateX(0);
+    background: #000;
+  }
+
+  .tab {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background: black;
+    color: white;
+    padding: 30px;
+    transform: rotate(90deg) translateY(-100%)
+  }
+}
+

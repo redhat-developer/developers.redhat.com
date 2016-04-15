@@ -159,9 +159,6 @@
         &.side-nav-toggle a:after {
           @include transform(rotate(-90deg));
         }
-        &.active {
-          display: none;
-        }
       }
     }
   }
