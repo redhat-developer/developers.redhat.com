@@ -40,7 +40,12 @@ Before('@site_user') do
 end
 
 After('@logout') do
-  @page.current_page.physical_logout
+  if $host_to_test.include?('stage')
+    visit('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+  else
+    visit('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+  end
+  visit('/')
 end
 
 After do |scenario|

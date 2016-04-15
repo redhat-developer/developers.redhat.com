@@ -92,6 +92,7 @@ class Options
 
         tasks[:kill_all] = true
         tasks[:set_ports] = true
+        tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
         tasks[:supporting_services] += [ENV['RHD_DOCKER_DRIVER']]
         tasks[:acceptance_test_target_task] = ["--rm", "--service-ports", "awestruct_acceptance_test", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']} RHD_DEFAULT_DRIVER=#{ENV['RHD_DEFAULT_DRIVER']}"]

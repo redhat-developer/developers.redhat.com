@@ -2,7 +2,7 @@ Given(/^I register a new account$/) do
   @page.registration.open
   @page.registration.fill_in_form(@site_user[:first_name], @site_user[:last_name], @site_user[:email], @site_user[:company_name], @site_user[:country], @site_user[:password], @site_user[:password])
   @page.registration.create_account
-  @page.home.open
+  expect(@page.confirmation).to have_text 'Thanks for Registering!'
   expect(@page.current_page).to be_logged_in
 end
 
