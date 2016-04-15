@@ -21,7 +21,7 @@ drupal site:install standard --db-type=pgsql --db-host=drupalpgsql --db-port=543
 drupal theme:install --set-default rhd
 
 # install the needed modules in drupal, seems to be an issue where we have to install dependencies first, can't do it all at once
-drupal module:install toc_api toc_filter serialization basic_auth basewidget rest layoutmanager hal redhat_developers --latest
+drupal module:install serialization basic_auth basewidget rest layoutmanager hal redhat_developers --latest
 
 chown -R www-data:www-data sites
 

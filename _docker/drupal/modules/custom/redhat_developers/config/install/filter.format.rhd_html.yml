@@ -3,7 +3,6 @@ status: true
 dependencies:
   module:
     - editor
-    - toc_filter
 name: 'Red Hat Developers Approved HTML'
 format: rhd_html
 weight: 0
@@ -35,12 +34,3 @@ filters:
     status: true
     weight: 11
     settings: {  }
-  toc_filter:
-    id: toc_filter
-    provider: toc_filter
-    status: true
-    weight: 0
-    settings:
-      type: simple
-      auto: ''
-      block: '0'
