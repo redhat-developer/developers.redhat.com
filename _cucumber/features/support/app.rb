@@ -28,6 +28,11 @@ class App
     @current_page = @registration
   end
 
+  def confirmation
+    @confirmation ||= RegistrationConfirmation.new(@driver)
+    @current_page = @confirmation
+  end
+
   def upgrade_account
     @upgrade_account ||= UpgradeAccount.new(@driver)
     @current_page = @upgrade_account

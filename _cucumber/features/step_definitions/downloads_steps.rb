@@ -3,28 +3,12 @@ Given(/^I am on the Product Download page for ([^"]*)$/) do |product_id|
 end
 
 Then(/^I should see the ([^"]*) download overview page$/) do |product_id|
-  # Temporary hack until selenium issue: Permission denied to access property "__raven__" (Selenium::WebDriver::Error::UnknownError) is removed.
-  begin
-    expect(page.current_url).to include "/products/#{product_id}/download/"
-    @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
-  rescue
-    expect(page.current_url).to include "/products/#{product_id}/download/"
-    @page.download_overview.send("wait_until_#{product_id}_download_page_visible")
-  end
+  expect(@page.download_overview).to send("have_#{product_id}_download_page")
 end
 
 When(/^I click to download the featured download of "([^"]*)"$/) do |product|
   version, url = get_featured_download_for(get_product_id(product))
   @page.download_overview.click_featured_download_for(product, version, url)
-end
-
-Then(/^the download (should|should not) initiate$/) do |negate|
-  if negate.eql?('should')
-    raise("Download was not initiated! There were #{Dir.glob("#{$download_dir}/*").count} files found in the download directory") unless downloading? == true
-  else
-    files = Dir["#{$download_dir}/*"].size
-    expect(files).to be 0
-  end
 end
 
 Then(/^a list of products available for download$/) do

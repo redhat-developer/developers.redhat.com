@@ -299,6 +299,22 @@ To add or remove from this list:
 3. Edit the value of the `upstream_projects` key in the product's `product.yml` file. As an example, here is [JBoss EAP's product.yml](https://github.com/redhat-developer/developers.redhat.com/blob/master/products/eap/_common/product.yml)
 4. [Raise a PR](#fixing) for your change.
 
+### How to fix a broken link in an upstream project in Magnolia
+Access to magnolia needs to be granted by an administrator before changes can be made to the project file. Super user status is required to make the necessary changes.
+
+1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) for the change request. Include:
+ 1. The name of the project(s) to add/remove
+ 2. The name of the product you want modifying
+2. If you intend to make the code change, assign to yourself. Otherwise leave unassigned and skip the following steps.
+3. Log into magnolia and navigate to the project that contains the broken link
+ 1. Right click on the product and click open page.
+ 2. Select the edit button above the navigation bar (you may need to manipulate the css to see the edit button).
+ 3. Select the tab that contains the broke link.
+ 4. Remove the broken link and save your changes.
+ 5. From the magnolia admin console, highlight the product page that you changed and click "Activate changes"
+4. Contact Paul Robinson and ask to have the cache reset.
+5. Once the cache has been reset, check Blinkr report on a new PR to make sure invalid links were removed.
+
 ### How to add/remove 'Featured Video' to the 'Resources' page
 Upto three videos can be added to the 'Featured Videos' area.
 To add/remove them:
@@ -375,6 +391,26 @@ If you don't have access to the spreadsheet:
 
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa)
 
+### How to Request a New Image to be Added to the Events Page Slider
+1. [Create a JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) for the change request, specifying the images’ URLs
+  1. Images must be uploaded to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/events
+  2. One image must be desktop size: 1175px × 250px
+  3. The second image must be mobile size: 480px × 500px
+2. Specify the URL that the image must link to
+
+Note: Please specify if the new slider image is supposed to replace one of the existing ones, or just to be added as an extra one.
+
+### How to Add a New Image to the Events Page Slider
+1. Create the two new PNG images: desktop size (1175px × 250px) and mobile size (480px × 500px)
+2. Upload the images to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/events
+3. In GitHub, go [to the events template](https://github.com/redhat-developer/developers.redhat.com/blob/master/events.html.slim) and edit the image links under the desired .slide
+
+        a(href="#{site.base_url}/events/msbuild/2016/")
+          img.mobile(src=“http://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
+          img.desktop(src=“http://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
+
+4. Raise a pull request for your change.
+
 ### How to add a Event Card Graphic
 In the event spreadsheet there are several event card graphics to choose from. This section describes how to add a new one. This process should be completed by the visual design team.
 
@@ -438,6 +474,45 @@ On approval of the change:
     3. Remember to remove any old images if you remove the item from the carousel.
     4. Remember to set the link, image and alt text for the banner you are adding.
 3. [Raise a PR](#fixing) for your change.
+
+### How to Request a Change to One of the Homepage Promo Items
+The homepage’s Promo Items are the five items located under the main hero in the homepage. Each one has an image, a URL to link to, and a small description or caption.
+
+1. [Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request, specifying:
+  1. The URL for the image. Note: the image must be uploaded to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/promo
+  2. The text that will be placed below the image.
+  3. The URL to the page that will be linked from the image and the text below it.
+2. If the person creating the Jira issue is not the same person who will be reviewing the change, please specify who the reviewer will be.
+
+### How to Change One of the Homepage Promo Items
+1. Create the PNG image 465px × 300px
+2. Upload it to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/promo
+3. Go to the ‘spotlights-container’ section in  the [homepage's layout](https://github.com/redhat-developer/developers.redhat.com/blob/master/index.html.slim)
+4. Edit the promo item that will be replaced. Update the URL to the page that will be linked from the image, the text below the image, and the URL to the image
+
+        a.spotlight-item href='#{site.base_url}/path/to/site'
+          img(src=”LINK TO IMAGE” alt="UPDATE THE IMAGES ALT TEXT")
+          span TEXT UNDER THE IMAGE GOES HERE
+5. Raise a pull request for your change.
+
+
+### How to Request a Change in the Homepage Featured Content Section
+[Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa) for the change request, specifying:
+
+1. Date, title, author
+2. Type (article-blog, book, or video)
+3. Link to the thumbnail image. Note: the image must be uploaded to filemgmt.jboss.org:/static_htdocs/_root/images/rhd/feature
+4. The text that will be placed next to the image.
+5. The URL to the page that will be linked from the image and the text below it.
+
+### How to Change One of the Items in the Homepage Featured Content Section
+1. Open the [Featured Content spreadsheet](https://docs.google.com/spreadsheets/d/1al_cs2glMaSBymmNFCiy1OboxAD6jv3YAwB1FrMVffE/edit#gid=1609962398)
+  1. If you don't have access to the spreadsheet: [Create a JIRA issue](https://issues.jboss.org/secure/DEVELOPER/CreateIssue!default.jspa)
+2. To add a new Featured Content item, create a new row and fill out all of the fields in the row (Date, Title, Type, Author, URL, Thumbnail, Description). 
+Make sure you don't partially fill out the fields as the data will go live on the next build.
+3. Wait for upto 6hrs and then check the new item is present in the homepage.
+
+Note: only the first three row items will be displayed on the homepage, so one of the rows already in the spreadsheet will need to be removed/replaced.
 
 ## How to Create a 'Solution'
 The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/redhat-developer/developers.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required.

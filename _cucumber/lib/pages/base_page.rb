@@ -34,6 +34,7 @@ class BasePage < SitePrism::Page
 
   def verify_page(page_title)
     page.has_title?(page_title).should == true
+    wait_for_ajax
   end
 
   def logged_in?
@@ -87,6 +88,24 @@ class BasePage < SitePrism::Page
 
   def visible?(negate, css_selector)
     page.has_css?(css_selector, :visible => negate)
+  end
+
+  private
+
+  def wait_for_ajax(timeout = 60, message = nil)
+    end_time = ::Time.now + timeout
+    unless Capybara.current_driver == :mechanize
+      until ::Time.now > end_time
+        return if finished_all_ajax_requests?
+        sleep 0.5
+      end
+      message = "Timed out after #{timeout} waiting for ajax requests to complete" unless message
+      raise(message)
+    end
+  end
+
+  def finished_all_ajax_requests?
+    page.execute_script("return window.jQuery != undefined && jQuery.active == 0")
   end
 
 end
