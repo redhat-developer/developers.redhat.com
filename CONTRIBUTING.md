@@ -88,7 +88,7 @@ The Pull request will then be reviewed by the Red Hat Developers team, and you m
 
 
 ## Developer Materials
-Currently we have a number of different types of developer materials that can be searched from http://developers.redhat.com/<product>/learn. These are described as follows:
+Currently we have a number of different types of developer materials that can be searched from http://developers.redhat.com/resources and `http://developers.redhat.com/<product code>/learn`. These are described as follows:
 
 1. Quickstarts. These demonstrate a small number of technologies in as simple a way as possible. The guidelines are quite strict around the structure and scope of the quickstarts. This makes it easier for the Red Hat Developer team to maintain the large quantity of quickstarts that we have and also gives the user a consistent experience. Currently we only support quickstarts that are located in one of the JBoss Developer quickstarts repositories on https://github.com/jboss-developer.
 2. Demos. These are larger applications than quickstarts and don't have as strict guidelines. They can also be located in external repositories outside of the JBoss Developer GitHub organization.
@@ -99,7 +99,7 @@ The following sections summarise how to contribute developer materials.
 ### How to Contribute a New Quickstart to an Existing Red Hat Developers Repository
 To contribute a new Quickstart to Red Hat Developers:
 
-1. Identify which JBoss Product or upstream Project it targets.
+1. Identify which Product or upstream Project it targets.
 2. Find the appropriate quickstart repository. Most of the JBoss Product quickstart repositories are located in the [Jboss Developer GitHub organisation](https://github.com/jboss-developer). For example, see the [JBoss EAP quickstart repository](https://github.com/jboss-developer/jboss-eap-quickstarts).
 3. Now follow the [Contribution guide](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CONTRIBUTING.md).
 4. The Quickstart will typically appear on the Red Hat Developers site shortly after the next Product or Project release containing your contribution.
