@@ -1,0 +1,24 @@
+<div class="share-this">
+    <p><i class="fa fa-share">Share This</i></p>
+    <ul class="share-this-buttons social-buttons cf">
+        <li>
+            <a class="socialite twitter-share" href="https://twitter.com/share" data-text="{{ label|render|striptags }}"
+               data-url="{{ url }}" rel="nofollow" target="_blank"><span class="vhidden">Tweet</span></a>
+        </li>
+        <li>
+            <a class="socialite facebook-share" href="http://www.facebook.com/sharer.php?u={{ url }}&t={{ label|render|striptags|url_encode }}"
+               data-href="{{ url }}" data-send="false" data-type="button_count" data-width="60" data-show-faces="false"
+               rel="nofollow" target="_blank"><span class="vhidden">Share on Facebook</span></a>
+        </li>
+        <li>
+            <a class="socialite linkedin-share"
+               href="http://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ label|render|striptags|url_encode }}"
+               data-url="{{ url }}" data-counter="right" rel="nofollow"
+               target="_blank"><span class="vhidden">Share on LinkedIn</span></a>
+        </li>
+        <li><a class="socialite googleplus-one" href="https://plus.google.com/share?url={{ url }}" data-size="tall"
+               data-annotation="inline" data-width="60" data-href="{{ url }}" rel="nofollow" target="_blank"><span
+                        class="vhidden">Share on Google+</span></a></li>
+        </li>
+    </ul>
+</div>
