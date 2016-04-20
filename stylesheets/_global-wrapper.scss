@@ -41,26 +41,40 @@ footer.bottom {
     text-transform: uppercase;
     font-weight: 800;
     color: white;
-    margin-top: 15px;
+    margin: 15px 0 20px 0;
   }
   a {
     color:white;
     &.copyright {
       color: #646464;
-      width: 240px;
+      width: 220px;
       cursor: default;
     }
     &.summit-logo {
       margin-right: 20px;
+      float: right;
     }
+    &.devnation-logo {
+      float: right;
+    }
+  }
+  p {
+    color: #9A9A9A;
+    line-height: 1.5;
+    font-size: .9em;
   }
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    &.inline-list {
+      li:first-child {
+        margin-left: 0;
+      }
+    }
     &.quick-links {
       li {
-          padding-bottom: 5px;
+          padding-bottom: 15px;
           margin-right: 38px;
           a {
             font-size: 14px;
@@ -99,6 +113,7 @@ footer.bottom {
       &.inline-list li{
         float: none;
         margin-left: 0 !important;
+        margin-bottom: 15px;
       }
     }
   }
@@ -121,6 +136,9 @@ ul.social-nav {
     display: inline;
     margin-left: 16px;
     float:none;
+    &:first-child {
+        margin-left: 0;
+      }
     a {
       font-size: 1.1rem;
     }
@@ -130,6 +148,10 @@ ul.social-nav {
   ul.social-nav {
     float: none;
     margin: 10px 0 !important;
+  }
+  footer.bottom a.devnation-logo, footer.bottom a.summit-logo {
+    float: none;
+    margin-right: 15px;
   }
 }
 
