@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
 echo "Attempting to connect to mysql, waiting until it comes up if needed..."
-until mysql -u ${DB_USER} -h ${MYSQL_PORT_3306_TCP_ADDR} --password=${DB_PASSWORD} -e ";" 2>/dev/null; do
-  echo Waiting...
+until mysql -u ${DB_USER} -h mysql --password=${DB_PASSWORD} -e "SHOW DATABASES;" 2>/dev/null; do
+  echo Waiting for mysql to startup ...
   sleep 2
 done
 

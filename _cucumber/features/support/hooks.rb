@@ -18,7 +18,8 @@ Before('@products, @downloads') do
   @product_names = get_products[1]
   @products_with_learn_link = get_products_with_links('learn.html.slim')[0]
   @products_with_docs = get_products_with_links('docs-and-apis.adoc')[0]
-  @products_with_downloads = get_products_with_links('download.adoc')[0]
+  @technologies_with_downloads = get_available_downloads[0]
+  @available_downloads = get_available_downloads
   @products_with_buzz = get_products_with_links('buzz.html.slim')[0]
 end
 
@@ -39,17 +40,18 @@ Before('@site_user') do
 end
 
 After('@logout') do
-  # Temporary hack until selenium issue: Permission denied to access property "__raven__" (Selenium::WebDriver::Error::UnknownError) is removed.
-  begin
-    Home.new(@driver).physical_logout
-  rescue
-    Home.new(@driver).physical_logout
+  if $host_to_test.include?('stage')
+    visit('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+  else
+    visit('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
   end
+  visit('/')
 end
 
 After do |scenario|
   if scenario.failed?
     puts "The test failed on page: #{page.title}"
+    puts "The test failed on url: #{page.current_url}"
     Capybara.using_session(Capybara::Screenshot.final_session_name) do
       filename_prefix = Capybara::Screenshot.filename_prefix_for(:cucumber, scenario)
 

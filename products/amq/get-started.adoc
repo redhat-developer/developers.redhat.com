@@ -44,7 +44,6 @@ a. Open JBoss Developer Studio preferences, expand _J​BossTools_ ​and select
 b. Click _Configure Maven Repostories_ button.
 c. Click _Add Repository_ and select ​`redhat-techpreview-all-repository` profile and then click _OK_.
 +
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-1.png')}[Add Maven Repository]
 +
 d. Repeat the previous step to add the following repositories:
@@ -109,7 +108,6 @@ Unzip the folder to your favorite destination (will be referred to as `FOLDER_HO
 a. Click on _File -> Import_
 b. Expand the Maven folder and choose _"Existing Maven Project"_
 +
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/amq/import-project-maven.png')}[Import Existing Maven Repository]
 +
 c. Click the _Next_ button.
@@ -120,14 +118,12 @@ image:#{cdn(site.base_url + '/images/products/amq/navigate-amq-jms.png')}[Naviga
 +
 e. Click the _O​K_ ​button. A final dialog will confirm your choices.
 +
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/amq/import-amq-jms.png')}[Confirm the amq-helloworld-jms project]
 +
 f. Click the _Finish_ button. JBoss Developer Studio will import the project and download dependencies from the repositories you configured in the “Install JBoss Developer Studio” section. This may take a few minutes depending on your internet connection.
 3. Run Hello World: Navigate, explore, and run the hello world example.
 a. Click on the folder icons within the Project Explorer section to discover App.java. Double click on App.java
 +
-[.content-img]
 image:#{cdn(site.base_url + '/images/products/amq/amq-helloworld.png')}[Navigate to App.java]
 +
 b. When you are ready to try the example out, select from the main menu, _R​u​n ​→ Run As​→ J​ava Application_

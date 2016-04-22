@@ -24,6 +24,11 @@ module ProductsHelper
     return product_id, product_type
   end
 
+  def get_product_by_id(id)
+    data = YAML.load_file("products/#{id}/_common/product.yml")
+    data['name']
+  end
+
   def get_products_with_links(link_type)
     product_type = []
     product_id = []

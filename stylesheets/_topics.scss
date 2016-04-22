@@ -1,14 +1,16 @@
 .topics-header {
   background-color: rgba(0, 0, 0, 0.77);
-  padding: 35px 35px 20px 35px;
+  padding: 20px 35px 20px 35px;
   background-position: top center;
   background-size: cover;
   background-repeat: repeat-x;
+  margin: -15px -15px 0 -15px;
 
   &.containers {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_containers.png');}
   &.devops {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_devops.png');}
   &.enterprise-java {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_java.png');}
   &.web-and-api-development {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_webapi.png');}
+  &.dotnet {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_dotnet.png');}
   &.mobile {
     background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_mobile.png');
     display: block;
@@ -21,6 +23,7 @@
     &.devops {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_devops.png');}
     &.enterprise-java {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_java.png');}
     &.web-and-api-development {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_webapi.png');}
+    &.dotnet {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_dotnet.png');}
     &.mobile {
       background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_mobile.png');
       display: block;
@@ -73,7 +76,7 @@
   }
   .main-promo{
     background-color: #0089d0;
-    background-position: left top, right top;
+    background-position: left top, right bottom;
     background-size: 45%, contain;
     background-repeat: no-repeat;
     color: $white;
@@ -90,12 +93,18 @@
       background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_mobile.png');
       display: block;
     }
+    &.dotnet {
+      background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_3col_dotnet.png');
+      p.description {
+        font-size: 1.3em;
+      }
+    }
 
     h3 {
       color: $white;
       text-transform: uppercase;
     }
-    p.description {
+    p.description, .description {
       font-size: 1.5em;
       line-height: 1.3;
       overflow: hidden;
@@ -121,6 +130,9 @@
     }
     @include tablet-landscape-and-down {
       background-size: 30%, contain;
+      &.dotnet {
+        min-height: 445px;
+      }
     }
     @include mobile-landscape-and-down {
       height: auto;
@@ -128,21 +140,26 @@
   }
 
   .secondary-promo {
-    background: #f0ab00 cdn("../images/design/topics/dotted_lines_white.png") left top / 80% no-repeat;
+    background-color: #ec7a08;
     color: $white;
     height: 400px;
     margin: 16px 0;
     padding: 25px;
     position: relative;
     &:hover{
-      background: #ec7a08;
+      opacity: .8;
       
+    }
+    &.dotnet {
+      a, a i {
+        color: $white;
+      }
     }
     h4 {
       color: $white;
       text-transform: uppercase;
     }
-    p {
+    p, .description {
       font-size: 1.2em;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -154,24 +171,29 @@
     }
     @include tablet-landscape-and-down {
       background-size: 30%;
+      &.dotnet {
+        min-height: 445px;
+      }
     }
     @include tablet-portrait-and-down {
       height: auto;
+      &.dotnet {
+        min-height: 200px;
+      }
     }
   }
   .tertiary-tall-promo {
-    background: #92d400 cdn("../images/design/topics/dotted_lines_white.png") left top / 80% no-repeat;
+    background-color: #3f9c35;
     color: $white;
     height: 418px;
     margin: 16px 0;
     padding: 25px;
     position: relative;
     &:hover{
-      background: #3f9c35;
-
+      opacity: .8;
     }
 
-    p {
+    p, .description {
       line-height: 1.3;
       font-size: 1.2em;
       overflow: hidden;
@@ -196,7 +218,7 @@
     padding: 15px;
     border: 2px solid $grey-3;
     position: relative;
-    p {
+    p, .description {
       font-size: 1em;
       line-height: 1.4;
       color: #424242;
@@ -207,12 +229,12 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-    .promo-tags .promo-tags-label, .promo-tags ul li{
+    .promo-tags .promo-tags-label, .promo-tags ul li, .promo-tags .field_item {
       color: #424242;
     }
     &:hover, &:active, &:focus {
-      border: 2px solid #0089d0;
-      background-color: #0089d0;
+      border: 2px solid #a3dbe8;
+      background-color: #a3dbe8;
       cursor: pointer;
       a, p, h4, h5, .promo-tags-label, ul li , .promo-tags ul li:after{
         color: $white;
@@ -309,8 +331,8 @@ ul.topic-resources.topic-resources-list{
     bottom: -16px;
   }
   li:hover, li:active, li:focus {
-    border: 2px solid #0089d0;
-    background-color: #0089d0;
+    border: 2px solid #a3dbe8;
+    background-color: #a3dbe8;
     cursor: pointer;
     a, p, h4, h5, p.description, p.tags{
       color: $white;
@@ -336,4 +358,45 @@ ul.topic-resources.topic-resources-list{
 }
 .promo-tags {
   max-width: 85%;
+}
+
+// Styles for custom .NET Topics page
+#dotNet .topics-main {
+  .right-side-promo {
+    height: 418px;
+    h4 {
+      font-size: 1.2em;
+    }
+  }
+  .main-promo {
+    background-size: 26%, contain;
+    height: 400px;
+    span.promo-tags {
+      position: absolute;
+    }
+  }
+  ul.social-links {
+    margin-top: 10px;
+    margin-left: 0;
+    li {
+      display: inline;
+      margin-right: 7px;
+      a i{
+        color: #0089d0;
+      }
+    }
+  }
+}
+
+.usb-login p, .usb-login ul{
+  margin-bottom: 8px;
+}
+.topics-main .right-side-promo .usb-login ul li {
+  margin-bottom: 0;
+}
+
+// HACK!! Working around the css / layout for drupal
+.topics-main .contextual-region .promo-tags {
+  position: inherit;
+  bottom: inherit;
 }

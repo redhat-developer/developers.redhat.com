@@ -13,7 +13,8 @@ class UpgradeAccount < BasePage
   element :submit_btn, :xpath, '//*[@id="user-account:submit"]'
 
   def initialize(driver)
-    loaded?('User Account Upgrade | Red Hat Developers')
+    super
+    verify_page('User Account Upgrade | Red Hat Developers')
   end
 
   def upgrade_account_with(password, confirm_password, company, address_line_one, city, postcode, phone_number, tc='yes')
@@ -25,9 +26,7 @@ class UpgradeAccount < BasePage
     account_postal_code.set(postcode)
     account_phone_number.set(phone_number)
     terms_and_conditions.click if tc.eql?('yes')
-    page.has_button?('Submit', disabled: false)
     submit_btn.click
-    wait_for_ajax
   end
 
 end

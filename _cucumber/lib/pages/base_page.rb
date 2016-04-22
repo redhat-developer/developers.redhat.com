@@ -34,21 +34,17 @@ class BasePage < SitePrism::Page
     @driver = driver
   end
 
-  def loaded?(title)
-    wait_for_ajax unless page.title.include?('not available') || page.title.include?('Problem loading page')
-    raise("Expected page title to be #{title}, but was #{page.title}") unless page.has_title?(title).eql?(true)
-  end
-
-  def title
-    page.find('h2').text
+  def verify_page(page_title)
+    page.has_title?(page_title).should == true
+    wait_for_ajax
   end
 
   def logged_in?
-    visible?(true, '.logged-in') && visible?(true, '.logout') && visible?(false, '.register') && visible?(false, '.login')
+    visible?(true, '.logged-in-name') && visible?(true, '.logout')
   end
 
   def logged_out?
-    visible?(false, '.logged-in') && visible?(false, '.logout') && visible?(true, '.login') && visible?(true, '.register')
+    visible?(true, '.login') && visible?(true, '.register') && visible?(false, '.logout')
   end
 
   def hover_over_nav_menu(tab)
@@ -56,9 +52,7 @@ class BasePage < SitePrism::Page
   end
 
   def toggle_menu
-    wait_until_nav_toggle_visible(6)
     nav_toggle.click unless has_nav_open?
-    wait_until_nav_open_visible(6)
     sleep(1.5) #for menu to drop down
   end
 
@@ -67,10 +61,8 @@ class BasePage < SitePrism::Page
     toggle_menu
     case link
       when 'login', 'register', 'logout'
-        send("wait_until_#{link}_link_visible")
         send("#{link}_link").click
       else
-        send("wait_until_primary_nav_#{link}_link_visible")
         send("primary_nav_#{link}_link").click
     end
   end
@@ -80,37 +72,34 @@ class BasePage < SitePrism::Page
       toggle_menu_and_tap(link)
     else
       send("#{link}_link").click
-      wait_for_ajax
     end
   end
 
   def physical_logout
-    unless page.title.include?('not available') || page.title.include?('Problem loading page')
-      try(3) {
-        if has_nav_toggle?
-          toggle_menu
-        end
-        if logged_in?.eql?(true)
-          logout_link.click
-          wait_for_ajax
-        end
-        logged_out?
-      }
+    unless logged_out?.eql?(true)
+      if has_nav_toggle?
+        toggle_menu
+      end
+
+      if logged_in?.eql?(true)
+        logout_link.click
+      end
     end
+    logged_out?.should.eql?(true)
   end
+
+  def visible?(negate, css_selector)
+    page.has_css?(css_selector, :visible => negate)
+  end
+
+  private
 
   def search_for(query)
     nav_search_field.set query
     find('.user-search').native.send_keys(:return)
   end
 
-  def wait_for_ajax(message = nil)
-    if Capybara.app_host.eql?('http://0.0.0.0:4242/') || Capybara.app_host.include?('docker')
-      timeout = 120
-    else
-      timeout = 60
-    end
-
+  def wait_for_ajax(timeout = 60, message = nil)
     end_time = ::Time.now + timeout
     unless Capybara.current_driver == :mechanize
       until ::Time.now > end_time
@@ -122,26 +111,8 @@ class BasePage < SitePrism::Page
     end
   end
 
-  private
-
   def finished_all_ajax_requests?
     page.execute_script("return window.jQuery != undefined && jQuery.active == 0")
-  end
-
-  def try(i)
-    count = 0; logged_out = false
-    until logged_out == true || count == i
-      logged_out = yield
-      sleep(3)
-      count += 1
-    end
-    if logged_out.eql?(false)
-      raise("User was not logged out after #{count} attempts")
-    end
-  end
-
-  def visible?(negate, css_selector)
-    page.has_css?(css_selector, :visible => negate)
   end
 
 end

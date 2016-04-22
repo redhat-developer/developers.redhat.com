@@ -41,7 +41,7 @@ app.topics.render = function(materials) {
     var timeAgo = $.timeago(timeStamp);
 
     if (material.fields.sys_type[0] == 'blogpost'){
-      if ((material.fields.sys_url_view[0].startsWith('http://developerblog.redhat.com')) || (material.fields.sys_url_view[0].startsWith('http://feedproxy.google.com')) ) {
+      if (material.fields.sys_url_view[0].startsWith('http://developerblog.redhat.com') || material.fields.sys_url_view[0].startsWith('https://developerblog.redhat.com') || material.fields.sys_url_view[0].startsWith('http://developers.redhat.com/blog/') || material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog/')) {
         material.fields.sys_url_view[0] = material.fields.sys_url_view[0];
       } else {
         var post_id = /-(.+)/.exec(material._id)[1];

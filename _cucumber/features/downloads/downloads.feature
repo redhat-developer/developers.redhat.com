@@ -4,17 +4,20 @@ Feature: Download Page - Unauthorised customer
   As generic site visitor,
   I want to be able to see a list of available downloads.
 
-  @downloads
-  @javascript
+  @downloads @javascript
+  Scenario: Most popular downloads should be displayed at the top of downloads page
+    Given I am on the Downloads page
+    Then I should see the Downloads page title
+    And a "MOST POPULAR" Downloads section with the following Downloads:
+      | Red Hat Enterprise Linux                      |
+      | Red Hat JBoss Enterprise Application Platform |
+      | Red Hat JBoss Developer Studio                |
+      | Red Hat JBoss Fuse                            |
+    And a 'DOWNLOAD' button for each Most Popular Download
+
+  @downloads @javascript
   Scenario: Unauthorised customer should see a list of available downloads from Red Hat.
     Given I am on the Downloads page
     Then I should see the Downloads page title
     And a list of products available for download
-    And the 'Download Latest' links for available products
-
-  Scenario: Unauthorised customer should see a list of 'Other developer resources'
-    Given I am on the Downloads page
-    Then the following 'Other developer resources' links should be displayed:
-      | Container development kit |
-      | Building Linux RPMs       |
-      | Developing with OpenShift |
+    And a 'DOWNLOAD' button for each available product Download

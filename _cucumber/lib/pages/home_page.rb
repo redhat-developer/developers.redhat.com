@@ -11,7 +11,7 @@ class Home < BasePage
 
   def open
     load
-    loaded?('Red Hat Developers')
+    verify_page('Red Hat Developers')
   end
 
 end

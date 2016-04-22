@@ -6,7 +6,8 @@ class TermsAndConditions < BasePage
   element :not_accept_tcs, "input[value='Not Accept']"
 
   def initialize(driver)
-    loaded?('T&C Acceptance | Red Hat Developers')
+    super
+    verify_page('T&C Acceptance | Red Hat Developers')
   end
 
 end
