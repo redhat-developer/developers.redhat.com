@@ -36,6 +36,10 @@ class DownloadsPage < BasePage
     other_resources.map { |link| link.text.capitalize }
   end
 
+  def click_to_download(url)
+    find(:xpath, "//*[@id='downloads']//a[@href='#{url}']").click
+  end
+
   private
 
   def wait_for_fetching_downloads(timeout = 12)

@@ -34,6 +34,7 @@ class GetStartedPage < BasePage
   private
 
   def wait_for_get_started_on(product_id, timeout = 30)
+    wait_for_ajax
     end_time = ::Time.now + timeout
     until ::Time.now > end_time
       return if send("has_#{product_id}_get_started_page?")
