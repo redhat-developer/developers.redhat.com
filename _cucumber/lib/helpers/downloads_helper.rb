@@ -67,6 +67,8 @@ module DownloadHelper
         'datavirt'
       when 'Red Hat Container Development Kit (CDK)'
         'cdk'
+      when 'Red Hat Enterprise Linux'
+        'rhel'
       else
         raise "No mapping for #{product}! See Downloads Helper"
     end

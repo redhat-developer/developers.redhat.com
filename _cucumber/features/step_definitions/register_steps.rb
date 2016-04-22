@@ -11,10 +11,16 @@ When(/^I complete the registration form$/) do
   @page.registration.create_account
 end
 
-When(/^I complete the registration form and accept the terms and conditions$/) do
-  @page.registration.fill_in_extended_form(@site_user[:email], @site_user[:password], @site_user[:password], @site_user[:greeting], @site_user[:first_name], @site_user[:last_name], @site_user[:company_name], @site_user[:address_line_one], @site_user[:city], @site_user[:postal_code], @site_user[:country], @site_user[:phone_number])
-  @page.registration.checkall_tac.click
-  @page.registration.create_account_and_download.click
+When(/^I complete the (extended registration|registration) form and accept the terms and conditions$/) do |negate|
+  if negate.include?('extended')
+    @page.registration.fill_in_extended_form(@site_user[:email], @site_user[:password], @site_user[:password], @site_user[:greeting], @site_user[:first_name], @site_user[:last_name], @site_user[:company_name], @site_user[:address_line_one], @site_user[:city], @site_user[:postal_code], @site_user[:country], @site_user[:phone_number])
+    @page.registration.checkall_tac.click
+    @page.registration.create_account_and_download.click
+  else
+    @page.registration.fill_in_form(@site_user[:first_name], @site_user[:last_name], @site_user[:email], @site_user[:company_name], @site_user[:country], @site_user[:password], @site_user[:password])
+    @page.registration.accept_terms.click
+    @page.registration.create_account
+  end
 end
 
 Then(/^I should see the following confirmation message: (.*)/) do |message|

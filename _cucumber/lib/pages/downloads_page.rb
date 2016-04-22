@@ -37,7 +37,7 @@ class DownloadsPage < BasePage
   end
 
   def click_to_download(url)
-    find(:xpath, "//a[@href='#{url}']").click
+    find(:xpath, "//*[@id='downloads']//a[@href='#{url}']").click
   end
 
   private

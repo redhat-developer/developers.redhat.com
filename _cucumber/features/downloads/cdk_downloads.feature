@@ -28,12 +28,12 @@ Feature: Red Hat Container Development Kit (CDK) download
     When I click on the cancel download button
     Then I should see the cdk download overview page
 
-  @site_user @javascript @logout
+  @site_user @javascript @logout @wip
   Scenario: Unauthorised site visitor who has navigated directly to CDK Download overview page clicks on download, registers, upgrades account, and accepts Redhat T&C's should initiate CDK download.
     Given I am on the Downloads page
     When I click to download "Red Hat Container Development Kit (CDK)"
     Then I should be redirected to the RHD Log in page
     When I click on the Create account link
     Then I should see the extended registration page with a message "Thank you for your interest in this download"
-    And I complete the registration form and accept the terms and conditions
+    And I complete the extended registration form and accept the terms and conditions
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Container Development Kit (CDK)"

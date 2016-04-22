@@ -20,6 +20,7 @@ class Registration < BasePage
   element :password_confirm_field_error, '#password-confirm-error'
   element :registration_confirmation, '#registration-confirmation'
   element :checkall_tac, '#tac-checkall'
+  element :accept_terms, '.fulluser-ttac'
 
   def initialize(driver)
     super
