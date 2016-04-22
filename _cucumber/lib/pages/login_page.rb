@@ -12,6 +12,7 @@ class LoginPage < BasePage
   element :linkedin_account, '#social-linkedin'
   element :more_options_link, '#login-more-options-link'
   element :forgot_password_link, "a:contains('Forgot Password')"
+  element :error_message, '#kc-feedback'
 
   def initialize(driver)
     super
