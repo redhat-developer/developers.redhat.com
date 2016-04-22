@@ -33,8 +33,8 @@ class BasePage < SitePrism::Page
   end
 
   def verify_page(page_title)
-    page.has_title?(page_title).should == true
     wait_for_ajax
+    page.has_title?(page_title).should == true
   end
 
   def logged_in?

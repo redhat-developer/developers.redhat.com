@@ -45,7 +45,6 @@ After('@logout') do
   else
     visit('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
   end
-  visit('/')
 end
 
 After do |scenario|

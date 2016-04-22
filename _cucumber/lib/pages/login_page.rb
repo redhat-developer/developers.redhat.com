@@ -11,8 +11,6 @@ class LoginPage < BasePage
   element :stackoverflow_account, '#social-stackoverflow'
   element :linkedin_account, '#social-linkedin'
   element :more_options_link, '#login-more-options-link'
-  element :register_link, '#kc-registration-button'
-  element :error_message, '#kc-feedback-wrapper'
   element :forgot_password_link, "a:contains('Forgot Password')"
 
   def initialize(driver)
@@ -28,6 +26,12 @@ class LoginPage < BasePage
     username_field.set(username)
     password_field.set(password)
     login_button.click
+  end
+
+  def click_register_link
+    within('#kc-form-buttons') do
+      click_link('Register')
+    end
   end
 
 end
