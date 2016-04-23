@@ -22,6 +22,8 @@ class BasePage < SitePrism::Page
   element :verification_message, '#kc-feedback-wrapper'
   element :logged_in_state, '.login'
   element :login_divider, '.login-divider'
+  element :nav_search_field, '.user-search'
+
   elements :sub_nav_topics, '#sub-nav-topics a'
   elements :sub_nav_technologies, '#sub-nav-technologies .sub-nav-group .heading'
   elements :sub_nav_community, '#sub-nav-community a'
@@ -91,6 +93,11 @@ class BasePage < SitePrism::Page
   end
 
   private
+
+  def search_for(query)
+    nav_search_field.set query
+    find('.user-search').native.send_keys(:return)
+  end
 
   def wait_for_ajax(timeout = 60, message = nil)
     end_time = ::Time.now + timeout
