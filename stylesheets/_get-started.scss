@@ -316,6 +316,14 @@ ul.toc {
     h4 {
       color: $white;
     }
+    .tabs-content {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      .content {
+        padding: 0;
+      }
+    }
     @include tablet-landscape-and-down {
       h4 {
         padding-top: 15px;

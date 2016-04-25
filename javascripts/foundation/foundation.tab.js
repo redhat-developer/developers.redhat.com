@@ -76,7 +76,7 @@
             hash = self.scope.location.hash;
           } else {
             // prefix the hash to prevent anchor scrolling
-            hash = self.scope.location.hash.replace('fndtn-', '');
+            hash = self.scope.location.hash.replace('tab-', '');
           }
           if (hash != '') {
             // Check whether the location hash references a tab content div or
@@ -178,9 +178,9 @@
         } else {
           // prefix the hashes so that the browser doesn't scroll down
           if (location_hash != undefined) {
-            window.location.hash = 'fndtn-' + location_hash.replace('#', '');
+            window.location.hash = 'tab-' + location_hash.replace('#', '');
           } else {
-            window.location.hash = 'fndtn-' + target_hash.replace('#', '');
+            window.location.hash = 'tab-' + target_hash.replace('#', '');
           }
         }
       }
