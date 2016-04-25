@@ -150,6 +150,9 @@
       opacity: .8;
       
     }
+    a {
+      color: $white;
+    }
     &.dotnet {
       a, a i {
         color: $white;
@@ -193,6 +196,10 @@
       opacity: .8;
     }
 
+    a {
+      color: $white;
+    }
+
     p, .description {
       line-height: 1.3;
       font-size: 1.2em;
@@ -218,6 +225,11 @@
     padding: 15px;
     border: 2px solid $grey-3;
     position: relative;
+
+    a {
+      color: #424242;
+    }
+
     p, .description {
       font-size: 1em;
       line-height: 1.4;
@@ -229,14 +241,14 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-    .promo-tags .promo-tags-label, .promo-tags ul li, .promo-tags .field_item {
+    .promo-tags .promo-tags-label, .promo-tags ul li, .promo-tags .field__item {
       color: #424242;
     }
     &:hover, &:active, &:focus {
       border: 2px solid #a3dbe8;
       background-color: #a3dbe8;
       cursor: pointer;
-      a, p, h4, h5, .promo-tags-label, ul li , .promo-tags ul li:after{
+      a, p, h4, h5, .promo-tags-label, ul li , .promo-tags .field__item, .promo-tags ul li:after{
         color: $white;
       }
     }
