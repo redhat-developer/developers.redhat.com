@@ -2,31 +2,30 @@ require_relative 'base_page'
 
 class UpgradeAccount < BasePage
 
-  element :account_password, :xpath, '//*[@id="user-account:password"]'
-  element :account_password_confirmation, :xpath, '//*[@id="user-account:passwordConfirmation"]'
-  element :company_name, :xpath, '//*[@id="user-account:company"]'
-  element :account_address1, :xpath, '//*[@id="user-account:address1"]'
-  element :account_city, :xpath, '//*[@id="user-account:city"]'
-  element :account_postal_code, :xpath, '//*[@id="user-account:postalCode"]'
-  element :account_phone_number, :xpath, '//*[@id="user-account:phone"]'
-  element :terms_and_conditions, :xpath, '//*[@id="user-account:agreeTC"]'
-  element :submit_btn, :xpath, '//*[@id="user-account:submit"]'
+  element :address_line_one_field, "input[id='user-account:address1']"
+  element :city_field, "input[id='user-account:city']"
+  element :postal_code_field, "input[id='user-account:postalCode']"
+  element :phone_number_field, "input[id='user-account:phone']"
+  element :password_field, "input[id='user-account:password']"
+  element :confirm_password_field, "input[id='user-account:passwordConfirmation']"
+  element :phone_number_field, "input[id='user-account:phone']"
+  element :agree_to_all_terms, '.selectAllCheckboxes'
+  element :finish_button, ".button[value='Upgrade My Account']"
+  element :cancel_button, ".button[value='Cancel Download']"
+  element :alert_box, '.warning'
 
   def initialize(driver)
     super
-    verify_page('User Account Upgrade | Red Hat Developers')
+    verify_page('Additional Information Required')
   end
 
-  def upgrade_account_with(password, confirm_password, company, address_line_one, city, postcode, phone_number, tc='yes')
-    account_password.set(password)
-    account_password_confirmation.set(confirm_password)
-    company_name.set(company)
-    account_address1.set(address_line_one)
-    account_city.set(city)
-    account_postal_code.set(postcode)
-    account_phone_number.set(phone_number)
-    terms_and_conditions.click if tc.eql?('yes')
-    submit_btn.click
+  def upgrade_account_with(address_line_one, city, postal_code, phone_number, password, confirm_password)
+    address_line_one_field.set(address_line_one)
+    city_field.set(city)
+    postal_code_field.set(postal_code)
+    phone_number_field.set(phone_number)
+    password_field.set(password)
+    confirm_password_field.set(confirm_password)
   end
 
 end

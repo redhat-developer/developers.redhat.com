@@ -19,7 +19,7 @@ Build your first container
 In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Red Hat Enterprise Linux Server, and additional development tools are included in Red Hat Enterprise Linux Developer Suite.
 
 // This link will need to be updated for GA and later.
-Download the #{site.download_manager_base_url}/download-manager/file/cdk-2.0.0-beta5.zip[cdk-2.0.0-beta5.zip].
+Download the #{site.download_manager_base_url}/download-manager/file/cdk-2.0.0.zip[cdk-2.0.0.zip].
 
 Note: Later in this guide, you will need the Red Hat username and password you create during registration for accessing Red Hat sites.
 
@@ -75,9 +75,9 @@ To provide `ssh` and `rsync` on Microsoft Windows, install http://cygwin.com/ins
 Next, download the Red Hat Enterprise Linux CDK Vagrant box that matches your virtualization platform:
 
 // FIXME These will need to be updated for GA and later.
-* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-21.x86_64.vagrant-virtualbox.box[Red Hat Enterprise Linux 7.2 Vagrant box for VirtualBox, window='_blank']
-* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-21.x86_64.vagrant-vmware-fusion.box[Red Hat Enterprise Linux 7.2 Vagrant box for VMware, window='_blank']
-* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-21.x86_64.vagrant-libvirt.box[Red Hat Enterprise Linux 7.2 Vagrant box for KVM/libvirt, window='_blank']
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-virtualbox.box[Red Hat Enterprise Linux 7.2 Vagrant box for VirtualBox, window='_blank']
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-vmware-fusion.box[Red Hat Enterprise Linux 7.2 Vagrant box for VMware, window='_blank']
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-libvirt.box[Red Hat Enterprise Linux 7.2 Vagrant box for KVM/libvirt, window='_blank']
 
 ## Step3 Content
 

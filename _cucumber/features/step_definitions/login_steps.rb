@@ -53,9 +53,9 @@ When(/^I update my password$/) do
 end
 
 When(/^I click on the Create account link$/) do
-  @page.login.register_link.click
+   @page.login.click_register_link
 end
 
 Then(/^(I|they) should be redirected to the RHD Log in page$/) do |negate|
-  expect(@page.login).to have_login_with_existing_account
+  expect(@page.login).to have_username_field
 end
