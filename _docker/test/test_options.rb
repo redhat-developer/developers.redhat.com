@@ -92,7 +92,7 @@ class TestOptions < Minitest::Test
 
     tasks = Options.parse (['-u'])
     assert_includes tasks[:supporting_services], 'drupal'
-    assert_includes tasks[:supporting_services], 'drupalpgsql'
+    assert_includes tasks[:supporting_services], 'drupalmysql'
   end
 
   def test_awestruct_command
@@ -194,7 +194,7 @@ class TestOptions < Minitest::Test
 
     assert_includes tasks, :supporting_services
     assert_includes tasks[:supporting_services], 'drupal'
-    assert_includes tasks[:supporting_services], 'drupalpgsql'
+    assert_includes tasks[:supporting_services], 'drupalmysql'
   end
 
   def test_drupal_nightly
@@ -206,7 +206,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert_includes tasks, :supporting_services
     assert_includes tasks[:supporting_services], 'drupal'
-    assert_includes tasks[:supporting_services], 'drupalpgsql'
+    assert_includes tasks[:supporting_services], 'drupalmysql'
   end
 
   private def expected_unit_test_tasks
