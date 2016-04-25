@@ -18,6 +18,7 @@ require 'json'
 require 'uuid'
 require 'fileutils'
 require 'pry'
+require 'report_builder'
 require_relative 'app'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/site_user')
@@ -167,3 +168,17 @@ browsers.each do |browser|
     driver.browser.save_screenshot path
   end
 end
+
+ReportBuilder.configure do |config|
+  config.json_path = '_cucumber/reports/'
+  config.report_path = '_cucumber/reports/rhd_test_report'
+  config.report_types = [:json, :html]
+  config.report_tabs = [:overview, :features, :scenarios, :errors]
+  config.report_title = 'RHD Test Results'
+  config.compress_images = false
+end
+
+at_exit do
+  ReportBuilder.build_report
+end
+
