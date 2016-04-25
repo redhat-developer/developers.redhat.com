@@ -15,7 +15,9 @@ If you are on a mac then brew is required to install some dependant packages. Br
 ### Docker
 Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
 
-Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md)
+Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md). The scripts used assume you can run the `docker` command WITHOUT sudo.
+
+NOTE: We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed. 
 
 ### Docker Compose
 OSX: Docker compose will have been installed as part of the docker toolbox.
@@ -122,7 +124,7 @@ If you're using the Drupal containers you will need to install Node.js and npm.
 
 _NOTE:_ Node.js and npm both need to be installed on the host machine, not in the docker container. 
 
-1. Please follow https://nodejs.org/en/ for downloads and install of node and npm.
+1. Please follow https://nodejs.org/en/ for downloads and install of node and npm. Everything should work on nodejs versions > 0.10
 2. Execute the following command to get the node environment setup:
 
     npm install
