@@ -58,8 +58,6 @@ type: Get Started
                     h4 = page._step2_vmware_title
                   - elsif q == 'kvm'
                     h4 = page._step2_kvm_title
-
-
         .row
           .large-24.columns
             - if page._step2_duration
@@ -115,16 +113,25 @@ type: Get Started
     input#stepTwo(type='checkbox' checked)
     label(for='stepTwo')
       .large-24.step-header#Step2
-        h4
-          .step-num 2.
-          - if !page._step2_title
-            h4 Install, Configure, and Verify
-          - else
-            h4 #{page._step2_title}
-          .duration
-            - if page._step2_duration
-              i.fa.fa-clock-o  #{page._step2_duration}
-          .collapse-icon
+       .step2.row
+          .small-1.columns
+             h4.step-num 2.
+          .small-23.columns.step2-title
+            .tabs-content
+              - page.product.rhel_install_paths.each do |rpath|
+                section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}")
+                  - q = rpath.id
+                  - if q == 'bare-metal'
+                    h4 = page._step2_baremetal_title
+                  - elsif q == 'hyper-v'
+                    h4 = page._step2_hyperv_title
+                  - elsif q == 'virtualbox'
+                    h4 = page._step2_virtualbox_title
+                  - elsif q == 'vmware'
+                    h4 = page._step2_vmware_title
+                  - elsif q == 'kvm'
+                    h4 = page._step2_kvm_title
+                  .collapse-icon
     div#expandStepTwo
       .tabs-content
         - page.product.rhel_install_paths.each do |rpath|

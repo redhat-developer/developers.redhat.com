@@ -353,6 +353,20 @@ ul.toc {
       top: 20px;
     }
   }
+.step2 {
+  padding: 0; 
+  width: 100%; 
+  .step2-title {
+    padding: 0;
+    .tabs-content {
+      padding: 0;
+      margin: 0;
+      .content {
+        padding: 0;
+      }
+    }
+  }
+ } 
   .step-header {
     background-color: #3999cb;
     color: $white;
