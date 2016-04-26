@@ -11,6 +11,7 @@ require 'timeout'
 require 'erb'
 require 'resolv'
 require 'open3'
+require 'net/http'
 require './lib/options.rb'
 require './lib/file_helpers.rb'
 
@@ -97,6 +98,11 @@ def block_wait_drupal_started
   up = false
   until up do
     up = is_port_open?(drupal_ip, drupal_port)
+    begin
+        up = Net::HTTP.get_response(URI("http://#{drupal_ip}:#{drupal_port}/user/login")).code === '200'
+    rescue
+        up = false
+    end
     sleep(5)
   end
 
