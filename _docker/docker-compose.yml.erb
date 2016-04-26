@@ -132,7 +132,7 @@ services:
       - DB_PASSWORD=drupal
 
   drupalmysql:
-    image: mysql:5.6
+    image: mariadb:10.0.15
     environment:
       - MYSQL_USER=drupal
       - MYSQL_PASSWORD=drupal
