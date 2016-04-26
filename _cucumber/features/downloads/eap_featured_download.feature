@@ -1,3 +1,4 @@
+@ignore
 @downloads
 @product_download
 Feature: Product Download Page - An authorised customer can download EAP via download manager when acepting Red Hat T&C's.
