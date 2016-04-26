@@ -13,10 +13,10 @@ type: Get Started
 
   - if page.product.rhel_install_paths
     .large-24.columns.multipath-tabs-sm
-      ul.tabs.nav-tabs(data-tab role="tablist")
+      ul.tabs.nav-tabs(data-tab role="tablist" data-options="deep_linking:true;scroll_to_content:false")
         - page.product.rhel_install_paths.each do |rpath|
-          li(role="presentation" class=(rpath.id.eql?('bare_metal') ? 'active' : ''))
-            a(href="#panel-#{rpath.id}" role="tab" data-toggle="tab" aria-controls="panel-#{rpath.id}") #{rpath.name}
+          li(role="presentation" class=(rpath.id.eql?('bare-metal') ? 'active' : ''))
+            a(href="##{rpath.id}" role="tab" data-toggle="tab" aria-controls="#{rpath.id}") #{rpath.name}
 
   - if page._prerequisites_section
     .large-24#PrerequisitesSection.gs-prerequisites
@@ -40,14 +40,24 @@ type: Get Started
               i.fa.fa-clock-o  #{page._step1_duration}
     .large-6.columns.step-cards(data-equalizer-watch)
       a.card(href="#Step2")
-        .row
+        row
           .small-4.large-4.columns
             h2.step-num 2.
-          .small-20.large-20.columns
-            - if !page._step2_title
-              h4 Install, Configure, and Verify
-            - else
-              h4 #{page._step2_title}
+          .small-20.large-19.columns
+            .tabs-content
+              - page.product.rhel_install_paths.each do |rpath|
+                section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}")
+                  - q = rpath.id
+                  - if q == 'bare-metal'
+                    h4 = page._step2_baremetal_title
+                  - elsif q == 'hyper-v'
+                    h4 = page._step2_hyperv_title
+                  - elsif q == 'virtualbox'
+                    h4 = page._step2_virtualbox_title
+                  - elsif q == 'vmware'
+                    h4 = page._step2_vmware_title
+                  - elsif q == 'kvm'
+                    h4 = page._step2_kvm_title
         .row
           .large-24.columns
             - if page._step2_duration
@@ -103,29 +113,38 @@ type: Get Started
     input#stepTwo(type='checkbox' checked)
     label(for='stepTwo')
       .large-24.step-header#Step2
-        h4
-          .step-num 2.
-          - if !page._step2_title
-            h4 Install, Configure, and Verify
-          - else
-            h4 #{page._step2_title}
-          .duration
-            - if page._step2_duration
-              i.fa.fa-clock-o  #{page._step2_duration}
-          .collapse-icon
+       .step2.row
+          .small-1.columns
+             h4.step-num 2.
+          .small-23.columns.step2-title
+            .tabs-content
+              - page.product.rhel_install_paths.each do |rpath|
+                section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}")
+                  - q = rpath.id
+                  - if q == 'bare-metal'
+                    h4 = page._step2_baremetal_title
+                  - elsif q == 'hyper-v'
+                    h4 = page._step2_hyperv_title
+                  - elsif q == 'virtualbox'
+                    h4 = page._step2_virtualbox_title
+                  - elsif q == 'vmware'
+                    h4 = page._step2_vmware_title
+                  - elsif q == 'kvm'
+                    h4 = page._step2_kvm_title
+                  .collapse-icon
     div#expandStepTwo
       .tabs-content
         - page.product.rhel_install_paths.each do |rpath|
-          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare_metal') ? 'active content' : 'content') id="panel-#{rpath.id}") 
+          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}") 
             - if page._step2_pre_install
               .large-24#Step2PreInstall
                 = page._step2_pre_install
             - q = rpath.id
-            - if q == 'bare_metal'
+            - if q == 'bare-metal'
               = page._step2_baremetal_content
-            - elsif q == 'hyper_v'
+            - elsif q == 'hyper-v'
               = page._step2_hyperv_content
-            - elsif q == 'virtual_box'
+            - elsif q == 'virtualbox'
               = page._step2_virtualbox_content
             - elsif q == 'vmware'
               = page._step2_vmware_content
@@ -148,13 +167,13 @@ type: Get Started
     div#expandStepThree
       .tabs-content
         - page.product.rhel_install_paths.each do |rpath|
-          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare_metal') ? 'active content' : 'content') id="panel-#{rpath.id}")
+          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}")
             - q = rpath.id
-            - if q == 'bare_metal'
+            - if q == 'bare-metal'
               = page._step3_baremetal_content
-            - elsif q == 'hyper_v'
+            - elsif q == 'hyper-v'
               = page._step3_hyperv_content
-            - elsif q == 'virtual_box'
+            - elsif q == 'virtualbox'
               = page._step3_virtualbox_content
             - elsif q == 'vmware'
               = page._step3_vmware_content
