@@ -74,3 +74,7 @@ Then(/^I should see the following Community sub-menu items and their description
     expect(links).to include("#{row['name']} #{row['description']}")
   end
 end
+
+When(/^I go back$/) do
+  page.evaluate_script('window.history.back()')
+end
