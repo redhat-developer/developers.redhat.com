@@ -29,7 +29,7 @@ Feature: Red Hat Enterprise Linux download
     When I click on the cancel download button
     Then I should see the rhel download overview page
 
-  @site_user @javascript @logout @wip
+  @site_user @javascript @logout
   Scenario: Unauthorised site visitor who has navigated the Download page clicks on download RHEL, registers, upgrades account, and accepts Redhat T&C's should initiate RHEL download.
     Given I am on the Downloads page
     When I click to download "Red Hat Enterprise Linux"
