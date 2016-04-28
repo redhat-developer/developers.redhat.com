@@ -2,8 +2,6 @@ version: '2'
 services:
   awestruct_unit_tests:
     build: ./awestruct
-    command:
-       - /home/awestruct/developer.redhat.com/_cucumber/docker_run.sh
     volumes:
       - ../:/home/awestruct/developer.redhat.com
     environment:
@@ -16,8 +14,6 @@ services:
 
   awestruct_acceptance_test:
     build: ./awestruct
-    command:
-      - /home/awestruct/developer.redhat.com/_cucumber/docker_run_remote_host.sh
     volumes:
       - ../:/home/awestruct/developer.redhat.com
     links:
@@ -30,6 +26,7 @@ services:
       - RHD_JS_DRIVER
       - RHD_DEFAULT_DRIVER
       - RHD_DOCKER_DRIVER
+      - PARALLEL_TEST
 
   awestruct_preview_no_reload:
     build: ./awestruct
@@ -178,17 +175,16 @@ services:
 
   docker_firefox:
     image: selenium/node-firefox
-    volumes:
-      - ../_cucumber/tmp_rhd_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_rhd_downloads
     links:
      - selhub:hub
 
   docker_chrome:
     image: selenium/node-chrome
     volumes:
-       - ../_cucumber/tmp_rhd_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_rhd_downloads
+    - /dev/shm:/dev/shm
     links:
      - selhub:hub
     environment:
+     - HUB_PORT_4444_TCP_ADDR=selhub
      - DBUS_SESSION_BUS_ADDRESS=/dev/null
 
