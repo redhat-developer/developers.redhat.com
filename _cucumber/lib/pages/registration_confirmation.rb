@@ -1,12 +1,12 @@
-require_relative 'base_page'
+require_relative 'base'
 
-class RegistrationConfirmation < BasePage
+class RegistrationConfirmation < Base
 
-  element :confirmation_page, '.confirmation'
-  element :registration_confirmation, '#registration-confirmation'
+  CONFIRMATION_PAGE = { css: '.confirmation' }
 
   def initialize(driver)
     super
+    wait_for { displayed?(CONFIRMATION_PAGE) }
     verify_page('Thank you for registering!')
   end
 

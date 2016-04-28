@@ -1,2 +1,6 @@
+<%
+$output_folder = "out/#{ENV['BUILD_NUMBER'] || 'logs'}"
+%>
+
 default: -r _cucumber/features/--strict -f pretty --tags ~@ignore --format json -o _cucumber/reports/cucumber.json
 parallel:  -r _cucumber/features/ -f progress --tags ~@ignore --format json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json

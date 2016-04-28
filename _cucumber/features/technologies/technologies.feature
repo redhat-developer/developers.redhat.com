@@ -1,5 +1,5 @@
+@smoke
 @products
-
 Feature: Home Page Smoke Test
 
   In order to find out more about available Red Hat products,
@@ -8,8 +8,7 @@ Feature: Home Page Smoke Test
 
   Scenario: Product landing page should display a list of available products separated by sections.
     Given I am on the Technologies page
-    Then I should see the Red Hat Products page title
-    And I should see the following main products sections:
+    Then I should see the following main products sections:
       | INFRASTRUCTURE             |
       | INTEGRATION AND AUTOMATION |
       | MOBILE                     |

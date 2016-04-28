@@ -1,10 +1,3 @@
-Before do
-  @driver = Capybara.current_session.driver
-  @page = App.new(@driver)
-  @driver.browser.manage.window.maximize unless Capybara.current_driver == :mechanize
-  visit('/')
-end
-
 Before('@mobile') do
   resize_window_to_mobile
 end
@@ -24,15 +17,11 @@ Before('@products, @downloads') do
 end
 
 Before('@accepted_terms') do
-  data = SiteUser::ACCOUNT[:accepted_terms]
-  @email_address = data[:email]
-  @password = data[:password]
+  @site_user = accepted_terms_user
 end
 
 Before('@password_reset') do
-  data = SiteUser::ACCOUNT[:password_reset]
-  @email_address = data[:email]
-  @password = data[:password]
+  @site_user = password_reset_user
 end
 
 Before('@site_user') do
@@ -40,31 +29,22 @@ Before('@site_user') do
 end
 
 After('@logout') do
-  if $host_to_test.include?('stage')
-    visit('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
-  else
-    visit('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+  site_nav = SiteNav.new(@driver)
+  case $host_to_test
+    when 'http://developers.redhat.com', 'https://developers.redhat.com'
+      site_nav.get('http://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+    else
+      site_nav.get('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
   end
+  site_nav.visit
+  site_nav.wait_for_ajax
 end
 
 After do |scenario|
   if scenario.failed?
-    puts "The test failed on page: #{page.title}"
-    puts "The test failed on url: #{page.current_url}"
-    Capybara.using_session(Capybara::Screenshot.final_session_name) do
-      filename_prefix = Capybara::Screenshot.filename_prefix_for(:cucumber, scenario)
-
-      saver = Capybara::Screenshot::Saver.new(Capybara, Capybara.page, true, filename_prefix)
-      saver.save
-      saver.output_screenshot_path
-
-      if File.exist?(saver.screenshot_path)
-        require 'base64'
-        image = open(saver.screenshot_path, 'rb') { |io| io.read }
-        encoded_img = Base64.encode64(image)
-        embed(encoded_img, 'image/png;base64', "Screenshot of the error")
-      end
-    end
+    screenshot = "_cucumber/screenshots/FAILED_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
+    @driver.save_screenshot(screenshot)
+    embed screenshot, 'image/png'
   end
 end
 
@@ -72,14 +52,11 @@ def resize_window_to_mobile
   resize_window_by(360, 640)
 end
 
-def resize_window_to_tablet
-  resize_window_by(768, 1024)
-end
-
 def resize_window_default
   resize_window_by(1400, 1000)
 end
 
 def resize_window_by(width, height)
-  @driver.browser.manage.window.resize_to(width, height)
+  @driver.manage.window.resize_to(width, height)
 end
+
