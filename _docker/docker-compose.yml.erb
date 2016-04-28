@@ -117,7 +117,7 @@ services:
     ports:
       - "<%= ENV['DRUPAL_HOST_PORT'] %>:80"
     links:
-      - drupalpgsql
+      - drupalmysql
     volumes:
       - ../images:/tmp/images
       - ../stylesheets:/tmp/stylesheets
@@ -131,13 +131,15 @@ services:
       - DB_USER=drupal
       - DB_PASSWORD=drupal
 
-  drupalpgsql:
-    image: postgres:9.4
+  drupalmysql:
+    image: mariadb:10.0.15
     environment:
-      - POSTGRES_USER=drupal
-      - POSTGRES_PASSWORD=drupal
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=drupal
+      - MYSQL_DATABASE=drupal
+      - MYSQL_ROOT_PASSWORD=superdupersecret
     ports:
-      - "<%= ENV['DRUPALPGSQL_HOST_PORT'] %>:5432"
+      - "<%= ENV['DRUPALMYSQL_HOST_PORT'] %>:3306"
     expose:
       - "5432"
 
