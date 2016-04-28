@@ -20,7 +20,7 @@ mode: default
 content:
   field_container_external_link:
     weight: 103
-    label: above
+    label: visually_hidden
     settings:
       trim_length: 80
       url_only: false
@@ -31,14 +31,14 @@ content:
     type: link
   field_container_tags:
     weight: 102
-    label: above
+    label: visually_hidden
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
   field_containers_short_summary:
     weight: 104
-    label: above
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
