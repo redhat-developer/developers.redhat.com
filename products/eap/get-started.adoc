@@ -16,59 +16,57 @@ Prerequisites &#38; Required Dependencies Checklist
 == Step1 Content
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
-2.  Download link:#{site.download_manager_base_url}/download-manager/content/origin/files/sha256/1e/1efef4d2b109efd9e8136d02067a8d62e00621e5b2b1530811bf52b5aa2fca6f/jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar?tp=eap[JBoss Developer Studio 9.0.0.GA with EAP]
-3.  Run  installer +
+2.  Download link:#{site.download_manager_base_url}/download-manager/file/jboss-devstudio-9.1.0.GA-installer-eap.jar?tp=eap[JBoss Developer Studio 9.1.0.GA with EAP]
+3.  Run JBoss Developer Studio installer +
 For Mac / Windows Development Hosts:
 a.  Go to the folder you have downloaded JBoss Developer Studio:
-...  Right Click on *jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar*
-... Select _"Open With -> Jar Launcher"_
+...  Right Click on `jboss-devstudio-9.1.0.GA-installer-eap.jar`
+... Select _Open With -> Jar Launcher_
 +
 For Linux Development Hosts:
 +
 Go to the folder where you have downloaded JBoss Developer Studio, and execute the
 installer +
 +
-`java -jar jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar`
+----
+java -jar jboss-devstudio-9.1.0.GA-installer-eap.jar
+----
 +
 *Note:* This will execute the JBoss Developer Studio installation wizard. Common
 Installation Steps: +
- *Answer "Yes"* to the question: _"JBoss Developer Studio includes
-Red Hat JBoss Enterprise Application Platform. Install it now ?"_
+ Answer _Yes_ to the question _"JBoss Developer Studio includes Red Hat JBoss Enterprise Application Platform. Install it now ?"_
 4.  Start JBoss Developer Studio. +
-For more details, view the https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Developer_Studio/8.1/html/Install_Red_Hat_JBoss_Developer_Studio/Install_JBoss_Developer_Studio_Stand-alone_and_JBoss_EAP.html[JBoss
+For more details, view the https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Developer_Studio/9.1/html/Install_Red_Hat_JBoss_Developer_Studio/Install_JBoss_Developer_Studio_Stand-alone_and_JBoss_EAP.html[JBoss
 Developer Studio documentation.]
 5.  Configure Maven
 a.  Open JBoss Developer Studio preferences and expand _JBoss Tools_ and
 select _JBoss Maven Integration._
 b.  Click _Configure Maven Repositories…_ button.
 c.  Click _Add Repository_ and select the
-*redhat-techpreview-all-repository* profile and then click Ok. +
+*redhat-ga-repository* profile and then click Ok. +
 +
-image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-1.png')}[Add Maven Repository]
+image:#{cdn(site.base_url + '/images/products/devstudio/maven.png')}[Add Maven Repository]
 d.  Click Finish +
 +
-image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-2.png')}[Configure Maven Repository]
-e.  Answer _"Yes"_ for the question if you want to update settings.xml
-file.
+image:#{cdn(site.base_url + '/images/products/devstudio/Maven_Repositories_and_Preferences.jpg')}[Configure Maven Repository]
+e.  Answer _Yes_ when asked if you want to update the `settings.xml` file.
 
 == Step2 Content
 To verify that the JBoss Developer Studio and JBoss EAP is working
 correctly, deploy and execute the _helloworld_ quickstart application in
 an EAP server you will now create and configure: +
  +
-*Note:* Boss EAP is included in JBoss Developer studio, so no additional
+*Note:* JBoss EAP is included in JBoss Developer studio, so no additional
 steps are required to install or configure JBoss EAP after completing
 the following steps.
 
-1.  In JBoss Developer Studio, Open the _JBoss Central view._ +
-... Select _"Open With -> Jar  Open the _JBoss Central view._ +
-*Note:* If the _JBoss Central_ view is not visible, please click the
+1.  In JBoss Developer Studio, Open the _Red Hat Central view._ +
+*Note:* If the _Red Hat Central_ view is not visible, please click the
 [.content-img-xs]
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-3.png')}[menu icon] icon on the main menu bar.
-2.  Under the _"Start from a sample"_ section, select Web
-Applications, and click on the *_helloworld_* quickstart application. +
+2. Type `helloworld` into the search box and click on the *_helloworld_* quickstart shown in the result. +
 +
-image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-4.png')}[JBoss Central]
+image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-4.png')}[Red Hat Central]
 3.  Click on _Finish._ This will download the helloworld application and
 it’s maven dependencies.
 4.  Once all the dependencies are downloaded, you will be presented with
@@ -95,10 +93,11 @@ Follow the below series to build your first application. You will build some sim
 |=======================================================================
 |*Step 1:* What is JBoss EAP?
 |link:#{site.base_url}/video/vimeo/95462201[JBoss Enterprise Application Platform Overview]
+
 |*Step 2:* Start exploring TicketMonster |link:http://www.jboss.org/ticket-monster/[Tutorial]
 |=======================================================================
 
 == More Resources
 
 * link:../learn[See Quickstarts, Videos, and other Learning materials]
-* link:../buzz[Read about how other people are using JBoss Developer Studio]
+* link:../buzz[Read about how other people are using DevStudio]
