@@ -16,11 +16,11 @@ Prerequisites &#38; Required Dependencies Checklist
 == Step1 Content
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
-2.  Download link:#{site.download_manager_base_url}/download-manager/content/origin/files/sha256/1e/1efef4d2b109efd9e8136d02067a8d62e00621e5b2b1530811bf52b5aa2fca6f/jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar[JBoss Developer Studio 9.0.0.GA with EAP]
+2.  Download link:#{site.download_manager_base_url}/download-manager/file/jboss-devstudio-9.1.0.GA-installer-eap.jar [JBoss Developer Studio 9.0.0.GA with EAP]
 3.  Run JBoss Developer Studio installer +
 For Mac / Windows Development Hosts:
 a.  Go to the folder you have downloaded JBoss Developer Studio:
-...  Right Click on `jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar`
+...  Right Click on `jboss-devstudio-9.1.0.GA-installer-eap.jar`
 ... Select _Open With -> Jar Launcher_
 +
 For Linux Development Hosts:
@@ -29,7 +29,7 @@ Go to the folder where you have downloaded the JBoss Developer Studio, and execu
 installer +
 +
 ----
-java -jar jboss-devstudio-9.0.0.GA-CVE-2015-7501-installer-eap.jar
+java -jar jboss-devstudio-9.1.0.GA-installer-eap.jar
 ----
 +
 *Note:* This will execute the JBoss Developer Studio installation wizard. Common
@@ -56,12 +56,12 @@ To verify that the JBoss Developer Studio and JBoss EAP is working
 correctly, deploy and execute the _helloworld_ quickstart application in
 an EAP server you will now create and configure: +
  +
-*Note:* Boss EAP is included in JBoss Developer studio, so no additional
+*Note:* JBoss EAP is included in JBoss Developer studio, so no additional
 steps are required to install or configure JBoss EAP after completing
 the following steps.
 
-1.  In JBoss Developer Studio, Open the _JBoss Central view._ +
-*Note:* If the _JBoss Central_ view is not visible, please click the
+1.  In JBoss Developer Studio, Open the _Red Hat Central view._ +
+*Note:* If the _Red Hat Central_ view is not visible, please click the
 [.content-img-xs]
 image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-3.png')}[menu icon] icon on the main menu bar.
 2.  Under the _"Start from a sample"_ section, select Web
@@ -102,4 +102,3 @@ Follow the below series to build your first application. You will build some sim
 
 * link:../learn[See Quickstarts, Videos, and other Learning materials]
 * link:../buzz[Read about how other people are using DevStudio]
-
