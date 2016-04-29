@@ -20,13 +20,14 @@ services:
       - selhub:hub
     environment:
       - ghprbActualCommit
+      - github_status_api_token
+      - PARALLEL_TEST
       - CUCUMBER_TAGS
       - HOST_TO_TEST
       - SELENIUM_HOST=http://hub:4444/wd/hub
       - RHD_JS_DRIVER
       - RHD_DEFAULT_DRIVER
       - RHD_DOCKER_DRIVER
-      - PARALLEL_TEST
 
   awestruct_preview_no_reload:
     build: ./awestruct
