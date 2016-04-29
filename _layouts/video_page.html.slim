@@ -3,13 +3,13 @@ layout: base
 ---
 - page.title = "Watch #{page.video.title}"
 - page.description = page.video.description
-- unless page.video.normalized_author.nil?
+- unless page.video.normalized_author.nil? || page.video.normalized_author.empty?
   - page.author = page.video.normalized_author
   - page.title << " by #{page.video.normalized_author['sys_title']}"
 - page.twitter_card = 'player'
 - page.og_type = 'video'
 / Check if there is a target product(s) for this video
-- if page.video.present? && page.video.target_product.present? && page.video.target_product[0].present?
+- if !page.video.nil? && !page.video.target_product.nil? && !page.video.target_product[0].nil? && !page.video.target_product[0].empty?
   - product = site.products[page.video.target_product[0]]
 
 
@@ -21,7 +21,7 @@ header.row
     / h3 Event Name Not Avaiable
     p.video-stats #{page.video.view_count} Views, #{page.video.published_date.strftime("%B %d %Y")}
     = partial("share.html.slim", :url => page.video_url, :title => page.description[0 .. 139], :className => 'visible-by-default')
-  - if product.present?
+  - unless product.nil? || product.empty?
     - productCode = page.video.target_product.compact.uniq.sample
     - randomProduct = site.products[productCode]
     .large-6.columns
@@ -37,13 +37,13 @@ header.row
     - if (page.video.full_description)
       - full_description = page.video.full_description.gsub!("\n", "<br>")
     p #{full_description}
-    - if page.video.tags.present?
+    - unless page.video.tags.nil? || page.video.tags.empty?
       strong.list-title Tags:
       ul.video-tags.inline-list
         - for tag in page.video.tags
           - unless tag === 'red hat'
             li.label.radius #{tag}
-    - if page.video.cast.present?
+    - unless page.video.cast.nil? || page.video.cast.empty?
       .speakers-list
         strong.list-title Speakers:
         - for speaker in page.video.cast
@@ -59,7 +59,7 @@ header.row
 /       span.more More
 /       span.less Less
 
-- if product.present?
+- unless product.nil? || product.empty?
   / sometimes we get dupes - make array unique
   - unique_products = page.video.target_product.uniq.compact
   - for target_product in unique_products
