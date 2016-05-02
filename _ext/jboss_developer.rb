@@ -87,14 +87,18 @@ module JBoss
           resp = nil
           begin
             if @drupal.exists? page
-              @drupal.update_page page, content
+              resp = @drupal.update_page page, content
             else
               resp = @drupal.create_page page, content
             end
+            raise "Drupal POST request error for #{page.output_path}" unless resp.success?
           rescue Exception => e
-            ::Awestruct::ExceptionHelper.log_building_error e, page.relative_source_path
-            puts "Error pushing to drupal #{page.output_path} : #{e.message}"
-            puts "Error making drupal request to '#{page.output_path}'. Response: #{resp}"
+            begin
+              resp = @drupal.send_page page, content
+            rescue Exception => e
+              ::Awestruct::ExceptionHelper.log_building_error e, page.relative_source_path
+              puts "Error making second drupal request to '#{page.output_path}'."
+            end
           end
         end
         content # Don't mess up the content locally in _site
@@ -435,7 +439,7 @@ module Aweplug
           req.params = params
         end
         unless response.success?
-          $LOG.warn "Error making drupal request to #{path}. Status: #{response.status}. Params: #{params}" if $LOG.warn?
+          $LOG.warn "Error making drupal GET request to #{path}. Status: #{response.status}." if $LOG.warn?
         end
         response
       end
@@ -497,12 +501,6 @@ module Aweplug
           if @logger
             @logger.debug "request body: #{req.body}"
           end
-        end
-
-        unless resp.success?
-          @logger.debug "response body: #{resp.body}"
-          @logger.error "Error making drupal request to '#{path}'. Status: #{resp.status}.  Params: #{params}. Response body: #{resp.body}"
-          puts "Error making drupal request to '#{path}'. Status: #{resp.status}.  Params: #{params}. Response body: #{resp.body}"
         end
         resp
       end

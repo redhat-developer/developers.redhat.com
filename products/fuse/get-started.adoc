@@ -39,16 +39,16 @@ a.  Open JBoss Developer Studio preferences and expand _JBoss Tools_ and
 select _JBoss Maven Integration._
 b.  Click _Configure Maven Repositories…_ button.
 c.  Click _Add Repository_ and select the
-*redhat-techpreview-all-repository* profile and then click Ok. +
+*redhat-ga-repository* profile and then click Ok. +
 +
-image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-1.png')}[Add Maven Repository]
+image:#{cdn(site.base_url + '/images/products/devstudio/maven.png')}[Add Maven Repository]
 d.  Click Finish +
 +
-image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-2.png')}[Configure Maven Repository]
+image:#{cdn(site.base_url + '/images/products/devstudio/Maven_Repositories_and_Preferences.jpg')}[Configure Maven Repository]
 e.  Answer _"Yes"_ for the question if you want to update settings.xml
 file.
 6. Install JBoss Developer Studio Integration Stack plugins
-a. Select the _Software/Update_ tab in the _JBoss Central_ view.
+a. Select the _Software/Update_ tab in the _Red Hat Central_ view.
 b. Scroll down the list of available features, looking for the _JBoss Developer Studio Integration Stack_ section. See the image below.
 c. Tick the following items:
 ... JBoss Fuse Development

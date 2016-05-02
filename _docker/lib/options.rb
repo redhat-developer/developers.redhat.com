@@ -50,7 +50,7 @@ class Options
         tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:set_ports] = true
-        tasks[:supporting_services] += %w(drupal drupalpgsql mysql searchisko)
+        tasks[:supporting_services] += %w(drupal drupalmysql mysql searchisko)
         tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
       end
 
@@ -58,7 +58,7 @@ class Options
         tasks[:decrypt] = true
         tasks[:drupal] = true
         tasks[:set_ports] = true
-        tasks[:supporting_services] += %w(drupal drupalpgsql)
+        tasks[:supporting_services] += %w(drupal drupalmysql)
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
