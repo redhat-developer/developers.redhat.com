@@ -54,3 +54,6 @@ description: Discover the product downloads available from Red Hat, and locate t
                     a.button(href="#" data-fallback-url="#{product.customer_portal_download_url || 'https://access.redhat.com/downloads'}" data-download-id="#{product.id}")
                       i.fa.fa-refresh.fa-spin
                       |  Fetching...
+
+= javascripts("downloads", true) do
+  script src="#{site.base_url}/javascripts/vendor/moment.js"

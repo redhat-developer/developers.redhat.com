@@ -181,7 +181,7 @@ app.downloads.populateLinks = function() {
       if(data[0] && data[0].featuredArtifact && data[0].featuredArtifact.url) {
         // find the date:
         var timeStamp = new Date(data[0].featuredArtifact.releaseDate);
-        var releaseDate = app.utils.getMonth(timeStamp.getMonth()) + ' ' + timeStamp.getDay() + ', ' + timeStamp.getFullYear();
+        var releaseDate = moment(timeStamp).format('LL');
 
         $el.attr('href',data[0].featuredArtifact.url);
         $('[data-download-id-version="'+productCode+'"]').text('Version: ' + data[0].featuredArtifact.versionName);
