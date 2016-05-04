@@ -30,6 +30,7 @@ class Reaper
   #
   # Deletes the Docker network associated with the pull request. This assumes the network will be named "rhdpr{#pr}_default"
   # Ideally this should be done through docker-compose down, but that is a larger change to the build and this will work
+  # and help prevent Docker from running out of networks
   #
   def self.clean_pr_network(pr)
     
