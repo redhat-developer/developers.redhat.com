@@ -1,0 +1,41 @@
+:awestruct-layout: product-updates
+:awestruct-interpolate: true
+:leveloffset: 1
+
+[[rhscl-22-beta]]
+== Red Hat Software Collections 2.2 Beta
+
+Red Hat Software Collections 2.2 Beta is now available with new and update software collections. With Red Hat Software Collections (RHSCL), developers have access to the latest development technologies on Red Hat Enterprise Linux. 
+
+=== New additions
+
+* *Open source databases*
+** MariaDB 10.1
+** MongoDB 3.2
+** Postgres 9.5
+* *Open source languages, development frameworks, and tools*
+** Node.js v4.2.2
+** Python 3.5
+** Ruby 2.3
+** Rails 4.2
+** Maven 3.3
+
+
+=== Updated collections and container images
+
+A number of existing collections have been updated including: Python 2.7, Apache 2.4, Thermostat 1.4, and MongoDB2.6. For MongoDB 2.x users who aren't ready to upgrade to 3.2, MongoDB 3.0 is provided as an upgrade path. See the release notes for a full list of new and updated collections.
+
+Recent RHSCL collections are available as docker-formatted container images from the Red Hat Container Registry. This makes it easy to build and deploy applications in containers that use RHSCL components.
+
+The Dockerfiles used to build the RHSCL container images are available as RHSCL rpm on RHEL 7. These source Dockerfiles can be used for customizing or rebuilding containers with RHSCL components.
+
+
+=== Get started today
+
+link:https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/2.2_Release_Notes/index.html#chap-Installation.[Installation instructions] that cover adding the RHSCL 2.2 Beta software repository to Red Hat Enterprise Linux are available in the link:https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Beta Release Notes].
+
+*Helpful Resources* +
+link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Beta Release Notes] +
+link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/Packaging_Guide/index.html[Red Hat Software Collections 2.2 Beta Packaging Guide] +
+link:https://access.redhat.com/node/1752723/draft[Using Red Hat Software Collections Container Images]
+
