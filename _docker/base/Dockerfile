@@ -13,5 +13,5 @@ RUN yum-config-manager --add-repo http://yum.engineering.redhat.com/pub/yum/repo
     yum-config-manager --add-repo http://yum.engineering.redhat.com/pub/yum/repo_files/rhel6-supplementary.repo && \
     yum-config-manager --add-repo http://yum.engineering.redhat.com/pub/yum/repo_files/rhel6-updates.repo
 
-RUN curl https://www.redhat.com/security/fd431d51.txt > /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+RUN curl https://www.redhat.com/security/data/fd431d51.txt > /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
