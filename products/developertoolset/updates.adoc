@@ -1,0 +1,44 @@
+:awestruct-layout: product-updates
+:awestruct-interpolate: true
+:leveloffset: 1
+
+[[dts-41-beta]]
+== Red Hat Developer Toolset 4.1 Beta
+
+Red Hat Developer Toolset 4.1 Beta is now available with updated versions of the GNU Compiler Collection, the Eclipse IDE, and number of updates to toolchain components and performance tools such as Dynist and SystemTap. Red Hat Developer Toolset delivers the latest stable versions of the C, C++, and Fortran compilers and supporting development tools to enhance developer productivity and improve deployment times.
+
+
+=== Release highlights
+
+* *GNU Compiler Collection (GCC) 5.3* +
+Developers now have the latest stable version of GCC, 5.3, for application development on Red Hat Enterprise Linux 6 and 7. C, C++, and Fortran developers can take advantage of the latest GCC compiler features while utilizing a fully supported version of the GCC suite.
+
+* *Eclipse 4.5.2 with C/{cpp} Development Tooling* +
+Eclipse is updated to version 4.5.2, the Mars.2 release. Eclipse is an open development platform comprised of extensible frameworks, tools and runtimes for building, deploying, and managing software across the development lifecycle. Using various included plug-ins, it can be used to develop applications in Java, C, C++, Python, Fortran and other programming languages.
+
+* *GNU Project Debugger (GDB) 7.11, Dynist 9.1, SystemTap 2.9, and more* +
+With version 4.1 of the Developer Tools, Red Hat Enterprise Linux developers have the latest stable versions of C/C++ debugging and performance analysis tools available as supported packages. Other updates include valgrind 3.11, binutils 2.25, and elfutils 0.166
+
+For a complete list of what is included, see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html-single/4.1_Release_Notes/index.html[Release Notes] and link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html-single/User_Guide/index.html[User Guide] +.
+
+
+=== Container images available
+
+For building, debugging, and analyzing container-based applications, Red Hat Developer Toolset 4.1 Beta components are also provided as docker-formatted container images from the Red Hat Container Registry. Container images are available with the C, C++, or Fortran compilers and the debugging/analysis tools: dyninst, gdb, oprofile, systemtap, and valgrind.
+
+For more information, see link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html/User_Guide/sect-Red_Hat_Developer_Toolset-Container-Images.html[Using Red Hat Developer Toolset Container Images].
+
+
+=== Get started today
+
+For ease of installation, Red Hat Developer Toolset 4.1 Beta is packaged as a link:#{site.base_url}/products/softwarecollections[Red Hat Software Collection]. Using software collections allows Red Hat Developer Toolset to be installed alongside the versions included in Red Hat Enterprise Linux.
+
+Installation instructions are available in the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html-single/User_Guide/index.html[Red Hat Developer Toolset 4.1 Beta User Guide]
+
+
+*Helpful Resources* +
+link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html-single/4.1_Release_Notes/index.html[Red Hat Developer Toolset 4.1 Beta Release Notes] +
+link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html-single/User_Guide/index.html[Red Hat Developer Toolset 4.1 Beta User Guide] +
+link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html/User_Guide/sect-Red_Hat_Developer_Toolset-Container-Images.html[Using Red Hat Developer Toolset Container Images] +
+link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Beta Release Notes] +
+link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/Packaging_Guide/index.html[Red Hat Software Collections 2.2 Beta Packaging Guide] +
