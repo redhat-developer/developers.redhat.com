@@ -1,28 +1,5 @@
 module SiteUser
 
-  ACCOUNT = {
-      accepted_terms: {
-          email: 'uk.redhat.test.user+accepted-terms@gmail.com',
-          password: 'P@$$word01',
-          name: 'TEST USER-ACCEPTED-TERMS'
-      },
-      not_accepted_terms: {
-          email: 'uk.redhat.test.user+not-accepted-terms@gmail.com',
-          password: 'P@$$word01',
-          name: 'TEST USER-NOT-ACCEPTED-TERMS'
-      },
-      password_reset: {
-          email: %w(redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+309mnmdlbk@redhat.com redhat-developers-testers+16w9dg8gbh@redhat.com redhat-developers-testers+fbdtyoup2g@redhat.com redhat-developers-testers+0c454lss3r@redhat.com redhat-developers-testers+s01kvdw5oh@redhat.com redhat-developers-testers+0enem3f750@redhat.com redhat-developers-testers+s6vbvqai66@redhat.com redhat-developers-testers+zmqgdx7ie3@redhat.com redhat-developers-testers+k0k481z5d7@redhat.com").sample,
-          password: 'P@$$word01',
-          name: 'TEST USER'
-      },
-      full_site_user: {
-          email: 'uk.redhat.test.user+full-site-user@gmail.com',
-          password: 'P@$$word01',
-          name: 'FULL-SITE USER'
-      },
-  }
-
   def generate_user
 
     {
@@ -38,6 +15,36 @@ module SiteUser
         country: ['United States', 'Czech Republic', 'China', 'France', 'Germany', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Spain', 'United Kingdom'].sample,
         phone_number: '0191 1111111'
 
+    }
+
+  end
+
+  def accepted_terms_user
+
+    {
+        email: 'uk.redhat.test.user+accepted-terms@gmail.com',
+        password: 'P@$$word01',
+        name: 'TEST USER-ACCEPTED-TERMS'
+    }
+
+  end
+
+  def not_accepted_terms_user
+
+    {
+        email: 'uk.redhat.test.user+not-accepted-terms@gmail.com',
+        password: 'P@$$word01',
+        name: 'TEST USER-NOT-ACCEPTED-TERMS'
+    }
+
+  end
+
+  def password_reset_user
+
+    {
+        email: %w(redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+309mnmdlbk@redhat.com redhat-developers-testers+16w9dg8gbh@redhat.com redhat-developers-testers+fbdtyoup2g@redhat.com redhat-developers-testers+0c454lss3r@redhat.com redhat-developers-testers+s01kvdw5oh@redhat.com redhat-developers-testers+0enem3f750@redhat.com redhat-developers-testers+s6vbvqai66@redhat.com redhat-developers-testers+zmqgdx7ie3@redhat.com redhat-developers-testers+k0k481z5d7@redhat.com").sample,
+        password: 'P@$$word01',
+        name: 'TEST USER'
     }
 
   end

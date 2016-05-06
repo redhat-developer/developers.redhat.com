@@ -1,16 +1,11 @@
-require_relative 'base_page'
+require_relative 'base'
 
-class Home < BasePage
-  set_url '/'
+class Home < Base
 
-  element :home_identifier, '.home'
+  HOME_ID = { css: '.home' }
 
   def initialize(driver)
     super
-  end
-
-  def open
-    load
     verify_page('Red Hat Developers')
   end
 

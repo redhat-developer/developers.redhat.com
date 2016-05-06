@@ -1,7 +1,8 @@
 require_relative 'base'
 
-class Registration < Base
+class ExtendedRegistration < Base
 
+  REGISTRATION_HINT            = { css: '.download-show' }
   EMAIL_FIELD                  = { id: 'email' }
   EMAIL_ERROR                  = { id: 'email-error' }
   PASSWORD_FIELD               = { id: 'password' }
@@ -31,42 +32,36 @@ class Registration < Base
 
   def initialize(driver)
     super
+    wait_for { displayed?(REGISTRATION_HINT) }
     verify_page('Register | Red Hat Developers')
   end
 
-  def fill_in_form(first_name, last_name, email, company, country, password, password_confirm)
+  def registration_hint
+    wait_for { displayed?(REGISTRATION_HINT) }
+    text_of(REGISTRATION_HINT)
+  end
+
+  def fill_in_extended_form(email, password, password_confirmation, greeting, first_name, last_name, company, address_line_one, city, postal_code, country, phone_number)
     type(EMAIL_FIELD, email)
     type(PASSWORD_FIELD, password)
-    type(PASSWORD_CONFIRM_FIELD, password_confirm)
+    type(PASSWORD_CONFIRM_FIELD, password_confirmation)
+    select(GREETING_FIELD, greeting)
     type(FIRST_NAME_FIELD, first_name)
     type(LAST_NAME_FIELD, last_name)
     type(COMPANY_FIELD, company)
-    select(COUNTRY, country) unless country.nil?
+    type(ADDRESS_LINE_ONE_FIELD, address_line_one)
+    type(CITY, city)
+    type(POSTAL_CODE_FIELD, postal_code)
+    select(COUNTRY, country)
+    type(PHONE_NUMBER_FIELD, phone_number)
   end
 
-  def field_validation(selector)
-    case selector
-      when 'email'
-        el = EMAIL_ERROR
-      when 'password'
-        el = PASSWORD_ERROR
-      when 'password confirm'
-        el = PASSWORD_CONFIRM_ERROR
-      when 'first name'
-        el = FIRST_NAME_ERROR
-      when 'last name'
-        el = LAST_NAME_ERROR
-      when 'company'
-        el = COMPANY_FIELD_ERROR
-      when 'country'
-        el = COUNTRY_ERROR
-    end
-    wait_for { displayed?(el) }
-    text_of(el)
+  def click_create_account_and_download
+    click_on(CREATE_ACCOUNT_AND_DOWNLOAD)
   end
 
-  def create_account
-    click_on(FINISH_BTN)
+  def checkall_tac
+    click_on(ACCEPT_ALL_TERMS)
   end
 
 end

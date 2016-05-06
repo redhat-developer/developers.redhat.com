@@ -1,55 +1,57 @@
-require_relative 'base_page'
+require_relative 'base'
 require_relative '../../../_cucumber/lib/helpers/downloads_helper.rb'
 
-class DownloadsPage < BasePage
-  set_url '/downloads/'
+class DownloadsPage < Base
 
   class << self
     include DownloadHelper
   end
 
-  element :most_popular_downloads_section, '.most-popular-downloads'
-  elements :fetching_download_spinner, '#downloads .fa-refresh'
-  elements :download_latest_btn, '#downloads .fa-download'
-  elements :most_popular_download_btn, '.most-popular-downloads .fa-download'
-  elements :product_downloads, '#downloads h5'
-  elements :other_resources, :xpath, '//*[@id="other-resources"]/ul/li'
+  MOST_POPULAR_SECTION      = { css: '.most-popular-downloads' }
+  FETCHING_SPINNER          = { css: '#downloads .fa-refresh'  }
+  DOWNLOAD_BTN              = { css: '#downloads .fa-download' }
+  MOST_POPULAR_DOWNLOAD_BTN = { css: '.most-popular-downloads .fa-download' }
+  PRODUCT_DOWNLOADS         = { css: '#downloads h5' }
+  OTHER_RESOURCES           = { xpath: '//*[@id="other-resources"]/ul/li' }
 
   def initialize(driver)
     super
-  end
-
-  def open
-    load
     verify_page('Downloads | Red Hat Developers')
-    wait_for_fetching_downloads
+    wait_for { !displayed?(FETCHING_SPINNER) }
   end
 
   def available_downloads
     products = []
-    product_downloads.map { |name|
-      products << name.text }
+    product_downloads = find_elements(PRODUCT_DOWNLOADS)
+    product_downloads.each do |product|
+      products << product.text
+    end
     products
   end
 
   def other_resources_links
-    other_resources.map { |link| link.text.capitalize }
+    other_resources = find_elements(OTHER_RESOURCES)
+    other_resources.size
+  end
+
+  def most_popular_downloads
+    wait_for { displayed?(MOST_POPULAR_SECTION) }
+    text_of(MOST_POPULAR_SECTION)
+  end
+
+  def most_popular_downloads_btns
+    mp_downloads_buttons = find_elements(MOST_POPULAR_DOWNLOAD_BTN)
+    mp_downloads_buttons.size
+  end
+
+  def download_btns
+    download_buttons = find_elements(DOWNLOAD_BTN)
+    download_buttons.size
   end
 
   def click_to_download(url)
-    find(:xpath, "//*[@id='downloads']//a[@href='#{url}']").click
+    click_on(xpath: "//*[@id='downloads']//a[@href='#{url}']")
+    wait_for_ajax
   end
-
-  private
-
-  def wait_for_fetching_downloads(timeout = 12)
-    end_time = ::Time.now + timeout
-    until ::Time.now > end_time
-      return if has_no_fetching_download_spinner?
-      sleep 0.5
-    end
-    raise 'Not all downloads were available, still fetching downloads...'
-  end
-
 
 end

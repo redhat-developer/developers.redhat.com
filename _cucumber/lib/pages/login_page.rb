@@ -1,38 +1,43 @@
-require_relative 'base_page'
+require_relative 'base'
 
-class LoginPage < BasePage
+class LoginPage < Base
 
-  element :title, '.centered-title'
-  element :username_field, '#username'
-  element :password_field, '#password'
-  element :login_button, '#kc-login'
-  element :cancel_button, '#kc-cancel'
-  element :github_account, '#social-github'
-  element :stackoverflow_account, '#social-stackoverflow'
-  element :linkedin_account, '#social-linkedin'
-  element :more_options_link, '#login-more-options-link'
-  element :forgot_password_link, "a:contains('Forgot Password')"
-  element :error_message, '#kc-feedback'
+  LOGIN_PAGE            = { id: 'kc-form-login' }
+  TITLE                 = { css: '.centered-title' }
+  USERNAME_FIELD        = { id: 'username' }
+  PASSWORD_FIELD        = { id: 'password' }
+  LOGIN_BTN             = { id: 'kc-login' }
+  CANCEL_BTN            = { id: 'kc-cancel' }
+  FORGOT_PASSWORD_LINK  = { link: 'Forgot Password?' }
+  ERROR_MSG             = { id: 'kc-feedback' }
+  REGISTER_ACCOUNT_LINK = { link: 'Register' }
 
   def initialize(driver)
     super
-  end
-
-  def open
-    open_login_register('login')
-    verify_page('Login | Red Hat Developers STG')
+    wait_for(12) { displayed?(LOGIN_PAGE) }
+    verify_page('Login | Red Hat Developers')
   end
 
   def with_existing_account(username, password)
-    username_field.set(username)
-    password_field.set(password)
-    login_button.click
+    type(USERNAME_FIELD, username)
+    type(PASSWORD_FIELD, password)
+    click_on(LOGIN_BTN)
+    wait_for_ajax
   end
 
   def click_register_link
-    within('#kc-form-buttons') do
-      click_link('Register')
-    end
+    click_on(REGISTER_ACCOUNT_LINK)
+    wait_for_ajax
+  end
+
+  def click_password_reset
+    click_on(FORGOT_PASSWORD_LINK)
+    wait_for_ajax
+  end
+
+  def error_message
+    wait_for { displayed?(ERROR_MSG) }
+    text_of(ERROR_MSG)
   end
 
 end
