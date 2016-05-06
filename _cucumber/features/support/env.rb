@@ -24,7 +24,7 @@ require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers
 if ENV['HOST_TO_TEST'].to_s.empty?
   $host_to_test = 'http://0.0.0.0:4242'
 else
-  $host_to_test = ENV['HOST_TO_TEST']
+  $host_to_test = ENV['HOST_TO_TEST'].chomp('/')
 end
 
 if ENV['RHD_JS_DRIVER'].to_s.empty?
