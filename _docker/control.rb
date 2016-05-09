@@ -81,7 +81,6 @@ def block_wait_drupal_started
   docker_drupal = Docker::Container.get("#{project_name}_drupal_1")
   until docker_drupal.json['NetworkSettings']['Ports']
     puts 'Finding port info for drupal container...'
-    sleep(5)
     docker_drupal = Docker::Container.get("#{project_name}_drupal_1")
   end
 
@@ -99,20 +98,48 @@ def block_wait_drupal_started
   until up do
     up = is_port_open?(drupal_ip, drupal_port)
     begin
-        up = Net::HTTP.get_response(URI("http://#{drupal_ip}:#{drupal_port}/user/login")).code === '200'
+        response = Net::HTTP.get_response(URI("http://#{drupal_ip}:#{drupal_port}/user/login"))
+        response_code = response.code.to_i
+        up = response_code < 400
     rescue
         up = false
     end
-    sleep(5)
   end
 
   # Add this to the ENV so we can pass it to the awestruct build
   ENV['DRUPAL_HOST_IP'] = drupal_ip # somewhat of a hack to make this work on Jenkins
 end
 
+def block_wait_searchisko_started
+  docker_searchisko = Docker::Container.get("#{project_name}_searchisko_1")
+  until docker_searchisko.json['NetworkSettings']['Ports']
+    puts 'Finding port info for searchisko container...'
+    docker_searchisko = Docker::Container.get("#{project_name}_searchisko_1")
+  end
+
+  # Check to see if Searchisko is accepting connections before continuing
+  puts 'Waiting to proceed until searchisko is up'
+  searchisko_port8080_info = docker_searchisko.json['NetworkSettings']['Ports']['8080/tcp'].first
+  searchisko_ip = searchisko_port8080_info['HostIp']
+  searchisko_port = searchisko_port8080_info['HostPort']
+
+  puts "Testing searchisko access via #{searchisko_ip}:#{searchisko_port}"
+  up = false
+  until up do
+    up = is_port_open?(searchisko_ip, searchisko_port)
+    begin
+      response = Net::HTTP.get_response(URI("http://#{searchisko_ip}:#{searchisko_port}/v2/rest/search/events"))
+      response_code = response.code.to_i
+      up = response_code < 400
+    rescue
+      up = false
+    end
+  end
+end
+
 private def project_name
   if ENV['COMPOSE_PROJECT_NAME'].to_s == ''
-    "docker"
+    'docker'
   else
     ENV['COMPOSE_PROJECT_NAME']
   end
@@ -120,7 +147,7 @@ end
 
 tasks = Options.parse ARGV
 
-if(tasks.empty?)
+if tasks.empty?
   puts Options.parse %w(-h)
 end
 
@@ -134,7 +161,7 @@ end
 
 if tasks[:set_ports]
   puts 'Setting ports...'
-  set_ports()
+  set_ports
   # Output the new docker-compose file with the modified ports
   File.delete('docker-compose.yml') if File.exists?('docker-compose.yml')
   File.write('docker-compose.yml', ERB.new(File.read('docker-compose.yml.erb')).result)
@@ -143,7 +170,7 @@ end
 if tasks[:kill_all]
   puts 'Killing and removing docker services...'
   execute_docker_compose :stop
-  execute_docker_compose :rm, ['-v', '-f']
+  execute_docker_compose :rm, %w(-v -f)
 end
 
 if tasks[:build]
@@ -176,17 +203,18 @@ if tasks[:build]
 end
 
 if tasks[:unit_tests]
-  puts "Running the unit tests"
+  puts 'Running the unit tests'
   execute_docker_compose :run, tasks[:unit_tests]
 end
 
 if tasks[:should_start_supporting_services]
   puts 'Starting up services...'
 
-  execute_docker_compose :up, ['--force-recreate'].concat(tasks[:supporting_services])
+  execute_docker_compose :up, ['--no-recreate'].concat(tasks[:supporting_services])
 end
 
 if tasks[:awestruct_command_args]
+  block_wait_searchisko_started
   block_wait_drupal_started if tasks[:drupal]
   puts 'running awestruct command'
   execute_docker_compose :run, tasks[:awestruct_command_args]
@@ -194,7 +222,7 @@ end
 
 if tasks[:awestruct_up_service]
   puts 'bringing up awestruct service'
-  execute_docker_compose :up, ['--force-recreate'].concat(tasks[:awestruct_up_service])
+  execute_docker_compose :up, ['--no-recreate'].concat(tasks[:awestruct_up_service])
 end
 
 if tasks[:scale_grid]

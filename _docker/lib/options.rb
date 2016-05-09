@@ -86,7 +86,7 @@ class Options
           ENV['RHD_BROWSER_SCALE'] = '5'
         end
 
-        tasks[:kill_all] = true
+        tasks[:kill_all] = false
         tasks[:set_ports] = true
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
