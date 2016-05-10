@@ -1,0 +1,277 @@
+:awestruct-layout: product-get-started-multipath
+:awestruct-interpolate: true
+:title: "Software Collections Beta - Get started developing with Node.js v4.4"
+:awestruct-description: "Get started developing with Node.js v4.4 from Red Hat Software Collections 2.2 Beta in under 10 minutes."
+
+## Path Name
+Node.js
+
+## Path Intro section
+[.large-6.columns]
+image:#{cdn(site.base_url + '/images/products/multipath/nodejs-logo.png')}[Node.js Logo]
+
+[.large-18.columns#PathIntroSection]
+Get started developing with Node.js v4.4 from Red Hat Software Collections 2.2 Beta in under 10 minutes.
+
+## Prerequisites section title
+Introduction and Prerequisites
+
+## Prerequisites section
+In this tutorial, you will set your system up to install software from Red Hat Software Collections (RHSCL) Beta, which provides the latest development technologies for Red Hat Enterprise Linux. Then, you will install Node.js and run a simple “Hello, World” application. The whole tutorial should take less than 10 minutes to complete.
+
+Before you begin, you will need a current Red Hat Enterprise Linux 6 server or workstation subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
+
+If you have problems at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+## Step1 Duration
+2 minutes
+
+## Step1 Title
+Enable Red Hat Software Collections (RHSCL) Beta
+
+## Step2 Duration
+2 minutes
+
+## Step2 Title
+Setup your development environment
+
+## Step3 Duration
+2 minutes
+
+## Step3 Title
+Hello World and your first application
+
+## Step1 Content
+
+In this step you will configure your system to obtain software, including the latest dynamic languages, from the RHSCL Beta software repository.
+
+[.callout-light]
+Note: If your system uses Red Hat Network (RHN) Classic instead of Red Hat Subscription Management (RHSM) for managing subscriptions and entitlements, please skip this step and follow the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/2.2_Release_Notes/index.html#chap-Installation[Installation chapter] of the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Beta Release Notes]. The instructions in this section are only for systems using RHSM. The remainder of this tutorial applies to systems running either RHSM or RHN Classic.
+
+You can add or remove software repositories from the command line using the `subscription-manager` tool as the root user. Use the `--list` option to view the available software repositories and verify that you have access to RHSCL:
+
+[.code-block]
+```
+$ su -
+# subscription-manager repos --list | egrep rhscl
+```
+
+If you don’t see any RHSCL repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
+
+If you are using a workstation edition of Red Hat Enterprise Linux, change `-server-` to `-workstation-` in the following commands:
+
+[.code-block]
+```
+# subscription-manager repos --enable rhel-server-rhscl-6-beta-rpms
+# subscription-manager repos --enable rhel-6-server-optional-rpms
+```
+
+Next, configure `yum` to skip the RHSCL beta repository if it is unavailable. By default, `yum` will treat any unavailable repository as a fatal error.
+
+`# yum-config-manager --save --setopt=rhel-server-rhscl-6-beta-rpms.skip_if_unavailable=true`
+
+## Step2 Content
+
+In this next step you will install Node.js v4.4 from RHSCL 2.2 Beta:
+
+[.code-block]
+```
+$ su -
+# yum install rh-nodejs4
+```
+
+Note: The V8 JavaScript runtime is installed automatically as a dependency. +
+
+If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+## Step3 Content
+
+Under your normal user ID, start a _Terminal_ window. First, use `scl enable` to add Node.js to your environment, then start  `node` to check the version.
+
+[.code-block]
+```
+$ scl enable rh-nodejs4 bash
+$ node --version
+v4.4.2
+```
+
+The next step is to create a JavaScript program that can be run from the command line. Using your preferred text editor, create a file named `hello.js`:
+
+`$ nano hello.js`
+
+Add the following text to the file:
+
+[.code-block]
+```
+console.log("Hello, Red Hat Developers World from Node " + process.version)
+```
+
+Save it and exit the editor. Run it with the `node` command:
+[.code-block]
+```
+$ node ./hello.js
+Hello, Red Hat Developers World from Node v4.4.2
+```
+
+If you get the error: _node command not found_, you need to run `scl enable rh-nodejs4 bash` first.
+
+The next step is to try a slightly larger Node.js example that implements a tiny web server.  Using your preferred text editor, create a file named `hello-http.js`:
+
+`$ nano hello-http.js`
+
+Add the following text to the file:
+
+[.code-block]
+```
+var http = require('http');
+var port = 8000;
+var laddr = '127.0.0.1';
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello, Red Hat Developers World from ' +
+	    process.version + '!\n');
+    console.log('Processed request for '+ req.url);
+}).listen(port, laddr);                                                                                                                
+console.log('Server running at http://' + laddr + ':' + port + '/');  
+```
+
+Save it and exit the editor. Run it with the `node` command:
+
+`$ node ./hello-http.js`
+
+Now use curl, or a browser such as Firefox, to connect to the Node.js web server `http://localhost:8000/`:
+
+[.code-block]
+```
+$ curl http://localhost:8000/
+Hello, Red Hat Developers World from v4.4.2!
+```
+
+
+### Working with RHSCL packages
+
+The software packages in RHSCL are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login, or start a new terminal session, `scl enable` needs to be run again.
+
+While it is possible to change the system profile to make RHSCL packages part of the system’s global environment, this is not recommended. Doing this can cause conflicts and unexpected problems with other applications because the system version of the package is obscured by having the RHSCL version in the path first.
+
+
+#### Permanently enable RHSCL in your development environment
+
+To make one or more RHSCL packages a permanent part of your development environment, you can add it to the login script for your specific user ID. this is the recommend approach for development as only processes run under your user ID will be affected.
+
+Using your preferred text editor, add the following line to `~/.bashrc`:
+
+`source scl_source enable rh-nodejs4`
+
+After making the change, you should log out and log back in again.
+
+When you deliver an application that uses RHSCL packages, a best practice is to have your startup script handle the `scl enable` step for your application. You should not ask your users to change their environment as this is likely to create conflicts with other applications.
+
+### Where to go next?
+
+*Learn Node.js and JavaScript using NodeSchool.io tutorials* +
+
+Now that you have Node.js installed, use the tutorials from link:http://nodeschool.io/#workshopper-list[nodeschool.io] to learn Node.js and JavaScript. You need to have already run `scl enable rh-nodejs4 bash` or have added Node.js permanently to your development environment.
+
+Install the JavaScript and Node.js tutorials into your current directory:
+[.code-block]
+```
+$ npm install javascripting
+$ npm install learnyounode
+```
+
+Temporarily add `node_modules/.bin` to your PATH:
+
+`$ export PATH=$PATH:$PWD/node_modules/.bin`
+
+
+Run the JavaScript tutorial:
+
+`$ javascripting`
+
+Run the Node.js tutorial:
+
+`$ learnyounode`
+
+*View documentation on the Nodejs.org web site* +
+link:http://nodejs.org/documentation/[]
+
+*Find additional RHSCL Node.js modules* +
+`$ yum list available rh-nodejs4\*`
+
+*View the list of software available in RHSCL 2.2 Beta* +
+`$ yum --disablerepo="*" --enablerepo="rhel-server-rhscl-6-beta-rpms" list available`
+
+## More Resources
+
+* link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)]
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/index.html[Red Hat Software Collection 2.2 Beta Documentation]
+** link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Beta Release Notes]
+** link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/Packaging_Guide/index.html[Red Hat Software Collections 2.2 Beta Packaging Guide] +
+_Developers should read the packaging guide to get a more complete understanding of how software collections work, and how to deliver software that uses RHSCL._
+
+
+### Become a Red Hat developer: developers.redhat.com
+
+Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:#{site.base_url}/[developers.redhat.com].
+
+## Faq section title
+[[troubleshooting]]Troubleshooting and FAQ
+
+## Faq section
+
+. *The RHSCL repository is not available or is not found on my system.*
++
+The name of the repository depends on whether you have a server or workstation version of Red Hat Enterprise Linux installed.
++
+Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. See link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
++
+You can use `subscription --list` to view the available software repositories and verify that you have access to RHSCL:
++
+[.code-block]
+```
+$ su -
+# subscription-manager repos --list | egrep rhscl
+```
+
+. *As a developer, how can I get a Red Hat Enterprise Linux subscription that includes Red Hat Software Collections?*
++
+Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com]. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux 7 on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
++
+If you 
+
+. *When I run `yum install`, it fails due to a missing dependency*.
++
+These packages are in the optional RPMs repository, which is not enabled by default. See <<Enable Red Hat Software Collections>> for how to enable both the optional RPMs and RHSCL repositories.
+
+. *How can I find out what RHSCL packages are installed?*
++
+`scl --list` will show the list of RHSCL packages that have been installed, whether they are enabled or not.
++
+[.code-block]
+```
+$ scl --list
+rh-nodejs4
+```
+. *How do I find out if there is a newer version of Node.js in RHSCL?*
++
+*How do I find out what version of Node.js is available in the current RHSCL?*
++
+*I have the RHSCL repository enabled, but I can’t find the Node.js version listed in this tutorial.*
++
+Use the following command to find packages with matching names:
++
+`# yum list available nodejs\*`
+. *I’ve installed Node.js from RHSCL, but `node` is not in my path.*
++
+*I can’t find the `node` command.*
++
+RHSCL does not alter the system path.  You need to use `scl enable` to change the environment for your session:
++
+`$ scl enable rh-nodejs4 bash`
++
+For more information see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/index.html[Red Hat Software Collection documentation].
+
+. *When I try to run `node`, I get an error about a missing shared library.*
++
+This is due to not having run `scl enable` first. When `scl enable` runs, in addition to setting up the command search PATH, it also sets up the search path for shared libraries, LD_LIBRARY_PATH.
