@@ -85,7 +85,7 @@ Feature: Site navigation menu
     And the sub-menu should include a list of available technologies
 
   # currently failing, not correctly linked.
-  @products @desktop @ignore
+  @products @desktop @wip
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
     Given I am on the Home page
     When I hover over the Technologies menu item
