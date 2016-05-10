@@ -71,8 +71,8 @@ profiles:
 
   docker: &docker
     <<: *development
-    base_url: http://docker:<%= ENV['AWESTRUCT_HOST_PORT'] %>/
-    port: <%= ENV['AWESTRUCT_HOST_PORT'] || "" %>
+    base_url: http://docker:4242/
+    port: 4242
     dcp_base_url: http://searchisko:8080/
 <% if (ENV.key?('ACCESSIBLE_SLAVE_IP') && !ENV['ACCESSIBLE_SLAVE_IP'].empty?) %>
     dcp_base_protocol_relative_url: "//<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/"
