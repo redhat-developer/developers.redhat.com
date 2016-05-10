@@ -40,10 +40,10 @@ def set_ports
                 'MYSQL_HOST_PORT', 'SEARCHISKO_HOST_PORT', 'SELENIUM_HUB_PORT']
 
   #We only set ports for ENVs not already set.
-  ports_to_set = port_names.select{ |x| ENV[x].to_s == '' }
+  ports_to_set = port_names.select { |x| !ENV.has_key? x }
 
   # We have to reverse the logic in `is_port_open` because if nothing is listening, we can use it
-  available_ports = (32768..61000).lazy.select {|port| !is_port_open?('docker', port)}.take(ports_to_set.size).force
+  available_ports = (32768..61000).lazy.select { |port| !is_port_open?('docker', port) }.take(ports_to_set.size).force
   ports_to_set.each_with_index do |name, index|
     puts "#{name} available at #{available_ports[index]}"
     ENV[name] = available_ports[index].to_s
@@ -98,11 +98,11 @@ def block_wait_drupal_started
   until up do
     up = is_port_open?(drupal_ip, drupal_port)
     begin
-        response = Net::HTTP.get_response(URI("http://#{drupal_ip}:#{drupal_port}/user/login"))
-        response_code = response.code.to_i
-        up = response_code < 400
+      response = Net::HTTP.get_response(URI("http://#{drupal_ip}:#{drupal_port}/user/login"))
+      response_code = response.code.to_i
+      up = response_code < 400
     rescue
-        up = false
+      up = false
     end
   end
 
