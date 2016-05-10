@@ -7,7 +7,7 @@ module DownloadHelper
   extend self
 
   def download_manager_base_url
-    case Capybara.app_host.to_s
+    case $host_to_test
       when 'http://developers.redhat.com/', 'https://developers.redhat.com/'
         'https://developers.redhat.com/download-manager/rest/available'
       else
@@ -67,6 +67,8 @@ module DownloadHelper
         'datavirt'
       when 'Red Hat Container Development Kit (CDK)'
         'cdk'
+      when 'Red Hat Enterprise Linux'
+        'rhel'
       else
         raise "No mapping for #{product}! See Downloads Helper"
     end

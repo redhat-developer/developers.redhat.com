@@ -4,9 +4,13 @@ require 'fileutils'
 require_relative '../_lib/github'
 
 task :features do
-  p '. . . . Deleting old reports and creating reports directory . . . .'
+  p '. . . . Deleting old reports and screenshots  . . . .'
   FileUtils.rm_rf('_cucumber/reports')
   Dir.mkdir('_cucumber/reports')
+  FileUtils.rm_rf('_cucumber/screenshots')
+  Dir.mkdir('_cucumber/screenshots')
+
+  p ". . . . HOST TO TEST = #{ENV['HOST_TO_TEST']} . . . ."
 
   unless ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
     profile = 'parallel'

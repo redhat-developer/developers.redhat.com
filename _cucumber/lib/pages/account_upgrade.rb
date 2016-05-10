@@ -1,32 +1,49 @@
-require_relative 'base_page'
+require_relative 'base'
 
-class UpgradeAccount < BasePage
+class UpgradeAccount < Base
 
-  element :account_password, :xpath, '//*[@id="user-account:password"]'
-  element :account_password_confirmation, :xpath, '//*[@id="user-account:passwordConfirmation"]'
-  element :company_name, :xpath, '//*[@id="user-account:company"]'
-  element :account_address1, :xpath, '//*[@id="user-account:address1"]'
-  element :account_city, :xpath, '//*[@id="user-account:city"]'
-  element :account_postal_code, :xpath, '//*[@id="user-account:postalCode"]'
-  element :account_phone_number, :xpath, '//*[@id="user-account:phone"]'
-  element :terms_and_conditions, :xpath, '//*[@id="user-account:agreeTC"]'
-  element :submit_btn, :xpath, '//*[@id="user-account:submit"]'
+  USER_ACCOUNT_UPGRADE   = { id: 'user-account' }
+  ADDRESS_LINE_ONE_FIELD = { id: 'user-account:address1' }
+  CITY_FIELD             = { id: 'user-account:city' }
+  POSTAL_CODE_FIELD      = { id: 'user-account:postalCode' }
+  PHONE_NUMBER_FIELD     = { id: 'user-account:phone' }
+  PASSWORD_FIELD         = { id: 'user-account:password' }
+  CONFIRM_PASSWORD_FIELD = { id: 'user-account:passwordConfirmation' }
+  AGREE_TO_ALL_TERMS     = { css: '.selectAllCheckboxes' }
+  UPGRADE_ACCOUNT_BTN    = { xpath: "//input[@value='Upgrade My Account']" }
+  CANCEL_BTN             = { xpath: "//input[@value='Cancel Download']" }
+  ALERT_BOX              = { css: '.warning' }
 
   def initialize(driver)
     super
-    verify_page('User Account Upgrade | Red Hat Developers')
+    wait_for { displayed?(USER_ACCOUNT_UPGRADE) }
+    verify_page('Additional Information Required | Red Hat Developers')
   end
 
-  def upgrade_account_with(password, confirm_password, company, address_line_one, city, postcode, phone_number, tc='yes')
-    account_password.set(password)
-    account_password_confirmation.set(confirm_password)
-    company_name.set(company)
-    account_address1.set(address_line_one)
-    account_city.set(city)
-    account_postal_code.set(postcode)
-    account_phone_number.set(phone_number)
-    terms_and_conditions.click if tc.eql?('yes')
-    submit_btn.click
+  def upgrade_account_with(address_line_one, city, postal_code, phone_number, password, confirm_password)
+    type(ADDRESS_LINE_ONE_FIELD, address_line_one)
+    type(CITY_FIELD, city)
+    type(POSTAL_CODE_FIELD, postal_code)
+    type(PHONE_NUMBER_FIELD, phone_number)
+    type(PASSWORD_FIELD, password)
+    type(CONFIRM_PASSWORD_FIELD, confirm_password)
+  end
+
+  def click_agree_to_all_terms
+    click_on(AGREE_TO_ALL_TERMS)
+  end
+
+  def click_finish_btn
+    click_on(UPGRADE_ACCOUNT_BTN)
+  end
+
+  def click_cancel_btn
+    click_on(CANCEL_BTN)
+  end
+
+  def alert_box
+    wait_for { displayed?(ALERT_BOX) }
+    text_of(ALERT_BOX)
   end
 
 end

@@ -1,52 +1,67 @@
-require_relative 'base_page'
+require_relative 'base'
 require_relative '../../../_cucumber/lib/helpers/products_helper'
 
-class Technologies < BasePage
+class Technologies < Base
 
   class << self
     include ProductsHelper
   end
 
-  set_url '/products/'
-
-  elements :products_sections, '.development-tool'
-  elements :products_link, 'h4 > a'
-  element :infrastructure, '#infrastructure'
-  element :private_cloud, '#private_cloud'
-  element :mobile, '#mobile'
-  element :integration_and_automation, '#integration_and_automation'
-
-  get_products[0].each do |product_id|
-    # define elements for each available product
-    element :"#{product_id}_section", "#development-tool-#{product_id}"
-    element :"get_started_with_#{product_id}_button", "#get-started-with-#{product_id}"
-    element :"product_#{product_id}_link", "##{product_id}"
-    element :"learn_#{product_id}_link", "#learn-#{product_id}"
-    element :"#{product_id}_docs_and_apis", "##{product_id}-docs-and-apis"
-    element :"download_#{product_id}", "#download-#{product_id}"
-  end
+  PRODUCTS_SECTIONS          = { css: '.development-tool' }
+  PRODUCTS_LINKS             = { css: '.development-tools h4 > a' }
+  INFRASTRUCTURE             = { id: 'infrastructure' }
+  CLOUD                      = { id: 'private_cloud' }
+  MOBILE                     = { id: 'mobile' }
+  INTEGRATION_AND_AUTOMATION = { id: 'integration_and_automation' }
 
   def initialize(driver)
     super
-  end
-
-  def open
-    load
     verify_page('Red Hat Products')
   end
 
   def product_titles
     titles = []
-    elements = [infrastructure, private_cloud, mobile, integration_and_automation]
-    elements.each { |el| titles << el.text }
+    elements = [INFRASTRUCTURE, CLOUD, MOBILE, INTEGRATION_AND_AUTOMATION]
+    elements.each { |el| titles << text_of(el) }
     titles
   end
 
   def available_products
     products = []
-    products_link.map { |name|
-      products << name.text }
+    links = find_elements(PRODUCTS_LINKS)
+    links.each do |el|
+      products << el.text
+    end
     products
+  end
+
+  def product_section_for(product)
+    text_of(id: "development-tool-#{product}")
+  end
+
+  def product_link_for(product)
+    href = find(id: product)
+    href.attribute('href')
+  end
+
+  def get_started_button_for(product)
+    href = find(id: "get-started-with-#{product}")
+    href.attribute('href')
+  end
+
+  def learn_link_for(product)
+    href = find(id: "learn-#{product}")
+    href.attribute('href')
+  end
+
+  def docs_and_apis_for(product)
+    href = find(id: "#{product}-docs-and-apis")
+    href.attribute('href')
+  end
+
+  def download_button_for(product)
+    href = find(id: "download-#{product}")
+    href.attribute('href')
   end
 
 end

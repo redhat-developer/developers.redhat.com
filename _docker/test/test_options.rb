@@ -92,7 +92,7 @@ class TestOptions < Minitest::Test
 
     tasks = Options.parse (['-u'])
     assert_includes tasks[:supporting_services], 'drupal'
-    assert_includes tasks[:supporting_services], 'drupalpgsql'
+    assert_includes tasks[:supporting_services], 'drupalmysql'
   end
 
   def test_awestruct_command
@@ -126,7 +126,7 @@ class TestOptions < Minitest::Test
       assert_equal('true', ENV['PARALLEL_TEST'])
       assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
       assert_equal('mechanize', ENV['RHD_DEFAULT_DRIVER'])
-      assert_equal(["--rm", "--service-ports", "awestruct_acceptance_test", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']} RHD_DEFAULT_DRIVER=#{ENV['RHD_DEFAULT_DRIVER']}"], tasks[:acceptance_test_target_task])
+      assert_equal(["--rm", "--service-ports", "awestruct_acceptance_test", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"], tasks[:acceptance_test_target_task])
     end
   end
 
@@ -194,7 +194,7 @@ class TestOptions < Minitest::Test
 
     assert_includes tasks, :supporting_services
     assert_includes tasks[:supporting_services], 'drupal'
-    assert_includes tasks[:supporting_services], 'drupalpgsql'
+    assert_includes tasks[:supporting_services], 'drupalmysql'
   end
 
   def test_drupal_nightly
@@ -206,7 +206,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert_includes tasks, :supporting_services
     assert_includes tasks[:supporting_services], 'drupal'
-    assert_includes tasks[:supporting_services], 'drupalpgsql'
+    assert_includes tasks[:supporting_services], 'drupalmysql'
   end
 
   private def expected_unit_test_tasks

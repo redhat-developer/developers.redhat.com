@@ -15,7 +15,9 @@ If you are on a mac then brew is required to install some dependant packages. Br
 ### Docker
 Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
 
-Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md)
+Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md). The scripts used assume you can run the `docker` command WITHOUT sudo.
+
+NOTE: We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed. 
 
 ### Docker Compose
 OSX: Docker compose will have been installed as part of the docker toolbox.
@@ -122,7 +124,7 @@ If you're using the Drupal containers you will need to install Node.js and npm.
 
 _NOTE:_ Node.js and npm both need to be installed on the host machine, not in the docker container. 
 
-1. Please follow https://nodejs.org/en/ for downloads and install of node and npm.
+1. Please follow https://nodejs.org/en/ for downloads and install of node and npm. Everything should work on nodejs versions > 0.10
 2. Execute the following command to get the node environment setup:
 
     npm install
@@ -333,10 +335,11 @@ Minimally the following list of recipients is required to encrypt the file:
 * Ryszard Koźmik <rkozmik@redhat.com> (ID: 0x70E45BDE7C68C64D created at Mon 11 May 16:09:19 2015)
 * Lukas Vlcek (Lukas Vlcek) <lvlcek@redhat.com> (ID: 0x3442A3D7BD324826 created at Fri 22 May 11:24:48 2015)
 * Oliver Shaw <oshaw@redhat.com> (ID: 0xD57A952A22E69562 created at Mon 27 Jul 11:10:09 2015)
-* Ian Hamilton <ian.ross.hamilton@gmail.com> (ID: 0xE48F54FDCAB257C5 created at Tue  6 Oct 15:16:26 2015)
-* Libor Krzyžanek <libor@krzyzanek.com> (ID: 0x0C3FF1F29223684E created at Thu 22 Oct 11:37:43 2015)
-* Vlastimil Elias <velias@redhat.com> (ID: 0x1104635722CBE84A created at Fri 20 May 09:58:18 2011)
+* Libor Krzyžanek <libor@krzyzanek.com> (ID: 0x0C3FF1F29223684E created at Thu 22 Oct 10:37:43 2015)
+* Vlastimil Elias <velias@redhat.com> (ID: 0x1104635722CBE84A created at Fri 20 May 08:58:18 2011)
 * Rob Blake <rblake@redhat.com> (ID: 0xD7CE3349F64B3AB5 created at Mon 21 Mar 14:16:17 2016)
+* Rob Terzi <rterzi@redhat.com> (ID: 0x4FBE485C0F7F515F created at Thu 21 Apr 19:22:51 2016)
+* Ian R Hamilton <ian.hamilton@rubygemtsl.co.uk> (ID: 0xA8B212D4D48C38CE created at Mon 25 Apr 07:14:17 2016)
 
 If you add a new recipient to the file, ensure you update the list above.
 

@@ -17,7 +17,7 @@ Prerequisites &#38; Required Dependencies Checklist
 
 1.  Install the Java SE Development Kit (JDK), we recommend OpenJDK or
 Oracle JDK.
-2.  Download link:#{site.download_manager_file_base_url}/jboss-devstudio-8.1.0.GA-jar_universal.jar?tp=fuse[JBoss Developer Studio 8.1.0.GA] 
+2.  Download link:#{site.download_manager_file_base_url}/jboss-devstudio-8.1.0.GA-jar_universal.jar?tp=fuse[JBoss Developer Studio 8.1.0.GA]
 3.  Run JBoss Developer Studio installer +
 For Mac / Windows Development Hosts:
 a.  Go to the folder you have downloaded JBoss Developer Studio:
@@ -39,16 +39,16 @@ a.  Open JBoss Developer Studio preferences and expand _JBoss Tools_ and
 select _JBoss Maven Integration._
 b.  Click _Configure Maven Repositories…_ button.
 c.  Click _Add Repository_ and select the
-*redhat-techpreview-all-repository* profile and then click Ok. +
+*redhat-ga-repository* profile and then click Ok. +
 +
-image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-1.png')}[Add Maven Repository]
+image:#{cdn(site.base_url + '/images/products/devstudio/maven.png')}[Add Maven Repository]
 d.  Click Finish +
 +
-image:#{cdn(site.base_url + '/images/products/devstudio/devstudio-overview-2.png')}[Configure Maven Repository]
+image:#{cdn(site.base_url + '/images/products/devstudio/Maven_Repositories_and_Preferences.jpg')}[Configure Maven Repository]
 e.  Answer _"Yes"_ for the question if you want to update settings.xml
 file.
 6. Install JBoss Developer Studio Integration Stack plugins
-a. Select the _Software/Update_ tab in the _JBoss Central_ view.
+a. Select the _Software/Update_ tab in the _Red Hat Central_ view.
 b. Scroll down the list of available features, looking for the _JBoss Developer Studio Integration Stack_ section. See the image below.
 c. Tick the following items:
 ... JBoss Fuse Development
@@ -113,13 +113,13 @@ The series walks you through each step of the application development lifecycle,
 |Demonstration Description | Material
 
 | What is JBoss Fuse?
-| https://github.com/jboss-fuse/quickstarts/tree/master/cbr[Demo source], https://vimeo.com/130279093[Video]
+| https://github.com/jboss-fuse/quickstarts/tree/master/beginner/camel-cbr[Demo source], https://vimeo.com/130279093[Video]
 
 | Tooling
 | https://vimeo.com/131199128[Tooling Usability Improvements], https://vimeo.com/130987010[Debugger Support], https://vimeo.com/131250890[Transformation Tooling], https://www.youtube.com/watch?v=iY4PF4TyFTI[Installing SAP Tooling], https://www.youtube.com/watch?v=2IeqsoOhycY[Using SAP Tooling], Installation video (TBD)
 
 | What is Apache Camel? What are Enterprise Integration Patterns (EIP)?
-| https://vimeo.com/130280300[Video about connectors], https://vimeo.com/130281513[Video about EIPS], https://github.com/jboss-fuse/quickstarts/tree/master/eip[Demo source]
+| https://vimeo.com/130280300[Video about connectors], https://vimeo.com/130281513[Video about EIPS], https://github.com/jboss-fuse/quickstarts/tree/master/beginner/camel-eips[Demo source]
 
 | Managing JBoss Fuse with Fuse Fabric
 | https://vimeo.com/130283717[Video]

@@ -287,6 +287,37 @@ ul.toc {
     }
   }
 }
+@include tablet-portrait-and-down {
+
+  .multipath-tabs-sm ul li{
+    display: block;
+    max-width: 100%;
+    text-align: right;
+    height: 30px;
+    border: none;
+    border-right: 4px solid #e6e7e8;
+    margin-bottom: 10px;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 0;
+    &.active {
+      border: none;
+      border-right: 4px solid #cc0000;
+      a {
+        border-bottom: none;
+
+      }
+    }
+    a {
+      vertical-align: -webkit-baseline-middle;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: #1a1a1a;
+      text-align: right;
+    }
+  }
+}
 
 #get-started h2{
   margin-bottom: 1rem;
@@ -315,6 +346,14 @@ ul.toc {
     height: 95%;
     h4 {
       color: $white;
+    }
+    .tabs-content {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      .content {
+        padding: 0;
+      }
     }
     @include tablet-landscape-and-down {
       h4 {
@@ -345,6 +384,20 @@ ul.toc {
       top: 20px;
     }
   }
+.step2 {
+  padding: 0; 
+  width: 100%; 
+  .step2-title {
+    padding: 0;
+    .tabs-content {
+      padding: 0;
+      margin: 0;
+      .content {
+        padding: 0;
+      }
+    }
+  }
+ } 
   .step-header {
     background-color: #3999cb;
     color: $white;

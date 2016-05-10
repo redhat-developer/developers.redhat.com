@@ -6,33 +6,15 @@ title: Red Hat Developers
 description: The simple, modern & productive way to build apps and infrastructure.
 ---
 
-section.homepage-main
-  .row
-    .large-16.columns.homepage-cta
-      span
-        h4 Getting Red Hat Enterprise Linux is easier than ever.
-        h2 
-          | New $0 RHEL Developer Subscription.
-          a.button.inverse href='#{site.base_url}/products/rhel/get-started/' Get Started
-    .large-8.columns.homepage-getstarted
-      .row
-        .large-24.medium-12.columns
-          h5.caps Get Started
-          ul
-            li
-              a href='#{site.base_url}/articles/rhel-what-you-need-to-know/' New to Red Hat Enterprise Linux? Here&apos;s what you need to know.
-            li
-              a href='#{site.download_manager_base_url}/download-manager/file/rhel-server-7.2-x86_64-dvd.iso' Download now
-            li
-              a href='#{site.base_url}/products/rhel/docs-and-apis/' Using the languages you know
 
+= partial('hero1.html.slim');
 .spotlights-wrap
   .row
     .large-24
       .spotlights-container
-        a.spotlight-item href='#{site.base_url}/events/gids/2016/'
-          img(src="http://static.jboss.org/images/rhd/promo/RHDev_homepromo_gids2016_31mar2016.png" alt="Join us at GIDS")
-          span Microservices, PaaS, IoT and more at GIDS.
+        a.spotlight-item href='http://developers.redhat.com/promotions/devnation-discount-code'
+          img(src="http://static.jboss.org/images/rhd/promo/RHDev_homepromo_devnation_30percent_18apr2016.png" alt="Get 30% off registration for DevNation")
+          span Join RHD and get a special 30% discount code.
         a.spotlight-item href='http://www.devnation.org/#contest'
           img(src="http://static.jboss.org/images/rhd/promo/RHDev_homepromo_devnation_winpass_13apr2016.png" alt="Submit to win at DevNation")
           span Submit what you would do at DevNation for chance to win.
@@ -65,34 +47,7 @@ section.homepage-main
     h4.caps Latest Content
     ul.homepage-resources.homepage-resources-latest
 
-section.register-banner.inverse
-  .row
-    .large-24.columns.home-join-img
-      img.desktop(src=cdn("#{site.base_url}/images/design/RHDev_homepage_jointext_desktop.svg") alt="Join RHD")
-      img.mobile(src=cdn("#{site.base_url}/images/design/RHDev_homepage_jointext_mobile.svg") alt="Join RHD")
-  .row.home-jointext
-    .large-10.columns
-      a.button(href="#{site.base_url}/register") Join Today - It&apos;s Free!
-    .large-14.columns
-      p
-        | Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications.
-        a(href="#{site.base_url}/register")
-          span.text-blue  Join now for free!
-      p
-        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_download.svg") alt="Download icon")
-        |  Get immediate access to
-        b  download
-        |  Red Hat&#174; products
-      p
-        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_cloud.svg") alt="Download icon")
-        |  Launch your new apps in the
-        b  cloud
-        |  on Red Hat&#174; OpenShift
-      p
-        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_lowercost.svg") alt="Download icon")
-        |  Offers and
-        b  discounts
-        |  on products, services, training, & events
+= partial('join-now-1.html.slim');
 
 section.contributors-banner.inverse
   .row
