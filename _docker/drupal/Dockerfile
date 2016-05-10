@@ -15,4 +15,6 @@ COPY modules/custom/basewidget /var/www/html/modules/custom/basewidget
 # Adding the theme, we can override for development
 COPY themes/custom/rhd /var/www/html/themes/custom/rhd
 
+VOLUME /var/www/html
+
 CMD ["/bin/bash", "/run.sh"]

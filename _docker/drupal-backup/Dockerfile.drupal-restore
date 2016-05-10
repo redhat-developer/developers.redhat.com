@@ -1,0 +1,6 @@
+FROM postgres:9.4
+MAINTAINER rblake@redhat.com
+WORKDIR /developers.redhat.com
+COPY docker-entrypoint.sh .
+COPY drupal-restore.sh .
+ENTRYPOINT ["/bin/bash", "docker-entrypoint.sh", "restore"]
