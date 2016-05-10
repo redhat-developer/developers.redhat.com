@@ -34,9 +34,7 @@ services:
     command:
       - "rake git_setup clean preview_no_reload[docker]"
     expose:
-      - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
-    ports:
-      - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
+      - "4242"
     links:
       - drupal
       - searchisko
@@ -70,9 +68,7 @@ services:
     command:
       - "rake git_setup clean preview[docker]"
     expose:
-      - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
-    ports:
-      - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
+      - "4242"
     links:
       - drupal
       - searchisko
@@ -139,7 +135,7 @@ services:
     ports:
       - "<%= ENV['DRUPALMYSQL_HOST_PORT'] %>:3306"
     expose:
-      - "5432"
+      - "3306"
 
   mysql:
     build: mysql

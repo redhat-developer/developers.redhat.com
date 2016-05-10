@@ -66,7 +66,7 @@ def is_port_open?(host, port)
         s = TCPSocket.new(Resolv.new.getaddress(host), port)
         s.close
         true
-      rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
+      rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH, Errno::EADDRNOTAVAIL
         # Doesn't matter, just means it's still down
         false
       end
