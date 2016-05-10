@@ -160,7 +160,7 @@ if tasks[:decrypt]
   modify_env
 end
 
-if tasks[:kill_all]
+if tasks[:kill_all] && File.exists?('docker-compose.yml')
   puts 'Killing and removing docker services...'
   execute_docker_compose :stop
   execute_docker_compose :rm, %w(-v -f)
