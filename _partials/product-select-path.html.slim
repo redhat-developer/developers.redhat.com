@@ -3,9 +3,10 @@
 .large-24
   ul.product-langs
     - page.parent.product.get_started_paths.each do |path|
-      li.large-6.columns
-        a(href="#{site.base_url}/products/#{page.parent.product.id}/#{path.default_file}")
-          .product-lang
-            .lang-logo
-              img(src=cdn("#{site.base_url}/images/products/multipath/#{path.id}-logo.png") alt="#{path.name} Logo")
-            h5.prod-lang-name #{path.name}
+      - unless path.hide_path
+        li.large-6.columns
+          a(href="#{site.base_url}/products/#{page.parent.product.id}/#{path.default_file}")
+            .product-lang
+              .lang-logo
+                img(src=cdn("#{site.base_url}/images/products/multipath/#{path.id}-logo.png") alt="#{path.name} Logo")
+              h5.prod-lang-name #{path.name}
