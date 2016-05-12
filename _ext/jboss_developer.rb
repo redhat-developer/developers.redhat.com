@@ -86,15 +86,14 @@ module JBoss
         if page.output_extension.include?('htm')
           resp = nil
           begin
-            if @drupal.exists? page
-              resp = @drupal.update_page page, content
-            else
-              resp = @drupal.create_page page, content
-            end
+            resp = @drupal.send_page page, content
             raise "Drupal POST request error for #{page.output_path}" unless resp.success?
           rescue Exception => e
             begin
               resp = @drupal.send_page page, content
+              unless resp.success?
+                puts "Error making second drupal request to '#{page.output_path}'. Response: #{resp.status}"
+              end
             rescue Exception => e
               ::Awestruct::ExceptionHelper.log_building_error e, page.relative_source_path
               puts "Error making second drupal request to '#{page.output_path}'."
@@ -353,6 +352,19 @@ module Aweplug
         @base_url = new_opts[:base_url]
         @basic_auth = Base64.encode64("#{new_opts[:drupal_user]}:#{new_opts[:drupal_password]}").gsub("\n", '').freeze
         token new_opts[:drupal_user], new_opts[:drupal_password]
+      end
+
+      # Public: Wrapper around exists?, create_page, and update_page
+      #
+      # page      - Page object from awestruct
+      # content   - Transformed content of the page
+      # Returns the Faraday::Response
+      def send_page(page, content)
+        if exists? page
+          update_page page, content
+        else
+          create_page page, content
+        end
       end
 
       # Public: Checks to see if the page exists within Drupal.
