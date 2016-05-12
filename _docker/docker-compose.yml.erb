@@ -5,8 +5,6 @@ services:
     volumes:
       - ../:/home/awestruct/developer.redhat.com
     environment:
-      - HOST_TO_TEST=http://docker:<%=ENV['AWESTRUCT_HOST_PORT']%>
-      - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
       - ghprbActualCommit
       - github_status_api_token
       - BUILD_URL
@@ -23,7 +21,6 @@ services:
       - github_status_api_token
       - PARALLEL_TEST
       - CUCUMBER_TAGS
-      - HOST_TO_TEST
       - SELENIUM_HOST=http://hub:4444/wd/hub
       - RHD_JS_DRIVER
       - RHD_DOCKER_DRIVER
@@ -33,10 +30,8 @@ services:
     build: ./awestruct
     command:
       - "rake git_setup clean preview_no_reload[docker]"
-    expose:
-      - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
     ports:
-      - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
+      - "4242:4242"
     links:
       - drupal
       - searchisko
@@ -59,20 +54,20 @@ services:
       - drupal_user
       - drupal_password
       - ACCESSIBLE_SLAVE_IP
-      - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
-      - SEARCHISKO_HOST_PORT=<%=ENV['SEARCHISKO_HOST_PORT']%>
-      - DRUPAL_HOST_PORT=<%=ENV['DRUPAL_HOST_PORT']%>
+      - SEARCHISKO_HOST_PORT
+      - DRUPAL_HOST_PORT
       - DRUPAL_HOST_IP
-      - HOST_TO_TEST
 
   awestruct:
     build: ./awestruct
     command:
       - "rake git_setup clean preview[docker]"
-    expose:
-      - "<%= ENV['AWESTRUCT_HOST_PORT'] %>"
     ports:
-      - "<%= ENV['AWESTRUCT_HOST_PORT'] %>:<%= ENV['AWESTRUCT_HOST_PORT'] %>"
+<% if ENV.key? 'AWESTRUCT_HOST_PORT' %>
+      - "<%=ENV['AWESTRUCT_HOST_PORT']%>:4242"
+<% else %>
+      - "4242:4242"
+<% end %>
     links:
       - drupal
       - searchisko
@@ -96,11 +91,9 @@ services:
       - drupal_user
       - drupal_password
       - ACCESSIBLE_SLAVE_IP
-      - AWESTRUCT_HOST_PORT=<%=ENV['AWESTRUCT_HOST_PORT']%>
-      - SEARCHISKO_HOST_PORT=<%=ENV['SEARCHISKO_HOST_PORT']%>
-      - DRUPAL_HOST_PORT=<%=ENV['DRUPAL_HOST_PORT']%>
+      - SEARCHISKO_HOST_PORT
+      - DRUPAL_HOST_PORT
       - DRUPAL_HOST_IP
-      - HOST_TO_TEST
       - ghprbActualCommit
       - github_status_api_token
       - BUILD_URL
@@ -113,7 +106,7 @@ services:
     expose:
       - "80"
     ports:
-      - "<%= ENV['DRUPAL_HOST_PORT'] %>:80"
+      - "80"
     links:
       - drupalmysql
     volumes:
@@ -136,10 +129,8 @@ services:
       - MYSQL_PASSWORD=drupal
       - MYSQL_DATABASE=drupal
       - MYSQL_ROOT_PASSWORD=superdupersecret
-    ports:
-      - "<%= ENV['DRUPALMYSQL_HOST_PORT'] %>:3306"
     expose:
-      - "5432"
+      - "3306"
 
   mysql:
     build: mysql
@@ -150,15 +141,15 @@ services:
       - MYSQL_USER=searchisko
       - MYSQL_PASSWORD=searchisko
       - MYSQL_ROOT_PASSWORD=superdupersecret
-    ports:
-      - "<%= ENV['MYSQL_HOST_PORT'] %>:3306"
     expose:
       - "3306"
 
   searchisko:
     build: ./searchisko
+    expose:
+     - "8080"
     ports:
-     - "<%= ENV['SEARCHISKO_HOST_PORT'] %>:8080"
+     - "8080"
     environment:
       - DB_NAME=searchisko
       - DB_USER=searchisko
@@ -169,6 +160,8 @@ services:
   selhub:
     image: selenium/hub
     restart: always
+    expose:
+      - "4444"
     ports:
       - "<%= ENV['SELENIUM_HUB_PORT'] %>:4444"
     privileged: true

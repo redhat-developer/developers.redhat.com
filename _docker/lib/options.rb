@@ -17,7 +17,7 @@ class Options
         tasks[:decrypt] = true
         tasks[:set_ports] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(mysql searchisko)
+        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
@@ -67,7 +67,7 @@ class Options
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:set_ports] = true
-        tasks[:supporting_services] += %w(mysql searchisko)
+        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |host|
@@ -86,6 +86,7 @@ class Options
           ENV['RHD_BROWSER_SCALE'] = '5'
         end
 
+        tasks[:kill_all] = false
         tasks[:set_ports] = true
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
@@ -106,7 +107,7 @@ class Options
         tasks[:build] = true
         tasks[:set_ports] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(mysql searchisko)
+        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
@@ -115,7 +116,7 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(mysql searchisko)
+        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
         tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
