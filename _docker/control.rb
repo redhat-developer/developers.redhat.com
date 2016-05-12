@@ -12,8 +12,9 @@ require 'erb'
 require 'resolv'
 require 'open3'
 require 'net/http'
-require './lib/options.rb'
-require './lib/file_helpers.rb'
+require_relative 'lib/options'
+require_relative 'lib/file_helpers'
+
 
 def modify_env
   begin
@@ -162,92 +163,98 @@ private def project_name
   end
 end
 
-tasks = Options.parse ARGV
+#
+# This guard allows the functions within this script to be unit tested without actually executing the script
+#
+if $0 == __FILE__
 
-if tasks.empty?
-  puts Options.parse %w(-h)
-end
+  tasks = Options.parse ARGV
 
-#the docker url is taken from DOCKER_HOST env variable otherwise
-Docker.url = tasks[:docker] if tasks[:docker]
-
-if tasks[:decrypt]
-  puts 'Decrypting...'
-  modify_env
-end
-
-if tasks[:kill_all] && File.exists?('docker-compose.yml')
-  puts 'Killing and removing docker services...'
-  execute_docker_compose :down
-end
-
-if tasks[:set_ports]
-  puts 'Setting ports...'
-  set_ports
-  # Output the new docker-compose file with the modified ports
-  File.delete('docker-compose.yml') if File.exists?('docker-compose.yml')
-  File.write('docker-compose.yml', ERB.new(File.read('docker-compose.yml.erb')).result)
-end
-
-if tasks[:build]
-  puts 'Building...'
-  docker_dir = 'awestruct'
-
-  if tasks[:drupal]
-    puts 'Building CSS and JS for drupal'
-    out, status = Open3.capture2e '$(npm bin)/gulp'
-    Kernel.abort("Error building CSS / JS for drupal: #{out}") unless status.success?
+  if tasks.empty?
+    puts Options.parse %w(-h)
   end
 
-  parent_gemfile = File.open '../Gemfile'
-  parent_gemlock = File.open '../Gemfile.lock'
+  #the docker url is taken from DOCKER_HOST env variable otherwise
+  Docker.url = tasks[:docker] if tasks[:docker]
 
-  target_gemfile = FileHelpers.open_or_new(docker_dir + '/Gemfile')
-  target_gemlock = FileHelpers.open_or_new(docker_dir + '/Gemfile.lock')
-  #Only copy if the file has changed. Otherwise docker won't cache optimally
-  FileHelpers.copy_if_changed(parent_gemfile, target_gemfile)
-  FileHelpers.copy_if_changed(parent_gemlock, target_gemlock)
+  if tasks[:decrypt]
+    puts 'Decrypting...'
+    modify_env
+  end
 
-  puts 'Building base docker image...'
-  execute_docker(:build, '--tag=developer.redhat.com/base', './base')
-  puts 'Building base Java docker image...'
-  execute_docker(:build, '--tag=developer.redhat.com/java', './java')
-  puts 'Building base Ruby docker image...'
-  execute_docker(:build, '--tag=developer.redhat.com/ruby', './ruby')
-  puts 'Building services...'
-  execute_docker_compose :build
-end
+  if tasks[:kill_all] && File.exists?('docker-compose.yml')
+    puts 'Killing and removing docker services...'
+    execute_docker_compose :down
+  end
 
-if tasks[:unit_tests]
-  puts 'Running the unit tests'
-  execute_docker_compose :run, tasks[:unit_tests]
-end
+  if tasks[:set_ports]
+    puts 'Setting ports...'
+    set_ports
+    # Output the new docker-compose file with the modified ports
+    File.delete('docker-compose.yml') if File.exists?('docker-compose.yml')
+    File.write('docker-compose.yml', ERB.new(File.read('docker-compose.yml.erb')).result)
+  end
 
-if tasks[:should_start_supporting_services]
-  puts 'Starting up services...'
+  if tasks[:build]
+    puts 'Building...'
+    docker_dir = 'awestruct'
 
-  execute_docker_compose :up, ['--no-recreate'].concat(tasks[:supporting_services])
-end
+    if tasks[:drupal]
+      puts 'Building CSS and JS for drupal'
+      out, status = Open3.capture2e '$(npm bin)/gulp'
+      Kernel.abort("Error building CSS / JS for drupal: #{out}") unless status.success?
+    end
 
-if tasks[:awestruct_command_args]
-  block_wait_searchisko_started(tasks[:supporting_services])
-  block_wait_drupal_started(tasks[:supporting_services])
+    parent_gemfile = File.open '../Gemfile'
+    parent_gemlock = File.open '../Gemfile.lock'
 
-  puts 'running awestruct command'
-  execute_docker_compose :run, tasks[:awestruct_command_args]
-end
+    target_gemfile = FileHelpers.open_or_new(docker_dir + '/Gemfile')
+    target_gemlock = FileHelpers.open_or_new(docker_dir + '/Gemfile.lock')
+    #Only copy if the file has changed. Otherwise docker won't cache optimally
+    FileHelpers.copy_if_changed(parent_gemfile, target_gemfile)
+    FileHelpers.copy_if_changed(parent_gemlock, target_gemlock)
 
-if tasks[:awestruct_up_service]
-  puts 'bringing up awestruct service'
-  execute_docker_compose :up, ['--no-recreate'].concat(tasks[:awestruct_up_service])
-end
+    puts 'Building base docker image...'
+    execute_docker(:build, '--tag=developer.redhat.com/base', './base')
+    puts 'Building base Java docker image...'
+    execute_docker(:build, '--tag=developer.redhat.com/java', './java')
+    puts 'Building base Ruby docker image...'
+    execute_docker(:build, '--tag=developer.redhat.com/ruby', './ruby')
+    puts 'Building services...'
+    execute_docker_compose :build
+  end
 
-if tasks[:scale_grid]
-  puts 'scaling up selenium grid service'
-  execute_docker_compose :scale, tasks[:scale_grid]
-end
+  if tasks[:unit_tests]
+    puts 'Running the unit tests'
+    execute_docker_compose :run, tasks[:unit_tests]
+  end
 
-if tasks[:acceptance_test_target_task]
-  puts 'Running features task  . . . . '
-  execute_docker_compose :run, tasks[:acceptance_test_target_task]
+  if tasks[:should_start_supporting_services]
+    puts 'Starting up services...'
+
+    execute_docker_compose :up, ['--no-recreate'].concat(tasks[:supporting_services])
+  end
+
+  if tasks[:awestruct_command_args]
+    block_wait_searchisko_started(tasks[:supporting_services])
+    block_wait_drupal_started(tasks[:supporting_services])
+
+    puts 'running awestruct command'
+    execute_docker_compose :run, tasks[:awestruct_command_args]
+  end
+
+  if tasks[:awestruct_up_service]
+    puts 'bringing up awestruct service'
+    execute_docker_compose :up, ['--no-recreate'].concat(tasks[:awestruct_up_service])
+  end
+
+  if tasks[:scale_grid]
+    puts 'scaling up selenium grid service'
+    execute_docker_compose :scale, tasks[:scale_grid]
+  end
+
+  if tasks[:acceptance_test_target_task]
+    puts 'Running features task  . . . . '
+    execute_docker_compose :run, tasks[:acceptance_test_target_task]
+  end
 end
