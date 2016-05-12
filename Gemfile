@@ -73,6 +73,7 @@ group :test do
   gem 'gmail', '~> 0.6.0'
   gem 'faker', '~> 1.6', '>= 1.6.1'
   gem 'report_builder', '~> 0.1.2'
+  gem 'webmock', '~> 2.0'
 end
 
 group :development do

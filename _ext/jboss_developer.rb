@@ -316,6 +316,15 @@ module Aweplug
       #
       # Returns the instance of Aweplug::Helpers::Drupal8Service.
       def self.default(site)
+        if site.drupal_base_url.nil? || site.drupal_base_url.empty?
+          raise 'Missing drupal base url'
+        end
+
+        if ENV['drupal_user'].nil? || ENV['drupal_user'].empty? ||
+            ENV['drupal_password'].nil? || ENV['drupal_password'].empty?
+          raise 'Missing drupal credentials'
+        end
+
         @@instance ||= Aweplug::Helpers::Drupal8Service.new({:base_url => site.drupal_base_url,
                                                              :drupal_user => ENV['drupal_user'],
                                                              :drupal_password => ENV['drupal_password']})
@@ -336,14 +345,14 @@ module Aweplug
         end
         FileUtils.mkdir_p '_tmp'
         @logger = Logger.new('_tmp/drupal8.log', 'daily')
-        opts.merge({:no_cache => true, :logger => @logger})
-        @faraday = Aweplug::Helpers::FaradayHelper.default(opts[:base_url], opts)
+        new_opts = opts.merge({:no_cache => true, :logger => @logger})
+        @faraday = Aweplug::Helpers::FaradayHelper.default(new_opts[:base_url], new_opts)
         @faraday.builder.delete(Faraday::Response::RaiseError) #remove response status checking since data not in the cache isn't necessarily an error.
         @faraday.builder.delete(Faraday::Response::Logger) #remove logger for drupal calls
         @faraday.builder.delete(FaradayMiddleware::FollowRedirects) # we don't want to follow redirects for drupal
-        @base_url = opts[:base_url]
-        @basic_auth = Base64.encode64("#{opts[:drupal_user]}:#{opts[:drupal_password]}").gsub("\n", '').freeze
-        token opts[:drupal_user], opts[:drupal_password]
+        @base_url = new_opts[:base_url]
+        @basic_auth = Base64.encode64("#{new_opts[:drupal_user]}:#{new_opts[:drupal_password]}").gsub("\n", '').freeze
+        token new_opts[:drupal_user], new_opts[:drupal_password]
       end
 
       # Public: Checks to see if the page exists within Drupal.
@@ -388,21 +397,13 @@ module Aweplug
       def create_payload(page, content)
         path = create_path page
         drupal_type = page.drupal_type || 'page'
-        payload = {:title => [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
-                   :_links => {:type => {:href => File.join(@base_url, '/rest/type/node/', drupal_type)}},
-                   :body => [{:value => content,
-                              :summary => page.description,
-                              :format => 'full_html'}],
-                   #:field_output_path => [{:value => path}],
-                   :path => {:alias => File.join('/', path)}
+        {title: [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
+         _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
+         body: [{value: content,
+                 summary: page.description,
+                 format: 'full_html'}],
+         path: {alias: File.join('/', path)}
         }
-
-        if drupal_type == 'rhd_solution_overview'
-          payload[:field_solution_name] = [{:value => page.solution.name}]
-          payload[:field_solution_tag_line] = [{:value => page.solution.long_description}]
-        end
-
-        payload
       end
 
       # Private: Returns the path for Drupal from the page object.
@@ -412,7 +413,7 @@ module Aweplug
       # Returns string version of the drupal path.
       def create_path(page)
         path = page.output_path.chomp('/index.html')
-        path = path[1..-1] if path.starts_with? '/'
+        path = path[1..-1] if path.start_with? '/'
         path
       end
 
@@ -454,7 +455,7 @@ module Aweplug
       #   drupal.post "api", "node", {title: 'Hello', type: 'page'}
       #   # => Faraday Response
       def patch(page_url, params = {})
-        resp = @faraday.patch do |req|
+        @faraday.patch do |req|
           req.url page_url + '?_format=hal_json'
           req.headers['Content-Type'] = 'application/hal+json'
           req.headers['Accept'] = 'application/hal+json'
@@ -468,13 +469,6 @@ module Aweplug
             @logger.debug "request body: #{req.body}"
           end
         end
-
-        unless resp.success?
-          @logger.debug "response body: #{resp.body}"
-          @logger.error "Error making drupal request to '#{path}'. Status: #{resp.status}.  Params: #{params}. Response body: #{resp.body}"
-          puts "Error making drupal request to '#{path}'. Status: #{resp.status}.  Params: #{params}. Response body: #{resp.body}"
-        end
-        resp
       end
 
       # Public: Perform an HTTP POST to drupal.
@@ -488,7 +482,7 @@ module Aweplug
       #   drupal.post "api", "node", {title: 'Hello', type: 'page'}
       #   # => Faraday Response
       def post(endpoint, path, params = {})
-        resp = @faraday.post do |req|
+        @faraday.post do |req|
           req.url endpoint + '/' + path
           req.headers['Content-Type'] = 'application/hal+json'
           req.headers['Accept'] = 'application/hal+json'
@@ -502,7 +496,6 @@ module Aweplug
             @logger.debug "request body: #{req.body}"
           end
         end
-        resp
       end
 
       def login(username, password)
