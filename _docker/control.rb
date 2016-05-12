@@ -76,66 +76,82 @@ def is_port_open?(host, port)
   end
 end
 
-def block_wait_drupal_started
-  docker_drupal = Docker::Container.get("#{project_name}_drupal_1")
-  until docker_drupal.json['NetworkSettings']['Ports']
-    puts 'Finding port info for drupal container...'
+def block_wait_drupal_started(supporting_services)
+
+  if check_supported_service_requested(supporting_services, 'drupal')
+
     docker_drupal = Docker::Container.get("#{project_name}_drupal_1")
-  end
-
-  # Check to see if Drupal is accepting connections before continuing
-  puts 'Waiting to proceed until Drupal is up'
-  drupal_port80_info = docker_drupal.json['NetworkSettings']['Ports']['80/tcp'].first
-  drupal_ip = ENV['DRUPAL_HOST_IP'] || 'docker'
-  drupal_port = drupal_port80_info['HostPort']
-
-  # Add the drupal cdn prefix
-  ENV['cdn_prefix'] = 'sites/default/files'
-
-  puts "Testing drupal access via #{drupal_ip}:#{drupal_port}"
-  up = false
-  until up do
-    up = is_port_open?(drupal_ip, drupal_port)
-    begin
-      response = Net::HTTP.get_response(URI("http://#{drupal_ip}:#{drupal_port}/user/login"))
-      response_code = response.code.to_i
-      up = response_code < 400
-    rescue
-      up = false
+    until docker_drupal.json['NetworkSettings']['Ports']
+      puts 'Finding port info for drupal container...'
+      docker_drupal = Docker::Container.get("#{project_name}_drupal_1")
     end
-  end
 
-  # Add this to the ENV so we can pass it to the awestruct build
-  ENV['DRUPAL_HOST_IP'] = drupal_ip # somewhat of a hack to make this work on Jenkins
-  ENV['DRUPAL_HOST_PORT'] = drupal_port
+    # Check to see if Drupal is accepting connections before continuing
+    puts 'Waiting to proceed until Drupal is up'
+    drupal_port80_info = docker_drupal.json['NetworkSettings']['Ports']['80/tcp'].first
+    drupal_ip = ENV['DRUPAL_HOST_IP'] || 'docker'
+    drupal_port = drupal_port80_info['HostPort']
+
+    # Add the drupal cdn prefix
+    ENV['cdn_prefix'] = 'sites/default/files'
+
+    puts "Testing drupal access via #{drupal_ip}:#{drupal_port}"
+    up = false
+    until up do
+      up = is_port_open?(drupal_ip, drupal_port)
+      begin
+        response = Net::HTTP.get_response(URI("http://#{drupal_ip}:#{drupal_port}/user/login"))
+        response_code = response.code.to_i
+        up = response_code < 400
+      rescue
+        up = false
+      end
+    end
+
+    # Add this to the ENV so we can pass it to the awestruct build
+    ENV['DRUPAL_HOST_IP'] = drupal_ip # somewhat of a hack to make this work on Jenkins
+    ENV['DRUPAL_HOST_PORT'] = drupal_port
+  else
+    puts "Not waiting for Drupal to start as it is not a required supporting_service"
+  end
 end
 
-def block_wait_searchisko_started
-  docker_searchisko = Docker::Container.get("#{project_name}_searchisko_1")
-  until docker_searchisko.json['NetworkSettings']['Ports']
-    puts 'Finding port info for searchisko container...'
+def check_supported_service_requested(supporting_services, service_name)
+  !supporting_services.nil? && supporting_services.include?(service_name)
+end
+
+def block_wait_searchisko_started(supporting_services)
+
+  if check_supported_service_requested(supporting_services, 'searchisko')
     docker_searchisko = Docker::Container.get("#{project_name}_searchisko_1")
-  end
-
-  # Check to see if Searchisko is accepting connections before continuing
-  puts 'Waiting to proceed until searchisko is up'
-  searchisko_port8080_info = docker_searchisko.json['NetworkSettings']['Ports']['8080/tcp'].first
-  searchisko_ip = searchisko_port8080_info['HostIp']
-  searchisko_port = searchisko_port8080_info['HostPort']
-
-  puts "Testing searchisko access via #{searchisko_ip}:#{searchisko_port}"
-  up = false
-  until up do
-    up = is_port_open?(searchisko_ip, searchisko_port)
-    begin
-      response = Net::HTTP.get_response(URI("http://#{searchisko_ip}:#{searchisko_port}/v2/rest/search/events"))
-      response_code = response.code.to_i
-      up = response_code < 400
-    rescue
-      up = false
+    until docker_searchisko.json['NetworkSettings']['Ports']
+      puts 'Finding port info for searchisko container...'
+      docker_searchisko = Docker::Container.get("#{project_name}_searchisko_1")
     end
+
+    # Check to see if Searchisko is accepting connections before continuing
+    puts 'Waiting to proceed until searchisko is up'
+    searchisko_port8080_info = docker_searchisko.json['NetworkSettings']['Ports']['8080/tcp'].first
+    searchisko_ip = searchisko_port8080_info['HostIp']
+    searchisko_port = searchisko_port8080_info['HostPort']
+
+    puts "Testing searchisko access via #{searchisko_ip}:#{searchisko_port}"
+    up = false
+    until up do
+      up = is_port_open?(searchisko_ip, searchisko_port)
+      begin
+        response = Net::HTTP.get_response(URI("http://#{searchisko_ip}:#{searchisko_port}/v2/rest/search/events"))
+        response_code = response.code.to_i
+        up = response_code < 400
+      rescue
+        up = false
+      end
+    end
+    ENV['SEARCHISKO_HOST_PORT'] = searchisko_port
+  else
+    puts "Not waiting for Searchisko to start as it is not a required supporting_service"
   end
-  ENV['SEARCHISKO_HOST_PORT'] = searchisko_port
+
 end
 
 private def project_name
@@ -214,8 +230,9 @@ if tasks[:should_start_supporting_services]
 end
 
 if tasks[:awestruct_command_args]
-  block_wait_searchisko_started
-  block_wait_drupal_started if tasks[:drupal]
+  block_wait_searchisko_started(tasks[:supporting_services])
+  block_wait_drupal_started(tasks[:supporting_services])
+
   puts 'running awestruct command'
   execute_docker_compose :run, tasks[:awestruct_command_args]
 end
