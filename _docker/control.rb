@@ -160,6 +160,10 @@ if $0 == __FILE__
   #the docker url is taken from DOCKER_HOST env variable otherwise
   Docker.url = tasks[:docker] if tasks[:docker]
 
+  # Output the new docker-compose file with the modified ports
+  File.delete('docker-compose.yml') if File.exists?('docker-compose.yml')
+  File.write('docker-compose.yml', ERB.new(File.read('docker-compose.yml.erb')).result)
+
   if tasks[:decrypt]
     puts 'Decrypting...'
     modify_env
