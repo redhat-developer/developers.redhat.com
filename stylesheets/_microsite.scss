@@ -335,3 +335,28 @@ body.microsite-multi-page, body.microsite {
     margin-top: 10px;
   }
 }
+
+// Styles for microsite-2 layout
+.microsite-tmpl {
+  margin-top: 3em;
+  h3 {
+    text-transform: uppercase;
+  }
+  ul li p {
+    margin-bottom: 5px;
+  }
+  .button {
+    p {
+      margin-bottom: 0;
+    }
+    a {
+      color: $white;
+      font-weight: 600;
+    }
+  }
+}
+
+.microsite-graphic {
+  margin: 10px auto 40px auto;
+  display: block;
+}
