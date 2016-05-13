@@ -1,0 +1,47 @@
+uuid: 00a50451-7788-44a6-ac07-071ef7efdd32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.promotion_card.field_container_external_link
+    - field.field.node.promotion_card.field_container_tags
+    - field.field.node.promotion_card.field_containers_short_summary
+    - node.type.promotion_card
+  module:
+    - link
+    - text
+    - user
+_core:
+  default_config_hash: V7dAoYzSG7Me8mJvNQaMQv8lkK1rfeb3VTyuRL5Zu4A
+id: node.promotion_card.default
+targetEntityType: node
+bundle: promotion_card
+mode: default
+content:
+  field_container_external_link:
+    weight: 103
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_container_tags:
+    weight: 102
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_containers_short_summary:
+    weight: 104
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  links:
+    weight: 100
+hidden: {  }

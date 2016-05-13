@@ -2,12 +2,12 @@ require 'yaml'
 
 module DownloadHelper
 
-  TIMEOUT = 30
+  TIMEOUT = 12
 
   extend self
 
   def download_manager_base_url
-    case Capybara.app_host.to_s
+    case $host_to_test
       when 'http://developers.redhat.com/', 'https://developers.redhat.com/'
         'https://developers.redhat.com/download-manager/rest/available'
       else
@@ -49,27 +49,6 @@ module DownloadHelper
     return products, product_name
   end
 
-  def download_dir
-    Dir.glob("#{@download_dir}").count { |file| File.file?(file) }
-  end
-
-  def downloading?
-    dir = download_dir
-    wait_for_downloading {
-      dir == 1
-    }
-  end
-
-  def wait_for_downloading(i = TIMEOUT)
-    count = 0; downloading = 1
-    until downloading == 1 || count == i
-      downloading = yield
-      sleep(0.5)
-      count += 1
-    end
-    downloading.eql?(1)
-  end
-
   def get_product_id(product)
     case product
       when 'JBoss Developer Studio'
@@ -88,6 +67,8 @@ module DownloadHelper
         'datavirt'
       when 'Red Hat Container Development Kit (CDK)'
         'cdk'
+      when 'Red Hat Enterprise Linux'
+        'rhel'
       else
         raise "No mapping for #{product}! See Downloads Helper"
     end

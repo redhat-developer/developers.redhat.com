@@ -6,60 +6,27 @@ title: Red Hat Developers
 description: The simple, modern & productive way to build apps and infrastructure.
 ---
 
-section.homepage-main
-  .row
-    .large-16.columns.homepage-cta
-      img(src=cdn("#{site.base_url}/images/design/RHDev_homehero_javaeebook_book.png") alt="Distributed JavaEE Architecture")
-      span
-        h2
-          | Book:
-          br
-          | Modern Java EE
-          br
-          | Design Patterns
-        a.button href='#{site.base_url}/promotions/distributed-javaee-architecture/' Download Now
-    .large-8.columns.homepage-getstarted
-      .row
-        .large-24.medium-12.columns
-          h5.caps Get Started with Enterprise Java
-          ul
-            li
-              a href='http://www.jboss.org/ticket-monster/' Learn Enterprise Java with a Full Scale Application Tutorial
-            li
-              a href='https://blog.openshift.com/a-java-ee-7-application-on-openshift-3-with-jboss-tools/' Run your first app on the Cloud
-            li
-              a href='http://developerblog.redhat.com/2016/01/25/run-your-first-java-ee-application-with-jboss-eap-7-beta/' Run your first Enterprise Java application on JBoss EAP 7 Beta
-            li
-              a href='http://forge.jboss.org/document/hands-on-lab' Get started with Java EE faster, using JBoss Forge
-            li
-              a href='http://www.jboss.org/products/brms/get-started/#!project=brms' Manage Enterprise Business rules with JBoss BRMS
-        .large-24.medium-12.columns
-          .clearfix
-          h5.caps Accelerate Your Development
-          .medium-20.small-24.columns
-            a.video-thumb(href='#{site.base_url}/video/youtube/Cl3SiavsBF4')
-              img.video-thumb(src=cdn("#{site.base_url}/images/branding/RHDev_homeherovideo_jbosseap7beta.jpg") alt='Video Thumbnail Img')
-              p Video: Getting started with JBoss EAP 7 Beta
 
+= partial('hero1.html.slim');
 .spotlights-wrap
   .row
     .large-24
       .spotlights-container
-        a.spotlight-item href='#{site.base_url}/about'
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_whatisrhd.png") alt="What is RHD?")
-          span What is Red Hat Developers?
-        a.spotlight-item href='http://www.devnation.org/'
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_devnation_generic.png") alt="DevNation Registration")
-          span Why wait when you can register now?
-        a.spotlight-item href='#{site.base_url}/products/cdk/get-started/'
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_cdk2.png") alt="Red Hat Container Development Kit 2 Beta is Here")
-          span Red Hat CDK 2 beta is here
-        a.spotlight-item href='http://developerblog.redhat.com/2016/01/18/jboss-eap-7-beta-is-now-available/'
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_eap7betaishere.png") alt="Eap7 Beta")
-          span JBoss EAP 7 beta is here
-        a.spotlight-item href='http://wp.me/p2WBxv-1KWJ'
-          img(src=cdn("#{site.base_url}/images/spotlights/RHDev_homepromo_containercourse.png") alt="Containers course")
-          span New no-cost containers course from Red Hat Training
+        a.spotlight-item href='http://developers.redhat.com/promotions/devnation-discount-code'
+          img(src="http://static.jboss.org/images/rhd/promo/RHDev_homepromo_devnation_30percent_18apr2016.png" alt="Get 30% off registration for DevNation")
+          span Join RHD and get a special 30% discount code.
+        a.spotlight-item href='http://www.devnation.org/#contest'
+          img(src="http://static.jboss.org/images/rhd/promo/RHDev_homepromo_devnation_winpass_13apr2016.png" alt="Submit to win at DevNation")
+          span Submit what you would do at DevNation for chance to win.
+        a.spotlight-item href='http://developers.redhat.com/blog/2016/04/19/security-update-samassamsam-ransomeware-and-jboss/'
+          img(src="http://static.jboss.org/images/rhd/promo/RHDev_homepromo_security_samsam_21apr2016.png" alt="SAMAS/SamSam Ransomeware updates")
+          span SAMAS/SamSam Ransomware. Be sure you're covered.
+        a.spotlight-item href='#{site.base_url}/dotnet/'
+          img(src="http://static.jboss.org/images/rhd/promo/RHDev_homepromo_dotNET_13apr2016.png" alt="Get started with .NET")
+          span Get started with webinar, blogs, cheat sheet and more.
+        a.spotlight-item href='#{site.base_url}/promotions/linux-cheatsheet/'
+          img(src="http://static.jboss.org/images/rhd/promo/RHDev_homepromo_linuxcheatsheet_13apr2016.png" alt="Get the Linux commands cheat sheet")
+          span Easy shortcuts and tips for using Linux.
 
 .row.featured-and-latest
   .large-24.columns
@@ -80,34 +47,7 @@ section.homepage-main
     h4.caps Latest Content
     ul.homepage-resources.homepage-resources-latest
 
-section.register-banner.inverse
-  .row
-    .large-24.columns.home-join-img
-      img.desktop(src=cdn("#{site.base_url}/images/design/RHDev_homepage_jointext_desktop.svg") alt="Join RHD")
-      img.mobile(src=cdn("#{site.base_url}/images/design/RHDev_homepage_jointext_mobile.svg") alt="Join RHD")
-  .row.home-jointext
-    .large-10.columns
-      a.button(href="#{site.base_url}/register") Join Today - It&apos;s Free!
-    .large-14.columns
-      p
-        | Red Hat delivers the resources and ecosystem of experts to help professional programmers to be more productive and get ahead of the curve as they build great applications.
-        a(href="#{site.base_url}/register")
-          span.text-blue  Join now for free!
-      p
-        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_download.svg") alt="Download icon")
-        |  Get immediate access to
-        b  download
-        |  Red Hat&#174; products
-      p
-        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_cloud.svg") alt="Download icon")
-        |  Launch your new apps in the
-        b  cloud
-        |  on Red Hat&#174; OpenShift
-      p
-        img.inline-icon(src=cdn("#{site.base_url}/images/design/RHDev_homepage_lowercost.svg") alt="Download icon")
-        |  Offers and
-        b  discounts
-        |  on products, services, training, & events
+= partial('join-now-1.html.slim');
 
 section.contributors-banner.inverse
   .row

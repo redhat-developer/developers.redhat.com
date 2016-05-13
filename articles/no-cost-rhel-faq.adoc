@@ -1,0 +1,213 @@
+:awestruct-layout: article
+:awestruct-interpolate: true
+:awestruct-tags: [RHEL, get started]
+:author: Red Hat Developers Team
+:title: "Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite"
+:awestruct-published: April 20, 2016
+
+= FREQUENTLY ASKED QUESTIONS
+= NO-COST RHEL DEVELOPER SUITE SUBSCRIPTION
+
+== General
+
+. *What is being made available at no cost?*
++
+Developers can now get a no-cost subscription for Red Hat Enterprise Linux Developer Suite by joining the Red Hat Developer Program at link:#{site.base_url}[developers.redhat.com].
+
+. *What's included in the no-cost Red Hat Enterprise Linux Developer Suite?*
++
+Red Hat Developer Suite includes:
+
+* Red Hat Enterprise Linux Server.
+* Red Hat Software Collections.
+* Red Hat Developer Toolset.
+* numerous Red Hat Enterprise Linux infrastructure add-ons.
+
+. *Is the Red Hat Enterprise Linux in this subscription the same as what enterprises use in production?*
++
+Yes, the bits are identical to enable you to develop and test your software on the same platform as production users. In addition to the current release, Red Hat Enterprise Linux 7, you will also have access to all of the currently supported releases including 5 and 6, enabling you to build and test for older/legacy systems covering a ten year lifespan.
+
+. *What's different between this no-cost Red Hat Enterprise Linux subscription and one used by enterprises in production?*
++
+All of the software binaries that are available to a subscription are the same regardless of the support level. Subscriptions vary by the level and type of support offered. Enterprises purchase subscriptions that include service level agreements that meet their business' need for response times. The no-cost developer suite subscription is self-supported. Your subscription gives you access to the Red Hat Customer Portal, link:https://access.redhat.com[access.redhat.com]. Subscriber-only content on the portal includes a knowledgebase with thousands of articles that cover configuration, deployment, troubleshooting, and security.
++
+Finally, the biggest difference is that the no-cost Developer Suite subscription is only for development purposes and may not be used in production. So, while the bits are the same, the differences are the terms of use and the support level. The no-cost Red Hat Enterprise Linux Developer Suite is for development purposes only and is self-supported. For production and other uses not covered by the developer agreement, Red Hat offers subscriptions with a choice of support coverage (typical business day only, 24 x 7, etc.) and response time agreements.
+
+. *What is self-support and what does this no-cost Red Hat Enterprise Linux Developer Suite subscription cover?*
++
+The no-cost Red Hat Enterprise Linux Developer Suite subscription is for link:#{site.base_url}/terms-and-conditions/[development use only]. The support is self service through the Red Hat Customer Portal, link:https://access.redhat.com[access.redhat.com]. Your self-support subscription includes:
+
+* An entitlement to register the system running Red Hat Enterprise Linux.
+* Complete access to Red Hat Enterprise Linux updates and errata.
+* Access to knowledgebase articles, portal discussion groups, and magazines on the link:https://access.redhat.com[Red Hat Customer Portal].
+* Users can open a support ticket for issues related to Red Hat Network registration or issues related to `yum` updates.
+* This subscription does not include support on any operating system related issue. Users may look for the resolution in our knowledgebase articles or can discuss it over portal groups with respective domain experts. Note: there is no service level agreement for discussing issues over portal groups.
+
+. *Is this no-cost subscription for individuals or businesses/enterprises*?
++
+The no-cost self-supported subscriptions are best suited for individual/personal accounts because only one no-cost subscription may be added to an account. These subscriptions are ideal for an individual developer who wants to develop on Red Hat Enterprise Linux using their personal system.
+
+. *Can I use this no-cost subscription on a corporate-owned device?*
++
+You may use this subscription on corporate-owned devices. However, you should check to make sure that doing so doesn't violate your organization's IT policies. The no-cost subscription is assigned to the individual that creates the account, The account used to obtain the no-cost subscription will be completely separate from any existing corporate accounts. Your organization's group that handles procurement will not be able to track or manage subscriptions obtained individually through the developer program. Many organizations prohibit installing software that isn't licensed to the organization.
+
+. *How many Red Hat Enterprise Linux entitlements are included?*
++
+You may use this no-cost Red Hat Enterprise Linux subscription on one (1) physical system with up to eight processor sockets. If you are using a system with virtualization, you can installed an unlimited number of guest virtual machines (VMs) on that system.
++
+For example:
+
+* If your development system is running Windows, you can create as many Red Hat Enterprise Linux VMs as you need on your Windows system using VirtualBox, VMware, or Microsoft Hyper-V.
+* If you install Red Hat Enterprise Linux on a physical system, you may create an unlimited number of guests VM on that t system using KVM/libvirt virtualization or other hypervisor.
+
+. *Can I add additional no-cost Developer Suite subscriptions to my account to cover other systems or developers?*
++
+Only one no-cost Red Hat Enterprise Linux Developer Suite subscription can be added to an account. Other developers can create their own accounts at link:#{site.base_url}/[developers.redhat.com].
++
+Organizations with multiple developers may want to look into link:https://www.redhat.com/apps/store/developers/[purchasing development subscription packs] that include developer support and allow multiple systems to be managed from a single account.
+
+. *Can I get no-cost Developer Suite subscriptions for my whole team?*
++
+Only one no-cost Red Hat Enterprise Linux Developer Suite subscription can be added to an account. While it is possible to have each developer register for their own account, this is not ideal from a management or efficiency standpoint. For example, if a company wanted no-cost Developer Suite subscriptions to cover 100 developers, each developer would need to individually register, creating 100 accounts that need to be tracked and maintained. For enterprises that use Red Hat Satellite to manage multiple system, all 100 accounts would need to be added individually. Accepting the terms and conditions and renewing the subscription annually would need to be done individually and manually for all 100 accounts. Staff turn over in the development team would create additional management challenges with individual accounts. Therefore in terms of lost productivity, managing individual no-cost subscriptions will not be cost-effective for many groups.
++
+Many development organizations benefit from having Red Hat Developer Support. Cost effective bundles are available that include support with a pack of 25 Developer Suite subscriptions that can be managed from a single account.
+
+. *Since this is a subscription, do I have to renew? What is the term length for this? How do I renew?*
++
+Like the fee-based version, this is a 12-month subscription. Renewal is simple and only requires that you agree to the then-current version of the T&Cs. You can view information about your subscription including the expiration date at link:https://access.redhat.com/management/[access.redhat.com/management].
+
+. *Can I use this subscription for testing as well as development?*
++
+The no-cost Red Hat Enterprise Linux Developer Suite may be used for development and single-user testing per link:http://www.redhat.com/licenses/GLOBAL_Appendix_one_English_20160111.pdf[Appendix 1] of the the Red Hat subscription agreement.
+
+. *Does my existing Red Hat Enterprise Linux subscription (not the no-cost development version) include access to Red Hat Software Collections (RHSCL) or Developer Toolset (DTS)?*
++
+For the majority of Red Hat Enterprise Linux subscriptions, yes. See link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)] for a detailed list.
+
+
+== Getting your no-cost subscription
+
+. *How do I get a no-cost subscription for Red Hat Enterprise Linux?*
++
+When you register and download Red Hat Enterprise Linux Server through link:#{site.base_url}/[developers.redhat.com], the no-cost Red Hat Enterprise Linux Developer Suite subscription will be automatically added to your account. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt.
+
+. *I can't find the no-cost subscription. If I try to download Red Hat Enterprise Linux, I get a message that a subscription is required.*
++
+The no-cost subscription is only available through the Red Hat Developers site, link:#{site.base_url}/[developers.redhat.com]. While the no-cost subscription is not available from link:https://access.redhat.com/[access.redhat.com], once you've registered on link:#{site.base_url}/[developers.redhat.com] and activated your subscription by downloading through link:#{site.base_url}/[developers.redhat.com], you will have the same access to the Red Hat Customer Portal, link:https://access.redhat.com[access.redhat.com], provided to paid, self-supported subscriptions.
+
+. *How can I check that the no-cost subscription was added to my account?*
++
+You can view your subscription, the expiration date, and attached system information on the Red Hat Customer Portal, link:https://access.redhat.com/management/[access.redhat.com/management]. This is the same tool for managing paid subscriptions.
+
+. *I registered at link:#{site.base_url}/[developers.redhat.com] with my GitHub, Stack Overflow, LinkedIn, or social network account. How do I log into other Red Hat sites such as link:https://access.redhat.com[access.redhat.com]?*
++
+Currently only link:#{site.base_url}/[developers.redhat.com] supports registration using a social network account. To log into other Red Hat sites, you will need a Red Hat login. When you download through link:#{site.base_url}/[developers.redhat.com], if you don't have a Red Hat account, one will be created for you. The username will be the email address you are registered under. The password for your Red Hat account will be set when you fill out the registration form. If you don't remember your password, a "Forgot Password" link is available on the link:https://acess.redhat.com/login[login page].
+
+. *While trying to register and download at link:#{site.base_url}/[developers.redhat.com], I'm getting an error that says “Your information is valid, but we're unable to upgrade your account”. How can I resolve this?*
++
+If you are having problems with your account, <<Contacting Red Hat for assistance,contact Red Hat Support for registration assistance>>.
+
+
+== Software Download
+
+. *Where can I download Red Hat Enterprise Linux?*
++
+You can download Red Hat Enterprise Linux Server from link:#{site.base_url}/downloads/[developers.redhat.com/downloads] or by following our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide]. When you register and download Red Hat Enterprise Linux Server through link:#{site.base_url}/[developers.redhat.com], the no-cost Red Hat Enterprise Linux Developer Suite subscription will be automatically added to your account.
+
+. *When I try to register on link:#{site.base_url}/[developers.redhat.com] and download the software, I get an error that JavaScript is not enabled, but I've already got it enabled?*
++
+JavaScript is required for the registration and download process on link:#{site.base_url}/[developers.redhat.com]. If JavaScript is enabled and you are still getting errors, it is possible that ad-blockers or anti-malware software might be interfering. Try disabling them for link:#{site.base_url}/[developers.redhat.com].
++
+
+. *I've enabled JavaScript and disabled pop-up blockers, but I still can't download the software. Is there any other way to get it?*
++
+The download links at link:#{site.base_url}/[developers.redhat.com] handle registration, adding the no-cost subscription to your account, and the actual download. If this isn't working for you, try these steps:
+
+.. First, log in to the Red Hat Customer Portal, link:https://access.redhat.com/[access.redhat.com]. During registration at link:#{site.base_url}/[developers.redhat.com], a Red Hat account was created for you. The username will be the email address you are registered under. The password for your Red Hat account will be set when you fill out the registration form. If you don't remember your password, a "Forgot Password" link is available on the link:https://acess.redhat.com/login[login page].
+.. Check whether the no-cost Developer Suite subscription was added to your account by using the _Subscriptions_ link, link:https://access.redhat.com/management/[access.redhat.com/management]. You should see one active subscription. When you click _View_ you should see _Red Hat Enterprise Linux Developer Suite_ listed. If the subscription did not get added to your account see <<Contacting Red Hat for assistance>>.
+.. If you have a subscription, download _RHEL 7.2 Binary DVD_ from the link:https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.2/x86_64/product-software[product download page]. If you do not have a current subscription you will get an error that a subscription is required.
+
+
+== System Installation
+
+. *Why does the Developer Suite subscription only include Red Hat Enterprise Linux Server?*
++
+Red Hat Enterprise Linux Server gives you access to the widest variety of software to develop and test with including server oriented software such as containers. Red Hat Enterprise Linux Server is essentially a superset of the other editions.
+
+. *As a developer I want a full graphical desktop. Can I get this with Red Hat Enterprise Linux Server?*
++
+Our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] walks you through installing Red Hat Enterprise Linux Server. During the installation you will select _Server with a GUI_ which will give you a full graphical desktop based upon GNOME 3.
+
+. *What is the difference between Red Hat Enterprise Linux Developer Suite and Red Hat Enterprise Linux Server, Desktop, or Workstation?*
++
+Developer Suite is a subscription that includes Red Hat Enterprise Linux Server and additional development tools. It is not an edition of Red Hat Enterprise Linux.
+
+. *Do I need to repartition the disk on my existing system to try Red Hat Enterprise Linux?*
++
+You can use virtualization to run Red Hat Enterprise Linux on your existing system running Microsoft Windows, Apple Mac OS X, or Linux. Our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] covers VirtualBox, VMware, Microsoft Hyper-V, and Linux KVM/libvirt. Some of those virtualization platforms are available at no cost for individual users.
+
+. *Where can I get installation assistance and help with troubleshooting?*
++
+We have a number of resources that can help:
+
+* First, our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] covers the key points on installing Red Hat Enterprise Linux for software development.
+* The link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide] contains comprehensive installation and troubleshooting instructions.
+* An extensive collection of support resources are available in the https://access.redhat.com/search/#/knowledgebase[knowledgebase] on the Red Hat Customer Portal, link:https://access.redhat.com[access.redhat.com].
+
+
+== System Registration
+
+. *I've registered at developers.redhat.com, why do I need to register my system?*
++
+Registering your system attaches it to your Red Hat subscription, This allows your system to download software and updates from Red Hat.
+
+. *What username and password do I use for registering my system?*
++
+During the registration and download process at link:#{site.base_url}/[developers.redhat.com], a Red Hat account was created if you didn't already have one. The username is the email address you registered with. If you don't remember the password, you can reset it using the “Forgot Password” link on the link:https://acess.redhat.com/login[login page] of link:https://access.redhat.com[access.redhat.com].
+
+. *During system registration, when I click _Attach_, I get an error message: “No service level will cover all installed products”, or "User is not able to register with any orgs.” How do I resolve this?*
++
+These errors indicate that the Red Hat user you logged in as doesn't have a current subscription. The no-cost subscription is added to your account when you register and download through link:#{site.base_url}/[developers.redhat.com]. Check that your subscription got added to your account at link:https://access.redhat.com/management/[access.redhat.com/management]. You should see an active subscription for _Red Hat Enterprise Linux Developer Suite_. If a subscription was not added to your account, log in to link:#{site.base_url}/[developers.redhat.com] and try the link:#{site.base_url}/downloads[download] again. Note: You do not need to download the whole file again, you can cancel the download after it starts. Now, go back to link:https://access.redhat.com/management/[access.redhat.com/management] and see if the subscription was added to your account.
++
+If you are still unable to get a subscription, see <<Contacting Red Hat for assistance>>.
+
+. *I am registered with link:#{site.base_url}/[developers.redhat.com] and have downloaded and installed Red Hat Enterprise Linux, but now I can't download any additional software or updates. I don't have access to any Red Hat Enterprise Linux software repositories.*
++
+You need to register your system in order to download software and updates from Red Hat. During registration your system will be attached to your no-cost subscription and the applicable software repositories will become accessible. For registration instructions see link:#{site.base_url}/products/rhel/get-started/#Step3[Step 3] of our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide]. See https://access.redhat.com/solutions/253273[How to register and subscribe a system to the Red Hat Customer Portal using Red Hat Subscription Manager] for more detailed registration information.
+
+. *Where do I find my registration number?*
++
+You can view information about your subscription including the registration number and expiration date using the link:https://access.redhat.com/management/[subscription link] on the Red Hat Customer Portal. You will need to use your Red Hat login. Your username will generally be the email address you registered under. The steps are:
+
+.. Go to link:https://access.redhat.com/management/[access.redhat.com/management].
+.. Under _My Subscriptions_, click _View All_.
+.. In the middle of the following page, you will see the 16-digit number installation number that you need for registration and installation.
+
++
+Note: All current versions of Red Hat Enterprise Linux use Red Hat Subscription Management instead of the older Red Hat Network (RHN) management system. You will use your Red Hat username and password for subscription management in place of installation numbers used on RHN systems. For more information, see:
+
+* link:https://access.redhat.com/rhn-to-rhsm[Transition of RHN Classic to Red Hat Subscription Management].
+* link:https://www.redhat.com/support/resources/faqs/installation_numbers/index.html[RHN Classic Frequently Asked Questions].
+
+. *Where can I get help with registering my Red Hat Enterprise Linux system to attach it to my new no-cost subscription?*
++
+We have a number of resources that can help:
+
+* Our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] covers the key steps in the process from download through system registration and setting up your system for software development.
+* The link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/[Red Hat Enterprise Linux Installation Guide] contains comprehensive installation and troubleshooting instructions.
+* The knowledgebase article link:https://access.redhat.com/solutions/253273[How to register and subscribe a system to the the Red Hat Customer Portal] provides specific help for subscription management issues.
+
++
+Finally, you can contact Red Hat Support for registration assistance. See <<Contacting Red Hat for assistance>>.
+
+
+== Contacting Red Hat for assistance
+
+If you need to contact Red Hat Customer Service for assistance with obtaining your no-cost subscription or registering your system, choose one of these methods:
+
+* Via the web: You can open a support case on line at link:https://access.redhat.com/support/cases/new[access.redhat.com/support/cases/new].
+* Via email: See link:https://access.redhat.com/support/contact/customerService/[Contacting Customer Service] for the global list of customer service email addresses. For North America, send an email to link:mailto:customerservice@redhat.com[customerservice@redhat.com].
+* Via phone: See link:https://access.redhat.com/support/contact/customerService/[Contacting Customer Service] for the global list of customer support phone numbers. For North America, contact Red Hat Customer Service at +1-888-REDHAT-1 (+1-888-733-4281), then press option 3 for technical assistance, and then option 2 for a new case (for registration assistance). 
+
+
+

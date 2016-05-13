@@ -87,10 +87,17 @@ module JBoss
           resp = nil
           begin
             resp = @drupal.send_page page, content
+            raise "Drupal POST request error for #{page.output_path}" unless resp.success?
           rescue Exception => e
-            ::Awestruct::ExceptionHelper.log_building_error e, page.relative_source_path
-            puts "Error pushing to drupal #{page.output_path} : #{e.message}"
-            puts "Error making drupal request to '#{page.output_path}'. Response: #{resp}"
+            begin
+              resp = @drupal.send_page page, content
+              unless resp.success?
+                puts "Error making second drupal request to '#{page.output_path}'. Response: #{resp.status}"
+              end
+            rescue Exception => e
+              ::Awestruct::ExceptionHelper.log_building_error e, page.relative_source_path
+              puts "Error making second drupal request to '#{page.output_path}'."
+            end
           end
         end
         content # Don't mess up the content locally in _site
@@ -295,19 +302,34 @@ require 'aweplug/helpers/faraday'
 require 'logger'
 require 'json'
 require 'uri'
+require 'base64'
 
 module Aweplug
   module Helpers
     # Public: A helper class for using drupal services.
     class Drupal8Service
 
-      def self.default site
-        Aweplug::Helpers::Drupal8Service.new({:base_url => site.drupal_base_url,
-                                          :drupal_user => ENV['drupal_user'],
-                                          :drupal_password => ENV['drupal_password']})
+      # Public: Singleton instantiation.
+      #
+      # site    - Awestruct::Site
+      #
+      # Returns the instance of Aweplug::Helpers::Drupal8Service.
+      def self.default(site)
+        if site.drupal_base_url.nil? || site.drupal_base_url.empty?
+          raise 'Missing drupal base url'
+        end
+
+        if ENV['drupal_user'].nil? || ENV['drupal_user'].empty? ||
+            ENV['drupal_password'].nil? || ENV['drupal_password'].empty?
+          raise 'Missing drupal credentials'
+        end
+
+        @@instance ||= Aweplug::Helpers::Drupal8Service.new({:base_url => site.drupal_base_url,
+                                                             :drupal_user => ENV['drupal_user'],
+                                                             :drupal_password => ENV['drupal_password']})
       end
 
-      # Public: Initialization of the object, keeps a Faraday connection cached.
+      # Private: Initialization of the object, keeps a Faraday connection cached.
       #
       # opts - symbol keyed hash, see Aweplug::Helpers::Faraday.default for
       #        other options. Current keys used:
@@ -316,41 +338,95 @@ module Aweplug
       #        :drupal_password - Password to use for auth
       #
       # Returns a new instance of Searchisko.
-      def initialize opts={}
-        unless [:drupal_user, :drupal_password].all? {|required| opts.key? required}
+      def initialize(opts = {})
+        unless [:drupal_user, :drupal_password].all? { |required| opts.key? required }
           raise 'Missing drupal credentials'
         end
         FileUtils.mkdir_p '_tmp'
         @logger = Logger.new('_tmp/drupal8.log', 'daily')
-        opts.merge({:no_cache => true, :logger => @logger})
-        @faraday = Aweplug::Helpers::FaradayHelper.default(opts[:base_url], opts)
-        @faraday.basic_auth(opts[:drupal_user], opts[:drupal_password])
+        new_opts = opts.merge({:no_cache => true, :logger => @logger})
+        @faraday = Aweplug::Helpers::FaradayHelper.default(new_opts[:base_url], new_opts)
         @faraday.builder.delete(Faraday::Response::RaiseError) #remove response status checking since data not in the cache isn't necessarily an error.
-        @base_url = opts[:base_url]
-        #session_info = JSON.parse (login opts[:drupal_user], opts[:drupal_password]).body
-        #@cookie = "#{session_info['session_name']}=#{session_info['sessid']}"
-        #@token = token opts[:drupal_user], opts[:drupal_password]
+        @faraday.builder.delete(Faraday::Response::Logger) #remove logger for drupal calls
+        @faraday.builder.delete(FaradayMiddleware::FollowRedirects) # we don't want to follow redirects for drupal
+        @base_url = new_opts[:base_url]
+        @basic_auth = Base64.encode64("#{new_opts[:drupal_user]}:#{new_opts[:drupal_password]}").gsub("\n", '').freeze
+        token new_opts[:drupal_user], new_opts[:drupal_password]
       end
 
-      def send_page page, content
-        path = page.output_path.chomp('/index.html')
-        path = path[1..-1] if path.starts_with? '/'
-        drupal_type = page.drupal_type || 'page'
-        payload = {:title => [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
-                   :_links => {:type => {:href => File.join(@base_url, '/rest/type/node/', drupal_type)}},
-                   :body => [{:value => content,
-                              :summary => page.description,
-                              :format => "full_html"}],
-                   #:field_output_path => [{:value => path}],
-                    :path => {:alias => File.join('/', path)}
-                  }
-
-        if drupal_type == 'rhd_solution_overview'
-          payload[:field_solution_name] = [{:value => page.solution.name }]
-          payload[:field_solution_tag_line] = [{:value => page.solution.long_description }]
+      # Public: Wrapper around exists?, create_page, and update_page
+      #
+      # page      - Page object from awestruct
+      # content   - Transformed content of the page
+      # Returns the Faraday::Response
+      def send_page(page, content)
+        if exists? page
+          update_page page, content
+        else
+          create_page page, content
         end
-        # TODO: cache this so we know to update or create
+      end
+
+      # Public: Checks to see if the page exists within Drupal.
+      #
+      # page    - Awestruct Page object
+      #
+      # Returns Boolean for the existence of the page within Drupal.
+      def exists?(page)
+        path = create_path page
+        @faraday.head("/#{path}", nil, {Cookie: @cookie}).success?
+      end
+
+      # Public: Sends a PATCH request to Drupal to update an existing page.
+      #
+      # page      - Page object from awestruct
+      # content   - Transformed content of the page
+      #
+      # Returns the Faraday::Response
+      def update_page(page, content)
+        payload = create_payload page, content
+        path = create_path page
+        patch path, payload
+      end
+
+      # Public: Sends a POST request to Drupal to create a new page.
+      #
+      # page      - Page object from awestruct
+      # content   - Transformed content of the page
+      #
+      # Returns the Faraday::Response
+      def create_page(page, content)
+        payload = create_payload page, content
         post 'entity', 'node', payload
+      end
+
+      # Private: Creates the payload for a POST / PATCH to Drupal.
+      #
+      # page      - Page object from awestruct
+      # content   - Transformed content of the page
+      #
+      # Returns a Ruby Hash of the HTTP payload.
+      def create_payload(page, content)
+        path = create_path page
+        drupal_type = page.drupal_type || 'page'
+        {title: [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
+         _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
+         body: [{value: content,
+                 summary: page.description,
+                 format: 'as_is_html'}],
+         path: {alias: File.join('/', path)}
+        }
+      end
+
+      # Private: Returns the path for Drupal from the page object.
+      #
+      # page      - Page object from awestruct
+      #
+      # Returns string version of the drupal path.
+      def create_path(page)
+        path = page.output_path.chomp('/index.html')
+        path = path[1..-1] if path.start_with? '/'
+        path
       end
 
       # Public: Makes an HTTP GET to host/endpoint/#{path} and returns the
@@ -366,18 +442,45 @@ module Aweplug
       #   # => Faraday Response Object
       #
       # Returns the Faraday Response for the request.
-      def get endpoint, path, params = {}
+      def get(endpoint, path, params = {})
         response = @faraday.get URI.escape(endpoint + "/" + path) do |req|
           req.headers['Content-Type'] = 'application/json'
           req.headers['Accept'] = 'application/json'
-          #req.headers['X-CSRF-Token'] = @token
-          #req.headers['Cookie'] = @cookie if @cookie
+          req.headers['X-CSRF-Token'] = @token if @token
+          req.headers['Cookie'] = @cookie if @cookie
+          req.headers['Authorization'] = "Basic #{@basic_auth}" if @basic_auth
           req.params = params
         end
         unless response.success?
-          $LOG.warn "Error making drupal request to #{path}. Status: #{response.status}. Params: #{params}" if $LOG.warn?
+          $LOG.warn "Error making drupal GET request to #{path}. Status: #{response.status}." if $LOG.warn?
         end
         response
+      end
+
+      # Public: Perform an HTTP PATCH to drupal.
+      #
+      # page_url  - Location of the page within Drupal
+      # params    - Hash containing query string parameters.
+      #
+      # Examples
+      #
+      #   drupal.post "api", "node", {title: 'Hello', type: 'page'}
+      #   # => Faraday Response
+      def patch(page_url, params = {})
+        @faraday.patch do |req|
+          req.url page_url + '?_format=hal_json'
+          req.headers['Content-Type'] = 'application/hal+json'
+          req.headers['Accept'] = 'application/hal+json'
+          req.headers['Authorization'] = "Basic #{@basic_auth}" if @basic_auth
+          if params.is_a? String
+            req.body = params
+          else
+            req.body = params.to_json
+          end
+          if @logger
+            @logger.debug "request body: #{req.body}"
+          end
+        end
       end
 
       # Public: Perform an HTTP POST to drupal.
@@ -390,39 +493,42 @@ module Aweplug
       #
       #   drupal.post "api", "node", {title: 'Hello', type: 'page'}
       #   # => Faraday Response
-      def post endpoint, path, params = {}
-        resp = @faraday.post do |req|
-          req.url endpoint + "/" + path
+      def post(endpoint, path, params = {})
+        @faraday.post do |req|
+          req.url endpoint + '/' + path
           req.headers['Content-Type'] = 'application/hal+json'
           req.headers['Accept'] = 'application/hal+json'
-          #req.headers['X-CSRF-Token'] = @token if @token
-          #req.headers['Cookie'] = @cookie if @cookie
-          unless params.is_a? String
-            req.body = params.to_json
-          else
+          req.headers['Authorization'] = "Basic #{@basic_auth}" if @basic_auth
+          if params.is_a? String
             req.body = params
+          else
+            req.body = params.to_json
           end
           if @logger
             @logger.debug "request body: #{req.body}"
           end
         end
-        if !resp.success?
-          @logger.debug "response body: #{resp.body}"
-          @logger.error "Error making drupal request to '#{path}'. Status: #{resp.status}.  Params: #{params}. Response body: #{resp.body}"
-          puts "Error making drupal request to '#{path}'. Status: #{resp.status}.  Params: #{params}. Response body: #{resp.body}"
-        end
-        resp
       end
 
-      #private
+      def login(username, password)
+        resp = @faraday.post do |req|
+          req.url '/user' + '/' + 'login'
+          req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+          req.body = "name=#{username}&pass=#{password}&form_id=user_login_form"
+          if @logger
+            @logger.debug "request body: #{req.body}"
+          end
+        end
+        @cookie = resp.headers['set-cookie'].split(';').first
+      end
 
-      #def login username, password
-        #post 'content', 'user/login', {:username => username, :password => password}
-      #end
+      def token(username, password)
+        login username, password
+        resp = @faraday.get('rest/session/token', nil, {Cookie: @cookie})
+        @token = resp.body if resp.success?
+      end
 
-      #def token username, password
-        #JSON.parse((post 'content', 'user/token', {:username => username, :password => password}).body)['token']
-      #end
+      private :create_path, :login, :token, :initialize, :create_payload
     end
   end
 end

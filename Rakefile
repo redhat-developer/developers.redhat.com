@@ -102,15 +102,13 @@ end
 desc 'Build and preview the site locally in development mode'
 task :preview, [:profile] => :check do |task, args|
   profile = args[:profile] || 'development'
-  awestruct_running_port = awestruct_port(profile)
-  run_awestruct "-P #{profile} -a -s --force -q --auto --livereload -b 0.0.0.0 -p #{awestruct_running_port}"
+  run_awestruct "-P #{profile} -a -s --force -q --auto --livereload -b 0.0.0.0"
 end
 
 desc 'Build and preview the site locally in development mode without live reload to allow test to work'
 task :preview_no_reload, [:profile] => :check do |task, args|
   profile = args[:profile] || 'development'
-  awestruct_running_port = awestruct_port(profile)
-  run_awestruct "-P #{profile} -a -s --force -q --auto -b 0.0.0.0 -p #{awestruct_running_port}"
+  run_awestruct "-P #{profile} -a -s --force -q --auto -b 0.0.0.0"
 end
 
 desc 'Generate the site using the defined profile, or development if none is given'
@@ -165,13 +163,8 @@ task :internal_deploy_task, [:profile, :tag_name] do |task, args|
   begin
     run_awestruct "-P #{args[:profile]} -g --force -w"
   rescue
-    if args[:profile] != 'production'
-      msg 'awestruct_failed'
-      awestruct_failed = true
-    else
-      msg 'awestruct_failed, exit'
-      exit 1
-    end
+    msg 'awestruct_failed, exit'
+    exit 1
   end
 
   $config ||= config args[:profile]
@@ -215,9 +208,6 @@ task :internal_deploy_task, [:profile, :tag_name] do |task, args|
   end
   site_host = $config.deploy.host
   rsync(local_path: local_site_path, host: site_host, remote_path: site_path, delete: delete, excludes: $resources + ['.snapshot'])
-  if awestruct_failed
-    exit 1
-  end
 end
 
 desc 'Clean out generated site and temporary files'
@@ -510,15 +500,6 @@ def which(cmd, opts = {})
   return $awestruct_cmd
 end
 
-def awestruct_port(profile)
-  if profile.to_sym == :docker || profile.to_sym == :drupal
-    #If we're in docker we want to run the whole awestruct preview on the same port
-    ENV['AWESTRUCT_HOST_PORT']
-  else
-    4242
-  end
-end
-
 # Print a message to STDOUT
 def msg(text, level = :info)
   case level
@@ -571,7 +552,8 @@ def load_site_yaml(yaml_path, profile = nil)
   config = Awestruct::AStruct.new
   if ( File.exist?( yaml_path ) )
     require 'yaml'
-    data = YAML.load( File.read( yaml_path ) )
+    require 'erb'
+    data = YAML.load( ERB.new(File.read( yaml_path ), nil, '<>').result )
     if ( profile )
       profile_data = {}
       data.each do |k,v|

@@ -90,31 +90,6 @@
       }
     }
   }
-  .connect-with-us {
-    padding: 50px 0;
-    background-color: $red;
-    h2 {
-      color: $white;
-      text-transform: uppercase;
-      margin-bottom: 0;
-    }
-    h4 {
-      font-weight: 200;
-      color: $white;
-    }
-    ul.social-links {
-      list-style: none;
-      max-width: 225px;
-      display: block;
-      margin: 30px auto 0 auto;
-      li, li a {
-        display: inline;
-        color: $white;
-        font-size: 1.8em;
-        margin-right: 15px;
-      }
-    }
-  }
   @include tablet-portrait-and-down {
     a.button {
       float: none !important;

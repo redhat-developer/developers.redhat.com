@@ -17,7 +17,7 @@ class Options
         tasks[:decrypt] = true
         tasks[:set_ports] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(mysql searchisko)
+        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
@@ -47,16 +47,18 @@ class Options
 
       opts.on('--drupal-nightly', 'Start up and enable drupal') do |u|
         tasks[:drupal] = true
+        tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:set_ports] = true
-        tasks[:supporting_services] += %w(drupal drupalpgsql)
+        tasks[:supporting_services] += %w(drupal drupalmysql mysql searchisko)
+        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
       end
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
         tasks[:decrypt] = true
         tasks[:drupal] = true
         tasks[:set_ports] = true
-        tasks[:supporting_services] += %w(drupal drupalpgsql)
+        tasks[:supporting_services] += %w(drupal drupalmysql)
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -65,23 +67,7 @@ class Options
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:set_ports] = true
-        tasks[:supporting_services] += %w(mysql searchisko)
-      end
-
-      opts.on('--acceptance_test_docker', String, 'runs the cucumber features against the local running docker stack.') do
-
-        if ENV['PARALLEL_TEST'].to_s.empty?
-          ENV['PARALLEL_TEST']='true'
-        end
-
-        tasks[:kill_all] = true
-        tasks[:decrypt] = true
-        tasks[:set_ports] = true
-        tasks[:build] = true
-        tasks[:awestruct_up_service] =  %w(-d awestruct_preview_no_reload)
-        tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(mysql searchisko)
-        tasks[:acceptance_test_target_task] = ["--rm", "awestruct_acceptance", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
+        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |host|
@@ -92,13 +78,20 @@ class Options
           ENV['PARALLEL_TEST']='true'
         end
 
-        if host.start_with?("http://docker")
-          raise OptionParser::InvalidArgument.new("can't currently test docker, try --acceptance_test_docker")
+        if ENV['RHD_DOCKER_DRIVER'].to_s.empty?
+          ENV['RHD_DOCKER_DRIVER'] = 'docker_chrome'
         end
 
-        tasks[:acceptance_test_target_task] = ["--no-deps", "--rm", "awestruct", "bundle exec rake features PARALLEL_TEST=#{ENV['PARALLEL_TEST']}"]
+        if ENV['RHD_BROWSER_SCALE'].to_s.empty?
+          ENV['RHD_BROWSER_SCALE'] = '5'
+        end
+
+        tasks[:kill_all] = false
+        tasks[:set_ports] = true
         tasks[:build] = true
-        tasks[:unit_tests] = unit_test_tasks
+        tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
+        tasks[:supporting_services] += [ENV['RHD_DOCKER_DRIVER']]
+        tasks[:acceptance_test_target_task] = ["--rm", "--service-ports", "awestruct_acceptance_test", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"]
       end
 
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
@@ -114,7 +107,7 @@ class Options
         tasks[:build] = true
         tasks[:set_ports] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(mysql searchisko)
+        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
@@ -123,7 +116,7 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(mysql searchisko)
+        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
         tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
@@ -158,7 +151,7 @@ class Options
   end
 
   def self.unit_test_tasks
-    ['--no-deps', '--rm', 'awestruct_acceptance', "bundle exec rake test"]
+    ['--no-deps', '--rm', 'awestruct_unit_tests', "bundle exec rake test"]
   end
 
 end

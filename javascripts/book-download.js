@@ -44,7 +44,7 @@ app.bookDownload = {
 $(function() {
   //The download is now triggered from the success callback from KeyCloak in sso.js. This ensures that KeyCloak is initialised before doing the download.
   //Display the Ts&Cs banner
-  if ($('#distributed-javaee-architecture').length) {
+  if ($('#book-download-promotion').length) {
     app.bookDownload.download();
   }
 });

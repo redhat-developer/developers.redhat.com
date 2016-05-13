@@ -1,0 +1,19 @@
+---
+layout: base
+body_class: fullbleed
+primary_nav_hidden: true
+interpolate: true
+drupal_type: rhd_microsite
+---
+
+- if page.metadata
+  - page.id = page.metadata[:id]
+  - page.graphic = page.metadata[:graphic]
+
+.microsite-tmpl(id="#{page.id}")
+  .row
+    .large-8.medium-11.small-24.columns
+      img.microsite-graphic(src="#{page.graphic}" alt="#{page.id} Graphic")
+      
+    .large-16.medium-13.small-24.columns
+      = content

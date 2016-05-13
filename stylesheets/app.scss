@@ -84,7 +84,6 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "downloads";
 @import "devnation2015";
 @import "javaone";
-@import "distributed-javaee-architecture";
 @import "devoxx-be";
 @import "confirmation";
 @import "vjbug";
@@ -97,6 +96,8 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "articles";
 @import "msbuild";
 @import "font-awesome";
+@import "devoxxfrance";
+@import "gids";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -151,6 +152,9 @@ button, .button {
   }
   &.large {
     padding: 0.6em 0.9em;
+  }
+  &.long {
+    padding: .6em 5em;
   }
   & + button, & + .button {
     margin-left: 20px;
@@ -961,6 +965,7 @@ body.mobile {
       }
       p {
         margin:0;
+        word-wrap: break-word;
       }
     }
   }
@@ -2003,6 +2008,10 @@ h2.home-title {
   padding:40px 0 20px 0;
 }
 
+.literalblock {
+  word-wrap: break-word;
+}
+
 @include tablet-landscape-and-down {
   .button.button--join-today {
     top:0;
@@ -2014,3 +2023,32 @@ h2.home-title {
   background: none;
 }
 
+.content code {
+  word-wrap: break-word;
+}
+
+.connect-with-us {
+  padding: 50px 0;
+  background-color: $red;
+  h2 {
+    color: $white;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  h4 {
+    font-weight: 200;
+    color: $white;
+  }
+  ul.social-links {
+    list-style: none;
+    max-width: 225px;
+    display: block;
+    margin: 15px auto 0 auto;
+    li, li a {
+      display: inline;
+      color: $white;
+      font-size: 1.8em;
+      margin-right: 15px;
+    }
+  }
+}

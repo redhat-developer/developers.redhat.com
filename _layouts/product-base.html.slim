@@ -8,14 +8,14 @@ secondary_section: supported-products
 - page.title = "#{page.product.abbreviated_name} - #{page.type}"
 - page.product.highlight_colour = '#8FD102' unless page.product.highlight_colour
 
-section(class="product-header #{page.product.id} #{page.product.product_category}")
+section(class="hero hero-wide product-header #{page.product.id} #{page.product.product_category}")
   .row
     .large-24
       h2 #{page.product.name}
       h3#product #{page.product.description}
 
 section(class="product-graphics #{page.product.product_category}")
-  - unless page.url.include?('/products/rhel/get-started')
+  - unless page.url.include?('get-started')
     #hero-try-or-buy(class="row #{page.product.product_category}")
       .large-24.columns.hello-world
         .small-24.large-6.columns

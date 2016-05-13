@@ -1,73 +1,76 @@
 require 'rubygems'
-require 'cucumber'
-require 'cucumber/rake/task'
 require 'parallel'
 require 'fileutils'
-require 'set'
-require_relative './rake/test_runner'
+require_relative '../_lib/github'
 
-desc 'Run all scenarios. To run tests in non parallel mode set environment variable ENV[PARALLEL_TEST]=false'
-task :features do |t, args|
+task :features do
+  p '. . . . Deleting old reports and screenshots  . . . .'
+  FileUtils.rm_rf('_cucumber/reports')
+  Dir.mkdir('_cucumber/reports')
+  FileUtils.rm_rf('_cucumber/screenshots')
+  Dir.mkdir('_cucumber/screenshots')
 
-  if ENV['ghprbActualCommit'].to_s != ''
-    p '. . . . sending progress to github . . . . '
-    wrap_with_progress(ENV['ghprbActualCommit'], Rake::Task[:internal_features_task], ENV['BUILD_URL'], 'Acceptance Tests', 'Acceptance tests', args)
-  else
-    Rake::Task[:internal_test_task].invoke(args)
-  end
+  p ". . . . HOST TO TEST = #{ENV['HOST_TO_TEST']} . . . ."
 
-  runner = TestRunner.new
-
-  if ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
-    profile = 'features'
-  else
+  unless ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
     profile = 'parallel'
   end
 
-  known_good_cucumber_tags = %w(@wip @smoke @desktop @mobile @ignore)
   if ENV['CUCUMBER_TAGS'].to_s.empty?
     tags = nil
   else
-    if ENV['CUCUMBER_TAGS'].include?(',')
-      tags = ENV['CUCUMBER_TAGS'].split(',')
-      expected_tags = known_good_cucumber_tags.to_set
-      actual_tags = tags.to_set
-      unless actual_tags.subset?(expected_tags)
-        raise("Expected tag string '#{tags}' was not found within known good cucumber tags. \n
-               Expected tags were #{known_good_cucumber_tags} \n
-               If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake")
-      end
-      tags = tags.join(',')
-    else
-      tags = ENV['CUCUMBER_TAGS']
-      unless known_good_cucumber_tags.include?(tags)
-        raise("Expected tag '#{tags}' was not found within known good cucumber tags. \n
-               Expected tags were #{known_good_cucumber_tags} \n
-               If required it can be added to the known good cucumber tags in #{File.dirname(__FILE__)}/cucumber.rake")
-      end
-    end
+    tags = ENV['CUCUMBER_TAGS']
   end
 
-  exit_status = runner.run(profile, tags)
-  p "exit status was #{exit_status}"
-  exit(exit_status)
+  if ENV['ghprbActualCommit'].to_s.empty?
+    status_code = run(profile, tags)
+  else
+    p 'Sending progress to Github . . . '
+    options = {:context => 'Acceptance Tests', :description => 'Acceptance Tests pending', :target_url => ENV['BUILD_URL']}
+    GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "pending", options)
+    status_code = run(profile, tags)
+    if status_code == 0
+      options[:description] = 'Acceptance Tests finished ok!'
+      GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "success", options)
+    else
+      options[:description] = 'Acceptance Tests failed'
+      puts GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "failure", options)
+    end
+  end
+  puts "Acceptance tests resulted with status code of #{status_code}"
+  exit(status_code)
 end
 
-task :internal_features_task => [:features]
-
-
-# the below tasks can be used during development/debugging of new or existing features.
-
-desc 'When working on new or updating existing features, tag the scenario(s) with @wip. And execute by `bundle exec rake wip HOST_TO_TEST=http://example.com`'
-Cucumber::Rake::Task.new(:wip) do |t|
-  t.cucumber_opts = '_cucumber -r _cucumber/features/ --tags @wip'
+task :wip do
+  system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
 end
 
-desc 'Run a single scenario multiple times'
-Cucumber::Rake::Task.new(:debugger) do |t|
-  t.cucumber_opts = '_cucumber -r _cucumber/features/ --tags @debug'
+task :debugger do
+  system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
+
 task :debug, :times do |task, args|
   puts "Executing scenario tagged with @debug #{args[:times]} times"
   args[:times].to_i.times { Rake::Task[:debugger].execute }
+end
+
+def run(profile, tag)
+  unless tag.eql?(nil)
+    tag_string = "--tags #{tag}"
+  end
+
+  if profile.eql?('parallel')
+    if tag.eql?(nil)
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
+    else
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
+    end
+  else
+    if tag.eql?(nil)
+      system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
+    else
+      system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
+    end
+  end
+  $?.exitstatus
 end

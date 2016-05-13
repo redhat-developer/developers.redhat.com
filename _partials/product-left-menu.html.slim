@@ -11,42 +11,42 @@ ul.side-nav
     a(href="#") Menu
   - page.nav_items.each do |k,v|
     - if (k == "connectors" && page.parent.product.has_connectors_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}") 
         | #{v}  
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "learn" && page.parent.product.has_learn_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}") 
         | #{v}  
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "buzz" && page.parent.product.has_buzz_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}") 
         | #{v}  
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "community" && page.parent.product.has_community_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}") 
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}") 
         | #{v}  
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "download" && page.parent.product.has_download_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "resources" && page.parent.product.has_resources_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "updates" && page.parent.product.has_updates_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "docs-and-apis" && page.parent.product.has_docsandapis_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
     - elsif (k == "updates" && page.parent.product.has_updates_page)
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
     - elsif (k != "buzz" && k != "learn" && k != "connectors" && k != "community" && k != "download" && k != "resources" && k != "updates" && k != "docs-and-apis")
-      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="../#{k}")
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg

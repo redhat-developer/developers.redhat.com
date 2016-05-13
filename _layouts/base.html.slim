@@ -123,7 +123,7 @@
               li.logged-in
                 a.logged-in-name(href="#")
               li.logged-in
-                a.logout(href="#") Logout
+                a.logout(href="#{site.base_url}") Logout
             / form.search
               / input(type="search" placeholder="Search for Answers, Videos, Etc…")
           .logo-wrap
@@ -145,6 +145,7 @@
                   a(href="#{site.base_url}/devops") DevOps
                   a(href="#{site.base_url}/web-and-api-development") Web and API Development
                   a(href="#{site.base_url}/enterprise-java") Enterprise Java
+                  a(href="#{site.base_url}/dotnet") .NET
               li.has-sub-nav(class=(page.url.include?('products') ? 'active' : ''))
                 a(href="#")
                   | Technologies
@@ -155,7 +156,7 @@
                     a.hide-on-mobile(href="#{site.base_url}/products/rhel/overview/") Red Hat Enterprise Linux
                     a.hide-on-mobile.indent(href="#{site.base_url}/products/developertoolset/overview/") Red Hat Developer Toolset
                     a.hide-on-mobile.indent(href="#{site.base_url}/products/softwarecollections/overview/") Red Hat Software Collections
-                    a.hide-on-mobile.indent(href="#{site.base_url}/products/cdk/overview/") Red Hat Container Development Kit
+                    a.hide-on-mobile(href="#{site.base_url}/products/cdk/overview/") Red Hat Container Development Kit
                   .sub-nav-group
                     a.heading(href="#{site.base_url}/products#cloud_products") Cloud
                     a.hide-on-mobile(href="#{site.base_url}/products/openshift/overview/") OpenShift Enterprise by Red Hat
@@ -203,58 +204,78 @@
           = content
       footer.bottom
         .row
-          .large-4.columns
-            a(href="https://www.redhat.com")
+          .large-5.columns
+            a(href="https://www.redhat.com" target="_blank")
               img(src=cdn("#{site.base_url}/images/branding/RHLogo_white.svg") class="rh-logo" alt="Red Hat")
-          .large-20.columns
-            h3 Quick Links
-            ul.inline-list.quick-links
+
+          .large-5.columns
+            h3 Helpful Links
+            ul.quick-links
               li
-                a(href="#{site.base_url}/about") About Us
-              li
-                a(href="mailto:developer@redhat.com") Contact Us
-              li
-                a(href="https://access.redhat.com/security/team/contact/")
-                  | Report a Security Problem
+                a(href="https://access.redhat.com/security/team/contact/" target="_blank")
+                  | Report a security problem
                   i.fa.fa-external-link
               li
-                a(href="http://www.redhat.com/en/services/consulting")
-                  | Consulting Solutions
+                a(href="http://www.redhat.com/en/services/consulting" target="_blank")
+                  | Consulting solutions
                   i.fa.fa-external-link
               li
-                a(href="http://www.redhat.com/en/services/training")
+                a(href="http://www.redhat.com/en/services/training" target="_blank")
                   | Training
                   i.fa.fa-external-link
+          .large-5.columns
+            h3 Related Sites
+            ul.quick-links
+              li
+                a(href="https://www.redhat.com" target="_blank")
+                  | Red Hat Corporate
+                  i.fa.fa-external-link
+              li
+                a(href="https://access.redhat.com/" target="_blank")
+                  | Customer Portal
+                  i.fa.fa-external-link
+              li
+                a(href="https://www.openshift.com/" target="_blank")
+                  | OpenShift
+                  i.fa.fa-external-link
+          .large-9.columns
+            h3 Red Hat Developers
+            p We provide a complete experience to enable enterprise developers and software builders to envision, create and maintain high-value enterprise software.
+            .row
+              .large-12.columns
+                ul.inline-list
+                  li
+                    a(href="#{site.base_url}/about") About us
+                  li
+                    a(href="mailto:developer@redhat.com") Contact us
+              .large-12.columns
+                ul.social-nav
+                  li: a(href="https://plus.google.com/103877536668756379905/posts" target="_blank")
+                    i.fa.fa-google-plus
+                  li: a(href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank")
+                    i.fa.fa-youtube
+                  li: a(href="https://www.facebook.com/RedHatDeveloperProgram" target="_blank")
+                    i.fa.fa-facebook
+                  li: a(href="https://twitter.com/rhdevelopers" target="_blank")
+                    i.fa.fa-twitter
 
         .row.legal
-          .large-8.medium-24.right.columns
-            a.summit-logo(href="http://www.redhat.com/summit/")
-              img(src=cdn("#{site.base_url}/images/design/logo-summit.png") alt="Red Hat Summit")
-            a(href="http://www.devnation.org/")
+          .large-5.medium-24.right.columns
+            a.devnation-logo(href="http://www.devnation.org/" target="_blank")
               img(src=cdn("#{site.base_url}/images/design/logo_devnation_footer.png") alt="Red Hat Summit")
-            ul.social-nav
-              li: a(href="https://plus.google.com/103877536668756379905/posts")
-                i.fa.fa-google-plus
-              / li: a
-              /   i.fa.fa-linkedin-square
-              li: a(href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q")
-                i.fa.fa-youtube
-              li: a(href="https://www.facebook.com/RedHatDeveloperProgram")
-                i.fa.fa-facebook
-              li: a(href="https://twitter.com/rhdevelopers")
-                i.fa.fa-twitter
-              / li: a
-              /   i.fa.fa-vimeo-square
-          .large-16.columns
+            a.summit-logo(href="http://www.redhat.com/summit/" target="_blank")
+              img(src=cdn("#{site.base_url}/images/design/logo-summit.png") alt="Red Hat Summit")
+
+          .large-19.columns
             ul.inline-list
               li
                 a.copyright Copyright &copy; 2016 Red Hat Inc.
               li
-                a(href="http://www.redhat.com/en/about/privacy-policy") Privacy statement
+                a(href="http://www.redhat.com/en/about/privacy-policy" target="_blank") Privacy statement  &nbsp;&nbsp;|
               li
-                a(href="http://www.redhat.com/en/about/terms-use") Terms of use  &nbsp;&nbsp;|
+                a(href="http://www.redhat.com/en/about/terms-use" target="_blank") Terms of use  &nbsp;&nbsp;|
               li
-                a(href="http://www.redhat.com/en/about/all-policies-guidelines") All policies and guidelines
+                a(href="http://www.redhat.com/en/about/all-policies-guidelines" target="_blank") All policies and guidelines
 
     .overlay
       .overlay-wrap
@@ -326,6 +347,7 @@
       script src="#{site.base_url}/javascripts/downloads.js"
       script src="#{site.base_url}/javascripts/latest.js"
       / script src="#{site.base_url}/javascripts/searchpage.js"
+      script src="#{site.base_url}/javascripts/a-b-testing.js"
     - unless page.extra_javascripts.nil?
       - page.extra_javascripts.each do |id|
         = deferred_javascripts id
