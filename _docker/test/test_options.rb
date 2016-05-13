@@ -85,10 +85,10 @@ class TestOptions < Minitest::Test
 
   def test_supporting_services
     tasks = Options.parse (["-r"])
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
 
     tasks = Options.parse (["--run-the-stack"])
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
 
     tasks = Options.parse (['-u'])
     assert_includes tasks[:supporting_services], 'drupal'
@@ -149,7 +149,7 @@ class TestOptions < Minitest::Test
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert(tasks[:set_ports])
     assert(tasks[:build])
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
   end
 
   def test_run_stage_pr
@@ -159,7 +159,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:build])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert(tasks[:set_ports])
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
   end
 
   def test_run_the_stack
@@ -167,7 +167,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
     assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
 
     tasks = Options.parse %w(-u --run-the-stack)
