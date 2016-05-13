@@ -169,7 +169,14 @@ if $0 == __FILE__
     modify_env
   end
 
-  if tasks[:kill_all] && File.exists?('docker-compose.yml')
+  begin
+    Docker::Network.get("#{project_name}_default")
+    network_exists = true
+  rescue
+    network_exists = false
+  end
+
+  if tasks[:kill_all] && File.exists?('docker-compose.yml') && network_exists
     puts 'Killing and removing docker services...'
     execute_docker_compose :down
   end
