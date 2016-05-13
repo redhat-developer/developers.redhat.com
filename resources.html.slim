@@ -6,24 +6,45 @@ description: Red Hat has extensive materials to help you get started. On offer a
 
 div(ng-app="search")
   .row#searchpage(ng-controller="SearchController")
-    pre {{params | json}}
+    / pre {{params | json}}
     .large-24.column
-      .type-filters
-        label(id="blog")
-          | Blog Posts
-          input(type="checkbox" value="blogpost" ng-checked="params.sys_type.indexOf('blogpost') > -1" ng-click="toggleSelection($event)" )
-        label(id="book")
-          | Book
-          input(type="checkbox" value="book" ng-checked="params.sys_type.indexOf('book') > -1" ng-click="toggleSelection($event)" )
-        label(id="code artifact")
-          | Code Artifact
-          input(type="checkbox" value="demo" ng-checked="params.sys_type.indexOf('demo') > -1" ng-click="toggleSelection($event)" )
-        label(id="get-started")
-          | Get Started
-          input(type="checkbox" value="quickstart jbossdeveloper_quickstart" ng-checked="params.sys_type.indexOf('quickstart') > -1" ng-click="toggleSelection($event)" )
-        label(id="video")
-          | Video
-          input(type="checkbox" value="video" ng-checked="params.sys_type.indexOf('video') > -1" ng-click="toggleSelection($event)" )
+      .type-filters.row
+
+        input(type="checkbox" value="article" ng-checked="params.sys_type.indexOf('article') > -1" ng-click="toggleSelection($event)" id="blog")
+        label(for="blog")
+          i.fa.fa-code
+          h3 Article
+          p Learn from these informative and in-depth articles
+
+        input(type="checkbox" value="blogpost" ng-checked="params.sys_type.indexOf('blogpost') > -1" ng-click="toggleSelection($event)" id="blogposts")
+        label(for="blogposts")
+          i.fa.fa-code
+          h3 Blog Posts
+          p Track the latest topics by following the Red Hat Developer blog
+
+        input(type="checkbox" value="jbossdeveloper_book book" ng-checked="params.sys_type.indexOf('book') > -1" ng-click="toggleSelection($event)" id="book")
+        label(for="book")
+          i.fa.fa-code
+          h3 Book
+          p Catch-up with these comprehensive collections
+
+        input(type="checkbox" value="demo" ng-checked="params.sys_type.indexOf('demo') > -1" ng-click="toggleSelection($event)" id="code")
+        label(for="code")
+          i.fa.fa-code
+          h3 Code Artifact
+          p Shorten your time-to-code with these code samples
+
+        input(type="checkbox" value="quickstart jbossdeveloper_quickstart" ng-checked="params.sys_type.indexOf('quickstart') > -1" ng-click="toggleSelection($event)" id="get-started")
+        label(for="get-started")
+          i.fa.fa-code
+          h3 Get Started
+          p Use your time wisely with effective getting-started documents
+
+        input(type="checkbox" value="video" ng-checked="params.sys_type.indexOf('video') > -1" ng-click="toggleSelection($event)" id="video")
+        label(for="video")
+          i.fa.fa-code
+          h3 Video
+          p Watch how Red Hatters and contributers utilize development tools
 
     / .large-5.columns
       / .divider
@@ -116,41 +137,53 @@ div(ng-app="search")
       .row
         .large-24.columns
           form.search-bar(role="search" ng-submit="updateSearch()")
-            input(type="text" placeholder="Filter by keyword" ng-model="params.query")
-            select(ng-model="params.project")
-              option(value="") Select Product...
-              option(value="eap") JBoss Enterprise Application Platform
-              option(value="webserver") JBoss Web Server
-              option(value="datagrid") JBoss Data Grid
-              option(value="portal") JBoss Portal
-              option(value="fsw") JBoss Fuse Service Works
-              option(value="datavirt") JBoss Data Virtualization
-              option(value="fuse") JBoss Fuse
-              option(value="amq") JBoss A-MQ
-              option(value="brms") JBoss BRMS
-              option(value="bpmsuite") JBoss BPM Suite
-              option(value="devstudio") JBoss Developer Studio
+            .search-inputs
+              .search-input-group
+                label Keyword
+                input(type="text" placeholder="Filter by keyword" ng-model="params.query")
 
-            Label Publish Date
+              .search-input-group
+                label Project
+                select(ng-model="params.project")
+                  option(value="") Select Product...
+                  option(value="eap") JBoss Enterprise Application Platform
+                  option(value="webserver") JBoss Web Server
+                  option(value="datagrid") JBoss Data Grid
+                  option(value="portal") JBoss Portal
+                  option(value="fsw") JBoss Fuse Service Works
+                  option(value="datavirt") JBoss Data Virtualization
+                  option(value="fuse") JBoss Fuse
+                  option(value="amq") JBoss A-MQ
+                  option(value="brms") JBoss BRMS
+                  option(value="bpmsuite") JBoss BPM Suite
+                  option(value="devstudio") JBoss Developer Studio
 
-            select(ng-model="params.activity_date_interval")
-              option(value="") Filter by Date
-              option(value="year") Past Year
-              option(value="quarter") Past Quarter
-              option(value="month") Past Month
-              option(value="week") Past Week
-              option(value="day") Past Day
-              option(value="custom") Custom
+              .search-input-group
+                label Publish Date
+                select(ng-model="params.activity_date_interval")
+                  option(value="") Filter by Date
+                  option(value="year") Past Year
+                  option(value="quarter") Past Quarter
+                  option(value="month") Past Month
+                  option(value="week") Past Week
+                  option(value="day") Past Day
+                  option(value="custom") Custom
 
-            div(ng-show="params.activity_date_interval === 'custom'")
-              label Start Date
-              input(type="date" ng-model="params.activity_date_from")
-              label End Date
-              input(type="date" ng-model="params.activity_date_to")
+              .search-input-group.custom-dates
+                div(ng-show="params.activity_date_interval === 'custom'")
+                  label
+                    | Start Date
+                    input(type="date" ng-model="params.activity_date_from")
+                  label
+                    | End Date
+                    input(type="date" ng-model="params.activity_date_to")
+
+            input(type="submit" value="Search")
+
 
         .large-18.columns.searchpage-results-container
           .sorting
-            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{params.query}}"
+            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found {{ params.query ? ' for ' + params.query : '' }}
             h3.results-title(ng-if="totalCount <= 0") No results found
             h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
             hr
@@ -168,11 +201,12 @@ div(ng-app="search")
                 option(value="50") 50
                 option(value="100") 100
               | results per page
+
           / span.loader
           span.loader(ng-show="loading")
           .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
             .result(ng-repeat="result in results" ng-init="r = result.fields")
-              pre {{r | json}}
+              / pre {{r | json}}
               h4
                 a(href="{{r.sys_url_view[0]}}") {{r.sys_title[0]}}
               section.meta-data

@@ -265,3 +265,83 @@ span.tag:last-child:after {
     margin: 0 5px;
   }
 }
+
+
+.type-filters {
+  @include flexbox();
+  @include justify-content(space-between);
+  label {
+    max-width:15%;
+    float:left;
+    margin:0 !important;
+    text-align: center;
+    padding:10px;
+    border:1px solid $grey-2;
+    background:white;
+    transition: all 0.3s;
+    @include flex(1 0);
+    position: relative;
+    &:before {
+      @include flexbox();
+      @include justify-content(center);
+      @include align-items(center);
+      content: '×';
+      transition:all 0.2s;
+      font-size: 50px;
+      font-weight: 900;
+      color:white;
+      background:rgba(0,0,0,0.8);
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      opacity:0;
+    }
+  }
+  h3 {
+    font-size: 20px;
+  }
+  input[type=checkbox] {
+    display: none;
+  }
+  input:checked + label {
+    background:$grey-3;
+    &:hover:before {
+      opacity:1;
+    }
+  }
+  i.fa {
+    font-size: 50px;
+  }
+}
+
+.search-inputs {
+  @include flexbox();
+  @include justify-content(space-between);
+  margin-top: 20px;
+  & > * {
+    @include flex(1);
+    max-width:23%;
+  }
+  input, select {
+    padding:10px !important;
+    border:1px solid $grey-2;
+  }
+}
+
+.custom-dates {
+  label {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(space-between);
+    & > * {
+      @include flex(1);
+      margin: 0 0 10px 0;
+    }
+    input {
+      max-width:220px;
+      margin-left: 20px;
+    }
+  }
+}

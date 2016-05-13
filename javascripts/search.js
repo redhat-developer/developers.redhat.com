@@ -79,16 +79,25 @@ function searchCtrlFunc($scope, searchService) {
 
   $scope.cleanParams = function(p) {
       var params = Object.assign({}, p);
+      console.log(params);
+
       // if "custom" is selected, remove it
       if(params.activity_date_interval && params.activity_date_interval === 'custom') {
         delete params.activity_date_interval;
+        return params;
+      } else {
+        delete params.activity_date_from;
+        delete params.activity_date_to;
+        return params;
       }
-      return params;
+
+
   }
 
   $scope.updateSearch = function() {
     $scope.loading = true;
     var params = $scope.cleanParams($scope.params);
+    console.log(params);
     // history.pushState($scope.params,$scope.params.query,'/search/?q=' + $scope.params.query);
     searchService.getSearchResults(params).then(function(data) {
       $scope.results = data.hits.hits;
