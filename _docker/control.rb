@@ -237,7 +237,7 @@ if $0 == __FILE__
 
   if tasks[:awestruct_command_args]
     block_wait_searchisko_started(tasks[:supporting_services])
-    block_wait_drupal_started(tasks[:supporting_services])
+    block_wait_drupal_started(tasks[:supporting_services]) if tasks[:drupal]
 
     puts 'running awestruct command'
     execute_docker_compose :run, tasks[:awestruct_command_args]
