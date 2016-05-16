@@ -110,8 +110,8 @@ services:
     links:
       - drupalmysql
     volumes:
-      - ../images:/tmp/images
-      - ../stylesheets:/tmp/stylesheets
+      - ../images:/var/www/html/images
+      - ../stylesheets/fonts:/var/www/html/fonts
     <% unless ENV['JENKINS_HOME'] %>
       - ./drupal/themes/:/var/www/html/themes
       - ./drupal/modules/custom/:/var/www/html/modules/custom
