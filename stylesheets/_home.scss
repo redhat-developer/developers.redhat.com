@@ -5,9 +5,9 @@
 
 .homepage-main {
   color: $white;
-  background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_developersurvey_11may2016.png');
+  background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_developersurvey_16may2016.png');
   &.hero2 { background-image: url('https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_community_12apr2016.jpg'); }
-  background-position: top center;
+  background-position: top left;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: rgb(1, 59, 90);
@@ -21,20 +21,20 @@
     span {
       max-width: 500px;
       display: block;
-      margin: 0 auto;
+      margin: 0 40px 0 auto;
       img {
         max-height: 134px;
       }
-      h3{
-        text-align: center;
+      h4{
+        text-align: right;
         font-weight: 700;
         color: #9ddbe9;
         line-height: 1.1;
-        margin: .8em auto;
+        margin: .6em auto;
         .keyword {
           display: inline;
           color: $white;
-          font-size: 125%;
+          font-size: 115%;
           font-style: italic;
         }
       }
@@ -42,7 +42,8 @@
     a.button {
       max-width: 250px;
       display: block;
-      margin: 0 auto;
+      margin: 0 40px 0 auto;
+      float: right;
     }
   }
   .homepage-getstarted {
@@ -283,9 +284,16 @@ ul.homepage-resources {
 @include tablet-landscape-and-down {
   .homepage-main {
     background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_developersurvey_11may2016.png');
+    background-position: top center;
     &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_community_12apr2016.jpg'); }
-    .homepage-cta img{
-      max-height: 100%;
+    .homepage-cta {
+      img{
+        max-height: 100%;
+        margin-bottom: 0;
+      }
+      span {
+        margin: 0 auto;
+      }
     }
     .homepage-getstarted {
       min-height: 240px;
@@ -314,17 +322,21 @@ ul.homepage-resources {
     width: 90% !important;
     padding: 2em !important;
   }
-  .homepage-main {
-    .homepage-cta img {
-      margin-bottom: 20px;
-    }
-  }
 }
 
 @include mobile-landscape-and-down {
   .homepage-main {
     background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_developersurvey_11may2016.png');
     &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_community_12apr2016.jpg'); }
+    .homepage-cta {
+      span h4{
+        text-align: center;
+      }
+      a.button {
+        margin: 0 auto;
+        float: none;
+      }
+    }
   }
   .spotlights-container {
     flex-direction: column;
