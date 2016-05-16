@@ -3,6 +3,8 @@
 :title: "Software Collections Beta - Get started developing with Node.js v4.4"
 :awestruct-description: "Get started developing with Node.js v4.4 from Red Hat Software Collections 2.2 Beta in under 10 minutes."
 
+= Software Collections Beta - Get started developing with Node.js v4.4
+
 ## Path Name
 Node.js
 
@@ -63,7 +65,9 @@ If you are using a workstation edition of Red Hat Enterprise Linux, change `-ser
 
 Next, configure `yum` to skip the RHSCL beta repository if it is unavailable. By default, `yum` will treat any unavailable repository as a fatal error.
 
-`# yum-config-manager --save --setopt=rhel-server-rhscl-7-beta-rpms.skip_if_unavailable=true`
+```
+# yum-config-manager --save --setopt=rhel-server-rhscl-7-beta-rpms.skip_if_unavailable=true
+```
 
 ## Step2 Content
 
@@ -90,16 +94,13 @@ $ node --version
 v4.4.2
 ```
 
-The next step is to create a JavaScript program that can be run from the command line. Using your preferred text editor, create a file named `hello.js`:
+The next step is to create a JavaScript program that can be run from the command line. Using a text editor such as `vi`, `nano`, or `gedit` create a file named `hello.js` with the following content:
 
-`$ nano hello.js`
 
-Add the following text to the file:
-
-[.code-block]
-```
+.hello.js
+----
 console.log("Hello, Red Hat Developers World from Node " + process.version)
-```
+----
 
 Save it and exit the editor. Run it with the `node` command:
 [.code-block]
@@ -110,17 +111,13 @@ Hello, Red Hat Developers World from Node v4.4.2
 
 If you get the error: _node command not found_, you need to run `scl enable rh-nodejs4 bash` first.
 
-The next step is to try a slightly larger Node.js example that implements a tiny web server.  Using your preferred text editor, create a file named `hello-http.js`:
+The next step is to try a slightly larger Node.js example that implements a tiny web server.  Using your preferred text editor, create a file named `hello-http.js` with the following content:
 
-`$ nano hello-http.js`
-
-Add the following text to the file:
-
-[.code-block]
-```
+.hello-http.js
+----
 var http = require('http');
 var port = 8000;
-var laddr = '127.0.0.1';
+var laddr = '0.0.0.0';
 http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Hello, Red Hat Developers World from ' +
@@ -128,7 +125,7 @@ http.createServer(function (req, res) {
     console.log('Processed request for '+ req.url);
 }).listen(port, laddr);                                                                                                                
 console.log('Server running at http://' + laddr + ':' + port + '/');  
-```
+----
 
 Save it and exit the editor. Run it with the `node` command:
 
@@ -154,9 +151,13 @@ While it is possible to change the system profile to make RHSCL packages part of
 
 To make one or more RHSCL packages a permanent part of your development environment, you can add it to the login script for your specific user ID. this is the recommend approach for development as only processes run under your user ID will be affected.
 
-Using your preferred text editor, add the following line to `~/.bashrc`:
+Using your preferred text editor, add the following line to your `~/.bashrc`:
 
-`source scl_source enable rh-nodejs4`
+.~/.bashrc
+----
+# Add Node.js v4 from RHSCL to my login environment
+source scl_source enable rh-nodejs4
+----
 
 After making the change, you should log out and log back in again.
 
