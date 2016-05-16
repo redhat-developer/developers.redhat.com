@@ -81,7 +81,8 @@ Feature: Site navigation menu
       | INFRASTRUCTURE |
       | CLOUD          |
       | MOBILE         |
-      | MIDDLEWARE     |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
     And the sub-menu should include a list of available technologies
 
   @products @desktop
@@ -109,7 +110,8 @@ Feature: Site navigation menu
       | INFRASTRUCTURE |
       | CLOUD          |
       | MOBILE         |
-      | MIDDLEWARE     |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
 
   @desktop @smoke
   Scenario: Hovering over the COMMUNITIES menu should display additional sub-menu with options
