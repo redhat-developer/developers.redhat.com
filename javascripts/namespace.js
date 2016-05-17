@@ -31,6 +31,8 @@ app.templates.termsAndConditionsTemplate = '#{partial "terms_and_conditions.html
 app.templates.bookTemplate = '#{partial "book.html.slim"}';
 app.templates.connectorTemplate = '#{partial "product-connectors-item.html.slim"}';
 
+app.templates.productStackoverflowTemplate = '#{partial "product_stackoverflow_template.html.slim"}';
+app.templates.stackoverflowTemplate = '#{partial "stackoverflow_template.html.slim"}';
 /*
   FastClick variable for faster tapping on touch devices
 */
