@@ -17,7 +17,7 @@ end
 
 # GEMS
 #gem 'awestruct', '0.5.7'
-gem 'awestruct', github: 'lightguard/awestruct', branch: 'feature/perf-testing-large-site'
+gem 'awestruct', git: 'https://github.com/lightguard/awestruct', branch: 'feature/perf-testing-large-site'
 #gem 'awestruct', path: '~/projects/ruby/awestruct'
 gem 'slim', '~> 3.0'
 gem 'kramdown', '~> 1.0.1'
@@ -52,7 +52,7 @@ gem 'uuid'
 #
 # From a location on your disk:
 #
-gem 'aweplug', github: 'awestruct/aweplug'
+gem 'aweplug', git: 'https://github.com/awestruct/aweplug'
 
 group :test do
   gem 'climate_control'
