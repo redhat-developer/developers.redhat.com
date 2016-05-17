@@ -15,7 +15,6 @@ class Options
 
       opts.on('-r', '--restart', 'Restart the containers') do |r|
         tasks[:decrypt] = true
-        tasks[:set_ports] = true
         tasks[:kill_all] = true
         tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
@@ -23,7 +22,6 @@ class Options
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
         tasks[:unit_tests] = unit_test_tasks
         tasks[:decrypt] = true
-        tasks[:set_ports] = true
         tasks[:build] = true
       end
 
@@ -31,7 +29,6 @@ class Options
       opts.on('-b', '--build', 'Build the containers') do |b|
         tasks[:decrypt] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:set_ports] = true
         tasks[:build] = true
       end
 
@@ -49,7 +46,6 @@ class Options
         tasks[:drupal] = true
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:set_ports] = true
         tasks[:supporting_services] += %w(drupal drupalmysql mysql searchisko)
         tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
       end
@@ -57,7 +53,6 @@ class Options
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
         tasks[:decrypt] = true
         tasks[:drupal] = true
-        tasks[:set_ports] = true
         tasks[:supporting_services] += %w(drupal drupalmysql)
       end
 
@@ -66,7 +61,6 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:set_ports] = true
         tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
@@ -87,7 +81,6 @@ class Options
         end
 
         tasks[:kill_all] = false
-        tasks[:set_ports] = true
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
         tasks[:supporting_services] += [ENV['RHD_DOCKER_DRIVER']]
@@ -98,21 +91,18 @@ class Options
         tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"]
         tasks[:supporting_services] = []
         tasks[:build] = true
-        tasks[:set_ports] = true
       end
 
       opts.on('--docker-nightly', 'build for docker nightly') do |pr|
         tasks[:awestruct_command_args] = ["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"]
         tasks[:kill_all] = true
         tasks[:build] = true
-        tasks[:set_ports] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
         tasks[:decrypt] = true
-        tasks[:set_ports] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
