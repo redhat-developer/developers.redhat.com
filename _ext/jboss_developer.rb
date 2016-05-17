@@ -374,7 +374,7 @@ module Aweplug
       # Returns Boolean for the existence of the page within Drupal.
       def exists?(page)
         path = create_path page
-        @faraday.head("/#{path}", nil, {Cookie: @cookie}).success?
+        @faraday.get("/#{path}", nil, {Cookie: @cookie, Authorization: "Basic #{@basic_auth}"}).success?
       end
 
       # Public: Sends a PATCH request to Drupal to update an existing page.

@@ -93,7 +93,7 @@ gulp.task('sass', function() {
     .pipe(plugins.sass({outputStyle: 'compressed'}))
     .pipe(plugins.sass({outputStyle: 'compressed', functions: {
       'cdn($src)': function(src) {
-        return sassUtils.castToSass("url(/sites/default/files/" + sassUtils.sassString(src).replace(/\.\.\/images\//, 'images_').replace(/\.\/fonts/, 'fonts').replace(/\.\//, '').replace(/\//g, '_') + ")");
+        return sassUtils.castToSass("url(" + sassUtils.sassString(src).replace(/\.\.\/images\//, '/images/').replace(/\.\/fonts/, '/fonts').replace(/\.\//, '') + ")");
       }
     }}))
     // Uncomment this if you need source maps
