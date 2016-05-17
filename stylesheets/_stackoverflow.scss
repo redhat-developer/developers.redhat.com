@@ -1,0 +1,38 @@
+.product-stackoverflow-container, .stackoverflow-container {
+  .stackoverflow-product-update .update{
+    margin-top: 2em;
+
+    .qtn-stats {
+      span {
+        display: inline-block;
+        text-align: center;
+        margin-right: 15px;
+      }
+    }
+    a h5.qtn-title {
+      color: #006792;
+    }
+    span.qtn-answer {
+      display: block;
+      margin-top: 1em;
+    }
+  }
+}
+
+
+.stack-header {
+  margin: 3em auto;
+  h2, p {
+    text-align: center;
+  }
+  a, a.button {
+    display: block;
+    margin: 0 auto;
+    max-width: 270px;
+    text-align: center;
+  }
+}
+
+.stack-help {
+  margin: 3em auto;
+}
