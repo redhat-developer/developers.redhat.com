@@ -1,0 +1,30 @@
+---
+layout: technology-base
+status: green
+title: Stack Overflow
+---
+
+section
+  .row
+    .large-24.columns.stack-header
+      h2 You've got questions. We've got answers.
+      p We know you need high quality answers to your development questions in a timely fashion. Using our selected tags, you can now get answers to your questions directly on Stack Overflow. Our Red Hat experts are waiting for your question!
+      a.button(href='#{site.base_url}/register')Register to Participate
+      br
+      a(href='#{site.base_url}/login') Login
+section
+  .row.stack-help
+    .large-8.columns
+      h3 Need Help?
+    .large-16.columns
+      p
+        | Read
+        a(href="#")  How to post and tag questions at Stack Overflow
+        |  to get tips on how to make sure our experts see your question.
+
+.row
+  .large-24.columns
+    .stackoverflow-container
+
+= javascripts("stackoverflow", true) do
+  script src="#{site.base_url}/javascripts/vendor/moment.js"
