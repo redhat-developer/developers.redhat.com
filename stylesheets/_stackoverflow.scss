@@ -1,0 +1,61 @@
+.product-stackoverflow-container, .stackoverflow-container {
+  .stackoverflow-product-update .update{
+    margin-top: 2em;
+
+    .qtn-stats {
+      span {
+        display: inline-block;
+        text-align: center;
+        margin-right: 15px;
+      }
+    }
+    a h5.qtn-title {
+      color: #006792;
+    }
+    span.qtn-answer {
+      display: block;
+      margin-top: 1em;
+    }
+    .callout{
+      background-color: $grey-1;
+      margin: 10px 0;
+      padding: 10px;
+    }
+  }
+}
+
+.stack-header {
+  margin: 3em auto;
+  padding: 0 15%;
+  h2, p {
+    text-align: center;
+  }
+  a, a.button {
+    display: block;
+    margin: 0 auto;
+    max-width: 270px;
+    text-align: center;
+  }
+}
+
+.stack-help {
+  margin: 3em auto;
+  padding: 0 5%;
+  h3 {
+    text-align: right;
+  }
+}
+
+.qtn-answer p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-height: 70px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px !important;
+}
+
+p.so-tags{
+  margin-top: 5px;
+}
