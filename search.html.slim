@@ -112,7 +112,7 @@ div(ng-app="search")
               | and show
               select(ng-model="params.size" ng-change="updateSearch()")
                 option(value="5") 5
-                option(value="5") 10
+                option(value="10") 10
                 option(value="25") 25
                 option(value="50") 50
                 option(value="100") 100
@@ -133,7 +133,7 @@ div(ng-app="search")
 
 
           nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
-            span Showing {{params.from + 1}}-{{params.from + params.size}} of  {{totalCount}} results
+            span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
             ul.pagination
               li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
                 a(ng-click="goToPage('first')") First

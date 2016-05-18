@@ -89,11 +89,17 @@ function searchCtrlFunc($scope, searchService) {
     var startAt = (page * $scope.totalCount) - $scope.params.size;
     var endAt = page * $scope.params.size;
     var pages = Math.ceil($scope.totalCount / $scope.params.size);
+    var lastVisible = parseFloat($scope.params.size) + $scope.params.from;
+
+    if($scope.totalCount < lastVisible) {
+      lastVisible = $scope.totalCount;
+    }
 
     $scope.paginate = {
       currentPage: page,
       pagesArray: app.utils.diplayPagination(page, pages, 4),
-      pages: pages
+      pages: pages,
+      lastVisible: lastVisible
     }
   };
 
