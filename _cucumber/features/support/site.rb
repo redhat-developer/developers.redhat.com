@@ -81,4 +81,19 @@ class Site
     @current_page = @terms_and_conditions
   end
 
+  def community
+    @community ||= CommunityPage.new(@driver)
+    @current_page = @community
+  end
+
+  def events
+    @events ||= EventsPage.new(@driver)
+    @current_page = @events
+  end
+
+  def search
+    @search ||= SearchPage.new(@driver)
+    @current_page = @search
+  end
+
 end

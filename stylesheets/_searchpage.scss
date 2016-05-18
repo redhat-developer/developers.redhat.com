@@ -1,0 +1,21 @@
+form.search-bar{
+  position: relative;
+
+
+
+}
+
+.searchpage-container {
+  overflow: visible;
+}
+
+.searchpage-update {
+  @extend .clearfix;
+  .update {
+    margin-bottom: 20px;
+    a h5 {
+      color:$link;
+      font-size:emCalc(20px);
+    }
+  }
+}
