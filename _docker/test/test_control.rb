@@ -21,7 +21,7 @@ class TestControl < Minitest::Test
     assert_equal(false, check_supported_service_requested([], 'drupal'))
   end
 
-  def test_returns_false_when_supporint_service_list_is_nil
+  def test_returns_false_when_supporting_service_list_is_nil
     assert_equal(false, check_supported_service_requested(nil, 'drupal'))
   end
 

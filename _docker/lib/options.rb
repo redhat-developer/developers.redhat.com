@@ -13,6 +13,11 @@ class Options
         tasks[:docker] = d
       end
 
+      opts.on('--backup [BACKUP_NAME]', String, 'Take a backup of the environment') do |backup|
+        tasks[:build] = true
+        tasks[:awestruct_command_args] = ['--rm', 'backup', "#{backup}"]
+      end
+
       opts.on('-r', '--restart', 'Restart the containers') do |r|
         tasks[:decrypt] = true
         tasks[:kill_all] = true
