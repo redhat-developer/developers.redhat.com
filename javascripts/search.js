@@ -44,7 +44,7 @@ search.filter('timestamp', function() {
 
 search.filter('highlight', function($sce) {
   return function(text, term){
-    if(!text || !term) return text;
+    if(!text || !term) return $sce.trustAsHtml(text);
     var match = new RegExp(term, 'gi');
     var matchedText = text.replace(match, function(term) { return '<span class="highlight">'+term+'</span>' });
     return $sce.trustAsHtml(matchedText);
