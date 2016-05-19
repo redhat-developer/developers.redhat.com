@@ -42,6 +42,15 @@ search.filter('timestamp', function() {
   }
 });
 
+search.filter('highlight', function($sce) {
+  return function(text, term){
+    if(!text || !term) return text;
+    var match = new RegExp(term, 'gi');
+    var matchedText = text.replace(match, function(term) { return '<span class="highlight">'+term+'</span>' });
+    return $sce.trustAsHtml(matchedText);
+  }
+});
+
 
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
 
@@ -51,13 +60,13 @@ function searchCtrlFunc($scope, searchService) {
   console.log(search);
   var q = '';
   if(search) {
-    q = search.pop(); // last one
+    q = decodeURIComponent(search.pop().replace(/\+/g,' ')); // last one
   }
   /* default */
   $scope.params = {
     query: q,
-    sortBy: 'new',
-    size: 5,
+    sortBy: 'score',
+    size: 10,
     from: 0,
     type: 'rht_website'
   }

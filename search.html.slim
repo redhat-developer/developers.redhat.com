@@ -96,7 +96,7 @@ div(ng-app="search")
       .row
         .large-24.columns
           form.search-bar(role="search" ng-submit="updateSearch()")
-            input.user-success.user-search(required type="text" placeholder="Filter by keyword" id="search_list_text" ng-model="params.query")
+            input.user-success.user-search(required type="text" placeholder="Enter your search term" id="search_list_text" ng-model="params.query")
         .large-18.columns.searchpage-results-container
           .sorting
             h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{params.query}}"
@@ -108,10 +108,8 @@ div(ng-app="search")
               select(ng-model="params.sortBy" ng-change="updateSearch()")
                 option(value="score") Relevance
                 option(value="new") Most Recent
-                option(value="old") Least Recent
               | and show
               select(ng-model="params.size" ng-change="updateSearch()")
-                option(value="5") 5
                 option(value="10") 10
                 option(value="25") 25
                 option(value="50") 50
@@ -122,13 +120,13 @@ div(ng-app="search")
           .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
             .result(ng-repeat="result in results" ng-init="r = result.fields")
               h4
-                a(href="{{r.sys_url_view[0]}}") {{r.sys_title[0]}}
+                a(target="_blank" href="{{r.sys_url_view[0]}}" ng-bind-html="r.sys_title[0] | highlight:params.query")
               / section.meta-data
                 / span.created-date(data-updated="{{r.sys_last_activity_date[0] | timestamp}}") {{r.sys_last_activity_date[0] | timeAgo}}
-              p {{r.sys_description[0]}}
+              p(ng-bind-html="r.sys_description[0] | highlight:params.query")
               .tags-list
                 p
-                  | Topics:&nbsp;
+                  | {{r.sys_tags.length ? 'Tags:' : null}}
                   span.tag(ng-repeat="tag in r.sys_tags")  {{tag}}
 
 
@@ -147,5 +145,4 @@ div(ng-app="search")
               li#pagination-last(ng-class="paginate.currentPage  == paginate.pages ? 'unavailable': 'available'")
                 a(ng-click="goToPage('last')") Last
         .large-6.columns
-          p Banner goes here...
 

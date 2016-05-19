@@ -28,6 +28,11 @@ form.search {
   }
 }
 
+span.highlight, span.hlt {
+  font-weight:600;
+  background:#FFFFD6;
+  border-radius:2px;
+}
 .searchResults {
   position: absolute;
   width:100%;
@@ -36,12 +41,6 @@ form.search {
   border-radius: 0 0 $global-radius $global-radius;
   top:42px;
   display: none;
-  span.highlight, span.hlt {
-    font-weight:600;
-    background:#FFFFD6;
-    padding:0 2px;
-    border-radius:2px;
-  }
   li {
     display: block;
     width:100%;
