@@ -1,13 +1,10 @@
 require 'minitest/autorun'
 require 'mocha/mini_test'
 
-require_relative '../../../_docker/test/test_helper'
+require_relative '../../../_docker/tests/test_helper'
 require_relative '../../../_docker/lib/backup/git_backup_strategy'
 
 class TestGitBackupStrategy < Minitest::Test
-
-  @process_runner
-  @git_repo_location
 
   def setup
     @process_runner = mock()

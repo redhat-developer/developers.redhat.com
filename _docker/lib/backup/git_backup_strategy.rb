@@ -8,10 +8,6 @@ require_relative '../../../_docker/lib/process_runner'
 #
 class GitBackupStrategy
 
-  @log
-  @process_runner
-  @git_repo_location
-
   def initialize(git_repo_location, process_runner)
     @log = DefaultLogger.logger
     @process_runner = process_runner;
@@ -19,11 +15,11 @@ class GitBackupStrategy
     prepare_git_repository_for_backup(git_repo_location)
   end
 
-  private def execute_git_command(git_command)
+  def execute_git_command(git_command)
     @process_runner.execute!("cd #{@git_repo_location} && #{git_command}")
   end
 
-  private def prepare_git_repository_for_backup(repository_location)
+  def prepare_git_repository_for_backup(repository_location)
     @log.info("Preparing repository at location '#{repository_location}' for backup:")
     execute_git_command('git reset --hard')
     execute_git_command('git clean -xdf')
@@ -43,5 +39,7 @@ class GitBackupStrategy
     execute_git_command("git push origin refs/tags/#{tag}")
     @log.info('Successfully pushed backup to origin')
   end
+
+  private :execute_git_command, :prepare_git_repository_for_backup
 
 end

@@ -12,26 +12,7 @@ require_relative 'git_backup_strategy'
 #
 class Backup
 
-  # Default name of the Drupal filesystem backup
-  @@DRUPAL_FILESYSTEM_TAR = 'drupal-filesystem.tar.gz'
-
-  # Default name of the Drupal database dump
-  @@DRUPAL_DATABASE_SQL_DUMP = 'drupal-db.sql'
-
-  def self.drupal_filesystem_tar
-    @@DRUPAL_FILESYSTEM_TAR
-  end
-
-  def self.drupal_database_sql_dump
-    @@DRUPAL_DATABASE_SQL_DUMP
-  end
-
-  @backup_directory
-  @backup_strategy
-  @drupal_directory
-  @database_name
-  @process_runner
-  @log
+  attr_accessor :drupal_tar_name, :drupal_database_sql_dump_name
 
   def initialize(drupal_directory, database_name, backup_directory, backup_strategy, process_runner)
     @process_runner = process_runner
@@ -40,17 +21,19 @@ class Backup
     @database_name = database_name
     @backup_directory = backup_directory
     @backup_strategy = backup_strategy
+    @drupal_tar_name = 'drupal-filesystem.tar.gz'
+    @drupal_database_sql_dump_name = 'drupal-db.sql'
   end
 
   #
   # Creates a TAR archive of the contents of the directory mounted at @drupal_directory
   #
-  private def backup_drupal_filesystem
-    tar_name = "#{@backup_directory}/#{@@DRUPAL_FILESYSTEM_TAR}"
+  def backup_drupal_filesystem
+    tar_name = "#{@backup_directory}/#{@drupal_tar_name}"
     @log.info("Creating TAR archive '#{tar_name}' of Drupal filesystem mounted at '#{@drupal_directory}'...")
 
     @process_runner.execute!("tar -czf #{tar_name} -C #{@drupal_directory} .")
-    @backup_strategy.add_file_to_backup(@@DRUPAL_FILESYSTEM_TAR)
+    @backup_strategy.add_file_to_backup(@drupal_tar_name)
 
     @log.info('Successfully created TAR archive of Drupal filesystem.')
   end
@@ -58,12 +41,12 @@ class Backup
   #
   # Creates a SQL dump of the database named @database_name
   #
-  private def backup_drupal_database
-    sql_dump = @backup_directory + "/" + @@DRUPAL_DATABASE_SQL_DUMP
+  def backup_drupal_database
+    sql_dump = "#{@backup_directory}/#{@drupal_database_sql_dump_name}"
     @log.info("Creating SQL dump '#{sql_dump}' of Drupal database...")
 
     @process_runner.execute!("mysqldump #{@database_name} > #{sql_dump}")
-    @backup_strategy.add_file_to_backup(@@DRUPAL_DATABASE_SQL_DUMP)
+    @backup_strategy.add_file_to_backup(@drupal_database_sql_dump_name)
 
     @log.info('Successfully created SQL dump of Drupal database.')
   end
@@ -71,20 +54,29 @@ class Backup
   #
   # Generates a user-friendly timestamp for the back-up
   #
-  private def generate_backup_time
+  def generate_backup_time
     DateTime.now.strftime('%F-%H-%M-%S')
   end
 
-  def execute(args)
+  def generate_tag_name(args, backup_time)
+    if(args.nil? || args.empty?)
+      return backup_time
+    end
+    args.first.empty? ? backup_time : args.first
+  end
+
+  def execute(args=[])
 
     backup_time = generate_backup_time
-    tag = args.first.to_s == '' ? backup_time : args.first
+    tag = generate_tag_name(args, backup_time)
 
     backup_drupal_filesystem
     backup_drupal_database
 
     @backup_strategy.commit_backup("Backup prior to deployment '#{tag}' at '#{backup_time}'", tag)
   end
+
+  private :generate_backup_time, :backup_drupal_database, :backup_drupal_filesystem, :generate_tag_name
 
 end
 

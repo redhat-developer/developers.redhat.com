@@ -14,9 +14,6 @@ class ProcessRunner
 
   end
 
-  @verbose
-  @log
-
   #
   # Initialise the instance. If verbose is true, then full output of stdout and stderr is printed to the
   # console
@@ -47,7 +44,7 @@ class ProcessRunner
     cmd = prepare_command_for_execution(cmd)
     @log.info("Executing command '#{cmd}'")
 
-    Open3.popen3(cmd) { |_, stdout, stderr, wait_thr|
+    Open3.popen3(cmd) do |_, stdout, stderr, wait_thr|
 
       if @verbose
         threads = []
@@ -61,11 +58,12 @@ class ProcessRunner
             @log.error("(Console): #{i.readline}")
           end
         end
+        threads.each{|t|t.join}
       end
 
       exit_code = wait_thr.value
       determine_process_status(cmd, exit_code)
-    }
+    end
   end
 
   private :determine_process_status, :prepare_command_for_execution
