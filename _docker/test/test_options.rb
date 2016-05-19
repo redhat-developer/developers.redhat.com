@@ -8,6 +8,18 @@ class TestOptions < Minitest::Test
     assert_equal (4+1), 5
   end
 
+  def test_loads_awestruct_pull_request_environment_by_default
+    tasks = Options.parse(['-t'])
+    rhd_environment = tasks[:environment]
+    assert_equal('awestruct-pull-request', rhd_environment.environment_name)
+  end
+
+  def test_loads_specified_environment
+    tasks = Options.parse(['-e awestruct-dev'])
+    rhd_environment = tasks[:environment]
+    assert_equal('awestruct-dev', rhd_environment.environment_name)
+  end
+
   def test_decrypt
 
     tasks = Options.parse (["-b"])
@@ -54,7 +66,7 @@ class TestOptions < Minitest::Test
   def test_set_build
     tasks = Options.parse (["-b"])
     assert(tasks[:build])
-    refute(tasks[:should_start_supporting_services])
+    assert_equal([], tasks[:supporting_services])
 
     tasks = Options.parse (["--run-the-stack"])
     assert(tasks[:build])
@@ -63,6 +75,7 @@ class TestOptions < Minitest::Test
   def test_kill
     tasks = Options.parse (["-r"])
     assert(tasks[:kill_all])
+    assert_equal([], tasks[:supporting_services])
 
     tasks = Options.parse (["--run-the-stack"])
     assert(tasks[:kill_all])
@@ -148,7 +161,19 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
+    assert_equal(%w(mysql searchisko), tasks[:supporting_services])
+    assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
+
+    tasks = Options.parse %w(-u --run-the-stack)
+    assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean gen[drupal]'], tasks[:awestruct_command_args])
+  end
+
+  def test_run_the_stack_awestruct_pull_request
+    tasks = Options.parse (['-e awestruct-pull-request', "--run-the-stack"])
+    assert(tasks[:kill_all])
+    assert(tasks[:decrypt])
+    assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+    assert_equal(%w(mysql searchisko), tasks[:supporting_services])
     assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
 
     tasks = Options.parse %w(-u --run-the-stack)

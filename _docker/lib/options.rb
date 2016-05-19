@@ -1,7 +1,10 @@
+require_relative 'rhd_environments'
+
 class Options
 
   def self.parse(args)
-    tasks = {supporting_services: %w(-d)}
+    tasks = {}
+    tasks[:environment_name] = 'awestruct-pull-request'
 
     opts_parse = OptionParser.new do |opts|
       opts.banner = 'Usage: control.rb [options]'
@@ -13,16 +16,21 @@ class Options
         tasks[:docker] = d
       end
 
+      opts.on('-e ENVIRONMENT', String, 'The environment in which to operate') do | environment |
+        tasks[:environment_name] = environment
+      end
+
       opts.on('-r', '--restart', 'Restart the containers') do |r|
         tasks[:decrypt] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
+        tasks[:supporting_services] = []
       end
 
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
         tasks[:unit_tests] = unit_test_tasks
         tasks[:decrypt] = true
         tasks[:build] = true
+        tasks[:supporting_services] = []
       end
 
 
@@ -30,6 +38,7 @@ class Options
         tasks[:decrypt] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
+        tasks[:supporting_services] = []
       end
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
@@ -46,14 +55,12 @@ class Options
         tasks[:drupal] = true
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(drupal drupalmysql mysql searchisko)
         tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
       end
 
       opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
         tasks[:decrypt] = true
         tasks[:drupal] = true
-        tasks[:supporting_services] += %w(drupal drupalmysql)
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -61,7 +68,6 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |host|
@@ -98,7 +104,6 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
@@ -106,7 +111,6 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
         tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
@@ -118,13 +122,10 @@ class Options
     end
 
     if args.empty?
-      args += ['-h'] #Show the help
+     args += ['-h'] #Show the help
     end
 
     opts_parse.parse! args
-
-    #Flag to see if anything was set it supporting_services
-    tasks[:should_start_supporting_services] = tasks[:supporting_services].size > 1
 
     # change the profile awestruct runs with
     if tasks[:awestruct_command_args]
@@ -137,6 +138,13 @@ class Options
       end
     end
 
+    environment = RhdEnvironments.new(File.expand_path('../environments',File.dirname(__FILE__))).load_environment(tasks[:environment_name])
+    tasks[:environment] = environment
+
+    # Set the list of supporting services to be started from the environment, unless the options above explicitly set it first
+    if !tasks[:supporting_services]
+      tasks[:supporting_services] = environment.get_supporting_services
+    end
     tasks
   end
 

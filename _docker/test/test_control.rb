@@ -7,6 +7,80 @@ require_relative '../control'
 
 class TestControl < Minitest::Test
 
+  def test_build_base_docker_images
+    system_exec = mock();
+
+    system_exec.expects(:execute_docker).with(:build,'--tag=developer.redhat.com/base','./base')
+    system_exec.expects(:execute_docker).with(:build,'--tag=developer.redhat.com/java','./java')
+    system_exec.expects(:execute_docker).with(:build,'--tag=developer.redhat.com/ruby','./ruby')
+
+    build_base_docker_images(system_exec)
+
+  end
+
+  def test_build_environment_docker_images
+
+    environment = mock()
+    system_exec = mock()
+
+    system_exec.expects(:execute_docker_compose).with(environment, :build)
+
+    build_environment_docker_images(environment, system_exec)
+  end
+
+
+  def test_copy_project_dependencies_for_awestruct_image
+
+    gemfile = mock();
+    gemfile_lock = mock();
+    target_gemfile = mock();
+    target_gemfile_lock = mock();
+
+    File.expects(:open).with('../Gemfile').returns(gemfile)
+    File.expects(:open).with('../Gemfile.lock').returns(gemfile_lock)
+
+    FileHelpers.expects(:open_or_new).with('awestruct/Gemfile').returns(target_gemfile)
+    FileHelpers.expects(:open_or_new).with('awestruct/Gemfile.lock').returns(target_gemfile_lock)
+
+    FileHelpers.expects(:copy_if_changed).with(gemfile, target_gemfile)
+    FileHelpers.expects(:copy_if_changed).with(gemfile_lock, target_gemfile_lock)
+
+    copy_project_dependencies_for_awestruct_image
+
+  end
+
+  def test_build_css_and_js_for_drupal
+    status = mock()
+
+    status.expects(:success?).returns(true)
+    Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['out',status])
+
+    build_css_and_js_for_drupal
+
+  end
+
+  def test_should_abort_if_cannot_build_css_and_js_for_drupal
+    status = mock()
+
+    status.expects(:success?).returns(false)
+    Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['Oh dear!',status])
+
+    assert_raises(SystemExit){
+      build_css_and_js_for_drupal
+    }
+
+  end
+
+  def test_load_environment_aborts_execution_if_environment_does_not_exist
+    assert_raises(SystemExit){
+      load_environment(:environment => nil)
+    }
+  end
+
+  def test_load_environment_continues_if_environment_exists
+      load_environment(:environment => mock())
+  end
+
   def test_returns_true_when_supporting_service_in_list
     supporting_services = %w"drupal mysql searchisko drupalmysql"
     assert_equal(true, check_supported_service_requested(supporting_services, 'drupal'))
