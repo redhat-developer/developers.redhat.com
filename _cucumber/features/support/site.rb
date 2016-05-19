@@ -36,6 +36,11 @@ class Site
     @current_page = @registration
   end
 
+  def additional_information
+    @additional_information ||= AdditionalInformation.new(@driver)
+    @current_page = @additional_information
+  end
+
   def extended_registration
     @extended_registration ||= ExtendedRegistration.new(@driver)
     @current_page = @extended_registration
@@ -79,6 +84,16 @@ class Site
   def terms_and_conditions
     @terms_and_conditions ||= TermsAndConditions.new(@driver)
     @current_page = @terms_and_conditions
+  end
+
+  def link_to_github
+    @link_to_github ||= LinkToGitHub.new(@driver)
+    @current_page = @link_to_github
+  end
+
+  def github
+    @github ||= GitHubPage.new(@driver)
+    @current_page = @github
   end
 
 end

@@ -10,6 +10,10 @@ Given(/^I log in with (an|a) (valid|incorrect) password$/) do |arg, negate|
   end
 end
 
+Given(/^I log in with my GitHub account$/) do
+
+end
+
 Given(/^I log in with an invalid email$/) do
   @page.login.with_existing_account('testUser.com', @site_user[:password])
 end
