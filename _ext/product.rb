@@ -100,6 +100,9 @@ module JBoss
                 if File.exists?('./products/' + id + '/updates.adoc')
                   product.send('has_updates_page=', true)
                 end
+                if File.exists?('./products/' + id + '/support.html.slim')
+                  product.send('has_support_page=', true)
+                end
 
 
                 # Add a flag if the product get-started has a partial to include for the set up section

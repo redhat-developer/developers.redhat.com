@@ -1,0 +1,16 @@
+---
+layout: product
+type: Support
+---
+
+
+.row
+  .large-24.columns
+    h3.caps Get Help With It
+    h4 Community Q&A
+    strong Check out the most popular posts on Stack Overflow related to #{page.product.name}
+
+    .product-stackoverflow-container(data-tags="#{(JSON.dump page.product.stackoverflow_tags).gsub(/"/, "'")}")
+
+= javascripts("stackoverflow", true) do
+  script src="#{site.base_url}/javascripts/vendor/moment.js"

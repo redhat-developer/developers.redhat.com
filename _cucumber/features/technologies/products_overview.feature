@@ -15,6 +15,7 @@ Feature: Product overview page
       | Learn         |
       | Download      |
       | Buzz          |
+      | Support       |
 
     Examples: Red Hat products
       | product id |
