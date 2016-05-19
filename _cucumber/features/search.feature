@@ -1,4 +1,3 @@
-@wip
 Feature: Search Page
 
   As a site visitor,
@@ -56,15 +55,17 @@ Feature: Search Page
       | 100 |
 
   Scenario: Results sorting
-    Given I have previously searched for "code"
-    When the search results page is displayed
-    Then I should see text "Showing "1-10" of "X" results"
+    Given I am on the Home page
+    When I search for "Containers"
+    Then the search results page is displayed
+    And I should see text "Showing "1-10" of "X" results"
 
   Scenario: Typing multiple words such as "eap 7 download" in the search box from the search header (like on the homepage), should retain the spaces.
     Given I am on the Home page
     When I search for "eap 7 download"
     Then the search box should contain "eap 7 download"
 
+  @later
   Scenario: Search results should be listed with tags
     Given I am on the Home page
     When I search for "Containers"
@@ -123,23 +124,12 @@ Feature: Search Page
       | First    |
       | Previous |
 
-  Scenario: Clicking on the Search button on the search page should not do anything when no search term is entered.
-    Given I have previously searched for "code"
-    And the search box is empty
-    When I click on the search button
-    Then nothing will happen and no search will be initiated
-
+  @later
   Scenario: Entering a search term and then clicking on the Search button on the search page should trigger a new search.
     Given I have previously searched for "code"
     When I enter "Java" into the search box
     And I click on the search button
     Then I should see "10" results containing "Java"
-
-  Scenario: On the results page, there should be an "X" icon in the far right of the search term field. This would let the user easily clear their search with one click to start over.
-    Given I have previously searched for "code"
-    When I enter "Hamilton" into the search box
-    And I click on the X to clear search term
-    Then the search box is empty
 
   @later
   Scenario: I search for something that returns five pages of results should not display pagination with ellipsis
@@ -170,6 +160,13 @@ Feature: Search Page
     And the following links should be disabled:
       | First    |
       | Previous |
+
+  @manual
+  Scenario: Clicking on the X button on the search page should remove search string
+    Given I have previously searched for "code"
+    And the search box is empty
+    When I click on clear search button
+    Then the search box is empty
 
   @manual
   Scenario: Search page should be bookmarkable

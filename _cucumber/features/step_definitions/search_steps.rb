@@ -103,6 +103,10 @@ When(/^I click on the search button$/) do
   @page.site_nav.click_search_button
 end
 
+When(/^I click on clear search button$/) do
+  @page.site_nav.click_search_button
+end
+
 Then(/^nothing will happen and no search will be initiated$/) do
   expect(@page.site_nav.search_field_visible?).to be true
 end
