@@ -51,21 +51,6 @@ class TestOptions < Minitest::Test
 
   end
 
-  def test_set_ports
-    tasks = Options.parse (["-b"])
-    assert(tasks[:set_ports])
-    assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-
-    tasks = Options.parse (["-r"])
-    assert(tasks[:set_ports])
-
-    tasks = Options.parse (["--run-the-stack"])
-    assert(tasks[:set_ports])
-
-    tasks = Options.parse %w(-u)
-    assert(tasks[:set_ports])
-  end
-
   def test_set_build
     tasks = Options.parse (["-b"])
     assert(tasks[:build])
@@ -85,10 +70,10 @@ class TestOptions < Minitest::Test
 
   def test_supporting_services
     tasks = Options.parse (["-r"])
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
 
     tasks = Options.parse (["--run-the-stack"])
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
 
     tasks = Options.parse (['-u'])
     assert_includes tasks[:supporting_services], 'drupal'
@@ -120,7 +105,6 @@ class TestOptions < Minitest::Test
   def test_acceptance_test_target_task
     ClimateControl.modify PARALLEL_TEST: 'true', RHD_JS_DRIVER: 'docker_chrome', RHD_DEFAULT_DRIVER: 'mechanize' do
       tasks = Options.parse (["--acceptance_test_target=http://example.com"])
-      assert(tasks[:set_ports])
       assert(tasks[:build])
       assert_equal('http://example.com', ENV['HOST_TO_TEST'])
       assert_equal('true', ENV['PARALLEL_TEST'])
@@ -136,7 +120,6 @@ class TestOptions < Minitest::Test
     assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"], tasks[:awestruct_command_args])
     refute(tasks[:kill_all])
     refute(tasks[:unit_tests], expected_unit_test_tasks)
-    assert(tasks[:set_ports])
     assert(tasks[:build])
     assert_empty(tasks[:supporting_services])
   end
@@ -147,9 +130,8 @@ class TestOptions < Minitest::Test
     assert_equal(["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
     assert(tasks[:kill_all])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert(tasks[:set_ports])
     assert(tasks[:build])
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
   end
 
   def test_run_stage_pr
@@ -158,8 +140,7 @@ class TestOptions < Minitest::Test
     assert_equal(["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
     assert(tasks[:build])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert(tasks[:set_ports])
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
   end
 
   def test_run_the_stack
@@ -167,7 +148,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w(-d mysql searchisko drupal drupalmysql))
     assert_equal(['--rm', '--service-ports', 'awestruct', 'rake git_setup clean preview[docker]'], tasks[:awestruct_command_args])
 
     tasks = Options.parse %w(-u --run-the-stack)
@@ -177,7 +158,6 @@ class TestOptions < Minitest::Test
   def test_test_task
     tasks = Options.parse(["-t"])
     assert(tasks[:build])
-    assert(tasks[:set_ports])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
   end

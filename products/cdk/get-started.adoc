@@ -16,7 +16,7 @@ Build your first container
 
 ## Step1 Content
 
-In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Red Hat Enterprise Linux Server, and additional development tools are included in Red Hat Enterprise Linux Developer Suite.
+In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Developer Suite includes Red Hat Enterprise Linux Server, and additional development tools.
 
 // This link will need to be updated for GA and later.
 Download the #{site.download_manager_base_url}/download-manager/file/cdk-2.0.0.zip[cdk-2.0.0.zip].
@@ -29,7 +29,7 @@ Note: Later in this guide, you will need the Red Hat username and password you c
 The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the CDK you will need:
 
 . A virtualization platform: http://virtualbox.org/[VirtualBox, window='_blank'], https://www.vmware.com/products/desktop-virtualization.html[VMware, window='_blank'], or Linux KVM/libvirt
-. http://www.vagrantup.com/[Vagrant, window='_blank'], an open source tool for creating and distributing portable development environments.
+. http://www.vagrantup.com/about.html[Vagrant, window='_blank'], an open source tool for creating and distributing portable development environments.
 . The CDK Red Hat Enterprise Linux Vagrant box that matches your virtualization platform.
 . https://www.cygwin.com/[Cygwin, window='_blank'] (Microsoft Windows only) to provide `ssh` and `rsync`.
 
@@ -46,10 +46,10 @@ Note: If you are using Microsoft Windows, Apple Mac OS X, or a Linux distributio
 
 ### Install Vagrant
 
-Next, download http://www.vagrantup.com/[Vagrant, window='_blank']. All of the VM configuration details on your development system will be handled for you by Vagrant.
+Next, install Vagrant. All of the CDK VM configuration and managment on your development system will be handled for you by Vagrant.
 
 [.callout-light]
-*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1*. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
+*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1* on Microsoft Windows and Apple Mac OS X. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
 
 If you are using:
 

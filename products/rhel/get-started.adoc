@@ -1127,7 +1127,7 @@ If yum updates the kernel package or installs a large number of updates, you sho
 
 ### Enable additional software repositories
 
-In this step you will configure your system to obtain software from the _Optional RPMs_ and _RHSCL_ software repositories. The _Optional RPMs_ repository includes a number of development packages. The RHSCL repository includes the both the RHSCL software collections as well as DTS (the Red Hat Developer Toolset).
+In this step you will configure your system to obtain software from the _Optional RPMs_ and _RHSCL_ software repositories. The _Optional RPMs_ repository includes a number of development packages. The RHSCL repository includes the both Red Software Collections as well as Red Hat Developer Toolset (DTS).
 
 [.code-block]
 ```
@@ -1979,122 +1979,146 @@ On the VM the path to the shared folders will be `/mnt/hgfs/<folder name>`.
 
 ## Step4 Content
 
-In this step you will select your programming language and then set up and run a simple “Hello, World” application. You have a choice for traditional development or do a docker pull for building in containers.
+In this step you will select your programming language and then set up and run a simple “Hello, World” application. You can a install languages, frameworks, and middleware by simply using `yum install`. For container development, a number of the development technologies are available as container images that can be installed with `docker pull`.
+
 
 ## CPP Tab
 
+Developed by the GNU project, the GNU Compiler Collection (GCC) includes front ends for C, {cpp}, and Fortran.
+
 [.large-17.columns.recommended]
-*GCC via Red Hat Developer Toolset on RHEL 7* [red]_Recommended_ +
-Developed by the GNU project as the free compiler of the GNU system, it includes front ends for C, C++, and Fortran. Also includes Eclipse, GDB, SystemTap, Oprofile, Valgrind and much more.
+*GCC via Developer Toolset (DTS) on RHEL 7* [red]_Recommended_ +
+In addition to the latest compilers, DTS includes Eclipse, GDB, SystemTap, Oprofile, Valgrind and much more.
 [.large-7.columns.tc-button]
-#{site.base_url}/products/rhel/get-started-rhel7-cpp/[Get Started]
+#{site.base_url}/products/developertoolset/get-started-rhel7-cpp/[Get Started]
 
 [.large-17.columns]
 *GCC 5 base version on RHEL 7* +
-Supported for the entire life of RHEL 7.
+The included GCC compilers are supported for the entire ten year life of Red Hat Enterprise Linux 7.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-rhel7-cpp/[Get Started]
 
+
 ## Java Tab
+OpenJDK (Open Java Development Kit) is a free and open source implementation of the Java Platform, Standard Edition (Java SE).
 
 [.large-17.columns.recommended]
 *Java on RHEL 7 with OpenJDK 8* +
-OpenJDK (Open Java Development Kit) is a free and open source implementation of the Java Platform, Standard Edition (Java SE).
+Install OpenJDK or one of the other included JDKs from Oracle and IBM on Red Hat Enterprise Linux 7.
+
 [.large-7.columns.tc-button]
 #{site.base_url}/products/rhel/get-started-rhel7-java/[Get Started]
 
 
 ## Nodejs Tab
+Node.js® is an event-driven I/O server-side JavaScript runtime that is lightweight and efficient.
 
 [.large-17.columns.recommended]
-*Node.js 0.10 update for RHEL 7 (yearly updates)* [red]_Recommended_ +
-Node.js® is an event-driven I/O server-side JavaScript runtime that is lightweight and efficient.
+*Node.js v4 via RHSCL 2.2 Beta* [red]_Recommended_ +
+The beta release of Red Hat Software Collections 2.2 includes Node.js v4.4.
+
 [.large-7.columns.tc-button]
-#{site.base_url}/products/softwarecollections/get-started-rhel6-nodejs/[Get Started]
+#{site.base_url}/products/softwarecollections/get-started-rhel7-nodejsbeta/[Get Started]
 
 [.large-17.columns]
-*Node.js 0.10 docker image for RHEL 7* +
-This is the same version as above, but packaged in docker image format.
+*Node.js v0.10 via Red Hat Software Collections (yearly updates)* +
+Use Node.js 0.10 from Red Hat Software Collections.
+
+[.large-7.columns.tc-link]
+#{site.base_url}/products/softwarecollections/get-started-rhel7-nodejs/[Get Started]
+
+[.large-17.columns]
+*Node.js v0.10 docker image for RHEL 7* +
+Build your first container using Node.js.
+
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-dcr7-nodejs/[Get Started]
 
+
 ## Perl Tab
+Perl 5 is a highly capable, feature-rich programming language with over 27 years of development, and available on over 100 platforms.
 
 [.large-17.columns.recommended]
 *Perl 5.20 update for RHEL 7* [red]_Recommended_ +
-Perl 5 is a highly capable, feature-rich programming language with over 27 years of development, and available on over 100 platforms.
+Use Perl from Red Hat Software Collections with annual updates.
+
 [.large-7.columns.tc-button]
 #{site.base_url}/products/softwarecollections/get-started-rhel7-perl/[Get Started]
 
 [.large-17.columns]
 *Perl 5.16 default on RHEL 7* +
-Supported for the entire life of RHEL 7.
+The included Perl environment is supported for the entire ten year lifespan of Red Hat Enterprise Linux.
+
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-rhel7-perl/[Get Started]
 
 [.large-17.columns]
 *Perl 5.20 docker image for RHEL 7* (docker pull rhscl/perl-520-rhel7) +
-This is the same version as above, but packaged in docker image format.
-[.large-7.columns.tc-link]
-#{site.base_url}/products/rhel/get-started-rhel7-perl/[Get Started]
+
 
 ## PHP Tab
+PHP is a popular server-side HTML embedded scripting language that is especially suited to web development, and is the foundation for WordPress and Drupal.
 
 [.large-17.columns.recommended]
 *PHP 5.4 default on RHEL 7* [red]_Recommended_ +
-PHP is a popular server-side HTML embedded scripting language that is especially suited to web development, and the foundation for WordPress and Drupal.
+The included PHP environment is supported for the entire ten year lifespan of Red Hat Enterprise Linux 7.
 [.large-7.columns.tc-button]
 #{site.base_url}/products/rhel/get-started-rhel7-php/[Get Started]
 
 [.large-17.columns]
-*PHP 5.6 on RHEL 7* +
-Updated yearly to stay current with the upstream.
+*PHP 5.6 update on RHEL 7* +
+Use PHP from Red Hat Software Collections with annual updates.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/softwarecollections/get-started-rhel7-php/[Get Started]
 
 [.large-17.columns]
 *PHP 5.6 docker image for RHEL 7* +
-This is the same version as above, but packaged in docker image format.
+Build your first container using PHP.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-dcr7-php/[Get Started]
 
+
+
 ## Python Tab
+Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its built-in data structures, combined with dynamic typing and dynamic binding, make it very attractive for rapid application development and integration.
 
 [.large-17.columns.recommended]
 *Python 2.7 default on RHEL 7* [red]_Recommended_ +
-Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its built-in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development and integration.
+The included Python environment is supported for the entire ten year lifespan of Red Hat Enterprise Linux 7.
 [.large-7.columns.tc-button]
 #{site.base_url}/products/rhel/get-started-rhel7-python/[Get Started]
 
 [.large-17.columns]
 *Python 3.4 on RHEL 7* +
-Updated yearly to stay current with the upstream.
+Use Python 3 from Red Hat Software Collections with annual updates.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/softwarecollections/get-started-rhel7-python/[Get Started]
 
 [.large-17.columns]
 *Python 3.4 docker image for RHEL 7* +
-This is the same version as above, but packaged in docker image format.
+Build your first container using Python 3.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-dcr7-python/[Get Started]
 
 ## Ruby Tab
+Ruby is a dynamic, open source scripting language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
 
 [.large-17.columns.recommended]
-*Ruby 2.2 on RHEL 7* [red]_Recommended_ +
-Ruby is a dynamic, open source scripting language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write. Updated yearly.
+*Ruby 2.2 update on RHEL 7* [red]_Recommended_ +
+Use Ruby from Red Hat Software Collections with annual updates.
 [.large-7.columns.tc-button]
 #{site.base_url}/products/softwarecollections/get-started-rhel7-ruby/[Get Started]
 
 [.large-17.columns]
 *Ruby 2.0 default on RHEL 7* +
-Supported for the entire life of RHEL 7
+The included Ruby environment is supported for the entire ten year lifespan of Red Hat Enterprise Linux 7.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-rhel7-ruby/[Get Started]
 
 [.large-17.columns]
 *Ruby 2.2 docker image for RHEL 7* +
-Same Ruby 2.2 as above in docker format. Get Ruby-on-Rails [docker pull rhscl/ror-41-rhel7)].
+Build your first container using Ruby. +
+Get Ruby-on-Rails `docker pull rhscl/ror-41-rhel7`.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-dcr7-ruby/[Get Started]
 
@@ -2115,37 +2139,23 @@ http://developerblog.redhat.com/[http://developerblog.redhat.com, window='_blank
 [[troubleshooting]]Troubleshooting and FAQ
 
 ## Faq section
-. Where can I find information about no-cost subscriptions for developers?
+. *As a developer, how can I get a no-cost Red Hat Enterprise Linux subscription?*
 +
-See link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite subscription].
-. My system is unable to download updates from Red Hat.
+When you link:#{site.base_url}/products/rhel/download/[register and download] Red Hat Enterprise Linux Server through link:#{site.base_url}/[developers.redhat.com], a no-cost Red Hat Enterprise Linux Developer Suite subscription will be automatically added to your account. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite subscription].
+
+. *My system is unable to download software or updates from Red Hat.*
 +
-Your system must be registered with Red Hat using `subscription-manager register`. You need to have a current Red Hat subscription.
+Your system must be registered with Red Hat using `subscription-manager register`. You need to have a current Red Hat subscription. Registering your system attaches it to your subscription.
+
+. *How do I register my system after installation?*
 +
-. The RHSCL repository is not available or is not found on my system.
+Use Red Hat Subscription Manager, which can be started from the system menu as a graphical tool, or from the command line:
 +
-The name of the repository depends on whether you have a server, workstation, or desktop version of Red Hat Enterprise Linux installed.
+`# subscription-manager register --auto-attach`
 +
-Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. For developers, Red Hat Enterprise Linux Developer Suite includes both RHSCL and DTS.
-+
-See https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS), window='_blank'].
-+
-. How do I get newer versions of languages like Perl, PHP, Python, and Ruby in Red Hat Enterprise Linux?
-+
-How can I get Python 3 on Red Hat Enterprise Linux
-+
-https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Red Hat Software Collections, window='_blank'] delivers the latest, stable versions of dynamic languages, open source databases, and web development tools that can be deployed alongside those included in Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
-. How can I get Eclipse installed on Red Hat Enterprise Linux?
-+
-How can I get a newer C/C++ compiler for Red Hat Enterprise Linux 7?
-+
-Where can I get an IDE for C/C++ development on Red Hat Enterprise Linux 7?
-+
-Red Hat Developer Toolset provides the latest, stable, open source C and {cpp} compilers and complementary development tools including Eclipse. DTS enables developers to compile applications once and deploy across multiple versions of Red Hat Enterprise Linux. The Red Hat Developer Toolset uses Red Hat Software Collections to install a parallel set of packages in `/opt/rh` where they will not override the system packages that come with Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
-+
-See #{site.base_url}/products/developertoolset/get-started-rhel7-cpp/[Get started developing with C++ and Eclipse from the Red Hat Developer Toolset]
-+
-. I've got a text-based login screen, how do I get a graphical one?
+For additional information, see https://access.redhat.com/solutions/253273[How to register and subscribe a system to the Red Hat Customer Portal using Red Hat Subscription Manager, window='_blank'].
+
+. *I've got a text-based login screen, how do I get a graphical one?*
 +
 During installation of Red Hat Enterprise Linux Server, selecting the _Server with a GUI_ software option will install a full graphical desktop and configure it to start at boot time. You can install the graphical desktop with `yum install` after registering your system with Red Hat. Log in to the system as the `root` user, then use the following commands:
 +
@@ -2156,7 +2166,17 @@ During installation of Red Hat Enterprise Linux Server, selecting the _Server wi
 ```
 When complete, type `systemctl reboot` to reboot your system. When the system restarts, you should see a graphical login screen.
 
-. How do I install the C/{cpp} compiler?
+. *I didn't configure a network connection during installation, how can I do this on a running system?*
++
+*Registration fails with the message that _subscription.rhn.redhat.com is unreachable_, how do I resolve this?*
++
+If you did not configure a network connection during installation or the configuration was unsuccessful, see the https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/index.html[Red Hat Enterprise Linux Networking Guide, window='_blank'] for information on configuring networking using either graphical or command-line tools.
+
+
+
+#### Developing on Red Hat Enterprise Linux FAQ
+
+. *How do I install the C/{cpp} compiler that is included with Red Hat Enterprise Linux?*
 +
 During installation, selecting the _Development tools_ software option installs the C/{cpp} compiler GCC/pass:[G++] and other related development tools. You can install these tools with `yum install` after registering your system with Red Hat. Log in to the system as the `root` user then use the following command:
 +
@@ -2164,16 +2184,37 @@ During installation, selecting the _Development tools_ software option installs 
 ```
 # yum install @development
 ```
-. I didn't configure a network connection during installation, how do I this on a running system?
+
+. *How can I get a newer C/C++ compiler for Red Hat Enterprise Linux 7?*
 +
-Registration fails with the message that _subscription.rhn.redhat.com is unreachable_, how do I resolve this?
+*Where can I get an IDE for C/C++ development on Red Hat Enterprise Linux 7?*
 +
-If you did not configure a network connection during installation or the configuration was unsuccessful, see the https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/index.html[Red Hat Enterprise Linux Networking Guide, window='_blank'] for information on configuring networking using either graphical or command-line tools.
+link:#{site.base_url}/products/softwarecollections/[Red Hat Developer Toolset] provides the latest, stable, open source C and {cpp} compilers and complementary development tools including Eclipse. DTS enables developers to compile applications once and deploy across multiple versions of Red Hat Enterprise Linux. Red Hat Developer Toolset uses Red Hat Software Collections to install a parallel set of packages in `/opt/rh` where they will not override the system packages that come with Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
 +
-. How do I register my system after installation?
+See #{site.base_url}/products/developertoolset/get-started-rhel7-cpp/[Get started developing with C++ and Eclipse from the Red Hat Developer Toolset]
+
+. *How do I get newer versions of languages like Perl, PHP, Python, and Ruby on Red Hat Enterprise Linux?*
 +
-Use Red Hat Subscription Manager, which can be started from the system menu as a graphical tool, or from the command line using the following command:
+link:#{site.base_url}/products/softwarecollections/[Red Hat Software Collections, window='_blank'] delivers the latest, stable versions of dynamic languages, open source databases, and web development tools that can be deployed alongside those included in Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
+
+. *How can I get Python 3 on Red Hat Enterprise Linux*?
 +
-`# subscription-manager register --auto-attach`
+See #{site.base_url}/products/softwarecollections/get-started-rhel7-python/[Get Started with Python 3 using RHSCL].
+
+. *How can I get Node.js on Red Hat Enterprise Linux*?
 +
-For more information see https://access.redhat.com/solutions/253273[How to register and subscribe a system to the Red Hat Customer Portal using Red Hat Subscription Manager, window='_blank'].
+See #{site.base_url}/products/softwarecollections/get-started-rhel7-nodejs/[Get Started with Node.js using RHSCL].
+
+. *The RHSCL repository is not available or is not found on my system.*
++
+The name of the repository depends on whether you have a server, workstation, or desktop version of Red Hat Enterprise Linux installed.
++
+Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. For information about which subscriptions include RHSCL, see https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS), window='_blank'].
++
+As a developer, you can get a no-cost Red Hat Enterprise Linux Developer Suite subscription which includes both RHSCL and DTS. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite subscription].
+
+. *How can I get Eclipse installed on Red Hat Enterprise Linux?*
++
+For C/{cpp} development, DTS includes Eclipse with C/{cpp} Development Tooling (CDT). See link:#{site.base_url}/products/developertoolset/get-started-rhel7-cpp/[Get started developing with C++ and Eclipse from the Red Hat Developer Toolset].
++
+For Java development, link:#{site.base_url}/products/devstudio/overview/[Red Hat JBoss Developer Studio] provides a single development tool, tailored for extreme productivity, that is built on Eclipse. Developers can get a no-cost subscription by link:#{site.base_url}/products/devstudio/download/[registering and downloading] through developers.redhat.com.
