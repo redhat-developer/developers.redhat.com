@@ -23,7 +23,6 @@ class Options
       opts.on('-r', '--restart', 'Restart the containers') do |r|
         tasks[:decrypt] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] = []
       end
 
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
@@ -52,15 +51,9 @@ class Options
       end
 
       opts.on('--drupal-nightly', 'Start up and enable drupal') do |u|
-        tasks[:drupal] = true
         tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
-      end
-
-      opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
-        tasks[:decrypt] = true
-        tasks[:drupal] = true
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -89,7 +82,7 @@ class Options
         tasks[:kill_all] = false
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
-        tasks[:supporting_services] += [ENV['RHD_DOCKER_DRIVER']]
+        tasks[:supporting_services] = [ENV['RHD_DOCKER_DRIVER']]
         tasks[:acceptance_test_target_task] = ["--rm", "--service-ports", "awestruct_acceptance_test", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"]
       end
 
@@ -127,21 +120,26 @@ class Options
 
     opts_parse.parse! args
 
+    environment = RhdEnvironments.new(File.expand_path('../environments',File.dirname(__FILE__))).load_environment(tasks[:environment_name])
+    tasks[:environment] = environment
+
+    # TODO - Can this be pulled into the environment specific docker-compose files?
     # change the profile awestruct runs with
     if tasks[:awestruct_command_args]
-      if tasks[:drupal]
+      if environment.is_drupal_environment?
         tasks[:awestruct_command_args][-1].gsub! 'profile', 'drupal'
         tasks[:awestruct_command_args][-1].gsub! 'preview', 'gen'
-        tasks[:awestruct_command_args].delete '--no-deps'
       else
         tasks[:awestruct_command_args][-1].gsub! 'profile', 'docker'
       end
     end
 
-    environment = RhdEnvironments.new(File.expand_path('../environments',File.dirname(__FILE__))).load_environment(tasks[:environment_name])
-    tasks[:environment] = environment
 
+    #
     # Set the list of supporting services to be started from the environment, unless the options above explicitly set it first
+    # For example: the reap-pr option doesn't require any supporting services, so we don't want to set them here from the
+    # environment.
+    #
     if !tasks[:supporting_services]
       tasks[:supporting_services] = environment.get_supporting_services
     end

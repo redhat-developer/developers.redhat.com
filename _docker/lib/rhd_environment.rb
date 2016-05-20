@@ -42,6 +42,18 @@ class RhdEnvironment
   end
 
   #
+  # Returns the likely docker-compose project name for this environment. If the environment
+  # variable ENV['COMPOSE_PROJECT_NAME'] is set, then this is used in preference.
+  #
+  def get_compose_project_name
+    if ENV['COMPOSE_PROJECT_NAME'].to_s == ''
+      @environment_name.gsub('-','')
+    else
+      ENV['COMPOSE_PROJECT_NAME']
+    end
+  end
+
+  #
   # Provides the list of supporting services that should be started in each environment before
   # running Awestruct
   #
