@@ -70,7 +70,14 @@ Then(/^each Technologies sub-menu heading should contain a link to its retrospec
   table.raw.each do |row|
     sub_items = row.first
     href = @page.site_nav.get_href_for(sub_items)
-    expect(href).to eq "#{$host_to_test}/products##{sub_items.downcase}"
+    case sub_items.downcase
+      when 'cloud'
+        expect(href).to eq "#{$host_to_test}/products#private_cloud"
+      when 'accelerated development and management'
+        expect(href).to eq "#{$host_to_test}/products#development_and_management"
+      else
+        expect(href).to eq "#{$host_to_test}/products##{sub_items.downcase.gsub(' ', '_')}"
+    end
   end
 end
 
