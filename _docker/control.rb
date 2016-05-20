@@ -67,18 +67,18 @@ def block_wait_drupal_started(environment, supporting_services)
     drupal_container = get_docker_container(environment, 'drupal_1')
 
     puts 'Waiting to proceed until Drupal is up'
-    drupal_ip = determine_docker_host_for_container_ports
+    docker_host = determine_docker_host_for_container_ports
     drupal_port80_info = drupal_container.json['NetworkSettings']['Ports']['80/tcp'].first
     drupal_port = drupal_port80_info['HostPort']
 
     # Add the drupal cdn prefix
     ENV['cdn_prefix'] = 'sites/default/files'
 
-    puts "Testing drupal access via #{drupal_ip}:#{drupal_port}"
+    puts "Testing drupal access via #{docker_host}:#{drupal_port}"
     up = false
     until up do
       begin
-        response = Net::HTTP.get_response(URI("http://#{drupal_ip}:#{drupal_port}/user/login"))
+        response = Net::HTTP.get_response(URI("http://#{docker_host}:#{drupal_port}/user/login"))
         response_code = response.code.to_i
         up = response_code < 400
       rescue
@@ -86,9 +86,8 @@ def block_wait_drupal_started(environment, supporting_services)
       end
     end
 
-    # Add this to the ENV so we can pass it to the awestruct build
-    # TODO - What is the hack here and is it still needed?
-    ENV['DRUPAL_HOST_IP'] = drupal_ip # somewhat of a hack to make this work on Jenkins
+    # Add this to the ENV so we can pass it to the awestruct build and also to templating of environment resources
+    ENV['DRUPAL_HOST_IP'] = docker_host
     ENV['DRUPAL_HOST_PORT'] = drupal_port
   else
     puts "Not waiting for Drupal to start as it is not a required supporting_service"
@@ -139,6 +138,7 @@ def block_wait_searchisko_started(environment, supporting_services)
         up = false
       end
     end
+    ENV['SEARCHISKO_HOST_IP'] = docker_host
     ENV['SEARCHISKO_HOST_PORT'] = searchisko_port
   else
     puts "Not waiting for Searchisko to start as it is not a required supporting_service"
@@ -260,9 +260,11 @@ def start_and_wait_for_supporting_services(environment, supporting_services, sys
 
   unless supporting_services.nil? or supporting_services.empty?
 
+    environment.create_template_resources
     system_exec.execute_docker_compose(environment, :up, %w(-d --no-recreate).concat(supporting_services))
     block_wait_searchisko_started(environment, supporting_services)
     block_wait_drupal_started(environment, supporting_services)
+    environment.template_resources
 
     puts "Started all required supporting services."
   else

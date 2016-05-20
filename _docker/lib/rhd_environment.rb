@@ -1,3 +1,5 @@
+require 'erb'
+
 #
 # Models an environment supported by the developers.redhat.com start-up scripts.
 #
@@ -41,6 +43,45 @@ class RhdEnvironment
     has_docker_compose
   end
 
+  def create_file(file_name)
+    absolute_file_path = get_absolute_file_name(file_name)
+
+    FileUtils.rm(absolute_file_path, :force => true)
+    FileUtils.touch(absolute_file_path)
+    get_file(file_name)
+  end
+
+  def get_absolute_file_name(file_name)
+    "#{@environment_directory}/#{file_name}"
+  end
+
+  def get_file(file_name)
+    file = File.new(get_absolute_file_name(file_name))
+    File.exist?(file) ? file : nil
+  end
+
+  #
+  # Creates any resources that will be templated by the environment prior to starting the Docker
+  # containers for this environment, in-case the resources are bind-mounted into the Docker containers.
+  #
+  def create_template_resources
+    if @environment_name == 'drupal-pull-request'
+      create_file('rhd.settings.php')
+    end
+  end
+
+  #
+  # Templates any resources required by the environment. In reality the only environment
+  # that needs this is the Drupal pull-request environment
+  #
+  def template_resources
+
+    if @environment_name == 'drupal-pull-request'
+      output_file = get_file('rhd.settings.php')
+      File.write(output_file, ERB.new(File.read(get_file('rhd.settings.php.erb'))).result)
+    end
+  end
+
   #
   # Returns the likely docker-compose project name for this environment. If the environment
   # variable ENV['COMPOSE_PROJECT_NAME'] is set, then this is used in preference.
@@ -72,5 +113,7 @@ class RhdEnvironment
     supporting_services
 
   end
+
+  private :get_absolute_file_name
 
 end

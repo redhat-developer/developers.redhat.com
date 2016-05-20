@@ -59,6 +59,7 @@ services:
       - ghprbActualCommit
       - github_status_api_token
       - BUILD_URL
+      - AWE_PROC_COUNT=10
 
   drupal:
     build: ../../drupal

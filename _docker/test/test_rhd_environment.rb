@@ -12,6 +12,70 @@ class TestRhdEnvironment < MiniTest::Test
 
   def teardown
     ENV['COMPOSE_PROJECT_NAME'] = ''
+    ENV['DRUPAL_HOST_IP'] = ''
+    ENV['DRUPAL_HOST_PORT'] = ''
+    ENV['SEARCHISKO_HOST_IP'] = ''
+    ENV['SEARCHISKO_HOST_PORT'] = ''
+
+    FileUtils.rm("#{@environments_directory}/valid-environment/test.txt", :force => true)
+    FileUtils.rm("#{@environments_directory}/drupal-pull-request/rhd.settings.php", :force => true)
+  end
+
+  def test_create_template_resources
+    @environment.environment_name = 'drupal-pull-request'
+    @environment.environment_directory = File.expand_path('test-environments/drupal-pull-request',File.dirname(__FILE__))
+
+    assert_equal(false, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
+    @environment.create_template_resources
+    assert_equal(true, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
+  end
+
+  def test_create_template_resources_not_drupal_pull_request
+    assert_equal(false, File.exist?("#{@environments_directory}/valid-environment/rhd.settings.php"))
+    @environment.create_template_resources
+    assert_equal(false, File.exist?("#{@environments_directory}/valid-environment/rhd.settings.php"))
+  end
+
+  def test_create_file
+    assert_equal(false, File.exist?("#{@environments_directory}/valid-environment/test.txt"))
+    @environment.create_file('test.txt')
+    assert_equal(true, File.exist?("#{@environments_directory}/valid-environment/test.txt"))
+  end
+
+  def test_template_resources
+
+    ENV['DRUPAL_HOST_IP'] = '10.20.30.40'
+    ENV['DRUPAL_HOST_PORT'] = '80'
+    ENV['SEARCHISKO_HOST_IP'] = '11.21.31.41'
+    ENV['SEARCHISKO_HOST_PORT'] = '8080'
+
+    @environment.environment_name = 'drupal-pull-request'
+    @environment.environment_directory = File.expand_path('test-environments/drupal-pull-request',File.dirname(__FILE__))
+
+    assert_equal(false, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
+
+    @environment.create_template_resources
+    @environment.template_resources
+
+    assert_equal(true, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
+
+    assert_equal(false, File.open("#{@environments_directory}/drupal-pull-request/rhd.settings.php").grep(/10.20.30.40$/).empty?)
+    assert_equal(false, File.open("#{@environments_directory}/drupal-pull-request/rhd.settings.php").grep(/80$/).empty?)
+    assert_equal(false, File.open("#{@environments_directory}/drupal-pull-request/rhd.settings.php").grep(/11.21.31.41$/).empty?)
+    assert_equal(false, File.open("#{@environments_directory}/drupal-pull-request/rhd.settings.php").grep(/8080$/).empty?)
+
+  end
+
+  def test_create_file_already_existing
+    FileUtils.touch("#{@environments_directory}/valid-environment/test.txt")
+    assert_equal(true, File.exist?("#{@environments_directory}/valid-environment/test.txt"))
+
+    mtime = File.mtime("#{@environments_directory}/valid-environment/test.txt")
+
+    @environment.create_file('test.txt')
+
+    assert_equal(true, File.exist?("#{@environments_directory}/valid-environment/test.txt"))
+    refute_same(mtime, File.mtime("#{@environments_directory}/valid-environment/test.txt"))
   end
 
   def test_get_docker_compose_project_name_no_env_variable
