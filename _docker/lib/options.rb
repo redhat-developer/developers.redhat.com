@@ -5,6 +5,7 @@ class Options
   def self.parse(args)
     tasks = {}
     tasks[:environment_name] = 'awestruct-pull-request'
+    tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
 
     opts_parse = OptionParser.new do |opts|
       opts.banner = 'Usage: control.rb [options]'
@@ -47,18 +48,11 @@ class Options
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
-        tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[profile]"]
       end
 
       opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
         tasks[:decrypt] = true
         tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
-      end
-
-      opts.on('--drupal-nightly', 'Start up and enable drupal') do |u|
-        tasks[:build] = true
-        tasks[:kill_all] = true
-        tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -109,7 +103,6 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
       # No argument, shows at tail.  This will print an options summary.
