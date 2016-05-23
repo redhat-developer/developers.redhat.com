@@ -81,19 +81,20 @@ Feature: Site navigation menu
       | INFRASTRUCTURE |
       | CLOUD          |
       | MOBILE         |
-      | MIDDLEWARE     |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
     And the sub-menu should include a list of available technologies
 
-  # currently failing, not correctly linked.
-  @products @desktop @ignore
+  @products @desktop
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
     Given I am on the Home page
     When I hover over the Technologies menu item
     Then each Technologies sub-menu heading should contain a link to its retrospective section of the technologies page:
-      | INFRASTRUCTURE |
-      | CLOUD          |
-      | MOBILE         |
-      | MIDDLEWARE     |
+      | INFRASTRUCTURE                         |
+      | CLOUD                                  |
+      | MOBILE                                 |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
 
   @products @desktop @smoke
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
@@ -109,7 +110,8 @@ Feature: Site navigation menu
       | INFRASTRUCTURE |
       | CLOUD          |
       | MOBILE         |
-      | MIDDLEWARE     |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
 
   @desktop @smoke
   Scenario: Hovering over the COMMUNITIES menu should display additional sub-menu with options
