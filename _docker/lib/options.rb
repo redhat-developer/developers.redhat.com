@@ -1,7 +1,10 @@
+require_relative 'rhd_environments'
+
 class Options
 
   def self.parse(args)
-    tasks = {supporting_services: %w(-d)}
+    tasks = {}
+    tasks[:environment_name] = 'awestruct-pull-request'
 
     opts_parse = OptionParser.new do |opts|
       opts.banner = 'Usage: control.rb [options]'
@@ -13,16 +16,25 @@ class Options
         tasks[:docker] = d
       end
 
+      opts.on('-e ENVIRONMENT', String, 'The environment in which to operate') do | environment |
+        tasks[:environment_name] = environment
+      end
+
+      opts.on('--backup [BACKUP_NAME]', String, 'Take a backup of the environment') do |backup|
+        tasks[:build] = true
+        tasks[:awestruct_command_args] = ['--rm', 'backup', "#{backup}"]
+      end
+
       opts.on('-r', '--restart', 'Restart the containers') do |r|
         tasks[:decrypt] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('-t', '--unit-test', 'Run the unit tests') do |b|
         tasks[:unit_tests] = unit_test_tasks
         tasks[:decrypt] = true
         tasks[:build] = true
+        tasks[:supporting_services] = []
       end
 
 
@@ -30,6 +42,7 @@ class Options
         tasks[:decrypt] = true
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
+        tasks[:supporting_services] = []
       end
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
@@ -43,17 +56,9 @@ class Options
       end
 
       opts.on('--drupal-nightly', 'Start up and enable drupal') do |u|
-        tasks[:drupal] = true
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(drupal drupalmysql mysql searchisko)
         tasks[:awestruct_command_args] = ['--no-deps', '--rm', '--service-ports', 'awestruct', "rake git_setup clean gen[drupal]"]
-      end
-
-      opts.on('-u', '--drupal', 'Start up and enable drupal') do |u|
-        tasks[:decrypt] = true
-        tasks[:drupal] = true
-        tasks[:supporting_services] += %w(drupal drupalmysql)
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -61,7 +66,6 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |host|
@@ -83,8 +87,8 @@ class Options
         tasks[:kill_all] = false
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
-        tasks[:supporting_services] += [ENV['RHD_DOCKER_DRIVER']]
-        tasks[:acceptance_test_target_task] = ["--rm", "--service-ports", "awestruct_acceptance_test", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"]
+        tasks[:supporting_services] = [ENV['RHD_DOCKER_DRIVER']]
+        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports', 'acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"]
       end
 
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
@@ -98,7 +102,6 @@ class Options
         tasks[:kill_all] = true
         tasks[:build] = true
         tasks[:unit_tests] = unit_test_tasks
-        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
@@ -106,7 +109,6 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
-        tasks[:supporting_services] += %w(mysql searchisko drupal drupalmysql)
         tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[profile]"]
       end
 
@@ -118,30 +120,40 @@ class Options
     end
 
     if args.empty?
-      args += ['-h'] #Show the help
+     args += ['-h'] #Show the help
     end
 
     opts_parse.parse! args
 
-    #Flag to see if anything was set it supporting_services
-    tasks[:should_start_supporting_services] = tasks[:supporting_services].size > 1
+    testing_directory = File.expand_path('../environments/testing',File.dirname(__FILE__))
+    environment = RhdEnvironments.new(File.expand_path('../environments',File.dirname(__FILE__)), testing_directory).load_environment(tasks[:environment_name])
+    tasks[:environment] = environment
 
+    # TODO - Can this be pulled into the environment specific docker-compose files?
     # change the profile awestruct runs with
     if tasks[:awestruct_command_args]
-      if tasks[:drupal]
+      if environment.is_drupal_environment?
         tasks[:awestruct_command_args][-1].gsub! 'profile', 'drupal'
         tasks[:awestruct_command_args][-1].gsub! 'preview', 'gen'
-        tasks[:awestruct_command_args].delete '--no-deps'
       else
         tasks[:awestruct_command_args][-1].gsub! 'profile', 'docker'
       end
     end
 
+
+    #
+    # Set the list of supporting services to be started from the environment, unless the options above explicitly set it first
+    # For example: the reap-pr option doesn't require any supporting services, so we don't want to set them here from the
+    # environment.
+    #
+    if !tasks[:supporting_services]
+      tasks[:supporting_services] = environment.get_supporting_services
+    end
     tasks
   end
 
   def self.unit_test_tasks
-    ['--no-deps', '--rm', 'awestruct_unit_tests', "bundle exec rake test"]
+    ['--no-deps', '--rm', 'unit_tests', 'bundle exec rake test']
   end
 
 end
