@@ -169,7 +169,7 @@ class TestOptions < Minitest::Test
       assert_equal('true', ENV['PARALLEL_TEST'])
       assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
       assert_equal('mechanize', ENV['RHD_DEFAULT_DRIVER'])
-      assert_equal(["--rm", "--service-ports", "awestruct_acceptance_test", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"], tasks[:acceptance_test_target_task])
+      assert_equal(["--rm", "--service-ports", "acceptance_tests", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"], tasks[:acceptance_test_target_task])
     end
   end
 
@@ -292,6 +292,6 @@ class TestOptions < Minitest::Test
   end
 
   private def expected_unit_test_tasks
-    ['--no-deps', '--rm', 'awestruct_unit_tests', 'bundle exec rake test']
+    ['--no-deps', '--rm', 'unit_tests', 'bundle exec rake test']
   end
 end

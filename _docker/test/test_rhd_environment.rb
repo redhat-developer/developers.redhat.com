@@ -7,7 +7,8 @@ class TestRhdEnvironment < MiniTest::Test
   def setup
     ENV['COMPOSE_PROJECT_NAME'] = ''
     @environments_directory = File.expand_path('test-environments',File.dirname(__FILE__))
-    @environment = RhdEnvironment.new("#{@environments_directory}/valid-environment")
+    @testing_directory = File.expand_path('test-environments/testing',File.dirname(__FILE__))
+    @environment = RhdEnvironment.new("#{@environments_directory}/valid-environment", @testing_directory)
   end
 
   def teardown
@@ -19,6 +20,10 @@ class TestRhdEnvironment < MiniTest::Test
 
     FileUtils.rm("#{@environments_directory}/valid-environment/test.txt", :force => true)
     FileUtils.rm("#{@environments_directory}/drupal-pull-request/rhd.settings.php", :force => true)
+  end
+
+  def test_get_testing_docker_compose_file
+    assert_equal("#{@testing_directory}/docker-compose.yml", @environment.get_testing_docker_compose_file)
   end
 
   def test_create_template_resources
@@ -149,7 +154,7 @@ class TestRhdEnvironment < MiniTest::Test
   end
 
   def test_invalid_environment_is_not_valid
-    assert_equal(false, RhdEnvironment.new("#{@environments_directory}/invalid-environment").is_valid_environment?)
+    assert_equal(false, RhdEnvironment.new("#{@environments_directory}/invalid-environment", @testing_directory).is_valid_environment?)
   end
 
   def test_get_docker_compose_file

@@ -4,10 +4,13 @@ require_relative 'rhd_environment'
 # Class that loads the list of environments that are currently supported by
 # the developers.redhat.com control scripts
 #
+# @author rblake@redhat.com
+#
 class RhdEnvironments
 
-  def initialize(environments_directory)
+  def initialize(environments_directory, testing_directory)
     @environments_directory = environments_directory
+    @testing_directory = testing_directory
   end
 
   #
@@ -41,7 +44,7 @@ class RhdEnvironments
       end
     end
 
-    candidate_directories.compact.map { | directory | RhdEnvironment.new(directory)}
+    candidate_directories.compact.map { | directory | RhdEnvironment.new(directory, @testing_directory)}
   end
 
   private :load_environments

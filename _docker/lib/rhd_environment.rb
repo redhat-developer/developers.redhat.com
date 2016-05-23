@@ -11,8 +11,9 @@ class RhdEnvironment
 
   attr_accessor :environment_name, :environment_directory
 
-  def initialize(environment_directory)
+  def initialize(environment_directory, testing_directory)
     @environment_directory = environment_directory
+    @testing_directory = testing_directory
     @environment_name = environment_directory.split('/').last
   end
 
@@ -21,6 +22,10 @@ class RhdEnvironment
   #
   def get_docker_compose_file
     "#{@environment_directory}/docker-compose.yml"
+  end
+
+  def get_testing_docker_compose_file
+    "#{@testing_directory}/docker-compose.yml"
   end
 
   #
