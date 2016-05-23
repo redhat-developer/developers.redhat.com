@@ -154,7 +154,23 @@ services:
       - DB_PASSWORD=searchisko
     links:
      - mysql
-  
+
+  #
+  # Environment actions
+  #
+  backup:
+    build: ./awestruct
+    entrypoint: ruby _docker/lib/backup/backup.rb
+    volumes:
+     - ../:/home/awestruct/developer.redhat.com
+     - /data/drupal:/drupal
+     - /git/backups:/backups
+     - /credentials/db/my.cnf:/home/awestruct/.my.cnf
+     - /credentials/git/backups/netrc:/home/awestruct/.netrc
+
+  #
+  # Testing infrastructure
+  #
   selhub:
     image: selenium/hub
     restart: always

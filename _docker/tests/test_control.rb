@@ -201,7 +201,7 @@ class TestControl < Minitest::Test
     assert_equal(false, check_supported_service_requested([], 'drupal'))
   end
 
-  def test_returns_false_when_supporint_service_list_is_nil
+  def test_returns_false_when_supporting_service_list_is_nil
     assert_equal(false, check_supported_service_requested(nil, 'drupal'))
   end
 
@@ -213,7 +213,7 @@ class TestControl < Minitest::Test
     environment.expects(:environment_name).returns('foo').at_least_once
     environment.expects(:get_compose_project_name).returns('rhdpr1')
 
-    Docker::Network.stubs(:get).with("rhdpr1_default").returns network
+    Docker::Network.stubs(:get).with('rhdpr1_default').returns network
 
     wrapper.kill_current_environment(environment)
     assert network.deleted?, 'Network was not deleted'
@@ -228,7 +228,7 @@ class TestControl < Minitest::Test
     environment.expects(:environment_name).returns('foo').at_least_once
     environment.expects(:get_compose_project_name).returns('rhdpr1')
 
-    Docker::Network.stubs(:get).with("rhdpr1_default").raises Docker::Error::NotFoundError
+    Docker::Network.stubs(:get).with('rhdpr1_default').raises Docker::Error::NotFoundError
     wrapper.kill_current_environment(environment)
 
     refute network.deleted?, 'Network was deleted when it should not have been'
