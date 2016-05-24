@@ -82,7 +82,7 @@ profiles:
 
   drupal_dev:
     <<: *docker
-    base_url: http://<%= ENV['DRUPAL_HOST_IP']%>/
+    base_url: http://<%= ENV['DRUPAL_HOST_IP']%>:<%= ENV['DRUPAL_HOST_PORT'] %>/
     dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
 

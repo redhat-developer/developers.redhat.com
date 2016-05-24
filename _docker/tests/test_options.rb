@@ -76,45 +76,49 @@ class TestOptions < Minitest::Test
     tasks = Options.parse (["-b"])
     assert(tasks[:build])
     assert_equal([], tasks[:supporting_services])
-
-    tasks = Options.parse (["--run-the-stack"])
-    assert(tasks[:build])
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_kill
     tasks = Options.parse (["-r"])
     assert(tasks[:kill_all])
     assert_equal(tasks[:supporting_services], %w(mysql searchisko))
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_kill_awestruct_dev
     tasks = Options.parse (['-e awestruct-dev',"-r"])
     assert(tasks[:kill_all])
     assert_equal(tasks[:supporting_services], %w(mysql searchisko))
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_kill_drupal_dev
     tasks = Options.parse (['-e drupal-dev',"-r"])
     assert(tasks[:kill_all])
     assert_equal(tasks[:supporting_services], %w(mysql searchisko drupalmysql drupal))
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_kill_drupal_pull_request
     tasks = Options.parse (['-e drupal-pull-request',"-r"])
     assert(tasks[:kill_all])
     assert_equal(tasks[:supporting_services], %w(mysql searchisko drupalmysql drupal))
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_kill_drupal_staging
     tasks = Options.parse (['-e drupal-staging',"-r"])
     assert(tasks[:kill_all])
     assert_equal(tasks[:supporting_services], %w(drupal))
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_kill_drupal_production
     tasks = Options.parse (['-e drupal-production',"-r"])
     assert(tasks[:kill_all])
     assert_equal(tasks[:supporting_services], %w(drupal))
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_supporting_services
@@ -278,6 +282,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:build])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_run_tests_awestruct_dev
@@ -285,6 +290,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:build])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+    assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_docker_url
