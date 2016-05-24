@@ -138,10 +138,19 @@ This process is used for contributing details of a Vimeo or YouTube video.
 7. If the related product doesn't have a learn page yet, then raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) requesting that the learn page be added for the product.
 
 #### To add a YouTube video to the site:
+If you don't yet have access to the `Red Hat Developers` YouTube account:
+
+1. Visit https://plus.google.com/settings
+2. Ensure `Email` is ticked on `Comunications about Google+ Pages -> Invites you to manage Google+ pages`
+3. Email paul.robinson@redhat.com to request access
+4. Accept the manager invite when you receive the email
+
+Once you have access to the `Red Hat Developers` YouTube account:
+
 1. Visit https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q/playlists
-2. Switch to the `Red Hat Developers` account. (Email paul.robinson@redhat.com and arubinge@redhat.com to request access)
+2. Switch to the `Red Hat Developers` account, using the account switcher in the top-right corner. 
 3. Select the playlist for the product that the video relates to. Select the `Miscellaneous` playlist if it relates to no product.
-4. Click `Add VIdeos`.
+4. Click `Add Videos`.
 5. Find the video you want to add, and select it.
 6. The video should appear on the site within 6 hours.
 7. If the related product doesn't have a learn page yet, then raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) requesting that the learn page be added for the product.
