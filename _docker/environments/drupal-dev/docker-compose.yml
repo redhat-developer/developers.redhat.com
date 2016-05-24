@@ -42,11 +42,11 @@ services:
       - drupalmysql
       - searchisko
     volumes:
-      - ../../../images:/var/www/html/images
-      - ../../../stylesheets/fonts:/var/www/html/fonts
-      - ../../drupal/themes/:/var/www/html/themes
-      - ../../drupal/modules/custom/:/var/www/html/modules/custom
-      - ./rhd.settings.php:/var/www/html/sites/default/rhd.settings.php
+      - ../../drupal/my.cnf:/root/.my.cnf
+      - ../../drupal:/var/www/drupal
+      - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
+      - ../../../images:/var/www/drupal/web/images
+      - ../../../stylesheets/fonts:/var/www/drupal/web/fonts
     environment:
       - DB_NAME=drupal
       # TODO: Drop these once we have rhd.settings.php working correctly

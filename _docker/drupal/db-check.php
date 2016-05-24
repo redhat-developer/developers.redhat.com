@@ -10,8 +10,8 @@
  */
 try {
     $DBH = new PDO(
-        "mysql:host=drupalmysql;dbname=$_ENV[DB_NAME]",
-        $_ENV[DB_USER], $_ENV[DB_PASSWORD]
+        "mysql:host=drupalmysql;dbname=" . getenv("DB_NAME"),
+        getenv("DB_USER"), getenv("DB_PASSWORD")
     );
     $DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {

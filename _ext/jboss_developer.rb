@@ -84,20 +84,10 @@ module JBoss
 
       def transform site, page, content
         if page.output_extension.include?('htm')
-          resp = nil
-          begin
+          resp = @drupal.send_page page, content
+          until resp.success? do
+            puts "Error making drupal request to '#{page.output_path}', retrying..."
             resp = @drupal.send_page page, content
-            raise "Drupal POST request error for #{page.output_path}" unless resp.success?
-          rescue Exception => e
-            begin
-              resp = @drupal.send_page page, content
-              unless resp.success?
-                puts "Error making second drupal request to '#{page.output_path}'. Response: #{resp.status}"
-              end
-            rescue Exception => e
-              ::Awestruct::ExceptionHelper.log_building_error e, page.relative_source_path
-              puts "Error making second drupal request to '#{page.output_path}'."
-            end
           end
         end
         content # Don't mess up the content locally in _site

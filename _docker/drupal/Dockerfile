@@ -1,18 +1,47 @@
-FROM drupal:8-apache
+FROM developer.redhat.com/ruby
 MAINTAINER Jason Porter <jporter@redhat.com>
 
-LABEL version="dev"
+ADD remi-release-6.rpm remi-release-6.rpm
 
-COPY run.sh /
-COPY db-check.php /
+RUN rpm -Uvh remi-release-6.rpm
+RUN yum-config-manager --enable remi-php70; \
+    yum -y update; \
+    yum -y install \
+           git \
+           httpd.x86_64 \
+           mysql \
+           php \
+           php-cli \
+           php-common \
+           php-gd \
+           php-pdo \
+           php-mbstring \
+           php-mysql \
+           php-mysqlnd \
+           php-opcache \
+           php-xml \
+           tar; \
+    yum clean all
 
-# Adding the custom modules
-COPY modules/custom/redhat_developers /var/www/html/modules/custom/redhat_developers
-COPY modules/custom/layoutmanager /var/www/html/modules/custom/layoutmanager
-COPY modules/custom/basewidget /var/www/html/modules/custom/basewidget
-#COPY profiles/red_hat_developer /var/www/html/profiles/redhat_developer
+RUN { \
+		echo 'opcache.memory_consumption=128'; \
+		echo 'opcache.interned_strings_buffer=8'; \
+		echo 'opcache.max_accelerated_files=4000'; \
+		echo 'opcache.revalidate_freq=60'; \
+		echo 'opcache.fast_shutdown=1'; \
+		echo 'opcache.enable_cli=1'; \
+	} > /etc/php.d/opcache-recommended.ini
 
-# Adding the theme, we can override for development
-COPY themes/custom/rhd /var/www/html/themes/custom/rhd
+EXPOSE 80
 
-CMD ["/bin/bash", "/run.sh"]
+RUN curl https://getcomposer.org/installer > composer-installer && php composer-installer && mv composer.phar /usr/local/bin/composer
+
+ADD ./run-httpd.sh /run-httpd.sh
+ADD ./drupal.conf /etc/httpd/conf.d/drupal.conf
+ADD ./db-check.php /db-check.php
+
+RUN chown -R apache:apache /var/www/; \
+    chmod -v +x /run-httpd.sh 
+
+CMD ["/run-httpd.sh"]
+
