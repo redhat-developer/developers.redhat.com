@@ -157,17 +157,31 @@ class TestControl < Minitest::Test
   def test_build_css_and_js_for_drupal
     status = mock()
 
-    status.expects(:success?).returns(true)
+    status.expects(:success?).returns(true).twice
+    Open3.expects(:capture2e).with('npm install').returns(['out',status])
     Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['out',status])
 
     build_css_and_js_for_drupal
 
   end
 
-  def test_should_abort_if_cannot_build_css_and_js_for_drupal
+  def test_should_abort_if_cannot_build_css_and_js_running_npm_install
+
     status = mock()
 
     status.expects(:success?).returns(false)
+    Open3.expects(:capture2e).with('npm install').returns(['out',status])
+
+    assert_raises(SystemExit){
+      build_css_and_js_for_drupal
+    }
+  end
+
+  def test_should_abort_if_cannot_build_css_and_js_for_drupal_running_gulp
+    status = mock()
+
+    status.expects(:success?).twice.returns(true).then.returns(false)
+    Open3.expects(:capture2e).with('npm install').returns(['out',status])
     Open3.expects(:capture2e).with('$(npm bin)/gulp').returns(['Oh dear!',status])
 
     assert_raises(SystemExit){

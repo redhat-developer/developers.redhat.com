@@ -181,13 +181,23 @@ def copy_project_dependencies_for_awestruct_image
 end
 
 #
+# Wrapper around calls out to npm
+#
+def run_npm_command(cmd, error_message)
+
+  puts " -- Running command '#{cmd}'..."
+  out, status = Open3.capture2e("#{cmd}")
+  Kernel.abort("#{error_message}: #{out}") unless status.success?
+end
+
+#
 # Delegates out to Gulp to build the CSS and JS for Drupal
 #
 def build_css_and_js_for_drupal
   puts '- Building CSS and JS for Drupal...'
 
-  out, status = Open3.capture2e('$(npm bin)/gulp')
-  Kernel.abort("Error building CSS / JS for Drupal: #{out}") unless status.success?
+  run_npm_command('npm install',"Failed to run 'npm install'. Do you have npm installed?")
+  run_npm_command('$(npm bin)/gulp', 'Failed to run Gulp to build CSS and JS for Drupal')
 
   puts '- Successfully built CSS and JS for Drupal'
 end
@@ -256,9 +266,9 @@ end
 #
 def start_and_wait_for_supporting_services(environment, supporting_services, system_exec)
 
-  puts 'Starting all required supporting services...'
-
   unless supporting_services.nil? or supporting_services.empty?
+    puts "Starting all required supporting services..."
+
     environment.template_resources
     system_exec.execute_docker_compose(environment, :up, %w(-d --no-recreate).concat(supporting_services))
     block_wait_searchisko_started(environment, supporting_services)
