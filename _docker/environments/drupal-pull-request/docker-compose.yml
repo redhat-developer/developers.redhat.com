@@ -3,7 +3,7 @@ services:
   awestruct:
     build: ../../awestruct
     command:
-      - "rake git_setup clean preview[docker]"
+      - "rake git_setup clean gen[drupal_pull_request]"
     links:
       - drupal
       - searchisko

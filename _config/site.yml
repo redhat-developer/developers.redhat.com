@@ -80,10 +80,52 @@ profiles:
 <% end %>
     push_to_searchisko: true
 
-  drupal:
+  drupal_dev:
     <<: *docker
-    base_url: http://<%= ENV['DRUPAL_HOST_IP'] || 'docker' %>:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    base_url: http://<%= ENV['DRUPAL_HOST_IP']%>:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
+
+  drupal_pull_request:
+    <<: *docker
+    base_url: http://<%= ENV['ACCESSIBLE_SLAVE_IP']%>:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    drupal_base_url: http://drupal/
+
+  drupal_staging:
+    <<: *profile
+    base_url: http://developer-drupal.web.stage.ext.phx2.redhat.com/
+    drupal_base_url: http://drupal/
+    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://developers.stage.redhat.com
+    dcp_base_url: http://dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    metrics: true
+    client_side_error_logging: true
+    build_threads: 1
+    dtm_code: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
+    deploy:
+      <<: *deploy
+      path: /stg_htdocs/it-rhd-stg-main
+
+  drupal_production:
+    <<: *profile
+    base_url: http://developer-drupal.web.prod.ext.phx2.redhat.com/
+    drupal_base_url: http://drupal/
+    dcp_base_protocol_relative_url: //dcp2.jboss.org/
+    dcp_base_url: http://dcp2.jboss.org/
+    require_tag: true
+    metrics: true
+    client_side_error_logging: true
+    disqus: jdf
+    dtm_mode: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
+    robots:
+      disallow: false
+    deploy:
+      <<: *deploy
+      path: /www_htdocs/it-rhd
 
   development_cdn:
     <<: *development

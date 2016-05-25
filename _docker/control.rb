@@ -266,9 +266,8 @@ end
 #
 def start_and_wait_for_supporting_services(environment, supporting_services, system_exec)
 
-  puts "Starting all required supporting services..."
-
   unless supporting_services.nil? or supporting_services.empty?
+    puts "Starting all required supporting services..."
 
     environment.create_template_resources
     system_exec.execute_docker_compose(environment, :up, %w(-d --no-recreate).concat(supporting_services))
@@ -277,8 +276,6 @@ def start_and_wait_for_supporting_services(environment, supporting_services, sys
     environment.template_resources
 
     puts "Started all required supporting services."
-  else
-    puts "No supporting services to start."
   end
 end
 
