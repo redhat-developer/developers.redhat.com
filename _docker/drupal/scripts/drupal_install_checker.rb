@@ -1,8 +1,10 @@
 require 'open3'
 require 'fileutils'
+require 'yaml'
 
 class ProcessExecutor
   def exec!(cmd, args = [])
+    puts "DEBUG - executing command #{cmd} #{args}"
     out, status = Open3.capture2e(cmd, *args)
     raise out if status.exitstatus != 0
     out
@@ -12,9 +14,10 @@ end
 class DrupalInstallChecker
   attr_reader :drupal_site, :process_executor
 
-  def initialize(drupal_site, process_executor = ProcessExecutor.new)
+  def initialize(drupal_site, process_executor = ProcessExecutor.new, opts)
     @drupal_site = drupal_site
     @process_executor = process_executor
+    @opts = opts
   end
 
   def settings_exists?
@@ -27,7 +30,12 @@ class DrupalInstallChecker
 
   def mysql_connect?
     begin
-      process_executor.exec! 'mysql','drupal'
+      process_executor.exec! 'mysql', ["--host=#{@opts['database']['host']}",
+                                       "--port=#{@opts['database']['port']}",
+                                       "--user=#{@opts['database']['username']}",
+                                       "--password=#{@opts['database']['password']}",
+                                       '--connect-timeout=20',
+                                       'drupal']
       true
     rescue => e
       puts "ERROR: #{e.message}"
@@ -38,7 +46,11 @@ class DrupalInstallChecker
   def tables_exists?
     begin
       tables_to_check = %w(node comment node__body taxonomy_index)
-      tables = process_executor.exec!('mysql', ['--execute=show tables', 'drupal']).split("\n")[1..-1]
+      tables = process_executor.exec!('mysql', ["--host=#{@opts['database']['host']}",
+                                                "--port=#{@opts['database']['port']}",
+                                                "--user=#{@opts['database']['username']}",
+                                                "--password=#{@opts['database']['password']}",
+                                                '--execute=show tables', 'drupal']).split("\n")[1..-1]
       return false if tables.nil? || tables.empty?
       (tables_to_check.uniq.sort - tables.uniq.sort).empty?
     rescue => e
@@ -54,18 +66,33 @@ class DrupalInstallChecker
   def install_drupal
     puts 'Creating new settings.php file'
     FileUtils.rm '/var/www/drupal/web/sites/default/settings.php'
-    FileUtils.cp '/var/www/drupal/web/sites/default/default.settings.php','/var/www/drupal/web/sites/default/settings.php'
+    FileUtils.cp '/var/www/drupal/web/sites/default/default.settings.php', '/var/www/drupal/web/sites/default/settings.php'
     puts 'Installing Drupal, please wait...'
-    puts process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['site:install', 'standard', '--langcode=en', '--db-type=mysql', '--db-host=drupalmysql', '--db-name=drupal', "--db-user=#{ENV['DB_USER']}", "--db-pass=#{ENV['DB_PASSWORD']}", '--account-name=admin', "--site-name='Red Hat Developers'", "--site-mail='test@example.com'", "--account-mail='admin@example.com'", '--account-pass=admin', '-n'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
+                           ['site:install', 'standard', '--langcode=en', '--db-type=mysql',
+                            "--db-host=#{@opts['database']['host']}", "--db-name=#{@opts['database']['database']}",
+                            "--db-user=#{@opts['database']['username']}", "--db-port=#{@opts['database']['port']}",
+                            "--db-pass=#{@opts['database']['password']}", '--account-name=admin',
+                            "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
+                            "--account-mail='admin@example.com'", '--account-pass=admin', '-n'])
     puts 'Installing Drupal theme...'
-    puts process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(theme:install --set-default rhd))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(theme:install --set-default rhd))
     puts 'Installing Drupal modules...'
-    puts process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(module:install serialization basic_auth basewidget rest layoutmanager hal redhat_developers syslog --latest))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(module:install serialization basic_auth basewidget rest layoutmanager hal redhat_developers syslog --latest))
   end
 
 end
 
 if $0 == __FILE__
-  checker = DrupalInstallChecker.new('/var/www/drupal/web/sites/default')
+  drupal_site_dir = '/var/www/drupal/web/sites/default'
+  opts = YAML.load_file(File.join(drupal_site_dir, 'rhd.settings.yml'))
+  checker = DrupalInstallChecker.new(drupal_site_dir, ProcessExecutor.new, opts)
+
+  mysql_up = false
+  until mysql_up
+    puts 'Waiting for mysql to boot up...'
+    mysql_up = checker.mysql_connect?
+  end
+
   checker.install_drupal unless checker.installed?
 end

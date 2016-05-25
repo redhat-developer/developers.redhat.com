@@ -1,11 +1,5 @@
 #!/bin/bash
 
-php -f /db-check.php
-while [ $? != 0 ]
-do
-  php -f /db-check.php
-done
-
 # Check if drupal is installed, install if needed
 cd /var/www/drupal/web
 ruby ../scripts/drupal_install_checker.rb

@@ -285,7 +285,7 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'A4TUccTNk2kohutr1OBrznnEzoTSR1w9sncVdUBDD6CnT6xGJNRdvhQth3BvcsojHZjS7Gh1JA';
+$settings['hash_salt'] = '';
 
 /**
  * Deployment identifier.
@@ -714,18 +714,7 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
  *
  * Keep this code block at the end of this file to take full effect.
  */
-# if (file_exists(__DIR__ . '/settings.local.php')) {
-#   include __DIR__ . '/settings.local.php';
-# }
-$databases['default']['default'] = array (
-  'database' => 'drupal',
-  'username' => 'drupal',
-  'password' => 'drupal',
-  'prefix' => '',
-  'host' => 'drupalmysql',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
-$settings['install_profile'] = 'standard';
-$config_directories['sync'] = 'sites/default/files/config_c4-oXHWnspGjSvlI40eqOg0jXZBHQhIbgVhx1tfHRIxMCpVebvm4uYPbHBwWI-smwwdR9j_Amg/sync';
+if (file_exists(__DIR__ . '/rhd.settings.php')) {
+  include __DIR__ . '/rhd.settings.php';
+}
+

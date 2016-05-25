@@ -38,7 +38,6 @@ RUN curl https://getcomposer.org/installer > composer-installer && php composer-
 
 ADD ./run-httpd.sh /run-httpd.sh
 ADD ./drupal.conf /etc/httpd/conf.d/drupal.conf
-ADD ./db-check.php /db-check.php
 
 RUN chown -R apache:apache /var/www/; \
     chmod -v +x /run-httpd.sh 

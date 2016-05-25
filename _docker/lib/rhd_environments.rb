@@ -44,7 +44,10 @@ class RhdEnvironments
       end
     end
 
-    candidate_directories.compact.map { | directory | RhdEnvironment.new(directory, @testing_directory)}
+    candidate_directories.compact.map do |directory|
+      drupal_dir = File.join(directory, '..', '..', 'drupal', 'web', 'sites', 'default')
+      RhdEnvironment.new(directory, @testing_directory, drupal_dir)
+    end
   end
 
   private :load_environments
