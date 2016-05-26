@@ -9,7 +9,7 @@ search.service('searchService',function($http, $q) {
     // fold in params with defaults
     var search = Object.assign(params, {
       // field: '_source',
-      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags'],
+      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_updated'],
       agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
       query_highlight: true
     });
@@ -43,12 +43,23 @@ search.filter('timestamp', function() {
   }
 });
 
-search.filter('safe', function($sce) {
-  return function(text){
-    return $sce.trustAsHtml(text);
+search.filter('title', function($sce) {
+  return function(result){
+    if(result.highlight && result.highlight.sys_title) {
+      return $sce.trustAsHtml(result.highlight.sys_title[0]);
+    }
+    return $sce.trustAsHtml(result.fields.sys_title[0]);
   }
 });
 
+search.filter('description', function($sce) {
+  return function(result){
+    if(result.highlight && result.highlight.sys_content_plaintext) {
+      return $sce.trustAsHtml(result.highlight.sys_content_plaintext[0]);
+    }
+    return $sce.trustAsHtml(result.fields.sys_description[0]);
+  }
+});
 
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
 

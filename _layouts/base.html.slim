@@ -112,20 +112,18 @@
         .row.header-wrap
           nav.accounts
             ul
-              - unless page.url.include?('search')
-                li.search-wrapper
-                  form.search-bar(accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit")
-                    input.user-search(type="text" placeholder="Filter by keyword" id="search_list_text" name="q" maxlength="128" required)
-                    button(type="submit" id="search-button")
-                      i.fa.fa-search
               li.login: a Log In
               li.register: a Register
               li.logged-in
                 a.logged-in-name(href="#")
               li.logged-in
                 a.logout(href="#{site.base_url}") Logout
-            / form.search
-              / input(type="search" placeholder="Search for Answers, Videos, Etc…")
+              - unless page.url.include?('search')
+                li.search-wrapper
+                  form.search-bar(accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit")
+                    input.user-search(type="text" placeholder="Enter your search term" id="search_list_text" name="q" maxlength="128" required)
+                    button(type="submit" id="search-button")
+                      i.fa.fa-search
           .logo-wrap
             h1.logo
               a(href="#{site.base_url}" title="Red Hat Developers")

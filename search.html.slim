@@ -119,11 +119,12 @@ div(ng-app="search")
           span.loader(ng-show="loading")
           .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
             .result(ng-repeat="result in results" ng-init="r = result")
+              / pre {{r | json}}
               h4
-                a(target="_blank" href="{{r.fields.sys_url_view[0]}}" ng-bind-html="r.highlight.sys_title[0] | safe")
-              / section.meta-data
-                / span.created-date(data-updated="{{r.fields.sys_last_activity_date[0] | timestamp}}") {{r.sys_last_activity_date[0] | timeAgo}}
-              p(ng-bind-html="r.highlight.sys_content_plaintext[0] | safe")
+                a(href="{{r.fields.sys_url_view[0]}}" ng-bind-html="r | title")
+              section.meta-data
+                span.created-date(data-updated="{{r.fields.sys_updated[0] | timestamp}}") {{r.fields.sys_updated[0] | timeAgo}}
+              p(ng-bind-html="r | description")
               .tags-list
                 p
                   | {{r.sys_tags.length ? 'Tags:' : null}}
