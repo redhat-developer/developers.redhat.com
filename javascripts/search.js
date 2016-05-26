@@ -11,6 +11,7 @@ search.service('searchService',function($http, $q) {
       // field: '_source',
       field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags'],
       agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
+      query_highlight: true
     });
 
     $http.get(app.dcp.url.search, { params: search })
@@ -42,12 +43,9 @@ search.filter('timestamp', function() {
   }
 });
 
-search.filter('highlight', function($sce) {
-  return function(text, term){
-    if(!text || !term) return $sce.trustAsHtml(text);
-    var match = new RegExp(term, 'gi');
-    var matchedText = text.replace(match, function(term) { return '<span class="highlight">'+term+'</span>' });
-    return $sce.trustAsHtml(matchedText);
+search.filter('safe', function($sce) {
+  return function(text){
+    return $sce.trustAsHtml(text);
   }
 });
 

@@ -118,12 +118,12 @@ div(ng-app="search")
           / span.loader
           span.loader(ng-show="loading")
           .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
-            .result(ng-repeat="result in results" ng-init="r = result.fields")
+            .result(ng-repeat="result in results" ng-init="r = result")
               h4
-                a(target="_blank" href="{{r.sys_url_view[0]}}" ng-bind-html="r.sys_title[0] | highlight:params.query")
+                a(target="_blank" href="{{r.fields.sys_url_view[0]}}" ng-bind-html="r.highlight.sys_title[0] | safe")
               / section.meta-data
-                / span.created-date(data-updated="{{r.sys_last_activity_date[0] | timestamp}}") {{r.sys_last_activity_date[0] | timeAgo}}
-              p(ng-bind-html="r.sys_description[0] | highlight:params.query")
+                / span.created-date(data-updated="{{r.fields.sys_last_activity_date[0] | timestamp}}") {{r.sys_last_activity_date[0] | timeAgo}}
+              p(ng-bind-html="r.highlight.sys_content_plaintext[0] | safe")
               .tags-list
                 p
                   | {{r.sys_tags.length ? 'Tags:' : null}}
