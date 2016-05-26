@@ -120,9 +120,9 @@ class TestControl < Minitest::Test
 
     system_exec = mock()
 
-    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/base ./base))
-    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/java ./java))
-    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/ruby ./ruby))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/base:2.0.0 ./base))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/java:2.0.0 ./java))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/ruby:2.0.0 ./ruby))
 
     build_base_docker_images(environment, system_exec)
 
@@ -138,9 +138,9 @@ class TestControl < Minitest::Test
 
     system_exec = mock()
 
-    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/base --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./base))
-    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/java --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./java))
-    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/ruby --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./ruby))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/base:2.0.0 --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./base))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/java:2.0.0 --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./java))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/ruby:2.0.0 --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./ruby))
 
     build_base_docker_images(environment, system_exec)
 

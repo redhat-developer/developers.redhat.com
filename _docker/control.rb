@@ -217,9 +217,9 @@ def build_base_docker_images(environment, system_exec)
     build_args += create_proxy_environment_docker_build_args(environment)
   end
 
-  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/base).concat(build_args).concat(%w(./base)))
-  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/java).concat(build_args).concat(%w(./java)))
-  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/ruby).concat(build_args).concat(%w(./ruby)))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/base:2.0.0).concat(build_args).concat(%w(./base)))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/java:2.0.0).concat(build_args).concat(%w(./java)))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/ruby:2.0.0).concat(build_args).concat(%w(./ruby)))
 end
 
 #

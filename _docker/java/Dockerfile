@@ -1,4 +1,4 @@
-FROM developer.redhat.com/base
+FROM developer.redhat.com/base:2.0.0
 
 ARG http_proxy
 ARG https_proxy
