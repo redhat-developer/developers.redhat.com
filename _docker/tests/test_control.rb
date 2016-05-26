@@ -27,8 +27,9 @@ class TestControl < Minitest::Test
   def test_determine_docker_host_for_container_ports_with_docker_host_alias
 
       host_ip = '10.20.30.40'
-      Socket.expects(:gethostname).returns('localhost')
-      Resolv.expects(:getaddress).with('localhost').returns(host_ip)
+      # won't execute if docker defined.
+      # Socket.expects(:gethostname).returns('localhost')
+      # Resolv.expects(:getaddress).with('localhost').returns(host_ip)
 
       docker_machine_ip = '192.168.0.1'
       Resolv.expects(:getaddress).with('docker').returns(docker_machine_ip)
