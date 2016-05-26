@@ -64,21 +64,33 @@ class DrupalInstallChecker
   end
 
   def install_drupal
+    puts 'Running composer install'
+    if @opts['environment'] == 'dev'
+      process_executor.exec!('/usr/local/bin/composer', %w(install -n))
+    else
+      process_executor.exec!('/usr/local/bin/composer', %w(install -n --no-dev --optimize-autoloader))
+    end
+
     puts 'Creating new settings.php file'
-    FileUtils.rm '/var/www/drupal/web/sites/default/settings.php'
-    FileUtils.cp '/var/www/drupal/web/sites/default/default.settings.php', '/var/www/drupal/web/sites/default/settings.php'
+    FileUtils.rm File.join("#{@drupal_site}", 'settings.php') if File.exists? File.join("#{@drupal_site}", 'settings.php')
+    FileUtils.cp File.join("#{@drupal_site}", 'default.settings.php'), File.join("#{@drupal_site}", 'settings.php')
+
     puts 'Installing Drupal, please wait...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
-                           ['site:install', 'standard', '--langcode=en', '--db-type=mysql',
+                           ['--root=web', 'site:install', 'standard', '--langcode=en', '--db-type=mysql',
                             "--db-host=#{@opts['database']['host']}", "--db-name=#{@opts['database']['database']}",
                             "--db-user=#{@opts['database']['username']}", "--db-port=#{@opts['database']['port']}",
                             "--db-pass=#{@opts['database']['password']}", '--account-name=admin',
                             "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
                             "--account-mail='admin@example.com'", '--account-pass=admin', '-n'])
+
     puts 'Installing Drupal theme...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(theme:install --set-default rhd))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(--root=web theme:install --set-default rhd))
+
     puts 'Installing Drupal modules...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(module:install serialization basic_auth basewidget rest layoutmanager hal redhat_developers syslog --latest))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=web', 'module:install', 'serialization',
+                                                                 'basic_auth', 'basewidget', 'rest', 'layoutmanager',
+                                                                 'hal', 'redhat_developers', 'syslog'])
   end
 
 end

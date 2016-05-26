@@ -72,7 +72,7 @@ class RhdEnvironment
   # that needs this is the Drupal pull-request environment
   #
   def template_resources
-    if is_drupal_environment?
+    if environment_name == 'drupal-pull-request'
       File.chmod(0775, @drupal_directory)
       output_file = File.join(@drupal_directory, 'rhd.settings.yml')
       File.write(output_file, ERB.new(File.read(get_file('rhd.settings.yml.erb'))).result)

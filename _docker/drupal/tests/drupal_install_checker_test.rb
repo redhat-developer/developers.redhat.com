@@ -56,7 +56,7 @@ class DrupalInstallCheckerTest < Minitest::Test
     process_exec.expect :exec!, true, ['mysql', ['--host=example.com', '--port=3306',
                                                  '--user=test', '--password=password',
                                                  '--connect-timeout=20', 'drupal']]
-    cut = DrupalInstallChecker.new(nil, process_exec, yaml_opts)
+    cut = DrupalInstallChecker.new(nil, process_exec, yaml_opts_prod)
 
     result = cut.mysql_connect?
     assert process_exec.verify
@@ -68,11 +68,13 @@ class DrupalInstallCheckerTest < Minitest::Test
     process_exec.expect(:exec!, false) do |db, args|
       raise 'Cannot connect to db'
     end
-    cut = DrupalInstallChecker.new(nil, process_exec, yaml_opts)
+    cut = DrupalInstallChecker.new(nil, process_exec, yaml_opts_prod)
 
-    result = cut.mysql_connect?
-    assert process_exec.verify
-    refute result, 'Expected false, got true'
+    assert_output("ERROR: Cannot connect to db\n", '') do
+      result = cut.mysql_connect?
+      assert process_exec.verify
+      refute result, 'Expected false, got true'
+    end
   end
 
   def test_tables_exists_when_true
@@ -81,7 +83,7 @@ class DrupalInstallCheckerTest < Minitest::Test
     process_exec.expect :exec!, tables_to_expect, ['mysql', ['--host=example.com', '--port=3306',
                                                              '--user=test', '--password=password',
                                                              '--execute=show tables', 'drupal']]
-    cut = DrupalInstallChecker.new(nil, process_exec, yaml_opts)
+    cut = DrupalInstallChecker.new(nil, process_exec, yaml_opts_prod)
 
     result = cut.tables_exists?
     assert process_exec.verify
@@ -93,7 +95,7 @@ class DrupalInstallCheckerTest < Minitest::Test
     process_exec.expect :exec!, '', ['mysql', ['--host=example.com', '--port=3306',
                                                '--user=test', '--password=password',
                                                '--execute=show tables', 'drupal']]
-    cut = DrupalInstallChecker.new(nil, process_exec, yaml_opts)
+    cut = DrupalInstallChecker.new(nil, process_exec, yaml_opts_prod)
 
     result = cut.tables_exists?
     assert process_exec.verify
@@ -114,7 +116,7 @@ class DrupalInstallCheckerTest < Minitest::Test
     settings_file = File.join drupal_site, 'settings.php'
     rhd_settings_file = File.join drupal_site, 'rhd.settings.php'
 
-    cut = DrupalInstallChecker.new(drupal_site, process_exec, yaml_opts)
+    cut = DrupalInstallChecker.new(drupal_site, process_exec, yaml_opts_prod)
 
     begin
       FileUtils.touch settings_file
@@ -129,8 +131,75 @@ class DrupalInstallCheckerTest < Minitest::Test
     end
   end
 
-  def yaml_opts
+  def test_installing_for_dev
+    begin
+      drupal_site = Dir.mktmpdir
+      process_exec = Minitest::Mock.new
+      process_exec.expect :exec!, nil, ['/usr/local/bin/composer', %w(install -n)]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
+                                        ['site:install', 'standard', '--langcode=en', '--db-type=mysql',
+                                         "--db-host=#{yaml_opts_dev['database']['host']}", "--db-name=#{yaml_opts_dev['database']['database']}",
+                                         "--db-user=#{yaml_opts_dev['database']['username']}", "--db-port=#{yaml_opts_dev['database']['port']}",
+                                         "--db-pass=#{yaml_opts_dev['database']['password']}", '--account-name=admin',
+                                         "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
+                                         "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', %w(theme:install --set-default rhd)]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['module:install', 'serialization', 'basic_auth',
+                                                                              'basewidget', 'rest', 'layoutmanager', 'hal',
+                                                                              'redhat_developers', 'syslog']]
+      FileUtils.touch File.join(drupal_site, 'default.settings.php')
+
+      cut = DrupalInstallChecker.new(drupal_site, process_exec, yaml_opts_dev)
+
+      refute File.exist?(File.join drupal_site, 'settings.php')
+
+      expected_stdout = "Running composer install\nCreating new settings.php file\nInstalling Drupal, please wait...\nInstalling Drupal theme...\nInstalling Drupal modules...\n"
+      assert_output(expected_stdout, '') do
+        cut.install_drupal
+      end
+
+      assert File.exist?(File.join drupal_site, 'settings.php')
+    ensure
+      FileUtils.remove_entry_secure drupal_site
+    end
+  end
+
+  def test_installing_for_prod
+    begin
+      drupal_site = Dir.mktmpdir
+      process_exec = Minitest::Mock.new
+      process_exec.expect :exec!, nil, ['/usr/local/bin/composer', %w(install -n --no-dev --optimize-autoloader)]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
+                                        ['site:install', 'standard', '--langcode=en', '--db-type=mysql',
+                                         "--db-host=#{yaml_opts_prod['database']['host']}", "--db-name=#{yaml_opts_prod['database']['database']}",
+                                         "--db-user=#{yaml_opts_prod['database']['username']}", "--db-port=#{yaml_opts_prod['database']['port']}",
+                                         "--db-pass=#{yaml_opts_prod['database']['password']}", '--account-name=admin',
+                                         "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
+                                         "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', %w(theme:install --set-default rhd)]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['module:install', 'serialization', 'basic_auth',
+                                                                              'basewidget', 'rest', 'layoutmanager', 'hal',
+                                                                              'redhat_developers', 'syslog']]
+      FileUtils.touch File.join(drupal_site, 'default.settings.php')
+
+      cut = DrupalInstallChecker.new(drupal_site, process_exec, yaml_opts_prod)
+
+      refute File.exist?(File.join drupal_site, 'settings.php')
+
+      expected_stdout = "Running composer install\nCreating new settings.php file\nInstalling Drupal, please wait...\nInstalling Drupal theme...\nInstalling Drupal modules...\n"
+      assert_output(expected_stdout, '') do
+        cut.install_drupal
+      end
+
+      assert File.exist?(File.join drupal_site, 'settings.php')
+    ensure
+      FileUtils.remove_entry_secure drupal_site
+    end
+  end
+
+  def yaml_opts_prod
     opts = <<yml
+environment: prod
 database:
   host:  example.com
   port: '3306'
@@ -141,5 +210,18 @@ yml
     YAML.load opts
   end
 
-  private :yaml_opts
+  def yaml_opts_dev
+    opts = <<yml
+environment: dev
+database:
+  host:  example.com
+  port: '3306'
+  username: 'test'
+  password: 'password'
+  database: 'drupal'
+yml
+    YAML.load opts
+  end
+
+  private :yaml_opts_prod, :yaml_opts_dev
 end

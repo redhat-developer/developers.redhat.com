@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check if drupal is installed, install if needed
-cd /var/www/drupal/web
-ruby ../scripts/drupal_install_checker.rb
+cd /var/www/drupal
+ruby scripts/drupal_install_checker.rb
 
 # Make sure we're not confused by old, incompletely-shutdown httpd
 # context after restarting the container.  httpd won't start correctly
