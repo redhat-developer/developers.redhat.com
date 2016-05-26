@@ -71,7 +71,7 @@ app.stackoverflow = {
         url : app.dcp.url.search + '/stackoverflow/',
         dataType: 'json',
         data : {
-          "field"  : ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created"],
+          "field"  : ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count"],
           "query" : query,
           "tag" : tags,
           "size" : itemCount,
@@ -120,9 +120,9 @@ app.stackoverflow = {
               pAnswer =  pAnswer.replace(bRex,"<a href='$1'>$1</a>");
 
               if (d.answers[0].is_accepted == true){
-                d.answer = "<strong>Accepted answer </strong> by Name LName: " + pAnswer;
+                d.answer = "<strong>Accepted answer: </strong>" + pAnswer;
               } else {
-                d.answer = "<strong>Latest answer </strong> by Name LName: " + pAnswer;
+                d.answer = "<strong>Latest answer: </strong>" + pAnswer;
               }
             } else {
               d.answer = "<i>Question not yet answered</i>";
