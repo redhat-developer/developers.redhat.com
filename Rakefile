@@ -102,15 +102,13 @@ end
 desc 'Build and preview the site locally in development mode'
 task :preview, [:profile] => :check do |task, args|
   profile = args[:profile] || 'development'
-  awestruct_running_port = awestruct_port(profile)
-  run_awestruct "-P #{profile} -a -s --force -q --auto --livereload -b 0.0.0.0 -p #{awestruct_running_port}"
+  run_awestruct "-P #{profile} -a -s --force -q --auto --livereload -b 0.0.0.0"
 end
 
 desc 'Build and preview the site locally in development mode without live reload to allow test to work'
 task :preview_no_reload, [:profile] => :check do |task, args|
   profile = args[:profile] || 'development'
-  awestruct_running_port = awestruct_port(profile)
-  run_awestruct "-P #{profile} -a -s --force -q --auto -b 0.0.0.0 -p #{awestruct_running_port}"
+  run_awestruct "-P #{profile} -a -s --force -q --auto -b 0.0.0.0"
 end
 
 desc 'Generate the site using the defined profile, or development if none is given'
@@ -500,15 +498,6 @@ def which(cmd, opts = {})
     end
   end
   return $awestruct_cmd
-end
-
-def awestruct_port(profile)
-  if profile.to_sym == :docker || profile.to_sym == :drupal
-    #If we're in docker we want to run the whole awestruct preview on the same port
-    ENV['AWESTRUCT_HOST_PORT']
-  else
-    4242
-  end
 end
 
 # Print a message to STDOUT

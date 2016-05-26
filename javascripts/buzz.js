@@ -5,7 +5,7 @@
  */
 app.buzz = {
 
-  filter : function(tmpl, container, itemCount, append, from, callback) {
+  filter : function(tmpl, container, itemCount, append, from, dataIndex, callback) {
 
     // set a default item count of 8
     itemCount = itemCount || 8;
@@ -78,7 +78,7 @@ app.buzz = {
           "size" : itemCount,
           "sys_type" : "blogpost",
           "sortBy" : "new-create",
-          "from" : from || 0 // for pagination
+          "from" : dataIndex // for pagination
         },
         beforeSend : function() {
           // check if there is a previous ajax request to abort
@@ -156,6 +156,8 @@ app.buzz = {
     */
     var $mbuzz = $('.mini-buzz-container');
 
+    var dataIndex = 0;
+
     if($mbuzz.length) {
       app.buzz.filter(app.templates.miniBuzzTemplate, $mbuzz);
     }
@@ -166,7 +168,7 @@ app.buzz = {
     var $buzz = $('.buzz-container, .product-buzz-container');
 
     if($buzz.length) {
-      app.buzz.filter(app.templates.buzzTemplate, $buzz, 4);
+      app.buzz.filter(app.templates.buzzTemplate, $buzz, 8);
 
       // infinite scroll for full buzz page
 
@@ -188,9 +190,11 @@ app.buzz = {
 
           app.buzz.infiniteScrollCalled = true;
           var from = $('.buzz-container > div').length;
-        
+
+          dataIndex += 8;
+          console.log("dataIndex: " + dataIndex);
           // load in more
-          app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from, function() {
+          app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from, dataIndex, function() {
             if(win.scrollTop() < 400){
               win.scrollTop(scrollTop);
             }

@@ -2,3 +2,7 @@ source "https://rubygems.org"
 
 gem 'gpgme', '~> 2.0'
 gem 'docker-api', :require => 'docker'
+
+group :test do
+  gem 'mocha', '~> 1.1'
+end

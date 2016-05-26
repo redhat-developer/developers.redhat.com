@@ -33,7 +33,7 @@ guides:
       html: 
         url: https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/index.html
       html-single:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2/html-single/2.0_Release_Notes/index.html  
+        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2/html-single/2.0_Release_Notes/index.html
   Packaging_Guide:
     formats:
       html:
@@ -57,7 +57,7 @@ guides:
   Red_Hat_Enterprise_Linux_7_Application_ABI_Compatilibity_Guide:
     formats:
       html: 
-        url: https://access.redhat.com/articles/rhel-abi-compatibility        
+        url: https://access.redhat.com/articles/rhel-abi-compatibility
   Red_Hat_Enterprise_Linux_6_Developer_Guide:
     formats:
       html: 
@@ -76,6 +76,10 @@ get_started_paths:
   - id: "nodejs"
     name: Node.js
     default_file: get-started-rhel7-nodejs
+  - id: "nodejs-beta"
+    name: Node.js Beta
+    default_file: get-started-rhel7-nodejs
+    hide_path: true
   - id: "perl"
     name: Perl
     default_file: get-started-rhel7-perl

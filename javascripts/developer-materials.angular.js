@@ -75,6 +75,10 @@ dcp.service('materialService', function($http, $q) {
     
     query.newFirst = true;
 
+    if(params.project === 'devstudio' && params.sys_type === 'quickstart'){
+      params.project = '';
+    }
+
     if(params.query) {
       query.query = params.query;
     }
