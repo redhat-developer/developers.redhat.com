@@ -3,7 +3,7 @@ services:
   awestruct:
     build: ../../awestruct
     command:
-      - "rake git_setup clean preview[docker]"
+      - "rake git_setup clean gen[drupal_dev]"
     links:
       - drupal
       - searchisko
@@ -37,7 +37,7 @@ services:
   drupal:
     build: ../../drupal
     ports:
-      - "80:80"
+      - "32769:80"
     links:
       - drupalmysql
       - searchisko
@@ -80,7 +80,7 @@ services:
     expose:
      - "8080"
     ports:
-     - "8080"
+     - "32772:8080"
     environment:
       - DB_NAME=searchisko
       - DB_USER=searchisko
