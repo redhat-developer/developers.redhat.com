@@ -1,6 +1,9 @@
 FROM developer.redhat.com/base
 MAINTAINER Jason Porter <jporter@redhat.com>
 
+ARG http_proxy
+ARG https_proxy
+
 # install deps required by our build
 RUN yum install -y  \
   bison \

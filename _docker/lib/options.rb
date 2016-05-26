@@ -153,7 +153,7 @@ class Options
   end
 
   def self.unit_test_tasks
-    ['--no-deps', '--rm', 'unit_tests', 'bundle exec rake test']
+    ['--no-deps', '--rm', 'awestruct', 'bundle exec rake test']
   end
 
 end

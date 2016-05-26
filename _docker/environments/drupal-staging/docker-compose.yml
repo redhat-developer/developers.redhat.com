@@ -1,7 +1,11 @@
 version: '2'
 services:
   awestruct:
-    build: ../../awestruct
+    build:
+     context: ../../awestruct
+     args:
+      - http_proxy="proxy01.util.phx2.redhat.com:8080"
+      - https_proxy="proxy01.util.phx2.redhat.com:8080"
     command:
       - "rake git_setup clean preview[docker]"
     links:
@@ -36,7 +40,11 @@ services:
       - BUILD_URL
 
   drupal:
-    build: ../../drupal
+    build:
+     context: ../../drupal
+     args:
+      - http_proxy="proxy01.util.phx2.redhat.com:8080"
+      - https_proxy="proxy01.util.phx2.redhat.com:8080"
     ports:
       - "80:80"
     volumes:

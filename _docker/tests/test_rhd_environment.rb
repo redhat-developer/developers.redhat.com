@@ -161,4 +161,64 @@ class TestRhdEnvironment < MiniTest::Test
     assert_equal("#{@environments_directory}/valid-environment/docker-compose.yml", @environment.get_docker_compose_file)
   end
 
+  def test_requires_proxy_awestruct_dev
+    @environment.environment_name = 'awestruct-dev'
+    assert_equal(false, @environment.requires_proxy?)
+  end
+
+  def test_requires_proxy_awestruct_pr
+    @environment.environment_name = 'awestruct-pull-request'
+    assert_equal(false, @environment.requires_proxy?)
+  end
+
+  def test_requires_proxy_drupal_dev
+    @environment.environment_name = 'drupal-dev'
+    assert_equal(false, @environment.requires_proxy?)
+  end
+
+  def test_requires_proxy_drupal_pr
+    @environment.environment_name = 'drupal-pull-request'
+    assert_equal(false, @environment.requires_proxy?)
+  end
+
+  def test_requires_proxy_drupal_staging
+    @environment.environment_name = 'drupal-staging'
+    assert_equal(true, @environment.requires_proxy?)
+  end
+
+  def test_requires_proxy_drupal_production
+    @environment.environment_name = 'drupal-production'
+    assert_equal(true, @environment.requires_proxy?)
+  end
+
+  def test_get_http_proxy_non_proxy_environment
+    @environment.environment_name = 'drupal-dev'
+    assert_equal(nil, @environment.get_http_proxy)
+  end
+
+  def test_get_https_proxy_non_proxy_environment
+    @environment.environment_name = 'drupal-dev'
+    assert_equal(nil, @environment.get_https_proxy)
+  end
+
+  def test_get_http_proxy_drupal_production
+    @environment.environment_name = 'drupal-production'
+    assert_equal('proxy01.util.phx2.redhat.com:8080', @environment.get_http_proxy)
+  end
+
+  def test_get_http_proxy_drupal_staging
+    @environment.environment_name = 'drupal-staging'
+    assert_equal('proxy01.util.phx2.redhat.com:8080', @environment.get_http_proxy)
+  end
+
+  def test_get_https_proxy_drupal_production
+    @environment.environment_name = 'drupal-production'
+    assert_equal('proxy01.util.phx2.redhat.com:8080', @environment.get_http_proxy)
+  end
+
+  def test_get_https_proxy_drupal_staging
+    @environment.environment_name = 'drupal-staging'
+    assert_equal('proxy01.util.phx2.redhat.com:8080', @environment.get_https_proxy)
+  end
+
 end

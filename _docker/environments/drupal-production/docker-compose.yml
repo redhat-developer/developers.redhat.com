@@ -1,7 +1,11 @@
 version: '2'
 services:
   awestruct:
-    build: ../../awestruct
+    build:
+     context: ../../awestruct
+     args:
+      - http_proxy="proxy01.util.phx2.redhat.com:8080"
+      - https_proxy="proxy01.util.phx2.redhat.com:8080"
     command:
       - "rake git_setup clean preview[docker]"
     links:
@@ -36,7 +40,11 @@ services:
       - BUILD_URL
 
   drupal:
-    build: ../../drupal
+    build:
+     context: ../../drupal
+     args:
+      - http_proxy="proxy01.util.phx2.redhat.com:8080"
+      - https_proxy="proxy01.util.phx2.redhat.com:8080"
     ports:
       - "80:80"
     volumes:
@@ -54,8 +62,15 @@ services:
       - DB_PASSWORD=drupal
 
   backup:
-      build: ../../awestruct
+      build:
+       context: ../../awestruct
+       args:
+        - http_proxy="proxy01.util.phx2.redhat.com:8080"
+        - https_proxy="proxy01.util.phx2.redhat.com:8080"
       entrypoint: ruby _docker/lib/backup/backup.rb
+      environment:
+       - http_proxy="proxy01.util.phx2.redhat.com:8080"
+       - https_proxy="proxy01.util.phx2.redhat.com:8080"
       volumes:
        - ../../../:/home/awestruct/developer.redhat.com
        - /data/drupal:/drupal

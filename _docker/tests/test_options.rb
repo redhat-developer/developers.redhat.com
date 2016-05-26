@@ -304,6 +304,6 @@ class TestOptions < Minitest::Test
   end
 
   private def expected_unit_test_tasks
-    ['--no-deps', '--rm', 'unit_tests', 'bundle exec rake test']
+    ['--no-deps', '--rm', 'awestruct', 'bundle exec rake test']
   end
 end

@@ -1,6 +1,9 @@
 FROM drupal:8-apache
 MAINTAINER Jason Porter <jporter@redhat.com>
 
+ARG http_proxy
+ARG https_proxy
+
 LABEL version="dev"
 
 COPY run.sh /

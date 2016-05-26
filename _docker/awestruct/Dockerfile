@@ -1,6 +1,9 @@
 FROM developer.redhat.com/ruby
 MAINTAINER Jason Porter <jporter@redhat.com>
 
+ARG http_proxy
+ARG https_proxy
+
 # Prevent encoding errors
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
