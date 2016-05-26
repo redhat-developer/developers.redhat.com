@@ -112,8 +112,6 @@ form.header-search {
 
 // New Search page styles
 #searchpage {
-  margin-top: 40px;
-
   .divider {
     border-bottom: 1px solid #d5d5d5;
   }
@@ -235,7 +233,8 @@ form.header-search {
 }
 
 .result {
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  @include flexbox();
   h3 {
     margin-bottom: 0;
   }
@@ -247,15 +246,30 @@ form.header-search {
     font-size: 12px;
     color:$grey-6;
   }
+  .result-icon {
+    font-size:80px;
+    margin-right: 20px;
+  }
+  .result-details {
+    @include flex(1);
+  }
 }
 
-span.tag:after {
-  content: ', '
+span.tag {
+  border:1px solid black;
+  margin-right: 10px;
+  color:black;
+  padding:2px 8px;
+  display: inline-block;
 }
 
-span.tag:last-child:after {
-  content:'';
-}
+// span.tag:after {
+//   content: ', '
+// }
+
+// span.tag:last-child:after {
+//   content:'';
+// }
 
 
 .sorting {
@@ -266,14 +280,15 @@ span.tag:last-child:after {
   }
 }
 
+.type-filters-wrap {
+  background:$grey-2;
+  padding: 30px 0;
+}
 
 .type-filters {
   @include flexbox();
   @include justify-content(space-between);
   label {
-    max-width:15%;
-    float:left;
-    margin:0 !important;
     text-align: center;
     padding:10px;
     border:1px solid $grey-2;
@@ -311,8 +326,8 @@ span.tag:last-child:after {
       opacity:1;
     }
   }
-  i.fa {
-    font-size: 50px;
+  i {
+    font-size: 80px;
   }
 }
 
@@ -343,5 +358,17 @@ span.tag:last-child:after {
       max-width:220px;
       margin-left: 20px;
     }
+  }
+}
+
+img.video-thumb {
+  float: right;
+  margin-left: 20px;
+  width:130px;
+}
+
+.search-input-group {
+  label {
+    font-weight:700;
   }
 }
