@@ -126,17 +126,19 @@ Feature: Site navigation menu
       | Events                  | Find the latest conferences, meetups, and virtual seminars      |
       | Open Source Communities | Community Projects that Red Hat participates in                 |
       | Content Contributors    | Share your knowledge. Contribute content to Red Hat Developers. |
+      | Stack Overflow          | Get answers to your questions directly on Stack Overflow.       |
 
   @products @desktop @smoke
   Scenario: COMMUNITIES sub-menu items should link to retrospective pages
     Given I am on the Home page
     When I hover over the Community menu item
     Then each Communities sub-menu item should contain a link to its retrospective page:
-      | name                    | href                   |
-      | Developers Blog         | blog                   |
-      | Events                  | events                 |
-      | Open Source Communities | projects               |
-      | Content Contributors    | community/contributor/ |
+      | name                    | href                      |
+      | Developers Blog         | blog                      |
+      | Events                  | events                    |
+      | Open Source Communities | projects                  |
+      | Content Contributors    | community/contributor/    |
+      | Stack Overflow          | community/stack-overflow/ |
 
   @mobile @smoke
   Scenario: Tapping COMMUNITY from drop down menu on Mobile/Tablet should display additional communities
@@ -147,3 +149,4 @@ Feature: Site navigation menu
       | Events                  |
       | Open Source Communities |
       | Content Contributors    |
+      | Stack Overflow          |
