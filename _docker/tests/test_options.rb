@@ -185,7 +185,7 @@ class TestOptions < Minitest::Test
       assert_equal('true', ENV['PARALLEL_TEST'])
       assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
       assert_equal('mechanize', ENV['RHD_DEFAULT_DRIVER'])
-      assert_equal(["--rm", "--service-ports", "acceptance_tests", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"], tasks[:acceptance_test_target_task])
+      assert_equal(["--rm", "--service-ports",'-e','SELENIUM_HOST=http://selhub:4444/wd/hub', "awestruct", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"], tasks[:acceptance_test_target_task])
     end
   end
 
