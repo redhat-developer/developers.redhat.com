@@ -77,7 +77,7 @@ module SiteUser
     begin
       tries += 1
       @gmail = Gmail.connect('uk.redhat.test.user@gmail.com', 'RedH@tTe$t01')
-    rescue Net::IMAP::NoResponseError => ex
+    rescue => ex
       if tries < 10
         p "Error: #{ex.message}. Retrying..."
         sleep 1 * tries
