@@ -29,16 +29,18 @@ Feature: Social registration
      And I complete the required additional information with a new email address
     Then I should be registered and logged in
 
-  @rhd_social_test_user01 @logout @github_teardown
+  @rhd_social_test_user01 @keycloak_teardown @logout @github_teardown
   Scenario: 4 - Registration using GitHub login which doesn't contain some mandatory information (first name, last name), email is unique. User is asked to fill in mandatory info during login.
     Given I am on the Registration page
     When I register a new account using a GitHub account that contains missing profile information
     Then I should be asked to fill in mandatory information with a message "In creating your Red Hat Developers user profile, it looks like we were not able to get some required information. Fill in the following fields to finalize your user profile please."
+    And I complete the required additional information
+    Then I should be registered and logged in
 
   @rhd_social_test_user01 @keycloak_social_teardown @logout @github_teardown
   Scenario: 5 - Registration using GitHub login which doesn't contain some mandatory the information (first name, last name), email already exists. User links social provider to existing account
     Given I am on the Registration page
-    When I try to register using a GitHub account that contains missing profile information$ with an existing RHD registered email
+    When I try to register using a GitHub account that contains missing profile information with an existing RHD registered email
       And I complete the required additional information
     Then I should see a warning that the email is already registered
       And I click on the Send Verification email button
@@ -49,7 +51,7 @@ Feature: Social registration
   @rhd_social_test_user02 @keycloak_social_teardown @logout @github_teardown
   Scenario: 6 - Registration using GitHub login which doesn't contain some mandatory information (first name, last name), email that already exists. User changes email to create new account.
     Given I am on the Registration page
-    When I try to register using a GitHub account that contains missing profile information$ with an existing RHD registered email
+    When I try to register using a GitHub account that contains missing profile information with an existing RHD registered email
     Then I should be asked to fill in mandatory information with a message "In creating your Red Hat Developers user profile, it looks like we were not able to get some required information. Fill in the following fields to finalize your user profile please."
      And I complete the required additional information
     Then I should see a warning that the email is already registered

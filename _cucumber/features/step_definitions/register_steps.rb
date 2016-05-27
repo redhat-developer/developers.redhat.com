@@ -47,7 +47,7 @@ When(/^I register a new account using a GitHub account that contains missing pro
   @page.github.authorize_app
 end
 
-When(/^I try to register using a GitHub account that contains missing profile information\$ with an existing RHD registered email$/) do
+When(/^I try to register using a GitHub account that contains missing profile information with an existing RHD registered email$/) do
   @site_user = @github_admin.generate_user
   @email_address = @git_email
   @github_admin.update_profile('', @email_address, '')
