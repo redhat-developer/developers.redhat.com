@@ -73,20 +73,23 @@ module SiteUser
   end
 
   def get_email(email_address)
-    tries = 0
+    tries ||= 10
     begin
-      tries += 1
-      @gmail = Gmail.connect('uk.redhat.test.user@gmail.com', 'RedH@tTe$t01')
-    rescue => ex
-      if tries < 10
-        p "Error: #{ex.message}. Retrying..."
-        sleep 1 * tries
+      @gmail = Gmail.connect!('uk.redhat.test.user@gmail.com', 'RedH@tTe$t01')
+    rescue => e
+      if (tries -= 1) > 0
+        puts "Failed to access gmail with exception: #{e}"
+        sleep(1.5)
         retry
       else
         raise('Test user was not logged into gmail after 10 attempts!')
       end
     end
-    try(6) { @email = @gmail.inbox.emails(:unread, to: email_address).last }
+
+    try(6) {
+      @email = @gmail.inbox.emails(:unread, to: email_address).last
+    }
+
     message_body = @email.message.body.raw_source
     url = message_body.scan(/https?:\/\/[\S]+/).first
     # delete all mails and close the gmail session
