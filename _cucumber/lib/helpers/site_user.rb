@@ -75,7 +75,7 @@ module SiteUser
   def get_email(email_address)
     tries ||= 10
     begin
-      @gmail = Gmail.connect!('uk.redhat.test.user@gmail.com', 'RedH@tTe$t01')
+      @gmail = Gmail.connect!('uk.redhat.test.user@gmail.com', '$tumpjumperRedH@tTe$t01')
     rescue => e
       if (tries -= 1) > 0
         puts "Failed to access gmail with exception: #{e}"
