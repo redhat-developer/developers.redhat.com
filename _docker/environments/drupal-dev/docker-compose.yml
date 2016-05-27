@@ -42,7 +42,7 @@ services:
       - drupalmysql
       - searchisko
     volumes:
-      - ../../drupal/my.cnf:/root/.my.cnf:ro
+      - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - ../../drupal:/var/www/drupal
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
