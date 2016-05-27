@@ -88,9 +88,16 @@ class DrupalInstallChecker
     process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(--root=web theme:install --set-default rhd))
 
     puts 'Installing Drupal modules...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=web', 'module:install', 'serialization',
-                                                                 'basic_auth', 'basewidget', 'rest', 'layoutmanager',
-                                                                 'hal', 'redhat_developers', 'syslog'])
+    module_install_args = ['--root=web', 'module:install', 'serialization', 'basic_auth', 'basewidget', 'rest',
+                           'layoutmanager', 'hal', 'redhat_developers', 'syslog', 'diff', 'entity',
+                           'entity_storage_migrate', 'key_value', 'multiversion', 'token', 'metatag',
+                           'metatag_google_plus', 'metatag_open_graph', 'metatag_twitter_cards',
+                           'metatag_verification', 'admin_toolbar', 'admin_toolbar_tools']
+
+    if @opts['environment'] == 'dev'
+      module_install_args.push(*%w(devel kint))
+    end
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', module_install_args)
   end
 
 end

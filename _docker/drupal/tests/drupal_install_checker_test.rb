@@ -137,16 +137,25 @@ class DrupalInstallCheckerTest < Minitest::Test
       process_exec = Minitest::Mock.new
       process_exec.expect :exec!, nil, ['/usr/local/bin/composer', %w(install -n)]
       process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
-                                        ['site:install', 'standard', '--langcode=en', '--db-type=mysql',
+                                        ['--root=web', 'site:install', 'standard', '--langcode=en', '--db-type=mysql',
                                          "--db-host=#{yaml_opts_dev['database']['host']}", "--db-name=#{yaml_opts_dev['database']['database']}",
                                          "--db-user=#{yaml_opts_dev['database']['username']}", "--db-port=#{yaml_opts_dev['database']['port']}",
                                          "--db-pass=#{yaml_opts_dev['database']['password']}", '--account-name=admin',
                                          "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
                                          "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
-      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', %w(theme:install --set-default rhd)]
-      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['module:install', 'serialization', 'basic_auth',
-                                                                              'basewidget', 'rest', 'layoutmanager', 'hal',
-                                                                              'redhat_developers', 'syslog']]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', %w(--root=web theme:install --set-default rhd)]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=web', 'module:install',
+                                                                              'serialization', 'basic_auth',
+                                                                              'basewidget', 'rest', 'layoutmanager',
+                                                                              'hal', 'redhat_developers', 'syslog',
+                                                                              'diff', 'entity',
+                                                                              'entity_storage_migrate', 'key_value',
+                                                                              'multiversion', 'token', 'metatag',
+                                                                              'metatag_google_plus',
+                                                                              'metatag_open_graph',
+                                                                              'metatag_twitter_cards',
+                                                                              'metatag_verification', 'admin_toolbar',
+                                                                              'admin_toolbar_tools', 'devel', 'kint']]
       FileUtils.touch File.join(drupal_site, 'default.settings.php')
 
       cut = DrupalInstallChecker.new(drupal_site, process_exec, yaml_opts_dev)
@@ -170,16 +179,25 @@ class DrupalInstallCheckerTest < Minitest::Test
       process_exec = Minitest::Mock.new
       process_exec.expect :exec!, nil, ['/usr/local/bin/composer', %w(install -n --no-dev --optimize-autoloader)]
       process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
-                                        ['site:install', 'standard', '--langcode=en', '--db-type=mysql',
+                                        ['--root=web','site:install', 'standard', '--langcode=en', '--db-type=mysql',
                                          "--db-host=#{yaml_opts_prod['database']['host']}", "--db-name=#{yaml_opts_prod['database']['database']}",
                                          "--db-user=#{yaml_opts_prod['database']['username']}", "--db-port=#{yaml_opts_prod['database']['port']}",
                                          "--db-pass=#{yaml_opts_prod['database']['password']}", '--account-name=admin',
                                          "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
                                          "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
-      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', %w(theme:install --set-default rhd)]
-      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['module:install', 'serialization', 'basic_auth',
-                                                                              'basewidget', 'rest', 'layoutmanager', 'hal',
-                                                                              'redhat_developers', 'syslog']]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', %w(--root=web theme:install --set-default rhd)]
+      process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=web', 'module:install',
+                                                                              'serialization', 'basic_auth',
+                                                                              'basewidget', 'rest', 'layoutmanager',
+                                                                              'hal', 'redhat_developers', 'syslog',
+                                                                              'diff', 'entity',
+                                                                              'entity_storage_migrate', 'key_value',
+                                                                              'multiversion', 'token', 'metatag',
+                                                                              'metatag_google_plus',
+                                                                              'metatag_open_graph',
+                                                                              'metatag_twitter_cards',
+                                                                              'metatag_verification', 'admin_toolbar',
+                                                                              'admin_toolbar_tools']]
       FileUtils.touch File.join(drupal_site, 'default.settings.php')
 
       cut = DrupalInstallChecker.new(drupal_site, process_exec, yaml_opts_prod)
