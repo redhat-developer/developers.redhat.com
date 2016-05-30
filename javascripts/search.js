@@ -88,6 +88,7 @@ function searchCtrlFunc($scope, searchService) {
 
   $scope.updateSearch = function() {
     $scope.loading = true;
+    $scope.query = $scope.params.query; // this is static until the update re-runs
     history.pushState($scope.params,$scope.params.query,app.baseUrl + '/search/?q=' + $scope.params.query);
     searchService.getSearchResults($scope.params).then(function(data) {
       $scope.results = data.hits.hits;
