@@ -69,7 +69,6 @@ search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc
 
 function searchCtrlFunc($scope, searchService) {
   var search = window.location.search.split('=');
-  console.log(search);
   var q = '';
   if(search) {
     q = search.pop(); // last one
@@ -81,10 +80,9 @@ function searchCtrlFunc($scope, searchService) {
     size: 10,
     from: 0,
     sys_type : [],
-    project : ''
+    project : '',
+    newFirst: false
   }
-
-  window.s = $scope; // debug
 
   $scope.paginate = {
     currentPage: 1
@@ -98,25 +96,27 @@ function searchCtrlFunc($scope, searchService) {
 
   $scope.cleanParams = function(p) {
       var params = Object.assign({}, p);
-      console.log(params);
 
       // if "custom" is selected, remove it
       if(params.activity_date_interval && params.activity_date_interval === 'custom') {
         delete params.activity_date_interval;
-        return params;
       } else {
         delete params.activity_date_from;
         delete params.activity_date_to;
-        return params;
       }
 
+      // if relevance is "most recent" is turned on, set newFirst to true, otherwise remove it entirely
+      if(params.newFirst !== "true") {
+        delete params.newFirst;
+      }
 
+      // return cleaned params
+      return params;
   }
 
   $scope.updateSearch = function() {
     $scope.loading = true;
     var params = $scope.cleanParams($scope.params);
-    console.log(params);
     // history.pushState($scope.params,$scope.params.query,'/search/?q=' + $scope.params.query);
     searchService.getSearchResults(params).then(function(data) {
       $scope.results = data.hits.hits;

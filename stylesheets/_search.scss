@@ -172,23 +172,23 @@ form.header-search {
       }
     }
   }
+}
 
-  .searchpage-middle {
-    padding-left: 2em;
+.searchpage-middle {
+  padding-left: 2em;
 
-    .search-bar {
-      .large-21.columns {
-        padding-right: 0;
-      }
-      .large-3.columns {
-        padding-left: 0;
-      }
-      a.button.postfix {
-        height: 40px;
-        line-height: 3;
-        i {
-          font-size: 1.5em;
-        }
+  .search-bar {
+    .large-21.columns {
+      padding-right: 0;
+    }
+    .large-3.columns {
+      padding-left: 0;
+    }
+    a.button.postfix {
+      height: 40px;
+      line-height: 3;
+      i {
+        font-size: 1.5em;
       }
     }
   }
@@ -287,6 +287,7 @@ span.tag {
 
 .type-filters {
   @include flexbox();
+  @include flex-wrap(wrap);
   @include justify-content(space-between);
   label {
     text-align: center;
@@ -296,6 +297,7 @@ span.tag {
     transition: all 0.3s;
     @include flex(1 0);
     position: relative;
+    min-width:50px;
     &:before {
       @include flexbox();
       @include justify-content(center);
@@ -370,5 +372,54 @@ img.video-thumb {
 .search-input-group {
   label {
     font-weight:700;
+  }
+}
+
+
+// MQ for Developer Materials Page
+@include tablet-landscape-and-down {
+  .type-filters {
+    label {
+      flex: 1 0 auto;
+      margin-bottom: 10px !important;
+      display: block;
+      p {
+        display: none;
+      }
+      i {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .search-inputs {
+    @include flex-wrap(wrap);
+  }
+
+  .search-input-group {
+    @include flex-basis(48%);
+    width:45%;
+    margin:1%;
+    max-width:none;
+  }
+
+  .result-icon {
+    i {
+      font-size: 20px;
+    }
+  }
+  .searchpage-middle {
+    padding-left: 0;
+  }
+}
+
+@include mobile-landscape-and-down {
+  .search-input-group {
+    @include flex-basis(100%);
+    width:100%;
+    marign:0;
   }
 }

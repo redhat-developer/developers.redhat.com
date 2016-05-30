@@ -15,6 +15,7 @@ description: Red Hat has extensive materials to help you get started. On offer a
 
 div(ng-app="search")
   #searchpage(ng-controller="SearchController")
+    / pre {{params | json}}
     .large-24.column.type-filters-wrap
       .row
         .large-24.column
@@ -60,7 +61,7 @@ div(ng-app="search")
                 input(type="text" placeholder="Filter by keyword" ng-model="params.query" ng-change="updateSearch()" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 750, 'blur': 0 } }")
 
               .search-input-group
-                label Project
+                label Product
                 select(ng-model="params.project" ng-change="updateSearch()")
                   option(value="") Select Product...
                   option(value="eap") JBoss Enterprise Application Platform
@@ -103,9 +104,9 @@ div(ng-app="search")
             hr
             p
               | Sort results by
-              select(ng-model="params.sortBy" ng-change="updateSearch()")
-                option(value="score") Relevance
-                option(value="new") Most Recent
+              select(ng-model="params.newFirst" ng-change="updateSearch()")
+                option(value="false") Relevance
+                option(value="true") Most Recent
               | and show
               select(ng-model="params.size" ng-change="updateSearch()")
                 option(value="10") 10
