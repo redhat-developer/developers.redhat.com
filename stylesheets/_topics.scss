@@ -15,6 +15,7 @@
     background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_mobile.png');
     display: block;
   }
+  &.iot {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_iot.png');}
   @include tablet-landscape-and-down {
     padding-top: 20px;
   }
@@ -24,6 +25,7 @@
     &.enterprise-java {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_java.png');}
     &.web-and-api-development {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_webapi.png');}
     &.dotnet {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_dotnet.png');}
+    &.iot {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_iot.png');}
     &.mobile {
       background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_mobile.png');
       display: block;
@@ -89,6 +91,7 @@
     &.devops {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_devops.png');}
     &.enterprise-java {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_java.png');}
     &.web-and-api-development {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_webapi.png');}
+    &.iot {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_3col_iot.png');}
     &.mobile {
       background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_mobile.png');
       display: block;
@@ -130,7 +133,7 @@
     }
     @include tablet-landscape-and-down {
       background-size: 30%, contain;
-      &.dotnet {
+      &.dotnet, &.iot {
         min-height: 445px;
       }
     }
@@ -174,13 +177,13 @@
     }
     @include tablet-landscape-and-down {
       background-size: 30%;
-      &.dotnet {
+      &.dotnet, &.iot {
         min-height: 445px;
       }
     }
     @include tablet-portrait-and-down {
       height: auto;
-      &.dotnet {
+      &.dotnet, &.iot {
         min-height: 200px;
       }
     }
@@ -229,7 +232,14 @@
     a {
       color: #424242;
     }
-
+    h5 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 50px;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
     p, .description {
       font-size: 1em;
       line-height: 1.4;
@@ -293,6 +303,21 @@
   }
   .external-link:after {
     display: none;
+  }
+  ul.social-links {
+    margin-top: 10px;
+    margin-left: 0;
+    li {
+      display: inline;
+      margin-right: 7px;
+      a i{
+        color: #0089d0;
+      }
+    }
+  }
+  ul.no-ident-li li{
+    margin-left: -15px;
+
   }
 }
 ul.topic-resources.topic-resources-list{
@@ -387,17 +412,23 @@ ul.topic-resources.topic-resources-list{
       position: absolute;
     }
   }
-  ul.social-links {
-    margin-top: 10px;
-    margin-left: 0;
-    li {
-      display: inline;
-      margin-right: 7px;
-      a i{
-        color: #0089d0;
-      }
+}
+
+#IoT .topics-main {
+  .right-side-promo {
+    height: 418px;
+    h4 {
+      font-size: 1.2em;
     }
   }
+  .main-promo {
+    background-size: 26%, contain;
+    height: 400px;
+  }
+}
+
+.right-side-promo.right-iot {
+  height: 418px
 }
 
 .usb-login p, .usb-login ul{

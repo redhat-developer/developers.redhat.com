@@ -1,0 +1,131 @@
+---
+layout: technology-base
+---
+
+- page.title = "Red Hat Developers Topic: #{page.solution.name}"
+
+section(class="topics-header #{page.solution.id}")
+  .row
+    .large-24
+      h2 #{page.solution.name}
+      h4#topic #{page.solution.long_description}
+
+// Static promotional items
+section.topics-dotted-graphics#IoT
+  .row.topics-main
+    .large-24.columns
+      .row
+        .medium-18.columns
+          div(class="main-promo #{page.solution.id}")
+            - page.solution.primary_promo.each do |a|
+              span
+                h3 #{a.title}
+                p.description #{a.description}
+                - if a.tags
+                  span.promo-tags
+                    .promo-tags-label Tags:
+                    ul
+                      - a.tags.each do |tag|
+                        li #{tag}
+
+              .row.promo-links
+                - if a.links
+                  - a.links.each do |link|
+                    .large-8.columns
+                      - if link.local_url
+                        a(href="#{site.base_url}#{link.local_url}") #{link.name}
+                      - elsif link.url
+                        a(href="#{link.url}") #{link.name}
+
+        // Secondary promotional item
+        .medium-6.columns
+          - page.solution.secondary_promo.each do |b|
+            - if b.local_url
+              - promo_url = (site.base_url + "/" + b.local_url)
+            - else
+              - promo_url = b.url
+            a(href="#{promo_url}")
+              div(class='secondary-promo #{page.solution.id}')
+                h4 #{b.title}
+                p #{b.description}
+                .clearfix
+                - if b.tags
+                  span.promo-tags
+                    .promo-tags-label Tags:
+                    ul
+                      - b.tags.each do |tag|
+                        li #{tag}
+      .row
+        // Tertiary promotional items (Two rows of three items)
+        .large-6.columns
+          - page.solution.tertiary_tall_promo.each do |c|
+            - if c.local_url
+              - promo_url = (site.base_url + "/" + c.local_url)
+            - else
+              - promo_url = c.url
+            a(href="#{promo_url}")
+              .tertiary-tall-promo
+                h4 #{c.title}
+                p #{c.description}
+                - if c.tags
+                  span.promo-tags
+                    .promo-tags-label Tags:
+                    ul
+                      - c.tags.each do |tag|
+                        li #{tag}
+
+        .large-12.columns
+          .row
+            - page.solution.tertiary_promo.each do |d|
+              .large-12.columns
+                - if d.local_url
+                  - promo_url = (site.base_url + "/" + d.local_url)
+                - else
+                  - promo_url = d.url
+                a(href="#{promo_url}")
+                  .tertiary-promo
+                    h5 #{d.title}
+                    p #{d.description}
+                    - if d.tags
+                      span.promo-tags
+                        .promo-tags-label Tags:
+                        ul
+                          - d.tags.each do |tag|
+                            li #{tag}
+        .large-6.columns.right
+          - page.solution.right_side_promo.each do |e|
+            .right-side-promo
+              .row
+                .large-24.columns
+                  h4 #{e.title}
+                  - if e.section_1.links
+                    ul.no-ident-li
+                      - e.section_1.links.each do |link|
+                        li
+                          - if link.local_url
+                            a(href="#{site.base_url}#{link.local_url}") #{link.name}
+                          - elsif link.url
+                            a(href="#{link.url}") #{link.name}
+                  / h5 Follow us on Social
+                  / ul.social-links
+                  /   li: a(href="https://www.facebook.com/RedHatDeveloperProgram")
+                  /     i.fa.fa-facebook
+                  /   li: a(href="https://twitter.com/rhdevelopers")
+                  /     i.fa.fa-twitter
+                  /   li: a(href="https://plus.google.com/103877536668756379905/posts")
+                  /     i.fa.fa-google-plus
+                  - if e.section_2
+                    h5 #{e.section_2.title}
+                    ul.no-ident-li
+                      - e.section_2.links.each do |link|
+                        li
+                          - if link.local_url
+                            a(href="#{site.base_url}#{link.local_url}") #{link.name}
+                          - elsif link.url
+                            a(href="#{link.url}") #{link.name}
+
+  .row#topic-resources(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
+    ul.topic-resources.topic-resources-list.small-block-grid-1.medium-block-grid-2.large-block-grid-4
+
+= javascripts("solutions", true) do
+  script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
