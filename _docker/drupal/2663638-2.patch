@@ -1,0 +1,27 @@
+diff --git a/core/lib/Drupal/Core/EventSubscriber/EarlyRenderingControllerWrapperSubscriber.php b/core/lib/Drupal/Core/EventSubscriber/EarlyRenderingControllerWrapperSubscriber.php
+index 0daf176..33c23b6 100644
+--- a/core/lib/Drupal/Core/EventSubscriber/EarlyRenderingControllerWrapperSubscriber.php
++++ b/core/lib/Drupal/Core/EventSubscriber/EarlyRenderingControllerWrapperSubscriber.php
+@@ -91,14 +91,16 @@ public function __construct(ControllerResolverInterface $controller_resolver, Re
+    *   The controller event.
+    */
+   public function onController(FilterControllerEvent $event) {
+-    $controller = $event->getController();
++    if ($event->getRequest()->getMethod() == 'GET') {
++      $controller = $event->getController();
+ 
+-    // See \Symfony\Component\HttpKernel\HttpKernel::handleRaw().
+-    $arguments = $this->controllerResolver->getArguments($event->getRequest(), $controller);
++      // See \Symfony\Component\HttpKernel\HttpKernel::handleRaw().
++      $arguments = $this->controllerResolver->getArguments($event->getRequest(), $controller);
+ 
+-    $event->setController(function() use ($controller, $arguments) {
+-      return $this->wrapControllerExecutionInRenderContext($controller, $arguments);
+-    });
++      $event->setController(function () use ($controller, $arguments) {
++        return $this->wrapControllerExecutionInRenderContext($controller, $arguments);
++      });
++    }
+   }
+ 
+   /**)
