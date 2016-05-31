@@ -100,8 +100,8 @@ module JBoss
                 if File.exists?('./products/' + id + '/updates.adoc')
                   product.send('has_updates_page=', true)
                 end
-                if File.exists?('./products/' + id + '/support.html.slim')
-                  product.send('has_support_page=', true)
+                if File.exists?('./products/' + id + '/help.html.slim')
+                  product.send('has_help_page=', true)
                 end
 
 

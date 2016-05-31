@@ -35,11 +35,11 @@ Then(/^I should see a side-nav with the following options:$/) do |table|
         else
           expect(@page.product_overview.side_nav_item_displayed?('Buzz')).to be false
         end
-      when 'Support'
-        if @products_with_support.include? @selected_product
-          expect(@page.product_overview.side_nav_item_displayed?('Support')).to be true
+      when 'Help'
+        if @products_with_help.include? @selected_product
+          expect(@page.product_overview.side_nav_item_displayed?('Help')).to be true
         else
-          expect(@page.product_overview.side_nav_item_displayed?('Support')).to be false
+          expect(@page.product_overview.side_nav_item_displayed?('Help')).to be false
         end
     end
   end
