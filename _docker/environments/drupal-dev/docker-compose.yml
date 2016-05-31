@@ -87,3 +87,19 @@ services:
       - DB_PASSWORD=searchisko
     links:
      - mysql
+
+  acceptance_tests:
+    build: ../../awestruct
+    volumes:
+      - ../../../:/home/awestruct/developer.redhat.com
+    links:
+      - selhub:hub
+    environment:
+      - ghprbActualCommit
+      - github_status_api_token
+      - PARALLEL_TEST
+      - CUCUMBER_TAGS
+      - SELENIUM_HOST=http://hub:4444/wd/hub
+      - RHD_JS_DRIVER
+      - RHD_DOCKER_DRIVER
+      - BUILD_URL
