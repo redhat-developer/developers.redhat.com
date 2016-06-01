@@ -1,0 +1,24 @@
+---
+layout: technology-base
+---
+.hero.hero-wide.hero-products
+  .row
+    .large-14.columns
+      h2 Forums
+
+.row.development-tools
+  - site.categories.each do |category|
+    .large-24.development-tool-category
+      .large-24.category-label(id="#{category.name.to_s}")
+        h5
+          = category.name.to_s.gsub('_', ' ').upcase
+      - category.products.each do |p|
+        - if site.products[p]
+          - product = site.products[p]
+          .development-tool.divider(id="development-tool-#{product.id}" class=(product.indented_product? ? 'indent-product' : ''))
+            h4
+              a(id="#{product.id}" href="#{site.product_forum_base_url}/#{product.id}")
+                = product.name
+            .row
+              .large-16.columns
+                = product['index'].desc
