@@ -1,6 +1,11 @@
 FROM developer.redhat.com/ruby
 MAINTAINER Jason Porter <jporter@redhat.com>
 
+ARG http_proxy
+ARG https_proxy
+
+LABEL version="dev"
+
 ADD remi-release-6.rpm remi-release-6.rpm
 
 RUN rpm -Uvh remi-release-6.rpm

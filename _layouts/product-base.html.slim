@@ -5,7 +5,7 @@ secondary_section: supported-products
 ---
 /The base layout for products, used to provide a custom left bar or right bar
 /If you are aren't sure which product layout to use, you probably want 'product', not this one!
-- page.title = "#{page.product.abbreviated_name} - #{page.type}"
+- page.title = page.title ? page.title : "#{page.product.abbreviated_name} - #{page.type}"
 - page.product.highlight_colour = '#8FD102' unless page.product.highlight_colour
 
 section(class="hero hero-wide product-header #{page.product.id} #{page.product.product_category}")

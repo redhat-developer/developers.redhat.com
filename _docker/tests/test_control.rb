@@ -27,8 +27,9 @@ class TestControl < Minitest::Test
   def test_determine_docker_host_for_container_ports_with_docker_host_alias
 
       host_ip = '10.20.30.40'
-      Socket.expects(:gethostname).returns('localhost')
-      Resolv.expects(:getaddress).with('localhost').returns(host_ip)
+      # won't execute if docker defined.
+      # Socket.expects(:gethostname).returns('localhost')
+      # Resolv.expects(:getaddress).with('localhost').returns(host_ip)
 
       docker_machine_ip = '192.168.0.1'
       Resolv.expects(:getaddress).with('docker').returns(docker_machine_ip)
@@ -88,7 +89,7 @@ class TestControl < Minitest::Test
 
     expects(:copy_project_dependencies_for_awestruct_image)
     expects(:build_css_and_js_for_drupal).never
-    expects(:build_base_docker_images).with(system_exec)
+    expects(:build_base_docker_images).with(environment, system_exec)
     expects(:build_environment_docker_images).with(environment, system_exec)
 
     build_environment_resources(environment, system_exec)
@@ -105,7 +106,7 @@ class TestControl < Minitest::Test
 
     expects(:build_css_and_js_for_drupal)
     expects(:copy_project_dependencies_for_awestruct_image)
-    expects(:build_base_docker_images).with(system_exec)
+    expects(:build_base_docker_images).with(environment, system_exec)
     expects(:build_environment_docker_images).with(environment, system_exec)
 
     build_environment_resources(environment, system_exec)
@@ -113,15 +114,38 @@ class TestControl < Minitest::Test
   end
 
   def test_build_base_docker_images
-    system_exec = mock();
 
-    system_exec.expects(:execute_docker).with(:build,'--tag=developer.redhat.com/base','./base')
-    system_exec.expects(:execute_docker).with(:build,'--tag=developer.redhat.com/java','./java')
-    system_exec.expects(:execute_docker).with(:build,'--tag=developer.redhat.com/ruby','./ruby')
+    environment = mock()
+    environment.expects(:requires_proxy?).returns(false)
 
-    build_base_docker_images(system_exec)
+    system_exec = mock()
+
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/base:2.0.0 ./base))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/java:2.0.0 ./java))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/ruby:2.0.0 ./ruby))
+
+    build_base_docker_images(environment, system_exec)
 
   end
+
+  def test_build_base_docker_images_proxy_environment
+
+    environment = mock()
+
+    environment.expects(:requires_proxy?).returns(true)
+    environment.expects(:get_http_proxy).returns('http://foo.com')
+    environment.expects(:get_https_proxy).returns('http://bar.com')
+
+    system_exec = mock()
+
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/base:2.0.0 --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./base))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/java:2.0.0 --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./java))
+    system_exec.expects(:execute_docker).with(:build,%w(--tag=developer.redhat.com/ruby:2.0.0 --build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com ./ruby))
+
+    build_base_docker_images(environment, system_exec)
+
+  end
+
 
   def test_build_environment_docker_images
 
@@ -163,6 +187,15 @@ class TestControl < Minitest::Test
 
     build_css_and_js_for_drupal
 
+  end
+
+  def test_create_proxy_environment_docker_build_args
+
+    environment = mock()
+    environment.expects(:get_http_proxy).returns('http://foo.com')
+    environment.expects(:get_https_proxy).returns('http://bar.com')
+
+    assert_equal(%w(--build-arg http_proxy=http://foo.com --build-arg https_proxy=http://bar.com), create_proxy_environment_docker_build_args(environment))
   end
 
   def test_should_abort_if_cannot_build_css_and_js_running_npm_install

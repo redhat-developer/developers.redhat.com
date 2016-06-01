@@ -1,4 +1,4 @@
-FROM developer.redhat.com/java
+FROM developer.redhat.com/java:2.0.0
 
 RUN yum -y install mysql && \
     yum clean all

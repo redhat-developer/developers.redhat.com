@@ -21,7 +21,7 @@ class SystemCalls
     Kernel.abort('Error running docker-compose') unless Kernel.system *['docker-compose', '-f', "#{environment.get_docker_compose_file}", '-f', "#{environment.get_testing_docker_compose_file}", cmd.to_s, *args]
   end
 
-  def execute_docker(cmd, *args)
+  def execute_docker(cmd, args = [])
     puts "- Executing 'docker' with command '#{cmd}' and args #{args}"
     Kernel.abort('Error running docker') unless Kernel.system 'docker', cmd.to_s, *args
   end
@@ -202,13 +202,24 @@ def build_css_and_js_for_drupal
   puts '- Successfully built CSS and JS for Drupal'
 end
 
+def create_proxy_environment_docker_build_args(environment)
+  ['--build-arg', "http_proxy=#{environment.get_http_proxy}",'--build-arg', "https_proxy=#{environment.get_https_proxy}"]
+end
+
 #
 # Builds the developers.redhat.com base Docker images
 #
-def build_base_docker_images(system_exec)
-  system_exec.execute_docker(:build, '--tag=developer.redhat.com/base', './base')
-  system_exec.execute_docker(:build, '--tag=developer.redhat.com/java', './java')
-  system_exec.execute_docker(:build, '--tag=developer.redhat.com/ruby', './ruby')
+def build_base_docker_images(environment, system_exec)
+
+  build_args = []
+
+  if environment.requires_proxy?
+    build_args += create_proxy_environment_docker_build_args(environment)
+  end
+
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/base:2.0.0).concat(build_args).concat(%w(./base)))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/java:2.0.0).concat(build_args).concat(%w(./java)))
+  system_exec.execute_docker(:build, %w(--tag=developer.redhat.com/ruby:2.0.0).concat(build_args).concat(%w(./ruby)))
 end
 
 #
@@ -229,7 +240,7 @@ def build_environment_resources(environment, system_exec)
   end
 
   copy_project_dependencies_for_awestruct_image
-  build_base_docker_images(system_exec)
+  build_base_docker_images(environment, system_exec)
   build_environment_docker_images(environment, system_exec)
 
 end
@@ -247,12 +258,11 @@ end
 #
 def determine_docker_host_for_container_ports
 
-  docker_host = Resolv.getaddress(Socket.gethostname)
-
   begin
     docker_host = Resolv.getaddress('docker')
     puts "Host alias for 'docker' found. Assuming container ports are exposed on ip '#{docker_host}'"
   rescue
+    docker_host = Resolv.getaddress(Socket.gethostname)
     puts "No host alias for 'docker' found. Assuming container ports are exposed on '#{docker_host}'"
   end
 

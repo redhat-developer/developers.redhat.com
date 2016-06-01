@@ -1,7 +1,11 @@
 version: '2'
 services:
   awestruct:
-    build: ../../awestruct
+    build:
+     context: ../../awestruct
+     args:
+      http_proxy: proxy01.util.phx2.redhat.com:8080
+      https_proxy: proxy01.util.phx2.redhat.com:8080
     command:
       - "rake git_setup clean gen[drupal_staging]"
     links:
@@ -10,8 +14,8 @@ services:
       - ../../../:/home/awestruct/developer.redhat.com
       - ../../awestruct/overlay/ssh-key:/home/awestruct/.ssh
     environment:
-      - http_proxy="proxy01.util.phx2.redhat.com:8080"
-      - https_proxy="proxy01.util.phx2.redhat.com:8080"
+      - http_proxy=proxy01.util.phx2.redhat.com:8080
+      - https_proxy=proxy01.util.phx2.redhat.com:8080
       - google_api_key
       - dcp_user
       - dcp_password
@@ -36,7 +40,11 @@ services:
       - BUILD_URL
 
   drupal:
-    build: ../../drupal
+    build:
+     context: ../../drupal
+     args:
+      http_proxy: proxy01.util.phx2.redhat.com:8080
+      https_proxy: proxy01.util.phx2.redhat.com:8080
     ports:
       - "80:80"
     volumes:
@@ -46,8 +54,8 @@ services:
       - ../../drupal/modules/custom/:/var/www/html/modules/custom
       - /credentials/drupal/rhd.settings.php:/var/www/html/sites/default/rhd.settings.php
     environment:
-      - http_proxy="proxy01.util.phx2.redhat.com:8080"
-      - https_proxy="proxy01.util.phx2.redhat.com:8080"
+      - http_proxy=proxy01.util.phx2.redhat.com:8080
+      - https_proxy=proxy01.util.phx2.redhat.com:8080
       - DB_NAME=drupal
       # TODO: Drop these once we have rhd.settings.php working correctly
       - DB_USER=drupal

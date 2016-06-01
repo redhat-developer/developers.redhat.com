@@ -3,7 +3,9 @@
 :awestruct-tags: [RHEL, get started]
 :author: Red Hat Developers Team
 :title: "Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite"
+:awestruct-description: "Answers to Frequently Asked Questions (FAQs) about no-cost Red Hat Enterprise Linux subscriptions for developers."
 :awestruct-published: April 20, 2016
+:awestruct-description: Frequently asked questions about the no-cost RHEL Developer subscription
 
 = FREQUENTLY ASKED QUESTIONS
 = NO-COST RHEL DEVELOPER SUITE SUBSCRIPTION
@@ -84,6 +86,16 @@ The no-cost Red Hat Enterprise Linux Developer Suite may be used for development
 +
 For the majority of Red Hat Enterprise Linux subscriptions, yes. See link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)] for a detailed list.
 
+. *Are subscriptions tied to a specific release of Red Hat Enterprise Linux?*
++
+No. A subscription can be used for any of the currently supported versions of Red Hat Enterprise Linux. Major releases of Red Hat Enterprise Linux are supported for ten years. After ten years, extended support is available, which requires a different type of subscription.
++
+Note that subscriptions are for a specific variant, such as desktop, workstation, or server. The no-cost subscription is for Red Hat Enterprise Linux Server, which is a super set of the other editions. 
+
+. *Can I use this no-cost subscription for Red Hat Enterprises Linux 6 or other releases?*
++
+Yes. In addition to the current release, Red Hat Enterprise Linux 7, you will also have access to all of the currently supported releases including 5 and 6. Currently, only the most recent release of Red Hat Enterprise Linux is available from link:#{site.base_url}/[developers.redhat.com]. All releases of Red Hat Enterprise Linux are available on the customer portal, link:https://access.redhat.com/[access.redhat.com]. However, you will need to have your subscription first. See <<Getting your no-cost subscription>> and <<Software Download>> for more information.
+
 
 == Getting your no-cost subscription
 
@@ -116,8 +128,12 @@ You can download Red Hat Enterprise Linux Server from link:#{site.base_url}/down
 
 . *When I try to register on link:#{site.base_url}/[developers.redhat.com] and download the software, I get an error that JavaScript is not enabled, but I've already got it enabled?*
 +
-JavaScript is required for the registration and download process on link:#{site.base_url}/[developers.redhat.com]. If JavaScript is enabled and you are still getting errors, it is possible that ad-blockers or anti-malware software might be interfering. Try disabling them for link:#{site.base_url}/[developers.redhat.com].
+JavaScript is required for the registration and download process on link:#{site.base_url}/[developers.redhat.com]. If JavaScript is enabled and you are still getting errors, it is possible that pop-up blockers, tracking blockers, or anti-malware software might be interfering. Try disabling them for link:#{site.base_url}/[developers.redhat.com].
 +
+
+. *Where can I download Red Hat Enterprise Linux 6 or other releases?*
++
+Currently, only the most recent release of Red Hat Enterprise Linux is available from link:#{site.base_url}/[developers.redhat.com]. All releases of Red Hat Enterprise Linux are available on the customer portal, link:https://access.redhat.com/[access.redhat.com]. In order to get your no-cost subscription, you must first register and download through link:#{site.base_url}/downloads/[developers.redhat.com/downloads]. You do not have to complete the download to get your subscription, but you must go through the registration to the point where the download begins.
 
 . *I've enabled JavaScript and disabled pop-up blockers, but I still can't download the software. Is there any other way to get it?*
 +
@@ -132,7 +148,7 @@ The download links at link:#{site.base_url}/[developers.redhat.com] handle regis
 
 . *Why does the Developer Suite subscription only include Red Hat Enterprise Linux Server?*
 +
-Red Hat Enterprise Linux Server gives you access to the widest variety of software to develop and test with including server oriented software such as containers. Red Hat Enterprise Linux Server is essentially a superset of the other editions.
+Red Hat Enterprise Linux Server gives you access to the widest variety of software to develop and test with including server oriented software such as containers. Red Hat Enterprise Linux Server is essentially a super set of the other editions.
 
 . *As a developer I want a full graphical desktop. Can I get this with Red Hat Enterprise Linux Server?*
 +
