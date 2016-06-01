@@ -47,6 +47,7 @@ Feature: Site navigation menu
       | Web and API Development |
       | Enterprise Java         |
       | .NET                    |
+      | Internet of Things      |
 
   @desktop @smoke
   Scenario: TOPICS sub-menu items should link to retrospective pages
@@ -60,6 +61,7 @@ Feature: Site navigation menu
       | Web and API Development | web-and-api-development |
       | Enterprise Java         | enterprise-java         |
       | .NET                    | dotnet                  |
+      | Internet of Things      | iot                     |
 
   @mobile @smoke
   Scenario: Tapping TOPICS from drop down menu on Mobile/Tablet should display additional topics
@@ -72,6 +74,7 @@ Feature: Site navigation menu
       | Web and API Development |
       | Enterprise Java         |
       | .NET                    |
+      | Internet of Things      |
 
   @products @desktop @smoke
   Scenario: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
