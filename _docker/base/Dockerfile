@@ -1,5 +1,7 @@
 FROM centos:6
 
+ARG http_proxy
+ARG https_proxy
 
 # Upgrading system and install commonly used packages
 RUN yum clean dbcache && \

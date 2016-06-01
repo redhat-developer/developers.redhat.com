@@ -1,4 +1,7 @@
-FROM developer.redhat.com/base
+FROM developer.redhat.com/base:2.0.0
+
+ARG http_proxy
+ARG https_proxy
 
 ENV JAVA_VERSION 7u25
 ENV BUILD_VERSION b15

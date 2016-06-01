@@ -99,6 +99,22 @@ class RhdEnvironment
     end
   end
 
+  def get_proxy
+    requires_proxy? ? 'proxy01.util.phx2.redhat.com:8080' : nil
+  end
+
+  def get_http_proxy
+     get_proxy
+  end
+
+  def get_https_proxy
+    get_proxy
+  end
+
+  def requires_proxy?
+    @environment_name == 'drupal-staging' or @environment_name == 'drupal-production'
+  end
+
   #
   # Provides the list of supporting services that should be started in each environment before
   # running Awestruct
@@ -119,6 +135,6 @@ class RhdEnvironment
 
   end
 
-  private :get_absolute_file_name
+  private :get_absolute_file_name, :get_proxy
 
 end

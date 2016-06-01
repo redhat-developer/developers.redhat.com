@@ -82,7 +82,7 @@ class Options
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
         tasks[:supporting_services] = [ENV['RHD_DOCKER_DRIVER']]
-        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports', 'acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"]
+        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"]
       end
 
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
@@ -135,7 +135,7 @@ class Options
   end
 
   def self.unit_test_tasks
-    ['--no-deps', '--rm', 'unit_tests', 'bundle exec rake test']
+    ['--no-deps', '--rm', 'awestruct', 'bundle exec rake test']
   end
 
 end
