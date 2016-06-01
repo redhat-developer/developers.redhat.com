@@ -258,12 +258,11 @@ end
 #
 def determine_docker_host_for_container_ports
 
-  docker_host = Resolv.getaddress(Socket.gethostname)
-
   begin
     docker_host = Resolv.getaddress('docker')
     puts "Host alias for 'docker' found. Assuming container ports are exposed on ip '#{docker_host}'"
   rescue
+    docker_host = Resolv.getaddress(Socket.gethostname)
     puts "No host alias for 'docker' found. Assuming container ports are exposed on '#{docker_host}'"
   end
 
