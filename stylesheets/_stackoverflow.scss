@@ -1,7 +1,7 @@
 .product-stackoverflow-container, .stackoverflow-container {
-  .stackoverflow-product-update .update{
-    margin-top: 2em;
-
+  .stackoverflow-product-update .update, .stackoverflow-update .update{
+    margin-top: 1.2em;
+    
     .qtn-stats {
       span {
         display: inline-block;
@@ -21,6 +21,9 @@
       margin: 10px 0;
       padding: 10px;
     }
+  }
+  .stackoverflow-update .update{
+    margin-top: 2em;
   }
 }
 
