@@ -64,12 +64,14 @@ class TestOptions < Minitest::Test
     tasks = Options.parse (["--backup"])
     assert(tasks[:build])
     assert_equal(['--rm', 'backup',''], tasks[:awestruct_command_args])
+    assert_equal(%w(), tasks[:supporting_services])
   end
 
   def test_backup_with_supplied_backup_name
     tasks = Options.parse (["--backup", "my-backup-name"])
     assert(tasks[:build])
     assert_equal(['--rm', 'backup', 'my-backup-name'], tasks[:awestruct_command_args])
+    assert_equal(%w(), tasks[:supporting_services])
   end
 
   def test_set_build
