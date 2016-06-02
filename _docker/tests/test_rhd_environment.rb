@@ -8,7 +8,9 @@ class TestRhdEnvironment < MiniTest::Test
     ENV['COMPOSE_PROJECT_NAME'] = ''
     @environments_directory = File.expand_path('test-environments',File.dirname(__FILE__))
     @testing_directory = File.expand_path('test-environments/testing',File.dirname(__FILE__))
-    @environment = RhdEnvironment.new("#{@environments_directory}/valid-environment", @testing_directory)
+    @drupal_directory = File.expand_path('drupal', File.dirname(__FILE__))
+    @environment = RhdEnvironment.new("#{@environments_directory}/valid-environment",
+                                      @testing_directory, @drupal_directory)
   end
 
   def teardown
@@ -19,26 +21,13 @@ class TestRhdEnvironment < MiniTest::Test
     ENV['SEARCHISKO_HOST_PORT'] = ''
 
     FileUtils.rm("#{@environments_directory}/valid-environment/test.txt", :force => true)
-    FileUtils.rm("#{@environments_directory}/drupal-pull-request/rhd.settings.php", :force => true)
+    FileUtils.rm("#{@environments_directory}/drupal-pull-request/rhd.settings.yml", :force => true)
+    FileUtils.rm("#{@drupal_directory}/rhd.settings.yml", :force => true)
+    FileUtils.rm("#{@drupal_directory}/rhd.settings.php", :force => true)
   end
 
   def test_get_testing_docker_compose_file
     assert_equal("#{@testing_directory}/docker-compose.yml", @environment.get_testing_docker_compose_file)
-  end
-
-  def test_create_template_resources
-    @environment.environment_name = 'drupal-pull-request'
-    @environment.environment_directory = File.expand_path('test-environments/drupal-pull-request',File.dirname(__FILE__))
-
-    assert_equal(false, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
-    @environment.create_template_resources
-    assert_equal(true, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
-  end
-
-  def test_create_template_resources_not_drupal_pull_request
-    assert_equal(false, File.exist?("#{@environments_directory}/valid-environment/rhd.settings.php"))
-    @environment.create_template_resources
-    assert_equal(false, File.exist?("#{@environments_directory}/valid-environment/rhd.settings.php"))
   end
 
   def test_create_file
@@ -57,17 +46,18 @@ class TestRhdEnvironment < MiniTest::Test
     @environment.environment_name = 'drupal-pull-request'
     @environment.environment_directory = File.expand_path('test-environments/drupal-pull-request',File.dirname(__FILE__))
 
-    assert_equal(false, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
+    assert_equal(true, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
+    assert_equal(false, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.yml"))
 
-    @environment.create_template_resources
     @environment.template_resources
 
-    assert_equal(true, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
+    # assert_equal(true, File.exist?("#{@environments_directory}/drupal-pull-request/rhd.settings.php"))
+    assert_equal(true, File.exist?("#{@drupal_directory}/rhd.settings.yml"))
 
-    assert_equal(false, File.open("#{@environments_directory}/drupal-pull-request/rhd.settings.php").grep(/10.20.30.40$/).empty?)
-    assert_equal(false, File.open("#{@environments_directory}/drupal-pull-request/rhd.settings.php").grep(/80$/).empty?)
-    assert_equal(false, File.open("#{@environments_directory}/drupal-pull-request/rhd.settings.php").grep(/11.21.31.41$/).empty?)
-    assert_equal(false, File.open("#{@environments_directory}/drupal-pull-request/rhd.settings.php").grep(/8080$/).empty?)
+    assert_equal(false, File.open("#{@drupal_directory}/rhd.settings.yml").grep(/10.20.30.40$/).empty?)
+    assert_equal(false, File.open("#{@drupal_directory}/rhd.settings.yml").grep(/80$/).empty?)
+    assert_equal(false, File.open("#{@drupal_directory}/rhd.settings.yml").grep(/11.21.31.41$/).empty?)
+    assert_equal(false, File.open("#{@drupal_directory}/rhd.settings.yml").grep(/8080$/).empty?)
 
   end
 
@@ -154,11 +144,13 @@ class TestRhdEnvironment < MiniTest::Test
   end
 
   def test_invalid_environment_is_not_valid
-    assert_equal(false, RhdEnvironment.new("#{@environments_directory}/invalid-environment", @testing_directory).is_valid_environment?)
+    assert_equal(false, RhdEnvironment.new("#{@environments_directory}/invalid-environment",
+                                           @testing_directory, @drupal_directory).is_valid_environment?)
   end
 
   def test_get_docker_compose_file
-    assert_equal("#{@environments_directory}/valid-environment/docker-compose.yml", @environment.get_docker_compose_file)
+    assert_equal("#{@environments_directory}/valid-environment/docker-compose.yml",
+                 @environment.get_docker_compose_file)
   end
 
   def test_requires_proxy_awestruct_dev

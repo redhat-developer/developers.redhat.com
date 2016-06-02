@@ -90,7 +90,7 @@ def block_wait_drupal_started(environment, supporting_services)
     ENV['DRUPAL_HOST_IP'] = docker_host
     ENV['DRUPAL_HOST_PORT'] = drupal_port
   else
-    puts "Not waiting for Drupal to start as it is not a required supporting_service"
+    puts 'Not waiting for Drupal to start as it is not a required supporting_service'
   end
 end
 
@@ -141,7 +141,7 @@ def block_wait_searchisko_started(environment, supporting_services)
     ENV['SEARCHISKO_HOST_IP'] = docker_host
     ENV['SEARCHISKO_HOST_PORT'] = searchisko_port
   else
-    puts "Not waiting for Searchisko to start as it is not a required supporting_service"
+    puts 'Not waiting for Searchisko to start as it is not a required supporting_service'
   end
 
 end
@@ -279,13 +279,14 @@ def start_and_wait_for_supporting_services(environment, supporting_services, sys
   unless supporting_services.nil? or supporting_services.empty?
     puts "Starting all required supporting services..."
 
-    environment.create_template_resources
+    environment.template_resources
     system_exec.execute_docker_compose(environment, :up, %w(-d --no-recreate).concat(supporting_services))
     block_wait_searchisko_started(environment, supporting_services)
     block_wait_drupal_started(environment, supporting_services)
-    environment.template_resources
 
-    puts "Started all required supporting services."
+    puts 'Started all required supporting services.'
+  else
+    puts 'No supporting services to start.'
   end
 end
 

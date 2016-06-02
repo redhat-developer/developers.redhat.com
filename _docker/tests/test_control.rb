@@ -52,7 +52,6 @@ class TestControl < Minitest::Test
   def test_start_and_wait_for_supporting_services
 
     environment = mock()
-    environment.expects(:create_template_resources)
     environment.expects(:template_resources)
     supporting_services = %w(drupal)
 

@@ -1,0 +1,14 @@
+environment: dev
+drupal:
+  host: docker
+  port: "80"
+searchisko:
+  host: docker
+  port: "8080"
+database:
+  host:  drupalmysql
+  port: '3306'
+  username: 'drupal'
+  password: 'drupal'
+  name: 'drupal'
+

@@ -1,4 +1,5 @@
 require 'erb'
+require 'fileutils'
 
 #
 # Models an environment supported by the developers.redhat.com start-up scripts.
@@ -11,10 +12,11 @@ class RhdEnvironment
 
   attr_accessor :environment_name, :environment_directory
 
-  def initialize(environment_directory, testing_directory)
+  def initialize(environment_directory, testing_directory, drupal_directory)
     @environment_directory = environment_directory
     @testing_directory = testing_directory
     @environment_name = environment_directory.split('/').last
+    @drupal_directory = drupal_directory
   end
 
   #
@@ -57,7 +59,7 @@ class RhdEnvironment
   end
 
   def get_absolute_file_name(file_name)
-    "#{@environment_directory}/#{file_name}"
+    File.join @environment_directory, file_name
   end
 
   def get_file(file_name)
@@ -66,24 +68,17 @@ class RhdEnvironment
   end
 
   #
-  # Creates any resources that will be templated by the environment prior to starting the Docker
-  # containers for this environment, in-case the resources are bind-mounted into the Docker containers.
-  #
-  def create_template_resources
-    if @environment_name == 'drupal-pull-request'
-      create_file('rhd.settings.php')
-    end
-  end
-
-  #
   # Templates any resources required by the environment. In reality the only environment
   # that needs this is the Drupal pull-request environment
   #
   def template_resources
+    if environment_name == 'drupal-pull-request'
+      File.chmod(0775, @drupal_directory)
+      output_file = File.join(@drupal_directory, 'rhd.settings.yml')
+      File.write(output_file, ERB.new(File.read(get_file('rhd.settings.yml.erb'))).result)
 
-    if @environment_name == 'drupal-pull-request'
-      output_file = get_file('rhd.settings.php')
-      File.write(output_file, ERB.new(File.read(get_file('rhd.settings.php.erb'))).result)
+      output_file = File.join(@drupal_directory, 'rhd.settings.php')
+      File.write(output_file, File.read(get_file('rhd.settings.php')))
     end
   end
 

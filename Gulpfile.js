@@ -82,7 +82,7 @@ gulp.task('scripts',function() {
     .pipe(plugins.rename('all.min.js'))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest('_docker/drupal/themes/custom/rhd/js/'));
+    .pipe(gulp.dest('_docker/drupal/web/themes/custom/rhd/js/'));
 });
 
 gulp.task('sass', function() {
@@ -98,12 +98,12 @@ gulp.task('sass', function() {
     }}))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest('_docker/drupal/themes/custom/rhd/css/base'));
+    .pipe(gulp.dest('_docker/drupal/web/themes/custom/rhd/css/base'));
 });
 
 gulp.task('clean', function() {
-  return del(['_docker/drupal/themes/custom/rhd/css/base/*.css',
-              '_docker/drupal/themes/custom/rhd/js/all.min.js']);
+  return del(['_docker/drupal/web/web/themes/custom/rhd/css/base/*.css',
+              '_docker/drupal/web/web/themes/custom/rhd/js/all.min.js']);
 });
 
 gulp.task('default', ['clean', 'scripts', 'sass']);
