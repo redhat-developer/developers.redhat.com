@@ -46,11 +46,6 @@ ADD ./drupal.conf /etc/httpd/conf.d/drupal.conf
 
 RUN chmod -v +x /run-httpd.sh
 
-# Hack for permissions
-RUN groupadd staff && \
-    usermod -u 1000 apache && \
-    usermod -G staff apache
-
 WORKDIR /var/www/
 
 CMD ["/run-httpd.sh"]

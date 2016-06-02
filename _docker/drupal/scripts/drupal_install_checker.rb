@@ -35,7 +35,7 @@ class DrupalInstallChecker
                                        "--user=#{@opts['database']['username']}",
                                        "--password=#{@opts['database']['password']}",
                                        '--connect-timeout=20',
-                                       'drupal']
+                                       "#{@opts['database']['name']}"]
       true
     rescue => e
       puts "ERROR: #{e.message}"
@@ -50,7 +50,7 @@ class DrupalInstallChecker
                                                 "--port=#{@opts['database']['port']}",
                                                 "--user=#{@opts['database']['username']}",
                                                 "--password=#{@opts['database']['password']}",
-                                                '--execute=show tables', 'drupal']).split("\n")[1..-1]
+                                                '--execute=show tables', "#{@opts['database']['name']}"]).split("\n")[1..-1]
       return false if tables.nil? || tables.empty?
       (tables_to_check.uniq.sort - tables.uniq.sort).empty?
     rescue => e
@@ -78,7 +78,7 @@ class DrupalInstallChecker
     puts 'Installing Drupal, please wait...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
                            ['--root=web', 'site:install', 'standard', '--langcode=en', '--db-type=mysql',
-                            "--db-host=#{@opts['database']['host']}", "--db-name=#{@opts['database']['database']}",
+                            "--db-host=#{@opts['database']['host']}", "--db-name=#{@opts['database']['name']}",
                             "--db-user=#{@opts['database']['username']}", "--db-port=#{@opts['database']['port']}",
                             "--db-pass=#{@opts['database']['password']}", '--account-name=admin',
                             "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
