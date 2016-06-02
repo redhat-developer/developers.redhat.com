@@ -65,3 +65,11 @@ function rhd_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $v
 
     return $suggestions;
 }
+
+function rhd_preprocess_html(array &$variables) {
+    $environment = \Drupal::config('redhat_developers')->get('environment');
+    $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
+
+    $variables['rhd_environment'] = $environment;
+    $variables['rhd_dtm_code'] = $dtm_code;
+}
