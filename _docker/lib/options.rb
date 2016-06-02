@@ -23,6 +23,7 @@ class Options
       opts.on('--backup [BACKUP_NAME]', String, 'Take a backup of the environment') do |backup|
         tasks[:build] = true
         tasks[:awestruct_command_args] = ['--rm', 'backup', "#{backup}"]
+        tasks[:supporting_services] = []
       end
 
       opts.on('-r', '--restart', 'Restart the containers') do |r|
