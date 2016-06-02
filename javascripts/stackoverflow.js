@@ -7,24 +7,43 @@ app.stackoverflow = {
 
   filter : function(tmpl, container, itemCount, append, from, dataIndex, callback) {
 
+    var url = app.dcp.url.stackoverflow;
+
     // set a default item count of 8
     itemCount = itemCount || 8;
 
     // append loading class to wrapper
     container.addClass('stackoverflow-loading');
     
+    // Pass search params to GTM for analytics
+    window.dataLayer = window.dataLayer || [];
+
     /*
       Keyword
     */
-    var keyword = $('input[name="stackoverflow-filter-text"]').val();
+    var keyword = keyword || $('input[name="filter-text"]').val();
 
-    var filters = {
-      "keyword" : keyword
-    };
+    var filters = $.extend(filters, {"keyword": keyword});
+    // var filters = {
+    //   "keyword" : keyword
+    // };
     var currentFilters = {};
+    // console.log("Filters: " + filters);
+    var request_data = {};
+
+    var filter_products = $('select[name="filter-products"]');
+    if (filter_products.length && filter_products.val() !== "") {
+      var product = filter_products.val();
+      console.log("Selected product: "+ product);
+      filters['stackoverflow'] = app.products[product]['stackoverflow'];
+      // console.log("Product tags: " + filters['stackoverflow']);
+      window.dataLayer.push({ 'product' : product });
+    } else {
+      window.dataLayer.push({ 'product' : null });
+    }
 
     $.each(filters, function(key, val) {
-      // if its empty, or undefined, remove it from the filters
+      //if its empty, or undefined, remove it from the filters
       if(val && val.length) {
         currentFilters[key] = val;
       }
@@ -37,22 +56,39 @@ app.stackoverflow = {
     window.dataLayer = window.dataLayer || [];
         
     
-    if(currentFilters.keyword) {
+    // if(currentFilters.keyword) {
+    //   query.push(keyword);
+    //   window.dataLayer.push({ 'keyword' : keyword });
+    // } else {
+    //   window.dataLayer.push({ 'keyword' : null });
+    // }
+
+    if(currentFilters['keyword']) {
+      window.dataLayer.push({ 'keyword' : query });
       query.push(keyword);
-      window.dataLayer.push({ 'keyword' : keyword });
+      delete currentFilters['keyword']
     } else {
       window.dataLayer.push({ 'keyword' : null });
     }
 
-
     // Pull the json array, switch back to double quotes, then parse it.
-    var tags = container.data('tags') || "";
-    try {
-      tags = JSON.parse(tags.replace(/'/g, "\""));
-    } catch (e) {
-      tags = "";
+    if (container.data('tags')){
+      var tags = container.data('tags') || "";
+      try {
+        tags = JSON.parse(tags.replace(/'/g, "\""));
+      } catch (e) {
+        tags = "";
+      }
     }
+    else{
+      var tags = filters['stackoverflow'];
+      // tags = tags.replace(/"/, "'");
+    }
+    
 
+
+    
+    console.log("filter tags: " + tags);
     if(tags){
       var tagsString = "";
       for (var i = 0; i < tags.length; i++) {
@@ -68,7 +104,7 @@ app.stackoverflow = {
     window.dataLayer.push({'event': 'stackoverflow-search'});
 
     $.ajax({
-        url : app.dcp.url.search + '/stackoverflow/',
+        url : app.dcp.url.stackoverflow,
         dataType: 'json',
         data : {
           "field"  : ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count"],
@@ -187,7 +223,7 @@ app.stackoverflow = {
           var from = $('.stackoverflow-container > div').length;
 
           dataIndex += 8;
-          console.log("dataIndex: " + dataIndex);
+          // console.log("dataIndex: " + dataIndex);
           // load in more
           app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow, 8, true, from, dataIndex, function() {
             if(win.scrollTop() < 400){
@@ -204,7 +240,7 @@ app.stackoverflow = {
     var $pstackoverflow = $('.product-stackoverflow-container');
 
     if($pstackoverflow.length) {
-      app.stackoverflow.filter(app.templates.productStackoverflowTemplate, $pstackoverflow, 20);
+      app.stackoverflow.filter(app.templates.productStackoverflowTemplate, $pstackoverflow, 4);
     }
 
     // Event Listeners for Stackoverflow Filter
