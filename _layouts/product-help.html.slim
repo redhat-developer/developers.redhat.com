@@ -1,0 +1,60 @@
+---
+layout: product
+type: Help
+---
+
+
+.row
+  .large-24.columns
+    h2#help Help
+    h4 Community Q&A
+    strong See our most popular forum discussions and Stack Overflow Q&A posts related to #{page.product.name}.
+
+.row.forums-stack-row
+  .large-12.columns
+    h4.caps
+      i.fa.fa-comments-o
+      |  Latest Discussions
+
+  .large-12.columns
+    h4.caps
+      i.fa.fa-stack-overflow
+      |  Top Q&A
+    .product-stackoverflow-container(data-tags="#{(JSON.dump page.product.stackoverflow_tags).gsub(/"/, "'")}")
+
+.row
+  .large-24.columns.services-and-support
+    h3 Professional services and support
+    h4 It's ok if you don't have the time to figure everything out on your own.
+    ul.small-block-grid-1.large-block-grid-2
+      li
+        span
+          // image here
+        span
+          h4.caps Subscriptions
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+          a.button(href="#")Learn More
+      li
+        span
+          // image here
+        span
+          h4.caps Consulting
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+          a.button(href="#")Learn More
+      li
+        span
+          // image here
+        span
+          h4.caps Training & Certifications
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+          a.button(href="#")Learn More
+      li
+        span
+          // image here
+        span
+          h4.caps App Certification
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+          a.button(href="#")Learn More
+
+= javascripts("stackoverflow", true) do
+  script src="#{site.base_url}/javascripts/vendor/moment.js"

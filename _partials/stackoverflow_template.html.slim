@@ -1,0 +1,25 @@
+.stackoverflow-update
+  .update
+    .update-meta
+      .row
+        .large-6.columns.qtn-stats
+          span
+            / h4 #
+            / p votes
+          span
+            h4 <!=answerCount!>
+            p answers
+          span
+            h4 <!=view_count!>
+            p views
+        .large-18.columns
+          a.update-source href="<!=permanentLink!>"
+            h5.qtn-title <!=sys_title!>
+          .callout.qtn-answer
+            p <!=answer!>
+            a href="<!=permanentLink!>" Read full question at Stack Overflow
+          p.so-tags
+            strong Tags:&nbsp;
+            <!=tags!>
+          span.right
+            p <!=dateCreated!> | <!=authorName!>

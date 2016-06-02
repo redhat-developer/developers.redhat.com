@@ -31,6 +31,8 @@ app.templates.termsAndConditionsTemplate = '#{partial "terms_and_conditions.html
 app.templates.bookTemplate = '#{partial "book.html.slim"}';
 app.templates.connectorTemplate = '#{partial "product-connectors-item.html.slim"}';
 
+app.templates.productStackoverflowTemplate = '#{partial "product_stackoverflow_template.html.slim"}';
+app.templates.stackoverflowTemplate = '#{partial "stackoverflow_template.html.slim"}';
 /*
   FastClick variable for faster tapping on touch devices
 */
@@ -43,6 +45,7 @@ app.fastClick = false;
 app.dcp = {};
 app.dcp.url = {};
 app.dcp.url.search = '#{site.dcp_base_protocol_relative_url}v2/rest/search';
+app.dcp.url.stackoverflow= '#{site.dcp_base_protocol_relative_url}v2/rest/search/stackoverflow/';
 app.dcp.url.content = '#{site.dcp_base_protocol_relative_url}v2/rest/content';
 app.dcp.url.auth_status = '#{site.dcp_base_protocol_relative_url}v2/rest/auth/status';
 app.dcp.url.rating = '#{site.dcp_base_protocol_relative_url}v2/rest/rating';
@@ -78,7 +81,7 @@ app.dcp.thumbnails = {
 /*
   Products
 */
-app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'] || '_none'}; map; })};
+app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'], stackoverflow: site.products[product]['stackoverflow_tags'] || '_none'}; map; })};
 
 
 /*
