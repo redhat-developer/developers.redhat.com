@@ -2,17 +2,17 @@
   .update
     .update-meta
       .row
-        .large-6.columns.qtn-stats
+        .large-5.columns.qtn-stats
           span
-            / h4 #
-            / p votes
+            h4 <!=up_vote_count!>
+            p votes
           span
-            h4 <!=answerCount!>
+            h4 <!=answer_count!>
             p answers
           span
             h4 <!=view_count!>
             p views
-        .large-18.columns
+        .large-19.columns
           a.update-source href="<!=permanentLink!>"
             h5.qtn-title <!=sys_title!>
           .callout.qtn-answer
