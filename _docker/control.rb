@@ -31,7 +31,7 @@ class SystemCalls
 
     begin
       Docker::Network.get("#{environment.get_compose_project_name}_default")
-      execute_docker_compose(environment,:down)
+      execute_docker_compose(environment,:down, %w(-v))
       puts '- Stopped current Docker environment.'
     rescue
       puts "- No containers for Docker environment '#{environment.environment_name}' are running."
