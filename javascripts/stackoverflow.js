@@ -107,7 +107,7 @@ app.stackoverflow = {
         url : app.dcp.url.stackoverflow,
         dataType: 'json',
         data : {
-          "field"  : ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count"],
+          "field"  : ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count"],
           "query" : query,
           "tag" : tags,
           "size" : itemCount,
@@ -140,15 +140,16 @@ app.stackoverflow = {
           }
           var html = "";
           for (var i = 0; i < hits.length; i++) {
+            score = hits[i]._score;
             var d = hits[i]._source;
             d.authorName = d.author.split('-')[0];
             d.permanentLink = d.sys_url_view;
             d.tags = d.sys_tags.join(', ').substr(0, 30);
             d.dateCreated =jQuery.timeago(new Date((d.sys_created / 1000) * 1000));
 
-            d.answerCount = 0;
+            // d.answerCount = 0;
             if(d.answers){
-              d.answerCount = d.answers.length;
+              // d.answerCount = d.answers.length;
 
               var aRex = /(<([^>]+)>)/ig;
               var bRex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
