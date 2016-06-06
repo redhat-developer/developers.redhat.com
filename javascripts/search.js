@@ -38,6 +38,15 @@ search.filter('timeAgo', function() {
   }
 });
 
+search.filter('MDY', function() {
+  return function(timestamp){
+    if(!timestamp) return;
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var date = new Date(timestamp);
+    return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getYear();
+  }
+});
+
 search.filter('timestamp', function() {
   return function(timestamp){
     var date = new Date(timestamp);
