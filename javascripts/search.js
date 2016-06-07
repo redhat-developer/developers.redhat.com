@@ -15,6 +15,8 @@ search.service('searchService',function($http, $q) {
 
     var endpoint = (!!window.location.pathname.match(/\/search/) ? app.dcp.url.search : app.dcp.url.developer_materials);
 
+    app.dcp.url.developer_materials = '//dcp.stage.jboss.org/v2/rest/search/developer_materials'; // remove before launch
+
     $http.get(endpoint, { params: search })
       .success(function(data){
         deferred.resolve(data);
