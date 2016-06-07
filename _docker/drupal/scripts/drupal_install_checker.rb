@@ -92,6 +92,14 @@ class DrupalInstallChecker
     process_executor.exec!('/var/www/drupal/vendor/bin/drupal', module_install_args)
   end
 
+  #
+  # This sets the cron key to a known value for the Drupal instance so that we can invoke cron remotely
+  #
+  def set_cron_key
+    puts 'Setting the cron key...'
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', %w(--root=web state:override system.cron_key rhd))
+  end
+
   def install_drupal
     puts 'Running composer install'
     if @opts['environment'] == 'dev'
@@ -131,4 +139,5 @@ if $0 == __FILE__
   checker.install_theme
   checker.install_modules
   checker.install_module_configuration
+  checker.set_cron_key
 end

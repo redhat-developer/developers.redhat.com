@@ -107,6 +107,11 @@ class DrupalInstallCheckerTest < Minitest::Test
 
   end
 
+  def test_set_cron_key
+    @process_exec.expect(:exec!, nil,['/var/www/drupal/vendor/bin/drupal',%w(--root=web state:override system.cron_key rhd)])
+    @install_checker.set_cron_key
+  end
+
   def test_install_theme
     @process_exec.expect(:exec!, nil,['/var/www/drupal/vendor/bin/drupal',%w(--root=web theme:install --set-default rhd)])
     @install_checker.install_theme
