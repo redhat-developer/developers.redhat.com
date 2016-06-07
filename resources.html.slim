@@ -21,7 +21,7 @@ div(ng-app="search")
         .large-24.column
           p: strong Find by type:
       .row.type-filters
-        input(type="checkbox" value="blog" ng-checked="params.sys_type.indexOf('blog') > -1" ng-click="toggleSelection($event)" id="blogposts")
+        input(type="checkbox" value="blogpost" ng-checked="params.sys_type.indexOf('blogpost') > -1" ng-click="toggleSelection($event)" id="blogposts")
         label(for="blogposts")
           i.icon-RHDev_-resources_icons_blogpost
           h3 Blog Posts
