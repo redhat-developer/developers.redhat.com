@@ -60,7 +60,7 @@ search.filter('icon', function() {
   return function(sys_type){
     var icons = {
       video: 'icon-RHDev_-resources_icons_video',
-      blog: 'icon-RHDev_-resources_icons_blogpost',
+      blogpost: 'icon-RHDev_-resources_icons_blogpost',
       jbossdeveloper_book: 'icon-RHDev_-resources_icons_book',
       book: 'icon-RHDev_-resources_icons_book',
       demo: 'icon-RHDev_-resources_icons_demo',
@@ -74,9 +74,7 @@ search.filter('icon', function() {
   }
 });
 
-
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
-
 
 function searchCtrlFunc($scope, searchService) {
   var search = window.location.search.split('=');

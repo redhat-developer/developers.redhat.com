@@ -45,6 +45,12 @@ div(ng-app="search")
           h3 Get Started
           p Use your time wisely with effective getting-started documents
 
+        input(type="checkbox" value="solution article" ng-checked="params.sys_type.indexOf('solution') > -1" ng-click="toggleSelection($event)" id="video")
+        label(for="video")
+          i.icon-RHDev_-resources_icons_article
+          h3 Knowledgebase Article / Solution
+          p Members only articles and verified solutions for self-service support.
+
         input(type="checkbox" value="video" ng-checked="params.sys_type.indexOf('video') > -1" ng-click="toggleSelection($event)" id="video")
         label(for="video")
           i.icon-RHDev_-resources_icons_video
