@@ -105,3 +105,16 @@ section of composer.json:
     }
 }
 ```
+
+### Viewing diffs for new revisions in Drupal
+
+To view diffs in a content node, navigate to the node that you would like to edit.
+
+> Note: This will only work for content added through the 'Content' user interface. You will not be able to edit or view revisions for statically generated content.
+
+1. Save and publish any changes.
+2. Return to the edit content page and select the tab labeled 'Revisions'
+3. Use the radio buttons to select the revisions to compare.
+4. Select compare and observe changes.
+
+
