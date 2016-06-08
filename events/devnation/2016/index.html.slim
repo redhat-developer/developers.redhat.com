@@ -11,7 +11,7 @@ description: Learn more. Code more. Share more. Join the Nation.
 
 #devnation2016-microsite
   section
-    - page.event.next_event.each do |a|
+    - page.event.live_events.each do |a|
       .row
         .large-24.columns
           h5.caps.session-label
@@ -69,7 +69,7 @@ description: Learn more. Code more. Share more. Join the Nation.
           h5.caps Sessions
           br
           ul.events-list
-           - page.event.past_events.each do |c|
+           - page.event.sessions.each do |c|
             li.single-event
               .row
                 .large-7.columns
