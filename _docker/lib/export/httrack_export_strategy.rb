@@ -28,9 +28,7 @@ class HttrackExportStrategy
   def run_new_export(links_file, drupal_host, export_directory)
 
     @log.info("Running first time export of content from '#{drupal_host}'. Be patient, this will take time...")
-
     @process_runner.execute!("httrack --list #{links_file.to_path} -O #{export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{drupal_host}*\" -\"*/node*\" -\"*/devel*\"")
-
     @log.info("Completed export of content from '#{drupal_host}'")
   end
 
@@ -40,9 +38,7 @@ class HttrackExportStrategy
   def run_update_to_existing_export(export_directory)
 
     @log.info("Running update to existing httrack export in directory '#{export_directory}'. Please be patient...")
-
     @process_runner.execute!("cd #{export_directory} && httrack --update")
-
     @log.info("Completed update of existing httrack export in directory '#{export_directory}'")
 
   end

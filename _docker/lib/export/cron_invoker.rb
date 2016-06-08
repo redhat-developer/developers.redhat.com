@@ -16,7 +16,7 @@ class CronInvoker
 
   #
   # Invokes the cron endpoint on the configured Drupal instance. This will raise a StandardError if there is a problem
-  # making the HTTP request or the response status is not 200.
+  # making the HTTP request or the response status is not 204 (Drupal returns no-content status when invoking cron).
   #
   def invoke_cron!
     drupal_cron_url = URI.parse("http://#{@drupal_host}/cron/rhd")
