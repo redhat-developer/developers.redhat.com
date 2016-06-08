@@ -74,6 +74,12 @@ search.filter('icon', function() {
   }
 });
 
+search.filter('broker', function() {
+  return function(url){
+    return app.dcp.url.broker + encodeURIComponent(url);
+  }
+});
+
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
 
 function searchCtrlFunc($scope, searchService) {
