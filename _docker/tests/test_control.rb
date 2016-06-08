@@ -377,7 +377,7 @@ class TestControl < Minitest::Test
     environment.expects(:is_drupal_environment?).returns(true)
 
     expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
-    expects(:get_host_mapped_port_for_container).with(environment, 'drupal','80/tcp').returns('80')
+    expects(:get_host_mapped_port_for_container).with(environment, 'drupal_1','80/tcp').returns('80')
 
     args = %w(--rm export %{docker_drupal_ip}:%{docker_drupal_port})
 
@@ -402,7 +402,7 @@ class TestControl < Minitest::Test
     environment.expects(:is_drupal_environment?).returns(true)
 
     expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
-    expects(:get_host_mapped_port_for_container).with(environment, 'drupal','80/tcp').returns('80')
+    expects(:get_host_mapped_port_for_container).with(environment, 'drupal_1','80/tcp').returns('80')
 
     args = %w(--rm export backup foo)
     templated_args = template_docker_run_args(environment, args)
