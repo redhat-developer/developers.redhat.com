@@ -32,7 +32,7 @@ class Export
 
 end
 
-@DEFAULT_EXPORT_LOCATION = "/Users/Rob/an-export"
+@DEFAULT_EXPORT_LOCATION = "/export"
 
 if $0 == __FILE__
 

@@ -279,7 +279,7 @@ def template_docker_run_args(environment, args=[])
   if environment.is_drupal_environment?
 
     drupal_host = determine_docker_host_for_container_ports
-    drupal_port = get_host_mapped_port_for_container(environment, 'drupal', '80/tcp')
+    drupal_port = get_host_mapped_port_for_container(environment, 'drupal_1', '80/tcp')
 
     template_args = {
       :docker_drupal_ip => drupal_host,
@@ -346,7 +346,7 @@ if $0 == __FILE__
   start_and_wait_for_supporting_services(environment, tasks[:supporting_services], system_exec)
 
   if tasks[:awestruct_command_args]
-    system_exec.execute_docker_compose(environment, :run, template_docker_run_args(tasks[:awestruct_command_args]))
+    system_exec.execute_docker_compose(environment, :run, template_docker_run_args(environment, tasks[:awestruct_command_args]))
   end
 
   if tasks[:scale_grid]

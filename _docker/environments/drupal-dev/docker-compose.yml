@@ -86,7 +86,20 @@ services:
       - DB_PASSWORD=searchisko
     links:
      - mysql
+  #
+  # Environment actions
+  #
+  export:
+    user: root
+    build: ../../awestruct
+    volumes:
+     - ../../../:/home/awestruct/developer.redhat.com
+     - export:/export
+    entrypoint: ruby _docker/lib/export/export.rb
 
+  #
+  # Testing
+  #
   acceptance_tests:
     build: ../../awestruct
     volumes:
@@ -102,3 +115,11 @@ services:
       - RHD_JS_DRIVER
       - RHD_DOCKER_DRIVER
       - BUILD_URL
+
+#
+# Volumes
+#
+volumes:
+ export:
+  driver: local
+
