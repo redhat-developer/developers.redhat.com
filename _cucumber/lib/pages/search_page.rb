@@ -85,6 +85,7 @@ class SearchPage < Base
   end
 
   def results_text
+    wait_for { displayed?(RESULTS_TEXT) }
     text_of(RESULTS_TEXT)
   end
 
