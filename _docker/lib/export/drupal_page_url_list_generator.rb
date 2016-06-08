@@ -41,7 +41,9 @@ class DrupalPageUrlListGenerator
     document.css('url loc').each do | link |
       links << link.content
     end
-    links
+
+    # Ensure that we also grab robots.txt which will not appear in the sitemap.xml
+    links << "http://#{@drupal_host}/robots.txt"
   end
 
   #

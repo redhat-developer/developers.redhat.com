@@ -26,6 +26,14 @@ class Options
         tasks[:supporting_services] = []
       end
 
+      opts.on('--export [EXPORT_LOCATION]', String, 'Export all content from Drupal within the environment and rsync it to EXPORT_LOCATION') do | export_location |
+        export_destination = export_location.to_s == '' ? 'rhd@apache:/usr/local/apache2/htdocs' : export_location
+
+        tasks[:build] = true
+        tasks[:awestruct_command_args] = ['--rm', 'export', '%{docker_drupal_ip}:%{docker_drupal_port}',"#{export_destination}"]
+      end
+
+
       opts.on('-r', '--restart', 'Restart the containers') do |r|
         tasks[:decrypt] = true
         tasks[:kill_all] = true
