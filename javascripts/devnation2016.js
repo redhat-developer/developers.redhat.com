@@ -8,8 +8,8 @@ app.devnation2016 = {
         continue;
       }
 
-      console.log('Parsing:' + eventDates[i].innerHTML);
-      var eventDate = new Date(eventDates[i].innerHTML.toString());
+      console.log('Parsing:' + eventDates[i].dataset.date);
+      var eventDate = new Date(eventDates[i].dataset.date);
       console.log('Parsed:' + eventDate);
 
       // Format and display the date
@@ -18,9 +18,9 @@ app.devnation2016 = {
       var t = eventDate.toLocaleTimeString();
       t = t.replace(/\u200E/g, '');
       t = t.replace(/^([^\d]*\d{1,2}:\d{1,2}):\d{1,2}([^\d]*)$/, '$1$2');
-      $('.event-day').text(d);
-      $('.event-time').text(t);
-      $('.event-timezone').text(timezone);
+      $(eventDates[i]).find('.event-day').text(d);
+      $(eventDates[i]).find('.event-time').text(t);
+      $(eventDates[i]).find('.event-timezone').text(timezone);
     }
     
   }  
