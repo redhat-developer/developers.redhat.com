@@ -106,27 +106,9 @@ section of composer.json:
 }
 ```
 
-### Updating Metadata with the Metatag module for Articles and Topics
+### Updating Global Metadata
 
-Metatag is used to automatically generate structured metadata. To manipulate generated metadata, you will need to work with the Metatag module and export the settings.
-
-1. Locally spin up an instance of drupal (i.e. bundle exec ./control.rb -u --run-the-stack)
-2. Login to drupal with the admin username and password.
-3. Navigate to Configuration>Search and metadata>Metatag 
-4. Select the 'Edit' button next to either 'Content: Article' or 'Content: Topic' and manipulate data to fit requirements. (Browse all available tokens can be helpful when working with dynamic variables)
-5. Save all changes.
-
-Now that all changes have been saved, it is necessary to export the configuration in order for subsequent builds to contain the changes.
-
-1. From the drupal admin page, select Configuration>Development>Configuration synchronization
-2. Select the 'Export' tab and then the 'Single item' tab.
-3. In the selection box under 'Configuration type', select 'Metatag defaults'
-4. In the selection box under 'Configuration name', select either 'node_article' or 'node_topic' (whichever you made changes to).
-5. Copy the configuration from the content window and paste it in the 'Filename' denoted below 
-6. Place the file in developers.redhat.com/_docker/drupal/web/modules/custom/redhat_developers/config/install
-
-You should now be able see the metadata automatically added when creating a new node (article or topic depending on which node you altered).
-
+Currently, we are unable to update global metadata with yaml configurations. You will need to manually alter this in the metatag module.
 
 ### Viewing diffs for new revisions in Drupal
 
