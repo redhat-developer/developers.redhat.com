@@ -70,6 +70,6 @@ services:
    args:
     http_proxy: proxy01.util.phx2.redhat.com:8080
     https_proxy: proxy01.util.phx2.redhat.com:8080
-  entrypoint: ruby _docker/lib/export/export.rb
+  entrypoint: "ruby _docker/lib/export/export.rb developer-drupal.web.stage.ext.phx2.redhat.com"
   volumes:
    - /data/drupal-export:/export

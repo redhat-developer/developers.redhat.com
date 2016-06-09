@@ -37,9 +37,14 @@ end
 if $0 == __FILE__
 
   drupal_host = ARGV[0]
+  rsync_location = ARGV[1]
   if drupal_host == ''
-    puts 'Usage: export.rb <drupal_host>'
+    puts 'Usage: export.rb <drupal_host> [rsync_location]'
     Kernel.exit!(1)
+  end
+
+  if !rsync_location.nil? and rsync_location.to_s != ''
+    puts "YOU SET THE RSYNC LOCATION TO BE: #{rsync_location}"
   end
 
   cron_invoker = CronInvoker.new(drupal_host)

@@ -91,11 +91,13 @@ services:
   #
   export:
     user: root
+    extra_hosts:
+     - "docker:${DOCKER_HOST_IP}"
     build: ../../awestruct
     volumes:
      - ../../../:/home/awestruct/developer.redhat.com
      - export:/export
-    entrypoint: ruby _docker/lib/export/export.rb
+    entrypoint: "ruby _docker/lib/export/export.rb docker:32769"
 
   #
   # Testing
@@ -104,8 +106,8 @@ services:
     build: ../../awestruct
     volumes:
       - ../../../:/home/awestruct/developer.redhat.com
-    links:
-      - selhub:hub
+#    links:
+#      - selhub:hub
     environment:
       - ghprbActualCommit
       - github_status_api_token

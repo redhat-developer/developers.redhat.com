@@ -97,7 +97,7 @@ services:
      volumes:
       - ../../../:/home/awestruct/developer.redhat.com
       - export:/export
-     entrypoint: ruby _docker/lib/export/export.rb
+     entrypoint: "ruby _docker/lib/export/export.rb stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}"
 
 #
 # Testing

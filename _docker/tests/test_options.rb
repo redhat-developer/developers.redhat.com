@@ -11,13 +11,13 @@ class TestOptions < Minitest::Test
   def test_export_with_no_explicit_destination
     tasks = Options.parse(['--export'])
     assert(tasks[:build])
-    assert_equal(['--rm','export','%{docker_drupal_ip}:%{docker_drupal_port}','rhd@apache:/usr/local/apache2/htdocs'], tasks[:awestruct_command_args])
+    assert_equal(['--rm','export'], tasks[:awestruct_command_args])
   end
 
   def test_export_with_specified_destination
     tasks = Options.parse(['--export','foo@bar:/tmp/foo'])
     assert(tasks[:build])
-    assert_equal(['--rm','export','%{docker_drupal_ip}:%{docker_drupal_port}','foo@bar:/tmp/foo'], tasks[:awestruct_command_args])
+    assert_equal(['--rm','export','foo@bar:/tmp/foo'], tasks[:awestruct_command_args])
   end
 
 
