@@ -403,7 +403,7 @@ module Aweplug
          _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
          body: [{value: content,
                  summary: page.description,
-                 format: 'as_is_html'}],
+                 format: 'full_html'}],
          path: {alias: File.join('/', path)}
         }
       end
