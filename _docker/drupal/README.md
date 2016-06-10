@@ -106,6 +106,10 @@ section of composer.json:
 }
 ```
 
+### Updating Global Metadata
+
+Currently, we are unable to update global metadata with yaml configurations. You will need to manually alter this in the metatag module.
+
 ### Viewing diffs for new revisions in Drupal
 
 To view diffs in a content node, navigate to the node that you would like to edit.
