@@ -8,16 +8,16 @@
     "line": 1,
     "elements": [
       {
-        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-contain-summary-of-question-that-links-to-the-question-page-on-stack-overflow",
         "keyword": "Scenario",
-        "name": "Results should be displayed with Votes, answers and views section",
+        "name": "Results should contain summary of question that links to the question page on Stack Overflow",
         "description": "",
-        "line": 4,
+        "line": 12,
         "type": "scenario",
         "tags": [
           {
             "name": "@wip",
-            "line": 3
+            "line": 11
           }
         ],
         "before": [
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 26000
+              "duration": 22000
             }
           }
         ],
@@ -35,38 +35,35 @@
           {
             "keyword": "Given ",
             "name": "I am on the Stack Overflow page",
-            "line": 5,
+            "line": 13,
             "match": {
               "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
             },
             "result": {
               "status": "passed",
-              "duration": 2524662000
+              "duration": 2905995000
             }
           },
           {
             "keyword": "Then ",
-            "name": "I should see a list of 10 results",
-            "line": 6,
+            "name": "each question should contain a question summary",
+            "line": 14,
             "match": {
-              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+              "location": "_cucumber/features/stackoverflow.feature:14"
             },
             "result": {
-              "status": "passed",
-              "duration": 31011000
+              "status": "undefined"
             }
           },
           {
             "keyword": "And ",
-            "name": "each results should contain an activity summary:",
-            "line": 7,
+            "name": "it should link to the question on Stack Overflow",
+            "line": 15,
             "match": {
-              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+              "location": "_cucumber/features/stackoverflow.feature:15"
             },
             "result": {
-              "status": "failed",
-              "error_message": "undefined local variable or method `element' for #<Object:0x007f8555a08ae8> (NameError)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:14:in `block (2 levels) in <top (required)>'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `each'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `/^each results should contain an activity summary:$/'\n_cucumber/features/stackoverflow.feature:7:in `And each results should contain an activity summary:'",
-              "duration": 236000
+              "status": "undefined"
             }
           }
         ],
@@ -76,9 +73,8 @@
               "location": "_cucumber/features/support/hooks.rb:43"
             },
             "result": {
-              "status": "failed",
-              "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_be_displayed_with_Votes_answers_and_views_section.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
-              "duration": 186000
+              "status": "passed",
+              "duration": 14000
             }
           }
         ]
