@@ -26,15 +26,6 @@ type: Get Started
 
   .os-tabs.tabs-content
     section.content.active(role="tabpanel" aria-hidden="false")
-        - if page._before_you_begin_section
-          .large-24#BeforeYouBeginSection
-            h4 Before you begin
-            = page._before_you_begin_section
-        - if page._prerequisites_section
-          .large-24#PrerequisitesSection.gs-prerequisites
-            - if page._prerequisites_section_title
-              h4 #{page._prerequisites_section_title}
-            = page._prerequisites_section
         .row(data-equalizer)
           .large-8.columns.step-cards(data-equalizer-watch)
             a.card(href="#Step1")
@@ -78,6 +69,16 @@ type: Get Started
                 .large-24.columns
                   - if page._step3_duration
                     i.fa.fa-clock-o  #{page._step3_duration}
+          .large-24.columns
+            - if page._before_you_begin_section
+              .large-24#BeforeYouBeginSection
+                h4 Before you begin
+                = page._before_you_begin_section
+            - if page._prerequisites_section
+              .large-24#PrerequisitesSection.gs-prerequisites
+                - if page._prerequisites_section_title
+                  h4 #{page._prerequisites_section_title}
+                = page._prerequisites_section
         .get-started-content
           .large-24.step-header#Step1
             h4 
