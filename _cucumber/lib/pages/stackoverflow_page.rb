@@ -36,7 +36,9 @@ class StackOverflow < Base
 
   def question_title
     title = find_elements(QUESTION_TITLE)
+    href = title.attribute('href')
     title.size
+    return title, href
   end
 
   def question_summary

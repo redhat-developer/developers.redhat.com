@@ -28,5 +28,7 @@ Then(/^each question should contain a question summary$/) do
 end
 
 Then(/^it should link to the question on Stack Overflow$/) do
-  expect(@page.stack_overflow.title).to eq 10
+  title, href = @page.stack_overflow.title
+  expect(title).to eq 10
+  expect(href).to include 'http://stackoverflow.com/questions'
 end
