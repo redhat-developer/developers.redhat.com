@@ -35,8 +35,11 @@ class StackOverflow < Base
   end
 
   def question_title
+    href = []
     title = find_elements(QUESTION_TITLE)
-    href = title.attribute('href')
+    href.each do |t|
+      href << t.attribute('href')
+    end
     title.size
     return title, href
   end
