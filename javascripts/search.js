@@ -76,7 +76,10 @@ search.filter('icon', function() {
 
 search.filter('broker', function() {
   return function(url){
-    return app.dcp.url.broker + encodeURIComponent(url);
+    if(url.match('access.redhat.com')){
+      return app.dcp.url.broker + encodeURIComponent(url);
+    }
+    return url;
   }
 });
 
