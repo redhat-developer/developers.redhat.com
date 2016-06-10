@@ -9,8 +9,8 @@ app.stackoverflow = {
 
     var url = app.dcp.url.stackoverflow;
 
-    // set a default item count of 8
-    itemCount = itemCount || 8;
+    // set a default item count of 10
+    itemCount = itemCount || 10;
 
     // append loading class to wrapper
     container.addClass('stackoverflow-loading');
@@ -28,15 +28,13 @@ app.stackoverflow = {
     //   "keyword" : keyword
     // };
     var currentFilters = {};
-    // console.log("Filters: " + filters);
     var request_data = {};
 
     var filter_products = $('select[name="filter-products"]');
     if (filter_products.length && filter_products.val() !== "") {
       var product = filter_products.val();
-      console.log("Selected product: "+ product);
+      // console.log("Selected product: "+ product);
       filters['stackoverflow'] = app.products[product]['stackoverflow'];
-      // console.log("Product tags: " + filters['stackoverflow']);
       window.dataLayer.push({ 'product' : product });
     } else {
       window.dataLayer.push({ 'product' : null });
@@ -85,10 +83,7 @@ app.stackoverflow = {
       // tags = tags.replace(/"/, "'");
     }
     
-
-
-    
-    console.log("filter tags: " + tags);
+    // console.log("filter tags: " + tags);
     if(tags){
       var tagsString = "";
       for (var i = 0; i < tags.length; i++) {
@@ -107,11 +102,10 @@ app.stackoverflow = {
         url : app.dcp.url.stackoverflow,
         dataType: 'json',
         data : {
-          "field"  : ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count"],
+          "field"  : ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
           "query" : query,
           "tag" : tags,
           "size" : itemCount,
-          // "sys_type" : "blogpost",
           "sortBy" : "new-create",
           "from" : dataIndex // for pagination
         },
@@ -132,7 +126,7 @@ app.stackoverflow = {
           app.stackoverflow.infiniteScrollCalled = false;
           app.stackoverflow.noScroll = false;
           var hits = data.hits.hits;
-          if(hits.length < 8) {
+          if(hits.length < 10) {
             app.stackoverflow.noScroll = true;
           }
           if(keyword && keyword.length) {
@@ -143,14 +137,18 @@ app.stackoverflow = {
             score = hits[i]._score;
             var d = hits[i]._source;
             d.authorName = d.author.split('-')[0];
-            d.permanentLink = d.sys_url_view;
             d.tags = d.sys_tags.join(', ').substr(0, 30);
             d.dateCreated =jQuery.timeago(new Date((d.sys_created / 1000) * 1000));
+            d.qtnAccepted = "";
 
-            // d.answerCount = 0;
+            if (d.sys_content){
+              var cRex = /(<([^>]+)>)/ig;
+              var dRex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+              qtnContent = (d.sys_content).replace(cRex , "");
+              qtnContent =  qtnContent.replace(dRex,"<a href='$1'>$1</a>");
+            }
+
             if(d.answers){
-              // d.answerCount = d.answers.length;
-
               var aRex = /(<([^>]+)>)/ig;
               var bRex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
               pAnswer = d.answers[0].body.replace(aRex , "");
@@ -158,6 +156,8 @@ app.stackoverflow = {
 
               if (d.answers[0].is_accepted == true){
                 d.answer = "<strong>Accepted answer: </strong>" + pAnswer;
+                d.qtnAccepted = "accepted-answer";
+
               } else {
                 d.answer = "<strong>Latest answer: </strong>" + pAnswer;
               }
@@ -200,7 +200,7 @@ app.stackoverflow = {
     var $stackoverflow = $('.stackoverflow-container');
 
     if($stackoverflow.length) {
-      app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow, 8);
+      app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow, 10);
 
       // infinite scroll for full stackoverflow page
 
@@ -223,10 +223,10 @@ app.stackoverflow = {
           app.stackoverflow.infiniteScrollCalled = true;
           var from = $('.stackoverflow-container > div').length;
 
-          dataIndex += 8;
+          dataIndex += 10;
           // console.log("dataIndex: " + dataIndex);
           // load in more
-          app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow, 8, true, from, dataIndex, function() {
+          app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow, 10, true, from, dataIndex, function() {
             if(win.scrollTop() < 400){
               win.scrollTop(scrollTop);
             }
@@ -267,6 +267,22 @@ app.stackoverflow = {
     $('form.stackoverflow-filters').on('submit',function(e) {
       e.preventDefault();
     });
+    $('select[name="filter-products"]').on('change', function(e) {
+      e.preventDefault();
+      var el = $(this).value;
+      // console.log($(this));
+      app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow);
+      app.utils.updatePageHash(el);
+    });
+  //  if ($('.stackoverflow-filters').length) {
+  //   if (window.location.search) {
+  //     var product_id = app.utils.getQueryVariable('filter-products');
+  //     $('option[value="'+product_id+'"]').attr('selected','selected');
+  //     app.project.filter({project: app.products[product_id]['upstream']});
+  //   } else {
+  //     app.project.projectFilter();
+  //   }
+  // }
 
   }
 };

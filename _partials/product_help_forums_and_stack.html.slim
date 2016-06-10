@@ -1,0 +1,20 @@
+.large-12.columns.latest-discussions
+  h4.caps
+    i.fa.fa-comments-o
+    |  Latest Discussions
+  ul.product-forums.product-forums-latest(data-tags="#{(page.parent.product.id)}")
+  h5.right 
+    a(href='#{site.base_url}/forums' )
+      | See all related forums discussions&nbsp;
+      i.fa.fa-caret-right
+
+
+.large-12.columns.top-qa
+  h4.caps
+    i.fa.fa-stack-overflow
+    |  Top Q&A
+  .product-stackoverflow-container(data-tags="#{(JSON.dump page.parent.product.stackoverflow_tags).gsub(/"/, "'")}")
+  h5.right
+    a(href='#{site.base_url}/community/stack-overflow/#!filter-products=#{page.parent.product.id}' )
+      | See all related Stack Overflow Q&A posts&nbsp;
+      i.fa.fa-caret-right
