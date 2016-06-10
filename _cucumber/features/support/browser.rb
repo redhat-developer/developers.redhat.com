@@ -20,25 +20,27 @@ class Browser
 
   def setup(browser_name)
 
-    case browser_name
-      when 'firefox'
-        driver = local_firefox
-      when 'docker_firefox'
-        driver = docker_firefox
-      when 'browserstack_firefox'
-        driver = browserstack_firefox
-      when 'chrome'
-        driver = local_chrome
-      when 'docker_chrome'
-        driver = docker_chrome
-      when 'browserstack_chrome'
-        driver = browserstack_chrome
-      when 'browserstack'
-        driver = browserstack(ENV['RHD_BS_BROWSER'])
-      else
-        driver = local_chrome
-    end
-    driver
+    browser_try {
+      case browser_name
+        when 'firefox'
+          driver = local_firefox
+        when 'docker_firefox'
+          driver = docker_firefox
+        when 'browserstack_firefox'
+          driver = browserstack_firefox
+        when 'chrome'
+          driver = local_chrome
+        when 'docker_chrome'
+          driver = docker_chrome
+        when 'browserstack_chrome'
+          driver = browserstack_chrome
+        when 'browserstack'
+          driver = browserstack(ENV['RHD_BS_BROWSER'])
+        else
+          driver = local_chrome
+      end
+      driver
+    }
   end
 
   def local_firefox
@@ -142,6 +144,16 @@ class Browser
     config['browserstack.local'] = 'true'
     url = "http://#{ENV['RHD_BS_USERNAME']}:#{ENV['RHD_BS_AUTHKEY']}@hub.browserstack.com/wd/hub"
     Selenium::WebDriver.for(:remote, :url => url, :desired_capabilities => config)
+  end
+
+  def browser_try(how_many=3, tries=0, &block)
+    begin
+      yield
+    rescue Exception => exception
+      raise exception if tries > how_many
+      sleep 1
+      browser_try how_many, tries + 1, &block
+    end
   end
 
 end
