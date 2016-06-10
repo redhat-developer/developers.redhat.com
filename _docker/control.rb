@@ -269,33 +269,6 @@ def determine_docker_host_for_container_ports
 end
 
 #
-# In some circumstances we want to be able to run 'docker run' commands that target containers
-# within the environment. Problem is we don't know container details until we start them, and
-# as we currently parse all script options before starting the environment, we have to interpolate
-# the values at runtime to ensure we bind the correct host and port details
-#
-def template_docker_run_args(environment, args=[])
-
-  if environment.is_drupal_environment?
-
-    drupal_host = determine_docker_host_for_container_ports
-    drupal_port = get_host_mapped_port_for_container(environment, 'drupal_1', '80/tcp')
-
-    template_args = {
-      :docker_drupal_ip => drupal_host,
-      :docker_drupal_port => drupal_port
-    }
-
-    args.map do | arg |
-      arg % template_args
-    end
-  else
-    args
-  end
-
-end
-
-#
 # Starts any required supporting services (if any), and then waits for them to be
 # reported as up before continuing
 #
@@ -346,7 +319,7 @@ if $0 == __FILE__
   start_and_wait_for_supporting_services(environment, tasks[:supporting_services], system_exec)
 
   if tasks[:awestruct_command_args]
-    system_exec.execute_docker_compose(environment, :run, template_docker_run_args(environment, tasks[:awestruct_command_args]))
+    system_exec.execute_docker_compose(environment, :run, tasks[:awestruct_command_args])
   end
 
   if tasks[:scale_grid]

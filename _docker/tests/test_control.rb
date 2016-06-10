@@ -371,42 +371,4 @@ class TestControl < Minitest::Test
     refute network.deleted?, 'Network was deleted when it should not have been'
   end
 
-  def test_template_docker_run_args
-
-    environment = mock()
-    environment.expects(:is_drupal_environment?).returns(true)
-
-    expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
-    expects(:get_host_mapped_port_for_container).with(environment, 'drupal_1','80/tcp').returns('80')
-
-    args = %w(--rm export %{docker_drupal_ip}:%{docker_drupal_port})
-
-    templated_args = template_docker_run_args(environment, args)
-    assert_equal(3, templated_args.length)
-    assert_equal(%w(--rm export 127.0.0.1:80), templated_args)
-
-  end
-
-  def test_template_docker_run_args_not_a_drupal_environment
-    environment = mock()
-    environment.expects(:is_drupal_environment?).returns(false)
-
-    args = %w(--rm export backup foo)
-    templated_args = template_docker_run_args(environment, args)
-    assert_equal(args, templated_args)
-  end
-
-  def test_template_docker_run_args_no_templating_required
-
-    environment = mock()
-    environment.expects(:is_drupal_environment?).returns(true)
-
-    expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
-    expects(:get_host_mapped_port_for_container).with(environment, 'drupal_1','80/tcp').returns('80')
-
-    args = %w(--rm export backup foo)
-    templated_args = template_docker_run_args(environment, args)
-    assert_equal(args, templated_args)
-  end
-
 end

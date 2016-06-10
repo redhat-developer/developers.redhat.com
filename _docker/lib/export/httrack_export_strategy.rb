@@ -24,13 +24,24 @@ class HttrackExportStrategy
 
   #
   # Runs a new httrack export
+  # @return - The directory into which the export has been completed
   #
   def run_new_export(links_file, drupal_host, export_directory)
 
     @log.info("Running first time export of content from '#{drupal_host}'. Be patient, this will take time...")
     @process_runner.execute!("httrack --list #{links_file.to_path} -O #{export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{drupal_host}*\" -\"*/node*\" -\"*/devel*\"")
     @log.info("Completed export of content from '#{drupal_host}'")
+
   end
+
+  #
+  # Returns the likely export directory for the HTML static dump. Httrack seems to replace the port separatror (:) if any
+  # with an underscore
+  #
+  def determine_export_directory_from_drupal_host(drupal_host)
+    drupal_host.gsub(':','_')
+  end
+
 
   #
   # Runs an update to an existing httrack export
@@ -53,6 +64,8 @@ class HttrackExportStrategy
     else
       run_new_export(links_file, drupal_host, export_directory)
     end
+
+    "#{export_directory}/#{determine_export_directory_from_drupal_host(drupal_host)}"
 
   end
 

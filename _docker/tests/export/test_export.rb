@@ -12,7 +12,9 @@ class TestExport < MiniTest::Test
     @cron_invoker = mock()
     @page_url_list_generator = mock()
     @export_strategy = mock()
-    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy)
+    @rsync_handler = mock()
+    @rsync_destination = 'foo@bar:/my/export'
+    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, @rsync_destination)
   end
 
   def test_export
@@ -21,9 +23,24 @@ class TestExport < MiniTest::Test
 
     @cron_invoker.expects(:invoke_cron!)
     @page_url_list_generator.expects(:generate_page_url_list!).returns(url_list_file)
-    @export_strategy.expects(:export!).with(url_list_file, @drupal_host, @export_directory)
+    @export_strategy.expects(:export!).with(url_list_file, @drupal_host, @export_directory).returns('/export/foo')
+    @rsync_handler.expects(:rsync_static_export).with('/export/foo', @rsync_destination)
 
     @export.export!
   end
+
+  def test_export_with_no_rsync_location
+    @export = Export.new(@drupal_host, @export_directory, @cron_invoker, @page_url_list_generator, @export_strategy, @rsync_handler, nil)
+
+    url_list_file = mock()
+
+    @cron_invoker.expects(:invoke_cron!)
+    @page_url_list_generator.expects(:generate_page_url_list!).returns(url_list_file)
+    @export_strategy.expects(:export!).with(url_list_file, @drupal_host, @export_directory).returns('/export/foo')
+    @rsync_handler.expects(:rsync_static_export).with('/export/foo', @rsync_destination).never
+
+    @export.export!
+  end
+
 
 end
