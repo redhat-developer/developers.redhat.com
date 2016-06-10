@@ -24,7 +24,12 @@ module SiteUser
     {
         email: 'uk.redhat.test.user+accepted-terms@gmail.com',
         password: 'P@$$word01',
-        name: 'TEST USER-ACCEPTED-TERMS'
+        name: 'TEST USER-ACCEPTED-TERMS',
+        first_name: 'TEST',
+        last_name: 'USER-ACCEPTED-TERMS',
+        company_name: 'Red Hat',
+        country: ['United States', 'Czech Republic', 'China', 'France', 'Germany', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Spain', 'United Kingdom'].sample,
+
     }
 
   end
@@ -49,21 +54,42 @@ module SiteUser
 
   end
 
+  def red_hat_test
+
+    {
+        email: "redhat_developers_testers_#{Faker::Lorem.characters(10)}@redhat.com",
+        greeting: %w(Mr. Mrs. Ms. Miss Dr. Hr Sr.).sample,
+        first_name: 'RED HAT',
+        last_name: 'TEST',
+        company_name: Faker::Company.name,
+        address_line_one: Faker::Address.street_address,
+        city: Faker::Address.city_prefix,
+        postal_code: Faker::Address.postcode,
+        country: ['United States', 'Czech Republic', 'China', 'France', 'Germany', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Spain', 'United Kingdom'].sample,
+        phone_number: '0191 1111111'
+
+    }
+
+  end
+
   def get_email(email_address)
-    tries = 0
+    tries ||= 10
     begin
-      tries += 1
-      @gmail = Gmail.connect('uk.redhat.test.user@gmail.com', 'RedH@tTe$t01')
-    rescue Net::IMAP::NoResponseError => ex
-      if tries < 10
-        p "Error: #{ex.message}. Retrying..."
-        sleep 1 * tries
+      @gmail = Gmail.connect!('uk.redhat.test01.user@gmail.com', '$tumpjumperRedH@tTe$t01')
+    rescue => e
+      if (tries -= 1) > 0
+        puts "Failed to access gmail with exception: #{e}"
+        sleep(1.5)
         retry
       else
         raise('Test user was not logged into gmail after 10 attempts!')
       end
     end
-    try(6) { @email = @gmail.inbox.emails(:unread, to: email_address).last }
+
+    try(6) {
+      @email = @gmail.inbox.emails(:unread, to: email_address).last
+    }
+
     message_body = @email.message.body.raw_source
     url = message_body.scan(/https?:\/\/[\S]+/).first
     # delete all mails and close the gmail session
@@ -83,6 +109,7 @@ module SiteUser
   def try(i)
     count = 0; email = nil
     until email != nil || count == i
+      puts ' . . . waiting for email . . .'
       email = yield
       sleep 10
       count += 1

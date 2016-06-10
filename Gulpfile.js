@@ -66,8 +66,8 @@ var globs = {
     'javascripts/vjbug-jira-collector.js',
     'javascripts/vjbug.js',
     'javascripts/tabs.js',
-    '!javascripts/namespace.js',
-    '!javascripts/adobe-analytics.js'
+    'javascripts/vendor/adobe-ab-testing.js',
+    '!javascripts/namespace.js'
   ],
   "styles": ['stylesheets/*.scss']
 };

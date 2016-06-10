@@ -11,6 +11,7 @@ class LoginPage < Base
   FORGOT_PASSWORD_LINK  = { link: 'Forgot Password?' }
   ERROR_MSG             = { id: 'kc-feedback' }
   REGISTER_ACCOUNT_LINK = { link: 'Register' }
+  GITHUB_LOGIN_BTN      = { id: 'social-github' }
 
   def initialize(driver)
     super
@@ -38,6 +39,11 @@ class LoginPage < Base
   def error_message
     wait_for { displayed?(ERROR_MSG) }
     text_of(ERROR_MSG)
+  end
+
+  def click_login_with_github
+    wait_for { displayed?(GITHUB_LOGIN_BTN) }
+    click_on(GITHUB_LOGIN_BTN)
   end
 
 end

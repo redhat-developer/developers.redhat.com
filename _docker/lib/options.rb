@@ -85,7 +85,7 @@ class Options
         end
 
         if ENV['RHD_BROWSER_SCALE'].to_s.empty?
-          ENV['RHD_BROWSER_SCALE'] = '5'
+          ENV['RHD_BROWSER_SCALE'] = '2'
         end
 
         tasks[:kill_all] = false
