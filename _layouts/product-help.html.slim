@@ -8,53 +8,49 @@ type: Help
   .large-24.columns
     h2#help Help
     h4 Community Q&A
-    strong See our most popular forum discussions and Stack Overflow Q&A posts related to #{page.product.name}.
+    p See our most popular forum discussions and Stack Overflow Q&A posts related to #{page.product.name}.
 
 .row.forums-stack-row
-  .large-12.columns
-    h4.caps
-      i.fa.fa-comments-o
-      |  Latest Discussions
-
-  .large-12.columns
-    h4.caps
-      i.fa.fa-stack-overflow
-      |  Top Q&A
-    .product-stackoverflow-container(data-tags="#{(JSON.dump page.product.stackoverflow_tags).gsub(/"/, "'")}")
-
+  - if page.product.stackoverflow_tags
+    = partial "product_help_forums_and_stack.html.slim", {'parent' => page}
+  - else
+    = partial "product_help_forums.html.slim", {'parent' => page}
 .row
   .large-24.columns.services-and-support
     h3 Red Hat Support and Professional Services
-    h4 It's ok if you don't have the time to figure everything out on your own.
-    ul.small-block-grid-1.large-block-grid-2
+    p It's ok if you don't have the time to figure everything out on your own.
+    ul.small-block-grid-2.large-block-grid-4
       li
         span
-          // image here
+          img(src="http://static.jboss.org/rhd/images/help_icon_subscription.svg" alt="Help Subscription Icon")
         span
-          h4.caps Subscriptions
+          br
+          h5.caps Subscriptions
           p Known for enterprise-grade support subscriptions, Red Hat offers development support, too.
-          a.button(href="https://www.redhat.com/apps/store/developers/")Learn More
+          a(href="https://www.redhat.com/apps/store/developers/")Learn More
       li
         span
-          // image here
+          img(src="http://static.jboss.org/rhd/images/help_icon_consulting.svg" alt="Help Consulting Icon")
         span
-          h4.caps Consulting
+          br
+          h5.caps Consulting
           p Providing strategic and technical expertise to help you address big (or not so big) challenges.
-          a.button(href="https://www.redhat.com/en/services/consulting")Learn More
+          a(href="https://www.redhat.com/en/services/consulting")Learn More
       li
         span
-          // image here
+          img(src="http://static.jboss.org/rhd/images/help_icon_training.svg" alt="Help Training Icon")
         span
-          h4.caps Training & Certifications
-          p Building mission critical apps can require more than reading articles - formalize your training & get certified.
-          a.button(href="https://www.redhat.com/en/services/training")Learn More
+          h5.caps.offset-img Training & Certifications
+          p Building enterprise apps requires more than self-paced learning. Get formal training, be certified.
+          a(href="https://www.redhat.com/en/services/training")Learn More
       li
         span
-          // image here
+          img(src="http://static.jboss.org/rhd/images/help_icon_appcertification.svg" alt="Help App Certification Icon")
         span
-          h4.caps App Certification
+          br
+          h5.caps App Certification
           p ISVs - differentiate your docker-based apps as trusted solutions with Red Hat Certification.
-          a.button(href="https://connect.redhat.com/activities/certification")Learn More
+          a(href="https://connect.redhat.com/activities/certification")Learn More
 
 = javascripts("stackoverflow", true) do
   script src="#{site.base_url}/javascripts/vendor/moment.js"

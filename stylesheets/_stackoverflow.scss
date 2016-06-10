@@ -3,14 +3,48 @@
     margin-top: 1.2em;
     
     .qtn-stats {
+      padding-top: 5px;
       span {
         display: inline-block;
         text-align: center;
-        margin-right: 15px;
+        margin-right: 5px;
+        width: 31%;
+        min-height: 76px;
+        padding-top: 12px;
+        p {
+          font-size: .8em;
+        }
+        h4 {
+          margin-bottom: 0;
+          line-height: 1;
+        }
+        &.answer-count {
+          border: 2px solid #8ed300;
+        }
+        &.accepted-answer {
+          background-color: #8ed300;
+          color: $white;
+          h4 {color: $white;}
+        }
+        &.votes-count, &.views-count {
+          border: 2px solid $grey-4;
+          background-color: $grey-4;
+          color: $white;
+          h4, p {color: $white;}
+        }
       }
     }
-    a h5.qtn-title {
-      color: #006792;
+    a h5.qtn-title, a {
+      color: #46a1da;
+    }
+    p.qtn-content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 70px;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      margin-bottom: 10px !important;
     }
     span.qtn-answer {
       display: block;
@@ -19,12 +53,16 @@
     .callout{
       background-color: $grey-1;
       margin: 10px 0;
-      padding: 10px;
+      padding: 20px;
     }
   }
   .stackoverflow-update .update{
     margin-top: 2em;
   }
+}
+.stackoverflow-product-update .update .update-meta {
+  padding-bottom: 5px;
+  border-bottom: 1px solid $grey-2;
 }
 
 .stackoverflow-main {
@@ -81,6 +119,6 @@
   margin-bottom: 10px !important;
 }
 
-p.so-tags{
+span.so-tags{
   margin-top: 5px;
 }

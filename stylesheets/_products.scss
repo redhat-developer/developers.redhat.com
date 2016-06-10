@@ -696,8 +696,33 @@ ul.product-langs {
 }
 
 .services-and-support ul{
-  margin: 1.5em 0 !important;
+  margin: 1.5em -15px !important;
+  text-align: center;
+  h5 {
+    color: $red;
+    margin-bottom: 5px;
+    &.offset-img {
+      margin-top: -22px;
+    }
+  }
   a.button {
     margin-top: 1em;
   }
+  img {
+    width: 60%;
+    margin: 10px auto;
+  }
 }
+
+.latest-discussions, .top-qa {
+  h4 {
+    color: $red;
+  }
+  h4 i {
+    color: $grey-3;
+  }
+  a {
+    color: #46a1da;
+  }
+}
+

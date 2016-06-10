@@ -1,0 +1,18 @@
+ul.product-forums {
+  li {
+    margin-top: 1.6em;
+    margin-bottom: 20px;
+    list-style: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $grey-2;
+    &:before {
+      display: none;
+    }
+  }
+  h5 {
+    margin-bottom: 0;
+  }
+  a {
+    color: #46a1da;
+  }
+}
