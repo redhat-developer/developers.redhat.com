@@ -20,25 +20,25 @@ class Browser
 
   def setup(browser_name)
 
-    case browser_name
-      when 'firefox'
-        driver = local_firefox
-      when 'docker_firefox'
-        driver = docker_firefox
-      when 'browserstack_firefox'
-        driver = browserstack_firefox
-      when 'chrome'
-        driver = local_chrome
-      when 'docker_chrome'
-        driver = docker_chrome
-      when 'browserstack_chrome'
-        driver = browserstack_chrome
-      when 'browserstack'
-        driver = browserstack(ENV['RHD_BS_BROWSER'])
-      else
-        driver = local_chrome
-    end
-    driver
+      case browser_name
+        when 'firefox'
+          driver = local_firefox
+        when 'docker_firefox'
+          driver =  docker_firefox
+        when 'browserstack_firefox'
+          driver = browserstack_firefox
+        when 'chrome'
+          driver = local_chrome
+        when 'docker_chrome'
+          driver = docker_chrome
+        when 'browserstack_chrome'
+          driver = browserstack_chrome
+        when 'browserstack'
+          driver = browserstack(ENV['RHD_BS_BROWSER'])
+        else
+          driver = local_chrome
+      end
+      driver
   end
 
   def local_firefox
@@ -107,7 +107,7 @@ class Browser
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     client = Selenium::WebDriver::Remote::Http::Default.new
-    client.timeout = 90
+    client.timeout = 120
     Selenium::WebDriver.for(:remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
   end
 

@@ -25,6 +25,7 @@ class Base
   end
 
   def type(locator, input)
+    find(locator).clear
     find(locator).send_keys(input)
   end
 
@@ -76,7 +77,7 @@ class Base
 
   def verify_page(page_title)
     wait_for_ajax
-    title.include?(page_title).should == true
+    raise("Expected page title to include #{page_title} but was #{title}") unless title.include?(page_title)
   end
 
   def wait_for_ajax(timeout = 60, message = nil)

@@ -25,25 +25,31 @@ class SiteNav < Base
   end
 
   def logged_in?
-    wait_for(12) { displayed?(LOGGED_IN) && displayed?(LOGGED_IN_NAME) && text_of(LOGGED_IN_NAME) != '' }
+    wait_for_ajax
+    wait_for(30) { displayed?(LOGGED_IN) && displayed?(LOGGED_IN_NAME) }
+    wait_for { text_of(LOGGED_IN_NAME) != '' }
     text_of(LOGGED_IN_NAME)
   end
 
   def logged_out?
+    wait_for_ajax
     wait_for(12) { displayed?(LOGIN_LINK) }
     displayed?(REGISTER_LINK)
   end
 
   def click_login
+    wait_for(30) { displayed?(LOGIN_LINK) }
     click_on(LOGIN_LINK)
   end
 
   def click_logout
+    wait_for(30) { displayed?(LOGOUT_LINK) }
     click_on(LOGOUT_LINK)
     wait_for_ajax
   end
 
   def click_register
+    wait_for { displayed?(REGISTER_LINK) }
     click_on(REGISTER_LINK)
   end
 

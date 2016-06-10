@@ -31,7 +31,7 @@ class SystemCalls
 
     begin
       Docker::Network.get("#{environment.get_compose_project_name}_default")
-      execute_docker_compose(environment,:down)
+      execute_docker_compose(environment,:down, %w(-v))
       puts '- Stopped current Docker environment.'
     rescue
       puts "- No containers for Docker environment '#{environment.environment_name}' are running."
@@ -60,25 +60,30 @@ def decrypt_vault_and_modify_env
   end
 end
 
-def block_wait_drupal_started(environment, supporting_services)
+#
+# Determines the port on the Docker host to which the given port for the specified container
+# is mapped.
+#
+def get_host_mapped_port_for_container(environment, container_name, container_port)
+  container = get_docker_container(environment, container_name)
+  port_info = container.json['NetworkSettings']['Ports'][container_port].first
+  port_info['HostPort']
+end
 
-  if check_supported_service_requested(supporting_services, 'drupal')
+def wait_for_supporting_service_to_start(environment, service_name, service_port, service_url)
 
-    drupal_container = get_docker_container(environment, 'drupal_1')
+    puts "Waiting for service '#{service_name}' to start..."
 
-    puts 'Waiting to proceed until Drupal is up'
-    docker_host = determine_docker_host_for_container_ports
-    drupal_port80_info = drupal_container.json['NetworkSettings']['Ports']['80/tcp'].first
-    drupal_port = drupal_port80_info['HostPort']
+    service_host = determine_docker_host_for_container_ports
+    service_port = get_host_mapped_port_for_container(environment, "#{service_name}_1", service_port)
 
-    # Add the drupal cdn prefix
-    ENV['cdn_prefix'] = 'sites/default/files'
+    target_url = "http://#{service_host}:#{service_port}/#{service_url}"
+    puts "Testing access to service '#{service_name}' via URL '#{target_url}'..."
 
-    puts "Testing drupal access via #{docker_host}:#{drupal_port}"
     up = false
     until up do
       begin
-        response = Net::HTTP.get_response(URI("http://#{docker_host}:#{drupal_port}/user/login"))
+        response = Net::HTTP.get_response(URI(target_url))
         response_code = response.code.to_i
         up = response_code < 400
       rescue
@@ -86,8 +91,21 @@ def block_wait_drupal_started(environment, supporting_services)
       end
     end
 
+    puts "Service '#{service_name}' is up on '#{target_url}'"
+
+    [service_host, service_port]
+end
+
+def wait_for_drupal_to_start(environment, supporting_services)
+
+  if check_supported_service_requested(supporting_services, 'drupal')
+
+    drupal_host, drupal_port = wait_for_supporting_service_to_start(environment, 'drupal','80/tcp','user/login')
+
     # Add this to the ENV so we can pass it to the awestruct build and also to templating of environment resources
-    ENV['DRUPAL_HOST_IP'] = docker_host
+    # Add the drupal cdn prefix - TODO not sure why this is here?
+    ENV['cdn_prefix'] = 'sites/default/files'
+    ENV['DRUPAL_HOST_IP'] = drupal_host
     ENV['DRUPAL_HOST_PORT'] = drupal_port
   else
     puts 'Not waiting for Drupal to start as it is not a required supporting_service'
@@ -114,31 +132,11 @@ def check_supported_service_requested(supporting_services, service_name)
   !supporting_services.nil? and supporting_services.include?(service_name)
 end
 
-def block_wait_searchisko_started(environment, supporting_services)
+def wait_for_searchisko_to_start(environment, supporting_services)
 
   if check_supported_service_requested(supporting_services, 'searchisko')
-
-    searchisko_container = get_docker_container(environment, 'searchisko_1')
-
-    puts 'Waiting to proceed until searchisko is up'
-
-    docker_host = determine_docker_host_for_container_ports
-    searchisko_port8080_info = searchisko_container.json['NetworkSettings']['Ports']['8080/tcp'].first
-    searchisko_port = searchisko_port8080_info['HostPort']
-
-    puts "Testing searchisko access via #{docker_host}:#{searchisko_port}"
-    up = false
-    until up do
-
-      begin
-        response = Net::HTTP.get_response(URI("http://#{docker_host}:#{searchisko_port}/v2/rest/search/events"))
-        response_code = response.code.to_i
-        up = response_code < 400
-      rescue
-        up = false
-      end
-    end
-    ENV['SEARCHISKO_HOST_IP'] = docker_host
+    searchikso_host, searchisko_port = wait_for_supporting_service_to_start(environment, 'searchisko','8080/tcp','v2/rest/search/events')
+    ENV['SEARCHISKO_HOST_IP'] = searchikso_host
     ENV['SEARCHISKO_HOST_PORT'] = searchisko_port
   else
     puts 'Not waiting for Searchisko to start as it is not a required supporting_service'
@@ -277,12 +275,12 @@ end
 def start_and_wait_for_supporting_services(environment, supporting_services, system_exec)
 
   unless supporting_services.nil? or supporting_services.empty?
-    puts "Starting all required supporting services..."
+    puts 'Starting all required supporting services...'
 
     environment.template_resources
     system_exec.execute_docker_compose(environment, :up, %w(-d --no-recreate).concat(supporting_services))
-    block_wait_searchisko_started(environment, supporting_services)
-    block_wait_drupal_started(environment, supporting_services)
+    wait_for_searchisko_to_start(environment, supporting_services)
+    wait_for_drupal_to_start(environment, supporting_services)
 
     puts 'Started all required supporting services.'
   else
