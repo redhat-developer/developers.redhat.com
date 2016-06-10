@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 19000
+              "duration": 26000
             }
           }
         ],
@@ -40,9 +40,8 @@
               "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
             },
             "result": {
-              "status": "failed",
-              "error_message": "Timed out after 60 waiting for ajax requests to complete (RuntimeError)\n./_cucumber/lib/pages/base.rb:89:in `wait_for_ajax'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:3:in `/^I am on the Stack Overflow page$/'\n_cucumber/features/stackoverflow.feature:5:in `Given I am on the Stack Overflow page'",
-              "duration": 60495505000
+              "status": "passed",
+              "duration": 2524662000
             }
           },
           {
@@ -53,7 +52,8 @@
               "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
             },
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 31011000
             }
           },
           {
@@ -64,7 +64,9 @@
               "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
             },
             "result": {
-              "status": "skipped"
+              "status": "failed",
+              "error_message": "undefined local variable or method `element' for #<Object:0x007f8555a08ae8> (NameError)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:14:in `block (2 levels) in <top (required)>'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `each'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `/^each results should contain an activity summary:$/'\n_cucumber/features/stackoverflow.feature:7:in `And each results should contain an activity summary:'",
+              "duration": 236000
             }
           }
         ],
@@ -76,7 +78,7 @@
             "result": {
               "status": "failed",
               "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_be_displayed_with_Votes_answers_and_views_section.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
-              "duration": 180000
+              "duration": 186000
             }
           }
         ]

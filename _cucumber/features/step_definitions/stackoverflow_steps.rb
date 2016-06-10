@@ -4,10 +4,22 @@ Given(/^I am on the Stack Overflow page$/) do
 end
 
 Then(/^I should see a list of (\d+) results$/) do |arg|
-  expect(@page.stack_overflow.questions).to eq arg
+  expect(@page.stack_overflow.questions).to eq arg.to_i
 end
 
 Then(/^each results should contain an activity summary:$/) do |table|
   # table is a Cucumber::Core::Ast::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
+  table.raw.each do |row|
+    element = row.first
+    case element
+      when 'Votes'
+        expect(@page.stack_overflow.votes).to eq 10
+      when 'Answers'
+        expect(@page.stack_overflow.answers).to eq 10
+      when 'Views'
+        expect(@page.stack_overflow.views).to eq 10
+      else
+        raise("#{element} not regognised")
+      end
+    end
 end

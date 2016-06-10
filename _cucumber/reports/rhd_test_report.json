@@ -27,6 +27,707 @@
             },
             "result": {
               "status": "passed",
+              "duration": 26000
+            },
+            "status": "passed",
+            "duration": 26000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2524662000
+            },
+            "status": "passed",
+            "duration": 2524662000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 31011000
+            },
+            "status": "passed",
+            "duration": 31011000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "undefined local variable or method `element' for #<Object:0x007f8555a08ae8> (NameError)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:14:in `block (2 levels) in <top (required)>'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `each'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `/^each results should contain an activity summary:$/'\n_cucumber/features/stackoverflow.feature:7:in `And each results should contain an activity summary:'",
+              "duration": 236000
+            },
+            "status": "failed",
+            "duration": 236000
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_be_displayed_with_Votes_answers_and_views_section.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
+              "duration": 186000
+            },
+            "status": "failed",
+            "duration": 186000
+          }
+        ],
+        "status": "failed",
+        "duration": 2556121000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21000
+            },
+            "status": "passed",
+            "duration": 21000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3337130000
+            },
+            "status": "passed",
+            "duration": 3337130000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23924000
+            },
+            "status": "passed",
+            "duration": 23924000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "undefined local variable or method `element' for #<Object:0x007f8a43d18d80> (NameError)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:14:in `block (2 levels) in <top (required)>'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `each'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `/^each results should contain an activity summary:$/'\n_cucumber/features/stackoverflow.feature:7:in `And each results should contain an activity summary:'",
+              "duration": 207000
+            },
+            "status": "failed",
+            "duration": 207000
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_be_displayed_with_Votes_answers_and_views_section.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
+              "duration": 169000
+            },
+            "status": "failed",
+            "duration": 169000
+          }
+        ],
+        "status": "failed",
+        "duration": 3361451000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23000
+            },
+            "status": "passed",
+            "duration": 23000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7636040000
+            },
+            "status": "passed",
+            "duration": 7636040000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 62925000
+            },
+            "status": "passed",
+            "duration": 62925000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `/^each results should contain an activity summary:$/'\n_cucumber/features/stackoverflow.feature:7:in `And each results should contain an activity summary:'",
+              "duration": 288000
+            },
+            "status": "pending",
+            "duration": 288000
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14000
+            },
+            "status": "passed",
+            "duration": 14000
+          }
+        ],
+        "status": "pending",
+        "duration": 7699290000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23000
+            },
+            "status": "passed",
+            "duration": 23000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7636040000
+            },
+            "status": "passed",
+            "duration": 7636040000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 62925000
+            },
+            "status": "passed",
+            "duration": 62925000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `/^each results should contain an activity summary:$/'\n_cucumber/features/stackoverflow.feature:7:in `And each results should contain an activity summary:'",
+              "duration": 288000
+            },
+            "status": "pending",
+            "duration": 288000
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14000
+            },
+            "status": "passed",
+            "duration": 14000
+          }
+        ],
+        "status": "pending",
+        "duration": 7699290000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23000
+            },
+            "status": "passed",
+            "duration": 23000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7636040000
+            },
+            "status": "passed",
+            "duration": 7636040000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 62925000
+            },
+            "status": "passed",
+            "duration": 62925000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:12:in `/^each results should contain an activity summary:$/'\n_cucumber/features/stackoverflow.feature:7:in `And each results should contain an activity summary:'",
+              "duration": 288000
+            },
+            "status": "pending",
+            "duration": 288000
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14000
+            },
+            "status": "passed",
+            "duration": 14000
+          }
+        ],
+        "status": "pending",
+        "duration": 7699290000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23000
+            },
+            "status": "passed",
+            "duration": 23000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3289153000
+            },
+            "status": "passed",
+            "duration": 3289153000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "expected: true\n     got: false (using ==) (RSpec::Expectations::ExpectationNotMetError)\n./_cucumber/lib/pages/base.rb:79:in `verify_page'\n./_cucumber/lib/pages/stackoverflow_page.rb:9:in `initialize'\n./_cucumber/features/support/site.rb:85:in `new'\n./_cucumber/features/support/site.rb:85:in `stack_overflow'\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:7:in `/^I should see a list of (\\d+) results$/'\n_cucumber/features/stackoverflow.feature:6:in `Then I should see a list of 10 results'",
+              "duration": 35794000
+            },
+            "status": "failed",
+            "duration": 35794000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "status": "skipped",
+            "duration": 0
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_be_displayed_with_Votes_answers_and_views_section.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
+              "duration": 211000
+            },
+            "status": "failed",
+            "duration": 211000
+          }
+        ],
+        "status": "failed",
+        "duration": 3325181000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 24000
+            },
+            "status": "passed",
+            "duration": 24000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6352197000
+            },
+            "status": "passed",
+            "duration": 6352197000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: 10\n     got: 0\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:7:in `/^I should see a list of (\\d+) results$/'\n_cucumber/features/stackoverflow.feature:6:in `Then I should see a list of 10 results'",
+              "duration": 25434000
+            },
+            "status": "failed",
+            "duration": 25434000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "status": "skipped",
+            "duration": 0
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_be_displayed_with_Votes_answers_and_views_section.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
+              "duration": 221000
+            },
+            "status": "failed",
+            "duration": 221000
+          }
+        ],
+        "status": "failed",
+        "duration": 6377876000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25000
+            },
+            "status": "passed",
+            "duration": 25000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2938388000
+            },
+            "status": "passed",
+            "duration": 2938388000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"10\"\n     got: 10\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:7:in `/^I should see a list of (\\d+) results$/'\n_cucumber/features/stackoverflow.feature:6:in `Then I should see a list of 10 results'",
+              "duration": 110719000
+            },
+            "status": "failed",
+            "duration": 110719000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "status": "skipped",
+            "duration": 0
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_be_displayed_with_Votes_answers_and_views_section.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
+              "duration": 192000
+            },
+            "status": "failed",
+            "duration": 192000
+          }
+        ],
+        "status": "failed",
+        "duration": 3049324000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
               "duration": 19000
             },
             "status": "passed",
@@ -185,6 +886,6 @@
       }
     ],
     "status": "broken",
-    "duration": 121067197000
+    "duration": 162835020000
   }
 ]
