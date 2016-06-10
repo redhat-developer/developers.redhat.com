@@ -23,21 +23,21 @@ class Browser
     browser_try {
       case browser_name
         when 'firefox'
-          driver = local_firefox
+          driver = browser_try { local_firefox }
         when 'docker_firefox'
-          driver = docker_firefox
+          driver = browser_try { docker_firefox }
         when 'browserstack_firefox'
-          driver = browserstack_firefox
+          driver = browser_try { browserstack_firefox }
         when 'chrome'
-          driver = local_chrome
+          driver = browser_try { local_chrome }
         when 'docker_chrome'
-          driver = docker_chrome
+          driver = browser_try { docker_chrome }
         when 'browserstack_chrome'
-          driver = browserstack_chrome
+          driver = browser_try { browserstack_chrome }
         when 'browserstack'
-          driver = browserstack(ENV['RHD_BS_BROWSER'])
+          driver = browser_try { browserstack(ENV['RHD_BS_BROWSER']) }
         else
-          driver = local_chrome
+          driver = browser_try { local_chrome }
       end
       driver
     }
@@ -109,7 +109,7 @@ class Browser
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     client = Selenium::WebDriver::Remote::Http::Default.new
-    client.timeout = 90
+    client.timeout = 120
     Selenium::WebDriver.for(:remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
   end
 
@@ -146,7 +146,7 @@ class Browser
     Selenium::WebDriver.for(:remote, :url => url, :desired_capabilities => config)
   end
 
-  def browser_try(how_many=3, tries=0, &block)
+  def browser_try(how_many=5, tries=0, &block)
     begin
       yield
     rescue Exception => exception
