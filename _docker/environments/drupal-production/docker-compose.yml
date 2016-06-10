@@ -91,3 +91,4 @@ services:
    entrypoint: "ruby _docker/lib/export/export.rb developer-drupal.web.prod.ext.phx2.redhat.com"
    volumes:
     - /data/drupal-export:/export
+    - /credentials/rsync:/home/awestruct/.ssh
