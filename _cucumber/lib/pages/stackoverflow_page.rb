@@ -6,6 +6,8 @@ class StackOverflow < Base
   VOTES                              =  { css: '.stackoverflow-update .update .votes-count' }
   ANSWERS                            =  { css: '.stackoverflow-update .update .answer-count' }
   VIEWS                              =  { css: '.stackoverflow-update .update .views-count' }
+  QUESTION_TITLE                     =  { css: '.qtn-title' }
+  QUESTION_SUMMARY                   =  { css: '.qtn-content' }
 
   def initialize(driver)
     super
@@ -18,18 +20,28 @@ class StackOverflow < Base
   end
 
   def votes
-    stack_questions = find_elements(VOTES)
-    stack_questions.size
+    question_votes = find_elements(VOTES)
+    question_votes.size
   end
 
   def answers
-    stack_questions = find_elements(ANSWERS)
-    stack_questions.size
+    question_answers = find_elements(ANSWERS)
+    question_answers.size
   end
 
   def views
-    stack_questions = find_elements(VIEWS)
-    stack_questions.size
+    question_views = find_elements(VIEWS)
+    question_views.size
+  end
+
+  def question_title
+    title = find_elements(QUESTION_TITLE)
+    title.size
+  end
+
+  def question_summary
+    summary = find_elements(QUESTION_SUMMARY)
+    summary.size
   end
 
 end

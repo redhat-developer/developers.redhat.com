@@ -1,6 +1,5 @@
 Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
  
-  @wip
   Scenario: Results should be displayed with Votes, answers and views section
     Given I am on the Stack Overflow page
     Then I should see a list of 10 results
@@ -9,10 +8,11 @@ Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
       | Answers |
       | Views   |
  
+ @wip
   Scenario: Results should contain summary of question that links to the question page on Stack Overflow
     Given I am on the Stack Overflow page
     Then each question should contain a question summary
-    And it should link to the question on Stack Overflow in a new window
+    And it should link to the question on Stack Overflow
  
 Scenario: Results should contain a 'Best answer' section that links to the specific answer on Stack Overflow.
     Given I am on the Stack Overflow page

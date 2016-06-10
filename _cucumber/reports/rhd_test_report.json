@@ -8,6 +8,178 @@
     "line": 1,
     "elements": [
       {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-contain-summary-of-question-that-links-to-the-question-page-on-stack-overflow",
+        "keyword": "Scenario",
+        "name": "Results should contain summary of question that links to the question page on Stack Overflow",
+        "description": "",
+        "line": 12,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 11
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 22000
+            },
+            "status": "passed",
+            "duration": 22000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 13,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2905995000
+            },
+            "status": "passed",
+            "duration": 2905995000
+          },
+          {
+            "keyword": "Then ",
+            "name": "each question should contain a question summary",
+            "line": 14,
+            "match": {
+              "location": "_cucumber/features/stackoverflow.feature:14"
+            },
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            },
+            "status": "undefined",
+            "duration": 0
+          },
+          {
+            "keyword": "And ",
+            "name": "it should link to the question on Stack Overflow",
+            "line": 15,
+            "match": {
+              "location": "_cucumber/features/stackoverflow.feature:15"
+            },
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            },
+            "status": "undefined",
+            "duration": 0
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14000
+            },
+            "status": "passed",
+            "duration": 14000
+          }
+        ],
+        "status": "undefined",
+        "duration": 2906031000
+      },
+      {
+        "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
+        "keyword": "Scenario",
+        "name": "Results should be displayed with Votes, answers and views section",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@wip",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/env.rb:38"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 31000
+            },
+            "status": "passed",
+            "duration": 31000
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am on the Stack Overflow page",
+            "line": 5,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2732138000
+            },
+            "status": "passed",
+            "duration": 2732138000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see a list of 10 results",
+            "line": 6,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 24354000
+            },
+            "status": "passed",
+            "duration": 24354000
+          },
+          {
+            "keyword": "And ",
+            "name": "each results should contain an activity summary:",
+            "line": 7,
+            "match": {
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 37167000
+            },
+            "status": "passed",
+            "duration": 37167000
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12000
+            },
+            "status": "passed",
+            "duration": 12000
+          }
+        ],
+        "status": "passed",
+        "duration": 2793702000
+      },
+      {
         "id": "developer-3035---so:-main-page:-initial-impl;results-should-be-displayed-with-votes,-answers-and-views-section",
         "keyword": "Scenario",
         "name": "Results should be displayed with Votes, answers and views section",
@@ -886,6 +1058,6 @@
       }
     ],
     "status": "broken",
-    "duration": 162835020000
+    "duration": 168534753000
   }
 ]

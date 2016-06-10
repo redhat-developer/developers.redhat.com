@@ -22,3 +22,11 @@ Then(/^each results should contain an activity summary:$/) do |table|
     end
   end
 end
+
+Then(/^each question should contain a question summary$/) do
+  expect(@page.stack_overflow.summary).to eq 10
+end
+
+Then(/^it should link to the question on Stack Overflow$/) do
+  expect(@page.stack_overflow.title).to eq 10
+end
