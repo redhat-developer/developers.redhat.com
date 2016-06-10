@@ -86,13 +86,28 @@ services:
       - DB_PASSWORD=searchisko
     links:
      - mysql
+  #
+  # Environment actions
+  #
+  export:
+    user: root
+    extra_hosts:
+     - "docker:${DOCKER_HOST_IP}"
+    build: ../../awestruct
+    volumes:
+     - ../../../:/home/awestruct/developer.redhat.com
+     - export:/export
+    entrypoint: "ruby _docker/lib/export/export.rb docker:32769"
 
+  #
+  # Testing
+  #
   acceptance_tests:
     build: ../../awestruct
     volumes:
       - ../../../:/home/awestruct/developer.redhat.com
-    links:
-      - selhub:hub
+#    links:
+#      - selhub:hub
     environment:
       - ghprbActualCommit
       - github_status_api_token
@@ -102,3 +117,11 @@ services:
       - RHD_JS_DRIVER
       - RHD_DOCKER_DRIVER
       - BUILD_URL
+
+#
+# Volumes
+#
+volumes:
+ export:
+  driver: local
+

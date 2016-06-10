@@ -82,14 +82,14 @@ profiles:
 
   drupal_dev:
     <<: *docker
-    base_url: http://<%= ENV['DRUPAL_HOST_IP']%>:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    base_url: http://docker:<%= ENV['DRUPAL_HOST_PORT'] %>/
     dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
 
   drupal_pull_request:
     <<: *docker
-    base_url: http://<%= ENV['ACCESSIBLE_SLAVE_IP']%>:<%= ENV['DRUPAL_HOST_PORT'] %>/
-    dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    base_url: http://stumpjumper.lab4.eng.bos.redhat.com:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    dcp_base_protocol_relative_url: //stumpjumper.lab4.eng.bos.redhat.com:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
 
   drupal_staging:

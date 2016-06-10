@@ -8,6 +8,19 @@ class TestOptions < Minitest::Test
     assert_equal (4+1), 5
   end
 
+  def test_export_with_no_explicit_destination
+    tasks = Options.parse(['--export'])
+    assert(tasks[:build])
+    assert_equal(['--rm','export'], tasks[:awestruct_command_args])
+  end
+
+  def test_export_with_specified_destination
+    tasks = Options.parse(['--export','foo@bar:/tmp/foo'])
+    assert(tasks[:build])
+    assert_equal(['--rm','export','foo@bar:/tmp/foo'], tasks[:awestruct_command_args])
+  end
+
+
   def test_loads_awestruct_pull_request_environment_by_default
     tasks = Options.parse(['-t'])
     rhd_environment = tasks[:environment]

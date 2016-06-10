@@ -8,6 +8,97 @@ require_relative '../control'
 
 class TestControl < Minitest::Test
 
+  def teardown
+    ENV['SEARCHISKO_HOST_IP'] = nil
+    ENV['SEARCHISKO_HOST_PORT'] = nil
+    ENV['DRUPAL_HOST_IP'] = nil
+    ENV['DRUPAL_HOST_PORT'] = nil
+    ENV['cdn_prefix'] = nil
+  end
+
+  def test_wait_for_supporting_service_to_start
+
+    environment = mock()
+    service_name = 'drupal'
+    service_port = '80/tcp'
+    service_url = 'user/login'
+
+    expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
+    expects(:get_host_mapped_port_for_container).with(environment, 'drupal_1', service_port).returns('80')
+
+    response = mock()
+    response.expects(:code).returns('200')
+
+    Net::HTTP.expects(:get_response).with do | uri |
+      assert_equal('http://127.0.0.1/user/login', uri.to_s)
+    end.returns(response)
+
+    drupal_host, drupal_port = wait_for_supporting_service_to_start(environment, service_name, service_port, service_url)
+    assert_equal('127.0.0.1', drupal_host)
+    assert_equal('80', drupal_port)
+  end
+
+  def test_wait_for_searchisko_to_start
+
+    environment = mock()
+    supporting_services = %w(searchisko)
+
+    expects(:wait_for_supporting_service_to_start).with(environment, 'searchisko','8080/tcp','v2/rest/search/events').returns(%w(127.0.0.1 8080))
+
+    wait_for_searchisko_to_start(environment, supporting_services)
+
+    assert_equal('127.0.0.1', ENV['SEARCHISKO_HOST_IP'])
+    assert_equal('8080', ENV['SEARCHISKO_HOST_PORT'])
+
+  end
+
+  def test_wait_for_searchisko_to_start_if_not_required
+    environment = mock()
+    wait_for_searchisko_to_start(environment, [])
+
+    assert_equal(nil, ENV['SEARCHISKO_HOST_IP'])
+    assert_equal(nil, ENV['SEARCHISKO_HOST_PORT'])
+  end
+
+  def test_wait_for_drupal_to_start_if_not_required
+    environment = mock()
+    wait_for_searchisko_to_start(environment, [])
+
+    assert_equal(nil, ENV['DRUPAL_HOST_IP'])
+    assert_equal(nil, ENV['DRUPAL_HOST_PORT'])
+    assert_equal(nil, ENV['cdn_prefix'])
+  end
+
+  def test_wait_for_drupal_to_start
+    environment = mock()
+    supporting_services = %w(drupal)
+
+    expects(:wait_for_supporting_service_to_start).with(environment, 'drupal','80/tcp','user/login').returns(%w(127.0.0.1 8080))
+
+    wait_for_drupal_to_start(environment, supporting_services)
+
+    assert_equal('127.0.0.1', ENV['DRUPAL_HOST_IP'])
+    assert_equal('8080', ENV['DRUPAL_HOST_PORT'])
+    assert_equal('sites/default/files', ENV['cdn_prefix'])
+  end
+
+  def test_get_host_mapped_port_for_container
+
+    container_json = '{"NetworkSettings": {"Ports": {"8080/tcp": [{"HostIp": "0.0.0.0","HostPort": "8080"}]}}}'
+
+    environment = mock()
+    container = mock()
+    container.expects(:json).returns(JSON.parse(container_json))
+
+    container_name = 'searchisko_1'
+    container_port = '8080/tcp'
+
+    expects(:get_docker_container).with(environment, container_name).returns(container)
+
+    assert_equal('8080', get_host_mapped_port_for_container(environment, container_name, container_port))
+
+  end
+
   def test_get_docker_container
 
     container_name = 'searchisko_1'
@@ -57,8 +148,8 @@ class TestControl < Minitest::Test
 
     system_exec = mock()
     system_exec.expects(:execute_docker_compose).with(environment, :up, %w(-d --no-recreate).concat(supporting_services))
-    expects(:block_wait_searchisko_started)
-    expects(:block_wait_drupal_started)
+    expects(:wait_for_searchisko_to_start)
+    expects(:wait_for_drupal_to_start)
 
     start_and_wait_for_supporting_services(environment, supporting_services, system_exec)
 

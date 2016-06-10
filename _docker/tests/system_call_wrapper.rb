@@ -7,7 +7,7 @@ class SystemCallWrapper < SystemCalls
     @network = network
   end
 
-  def execute_docker_compose(cmd, args = [])
+  def execute_docker_compose(environment, cmd, args = [])
     @network.delete!
   end
 end

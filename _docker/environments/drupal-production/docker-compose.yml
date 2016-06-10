@@ -61,19 +61,34 @@ services:
       - DB_USER=drupal
       - DB_PASSWORD=drupal
 
+  #
+  # Environment actions
+  #
   backup:
-      build:
-       context: ../../awestruct
-       args:
-        http_proxy: proxy01.util.phx2.redhat.com:8080
-        https_proxy: proxy01.util.phx2.redhat.com:8080
-      entrypoint: ruby _docker/lib/backup/backup.rb
-      environment:
-       - http_proxy=proxy01.util.phx2.redhat.com:8080
-       - https_proxy=proxy01.util.phx2.redhat.com:8080
-      volumes:
-       - ../../../:/home/awestruct/developer.redhat.com
-       - /data/drupal:/drupal
-       - /git/backups:/backups
-       - /credentials/db/my.cnf:/home/awestruct/.my.cnf
-       - /credentials/git/backups/netrc:/home/awestruct/.netrc
+   build:
+    context: ../../awestruct
+     args:
+      http_proxy: proxy01.util.phx2.redhat.com:8080
+      https_proxy: proxy01.util.phx2.redhat.com:8080
+   entrypoint: ruby _docker/lib/backup/backup.rb
+   environment:
+    - http_proxy=proxy01.util.phx2.redhat.com:8080
+    - https_proxy=proxy01.util.phx2.redhat.com:8080
+   volumes:
+    - ../../../:/home/awestruct/developer.redhat.com
+    - /data/drupal:/drupal
+    - /git/backups:/backups
+    - /credentials/db/my.cnf:/home/awestruct/.my.cnf
+    - /credentials/git/backups/netrc:/home/awestruct/.netrc
+
+  export:
+   user: root
+   build:
+   context: ../../awestruct
+    args:
+     http_proxy: proxy01.util.phx2.redhat.com:8080
+     https_proxy: proxy01.util.phx2.redhat.com:8080
+   entrypoint: "ruby _docker/lib/export/export.rb developer-drupal.web.prod.ext.phx2.redhat.com"
+   volumes:
+    - /data/drupal-export:/export
+    - /credentials/rsync:/home/awestruct/.ssh
