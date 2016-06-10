@@ -1,3 +1,4 @@
+require 'tmpdir'
 require_relative '../../lib/process_runner'
 require_relative '../../lib/default_logger'
 
