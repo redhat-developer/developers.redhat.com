@@ -170,13 +170,13 @@ class TestDrupal8Service < Minitest::Test
 
   def stub_exists_call_good
     stub_request(:get, 'http://testing/article/testing-service')
-        .with(headers: {'Cookie' => 'session-cookie', 'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n'})
+        .with(headers: {'Cookie' => 'session-cookie'})
         .to_return(status: 200)
   end
 
   def stub_exists_call_bad
     stub_request(:get, 'http://testing/article/testing-service')
-        .with(headers: {'Cookie' => 'session-cookie', 'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n'})
+        .with(headers: {'Cookie' => 'session-cookie'})
         .to_return(status: 404)
   end
 

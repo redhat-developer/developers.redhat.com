@@ -69,7 +69,9 @@ not node.isPublished() ? 'node--unpublished',
 view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ]
 %}
-{% set solution_name_hyphen = content.field_solution_name['#items'].getValue()|first.value|lower|split(" ")|join("-") %}
+{% set solution_name_hyphen = node.get('field_solution_name').getValue()|first.value|lower|split(" ")|join("-") %}
+{% set solution_name = node.get('field_solution_name').getValue()|first.value %}
+{% set solution_tagline = node.get('field_solution_tag_line').getValue()|first.value %}
 {{ attach_library('classy/node') }}
 <div class="solution-hero hero">
     <div class="row">
@@ -80,13 +82,14 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
                     <meta itemprop="position" content="1">
                 </li>
                 <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <a href="http://docker:32769/web-and-api-development/" itemprop="item">{{ content.field_solution_name }}</a>
+                    <a href="http://docker:32769/{{ solution_name_hyphen }}/"
+                       itemprop="item">{{ solution_name }}</a>
                     <meta itemprop="position" content="2">
                 </li>
             </ul>
-            <h2>{{ content.field_solution_name }}</h2>
+            <h2>{{ solution_name }}</h2>
 
-            <h5 class="description">{{ content.field_solution_tag_line }}</h5>
+            <h5 class="description">{{ solution_tagline }}</h5>
         </div>
     </div>
 </div>
@@ -113,7 +116,7 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
                 {{ title_suffix }}
 
                 <div{{ content_attributes.addClass('node__content') }}>
-                    {{ content.body }}
+                    {{ page.content }}
                 </div>
 
             </article>
