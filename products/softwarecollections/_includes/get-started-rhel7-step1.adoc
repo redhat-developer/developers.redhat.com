@@ -1,0 +1,34 @@
+In this step you will configure your system to obtain software, including the latest dynamic languages, from the RHSCL software repository. Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
+
+### Using the Red Hat Subscription Manager GUI
+
+Red Hat Subscription Manager can be started from the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
+
+Select _Repositories_ from the _System_ menu of the subscription manager. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-7-rpms_ and _rhel-7-server-optional-rpms_. If you are using a desktop version of Red Hat Enterprise Linux, the repositories will be named _rhel-desktop-rhscl-7-rpms_ and _rhel-7-desktop-optional-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the enabled column. +
+
+If you don’t see any RHSCL repositories in the list, your subscription might not include it. +
+image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel7/manage-repositories.png')}[Manage Repositories]
+
+See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
+
+
+### Using subscription-manager from the command line
+
+You can add or remove software repositories from the command line using the `subscription-manager` tool as the root user. Use the `--list` option to view the available software repositories and verify that you have access to RHSCL:
+
+[.code-block]
+```
+$ su -
+# subscription-manager repos --list | egrep rhscl
+```
+
+If you don’t see any RHSCL repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
+
+If you are using a workstation edition of Red Hat Enterprise Linux, change `-server-` to `-workstation-` in the following commands:
+
+[.code-block]
+```
+# subscription-manager repos --enable rhel-server-rhscl-7-rpms
+# subscription-manager repos --enable rhel-7-server-optional-rpms
+```
+
