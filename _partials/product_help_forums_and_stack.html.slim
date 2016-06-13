@@ -12,9 +12,9 @@
 .large-12.columns.top-qa
   h4.caps
     i.fa.fa-stack-overflow
-    |  Top Q&A
+    |  Top Q&amp;A
   .product-stackoverflow-container(data-tags="#{(JSON.dump page.parent.product.stackoverflow_tags).gsub(/"/, "'")}")
   h5.right
-    a(href='#{site.base_url}/community/stack-overflow/#!filter-products=#{page.parent.product.id}' )
-      | See all related Stack Overflow Q&A posts&nbsp;
+    a(href='#{site.base_url}/help/stack-overflow/#!filter-products=#{page.parent.product.id}' )
+      | See all related Stack Overflow Q&amp;A posts&nbsp;
       i.fa.fa-caret-right
