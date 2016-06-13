@@ -1,24 +1,28 @@
 ---
 layout: technology-base
 ---
-.hero.hero-wide.hero-products
+.hero.hero-wide.hero-forums
   .row
-    .large-14.columns
+    .large-24.columns
       h2 Forums
-
-.row.development-tools
+.row
+  .large-24.columns
+    .text-right Forums powered by jboss.org.
+.row.forums-product-categories
   - site.categories.each do |category|
-    .large-24.development-tool-category
+    .large-24.product-category
       .large-24.category-label(id="#{category.name.to_s}")
-        h5
+        h4
           = category.name.to_s.gsub('_', ' ').upcase
       - category.products.each do |p|
         - if site.products[p]
           - product = site.products[p]
-          .development-tool.divider(id="development-tool-#{product.id}" class=(product.indented_product? ? 'indent-product' : ''))
-            h4
-              a(id="#{product.id}" href="#{site.product_forum_base_url}/#{product.id}")
-                = product.name
+          .development-tool(id="development-tool-#{product.id}")
             .row
-              .large-16.columns
+              .large-12.columns
+                h4
+                  a(id="#{product.id}" href="#{site.product_forum_base_url}/#{product.id}")
+                    = product.name
+                    i.fa.fa-comments-o
+              .large-12.columns
                 = product['index'].desc
