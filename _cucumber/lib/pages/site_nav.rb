@@ -13,11 +13,12 @@ class SiteNav < Base
   TOPICS                       =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Topics')]" }
   TECHNOLOGIES                 =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Technologies')]" }
   COMMUNITY                    =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Community')]" }
-  RESOURCES                    =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Resources')]" }
+  HELP                         =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Help')]" }
   DOWNLOADS                    =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Downloads')]" }
   TOPICS_SUB_NAV               =  { xpath: '//*[@id="sub-nav-topics"]' }
   TECHNOLOGIES_SUB_NAV         =  { xpath: '//*[@id="sub-nav-technologies"]' }
   COMMUNITY_SUB_NAV            =  { xpath: '//*[@id="sub-nav-community"]' }
+  HELP_SUB_NAV                 =  { xpath: '//*[@id="sub-nav-help"]' }
   SUB_NAV_OPEN                 =  { css: '.sub-nav-open' }
 
   def initialize(driver)
@@ -90,8 +91,8 @@ class SiteNav < Base
         el = TECHNOLOGIES
       when 'community'
         el = COMMUNITY
-      when 'resources'
-        el = RESOURCES
+      when 'help'
+        el = HELP
       when 'downloads'
         el = DOWNLOADS
       else
@@ -109,8 +110,8 @@ class SiteNav < Base
         el = TECHNOLOGIES
       when 'community'
         el = COMMUNITY
-      when 'resources'
-        el = RESOURCES
+      when 'help'
+        el = HELP
       when 'downloads'
         el = DOWNLOADS
       else
@@ -131,8 +132,8 @@ class SiteNav < Base
         el = TECHNOLOGIES
       when 'community'
         el = COMMUNITY
-      when 'resources'
-        el = RESOURCES
+      when 'help'
+        el = HELP
       when 'downloads'
         el = DOWNLOADS
       else
@@ -149,6 +150,8 @@ class SiteNav < Base
         el = TECHNOLOGIES_SUB_NAV
       when 'community'
         el = COMMUNITY_SUB_NAV
+      when 'help'
+        el = HELP_SUB_NAV
       else
         raise("#{menu_item} not recognised")
     end
