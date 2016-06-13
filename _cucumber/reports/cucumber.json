@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 22000
+              "duration": 23000
             }
           }
         ],
@@ -41,7 +41,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2905995000
+              "duration": 45714975000
             }
           },
           {
@@ -49,10 +49,11 @@
             "name": "each question should contain a question summary",
             "line": 14,
             "match": {
-              "location": "_cucumber/features/stackoverflow.feature:14"
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:26"
             },
             "result": {
-              "status": "undefined"
+              "status": "passed",
+              "duration": 27689000
             }
           },
           {
@@ -60,10 +61,12 @@
             "name": "it should link to the question on Stack Overflow",
             "line": 15,
             "match": {
-              "location": "_cucumber/features/stackoverflow.feature:15"
+              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:30"
             },
             "result": {
-              "status": "undefined"
+              "status": "failed",
+              "error_message": "undefined method `size' for #<RSpec::Expectations::ExpectationTarget:0x007ff6766c11e0> (NoMethodError)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:32:in `/^it should link to the question on Stack Overflow$/'\n_cucumber/features/stackoverflow.feature:15:in `And it should link to the question on Stack Overflow'",
+              "duration": 11320000
             }
           }
         ],
@@ -73,8 +76,9 @@
               "location": "_cucumber/features/support/hooks.rb:43"
             },
             "result": {
-              "status": "passed",
-              "duration": 14000
+              "status": "failed",
+              "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_contain_summary_of_question_that_links_to_the_question_page_on_Stack_Overflow.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
+              "duration": 181000
             }
           }
         ]

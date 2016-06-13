@@ -22,7 +22,7 @@ Feature: Site navigation menu
       | Topics       |
       | Technologies |
       | Community    |
-      | Resources    |
+      | Help         |
       | Downloads    |
 
   @mobile @smoke
@@ -33,7 +33,7 @@ Feature: Site navigation menu
       | Topics       |
       | Technologies |
       | Community    |
-      | Resources    |
+      | Help         |
       | Downloads    |
 
   @desktop @smoke
@@ -138,7 +138,7 @@ Feature: Site navigation menu
       | Events                  | events                    |
       | Open Source Communities | projects                  |
       | Content Contributors    | community/contributor/    |
-      | Stack Overflow          | community/stack-overflow/ |
+      | Stack Overflow          | help/stack-overflow/ |
 
   @mobile @smoke
   Scenario: Tapping COMMUNITY from drop down menu on Mobile/Tablet should display additional communities
@@ -150,3 +150,35 @@ Feature: Site navigation menu
       | Open Source Communities |
       | Content Contributors    |
       | Stack Overflow          |
+
+  @desktop @smoke
+  Scenario: Hovering over the HELP menu should display additional sub-menu with options
+    Given I am on the Home page
+    When I hover over the Help menu item
+    Then I should see the following Help sub-menu items and their description:
+      | name                 | description                                                                                           |
+      | Resources            | Important technical resources for you in all sizes and shapes:  blogs, books, code, videos and more.  |
+      | Knowledgebase        | Access the Red Hat-produced knowledgebase of developer-related support articles and solution papers.  |
+      | Forums               | We've extended our popular JBoss.org forums to cover our\nentire Red Hat portfolio for you.           |
+      | Stack Overflow Q&A   | You already use Stack Overview, so we'll help you use it to find your best answers.                   |
+
+  @products @desktop @smoke
+  Scenario: HELP sub-menu items should link to retrospective pages
+    Given I am on the Home page
+    When I hover over the Help menu item
+    Then each Help sub-menu item should contain a link to its retrospective page:
+      | name                | href                  |
+      | Resources           | resources             |
+      | Knowledgebase       | knowledgebase         |
+      | Forums              | forums                |
+      | Stack Overflow Q&A  | help/stack-overflow   |
+
+  @mobile @smoke
+  Scenario: Tapping HELP from drop down menu on Mobile/Tablet should display additional help
+    Given I am on the Home page
+    When I tap on Help menu item
+    Then I should see the following "HELP" mobile sub-menu items:
+      | Resources           |
+      | Knowledgebase       |
+      | Forums              |
+      | Stack Overflow Q&A  |
