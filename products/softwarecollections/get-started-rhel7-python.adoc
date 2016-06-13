@@ -1,11 +1,7 @@
 :awestruct-layout: product-get-started-multipath
 :awestruct-interpolate: true
-:tthw-rhelver: 7
-:tthw-langshort: Python
-:tthw-langlong: Python 3.5
-:tthw-sclname: rh-python35
-:title: "Software Collections - Get started developing with {tthw-langlong} on RHEL {tthw-rhelver}"
-:awestruct-description: "Get started developing with {tthw-langlong} from Red Hat Software Collections on Red Hat Enterprise Linux {tthw-rhelver} in under 10 minutes."
+:title: "Software Collections - Get started developing with Python 3.4 on RHEL 7"
+:awestruct-description: "Get started developing with Python 3.4 from Red Hat Software Collections on Red Hat Enterprise Linux 7 in under 10 minutes."
 
 ## Path Name
 Python
@@ -15,7 +11,17 @@ Python
 image:#{cdn(site.base_url + '/images/products/multipath/python-logo.png')}[Python Logo]
 
 [.large-18.columns#PathIntroSection]
-Get started developing with {tthow-langlong} from Red Hat Software Collections in under 10 minutes.
+Get started developing with Python 3.4 from Red Hat Software Collections in under 10 minutes.
+
+## Prerequisites section title
+Introduction and Prerequisites
+
+## Prerequisites section
+In this tutorial, you will set your system up to install software from Red Hat Software Collections (RHSCL), which provides the latest development technologies for Red Hat Enterprise Linux. Then, you will install Python 3.4 and run a simple “Hello, World” application. The whole tutorial should take less than 10 minutes to complete.
+
+Before you begin, you will need a current Red Hat Enterprise Linux 7 workstation or server subscription that allows you to download software and get updates from Red Hat. If you don’t have an active subscription, register and obtain the RHEL Developer Suite (includes RHEL server) from here.
+
+If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
 
 ## Step1 Duration
 2 minutes
@@ -34,17 +40,6 @@ Setup your development environment
 
 ## Step3 Title
 Hello World and your first application
-
-## Prerequisites section title
-Introduction and Prerequisites
-
-## Prerequisites section
-In this tutorial, you will set your system up to install software from Red Hat Software Collections (RHSCL), which provides the latest development technologies for Red Hat Enterprise Linux. Then, you will install {tthw-langlong} and run a simple “Hello, World” application. The whole tutorial should take less than 10 minutes to complete.
-
-Before you begin, you will need a current Red Hat Enterprise Linux {tthw-rhelver} server or workstation subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com]. 
-
-If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
-
 
 ## Step1 Content
 
@@ -84,56 +79,51 @@ If you are using a desktop edition of Red Hat Enterprise Linux, change `-server-
 
 ## Step2 Content
 
-In this next step you will install {tthw-langlong} from RHSCL:
+In this next step you will install Python 3.4 from RHSCL:
 
 `$ su -` +
-`# yum install {tthw-sclname}`
+`# yum install rh-python34`
 
 If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
 ## Step3 Content
 
-Under your normal user ID, start a _Terminal_ window. First, use `scl enable` to add {tthw-langlong} to your environment, then run {tthw-langshort} in interactive mode to see the version number:
+Under your normal user ID, start a _Terminal_ window. First, use `scl enable` to add Python 3 to your environment, then run Python 3 in interactive mode to see the version number:
 
 [.code-block]
 ```
-$ scl enable {tthw-sclname} bash
+$ scl enable rh-python34 bash
 $ python3
-Python 3.5.1 (default, Apr 27 2016, 04:21:56)
+Python 3.4.2 (default, Mar 25 2015, 04:25:42)
 >>> print("Hello, Red Hat Developers World")
 Hello, Red Hat Developers World
 >>> quit()
 ```
 
-The next step is to create a {tthw-langshort} program that can be run from the command line. Using your preferred text editor, create a file named `hello.py`:
+The next step is to create a Python program that can be run from the command line. Using your preferred text editor, create a file named `hello.py`:
 
 `$ nano hello.py`
 
 Add the following text to the file:
-
-// doesn't seem to work correctly in rhdev env.
-// [source,python]
-
-.hello.py
-----
+[.code-block]
+```
 #!/usr/bin/env python3
 
 import sys
 
 version = "Python %d.%d" % (sys.version_info.major, sys.version_info.minor)
 print("Hello, Red Hat Developers World from",version)
-----
+```
 
 Save it and exit the editor. Then make the script executable and run it:
-
 [.code-block]
 ```
 $ chmod +x hello.py
 $ ./hello.py
-Hello, Red Hat Developers World from {tthw-langlong}
+Hello, Red Hat Developers World from Python 3.4
 ```
 
-If you get the error: _python3 command not found_, you need to run `scl enable {tthw-sclname} bash` first.
+If you get the error: _python3 command not found_, you need to run `scl enable rh-python34 bash` first.
 
 
 ### Working with RHSCL packages
@@ -148,7 +138,7 @@ To make one or more RHSCL packages a permanent part of your development environm
 
 Using your preferred text editor, add the following line to the end of `~/.bashrc`:
 
-`source scl_source enable {tthw-sclname}`
+`source scl_source enable rh-python34`
 
 After making the change, you should log out and log back in again.
 
@@ -161,7 +151,7 @@ When you deliver an application that uses RHSCL packages, a best practice is to 
 link:https://docs.python.org/3/tutorial/[]
 
 *Find additional Python components* +
-`$ yum list available {tthw-sclname}-\*`
+`$ yum list available rh-python34-\*`
 
 *View the list of software available in RHSCL* +
 `$ yum --disablerepo="*" --enablerepo="rhel-server-rhscl-7-rpms" list available`
@@ -198,9 +188,11 @@ These packages are in the optional RPMs repository, which is not enabled by defa
 [.code-block]
 ```
 $ scl --list
-{tthw-sclname}
+rh-perl520
+rh-php56
+rh-python34
+rh-ruby22
 ```
-
 4. How do I find out if there is a newer version of Python in the RHSCL?
 +
 How do I find out what version of Python is available in the RHSCL?
