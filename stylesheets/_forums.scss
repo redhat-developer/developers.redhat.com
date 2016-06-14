@@ -75,6 +75,7 @@ ul.product-forums {
     list-style: none;
     padding-bottom: 5px;
     border-bottom: 1px solid $grey-2;
+    min-height: 84px;
     &:before {
       display: none;
     }
@@ -84,5 +85,16 @@ ul.product-forums {
   }
   a {
     color: #46a1da;
+  }
+  &.multi-column {
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+    column-count: 2;
+    column-gap: 20px;
+    li {
+      margin-top: 0;
+    }
   }
 }

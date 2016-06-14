@@ -10,17 +10,28 @@ app.productForums = {};
 app.productForums.fetch = function() {
   
   var productId = $('.product-forums').data('tags');
+  console.log("productId: " + productId);
 
   // $.getJSON(app.dcp.url.search + '/forum_threads_by_project?project=' + productId,function(data){
   $.getJSON('http://dcp2.jboss.org/v2/rest/search/forum_threads_by_project?project=' + productId,function(data){
     if(data.hits && data.hits.hits) {
       app.productForums.render(data.hits.hits);
     }
+    if(data.hits.total != 0){
+      document.getElementById("forumsContainer").style.display = "block";
+    }
   });
 }
 
 app.productForums.render = function(materials) {
-  materials = materials.slice(0,4);
+  
+  var resultNum = 4;
+
+  // checks if using two-column layout
+  if ($('.multi-column').length){
+    resultNum = 8;
+  }
+  materials = materials.slice(0,resultNum);
   var html = [];
   materials.forEach(function(material){
     // var type = material.fields.sys_type[0];
