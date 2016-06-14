@@ -16,7 +16,7 @@
           a.update-source href="<!=sys_url_view!>"
             h5.qtn-title <!=sys_title!>
           p.qtn-content <!=qtnContent!>
-          .callout.qtn-answer
+          .callout.qtn-answer(class="<!=displayAnswr!>")
             p <!=answer!>
             a href="<!=sys_url_view!>" 
               | Read full question at Stack Overflow&nbsp;
@@ -25,4 +25,4 @@
             span.so-tags
               strong Tags:&nbsp;
               <!=tags!>
-            span.right <!=dateCreated!> | <!=authorName!>
+            span.so-author <!=dateCreated!> | <!=authorName!>

@@ -24,16 +24,13 @@ app.stackoverflow = {
     var keyword = keyword || $('input[name="filter-text"]').val();
 
     var filters = $.extend(filters, {"keyword": keyword});
-    // var filters = {
-    //   "keyword" : keyword
-    // };
     var currentFilters = {};
     var request_data = {};
 
     var filter_products = $('select[name="filter-products"]');
     if (filter_products.length && filter_products.val() !== "") {
       var product = filter_products.val();
-      // console.log("Selected product: "+ product);
+      console.log("Selected product: "+ product);
       filters['stackoverflow'] = app.products[product]['stackoverflow'];
       window.dataLayer.push({ 'product' : product });
     } else {
@@ -52,14 +49,6 @@ app.stackoverflow = {
 
     // Pass search params to GTM for analytics
     window.dataLayer = window.dataLayer || [];
-        
-    
-    // if(currentFilters.keyword) {
-    //   query.push(keyword);
-    //   window.dataLayer.push({ 'keyword' : keyword });
-    // } else {
-    //   window.dataLayer.push({ 'keyword' : null });
-    // }
 
     if(currentFilters['keyword']) {
       window.dataLayer.push({ 'keyword' : query });
@@ -80,10 +69,8 @@ app.stackoverflow = {
     }
     else{
       var tags = filters['stackoverflow'];
-      // tags = tags.replace(/"/, "'");
     }
-    
-    // console.log("filter tags: " + tags);
+    console.log("filter tags: " + tags);
     if(tags){
       var tagsString = "";
       for (var i = 0; i < tags.length; i++) {
@@ -140,6 +127,7 @@ app.stackoverflow = {
             d.tags = d.sys_tags.join(', ').substr(0, 30);
             d.dateCreated =jQuery.timeago(new Date((d.sys_created / 1000) * 1000));
             d.qtnAccepted = "";
+            d.displayAnswr = "hide-answer";
 
             if (d.sys_content){
               var cRex = /(<([^>]+)>)/ig;
@@ -157,9 +145,11 @@ app.stackoverflow = {
               if (d.answers[0].is_accepted == true){
                 d.answer = "<strong>Accepted answer: </strong>" + pAnswer;
                 d.qtnAccepted = "accepted-answer";
+                d.displayAnswr = "display-answer";
 
               } else {
                 d.answer = "<strong>Latest answer: </strong>" + pAnswer;
+                d.displayAnswr = "display-answer";
               }
             } else {
               d.answer = "<i>Question not yet answered</i>";
@@ -267,18 +257,19 @@ app.stackoverflow = {
     $('form.stackoverflow-filters').on('submit',function(e) {
       e.preventDefault();
     });
+
     $('select[name="filter-products"]').on('change', function(e) {
       e.preventDefault();
-      var el = $(this).value;
-      // console.log($(this));
+      var el = $(this);
       app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow);
       app.utils.updatePageHash(el);
     });
+
   //  if ($('.stackoverflow-filters').length) {
   //   if (window.location.search) {
   //     var product_id = app.utils.getQueryVariable('filter-products');
   //     $('option[value="'+product_id+'"]').attr('selected','selected');
-  //     app.project.filter({project: app.products[product_id]['upstream']});
+  //     app.stackoverflow.filter({project: app.products[product_id]['upstream']});
   //   } else {
   //     app.project.projectFilter();
   //   }
