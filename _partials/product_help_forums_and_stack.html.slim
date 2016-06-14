@@ -10,7 +10,7 @@
         |  Latest Discussions
       ul.product-forums.product-forums-latest(data-tags="#{(page.parent.product.id)}")
       h5.right 
-        a(id="#{page.parent.product.id}" href="#{site.product_forum_base_url}/#{page.parent.product.id}")
+        a(id="#{page.parent.product.id}" href="#{site.product_forum_base_url}/#{page.parent.product.id}" target="_blank")
           | See all related forums discussions&nbsp;
           i.fa.fa-caret-right
 
@@ -21,7 +21,7 @@
         |  Top Q&amp;A
       .product-stackoverflow-container(data-tags="#{(JSON.dump page.parent.product.stackoverflow_tags).gsub(/"/, "'")}")
       h5.see-all
-        a(href='#{site.base_url}/help/stack-overflow/#!filter-products=#{page.parent.product.id}' )
+        a(href='#{site.base_url}/help/stack-overflow/#!filter-products=#{page.parent.product.id}')
           | See all related Stack Overflow Q&amp;A posts&nbsp;
           i.fa.fa-caret-right
 br
