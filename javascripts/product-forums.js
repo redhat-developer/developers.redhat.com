@@ -40,7 +40,7 @@ app.productForums.render = function(materials) {
     var item = [
       '<li>',
         '<h5>',
-          '<a href="' + material.fields.sys_url_view[0] + '" class="qtn-title">',
+          '<a href="' + material.fields.sys_url_view[0] + '" class="qtn-title" target="_blank">',
             material.fields.sys_title[0],
           '</a>',
         '<h5>',
