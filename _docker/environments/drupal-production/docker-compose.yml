@@ -84,10 +84,10 @@ services:
   export:
    user: root
    build:
-   context: ../../awestruct
-   args:
-    http_proxy: proxy01.util.phx2.redhat.com:8080
-    https_proxy: proxy01.util.phx2.redhat.com:8080
+    context: ../../awestruct
+    args:
+     http_proxy: proxy01.util.phx2.redhat.com:8080
+     https_proxy: proxy01.util.phx2.redhat.com:8080
    entrypoint: "ruby _docker/lib/export/export.rb developer-drupal.web.prod.ext.phx2.redhat.com"
    volumes:
     - /data/drupal-export:/export
