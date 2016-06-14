@@ -14,7 +14,7 @@ class DefaultLogger
     log = Logger.new(STDOUT)
     log.formatter = proc do |severity, datetime, _, msg|
       date_format = datetime.strftime('%Y-%m-%d %H:%M:%S')
-      "[#{date_format}] #{severity} - #{msg}\n"
+      "[#{date_format}] #{severity} - #{msg.gsub("\n",'')}\n"
     end
     log
   end
