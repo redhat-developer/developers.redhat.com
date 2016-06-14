@@ -106,15 +106,6 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     <div class="large-20 medium-17 small-24 columns nav-breakpoint">
         <div class="row">
             <article{{ attributes.addClass('solution', classes) }}>
-
-                {{ title_prefix }}
-                {% if not page %}
-                    <h2{{ title_attributes }}>
-                        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-                    </h2>
-                {% endif %}
-                {{ title_suffix }}
-
                 <div{{ content_attributes.addClass('node__content') }}>
                     {{ page.content }}
                 </div>
