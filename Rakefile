@@ -408,7 +408,8 @@ task :blinkr, [:host_to_test, :report_path, :report_host, :verbose] do |task, ar
   sha = ENV['ghprbActualCommit']
   should_update_status = sha.to_s != ""
   puts "should_update_status:#{should_update_status}"
-  options = {:context => 'Blinkr', :description => 'Blinkr pending', :target_url => ENV["BUILD_URL"]}
+  context = host_to_test.include?('drupal') ? 'Drupal:Blinkr' : 'Blinkr'
+  options = {:context => context, :description => 'Blinkr pending', :target_url => ENV["BUILD_URL"]}
 
   begin
     if should_update_status
