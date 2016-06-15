@@ -50,12 +50,12 @@ class ProcessRunner
         threads = []
         threads << Thread.new(stdout) do |i|
           while ( ! i.eof? )
-            @log.info("(Console): #{i.readline}")
+            @log.info(i.readline)
           end
         end
         threads << Thread.new(stderr) do |i|
           while ( ! i.eof? )
-            @log.error("(Console): #{i.readline}")
+            @log.error(i.readline)
           end
         end
         threads.each{|t|t.join}

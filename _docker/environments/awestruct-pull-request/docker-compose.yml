@@ -55,6 +55,35 @@ services:
     links:
      - mysql
 
+  #
+  # Testing
+  #
+  unit_tests:
+   build: ../../awestruct
+   volumes:
+    - ../../../:/home/awestruct/developer.redhat.com
+   entrypoint: "bundle exec rake test"
+   environment:
+    - google_api_key
+    - dcp_user
+    - dcp_password
+    - vimeo_client_secret
+    - vimeo_access_token_secret
+    - vimeo_access_token
+    - cache_password
+    - cache_url
+    - site_base_path
+    - site_path_suffix
+    - cdn_prefix
+    - cache_user
+    - github_token
+    - ACCESSIBLE_SLAVE_IP
+    - SEARCHISKO_HOST_PORT
+    - ghprbActualCommit
+    - github_status_api_token
+    - BUILD_URL
+    - AWE_PROC_COUNT=10
+
   acceptance_tests:
     build: ../../awestruct
     volumes:

@@ -31,13 +31,6 @@ services:
       - github_token
       - drupal_user
       - drupal_password
-      - ACCESSIBLE_SLAVE_IP
-      - SEARCHISKO_HOST_PORT
-      - DRUPAL_HOST_PORT
-      - DRUPAL_HOST_IP
-      - ghprbActualCommit
-      - github_status_api_token
-      - BUILD_URL
 
   drupal:
     build:
@@ -56,10 +49,7 @@ services:
     environment:
       - http_proxy=proxy01.util.phx2.redhat.com:8080
       - https_proxy=proxy01.util.phx2.redhat.com:8080
-      - DB_NAME=drupal
-      # TODO: Drop these once we have rhd.settings.php working correctly
-      - DB_USER=drupal
-      - DB_PASSWORD=drupal
+
  #
  # Environment actions
  #
@@ -74,3 +64,16 @@ services:
   volumes:
    - /data/drupal-export:/export
    - /credentials/rsync:/home/awestruct/.ssh
+
+   #
+   # Testing
+   #
+   unit_tests:
+    build:
+     context: ../../awestruct
+     args:
+      http_proxy: proxy01.util.phx2.redhat.com:8080
+      https_proxy: proxy01.util.phx2.redhat.com:8080
+    volumes:
+     - ../../../:/home/awestruct/developer.redhat.com
+    entrypoint: "bundle exec rake test"
