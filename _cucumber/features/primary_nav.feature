@@ -8,7 +8,7 @@ Feature: Site navigation menu
       | Login    |
       | Register |
 
-  @mobile @javascript @accepted_terms @logout
+  @mobile @javascript @accepted_terms @logout @ignore
   Scenario: A customer has correct login credentials can log in on mobile/tablet devices.
     Given I am on the Login page
     When I try to log in with a valid password
