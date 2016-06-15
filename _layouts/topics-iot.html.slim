@@ -99,24 +99,16 @@ section.topics-dotted-graphics#IoT
                 .large-24.columns
                   h4 #{e.title}
                   - if e.section_1.links
-                    ul.no-ident-li
+                    ul.small-txt
                       - e.section_1.links.each do |link|
                         li
                           - if link.local_url
                             a(href="#{site.base_url}#{link.local_url}") #{link.name}
                           - elsif link.url
                             a(href="#{link.url}") #{link.name}
-                  / h5 Follow us on Social
-                  / ul.social-links
-                  /   li: a(href="https://www.facebook.com/RedHatDeveloperProgram")
-                  /     i.fa.fa-facebook
-                  /   li: a(href="https://twitter.com/rhdevelopers")
-                  /     i.fa.fa-twitter
-                  /   li: a(href="https://plus.google.com/103877536668756379905/posts")
-                  /     i.fa.fa-google-plus
                   - if e.section_2
                     h5 #{e.section_2.title}
-                    ul.no-ident-li
+                    ul.small-txt
                       - e.section_2.links.each do |link|
                         li
                           - if link.local_url
