@@ -17,12 +17,13 @@ layout: technology-base
       - category.products.each do |p|
         - if site.products[p]
           - product = site.products[p]
-          .development-tool(id="development-tool-#{product.id}")
-            .row
-              .large-12.columns
-                h4
-                  a(id="#{product.id}" href="#{site.product_forum_base_url}/#{product.id}" target="_blank")
-                    = product.name
-                    i.fa.fa-comments-o
-              .large-12.columns
-                = product['index'].desc
+          - unless product.id == ("rhel","mobileplatform","openshift")
+            .development-tool(id="development-tool-#{product.id}")
+              .row
+                .large-12.columns
+                  h4
+                    a(id="#{product.id}" href="#{site.product_forum_base_url}/#{product.id}" target="_blank")
+                      = product.name
+                      i.fa.fa-comments-o
+                .large-12.columns
+                  = product['index'].desc
