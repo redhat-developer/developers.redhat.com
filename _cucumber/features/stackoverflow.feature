@@ -12,20 +12,21 @@ Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
     Given I am on the Stack Overflow page
     Then I should see a list of 10 results
     And each question should contain a question summary
-    And it should link to the question on Stack Overflow
+    And each question should link to the relevant question on Stack Overflow
 
   Scenario: Results should contain a 'Best answer' section that links to the specific answer on Stack Overflow.
     Given I am on the Stack Overflow page
+    Then I should see a list of 10 results
     When a question contains an answer
-    Then I should see an answer summary
-    And the answer should link to that question on Stack Overflow in a new window
-    And I should see a "Read the full answer on Stack Overflow" link
+    Then I should see a "Latest answer" section
+    And a "Read full question at Stack Overflow" link that links to that question on Stack Overflow in a new window
 
+  @wip
   Scenario: When a result does not contain a 'Best answer' it should not contain a 'Best Answer' section.
     Given I am on the Stack Overflow page
+    Then I should see a list of 10 results
     When a question does not contain an answer
-    Then I should not see an answer summary
-    And I should not see a "Read the full answer on Stack Overflow" link
+#    Then I should not see a "Latest answer" section
 
   Scenario: Results should contain a "Started link" and the author of question.
     Given I am on the Stack Overflow page

@@ -90,6 +90,13 @@ class Base
     raise(message)
   end
 
+  def get_windows
+    @driver.window_handles
+    @driver.window_handles.map do |w|
+      [w]
+    end
+  end
+
 
   private
 
