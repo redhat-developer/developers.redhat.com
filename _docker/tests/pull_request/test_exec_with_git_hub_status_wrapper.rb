@@ -114,7 +114,7 @@ class TestExecWithGitHubStatusWrapper < MiniTest::Test
     Octokit.expects(:create_status).with do | github_repo, git_sha1, status, options |
       assert_equal(@git_repo, github_repo)
       assert_equal(@git_sha1, git_sha1)
-      assert_equal('failed', status)
+      assert_equal('failure', status)
       assert_equal(@target_url, options[:target_url])
       assert_equal('Unit Tests', options[:context])
       assert_equal('Unit Tests failed.', options[:description])

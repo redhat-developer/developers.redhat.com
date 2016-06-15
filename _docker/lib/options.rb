@@ -145,7 +145,7 @@ class Options
   end
 
   def self.unit_test_tasks
-    ['--no-deps', '--rm', 'awestruct', 'bundle exec rake test']
+    %w(--no-deps --rm unit_tests)
   end
 
 end

@@ -4,9 +4,9 @@
 #
 # This class is designed to be used in pull request environments that run Docker containers. This class
 # should be set as the entrypoint for your container and the command you wish to run passed in via the
-# Docker command argument.
+# Docker command argument (or as part of the entrypoint definition).
 #
-# The GitHub status API updates are controlled via environment variables set on your container definition. The supported
+# The GitHub status API updates are controlled via environment variables set on your docker-compose container definition. The supported
 # env args are:
 # - github_status_api_token -> The API token that should be used to communicate with the Github status API
 # - github_status_repo -> The GitHub repo to use in the format <user>/<repo>
@@ -26,6 +26,7 @@
 
 require 'octokit'
 require_relative '../default_logger'
+require_relative '../process_runner'
 
 class ExecWithGitHubStatusWrapper
 
@@ -59,7 +60,7 @@ class ExecWithGitHubStatusWrapper
     case status
       when 'success'
         description = "#{context} completed successfully."
-      when 'failed'
+      when 'failure'
         description = "#{context} failed."
     end
 
@@ -82,8 +83,8 @@ class ExecWithGitHubStatusWrapper
       @process_runner.execute!(command)
       update_status(@context, 'success')
     rescue => e
-      update_status(@context, 'failed')
-      raise e
+      update_status(@context, 'failure')
+      raise StandardError.new("Execution of command '#{command}' failed.")
     end
   end
 
