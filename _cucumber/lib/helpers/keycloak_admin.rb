@@ -1,7 +1,7 @@
 class KeyCloak
 
   def initialize
-    request_body_map = {:username => 'automated-tests-user', :password => 'fadsd356erRe', :grant_type => 'password', :client_id => 'automated-tests'}
+    request_body_map = {:username => 'automated-tests-user@redhat.com', :password => 'P@$$word01', :grant_type => 'password', :client_id => 'admin-cli'}
     request_header = {:content_type => 'application/x-www-form-urlencoded'}
     endpoint = 'https://developers.stage.redhat.com/auth/realms/master/protocol/openid-connect/token'
     response = RestClient::Request.execute(:url => endpoint, :method => :post, :headers => request_header, :payload => request_body_map, :verify_ssl => false)
