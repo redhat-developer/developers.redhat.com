@@ -39,8 +39,8 @@ When(/^I (should|should not) see a "([^"]*)" section$/) do |negate, arg|
   end
 end
 
-And(/^a "([^"]*)" link that links to that question on Stack Overflow in a new window$/) do |arg|
-  @page.stack_overflow.click_read_full_question_link
+And(/^a "([^"]*)" link that links to that question on Stack Overflow in a new window$/) do |link_title|
+  @page.stack_overflow.click_read_full_question_link(link_title)
   @page.stack_overflow.wait_for_windows(2)
 end
 
@@ -51,4 +51,33 @@ end
 
 When(/^I scroll to the bottom of the page$/) do
   @page.stack_overflow.scroll_to_bottom_of_page
+end
+
+Then(/^I should see a Filter by product drop down menu with the following:$/) do |table|
+  table.raw.each do |row|
+    product = row.first
+    expect(@page.stack_overflow.product_filter.text).to include product
+  end
+end
+
+When(/^I select "([^"]*)" from the products filter$/) do |product|
+  @initial_product_titles = []
+  @page.stack_overflow.question_titles.each { |title| @initial_product_titles << title.text }
+  @page.stack_overflow.select_product(product)
+end
+
+Then(/^the results should be updated containing questions relating to "([^"]*)"$/) do |arg|
+  updated_product_titles = []
+  @page.stack_overflow.question_titles.each { |title| updated_product_titles << title.text }
+  updated_product_titles.should_not =~ @initial_product_titles
+end
+
+Then(/^the default item within the Filter by product drop down menu should be "([^"]*)"$/) do |default|
+  expect(@page.stack_overflow.selected_filter).to eq default
+end
+
+Given(/^I have previously filtered results by "([^"]*)"$/) do |product|
+  @initial_product_titles = []
+  @page.stack_overflow.question_titles.each { |title| @initial_product_titles << title.text }
+  @page.stack_overflow.select_product(product)
 end
