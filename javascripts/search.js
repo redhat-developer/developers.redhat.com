@@ -66,7 +66,6 @@ search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc
 
 function searchCtrlFunc($scope, searchService) {
   var search = window.location.search.split('=');
-  console.log(search);
   var q = '';
   if(search) {
     q = decodeURIComponent(search.pop().replace(/\+/g,' ')); // last one
@@ -85,6 +84,11 @@ function searchCtrlFunc($scope, searchService) {
   }
 
   $scope.loading = true;
+
+  $scope.resetPagination = function() {
+    $scope.params.from = 0; // start on the first page
+    $scope.paginate.currentPage = 1;
+  }
 
   $scope.updateSearch = function() {
     $scope.loading = true;

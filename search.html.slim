@@ -8,7 +8,7 @@ div(ng-app="search")
     .large-24.columns.searchpage-middle
       .row
         .large-24.columns
-          form.search-bar(role="search" ng-submit="updateSearch()")
+          form.search-bar(role="search" ng-submit="updateSearch(); resetPagination();")
             input.user-success.user-search(required type="search" placeholder="Enter your search term" id="search_list_text" ng-model="params.query")
         .large-18.columns.searchpage-results-container
           .sorting
