@@ -76,6 +76,9 @@ module JBoss
                 if File.exists?('./products/' + id + '/connectors.adoc')
                   product.send('has_connectors_page=', true)
                 end
+                if File.exists?('./products/' + id + '/get-started.adoc')
+                  product.send('has_get_started_page=', true)
+                end
                 if File.exists?('./products/' + id + '/buzz.html.slim')
                   product.send('has_buzz_page=', true)
                 end
