@@ -7,11 +7,11 @@ keycloak:
   authUrl: 'https://developers.stage.redhat.com/auth/'
 drupal:
   host: stumpjumper.lab4.eng.bos.redhat.com
-  port: <%=ENV['DRUPAL_HOST_PORT']%>
+  port: "<%=ENV['DRUPAL_HOST_PORT']%>"
 searchisko:
   host: stumpjumper.lab4.eng.bos.redhat.com
-  port: <%=ENV['SEARCHISKO_HOST_PORT']%>
-  baseProtocolRelativeUrl: stumpjumper.lab4.eng.bos.redhat.com:<%=ENV['SEARCHISKO_HOST_PORT']%>
+  port: "<%=ENV['SEARCHISKO_HOST_PORT']%>"
+  baseProtocolRelativeUrl: 'stumpjumper.lab4.eng.bos.redhat.com:<%=ENV['SEARCHISKO_HOST_PORT']%>'
 database:
   host: drupalmysql
   port: '3306'

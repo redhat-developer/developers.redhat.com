@@ -7,11 +7,11 @@ keycloak:
   authUrl: 'https://developers.stage.redhat.com/auth/'
 drupal:
   host: docker
-  port: "80"
+  port: "<%=ENV['DRUPAL_HOST_PORT']%>"
 searchisko:
   host: docker
   port: "32772"
-  baseProtocolRelativeUrl: 'docker:8080'
+  baseProtocolRelativeUrl: 'docker:<%=ENV['SEARCHISKO_HOST_PORT']%>'
 database:
   host:  drupalmysql
   port: '3306'

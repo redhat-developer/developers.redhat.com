@@ -65,7 +65,7 @@ end
 # is mapped.
 #
 def get_host_mapped_port_for_container(environment, container_name, container_port)
-  container = get_docker_container(environment, container_name)
+  container = get_docker_container(environment, "#{container_name}_1")
   port_info = container.json['NetworkSettings']['Ports'][container_port].first
   port_info['HostPort']
 end
@@ -75,7 +75,7 @@ def wait_for_supporting_service_to_start(environment, service_name, service_port
     puts "Waiting for service '#{service_name}' to start..."
 
     service_host = determine_docker_host_for_container_ports
-    service_port = get_host_mapped_port_for_container(environment, "#{service_name}_1", service_port)
+    service_port = get_host_mapped_port_for_container(environment, service_name, service_port)
 
     target_url = "http://#{service_host}:#{service_port}/#{service_url}"
     puts "Testing access to service '#{service_name}' via URL '#{target_url}'..."
@@ -102,11 +102,6 @@ def wait_for_drupal_to_start(environment, supporting_services)
 
     drupal_host, drupal_port = wait_for_supporting_service_to_start(environment, 'drupal','80/tcp','user/login')
 
-    # Add this to the ENV so we can pass it to the awestruct build and also to templating of environment resources
-    # Add the drupal cdn prefix - TODO not sure why this is here?
-    ENV['cdn_prefix'] = 'sites/default/files'
-    ENV['DRUPAL_HOST_IP'] = drupal_host
-    ENV['DRUPAL_HOST_PORT'] = drupal_port
   else
     puts 'Not waiting for Drupal to start as it is not a required supporting_service'
   end
@@ -135,9 +130,7 @@ end
 def wait_for_searchisko_to_start(environment, supporting_services)
 
   if check_supported_service_requested(supporting_services, 'searchisko')
-    searchikso_host, searchisko_port = wait_for_supporting_service_to_start(environment, 'searchisko','8080/tcp','v2/rest/search/events')
-    ENV['SEARCHISKO_HOST_IP'] = searchikso_host
-    ENV['SEARCHISKO_HOST_PORT'] = searchisko_port
+    wait_for_supporting_service_to_start(environment, 'searchisko','8080/tcp','v2/rest/search/events')
   else
     puts 'Not waiting for Searchisko to start as it is not a required supporting_service'
   end
@@ -268,6 +261,32 @@ def determine_docker_host_for_container_ports
 
 end
 
+def bind_drupal_container_details_into_environment(environment, supporting_services)
+  if check_supported_service_requested(supporting_services, 'drupal')
+    drupal_host = determine_docker_host_for_container_ports
+    drupal_port = get_host_mapped_port_for_container(environment, 'drupal', '80/tcp')
+
+    # Add this to the ENV so we can pass it to the awestruct build and also to templating of environment resources
+    # Add the drupal cdn prefix - TODO not sure why this is here?
+    ENV['cdn_prefix'] = 'sites/default/files'
+    ENV['DRUPAL_HOST_IP'] = drupal_host
+    ENV['DRUPAL_HOST_PORT'] = drupal_port
+
+    puts "Bound environment variables: DRUPAL_HOST_IP='#{drupal_host}', DRUPAL_HOST_PORT='#{drupal_port}'"
+  end
+end
+
+def bind_searchisko_container_details_into_environment(environment, supporting_services)
+  if check_supported_service_requested(supporting_services, 'searchisko')
+    searchisko_host = determine_docker_host_for_container_ports
+    searchisko_port = get_host_mapped_port_for_container(environment, 'searchisko', '8080/tcp')
+    ENV['SEARCHISKO_HOST_IP'] = searchisko_host
+    ENV['SEARCHISKO_HOST_PORT'] = searchisko_port
+    puts "Bound environment variables: SEARCHISKO_HOST_IP='#{searchisko_host}', SEARCHISKO_HOST_PORT='#{searchisko_port}'"
+  end
+end
+
+
 #
 # Starts any required supporting services (if any), and then waits for them to be
 # reported as up before continuing
@@ -277,8 +296,12 @@ def start_and_wait_for_supporting_services(environment, supporting_services, sys
   unless supporting_services.nil? or supporting_services.empty?
     puts 'Starting all required supporting services...'
 
-    environment.template_resources
     system_exec.execute_docker_compose(environment, :up, %w(-d --no-recreate).concat(supporting_services))
+
+    bind_drupal_container_details_into_environment(environment, supporting_services)
+    bind_searchisko_container_details_into_environment(environment, supporting_services)
+    environment.template_resources
+
     wait_for_searchisko_to_start(environment, supporting_services)
     wait_for_drupal_to_start(environment, supporting_services)
 
