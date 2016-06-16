@@ -98,7 +98,7 @@ services:
      environment:
       - github_status_api_token
       - github_status_context=Drupal:Site Preview
-      - github_status_repo=redhat-developer/developers.redhat.com
+      - github_status_repo=robpblake/developers.redhat.com
       - github_status_target_url=${site_base_path}:${site_path_suffix}
       - github_status_sha1=${ghprbActualCommit}
 
@@ -113,7 +113,7 @@ services:
    environment:
     - github_status_api_token
     - github_status_context=Drupal:Unit Tests
-    - github_status_repo=redhat-developer/developers.redhat.com
+    - github_status_repo=robpblake/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
     - github_status_initialise=Drupal:Unit Tests,Drupal:Acceptance Tests,Drupal:Site Preview,Drupal:Blinkr
@@ -126,7 +126,7 @@ services:
    environment:
      - github_status_api_token
      - github_status_context=Drupal:Acceptance Tests
-     - github_status_repo=redhat-developer/developers.redhat.com
+     - github_status_repo=robpblake/developers.redhat.com
      - github_status_target_url=${BUILD_URL}
      - github_status_sha1=${ghprbActualCommit}
      - PARALLEL_TEST

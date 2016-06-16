@@ -83,15 +83,15 @@ services:
     - /data/drupal-export:/export
     - /credentials/rsync:/home/awestruct/.ssh
 
-   #
-   # Testing
-   #
-   unit_tests:
-    build:
-     context: ../../awestruct
-     args:
-      http_proxy: proxy01.util.phx2.redhat.com:8080
-      https_proxy: proxy01.util.phx2.redhat.com:8080
-    volumes:
-     - ../../../:/home/awestruct/developer.redhat.com
-    entrypoint: "bundle exec rake test"
+  #
+  # Testing
+  #
+  unit_tests:
+   build:
+    context: ../../awestruct
+    args:
+     http_proxy: proxy01.util.phx2.redhat.com:8080
+     https_proxy: proxy01.util.phx2.redhat.com:8080
+   volumes:
+    - ../../../:/home/awestruct/developer.redhat.com
+   entrypoint: "bundle exec rake test"
