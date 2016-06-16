@@ -7,6 +7,7 @@ var sassUtils = require("node-sass-utils")(sass);
 var globs = {
   // TODO: Need to find a fix for adobe analytics
   "scripts": [
+    'javascripts/drupal-namespace.js',
     'javascripts/vendor/jquery.xdomainrequest.js',
     'javascripts/extensions.js',
     'javascripts/vendor/keycloak.js',
