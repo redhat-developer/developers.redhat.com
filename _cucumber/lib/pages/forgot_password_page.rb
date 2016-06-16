@@ -9,11 +9,11 @@ class ForgotPassword < Base
 
   def initialize(driver)
     super
-    wait_for { displayed?(PASSWORD_RESET_PAGE) }
-    verify_page('Forgot Password | Red Hat Developers')
+    wait_for(30) { title.include?('Forgot your password?') }
   end
 
   def enter_email(email)
+    wait_for { displayed?(USERNAME_FIELD) }
     type(USERNAME_FIELD, email)
     click_on(SUBMIT_BTN)
     wait_for { displayed?(CONFIRMATION) }

@@ -1,5 +1,3 @@
-@ignore
-
 Feature: Login Page
 
   As a developers.redhat customer,
@@ -32,7 +30,7 @@ Feature: Login Page
     And I click the Logout link
     Then I should be logged out
 
-  @password_reset @teardown @ignore
+  @password_reset @teardown
   Scenario: A customer who has forgotten their login details can request a password reset
     Given I am on the Login page
     And I click the forgot password link
@@ -40,7 +38,7 @@ Feature: Login Page
     Then I should see a confirmation message: "You will receive an email shortly with instructions on how to create a new password. TIP: Check your junk or spam folder if you are unable to find the email."
     And I should receive an email containing a password reset link
 
-  @password_reset @logout @ignore
+  @password_reset @logout
   Scenario: A customer can successfully reset their password
     Given I am on the Login page
     When I click the forgot password link

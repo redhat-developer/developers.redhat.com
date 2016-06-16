@@ -9,7 +9,6 @@ end
 
 When(/^I try to register with an existing RHD registered email$/) do
   @page.registration.fill_in_form(@site_user[:first_name], @site_user[:last_name], 'uk.redhat.test.user+full-site-user@gmail.com', @site_user[:company_name], @site_user[:country], @site_user[:password], @site_user[:password])
-  @page.registration.create_account
 end
 
 When(/^I register a new account using my GitHub account$/) do
@@ -24,12 +23,18 @@ When(/^I register a new account using my GitHub account$/) do
 end
 
 When(/^I try to link a GitHub account to an existing account$/) do
+
   @site_user = @github_admin.generate_user
   @email_address = @git_email
   @github_admin.update_profile("#{@site_user[:first_name].upcase} #{@site_user[:last_name].upcase}", @email_address, @site_user[:company_name])
   @page.registration.click_register_with_github
   @page.github.login(@git_username, @git_password)
   @page.github.authorize_app
+
+  @page.additional_information.fill_in(nil, 'P@$$word01', nil, nil, nil, @site_user[:country])
+  @page.registration.accept_terms('all')
+  @page.additional_information.click_submit
+
 end
 
 When(/^I register a new account using a GitHub account that contains missing profile information$/) do
@@ -56,6 +61,22 @@ end
 
 When(/^I complete the registration form$/) do
   @page.registration.fill_in_form(@site_user[:first_name], @site_user[:last_name], @site_user[:email], @site_user[:company_name], @site_user[:country], @site_user[:password], @site_user[:password])
+  @page.registration.accept_terms('all')
+  @page.registration.create_account
+end
+
+Then(/^I should see the following terms and conditions checkboxes:$/) do |table|
+  table.raw.each do |row|
+    term = row.first
+    @page.registration.terms_and_conditions_section.text.should include term
+  end
+end
+
+And(/^I click accept (all|red hat developer|red hat|red hat portal) terms and conditions$/) do |term|
+  @page.registration.accept_terms(term)
+end
+
+And(/^I click on the Create Account button$/) do
   @page.registration.create_account
 end
 
@@ -119,24 +140,8 @@ Then(/^I should see a warning that the email is already registered$/) do
   expect(@page.link_to_github.error).to eq "User account already exists for email #{@email_address}."
 end
 
-Then(/^I should be asked to fill in mandatory information with a message "([^"]*)"$/) do |message|
-  @page.additional_information.feedback.should == message
-end
-
-When(/^I complete the required additional information$/) do
-  @page.additional_information.fill_in(nil, @site_user[:first_name], @site_user[:last_name], @site_user[:company_name], @site_user[:country])
-  @page.additional_information.click_submit
-end
-
 When(/^I select to Choose another email$/) do
   @page.link_to_github.click_on_choose_another_email
-end
-
-And(/^I complete the required additional information with a new email address$/) do
-  @email_address = @site_user[:email]
-  puts "Adding new email: #{@site_user[:email]}"
-  @page.additional_information.fill_in(@email_address, nil, nil, nil, @site_user[:country])
-  @page.additional_information.click_submit
 end
 
 Then(/^I should receive an email containing a verify email link$/) do
@@ -151,4 +156,24 @@ end
 
 And(/^I navigate to the verify email link$/) do
   @driver.get(@verification_email)
+end
+
+Then(/^each term should link to relevant terms and conditions page:$/) do |table|
+  table.hashes.each do |row|
+    case row[:term]
+      when 'Red Hat Developer Program'
+        @page.registration.find(link_text: 'Red Hat Developer Program Terms & Conditions').attribute('href').should include row[:url]
+      when 'Red Hat Subscription Agreement'
+        @page.registration.find(link_text: 'Red Hat Subscription Agreement').attribute('href').should include row[:url]
+      when 'Red Hat Portals Terms of Use'
+        @page.registration.find(link_text: 'Red Hat Portals Terms of Use').attribute('href').should include row[:url]
+      else
+        raise("#{row[:term]} is not a recognised term")
+    end
+  end
+end
+
+
+When(/^I try to register with an existing OpenShift registered email$/) do
+  @page.registration.fill_in_form(@site_user[:first_name], @site_user[:last_name], 'velias+emailveriftest@redhat.com', @site_user[:company_name], @site_user[:country], @site_user[:password], @site_user[:password])
 end
