@@ -26,8 +26,11 @@ class Registration < Base
   CONFIRMATION                 = { id: 'kc-content' }
   PASSWORD_CONFIRM_FIELD_ERROR = { id: 'password-confirm-error' }
   REGISTRATION_CONFIRMATION    = { id: 'registration-confirmation' }
+  TERMS_WRAPPER                = { class: 'tac-all-wrapper' }
   ACCEPT_ALL_TERMS             = { id: 'tac-checkall' }
-  ACCEPT_TERMS                 = { css: '.fulluser-ttac' }
+  DEVELOPER_TERMS              = { id: 'user.attributes.tcacc-1246' }
+  REDHAT_SUBSCRIPTION_TERMS    = { id: 'user.attributes.tcacc-6'}
+  REDHAT_PORTAL_TERMS          = { id: 'user.attributes.tcacc-1010' }
   GITHUB_BTN                   = { id: 'social-github' }
 
   def initialize(driver)
@@ -73,6 +76,25 @@ class Registration < Base
   def click_register_with_github
     wait_for { displayed?(GITHUB_BTN) }
     click_on(GITHUB_BTN)
+  end
+
+  def terms_and_conditions_section
+    find(TERMS_WRAPPER)
+  end
+
+  def accept_terms(term)
+    case term
+      when 'all'
+        click_on(ACCEPT_ALL_TERMS)
+      when 'developer'
+        click_on(DEVELOPER_TERMS)
+      when 'red hat'
+        click_on(REDHAT_SUBSCRIPTION_TERMS)
+      when 'portal'
+        click_on(REDHAT_PORTAL_TERMS)
+      else
+        raise("#{term} is not a recognised condition")
+    end
   end
 
 end
