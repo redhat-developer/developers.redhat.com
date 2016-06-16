@@ -21,8 +21,9 @@ Start _Red Hat Subscription Manager_ using the _System Tools_ group of the _Appl
 If you don’t see any RHSCL repositories in the list, your subscription might not include it.
 
 // {tthw-cdn-site-base-url} contains #{cdn(site.base_url} but WILL be passed across the include
-// image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel7/manage-repositories.png')}[Manage Repositories]
-image:{tthw-cdn-site-base-url}/images/products/softwarecollections/rhel7/manage-repositories.png[Manage Repositories]
+// image:{tthw-cdn-site-base-url}/images/products/softwarecollections/rhel7/manage-repositories.png[Manage Repositories]
+// FIXME, should be /rhel{tthw-rhelver}/ but that breaks the CDN, so rhel6 is getting the wrong image for now.
+image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel7/manage-repositories.png')}[Manage Repositories]
 
 See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
 
