@@ -16,6 +16,10 @@ class Base
     @driver.find_element(locator)
   end
 
+  def custom_find(el, locator)
+    el.find_element(locator)
+  end
+
   def find_elements(locator)
     @driver.find_elements(locator)
   end
@@ -39,6 +43,10 @@ class Base
     find(locator).click
   end
 
+  def custom_click_on(el, locator)
+    el.find_element(locator).click
+  end
+
   def hover_on(locator)
     el = find(locator)
     @driver.action.move_to(el).perform
@@ -46,6 +54,13 @@ class Base
 
   def displayed?(locator)
     @driver.find_element(locator).displayed?
+    true
+  rescue Selenium::WebDriver::Error::NoSuchElementError
+    false
+  end
+
+  def custom_displayed?(el, locator)
+    el.find_element(locator).displayed?
     true
   rescue Selenium::WebDriver::Error::NoSuchElementError
     false
@@ -90,6 +105,17 @@ class Base
     raise(message)
   end
 
+  def get_windows
+    @driver.window_handles
+    @driver.window_handles.map do |w|
+      @driver.switch_to.window(w)
+      [w]
+    end
+  end
+
+  def wait_for_windows(size)
+    wait_for(10) { get_windows.size == size }
+  end
 
   private
 
