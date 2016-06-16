@@ -8,12 +8,16 @@ require_relative '../control'
 
 class TestControl < Minitest::Test
 
+  def setup
+    @previous_cdn_prefix = ENV['cdn_prefix']
+  end
+
   def teardown
     ENV['SEARCHISKO_HOST_IP'] = nil
     ENV['SEARCHISKO_HOST_PORT'] = nil
     ENV['DRUPAL_HOST_IP'] = nil
     ENV['DRUPAL_HOST_PORT'] = nil
-    ENV['cdn_prefix'] = nil
+    ENV['cdn_prefix'] = @previous_cdn_prefix
   end
 
   def test_wait_for_supporting_service_to_start
@@ -66,7 +70,7 @@ class TestControl < Minitest::Test
 
     assert_equal(nil, ENV['DRUPAL_HOST_IP'])
     assert_equal(nil, ENV['DRUPAL_HOST_PORT'])
-    assert_equal(nil, ENV['cdn_prefix'])
+    assert_equal(@previous_cdn_prefix, ENV['cdn_prefix'])
   end
 
   def test_wait_for_drupal_to_start
