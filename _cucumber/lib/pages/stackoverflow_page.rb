@@ -17,10 +17,33 @@ class StackOverflow < Base
   LATEST_ANSWER                      =  { css: '.display-answer' }
   READ_FULL_QUESTION_LINK            =  { css: '.display-answer a' }
   AUTHOR                             =  { css: '.so-author' }
+  FILTER_BY_PRODUCT                  =  { id: 'filterProducts' }
 
   def initialize(driver)
     super
     verify_page('Stack Overflow')
+  end
+
+  def product_filter
+    find(FILTER_BY_PRODUCT)
+  end
+
+  def selected_filter
+    select_list = wait_for {
+      element = @driver.find_element(FILTER_BY_PRODUCT)
+      element if element.displayed?
+    }
+    options=select_list.find_elements(:tag_name => 'option')
+    options.each do |g|
+      if g.selected?
+        return g.text
+      end
+    end
+  end
+
+  def select_product(product)
+    select(FILTER_BY_PRODUCT, product)
+    wait_for_ajax
   end
 
   def questions_loaded?(i)
@@ -81,8 +104,8 @@ class StackOverflow < Base
     custom_find(@element, READ_FULL_QUESTION_LINK)
   end
 
-  def click_read_full_question_link
-    custom_click_on(@element, READ_FULL_QUESTION_LINK)
+  def click_read_full_question_link(link)
+    custom_click_on(@element, partial_link_text: link)
   end
 
   def scroll_to_bottom_of_page
