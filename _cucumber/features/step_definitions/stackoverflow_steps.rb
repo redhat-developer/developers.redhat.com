@@ -49,11 +49,6 @@ Then(/^each question should display how long ago the question was asked$/) do
   expect(@page.stack_overflow.author.size).to eq @results
 end
 
-And(/^the name of the author which links to the Authors profile on Stack Overflow$/) do
-  raise ('NOT implimented yet')
-end
-
-
 When(/^I scroll to the bottom of the page$/) do
   @page.stack_overflow.scroll_to_bottom_of_page
 end

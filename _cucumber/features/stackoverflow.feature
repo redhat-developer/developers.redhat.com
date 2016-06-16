@@ -30,8 +30,7 @@ Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
   Scenario: Results should contain a "Started link" and the author of question.
     Given I am on the Stack Overflow page
     Then I should see a list of 10 results
-    Then each question should display how long ago the question was asked
-    And the name of the author which links to the Authors profile on Stack Overflow
+    And each question should display how long ago the question was asked
 
   Scenario: Scrolling page loads next set of 10 results.
     Given I am on the Stack Overflow page
