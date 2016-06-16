@@ -32,11 +32,28 @@ When(/^a question does not contain an answer$/) do
 end
 
 When(/^I (should|should not) see a "([^"]*)" section$/) do |negate, arg|
-  expect(@page.stack_overflow.latest_answer.text).to include arg
+  if negate == 'should'
+    expect(@page.stack_overflow.latest_answer_section_visible?).to be true
+  else
+    expect(@page.stack_overflow.latest_answer_section_visible?).to be false
+  end
 end
 
 And(/^a "([^"]*)" link that links to that question on Stack Overflow in a new window$/) do |arg|
-  expect(@page.stack_overflow.read_full_question_link.text).to include arg
   @page.stack_overflow.click_read_full_question_link
-  expect(@page.stack_overflow.get_windows.size).to eq 2
+  @page.stack_overflow.wait_for_windows(2)
+end
+
+
+Then(/^each question should display how long ago the question was asked$/) do
+  expect(@page.stack_overflow.author.size).to eq @results
+end
+
+And(/^the name of the author which links to the Authors profile on Stack Overflow$/) do
+  raise ('NOT implimented yet')
+end
+
+
+When(/^I scroll to the bottom of the page$/) do
+  @page.stack_overflow.scroll_to_bottom_of_page
 end

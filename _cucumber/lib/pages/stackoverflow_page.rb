@@ -1,6 +1,7 @@
 require_relative 'base'
 
 class StackOverflow < Base
+  attr_accessor :question_with_answer_el, :question_without_answer_el
 
   STACK_OVERFLOW_CONTAINER           =  { css: '.update' }
   QUESTION_ROW                       =  { css: '.stackoverflow-update' }
@@ -13,8 +14,9 @@ class StackOverflow < Base
   QUESTION_TITLE                     =  { css: '.qtn-title' }
   QUESTION_LINK                      =  { css: '.update-source' }
   QUESTION_SUMMARY                   =  { css: '.qtn-content' }
-  LATEST_ANSWER                      =  { css: '.display-answer p' }
+  LATEST_ANSWER                      =  { css: '.display-answer' }
   READ_FULL_QUESTION_LINK            =  { css: '.display-answer a' }
+  AUTHOR                             =  { css: '.so-author' }
 
   def initialize(driver)
     super
@@ -53,57 +55,81 @@ class StackOverflow < Base
     find_elements(QUESTION_SUMMARY)
   end
 
-  def latest_answer
-    find(LATEST_ANSWER)
-  end
-
-  def read_full_question_link
-    find(READ_FULL_QUESTION_LINK)
-  end
-
-  def click_read_full_question_link
-    wait_for { displayed?(READ_FULL_QUESTION_LINK) }
-    click_on(READ_FULL_QUESTION_LINK)
+  def author
+    find_elements(AUTHOR)
   end
 
   def question_with_answer
     scroll_page(10) {
-      displayed?(LATEST_ANSWER)
+      @element, has_answer = query_questions('with')
+      has_answer.eql?(true)
     }
   end
 
   def question_without_answer
-    no_answer = []
     scroll_page(10) {
-      question = find_elements(ANSWER_COUNT)
-      question.each { |answer|
-        if answer.text == '0'
-          no_answer << answer
-        end
-      }
-      !no_answer.empty?
+      @element, has_no_answer = query_questions('without')
+      has_no_answer.eql?(true)
     }
-    @element = no_answer.first
-    p @element.text
   end
+
+  def latest_answer_section_visible?
+    custom_displayed?(@element, LATEST_ANSWER)
+  end
+
+  def read_full_question_link
+    custom_find(@element, READ_FULL_QUESTION_LINK)
+  end
+
+  def click_read_full_question_link
+    custom_click_on(@element, READ_FULL_QUESTION_LINK)
+  end
+
+  def scroll_to_bottom_of_page
+    find_elements(ANSWER_COUNT).last.location_once_scrolled_into_view
+    # Wait for the additional questions to load
+    current_count = find_elements(ANSWER_COUNT).length
+    until current_count < find_elements(ANSWER_COUNT).length
+      sleep(1)
+    end
+  end
+
 
   private
 
   def scroll_page(number_of_times)
-    count = 0; answer = false
-    until answer == true || count == number_of_times
-      answer = yield
+    count = 0; result = false
+    until result == true || count == number_of_times
+      result = yield
       find_elements(ANSWER_COUNT).last.location_once_scrolled_into_view
-      # Wait for the additional answers to load
+      # Wait for the additional questions to load
       current_count = find_elements(ANSWER_COUNT).length
       until current_count < find_elements(ANSWER_COUNT).length
         sleep(1)
       end
       count += 1
     end
-    if answer.eql? false
-      raise("Question with an answer was not found after #{number_of_times} attempts!")
+    if result.eql? false
+      raise("Scrolled page #{number_of_times} times, expected result to be true, but was false")
     end
+  end
+
+  def query_questions(answer)
+    questions = @driver.find_elements(:css, '.stackoverflow-update .update .update-meta .row')
+    questions.each do |q|
+      @question_element = q
+      child_elements = []
+      parent_li = @question_element.find_elements(:xpath, './/*')
+      parent_li.each do |t|
+        child_elements << t['class']
+        if answer == 'with'
+          return @question_element, true if child_elements.include? 'callout qtn-answer display-answer'
+        else
+          return @question_element, true if !child_elements.include? 'callout qtn-answer display-answer'
+        end
+      end
+    end
+    false
   end
 
 end
