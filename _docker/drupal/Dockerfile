@@ -48,5 +48,9 @@ RUN chmod -v +x /run-httpd.sh
 
 WORKDIR /var/www/
 
+# Align apache user and group id with jenkins_developer to solve any volume permission issues
+RUN usermod -u 1000 apache
+RUN groupmod -g 1000 apache
+
 CMD ["/run-httpd.sh"]
 
