@@ -5,6 +5,7 @@ require_relative 'test_helper'
 class TestRhdEnvironment < MiniTest::Test
 
   def setup
+    @current_compose_project_name = ENV['COMPOSE_PROJECT_NAME']
     ENV['COMPOSE_PROJECT_NAME'] = ''
     @environments_directory = File.expand_path('test-environments',File.dirname(__FILE__))
     @testing_directory = File.expand_path('test-environments/testing',File.dirname(__FILE__))
@@ -14,11 +15,11 @@ class TestRhdEnvironment < MiniTest::Test
   end
 
   def teardown
-    ENV['COMPOSE_PROJECT_NAME'] = ''
-    ENV['DRUPAL_HOST_IP'] = ''
-    ENV['DRUPAL_HOST_PORT'] = ''
-    ENV['SEARCHISKO_HOST_IP'] = ''
-    ENV['SEARCHISKO_HOST_PORT'] = ''
+    ENV['COMPOSE_PROJECT_NAME'] = @current_compose_project_name
+    ENV['DRUPAL_HOST_IP'] = nil
+    ENV['DRUPAL_HOST_PORT'] = nil
+    ENV['SEARCHISKO_HOST_IP'] = nil
+    ENV['SEARCHISKO_HOST_PORT'] = nil
 
     FileUtils.rm("#{@environments_directory}/valid-environment/test.txt", :force => true)
     FileUtils.rm("#{@environments_directory}/drupal-pull-request/rhd.settings.yml", :force => true)
