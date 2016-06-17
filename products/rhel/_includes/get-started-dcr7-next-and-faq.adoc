@@ -1,0 +1,71 @@
+:awestruct-interpolate: true
+
+## Where to go next?
+
+* link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/[Red Hat Enterprise Linux Atomic Host 7 Getting Started with Containers] -- This document covers working with and deploying containers on both Red Hat Enterprise Linux and Red Hat Enterprise Linux Atomic Host. It also provides information on orchestrating multi-container environments with _kubernetes_. See <<About Red Hat Enterprise Linux Atomic Host>>.
+
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/[Red Hat Enterprise Linux 7.2 Release Notes] -- includes information on recent updates to the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/atomic_host_and_containers.html[container tools included in Red Hat Enterprise Linux and Atomic Host].
+
+### About Red Hat Enterprise Linux Atomic Host
+
+Atomic Host is specifically optimized for deploying Linux containers in environments like Infrastructure as a Service (IaaS) clouds. Atomic Host's minimal footprint contains only the software needed to efficiently host containers. Atomic Host isn't intended for software development activities as it doesn't include development tools or a graphical user interface.
+
+During software development it is suggested that you use Red Hat Enterprise Linux, which is suitable for many purposes including desktop and server installations. You can build and run containers on Red Hat Enterprise Linux, see link:https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems]. The steps to build a container image that include your application can be automated with a Dockerfile.
+
+After your application is packaged in a container you should test it on Atomic Host to ensure that it is ready for deployment. In addition to minimized footprint, production environments built for running containers benefit from Atomic Host's enhanced security and atomic update and rollback capability.
+
+Developers who are creating continuous integration/continuous delivery (CI/CD) environments will want to consider containers deployed on Atomic Host. This allows test environments to be quickly created while minimizing system resource requirements.
+
+
+## More Resources
+
+### Become a Red Hat developer: developers.redhat.com
+
+Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:http://developers.redhat.com/[developers.redhat.com].
+
+*Follow the Red Hat Developer Blog* +
+link:http://developerblog.redhat.com/[]
+
+
+
+## Faq section title
+[[troubleshooting]]Troubleshooting and FAQ
+
+## Faq section
+. *My system is unable to download updates from Red Hat.*
++
+Your system must be registered with Red Hat using `subscription-manager register`. You need to have a current Red Hat subscription.
+
+. *As a developer, how can I get a no-cost Red Hat Enterprise Linux subscription?*
++
+When you register and download Red Hat Enterprise Linux Server through link:#{site.base_url}/[developers.redhat.com], a no-cost Red Hat Enterprise Linux Developer Suite subscription will be automatically added to your account. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt.
+
+. *How do I tell if there is a container image available that has a newer version of {tthw-langshort}?*
++
+*How can I see what other container images are available?*
++
+*I can't find the container mentioned in this tutorial, how can I tell if the name changed?*
++
+To see what other containers are available in the Red Hat container registry, use one or more of the following searches:
++
+[listing,subs="attributes"]
+----
+# docker search registry.access.redhat.com/rhscl
+# docker search registry.access.redhat.com/openshift3
+# docker search registry.access.redhat.com/rhel
+# docker search registry.access.redhat.com/jboss
+----
++
+. *I can't find the `docker` rpm.*
++
+*`yum` is unable to find the `docker` rpm.*
++
+*When I try to install `docker`, `yum` gives the error _No package docker available_.*
++
+The `docker` rpm is in the _rhel-7-server-extras-rpms_ software repository. It is only available for the server version of Red Hat Enterprise Linux. The _rhel-7-server-extras-rpms_ repository is disabled by default. See the first step in this tutorial for information on enabling additional software repositories.
+
+. *Where can I learn more about delivering applications with Linux containers?*
++
+If you haven't already joined the link:http://developers.redhat.com/[Red Hat Developers program], sign up at link:http://developers.redhat.com/[developers.redhat.com]. Membership is free. +
+link:https://access.redhat.com/articles/1483053[Recommended Practices for Container Development] and many other container articles are available from the link:https://access.redhat.com/[Red Hat Customer Portal]. +
+If you are a Red Hat Technology Partner, visit the link:https://access.redhat.com/articles/1483053[Container Zone] at the link:http://connect.redhat.com/[Red Hat Connect for Technology Partners] web site.

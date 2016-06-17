@@ -1,0 +1,49 @@
+:awestruct-interpolate: true
+
+## Step1 Content
+
+In this step you will configure your system to obtain software, including the latest dynamic languages, from the RHSCL software repository. Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
+
+ifeval::[{tthw-rhelver} == 6]
+
+[.callout-light]
+Note: If your system uses Red Hat Network (RHN) Classic instead of Red Hat Subscription Management (RHSM) for managing subscriptions and entitlements, please skip this step and follow the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html-single/2.2_Release_Notes/index.html#chap-Installation[Installation chapter] of the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Release Notes]. The instructions in this section are only for systems using RHSM. The remainder of this tutorial applies to systems running either RHSM or RHN Classic.
+endif::[]
+
+### Using the Red Hat Subscription Manager GUI
+
+
+Start _Red Hat Subscription Manager_ using the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`.
+
+. Select _Repositories_ from the _System_ menu of the subscription manager.
+. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-7-rpms_ and _rhel-7-server-optional-rpms_.  If you are using a workstation version of Red Hat Enterprise Linux, the repositories will be named _rhel-workstation-rhscl-7-rpms_ and _rhel-7-workstation-optional-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the enabled column.
+
+If you don’t see any RHSCL repositories in the list, your subscription might not include it.
+
+// {tthw-cdn-site-base-url} contains #{cdn(site.base_url} but WILL be passed across the include
+// image:{tthw-cdn-site-base-url}/images/products/softwarecollections/rhel7/manage-repositories.png[Manage Repositories]
+// FIXME, should be /rhel{tthw-rhelver}/ but that breaks the CDN, so rhel6 is getting the wrong image for now.
+image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel7/manage-repositories.png')}[Manage Repositories]
+
+See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
+
+
+### Using subscription-manager from the command line
+
+You can add or remove software repositories from the command line using the `subscription-manager` tool as the root user. Use the `--list` option to view the available software repositories and verify that you have access to RHSCL:
+
+[listing,subs="attributes"]
+----
+$ su -
+# subscription-manager repos --list | egrep rhscl
+----
+
+If you don’t see any RHSCL repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
+
+If you are using a workstation edition of Red Hat Enterprise Linux, change `-server-` to `-workstation-` in the following commands:
+
+[listing,subs="attributes"]
+----
+# subscription-manager repos --enable rhel-server-rhscl-7-rpms
+# subscription-manager repos --enable rhel-7-server-optional-rpms
+----

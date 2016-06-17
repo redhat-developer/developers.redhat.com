@@ -1,0 +1,31 @@
+:awestruct-interpolate: true
+
+// step2, Part 2, before it gets language specific
+
+## Step2 Content
+
+This step will download and install {tthw-langlong} using a container image from the Red Hat container registry, a repository of container images. Installing the {tthw-langlong} container image will make {tthw-langlong} available for use by other containers on your system. Because containers run in isolated environments, your host system will not be altered by the installation. You must use `docker` commands to use or view the container's content.
+
+The commands shown in this section can be used to download and install other containers, like application containers you build. Containers can specify that they require other containers to be installed, which can happen automatically. For example, you can specify in the `Dockerfile` that is used to describe and build your container that your application requires {tthw-langlong}. Then, when someone installs your container, their system will automatically download the required {tthw-langlong} container directly from the Red Hat container registry.
+
+The {tthw-langlong} container image is part of RHSCL, which provides the latest development technologies for Red Hat Enterprise Linux. Access to the RHSCL is included with many Red Hat Enterprise Linux (RHEL) subscriptions. For more information about which subscriptions include RHSCL, see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
+
+If you don't have a root _Terminal_ window open, start a _Terminal_ window and become the root user with `su`.
+
+To download and install the {tthw-langlong} container image, use the following command:
+
+[listing,subs="attributes"]
+----
+# docker pull registry.access.redhat.com/rhscl/{tthw-dciname}
+----
+
+The `docker images` command lists the container images that are present on your system:
+
+[listing,subs="attributes"]
+----
+# docker images
+----
+
+The list will include those images you've downloaded and any containers previously installed on your system.
+
+Now start a `bash` shell to have a look around inside a container that uses the {tthw-langlong} container image. The shell prompt changes, which is an indication that you are typing at the shell inside the container. A `ps -ef` shows the only thing running inside the container is `bash` and `ps`. Type `exit` to leave the container's bash shell.
