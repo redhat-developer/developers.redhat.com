@@ -44,8 +44,8 @@ services:
       - searchisko
     volumes:
       - ../../drupal:/var/www/drupal
-      - ../../../images:/var/www/html/images:ro
-      - ../../../stylesheets/fonts:/var/www/html/fonts:ro
+      - ../../../images:/var/www/drupal/web/images:ro
+      - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
 
   drupalmysql:
     image: mariadb:10.0.15
