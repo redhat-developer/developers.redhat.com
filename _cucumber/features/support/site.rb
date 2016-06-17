@@ -86,6 +86,11 @@ class Site
     @current_page = @terms_and_conditions
   end
 
+  def search
+    @search ||= SearchPage.new(@driver)
+    @current_page = @search
+  end
+
   def link_to_github
     @link_to_github ||= LinkToGitHub.new(@driver)
     @current_page = @link_to_github
