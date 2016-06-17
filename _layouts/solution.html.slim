@@ -2,18 +2,21 @@
 layout: technology-base
 ---
 
-section(class="topics-header #{page.solution.id}")
-  .row
-    .large-24
-      h2 #{page.solution.name}
-      h4#topic #{page.solution.long_description}
+- unless site.drupal_base_url
+  section(class="topics-header #{page.solution.id}")
+    .row
+      .large-24
+        h2 #{page.solution.name}
+        h4#topic #{page.solution.long_description}
 
 .row.solution-content
-  .large-4.medium-7.small-24.columns.nav-breakpoint
-    = partial 'solution-left-menu.html.slim', {'parent' => page}
+  - unless site.drupal_base_url
+    .large-4.medium-7.small-24.columns.nav-breakpoint
+      = partial 'solution-left-menu.html.slim', {'parent' => page}
 
   .large-20.medium-17.small-24.columns.nav-breakpoint
     =content
 
-= javascripts("solutions", true) do
-  script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"
+- unless site.drupal_base_url
+  = javascripts("solutions", true) do
+    script src="#{site.base_url}/javascripts/vendor/chosen.jquery.min.js"

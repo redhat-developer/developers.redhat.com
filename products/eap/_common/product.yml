@@ -1,9 +1,8 @@
 name: Red Hat JBoss Enterprise Application Platform
 abbreviated_name: JBoss EAP
 product_logo: enterprise-app-platform.png
-current_version: 6.4.0.CVE-2015-7501
-# EAP is still using an old name for docs on the customer portal
-documentation_path: JBoss_Enterprise_Application_Platform
+current_version: 7.0.0.GA
+documentation_path: red-hat-jboss-enterprise-application-platform
 product_category: application-development
 xpaas_url: https://www.openshift.com/developers/jboss
 intro_video: https://vimeo.com/95462201
@@ -18,16 +17,195 @@ buzz_tags:
   - jboss eap
 guides:
   Release_Notes:
-  Administration_and_Configuration_Guide:
-  API_Documentation:
     formats:
       html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/700-release-notes/
       html-single:
-  Development_Guide:
-  Installation_Guide:
-  Migration_Guide:
-  Security_Guide:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/700-release-notes/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-7.0.0_Release_Notes-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-7.0.0_Release_Notes-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-7.0.0_Release_Notes-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-7.0.0_Release_Notes-en-US.epub
+  Introduction_to_JBoss_EAP:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/introduction-to-jboss-eap/introduction-to-jboss-eap
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/introduction-to-jboss-eap/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Introduction_to_JBoss_EAP-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Introduction_to_JBoss_EAP-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Introduction_to_JBoss_EAP-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Introduction_to_JBoss_EAP-en-US.epub
   Getting_Started_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/getting-started-guide/getting-started-guide
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/getting-started-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Getting_Started_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Getting_Started_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Getting_Started_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Getting_Started_Guide-en-US.epub
+  Installation_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/installation-guide/installation-guide
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/installation-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Installation_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Installation_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Installation_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Installation_Guide-en-US.epub
+  Migration_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/migration-guide/migration-guide
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/migration-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Migration_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Migration_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Migration_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Migration_Guide-en-US.epub
+  Patching_and_Upgrading_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/patching-and-upgrading-guide/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/patching-and-upgrading-guide/patching-and-upgrading-guide
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Patching_and_Upgrading_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Patching_and_Upgrading_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Patching_and_Upgrading_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Patching_and_Upgrading_Guide-en-US.epub
+  Configuration_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/configuration-guide/configuration-guide
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/configuration-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Configuration_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Configuration_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Configuration_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Configuration_Guide-en-US.epub
+  Configuring_Messaging:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/configuring-messaging/configuring-messaging
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/configuring-messaging/
+  Deploying_Red_Hat_JBoss_EAP_on_Amazon_EC2:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/deploying-red-hat-jboss-enterprise-application-platform-on-amazon-ec2/deploying-red-hat-jboss-enterprise-application-platform-on-amazon-ec2
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/deploying-red-hat-jboss-enterprise-application-platform-on-amazon-ec2/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Deploying_Red_Hat_JBoss_Enterprise_Application_Platform_on_Amazon_EC2-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Deploying_Red_Hat_JBoss_Enterprise_Application_Platform_on_Amazon_EC2-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Deploying_Red_Hat_JBoss_Enterprise_Application_Platform_on_Amazon_EC2-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Deploying_Red_Hat_JBoss_Enterprise_Application_Platform_on_Amazon_EC2-en-US.epub
+  Development_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/development-guide/development-guide
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/development-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Development_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Development_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Development_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Development_Guide-en-US.epub
+  Developing_EJB_Applications:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/developing-ejb-applications/developing-ejb-applications
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/developing-ejb-applications/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Developing_EJB_Applications-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Developing_EJB_Applications-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Developing_EJB_Applications-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Developing_EJB_Applications-en-US.epub
+  Developing_Web_Services_Applications:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/developing-web-services-applications/developing-web-services-applications
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/developing-web-services-applications/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Developing_Web_Services_Applications-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Developing_Web_Services_Applications-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Developing_Web_Services_Applications-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Developing_Web_Services_Applications-en-US.epub
+  How_to_Set_Up_SSO_With_Kerberos:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/how-to-set-up-sso-with-kerberos/how-to-set-up-sso-with-kerberos
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/how-to-set-up-sso-with-kerberos/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Set_Up_SSO_with_Kerberos-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Set_Up_SSO_with_Kerberos-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Set_Up_SSO_with_Kerberos-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Set_Up_SSO_with_Kerberos-en-US.epub
+  How_to_Set_Up_SSO_With_SAML_V2:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/how-to-set-up-sso-with-saml-v2/how-to-set-up-sso-with-saml-v2
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/how-to-set-up-sso-with-saml-v2/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Set_Up_SSO_with_SAML_v2-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Set_Up_SSO_with_SAML_v2-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Set_Up_SSO_with_SAML_v2-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Set_Up_SSO_with_SAML_v2-en-US.epub
+  Introduction_to_Security_Architecture:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/security-architecture/security-architecture
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/security-architecture/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Security_Architecture-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Security_Architecture-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Security_Architecture-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Security_Architecture-en-US.epub
+  How_to_Configure_Identity_Management:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/how-to-configure-identity-management/how-to-configure-identity-management
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/how-to-configure-identity-management/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Configure_Identity_Management-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Configure_Identity_Management-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Configure_Identity_Management-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_to_Configure_Identity_Management-en-US.epub
+  How_to_Configure_Server_Security:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/how-to-configure-server-security/how-to-configure-server-security
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/how-to-configure-server-security/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_To_Configure_Server_Security-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_To_Configure_Server_Security-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_To_Configure_Server_Security-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-How_To_Configure_Server_Security-en-US.epub
+  Management_CLI_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/management-cli-guide/management-cli-guide
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/management-cli-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Management_CLI_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Management_CLI_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Management_CLI_Guide-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Management_CLI_Guide-en-US.epub
+  Login_Module_Reference:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/login-module-reference/login-module-reference
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/login-module-reference/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Login_Module_Reference-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Login_Module_Reference-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Login_Module_Reference-en-US/Red_Hat_JBoss_Enterprise_Application_Platform-7.0-Login_Module_Reference-en-US.epub
+  API_JavaDocs:
+    formats:
+      html:
+        url: https://access.redhat.com/webassets/avalon/d/red-hat-jboss-enterprise-application-platform/7.0.0/javadocs/index.html
 # EAP has an installer, we want to default to that
 default_download_artifact_type: zip
 description: 'An application platform for hosting your apps that provides an innovative modular, cloud-ready architecture, powerful management and automation, and world class developer productivity.'

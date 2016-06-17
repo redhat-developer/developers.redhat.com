@@ -4,145 +4,142 @@ layout: solution
 
 - page.title = "Red Hat Developers Solution: #{page.solution.name}"
 
--if site.drupal_base_url
-  =content
--else
-  .row
-    .large-24.columns
-      .solution-header
-        .row
-          -if !page.solution.skip_initial_heading
-            .row
-              - if page.solution.sub_title
-                .large-17.columns.subtitle-wrapper
-                  h2 #{page.solution.sub_title}
-              .large-7.columns
-                = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
-
-        - if page.solution.speech_bubble || page._overview
-          .row
-            .large-8.columns
-              img(src=cdn(site.base_url + "/images/solutions/#{page.solution.id}/thumb_400x300.png") alt="#{page.solution.id}")
-              - if page.solution.image_link
-                a.button.button--clear(href="#{page.solution.image_link.url}")
-                  i.fa.fa-arrow-circle-down
-                  = page.solution.image_link.description
-            .large-16.columns
-              - if page.solution.speech_bubble
-                blockquote.speech-bubble
-                  p #{page.solution.speech_bubble.quote}
-                  cite #{page.solution.speech_bubble.author}
-              - else
-                = page._overview
-
-      - if page._header
-        div
-        - if page._call_out
+.row
+  .large-24.columns
+    .solution-header
+      .row
+        -if !page.solution.skip_initial_heading
           .row
             - if page.solution.sub_title
               .large-17.columns.subtitle-wrapper
                 h2 #{page.solution.sub_title}
             .large-7.columns
               = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
-  
-        - if page.solution.speech_bubble || page._overview
+
+      - if page.solution.speech_bubble || page._overview
+        .row
+          .large-8.columns
+            img(src=cdn(site.base_url + "/images/solutions/#{page.solution.id}/thumb_400x300.png") alt="#{page.solution.id}")
+            - if page.solution.image_link
+              a.button.button--clear(href="#{page.solution.image_link.url}")
+                i.fa.fa-arrow-circle-down
+                = page.solution.image_link.description
+          .large-16.columns
+            - if page.solution.speech_bubble
+              blockquote.speech-bubble
+                p #{page.solution.speech_bubble.quote}
+                cite #{page.solution.speech_bubble.author}
+            - else
+              = page._overview
+
+    - if page._header
+      div
+      - if page._call_out
+        .row
+          - if page.solution.sub_title
+            .large-17.columns.subtitle-wrapper
+              h2 #{page.solution.sub_title}
+          .large-7.columns
+            = partial("share.html.slim", :url => "#{site.base_url}/#{page.solution.id}", :title => "#{page.title}")
+
+      - if page.solution.speech_bubble || page._overview
+        .row
+          .large-8.columns
+            img(src=cdn(site.base_url + "/images/solutions/#{page.solution.id}/thumb_400x300.png") alt="#{page.solution.id}")
+            - if page.solution.image_link
+              a.button.button--clear(href="#{page.solution.image_link.url}")
+                i.fa.fa-arrow-circle-down
+                = page.solution.image_link.description
+          .large-16.columns
+            - if page.solution.speech_bubble
+              blockquote.speech-bubble
+                p #{page.solution.speech_bubble.quote}
+                cite #{page.solution.speech_bubble.author}
+            - else
+              = page._overview
+
+      - if page._header
+        div
+        - if page._call_out
           .row
-            .large-8.columns
-              img(src=cdn(site.base_url + "/images/solutions/#{page.solution.id}/thumb_400x300.png") alt="#{page.solution.id}")
-              - if page.solution.image_link
-                a.button.button--clear(href="#{page.solution.image_link.url}")
-                  i.fa.fa-arrow-circle-down
-                  = page.solution.image_link.description
-            .large-16.columns
-              - if page.solution.speech_bubble
-                blockquote.speech-bubble
-                  p #{page.solution.speech_bubble.quote}
-                  cite #{page.solution.speech_bubble.author}
-              - else
-                = page._overview
-  
-        - if page._header
+            .large-24.columns
+              = page._header
           div
-          - if page._call_out
-            .row
-              .large-24.columns
-                = page._header
-            div
-              .large-24.panel.callout
-                .row
-                  = page._call_out
-          - else
-            .row
-              .large-24.columns
-                = page._header          
-  
-        - if page._left_section && page._middle_section && page._right_section
+            .large-24.panel.callout
+              .row
+                = page._call_out
+        - else
+          .row
+            .large-24.columns
+              = page._header
+
+      - if page._left_section && page._middle_section && page._right_section
+        .row.solutions-body
+          .large-8.columns
+            - if page.solution.left_section_icon
+              p
+                i(class="#{page.solution.left_section_icon} solution-column-icon")/
+
+            p.small
+              = page._left_section
+          .large-8.columns
+            - if page.solution.middle_section_icon
+              p
+                i(class="#{page.solution.middle_section_icon} solution-column-icon")/
+
+            p.small
+              = page._middle_section
+          .large-8.columns
+            - if page.solution.right_section_icon
+              p
+                i(class="#{page.solution.right_section_icon} solution-column-icon")/
+
+            p.small
+              = page._right_section
+
+      - if page._left_section_extra && page._right_section_extra
+        .row.solutions-body
+          .large-12.columns
+            - if page.solution.left_section_extra_icon
+              .solution
+                i(class="#{page.solution.left_section_extra_icon} solution-column-icon")/
+            p.small
+              = page._left_section_extra
+          .large-12.columns
+            - if page.solution.right_section_extra_icon
+              .solution
+                i(class="#{page.solution.right_section_extra_icon} solution-column-icon")/
+            p.small
+              = page._right_section_extra
+
+      - else
+        - if page._left_section && page._right_section && !page._middle_section
           .row.solutions-body
-            .large-8.columns
+            .large-12.columns
               - if page.solution.left_section_icon
-                p
+                .solution
                   i(class="#{page.solution.left_section_icon} solution-column-icon")/
-  
               p.small
                 = page._left_section
-            .large-8.columns
-              - if page.solution.middle_section_icon
-                p
-                  i(class="#{page.solution.middle_section_icon} solution-column-icon")/
-  
-              p.small
-                = page._middle_section
-            .large-8.columns
+            .large-12.columns
               - if page.solution.right_section_icon
-                p
-                  i(class="#{page.solution.right_section_icon} solution-column-icon")/
-  
+                .solution
+                  i(class="#{page.solution.right_section_icon} solution-column-icon" )/
               p.small
                 = page._right_section
-  
-        - if page._left_section_extra && page._right_section_extra
-          .row.solutions-body
-            .large-12.columns
-              - if page.solution.left_section_extra_icon
-                .solution
-                  i(class="#{page.solution.left_section_extra_icon} solution-column-icon")/
-              p.small
-                = page._left_section_extra
-            .large-12.columns
-              - if page.solution.right_section_extra_icon
-                .solution
-                  i(class="#{page.solution.right_section_extra_icon} solution-column-icon")/
-              p.small
-                = page._right_section_extra
-  
-        - else 
-          - if page._left_section && page._right_section && !page._middle_section
-            .row.solutions-body
-              .large-12.columns
-                - if page.solution.left_section_icon
-                  .solution
-                    i(class="#{page.solution.left_section_icon} solution-column-icon")/
-                p.small
-                  = page._left_section
-              .large-12.columns
-                - if page.solution.right_section_icon
-                  .solution
-                    i(class="#{page.solution.right_section_icon} solution-column-icon" )/
-                p.small
-                  = page._right_section
-  
-        - if page._extra_section
-          .row
-            - if page._extra_section_title
-              h3.divider#ExtraSection #{page._extra_section_title}
-            = page._extra_section
+
+      - if page._extra_section
         .row
-          .large-24.columns
           - if page._extra_section_title
-            h3#ExtraSection #{page._extra_section_title}
+            h3.divider#ExtraSection #{page._extra_section_title}
           = page._extra_section
-        .row
-          .large-24.columns
-            - if page.solution.has_partial
-              = partial("solution-partial-" + page.solution.id + ".html.slim")
+      .row
+        .large-24.columns
+        - if page._extra_section_title
+          h3#ExtraSection #{page._extra_section_title}
+        = page._extra_section
+      .row
+        .large-24.columns
+          - if page.solution.has_partial
+            = partial("solution-partial-" + page.solution.id + ".html.slim")
 

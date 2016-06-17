@@ -4,12 +4,7 @@ require 'fileutils'
 require_relative '../_lib/github'
 
 task :features do
-  p '. . . . Deleting old reports and screenshots  . . . .'
-  FileUtils.rm_rf('_cucumber/reports')
-  Dir.mkdir('_cucumber/reports')
-  FileUtils.rm_rf('_cucumber/screenshots')
-  Dir.mkdir('_cucumber/screenshots')
-
+  cleanup
   p ". . . . HOST TO TEST = #{ENV['HOST_TO_TEST']} . . . ."
 
   unless ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
@@ -42,10 +37,12 @@ task :features do
 end
 
 task :wip do
+  cleanup
   system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
 end
 
 task :debugger do
+  cleanup
   system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
@@ -73,4 +70,12 @@ def run(profile, tag)
     end
   end
   $?.exitstatus
+end
+
+def cleanup
+  p '. . . . Deleting old reports and screenshots  . . . .'
+  FileUtils.rm_rf('_cucumber/reports')
+  Dir.mkdir('_cucumber/reports')
+  FileUtils.rm_rf('_cucumber/screenshots')
+  Dir.mkdir('_cucumber/screenshots')
 end

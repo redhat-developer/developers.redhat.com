@@ -1,0 +1,8 @@
+ruby '2.1.2'
+
+group :test do
+  gem 'minitest'
+  gem 'minitest-reporters'
+  gem 'pry'
+  gem 'pry-byebug'
+end

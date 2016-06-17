@@ -1,0 +1,12 @@
+drupal:
+  host: <%= ENV['DRUPAL_HOST_IP'] %>
+  port: <%= ENV['DRUPAL_HOST_PORT'] %>
+searchisko:
+  host: <%= ENV['SEARCHISKO_HOST_IP'] %>
+  port: <%= ENV['SEARCHISKO_HOST_PORT'] %>
+database:
+  host:  <%= ENV['DB_HOST_IP'] || 'drupal' %>
+  port: <%= ENV['DB_HOST_PORT'] || '3306' %>
+  username: <%= ENV['DB_USER'] || 'drupal' %>
+  password: <%= ENV['DB_PASSWORD'] || 'drupal' %>
+  database: <%= ENV['DB_NAME'] || 'drupal' %>

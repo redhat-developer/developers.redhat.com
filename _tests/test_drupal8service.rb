@@ -73,7 +73,7 @@ class TestDrupal8Service < Minitest::Test
     stub_exists_call_good
 
     stub_request(:post, 'http://testing/entity/node')
-        .with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"as_is_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
+        .with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"full_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
              headers: {'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n',
                        'Content-Type' => 'application/hal+json'})
         .to_return(status: 201)
@@ -93,7 +93,7 @@ class TestDrupal8Service < Minitest::Test
     stub_exists_call_bad
 
     stub_request(:patch, 'http://testing/article/testing-service?_format=hal_json').
-        with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"as_is_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
+        with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"full_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
              headers: {'Accept' => 'application/hal+json', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n', 'Content-Type' => 'application/hal+json', 'User-Agent' => 'Faraday v0.9.2'}).
         to_return(status: 204)
 
@@ -112,7 +112,7 @@ class TestDrupal8Service < Minitest::Test
     stub_exists_call_bad
 
     stub_request(:post, 'http://testing/entity/node')
-        .with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"as_is_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
+        .with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"full_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
               headers: {'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n',
                         'Content-Type' => 'application/hal+json'})
         .to_return(status: 201)
@@ -132,7 +132,7 @@ class TestDrupal8Service < Minitest::Test
     stub_exists_call_good
 
     stub_request(:patch, 'http://testing/article/testing-service?_format=hal_json').
-        with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"as_is_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
+        with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"full_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
              headers: {'Accept' => 'application/hal+json', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n', 'Content-Type' => 'application/hal+json', 'User-Agent' => 'Faraday v0.9.2'}).
         to_return(status: 204)
 
@@ -170,13 +170,13 @@ class TestDrupal8Service < Minitest::Test
 
   def stub_exists_call_good
     stub_request(:get, 'http://testing/article/testing-service')
-        .with(headers: {'Cookie' => 'session-cookie', 'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n'})
+        .with(headers: {'Cookie' => 'session-cookie'})
         .to_return(status: 200)
   end
 
   def stub_exists_call_bad
     stub_request(:get, 'http://testing/article/testing-service')
-        .with(headers: {'Cookie' => 'session-cookie', 'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n'})
+        .with(headers: {'Cookie' => 'session-cookie'})
         .to_return(status: 404)
   end
 

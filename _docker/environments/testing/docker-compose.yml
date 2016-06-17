@@ -1,0 +1,28 @@
+#
+# This environment provides all testing resources. It is common across all concrete environment and as such this should be
+# considered as a mixin environment definition. It is combined with the concrete environment definition
+# at runtime to ensure that test resources only need to be defined once
+#
+version: '2'
+services:
+  selhub:
+    image: selenium/hub
+    restart: always
+    expose:
+      - "4444"
+    ports:
+      - "4444"
+    privileged: true
+    environment:
+      - GRID_BROWSER_TIMEOUT=100000
+      - GRID_TIMEOUT=90000
+
+  docker_chrome:
+    image: selenium/node-chrome
+    volumes:
+    - /dev/shm:/dev/shm
+    links:
+     - selhub:hub
+    environment:
+     - HUB_PORT_4444_TCP_ADDR=selhub
+     - DBUS_SESSION_BUS_ADDRESS=/dev/null

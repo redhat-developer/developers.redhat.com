@@ -28,6 +28,7 @@ class Registration < Base
   REGISTRATION_CONFIRMATION    = { id: 'registration-confirmation' }
   ACCEPT_ALL_TERMS             = { id: 'tac-checkall' }
   ACCEPT_TERMS                 = { css: '.fulluser-ttac' }
+  GITHUB_BTN                   = { id: 'social-github' }
 
   def initialize(driver)
     super
@@ -67,6 +68,11 @@ class Registration < Base
 
   def create_account
     click_on(FINISH_BTN)
+  end
+
+  def click_register_with_github
+    wait_for { displayed?(GITHUB_BTN) }
+    click_on(GITHUB_BTN)
   end
 
 end

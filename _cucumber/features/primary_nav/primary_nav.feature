@@ -8,7 +8,7 @@ Feature: Site navigation menu
       | Login    |
       | Register |
 
-  @mobile @accepted_terms @logout
+  @mobile @accepted_terms @logout @ignore
   Scenario: A customer has correct login credentials can log in on mobile/tablet devices.
     Given I am on the Login page
     And I log in with a valid password
@@ -47,6 +47,7 @@ Feature: Site navigation menu
       | Web and API Development |
       | Enterprise Java         |
       | .NET                    |
+      | Internet of Things      |
 
   @desktop @smoke
   Scenario: TOPICS sub-menu items should link to retrospective pages
@@ -60,6 +61,7 @@ Feature: Site navigation menu
       | Web and API Development | web-and-api-development |
       | Enterprise Java         | enterprise-java         |
       | .NET                    | dotnet                  |
+      | Internet of Things      | iot                     |
 
   @mobile @smoke
   Scenario: Tapping TOPICS from drop down menu on Mobile/Tablet should display additional topics
@@ -72,6 +74,7 @@ Feature: Site navigation menu
       | Web and API Development |
       | Enterprise Java         |
       | .NET                    |
+      | Internet of Things      |
 
   @products @desktop @smoke
   Scenario: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
@@ -81,19 +84,20 @@ Feature: Site navigation menu
       | INFRASTRUCTURE |
       | CLOUD          |
       | MOBILE         |
-      | MIDDLEWARE     |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
     And the sub-menu should include a list of available technologies
 
-  # currently failing, not correctly linked.
-  @products @desktop @ignore
+  @products @desktop
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
     Given I am on the Home page
     When I hover over the Technologies menu item
     Then each Technologies sub-menu heading should contain a link to its retrospective section of the technologies page:
-      | INFRASTRUCTURE |
-      | CLOUD          |
-      | MOBILE         |
-      | MIDDLEWARE     |
+      | INFRASTRUCTURE                         |
+      | CLOUD                                  |
+      | MOBILE                                 |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
 
   @products @desktop @smoke
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
@@ -109,7 +113,8 @@ Feature: Site navigation menu
       | INFRASTRUCTURE |
       | CLOUD          |
       | MOBILE         |
-      | MIDDLEWARE     |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
 
   @desktop @smoke
   Scenario: Hovering over the COMMUNITIES menu should display additional sub-menu with options
