@@ -6,13 +6,17 @@
 
 == Overview
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Microsoft’s .NET Framework has enjoyed 15 years of success and improvement on the Windows platform. With support for multiple languages as well as development models such as Model View Controller (MVC) and Object Relational Mapping (ORM), it has become the standard for Microsoft-centric application-development shops.
+
+The delivery of .NET Core 1.0 brings that framework to Linux and Mac OS developers as well. By using this new framework, Linux developers can write C# code that will run on any platform, with performance rivaling or exceeding most other platforms.
+
+Red Hat and Microsoft have partnered to make Red Hat available as a platform within Microsoft’s Azure cloud solution and to make the .NET environment on Red Hat Enterprise Linux (RHEL) a First-Class experience.
 
 == Features1
 
-=== Lorem Ipsum Dolor
+=== Quick Installation
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+A simple command will install the .NET framework on your RHEL machine in seconds. No more waiting for bulky, time-consuming downloads. Click #{site.base_url}/products/dotnet/get-started[here] to get started.
 
 == Icon1
 
@@ -20,9 +24,9 @@ image:#{cdn(site.base_url + '/images/icons/products/products_laptop.png')}["Lapt
 
 == Features2
 
-=== Lorem Ipsum Dolor
+=== Cross-Platform Development
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+C# developers can write applications anywhere, on any platform. The same code base can be used to build standalone applications targeting each platform. No longer are Windows- and Linux-based developers siloed into a single environment. Use the tools you choose, in the environment you enjoy, and get the same results.
 
 == Icon2
 image:#{cdn(site.base_url + '/images/icons/products/products_speedometer.png')}["Speedometer Icon"]
@@ -30,9 +34,15 @@ image:#{cdn(site.base_url + '/images/icons/products/products_speedometer.png')}[
 
 == Features3
 
-=== Lorem Ipsum Dolor
+=== Performance
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+With web server based on libuv -- the same engine as Node.js -- .NET Core promises to be as fast enough for even your most taxing workloads.
 
 == Icon3
 image:#{cdn(site.base_url + '/images/icons/products/products_cloud.png')}["Cloud Icon"]
+
+== Detail
+
+An entire community is forming around .NET Core, making it easier than ever to get your questions answered. Red Hat is committed to being an integral part of that community with answers, tips and innovations that can help you get code up and running.
+
+Get your $0 #{site.base_url}/products/rhel/get-started/[Developer Edition of Red Hat Enterprise Linux] and get started today.
