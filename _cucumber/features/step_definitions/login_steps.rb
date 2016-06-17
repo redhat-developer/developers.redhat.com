@@ -1,7 +1,3 @@
-Given(/^I am on the Login page$/) do
-  @page.site_nav.navigate_to('login')
-end
-
 Given(/^I log in with (an|a) (valid|incorrect) password$/) do |arg, negate|
   if negate.eql?('valid')
     @page.login.with_existing_account(@site_user[:email], @site_user[:password])
