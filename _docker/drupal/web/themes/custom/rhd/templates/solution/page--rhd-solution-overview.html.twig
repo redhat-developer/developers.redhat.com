@@ -67,26 +67,16 @@ node.isPromoted() ? 'node--promoted',
 node.isSticky() ? 'node--sticky',
 not node.isPublished() ? 'node--unpublished',
 view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-]
-%}
-{% set solution_name_hyphen = content.field_solution_name['#items'].getValue()|first.value|lower|split(" ")|join("-") %}
+] %}
+{% set solution_name_hyphen = node.get('field_solution_name').getValue()|first.value|lower|split(" ")|join("-") %}
+{% set solution_name = node.get('field_solution_name').getValue()|first.value %}
+{% set solution_tagline = node.get('field_solution_tag_line').getValue()|first.value %}
 {{ attach_library('classy/node') }}
-<div class="solution-hero hero">
+<div class="topics-header {{ solution_name_hyphen }}">
     <div class="row">
         <div class="large-24">
-            <ul class="breadcrumbs" itemscope="" itemtype="http://schema.org/BreadcrumbList">
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <a href="/solutions" itemprop="item">Solutions</a>
-                    <meta itemprop="position" content="1">
-                </li>
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <a href="http://docker:32769/web-and-api-development/" itemprop="item">{{ content.field_solution_name }}</a>
-                    <meta itemprop="position" content="2">
-                </li>
-            </ul>
-            <h2>{{ content.field_solution_name }}</h2>
-
-            <h5 class="description">{{ content.field_solution_tag_line }}</h5>
+            <h2>{{ solution_name }}</h2>
+            <h4 class="topic">{{ solution_tagline }}</h4>
         </div>
     </div>
 </div>
@@ -94,26 +84,43 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     <div class="large-4 medium-7 small-24 columns nav-breakpoint">
         <ul class="side-nav">
             <li class="side-nav-toggle"><a href="#">Menu</a></li>
-            <li class="active"><a href="/{{ solution_name_hyphen }}/overview">Overview</a></li>
-            <li><a href="/{{ solution_name_hyphen }}/adoption/">Adoption</a></li>
-            <li><a href="/{{ solution_name_hyphen }}/learn/">Learn</a></li>
-            <li><a href="/{{ solution_name_hyphen }}/buzz/">Buzz</a></li>
+            {% if (valid_path("%s/overview"|format(solution_name_hyphen))) %}
+                <li class="active">
+                    <a href="/{{ solution_name_hyphen }}/overview">Overview
+                        <i class="fa fa-caret-right fa-lg"></i></a>
+                </li>
+            {% endif %}
+            {% if (valid_path("%s/adoption"|format(solution_name_hyphen))) %}
+                <li>
+                    <a href="/{{ solution_name_hyphen }}/adoption">Adoption
+                        <i class="fa fa-caret-right fa-lg"></i></a>
+                </li>
+            {% endif %}
+            {% if (valid_path("%s/benefits"|format(solution_name_hyphen))) %}
+                <li>
+                    <a href="/{{ solution_name_hyphen }}/benefits">Benefits
+                        <i class="fa fa-caret-right fa-lg"></i></a>
+                </li>
+            {% endif %}
+            {% if (valid_path("%s/learn"|format(solution_name_hyphen))) %}
+                <li>
+                    <a href="/{{ solution_name_hyphen }}/learn">Learn
+                        <i class="fa fa-caret-right fa-lg"></i></a>
+                </li>
+            {% endif %}
+            {% if (valid_path("%s/buzz"|format(solution_name_hyphen))) %}
+                <li>
+                    <a href="/{{ solution_name_hyphen }}/buzz">Buzz
+                        <i class="fa fa-caret-right fa-lg"></i></a>
+                </li>
+            {% endif %}
         </ul>
     </div>
     <div class="large-20 medium-17 small-24 columns nav-breakpoint">
         <div class="row">
             <article{{ attributes.addClass('solution', classes) }}>
-
-                {{ title_prefix }}
-                {% if not page %}
-                    <h2{{ title_attributes }}>
-                        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-                    </h2>
-                {% endif %}
-                {{ title_suffix }}
-
                 <div{{ content_attributes.addClass('node__content') }}>
-                    {{ content.body }}
+                    {{ page.content }}
                 </div>
 
             </article>
