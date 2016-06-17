@@ -2,19 +2,52 @@
 :awestruct-interpolate: true
 :linkattrs:
 
-## Step1 Title
+## Step1 Windows Title
+
+Setup your Dev Environment
+
+## Step2 Windows Title
+
+Install, Configure and Verify
+
+## Step3 Windows Title
+
+Build your first application
+
+## Step1 Other Title
 Download Container Development Kit
 
-## Step2 Title
+## Step2 Other Title
 Download additional components
 
-## Step3 Title
+## Step3 Other Title
 Install Container Development Kit
 
-## Step4 Title
+## Step4 Other Title
 Build your first container
 
-## Step1 Content
+## Step1 Windows Duration
+5 minutes
+
+## Step2 Windows Duration
+10 minutes
+
+## Step3 Windows Duration
+20 minutes
+
+## Step1 Windows Content
+
+The easiest way to install the Red Hat Container Development Kit is to use the Red Hat Development Suite installer.:
+
+. Download the link:http://insert-link-here[Red Hat Development Suite 1.0] installer
+. Double click on the downloaded file to launch the installer. If you have User Account Control enabled, you will need to click _Yes_ to allow  the installer to run with adminstrator-level permissions.
+. Enter your Red Hat Developers username and password, and click _Login_.
++ Note: If you haven't directly downloaded the Red Hat Development Suite from Red Hat Developers, your account may not have the correct entitlements to install the Container Development Kit. The easiest way to add the entitlements is to visit Red Hat Developers and initiate a download of the Red Hat Development Suite. We are working on a fix to enable you to add the entitlements to your account without starting a new download.
+. Choose the folder you wish to use to install Red Hat Development Suite, and click _Continue_.
+. By default, Red Hat Development Suite includes Red Hat JBoss Developer Studio and Open JDK. To prevent them being installed, first locate _RED HAT JBOSS DEVELOPER STUDIO_ and ensure it is unchecked, then locate _OPENJDK_ and ensure it is unchecked. Then Click _Download & Install_.
+. The Red Hat Development Suite installer will then download the Container Development Kit and any supporting components it detects are required (Vagrant, Cygwin and Oracle VirtualBox).
+
+## Step1 Other Content
 
 In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Developer Suite includes Red Hat Enterprise Linux Server, and additional development tools.
 
@@ -24,7 +57,7 @@ Download the #{site.download_manager_base_url}/download-manager/file/cdk-2.0.0.z
 Note: Later in this guide, you will need the Red Hat username and password you create during registration for accessing Red Hat sites.
 
 
-## Step2 Content
+## Step2 Other Content
 
 The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the CDK you will need:
 
@@ -79,7 +112,7 @@ Next, download the Red Hat Enterprise Linux CDK Vagrant box that matches your vi
 * #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-vmware-fusion.box[Red Hat Enterprise Linux 7.2 Vagrant box for VMware, window='_blank']
 * #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-libvirt.box[Red Hat Enterprise Linux 7.2 Vagrant box for KVM/libvirt, window='_blank']
 
-## Step3 Content
+## Step3 Other Content
 
 Next, install the CDK by following the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide, window='_blank'] for your operating system:
 
