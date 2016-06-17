@@ -38,7 +38,8 @@ The easiest way to install the Red Hat Container Development Kit is to use the R
 +
 image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_1.png')}[Login to Red Hat Developers]
 + 
-Note: If you haven't directly downloaded the Red Hat Development Suite from Red Hat Developers, your account may not have the correct entitlements to install the Container Development Kit. The easiest way to add the entitlements is to visit Red Hat Developers and initiate a download of the Red Hat Development Suite. We are working on a fix to enable you to add the entitlements to your account without starting a new download.
+[.callout-light]
+*NOTE:* If you haven't directly downloaded the Red Hat Development Suite from Red Hat Developers, your account may not have the correct entitlements to install the Container Development Kit. The easiest way to add the entitlements is to visit Red Hat Developers and initiate a download of the Red Hat Development Suite. We are working on a fix to enable you to add the entitlements to your account without starting a new download.
 . Choose the folder you wish to use to install Red Hat Development Suite, and click _Continue_.
 +
 image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_2.png')}[Choose Install Location]
@@ -99,17 +100,15 @@ Ruby is a dynamic, reflective, object-oriented, general-purpose programming lang
 
 ## Step1 Content
 
-In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Developer Suite includes Red Hat Enterprise Linux Server, and additional development tools.
-
 // This link will need to be updated for GA and later.
 Download the #{site.download_manager_base_url}/download-manager/file/cdk-2.0.0.zip[cdk-2.0.0.zip].
 
-Note: Later in this guide, you will need the Red Hat username and password you create during registration for accessing Red Hat sites.
-
+[.callout-light]
+*NOTE:* Later in this guide, you will need the Red Hat username and password you create during registration for accessing Red Hat sites.
 
 ## Step2 Content
 
-The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the CDK you will need:
+The Container Development Kit delivers the latest container runtime enviornment and container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the kit you will need:
 
 . A virtualization platform: http://virtualbox.org/[VirtualBox, window='_blank'], https://www.vmware.com/products/desktop-virtualization.html[VMware, window='_blank'], or Linux KVM/libvirt
 . http://www.vagrantup.com/about.html[Vagrant, window='_blank'], an open source tool for creating and distributing portable development environments.
@@ -124,15 +123,16 @@ First, download and install a virtualization platform:
 * https://www.vmware.com/products/fusion[VMware Fusion, window='_blank'] (For Apple Mac OS X), https://www.vmware.com/products/workstation[VMware Workstation Pro, window='_blank'] or https://www.vmware.com/products/player[VMware Workstation Player, window='_blank'] (For Microsoft Windows or Linux)
 * Linux KVM/libvirt (For Red Hat Enterprise Linux, CentOS, or Fedora)
 
-Note: If you are using Microsoft Windows, Apple Mac OS X, or a Linux distribution other than Red Hat, Fedora or CentOS, VirtualBox is recommended.
+[.callout-light]
+*NOTE:* If you are using Microsoft Windows, Apple Mac OS X, or a Linux distribution other than Red Hat, Fedora or CentOS, VirtualBox is recommended.
 
 
 ### Install Vagrant
 
-Next, install Vagrant. All of the CDK VM configuration and managment on your development system will be handled for you by Vagrant.
+Next, install Vagrant. All of the Container Development Environment configuration and managment on your development system will be handled for you by Vagrant.
 
 [.callout-light]
-*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1* on Microsoft Windows and Apple Mac OS X. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
+*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1* on Microsoft Windows and Apple Mac OS X. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the kit.
 
 If you are using:
 
@@ -153,9 +153,9 @@ To provide `ssh` and `rsync` on Microsoft Windows, install http://cygwin.com/ins
 * http://cygwin.com/setup-x86_64.exe[setup-x86_64.exe, window='_blank'] for 64-bit versions of Windows.
 
 
-### Download Red Hat Enterprise Linux CDK Vagrant Box
+### Download the Container Runtime Environment
 
-Next, download the Red Hat Enterprise Linux CDK Vagrant box that matches your virtualization platform:
+Next, download the environment that matches your virtualization platform:
 
 // FIXME These will need to be updated for GA and later.
 * #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-virtualbox.box[Red Hat Enterprise Linux 7.2 Vagrant box for VirtualBox, window='_blank']
@@ -164,7 +164,7 @@ Next, download the Red Hat Enterprise Linux CDK Vagrant box that matches your vi
 
 ## Step3 Content
 
-Next, install the CDK by following the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide, window='_blank'] for your operating system:
+Next, install the Container Development Kit by following the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide, window='_blank'] for your operating system:
 
 * https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_microsoft_windows[Installing the CDK on Microsoft Windows, window='_blank']
 * https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_mac_os_x[Installing the CDK on Apple Mac OS X, window='_blank']
