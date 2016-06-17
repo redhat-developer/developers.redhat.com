@@ -340,6 +340,7 @@ Minimally the following list of recipients is required to encrypt the file:
 * Rob Blake <rblake@redhat.com> (ID: 0xD7CE3349F64B3AB5 created at Mon 21 Mar 14:16:17 2016)
 * Rob Terzi <rterzi@redhat.com> (ID: 0x4FBE485C0F7F515F created at Thu 21 Apr 19:22:51 2016)
 * Ian R Hamilton <ian.hamilton@rubygemtsl.co.uk> (ID: 0xA8B212D4D48C38CE created at Mon 25 Apr 07:14:17 2016)
+* Redhat Developers CI (Key for Redhat Developers CI) <redhat-developers-ci@redhat.com> (ID: 0x8C622DEDD25F49F5 created at Wed 25 May 11:27:02 2016)
 
 If you add a new recipient to the file, ensure you update the list above.
 

@@ -1,0 +1,269 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display the basic html structure of a single
+ * Drupal page.
+ *
+ * Variables:
+ * - $css: An array of CSS files for the current page.
+ * - $language: (object) The language the site is being displayed in.
+ *   $language->language contains its textual representation.
+ *   $language->dir contains the language direction. It will either be 'ltr' or 'rtl'.
+ * - $rdf_namespaces: All the RDF namespace prefixes used in the HTML document.
+ * - $grddl_profile: A GRDDL profile allowing agents to extract the RDF data.
+ * - $head_title: A modified version of the page title, for use in the TITLE
+ *   tag.
+ * - $head_title_array: (array) An associative array containing the string parts
+ *   that were used to generate the $head_title variable, already prepared to be
+ *   output as TITLE tag. The key/value pairs may contain one or more of the
+ *   following, depending on conditions:
+ *   - title: The title of the current page, if any.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site, if any, and if there is no title.
+ *   so on).
+ * - $styles: Style tags necessary to import all CSS files for the page.
+ * - $scripts: Script tags necessary to load the JavaScript files and settings
+ *   for the page.
+ * - $page_top: Initial markup from any modules that have altered the
+ *   page. This variable should always be output first, before all other dynamic
+ *   content.
+ * - $page: The rendered page content.
+ * - $page_bottom: Final closing markup from any modules that have altered the
+ *   page. This variable should always be output last, after all other dynamic
+ *   content.
+ * - $classes String of classes that can be used to style contextually through
+ *   CSS.
+ *
+ * @see template_preprocess()
+ * @see template_preprocess_html()
+ * @see template_process()
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <!--TODO: metrics here--><!--TODO: include Adobe A/B testing inline-->
+  <head-placeholder token="{{ placeholder_token|raw }}">
+  <meta charset="utf-8" />
+  <meta content="bxtQxPXTaA2g5bXw_buofCT53_Uwp1fGAu9uHSA0UWc" name="google-site-verification" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>{{ head_title|safe_join(' | ')}}</title>
+  <css-placeholder token="{{ placeholder_token|raw }}">
+  <!--[if lt IE 9]>
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
+  <js-placeholder token="{{ placeholder_token|raw }}">
+  {% if (rhd_dtm_code) %}
+    <script src="{{rhd_dtm_code}}"></script>
+  {% endif %}
+</head>
+<body class="home fullbleed">
+ {% if (rhd_environment == 'prod') %}
+    <script type="text/javascript">
+      dataLayer = [{'channel' : 'developer'}];
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NJWS5L');
+    </script>
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"></iframe></noscript>
+ {% endif %}
+{# I REALLY think this should be at the bottom of the page #}
+{% if (rhd_dtm_code) %}
+  <script type="text/javascript">_satellite.pageBottom();</script>
+{% endif %}
+ <div class="site-wrapper">
+    <header class="main clearfix">
+        <div class="row header-wrap">
+            <nav class="accounts">
+                <ul>
+                    <li class="login"><a>Log In</a></li>
+                    <li class="register"><a>Register</a></li>
+                    <li class="logged-in"><a class="logged-in-name" href="#"></a></li>
+                    <li class="logged-in"><a class="logout" href="#">Logout</a></li>
+                </ul>
+            </nav>
+        <div class="logo-wrap">
+          <h1 class="logo">
+            <a href="/" title="Red Hat Developers"><img alt="Red Hat Developers" src="/images/design/RHD-logo.svg" /></a>
+          </h1>
+          <a class="nav-toggle" href="#">Menu<i class="fa fa-angle-down"></i></a>
+        </div>
+            <nav class="mega-menu">
+                <ul>
+                    <li class="has-sub-nav">
+                        <a href="#">Topics<i class="fa fa-angle-down"></i></a>
+                        <div class="sub-nav" id="sub-nav-topics">
+                            <a href="/containers">Containers</a><a
+                                href="/mobile">Mobile</a><a href="/devops">DevOps</a><a
+                                href="/web-and-api-development">Web and API Development</a><a
+                                href="/enterprise-java">Enterprise Java</a><a
+                                href="/dotnet">.NET</a>
+                        </div>
+                    </li>
+                    <li class="has-sub-nav">
+                        <a href="#">Technologies<i class="fa fa-angle-down"></i></a>
+                        <div class="sub-nav" id="sub-nav-technologies">
+                            <div class="sub-nav-group">
+                                <a class="heading" href="/products#infrastructure_management">Infrastructure</a><a
+                                    class="hide-on-mobile" href="/products/rhel/overview/">Red Hat
+                                Enterprise Linux</a><a class="hide-on-mobile indent"
+                                                       href="/products/developertoolset/overview/">Red
+                                Hat Developer Toolset</a><a class="hide-on-mobile indent"
+                                                            href="/products/softwarecollections/overview/">Red
+                                Hat Software Collections</a><a class="hide-on-mobile"
+                                                               href="/products/cdk/overview/">Red
+                                Hat Container Development Kit</a>
+                            </div>
+                            <div class="sub-nav-group">
+                                <a class="heading" href="/products#cloud_products">Cloud</a><a
+                                    class="hide-on-mobile" href="/products/openshift/overview/">OpenShift
+                                Enterprise by Red Hat</a>
+                            </div>
+                            <div class="sub-nav-group">
+                                <a class="heading" href="/products#mobile">Mobile</a><a
+                                    class="hide-on-mobile"
+                                    href="/products/mobileplatform/overview/">Red Hat Mobile
+                                Application Platform</a>
+                            </div>
+                            <div class="sub-nav-group">
+                                <a class="heading"
+                                   href="/products#jboss_development_and_management">Middleware</a><a
+                                    class="hide-on-mobile" href="/products/devstudio/overview/">Red
+                                Hat JBoss Developer Studio</a><a class="hide-on-mobile"
+                                                                 href="/products/eap/overview/">Red
+                                Hat JBoss Enterprise Application Platform</a><a class="hide-on-mobile"
+                                                                                href="/products/fuse/overview/">Red
+                                Hat JBoss Fuse</a><a class="hide-on-mobile"
+                                                     href="/products/webserver/overview/">Red Hat
+                                JBoss Web Server</a><a class="hide-on-mobile"
+                                                       href="/products/bpmsuite/overview/">Red Hat
+                                JBoss BPM Suite</a><a class="hide-on-mobile"
+                                                      href="/products/brms/overview/">Red Hat JBoss
+                                BRMS</a><a class="hide-on-mobile"
+                                           href="/products/datagrid/overview/">Red Hat JBoss Data
+                                Grid</a><a class="hide-on-mobile" href="/products/amq/overview/">Red
+                                Hat JBoss A-MQ</a><a class="hide-on-mobile"
+                                                     href="/products/datavirt/overview/">Red Hat
+                                JBoss Data Virtualization</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-sub-nav">
+                        <a href="#">Community<i class="fa fa-angle-down"></i></a>
+                        <div class="sub-nav pull-right" id="sub-nav-community">
+                            <a href="http://developers.redhat.com/blog">Developers Blog<span class="page-description">Insights &amp; news on Red Hat developer tools, platforms and more</span></a><a
+                                href="/events">Events<span class="page-description">Find the latest conferences, meetups, and virtual seminars</span></a>
+                            <div class="sub-nav-group"><a href="/projects">Open Source
+                                Communities<span class="page-description">Community Projects that Red Hat participates in</span></a>
+                            </div>
+                            <a href="/community/contributor/">Content Contributors<span
+                                    class="page-description">Share your knowledge. Contribute content to Red Hat Developers.</span></a>
+                        </div>
+                    </li>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/downloads/">Downloads </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    {{ page_top}}
+    <div class="wrapper clearfix">
+      <div class="content-wrapper">
+        {{ page }}
+      </div>
+    </div>
+    {{ page_bottom}}
+    <footer class="bottom">
+      <div class="row">
+        <div class="large-5 columns">
+          <a href="https://www.redhat.com" target="_blank"><img alt="Red Hat" class="rh-logo" src="/images/branding/RHLogo_white.svg" /></a>
+        </div>
+         <div class="large-5 columns">
+            <h3>Helpful Links</h3>
+            <ul class="quick-links">
+                <li><a href="https://access.redhat.com/security/team/contact/" target="_blank">Report a security
+                    problem<i class="fa fa-external-link"></i></a></li>
+                <li><a href="http://www.redhat.com/en/services/consulting" target="_blank">Consulting solutions<i
+                        class="fa fa-external-link"></i></a></li>
+                <li><a href="http://www.redhat.com/en/services/training" target="_blank">Training<i
+                        class="fa fa-external-link"></i></a></li>
+            </ul>
+        </div>
+         <div class="large-5 columns">
+            <h3>Related Sites</h3>
+            <ul class="quick-links">
+                <li><a href="https://www.redhat.com" target="_blank">Red Hat Corporate<i
+                        class="fa fa-external-link"></i></a></li>
+                <li><a href="https://access.redhat.com/" target="_blank">Customer Portal<i
+                        class="fa fa-external-link"></i></a></li>
+                <li><a href="https://www.openshift.com/" target="_blank">OpenShift<i
+                        class="fa fa-external-link"></i></a></li>
+            </ul>
+        </div>
+             <div class="large-9 columns">
+                <h3>Red Hat Developers</h3>
+                <p>We provide a complete experience to enable enterprise developers and software builders to envision,
+                    create and maintain high-value enterprise software.</p>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <ul class="inline-list">
+                            <li><a href="/about">About us</a></li>
+                            <li><a href="mailto:developer@redhat.com">Contact us</a></li>
+                        </ul>
+                    </div>
+                    <div class="large-12 columns">
+                        <ul class="social-nav">
+                            <li><a href="https://plus.google.com/103877536668756379905/posts" target="_blank"><i
+                                    class="fa fa-google-plus"></i></a></li>
+                            <li><a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank"><i
+                                    class="fa fa-youtube"></i></a></li>
+                            <li><a href="https://www.facebook.com/RedHatDeveloperProgram" target="_blank"><i
+                                    class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/rhdevelopers" target="_blank"><i class="fa fa-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+     </div>
+    <div class="row legal">
+        <div class="large-5 medium-24 right columns">
+            <a class="devnation-logo" href="http://www.devnation.org/" target="_blank"><img
+                src="/images/design/logo_devnation_footer.png" alt="Red Hat Summit"></a><a
+                class="summit-logo" href="http://www.redhat.com/summit/" target="_blank"><img
+                src="/images/design/logo-summit.png" alt="Red Hat Summit"></a>
+        </div>
+        <div class="large-19 columns">
+            <ul class="inline-list">
+                <li><a class="copyright">Copyright © 2016 Red Hat Inc.</a></li>
+                <li><a href="http://www.redhat.com/en/about/privacy-policy" target="_blank">Privacy statement
+                      |</a></li>
+                <li><a href="http://www.redhat.com/en/about/terms-use" target="_blank">Terms of use   |</a></li>
+                <li><a href="http://www.redhat.com/en/about/all-policies-guidelines" target="_blank">All policies
+                    and guidelines</a></li>
+            </ul>
+        </div>
+    </div>
+      {% if page.footer %}
+          {% block footer %}
+              {{ page.footer }}
+          {% endblock %}
+      {% endif %}
+    </footer>
+  </div>
+  <div class="overlay">
+    <div class="overlay-wrap">
+      <div class="overlay-inner">
+        <a class="overlay-close">&times;</a>
+        <div class="overlay-content row"> </div>
+      </div>
+    </div>
+  </div>
+  <div id="fb-root"></div>
+  <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+</body>
+

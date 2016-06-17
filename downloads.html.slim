@@ -44,7 +44,7 @@ description: Discover the product downloads available from Red Hat, and locate t
                     p = product.name_append
                   - else
                     p = product['index']['desc']
-                  a(href="#{site.base_url}/products/#{product.id}/") Learn More
+                  a(href="#{site.base_url}/products/#{product.id}/overview/") Learn More
                 .large-9.center.columns
                   p(data-download-id-version="#{product.id}")
                   small(data-download-id-release="#{product.id}")

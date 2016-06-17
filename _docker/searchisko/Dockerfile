@@ -1,4 +1,4 @@
-FROM developer.redhat.com/java
+FROM developer.redhat.com/java:2.0.0
 
 RUN yum -y install mysql && \
     yum clean all
@@ -8,7 +8,7 @@ RUN curl http://yum.engineering.redhat.com/pub/yum/repo_files/rhel6-jboss-eap-6-
     yum install jbossas-standalone -y
 
 # Install Searchisko
-RUN curl http://download.eng.bos.redhat.com/brewroot/packages/org.searchisko-parent/2.1.4/1/noarch/searchisko-api-2.1.4-1.el6.noarch.rpm -Lo /searchisko.rpm && \
+RUN curl http://download.eng.bos.redhat.com/brewroot/packages/org.searchisko-parent/2.1.5/1/noarch/searchisko-api-2.1.5-1.el6.noarch.rpm -Lo /searchisko.rpm && \
     yum -y install /searchisko.rpm && \
     rm /searchisko.rpm
 

@@ -19,7 +19,7 @@ layout: technology-base
           - product = site.products[p]
           .development-tool.divider(id="development-tool-#{product.id}" class=(product.indented_product? ? 'indent-product' : ''))
             h4
-              a(id="#{product.id}" href="#{site.base_url}/products/#{product.id}/")
+              a(id="#{product.id}" href="#{site.base_url}/products/#{product.id}/overview/")
                 = product.name
             .row
               .large-16.columns

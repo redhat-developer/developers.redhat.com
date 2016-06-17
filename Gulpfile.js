@@ -7,6 +7,7 @@ var sassUtils = require("node-sass-utils")(sass);
 var globs = {
   // TODO: Need to find a fix for adobe analytics
   "scripts": [
+    'javascripts/drupal-namespace.js',
     'javascripts/vendor/jquery.xdomainrequest.js',
     'javascripts/extensions.js',
     'javascripts/vendor/keycloak.js',
@@ -66,8 +67,8 @@ var globs = {
     'javascripts/vjbug-jira-collector.js',
     'javascripts/vjbug.js',
     'javascripts/tabs.js',
-    '!javascripts/namespace.js',
-    '!javascripts/adobe-analytics.js'
+    'javascripts/vendor/adobe-ab-testing.js',
+    '!javascripts/namespace.js'
   ],
   "styles": ['stylesheets/*.scss']
 };
@@ -82,7 +83,7 @@ gulp.task('scripts',function() {
     .pipe(plugins.rename('all.min.js'))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest('_docker/drupal/themes/custom/rhd/js/'));
+    .pipe(gulp.dest('_docker/drupal/web/themes/custom/rhd/js/'));
 });
 
 gulp.task('sass', function() {
@@ -93,17 +94,17 @@ gulp.task('sass', function() {
     .pipe(plugins.sass({outputStyle: 'compressed'}))
     .pipe(plugins.sass({outputStyle: 'compressed', functions: {
       'cdn($src)': function(src) {
-        return sassUtils.castToSass("url(/sites/default/files/" + sassUtils.sassString(src).replace(/\.\.\/images\//, 'images_').replace(/\.\/fonts/, 'fonts').replace(/\.\//, '').replace(/\//g, '_') + ")");
+        return sassUtils.castToSass("url(" + sassUtils.sassString(src).replace(/\.\.\/images\//, '/images/').replace(/\.\/fonts/, '/fonts').replace(/\.\//, '') + ")");
       }
     }}))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest('_docker/drupal/themes/custom/rhd/css/base'));
+    .pipe(gulp.dest('_docker/drupal/web/themes/custom/rhd/css/base'));
 });
 
 gulp.task('clean', function() {
-  return del(['_docker/drupal/themes/custom/rhd/css/base/*.css',
-              '_docker/drupal/themes/custom/rhd/js/all.min.js']);
+  return del(['_docker/drupal/web/web/themes/custom/rhd/css/base/*.css',
+              '_docker/drupal/web/web/themes/custom/rhd/js/all.min.js']);
 });
 
 gulp.task('default', ['clean', 'scripts', 'sass']);

@@ -84,20 +84,10 @@ module JBoss
 
       def transform site, page, content
         if page.output_extension.include?('htm')
-          resp = nil
-          begin
+          resp = @drupal.send_page page, content
+          until resp.success? do
+            puts "Error making drupal request to '#{page.output_path}', retrying..."
             resp = @drupal.send_page page, content
-            raise "Drupal POST request error for #{page.output_path}" unless resp.success?
-          rescue Exception => e
-            begin
-              resp = @drupal.send_page page, content
-              unless resp.success?
-                puts "Error making second drupal request to '#{page.output_path}'. Response: #{resp.status}"
-              end
-            rescue Exception => e
-              ::Awestruct::ExceptionHelper.log_building_error e, page.relative_source_path
-              puts "Error making second drupal request to '#{page.output_path}'."
-            end
           end
         end
         content # Don't mess up the content locally in _site
@@ -374,7 +364,8 @@ module Aweplug
       # Returns Boolean for the existence of the page within Drupal.
       def exists?(page)
         path = create_path page
-        @faraday.head("/#{path}", nil, {Cookie: @cookie}).success?
+        resp = @faraday.get("/#{path}", nil, {Cookie: @cookie})
+        resp.success?
       end
 
       # Public: Sends a PATCH request to Drupal to update an existing page.
@@ -409,13 +400,18 @@ module Aweplug
       def create_payload(page, content)
         path = create_path page
         drupal_type = page.drupal_type || 'page'
-        {title: [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
-         _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
-         body: [{value: content,
-                 summary: page.description,
-                 format: 'as_is_html'}],
-         path: {alias: File.join('/', path)}
+        payload = {title: [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
+                   _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
+                   body: [{value: content,
+                           summary: page.description,
+                           format: 'full_html'}],
+                           path: {alias: File.join('/', path)}
         }
+        if page.drupal_type == 'rhd_solution_overview'
+          payload[:field_solution_name] = [{:value => page.solution.name }]
+          payload[:field_solution_tag_line] = [{:value => page.solution.long_description }]
+        end
+        payload
       end
 
       # Private: Returns the path for Drupal from the page object.

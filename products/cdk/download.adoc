@@ -4,7 +4,7 @@
 
 == Download
 
-The CDK makes it easy to get started building containers on Microsoft Windows, Apple Mac OS X, or Linux. After you have your Red Hat developer subscription, download the following components to get started.
+The CDK makes it easy to get started building containers on Microsoft Windows, Apple Mac OS X, or Linux. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Developer Suite includes Red Hat Enterprise Linux Server, and additional development tools.
 
 See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[Container Development Kit Installation Guide] for complete installation instructions.
 
@@ -18,10 +18,10 @@ The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtua
 
 === 2. Vagrant
 
-Next, download link:http://www.vagrantup.com/[Vagrant], an open source tool for creating and distributing portable development environments. All of the VM configuration detalis on your development system will be handled for you by Vagrant.
+Next, install link:http://www.vagrantup.com/about.html[Vagrant], an open source tool for creating and distributing portable development environments. All of the VM configuration detalis on your development system will be handled for you by Vagrant.
 
 [.callout-light]
-*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1*. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
+*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1* on Microsoft Windows and Apple Mac OS X. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
 
 If you are using:
 
@@ -31,13 +31,16 @@ If you are using:
 * CentOS Linux, install the _Vagrant software collection_ using the instructions in the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide].
 * Fedora 23, install the Vagrant packages included with Fedora using `dnf`. See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide].
 
-For other Linux distributions, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from link:https://vagrantup.com/downloads.html[vagrantup.com].
 
 === 3. Red Hat Enterprise Linux CDK download
 
-Register and link:#{site.download_manager_base_url}/download-manager/file/cdk-2.0.0.zip[download Red Hat Container Tools]. You will get a .zip file containing CDK components that should be unpacked on your development (host) system. After downloading, you will be directed to a collection of Getting Started guides to select from.
+Register and download link:#{site.download_manager_base_url}/download-manager/file/cdk-2.0.0.zip[Red Hat Container Tools] from developers.redhat.com. You will get a .zip file containing CDK components that should be unpacked on your development (host) system.
 
-Later, you will be instructed to login and link:https://access.redhat.com/downloads/content/293/ver=2/rhel---7/2.0.0/x86_64/product-software[download the Red Hat Enterprise Linux 7.2 CDK Vagrant Box, window='_blank'] that matches your virtualization platform, e.g., VirtualBox, VMware, or libvirt (KVM).
+Later, you will be instructed to download the Red Hat Enterprise Linux 7.2 CDK Vagrant Box that matches your virtualization platform:
+
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-virtualbox.box[Red Hat Enterprise Linux 7.2 Vagrant box for VirtualBox, window='_blank']
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-vmware-fusion.box[Red Hat Enterprise Linux 7.2 Vagrant box for VMware, window='_blank']
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-libvirt.box[Red Hat Enterprise Linux 7.2 Vagrant box for KVM/libvirt, window='_blank']
 
 
 == Getting started
@@ -47,8 +50,12 @@ To get started using the Red Hat CDK:
 * Follow the instructions in the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide[Container Development Installation Guide] to install the CDK.
 * Read link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit] to learn what is included with the CDK and how to use it.
 
-[.callout-light]
-*NOTE:*  In order to run the Red Hat Enterprise Linux Vagrant box, you must have signed the Developer Suite terms and conditions. If you have not done this already, log into the Customer Portal with your Red Hat account and link:https://www.redhat.com/wapps/ugc[sign the Red Hat Enterprise Linux Developer Suite Terms & Conditions].
+Follow our Get Started Guides to build "Hello, World" in a container using your choice of language:
+
+* #{site.base_url}/products/cdk/get-started-cdk2-nodejs/[Node.js]
+* #{site.base_url}/products/cdk/get-started-cdk2-php/[PHP]
+* #{site.base_url}/products/cdk/get-started-cdk2-python/[Python]
+* #{site.base_url}/products/cdk/get-started-cdk2-ruby/[Ruby]
 
 
 == Container images available from Red Hat 

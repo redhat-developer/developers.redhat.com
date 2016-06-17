@@ -10,10 +10,16 @@ drupal_type: rhd_microsite
   - page.id = page.metadata[:id]
   - page.graphic = page.metadata[:graphic]
 
-.microsite-tmpl(id="#{page.id}")
-  .row
-    .large-8.medium-11.small-24.columns
-      img.microsite-graphic(src="#{page.graphic}" alt="#{page.id} Graphic")
-      
-    .large-16.medium-13.small-24.columns
-      = content
+#book-download-promotion
+  .microsite-tmpl(id="#{page.id}")
+    .row.promotion-header
+      .large-8.medium-11.small-24.columns
+        img.microsite-graphic(src="#{page.graphic}" alt="#{page.id} Graphic")
+        
+      .large-16.medium-13.small-24.columns
+        = content
+
+= javascripts('book-download-promotion', true) do
+  script src="#{site.base_url}/javascripts/vendor/class.create.js"
+  script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
+  script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"
