@@ -1,6 +1,7 @@
 :awestruct-interpolate: true
 
 // Step 3, Second half, not language specific
+// Note: should be roughly the same as the ../cdk/*cdk2* version
 
 Now build the container image using `docker build`. You will need to be root using `su` or `sudo` in the directory you created that contains `Dockerfile` and `hello-http.js`.
 
@@ -16,7 +17,7 @@ You can see the container image that was created using the following command:
 # docker images
 ----
 
-Now run the container using `docker run`. The {tthw-langshort} http.server module will create a tiny web server that listens on port 8000 inside the container.  The `run` command will map port 8000 on the host machine to port 8000 inside the container.
+Now run the container using `docker run`. The {tthw-langshort} container will create a tiny web server that listens on port 8000 inside the container.  The `run` command will map port 8000 on the host machine to port 8000 inside the container.
 
 [listing,subs="attributes"]
 ----

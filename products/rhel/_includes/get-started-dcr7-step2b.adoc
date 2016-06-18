@@ -1,6 +1,7 @@
 :awestruct-interpolate: true
 
 // Step 2, Second half, not language specific
+// Note: should be largely the same as the ../cdk/*cdk2* version.
 
 The prior `docker run` command created a container to run your command, keep any state, and isolate it from the rest of the system. You can view the list of running containers with `docker ps`. To see all of the containers that have been created, including those that have exited, use `docker ps -a`.
 
@@ -35,7 +36,7 @@ Since the only process in the container, `bash`, was told to `exit` the containe
 # docker rm determined_mayer
 ----
 
-To see what other containers are available in the Red Hat container registry, use one or more of the following searches:
+To see what other container images are available in the Red Hat container registry, use one or more of the following searches:
 
 [listing,subs="attributes"]
 ----
