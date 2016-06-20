@@ -28,6 +28,11 @@ form.search {
   }
 }
 
+span.highlight, span.hlt {
+  font-weight:600;
+  background:#FFFFD6;
+  border-radius:2px;
+}
 .searchResults {
   position: absolute;
   width:100%;
@@ -36,12 +41,6 @@ form.search {
   border-radius: 0 0 $global-radius $global-radius;
   top:42px;
   display: none;
-  span.highlight, span.hlt {
-    font-weight:600;
-    background:#FFFFD6;
-    padding:0 2px;
-    border-radius:2px;
-  }
   li {
     display: block;
     width:100%;
@@ -112,6 +111,7 @@ form.header-search {
 
 // New Search page styles
 #searchpage {
+  margin-top: 40px;
   .divider {
     border-bottom: 1px solid #d5d5d5;
   }
@@ -172,23 +172,23 @@ form.header-search {
       }
     }
   }
-}
 
-.searchpage-middle {
-  padding-left: 2em;
+  .searchpage-middle {
+    padding-left: 2em;
 
-  .search-bar {
-    .large-21.columns {
-      padding-right: 0;
-    }
-    .large-3.columns {
-      padding-left: 0;
-    }
-    a.button.postfix {
-      height: 40px;
-      line-height: 3;
-      i {
-        font-size: 1.5em;
+    .search-bar {
+      .large-21.columns {
+        padding-right: 0;
+      }
+      .large-3.columns {
+        padding-left: 0;
+      }
+      a.button.postfix {
+        height: 40px;
+        line-height: 3;
+        i {
+          font-size: 1.5em;
+        }
       }
     }
   }
@@ -240,7 +240,10 @@ form.header-search {
   }
   .meta-data {
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    h4 {
+      margin-bottom: 0;
+    }
   }
   .tags-list {
     font-size: 12px;

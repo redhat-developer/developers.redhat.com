@@ -9,15 +9,14 @@ search.service('searchService',function($http, $q) {
     // fold in params with defaults
     var search = Object.assign(params, {
       // field: '_source',
-      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags','sys_project', 'sys_contributor'],
+      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated'],
       agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
+      query_highlight: true
     });
 
     var endpoint = (!!window.location.pathname.match(/\/search/) ? app.dcp.url.search : app.dcp.url.developer_materials);
 
-    app.dcp.url.developer_materials = '//dcp2.jboss.org/v2/rest/search/developer_materials'; // remove before launch
-
-    $http.get(endpoint, { params: search })
+    $http.get(app.dcp.url.search, { params: search })
       .success(function(data){
         deferred.resolve(data);
       })
@@ -27,7 +26,6 @@ search.service('searchService',function($http, $q) {
     return deferred.promise;
   }
 });
-
 
 /*
   Filter to return human readable time ago
@@ -83,8 +81,34 @@ search.filter('broker', function() {
   }
 });
 
+search.filter('timestamp', function() {
+  return function(timestamp){
+    var date = new Date(timestamp);
+    return date.getTime();
+  }
+});
+
+search.filter('title', function($sce) {
+  return function(result){
+    if(result.highlight && result.highlight.sys_title) {
+      return $sce.trustAsHtml(result.highlight.sys_title[0]);
+    }
+    return $sce.trustAsHtml(result.fields.sys_title[0]);
+  }
+});
+
+search.filter('description', function($sce) {
+  return function(result){
+    if(result.highlight && result.highlight.sys_content_plaintext) {
+      return $sce.trustAsHtml(result.highlight.sys_content_plaintext[0]);
+    }
+    return $sce.trustAsHtml(result.fields.sys_description[0]);
+  }
+});
+
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
 
+/* TODO: KEEP: */
 function searchCtrlFunc($scope, searchService) {
   var search = window.location.search.split('=');
   var q = '';
@@ -99,7 +123,8 @@ function searchCtrlFunc($scope, searchService) {
     from: 0,
     sys_type : [],
     project : '',
-    newFirst: false
+    newFirst: false,
+    /* TODO: type: 'rht_website' for search only */
   }
 
   $scope.paginate = {
@@ -107,6 +132,11 @@ function searchCtrlFunc($scope, searchService) {
   }
 
   $scope.loading = true;
+
+  $scope.resetPagination = function() {
+    $scope.params.from = 0; // start on the first page
+    $scope.paginate.currentPage = 1;
+  }
 
   /*
     Clean Params
@@ -134,8 +164,12 @@ function searchCtrlFunc($scope, searchService) {
 
   $scope.updateSearch = function() {
     $scope.loading = true;
+    $scope.query = $scope.params.query; // this is static until the update re-runs
     var params = $scope.cleanParams($scope.params);
-    // history.pushState($scope.params,$scope.params.query,'/search/?q=' + $scope.params.query);
+
+    // TODO: Handle pagination only on search page
+    history.pushState($scope.params,$scope.params.query,app.baseUrl + '/search/?q=' + $scope.params.query);
+
     searchService.getSearchResults(params).then(function(data) {
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
@@ -217,9 +251,5 @@ function searchCtrlFunc($scope, searchService) {
       });
     }
     // re run the search
-    $scope.updateSearch();
-  };
-
-  $scope.updateSearch(); // run on pageload TODO: move to ng-init
-}
-
+    // TODO: MERGE CONFLICT possible?
+};

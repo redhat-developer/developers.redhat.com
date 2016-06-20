@@ -1,0 +1,49 @@
+:awestruct-interpolate: true
+
+// Step 2, Second half, not language specific
+
+The prior `docker run` command created a container to run your command, keep any state, and isolate it from the rest of the system. You can view the list of running containers with `docker ps`. To see all of the containers that have been created, including those that have exited, use `docker ps -a`.
+
+You can restart the container that was created above with `docker start`. Containers are referred to by name. Docker will automatically generate a name if you don't provide one. Once the container has been restarted, `docker attach` will let you interact with the shell running inside of it.  See the following example:
+
+[listing,subs="attributes"]
+----
+# docker ps -a
+CONTAINER ID        IMAGE                         COMMAND                CREATED              STATUS                          PORTS               NAMES
+84458ca538fb        rhscl/{tthw-dciname}   "container-entrypoin   About a minute ago   Exited (0) About a minute ago                       determined_mayer
+# docker start determined_mayer
+determined_mayer
+# docker attach determined_mayer
+----
+
+At this point you are connected to the running shell inside the container. When you attach you won't see the command prompt, so hit Enter to get it to print another one.
+
+[listing,subs="attributes"]
+----
+
+bash-4.2$ ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+default      1     0  0 14:44 ?        00:00:00 /bin/bash
+default     11     1  0 14:45 ?        00:00:00 ps -ef
+bash-4.2$ exit
+----
+
+Since the only process in the container, `bash`, was told to `exit` the container will no longer be running. This can be verified with `docker ps -a`. Containers that are no longer needed can be cleaned up with `docker rm _<container-name>_`.
+
+[listing,subs="attributes"]
+----
+# docker rm determined_mayer
+----
+
+To see what other containers are available in the Red Hat container registry, use one or more of the following searches:
+
+[listing,subs="attributes"]
+----
+# docker search registry.access.redhat.com/rhscl
+# docker search registry.access.redhat.com/openshift3
+# docker search registry.access.redhat.com/rhel
+# docker search registry.access.redhat.com/jboss
+----
+
+If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
+

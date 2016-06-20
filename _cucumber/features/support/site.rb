@@ -86,7 +86,6 @@ class Site
     @current_page = @terms_and_conditions
   end
 
-<<<<<<< HEAD
   def community
     @community ||= CommunityPage.new(@driver)
     @current_page = @community

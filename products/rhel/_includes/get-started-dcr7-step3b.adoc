@@ -1,0 +1,68 @@
+:awestruct-interpolate: true
+
+// Step 3, Second half, not language specific
+
+Now build the container image using `docker build`. You will need to be root using `su` or `sudo` in the directory you created that contains `Dockerfile` and `hello-http.js`.
+
+[listing,subs="attributes"]
+----
+# docker build -t myname/{tthw-langcmd}web .
+----
+
+You can see the container image that was created using the following command:
+
+[listing,subs="attributes"]
+----
+# docker images
+----
+
+Now run the container using `docker run`. The {tthw-langshort} http.server module will create a tiny web server that listens on port 8000 inside the container.  The `run` command will map port 8000 on the host machine to port 8000 inside the container.
+
+[listing,subs="attributes"]
+----
+# docker run -d -p 8000:8000 --name helloweb myname/{tthw-langcmd}web`
+----
+
+The run command returns a unique ID for the container, which you can ignore. To check that the container is running, use `docker ps`. The output should show a container named `helloweb` that is running the `_myname_/{tthw-langcmd}web` container image you created.
+
+[listing,subs="attributes"]
+----
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
+c7885aa23773        myname/{tthw-langcmd}web    "container-entrypoint"   6 seconds ago       Up 4 seconds        0.0.0.0:8000->8000/tcp, 8080/tcp   helloweb
+----
+
+Use `curl` to access the {tthw-langshort} web server:
+
+[listing,subs="attributes"]
+----
+# curl http://localhost:8000/
+Hello, Red Hat Developers World{tthw-hellomsg}
+----
+
+To view the logs from the running container use `docker logs _<container-name>_`:
+
+[listing,subs="attributes"]
+----
+# docker logs helloweb
+----
+
+When you are done, stop the running container:
+
+[listing,subs="attributes"]
+----
+# docker stop helloweb
+----
+
+The `helloweb` container will be retained until you remove it with `docker rm`. You can restart the container with `docker start helloweb`. Note: A subsequent `docker run` will generate an error if a container with the same name already exists.
+
+You can view information about a container using `docker inspect`:
+
+[listing,subs="attributes"]
+----
+# docker inspect myname/{tthw-langcmd}web
+----
+
+The output is a JSON structure that is easily readable. The _Config_ section has details of the container's runtime environment such as environment variables and default command. Note that much of the information in the container's configuration was inherited from the parent container, which in this case is the {tthw-langlong} runtime container.
+
+Finally, when the application container images you create are ready, you can distribute them by pushing them to a public or private container registry. Your containers will then be available to install on other systems using `docker pull`.

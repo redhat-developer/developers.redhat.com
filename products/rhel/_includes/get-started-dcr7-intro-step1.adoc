@@ -1,0 +1,103 @@
+:awestruct-interpolate: true
+
+## Prerequisites section title
+Introduction and Prerequisites
+
+## Prerequisites section
+In this tutorial, you will learn how to start building {tthw-langlong} applications in docker containers on Red Hat Enterprise Linux. In order to build and run containers you will first install `docker` on your Red Hat Enterprise Linux {tthw-rhelver} system. You will use the {tthw-langlong} container image from Red Hat Software Collections (RHSCL) 2.2 as the basis for your containerized application.
+
+You will need a system running Red Hat Enterprise Linux {tthw-rhelver} Server with a current Red Hat subscription that allows you to download software and updates from Red Hat. Developers can now get a no-cost Red Hat Enterprise Linux® Developer Suite subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
+
+If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+## Step1 Duration
+5 minutes
+
+## Step1 Title
+Prepare your system
+
+## Step2 Duration
+5 minutes
+
+## Step2 Title
+Run your first container
+
+## Step3 Duration
+5 minutes
+
+## Step3 Title
+Build Hello World in a container
+
+## Step1 Content
+
+In this step, you will configure your system to build and run docker containers. In the process, you will add the necessary software repositories, then verify that your system has a current Red Hat subscription and is able to receive updates from Red Hat. Your system needs to be already registered with Red Hat.
+
+First, you will enable two Red Hat software repositories that are disabled by default. Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
+
+### Using the Red Hat Subscription Manager GUI
+
+Red Hat Subscription Manager can be started from the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`.
+
+Select _Repositories_ from the _System_ menu of the subscription manager. In the list of repositories, check the _Enabled_ column for _rhel-7-server-optional-rpms_ and _rhel-7-server-extras-rpms_. After clicking, it might take several seconds for the check mark to appear in the enabled column.
+
+### Using subscription-manager from the command line
+
+You can add or remove software repositories from the command line using the `subscription-manager` tool. Start a _Terminal_ window if you don't already have one open. Use `su` to become the root user.  Use `subscription-manager --list` option to to view the available software repositories.
+
+[listing,subs="attributes"]
+----
+$ su -
+# subscription-manager repos --list
+----
+
+Enable the two additional repositories:
+
+[listing,subs="attributes"]
+----
+# subscription-manager repos --enable rhel-7-server-extras-rpms
+# subscription-manager repos --enable rhel-7-server-optional-rpms
+----
+
+### Install docker and start the docker daemon
+
+In the next step you will:
+
+. Update your system with any available software updates
+. Install `docker` and a few additional rpms using `yum`
+. Configure the `docker` daemon to start at boot time
+. Start the `docker` daemon
+
+If you don't have a root _Terminal_ window open, start a _Terminal_ window and become the root user with `su`.
+
+Now download and install any available updates by running `yum update`.  If updates are available, `yum` will list them and ask if it is OK to proceed.
+
+[listing,subs="attributes"]
+----
+$ su -
+# yum update
+----
+
+Install `docker` and necessary additional rpms:
+
+[listing,subs="attributes"]
+----
+# yum install docker device-mapper-libs device-mapper-event-libs
+----
+
+Enable the docker daemon to start at boot time and start it now:
+
+[listing,subs="attributes"]
+----
+# systemctl enable docker.service
+# systemctl start docker.service
+----
+
+Now verify that the docker daemon is running:
+
+[listing,subs="attributes"]
+----
+# systemctl status docker.service
+----
+
+Your system is now ready to build and run docker-formatted containers. If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+
