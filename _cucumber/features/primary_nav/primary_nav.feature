@@ -156,7 +156,6 @@ Feature: Site navigation menu
     Then I should see the following Help sub-menu items and their description:
       | name                 | description                                                                                           |
       | Resources            | Important technical resources for you in all shapes and sizes: blogs, books, code, videos and more.   |
-      | Knowledgebase        | Access the Red Hat-produced knowledgebase of developer-related support articles and solution papers.  |
       | Forums               | We've extended our popular JBoss.org forums to cover our entire Red Hat portfolio for you.            |
       | Stack Overflow Q&A   | You already use Stack Overflow, so we'll help you use it to find your best answers.                   |
 
@@ -167,7 +166,6 @@ Feature: Site navigation menu
     Then each Help sub-menu item should contain a link to its retrospective page:
       | name                | href                  |
       | Resources           | resources             |
-      | Knowledgebase       | resources             |
       | Forums              | forums                |
       | Stack Overflow Q&A  | help/stack-overflow   |
 
@@ -177,6 +175,5 @@ Feature: Site navigation menu
     When I tap on Help menu item
     Then I should see the following "Help" mobile sub-menu items:
       | Resources           |
-      | Knowledgebase       |
       | Forums              |
       | Stack Overflow Q&A  |
