@@ -35,21 +35,17 @@ services:
       - BUILD_URL
 
   drupal:
-    build: ../../drupal
+    image: robpblake/drupal-test
     ports:
       - "32769:80"
     links:
       - drupalmysql
       - searchisko
     volumes:
-      - ../../drupal:/var/www/drupal
+      - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
+      - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
-    environment:
-      - DB_NAME=drupal
-      # TODO: Drop these once we have rhd.settings.php working correctly
-      - DB_USER=drupal
-      - DB_PASSWORD=drupal
 
   drupalmysql:
     image: mariadb:10.0.15

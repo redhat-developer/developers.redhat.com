@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if drupal is installed, install if needed
-cd /var/www/drupal
+#cd /var/www/drupal
 ruby scripts/drupal_install_checker.rb
 
 # Make sure we're not confused by old, incompletely-shutdown httpd
@@ -10,6 +10,6 @@ ruby scripts/drupal_install_checker.rb
 rm -rf /run/httpd/*
 
 # Set it up so apache can write to everything
-chown -R apache:apache /var/www/drupal/web/sites/default/files
+#chown -R apache:apache /var/www/drupal/web/sites/default/files
 
 exec /usr/sbin/apachectl -D FOREGROUND

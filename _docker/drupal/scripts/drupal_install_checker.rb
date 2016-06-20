@@ -102,15 +102,15 @@ class DrupalInstallChecker
 
   def install_drupal
     puts 'Running composer install'
-    if @opts['environment'] == 'dev'
-      process_executor.exec!('/usr/local/bin/composer', %w(install -n))
-    else
-      process_executor.exec!('/usr/local/bin/composer', %w(install -n --no-dev --optimize-autoloader))
-    end
+    # if @opts['environment'] == 'dev'
+    #   process_executor.exec!('/usr/local/bin/composer', %w(install -n))
+    # else
+    #   process_executor.exec!('/usr/local/bin/composer', %w(install -n --no-dev --optimize-autoloader))
+    # end
 
     puts 'Creating new settings.php file'
-    FileUtils.rm File.join("#{@drupal_site}", 'settings.php') if File.exists? File.join("#{@drupal_site}", 'settings.php')
-    FileUtils.cp File.join("#{@drupal_site}", 'default.settings.php'), File.join("#{@drupal_site}", 'settings.php')
+    # FileUtils.rm File.join("#{@drupal_site}", 'settings.php') if File.exists? File.join("#{@drupal_site}", 'settings.php')
+    # FileUtils.cp File.join("#{@drupal_site}", 'default.settings.php'), File.join("#{@drupal_site}", 'settings.php')
 
     puts 'Installing Drupal, please wait...'
     process_executor.exec!('/var/www/drupal/vendor/bin/drupal',

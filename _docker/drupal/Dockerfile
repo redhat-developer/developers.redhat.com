@@ -41,12 +41,11 @@ EXPOSE 80
 
 RUN curl https://getcomposer.org/installer > composer-installer && php composer-installer && mv composer.phar /usr/local/bin/composer
 
-ADD ./run-httpd.sh /run-httpd.sh
-ADD ./drupal.conf /etc/httpd/conf.d/drupal.conf
+WORKDIR /var/www/drupal
 
-RUN chmod -v +x /run-httpd.sh
+COPY . /var/www/drupal
 
-WORKDIR /var/www/
+RUN /usr/local/bin/composer install -n
+RUN chmod -v +x /var/www/drupal/run-httpd.sh
 
-CMD ["/run-httpd.sh"]
-
+CMD ["/var/www/drupal/run-httpd.sh"]
