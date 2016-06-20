@@ -1,84 +1,103 @@
 [
   {
-    "uri": "_cucumber/features/stackoverflow.feature",
-    "id": "developer-3035---so:-main-page:-initial-impl",
+    "uri": "_cucumber/features/primary_nav/primary_nav.feature",
+    "id": "site-navigation-menu",
     "keyword": "Feature",
-    "name": "DEVELOPER-3035 - SO: Main page: Initial Impl",
+    "name": "Site navigation menu",
     "description": "",
     "line": 1,
     "elements": [
       {
-        "id": "developer-3035---so:-main-page:-initial-impl;results-should-contain-summary-of-question-that-links-to-the-question-page-on-stack-overflow",
+        "id": "site-navigation-menu;help-sub-menu-items-should-link-to-retrospective-pages",
         "keyword": "Scenario",
-        "name": "Results should contain summary of question that links to the question page on Stack Overflow",
+        "name": "HELP sub-menu items should link to retrospective pages",
         "description": "",
-        "line": 12,
+        "line": 165,
         "type": "scenario",
         "tags": [
           {
             "name": "@wip",
-            "line": 11
+            "line": 163
+          },
+          {
+            "name": "@products",
+            "line": 164
+          },
+          {
+            "name": "@desktop",
+            "line": 164
+          },
+          {
+            "name": "@smoke",
+            "line": 164
           }
         ],
         "before": [
           {
             "match": {
-              "location": "_cucumber/features/support/env.rb:38"
+              "location": "_cucumber/features/support/env.rb:41"
             },
             "result": {
               "status": "passed",
-              "duration": 23000
+              "duration": 24000
+            }
+          },
+          {
+            "match": {
+              "location": "_cucumber/features/support/hooks.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 95103000
             }
           }
         ],
         "steps": [
           {
             "keyword": "Given ",
-            "name": "I am on the Stack Overflow page",
-            "line": 13,
+            "name": "I am on the Home page",
+            "line": 166,
             "match": {
-              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:1"
+              "location": "_cucumber/features/step_definitions/navigation_steps.rb:1"
             },
             "result": {
-              "status": "passed",
-              "duration": 45714975000
+              "status": "failed",
+              "error_message": "no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=51.0.2704.103)\n  (Driver info: chromedriver=2.9.248307,platform=Mac OS X 10.11.5 x86_64) (Selenium::WebDriver::Error::NoSuchWindowError)\n./_cucumber/lib/pages/base.rb:123:in `finished_all_ajax_requests?'\n./_cucumber/lib/pages/base.rb:101:in `wait_for_ajax'\n./_cucumber/features/step_definitions/navigation_steps.rb:3:in `/^I am on the Home page$/'\n_cucumber/features/primary_nav/primary_nav.feature:166:in `Given I am on the Home page'",
+              "duration": 814235000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I hover over the Help menu item",
+            "line": 167,
+            "match": {
+              "location": "_cucumber/features/step_definitions/navigation_steps.rb:38"
+            },
+            "result": {
+              "status": "skipped"
             }
           },
           {
             "keyword": "Then ",
-            "name": "each question should contain a question summary",
-            "line": 14,
+            "name": "each Help sub-menu item should contain a link to its retrospective page:",
+            "line": 168,
             "match": {
-              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:26"
+              "location": "_cucumber/features/step_definitions/navigation_steps.rb:117"
             },
             "result": {
-              "status": "passed",
-              "duration": 27689000
-            }
-          },
-          {
-            "keyword": "And ",
-            "name": "it should link to the question on Stack Overflow",
-            "line": 15,
-            "match": {
-              "location": "_cucumber/features/step_definitions/stackoverflow_steps.rb:30"
-            },
-            "result": {
-              "status": "failed",
-              "error_message": "undefined method `size' for #<RSpec::Expectations::ExpectationTarget:0x007ff6766c11e0> (NoMethodError)\n./_cucumber/features/step_definitions/stackoverflow_steps.rb:32:in `/^it should link to the question on Stack Overflow$/'\n_cucumber/features/stackoverflow.feature:15:in `And it should link to the question on Stack Overflow'",
-              "duration": 11320000
+              "status": "skipped"
             }
           }
         ],
         "after": [
           {
             "match": {
-              "location": "_cucumber/features/support/hooks.rb:43"
+              "location": "_cucumber/features/support/hooks.rb:80"
             },
             "result": {
               "status": "failed",
-              "error_message": "No such file or directory @ rb_sysopen - _cucumber/screenshots/FAILED_Results_should_contain_summary_of_question_that_links_to_the_question_page_on_Stack_Overflow.png (Errno::ENOENT)\n./_cucumber/features/support/hooks.rb:46:in `After'",
-              "duration": 181000
+              "error_message": "no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=51.0.2704.103)\n  (Driver info: chromedriver=2.9.248307,platform=Mac OS X 10.11.5 x86_64) (Selenium::WebDriver::Error::NoSuchWindowError)\n./_cucumber/features/support/hooks.rb:83:in `After'",
+              "duration": 3372000
             }
           }
         ]
