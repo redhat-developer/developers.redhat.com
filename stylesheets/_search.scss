@@ -235,6 +235,9 @@ form.header-search {
 .result {
   margin-bottom: 50px;
   @include flexbox();
+  &.result-search {
+    display: block;
+  }
   h3 {
     margin-bottom: 0;
   }

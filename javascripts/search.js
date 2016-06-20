@@ -21,7 +21,7 @@ search.service('searchService',function($http, $q) {
         deferred.resolve(data);
       })
       .error(function (err) {
-        console.error(err);
+        throw new Error(err);
       });
     return deferred.promise;
   }
@@ -55,7 +55,7 @@ search.filter('timestamp', function() {
 });
 
 search.filter('icon', function() {
-  return function(sys_type){
+  return function(sys_type) {
     var icons = {
       video: 'icon-RHDev_-resources_icons_video',
       blogpost: 'icon-RHDev_-resources_icons_blogpost',
@@ -108,35 +108,39 @@ search.filter('description', function($sce) {
 
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
 
-/* TODO: KEEP: */
 function searchCtrlFunc($scope, searchService) {
-  var search = window.location.search.split('=');
+
+  var isSearch = !!window.location.href.match(/\/search\//);
+  var searchTerm = window.location.search.split('=');
   var q = '';
-  if(search) {
-    q = search.pop(); // last one
-  }
-  /* default */
+
+  /* defaults */
   $scope.params = {
     query: q,
     sortBy: 'score',
     size: 10,
     from: 0,
-    sys_type : [],
-    project : '',
-    newFirst: false,
-    /* TODO: type: 'rht_website' for search only */
+    sys_type: [],
+    project: '',
+    newFirst: false
+  };
+
+  // Search Page Specifics
+  if(isSearch && searchTerm) {
+    $scope.params.query = searchTerm.pop();
+    $scope.params.type = 'rht_website';
   }
 
   $scope.paginate = {
     currentPage: 1
-  }
+  };
 
   $scope.loading = true;
 
   $scope.resetPagination = function() {
     $scope.params.from = 0; // start on the first page
     $scope.paginate.currentPage = 1;
-  }
+  };
 
   /*
     Clean Params
@@ -160,23 +164,23 @@ function searchCtrlFunc($scope, searchService) {
 
       // return cleaned params
       return params;
-  }
+  };
 
   $scope.updateSearch = function() {
+    console.log('Searching...');
     $scope.loading = true;
     $scope.query = $scope.params.query; // this is static until the update re-runs
     var params = $scope.cleanParams($scope.params);
-
-    // TODO: Handle pagination only on search page
-    history.pushState($scope.params,$scope.params.query,app.baseUrl + '/search/?q=' + $scope.params.query);
-
+    if(isSearch) {
+      history.pushState($scope.params,$scope.params.query,app.baseUrl + '/search/?q=' + $scope.params.query);
+    }
     searchService.getSearchResults(params).then(function(data) {
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
       $scope.buildPagination(); // update pagination
       $scope.loading = false;
     });
-  }
+  };
 
   /*
    Handle Pagination
@@ -199,7 +203,7 @@ function searchCtrlFunc($scope, searchService) {
       pagesArray: app.utils.diplayPagination(page, pages, 4),
       pages: pages,
       lastVisible: lastVisible
-    }
+    };
   };
 
   /*
@@ -251,5 +255,8 @@ function searchCtrlFunc($scope, searchService) {
       });
     }
     // re run the search
-    // TODO: MERGE CONFLICT possible?
-};
+    $scope.updateSearch();
+  };
+
+  $scope.updateSearch();
+}
