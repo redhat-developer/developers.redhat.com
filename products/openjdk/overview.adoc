@@ -1,38 +1,14 @@
-:awestruct-layout: product-overview
+:awestruct-layout: microsite-2
 :awestruct-interpolate: true
-:leveloffset: 1
-:awestruct-description: Product information about Red Hat OpenJDK
-:title: Red Hat OpenJDK
+:awestruct-id: microsite-id
+:awestruct-graphic: "http://static.jboss.org/images/rhd/minipage/RHDev_pageimage_openjdk_16jun2016.png"
 
-== Overview
+// Microsite title
+### Red Hat OpenJDK
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+// Microsite subtitle
+#### A Tried, Tested and Trusted open source implementation of the Java platform
 
-== Features1
+OpenJDK 8 (Open Java Development Kit) is a free and open source implementation of the Java Platform, Standard Edition (Java SE). The upstream community project OpenJDK is currently sponsored and led by Oracle and is released under the GNU General Public License (GNU GPL v2) with a linking exception.
 
-=== Lorem Ipsum Dolor
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-
-== Icon1
-
-image:#{cdn(site.base_url + '/images/icons/products/products_laptop.png')}["Laptop Icon"]
-
-== Features2
-
-=== Lorem Ipsum Dolor
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-
-== Icon2
-image:#{cdn(site.base_url + '/images/icons/products/products_speedometer.png')}["Speedometer Icon"]
-
-
-== Features3
-
-=== Lorem Ipsum Dolor
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-
-== Icon3
-image:#{cdn(site.base_url + '/images/icons/products/products_cloud.png')}["Cloud Icon"]
+All Red Hat distributions of OpenJDK 8 on Windows are supported for development purposes, so that you may have the convenience and confidence to develop and test in Windows or Linux-based environments and deploy your solution to run on a fully compatible, fully supported OpenJDK 8 on Red Hat Enterprise Linux.
