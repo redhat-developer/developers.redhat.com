@@ -166,7 +166,7 @@ Feature: Site navigation menu
       | name                | href                  |
       | Resources           | resources             |
       | Forums              | forums                |
-      | Stack Overflow Q&A  | help/stack-overflow   |
+      | Stack Overflow Q&A  | stack-overflow        |
 
   @mobile @smoke
   Scenario: Tapping HELP from drop down menu on Mobile/Tablet should display additional help
