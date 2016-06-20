@@ -166,7 +166,6 @@ class DrupalInstallCheckerTest < Minitest::Test
       opts = yaml_opts_dev
       install_checker = DrupalInstallChecker.new(@drupal_site, @process_exec, opts)
 
-      @process_exec.expect :exec!, nil, ['/usr/local/bin/composer', %w(install -n)]
       @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
                                         ['--root=web', 'site:install', 'standard', '--langcode=en', '--db-type=mysql',
                                          "--db-host=#{opts['database']['host']}", "--db-name=#{opts['database']['name']}",
@@ -174,20 +173,10 @@ class DrupalInstallCheckerTest < Minitest::Test
                                          "--db-pass=#{opts['database']['password']}", '--account-name=admin',
                                          "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
                                          "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
-      FileUtils.touch File.join(@drupal_site, 'default.settings.php')
-
-      refute File.exist?(File.join @drupal_site, 'settings.php')
-
-      expected_stdout = "Running composer install\nCreating new settings.php file\nInstalling Drupal, please wait...\n"
-      assert_output(expected_stdout, '') do
-        install_checker.install_drupal
-      end
-
-      assert File.exist?(File.join @drupal_site, 'settings.php')
+      install_checker.install_drupal
   end
 
   def test_installing_for_prod
-      @process_exec.expect :exec!, nil, ['/usr/local/bin/composer', %w(install -n --no-dev --optimize-autoloader)]
       @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
                                         ['--root=web','site:install', 'standard', '--langcode=en', '--db-type=mysql',
                                          "--db-host=#{@opts['database']['host']}", "--db-name=#{@opts['database']['name']}",
@@ -195,16 +184,8 @@ class DrupalInstallCheckerTest < Minitest::Test
                                          "--db-pass=#{@opts['database']['password']}", '--account-name=admin',
                                          "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
                                          "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
-      FileUtils.touch File.join(@drupal_site, 'default.settings.php')
 
-      refute File.exist?(File.join @drupal_site, 'settings.php')
-
-      expected_stdout = "Running composer install\nCreating new settings.php file\nInstalling Drupal, please wait...\n"
-      assert_output(expected_stdout, '') do
-        @install_checker.install_drupal
-      end
-
-      assert File.exist?(File.join @drupal_site, 'settings.php')
+      @install_checker.install_drupal
   end
 
   def yaml_opts_prod
