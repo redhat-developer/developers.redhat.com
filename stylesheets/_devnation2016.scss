@@ -1,11 +1,11 @@
 .wide-hero.devnation2016 {
-  background-image: cdn('../images/design/vjbug_microsite_banner_desktop.png');
+  background-image: url('http://static.jboss.org/images/rhd/microsite/RHDev_pageheader_devnation2016_desktop_13jun2016.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 242px;
   @include tablet-portrait-and-down {
-    background: cdn('../images/design/vjbug_microsite_banner_mobile.png') top center / cover repeat-x;
+    background: url('http://static.jboss.org/images/rhd/microsite/RHDev_pageheader_devnation2016_mobile_13jun2016.png') top center / cover repeat-x;
     min-height: 115px;
   }
 }
