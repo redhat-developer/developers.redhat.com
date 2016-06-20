@@ -1,9 +1,9 @@
 :awestruct-interpolate: true
 
 // Step 3, Second half, not language specific
-// Note: should be roughly the same as the ../cdk/*cdk2* version
+// Note: should be roughly the same as the ../rhel/*dcr7* version
 
-Now build the container image using `docker build`. You will need to be root using `su` or `sudo` in the directory you created that contains `Dockerfile` and `hello-http.js`.
+Now build the container image using `docker build`.
 
 [listing,subs="attributes"]
 ----
@@ -41,6 +41,8 @@ Use `curl` to access the {tthw-langshort} web server:
 Hello, Red Hat Developers World{tthw-hellomsg}
 ----
 
+Note: you should also be able to access the {tthw-langshort} web server running inside your container from the browser on your host machine. The `rhel-ose/Vagrantfile` sets the vagrant box's IP address to 10.1.2.2. The url to use on your host system is `link:http://10.1.2.2:8000/[]`.
+
 To view the logs from the running container use `docker logs _<container-name>_`:
 
 [listing,subs="attributes"]
@@ -67,3 +69,4 @@ You can view information about a container using `docker inspect`:
 The output is a JSON structure that is easily readable. The _Config_ section has details of the container's runtime environment such as environment variables and default command. Note that much of the information in the container's configuration was inherited from the parent container, which in this case is the {tthw-langlong} runtime container.
 
 Finally, when the application container images you create are ready, you can distribute them by pushing them to a public or private container registry. Your containers will then be available to install on other systems using `docker pull`.
+

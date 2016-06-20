@@ -1,134 +1,49 @@
 :awestruct-layout: product-get-started-multipath
 :awestruct-interpolate: true
-:title: "CDK 2.0 - Get started building PHP 5.6 applications in docker containers"
-:awestruct-description: "Get started building PHP 5.6 applications in docker formatted containers using the Red Hat Container Development CDK (CDK) 2.0"
+:tthw-site-base-url: #{site.base_url}
+:tthw-cdn-site-base-url: #{cdn(site.base_url)}
+:tthw-download-manager: #{site.download_manager_base_url}
+:tthw-rhelver: 7
+:tthw-cdkver: 2.0
+:tthw-langshort: PHP
+:tthw-langlong: PHP 5.6
+:tthw-lang-version-full: 5.6.5
+:tthw-langcmd: php
+:tthw-dciname: php-56-rhel7
+:tthw-hellomsg: from PHP {tthw-lang-version-full}!
+:title: "CDK {tthw-cdkver} - Get started building {tthw-langlong} applications in docker containers"
+:awestruct-description: "Get started building {tthw-langlong} applications in docker formatted containers using the Red Hat Container Development {tthw-cdkver}"
+
 
 ## Path Name
-PHP
+{tthw-langshort}
 
 ## Path Intro section
-Get started building PHP applications in docker formatted containers using the Red Hat Container Development CDK (CDK) 2.0
+[.large-6.columns]
+image:#{cdn(site.base_url + '/images/products/multipath/containerized-php-logo.png')}[{tthw-langshort Logo]
 
-## Prerequisites section title
-Introduction and Prerequisites
+[.large-18.columns#PathIntroSection]
+Get started building {tthw-langlong} applications in docker formatted containers using Red Hat Container Development {tthw-cdkver}
 
-## Prerequisites section
-In this tutorial, you will learn how to start building PHP applications in docker formatted containers using the Red Hat Container Development Kit (CDK) 2.0 on Red Hat Enterprise Linux. You need to have CDK 2.0 installed and should have downloaded the Red Hat Enterprise Linux vagrant box for your system. See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK 2.0 Installation Guide] for more information. 
+// Intro/Prereq, Section Heading structure, and Step1
 
-If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+:leveloffset: 0
+include::products/cdk/_includes/get-started-cdk2-intro-step1.adoc[]
+:leveloffset: 0
 
-## Step1 Duration
-5 minutes
+// Step 2, First half until it gets language specific
 
-## Step1 Title
-Start the vagrant box
+:leveloffset: 0
+include::products/cdk/_includes/get-started-cdk2-step2a.adoc[]
+:leveloffset: 0
 
-## Step2 Duration
-5 minutes
-
-## Step2 Title
-Run your first container
-
-## Step3 Duration
-5 minutes
-
-## Step3 Title
-Build Hello World in a container
-
-## Step1 Content
-
-The steps in this tutorial run on Red Hat Enterprise Linux (RHEL) inside the vagrant box. The vagrant box includes docker, OpenShift Enterprise, and kubernetes.. You will enter the commands in this tutorial after logging into the box with `vagrant ssh`.
-
-Open a _Terminal_ or _Command_ window to enter the commands in this tutorial. On Windows, using _Cygwin Terminal_ instead of a _cmd.exe_ window is suggested.
-
-If you haven't already installed the CDK, follow the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide].
-
-
-### Start the vagrant box
-
-To start the vagrant box:
-
-. Change to the directory where you unpacked the CDK zip file.
-. Change to the sub-directory `components/rhel/rhel-ose`. Alternatively, copy the `Vagrantfile` in that directory to a working directory of your choosing.
-. Start the box by entering `vagrant up`. Note: the `Vagrantfile` needs to be in the current directory when entering vagrant commands without specifying a box name or a path to the `Vagrantfile`.
-. You will be prompted to register the Vagrant box with Red Hat Subscription Management during startup. This is required to allow the box to download software from Red Hat by attaching it to your Red Hat subscription. You will need to enter your Red Hat username and password.
-+
-The vagrant registration plugin will automatically attach the box to your Red Hat subscription when it starts up and release it when the box is shutdown using the `vagrant halt` command.
-
-When starting the vagrant box, a number of log messages will be displayed. Most of these are informational, however you should review the output if the box fails to start. Below is the output from a typical `vagrant up`:
-
-```
-$ vagrant up
-Bringing machine 'default' up with 'virtualbox' provider...
-==> default: Clearing any previously set forwarded ports...
-==> default: Clearing any previously set network interfaces...
-==> default: Preparing network interfaces based on configuration...
-    default: Adapter 1: nat
-    default: Adapter 2: hostonly
-==> default: Forwarding ports...
-    default: 22 => 2222 (adapter 1)
-==> default: Running 'pre-boot' VM customizations...
-==> default: Booting VM...
-==> default: Waiting for machine to boot. This may take a few minutes...
-    default: SSH address: 127.0.0.1:2222
-    default: SSH username: vagrant
-    default: SSH auth method: private key
-    default: Warning: Connection timeout. Retrying...
-    default: Warning: Connection timeout. Retrying...
-    default: Warning: Remote connection disconnect. Retrying...
-==> default: Machine booted and ready!
-==> default: Checking for guest additions in VM...
-    default: No guest additions were detected on the base box for this VM! Guest
-    default: additions are required for forwarded ports, shared folders, host only
-    default: networking, and more. If SSH fails on this machine, please install
-    default: the guest additions and repackage the box to continue.
-    default:
-    default: This is not an error message; everything may continue to work properly,
-    default: in which case you may ignore this message.
-==> default: Configuring and enabling network interfaces...
-==> default: Registering box with vagrant-registration...
-    default: Would you like to register the system now (default: yes)? [y|n]y
-    default: username: _your username_
-    default: password: _your password_
-==> default: Rsyncing folder: /cygdrive/c/cdk2/components/rhel/rhel-ose/ => /vagrant
-==> default: Running provisioner: shell...
-    default: Running: inline script
-==> default: Created symlink from /etc/systemd/system/multi-user.target.wants/openshift.service to /etc/systemd/system/openshift.service.
-```
-
-You should now be able to log into the vagrant box using `vagrant ssh`.
-
-
-## Step2 Content
-
-This step will download and install PHP using a container image from the Red Hat Atomic Registry, a repository of container images. Installing the PHP container will make PHP available for use by other containers on your system. Because containers run in isolated environments, your host system will not be altered by the installation. You will use `docker` commands to interact with and view the container's contents.
-
-The commands shown in this section can be used to download and install other container images, like application containers you build. Containers can specify that they require other containers to be installed, which can happen automatically. For example, you can specify in the `Dockerfile` that is used to describe and build your container that your application requires PHP. Then, when someone installs your container, their system will automatically download the required PHP container directly from the Red Hat Atomic Registry.
-
-The PHP container image is part of Red Hat Software Collections, which provides the latest stable versions of dynamic languages, open source databases, and web development tools for Red Hat Enterprise Linux. Access to the Red Hat Software Collections (RHSCL) is included with many Red Hat Enterprise Linux (RHEL) subscriptions. For more information about which subscriptions include RHSCL, see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
-
-Run all of the following commands on Red Hat Enterprise Linux inside the vagrant box. If you haven't logged into the vagrant box, open a _Terminal_ or _Command_ window and change to the directory `cdk/components/rhel-ose/Vagrantfile`.  Log in with `vagrant ssh`
-
-
-To download and install the PHP container image, use the following command:
-
-`$ docker pull registry.access.redhat.com/rhscl/php-56-rhel7`
-
-The `docker images` command lists the container images that are present on your system:
-
-`$ docker images`
-
-The list will include those you've downloaded and any containers previously installed on your system. The CDK vagrant box includes software components that are distributed as container images.
-
-Now start a `bash` shell to have a look around inside a container that uses the PHP container image. The shell prompt changes, which is an indication that you are typing at the shell inside the container. A `ps -ef` shows the only thing running inside the container is `bash` and `ps`. Type `exit` to leave the container's bash shell.
-
-[.code-block]
-```
-$ docker run -it rhscl/php-56-rhel7 /bin/bash
-bash-4.2$ which php
+[listing,subs="attributes"]
+----
+# docker run -it rhscl/{tthw-dciname} /bin/bash
+bash-4.2$ which {tthw-langcmd}
 /opt/rh/rh-php56/root/usr/bin/php
 bash-4.2$ php -v
-PHP 5.6.5 (cli) (built: Jun 10 2015 06:11:40) 
+PHP 5.6.5 (cli) (built: Feb 16 2016 05:49:30)
 bash-4.2$ pwd
 /opt/app-root/src
 bash-4.2$ ps -ef
@@ -136,63 +51,27 @@ UID        PID  PPID  C STIME TTY          TIME CMD
 default      1     0  0 20:10 ?        00:00:00 /bin/bash
 default     14     1  0 20:10 ?        00:00:00 ps -ef
 bash-4.2$ exit
-```
+----
 
-The prior `docker run` command created a container to run your command, keep any state, and isolate it from the rest of the system. You can view the list of running containers with `docker ps`. To see all of the containers that have been created, including those that have exited, use `docker ps -a`. Depending on which Vagrantfile you used there may be a number of other containers running such as containers used to create an OpenShift environment.
+// Step 2, Second half, not language specific
 
-You can restart the container that was created above with `docker start`. Containers are referred to by name. Docker will automatically generate a name if you don't provide one. Once the container has been restarted, `docker attach` will let you interact with the shell running inside of it.  See the following example:
- 
-[.code-block]
-```
-$ docker ps -a
-CONTAINER ID        IMAGE                        COMMAND                  CREATED              STATUS                          PORTS               NAMES
-ca29ebc027dd        rhscl/php-56-rhel7   "container-entrypoint"   About a minute ago   Exited (0) 42 seconds ago                         determined_mayer
-
-$ docker start determined_mayer
-determined_mayer
-$ docker attach determined_mayer
-```
-
-At this point you are connected to the running shell inside the container. When you attach you won't see the command prompt, so hit Enter to get it to print another one.
-
-[.code-block]
-```
-
-bash-4.2$ ps -ef
-UID        PID  PPID  C STIME TTY          TIME CMD
-default      1     0  0 20:11 ?        00:00:00 /bin/bash
-default     12     1  0 20:12 ?        00:00:00 ps -ef
-bash-4.2$ exit
-```
-
-Since the only process in the container, `bash`, was told to `exit` the container will no longer be running. This can be verified with `docker ps -a`. Containers that are no longer needed can be cleaned up with `docker rm _<container-name>_`.
-
-`$ docker rm determined_mayer`
-
-To see what other container images are available in the Red Hat container registry, use one or more of the following searches:
-
-[.code-block]
-```
-$ docker search registry.access.redhat.com/rhscl
-$ docker search registry.access.redhat.com/openshift3
-$ docker search registry.access.redhat.com/rhel
-$ docker search registry.access.redhat.com/jboss
-```
-
-If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
+:leveloffset: 0
+include::products/cdk/_includes/get-started-cdk2-step2b.adoc[]
+:leveloffset: 0
 
 
 ## Step3 Content
 
-In this step, you will create a tiny Hello World container that uses PHP as a web server. Once created, the container can be run on other systems that have `docker` installed.  You will need to create several files in an empty directory using your favorite editor, including a `Dockerfile` that describes how to build the container image.
+In this step, you will create a tiny Hello World container that uses {tthw-langshort} as a web server. Once created, the container can be run on other systems that have `docker` installed.  You will need to create several files in an empty directory using your favorite editor, including a `Dockerfile` that describes how to build the container image.
 
 Note: you can edit files on your host system that can be synchronized to your vagrant box with `vagrant rsync`. For more information see _Vagrant synchronizad folders_ in the _CDK Installation Guide_. 
 
 First, create an empty directory, and then create a file named `Dockerfile` with the following contents, but change the `MAINTAINER` line to have your name and email address:
 
 .Dockerfile
+[listing,subs="attributes"]
 ----
-FROM rhscl/php-56-rhel7
+FROM rhscl/{tthw-dciname}
 
 MAINTAINER Your Name "your-email@example.com"
 
@@ -203,113 +82,33 @@ COPY . /opt/app-root/src
 CMD /bin/bash -c 'php -S 0.0.0.0:8000'
 ----
 
-Create the file `index.php` with the following contents:
+Create the file `index.php` in the same directory as the `Dockerfile` with the following contents:
 
 .index.php
+[source,php]
 ----
 <?php
 print "Hello, Red Hat Developers World from PHP " . PHP_VERSION . "\n";
 ?>
 ----
 
+Create the file `index.php` with the following contents:
 
-Now build the container image using `docker build`.
+.index.php
+[source,php]
+----
+<?php
+print "Hello, Red Hat Developers World from PHP " . PHP_VERSION . "\n";
+?>
+----
 
-`$ docker build -t _myname_/phpweb .`
-
-
-You can see the container image that was created using the following command:
-
-`$ docker images`
-
-Now run the container using `docker run`. The PHP http server module will create a tiny web server that listens on port 8000 inside the container.  The `run` command will map port 8000 on the host machine to port 8000 inside the container.
-
-`$ docker run -d -p 8000:8000 --name helloweb _myname_/phpweb`
-
-The run command returns a unique ID for the container, which you can ignore. To check that the container is running, use `docker ps`. The output should show a container named `helloweb` that is running the `_myname_/phpweb` container image you created.
-
-[.code-block]
-```
-$ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
-c7885aa23773        myname/phpweb    "container-entrypoint"   6 seconds ago       Up 4 seconds        0.0.0.0:8000->8000/tcp, 8080/tcp   helloweb
-```
-
-Use `curl` to access the PHP web server:
-
-[.code-block]
-```
-# curl http://localhost:8000/
-Hello, Red Hat Developers World from PHP 5.6.5
-```
-
-Note: you should also be able to access the PHP web server running inside your container from the browser on your host machine. The `rhel-ose/Vagrantfile` sets the vagrant box's IP address to 10.1.2.2. The url to use on your host system is `link:http://10.1.2.2:8000/[]`.
-
-To view the logs from the running container use `docker logs _<container-name>_`:
-
-`$ docker logs helloweb`
-
-When you are done, stop the running container:
-
-`$ docker stop helloweb`
-
-The `helloweb` container will be retained until you remove it with `docker rm`. You can restart the container with `docker start helloweb`. Note: A subsequent `docker run` will generate an error if a container with the same name already exists.
-
-You can view information about a container using `docker inspect`:
-
-`$ docker inspect _myname_/phpweb`
-
-The output is a JSON structure that is easily readable. The _Config_ section has details of the container's runtime environment such as environment variables and default command. Note that much of the information in the container's configuration was inherited from the parent container, which in this case is the PHP runtime container.
-
-Finally, when the application container images you create are ready, you can distribute them by pushing them to a public or private container registry. Your containers will then be available to install on other systems using `docker pull`.
+:leveloffset: 0
+include::products/cdk/_includes/get-started-cdk2-step3b.adoc[]
+:leveloffset: 0
 
 
-## Where to go next?
-
-* link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit] -- contains detailed information on the components that make up the CDK along with instructions on how to interact with containers in the CDK environment.
-
-* Container Development Guide (under development) -- Provides guidance for more advanced container development. It illustrates the different ways of creating containers to run with Docker, Kubernetes, Nulecule, Atomic and other container run-time environments.
-
-* link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/[Red Hat Enterprise Linux Atomic Host 7 Getting Started with Containers] -- This document covers working with and deploying containers on both Red Hat Enterprise Linux and Red Hat Enterprise Linux Atomic Host. It also provides information on orchestrating multi-container environments with _kubernetes_.
-
-* link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/[Red Hat Enterprise Linux 7.2 Release Notes] -- includes information on recent updates to the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/atomic_host_and_containers.html[container tools included in Red Hat Enterprise Linux and Atomic Host].
+:leveloffset: 0
+include::products/cdk/_includes/get-started-cdk2-next-and-faq.adoc[]
+:leveloffset: 0
 
 
-## More Resources
-
-### Become a Red Hat developer: developers.redhat.com
-
-Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:http://developers.redhat.com/[developers.redhat.com].
-
-*Follow the Red Hat Developer Blog* +
-link:http://developerblog.redhat.com/[]
-
-
-
-## Faq section title
-[[troubleshooting]]Troubleshooting and FAQ
-
-## Faq section
-
-. How do I tell if there is a container image available that has a newer version of PHP?
-+
-How can I see what other container images are available?
-+
-I can't find the container mentioned in this tutorial, how can I tell if the name changed?
-+
-To see what other containers are available in the Red Hat container registry, use one or more of the following searches:
-+
-[.code-block]
-```
-$ docker search registry.access.redhat.com/rhscl
-$ docker search registry.access.redhat.com/openshift3
-$ docker search registry.access.redhat.com/rhel
-$ docker search registry.access.redhat.com/jboss
-```
-+
-. Where can I learn more about delivering applications with Linux containers?
-+
-If you haven't already joined the link:http://developers.redhat.com/[Red Hat Developers program], sign up at link:http://developers.redhat.com/[developers.redhat.com]. Membership is free. +
-link:https://access.redhat.com/articles/1483053[Recommended Practices for Container Development] and many other container articles are available from the link:https://access.redhat.com/[Red Hat Customer Portal].
-+
-If you are a Red Hat Technology Partner, visit the link:https://access.redhat.com/articles/1483053[Container Zone] at the link:http://connect.redhat.com/[Red Hat Connect for Technology Partners] web site.

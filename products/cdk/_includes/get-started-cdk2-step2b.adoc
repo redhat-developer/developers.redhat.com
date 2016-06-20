@@ -1,12 +1,12 @@
 :awestruct-interpolate: true
 
 // Step 2, Second half, not language specific
-// Note: should be largely the same as the ../cdk/*cdk2* version.
+// Note: should be largerly the same as the ../rhel/*dcr7* version.
 
-The prior `docker run` command created a container to run your command, keep any state, and isolate it from the rest of the system. You can view the list of running containers with `docker ps`. To see all of the containers that have been created, including those that have exited, use `docker ps -a`.
+The prior `docker run` command created a container to run your command, keep any state, and isolate it from the rest of the system. You can view the list of running containers with `docker ps`. To see all of the containers that have been created, including those that have exited, use `docker ps -a`. Note: there may be a number of other containers running such as containers used to create an OpenShift Enterprise environment.
 
 You can restart the container that was created above with `docker start`. Containers are referred to by name. Docker will automatically generate a name if you don't provide one. Once the container has been restarted, `docker attach` will let you interact with the shell running inside of it.  See the following example:
-
+ 
 [listing,subs="attributes"]
 ----
 # docker ps -a
@@ -47,4 +47,3 @@ To see what other container images are available in the Red Hat container regist
 ----
 
 If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
-
