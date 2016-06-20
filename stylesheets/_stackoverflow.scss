@@ -106,7 +106,10 @@
     margin-bottom: 5px;
   }
   a {
-    color: #0089d0;
+    color: #08C0FC;
+    &:hover, &:active {
+      color: #46a1da;
+    }
   }
 }
 
