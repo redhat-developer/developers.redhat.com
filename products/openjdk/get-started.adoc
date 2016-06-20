@@ -1,24 +1,26 @@
-:awestruct-layout: product-get-started
+:awestruct-layout: product-get-started-old
 :awestruct-interpolate: true
 
-== Prerequisites section title
-Prerequisites &#38; Required Dependencies Checklist
 
-== Step1 Duration
-5 minutes
+## Extra section
 
-== Step2 Duration
-10 minutes
+### On Windows:
 
-== Step3 Duration
-20 minutes
+Run the downloaded msi-based installer and follow the installation instructions on the screen.
 
-== Step1 Content
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+In order to configure Red Hat JBoss Developer Studio or Eclipse to use OpenJDK 8, follow these http://help.eclipse.org/mars/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftasks-JREs.htm&cp=1_3_5[instructions].
 
+### On Red Hat Enterprise Linux:
 
-== Step2 Content
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+To install OpenJDK 8 on Red Hat Enterprise Linux, first ensure that you have enabled the Optional channel:
 
-== Step3 Content
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+`yum repolist all`
+
+`yum-config-manager --enable rhel-7-server-optional-rpms`
+
+Next, yum install the OpenJDK 8 package:
+
+`yum install java-1.8.0-openjdk-devel`
+
+In order to configure Red Hat JBoss Developer Studio or Eclipse to use the OpenJDK 8, follow these http://help.eclipse.org/mars/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftasks-JREs.htm&cp=1_3_5[instructions].
+
