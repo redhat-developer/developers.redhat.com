@@ -14,6 +14,7 @@ Before('@products, @downloads') do
   @technologies_with_downloads = get_available_downloads[0]
   @available_downloads = get_available_downloads
   @products_with_buzz = get_products_with_links('buzz.html.slim')[0]
+  @products_with_help = get_products_with_links('help.html.slim')[0]
 end
 
 Before('@accepted_terms') do

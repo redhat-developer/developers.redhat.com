@@ -126,7 +126,6 @@ Feature: Site navigation menu
       | Events                  | Find the latest conferences, meetups, and virtual seminars      |
       | Open Source Communities | Community Projects that Red Hat participates in                 |
       | Content Contributors    | Share your knowledge. Contribute content to Red Hat Developers. |
-      | Stack Overflow          | Get answers to your questions directly on Stack Overflow.       |
 
   @products @desktop @smoke
   Scenario: COMMUNITIES sub-menu items should link to retrospective pages
@@ -167,7 +166,7 @@ Feature: Site navigation menu
       | name                | href                  |
       | Resources           | resources             |
       | Forums              | forums                |
-      | Stack Overflow Q&A  | help/stack-overflow   |
+      | Stack Overflow Q&A  | stack-overflow        |
 
   @mobile @smoke
   Scenario: Tapping HELP from drop down menu on Mobile/Tablet should display additional help

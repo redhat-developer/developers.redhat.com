@@ -1,5 +1,5 @@
 Given(/^I am on the Stack Overflow page$/) do
-  @page.site_nav.visit('/help/stack-overflow')
+  @page.site_nav.visit('/stack-overflow')
   @page.site_nav.wait_for_ajax
 end
 

@@ -21,7 +21,7 @@
         |  Top Q&amp;A
       .product-stackoverflow-container(data-tags="#{(JSON.dump page.parent.product.stackoverflow_tags).gsub(/"/, "'")}")
       h5.see-all
-        a(href='#{site.base_url}/help/stack-overflow/#!filter-products=#{page.parent.product.id}')
+        a(href='#{site.base_url}/stack-overflow/#!filter-products=#{page.parent.product.id}')
           | See all related Stack Overflow Q&amp;A posts&nbsp;
           i.fa.fa-caret-right
 br
