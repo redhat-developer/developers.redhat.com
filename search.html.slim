@@ -1,0 +1,60 @@
+---
+layout: base
+title: Search Results
+---
+
+div(ng-app="search")
+  .row#searchpage(ng-controller="SearchController")
+    .large-24.columns.searchpage-middle
+      .row
+        .large-24.columns
+          form.search-bar(role="search" ng-submit="updateSearch(); resetPagination();")
+            input.user-success.user-search(required type="search" placeholder="Enter your search term" id="search_list_text" ng-model="params.query")
+        .large-18.columns.searchpage-results-container
+          .sorting
+            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{query}}"
+            h3.results-title(ng-if="totalCount <= 0") No results found
+            h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
+            hr
+            p
+              | Sort results by
+              select(ng-model="params.sortBy" ng-change="updateSearch()")
+                option(value="score") Relevance
+                option(value="new") Most Recent
+              | and show
+              select(ng-model="params.size" ng-change="updateSearch()")
+                option(value="10") 10
+                option(value="25") 25
+                option(value="50") 50
+                option(value="100") 100
+              | results per page
+          / span.loader
+          span.loader(ng-show="loading")
+          .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
+            .result(ng-repeat="result in results" ng-init="r = result")
+              h4: a(href="{{r.fields.sys_url_view[0]}}") {{r.fields.sys_title[0]}}
+              / section.meta-data
+                span.created-date(data-updated="{{r.fields.sys_updated[0] | timestamp}}") {{r.fields.sys_updated[0] | timeAgo}}
+              p(ng-bind-html="r | description")
+              .tags-list
+                p
+                  | {{r.sys_tags.length ? 'Tags:' : null}}
+                  span.tag(ng-repeat="tag in r.sys_tags")  {{tag}}
+
+
+          nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
+            span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
+            ul.pagination
+              li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
+                a(ng-click="goToPage('first')") First
+              li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
+                a(ng-click="goToPage('prev')") Previous
+              li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
+                a(ng-click="goToPage(page)" data-page="{{page}}")
+                  | {{page}}
+              li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
+                a(ng-click="goToPage('next')") Next
+              li#pagination-last(ng-class="paginate.currentPage  == paginate.pages ? 'unavailable': 'available'")
+                a(ng-click="goToPage('last')") Last
+        .large-6.columns
+

@@ -1,7 +1,3 @@
-Given(/^I am on the Technologies page$/) do
-  @page.site_nav.visit('/products/')
-end
-
 Then(/^I should see the following main products sections:$/) do |table|
   table.raw.each do |sections|
     section = sections.first

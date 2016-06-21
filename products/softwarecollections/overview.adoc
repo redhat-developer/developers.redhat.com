@@ -7,38 +7,69 @@
 
 == Overview
 
-When developing applications for Red Hat Enterprise Linux®, developers have two major tools chains to utilize.  First, Red Hat Enterprise Linux has a base toolchain that are included with the same support lifecycle.  These tools are added with the original dot-zero release of RHEL and include Python, gcc, PHP, Ruby, Perl, and more.  For developers who are looking for updated tools, Red Hat® Software Collections delivers the latest stable versions of dynamic languages, open source databases, web development tools, and other important development resources that can be deployed alongside those included in the Red Hat Enterprise Linux® base tool chain. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability. 
+When developing applications for Red Hat® Enterprise Linux®, developers have two major tools chains to choose from:
 
-*Red Hat Software Collections (RHSCL)* allow you to build and concurrently install multiple versions of the same software components on your system. Packages built using software collections technology do not overwrite system files and can depend on other software collections.  In addition, dockerfiles are available for each Software Collection component for developing in containers, and are identical to the development stacks available on OpenShift.  This means you can develop or deploy on either Red Hat Enterprise Linux or OpenShift.
+. The tools delivered with Red Hat Enterprise Linux which includes Python, gcc, PHP, Ruby, Perl, and more. These tools have the same support life cycle as Red Hat Enterprise Linux: up to ten years. To maintain compatibility, the major versions of these tools are fixed at the time of the "dot-zero" release of Red Hat Enterprise Linux.
+. *Red Hat Software Collections (RHSCL)* are for developers looking for updated tools such as the latest stable versions of dynamic languages, open source databases, web infrastructure, and other essential development tools.
 
-Now available as version 2, the entire list of Red Hat Software Collections 2 components can be found https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html#sect-RHSCL-Changes[here], and includes these popular items plus many more:
+RHSCL releases occur annually. The collections have a two to three year support life cycle to allow rapid innovation without sacrificing stability. RHSCL is available with select Red Hat Enterprise Linux subscriptions for the currently supported releases of Red Hat Enterprise Linux including 6 and 7.
 
-* Python 3.4
-* Ruby 2.2
-* PHP 5.6
-* Perl 5.20
-* Node.js 0.10
-* MariaDB 10.0
-* Mongo 2.6
-* PostgreSQL 9.4
-* Apache httpd 2.4
-* Passenger 4.0
-* Much, much, more
+Software collections allow you to concurrently install multiple versions of the same software components on your system. Packages built using software collections do not overwrite the versions included with Red Hat Enterprise Linux.
+
+If you are interested in building applications in containers. Recent RHSCL collections are available as docker-formatted container images from the Red Hat Container Registry. This makes it easy to build and deploy applications in containers that use RHSCL components.
+
+The Dockerfiles used to build the RHSCL container images are provided as RHSCL rpm on Red Hat Enterprise Linux 7. These source Dockerfiles can be used for building containers with customized RHSCL components.
+
+=== Red Hat Software Collections 2.2
+
+The RHSCL 2.2 release includes many popular development tools:
+
+* Languages and frameworks
+** link:#{site.base_url}/products/softwarecollections/get-started-rhel7-nodejs/[Node.js v4.4]
+** link:#{site.base_url}/products/softwarecollections/get-started-rhel7-perl/[Perl 5.20]
+** link:#{site.base_url}/products/softwarecollections/get-started-rhel7-php/[PHP 5.6]
+** link:#{site.base_url}/products/softwarecollections/get-started-rhel7-python/[Python 3.5]
+** link:#{site.base_url}/products/softwarecollections/get-started-rhel7-ruby/[Ruby 2.3]
+** Ruby on Rails 4.2
+* Databases 
+** MariaDB 10.1
+** MongoDB 3.2
+** PostgreSQL 9.5
+* Web and application servers and HTTP accelerators
+** Apache httpd 2.4
+** nginx 1.8
+** Phusion Passenger 4.0
+** Varnish 4.0
+* Java development tools
+** Maven 3.3
+** Thermostat 1.4
+
+For the full list of collections see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.2_Release_Notes/chap-RHSCL.html#sect-RHSCL-Changes[RHSCL 2.2 Release Notes].
+
+[.callout-light]
+If you are looking for {cpp} development tools, such as the latest stable version of the GNU Compiler Collection, an interactive development environment (IDE), analysis/debugging tools, see link:#{site.base_url}/products/developertoolset/overview/[Red Hat Developer Toolset (DTS)]. DTS is distributed as part of RHSCL.
+
+// this tech brief hasn't been updated since 2.0
+// For more explanation about Red Hat Software Collections, view the http://www.redhat.com/en/files/resources/en-rhel-software-collections-INC0194637.pdf[Technical Brief]. 
+
+=== Try Red Hat Software Collections
+
+Follow our RHSCL get started guides to try link:#{site.base_url}/products/softwarecollections/get-started-rhel7-nodejs/[Node.js], link:#{site.base_url}/products/softwarecollections/get-started-rhel7-perl/[Perl], link:#{site.base_url}/products/softwarecollections/get-started-rhel7-php/[PHP], link:#{site.base_url}/products/softwarecollections/get-started-rhel7-python/[Python], or link:#{site.base_url}/products/softwarecollections/get-started-rhel7-ruby/[Ruby] on Red Hat Enterprise Linux 6 or 7.
+
+Need a subscription?
+
+Developers can get a no-cost Red Hat Enterprise Developer Suite subscription which includes RHSCL and DTS by registering and downloading through link:#{site.base_url}/[developers.redhat.com].
 
 
-For more explanation about Red Hat Software Collections, view the http://www.redhat.com/en/files/resources/en-rhel-software-collections-INC0194637.pdf[Technical Brief]. 
+=== Follow the Red Hat Developers Blog
 
+The link:http://developers.redhat.com/blog[Red Hat Developers Blog] has insights on Red Hat developer tools, platforms, and more:
 
-=== Find a blog for you
+* link:http://developers.redhat.com/blog/category/containers/[Containers]
+* link:http://developers.redhat.com/blog/category/devops/[Devops]
+* link:http://developers.redhat.com/blog/category/jboss/[JBoss]
+* link:http://developers.redhat.com/blog/category/programming/[Languages]
+* link:http://developers.redhat.com/blog/category/mobile/[Mobile]
+* link:http://developers.redhat.com/blog/category/performance-2/[Performance]
+* link:http://developers.redhat.com/blog/tag/software-collections/[Software collections]
 
-Red Hat has a large collections of technical articles and blogs related to Red Hat Software Collections.  You can peruse them on the  http://developerblog.redhat.com/tag/software-collections/[Red Hat Developer Blog], but here’s a sample, too.
-
-* http://developerblog.redhat.com/2014/09/03/automated-deployment-rpm-packaged-django-applications-red-hat-software-collections/[Automated deployment of RPM-packaged django applications with Red Hat Software Collections]
-* http://developerblog.redhat.com/2013/02/14/setting-up-django-and-python-2-7-on-red-hat-enterprise-6-the-easy-way/[Setting up Django and Python 2.7 on Red Hat Enterprise 6 the easy way]
-* http://developerblog.redhat.com/2014/03/25/getting-started-with-ruby-and-mongodb-using-software-collections/[Getting started with Ruby and MongoDB using Software Collections]
-* http://developerblog.redhat.com/2014/04/11/how-add-package-to-rhscl-perl516/[How to add a new package to RHSCL perl516 for RHEL]
-* http://developerblog.redhat.com/2013/11/05/extending-software-collections-with-additional-packages/[Extending software collections with additional packages]
-* http://developerblog.redhat.com/2014/03/25/getting-started-with-ruby-and-mongodb-using-software-collections/[Getting started with Ruby and MongoDB using Software Collections]
-* http://developerblog.redhat.com/2014/02/28/profiling-ruby-programs/[Profiling Ruby Programs]
-* http://developerblog.redhat.com/2013/10/24/apache-httpd-2-4-on-red-hat-enterprise-linux-6/[Setting up Apache httpd 2.6 with RHEL 6]
-* http://developerblog.redhat.com/2013/10/10/leveraging-rhscl-for-devops/[Leveraging RHSCL for DevOps]

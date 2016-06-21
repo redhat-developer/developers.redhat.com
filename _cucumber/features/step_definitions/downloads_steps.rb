@@ -1,7 +1,3 @@
-And(/^I am on the Downloads page$/) do
-  @page.site_nav.visit('/downloads/')
-end
-
 Given(/^I am on the Product Download page for ([^"]*)$/) do |product|
   @page.download_overview.open(product)
 end
