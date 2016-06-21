@@ -60,7 +60,7 @@ div(ng-app="search")
     .large-24.columns.searchpage-middle
       .row
         .large-24.columns
-          form.search-bar(role="search" ng-submit="updateSearch()")
+          form.search-bar(role="search" ng-submit="updateSearch(); resetPagination();")
             .search-inputs
               .search-input-group
                 label Keyword
@@ -81,6 +81,12 @@ div(ng-app="search")
                   option(value="brms") JBoss BRMS
                   option(value="bpmsuite") JBoss BPM Suite
                   option(value="devstudio") JBoss Developer Studio
+                  option(value="cdk") Red Hat Container Development Kit
+                  option(value="developertoolset") Red Hat Developer Toolset
+                  option(value="rhel") Red Hat Enterprise Linux
+                  option(value="softwarecollections") Red Hat Software Collections
+                  option(value="mobileplatform") Red Hat Mobile Application Platform
+                  option(value="openshift") OpenShift Enterprise by Red Hat
 
               .search-input-group
                 label Publish Date
@@ -134,7 +140,7 @@ div(ng-app="search")
                 section.meta-data
                   / pre {{r | json}}
                   span.created-date(data-updated="{{r.sys_last_activity_date[0] | timestamp}}") {{r.sys_created[0] | MDY}}
-                p {{r.sys_description[0]}}
+                p {{r.sys_description[0] | wordcount}}
                 / p.contributors(ng-show="{{r.sys_contributors.length}}")
                   span.contributor(ng-repeat="author in r.sys_contributors" data-sys-contributor="{{author}}")
                     a.name {{author}}

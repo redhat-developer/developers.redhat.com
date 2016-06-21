@@ -55,6 +55,16 @@ search.filter('timestamp', function() {
   }
 });
 
+search.filter('wordcount', function() {
+  return function(description){
+    description = description || '';
+    var wordCount = 50;
+    var peices = description.split(' ');
+    peices = peices.slice(0,wordCount);
+    return peices.join(' ') + (peices.length >= wordCount ? '…' : '');
+  }
+});
+
 search.filter('icon', function() {
   return function(sys_type) {
     var icons = {
@@ -63,6 +73,7 @@ search.filter('icon', function() {
       jbossdeveloper_book: 'icon-RHDev_-resources_icons_book',
       book: 'icon-RHDev_-resources_icons_book',
       article: 'icon-RHDev_-resources_icons_article',
+      solution: 'icon-RHDev_-resources_icons_article',
       demo: 'icon-RHDev_-resources_icons_demo',
       quickstart: 'icon-RHDev_-resources_icons_demo',
       jbossdeveloper_archetype: 'icon-RHDev_-resources_icons_demo',
