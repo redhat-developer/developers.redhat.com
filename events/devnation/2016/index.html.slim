@@ -3,11 +3,16 @@ layout: base
 body_class: fullbleed
 primary_nav_hidden: true
 interpolate: true
+hero_class: devnation2016
 title: Devnation 2016
 description: Learn more. Code more. Share more. Join the Nation.
 ---
 
-.wide.wide-hero.devnation2016(class="#{page.hero_class}")==hero
+section.wide.wide-hero(class="#{page.hero_class}")
+  .row
+    .large-24.columns
+      img.desktop(src="http://design.jboss.org/events/devnation/2016/marketing/rhd/images/RHDev_pageheader_devnation2016_desktop_content_21jun2016.svg")
+      img.mobile(src="http://design.jboss.org/events/devnation/2016/marketing/rhd/images/RHDev_pageheader_devnation2016_mobile_content_21jun2016.svg")
 
 #devnation2016-microsite
   section
@@ -16,7 +21,7 @@ description: Learn more. Code more. Share more. Join the Nation.
         .large-24.columns
           h5.caps.session-label
         .large-20.small-24.columns
-          h2.caps #{a.title}
+          h3.caps #{a.title}
         .large-4.small-24.columns.devnation2016-date(data-tags="#{(JSON.dump a.date)}")
          span
            i.fa.fa-calendar.fa-2x.right
@@ -31,9 +36,6 @@ description: Learn more. Code more. Share more. Join the Nation.
         .medium-9.columns
           iframe.embedded-chat(src="https://kiwiirc.com/client/irc.kiwiirc.com/?&theme=mini#devnation2016")
         .large-24.columns
-          //Removed full-screen option for now as it doesn't work with two live streams.
-          //span.left
-          //  a.button.enlarge-video(data-reveal-id="videoModal")Enlarge video
           span
             .session-links.y-centered
               - if a.slides_id
@@ -57,13 +59,6 @@ description: Learn more. Code more. Share more. Join the Nation.
             p #{a.speaker_intro}
           - if a.meetup_id
             a.button.rsvp-button(href='http://www.meetup.com/JBoss-User-Group-Worldwide/events/#{a.meetup_id}/') RSVP
-      .reveal-modal.xlarge#videoModal(data-reveal aria-hidden="true" role="dialog")
-        a.close-reveal-modal x
-        .row
-          .event-video
-            = video_player(site.videos["https://www.youtube.com/v=#{a.youtube_id}"])
-          .chat
-            iframe.embedded-chat(src="https://kiwiirc.com/client/irc.kiwiirc.com/?&theme=mini#devnation2016")
   section
       .row
         .large-24.columns
