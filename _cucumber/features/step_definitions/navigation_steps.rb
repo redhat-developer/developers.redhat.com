@@ -118,7 +118,7 @@ Then(/^each Help sub\-menu item should contain a link to its retrospective page:
   table.hashes.each do |row|
     href = @page.site_nav.get_href_for("#{row['name']}")
     if row['name'] == 'Resources'
-      expect(href).to eq '#{$host_to_test}/resources'
+      expect(href).to eq "#{$host_to_test}/resources"
     else
       expect(href).to eq "#{$host_to_test}/#{row['href']}"
     end
