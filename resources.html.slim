@@ -15,7 +15,7 @@ description: Red Hat has extensive materials to help you get started. On offer a
 
 div(ng-app="search")
   #searchpage(ng-controller="SearchController")
-    / pre {{params | json}}
+    pre {{params | json}}
     .large-24.column.type-filters-wrap
       .row
         .large-24.column
@@ -90,7 +90,7 @@ div(ng-app="search")
 
               .search-input-group
                 label Publish Date
-                select(ng-model="params.publish_date" ng-change="updateSearch(); resetPagination();")
+                select(ng-model="params.publish_date_from" ng-change="updateSearch(); resetPagination();")
                   option(value="") Filter by Date
                   option(value="now-1y") Past Year
                   option(value="now-3M") Past Quarter
@@ -100,13 +100,13 @@ div(ng-app="search")
                   option(value="custom") Custom
 
               .search-input-group.custom-dates
-                div(ng-show="params.publish_date === 'custom'")
+                div(ng-show="params.publish_date_from === 'custom'")
                   label
                     | Start Date
-                    input(type="date" ng-model="params.activity_date_from" ng-change="updateSearch(); resetPagination();")
+                    input(type="date" ng-model="params.publish_date_from_custom" ng-change="updateSearch(); resetPagination();")
                   label
                     | End Date
-                    input(type="date" ng-model="params.activity_date_to" ng-change="updateSearch(); resetPagination();")
+                    input(type="date" ng-model="params.publish_date_to" ng-change="updateSearch(); resetPagination();")
 
         .large-24.columns.searchpage-results-container
           .sorting
@@ -139,7 +139,7 @@ div(ng-app="search")
                   a(href="{{r.sys_url_view[0] | broker | jbossfix}}") {{r.sys_title[0]}}
                 section.meta-data
                   / pre {{r | json}}
-                  span.created-date(data-updated="{{r.sys_last_activity_date[0] | timestamp}}") {{r.sys_created[0] | MDY}}
+                  span.created-date(data-updated="{{r.sys_created[0] | timestamp}}") {{r.sys_created[0] | MDY}}
                 p {{r.sys_description[0] | wordcount}}
                 / p.contributors(ng-show="{{r.sys_contributors.length}}")
                   span.contributor(ng-repeat="author in r.sys_contributors" data-sys-contributor="{{author}}")

@@ -176,11 +176,11 @@ function searchCtrlFunc($scope, searchService) {
       var params = Object.assign({}, p);
 
       // if "custom" is selected, remove it
-      if(params.publish_date && params.publish_date === 'custom') {
-        delete params.publish_date;
+      if(params.publish_date_from && params.publish_date_from === 'custom') {
+        params.publish_date_from = params.publish_date_from_custom;
       } else {
-        delete params.activity_date_from;
-        delete params.activity_date_to;
+        delete params.publish_date_from_custom;
+        delete params.publish_date_to;
       }
 
       // if relevance is "most recent" is turned on, set newFirst to true, otherwise remove it entirely
@@ -201,7 +201,6 @@ function searchCtrlFunc($scope, searchService) {
   };
 
   $scope.updateSearch = function() {
-    console.log('Searching...');
     $scope.loading = true;
     $scope.query = $scope.params.query; // this is static until the update re-runs
     var params = $scope.cleanParams($scope.params);
