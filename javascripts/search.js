@@ -10,7 +10,8 @@ search.service('searchService',function($http, $q) {
     var search = Object.assign(params, {
       // field: '_source',
       field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated', 'sys_type', 'thumbnail', 'sys_created'],
-      agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
+      // Disable aggregations until ready
+      // agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
       query_highlight: true
     });
 
