@@ -15,7 +15,7 @@ class Forums < Base
 
   def initialize(driver)
     super
-    verify_page('forums')
+    verify_page('Forums | Red Hat Developers')
   end
 
   def forums_product_sections
