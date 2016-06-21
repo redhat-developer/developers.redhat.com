@@ -48,6 +48,8 @@ If something goes wrong and you need to restore the drupal environment from a ba
 
 You should now have a drupal environment up and running with everything from the backup.
 
+NOTE: These instructions are tailored for a development environment. If you need to use a different environment please change step 3 to reference the correct environment and the container names in steps 4 and 5 will also need changing.
+
 ## What does the template do?
 
 When installing the given `composer.json` some tasks are taken care of:
