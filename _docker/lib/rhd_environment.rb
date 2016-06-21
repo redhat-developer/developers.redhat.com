@@ -12,11 +12,10 @@ class RhdEnvironment
 
   attr_accessor :environment_name, :environment_directory
 
-  def initialize(environment_directory, testing_directory, drupal_directory)
+  def initialize(environment_directory, testing_directory)
     @environment_directory = environment_directory
     @testing_directory = testing_directory
     @environment_name = environment_directory.split('/').last
-    @drupal_directory = drupal_directory
   end
 
   #
@@ -63,8 +62,13 @@ class RhdEnvironment
   end
 
   def get_file(file_name)
-    file = File.new(get_absolute_file_name(file_name))
-    File.exist?(file) ? file : nil
+    get_absolute_file_name(file_name)
+  end
+
+  def create_template_resources
+    if @environment_name == 'drupal-pull-request'
+        create_file('rhd.settings.yml')
+    end
   end
 
   #
@@ -72,13 +76,9 @@ class RhdEnvironment
   # that needs this is the Drupal pull-request environment
   #
   def template_resources
-    if is_drupal_environment?
-      File.chmod(0775, @drupal_directory)
-      output_file = File.join(@drupal_directory, 'rhd.settings.yml')
+    if @environment_name == 'drupal-pull-request'
+      output_file = get_file('rhd.settings.yml')
       File.write(output_file, ERB.new(File.read(get_file('rhd.settings.yml.erb'))).result)
-
-      output_file = File.join(@drupal_directory, 'rhd.settings.php')
-      File.write(output_file, File.read(get_file('rhd.settings.php')))
     end
   end
 

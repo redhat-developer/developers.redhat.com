@@ -41,11 +41,10 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ../../../images:/var/www/html/images
-      - ../../../stylesheets/fonts:/var/www/html/fonts
-      - ../../drupal/themes/:/var/www/html/themes
-      - ../../drupal/modules/custom/:/var/www/html/modules/custom
-      - /credentials/drupal/rhd.settings.php:/var/www/html/sites/default/rhd.settings.php
+      - /credentials/drupal/rhd.settings.yml:/var/www/html/sites/default/rhd.settings.yml
+      - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
+      - ../../../images:/var/www/html/images:ro
+      - ../../../stylesheets/fonts:/var/www/html/fonts:ro
     environment:
       - http_proxy=proxy01.util.phx2.redhat.com:8080
       - https_proxy=proxy01.util.phx2.redhat.com:8080
