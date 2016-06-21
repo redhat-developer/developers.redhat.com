@@ -21,7 +21,10 @@ class Forums < Base
   def forums_product_sections
     titles = []
     elements = [FORUMS_INFRASTRUCTURE, FORUMS_ACCELERATED_DEVELOPMENT_AND_MANAGEMENT, FORUMS_INTEGRATION_AND_AUTOMATION]
-    elements.each { |el| titles << text_of(el) }
+    elements.each { |el|
+      wait_for { displayed?(el) }
+      titles << text_of(el)
+    }
     titles
   end
 
