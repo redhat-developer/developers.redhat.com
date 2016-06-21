@@ -1,0 +1,34 @@
+:awestruct-interpolate: true
+
+// step2, Part 1, before it gets language specific
+// Note: should be largerly the same as the ../rhel/*dcr7* version.
+
+## Step2 Content
+
+This step will download and install {tthw-langlong} using a container image from the Red Hat Container Registry, a repository of container images. Installing the {tthw-langlong} container will make {tthw-langlong} available for use by other containers on your system. Because containers run in isolated environments, your host system will not be altered by the installation. You will use `docker` commands to interact with and view the container's contents.
+
+The commands shown in this section can be used to download and install other container images, like application containers you build. Containers can specify that they require other containers to be installed, which can happen automatically. For example, you can specify in the `Dockerfile` that is used to describe and build your container that your application requires {tthw-langlong}. Then, when someone installs your container, their system will automatically download the required {tthw-langlong} container directly from the Red Hat Atomic Registry.
+
+The {tthw-langlong} container image is part of Red Hat Software Collections, which provides the latest development technologies for Red Hat Enterprise Linux. Access to the Red Hat Software Collections (RHSCL) is included with many Red Hat Enterprise Linux subscriptions. For more information about which subscriptions include RHSCL, see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
+
+Run all of the following commands on Red Hat Enterprise Linux inside the vagrant box. If you haven't logged into the vagrant box, open a _Terminal_ or _Command_ window and change to the directory `cdk/components/rhel-ose/Vagrantfile`.  Log in with `vagrant ssh`
+
+
+To download and install the {tthw-langlong} container image, use the following command:
+
+[listing,subs="attributes"]
+----
+# docker pull registry.access.redhat.com/rhscl/{tthw-dciname}
+----
+
+
+The `docker images` command lists the container images that are present on your system:
+
+[listing,subs="attributes"]
+----
+# docker images
+----
+
+The list will include those you've downloaded and any containers previously installed on your system. The Container Development Kit vagrant box includes software components, such as OpenShift Enterprise Edition, that are distributed as container images.
+
+Now start a `bash` shell to have a look around inside a container that uses the {tthw-langlong} container image. The shell prompt changes, which is an indication that you are typing at the shell inside the container. A `ps -ef` shows the only thing running inside the container is `bash` and `ps`. Type `exit` to leave the container's bash shell.

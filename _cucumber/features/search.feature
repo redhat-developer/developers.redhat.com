@@ -29,25 +29,25 @@ Feature: Search Page
     Then the search results page is displayed
     And the default results sort should be by "Relevance"
 
-  Scenario: Result sorting options should be: Relevance, Most Recent, and Title. 
+  Scenario: Result sorting options should be: Relevance, Most Recent, and Title.
     Given I am on the Home page
     When I search for "Containers"
     Then the search results page is displayed
-    And the result sorting options should be:
+    And the result sorting options should be:
       | Relevance   |
       | Most Recent |
 
-  Scenario: Default results per page should be 10
+  Scenario: Default results per page should be 10
     Given I am on the Home page
     When I search for "Containers"
     Then the search results page is displayed
     And the default results count should be "10"
 
-  Scenario: Result per page options should be: 10, 25, 50 and 100. 
+  Scenario: Result per page options should be: 10, 25, 50 and 100.
     Given I am on the Home page
     When I search for "Containers"
     Then the search results page is displayed
-    And the result per page options should be:
+    And the result per page options should be:
       | 10  |
       | 25  |
       | 50  |
@@ -59,10 +59,10 @@ Feature: Search Page
     Then the search results page is displayed
     And I should see text "Showing "1-10" of "191" results"
 
-  Scenario: Typing multiple words such as "eap 7 download" in the search box from the search header (like on the homepage), should retain the spaces.
+  Scenario: Typing multiple words such as "eap 7 download" in the search box from the search header (like on the homepage), should retain the spaces.
     Given I am on the Home page
-    When I search for "eap 7 download"
-    Then the search box should contain "eap 7 download"
+    When I search for "eap 7 download"
+    Then the search box should contain "eap 7 download"
 
   @later
   Scenario: Search results should be listed with tags

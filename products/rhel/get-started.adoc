@@ -1987,13 +1987,13 @@ In this step you will select your programming language and then set up and run a
 Developed by the GNU project, the GNU Compiler Collection (GCC) includes front ends for C, {cpp}, and Fortran.
 
 [.large-17.columns.recommended]
-*GCC via Developer Toolset (DTS) on RHEL 7* [red]_Recommended_ +
+*GCC 5 via Developer Toolset (DTS) on RHEL 7* [red]_Recommended_ +
 In addition to the latest compilers, DTS includes Eclipse, GDB, SystemTap, Oprofile, Valgrind and much more.
 [.large-7.columns.tc-button]
 #{site.base_url}/products/developertoolset/get-started-rhel7-cpp/[Get Started]
 
 [.large-17.columns]
-*GCC 5 base version on RHEL 7* +
+*GCC 4 base version on RHEL 7* +
 The included GCC compilers are supported for the entire ten year life of Red Hat Enterprise Linux 7.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-rhel7-cpp/[Get Started]
@@ -2014,22 +2014,15 @@ Install OpenJDK or one of the other included JDKs from Oracle and IBM on Red Hat
 Node.js® is an event-driven I/O server-side JavaScript runtime that is lightweight and efficient.
 
 [.large-17.columns.recommended]
-*Node.js v4 via RHSCL 2.2 Beta* [red]_Recommended_ +
-The beta release of Red Hat Software Collections 2.2 includes Node.js v4.4.
+*Node.js v4 via RHSCL 2.2 [red]_Recommended_ +
+Use Node.js v4 from Red Hat Software Collections with annual updates.
 
 [.large-7.columns.tc-button]
 #{site.base_url}/products/softwarecollections/get-started-rhel7-nodejsbeta/[Get Started]
 
 [.large-17.columns]
-*Node.js v0.10 via Red Hat Software Collections (yearly updates)* +
-Use Node.js 0.10 from Red Hat Software Collections.
-
-[.large-7.columns.tc-link]
-#{site.base_url}/products/softwarecollections/get-started-rhel7-nodejs/[Get Started]
-
-[.large-17.columns]
-*Node.js v0.10 docker image for RHEL 7* +
-Build your first container using Node.js.
+*Node.js v4 docker image for RHEL 7* +
+Build your first container using Node.js v4.
 
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-dcr7-nodejs/[Get Started]
@@ -2089,13 +2082,13 @@ The included Python environment is supported for the entire ten year lifespan of
 #{site.base_url}/products/rhel/get-started-rhel7-python/[Get Started]
 
 [.large-17.columns]
-*Python 3.4 on RHEL 7* +
+*Python 3.5 on RHEL 7* +
 Use Python 3 from Red Hat Software Collections with annual updates.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/softwarecollections/get-started-rhel7-python/[Get Started]
 
 [.large-17.columns]
-*Python 3.4 docker image for RHEL 7* +
+*Python 3.5 docker image for RHEL 7* +
 Build your first container using Python 3.
 [.large-7.columns.tc-link]
 #{site.base_url}/products/rhel/get-started-dcr7-python/[Get Started]
@@ -2104,7 +2097,7 @@ Build your first container using Python 3.
 Ruby is a dynamic, open source scripting language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
 
 [.large-17.columns.recommended]
-*Ruby 2.2 update on RHEL 7* [red]_Recommended_ +
+*Ruby 2.3 update on RHEL 7* [red]_Recommended_ +
 Use Ruby from Red Hat Software Collections with annual updates.
 [.large-7.columns.tc-button]
 #{site.base_url}/products/softwarecollections/get-started-rhel7-ruby/[Get Started]
@@ -2116,7 +2109,7 @@ The included Ruby environment is supported for the entire ten year lifespan of R
 #{site.base_url}/products/rhel/get-started-rhel7-ruby/[Get Started]
 
 [.large-17.columns]
-*Ruby 2.2 docker image for RHEL 7* +
+*Ruby 2.3 docker image for RHEL 7* +
 Build your first container using Ruby. +
 Get Ruby-on-Rails `docker pull rhscl/ror-41-rhel7`.
 [.large-7.columns.tc-link]
