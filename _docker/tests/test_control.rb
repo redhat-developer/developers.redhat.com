@@ -147,7 +147,6 @@ class TestControl < Minitest::Test
   def test_start_and_wait_for_supporting_services
 
     environment = mock()
-    environment.expects(:template_resources)
     supporting_services = %w(drupal)
 
     system_exec = mock()
@@ -198,6 +197,7 @@ class TestControl < Minitest::Test
 
     environment.expects(:is_drupal_environment?).returns(true)
     environment.expects(:environment_name).returns('foo')
+    environment.expects(:template_resources)
 
     expects(:build_css_and_js_for_drupal)
     expects(:copy_project_dependencies_for_awestruct_image)

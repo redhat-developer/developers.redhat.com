@@ -45,7 +45,7 @@ class RhdEnvironments
     end
 
     candidate_directories.compact.map do |directory|
-      drupal_dir = File.join(directory, '..', '..', 'drupal', 'web', 'sites', 'default')
+      drupal_dir = File.join(directory, '..', '..', 'drupal', 'drupal-filesystem', 'web', 'sites', 'default')
       RhdEnvironment.new(directory, @testing_directory, drupal_dir)
     end
   end

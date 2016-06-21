@@ -47,7 +47,8 @@ services:
       - ../../../stylesheets/fonts:/var/www/html/fonts
       - ../../drupal/themes/:/var/www/html/themes
       - ../../drupal/modules/custom/:/var/www/html/modules/custom
-      - ./rhd.settings.php:/var/www/html/sites/default/rhd.settings.php
+      - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
+      - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
 
   drupalmysql:
     image: mariadb:10.0.15

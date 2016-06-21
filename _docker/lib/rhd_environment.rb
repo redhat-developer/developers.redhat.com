@@ -63,8 +63,11 @@ class RhdEnvironment
   end
 
   def get_file(file_name)
-    file = File.new(get_absolute_file_name(file_name))
-    File.exist?(file) ? file : nil
+    if File.exist? get_absolute_file_name(file_name)
+      get_absolute_file_name(file_name)
+    else
+      create_file(file_name)
+    end
   end
 
   #
@@ -74,11 +77,8 @@ class RhdEnvironment
   def template_resources
     if @environment_name == 'drupal-pull-request'
       File.chmod(0775, @drupal_directory)
-      output_file = File.join(@drupal_directory, 'rhd.settings.yml')
+      output_file = get_file('rhd.settings.yml')
       File.write(output_file, ERB.new(File.read(get_file('rhd.settings.yml.erb'))).result)
-
-      output_file = File.join(@drupal_directory, 'rhd.settings.php')
-      File.write(output_file, File.read(get_file('rhd.settings.php')))
     end
   end
 
