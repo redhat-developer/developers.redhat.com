@@ -130,16 +130,29 @@ class Base
     raise(message)
   end
 
+  def current_window
+    @driver.window_handle
+  end
+
   def get_windows
     @driver.window_handles
     @driver.window_handles.map do |w|
       @driver.switch_to.window(w)
-      [w]
+      [w, @driver.title]
     end
   end
 
   def wait_for_windows(size)
     wait_for(10) { get_windows.size == size }
+  end
+
+  def switch_window(first_window)
+    all_windows = @driver.window_handles
+    new_window = all_windows.select { |this_window| this_window != first_window }
+    @driver.close
+
+    @driver.switch_to.window(first_window)
+
   end
 
   private

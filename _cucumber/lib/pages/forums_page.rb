@@ -7,13 +7,11 @@ class Forums < Base
     include ProductsHelper
   end
   
-  PRODUCTS_FORUM_SECTIONS                  = { css: '.development-tool' }
-  PRODUCTS_FORUM_LINKS                     = { css: '.forums-product-categories h4 > a' }
+  PRODUCTS_FORUM_SECTIONS                         = { css: '.development-tool' }
+  PRODUCTS_FORUM_LINKS                            = { css: '.forums-product-categories h4 > a' }
   FORUMS_INFRASTRUCTURE                           = { id: 'infrastructure' }
   FORUMS_INTEGRATION_AND_AUTOMATION               = { id: 'integration_and_automation' }
   FORUMS_ACCELERATED_DEVELOPMENT_AND_MANAGEMENT   = { id: 'accelerated_development_and_management' }
-  # FORUMS_CLOUD                                    = { id: 'private_cloud' }
-  # FORUMS_MOBILE                                   = { id: 'mobile' }
 
   def initialize(driver)
     super
@@ -29,14 +27,22 @@ class Forums < Base
 
   def forums_available_products
     products = []
-    links = find_elements(PRODUCTS_FORUM_LINKS)
-    links.each do |el|
-      products << el.text
-    end
-    products
+    ids      = []
+
+    available_links = find_elements(PRODUCTS_FORUM_LINKS)
+    available_ids   = find_elements(xpath: "//*[@class='development-tool']//*")
+
+    #return available product id's
+    available_ids.each { |id| ids << id.attribute('id') }
+    #return available product links
+    available_links.each { |el| products << el.text }
+
+    ids.uniq!
+    return products, ids.reject!(&:empty?)
   end
 
   def forums_product_section_for(product)
+    wait_for(20) { displayed?(id: "development-tool-#{product}") }
     text_of(id: "development-tool-#{product}")
   end
 

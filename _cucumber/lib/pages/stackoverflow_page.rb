@@ -140,10 +140,10 @@ class StackOverflow < Base
   def query_questions(answer)
     questions = @driver.find_elements(:css, '.stackoverflow-update .update .update-meta .row')
     questions.each do |q|
-      @question_element = q
       child_elements = []
-      parent_li = @question_element.find_elements(:xpath, './/*')
+      parent_li = q.find_elements(:xpath, './/*')
       parent_li.each do |t|
+        @question_element = t
         child_elements << t['class']
         if answer == 'with'
           return @question_element, true if child_elements.include? 'callout qtn-answer display-answer'
