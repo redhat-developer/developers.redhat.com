@@ -6,7 +6,8 @@ module ProductsHelper
       when 'name'
         return data['name']
       when 'description'
-        return data['index']['desc']
+        desc = data['index']['desc'].gsub("\n", ' ')
+        return desc.chomp(' ')
       else
         raise("#{info} was not a valid product item, please check Products helper module in /lib/helpers")
     end
