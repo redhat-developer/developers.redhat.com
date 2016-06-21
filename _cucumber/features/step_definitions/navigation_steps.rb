@@ -4,10 +4,16 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       @page.site_nav.visit
     when 'technologies'
       @page.site_nav.visit('/products/')
+    when 'downloads'
+      @page.site_nav.visit('/downloads/')
     when 'registration'
       @page.site_nav.navigate_to('register')
     when 'login'
       @page.site_nav.navigate_to('login')
+    when 'stack overflow'
+      @page.site_nav.visit('/stack-overflow/')
+    when 'product forums'
+      @page.site_nav.visit('/forums/')
     else
       @page.site_nav.visit("/#{page.downcase}/")
   end
@@ -50,7 +56,7 @@ When(/^I hover over the ([^"]*) menu item$/) do |menu_item|
   @page.site_nav.hover_over_nav_menu(menu_item.downcase)
 end
 
-Then(/^I should see the following "(Topics|Technologies|Community)" (desktop|mobile) sub\-menu items:$/) do |tab, resolution, table|
+Then(/^I should see the following "(Topics|Technologies|Community|Help)" (desktop|mobile) sub\-menu items:$/) do |tab, resolution, table|
   table.raw.each do |row|
     sub_items = row.first
     expect(@page.site_nav.sub_menu_items(tab.downcase, resolution)).to include(sub_items)
@@ -67,6 +73,13 @@ Then(/^I should see the following Community sub-menu items and their description
   table.hashes.each do |row|
     expect(@page.site_nav.sub_menu_items('community', 'desktop')).to include("#{row['name']}")
     expect(@page.site_nav.sub_menu_items('community', 'desktop')).to include("#{row['description']}")
+  end
+end
+
+Then(/^I should see the following Help sub-menu items and their description:$/) do |table|
+  table.hashes.each do |row|
+    expect(@page.site_nav.sub_menu_items('help', 'desktop')).to include("#{row['name']}")
+    expect(@page.site_nav.sub_menu_items('help', 'desktop')).to include("#{row['description']}")
   end
 end
 
@@ -112,6 +125,17 @@ Then(/^each Communities sub\-menu item should contain a link to its retrospectiv
     href = @page.site_nav.get_href_for("#{row['name']}")
     if row['name'] == 'Developers Blog'
       expect(href).to eq 'http://developers.redhat.com/blog'
+    else
+      expect(href).to eq "#{$host_to_test}/#{row['href']}"
+    end
+  end
+end
+
+Then(/^each Help sub\-menu item should contain a link to its retrospective page:$/) do |table|
+  table.hashes.each do |row|
+    href = @page.site_nav.get_href_for("#{row['name']}")
+    if row['name'] == 'Resources'
+      expect(href).to eq "#{$host_to_test}/resources"
     else
       expect(href).to eq "#{$host_to_test}/#{row['href']}"
     end

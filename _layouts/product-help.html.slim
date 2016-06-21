@@ -1,0 +1,54 @@
+---
+layout: product
+type: Help
+---
+
+
+.row
+  .large-24.columns
+    h2#help Help
+
+- if page.product.stackoverflow_tags
+  = partial "product_help_forums_and_stack.html.slim", {'parent' => page}
+- else
+  = partial "product_help_forums.html.slim", {'parent' => page}
+
+.row
+  .large-24.columns.services-and-support
+    h3 Red Hat Support and Professional Services
+    p It's ok if you don't have the time to figure everything out on your own.
+    ul.small-block-grid-2.large-block-grid-4
+      li
+        span
+          img(src="http://static.jboss.org/rhd/images/help_icon_subscription.svg" alt="Help Subscription Icon")
+        span
+          br
+          h5.caps Subscriptions
+          p Known for enterprise-grade support subscriptions, Red Hat offers development support, too.
+          a(href="https://www.redhat.com/apps/store/developers/")Learn More
+      li
+        span
+          img(src="http://static.jboss.org/rhd/images/help_icon_consulting.svg" alt="Help Consulting Icon")
+        span
+          br
+          h5.caps Consulting
+          p Providing strategic and technical expertise to help you address big (or not so big) challenges.
+          a(href="https://www.redhat.com/en/services/consulting")Learn More
+      li
+        span
+          img(src="http://static.jboss.org/rhd/images/help_icon_training.svg" alt="Help Training Icon")
+        span
+          h5.caps.offset-img Training & Certifications
+          p Building enterprise apps requires more than self-paced learning. Get formal training, be certified.
+          a(href="https://www.redhat.com/en/services/training")Learn More
+      li
+        span
+          img(src="http://static.jboss.org/rhd/images/help_icon_appcertification.svg" alt="Help App Certification Icon")
+        span
+          br
+          h5.caps App Certification
+          p ISVs - differentiate your docker-based apps as trusted solutions with Red Hat Certification.
+          a(href="https://connect.redhat.com/activities/certification")Learn More
+
+= javascripts("stackoverflow", true) do
+  script src="#{site.base_url}/javascripts/vendor/moment.js"

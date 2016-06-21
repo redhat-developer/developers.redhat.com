@@ -3,7 +3,7 @@
 /Define left navigation items for the products. Maybe this should move to a yml file?
 - page.product_subsection = page.parent.output_path[/^\/products\/[a-z]+\/([^\/]+)/, 1]
 
-- page.nav_items = {"overview" => "Overview", "get-started" => "Get Started", "docs-and-apis" => "Docs and APIs", "connectors" => "Connectors" , "learn" => "Learn", "community" => "Community", "download" => "Download ", "resources" => "Resources ", "updates" => "Updates ", "buzz" => "Buzz"}
+- page.nav_items = {"overview" => "Overview", "get-started" => "Get Started", "docs-and-apis" => "Docs and APIs", "connectors" => "Connectors" , "learn" => "Learn", "community" => "Community", "download" => "Download ", "resources" => "Resources ", "updates" => "Updates ", "buzz" => "Buzz", "help" => "Help"}
 
 /The menu items, created by iterating over the array defined above
 ul.side-nav
@@ -46,7 +46,11 @@ ul.side-nav
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
-    - elsif (k != "buzz" && k != "learn" && k != "connectors" && k != "community" && k != "download" && k != "resources" && k != "updates" && k != "docs-and-apis")
+    - elsif (k == "help" && page.parent.product.has_help_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
+        | #{v}
+        i.fa.fa-caret-right.fa-lg
+    - elsif (k != "buzz" && k != "learn" && k != "connectors" && k != "community" && k != "download" && k != "resources" && k != "updates" && k != "help" && k != "docs-and-apis")
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg

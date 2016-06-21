@@ -13,6 +13,7 @@ class ProductOverviewPage < Base
   LEARN         = { xpath: "//*[@class='side-nav']//a[contains(text(),'Learn')]" }
   DOWNLOAD      = { xpath: "//*[@class='side-nav']//a[contains(text(),'Download')]" }
   BUZZ          = { xpath: "//*[@class='side-nav']//a[contains(text(),'Buzz')]" }
+  HELP          = { xpath: "//*[@class='side-nav']//a[contains(text(),'Help')]" }
 
   def initialize(driver)
     super
@@ -38,6 +39,8 @@ class ProductOverviewPage < Base
         el = DOWNLOAD
       when 'Buzz'
         el = BUZZ
+      when 'Help'
+        el = HELP
       else
         raise("#{nav_item} is not a recognised side nav item")
     end

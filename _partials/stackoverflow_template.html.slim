@@ -1,0 +1,28 @@
+.stackoverflow-update
+  .update
+    .update-meta
+      .row
+        .large-6.columns.qtn-stats
+          span.votes-count
+            h4 <!=up_vote_count!>
+            p Votes
+          span.answer-count(class="<!=qtnAccepted!>")
+            h4 <!=answer_count!>
+            p Answers
+          span.views-count
+            h4 <!=view_count!>
+            p Views
+        .large-18.columns
+          a.update-source(href="<!=sys_url_view!>" target="_blank")
+            h5.qtn-title <!=sys_title!>
+          p.qtn-content <!=qtnContent!>
+          .callout.qtn-answer(class="<!=displayAnswr!>")
+            p <!=answer!>
+            a(href="<!=sys_url_view!>" target="_blank")
+              | Read full question at Stack Overflow&nbsp;
+              i.fa.fa-angle-right
+          p
+            span.so-tags
+              strong Tags:&nbsp;
+              <!=tags!>
+            span.so-author <!=dateCreated!> | <!=authorName!>

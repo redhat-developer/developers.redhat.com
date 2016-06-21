@@ -101,4 +101,14 @@ class Site
     @current_page = @github
   end
 
+  def stack_overflow
+    @stack_overflow ||= StackOverflow.new(@driver)
+    @current_page = @stack_overflow
+  end
+
+  def forums
+    @forums ||= Forums.new(@driver)
+    @current_page = @forums
+  end
+
 end

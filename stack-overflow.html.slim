@@ -1,0 +1,43 @@
+---
+layout: technology-base
+status: green
+title: Stack Overflow
+---
+
+.hero.hero-wide.stackoverflow-main
+  .row
+    .large-10.columns
+      img(src="http://static.jboss.org/images/rhd/headers/stackoverflow_logo.svg" alt="Stack Overflow logo") 
+    .large-14.columns
+      h3 You've got questions. We've got answers.
+      p  We know you need high quality answers to your development questions in a timely fashion. Using our selected tags, you can now get answers to your questions directly on Stack Overflow. Our Red Hat experts are waiting for your question!
+
+section.stack-help
+  .row
+    .large-4.columns
+      h3 Need Help?
+    .large-20.columns
+      p
+        | Read
+        a(href="#{site.base_url}/articles/how-to-post-tag-question-stack-overflow/")  How to post and tag questions at Stack Overflow
+        |  to get tips on how to make sure our experts see your question.
+
+.row
+  form.stackoverflow-filters(method="GET" action="")
+    .large-14.columns
+      / input(type="text" placeholder="Filter by keyword" name="filter-text")
+      label(for="filterProducts") Filter by Product
+      .styled-select
+        select(name="filter-products" id="filterProducts")
+          option(value="") Show all
+          option(value="eap") Red Hat JBoss Enterprise Application Platform
+          option(value="webserver") Red Hat JBoss Web Server
+          option(value="rhel") Red Hat Enterprise Linux
+          option(value="softwarecollections") Red Hat Software Collections
+          option(value="fuse") Red Hat JBoss Fuse
+          option(value="openshift") OpenShift Enterprise by Red Hat
+  .large-24.columns
+    .stackoverflow-container
+
+= javascripts("stackoverflow", true) do
+  script src="#{site.base_url}/javascripts/vendor/moment.js"

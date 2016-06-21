@@ -191,8 +191,20 @@
                   a(href="#{site.base_url}/community/contributor/")
                     | Content Contributors
                     span.page-description Share your knowledge. Contribute content to Red Hat Developers.
-              li(class=((page.url.include?('/resources')) && !(page.url.include?('/products/')) ? 'active' : ''))
-                a(href="#{site.base_url}/resources/") Resources
+              li.has-sub-nav(class=((page.url.include?('/help/')) && !(page.url.include?('/products/')) ? 'active' : ''))
+                a(href="#{site.base_url}/help/")
+                  | Help
+                  i.fa.fa-angle-down
+                .sub-nav.pull-right(id="sub-nav-help")
+                  a(href="#{site.base_url}/resources")
+                    | Resources
+                    span.page-description Important technical resources for you in all shapes and sizes:  blogs, books, code, videos and more.
+                  a(href="#{site.base_url}/forums")
+                    | Forums
+                    span.page-description We've extended our popular JBoss.org forums to cover our entire Red Hat portfolio for you.
+                  a(href="#{site.base_url}/stack-overflow")
+                    | Stack Overflow Q&amp;A
+                    span.page-description You already use Stack Overflow, so we'll help you use it to find your best answers.
               li(class=(page.url.include?('downloads') ? 'active' : ''))
                 a(href="#{site.base_url}/downloads/") Downloads
 
@@ -347,6 +359,8 @@
       script src="#{site.base_url}/javascripts/latest.js"
       / script src="#{site.base_url}/javascripts/searchpage.js"
       script src="#{site.base_url}/javascripts/a-b-testing.js"
+      script src="#{site.base_url}/javascripts/stackoverflow.js"
+      script src="#{site.base_url}/javascripts/product-forums.js"
     - unless page.extra_javascripts.nil?
       - page.extra_javascripts.each do |id|
         = deferred_javascripts id

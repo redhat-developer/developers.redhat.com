@@ -1,0 +1,31 @@
+---
+layout: technology-base
+title: Forums | Red Hat Developers
+---
+.hero.hero-wide.hero-forums
+  .row
+    .large-24.columns
+      h2 Forums
+.row
+  .large-24.columns
+    .text-right Forums powered by jboss.org.
+.row.forums-product-categories
+  - site.categories.each do |category|
+    .large-24.product-category
+      - unless ["mobile","private_cloud"].include? category.name.to_s
+        .large-24.category-label(id="#{category.name.to_s}")
+          h4
+            = category.name.to_s.gsub('_', ' ').upcase
+      - category.products.each do |p|
+        - if site.products[p]
+          - product = site.products[p]
+          - unless ["rhel","mobileplatform","openshift"].include? product.id
+            .development-tool(id="development-tool-#{product.id}")
+              .row
+                .large-12.columns
+                  h4
+                    a(id="#{product.id}" href="#{site.product_forum_base_url}#{product.id}/" target="_blank")
+                      = product.name
+                      i.fa.fa-comments-o
+                .large-12.columns
+                  = product['index'].desc
