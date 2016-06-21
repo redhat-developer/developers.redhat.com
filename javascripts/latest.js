@@ -8,7 +8,7 @@ app = window.app || {};
 app.latest = {};
 
 app.latest.fetch = function() {
-  $.getJSON(app.dcp.url.search + '/resources?newFirst=true&size10=true',function(data){
+  $.getJSON(app.dcp.url.search + '/resources?newFirst=true&size10=true&sys_type=quickstart&sys_type=video&sys_type=demo&sys_type=jbossdeveloper_example&sys_type=jbossdeveloper_archetype&sys_type=jbossdeveloper_bom&sys_type=article&sys_type=blogpost&sys_type=book',function(data){
     if(data.hits && data.hits.hits) {
       app.latest.render(data.hits.hits);
     }

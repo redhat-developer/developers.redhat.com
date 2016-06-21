@@ -1,0 +1,91 @@
+:awestruct-interpolate: true
+
+## Prerequisites section title
+Introduction and Prerequisites
+
+## Prerequisites section
+In this tutorial, you will learn how to start building {tthw-langlong} applications in docker formatted containers using Red Hat Container Development Kit {tthw-cdkver} on Red Hat Enterprise Linux. You need to have Container Development Kit {tthw-cdkver} installed and should have downloaded the Red Hat Enterprise Linux vagrant box for your system. See the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[Container Development Kit Installation Guide] for more information. 
+
+If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+
+## Step1 Duration
+5 minutes
+
+## Step1 Title
+Start the vagrant box
+
+## Step2 Duration
+5 minutes
+
+## Step2 Title
+Run your first container
+
+## Step3 Duration
+5 minutes
+
+## Step3 Title
+Build Hello World in a container
+
+## Step1 Content
+
+The steps in this tutorial run on Red Hat Enterprise Linux inside the vagrant box. The vagrant box includes docker, OpenShift Enterprise, and kubernetes.. You will enter the commands in this tutorial after logging into the box with `vagrant ssh`.
+
+Open a _Terminal_ or _Command_ window to enter the commands in this tutorial. On Windows, using _Cygwin Terminal_ instead of a _cmd.exe_ window is suggested.
+
+If you haven't already installed the kit, follow the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[Container Development Kit Installation Guide].
+
+
+### Start the vagrant box
+
+To start the vagrant box:
+
+. Change to the directory where you unpacked the CDK zip file.
+. Change to the sub-directory `components/rhel/rhel-ose`. Alternatively, copy the `Vagrantfile` in that directory to a working directory of your choosing.
+. Start the box by entering `vagrant up`. Note: the `Vagrantfile` needs to be in the current directory when entering vagrant commands without specifying a box name or a path to the `Vagrantfile`.
+. You will be prompted to register the Vagrant box with Red Hat Subscription Management during startup. This is required to allow the box to download software from Red Hat by attaching it to your Red Hat subscription. You will need to enter your Red Hat username and password.
++
+The vagrant registration plugin will automatically attach the box to your Red Hat subscription when it starts up and release it when the box is shutdown using the `vagrant halt` command.
+
+When starting the vagrant box, a number of log messages will be displayed. Most of these are informational, however you should review the output if the box fails to start. Below is the output from a typical `vagrant up`:
+
+```
+$ vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Clearing any previously set forwarded ports...
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+    default: Adapter 2: hostonly
+==> default: Forwarding ports...
+    default: 22 => 2222 (adapter 1)
+==> default: Running 'pre-boot' VM customizations...
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default: Warning: Connection timeout. Retrying...
+    default: Warning: Connection timeout. Retrying...
+    default: Warning: Remote connection disconnect. Retrying...
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+    default: No guest additions were detected on the base box for this VM! Guest
+    default: additions are required for forwarded ports, shared folders, host only
+    default: networking, and more. If SSH fails on this machine, please install
+    default: the guest additions and repackage the box to continue.
+    default:
+    default: This is not an error message; everything may continue to work properly,
+    default: in which case you may ignore this message.
+==> default: Configuring and enabling network interfaces...
+==> default: Registering box with vagrant-registration...
+    default: Would you like to register the system now (default: yes)? [y|n]y
+    default: username: _your username_
+    default: password: _your password_
+==> default: Rsyncing folder: /cygdrive/c/cdk2/components/rhel/rhel-ose/ => /vagrant
+==> default: Running provisioner: shell...
+    default: Running: inline script
+==> default: Created symlink from /etc/systemd/system/multi-user.target.wants/openshift.service to /etc/systemd/system/openshift.service.
+```
+
+You should now be able to log into the vagrant box using `vagrant ssh`.
+

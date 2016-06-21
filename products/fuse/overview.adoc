@@ -9,7 +9,7 @@
 
 link:http://www.redhat.com/products/jbossenterprisemiddleware/fuse/[Red Hat JBoss Fuse] is an open source, lightweight and modular integration platform with a new-style Enterprise Service Bus (ESB) that supports integration beyond the data center. The capability to connect all enterprise assets and the ability to deploy JBoss Fuse in several different configurations advances intelligent integration to all facets of your business – on premise or in the Cloud.
 
-FIS extends the integration capabilities to OpenShift Platform-as-a-Service (PaaS) solution.
+Fuse Integration Services extends the integration capabilities to OpenShift Platform-as-a-Service (PaaS) solution.
 
 == Features1
 
@@ -61,6 +61,7 @@ image::#{cdn(site.base_url + '/images/products/fuse/Fuse_Builtfromdiagram_02.png
 |Apache ActiveMQ|Provides core messaging within the ESB and for integrating with other applications.
 |Apache Karaf|Offers a lightweight OSGI-based runtime container for managing the components that compose your applications.
 |Fabric8|Makes it simple to manage large and distributed, JBoss Fuse deployments from a central location.
+|SwitchYard|Structured development framework for integration applications on top of Apache Camel and Java EE that uses service-oriented principles.
 |====
 
 [.large-24]
