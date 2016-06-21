@@ -44,10 +44,10 @@ services:
     volumes:
       - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
-      - ../../../images:/var/www/drupal/web/images:ro
-      - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
       - ../../drupal/drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
       - ../../drupal/drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
+      - ../../../images:/var/www/drupal/web/images:ro
+      - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
 
   drupalmysql:
     image: mariadb:10.0.15
