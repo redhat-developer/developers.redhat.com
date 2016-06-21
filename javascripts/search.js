@@ -143,6 +143,7 @@ function searchCtrlFunc($scope, searchService) {
     query: q,
     sortBy: 'score',
     size: 10,
+    size10: true,
     from: 0,
     sys_type: [],
     project: '',
@@ -185,6 +186,14 @@ function searchCtrlFunc($scope, searchService) {
       if(params.newFirst !== "true") {
         delete params.newFirst;
       }
+
+      // delete old size params
+      ['10', '25', '50', '100'].forEach(function(size){
+        delete params['size' + size];
+      });
+
+      // use the size10=true format
+      params['size'+params.size] = true;
 
       // return cleaned params
       return params;
