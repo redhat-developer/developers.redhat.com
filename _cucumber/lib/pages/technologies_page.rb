@@ -49,11 +49,6 @@ class Technologies < Base
   end
 
   def get_started_button_for(product)
-
-    href.attribute('href')
-  end
-
-  def get_started_button_for(product)
     href = find(id: "get-started-with-#{product}")
     href.attribute('href')
   end

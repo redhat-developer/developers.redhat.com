@@ -3,20 +3,20 @@ require_relative 'base'
 class StackOverflow < Base
   attr_accessor :question_with_answer_el, :question_without_answer_el
 
-  STACK_OVERFLOW_CONTAINER           =  { css: '.update' }
-  QUESTION_ROW                       =  { css: '.stackoverflow-update' }
+  STACK_OVERFLOW_CONTAINER           =  { class: 'update' }
+  QUESTION_ROW                       =  { class: 'stackoverflow-update' }
   VOTES                              =  { css: '.stackoverflow-update .update .votes-count p' }
   VOTE_COUNT                         =  { css: '.stackoverflow-update .update .votes-count h4' }
   ANSWERS                            =  { css: '.stackoverflow-update .update .answer-count p' }
   ANSWER_COUNT                       =  { css: '.stackoverflow-update .update .answer-count h4' }
   VIEWS                              =  { css: '.stackoverflow-update .update .views-count p' }
   VIEW_COUNT                         =  { css: '.stackoverflow-update .update .views-count h4' }
-  QUESTION_TITLE                     =  { css: '.qtn-title' }
-  QUESTION_LINK                      =  { css: '.update-source' }
-  QUESTION_SUMMARY                   =  { css: '.qtn-content' }
-  LATEST_ANSWER                      =  { css: '.display-answer' }
-  READ_FULL_QUESTION_LINK            =  { css: '.display-answer a' }
-  AUTHOR                             =  { css: '.so-author' }
+  QUESTION_TITLE                     =  { class: 'qtn-title' }
+  QUESTION_LINK                      =  { class: 'update-source' }
+  QUESTION_SUMMARY                   =  { class: 'qtn-content' }
+  LATEST_ANSWER                      =  { css: 'callout qtn-answer display-answer' }
+  READ_FULL_QUESTION_LINK            =  { css: 'display-answer a' }
+  AUTHOR                             =  { class: 'so-author' }
   FILTER_BY_PRODUCT                  =  { id: 'filterProducts' }
 
   def initialize(driver)
@@ -97,7 +97,7 @@ class StackOverflow < Base
   end
 
   def latest_answer_section_visible?
-    custom_displayed?(@element, LATEST_ANSWER)
+    @element.text.include? 'Latest answer:'
   end
 
   def read_full_question_link
@@ -154,5 +154,6 @@ class StackOverflow < Base
     end
     false
   end
+
 
 end
