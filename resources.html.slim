@@ -90,17 +90,17 @@ div(ng-app="search")
 
               .search-input-group
                 label Publish Date
-                select(ng-model="params.activity_date_interval" ng-change="updateSearch(); resetPagination();")
+                select(ng-model="params.publish_date" ng-change="updateSearch(); resetPagination();")
                   option(value="") Filter by Date
-                  option(value="year") Past Year
-                  option(value="quarter") Past Quarter
-                  option(value="month") Past Month
-                  option(value="week") Past Week
-                  option(value="day") Past Day
+                  option(value="now-1y") Past Year
+                  option(value="now-3M") Past Quarter
+                  option(value="now-1M") Past Month
+                  option(value="now-7d") Past Week
+                  option(value="now-1d") Past Day
                   option(value="custom") Custom
 
               .search-input-group.custom-dates
-                div(ng-show="params.activity_date_interval === 'custom'")
+                div(ng-show="params.publish_date === 'custom'")
                   label
                     | Start Date
                     input(type="date" ng-model="params.activity_date_from" ng-change="updateSearch(); resetPagination();")

@@ -176,8 +176,8 @@ function searchCtrlFunc($scope, searchService) {
       var params = Object.assign({}, p);
 
       // if "custom" is selected, remove it
-      if(params.activity_date_interval && params.activity_date_interval === 'custom') {
-        delete params.activity_date_interval;
+      if(params.publish_date && params.publish_date === 'custom') {
+        delete params.publish_date;
       } else {
         delete params.activity_date_from;
         delete params.activity_date_to;
