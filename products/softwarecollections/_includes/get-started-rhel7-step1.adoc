@@ -18,14 +18,10 @@ Start _Red Hat Subscription Manager_ using the _System Tools_ group of the _Appl
 . Select _Repositories_ from the _System_ menu of the subscription manager.
 . In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-7-rpms_ and _rhel-7-server-optional-rpms_.  If you are using a workstation version of Red Hat Enterprise Linux, the repositories will be named _rhel-workstation-rhscl-7-rpms_ and _rhel-7-workstation-optional-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the enabled column.
 
-If you don’t see any RHSCL repositories in the list, your subscription might not include it.
+// Punting on the screenshot for now. there doesn't seem to be a way to access awestruct functions from included asciidocs. site.base_url can be worked around using an asciidoc attribute, but the cdn function is the show stopper.
+// image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel7/manage-repositories.png')}[Manage Repositories]
 
-// {tthw-cdn-site-base-url} contains #{cdn(site.base_url} but WILL be passed across the include
-// image:{tthw-cdn-site-base-url}/images/products/softwarecollections/rhel7/manage-repositories.png[Manage Repositories]
-// FIXME, should be /rhel{tthw-rhelver}/ but that breaks the CDN, so rhel6 is getting the wrong image for now.
-image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel7/manage-repositories.png')}[Manage Repositories]
-
-See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
+If you don’t see any RHSCL repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
 
 
 ### Using subscription-manager from the command line
