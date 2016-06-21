@@ -153,7 +153,7 @@ function searchCtrlFunc($scope, searchService) {
 
   // Search Page Specifics
   if(isSearch && searchTerm) {
-    $scope.params.query = searchTerm.pop();
+    $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
     $scope.params.type = 'rht_website';
   }
 
