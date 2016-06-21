@@ -106,4 +106,9 @@ class Site
     @current_page = @stack_overflow
   end
 
+  def forums
+    @forums ||= Forums.new(@driver)
+    @current_page = @forums
+  end
+
 end
