@@ -1,0 +1,99 @@
+## Faq section title
+[[troubleshooting]]Troubleshooting and FAQ
+
+## Faq section
+
+. *As a developer, how can I get a Red Hat Enterprise Linux subscription that includes Red Hat Software Collections?*
++
+Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by {tthw-download-manager}/download-manager/link/1350474[registering and downloading] through developers.redhat.com. We recommend you follow our link:{tthw-site-base-url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt. For more information, see link:{tthw-site-base-url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
+
+. *I can't find the RHSCL repository on my system*.
++
+Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. For a list of what subscriptions include RHSCL see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
++
+The name of the RHSCL repository depends on whether you have a server or workstation version of Red Hat Enterprise Linux installed. You can use `subscription-manager` to view the available software repositories and verify that you have access to RHSCL:
++
+[listing,subs="attributes"]
+----
+$ su -
+# subscription-manager repos --list | egrep rhscl
+----
+
+. *How often are RHSCL packages updated?*
++
+*What is the support lifecycle for packages in RHSCL?*
++
+Generally, a new release of RHSCL occurs annually. Many of the packages in RHSCL are supported for two or three years. See link:https://access.redhat.com/support/policy/updates/rhscl[Red Hat Software Collections Product Life Cycle].
+
+. *Can I use RHSCL packages in containers?*
++
+Yes, many of the RHSCL packages are available as docker-formatted container images from the Red Hat Container Registry. Get started guides for building your first container are available on link:{tthw-site-base-url}/[developers.redhat.com].
++
+The `Dockerfiles` used to build RHSCL container images are available for you to use in building custom container images. See the <<rhscldocs,RHSCL documentation>> above, for more information.
+
+. *Can I build my own packages that use the scl mechanisms to manage multiple versions?*
++
+Yes. See the RHSCL Packaging Guide for information on building your own software collections. The packaging guide is recommended for developers who want a more complete understanding of how software collections work.
+
+. *Is there an open-source community for software collections?*
++
+*How can I contribute or get involved with software collections?*
++
+The open source community that is the upstream for RHSCL can be found at link:https://www.softwarecollections.org/about[softwarecollections.org], also known as _SCLo_. You can connect with other developers, create and host new collections for your projects on the SCLo site. There is also a link:https://wiki.centos.org/SpecialInterestGroup/SCLo[Software Collections Special Interest Group] (SIG) under the CentOS project.
++
+Note: While SCLo may be the source for many RHSCL packages, only the packages in RHSCL are supported by Red Hat.
+
+. *When I run `yum install {tthw-sclname}`, it fails due to a missing dependency*.
++
+Some RHSCL collections require packages that are in the optional RPMs repository, which is not enabled by default. See <<Step1,Enable Red Hat Software Collections>> above, for how to enable both the optional RPMs and RHSCL repositories.
+
+. *How can I find out what RHSCL collections are installed?*
++
+`scl --list` will show the list of collections that have been installed, whether they are enabled or not.
++
+[listing,subs="attributes"]
+----
+$ scl --list
+{tthw-sclname}
+----
+
+. *How do I find out if there is a newer version of {tthw-langshort} in RHSCL?*
++
+*How do I find out what version of {tthw-langshort} is available in the current RHSCL?*
++
+*I have the RHSCL repository enabled, but I can’t find the {tthw-langshort} version listed in this tutorial.*
++
+Use the following command to find packages with matching names:
++
+[listing,subs="attributes"]
+----
+# yum list available {tthw-scl-no-version}\*
+----
++
+Note: some older collections do not use the `rh-` prefix. To find them omit the `rh-` prefix or replace it with an escaped wild card `\*`.
+
+. *I’ve installed {tthw-sclname} from RHSCL, but `{tthw-langcmd}` is not in my path.*
++
+*I can’t find the `{tthw-langcmd}` command.*
++
+RHSCL does not alter the system path. You need to use `scl enable` to change the environment for your session:
++
+[listing,subs="attributes"]
+----
+$ scl enable {tthw-sclname} bash
+----
++
+For more information see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/index.html[Red Hat Software Collection documentation].
+
+. *When I try to run `{tthw-langcmd}`, I get an error about a missing shared library.*
++
+This is due to not having run `scl enable` first. When `scl enable` runs, in addition to setting up the command search PATH, it also sets up the search path for shared libraries, LD_LIBRARY_PATH.
+
+. *How do I uninstall RHSCL packages and any dependencies?*
++
+Most of the collections have a `-runtime` meta-package that causes the main package and any dependencies to be installed. Uninstalling the `-runtime` package will cause the dependent packages that are no longer needed to be removed.
++
+[listing,subs="attributes"]
+----
+# yum uninstall {tthw-sclname}-runtime
+----

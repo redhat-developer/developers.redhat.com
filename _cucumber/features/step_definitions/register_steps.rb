@@ -1,7 +1,3 @@
-Given(/^I am on the Registration page$/) do
-  @page.site_nav.navigate_to('register')
-end
-
 When(/^I click to register with my GitHub account$/) do
   @page.registration.click_register_with_github
 end

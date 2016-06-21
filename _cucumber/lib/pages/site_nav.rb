@@ -20,6 +20,8 @@ class SiteNav < Base
   COMMUNITY_SUB_NAV            =  { xpath: '//*[@id="sub-nav-community"]' }
   HELP_SUB_NAV                 =  { xpath: '//*[@id="sub-nav-help"]' }
   SUB_NAV_OPEN                 =  { css: '.sub-nav-open' }
+  SEARCH_FIELD                 =  { css: '.accounts .search-wrapper .user-search' }
+  SEARCH_BUTTON                =  { css: '.search-bar .fa-search' }
 
   def initialize(driver)
     super
@@ -162,6 +164,30 @@ class SiteNav < Base
   def get_href_for(link)
     href = find(partial_link_text: link)
     href.attribute('href')
+  end
+
+  def search_field_visible?
+    displayed?(SEARCH_FIELD)
+  end
+
+  def enter_search_term(search_string)
+    wait_for { displayed?(SEARCH_FIELD) }
+    type(SEARCH_FIELD, search_string)
+  end
+
+  def search_for(query)
+    type(SEARCH_FIELD, query)
+    press_return
+    wait_for_ajax
+  end
+
+  def search_box_attribute(type)
+    attribute(SEARCH_FIELD, type)
+  end
+
+  def click_search_button
+    wait_for { displayed?(SEARCH_BUTTON) }
+    click_on(SEARCH_BUTTON)
   end
 
 end

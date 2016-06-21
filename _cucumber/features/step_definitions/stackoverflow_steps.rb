@@ -1,8 +1,3 @@
-Given(/^I am on the Stack Overflow page$/) do
-  @page.site_nav.visit('/stack-overflow')
-  @page.site_nav.wait_for_ajax
-end
-
 Then(/^I should see a list of (\d+) results$/) do |results|
   @results = results.to_i
   @page.stack_overflow.questions_loaded?(@results)

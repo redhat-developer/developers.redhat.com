@@ -364,7 +364,8 @@ module Aweplug
       # Returns Boolean for the existence of the page within Drupal.
       def exists?(page)
         path = create_path page
-        @faraday.get("/#{path}", nil, {Cookie: @cookie, Authorization: "Basic #{@basic_auth}"}).success?
+        resp = @faraday.get("/#{path}", nil, {Cookie: @cookie})
+        resp.success?
       end
 
       # Public: Sends a PATCH request to Drupal to update an existing page.
@@ -399,13 +400,18 @@ module Aweplug
       def create_payload(page, content)
         path = create_path page
         drupal_type = page.drupal_type || 'page'
-        {title: [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
-         _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
-         body: [{value: content,
-                 summary: page.description,
-                 format: 'as_is_html'}],
-         path: {alias: File.join('/', path)}
+        payload = {title: [{:value => (page.title || page.site.title || path.gsub('/', ''))}],
+                   _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
+                   body: [{value: content,
+                           summary: page.description,
+                           format: 'full_html'}],
+                           path: {alias: File.join('/', path)}
         }
+        if page.drupal_type == 'rhd_solution_overview'
+          payload[:field_solution_name] = [{:value => page.solution.name }]
+          payload[:field_solution_tag_line] = [{:value => page.solution.long_description }]
+        end
+        payload
       end
 
       # Private: Returns the path for Drupal from the page object.
