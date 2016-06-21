@@ -143,17 +143,16 @@ class TestControl < Minitest::Test
     assert_equal(host_ip, determine_docker_host_for_container_ports)
   end
 
-
   def test_start_and_wait_for_supporting_services
 
     environment = mock()
-    environment.expects(:template_resources)
     supporting_services = %w(drupal)
 
     system_exec = mock()
     system_exec.expects(:execute_docker_compose).with(environment, :up, %w(-d --no-recreate).concat(supporting_services))
     expects(:wait_for_searchisko_to_start)
     expects(:wait_for_drupal_to_start)
+    environment.expects(:template_resources)
 
     start_and_wait_for_supporting_services(environment, supporting_services, system_exec)
 
@@ -181,6 +180,7 @@ class TestControl < Minitest::Test
 
     environment.expects(:is_drupal_environment?).returns(false)
     environment.expects(:environment_name).returns('foo')
+    environment.expects(:create_template_resources).never
 
     expects(:copy_project_dependencies_for_awestruct_image)
     expects(:build_css_and_js_for_drupal).never
@@ -198,6 +198,7 @@ class TestControl < Minitest::Test
 
     environment.expects(:is_drupal_environment?).returns(true)
     environment.expects(:environment_name).returns('foo')
+    environment.expects(:create_template_resources)
 
     expects(:build_css_and_js_for_drupal)
     expects(:copy_project_dependencies_for_awestruct_image)
