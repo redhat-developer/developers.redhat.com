@@ -35,8 +35,10 @@ When(/^I (should|should not) see a "([^"]*)" section$/) do |negate, arg|
 end
 
 And(/^a "([^"]*)" link that links to that question on Stack Overflow in a new window$/) do |link_title|
+  first_window = @page.stack_overflow.current_window
   @page.stack_overflow.click_read_full_question_link(link_title)
   @page.stack_overflow.wait_for_windows(2)
+  @page.stack_overflow.switch_window(first_window)
 end
 
 

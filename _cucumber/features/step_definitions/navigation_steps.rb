@@ -12,6 +12,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       @page.site_nav.navigate_to('login')
     when 'stack overflow'
       @page.site_nav.visit('/stack-overflow/')
+    when 'product forums'
+      @page.site_nav.visit('/forums/')
     else
       @page.site_nav.visit("/#{page.downcase}/")
   end
