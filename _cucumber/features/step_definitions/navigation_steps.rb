@@ -4,10 +4,14 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       @page.site_nav.visit
     when 'technologies'
       @page.site_nav.visit('/products/')
+    when 'downloads'
+      @page.site_nav.visit('/downloads/')
     when 'registration'
       @page.site_nav.navigate_to('register')
     when 'login'
       @page.site_nav.navigate_to('login')
+    when 'stack overflow'
+      @page.site_nav.visit('/stack-overflow/')
     else
       @page.site_nav.visit("/#{page.downcase}/")
   end

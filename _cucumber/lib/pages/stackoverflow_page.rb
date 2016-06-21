@@ -48,7 +48,7 @@ class StackOverflow < Base
 
   def questions_loaded?(i)
     begin
-      wait_for(12) {
+      wait_for(20) {
         @stack_questions = find_elements(QUESTION_ROW)
         @stack_questions.size == i
       }
