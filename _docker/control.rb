@@ -235,6 +235,7 @@ def build_environment_resources(environment, system_exec)
 
   if environment.is_drupal_environment?
     build_css_and_js_for_drupal
+    environment.create_template_resources
   end
 
   copy_project_dependencies_for_awestruct_image
@@ -277,10 +278,10 @@ def start_and_wait_for_supporting_services(environment, supporting_services, sys
   unless supporting_services.nil? or supporting_services.empty?
     puts 'Starting all required supporting services...'
 
-    environment.template_resources
     system_exec.execute_docker_compose(environment, :up, %w(-d --no-recreate).concat(supporting_services))
     wait_for_searchisko_to_start(environment, supporting_services)
     wait_for_drupal_to_start(environment, supporting_services)
+    environment.template_resources
 
     puts 'Started all required supporting services.'
   else

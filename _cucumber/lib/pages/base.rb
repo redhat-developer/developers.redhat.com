@@ -29,10 +29,30 @@ class Base
     find(locator).send_keys(input)
   end
 
+  def press_return
+    @driver.action.send_keys(:return).perform
+  end
+
   def select(locator, option)
     select = find(locator)
     option = select.find_element(xpath: "//option[contains(text(), '#{option}')]")
     option.click
+  end
+
+  def default_dropdown_item(loctor)
+    dropdown = find(loctor)
+    select_list = Selenium::WebDriver::Support::Select.new(dropdown)
+    select_list.selected_options[0].text
+  end
+
+  def dropdown_items(loctor)
+    dropdown_items = []
+    dropdown = find(loctor)
+    select_list = Selenium::WebDriver::Support::Select.new(dropdown)
+    select_list.options.each do |item|
+      dropdown_items << item.text
+    end
+    dropdown_items
   end
 
   def click_on(locator)
@@ -69,6 +89,11 @@ class Base
 
   def go_back
     @driver.navigate.back
+  end
+
+  def attribute(locator, type)
+    element = find(locator)
+    element.attribute(type)
   end
 
   def wait_for(seconds=6)

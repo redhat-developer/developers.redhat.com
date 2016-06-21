@@ -1,7 +1,15 @@
 :awestruct-layout: product-get-started-multipath
 :awestruct-interpolate: true
-:title: "Developer Toolset - Get started developing with C++ and Eclipse on RHEL 6"
-:awestruct-description: "Get started developing with C++ and Eclipse from Red Hat Developer Toolset on Red Hat Enterprise Linux 6"
+:tthw-site-base-url: #{site.base_url}
+:tthw-cdn-site-base-url: #{cdn(site.base_url)}
+:tthw-download-manager: #{site.download_manager_base_url}
+:tthw-rhelver: 6
+:tthw-sclname: devtoolset-4
+:tthw-eclipsever: 4.5.2
+:tthw-eclipse-codename: Mars.2
+:tthw-gccver: 5.3.1
+:title: "Developer Toolset - Get started developing with C++ and Eclipse on RHEL {tthw-rhelver}"
+:awestruct-description: "Get started developing with C++ and Eclipse from Red Hat Developer Toolset on Red Hat Enterprise Linux {tthw-rhelver}"
 
 ## Path Name
 C++
@@ -17,11 +25,11 @@ Get started developing with C++ and Eclipse from the Red Hat Developer Toolset.
 Introduction and Prerequisites
 
 ## Prerequisites section
-In this tutorial, you will install the Eclipse 4.4.2 (Luna) IDE and the GNU Compiler Collection 4.9.2 from the Red Hat Developer Toolset (DTS) and build a simple {cpp} Hello World application.  This tutorial should take less than 30 minutes to complete.
+In this tutorial, you will install the Eclipse {tthw-eclipsever} ({tthw-eclipse-codename}) IDE and the GNU Compiler Collection {tthw-gccver} from the Red Hat Developer Toolset (DTS) and build a simple {cpp} Hello World application.  This tutorial should take less than 30 minutes to complete.
 
 Red Hat DTS provides the latest, stable, open source C and {cpp} compilers and complementary development tools, including Eclipse. DTS enables developers to compile applications once and deploy across multiple versions of Red Hat Enterprise Linux.
 
-Before you begin, you will need a current Red Hat Enterprise Linux 6 workstation or server subscription that allows you to download software and get updates from Red Hat. If you don’t have an active subscription, register and obtain the RHEL Developer Suite (includes RHEL server) from here.
+Before you begin, you will need a current Red Hat Enterprise Linux {tthw-rhelver} workstation or server subscription that allows you to download software and get updates from Red Hat. If you don’t have an active subscription, register and obtain the RHEL Developer Suite (includes RHEL server) from here.
 
 If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
 
@@ -49,13 +57,14 @@ In this step, you will configure your system to obtain software, including the R
 
 ### Using the Red Hat Subscription Manager GUI
 
-Red Hat Subscription Manager can be started from the _System_ -> _Administration_ subgroup of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
+Red Hat Subscription Manager can be started from the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
 
 . On the Subscription Manager _System_ menu, select _Repositories_.
-. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-6-rpms_ and _rhel-6-server-optional-rpms_. If you are using a desktop version of Red Hat Enterprise Linux, the repositories will be named _rhel-desktop-rhscl-6-rpms_ and _rhel-6-desktop-optional-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the enabled column. +
+. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-{tthw-rhelver}-rpms_ and _rhel-{tthw-rhelver}-server-optional-rpms_. If you are using a workstation version of Red Hat Enterprise Linux, the repositories will be named _rhel-workstation-rhscl-{tthw-rhelver}-rpms_ and _rhel-{tthw-rhelver}-workstation-optional-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the enabled column. +
 
 If you don’t see any RHSCL repositories in the list, your subscription might not include it.
-image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel6/rhel-6-Manage-repositories-rhscl.png')}[Manage Repositories]
+image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel6/manage-repositories.png')}[Manage Repositories]
+
 
 See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
 
@@ -64,44 +73,44 @@ See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
 
 You can add or remove software repositories from the command line using the `subscription-manager` tool as the root user. Use the `--list` option to view the available software repositories and verify that you have access to RHSCL, which includes DTS:
 
-[.code-block]
-```
+[listing,subs="attributes"]
+----
 $ su -
 # subscription-manager repos --list | egrep rhscl
-```
+----
 
 If you don’t see any RHSCL repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
 
 If you are using a desktop edition of Red Hat Enterprise Linux, change `-server-` to `-desktop-` in the following commands:
 
-[.code-block]
-```
-# subscription-manager repos --enable rhel-server-rhscl-6-rpms
-# subscription-manager repos --enable rhel-6-server-optional-rpms
-```
+[listing,subs="attributes"]
+----
+# subscription-manager repos --enable rhel-server-rhscl-{tthw-rhelver}-rpms
+# subscription-manager repos --enable rhel-{tthw-rhelver}-server-optional-rpms
+----
 
 ## Step2 Content
 
-In this next step you will use a single command to download and install Eclipse 4.4.2, GCC 4.9.2, and other development tools from the Red Hat DTS. The length of time this step takes depends on the speed of your Internet connection and your system. With a reasonably fast connection, this step should complete in well under 5 minutes.
+In this next step you will use a single command to download and install Eclipse {tthw-eclipsever}, GCC {tthw-gccver}, and other development tools from the Red Hat DTS. The length of time this step takes depends on the speed of your Internet connection and your system. With a reasonably fast connection, this step should complete in well under 5 minutes.
 
-[.code-block]
-```
+[listing,subs="attributes"]
+----
 $ su -
-# yum install devtoolset-3
-```
+# yum install {tthw-sclname}
+----
 
 
 ### Install GCC tool chain without the Eclipse IDE - 2 minute alternative
 
 If you prefer, you can skip installing the Eclipse IDE, and select only the GCC tool chain. This will result in a much faster download and installation.
 
-[.code-block]
-```
+[listing,subs="attributes"]
+----
 $ su -
-# yum install devtoolset-3-toolchain
-```
+# yum install {tthw-sclname}-toolchain
+----
 
-Note: You will still use `devtoolset-3` as the name of the software collection in all `scl` commands. Only the name of the meta-package to be installed by `yum` changes.
+Note: You will still use `{tthw-sclname}` as the name of the software collection in all `scl` commands. Only the name of the meta-package to be installed by `yum` changes.
 
 
 ## Step3 Content
@@ -112,7 +121,7 @@ When Eclipse starts, it will prompt you to select a workspace folder. Click _OK_
 
 Note: If you prefer to start Eclipse from the command line use the following command:
 
-`$ scl enable devtoolset-3 eclipse`
+`$ scl enable {tthw-sclname} eclipse`
 
 See <<permanently-enable,Permanently adding DTS to your Development Environment>> for more information.
 
@@ -130,7 +139,7 @@ The following steps will create and run a {cpp} Hello World project using the sa
 .. Click _Next_.
 . On the _Basic Settings_ dialog:
 .. In the _Author_ field, type your name.
-.. In the _Hello World greating field_, type `Hello, Red Hat Developers World`.
+.. In the _Hello World greeting field_, type `Hello, Red Hat Developers World`.
 .. Click _Finish_.
 . In the _Open Associated Perspective?_ dialog, click _Yes_.
 . Close the _Welcome_ tab. This will reveal the C/{cpp} development perspective.
@@ -144,22 +153,23 @@ The following steps will create and run a {cpp} Hello World project using the sa
 
 +
 You will see "Hello, Red Hat Developers World" in the _Console_ tab on the lower half of the Eclipse window. You may want to make the Eclipse window larger, or make the Console pane larger to see more of the output from the build and run steps. +
-image:#{cdn(site.base_url + '/images/products/developertoolset/rhel-6-dts-eclipse-3.png')}[Eclipse Project]
+image:#{cdn(site.base_url + '/images/products/developertoolset/rhel6/eclipse-project.png')}[Eclipse Project]
 
-For more information, see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Eclipse-Use.html[Using Eclipse] section of the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/index.html[Red Hat Developer Toolset 3.1 User Guide].
+For more information, see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/User_Guide/sect-Eclipse-Use.html[Using Eclipse] section of the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/User_Guide/index.html[Red Hat Developer Toolset 4.1 User Guide].
 
 
 ### Using DTS {cpp} from the command line without an IDE
 
 If you skipped installing Eclipse or prefer to work in a _Terminal_ window, you can run the DTS GNU {cpp} compiler from the command line. The GNU {cpp} compiler is run with the command, `pass:[g++]`. You need to add DTS to your environment with `scl enable` in a _Terminal_ window. Also see <<permanently-enable,Permanently adding DTS to your Development Environment>> for more information.
 
-`$ scl enable devtoolset-3 bash`
+`$ scl enable {tthw-sclname} bash`
 
-Now create `hello.cpp` using your preferred text editor or simply use `cat`:
+Now create `hello.cpp` using a text editor such as `vi`, `nano`, or `gedit` with the following content:
 
-[.code-block]
-```
-$ cat > hello.cpp
+
+.hello.cpp
+[source,c++]
+----
 #include <iostream>
 
 using namespace std;
@@ -168,25 +178,23 @@ int main(int argc, char *argv[]) {
   cout << "Hello, Red Hat Developers World!" << endl;
   return 0;
 }
-```
-
-Type `control-d` to exit `cat`, or if you used an editor save the file and exit.
+----
 
 Now compile and run the program:
 
-[.code-block]
-```
+[listing,subs="attributes"]
+----
 $ g++ -o hello hello.cpp
 $ ./hello
 Hello, Red Hat Developers World!
-```
+----
 
-For more information, see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-GCC-CPP.html[GNU C++ Compiler] section of the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/index.html[Red Hat Developer Toolset 3.1 User Guide].
+For more information, see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/User_Guide/sect-GCC-CPP.html[GNU C++ Compiler] section of the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/User_Guide/index.html[Red Hat Developer Toolset 4.1 User Guide].
 
 
 ### Working with the Red Hat Developer Toolset and Software Collection packages
 
-The Red Hat Developer Toolset is delivered as a set of packages in the Red Hat Software Collection. The software packages in RHSCL are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login, or start a new terminal sesssion, `scl enable` needs to be run again.
+The Red Hat Developer Toolset is delivered as a set of packages in the Red Hat Software Collection. The software packages in RHSCL are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login, or start a new terminal session, `scl enable` needs to be run again.
 
 While it is possible to change the system profile to make RHSCL packages part of the system’s global environment, this is not recommended. Doing this can cause conflicts and unexpected problems with other applications because the system version of the package is obscured by having the RHSCL version in the path first.
 
@@ -197,29 +205,29 @@ To make DTS a permanent part of your development environment, you can add it to 
 
 Using your preferred text editor, add the following line to the end of `~/.bashrc`:
 
-`source scl_source enable devtoolset-3`
+`source scl_source enable {tthw-sclname}`
 
 After logging out and logging back in again, you can verify that the DTS GCC is in your path by running `which pass:[g++]` or `pass:[g++] -v`.
 
-[.code-block]
-```
+[listing,subs="attributes"]
+----
 $ which g++
-/opt/rh/devtoolset-3/root/usr/bin/g++
-```
+/opt/rh/{tthw-sclname}/root/usr/bin/g++
+----
 
-[.code-block]
-```
+[listing,subs="attributes"]
+----
 $ g++ -v
-gcc version 4.9.2. 20150212 (Red Hat 4.9.2-6) (GCC)
-```
+g++ (GCC) 5.3.1 20160406 (Red Hat 5.3.1-6)
+----
 
 
 ### Where to go next?
 
 *Learn more about Eclipse and the GNU Compiler Collection from the Red Hat Developer Toolset*
 
-** link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Eclipse-Use.html[Using Eclipse from the Red Hat Developer Toolset 3.1 User Guide]
-** link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/chap-GCC.html[GNU Compiler Collection Notes from the Red Hat Developer Toolset 3.1 User Guide]
+** link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/User_Guide/sect-Eclipse-Use.html[Using Eclipse from the Red Hat Developer Toolset 4.1 User Guide]
+** link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/User_Guide/chap-GCC.html[GNU Compiler Collection Notes from the Red Hat Developer Toolset 4.1 User Guide]
 
 *Documentation and tutorials for C/{cpp} development using Eclipse*
 
@@ -231,28 +239,27 @@ gcc version 4.9.2. 20150212 (Red Hat 4.9.2-6) (GCC)
 *Learn more about the Red Hat Developer Toolset*
 
 * link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=6[Red Hat Developer Toolset product page]
-* link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/3.1_Release_Notes/index.html[Red Hat Developer Toolset 3.1 Release Notes]
-* link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/index.html[Red Hat Developer Toolset 3.1 User Guide]
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/4.1_Release_Notes/index.html[Red Hat Developer Toolset 4.1 Release Notes]
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/User_Guide/index.html[Red Hat Developer Toolset 4.1 User Guide]
 
 
 *Learn more about Red Hat Software Collections*
 
-link:https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Red Hat Software Collections] deliver the latest stable versions of dynamic languages, open source databases, and web development tools that can be deployed alongside those included in Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
+link:{tthw-site-base-url}/products/softwarecollections/[Red Hat Software Collections] deliver the latest stable versions of dynamic languages, open source databases, and web development tools that can be deployed alongside those included in Red Hat Enterprise Linux. Red Hat Software Collections is available with select Red Hat Enterprise Linux subscriptions and has a three-year life cycle to allow rapid innovation without sacrificing stability.
 
 For more information:
 
-* link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/Packaging_Guide/index.html[Red Hat Software Collections 2.0 Packaging Guide] -- The packaging guide for Red Hat Software Collections explains the concept of software collections, documents the `scl` utility, and provides a detailed explanation of how to create a custom software collection or extend an existing one.
-* link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/index.html[Red Hat Software Collections 2.0 Release Notes] -- The release notes for Red Hat Software Collections document known problems, possible issues, and other important information available at the time of release of the content set. They also contain useful information on installing, rebuilding, and migrating.
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Packaging Guide] -- The packaging guide for Red Hat Software Collections explains the concept of software collections, documents the `scl` utility, and provides a detailed explanation of how to create a custom software collection or extend an existing one.
+* link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Release Notes] -- The release notes for Red Hat Software Collections document known problems, possible issues, and other important information available at the time of release of the content set. They also contain useful information on installing, rebuilding, and migrating.
 * link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)] -- This article lists which Red Hat Enterprise Linux subscriptions include access to Red Hat Software Collections and the Developer Toolset.
 
 You can view the list of packages available in RHSCL by running:
 
-`$ yum --disablerepo="*" --enablerepo="rhel-server-rhscl-6-rpms" list available`
+`$ yum --disablerepo="*" --enablerepo="rhel-server-rhscl-{tthw-rhelver}-rpms" list available`
 
 
 *Developing with Red Hat Enterprise Linux* +
-link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/[Red Hat Enterprise Linux 6 Developer Guide] -- The developer guide for Red Hat Enterprise Linux 6 provides an introduction to application development tools and using source code management tools such as Git in Red Hat Enterprise Linux 6. +
-You may also want to view the link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Developer_Guide/index.html[Red Hat Enterprise Linux 7 Developer Guide] for updated information. Red Hat Enterprise Linux 7 was released in 2014.
+link:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Developer_Guide/index.html[Red Hat Enterprise Linux 7 Developer Guide] -- The developer guide for Red Hat Enterprise Linux 7 provides an introduction to application development tools and using source code management tools such as Git in Red Hat Enterprise Linux 7.
 
 
 ### Become a Red Hat developer: developers.redhat.com
@@ -264,71 +271,87 @@ Red Hat delivers the resources and ecosystem of experts to help you be more prod
 
 ## Faq section
 
-1. The RHSCL repository is not available or is not found on my system.
+. *As a developer, how can I get a Red Hat Enterprise Linux subscription that includes Red Hat Software Collections and Developer Toolset?*
 +
-The name of the repository depends on whether you have a server or desktop version of Red Hat Enterprise Linux installed.
+Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by {tthw-download-manager}/download-manager/link/1350474[registering and downloading] through developers.redhat.com. We recommend you follow our link:{tthw-site-base-url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt. For more information, see link:{tthw-site-base-url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
+
+. *I can't find the RHSCL repository on my system*.
 +
-Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. See link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
-2. `yum install devtoolset-3` fails due to a missing RPM dependency.
+Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. For a list of what subscriptions include RHSCL see link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
 +
-These packages are in the optional RPMs repository, which is not enabled by default. See <<Enable Red Hat Software Collections>> for how to enable both the optional RPMs and RHSCL repositories.
-3. When I try to start Eclipse, I get a message about the Eclipse Platform not responding.
+The name of the RHSCL repository depends on whether you have a server or workstation version of Red Hat Enterprise Linux installed. You can use `subscription-manager` to view the available software repositories and verify that you have access to RHSCL:
++
+[listing,subs="attributes"]
+----
+$ su -
+# subscription-manager repos --list | egrep rhscl
+----
+
+. *When I run `yum install {tthw-sclname}`, it fails due to a missing dependency*.
++
+Some RHSCL collections require packages that are in the optional RPMs repository, which is not enabled by default. See <<Step1,Enable Red Hat Software Collections>> above, for how to enable both the optional RPMs and RHSCL repositories.
+
+. *When I try to start Eclipse, I get a message about the Eclipse Platform not responding.*
 +
 The first launch of Eclipse under your user ID might take a minute or two longer to start up than normal while Eclipse sets up files in your home directory. Click the _Wait_ button to let Eclipse finish starting up.
-4. The Eclipse {cpp} perspective never opens, all I see is "Welcome to Eclipse".
+
+. *The Eclipse {cpp} perspective never opens, all I see is "Welcome to Eclipse".*
 +
 The _Welcome_ tab in Eclipse obscures any of the other tabs. Click the _X_ to close the _Welcome_ tab.
-5. Which version of GCC am I using?
+
+. *Which version of GCC am I using?*
 +
-I'm getting the older GCC that came with Red Hat Enterprise Linux instead of the newer DTS version.
+*I'm getting the older GCC that came with Red Hat Enterprise Linux instead of the newer DTS version.*
 +
-How do I include the DTS GCC in my path?
+*How do I include the DTS GCC in my path?*
 +
 The Red Hat Developer Toolset uses Red Hat Software Collections to install a parallel set of packages in `/opt/rh` where they will not override the system packages that come with Red Hat Enterprise Linux.
 +
 Use `which pass:[g++]` to see which compiler is in your path. The DTS gcc executable path will begin with `/opt/rh`. Alternatively, use `pass:[g++] -v` to confirm that the version number is the correct one for Red Hat Developer Toolset.
 +
-[.code-block]
-```
+[listing,subs="attributes"]
+----
 $ which g++
-/opt/rh/devtoolset-3/root/usr/bin/gcc
+/opt/rh/{tthw-sclname}/root/usr/bin/gcc
 $ g++ -v
-gcc version 4.9.2. 20150212 (Red Hat 4.9.2-6) (GCC)
-```
+g++ (GCC) 5.3.1 20160406 (Red Hat 5.3.1-6)
+----
 +
 If `which` returns `/usr/bin/pass:[g++]`, or `pass:[g++] -v` shows a different version, you need to run `scl enable` to add DTS GCC and the rest of DTS to your environment.
 +
-`$ scl enable devtoolset-3 bash`
-6. How can I view the manual pages for the DTS version of GCC?
+`$ scl enable {tthw-sclname} bash`
+
+. *How can I view the manual pages for the DTS version of GCC?*
 +
 When you use `scl enable`, the manual page search path, MANPATH, is updated. This is in addition to the other environment variables that are updated which include PATH, and LD_LIBRARY_PATH.
 +
-[.code-block]
-```
-$ scl enable devtoolset-3 bash
+[listing,subs="attributes"]
+----
+$ scl enable {tthw-sclname} bash
 $ man g++
-```
+----
 +
 Note: It is possible to use `scl enable` for a specific command.  This might be handy if you want to compare the manual page differences between versions.
 +
-`$ scl enable devtoolset-3 'man g++'`
-7. How do I find out which other packages are available in the Red Hat Developer Toolset?
+`$ scl enable {tthw-sclname} 'man g++'`
+
+. *How do I find out which other packages are available in the Red Hat Developer Toolset?*
 +
 You can view the list of packages with the following command:
 +
-`# yum list available devtoolset-3-\*`
-8. How can I find out what RHSCL packages are installed?
+`# yum list available {tthw-sclname}-\*`
+
+. *How can I find out what RHSCL packages are installed?*
 +
 `scl --list` will show the list of RHSCL packages that have been installed, whether they are enabled or not.
 +
-[.code-block]
-```
+[listing,subs="attributes"]
+----
 $ scl --list
-rh-perl520
-rh-php56
-rh-python34
-rh-ruby22
-```
-9. Why did Java get installed for doing {cpp} development?
+{tthw-sclname}
+rh-java-common
+----
+
+. *Why did Java get installed for doing {cpp} development?*
 +
 The Eclipse IDE is Java based and needs a Java runtime environment. When Eclipse is installed from DTS, the software collection _rh-java-common_ will be installed automatically.

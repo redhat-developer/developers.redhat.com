@@ -1,27 +1,27 @@
 :awestruct-layout: product-get-started-multipath
 :awestruct-interpolate: true
-:title: "Software Collections - Get started developing with Python 3.4 on RHEL 6"
-:awestruct-description: "Get started developing with Python 3.4 from Red Hat Software Collections on Red Hat Enerprise Linux 6 in under 10 minutes."
+:tthw-site-base-url: #{site.base_url}
+:tthw-cdn-site-base-url: #{cdn(site.base_url)}
+:tthw-download-manager: #{site.download_manager_base_url}
+:tthw-rhelver: 6
+:tthw-langshort: Python
+:tthw-langlong: Python 3.4
+:tthw-langcmd: python3
+:tthw-sclname: rh-python34
+:tthw-scl-no-version: rh-python
+:tthw-hellofile: hello.py
+:title: "Software Collections - Get started developing with {tthw-langlong} on RHEL {tthw-rhelver}"
+:awestruct-description: "Get started developing with {tthw-langlong} from Red Hat Software Collections on Red Hat Enterprise Linux {tthw-rhelver} in under 10 minutes."
 
 ## Path Name
-Python
+{tthw-langshort}
 
 ## Path Intro section
 [.large-6.columns]
-image:#{cdn(site.base_url + '/images/products/multipath/python-logo.png')}[Python Logo]
+image:#{cdn(site.base_url + '/images/products/multipath/python-logo.png')}[{tthw-langshort} Logo]
 
 [.large-18.columns#PathIntroSection]
-Install Python from Red Hat Software Collections and create a simple application in under 10 minutes.
-
-## Prerequisites section title
-Introduction and Prerequisites
-
-## Prerequisites section
-In this tutorial, you will set your system up to install software from Red Hat Software Collections (RHSCL), which provides the latest development technologies for Red Hat Enterprise Linux. Then, you will install Python 3.4 and run a simple “Hello, World” application. The whole tutorial should take less than 10 minutes to complete.
-
-Before you begin, you will need a current Red Hat Enterprise Linux 6 workstation or server subscription that allows you to download software and get updates from Red Hat. If you don’t have an active subscription, register and obtain the RHEL Developer Suite (includes RHEL server) from here.
-
-If you encounter difficulties at any point, see <<troubleshooting,Troubleshooting and FAQ>>.
+Get started developing with {tthw-langlong} from Red Hat Software Collections in under 10 minutes.
 
 ## Step1 Duration
 2 minutes
@@ -41,110 +41,70 @@ Setup your development environment
 ## Step3 Title
 Hello World and your first application
 
-## Step1 Content
+// Introduction and Prereqs
 
-In this step you will configure your system to obtain software, including the latest dynamic languages, from the RHSCL software repository. Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
+:leveloffset: 0
+include::products/softwarecollections/_includes/get-started-rhel7-prereq.adoc[]
+:leveloffset: 0
 
-Note: If your system uses Red Hat Network (RHN) Classic instead of Red Hat Subscription Management (RHSM) for managing subscriptions and entitlements, skip this step and follow the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-Installation.html[Installation chapter] of the link:https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/index.html[Red Hat Software Collections 2.0 Release Notes]. The instructions in this section are only for systems using RHSM. The remainder of this tutorial applies to systems running either RHSM or RHN Classic.
+// Step1 Content
 
-### Using the Red Hat Subscription Manager GUI
+:leveloffset: 0
+include::products/softwarecollections/_includes/get-started-rhel7-step1.adoc[]
+:leveloffset: 0
 
-Red Hat Subscription Manager can be started from the _System_ -> _Administration_ subgroup of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`. +
+// Step2 Content
 
-Select _Repositories_ from the _System_ menu of the subscription manager. In the list of repositories, check the _Enabled_ column for _rhel-server-rhscl-6-rpms_ and _rhel-6-server-optional-rpms_. If you are using a desktop version of Red Hat Enterprise Linux, the repositories will be named _rhel-desktop-rhscl-6-rpms_ and _rhel-6-desktop-optional-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the enabled column. +
+:leveloffset: 0
+include::products/softwarecollections/_includes/get-started-rhel7-step2.adoc[]
+:leveloffset: 0
 
-If you don’t see any RHSCL repositories in the list, your subscription might not include it. +
-image:#{cdn(site.base_url + '/images/products/softwarecollections/rhel6/rhel-6-Manage-repositories-rhscl.png')}[Manage Repositories]
-
-See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
-
-
-### Using subscription-manager from the command line
-
-You can add or remove software repositories from the command line using the `subscription-manager` tool as the _root_ user. Use the `--list` option to view the available software repositories and verify that you have access to RHSCL:
-
-[.code-block]
-```
-$ su -
-# subscription-manager repos --list | egrep rhscl
-```
-
-If you don’t see any RHSCL repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
-
-If you are using a desktop edition of Red Hat Enterprise Linux, change `-server-` to `-desktop-` in the following commands:
-
-[.code-block]
-```
-# subscription-manager repos --enable rhel-server-rhscl-6-rpms
-# subscription-manager repos --enable rhel-6-server-optional-rpms
-```
-
-## Step2 Content
-
-In this next step you will install Python 3.4 from RHSCL:
-
-`$ su -` +
-`# yum install rh-python34`
-
-If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
 ## Step3 Content
 
-Under your normal user ID, start a _Terminal_ window. First, use `scl enable` to add Python 3 to your environment, then run Python 3 in interactive mode to see the version number:
+Under your normal user ID, start a _Terminal_ window. First, use `scl enable` to add {tthw-langlong} to your environment, then run {tthw-langshort} in interactive mode to see the version number:
 
-[.code-block]
-```
-$ scl enable rh-python34 bash
+[listing,subs="attributes"]
+----
+$ scl enable {tthw-sclname} bash
 $ python3
-Python 3.4.2 (default, Mar 25 2015, 04:25:42)
+Python 3.4.2 (default, Mar 25 2015, 02:43:36) 
 >>> print("Hello, Red Hat Developers World")
 Hello, Red Hat Developers World
 >>> quit()
-```
+----
 
-The next step is to create a Python program that can be run from the command line. Using your preferred text editor, create a file named `hello.py`:
+The next step is to create a {tthw-langshort} program that can be run from the command line. Using a text editor such as `vi`, `nano`, or `gedit` create a file named `{tthw-hellofile}` with the following content:
 
-`$ nano hello.py`
 
-Add the following text to the file:
-[.code-block]
-```
+.hello.py
+[source,python]
+----
 #!/usr/bin/env python3
 
 import sys
 
 version = "Python %d.%d" % (sys.version_info.major, sys.version_info.minor)
 print("Hello, Red Hat Developers World from",version)
-```
+----
 
 Save it and exit the editor. Then make the script executable and run it:
-[.code-block]
-```
-$ chmod +x hello.py
-$ ./hello.py
-Hello, Red Hat Developers World from Python 3.4
-```
 
-If you get the error: _python3 command not found_, you need to run `scl enable rh-python34 bash` first.
+[listing,subs="attributes"]
+----
+$ chmod +x {tthw-hellofile}
+$ ./{tthw-hellofile}
+Hello, Red Hat Developers World from {tthw-langlong}
+----
+
+If you get the error: _{tthw-langcmd} command not found_, or see a different version number, you need to run `scl enable {tthw-sclname} bash` first.
 
 
-### Working with RHSCL packages
+// Working with RHSCL packages
 
-The software packages in RHSCL are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login, or start a new terminal sesssion, `scl enable` needs to be run again.
-
-While it is possible to change the system profile to make RHSCL packages part of the system’s global environment, this is not recommended. Doing this can cause conflicts and unexpected problems with other applications because the system version of the package is obscured by having the RHSCL version in the path first.
-
-#### Permanently enable RHSCL in your development environment
-
-To make one or more RHSCL packages a permanent part of your development environment, you can add them to the login script for your specific user ID. This is the recommend approach for development as only the processes that are run under your user ID will be affected.
-
-Using your preferred text editor, add the following line to the end of `~/.bashrc`:
-
-`source scl_source enable rh-python34`
-
-After making the change, you should log out and log back in again.
-
-When you deliver an application that uses RHSCL packages, a best practice is to have your startup script handle the `scl enable` step for your application. You should not ask your users to change their environment as this is likely to create conflicts with other applications.
+:leveloffset: 0
+include::products/softwarecollections/_includes/get-started-working-with-rhscl.adoc[]
+:leveloffset: 0
 
 
 ### Where to go next?
@@ -152,79 +112,45 @@ When you deliver an application that uses RHSCL packages, a best practice is to 
 *Python 3 Tutorial at Python.org* +
 link:https://docs.python.org/3/tutorial/[]
 
-*Find additional Python components* +
-`$ yum list available rh-python34-\*`
+*Find additional {tthw-langshort} packages in RHSCL* +
+[listing,subs="attributes"]
+----
+$ yum list available {tthw-sclname}-\*
+----
 
-*View the list of software available in RHSCL* +
-`$ yum --disablerepo="*" --enablerepo="rhel-server-rhscl-6-rpms" list available`
+*View the full list of packages available in RHSCL* +
+[listing,subs="attributes"]
+----
+$ yum --disablerepo="*" --enablerepo="rhel-server-rhscl-{tthw-rhelver}-rpms" list available
+----
 
-## More Resources
+// More Resources (Want to now more?) box content
 
-* link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)]
-* link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/index.html[Red Hat Software Collection 2.0 Documentation]
-** link:https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/index.html[Red Hat Software Collections 2.0 Release Notes]
-** link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/Packaging_Guide/index.html[Red Hat Software Collections 2.0 Packaging Guide] +
-_Developers should read this guide to get a more complete understanding of how software collections work, and how to deliver software that uses RHSCL._
+:leveloffset: 0
+include::products/softwarecollections/_includes/get-started-rhscl-more-resources.adoc[]
+:leveloffset: 0
 
-### Become a Red Hat developer: developers.redhat.com
 
-Red Hat delivers the resources and ecosystem of experts to help you be more productive and build great solutions.  Register for free at link:#{site.base_url}/[developers.redhat.com].
+// Troubleshooting and FAQ
+:leveloffset: 0
+include::products/softwarecollections/_includes/get-started-rhscl-faq.adoc[]
+:leveloffset: 0
 
-## Faq section title
-[[troubleshooting]]Troubleshooting and FAQ
 
-## Faq section
 
-1. The RHSCL repository is not available or is not found on my system.
+. *When I type ‘python’, I get Python 2 instead of Python 3.*
 +
-The name of the repository depends on whether you have a server or desktop version of Red Hat Enterprise Linux installed.
-+
-Some Red Hat Enterprise Linux subscriptions do not include access to RHSCL. See link:https://access.redhat.com/solutions/472793[How to use Red Hat Software Collections (RHSCL) or Red Hat Developer Toolset (DTS)].
-2. yum install fails due to a missing dependency.
-+
-These packages are in the optional RPMs repository, which is not enabled by default. See <<Enable Red Hat Software Collections (RHSCL)>> for how enable both the optional RPMs and RHSCL repositories.
-3. How can I find out what RHSCL packages are installed?
-+
-`scl --list` will show the list of RHSCL packages that have been installed, whether they are enabled or not.
-+
-[.code-block]
-```
-$ scl --list
-rh-perl520
-rh-php56
-rh-python34
-rh-ruby22
-```
-4. How do I find out if there is a newer version of Python in the RHSCL?
-+
-How do I find out what version of Python is available in the RHSCL?
-+
-I have the RHSCL repository enabled, but I can’t find the Python version listed in this tutorial.
-+
-Use the following command to find packages with matching names:
-`# yum list available rh-python\*`
-5. I’ve installed Python 3.4 from RHSCL, but it is not in my path.
-+
-I can’t find python3
-+
-When I type ‘python’, I get Python 2 instead of Python 3.
-+
-RHSCL does not alter the system path.  You need to use `scl enable` to change the environment for your session:
-+
-`$ scl enable rh-python34 bash`
-+
-For more information see the link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/index.html[Red Hat Software Collection 2.0 Documentation].
-6. When I try to run Python 3, I get an error about a missing shared library, _libpython3_.
-+
-This is due to not having run `scl enable` first. When `scl enable` runs, in addition to setting up the command search PATH, it also sets up the search path for shared libraries, LD_LIBRARY_PATH.
-7. Some Python code/examples I’ve tried don’t work with Python 3 from RHSCL.
+RHSCL does not alter the system path.  You need to use `scl enable` to change the environment for your session. Red Hat Enterprise Linux includes Python 2. To avoid ambiguity, use `python3` instead of `python`. See the next question for more information.
+
+. *Some Python code/examples I’ve tried don’t work with Python 3 from RHSCL.*
 +
 Python 3.x is a new version of the Python language that is incompatible with the previous 2.x series. The version of Python included with Red Hat Enterprise Linux in `/usr/bin/python` is from the Python 2.x series. There is a large amount of code written for Python 2.x that will not run without modification on Python 3.x.
 +
 For more information see link:https://wiki.python.org/moin/Python2orPython3[Should I use Python 2 or Python 3 for my development activity?] at link:https://python.org[Python.org].
 +
 After you have added Python 3 to your environment by using `scl enable`, the command `python` as well as `python3` will run Python 3 from RHSCL. Python 2 can be run by using the command `python2` with or without RHSCL. Therefore, it is recommended that you use either the command `python2` or `python3` to ensure that you get the version you are expecting.
-8. Some existing Python programs fail after I’ve enabled Python 3 from RHSCL.
+
+. *Some existing Python programs fail after I’ve enabled Python 3 from RHSCL.*
 +
 See the previous question about Python 2 and Python 3 incompatibility. Scripts that have a first line of  `#!/usr/bin/env python` will pick up which ever version of Python is first in your path. This is usually done to avoid hard coding a specific location like `/usr/bin` or `/usrlocal/bin`. Unfortunately on a system with both Python 2 and Python 3 installed, this is ambiguous.
 +

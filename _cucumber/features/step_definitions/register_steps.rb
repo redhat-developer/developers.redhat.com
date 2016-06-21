@@ -1,3 +1,7 @@
+When(/^I complete the registration form$/) do
+  @page.registration.fill_in_form(@site_user[:first_name], @site_user[:last_name], @site_user[:email], @site_user[:company_name], @site_user[:country], @site_user[:password], @site_user[:password])
+end
+
 Given(/^I am on the Registration page$/) do
   @page.site_nav.navigate_to('register')
 end

@@ -141,8 +141,10 @@ profiles:
   # Docker staging configuration (PR and Nightly)
   staging_docker:
     <<: *profile
-    dcp_base_url: http://searchisko:8080/
-    dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    dcp_base_url: http://dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+#    dcp_base_url: http://searchisko:8080/
+#    dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
     download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
