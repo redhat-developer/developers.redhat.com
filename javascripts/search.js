@@ -287,8 +287,9 @@ function searchCtrlFunc($scope, searchService) {
         $scope.params.sys_type.splice(idx, 1);
       });
     }
-    // re run the search
+    // re run the search and reset pagination
     $scope.updateSearch();
+    $scope.resetPagination();
   };
 
   $scope.updateSearch();
