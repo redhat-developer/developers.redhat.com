@@ -62,6 +62,7 @@ search.filter('icon', function() {
       blogpost: 'icon-RHDev_-resources_icons_blogpost',
       jbossdeveloper_book: 'icon-RHDev_-resources_icons_book',
       book: 'icon-RHDev_-resources_icons_book',
+      article: 'icon-RHDev_-resources_icons_article',
       demo: 'icon-RHDev_-resources_icons_demo',
       quickstart: 'icon-RHDev_-resources_icons_demo',
       jbossdeveloper_archetype: 'icon-RHDev_-resources_icons_demo',
