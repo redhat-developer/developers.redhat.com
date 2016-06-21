@@ -19,7 +19,7 @@ And(/^the default results count should be "([^"]*)"$/) do |results_per_page|
   expect(@page.search.results_per_page[0]).to eq results_per_page
 end
 
-And(/^the result sorting options should be:$/) do |table|
+And(/^the result sorting options should be:$/) do |table|
   sort_options = []
   table.raw.each do |links|
     sort_options << links.first
@@ -27,7 +27,7 @@ And(/^the result sorting options should be:$/) do |table|
   @page.search.results_sort[1].should =~ sort_options
 end
 
-And(/^the result per page options should be:$/) do |table|
+And(/^the result per page options should be:$/) do |table|
   results_per_page = []
   table.raw.each do |links|
     results_per_page << links.first

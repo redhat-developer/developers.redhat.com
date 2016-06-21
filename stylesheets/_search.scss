@@ -112,7 +112,6 @@ form.header-search {
 // New Search page styles
 #searchpage {
   margin-top: 40px;
-
   .divider {
     border-bottom: 1px solid #d5d5d5;
   }
@@ -234,18 +233,41 @@ form.header-search {
 }
 
 .result {
-  margin-bottom: 40px;
-  h4 {
+  margin-bottom: 50px;
+  @include flexbox();
+  &.result-search {
+    display: block;
+  }
+  h3 {
     margin-bottom: 0;
   }
   .meta-data {
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 0;
+    h4 {
+      margin-bottom: 0;
+    }
   }
   .tags-list {
     font-size: 12px;
     color:$grey-6;
   }
+  .result-icon {
+    font-size:80px;
+    color:#656565;
+    margin-right: 20px;
+  }
+  .result-details {
+    @include flex(1);
+  }
+}
+
+span.tag {
+  // border:1px solid black;
+  margin-right: 5px;
+  color:black;
+  // padding:2px 8px;
+  display: inline-block;
 }
 
 span.tag:after {
@@ -256,11 +278,173 @@ span.tag:last-child:after {
   content:'';
 }
 
-
 .sorting {
   select {
     width: auto;
     padding-right: 20px;
     margin: 0 5px;
+  }
+}
+
+.type-filters-wrap {
+  background:$grey-2;
+  padding: 30px 0;
+}
+
+$width: 20px;
+
+.type-filters {
+  @include flexbox();
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+  label {
+    text-align: center;
+    padding:10px;
+    border:1px solid $grey-2;
+    background:white;
+    transition: all 0.3s;
+    @include flex(1 0);
+    position: relative;
+    min-width:50px;
+    &:before {
+      @include flexbox();
+      @include justify-content(center);
+      @include align-items(center);
+      content: '×';
+      transition:all 0.2s;
+      font-size: 50px;
+      font-weight: 900;
+      color:white;
+      background:rgba(0,0,0,0.8);
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      opacity:0;
+    }
+  }
+  h3 {
+    font-size: 20px;
+  }
+  input[type=checkbox] {
+    display: none;
+  }
+  input:checked + label {
+    background:$grey-3;
+    &:hover:before {
+      opacity:1;
+    }
+    &:hover:after {
+      opacity:1;
+      border-top-color:rgba(0,0,0,0.8);
+    }
+    &:after {
+      transition: all 0.2s;
+      display:block;
+      content:' ';
+      opacity:1;
+      position: absolute;
+      bottom: -($width * 2);
+      border-color:$grey-3 transparent transparent transparent;
+      border-style:solid;
+      border-width:$width;
+      left:50%;
+      margin-left:-($width) + 0px;
+    }
+  }
+  i {
+    font-size: 80px;
+  }
+}
+
+.search-inputs {
+  @include flexbox();
+  @include justify-content(space-between);
+  margin-top: 20px;
+  & > * {
+    @include flex(1);
+    max-width:23%;
+  }
+  input, select {
+    padding:10px !important;
+    border:1px solid $grey-2;
+  }
+}
+
+.custom-dates {
+  label {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(space-between);
+    & > * {
+      @include flex(1);
+      margin: 0 0 10px 0;
+    }
+    input {
+      max-width:220px;
+      margin-left: 20px;
+    }
+  }
+}
+
+img.video-thumb {
+  float: right;
+  margin-left: 20px;
+  width:130px;
+}
+
+.search-input-group {
+  label {
+    font-weight:700;
+  }
+}
+
+
+// MQ for Developer Materials Page
+@include tablet-landscape-and-down {
+  .type-filters {
+    label {
+      flex: 1 0 auto;
+      margin-bottom: 10px !important;
+      display: block;
+      p {
+        display: none;
+      }
+      i {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .search-inputs {
+    @include flex-wrap(wrap);
+  }
+
+  .search-input-group {
+    @include flex-basis(48%);
+    width:45%;
+    margin:1%;
+    max-width:none;
+  }
+
+  .result-icon {
+    i {
+      font-size: 20px;
+    }
+  }
+  .searchpage-middle {
+    padding-left: 0;
+  }
+}
+
+@include mobile-landscape-and-down {
+  .search-input-group {
+    @include flex-basis(100%);
+    width:100%;
+    marign:0;
   }
 }
