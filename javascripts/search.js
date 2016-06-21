@@ -9,14 +9,14 @@ search.service('searchService',function($http, $q) {
     // fold in params with defaults
     var search = Object.assign(params, {
       // field: '_source',
-      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated'],
+      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated', 'sys_type', 'thumbnail', 'sys_created'],
       agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
       query_highlight: true
     });
 
     var endpoint = (!!window.location.pathname.match(/\/search/) ? app.dcp.url.search : app.dcp.url.developer_materials);
 
-    $http.get(app.dcp.url.search, { params: search })
+    $http.get(endpoint, { params: search })
       .success(function(data){
         deferred.resolve(data);
       })
@@ -43,7 +43,8 @@ search.filter('MDY', function() {
     if(!timestamp) return;
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var date = new Date(timestamp);
-    return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getYear();
+    window.date = date;
+    return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
   }
 });
 
@@ -74,8 +75,19 @@ search.filter('icon', function() {
 
 search.filter('broker', function() {
   return function(url){
-    if(url.match('access.redhat.com')){
+    if(url && url.match('access.redhat.com')){
       return app.dcp.url.broker + encodeURIComponent(url);
+    }
+    return url;
+  }
+});
+
+search.filter('jbossfix', function() {
+  return function(url){
+    var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org','gi');
+
+    if(url && url.match(matcher)){
+      return url.replace(matcher,'https://developer.redhat.com')
     }
     return url;
   }
