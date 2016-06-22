@@ -43,12 +43,10 @@ services:
       - drupalmysql
       - searchisko
     volumes:
-      - ../../../images:/var/www/html/images
-      - ../../../stylesheets/fonts:/var/www/html/fonts
-      - ../../drupal/themes/:/var/www/html/themes
-      - ../../drupal/modules/custom/:/var/www/html/modules/custom
       - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
+      - ../../../images:/var/www/drupal/web/images:ro
+      - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
 
   drupalmysql:
     image: mariadb:10.0.15
