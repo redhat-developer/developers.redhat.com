@@ -9,6 +9,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
     And I should see the following forum products:
       | Red Hat JBoss Data Grid                       |
       | Red Hat JBoss Developer Studio                |
+      | Red Hat JBoss Development Suite               |
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
       | Red Hat Developer Toolset                     |
@@ -26,6 +27,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
     Then I should see the following forum products:
       | Red Hat JBoss Data Grid                       |
       | Red Hat JBoss Developer Studio                |
+      | Red Hat JBoss Development Suite               |
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
       | Red Hat Developer Toolset                     |
