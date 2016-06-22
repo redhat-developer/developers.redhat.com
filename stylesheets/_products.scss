@@ -690,3 +690,46 @@ ul.product-langs {
     }
   }
 }
+
+.forums-stack-row {
+  margin: 2em 0;
+}
+
+.services-and-support {
+  ul{
+    margin: 1.5em -15px !important;
+    text-align: center;
+    h5 {
+      color: $red;
+      margin-bottom: 5px;
+      &.offset-img {
+        margin-top: -22px;
+      }
+    }
+    a.button {
+      margin-top: 1em;
+    }
+    img {
+      width: 60%;
+      margin: 10px auto;
+      opacity: 0.4;
+    }
+  }
+}
+
+.latest-discussions, .top-qa {
+  h4 {
+    color: $red;
+  }
+  h4 i {
+    color: $grey-3;
+  }
+  a {
+    color: #46a1da;
+  }
+  .see-all {
+    float: right;
+    margin-top: 13px;
+  }
+}
+

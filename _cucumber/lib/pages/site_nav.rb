@@ -13,12 +13,15 @@ class SiteNav < Base
   TOPICS                       =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Topics')]" }
   TECHNOLOGIES                 =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Technologies')]" }
   COMMUNITY                    =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Community')]" }
-  RESOURCES                    =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Resources')]" }
+  HELP                         =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Help')]" }
   DOWNLOADS                    =  { xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'Downloads')]" }
   TOPICS_SUB_NAV               =  { xpath: '//*[@id="sub-nav-topics"]' }
   TECHNOLOGIES_SUB_NAV         =  { xpath: '//*[@id="sub-nav-technologies"]' }
   COMMUNITY_SUB_NAV            =  { xpath: '//*[@id="sub-nav-community"]' }
+  HELP_SUB_NAV                 =  { xpath: '//*[@id="sub-nav-help"]' }
   SUB_NAV_OPEN                 =  { css: '.sub-nav-open' }
+  SEARCH_FIELD                 =  { css: '.accounts .search-wrapper .user-search' }
+  SEARCH_BUTTON                =  { css: '.search-bar .fa-search' }
 
   def initialize(driver)
     super
@@ -90,8 +93,8 @@ class SiteNav < Base
         el = TECHNOLOGIES
       when 'community'
         el = COMMUNITY
-      when 'resources'
-        el = RESOURCES
+      when 'help'
+        el = HELP
       when 'downloads'
         el = DOWNLOADS
       else
@@ -109,8 +112,8 @@ class SiteNav < Base
         el = TECHNOLOGIES
       when 'community'
         el = COMMUNITY
-      when 'resources'
-        el = RESOURCES
+      when 'help'
+        el = HELP
       when 'downloads'
         el = DOWNLOADS
       else
@@ -131,8 +134,8 @@ class SiteNav < Base
         el = TECHNOLOGIES
       when 'community'
         el = COMMUNITY
-      when 'resources'
-        el = RESOURCES
+      when 'help'
+        el = HELP
       when 'downloads'
         el = DOWNLOADS
       else
@@ -149,6 +152,8 @@ class SiteNav < Base
         el = TECHNOLOGIES_SUB_NAV
       when 'community'
         el = COMMUNITY_SUB_NAV
+      when 'help'
+        el = HELP_SUB_NAV
       else
         raise("#{menu_item} not recognised")
     end
@@ -159,6 +164,30 @@ class SiteNav < Base
   def get_href_for(link)
     href = find(partial_link_text: link)
     href.attribute('href')
+  end
+
+  def search_field_visible?
+    displayed?(SEARCH_FIELD)
+  end
+
+  def enter_search_term(search_string)
+    wait_for { displayed?(SEARCH_FIELD) }
+    type(SEARCH_FIELD, search_string)
+  end
+
+  def search_for(query)
+    type(SEARCH_FIELD, query)
+    press_return
+    wait_for_ajax
+  end
+
+  def search_box_attribute(type)
+    attribute(SEARCH_FIELD, type)
+  end
+
+  def click_search_button
+    wait_for { displayed?(SEARCH_BUTTON) }
+    click_on(SEARCH_BUTTON)
   end
 
 end

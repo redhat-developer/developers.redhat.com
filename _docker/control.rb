@@ -228,6 +228,7 @@ def build_environment_resources(environment, system_exec)
 
   if environment.is_drupal_environment?
     build_css_and_js_for_drupal
+    environment.create_template_resources
   end
 
   copy_project_dependencies_for_awestruct_image

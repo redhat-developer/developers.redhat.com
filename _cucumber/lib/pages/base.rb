@@ -16,6 +16,10 @@ class Base
     @driver.find_element(locator)
   end
 
+  def custom_find(el, locator)
+    el.find_element(locator)
+  end
+
   def find_elements(locator)
     @driver.find_elements(locator)
   end
@@ -29,14 +33,38 @@ class Base
     find(locator).send_keys(input)
   end
 
+  def press_return
+    @driver.action.send_keys(:return).perform
+  end
+
   def select(locator, option)
     select = find(locator)
     option = select.find_element(xpath: "//option[contains(text(), '#{option}')]")
     option.click
   end
 
+  def default_dropdown_item(loctor)
+    dropdown = find(loctor)
+    select_list = Selenium::WebDriver::Support::Select.new(dropdown)
+    select_list.selected_options[0].text
+  end
+
+  def dropdown_items(loctor)
+    dropdown_items = []
+    dropdown = find(loctor)
+    select_list = Selenium::WebDriver::Support::Select.new(dropdown)
+    select_list.options.each do |item|
+      dropdown_items << item.text
+    end
+    dropdown_items
+  end
+
   def click_on(locator)
     find(locator).click
+  end
+
+  def custom_click_on(el, locator)
+    el.find_element(locator).click
   end
 
   def hover_on(locator)
@@ -46,6 +74,13 @@ class Base
 
   def displayed?(locator)
     @driver.find_element(locator).displayed?
+    true
+  rescue Selenium::WebDriver::Error::NoSuchElementError
+    false
+  end
+
+  def custom_displayed?(el, locator)
+    el.find_element(locator).displayed?
     true
   rescue Selenium::WebDriver::Error::NoSuchElementError
     false
@@ -71,6 +106,11 @@ class Base
     @driver.navigate.back
   end
 
+  def attribute(locator, type)
+    element = find(locator)
+    element.attribute(type)
+  end
+
   def wait_for(seconds=6)
     Selenium::WebDriver::Wait.new(:timeout => seconds).until { yield }
   end
@@ -90,6 +130,30 @@ class Base
     raise(message)
   end
 
+  def current_window
+    @driver.window_handle
+  end
+
+  def get_windows
+    @driver.window_handles
+    @driver.window_handles.map do |w|
+      @driver.switch_to.window(w)
+      [w, @driver.title]
+    end
+  end
+
+  def wait_for_windows(size)
+    wait_for(10) { get_windows.size == size }
+  end
+
+  def switch_window(first_window)
+    all_windows = @driver.window_handles
+    new_window = all_windows.select { |this_window| this_window != first_window }
+    @driver.close
+
+    @driver.switch_to.window(first_window)
+
+  end
 
   private
 

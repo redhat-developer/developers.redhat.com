@@ -1,6 +1,6 @@
 @smoke
 @products
-Feature: Home Page Smoke Test
+Feature: Technologies Page
 
   In order to find out more about available Red Hat products,
   As generic site visitor,

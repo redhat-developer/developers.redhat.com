@@ -15,6 +15,7 @@ header.main {
     a {
       margin:0;
       display: block;
+      break-inside: avoid-column;
       i {
         vertical-align: text-bottom;
         line-height: 1;
@@ -149,6 +150,7 @@ nav.accounts {
   padding:5px 0;
   ul {
     display: inline-block;
+    padding-top: 20px;
     li:first-child a {
       border-left: 0;
     }
@@ -158,7 +160,7 @@ nav.accounts {
 
     a {
       color:white;
-      border-left:1px solid white;
+      // border-left:1px solid white;
       padding: 0 10px;
       line-height:1;
       font-size: 11px;
@@ -166,9 +168,9 @@ nav.accounts {
       font-weight: 900;
     }
   }
-  .search {
+  .search-wrapper {
     display: inline-block;
-    margin-left: 20px;
+    margin-top: -10px;
   }
   input {
     font-size: 12px;
