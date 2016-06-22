@@ -10,7 +10,6 @@ ruby scripts/drupal_install_checker.rb
 rm -rf /run/httpd/*
 
 # Set it up so apache can write to everything
-chown -R apache:apache /var/www/drupal
-chmod -R 755 /var/www/drupal
+chown -R apache:apache /var/www/drupal/web/sites/default/files
 
 exec /usr/sbin/apachectl -D FOREGROUND
