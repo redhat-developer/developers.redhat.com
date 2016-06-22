@@ -11,7 +11,7 @@ services:
       - ../../awestruct/overlay/ssh-key:/home/awestruct/.ssh
     environment:
       - github_status_api_token
-      - github_status_context=Drupal:Drupal
+      - github_status_context=Drupal:Drupal Site
       - github_status_repo=robpblake/developers.redhat.com
       - github_status_target_url=http://stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}
       - github_status_sha1=${ghprbActualCommit}
@@ -97,7 +97,7 @@ services:
      entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb 'ruby _docker/lib/export/export.rb stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}'"
      environment:
       - github_status_api_token
-      - github_status_context=Drupal:Site Preview
+      - github_status_context=Drupal:Exported Site Preview
       - github_status_repo=robpblake/developers.redhat.com
       - github_status_target_url=${export_destination}
       - github_status_sha1=${ghprbActualCommit}
@@ -116,7 +116,7 @@ services:
     - github_status_repo=robpblake/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=Drupal:Unit Tests,Drupal:Acceptance Tests,Drupal:Site Preview,Drupal:Blinkr,Drupal:Drupal
+    - github_status_initialise=Drupal:Unit Tests,Drupal:Acceptance Tests,Drupal:Exported Site Preview,Drupal:Blinkr,Drupal:Drupal Site
 
   acceptance_tests:
    build: ../../awestruct
