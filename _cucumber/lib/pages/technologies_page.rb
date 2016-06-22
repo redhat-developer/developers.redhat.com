@@ -39,6 +39,10 @@ class Technologies < Base
     text_of(id: "development-tool-#{product}")
   end
 
+  def product_description_for(product)
+    text_of(css: "#development-tool-#{product} .paragraph")
+  end
+
   def product_link_for(product)
     href = find(id: product)
     href.attribute('href')

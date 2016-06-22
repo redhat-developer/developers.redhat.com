@@ -1,5 +1,168 @@
 ---
-layout: developer-materials
+layout: base
 title: Discover the developer materials Red Hat has to offer
 description: Red Hat has extensive materials to help you get started. On offer are quickstarts, tutorials, videos, articles and more.
 ---
+
+.hero.hero-wide.hero-resources
+  .row
+    .large-24.columns#resources
+      h2 Resources
+    .large-12.medium-24.columns
+      asciidoc:
+        Discover Great technical content to help you get apps to market faster
+
+
+div(ng-app="search")
+  #searchpage(ng-controller="SearchController")
+    / pre {{params | json}}
+    .large-24.column.type-filters-wrap
+      .row
+        .large-24.column
+          p: strong Find by type:
+      .row.type-filters
+        input(type="checkbox" value="blogpost" ng-checked="params.sys_type.indexOf('blogpost') > -1" ng-click="toggleSelection($event)" id="blogposts")
+        label(for="blogposts")
+          i.icon-RHDev_-resources_icons_blogpost
+          h3 Blog Posts
+          p Track the latest topics by following the Red Hat Developer blog
+
+        input(type="checkbox" value="jbossdeveloper_book book" ng-checked="params.sys_type.indexOf('jbossdeveloper_book') > -1" ng-click="toggleSelection($event)" id="book")
+        label(for="book")
+          i.icon-RHDev_-resources_icons_book
+          h3 Book
+          p Catch-up with these comprehensive collections
+
+        input(type="checkbox" value="demo quickstart jbossdeveloper_archetype jbossdeveloper_bom quickstart_early_access" ng-checked="params.sys_type.indexOf('demo') > -1" ng-click="toggleSelection($event)" id="code")
+        label(for="code")
+          i.icon-RHDev_-resources_icons_demo
+          h3 Code Artifact
+          p Shorten your time-to-code with these code samples
+
+        input(type="checkbox" value="jbossdeveloper_example" ng-checked="params.sys_type.indexOf('jbossdeveloper_example') > -1" ng-click="toggleSelection($event)" id="get-started")
+        label(for="get-started")
+          i.icon-RHDev_-resources_icons_getstarted
+          h3 Get Started
+          p Use your time wisely with effective getting-started documents
+
+        input(type="checkbox" value="solution article" ng-checked="params.sys_type.indexOf('solution') > -1" ng-click="toggleSelection($event)" id="knowledge")
+        label(for="knowledge")
+          i.icon-RHDev_-resources_icons_article
+          h3 Knowledgebase Article / Solution
+          p Members only articles and verified solutions for self-service support.
+
+        input(type="checkbox" value="video" ng-checked="params.sys_type.indexOf('video') > -1" ng-click="toggleSelection($event)" id="video")
+        label(for="video")
+          i.icon-RHDev_-resources_icons_video
+          h3 Video
+          p Watch how Red Hatters and contributers utilize development tools
+
+    .large-24.columns.searchpage-middle
+      .row
+        .large-24.columns
+          form.search-bar(role="search" ng-submit="updateSearch(); resetPagination();")
+            .search-inputs
+              .search-input-group
+                label Keyword
+                input(type="text" placeholder="Filter by keyword" ng-model="params.query" ng-change="updateSearch(); resetPagination();" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 750, 'blur': 0 } }")
+
+              .search-input-group
+                label Product
+                select(ng-model="params.project" ng-change="updateSearch(); resetPagination();")
+                  option(value="") Select Product...
+                  option(value="eap") JBoss Enterprise Application Platform
+                  option(value="webserver") JBoss Web Server
+                  option(value="datagrid") JBoss Data Grid
+                  option(value="portal") JBoss Portal
+                  option(value="fsw") JBoss Fuse Service Works
+                  option(value="datavirt") JBoss Data Virtualization
+                  option(value="fuse") JBoss Fuse
+                  option(value="amq") JBoss A-MQ
+                  option(value="brms") JBoss BRMS
+                  option(value="bpmsuite") JBoss BPM Suite
+                  option(value="devstudio") JBoss Developer Studio
+                  option(value="cdk") Red Hat Container Development Kit
+                  option(value="developertoolset") Red Hat Developer Toolset
+                  option(value="rhel") Red Hat Enterprise Linux
+                  option(value="softwarecollections") Red Hat Software Collections
+                  option(value="mobileplatform") Red Hat Mobile Application Platform
+                  option(value="openshift") OpenShift Enterprise by Red Hat
+
+              .search-input-group
+                label Publish Date
+                select(ng-model="params.publish_date_from" ng-change="updateSearch(); resetPagination();")
+                  option(value="") Filter by Date
+                  option(value="now-1y") Past Year
+                  option(value="now-3M") Past Quarter
+                  option(value="now-1M") Past Month
+                  option(value="now-7d") Past Week
+                  option(value="now-1d") Past Day
+                  option(value="custom") Custom
+
+              .search-input-group.custom-dates
+                div(ng-show="params.publish_date_from === 'custom'")
+                  label
+                    | Start Date
+                    input(type="date" ng-model="params.publish_date_from_custom" ng-change="updateSearch(); resetPagination();")
+                  label
+                    | End Date
+                    input(type="date" ng-model="params.publish_date_to" ng-change="updateSearch(); resetPagination();")
+
+        .large-24.columns.searchpage-results-container
+          .sorting
+            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found {{ params.query ? ' for ' + params.query : '' }}
+            h3.results-title(ng-if="totalCount <= 0") No results found
+            h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
+            hr
+            p
+              | Sort results by
+              select(ng-model="params.newFirst" ng-change="updateSearch(); resetPagination();")
+                option(value="false") Relevance
+                option(value="true") Most Recent
+              | and show
+              select(ng-model="params.size" ng-change="updateSearch(); resetPagination();")
+                option(value="10") 10
+                option(value="25") 25
+                option(value="50") 50
+                option(value="100") 100
+              | results per page
+
+          / span.loader
+          span.loader(ng-show="loading")
+          .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
+            .result(ng-repeat="result in results" ng-init="r = result.fields")
+              .result-icon
+                i(class="{{ r.sys_type | icon }}")
+              .result-details
+                img.video-thumb(ng-show="{{r.thumbnail.length}}" ng-src="{{r.thumbnail[0]}}")
+                h4
+                  a(href="{{r.sys_url_view[0] | broker | jbossfix}}") {{r.sys_title[0]}}
+                section.meta-data
+                  / pre {{r | json}}
+                  span.created-date(data-updated="{{r.sys_created[0] | timestamp}}") {{r.sys_created[0] | MDY}}
+                p {{r.sys_description[0] | wordcount}}
+                / p.contributors(ng-show="{{r.sys_contributors.length}}")
+                  span.contributor(ng-repeat="author in r.sys_contributors" data-sys-contributor="{{author}}")
+                    a.name {{author}}
+                .tags-list
+                  p(ng-show="{{r.sys_tags.length}}")
+                    | Tags:&nbsp;
+                    span.tag(ng-repeat="tag in r.sys_tags") {{tag}}
+
+        nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
+          span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
+          ul.pagination
+            li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
+              a(ng-click="goToPage('first')") First
+            li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
+              a(ng-click="goToPage('prev')") Previous
+            li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
+              a(ng-click="goToPage(page)" data-page="{{page}}") {{page}}
+            li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
+              a(ng-click="goToPage('next')") Next
+            li#pagination-last(ng-class="paginate.currentPage == paginate.pages ? 'unavailable': 'available'")
+              a(ng-click="goToPage('last')") Last
+
+
+= javascripts("developer-materials-filter", true) do
+  script src="#{site.base_url}/javascripts/jdfadvise.js"

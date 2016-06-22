@@ -1,0 +1,181 @@
+.product-stackoverflow-container, .stackoverflow-container {
+  .stackoverflow-product-update .update, .stackoverflow-update .update{
+    margin-top: 1em;
+    
+    .qtn-stats {
+      padding-top: 5px;
+      span {
+        display: inline-block;
+        text-align: center;
+        margin-right: 5px;
+        width: 31%;
+        min-height: 80px;
+        max-width: 80px;
+        max-height: 80;
+        padding-top: 15px;
+        p {
+          font-size: .8em;
+        }
+        h4 {
+          margin-bottom: 0;
+          line-height: 1;
+        }
+        &.answer-count {
+          border: 2px solid #8ed300;
+        }
+        &.accepted-answer {
+          background-color: #8ed300;
+          color: $white;
+          h4 {color: $white;}
+        }
+        &.votes-count, &.views-count {
+          border: 2px solid $grey-4;
+          background-color: $grey-4;
+          color: $white;
+          h4, p {color: $white;}
+        }
+      }
+    }
+    .so-author {
+      float: right;
+    }
+    a h5.qtn-title, a {
+      color: #46a1da;
+    }
+    p.qtn-content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 70px;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      margin-bottom: 10px !important;
+    }
+    span.qtn-answer {
+      display: block;
+      margin-top: 1em;
+    }
+    .callout{
+      background-color: $grey-1;
+      margin: 10px 0;
+      padding: 20px;
+    }
+  }
+  .stackoverflow-update .update{
+    margin-top: 2em;
+  }
+}
+
+.stackoverflow-product-update .update .update-meta {
+  padding-bottom: 5px;
+  border-bottom: 1px solid $grey-2;
+  min-height: 84px;
+}
+
+.stackoverflow-update .update{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e6e7e8;
+}
+
+.hero.stackoverflow-main {
+  background-color: #0089d0;
+  background-position: left top;
+  background-image: url("http://static.jboss.org/images/rhd/headers/stackoverflow_overview_background.svg");
+  background-size: 37%;
+  background-repeat: no-repeat;
+  padding: 40px 0;
+  border: none;
+  margin-bottom: 0;
+  h3, p {
+    color: $white;
+  }
+}
+
+.stack-help {
+  background-color: $grey-8;
+  margin-bottom: 25px;
+  h3 {
+    text-align: right;
+    color: $grey-4;
+  }
+  p {
+    color: $white;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 10px 0 0 0;
+    margin-bottom: 5px;
+  }
+  a {
+    color: #08C0FC;
+    &:hover, &:active {
+      color: #46a1da;
+    }
+  }
+}
+
+.stackoverflow-filters {
+  label {
+    font-weight: 800;
+    color: $grey-6;
+    font-size: 1.6em;
+    margin-right: 20px;
+    display: inline-block;
+  }
+  .styled-select {
+    display: inline-block;
+  }
+}
+
+.qtn-answer {
+  &.display-answer{
+    display: block;
+  }
+  &.hide-answer{
+    display: none;
+  }
+}
+
+.qtn-answer p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-height: 70px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px !important;
+}
+
+span.so-tags{
+  margin-top: 5px;
+}
+
+@include tablet-landscape-and-down {
+  .stackoverflow-main{
+    img {
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+  }
+  .stack-help {
+    margin: 0 -15px 25px -15px;
+    padding: 20px 15px;
+    h3 {
+      text-align: left;
+    }
+  }
+  .qtn-stats {
+    margin-bottom: 15px;
+  }
+}
+
+@include mobile-landscape-and-down {
+  .stackoverflow-container .stackoverflow-update .update span.so-author{
+    float: none;
+    margin-top: 5px;
+    display: block;
+  }
+
+}
+#forumsContainer {
+  display: none;
+}

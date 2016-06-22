@@ -86,6 +86,16 @@ class Site
     @current_page = @terms_and_conditions
   end
 
+  def community
+    @community ||= CommunityPage.new(@driver)
+    @current_page = @community
+  end
+
+  def events
+    @events ||= EventsPage.new(@driver)
+    @current_page = @events
+  end
+
   def search
     @search ||= SearchPage.new(@driver)
     @current_page = @search
@@ -99,6 +109,16 @@ class Site
   def github
     @github ||= GitHubPage.new(@driver)
     @current_page = @github
+  end
+
+  def stack_overflow
+    @stack_overflow ||= StackOverflow.new(@driver)
+    @current_page = @stack_overflow
+  end
+
+  def forums
+    @forums ||= Forums.new(@driver)
+    @current_page = @forums
   end
 
 end

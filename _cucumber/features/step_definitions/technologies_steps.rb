@@ -11,7 +11,7 @@ end
 
 Then(/^I should see a description of available products$/) do
   @product_ids.each do |product|
-    expect(@page.technologies.product_section_for(product)).to include(get_product(product, 'description'))
+    expect(@page.technologies.product_description_for(product)).to include(get_product(product, 'description'))
   end
 end
 

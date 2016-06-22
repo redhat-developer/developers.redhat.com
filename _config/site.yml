@@ -68,6 +68,7 @@ profiles:
     authenticate_google_books_api: false
     build_threads: 0
     cache_type: :local
+    broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
 
   docker: &docker
     <<: *development
@@ -153,6 +154,7 @@ profiles:
     cache_type: :local
     metrics: true
     client_side_error_logging: true
+    broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg
@@ -168,6 +170,7 @@ profiles:
     download_manager_base_url: https://developers.stage.redhat.com
     metrics: false
     client_side_error_logging: true
+    broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg
@@ -186,6 +189,7 @@ profiles:
     client_side_error_logging: true
     build_threads: 1
     dtm_code: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
+    broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg-main
@@ -208,6 +212,7 @@ profiles:
     client_side_error_logging: true
     disqus: jdf
     dtm_mode: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
+    broker: https://broker.redhat.com/partner/drc/userMapping?redirect=
 
     robots:
       disallow: false

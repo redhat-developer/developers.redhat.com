@@ -1,0 +1,27 @@
+.row
+  .large-24.columns  
+    h4 Community Q&A
+    p See our most popular forum discussions and Stack Overflow Q&A posts related to #{page.parent.product.name}.
+
+  .forums-stack-row
+    .large-12.columns.latest-discussions#forumsContainer
+      h4.caps
+        i.fa.fa-comments-o
+        |  Latest Discussions
+      ul.product-forums.product-forums-latest(data-tags="#{(page.parent.product.id)}")
+      h5.right 
+        a(id="#{page.parent.product.id}" href="#{site.product_forum_base_url}/#{page.parent.product.id}" target="_blank")
+          | See all related forums discussions&nbsp;
+          i.fa.fa-caret-right
+
+
+    .large-12.columns.top-qa
+      h4.caps
+        i.fa.fa-stack-overflow
+        |  Top Q&amp;A
+      .product-stackoverflow-container(data-tags="#{(JSON.dump page.parent.product.stackoverflow_tags).gsub(/"/, "'")}")
+      h5.see-all
+        a(href='#{site.base_url}/stack-overflow/#!filter-products=#{page.parent.product.id}')
+          | See all related Stack Overflow Q&amp;A posts&nbsp;
+          i.fa.fa-caret-right
+br
