@@ -2,8 +2,7 @@ version: '2'
 services:
   awestruct:
     build: ../../awestruct
-    command:
-      - "rake git_setup clean gen[drupal_pull_request]"
+    entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb 'rake git_setup clean gen[drupal_pull_request]'"
     links:
       - drupal
       - searchisko
@@ -11,6 +10,11 @@ services:
       - ../../../:/home/awestruct/developer.redhat.com
       - ../../awestruct/overlay/ssh-key:/home/awestruct/.ssh
     environment:
+      - github_status_api_token
+      - github_status_context=Drupal:Drupal
+      - github_status_repo=robpblake/developers.redhat.com
+      - github_status_target_url=http://stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}
+      - github_status_sha1=${ghprbActualCommit}
       - google_api_key
       - dcp_user
       - dcp_password
@@ -26,12 +30,9 @@ services:
       - github_token
       - drupal_user
       - drupal_password
-      - ACCESSIBLE_SLAVE_IP
       - SEARCHISKO_HOST_PORT
       - DRUPAL_HOST_PORT
       - DRUPAL_HOST_IP
-      - ghprbActualCommit
-      - github_status_api_token
       - BUILD_URL
       - AWE_PROC_COUNT=10
 
@@ -98,7 +99,7 @@ services:
       - github_status_api_token
       - github_status_context=Drupal:Site Preview
       - github_status_repo=robpblake/developers.redhat.com
-      - github_status_target_url=${site_base_path}:${site_path_suffix}
+      - github_status_target_url=${export_destination}
       - github_status_sha1=${ghprbActualCommit}
 
   #
@@ -115,7 +116,7 @@ services:
     - github_status_repo=robpblake/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=Drupal:Unit Tests,Drupal:Acceptance Tests,Drupal:Site Preview,Drupal:Blinkr
+    - github_status_initialise=Drupal:Unit Tests,Drupal:Acceptance Tests,Drupal:Site Preview,Drupal:Blinkr,Drupal:Drupal
 
   acceptance_tests:
    build: ../../awestruct
