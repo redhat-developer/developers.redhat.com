@@ -88,7 +88,6 @@ services:
   # Environment actions
   #
   export:
-     user: root
      build: ../../awestruct
      volumes:
       - ../../../:/home/awestruct/developer.redhat.com
