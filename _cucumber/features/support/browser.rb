@@ -108,7 +108,17 @@ class Browser
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 120
-    Selenium::WebDriver.for(:remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
+    begin
+      attempts = 0
+      Selenium::WebDriver.for(:remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
+    rescue Net::ReadTimeout => e
+      if attempts == 0
+        attempts += 1
+        retry
+      else
+        raise(e)
+      end
+    end
   end
 
   # needed to set the custom download capabilities in oder to test downloads
