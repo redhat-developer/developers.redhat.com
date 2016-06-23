@@ -16,7 +16,7 @@ class LoginPage < Base
   def initialize(driver)
     super
     wait_for(12) { displayed?(LOGIN_PAGE) }
-    verify_page('Login | Red Hat Developers')
+    verify_page('Log In | Red Hat Developers')
   end
 
   def with_existing_account(username, password)
