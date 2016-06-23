@@ -107,7 +107,7 @@ class Browser
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     client = Selenium::WebDriver::Remote::Http::Default.new
-    client.timeout = 120
+    client.timeout = 300 # Browser launch can take a while
     begin
       attempts = 0
       Selenium::WebDriver.for(:remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
