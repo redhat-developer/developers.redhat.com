@@ -14,6 +14,10 @@ ul.side-nav
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}") 
         | #{v}  
         i.fa.fa-caret-right.fa-lg
+    - elsif (k == "get-started" && page.parent.product.has_get_started_page)
+      li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}") 
+        | #{v}  
+        i.fa.fa-caret-right.fa-lg
     - elsif (k == "learn" && page.parent.product.has_learn_page)
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}") 
         | #{v}  
@@ -50,7 +54,7 @@ ul.side-nav
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg
-    - elsif (k != "buzz" && k != "learn" && k != "connectors" && k != "community" && k != "download" && k != "resources" && k != "updates" && k != "help" && k != "docs-and-apis")
+    - elsif (k != "buzz" && k != "learn" && k != "get-started" && k != "connectors" && k != "community" && k != "download" && k != "resources" && k != "updates" && k != "help" && k != "docs-and-apis")
       li(class="#{k == page.product_subsection ? "active" : ""}"): a(href="#{site.base_url}/products/#{page.parent.product.id}/#{k}")
         | #{v}
         i.fa.fa-caret-right.fa-lg

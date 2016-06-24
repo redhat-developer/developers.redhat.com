@@ -26,7 +26,7 @@ h2#docs-and-apis Docs and APIs
             li
               a(href="#{format.url}") #{format.name}
 
-  - unless page.product.id == 'cdk'
+  - unless page.product.id == 'cdk' || page.product.id == 'dotnet'
     .more-guides
       a(href="#{page.product.documentation_url}") See all Documentation versions
 
