@@ -7,16 +7,19 @@ type: Get Started
 = partial 'getstarted-thankyou.html.slim', {'parent' => page}
 
 #get-started-instructions.four-steps.tthw-steps(data-spy="scroll" data-target="#steps-scroll")
-  .row
-    .large-17.columns#get-started
-      h2 Get Started
-
-  - if page.product.cdk_install_paths
+  .large-24
+    - if page._path_intro_section
+      .row.sp-header
+        = page._path_intro_section
+  - currentPage = page.url
+  - pathName = ((currentPage.rpartition("-"))[-1]).chomp("/");
+  - if (currentPage.include?('rhel7') || currentPage.include?('rhel6')) && pathName != 'java'
     .large-24.columns.multipath-tabs-sm
-      ul.tabs.nav-tabs(data-tab role="tablist" data-options="deep_linking:true;scroll_to_content:false")
-        - page.product.cdk_install_paths.each do |rpath|
-          li(role="presentation" class=(rpath.id.eql?('windows') ? 'active' : ''))
-            a(href="##{rpath.id}" role="tab" data-toggle="tab" aria-controls="#{rpath.id}") #{rpath.name}
+      ul.tabs.nav-tabs(data-tab role="tablist")
+        li(class=(currentPage.include?('rhel7') ? 'active' : '') role="presentation")
+          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel7-#{pathName}' onclick="window.location=this.href;return false;") RHEL 7
+        li(class=(currentPage.include?('rhel6') ? 'active' : '') role="presentation")
+          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel6-#{pathName}' onclick="window.location=this.href;return false;") RHEL 6
 
   .os-tabs.tabs-content
     section.content.active(role="tabpanel" aria-hidden="false")
@@ -101,14 +104,10 @@ type: Get Started
                     i.fa.fa-clock-o  #{page._step1_duration}
                 .collapse-icon
           div#expandStepOne
-            .tabs-content
-              - page.product.cdk_install_paths.each do |rpath|
-                section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('windows') ? 'active content' : 'content') id="#{rpath.id}")
-                  - q = rpath.id
-                  - if q == 'windows'
-                    = page._step1_windows_content
-                  - elsif q == 'maclinux'
-                    = page._step1_maclinux_content
+            - if page._step1_content
+              .large-24#Step1Content
+                = page._step1_content
+
           input#stepTwo(type='checkbox' checked)
           label(for='stepTwo')
             .large-24.step-header#Step2
