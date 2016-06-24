@@ -2,6 +2,12 @@
 :awestruct-interpolate: true
 :linkattrs:
 
+## Step1 Windows Title
+Download & install
+
+## Step2 Windows Title
+Build your first containerized application
+
 ## Step1 Title
 Download Container Development Kit
 
@@ -14,19 +20,94 @@ Install Container Development Kit
 ## Step4 Title
 Build your first container
 
-## Step1 Content
+## Step1 Windows Content
+The easiest way to install the Red Hat Container Development Kit is to use the Red Hat Development Suite installer.
 
-In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Developer Suite includes Red Hat Enterprise Linux Server, and additional development tools.
+. Download the link:http://insert-link-here[Red Hat Development Suite 1.0] installer
+. Double click on the downloaded file to launch the installer. If you have User Account Control enabled, you will need to click _Yes_ to allow  the installer to run with adminstrator-level permissions.
+. Enter your Red Hat Developers username and password, and click _Login_.
++
+image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_1.png')}[Login to Red Hat Developers]
++ 
+[.callout-light]
+*NOTE:* If you haven't directly downloaded the Red Hat Development Suite from Red Hat Developers, your account may not have the correct entitlements to install the Container Development Kit. The easiest way to add the entitlements is to visit Red Hat Developers and initiate a download of the Red Hat Development Suite. We are working on a fix to enable you to add the entitlements to your account without starting a new download.
+. Choose the folder you wish to use to install Red Hat Development Suite, and click _Continue_.
++
+image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_2.png')}[Choose Install Location]
++ 
+. By default, Red Hat Development Suite includes Red Hat JBoss Developer Studio and Open JDK. To prevent them being installed, first locate _RED HAT JBOSS DEVELOPER STUDIO_ and ensure it is unchecked, then locate _OPENJDK_ and ensure it is unchecked. Then Click _Download & Install_.
++
+image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_3.png')}[Choose Components]
++ 
+. The Red Hat Development Suite installer will then download the Container Development Kit and any supporting components it detects are required (Vagrant, Cygwin and Oracle VirtualBox).
++
+image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_4.png')}[Download Components]
++ 
+. Click _Close the installer_
++
+image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_5.png')}[Close Installer]
++ 
+
+
+## Step1 Maclinux Content
+The Red Hat Development Suite is not yet available on this platform. In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Developer Suite includes Red Hat Enterprise Linux Server, and additional development tools.
+Download the https://developers.redhat.com/download-manager/file/cdk-2.0.0.zip[cdk-2.0.0.zip].
+
+[.callout-light]
+*NOTE:* Later in this guide, you will need the Red Hat username and password you create during registration for accessing Red Hat sites.
+
+## Step2 Windows Content
+
+Select your development technology and then build your first "Hello World" application in a container:
+
+## Nodejs Tab
+
+[.large-17.columns.recommended]
+*Node.js v4*
+Node.js(R) is an event-driven server-side JavaScript runtime that is lightweight and efficient.
+
+[.large-7.columns.tc-button]
+#{site.base_url}/products/cdk/get-started-cdk2-nodejs/[Get Started]
+
+## PHP Tab
+
+[.large-17.columns.recommended]
+*PHP 5.6*
+PHP is a widely-used, open source, general-purpose scripting language that is especially suited for web development. PHP can be embedded into HTML.
+
+[.large-7.columns.tc-button]
+#{site.base_url}/products/cdk/get-started-cdk2-php/[Get Started]
+
+## Python Tab
+
+[.large-17.columns.recommended]
+*Python 3.5*
+Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its built-in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development and integration.
+
+[.large-7.columns.tc-button]
+#{site.base_url}/products/cdk/get-started-cdk2-python/[Get Started]
+
+## Ruby Tab
+
+[.large-17.columns.recommended]
+*Ruby 2.3*
+Ruby is a dynamic, reflective, object-oriented, general-purpose programming language.
+
+[.large-7.columns.tc-button]
+#{site.base_url}/products/cdk/get-started-cdk2-ruby/[Get Started]
+
+
+## Step1 Content
 
 // This link will need to be updated for GA and later.
 Download the #{site.download_manager_base_url}/download-manager/file/cdk-2.0.0.zip[cdk-2.0.0.zip].
 
-Note: Later in this guide, you will need the Red Hat username and password you create during registration for accessing Red Hat sites.
-
+[.callout-light]
+*NOTE:* Later in this guide, you will need the Red Hat username and password you create during registration for accessing Red Hat sites.
 
 ## Step2 Content
 
-The CDK delivers the latest container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the CDK you will need:
+The Container Development Kit delivers the latest container runtime enviornment and container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the kit you will need:
 
 . A virtualization platform: http://virtualbox.org/[VirtualBox, window='_blank'], https://www.vmware.com/products/desktop-virtualization.html[VMware, window='_blank'], or Linux KVM/libvirt
 . http://www.vagrantup.com/about.html[Vagrant, window='_blank'], an open source tool for creating and distributing portable development environments.
@@ -41,15 +122,16 @@ First, download and install a virtualization platform:
 * https://www.vmware.com/products/fusion[VMware Fusion, window='_blank'] (For Apple Mac OS X), https://www.vmware.com/products/workstation[VMware Workstation Pro, window='_blank'] or https://www.vmware.com/products/player[VMware Workstation Player, window='_blank'] (For Microsoft Windows or Linux)
 * Linux KVM/libvirt (For Red Hat Enterprise Linux, CentOS, or Fedora)
 
-Note: If you are using Microsoft Windows, Apple Mac OS X, or a Linux distribution other than Red Hat, Fedora or CentOS, VirtualBox is recommended.
+[.callout-light]
+*NOTE:* If you are using Microsoft Windows, Apple Mac OS X, or a Linux distribution other than Red Hat, Fedora or CentOS, VirtualBox is recommended.
 
 
 ### Install Vagrant
 
-Next, install Vagrant. All of the CDK VM configuration and managment on your development system will be handled for you by Vagrant.
+Next, install Vagrant. All of the Container Development Environment configuration and managment on your development system will be handled for you by Vagrant.
 
 [.callout-light]
-*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1* on Microsoft Windows and Apple Mac OS X. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the CDK.
+*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1* on Microsoft Windows and Apple Mac OS X. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the kit.
 
 If you are using:
 
@@ -70,9 +152,9 @@ To provide `ssh` and `rsync` on Microsoft Windows, install http://cygwin.com/ins
 * http://cygwin.com/setup-x86_64.exe[setup-x86_64.exe, window='_blank'] for 64-bit versions of Windows.
 
 
-### Download Red Hat Enterprise Linux CDK Vagrant Box
+### Download the Container Runtime Environment
 
-Next, download the Red Hat Enterprise Linux CDK Vagrant box that matches your virtualization platform:
+Next, download the environment that matches your virtualization platform:
 
 // FIXME These will need to be updated for GA and later.
 * #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-23.x86_64.vagrant-virtualbox.box[Red Hat Enterprise Linux 7.2 Vagrant box for VirtualBox, window='_blank']
@@ -81,7 +163,7 @@ Next, download the Red Hat Enterprise Linux CDK Vagrant box that matches your vi
 
 ## Step3 Content
 
-Next, install the CDK by following the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide, window='_blank'] for your operating system:
+Next, install the Container Development Kit by following the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide, window='_blank'] for your operating system:
 
 * https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_microsoft_windows[Installing the CDK on Microsoft Windows, window='_blank']
 * https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_mac_os_x[Installing the CDK on Apple Mac OS X, window='_blank']
@@ -94,7 +176,7 @@ Select your development technology and then build "Hello, World" in a container:
 ## Nodejs Tab
 
 [.large-17.columns.recommended]
-*Node.js 0.10*
+*Node.js v4*
 Node.js® is an event-driven I/O server-side JavaScript runtime that is lightweight and efficient.
 
 [.large-7.columns.tc-button]
@@ -112,7 +194,7 @@ PHP is a widely-used, open source, general-purpose scripting language that is es
 ## Python Tab
 
 [.large-17.columns.recommended]
-*Python 3.4*
+*Python 3.5*
 Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its built-in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development and integration.
 
 [.large-7.columns.tc-button]
@@ -121,7 +203,7 @@ Python is an interpreted, object-oriented, high-level programming language with 
 ## Ruby Tab
 
 [.large-17.columns.recommended]
-*Ruby 2.2*
+*Ruby 2.3*
 Ruby is a dynamic, reflective, object-oriented, general-purpose programming language.
 
 [.large-7.columns.tc-button]

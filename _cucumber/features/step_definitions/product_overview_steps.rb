@@ -10,7 +10,11 @@ Then(/^I should see a side-nav with the following options:$/) do |table|
       when 'Overview'
         expect(@page.product_overview.side_nav_item_displayed?('Overview')).to be true
       when 'Get Started'
-        expect(@page.product_overview.side_nav_item_displayed?('Get Started')).to be true
+        if @products_with_get_started.include? @selected_product
+          expect(@page.product_overview.side_nav_item_displayed?('Get Started')).to be true
+        else
+          expect(@page.product_overview.side_nav_item_displayed?('Get Started')).to be false
+        end
       when 'Docs And APIs'
         if @products_with_docs.include? @selected_product
           expect(@page.product_overview.side_nav_item_displayed?('Docs And APIs')).to be true
