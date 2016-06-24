@@ -1,6 +1,85 @@
-:awestruct-layout: product-get-started-old
+:awestruct-layout: product-get-started
+:awestruct-interpolate: true
 
-== Extra section
+== Prerequisites section title
+Prerequisites &#38; Required Dependencies Checklist
 
-For Installation Instructions, please refer to the instructions in the JBoss Data Virtualization 6.1 https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/[Installation Guide].
+== Step1 Duration
+5 minutes
 
+== Step2 Duration
+5 minutes
+
+== Step3 Duration
+12 minutes
+
+== Step1 Content
+1.	Open a terminal window and navigate to the location where the GUI installer was downloaded.
+2.	Enter the following command to launch the GUI installer: `java -jar jboss-dv-installer-VERSION.jar`
+3.	A dialogue box will open followed by the End User License Agreement. If you accept the terms of the agreement, click *I accept the terms of this license agreement* and then click *Next*.
+4.	Click Next (a new folder for JBoss EAP server is created). Incase, JBoss EAP is already installed; tell Red Hat JBoss Data Virtualization where Red Hat JBoss EAP is installed. Add the file path and click *Next*
+5.	Ensure *Teiid Installation* and *Modeshape Installation* are selected. Click *Next*.
+6.	You will be prompted to create a new EAP Admin, Dashboard Admin, Teiid data access user and ModeShape user and whether you want to enable OData access and a logging role. Once created, these are added to the AdminRealm and can be used to access the Management Console and other applications secured using ManagementRealm. Enter the new username and password in the appropriate fields and click *Next*.
+You must ensure that you remember all of these passwords. They give you access to different parts of the system. The EAP account and password allows you to administer the EAP Server, the Dashboard password is for administrative functions related to the web interface, and the Teiid data access user and ModeShape user are for standard user access.
++
+*Note* that the username and password are not allowed to match and the password must have at least eight characters, with one alphabetical character, one numeric character and one non-alpha-numeric character.
+7.	You can install Red Hat JBoss Data Virtualization either with default configuration or with additional configuration options. For this exercise, we will be using the defaults only, so select *Perform default configuration* to install Red Hat JBoss Data Virtualization with default options (the Database logging configuration is the only option selected by default). Click *Next*.
+8.	The Configure password vault screen appears. Input your desired password, which must have no fewer than six characters. Click *Next*.
+*NOTE*
+The default H2 database is not suitable for production databases. Use it in testing and evaluation environments only.
+A summary of the installation is displayed. Click *Next* for the installation to commence. This may take a few moments. Once all the components are installed, click *Next* again.
+9.	Click *Generate an installation script and properties file* if you wish to generate a script for automatic future installations. This script allows you to quickly reinstall or mass-deploy the product using the settings you have configured during the initial installation, without having to step through the wizard each time.
+10.	Make a note of the URLs of the Administration Console and the Data Virtualization Dashboard and click *Done* to exit the installer.
+
+== Step2 Content
+
+1.	Install the Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
+2.	Download JBoss Developer Studio 8.1.0.GA
+3.	Run JBoss Developer Studio installer
+.. For MAC/Linux:
+... Go to the folder where you have downloaded JBoss Developer Studio, and execute the installer
++
+`java -jar jboss-devstudio-8.1.0.GA-installer-eap.jar`
++
+*Note:* This will execute the JBoss Developer Studio installation wizard.
++
+..	For Windows:
++
+...	Right Click on jboss-devstudio-8.1.0.GA-installer-eap.jar
+...	Select *Open With >Jar Launcher*
++
+4.	Install JBoss Developer Studio Integration Stack plugins
+..	Start Red Hat JBoss Developer Studio.
+..	In Red Hat JBoss Developer Studio, *click Help > Install* New Software…action from the main menu.
+..	On the Available Software page, click the *Add …* button.
+..	On the Add Repository dialog, enter following details:
+..	Enter *JBDSIS* (or another unique name) in the *Name* field.
+..	Enter https://devstudio.redhat.com/9.0/stable/updates/integration-stack/earlyaccess/ in the *Location* field.
+..	Click *OK*.
+..	In the update site tree view, select the JBoss Data Virtualization Development folder and all its children.
++
+*Note:* If JBDSIS is already installed then proceed to next step. You can confirm that JBDSIS is installed on your machine by clicking *What is already installed link*.
++
+..	Click *Next*.
+..	Accept any additional dependencies and license agreements, and then click Finish to complete.
++
+*Note:* When installation is complete you will be prompted to re-launch Red Hat JBoss Developer Studio to insure the new features are fully operational.
+
+== Step3 Content
+
+Follow the below series to build your first data virtualization project. You will build a simple project which involves pulling data from a flat XML file and exposing it to VDB layer in a relational database format. The series walks you through each step, of creation of VDB layer, from start to finish.
+
+|===
+|Demonstration Description | Material
+
+|What is JBoss Data Virtualization?
+|https://vimeo.com/150192169[Jboss Data Virtualization]
+
+|Build VDB layer with Teiid Designer
+|https://vimeo.com/76457404[Step 1], https://vimeo.com/76471307[Step 2], https://vimeo.com/76476379[Step 3]
+|===
+
+== More Resources
+
+* link:../learn[See Quickstarts, Videos, and other Learning materials]
+* link:../buzz[Read about how other people are using JBoss Fuse]
