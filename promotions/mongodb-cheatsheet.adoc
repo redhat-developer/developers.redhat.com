@@ -1,0 +1,23 @@
+:awestruct-layout: microsite-2
+:awestruct-interpolate: true
+:awestruct-id: microsite-id
+:awestruct-graphic: "http://static.jboss.org/images/rhd/minipage/RHDev_pageimage_mongodbcheatsheet_17jun2016.png"
+
+// Microsite title
+### MongoDB Shell Cheat Sheet
+
+There are many GUI tools to connect to MongoDB databases and browse but sometimes you need to get to the command line.  That moment when something has gone wrong on the database server, and you need to SSH 4-levels deep in order to debug a problem with a database can leave you stuck.
+
+In this cheat sheet you can get a quick refresher on:
+
+* Starting the mongo shell
+* Navigating around Mongo
+* Working with a collection
+* Changing groups of documents
+* Working with individual documents and Indexes
+* Dangers to avoid
+
+Created for personal use by Red Hat’s own Cian Clarke, we’ve cleaned it up a bit for your use.
+
+[.button]
+link:#{site.download_manager_file_base_url}MongoDB_Shell_Cheat_Sheet.pdf[DOWNLOAD NOW]
