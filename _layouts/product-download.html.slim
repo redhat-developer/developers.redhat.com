@@ -36,7 +36,7 @@ type: Downloads
     br
 
 .row
-  - unless page.product.id == 'devstudio'
+  - unless page.product.id == 'devstudio' || page.product.id == "cdk"
     .large-16.small-24.columns
       br
       h4#ready-production-use Ready to use #{page.product.abbreviated_name} in Production?
