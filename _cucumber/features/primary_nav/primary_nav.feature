@@ -86,6 +86,8 @@ Feature: Site navigation menu
       | MOBILE         |
       | ACCELERATED DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION             |
+      | DEVELOPER TOOLS                        |
+      | RUNTIMES                               |
     And the sub-menu should include a list of available technologies
 
   @products @desktop
@@ -98,6 +100,8 @@ Feature: Site navigation menu
       | MOBILE                                 |
       | ACCELERATED DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION             |
+      | DEVELOPER TOOLS                        |
+      | RUNTIMES                               |
 
   @products @desktop @smoke
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
@@ -115,6 +119,8 @@ Feature: Site navigation menu
       | MOBILE         |
       | ACCELERATED DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION             |
+      | DEVELOPER TOOLS                        |
+      | RUNTIMES                               |
 
   @desktop @smoke
   Scenario: Hovering over the COMMUNITIES menu should display additional sub-menu with options

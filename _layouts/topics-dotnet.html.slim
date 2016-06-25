@@ -114,7 +114,12 @@ section.topics-dotted-graphics#dotNet
                         | Then follow
                         a href='#{site.base_url}/products/rhel/get-started/#Step3'  these instructions
                         |  to get started.
-
+                  /- if e.section_2.tags
+                  /  span.promo-tags
+                  /    .promo-tags-label Tags:
+                  /    ul
+                  /      - e.section_2.tags.each do |tag|
+                  /        li #{tag}
   .row#topic-resources(data-tags="#{JSON.dump(page.solution.tags).gsub(/"/, "'")}")
     ul.topic-resources.topic-resources-list.small-block-grid-1.medium-block-grid-2.large-block-grid-4
 
