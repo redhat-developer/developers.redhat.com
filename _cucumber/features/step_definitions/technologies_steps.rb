@@ -52,7 +52,7 @@ When(/^the products have Downloads available$/) do
 end
 
 Then(/^I should see a 'Downloads' link for each product$/) do
-  products_with_downloads = @technologies_with_downloads - ['mobileplatform']
+  products_with_downloads = @technologies_with_downloads - ['mobileplatform','openjdk', 'dotnet']
   products_with_downloads.each do |product|
     expect(@page.technologies.download_button_for(product)).to include "#{$host_to_test}/products/#{product}/download/"
   end
