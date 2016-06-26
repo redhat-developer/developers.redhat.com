@@ -9,30 +9,100 @@ search.service('searchService',function($http, $q) {
     // fold in params with defaults
     var search = Object.assign(params, {
       // field: '_source',
-      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_updated'],
-      agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
+      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated', 'sys_type', 'thumbnail', 'sys_created'],
+      // Disable aggregations until ready
+      // agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
       query_highlight: true
     });
 
-    $http.get(app.dcp.url.search, { params: search })
+    var endpoint = (!!window.location.pathname.match(/\/search/) ? app.dcp.url.search : app.dcp.url.developer_materials);
+
+    $http.get(endpoint, { params: search })
       .success(function(data){
         deferred.resolve(data);
       })
       .error(function (err) {
-        console.error(err);
+        throw new Error(err);
       });
     return deferred.promise;
   }
 });
-
 
 /*
   Filter to return human readable time ago
 */
 search.filter('timeAgo', function() {
   return function(timestamp){
+    if(!timestamp) return;
     var date = new Date(timestamp);
     return $.timeago(date);
+  }
+});
+
+search.filter('MDY', function() {
+  return function(timestamp){
+    if(!timestamp) return;
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var date = new Date(timestamp);
+    window.date = date;
+    return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+  }
+});
+
+search.filter('timestamp', function() {
+  return function(timestamp){
+    var date = new Date(timestamp);
+    return date.getTime();
+  }
+});
+
+search.filter('wordcount', function() {
+  return function(description){
+    description = description || '';
+    var wordCount = 50;
+    var peices = description.split(' ');
+    peices = peices.slice(0,wordCount);
+    return peices.join(' ') + (peices.length >= wordCount ? '…' : '');
+  }
+});
+
+search.filter('icon', function() {
+  return function(sys_type) {
+    var icons = {
+      video: 'icon-RHDev_-resources_icons_video',
+      blogpost: 'icon-RHDev_-resources_icons_blogpost',
+      jbossdeveloper_book: 'icon-RHDev_-resources_icons_book',
+      book: 'icon-RHDev_-resources_icons_book',
+      article: 'icon-RHDev_-resources_icons_article',
+      solution: 'icon-RHDev_-resources_icons_article',
+      demo: 'icon-RHDev_-resources_icons_demo',
+      quickstart: 'icon-RHDev_-resources_icons_demo',
+      jbossdeveloper_archetype: 'icon-RHDev_-resources_icons_demo',
+      jbossdeveloper_bom: 'icon-RHDev_-resources_icons_demo',
+      quickstart_early_access: 'icon-RHDev_-resources_icons_demo',
+      jbossdeveloper_example: 'icon-RHDev_-resources_icons_getstarted'
+    }
+    return icons[sys_type] || icons.blog;
+  }
+});
+
+search.filter('broker', function() {
+  return function(url){
+    if(url && url.match('access.redhat.com')){
+      return app.dcp.url.broker + encodeURIComponent(url);
+    }
+    return url;
+  }
+});
+
+search.filter('jbossfix', function() {
+  return function(url){
+    var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org','gi');
+
+    if(url && url.match(matcher)){
+      return url.replace(matcher,'https://developer.redhat.com')
+    }
+    return url;
   }
 });
 
@@ -63,44 +133,87 @@ search.filter('description', function($sce) {
 
 search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
 
-
 function searchCtrlFunc($scope, searchService) {
-  var search = window.location.search.split('=');
+
+  var isSearch = !!window.location.href.match(/\/search\//);
+  var searchTerm = window.location.search.split('=');
   var q = '';
-  if(search) {
-    q = decodeURIComponent(search.pop().replace(/\+/g,' ')); // last one
-  }
-  /* default */
+
+  /* defaults */
   $scope.params = {
     query: q,
     sortBy: 'score',
     size: 10,
+    size10: true,
     from: 0,
-    type: 'rht_website'
+    sys_type: [],
+    project: '',
+    newFirst: false
+  };
+
+  // Search Page Specifics
+  if(isSearch && searchTerm) {
+    $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
+    $scope.params.type = 'rht_website';
   }
 
   $scope.paginate = {
     currentPage: 1
-  }
+  };
 
   $scope.loading = true;
 
   $scope.resetPagination = function() {
     $scope.params.from = 0; // start on the first page
     $scope.paginate.currentPage = 1;
-  }
+  };
+
+  /*
+    Clean Params
+  */
+
+  $scope.cleanParams = function(p) {
+      var params = Object.assign({}, p);
+
+      // if "custom" is selected, remove it
+      if(params.publish_date_from && params.publish_date_from === 'custom') {
+        params.publish_date_from = params.publish_date_from_custom;
+      } else {
+        delete params.publish_date_from_custom;
+        delete params.publish_date_to;
+      }
+
+      // if relevance is "most recent" is turned on, set newFirst to true, otherwise remove it entirely
+      if(params.newFirst !== "true") {
+        delete params.newFirst;
+      }
+
+      // delete old size params
+      ['10', '25', '50', '100'].forEach(function(size){
+        delete params['size' + size];
+      });
+
+      // use the size10=true format
+      params['size'+params.size] = true;
+
+      // return cleaned params
+      return params;
+  };
 
   $scope.updateSearch = function() {
     $scope.loading = true;
     $scope.query = $scope.params.query; // this is static until the update re-runs
-    history.pushState($scope.params,$scope.params.query,app.baseUrl + '/search/?q=' + $scope.params.query);
-    searchService.getSearchResults($scope.params).then(function(data) {
+    var params = $scope.cleanParams($scope.params);
+    if(isSearch) {
+      history.pushState($scope.params,$scope.params.query,app.baseUrl + '/search/?q=' + $scope.params.query);
+    }
+    searchService.getSearchResults(params).then(function(data) {
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
       $scope.buildPagination(); // update pagination
       $scope.loading = false;
     });
-  }
+  };
 
   /*
    Handle Pagination
@@ -123,7 +236,7 @@ function searchCtrlFunc($scope, searchService) {
       pagesArray: app.utils.diplayPagination(page, pages, 4),
       pages: pages,
       lastVisible: lastVisible
-    }
+    };
   };
 
   /*
@@ -156,148 +269,28 @@ function searchCtrlFunc($scope, searchService) {
     $scope.updateSearch();
   };
 
-  $scope.updateSearch(); // run on pageload TODO: move to ng-init
+
+  $scope.toggleSelection = function toggleSelection(event) {
+
+    var checkbox = event.target;
+    var topicNames = checkbox.value.split(' ');
+
+    if (checkbox.checked) {
+      // Add - allow for multiple checks
+      // $scope.params.sys_type = $scope.params.sys_type.concat(topicNames);
+      // Replace - only allow one thing to be checked
+      $scope.params.sys_type = topicNames;
+    }
+    else {
+      topicNames.forEach(function(topic) {
+        var idx = $scope.params.sys_type.indexOf(topic);
+        $scope.params.sys_type.splice(idx, 1);
+      });
+    }
+    // re run the search and reset pagination
+    $scope.updateSearch();
+    $scope.resetPagination();
+  };
+
+  $scope.updateSearch();
 }
-
-
-
-
-// /* global app */
-
-// app.search = {
-
-//   abort : function() {
-//     // abort previous request if we are running a new one
-//     if(app.search.currentRequest && app.search.currentRequest.readyState !== 4) {
-//       app.search.currentRequest.abort();
-//     }
-//   },
-//   fetch :function(query) {
-
-//     // Pass search params to GTM for analytics
-//     window.dataLayer = window.dataLayer || [];
-//     window.dataLayer.push({ 'keyword' : query });
-//     window.dataLayer.push({'event': 'website-search'});
-
-//     // perform ajax request
-//     $.ajax({
-//       url : app.dcp.url.search,
-//       dataType: 'json',
-//       data : {
-//         "field"  : ["sys_title", "sys_url_view"],
-//         "type" : "jbossdeveloper_website",
-//         "query" : query,
-//         "size" : 10,
-//         "query_highlight" : true
-//       },
-//       beforeSend : function() {
-//         app.search.abort();
-//       },
-//       success : function(data) {
-//         app.search.format(query, data.hits.hits, $('form.search .searchResults'));
-//       },
-//       error : function() {
-//         $('.searchResults').html("<ul>" + app.dcp.error_message + "</ul>");
-//       }
-//     });
-
-//   },
-//   format : function(query, results, container) {
-//     var suggestions = $('<ul>');
-//     for (var i = 0; i < results.length; i++) {
-//       var title = results[i].highlight && results[i].highlight.sys_title ? results[i].highlight.sys_title : results[i].fields.sys_title;
-//       var url = results[i].fields.sys_url_view;
-//       suggestions.append('<li><a href="' + url + '">'+ title  +'</a></li>');
-//     };
-//     // $('.searchResults').html(suggestions);
-//     container.html(suggestions);
-//   }
-
-// };
-
-// // binding
-// (function() {
-//   var timeOut;
-//   $('form.search').on('submit',function(e){
-//     e.preventDefault();
-//   });
-
-//   // listen to key events on the search form and the buzz filter page
-//   $('form.search').on('keyup','input',function(e) {
-//     var form = $(this).parent();
-//     /*
-//       Check for enter / return key
-//     */
-
-//     if(e.keyCode == 13) {
-//       var link = $('.searchResults li.active-item a');
-//       window.location.assign(link[0].href);
-//       // .click();
-//       return;
-//     }
-
-//     /*
-//       Check for up / down arrows
-//     */
-
-//     if(e.keyCode === 38 || e.keyCode === 40) {
-//       if(e.keyCode === 38) { // up arrow
-//         e.preventDefault(); // stop the cursor from going to the front of the input box
-//         var activeItem = form.find('.searchResults li.active-item').prev();
-//       }
-//       else { // down arrow
-//         var activeItem = form.find('.searchResults li.active-item').next();
-//       }
-
-//       // check if there is a selected item in the list
-//       if(!activeItem.length && e.keyCode === 40) { // nothing and down arrow
-//         activeItem = form.find('.searchResults li:first');
-//       }
-
-//       if(!activeItem.length && e.keyCode === 38) { // nothing and up arrow
-//         activeItem = form.find('.searchResults li:last');
-//       }
-
-//       $('.active-item').removeClass('active-item');
-//       activeItem.addClass('active-item');
-//     }
-
-//     /*
-//       Otherwise suggest search results
-//     */
-//     else {
-//       var query = $(this).val();
-//       if(!query) {
-//         $('.searchResults').html('');
-//         return;
-//       }
-//       clearTimeout(timeOut);
-//       timeOut = setTimeout(function() {
-//         // if it is the search form, go ahead and search
-//         // otherwise it is buzz, and we handle this in buzz.js
-//         if(form.hasClass('search')) {
-//           app.search.fetch(query);
-//         }
-//       }, 300);
-//     }
-//   });
-
-//   // When someone hovers over a selection, remove
-//   $('.searchResults').on('mouseover','li',function() {
-//     $('li.active-item').removeClass('active-item');
-//     $(this).addClass('active-item');
-//   });
-
-//   // when someone clicks the search result with their mouse
-//   $('.searchResults').on('mousedown','a',function() {
-//     window.location.assign(this.href);
-//   });
-
-//   // close the search box on mobile
-//   $('.search-close').on('click',function(e){
-//     $('form.search input').val('');
-//     $('.searchResults').html('');
-//   });
-
-// })();
-

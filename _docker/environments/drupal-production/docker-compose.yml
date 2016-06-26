@@ -82,9 +82,9 @@ services:
       - /data/drupal-export:/export
       - /credentials/rsync:/home/awestruct/.ssh
 
- #
- # Testing
- #
+  #
+  # Testing
+  #
   unit_tests:
     build:
       context: ../../awestruct

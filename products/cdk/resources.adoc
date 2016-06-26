@@ -19,3 +19,40 @@ Please join the mailing list, container-tools@redhat.com and use it to submit yo
 * link:https://access.redhat.com/articles/1353773[Creating a Kubernetes Cluster to Run Docker Formatted Container Images]
 * link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-security-guide/[Container Security Guide]
 * link:http://tools.jboss.org/blog/2015-03-30-Eclipse_Docker_Tooling.html[Learn about the Eclipse Docker tooling]
+
+=== Container images available from Red Hat 
+
+Here are some of the container images available from the Red Hat Container Registry, link:https://registry.access.redhat.com/[registry.access.redhat.com]. A full, searchable list, is available on the link:https://access.redhat.com/search/#/container-images[Red Hat Customer Portal].
+
+*Languages and frameworks*
+[frame="topbot", options="header"]
+|==========================
+|Description  |Installation
+|Python 2.7 platform for building and running applications |docker pull rhscl/python-27-rhel7
+|Python 3.4 platform for building and running applications |docker pull rhscl/python-34-rhel7
+|Node.js 0.10 platform for building and running applications |docker pull openshift3/nodejs-010-rhel7
+|Ruby 2.2 platform for building and running applications |docker pull rhscl/ruby-22-rhel7
+|Platform for building and running Ruby on Rails 4.1 applications |docker pull rhscl/ror-41-rhel7
+|Perl 5.20 platform for building and running applications |docker pull rhscl/perl-520-rhel7
+|PHP 5.6 platform for building and running applications |docker pull rhscl/php-56-rhel7
+|Developer toolset 4 toolchain (includes GCC 5.2, Eclipse, etc.) |docker pull rhscl/devtoolset-4-toolchain-rhel7
+|==========================
+
+*Databases*
+[frame="topbot", options="header"]
+|==========================
+|Description  |Installation
+|MariaDB 10.0 SQL database server |docker pull rhscl/mariadb-100-rhel7
+|MongoDB 2.6 NoSQL database server |docker pull rhscl/mongodb-26-rhel7
+|MySQL 5.6 SQL database server |docker pull rhscl/mysql-56-rhel7
+|PostgreSQL 9.4 SQL database server |docker pull rhscl/postgresql-94-rhel7
+|==========================
+
+*Web and proxy servers*
+[frame="topbot", options="header"]
+|==========================
+|Description  |Installation
+|NGINX 1.6 server and a reverse proxy server |docker pull rhscl/nginx-16-rhel7
+|Apache HTTP 2.4 Server |docker pull rhscl/httpd-24-rhel7
+|Phusion Passenger 3.0 web server and application server |docker pull rhscl/passenger-40-rhel7
+|==========================
