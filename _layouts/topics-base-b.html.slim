@@ -21,6 +21,8 @@ section(class="topics-dotted-graphics #{page.solution.id}")
               span
                 h3 #{a.title}
                 p.description #{a.description}
+                - if a.button
+                  a.button.inverse.right(href='#{site.base_url}#{a.button.local_url}') #{a.button.title}
                 - if a.tags
                   span.promo-tags
                     .promo-tags-label Tags:
