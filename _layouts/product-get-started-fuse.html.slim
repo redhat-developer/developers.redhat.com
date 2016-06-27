@@ -1,0 +1,42 @@
+---
+layout: product
+status: green
+type: Get Started
+---
+- page.description = "Learn how to install and start using #{page.product.abbreviated_name}."
+= partial 'getstarted-thankyou.html.slim', {'parent' => page}
+
+- if !page.product.skip_installation_instructions
+  = partial "os-selector.html.slim"  
+
+#get-started-instructions.get-started-content
+  - if !page.product.skip_maven_instructions
+    - if page._configure_apache_maven 
+      - unless page._configure_apache_maven.strip.empty?
+        h3.divider#configure-maven Configure Apache&trade; Maven
+        = page._configure_apache_maven
+    - else 
+      h3.divider#configure-maven Configure Apache&trade; Maven
+      = partial "maven_repository_instructions.adoc"
+
+  - if page._extra_section
+    - if page._extra_section_title
+      h3.divider#ExtraSection #{page._extra_section_title}
+    = page._extra_section
+
+div(ng-app="dcp")
+  .developer-materials(ng-controller="developerMaterialsController")
+    - if page.product.featured_items
+      br
+      h5#try-quickstart Dive in with a quickstart, example or video
+      = partial('developer-materials-featured.html.slim', {'featured_items' => page.product.featured_items})
+      .developer-materials-results data-developer-materials-filter-project-code="#{page.product.dcp_project_code}" ng-init="filters.project = '#{page.product.dcp_project_code}'"
+        = partial 'developer-materials-results.html.slim'
+
+      .large-15.more-developer-materials
+        p: a(href="../learn") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
+
+    = javascripts('product-get-started', true) do
+      script src="#{site.base_url}/javascripts/vendor/class.create.js"
+      script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
+      script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"

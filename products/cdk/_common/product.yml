@@ -5,9 +5,16 @@ product_logo:
 indented_product: false
 current_version:
 product_category: it-infrastructure
+other_product: true
 intro_video: https://www.youtube.com/v=DGoqrqSLQtg
 vimeo_album:
+cdk_install_paths:
+  - id: "windows"
+    name: Windows
+  - id: "maclinux"
+    name: Mac/Linux
 youtube_album: https://www.youtube.com/playlist?list=PLf3vm0UK6HKot0DBAXHKQfRDjqWKxj2mK
+customer_portal_download_url: https://access.redhat.com/downloads/content/293/ver=2.1/rhel---7/2.1.0/x86_64/product-software
 index:
   desc: |
     An environment to quickly set up your environment for building secure Docker-based applications.

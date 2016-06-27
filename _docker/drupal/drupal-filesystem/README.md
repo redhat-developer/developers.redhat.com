@@ -35,6 +35,21 @@ The `composer create-project` command passes ownership of all files to the
 project that is created. You should create a new git repository, and commit 
 all files not excluded by the .gitignore file.
 
+## Restoring content to Drupal
+
+If something goes wrong and you need to restore the drupal environment from a backup the steps are pretty easy:
+
+1. Obtain the backup. This will include an sql file an a tar.gz file.
+2. Extract the tar.gz file into `_docker/drupal/web`.
+3. Execute `control.rb -e drupal-dev --run-the-stack`.
+4. Copy the sql file into the drupalmysql container using `docker cp /path/to/drupal-db.sql drupaldev_drupalmysql_1:/drupal-db.sql`
+5. Obtain a shell for the drupalmysql docker container using: `docker exec -it drupaldev_drupalmysql_1 /bin/bash`
+6. Restore the database using the `mysql` command: `mysql -u drupal -p drupal < /drupal-db.sql`, you'll be asked to enter the password.
+
+You should now have a drupal environment up and running with everything from the backup.
+
+NOTE: These instructions are tailored for a development environment. If you need to use a different environment please change step 3 to reference the correct environment and the container names in steps 4 and 5 will also need changing.
+
 ## What does the template do?
 
 When installing the given `composer.json` some tasks are taken care of:

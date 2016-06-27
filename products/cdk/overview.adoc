@@ -6,50 +6,35 @@
 
 == Overview
 
-Red Hat Container Development Kit (CDK) is a pre-built container development environment based on Red Hat Enterprise Linux to help you get started developing container-based applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
+Red Hat Container Development Kit is a pre-built container development environment based on Red Hat Enterprise Linux to help you get started developing container-based applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
 
 === Get started with containers on Mac OS X, Microsoft Windows, or Linux
 
-To save you from having to assemble a container development environment from scratch, CDK delivers the latest container tools in a Red Hat Enterprise Linux virtual machine that you can use on your link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_mac_os_x[Mac OS X], link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_microsoft_windows[Microsoft Windows], link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[RHEL or Fedora Linux system]. In addition, you have your choice of virtualization platforms (VirtualBox, VMware, and the Linux KVM/libvirt hypervisors are all supported). All of the VM configuration details on your system are handled for you by Vagrant, an open-source tool for creating and distributing portable and reproducible development environments.
+To save you from having to assemble a container development environment from scratch, the Container Development Kit delivers the latest container tools in a Red Hat Enterprise Linux virtual machine that you can use on your link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_mac_os_x[Mac OS X], link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_microsoft_windows[Microsoft Windows], link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[RHEL or Fedora Linux system]. In addition, you have your choice of virtualization platforms (VirtualBox, VMware, and the Linux KVM/libvirt hypervisors are all supported). All of the VM configuration details on your system are handled for you by Vagrant, an open-source tool for creating and distributing portable and reproducible development environments.
 
-Red Hat Container Development Kit 2.0 is available now to customers and partners with select Red Hat Enterprise Linux Developer subscriptions (link:https://www.redhat.com/apps/store/developers/[Red Hat Enterprise Linux Developer Suite, Red Hat Enterprise Linux Developer Support, Enterprise or Professional]) and to partners who join the link:https://connect.redhat.com/zones/containers[Container Zone via the Red Hat Connect for Technology Partners program]. To learn how to install the Red Hat CDK, refer to the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[Red Hat CDK Installation Guide].
+=== Exclusive for Red Hat® Developers community members
+
+Developers can now get the Red Hat Container Development Kit via no-cost Red Hat Enterprise Linux® Developer Suite subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com]. This subscription includes: Red Hat Enterprise Linux Server (all currently supported releases), additional development tools, and numerous add-ons such as resilient storage, scalable file systems, and high-performance networking. The no-cost subscription also includes access to the Red Hat Customer Portal for software updates and thousands of knowledgebase articles. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
 
 === Something for all levels of container experience
 
-The CDK is for you whether you are trying Docker-formatted containers for the first time, or want to see the latest developments in container tools from Red Hat.  If you are just getting started, try some container examples from the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit guide].
-If you are ready to try scaling out and orchestrating multi-container deployments, CDK has OpenShift Enterprise 3 and Kubernetes installed. You can choose between multi-container environments that are managed by OpenShift Enterprise or by just Kubernetes itself.
+The Container Development Kit is for you whether you are trying Linux containers for the first time, or want to see the latest developments in container tools from Red Hat.  If you are just getting started, follow the link:#{site.base_url}/products/cdk/get-started[Get Started guide].
+If you are ready to try scaling out and orchestrating multi-container deployments, the kit includes OpenShift 3.
 
-=== Want to try OpenShift Enterprise 3 Platform-as-a-Service?
+=== Want to try OpenShift 3 Platform-as-a-Service?
 
-The CDK provides a pre-built, single-machine OpenShift Enterprise 3 environment, so you can try the latest version of the OpenShift platform-as-a-service that integrates support for docker-formatted containers and Kubernetes. When you bring up the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#choosing_a_cdk_vagrantfile[rhel-ose Vagrantfile], OpenShift is started and provisioned.
+The Container Development Kit provides a pre-built, single-machine OpenShift 3 environment, so you can try the latest version of the OpenShift platform-as-a-service that integrates support for docker-formatted containers and Kubernetes. When you bring up the rhel-ose Vagrantfile, OpenShift is started and provisioned.
 To help you get started building applications, a number of OpenShift templates are included. You can access the OpenShift Web console from your browser or work from the CLI using the oc command to deploy container applications. OpenShift is pre-configured with a local Docker registry available and a local version of Kubernetes running, so you can test the full experience in a self contained environment.
 
 === Container development right from Eclipse
 
-Eclipse integration will help streamline your development process by letting you control your containers running on the VM right from your desktop. The CDK includes the components to connect Eclipse, or another docker-cli client, running on your host system with the daemon running inside the VM. For the latest information on Eclipse integration in the CDK, see the user documentation for the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#choosing_a_cdk_vagrantfile[rhel-docker-eclipse Vagrantfile].
-
-
-=== Orchestrate applications using Kubernetes
-
-Kubernetes is an orchestration and management platform for automatic deployment, scaling and operation of application containers on a cluster of machines. Deploying containers using Kubernetes requires metadata information in the form of artifacts files. So a developer needs a simple setup of Kubernetes to be able to test application containers and the artifacts before moving the deployment to other environments, such as testing and production environments.
-The CDK provides a link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#choosing_a_cdk_vagrantfile[rhel-k8s-singlenode-setup Vagrantfile] that can start up a single node Kubernetes configuration (a single master and node setup) on the same host just with a “vagrant up” command. A developer could then use the kubectl command to create pods, services, replication controllers and other elements to manage and scale containerized applications.
-
-=== Convert VM images to Containers with v2c
-
-Virtual-to-Container (v2c) is a tool for importing and converting disk images (like virtual machine images) into docker-formatted container images, complete with the appropriate metadata. The v2c tool makes it simple to take a working VM that has a single application and generate a dockerfile that runs the same application in a container.
-A typical v2c user is an organization with an existing collection of VM images that embed significant organization-specific software or configuration.  The resulting base images provide a starting point that you can build on with additional dockerfile(s) and configuration.
-If you would like to try this capability out please reach out to us on the mailing list supplied below.
-
-=== Atomic App and the Nulecule Specification
-
-Those interested in the evolution of container tooling will want to try Atomic App, which is Red Hat’s reference implementation of the Nulecule specification. The Nulecule specification enables complex containerized applications to be defined, packaged and distributed using standard container technologies. The resulting container includes dependencies, supports multiple orchestration providers, and has the ability to specify resource requirements. The Nulecule specification also supports the aggregation of multiple composite applications.
-For a preview of Atomic App, see this blog post: link:http://dustymabe.com/2016/01/18/running-nulecules-in-openshift-via-oc-new-app/[Running Nulecules in OpenShift via oc new-app].
+Eclipse integration will help streamline your development process by letting you control your containers running on the VM right from your desktop. The Container Development Kit includes the components to connect Eclipse, or another docker-cli client, running on your host system with the daemon running inside the VM. The easiest way to use Eclipse with the kit is to install the link:../../devsuite/overview[Red Hat Development Suite]. Check out link:https://www.youtube.com/watch?v=BQUCdwNgyTE[this video] for more.
 
 == Features1
 
 === Simplified setup
 
-Simplified setup of your container development environment for Microsoft Windows, Mac OS X, or Linux.
+Simplified setup of your container development environment for Microsoft Windows.
 
 == Icon1
 
@@ -69,19 +54,13 @@ image:#{cdn(site.base_url + '/images/icons/products/cdk_chalkboard.png')}["Handy
 
 === Tools for build & deploy
 
-Provide timely tools for building and deployment with Atomic App, V2C, and Nulecule.
+Provide timely tools for building and deployment with OpenShift.
 
 == Icon3
 
 image:#{cdn(site.base_url + '/images/icons/products/products_tools.png')}["Tools Icon"]
 
 == Detail
-
-=== Getting the CDK
-
-Red Hat Container Development Kit 2.0 is available now to customers and partners with select Red Hat Enterprise Linux Developer subscriptions (link:https://www.redhat.com/apps/store/developers/[Red Hat Enterprise Linux Developer Suite, Red Hat Enterprise Linux Developer Support, Enterprise or Professional]) and to partners who “join” the link:https://connect.redhat.com/zones/containers[Container Zone via the Red Hat Connect for Technology Partners program].
-To learn how to install the Red Hat CDK, refer to the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[Red Hat CDK Installation Guide]. Then you can try some container examples from the link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-container-development-kit/[Getting Started with Container Development Kit] guide.
-
 
 === Give us your feedback and join the discussion
 

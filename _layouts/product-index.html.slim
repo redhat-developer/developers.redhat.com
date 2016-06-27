@@ -39,7 +39,12 @@ layout: technology-base
                         - unless i >= (solutions.keys.size - 1)
                           ' ,
               .large-8.columns
-                a.button.caps(id="get-started-with-#{product.id}" href="#{site.base_url}/products/#{product.id}/get-started/") Get Started
+                - product_page = "get-started"
+                - if(!product.has_get_started_page && !product.has_download_page)
+                  - product_page = "overview"
+                - elsif(!product.has_get_started_page && product.has_download_page)
+                  - product_page = "download"
+                a.button.caps(id="get-started-with-#{product.id}" href="#{site.base_url}/products/#{product.id}/#{product_page}/") Get Started
                 .tool-links
                   ul.inline-list
                     - if(product.has_docsandapis_page)

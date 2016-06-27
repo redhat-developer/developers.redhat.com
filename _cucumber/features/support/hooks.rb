@@ -11,6 +11,7 @@ Before('@products, @downloads') do
   @product_names = get_products[1]
   @products_with_learn_link = get_products_with_links('learn.html.slim')[0]
   @products_with_docs = get_products_with_links('docs-and-apis.adoc')[0]
+  @products_with_get_started = get_products_with_links('get-started.adoc')[0]
   @technologies_with_downloads = get_available_downloads[0]
   @available_downloads = get_available_downloads
   @products_with_buzz = get_products_with_links('buzz.html.slim')[0]

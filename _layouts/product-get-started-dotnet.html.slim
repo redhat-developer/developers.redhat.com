@@ -1,0 +1,169 @@
+---
+layout: product
+status: green
+type: Get Started
+---
+- page.description ||= "Learn how to install and start using #{page.product.abbreviated_name}."
+= partial 'getstarted-thankyou.html.slim', {'parent' => page}
+
+#get-started-instructions.tthw-steps(data-spy="scroll" data-target="#steps-scroll")
+  .large-24
+    - if page._path_intro_section
+      .row.sp-header
+        = page._path_intro_section
+  - currentPage = page.url
+  - pathName = ((currentPage.rpartition("-"))[-1]).chomp("/");
+  - if (currentPage.include?('rhel7') || currentPage.include?('rhel6')) && pathName != 'java'
+    .large-24.columns.multipath-tabs-sm
+      ul.tabs.nav-tabs(data-tab role="tablist")
+        li(class=(currentPage.include?('rhel7') ? 'active' : '') role="presentation")
+          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel7-#{pathName}' onclick="window.location=this.href;return false;") RHEL 7
+        li(class=(currentPage.include?('rhel6') ? 'active' : '') role="presentation")
+          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel6-#{pathName}' onclick="window.location=this.href;return false;") RHEL 6
+
+  .os-tabs.tabs-content
+    section.content.active(role="tabpanel" aria-hidden="false")
+        .row(data-equalizer)
+          .large-6.columns.step-cards(data-equalizer-watch)
+            a.card(href="#Step1")
+              .row
+                .small-4.large-4.columns
+                  h2.step-num 1.
+                .small-20.large-20.columns
+                  - if !page._step1_title
+                    h4 Set up your Dev Environment
+                  - else
+                    h4 #{page._step1_title}
+              .row
+                .large-24.columns
+                  - if page._step1_duration
+                    i.fa.fa-clock-o  #{page._step1_duration}
+          .large-6.columns.step-cards(data-equalizer-watch)
+            a.card(href="#Step2")
+              .row
+                .small-4.large-4.columns
+                  h2.step-num 2.
+                .small-20.large-20.columns
+                  - if !page._step2_title
+                    h4 Install, Configure, and Verify
+                  - else
+                    h4 #{page._step2_title}
+              .row
+                .large-24.columns
+                  - if page._step2_duration
+                    i.fa.fa-clock-o  #{page._step2_duration}
+          .large-6.columns.step-cards(data-equalizer-watch)
+            a.card(href="#Step3")
+              .row
+                .small-4.large-4.columns
+                  h2.step-num 3.
+                .small-20.large-20.columns
+                  - if !page._step3_title
+                    h4 Build your first application
+                  - else
+                    h4 #{page._step3_title}
+              .row
+                .large-24.columns
+                  - if page._step3_duration
+                    i.fa.fa-clock-o  #{page._step3_duration}
+          .large-6.columns.step-cards(data-equalizer-watch)
+            a.card(href="#Step4")
+              .row
+                .small-4.large-4.columns
+                  h2.step-num 4.
+                .small-20.large-20.columns
+                  - if !page._step4_title
+                    h4 Step Four Cool Title
+                  - else
+                    h4 #{page._step4_title}
+              .row
+                .large-24.columns
+                  - if page._step4_duration
+                    i.fa.fa-clock-o  #{page._step4_duration}
+          .large-24.columns
+            - if page._before_you_begin_section
+              .large-24#BeforeYouBeginSection
+                h4 Before you begin
+                = page._before_you_begin_section
+            - if page._prerequisites_section
+              .large-24#PrerequisitesSection.gs-prerequisites
+                - if page._prerequisites_section_title
+                  h4 #{page._prerequisites_section_title}
+                = page._prerequisites_section
+        .get-started-content
+          .large-24.step-header#Step1
+            h4
+              .step-num 1.
+              - if !page._step1_title
+                h4 Set up your Dev Environment
+              - else
+                h4 #{page._step1_title}
+              .duration
+                - if page._step1_duration
+                  i.fa.fa-clock-o  #{page._step1_duration}
+          - if page._step1_content
+            .large-24#Step1Content
+              = page._step1_content
+
+          .large-24.step-header#Step2
+            h4
+              .step-num 2.
+              - if !page._step2_title
+                h4 Install, Configure, and Verify
+              - else
+                h4 #{page._step2_title}
+              .duration
+                - if page._step2_duration
+                  i.fa.fa-clock-o  #{page._step2_duration}
+          - if page._step2_content
+            .large-24#Step2Content
+              = page._step2_content
+
+          .large-24.step-header#Step3
+            h4
+              .step-num 3.
+              - if !page._step3_title
+                h4 Build your first #{page.product.abbreviated_name} application
+              - else
+                h4 #{page._step3_title}
+              .duration
+                - if page._step3_duration
+                  i.fa.fa-clock-o  #{page._step3_duration}
+          - if page._step3_content
+            .large-24#Step3Content
+              = page._step3_content
+
+          .large-24.step-header#Step4
+            h4
+              .step-num 4.
+              - if !page._step4_title
+                h4 Build your first #{page.product.abbreviated_name} application
+              - else
+                h4 #{page._step4_title}
+              .duration
+                - if page._step4_duration
+                  i.fa.fa-clock-o  #{page._step4_duration}
+          - if page._step4_content
+            .large-24#Step4Content
+              = page._step4_content
+
+          - if page._extra_section
+            - if page._extra_section_title
+              h3#ExtraSection #{page._extra_section_title}
+            = page._extra_section
+
+          - if page._more_resources
+            .large-24#MoreResources
+              h4 Want to know more about what you can do with #{page.product.abbreviated_name}?
+              = page._more_resources
+
+          - if page._faq_section
+            .large-24#FaqSection.gs-faq
+              - if page._faq_section_title
+                h4 #{page._faq_section_title}
+              = page._faq_section
+
+= javascripts('product-get-started', true) do
+  script src="#{site.base_url}/javascripts/vendor/class.create.js"
+  script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
+  script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"      

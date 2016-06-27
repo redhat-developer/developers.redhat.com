@@ -1,10 +1,14 @@
 - name: :accelerated_development_and_management
-  products: [datagrid, devstudio, eap, webserver]
+  products: [datagrid, eap, webserver]
+- name: :developer_tools
+  products: [cdk, devsuite, developertoolset, devstudio]
 - name: :infrastructure
-  products: [rhel, developertoolset, softwarecollections, cdk]
+  products: [rhel, softwarecollections]
 - name: :integration_and_automation
   products: [amq, brms, bpmsuite, datavirt, fuse]
 - name: :mobile
   products: [mobileplatform]
 - name: :private_cloud
   products: [openshift]
+- name: :runtimes
+  products: [openjdk, dotnet]
