@@ -46,7 +46,8 @@ class Forums < Base
 
   def forums_product_section_for(product)
     wait_for(20) { displayed?(id: "development-tool-#{product}") }
-    text_of(id: "development-tool-#{product}")
+    desc = text_of(id: "development-tool-#{product}")
+    desc.gsub("’", "'")
   end
 
   def forums_product_link_for(product)
