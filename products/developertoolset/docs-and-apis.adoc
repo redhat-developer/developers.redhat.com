@@ -3,36 +3,35 @@
 
 ## Extra Configurations
 
-=== Are you new to developing on RHEL?
+=== Are you new to developing on Red Hat Enterprise Linux?
 
 This paper is an introduction and “large table of contents” to all of the many development tools that are available on Red Hat Enterprise Linux. It provides a list of what’s available, a brief description of each, and then a pointer for where to get more information.  Download the http://static.jboss.org/rhd/docs/rhel_developer_getting_started_guide.pdf[PDF].
 
 === Developing on Red Hat Enterprise Linux
 * About Red Hat Software Collections and its components - https://access.redhat.com/products/Red_Hat_Enterprise_Linux/Developer/#dev-page=5[Learn more]
-* What are the components in RHSCL 2?  See this release notes section,  https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html#sect-RHSCL-Changes[chapter on changes]
-* Create and distribute your own Software Collections - https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Developer_Guide/chap-RHSCL.html[Software Collections Guide]
-* Developing with SELinux. (http://static.jboss.org/rhd/docs/selinux_for_red_hat_developers.pdf[PDF])
+* What are the components in RHSCL 2?  See this release notes section,  https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.2_Release_Notes/chap-RHSCL.html#sect-RHSCL-Changes[chapter on changes]
+* Create and distribute your own Software Collections - https://access.redhat.com/site/documentation/en-US/Red_Hat_Software_Collections/2/html-single/Packaging_Guide/index.html[Software Collections Packaging Guide]
+* Developing with SELinux (http://static.jboss.org/rhd/docs/selinux_for_red_hat_developers.pdf[PDF])
 
 === Developing for containers
 * See the #{site.base_url}/containers/overview/[Container solution].
 
 === Core Red Hat Enterprise Linux documentation:
-* Red Hat Enterprise Linux 7.1 https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.1_Release_Notes/index.html[release notes]
-* https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/index.html[How to install RHEL 7]
+* Red Hat Enterprise Linux 7.2 https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/7.2_Release_Notes/index.html[release notes]
+* https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/index.html[How to install Red Hat Enterprise Linux 7]
 * Common administrative https://access.redhat.com/articles/1189123[commands] in Red Hat Enterprise Linux 5, 6, and 7
 * Red Hat Enterprise Linux 7 https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/index.html[System Administrator’s Guide]
 * https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Resource_Management_Guide/index.html[Resource Management and Linux Containers Guide]
 
 === Red Hat Enterprise Linux Atomic Host and Red Hat Containers
-* Red Hat Enterprise Linux Atomic Host https://access.redhat.com/articles/rhel-atomic-documentation[documentation]. Here's just a sample of what's available
+* Red Hat Enterprise Linux Atomic Host https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/[documentation]. Here's just a sample of what's available.
 
-==== More useful articles...
-* https://access.redhat.com/articles/1483053[Recommended practices for Container Development]
-* https://access.redhat.com/articles/1353593[Introduction to Linux Containers]
-* https://access.redhat.com/articles/881893[Get Started with Docker Containers in RHEL 7 and RHEL Atomic]
-* https://access.redhat.com/articles/1198103[Get Started Orchestrating Docker Containers with Kubernetes]
-* https://access.redhat.com/articles/1353773[Creating a Kubernetes Cluster to Run Docker Formatted Container Images]
-* https://access.redhat.com/articles/1365163[Starting a Container using systemd]
-* https://access.redhat.com/articles/881893[Get Started with Docker Formatted Container Images on Red Hat Systems]
-* https://access.redhat.com/articles/1328953[Building a Simple Apache Web Server in a Container]
-* https://access.redhat.com/articles/1330533[Building a Simple Database Server in a Container]
+==== More useful guides...
+* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/recommended-practices-for-container-development/[Recommended practices for Container Development]
+* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/#introduction_to_linux_containers[Introduction to Linux Containers]
+* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/#get_started_with_docker_formatted_container_images[Get Started with Docker Formatted Container Images in RHEL 7 and RHEL Atomic]
+* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/#get_started_orchestrating_containers_with_kubernetes[Get Started Orchestrating Docker Containers with Kubernetes]
+* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/#creating_a_kubernetes_cluster_to_run_docker_formatted_container_images[Creating a Kubernetes Cluster to Run Docker Formatted Container Images]
+* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-with-containers/#starting_a_container_using_systemd[Starting a Container using systemd]
+* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-guide/#install_and_deploy_an_apache_web_server_container[Building a Simple Apache Web Server in a Container]
+* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-guide/#install_and_deploy_a_mariadb_container[Building a Simple Database Server in a Container]
