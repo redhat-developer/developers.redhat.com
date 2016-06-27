@@ -27,7 +27,9 @@ end
 
 Then(/^I should see a 'Get started' button for each product$/) do
   @product_ids.each do |product|
-    if @products_with_get_started.include?(product)
+    if product == 'openjdk'
+      expect(@page.technologies.get_started_button_for(product)).to include "#{$host_to_test}/products/#{product}/overview/"
+    elsif @products_with_get_started.include?(product)
     expect(@page.technologies.get_started_button_for(product)).to include "#{$host_to_test}/products/#{product}/get-started/"
     elsif !@products_with_get_started.include?(product) && !@technologies_with_downloads.include?(product)
       expect(@page.technologies.get_started_button_for(product)).to include "#{$host_to_test}/products/#{product}/overview/"

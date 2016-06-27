@@ -39,7 +39,7 @@ module DownloadHelper
       products << product['products']
     end
     products = products.flatten
-    products -= ['developertoolset', 'softwarecollections', 'openjdk']
+    products -= ['developertoolset', 'softwarecollections']
 
     # now get product names
     product_name = []
