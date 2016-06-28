@@ -6,6 +6,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | ACCELERATED DEVELOPMENT AND MANAGEMENT |
       | INFRASTRUCTURE                         |
       | INTEGRATION AND AUTOMATION             |
+      | RUNTIMES                               |
     And I should see the following forum products:
       | Red Hat JBoss Data Grid                       |
       | Red Hat JBoss Developer Studio                |
