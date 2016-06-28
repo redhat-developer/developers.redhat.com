@@ -3,7 +3,7 @@ module SiteUser
   def generate_user
 
     {
-        email: "redhat-developers-testers+#{Faker::Lorem.characters(10)}@redhat.com",
+        email: "rhd-autotest+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com",
         greeting: %w(Mr. Mrs. Ms. Miss Dr. Hr Sr.).sample,
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
@@ -12,81 +12,20 @@ module SiteUser
         address_line_one: Faker::Address.street_address,
         city: Faker::Address.city_prefix,
         postal_code: Faker::Address.postcode,
-        country: ['United States', 'Czech Republic', 'China', 'France', 'Germany', 'Hong Kong', 'Indonesia', 'Japan', 'Spain', 'United Kingdom'].sample,
+        country: ['United States', 'Czech Republic', 'United Kingdom'].sample,
         phone_number: '0191 1111111'
 
     }
 
   end
 
-  def accepted_terms_user
-
-    {
-        email: 'uk.redhat.test.user+accepted-terms@gmail.com',
-        password: 'P@$$word01',
-        name: 'TEST USER-ACCEPTED-TERMS',
-        first_name: 'TEST',
-        last_name: 'USER-ACCEPTED-TERMS',
-        username: 'uk.redhat.test.user+accepted-terms@gmail.com',
-        company_name: 'Red Hat',
-        country: ['United States', 'Czech Republic', 'China', 'France', 'Germany', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Spain', 'United Kingdom'].sample,
-
-    }
-
-  end
-
-  def accepted_terms_user_with_username
-
-    {
-        email: 'rhd_username@redhat.com',
-        password: 'P@$$word01',
-        name: 'RED HAT TEST',
-        first_name: 'RED HAT',
-        last_name: 'TEST',
-        username: 'rhdusername',
-        company_name: 'Red Hat',
-        country: ['United States', 'Czech Republic', 'China', 'France', 'Germany', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Spain', 'United Kingdom'].sample,
-
-    }
-
-  end
-
-  def not_accepted_terms_user
-
-    {
-        email: 'uk.redhat.test.user+not-accepted-terms@gmail.com',
-        password: 'P@$$word01',
-        name: 'TEST USER-NOT-ACCEPTED-TERMS'
-    }
-
-  end
-
-  def password_reset_user
-
-    {
-        email: %w(redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+94hl7e5x0h@redhat.com redhat-developers-testers+94hl7F5x0h@redhat.com redhat-developers-testers+94hl7G5x0h@redhat.com redhat-developers-testers+94hl7H5x0h@redhat.com redhat-developers-testers+94hl7J5x0h@redhat.com").sample,
-        password: 'P@$$word01',
-        name: 'RED HAT TEST'
-    }
-
-  end
-
-  def red_hat_test
-
-    {
-        email: "redhat_developers_testers_#{Faker::Lorem.characters(10)}@redhat.com",
-        greeting: %w(Mr. Mrs. Ms. Miss Dr. Hr Sr.).sample,
-        first_name: 'RED HAT',
-        last_name: 'TEST',
-        company_name: Faker::Company.name,
-        address_line_one: Faker::Address.street_address,
-        city: Faker::Address.city_prefix,
-        postal_code: Faker::Address.postcode,
-        country: ['United States', 'Czech Republic', 'China', 'France', 'Germany', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Spain', 'United Kingdom'].sample,
-        phone_number: '0191 1111111'
-
-    }
-
+  def github_account_holder
+      {
+          identity_provider: 'github',
+          user_id: '20190656',
+          user_name: 'rhdsociallogin',
+          git_password: 'P@$$word01'
+      }
   end
 
   def get_email(email_address)
