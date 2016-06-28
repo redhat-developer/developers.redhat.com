@@ -146,7 +146,9 @@ class StackOverflow < Base
         @question_element = t
         child_elements << t['class']
         if answer == 'with'
-          return @question_element, true if child_elements.include? 'callout qtn-answer display-answer'
+          unless child_elements.include? 'answer-count accepted-answer'
+            return @question_element, true if child_elements.include? 'callout qtn-answer display-answer'
+          end
         else
           return @question_element, true if !child_elements.include? 'callout qtn-answer display-answer'
         end
