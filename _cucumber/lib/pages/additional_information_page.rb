@@ -11,6 +11,8 @@ class AdditionalInformation < Base
   COMPANY           = { id: 'user.attributes.company' }
   COUNTRY           = { id: 'user.attributes.country' }
   SUBMIT            = { xpath: "//input[@value='Submit']" }
+  ACCEPT_ALL_TERMS  = { id: 'tac-checkall' }
+
 
   def initialize(driver)
     super
@@ -44,6 +46,10 @@ class AdditionalInformation < Base
   def click_submit
     click_on(SUBMIT)
     wait_for_ajax
+  end
+
+  def accept_terms
+    click_on(ACCEPT_ALL_TERMS)
   end
 
 end

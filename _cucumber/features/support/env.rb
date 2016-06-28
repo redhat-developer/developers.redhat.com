@@ -20,11 +20,7 @@ require 'active_support/core_ext'
 require_relative 'site'
 require_relative 'browser'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
-require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/site_user')
-require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/downloads_helper')
-require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/products_helper')
-require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/keycloak_admin')
-require File.expand_path(File.dirname(__FILE__)+'/../../../_cucumber/lib/helpers/github_admin')
+Dir["#{File.dirname(__FILE__)}/../../lib/helpers/*.rb"].each { |helper| load helper }
 
 $session_id = Faker::Number.number(10)
 

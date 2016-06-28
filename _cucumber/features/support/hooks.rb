@@ -22,22 +22,6 @@ Before('@products, @downloads') do
   @products_with_help = get_products_with_links('help.html.slim')[0]
 end
 
-Before('@accepted_terms') do
-  @site_user = accepted_terms_user
-end
-
-Before('@password_reset') do
-  @site_user = password_reset_user
-end
-
-Before('@site_user') do
-  @site_user = generate_user
-end
-
-Before('@has_username') do
-  @site_user = accepted_terms_user_with_username
-end
-
 After('@logout') do
   site_nav = SiteNav.new(@driver)
   case $host_to_test
@@ -50,21 +34,47 @@ After('@logout') do
   site_nav.wait_for_ajax
 end
 
-After('@keycloak_teardown') do
-  keycloak_admin = KeyCloak.new
-  puts "Deleting email: #{@site_user[:email]} from Keycloak admin"
-  keycloak_admin.delete_user(@site_user[:email])
-  puts "Deleted user with email #{@site_user[:email]} from Keycloak Admin"
+# create test user for basic log in feature
+Before('@basic_login') do
+  unless $created_test_user
+    # register user only once, unless otherwise stated
+    keycloak = KeyCloak.new
+    $site_user = keycloak.register_new_user
+    $basic_login = $site_user[:email]
+    p "Registered user with email #{$site_user[:email]}"
+    $created_test_user = true
+  end
 end
 
-After('@keycloak_social_teardown') do
+at_exit {
+  if defined?($basic_login)
+    keycloak_admin = KeyCloak.new
+    keycloak_admin.delete_user($basic_login)
+    p "Deleted user with email #{$basic_login}"
+  end
+}
+
+After('@delete_user') do
   keycloak_admin = KeyCloak.new
-  keycloak_admin.remove_social_provider(@site_user[:email])
-  puts "Removed social provider for email #{@site_user[:email]}"
+  keycloak_admin.delete_user($site_user[:email])
+end
+
+After('@unlink_social_provider') do
+  keycloak_admin = KeyCloak.new
+  keycloak_admin.unlink_social_provider($site_user[:email])
 end
 
 After('@github_teardown') do
   @github_admin.cleanup
+  nav = Base.new(@driver)
+  nav.get('https://github.com/logout')
+  nav.wait_for { nav.displayed?(xpath: "//input[@value='Sign out']") }
+  nav.click_on(xpath: "//input[@value='Sign out']")
+  nav.wait_for { nav.displayed?(css: '.logged-out') }
+  @driver.manage.delete_all_cookies
+end
+
+After('@github_logout') do
   nav = Base.new(@driver)
   nav.get('https://github.com/logout')
   nav.wait_for { nav.displayed?(xpath: "//input[@value='Sign out']") }
