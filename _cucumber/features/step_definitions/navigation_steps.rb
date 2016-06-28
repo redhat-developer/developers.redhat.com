@@ -15,7 +15,7 @@ Given(/^I am on the ([^"]*) page$/) do |page|
     when 'product forums'
       @page.site_nav.visit('/forums/')
     when 'edit details'
-      @page.site_nav.visit('/auth/realms/rhd/account/')
+      @page.site_nav.get('https://developers.stage.redhat.com/auth/realms/rhd/account/')
     else
       @page.site_nav.visit("/#{page.downcase}/")
   end
