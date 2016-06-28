@@ -36,6 +36,11 @@ class Site
     @current_page = @registration
   end
 
+  def edit_account
+    @edit_account ||= EditAccount.new(@driver)
+    @current_page = @edit_account
+  end
+
   def additional_information
     @additional_information ||= AdditionalInformation.new(@driver)
     @current_page = @additional_information
