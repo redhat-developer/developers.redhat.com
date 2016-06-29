@@ -3,20 +3,20 @@
 
 ## Extra Configurations
 
-=== New to RHEL?
+=== New to Red Hat Enterprise Linux?
 
 If you’re new to developing on Red Hat Enterprise Linux, this document summarizes the link:#{site.base_url}/articles/rhel-what-you-need-to-know/[what you need to know] for developing on Red Hat Enterprise Linux.
 
-Wait there’s more! This link:http://static.jboss.org/rhd/docs/rhel_developer_getting_started_guide.pdf[paper is essentially a large table of contents] to all of the many development tools and technologies in Red Hat Enterprise Linux. It provides a list of what development tools and technologies are available for RHEL, a brief description of each, and then a pointer for getting more information.
+Wait there’s more! This link:http://static.jboss.org/rhd/docs/rhel_developer_getting_started_guide.pdf[paper is essentially a large table of contents] to all of the many development tools and technologies in Red Hat Enterprise Linux. It provides a list of what development tools and technologies are available for Red Hat Enterprise Linux, a brief description of each, and then a pointer for getting more information.
 
-=== RHEL reference documentation
+=== Red Hat Enterprise Linux documentation
 
 For Red Hat Enterprise Linux, you can find many how-to’s and other developer-related material here on the link:#{site.base_url}/products/rhel/learn/[Learn tab].
 
 Red Hat also supplies a complete set of reference documentation for installation, security, migration, development, and much more. You can find these link:https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux[references on the the Red Hat Customer Portal].
 
 
-=== Developing on RHEL
+=== Developing on Red Hat Enterprise Linux
 * link:#{site.base_url}/products/softwarecollections/overview/[Red Hat Software Collections] (RHSCL), are yearly updated versions and See this release notes section,  link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2/html/2.0_Release_Notes/chap-RHSCL.html#sect-RHSCL-Changes[includes]:
     ** programming languages (Python, Node.js, etc.),
     ** open source databases (MariaDB, MongoDB, etc.),
@@ -32,7 +32,7 @@ Red Hat also supplies a complete set of reference documentation for installation
 === Getting programming languages
 
 ==== C/C++/Fortran with GCC
-Packaged as part of the Red Hat Developer Toolset) for C, C++, and Fortran, it also comes with Eclipse, GDB, SystemTap, Oprofile, Valgrind and much more.
+For C, C++, and Fortran, choose from the GNU Compiler Collection (GCC) delivered with Red Hat Enterprise Linux, or the latest, stable GCC from #{site.base_url}/products/developertoolset/overview/[Red Hat Developer Toolset (DTS)].  DTS includes Eclipse with C/C++ Developer Tooling (CDT), as well as the latest versions of GDB, SystemTap, Oprofile, Valgrind and more.
 
 .Get Started with GCC
 [width="100%",cols="^2,^2,^2",options="header"]
@@ -43,8 +43,12 @@ Packaged as part of the Red Hat Developer Toolset) for C, C++, and Fortran, it a
 |RHEL 6
 
 |Updated yearly (rpm)
-|link:#{site.base_url}/products/rhel/get-started-rhel7-cpp/[GCC 5]
-|link:#{site.base_url}/products/rhel/get-started-rhel6-cpp/[GCC 5]
+|link:#{site.base_url}/products/developertoolset/get-started-rhel7-cpp/[GCC 5.3]
+|link:#{site.base_url}/products/developertoolset/get-started-rhel6-cpp/[GCC 5.3]
+
+|Supported for 10 years (rpm)
+|link:#{site.base_url}/products/rhel/get-started-rhel7-cpp/[GCC 4.8]
+|link:#{site.base_url}/products/rhel/get-started-rhel6-cpp/[GCC 4.4]
 
 |===
 
@@ -81,7 +85,7 @@ Node.js® is an event-driven I/O server-side JavaScript runtime built on Chrome'
 |link:#{site.base_url}/products/softwarecollections/get-started-rhel6-nodejs/[Node.js 0.10]
 
 |Updated yearly (docker)
-|link:#{site.base_url}/products/softwarecollections/get-started-dcr7-nodejs/[Node.js v4]
+|link:#{site.base_url}/products/rhel/get-started-dcr7-nodejs/[Node.js v4]
 |-
 |===
 
@@ -106,7 +110,7 @@ Perl is a highly capable, feature-rich programming language with over 27 years o
 |link:#{site.base_url}/products/softwarecollections/get-started-rhel6-perl/[Perl 5.20]
 
 |Updated yearly (docker)
-|docker pull registry.access.redhat.com/hscl/perl-520-rhel7
+|docker pull registry.access.redhat.com/rhscl/perl-520-rhel7
 |-
 |===
 
@@ -131,7 +135,7 @@ PHP is a popular server-side HTML embedded scripting language that is especially
 |link:#{site.base_url}/products/softwarecollections/get-started-rhel6-php/[PHP 5.6]
 
 |Updated yearly (docker)
-|link:#{site.base_url}/products/softwarecollections/get-started-dcr7-php/[PHP 5.6]
+|link:#{site.base_url}/products/rhel/get-started-dcr7-php/[PHP 5.6]
 |-
 |===
 
@@ -156,7 +160,7 @@ Python is an interpreted, object-oriented, high-level programming language with 
 |link:#{site.base_url}/products/softwarecollections/get-started-rhel6-python[Python 3.4]
 
 |Updated yearly (docker)
-|link:#{site.base_url}/products/softwarecollections/get-started-dcr7-python/[Python 3.5]
+|link:#{site.base_url}/products/rhel/get-started-dcr7-python/[Python 3.5]
 |-
 |===
 

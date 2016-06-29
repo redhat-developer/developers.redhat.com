@@ -1,0 +1,52 @@
+:awestruct-layout: product-get-started-dotnet
+:awestruct-interpolate: true
+
+## Step1 Title
+Download Red Hat Enterprise Linux (RHEL)
+
+## Step2 Title
+Install RHEL
+
+## Step3 Title
+Install .NET Core 1.0 on your RHEL machine or VM
+
+## Step4 Title
+Build the Hello World app
+
+## Step1 Content
+
+If you don’t have access to a development machine running RHEL, you can get a no-cost Developer’s Edition. For the download, you will need to register with developers.redhat.com (don’t fret; no credit card information is required). After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite.
+
+(Keep the username and password you use to register handy; you’ll need it later.)
+
+Download the https://developers.redhat.com/download-manager/file/rhel-server-7.2-x86_64-dvd.iso[Red Hat Enterprise Linux Server DVD] .iso file.
+
+## Step2 Content
+
+Decide which development environment you wish to use. http://developers.redhat.com/blog/2016/05/17/net-on-linux-which-environment/#more-422109[This blog post] may help.
+
+Using VirtualBox? You’ll find instructions #{site.base_url}/products/rhel/get-started/#tab-virtualbox[here].
+Hyper-V? Your instructions are #{site.base_url}/products/rhel/get-started/#tab-hyper-v[here].
+VMWare? #{site.base_url}/products/rhel/get-started/#tab-vmware[Here] is your link.
+KVM users, #{site.base_url}/products/rhel/get-started/#tab-kvm[this way], please.
+Finally, yes, you can install on bare metal if you wish. #{site.base_url}/products/rhel/get-started/#tab-bare-metal[Here] is your page.
+
+## Step3 Content
+
+Here’s the list of instructions to install .NET Core on Red Hat Enterprise Linux:
+
+1. Run `sudo yum install -y rh-dotnetcore10`
+
+That’s it! That’s the list!
+
+You can verify your installation by running `dotnet --version` from the command line.
+
+## Step4 Content
+
+You’re only three steps away from creating and running your first app, the “Hello world” app.
+
+First, run `dotnet new`. This will create the source code for the “Hello world” app. You can look around the source code and all the generated files to get a sense of what’s necessary to support a .NET Core application.
+
+Next, run `dotnet restore`. This will fetch all the necessary dependency libraries (DLLs) from NuGet.org.
+
+Finally, run `dotnet run`. This will build and run the application. Note that you can run `dotnet build` first if you wish, but it’s not necessary for this simple console application. In the future, you’ll use `dotnet build` with command line options to do things such as build self-contained applications; apps that can be copied and run without any need to first install .NET Core.

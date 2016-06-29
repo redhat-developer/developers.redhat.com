@@ -597,70 +597,78 @@ ul.toc {
       font-size: 35px;
     }
   }
-  .lang-tabs {
-    .tabs.vertical {
-      width: 100%;
-      max-width: none;
-    }
-    ul li {
-      height: 30px;
-      border-right: 4px solid #e6e7e8;
-      margin-bottom: 10px;
-      text-align: right;
-      padding-right: 10px;
-      &:before {
-        display: none;
-      }
-      &.active, &:focus, &:hover, &:active {
-        border-right: 4px solid $red;
-      }
-      a {
-        vertical-align: -webkit-baseline-middle;
-        text-transform: uppercase;
-        font-weight: 600;
-        font-size: 1.125rem;
-        color: #1a1a1a;
-        text-align: right;
-      }
+}
 
+.lang-tabs {
+  .tabs.vertical {
+    width: 100%;
+    max-width: none;
+  }
+  ul li {
+    height: 30px;
+    border-right: 4px solid #e6e7e8;
+    margin-bottom: 10px;
+    text-align: right;
+    padding-right: 10px;
+    &:before {
+      display: none;
+    }
+    &.active, &:focus, &:hover, &:active {
+      border-right: 4px solid $red;
+    }
+    a {
+      vertical-align: -webkit-baseline-middle;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: #1a1a1a;
+      text-align: right;
+    }
+
+  }
+}
+.tabs-content.rhel-tabs-cont{
+  width: 100%;
+  margin: 0;
+  min-height: 300px;
+  .recommended {
+    p, em, strong {
+      font-size: 105%;
+    }
+    em.red {
+      color: $red;
     }
   }
-  .tabs-content.rhel-tabs-cont{
-    width: 100%;
-    margin: 0;
-    min-height: 300px;
-    .recommended {
-      p, em, strong {
-        font-size: 105%;
-      }
-      em.red {
-        color: $red;
-      }
-    }
-    .tc-button {
-      margin-top: 15px;
-      a{
-        background: #cc0000;
-        text-transform: uppercase;
-        text-decoration: none;
-        text-align: center;
-        border: 0;
-        font-size: 15px;
-        font-weight: 600;
-        padding: 9px 40px;
-        transition: background .2s ease-in 0s;
-        color: $white;
-        display: block;
-
-        &:hover, &:active, &:focus {
-          background: #AD0000;
-        }
-      }
-    }
-    .tc-link {
-      margin-top: 15px;
+  .tc-button {
+    margin-top: 15px;
+    a{
+      background: #cc0000;
+      text-transform: uppercase;
+      text-decoration: none;
       text-align: center;
+      border: 0;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 9px 40px;
+      transition: background .2s ease-in 0s;
+      color: $white;
+      display: block;
+
+      &:hover, &:active, &:focus {
+        background: #AD0000;
+      }
     }
+  }
+  .tc-link {
+    margin-top: 15px;
+    text-align: center;
+  }
+}
+.tabs-content.full-width-content {
+  width: 100%;
+  margin-left: 0;
+  img {
+    max-width: 600px;
   }
 }
 
@@ -672,6 +680,9 @@ ul.toc {
   }
   .product-updates iframe {
     max-width: 100%;
+  }
+  .tabs-content.full-width-content img{
+    width: 100%;
   }
 }
 @include tablet-landscape-and-down {

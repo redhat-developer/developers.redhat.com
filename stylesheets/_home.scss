@@ -5,12 +5,12 @@
 
 .homepage-main {
   color: $white;
-  background-image: cdn('../images/design/homepage-hero/RHDev_homehero_desktop_projectoctopus.png');
+  background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_devnation_16jun2016.png');
   &.hero2 { background-image: url('https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_community_12apr2016.jpg'); }
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: rgb(152, 21, 15);
+  background-color: rgb(3, 3, 25);
   & > .row {
     @include flexbox;
     @include align-items(center);
@@ -18,27 +18,27 @@
   }
   .homepage-cta {
     margin: 35px auto;
-    span {
-      max-width: 300px;
-      display: block;
-      margin: 0 auto;
-      h2, h4 {
-        color: $white;
-        line-height: 1.1;
-      }
-      h2 {
-        font-weight: 700;
-      }
+    img {
+      max-width: 500px;
+    }
+    h2 {
+      font-weight: 700;
+      font-size: 3.2em;
+      color: $white;
+      margin-bottom: 0;
+    }
+    p {
+      font-size: 1.3em;
     }
     a.button {
       min-width: 250px;
     }
   }
   .homepage-getstarted {
-    min-height: 348px;
+    min-height: 330px;
     padding: 20px;
-    background-color: rgba(78, 11, 8, 0.78);
-    h5 {
+    background-color: rgba(3, 3, 25, 0.74);
+    h4 {
       color: #eaa400;
       margin-top: 20px;
     }
@@ -50,6 +50,13 @@
     }
     ul {
       margin-bottom: 10px;
+      list-style-type: none;
+      li:before{
+        font-family: 'FontAwesome';
+        content: '\f0a9';
+        margin:0 5px 0 -15px;
+        color: #eaa400;
+      }
     }
     .video-thumb {
       img {
@@ -271,7 +278,7 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-image: cdn('../images/design/homepage-hero/RHDev_homehero_tablet_projectoctopus.png');
+    background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_devnation_16jun2016.png');
     &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_community_12apr2016.jpg'); }
     .homepage-getstarted {
       min-height: 240px;
@@ -304,7 +311,7 @@ ul.homepage-resources {
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    background-image: cdn('../images/design/homepage-hero/RHDev_homehero_tablet_projectoctopus.png');
+    background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_devnation_16jun2016.png');
     &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_community_12apr2016.jpg'); }
   }
   .spotlights-container {

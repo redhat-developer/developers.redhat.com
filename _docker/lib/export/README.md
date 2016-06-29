@@ -51,6 +51,27 @@ The full range of httrack configuration options are available [here](https://www
 httrack has built-in caching that should make subsequent exports of the site quicker than the first run. The export process has been designed to make use of this cache. To make sure you get a cache hit when running an export
 you need to ensure that httrack is always exporting into the same directory. In you are running the export process in a Docker container, then using a volume mounted at `/export` is recommended to facilitate the cache hit.
 
+### Rsync
+
+You can provide an optional location to rsync the export of the site to. This should be in the form:
+
+`user@host:/path/to/rsync/to`
+
+There may be times when you want to rsync to a location in which the remote directory structure does not exist. In this case you can enclose the part of the
+target path to be created in `[` and `]`. For example:
+
+```
+rhd@filemgmt.jboss.org:[/my/target/directory]
+```
+
+In this example, the `/my/target/directory` structure will be created.
+
+Alternatively you can specify part of the path to be created:
+
+```
+rhd@filemgmt.jboss.org:/it-stg-main/staging[/pr/123/build/345]
+```
+
 ### Control.rb integration
 
 The export process is integrated into control.rb. It is supported in the following environments:
