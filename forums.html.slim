@@ -18,6 +18,7 @@ title: Forums | Red Hat Developers
             = category.name.to_s.gsub('_', ' ').upcase
       - category.products.each do |p|
         - if site.products[p]
+        - unless site.products[p].ignore_forums
           - product = site.products[p]
           - forum_url = (product.forum_url.nil? ? "#{site.product_forum_base_url}#{product.id}/" : product.forum_url)
           - unless ["rhel","mobileplatform","openshift"].include? product.id

@@ -6,8 +6,20 @@ Given(/^I log in with (an|a) (valid|incorrect) password$/) do |arg, negate|
   end
 end
 
-Given(/^I log in with an invalid email$/) do
-  @page.login.with_existing_account('testUser.com', @site_user[:password])
+Given(/^I log in with (an|a) (valid|incorrect) username$/) do |arg, negate|
+  if negate.eql?('valid')
+    @page.login.with_existing_account(@site_user[:username], @site_user[:password])
+  else
+    @page.login.with_existing_account('fail', @site_user[:password])
+  end
+end
+
+Given(/^I log in with (an|a) (valid|invalid) email address$/) do |arg, negate|
+  if negate.eql?('valid')
+    @page.login.with_existing_account(@site_user[:email], @site_user[:password])
+  else
+    @page.login.with_existing_account('testUser.com', @site_user[:password])
+  end
 end
 
 Then(/^I should be logged in$/) do

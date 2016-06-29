@@ -30,18 +30,8 @@ Before('@site_user') do
   @site_user = generate_user
 end
 
-Before('@rhd_social_test_user01') do
-  @git_username = 'rhdalreadyregistered01'
-  @git_password = 'P@$$word01'
-  @git_email = 'redhat-developers-testers+rhdalreadyregistered01@redhat.com'
-  @github_admin = GitHubAdmin.new(@git_username, @git_password)
-end
-
-Before('@rhd_social_test_user02') do
-  @git_username = 'rhdalreadyregistered02'
-  @git_password = 'P@$$word01'
-  @git_email = 'redhat-developers-testers+rhdalreadyregistered02@redhat.com'
-  @github_admin = GitHubAdmin.new(@git_username, @git_password)
+Before('@has_username') do
+  @site_user = accepted_terms_user_with_username
 end
 
 After('@logout') do
@@ -58,14 +48,14 @@ end
 
 After('@keycloak_teardown') do
   keycloak_admin = KeyCloak.new
-  puts "Deleting email: #{@email_address} from Keycloak admin"
-  keycloak_admin.delete_user(@email_address)
-  puts "Deleted user with email #{@email_address} from Keycloak Admin"
+  puts "Deleting email: #{@site_user[:email]} from Keycloak admin"
+  keycloak_admin.delete_user(@site_user[:email])
+  puts "Deleted user with email #{@site_user[:email]} from Keycloak Admin"
 end
 
 After('@keycloak_social_teardown') do
   keycloak_admin = KeyCloak.new
-  keycloak_admin.remove_social_provider(@email_address)
+  keycloak_admin.remove_social_provider(@site_user[:email])
   puts 'Removed social provider'
 end
 

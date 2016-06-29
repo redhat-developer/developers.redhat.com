@@ -15,6 +15,7 @@ require 'fileutils'
 require 'pry'
 require 'report_builder'
 require 'octokit'
+require 'date'
 require_relative 'site'
 require_relative 'browser'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }

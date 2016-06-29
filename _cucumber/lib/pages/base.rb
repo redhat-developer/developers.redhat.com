@@ -73,10 +73,11 @@ class Base
   end
 
   def displayed?(locator)
-    @driver.find_element(locator).displayed?
-    true
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-    false
+    result = @driver.find_elements(locator).size > 0
+    if result
+      result = @driver.find_element(locator).displayed?
+    end
+    result
   end
 
   def custom_displayed?(el, locator)
