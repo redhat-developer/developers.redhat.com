@@ -56,7 +56,7 @@ end
 After('@keycloak_social_teardown') do
   keycloak_admin = KeyCloak.new
   keycloak_admin.remove_social_provider(@site_user[:email])
-  puts 'Removed social provider'
+  puts "Removed social provider for email #{@site_user[:email]}"
 end
 
 After('@github_teardown') do

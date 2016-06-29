@@ -99,6 +99,7 @@ When(/^I complete the registration form$/) do
   @page.registration.fill_in_form(@site_user[:first_name], @site_user[:last_name], @site_user[:email], @site_user[:company_name], @site_user[:country], @site_user[:password], @site_user[:password])
   @page.registration.accept_terms('all')
   @page.registration.create_account
+  @date_of_registration = current_date
 end
 
 Then(/^I should see the following terms and conditions checkboxes:$/) do |table|
@@ -115,6 +116,7 @@ end
 
 And(/^I click on the Create Account button$/) do
   @page.registration.create_account
+  @date_of_registration = current_date
 end
 
 When(/^I complete the registration with an empty "([^"]*)"$/) do |field|
@@ -225,7 +227,7 @@ And(/^the following newly registered details should be added to my profile:$/) d
 
     case element
       when 'Username'
-        expect(@page.edit_account.username.attribute('value')).to eq @site_user[:email].gsub('@redhat.com', '').gsub('+', '-')
+        expect(@page.edit_account.username.attribute('value')).to eq @site_user[:email].gsub('@redhat.com', '').gsub('+', '-').gsub('_','')
       when 'Email'
         expect(@page.edit_account.email.attribute('value')).to eq @site_user[:email]
       when 'First Name'
@@ -237,7 +239,7 @@ And(/^the following newly registered details should be added to my profile:$/) d
       when 'Country'
         expect(@page.edit_account.country).to eq @site_user[:country]
       when 'Red Hat Developer Program subscription date'
-        expect(@page.edit_account.agreement_date.attribute('value')).to eq current_date
+        expect(@page.edit_account.agreement_date.attribute('value')).to eq @date_of_registration
       when 'Privacy & Subscriptions status'
         expect(@page.edit_account.receive_newsletter?).to be true
       else
