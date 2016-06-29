@@ -7,7 +7,7 @@ class GitHubAdmin
   def generate_user
 
     {
-        email: "redhat-tester-#{Faker::Lorem.characters(10)}@redhat.com",
+        email: "redhat-tester-rhd_automated-tester-#{Faker::Lorem.characters(10)}@redhat.com",
         first_name: 'RED HAT',
         last_name: 'TEST',
         company_name: 'RED HAT',
