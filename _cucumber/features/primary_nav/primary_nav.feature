@@ -127,7 +127,7 @@ Feature: Site navigation menu
       | Developers Blog         | blog                      |
       | Events                  | events                    |
       | Open Source Communities | projects                  |
-      | Content Contributors    | community/contributor/    |
+      | Content Contributors    | community/contributor     |
 
   @mobile @smoke
   Scenario: Tapping COMMUNITY from drop down menu on Mobile/Tablet should display additional communities
