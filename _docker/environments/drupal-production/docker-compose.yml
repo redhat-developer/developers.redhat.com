@@ -71,7 +71,6 @@ services:
       - /credentials/git/backups/netrc:/home/awestruct/.netrc
 
   export:
-    user: root
     build:
      context: ../../awestruct
      args:

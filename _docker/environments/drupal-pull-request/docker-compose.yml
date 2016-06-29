@@ -12,7 +12,7 @@ services:
     environment:
       - github_status_api_token
       - github_status_context=Drupal:Drupal Site
-      - github_status_repo=robpblake/developers.redhat.com
+      - github_status_repo=redhat-developer/developers.redhat.com
       - github_status_target_url=http://stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}
       - github_status_sha1=${ghprbActualCommit}
       - google_api_key
@@ -97,7 +97,7 @@ services:
      environment:
       - github_status_api_token
       - github_status_context=Drupal:Exported Site Preview
-      - github_status_repo=robpblake/developers.redhat.com
+      - github_status_repo=redhat-developer/developers.redhat.com
       - github_status_target_url=${export_destination}
       - github_status_sha1=${ghprbActualCommit}
 
@@ -112,7 +112,7 @@ services:
    environment:
     - github_status_api_token
     - github_status_context=Drupal:Unit Tests
-    - github_status_repo=robpblake/developers.redhat.com
+    - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
     - github_status_initialise=Drupal:Unit Tests,Drupal:Acceptance Tests,Drupal:Exported Site Preview,Drupal:Blinkr,Drupal:Drupal Site
@@ -125,7 +125,7 @@ services:
    environment:
      - github_status_api_token
      - github_status_context=Drupal:Acceptance Tests
-     - github_status_repo=robpblake/developers.redhat.com
+     - github_status_repo=redhat-developer/developers.redhat.com
      - github_status_target_url=${BUILD_URL}
      - github_status_sha1=${ghprbActualCommit}
      - PARALLEL_TEST

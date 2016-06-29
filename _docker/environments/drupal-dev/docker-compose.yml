@@ -87,7 +87,6 @@ services:
   # Environment actions
   #
   export:
-    user: root
     extra_hosts:
      - "docker:${DOCKER_HOST_IP}"
     build: ../../awestruct
