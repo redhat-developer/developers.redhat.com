@@ -11,6 +11,7 @@
   &.enterprise-java {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_java.png');}
   &.web-and-api-development {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_webapi.png');}
   &.dotnet {background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_dotnet.png');}
+  &.microservices {background-image: url('http://static.jboss.org/_root/images/rhd/topic/RHDev_topicsheader_desktop_microservices_27jun2016.png');}
   &.mobile {
     background-image: cdn('../images/design/topics/RHDev_topicsheader_desktop_mobile.png');
     display: block;
@@ -26,6 +27,7 @@
     &.web-and-api-development {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_webapi.png');}
     &.dotnet {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_dotnet.png');}
     &.iot {background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_iot.png');}
+    &.microservices {background-image: url('http://static.jboss.org/_root/images/rhd/topic/RHDev_topicsheader_mobile_microservices_27jun2016.png');}
     &.mobile {
       background-image: cdn('../images/design/topics/RHDev_topicsheader_mobile_mobile.png');
       display: block;
@@ -53,6 +55,12 @@
   span.promo-tags {
     position: absolute;
     bottom: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 50px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     .promo-tags-label, ul li {
       font-size: 13px;
       display: inline;
@@ -92,6 +100,10 @@
     &.enterprise-java {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_java.png');}
     &.web-and-api-development {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_webapi.png');}
     &.iot {background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_3col_iot.png');}
+    &.microservices {
+      background-image: cdn("../images/design/topics/dotted_lines_white.png"), url('http://static.jboss.org/images/rhd/topic/RHDev_topics_primopromo_microservices.png');}
+      background-size: 26%, cover;
+      background-position: left top, right top;
     &.mobile {
       background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_mobile.png');
       display: block;
@@ -136,6 +148,9 @@
       &.dotnet, &.iot {
         min-height: 445px;
       }
+      &.microservices {
+        background-size: 30%, cover;
+      } 
     }
     @include mobile-landscape-and-down {
       height: auto;
@@ -183,8 +198,8 @@
     }
     @include tablet-portrait-and-down {
       height: auto;
-      &.dotnet, &.iot {
-        min-height: 200px;
+      &.dotnet, &.iot, &.microservices {
+        min-height: 220px;
       }
     }
   }
@@ -218,6 +233,7 @@
     }
     @include tablet-landscape-and-down {
       background-size: 30%;
+      min-height: 220px;
       height: auto;
     }
   }
@@ -414,7 +430,7 @@ ul.topic-resources.topic-resources-list{
   }
 }
 
-#IoT .topics-main {
+.iot .topics-main {
   .right-side-promo {
     height: 418px;
     h4 {
@@ -424,6 +440,30 @@ ul.topic-resources.topic-resources-list{
   .main-promo {
     background-size: 26%, contain;
     height: 400px;
+  }
+}
+
+.microservices {
+  .tertiary-promos {
+    h5 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 100px;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      max-height: 90px;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+  }
+  .topics-main .right-side-promo {
+    height: 420px;
   }
 }
 

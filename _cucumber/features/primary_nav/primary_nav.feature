@@ -33,6 +33,7 @@ Feature: Site navigation menu
       | Enterprise Java         |
       | .NET                    |
       | Internet of Things      |
+      | Microservices           |
 
   @desktop @smoke
   Scenario: TOPICS sub-menu items should link to retrospective pages
@@ -47,6 +48,7 @@ Feature: Site navigation menu
       | Enterprise Java         | enterprise-java         |
       | .NET                    | dotnet                  |
       | Internet of Things      | iot                     |
+      | Microservices           | microservices           |
 
   @mobile @smoke
   Scenario: Tapping TOPICS from drop down menu on Mobile/Tablet should display additional topics
@@ -60,6 +62,7 @@ Feature: Site navigation menu
       | Enterprise Java         |
       | .NET                    |
       | Internet of Things      |
+      | Microservices           |
 
   @products @desktop @smoke
   Scenario: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
