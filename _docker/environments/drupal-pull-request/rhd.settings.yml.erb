@@ -6,16 +6,16 @@ keycloak:
   accountUrl: 'https://developers.stage.redhat.com/auth/realms/rhd/account/'
   authUrl: 'https://developers.stage.redhat.com/auth/'
 drupal:
-  host: 
-  port: 
+  host: stumpjumper.lab4.eng.bos.redhat.com
+  port: "<%=ENV['DRUPAL_HOST_PORT']%>"
 searchisko:
-  host: 
-  port: 
-  baseProtocolRelativeUrl: 
+  host: stumpjumper.lab4.eng.bos.redhat.com
+  port: "<%=ENV['SEARCHISKO_HOST_PORT']%>"
+  baseProtocolRelativeUrl: 'stumpjumper.lab4.eng.bos.redhat.com:<%=ENV['SEARCHISKO_HOST_PORT']%>'
 database:
-  host:  
-  port: 
-  username: 
-  password: 
-  name:
+  host: drupalmysql
+  port: '3306'
+  username: 'drupal'
+  password: 'drupal'
+  name: 'drupal'
 

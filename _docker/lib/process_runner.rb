@@ -18,20 +18,12 @@ class ProcessRunner
   # Initialise the instance. If verbose is true, then full output of stdout and stderr is printed to the
   # console
   #
-  def initialize(verbose)
-    @verbose = verbose
+  def initialize
     @log = DefaultLogger.logger
   end
 
-  def determine_process_status(cmd, exit_code)
-    raise ProcessFailedError.new("Execution of command '#{cmd}' failed. Exit code '#{exit_code}'.") if exit_code != 0
-  end
-
-  #
-  # By appending a ; to the command, we force it to be executed in the default shell of the current user
-  #
-  def prepare_command_for_execution(cmd)
-    cmd.end_with?(';') ? cmd : cmd + ';'
+  def determine_process_status(cmd, execution_result)
+    raise ProcessFailedError.new("Execution of command '#{cmd}' failed.") unless execution_result
   end
 
   #
@@ -40,32 +32,11 @@ class ProcessRunner
   # @throws - ProcessFailedError if the command exits with a non-zero status
   #
   def execute!(cmd)
-
-    cmd = prepare_command_for_execution(cmd)
-    @log.info("Executing command '#{cmd}'")
-
-    Open3.popen3(cmd) do |_, stdout, stderr, wait_thr|
-
-      if @verbose
-        threads = []
-        threads << Thread.new(stdout) do |i|
-          while ( ! i.eof? )
-            @log.info(i.readline)
-          end
-        end
-        threads << Thread.new(stderr) do |i|
-          while ( ! i.eof? )
-            @log.error(i.readline)
-          end
-        end
-        threads.each{|t|t.join}
-      end
-
-      exit_code = wait_thr.value
-      determine_process_status(cmd, exit_code)
-    end
+    @log.info("Executing command '#{cmd}'...")
+    execution_result = Kernel.system(cmd)
+    determine_process_status(cmd, execution_result)
   end
 
-  private :determine_process_status, :prepare_command_for_execution
+  private :determine_process_status
 
 end

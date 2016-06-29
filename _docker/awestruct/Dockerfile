@@ -24,6 +24,7 @@ WORKDIR /tmp/optipng-0.7.5
 RUN ./configure && make && make install
 
 RUN adduser --system --uid=1000 --home-dir /home/awestruct --shell /bin/bash -m -U awestruct
+RUN mkdir /export && chown awestruct:awestruct /export
 
 USER awestruct
 

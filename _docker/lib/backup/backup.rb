@@ -93,7 +93,7 @@ if $0 == __FILE__
   log = DefaultLogger.logger
   log.info('Beginning backup of current environment')
   begin
-    process_runner = ProcessRunner.new(true);
+    process_runner = ProcessRunner.new
     backup = Backup.new(@DEFAULT_DRUPAL_FILESYSTEM_DIRECTORY, @DEFAULT_DATABASE_NAME, @DEFAULT_BACKUP_DIRECTORY, GitBackupStrategy.new(@DEFAULT_BACKUP_DIRECTORY, process_runner), process_runner)
     backup.execute(ARGV)
     Kernel.exit!(0)

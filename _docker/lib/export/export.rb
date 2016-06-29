@@ -54,7 +54,7 @@ if $0 == __FILE__
     Kernel.exit!(1)
   end
 
-  process_runner = ProcessRunner.new(true)
+  process_runner = ProcessRunner.new
   cron_invoker = CronInvoker.new(drupal_host)
   page_url_list_generator = DrupalPageUrlListGenerator.new(drupal_host, @DEFAULT_EXPORT_LOCATION)
   export_strategy = HttrackExportStrategy.new(process_runner)
