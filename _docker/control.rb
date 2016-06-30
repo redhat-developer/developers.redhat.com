@@ -18,7 +18,7 @@ class SystemCalls
 
   def execute_docker_compose(environment, cmd, args = [])
     puts "- Executing 'docker-compose' -f '#{environment.get_docker_compose_file}' with command '#{cmd}' and args '#{args}'"
-    Kernel.abort('Error running docker-compose') unless Kernel.system *['docker-compose', '-f', "#{environment.get_docker_compose_file}", '-f', "#{environment.get_testing_docker_compose_file}", cmd.to_s, *args]
+    Kernel.abort('Error running docker-compose') unless Kernel.system *['docker-compose','-f', "#{environment.get_docker_compose_file}", '-f', "#{environment.get_testing_docker_compose_file}", cmd.to_s, *args]
   end
 
   def execute_docker(cmd, args = [])

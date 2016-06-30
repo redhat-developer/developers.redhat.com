@@ -111,7 +111,7 @@ class TestOptions < Minitest::Test
   def test_kill_drupal_dev
     tasks = Options.parse (['-e drupal-dev',"-r"])
     assert(tasks[:kill_all])
-    assert_equal(tasks[:supporting_services], %w(mysql searchisko drupalmysql drupal))
+    assert_equal(tasks[:supporting_services], %w(apache mysql searchisko drupalmysql drupal))
     assert_equal(nil, tasks[:awestruct_command_args])
   end
 
@@ -267,7 +267,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(%w(mysql searchisko drupalmysql drupal), tasks[:supporting_services])
+    assert_equal(%w(apache mysql searchisko drupalmysql drupal), tasks[:supporting_services])
     assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
   end
 

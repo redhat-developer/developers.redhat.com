@@ -127,7 +127,7 @@ class TestRhdEnvironment < MiniTest::Test
 
   def test_supporting_services_drupal_dev
     @environment.environment_name = 'drupal-dev'
-    assert_equal(%w(mysql searchisko drupalmysql drupal), @environment.get_supporting_services)
+    assert_equal(%w(apache mysql searchisko drupalmysql drupal), @environment.get_supporting_services)
   end
 
   def test_supporting_services_drupal_pull_request
