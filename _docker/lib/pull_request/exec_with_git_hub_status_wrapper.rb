@@ -30,13 +30,12 @@ require_relative '../process_runner'
 
 class ExecWithGitHubStatusWrapper
 
-  def initialize(git_repository, git_sha1, context, target_url, process_runner)
+  def initialize(git_repository, git_sha1, context, target_url)
     @git_repository = git_repository
     @git_sha1 = git_sha1
     @context = context
     @target_url = target_url
     @log = DefaultLogger.logger
-    @process_runner = process_runner
   end
 
   #
@@ -79,11 +78,12 @@ class ExecWithGitHubStatusWrapper
   # Executes the given command and updates the GitHub Status API with the result
   #
   def execute_command_and_update_status!(command)
-    begin
-      @process_runner.execute!(command)
-      update_status(@context, 'success')
-    rescue => e
-      update_status(@context, 'failure')
+
+    command_executed_ok = Kernel.system(command)
+    status = command_executed_ok ? 'success' : 'failure'
+    update_status(@context, status)
+
+    unless command_executed_ok
       raise StandardError.new("Execution of command '#{command}' failed.")
     end
   end
@@ -134,7 +134,7 @@ if $0 == __FILE__
     c.connection_options[:ssl] = { :verify => false }
   end
 
-  execution_wrapper = ExecWithGitHubStatusWrapper.new(github_status_repo, github_status_sha1, github_status_context, github_status_target_url, ProcessRunner.new(true))
+  execution_wrapper = ExecWithGitHubStatusWrapper.new(github_status_repo, github_status_sha1, github_status_context, github_status_target_url)
   initialise_github_statuses(execution_wrapper, github_status_initialise)
   execute_command(execution_wrapper, ARGV)
 end

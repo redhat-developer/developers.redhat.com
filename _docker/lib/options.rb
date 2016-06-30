@@ -116,6 +116,11 @@ class Options
         tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
       end
 
+      opts.on('--no-decrypt','Do not attempt to decrypt the secrets file (secrets are set in the environment)') do
+        tasks[:decrypt] = false
+      end
+
+
       # No argument, shows at tail.  This will print an options summary.
       opts.on_tail('-h', '--help', 'Show this message') do
         puts opts

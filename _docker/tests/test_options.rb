@@ -253,6 +253,24 @@ class TestOptions < Minitest::Test
     assert_equal(tasks[:supporting_services], %w(mysql searchisko drupalmysql drupal))
   end
 
+  def test_run_the_stack_with_no_decrypt
+    tasks = Options.parse (['-e awestruct-dev', '--run-the-stack', '--no-decrypt'])
+    assert(tasks[:kill_all])
+    refute(tasks[:decrypt])
+    assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+    assert_equal(%w(mysql searchisko), tasks[:supporting_services])
+    assert_equal(%w(--rm --service-ports awestruct), tasks[:awestruct_command_args])
+  end
+
+  def test_run_tests_with_no_decrypt
+    tasks = Options.parse (['-e awestruct-dev', '-t', '--no-decrypt'])
+    refute(tasks[:kill_all])
+    refute(tasks[:decrypt])
+    assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+    assert_equal(%w(), tasks[:supporting_services])
+  end
+
+
   def test_run_the_stack_awestruct_dev
     tasks = Options.parse (['-e awestruct-dev', "--run-the-stack"])
     assert(tasks[:kill_all])

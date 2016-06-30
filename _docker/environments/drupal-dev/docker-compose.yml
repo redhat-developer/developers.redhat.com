@@ -99,7 +99,6 @@ services:
   # Environment actions
   #
   export:
-    user: root
     links:
      - drupal:docker
     build: ../../awestruct
