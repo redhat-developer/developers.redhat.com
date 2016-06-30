@@ -14,6 +14,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       @page.site_nav.visit('/stack-overflow/')
     when 'product forums'
       @page.site_nav.visit('/forums/')
+    when 'edit details'
+      @page.site_nav.get('https://developers.stage.redhat.com/auth/realms/rhd/account/')
     else
       @page.site_nav.visit("/#{page.downcase}/")
   end

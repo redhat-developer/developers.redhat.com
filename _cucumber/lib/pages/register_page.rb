@@ -2,6 +2,10 @@ require_relative 'base'
 
 class Registration < Base
 
+  REGISTER_WITH_EMAIL_SECTION  = { id: 'login-choice-email' }
+  EXPAND_REGISTER_WITH_EMAIL   = { id: 'register-expand-choice-email' }
+  REGISTER_WITH_SOCIAL_SECTION = { id: 'login-choice-social' }
+  EXPAND_REGISTER_WITH_SOCIAL  = { id: 'register-expand-choice-social' }
   EMAIL_FIELD                  = { id: 'email' }
   EMAIL_ERROR                  = { id: 'email-error' }
   PASSWORD_FIELD               = { id: 'password' }
@@ -26,8 +30,11 @@ class Registration < Base
   CONFIRMATION                 = { id: 'kc-content' }
   PASSWORD_CONFIRM_FIELD_ERROR = { id: 'password-confirm-error' }
   REGISTRATION_CONFIRMATION    = { id: 'registration-confirmation' }
+  TERMS_WRAPPER                = { class: 'tac-all-wrapper' }
   ACCEPT_ALL_TERMS             = { id: 'tac-checkall' }
-  ACCEPT_TERMS                 = { css: '.fulluser-ttac' }
+  DEVELOPER_TERMS              = { id: 'user.attributes.tcacc-1246' }
+  REDHAT_SUBSCRIPTION_TERMS    = { id: 'user.attributes.tcacc-6'}
+  REDHAT_PORTAL_TERMS          = { id: 'user.attributes.tcacc-1010' }
   GITHUB_BTN                   = { id: 'social-github' }
 
   def initialize(driver)
@@ -66,13 +73,49 @@ class Registration < Base
     text_of(el)
   end
 
+  def expand_register_choice_email
+    if displayed?(EXPAND_REGISTER_WITH_EMAIL)
+      click_on(EXPAND_REGISTER_WITH_EMAIL)
+      wait_for { displayed?(REGISTER_WITH_EMAIL_SECTION) }
+    end
+  end
+
+  def expand_register_choice_social
+    if displayed?(EXPAND_REGISTER_WITH_SOCIAL)
+      click_on(EXPAND_REGISTER_WITH_SOCIAL)
+      wait_for { displayed?(REGISTER_WITH_SOCIAL_SECTION) }
+    end
+  end
+
   def create_account
     click_on(FINISH_BTN)
   end
 
   def click_register_with_github
+    if displayed?(EXPAND_REGISTER_WITH_SOCIAL)
+      click_on(EXPAND_REGISTER_WITH_SOCIAL)
+    end
     wait_for { displayed?(GITHUB_BTN) }
     click_on(GITHUB_BTN)
+  end
+
+  def terms_and_conditions_section
+    find(TERMS_WRAPPER)
+  end
+
+  def accept_terms(term)
+    case term
+      when 'all'
+        click_on(ACCEPT_ALL_TERMS)
+      when 'developer'
+        click_on(DEVELOPER_TERMS)
+      when 'red hat'
+        click_on(REDHAT_SUBSCRIPTION_TERMS)
+      when 'portal'
+        click_on(REDHAT_PORTAL_TERMS)
+      else
+        raise("#{term} is not a recognised condition")
+    end
   end
 
 end

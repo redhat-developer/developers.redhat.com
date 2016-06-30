@@ -14,8 +14,7 @@ class TestExecWithGitHubStatusWrapper < MiniTest::Test
       @git_sha1 = 'foo'
       @context = 'Unit Tests'
       @target_url = 'http://foo.com'
-      @process_runner = mock()
-      @execution_wrapper = ExecWithGitHubStatusWrapper.new(@git_repo, @git_sha1, @context, @target_url, @process_runner)
+      @execution_wrapper = ExecWithGitHubStatusWrapper.new(@git_repo, @git_sha1, @context, @target_url)
   end
 
   def teardown
@@ -92,7 +91,7 @@ class TestExecWithGitHubStatusWrapper < MiniTest::Test
   def test_execute_command_that_succeeds
 
     command = 'rake git_setup clean gen[drupal_pull_request]'
-    @process_runner.expects(:execute!).with(command)
+    Kernel.expects(:system).with(command).returns(true)
 
     Octokit.expects(:create_status).with do | github_repo, git_sha1, status, options |
       assert_equal(@git_repo, github_repo)
@@ -109,7 +108,7 @@ class TestExecWithGitHubStatusWrapper < MiniTest::Test
 
   def test_execute_command_that_fails
     command = 'rake git_setup clean gen[drupal_pull_request]'
-    @process_runner.expects(:execute!).with(command).raises(StandardError.new)
+    Kernel.expects(:system).with(command).returns(false)
 
     Octokit.expects(:create_status).with do | github_repo, git_sha1, status, options |
       assert_equal(@git_repo, github_repo)
