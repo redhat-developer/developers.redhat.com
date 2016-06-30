@@ -30,6 +30,10 @@ services:
 
   awestruct:
     build: ../../awestruct
+    networks:
+     default:
+      aliases:
+       - docker
     command:
       - "rake git_setup clean preview[docker]"
     ports:
@@ -109,10 +113,12 @@ services:
       - RHD_DOCKER_DRIVER
       - BUILD_URL
 
-  #
-  # Over-ridden definition of docker_chrome service to provide link to 'docker' host to run
-  # the tests against
-  #
   docker_chrome:
-   links:
-    - awestruct:docker
+   image: selenium/node-chrome
+   volumes:
+    - /dev/shm:/dev/shm
+   environment:
+    - HUB_PORT_4444_TCP_ADDR=selhub
+    - DBUS_SESSION_BUS_ADDRESS=/dev/null
+   depends_on:
+    - selhub
