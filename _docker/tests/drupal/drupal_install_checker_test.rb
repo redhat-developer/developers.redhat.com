@@ -188,6 +188,16 @@ class DrupalInstallCheckerTest < Minitest::Test
       @install_checker.install_drupal
   end
 
+  def test_update_db
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=web --entity-updates updb)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
+                                       %w(--root=web cache:rebuild all)]
+
+    @install_checker.update_db
+    @process_exec.verify
+  end
+
   def yaml_opts_prod
     opts = <<yml
 environment: prod

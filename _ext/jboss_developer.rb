@@ -510,7 +510,7 @@ module Aweplug
         resp = @faraday.post do |req|
           req.url '/user' + '/' + 'login'
           req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-          req.body = "name=#{username}&pass=#{password}&form_id=user_login_form"
+          req.body = URI.encode_www_form([["name", username], ["pass", password], ["form_id", "user_login_form"]])
           if @logger
             @logger.debug "request body: #{req.body}"
           end
