@@ -84,10 +84,22 @@ module JBoss
 
       def transform site, page, content
         if page.output_extension.include?('htm')
-          resp = @drupal.send_page page, content
+          # Strip trailing slashes for drupal export
+          doc = Nokogiri::HTML(content)
+
+          doc.css('a').each do |a|
+            if a['href'] && a['href'].end_with?('/')
+              a['href'] = a['href'][0..-2]
+            end
+          end
+          mod_content = doc.to_html
+          mod_content.freeze
+
+          resp = @drupal.send_page page, mod_content
+
           until resp.success? do
             puts "Error making drupal request to '#{page.output_path}', retrying..."
-            resp = @drupal.send_page page, content
+            resp = @drupal.send_page page, mod_content
           end
         end
         content # Don't mess up the content locally in _site
