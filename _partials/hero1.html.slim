@@ -1,24 +1,22 @@
 section.homepage-main
   .row
     .large-15.columns.homepage-cta
-      img(src="http://static.jboss.org/images/rhd/hero/devnationlogo_16jun2016.svg")
-      h2.caps Live and Online
       .row
-        .large-14.columns
-          p Watch Monday's General Sessions including latest announcements live at 9am (pacific) or on demand.
-        .large-10.columns
-          a.button.inverse href='#{site.base_url}/events/devnation/2016/' View it Now
+        .medium-8.columns
+          img(src=cdn("#{site.base_url}/images/design/homepage-hero/RHDev_home_bookimage.png") alt="Microservices for Java Developers book cover")
+        .medium-13.columns
+          h2.caps Microservices for Java Developers:
+          h5 A hands-on introduction to frameworks and containers.
+          a.button.inverse href='#{site.base_url}/promotions/microservices-for-java-developers/' Download Now
 
     .large-8.columns.homepage-getstarted
       .row
         .large-24.medium-12.columns
-          h4.caps Experience DevNation
+          h4.caps Read more on Microservices
           ul
             li
-              a href='#{site.base_url}/events/devnation/2016/' Watch on demand starting Tuesday
+              a href='#{site.base_url}/blog/2015/11/03/tear-down-data-silos-mobile-microservices/' Tear Down Data Silos with Microservices
             li
-              a href='#{site.base_url}/blog/?s=devnation' Learn more about the DevNation announcements
+              a href='#{site.base_url}/blog/2016/04/19/different-types-of-microservices/' Different types of Microservices?
             li
-              a href='https://twitter.com/hashtag/DevNation?src=hash' See what people are saying about DevNation on Twitter
-            li
-              a href='#{site.base_url}/blog/tag/devnation/' Google, Microsoft, Codenvy and more! Check out details on sessions and speakers
+              a href='#{site.base_url}/blog/2016/05/26/scalable-microservices-through-messaging/' Scalable Microservices through messaging
