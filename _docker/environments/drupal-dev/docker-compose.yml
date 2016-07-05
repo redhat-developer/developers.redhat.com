@@ -86,6 +86,7 @@ services:
 
   apache:
    image: httpd:2.4.20
+   command: "sh -c 'rm -f /usr/local/apache2/htdocs/index.html && httpd-foreground'"
    expose:
     - 9000
    ports:
