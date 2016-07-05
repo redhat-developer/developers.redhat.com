@@ -114,7 +114,8 @@ profiles:
   drupal_production:
     <<: *profile
     base_url: http://developer-drupal.web.prod.ext.phx2.redhat.com/
-    drupal_base_url: http://drupal/
+    final_base_url: http://developers.redhat.com/
+    drupal_base_url: http://developer-drupal.web.prod.ext.phx2.redhat.com/
     dcp_base_protocol_relative_url: //dcp2.jboss.org/
     dcp_base_url: http://dcp2.jboss.org/
     require_tag: true

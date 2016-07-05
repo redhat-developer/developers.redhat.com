@@ -111,6 +111,11 @@ class DrupalInstallChecker
                             "--account-mail='admin@example.com'", '--account-pass=admin', '-n'])
   end
 
+  def update_db
+    puts 'Executing drush dbup'
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=web', '--entity-updates', 'updb'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=web', 'cache:rebuild', 'all'])
+  end
 end
 
 if $0 == __FILE__
@@ -124,9 +129,13 @@ if $0 == __FILE__
     mysql_up = checker.mysql_connect?
   end
 
-  checker.install_drupal unless checker.installed?
-  checker.install_theme
-  checker.install_modules
-  checker.install_module_configuration
-  checker.set_cron_key
+  if checker.installed?
+    checker.update_db
+  else
+    checker.install_drupal
+    checker.install_theme
+    checker.install_modules
+    checker.install_module_configuration
+    checker.set_cron_key
+  end
 end
