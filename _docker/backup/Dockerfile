@@ -16,7 +16,7 @@ RUN yum erase -y git \
 RUN groupadd -g 1000 jenkins_developer
 RUN useradd -g jenkins_developer -m -s /bin/bash -u 1000 jenkins_developer
 USER jenkins_developer
-RUN git lfs install
-RUN git config --global user.email "rhd@redhat.com"
-RUN git config --global user.name "Red Hat Developers Backup User"
+RUN git lfs install \
+    && git config --global user.email "rhd@redhat.com" \
+    && git config --global user.name "Red Hat Developers Backup User"
 WORKDIR /home/jenkins_developer
