@@ -5,13 +5,14 @@ ARG https_proxy
 
 COPY mariadb/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
 
-RUN yum erase -y git
 RUN curl -s https://setup.ius.io/ | bash
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
-RUN yum install -y \
+RUN yum erase -y git \
+    && yum install -y \
     git2u \
     git-lfs \
-    MariaDB-client
+    MariaDB-client \
+    && yum clean all
 RUN groupadd -g 1000 jenkins_developer
 RUN useradd -g jenkins_developer -m -s /bin/bash -u 1000 jenkins_developer
 USER jenkins_developer
