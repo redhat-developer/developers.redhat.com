@@ -4,8 +4,18 @@ require 'sawyer'
 require 'ostruct'
 require_relative '../_ext/jboss_developer'
 require_relative 'test_helper.rb'
+require 'logging'
 
 class TestDrupal8Service < Minitest::Test
+
+  Logging.init :trace, :debug, :verbose, :info, :warn, :error, :fatal
+  $LOG = Logging.logger.new 'awestruct'
+  $LOG.add_appenders(
+      Logging.appenders.string_io({level: :info, layout: Logging.layouts.pattern(pattern: "%m\n"),
+          color_scheme: :default})
+  )
+  $LOG.level = :debug
+
 
   def test_initialize
     # No drupal_base_url
