@@ -16,13 +16,3 @@ services:
     environment:
       - GRID_BROWSER_TIMEOUT=100000
       - GRID_TIMEOUT=90000
-
-  docker_chrome:
-    image: selenium/node-chrome
-    volumes:
-    - /dev/shm:/dev/shm
-    links:
-     - selhub:hub
-    environment:
-     - HUB_PORT_4444_TCP_ADDR=selhub
-     - DBUS_SESSION_BUS_ADDRESS=/dev/null
