@@ -64,7 +64,7 @@ include::products/cdk/_includes/get-started-cdk2-step2b.adoc[]
 
 In this step, you will create a tiny Hello World container that uses {tthw-langshort} as a web server. Once created, the container can be run on other systems that have `docker` installed.  You will need to create several files in an empty directory using your favorite editor, including a `Dockerfile` that describes how to build the container image.
 
-Note: you can edit files on your host system that can be synchronized to your vagrant box with `vagrant rsync`. For more information see _Vagrant synchronizad folders_ in the _Container Development Kit Installation Guide_. 
+Note: You can edit files on your host system and have them automatically synchronized to your Vagrant box. See https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/getting-started-guide/#synced-folders[Vagrant Synchronizad Folders] in the _CDK Getting Started Guide_.
 
 First, create an empty directory, and then create a file named `index.html` with the following contents:
 
