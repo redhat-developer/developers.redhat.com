@@ -15,7 +15,7 @@ Prerequisites &#38; Required Dependencies Checklist
 
 == Step1 Content
 1.	Open a terminal window and navigate to the location where the GUI installer was downloaded.
-2.	Enter the following command to launch the GUI installer: `java -jar jboss-dv-installer-VERSION.jar`
+2.	Enter the following command to launch the GUI installer: `java -jar jboss-dv-installer-6.2.0.redhat-2.jar`
 3.	A dialogue box will open followed by the End User License Agreement. If you accept the terms of the agreement, click *I accept the terms of this license agreement* and then click *Next*.
 4.	Click Next (a new folder for JBoss EAP server is created). Incase, JBoss EAP is already installed; tell Red Hat JBoss Data Virtualization where Red Hat JBoss EAP is installed. Add the file path and click *Next*
 5.	Ensure *Teiid Installation* and *Modeshape Installation* are selected. Click *Next*.
@@ -48,22 +48,17 @@ A summary of the installation is displayed. Click *Next* for the installation to
 ...	Right Click on jboss-devstudio-8.1.0.GA-installer-eap.jar
 ...	Select *Open With >Jar Launcher*
 +
-4.	Install JBoss Developer Studio Integration Stack plugins
+4.	Install JBoss Developer Studio Integration Stack (JBDSIS) plugins
 ..	Start Red Hat JBoss Developer Studio.
-..	In Red Hat JBoss Developer Studio, *click Help > Install* New Software…action from the main menu.
-..	On the Available Software page, click the *Add …* button.
-..	On the Add Repository dialog, enter following details:
-..	Enter *JBDSIS* (or another unique name) in the *Name* field.
-..	Enter https://devstudio.redhat.com/9.0/stable/updates/integration-stack/earlyaccess/ in the *Location* field.
-..	Click *OK*.
-..	In the update site tree view, select the JBoss Data Virtualization Development folder and all its children.
+..	In Red Hat JBoss Developer Studio, *click Help > JBoss Central action from the main menu.
+..  Click the tab Software/Update and select the JBoss Data Virtualization Development option and click Install
 +
 *Note:* If JBDSIS is already installed then proceed to next step. You can confirm that JBDSIS is installed on your machine by clicking *What is already installed link*.
 +
 ..	Click *Next*.
 ..	Accept any additional dependencies and license agreements, and then click Finish to complete.
 +
-*Note:* When installation is complete you will be prompted to re-launch Red Hat JBoss Developer Studio to insure the new features are fully operational.
+*Note:* When installation is complete you will be prompted to re-launch Red Hat JBoss Developer Studio to ensure the new features are fully operational.
 
 == Step3 Content
 
