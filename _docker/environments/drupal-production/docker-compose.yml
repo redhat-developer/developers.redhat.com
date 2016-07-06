@@ -58,7 +58,7 @@ services:
      args:
        http_proxy: proxy01.util.phx2.redhat.com:8080
        https_proxy: proxy01.util.phx2.redhat.com:8080
-    entrypoint: ruby _docker/lib/backup/backup.rb
+    entrypoint: ruby developer.redhat.com/_docker/lib/backup/backup.rb
     environment:
       - http_proxy=proxy01.util.phx2.redhat.com:8080
       - https_proxy=proxy01.util.phx2.redhat.com:8080
@@ -66,8 +66,8 @@ services:
       - ../../../:/home/jenkins_developer/developer.redhat.com
       - /data/drupal:/drupal
       - /git/backups:/backups
-      - /credentials/db/my.cnf:/home/awestruct/.my.cnf
-      - /credentials/git/backups/netrc:/home/awestruct/.netrc
+      - /credentials/db/my.cnf:/home/jenkins_developer/.my.cnf
+      - /credentials/git/backups/netrc:/home/jenkins_developer/.netrc
 
   export:
     build:
