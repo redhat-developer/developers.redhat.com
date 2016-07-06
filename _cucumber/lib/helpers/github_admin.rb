@@ -4,10 +4,10 @@ class GitHubAdmin
     @client = Octokit::Client.new(:login => username, :password => password)
   end
 
-  def generate_user
+  def generate_user_for_session(execution_id)
 
     {
-        email: "redhat-tester-rhd_automated-tester-#{Faker::Lorem.characters(10)}@redhat.com",
+        email: "rhd_automated_tester_#{execution_id}-#{Faker::Lorem.characters(10)}@redhat.com",
         first_name: 'RED HAT',
         last_name: 'TEST',
         company_name: 'RED HAT',

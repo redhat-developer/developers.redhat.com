@@ -18,7 +18,7 @@ When(/^I register a new account using my GitHub account$/) do
   @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
 
   # generate new user and update their Github profile
-  @site_user = @github_admin.generate_user
+  @site_user = @github_admin.generate_user_for_session($session_id)
   @github_admin.update_profile("#{@site_user[:first_name].upcase} #{@site_user[:last_name].upcase}", @site_user[:email], @site_user[:company_name])
   puts "Added new email to Github profile: #{@site_user[:email]}"
 
@@ -59,7 +59,7 @@ When(/^I register a new account using a GitHub account that contains missing pro
   @github_admin = GitHubAdmin.new('rhdalreadyregistered01', 'P@$$word01')
 
   # generate new user and update their Github profile
-  @site_user = @github_admin.generate_user
+  @site_user = @github_admin.generate_user_for_session($session_id)
 
   @github_admin.update_profile('', @site_user[:email], '')
   puts "Added new email to Github profile: #{@site_user[:email]}"
@@ -186,7 +186,7 @@ When(/^I select to Choose another email$/) do
 end
 
 Then(/^I should receive an email containing a verify email link$/) do
-  @verification_email = get_email(@email_address)
+  @verification_email = get_email(@site_user[:email])
   puts "Verification link was: #{@verification_email}"
   expect(@verification_email.to_s).to include('first-broker-login?')
 end
@@ -197,6 +197,7 @@ end
 
 And(/^I navigate to the verify email link$/) do
   @driver.get(@verification_email)
+  @page.site_nav.wait_for_ajax
 end
 
 Then(/^each term should link to relevant terms and conditions page:$/) do |table|

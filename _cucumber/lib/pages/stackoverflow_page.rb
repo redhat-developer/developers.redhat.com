@@ -22,6 +22,10 @@ class StackOverflow < Base
   def initialize(driver)
     super
     verify_page('Stack Overflow')
+    wait_for(20) {
+      questions = find_elements(QUESTION_ROW)
+      questions.size >= 10
+    }
   end
 
   def product_filter

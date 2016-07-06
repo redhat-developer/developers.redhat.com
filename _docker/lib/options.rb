@@ -78,8 +78,8 @@ class Options
 
         ENV['HOST_TO_TEST'] = host
 
-        if ENV['PARALLEL_TEST'].to_s.empty?
-          ENV['PARALLEL_TEST']='true'
+        if ENV['RHD_TEST_PROFILE'].to_s.empty?
+          ENV['RHD_TEST_PROFILE']= 'parallel'
         end
 
         if ENV['RHD_DOCKER_DRIVER'].to_s.empty?
@@ -94,7 +94,7 @@ class Options
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
         tasks[:supporting_services] = [ENV['RHD_DOCKER_DRIVER']]
-        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"]
+        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']} RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"]
       end
 
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
