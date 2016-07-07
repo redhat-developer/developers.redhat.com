@@ -46,16 +46,16 @@ Before do
   @page = Site.new(@driver)
 end
 
-ReportBuilder.configure do |config|
-  config.json_path = '_cucumber/reports/'
-  config.report_path = '_cucumber/reports/rhd_test_report'
-  config.report_types = [:json, :html]
-  config.report_tabs = [:overview, :features, :scenarios, :errors]
-  config.report_title = "RHD Test Results - #{$rhd_driver}"
-  config.compress_images = false
-end
-
 at_exit {
+
+  ReportBuilder.configure do |config|
+    config.json_path = '_cucumber/reports/'
+    config.report_path = '_cucumber/reports/rhd_test_report'
+    config.report_types = [:json, :html]
+    config.report_tabs = [:overview, :features, :scenarios, :errors]
+    config.report_title = "RHD Test Results - #{$rhd_driver}"
+    config.compress_images = false
+  end
 
   browser.driver.quit
   ReportBuilder.build_report
