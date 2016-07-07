@@ -5,7 +5,7 @@
 
 .homepage-main {
   color: $white;
-  background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_devnation_16jun2016.png');
+  background-image: cdn('../images/design/homepage-hero/RHDev_homehero_desktop.png');
   &.hero2 { background-image: url('https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_community_12apr2016.jpg'); }
   background-position: top center;
   background-size: cover;
@@ -17,18 +17,19 @@
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    margin: 35px auto;
+    margin: 20px auto;
     img {
-      max-width: 500px;
+      max-width: 182px;
     }
     h2 {
       font-weight: 700;
-      font-size: 3.2em;
       color: $white;
       margin-bottom: 0;
+      line-height: 1.1;
     }
-    p {
-      font-size: 1.3em;
+    h5 {
+      color: $white;
+      line-height: 1.5;
     }
     a.button {
       min-width: 250px;
@@ -278,7 +279,7 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_devnation_16jun2016.png');
+    background-image: cdn('../images/design/homepage-hero/RHDev_homehero_tablet.png');
     &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_community_12apr2016.jpg'); }
     .homepage-getstarted {
       min-height: 240px;
@@ -307,11 +308,22 @@ ul.homepage-resources {
     width: 90% !important;
     padding: 2em !important;
   }
+  .homepage-main {
+    .homepage-cta {
+      img, a.button {
+        margin: 20px auto;
+        display: block;
+      }
+      h2, h5 {
+        text-align: center;
+      }
+    }
+  }
 }
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_devnation_16jun2016.png');
+    background-image: cdn('../images/design/homepage-hero/RHDev_homehero_mobile.png');
     &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_community_12apr2016.jpg'); }
   }
   .spotlights-container {

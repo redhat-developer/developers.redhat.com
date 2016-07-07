@@ -10,8 +10,9 @@ require_relative '../default_logger'
 #
 class HttrackExportStrategy
 
-  def initialize(process_runner)
+  def initialize(process_runner, export_inspector)
     @process_runner = process_runner
+    @export_inspector = export_inspector
     @log = DefaultLogger.logger
   end
 
@@ -29,7 +30,7 @@ class HttrackExportStrategy
   def run_new_export(links_file, drupal_host, export_directory)
 
     @log.info("Running first time export of content from '#{drupal_host}'. Be patient, this will take time...")
-    @process_runner.execute!("httrack --list #{links_file.to_path} -O #{export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{drupal_host}*\" -\"*/node*\" -\"*/devel*\"")
+    @process_runner.execute!("httrack --list #{links_file.to_path} -O #{export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{drupal_host}*\" -\"*/node*\" -\"*/devel*\" -o0")
     @log.info("Completed export of content from '#{drupal_host}'")
 
   end
@@ -65,8 +66,9 @@ class HttrackExportStrategy
       run_new_export(links_file, drupal_host, export_directory)
     end
 
-    "#{export_directory}/#{determine_export_directory_from_drupal_host(drupal_host)}"
-
+    exported_to = "#{export_directory}/#{determine_export_directory_from_drupal_host(drupal_host)}"
+    @export_inspector.inspect_export(links_file, exported_to)
+    exported_to
   end
 
   private :run_new_export, :run_update_to_existing_export, :check_if_update_to_existing_export

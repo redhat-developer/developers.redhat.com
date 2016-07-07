@@ -54,20 +54,20 @@ services:
   #
   backup:
     build:
-     context: ../../awestruct
+     context: ../../backup
      args:
        http_proxy: proxy01.util.phx2.redhat.com:8080
        https_proxy: proxy01.util.phx2.redhat.com:8080
-    entrypoint: ruby _docker/lib/backup/backup.rb
+    entrypoint: ruby developer.redhat.com/_docker/lib/backup/backup.rb
     environment:
       - http_proxy=proxy01.util.phx2.redhat.com:8080
       - https_proxy=proxy01.util.phx2.redhat.com:8080
     volumes:
-      - ../../../:/home/awestruct/developer.redhat.com
+      - ../../../:/home/jenkins_developer/developer.redhat.com
       - /data/drupal:/drupal
       - /git/backups:/backups
-      - /credentials/db/my.cnf:/home/awestruct/.my.cnf
-      - /credentials/git/backups/netrc:/home/awestruct/.netrc
+      - /credentials/db/my.cnf:/home/jenkins_developer/.my.cnf
+      - /credentials/git/backups/netrc:/home/jenkins_developer/.netrc
 
   export:
     build:
@@ -79,6 +79,7 @@ services:
     volumes:
       - /data/drupal-export:/export
       - /credentials/rsync:/home/awestruct/.ssh
+      - ../../../:/home/awestruct/developer.redhat.com
 
   #
   # Testing

@@ -90,8 +90,9 @@ You must ensure that the `export` service definition in the environment of your 
 
 #### Running the export in drupal-dev environment
 
-It is possible to run the export in the drupal-dev environment if you want to test it. However to do so you must set an environment property named `DOCKER_HOST_IP`. This variable must be set to the *public* IP of your Drupal
-instance.
+It is possible to run the export in the drupal-dev environment. As part of the drupal-dev environment definition, an Apache instance is started at docker:9000. Simply use the following after you have
+`--run-the-stack` to get a static export of the content from Drupal to this instance:
 
-The reason why this is required is so that the export process can resolve public address of the Drupal instance from within a Docker container. Because of the wide variety of development platforms e.g. docker-machine with Virtualbox for Macs,
-Linux or people running in VMs, there is no way to sensibly default this value, so you must specify it. 
+```
+bundle exec control.rb -e drupal-dev --export
+```

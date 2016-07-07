@@ -43,54 +43,39 @@ Download the link:#{site.download_manager_file_base_url}/cdk-2.1.0.zip[cdk-2.1.0
 
 ## Mac And Linux Step2
 
-The Container Development Kit delivers the latest container runtime enviornment and container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the kit you will need:
+The Container Development Kit delivers the latest container runtime environment and container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the kit you will need:
 
 . A virtualization platform: http://virtualbox.org/[VirtualBox, window='_blank'], Linux KVM/libvirt, or Hyper-V
 . http://www.vagrantup.com/about.html[Vagrant, window='_blank'], an open source tool for creating and distributing portable development environments.
 . The CDK Red Hat Enterprise Linux Vagrant box that matches your virtualization platform.
-. https://www.cygwin.com/[Cygwin, window='_blank'] (Microsoft Windows only) to provide `ssh` and `rsync`.
 
 ### Install a virtualization platform (hypervisor)
 
 First, download and install a virtualization platform:
 
-* https://www.virtualbox.org/wiki/Downloads[VirtualBox, window='_blank'] (For Microsoft Windows, Apple Mac OS X, or Linux)
-* Linux KVM/libvirt (For Red Hat Enterprise Linux, CentOS, or Fedora)
-* Windows Hyper-V (For Microsoft Windows)
+* https://www.virtualbox.org/wiki/Downloads[VirtualBox, window='_blank'] (for Mac OS X or Linux)
+* Linux KVM/libvirt (for Red Hat Enterprise Linux, CentOS, or Fedora)
 
 [.callout-light]
-*NOTE:* If you are using Microsoft Windows, Apple Mac OS X, or a Linux distribution other than Red Hat, Fedora or CentOS, VirtualBox is recommended.
-
-[.callout-light]
-*NOTE:* Hyper-V support is only available on certain versions of Windows such as Windows 10 Pro. To enable Hyper-V right click on the _Start Menu_, select _Programs and Features, click on _Turn Windows features on or off_, make sure the checkbox next to _Hyper-V_ is selected, and click _OK_. Windows may need to restart to install Hyper-V - follow any prompts.
+*NOTE:* If you are using Mac OS X or a Linux distribution other than Red Hat Enterprise Linux, Fedora, or CentOS, VirtualBox is recommended.
 
 ### Install Vagrant
 
 Next, install Vagrant. All of the Container Development Environment configuration and managment on your development system will be handled for you by Vagrant.
 
 [.callout-light]
-*NOTE:* We recommend you use Vagrant version 1.7.4, or a version *later than 1.8.1* on Microsoft Windows and Apple Mac OS X. Vagrant releases 1.8.0 and 1.8.1 should be avoided due to some bugs that impact proper operation of the kit.
+*NOTE:* On Red Hat Enterprise Linux, use Vagrant 1.7.4.
 
 If you are using:
 
-* Microsoft Windows 7 and later, https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi[download the Vagrant `.msi` universal installer, window='_blank'].
-* Apple Mac OS X, https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.dmg[download the Vagrant `.dmg` universal installer, window='_blank'].
-* Red Hat Enterprise Linux, install the _Vagrant software collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide, window='_blank'].
-* CentOS Linux, install the _Vagrant software collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide, window='_blank'].
-* Fedora 23, install the Vagrant packages included with Fedora using `dnf`. See the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[CDK Installation Guide, window='_blank'].
+* Mac OS X, install Vagrant using the instructions in the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/installation-guide/#mac-soft-install[CDK Installation Guide, window='_blank'].
+* Red Hat Enterprise Linux, install the _Vagrant Software Collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/installation-guide/#installing_virtualization_and_container_development_kit_components[CDK Installation Guide, window='_blank'].
+//* CentOS Linux, install the _Vagrant Software Collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/installation-guide/#installing_virtualization_and_container_development_kit_components[CDK Installation Guide, window='_blank'].
+//* Fedora 23, install the Vagrant packages included with Fedora using `dnf`. See the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/installation-guide/#installing_virtualization_and_container_development_kit_components[CDK Installation Guide, window='_blank'].
 
 For other Linux distributions, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from https://vagrantup.com/downloads.html[vagrantup.com, window='_blank'].
 
-
-### Install Cygwin on Microsoft Windows
-
-To provide `ssh` and `rsync` on Microsoft Windows, install http://cygwin.com/install.html[Cygwin, window='_blank'] by downloading and running:
-
-* http://cygwin.com/setup-x86.exe[setup-x86.exe, window='_blank'] for 32-bit versions of Windows.
-* http://cygwin.com/setup-x86_64.exe[setup-x86_64.exe, window='_blank'] for 64-bit versions of Windows.
-
-
-### Download the Container Runtime Environment
+### Download the Container Development Environment
 
 Next, download the environment that matches your virtualization platform:
 
@@ -101,13 +86,12 @@ Next, download the environment that matches your virtualization platform:
 
 ## Mac And Linux Step3
 
-Next, install the Container Development Kit by following the https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/[CDK Installation Guide, window='_blank'] for your operating system:
+Next, install the Container Development Kit by following the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/installation-guide/[CDK Installation Guide, window='_blank'] for your operating system:
 
-* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_microsoft_windows[Installing the CDK on Microsoft Windows, window='_blank']
-* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_mac_os_x[Installing the CDK on Apple Mac OS X, window='_blank']
-* https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[Installing the CDK on Fedora or Red Hat Enterprise Linux, window='_blank']
+* https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/installation-guide/#installing_container_development_kit_on_mac_os_x[Installing CDK on Mac OS X, window='_blank']
+* https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/installation-guide/#installing_container_development_kit_on_red_hat_enterprise_linux[Installing CDK on Red Hat Enterprise Linux, window='_blank']
 
-## Developtment Technologies
+## Development Technologies
 
 Select your development technology and then build "Hello, World" in a container:
 
