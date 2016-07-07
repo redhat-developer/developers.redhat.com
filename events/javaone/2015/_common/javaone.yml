@@ -1,61 +1,61 @@
 minibooth_sessions:
   - title: 'Standardized Extension-Building in Java EE with CDI and JCA'
-    url: /video/youtube/I-Po2phF-_M
+    url: video/youtube/I-Po2phF-_M
     description: 'In 2003 the Java EE ecosystem received a gift with extensions: JCA 1.5 support in J2EE 1.4. However, it wasn’t until Java EE 5, in 2006, that extensions were really talked about. In Java EE 5, we received Contexts and Dependency Injection (CDI). Along with the namesake of the specification, extensions were introduced. Together we have the ability to extend the platform to do whatever we need. The possibilities of these extensions are limited only by your imagination. You’ve heard about CDI and the extensibility of Java EE 6 and seen enough to pique your curiosity. This session will sate that curiosity and give you enough information to build great extensions for your application and business.'
     speaker: Jason Porter
     date: 'October 26, 2015 10:15 - 11:00'
   - title: 'Taming Microservices Testing with Arquillian Cube'
-    url: /video/youtube/c4JtYbwkAJc/
+    url: video/youtube/c4JtYbwkAJc/
     description: 'The Borg is docking your system; testing is futile! Or is it? With microservices, polyglot, and DevOps on the rise, where are we at with testing? Do these technologies bring more complexity and make our testing effort harder, or maybe the contrary? Do they actually help us write better tests more easily? This session explores not only how we can do our testing in this new world but also how the new world can help us test better. It takes a close look at various topics, from NodeJS-, DynJS-, VertX-, Ceylon-, or Ruby-orchestrated microservices through system-scale testing with various configurations to database migration and regression testing. All are within reach.'
     speaker: 'Aslak Knutsen, Alex Soto & Bartosz Majsak'
     date: 'October 26, 2015 11:45 - 12:30'
   - title: 'Docker for Java EE Developers'
-    url: /video/youtube/pxVPkfT8DKo/
+    url: video/youtube/pxVPkfT8DKo/
     description: 'Containers are enabling developers to package their applications in new ways that are portable and work consistently everywhere: on your machine, in production, in your data center, and in the cloud. And Docker has become the de facto standard for those portable containers in the cloud. This lab offers developers an intro-level hands-on session with Docker, from installation to exploring Docker Hub, to crafting their own images, to adding Java apps and running custom containers. This is a BYOL (bring your own laptop) session, so bring your Windows, OS X, or Linux laptop and be ready to dig into a tool that promises to be at the forefront of our industry for some time to come.'
     speaker: 'Rafael Benevides & Markus Eisele'
     date: 'October 26, 2015 1:45 - 2:30'
   - title: 'Shenandoah: An Ultralow-Pause-Time Garbage Collector for OpenJDK'
-    url: /video/youtube/mcyVJSoRHHg/
+    url: video/youtube/mcyVJSoRHHg/
     description: 'Modern machines have more memory and more processors than ever. Service-level agreement (SLA) applications guarantee response times of 10 to 500 milliseconds. To meet the lower end of that goal, we need garbage collection algorithms that are efficient enough to enable programs to run in the available memory but also optimized to never interrupt the running program for more than a handful of milliseconds. Shenandoah is an open source low-pause-time collector for OpenJDK designed to meet those goals. Learn more in this session.'
     speaker: Christine H. Flood
     date: 'October 26, 2015 3:30 - 4:15'
   - title: 'Apache DeltaSpike, the CDI Toolbox'
-    url: /video/youtube/3McmEi3cs_s/
+    url: video/youtube/3McmEi3cs_s/
     description: 'CDI portable extensions are among the greatest features of Java EE, enabling the platform to be extended in a clean and portable way. But allowing extension is just part of the story. CDI opens the door to a whole new ecosystem for Java EE, but it’s not the role of the specification to create these extensions. Apache DeltaSpike is the project that leads this brand new ecosystem by providing useful extension modules for CDI applications as well as tools to ease the creation of new ones. This session starts by presenting the DeltaSpike toolbox and shows how it helps you develop for CDI. Then it describes the major extensions included in DeltaSpike, including “configuration,” “scheduling,” and “data.”'
     speaker: 'Rafael Benevides'
     date: 'October 27, 2015 10:15 - 11:00'
   - title: ‘Introduction to OpenShift v3’
-    url: /video/youtube/BgfiCNnHYCA/
+    url: video/youtube/BgfiCNnHYCA/
     description:
     speaker: Ryan Jarvinen
     date: 'October 27, 2015 11:45 - 12:30'
   - title: 'Securing Web Applications: A Practical Guide'
-    url: /video/youtube/dg0BaPIpdfI/
+    url: video/youtube/dg0BaPIpdfI/
     description: 'In the 1990s, the World Wide Web was just a collection of static pages with zero interactivity. Today the "new" web has a plethora of emerging frameworks and tools, simply increasing the number of threats. The complexity of software development has also grown with the need for things like single-sign-on support, LDAP integration, social identity providers, and SAML v2.0 authentication. Delegating the security logic to an external framework is the way to ensure some best practices. This technical tutorial guides the participants through all the common vulnerabilities and how to secure their applications in practice with Keycloak. The tutorial is meant for Java EE developers and has a really low learning curve.'
     speaker: 'Sebastien Blanc & Bruno Oliveiria'
     date: 'October 27, 2015 1:45 - 2:30'
   - title: 'WildFly Swarm and Netflix OSS: The Perfect Union?'
-    url: /video/youtube/RsaKmBTgEhM/
+    url: video/youtube/RsaKmBTgEhM/
     description: So you've heard about the Netflix OSS coolness, but you're still in a Java EE centric world. Come find out how easy it can be to take advantage of Ribbon for client side load balancing across JAX-RS services! Bringing together Java EE and Netflix OSS allows us to build best of breed microservices for the enterprise without throwing away all the Java EE knowledge from the last decade.
     speaker: Ken Finnigan
     date: 'October 27, 2015 3:30 - 4:15'
   - title: 'Apache Lucene for Java EE Developers'
-    url: /video/youtube/AjdQdLajjY4/
+    url: video/youtube/AjdQdLajjY4/
     description: 'Apache Lucene is the de facto standard open source library for Java developers implementing full-text-search capabilities. Although it’s thriving in its field, it is rarely mentioned in the scope of Java EE development. This session shows the features that make many developers love Lucene, with some concrete examples of common problems it elegantly solves. You’ll see some best practices for using it in a Java EE stack and how some popular OSS projects such as Hibernate ORM (JPA provider), WildFly (Java EE runtime), and Infinispan (in-memory data grid, JCache implementer) actually provide great Lucene integration capabilities and how they can help resolve some modern challenges such as deployment in the cloud.'
     speaker: Sanne Grinovero
     date: 'October 28, 2015 10:15 - 11:00'
   - title: 'Java EE 7 Applications as a Microservice with WildFly Swarm'
-    url: /video/youtube/i1aiUaa8RZ8/
+    url: video/youtube/i1aiUaa8RZ8/
     description: 'This session demonstrates how you don’t have to throw the Java EE baby out with the bath water just because you’re thinking about microservices. WildFly Swarm comes to the rescue, allowing flexibility in how a Java EE application is packaged. If your company has experience with Java EE and you’ve been thinking about getting into microservices, or even just single-purpose deployments, that doesn’t have to mean ditching Java EE. The presentation shows how WildFly Swarm can construct a single JAR containing a Java EE application, along with whatever WildFly components it would require, that can be deployed easily and quickly to any environment with a JVM.'
     speaker: Ken Finnigan
     date: 'October 28, 2015 11:45 - 12:30'
   - title: 'Docker & OpenShift Tooling for Eclipse'
-    url: /video/youtube/LbzkY9nrgdo/
+    url: video/youtube/LbzkY9nrgdo/
     description:
     speaker: Max Rydahl Andersen
     date: 'October 28, 2015 1:45 - 2:30'
   - title: 'Java Cryptography Deep Dive: Taming the Beast'
-    url: /video/youtube/Q37niG_hCcA/
+    url: video/youtube/Q37niG_hCcA/
     description: 'Over the years, Java has become much more than just a programming language: it’s also an enterprise platform for developing Java EE applications. However, security and cryptography, at some level, are easy to get wrong. Most of the time, we don’t care which algorithms—SHA-256 or SHA-512, RSA or ECC, AES-128 or AES-256, padding schemes, iteration number, key sizes—are ideal for encryption or if a poor choice could benefit attackers. Developers need to keep an eye on so many problems that with just a single wrong line of code, they can potentially introduce a new weakness. Learn more in this session.'
     speaker: Bruno Oliveira
     date: 'October 28, 2015 3:30 - 4:15'
@@ -67,7 +67,7 @@ featured_speakers:
     title: 'Apache DeltaSpike, the CDI Toolbox '
     date: 'Monday, Oct 26, 2:30 p.m.'
     location: 'Parc 55—Cyril Magnin'
-    url: /video/youtube/3McmEi3cs_s/
+    url: video/youtube/3McmEi3cs_s/
     description: 'CDI portable extensions are among the greatest features of Java EE, enabling the platform to be extended in a clean and portable way. But allowing extension is just part of the story. CDI opens the door to a whole new ecosystem for Java EE, but it’s not the role of the specification to create these extensions. Apache DeltaSpike is the project that leads this brand new ecosystem by providing useful extension modules for CDI applications as well as tools to ease the creation of new ones. This session starts by presenting the DeltaSpike toolbox and shows how it helps you develop for CDI. Then it describes the major extensions included in DeltaSpike, including “configuration,” “scheduling,” and “data.”'
   - speaker_name: Steven
     speaker_lastname: Pousty
@@ -85,7 +85,7 @@ featured_speakers:
     title: 'Apache Lucene for Java EE Developers '
     date: 'Thursday, Oct 29, 2:30 p.m.'
     location: 'Parc 55—Mission'
-    url: /video/youtube/AjdQdLajjY4/
+    url: video/youtube/AjdQdLajjY4/
     description: 'Apache Lucene is the de facto standard open source library for Java developers implementing full-text-search capabilities. Although it’s thriving in its field, it is rarely mentioned in the scope of Java EE development. This session shows the features that make many developers love Lucene, with some concrete examples of common problems it elegantly solves. You’ll see some best practices for using it in a Java EE stack and how some popular OSS projects such as Hibernate ORM (JPA provider), WildFly (Java EE runtime), and Infinispan (in-memory data grid, JCache implementer) actually provide great Lucene integration capabilities and how they can help resolve some modern challenges such as deployment in the cloud.'
   - speaker_name: Kenneth
     speaker_lastname: Finnigan
@@ -94,7 +94,7 @@ featured_speakers:
     title: 'Java EE 7 Applications as a Microservice with WildFly Swarm'
     date: 'Monday, Oct 26, 5:30 p.m.'
     location: 'Parc 55—Embarcadero'
-    url: /video/youtube/i1aiUaa8RZ8/
+    url: video/youtube/i1aiUaa8RZ8/
     description: 'This session demonstrates how you don’t have to throw the Java EE baby out with the bath water just because you’re thinking about microservices. WildFly Swarm comes to the rescue, allowing flexibility in how a Java EE application is packaged. If your company has experience with Java EE and you’ve been thinking about getting into microservices, or even just single-purpose deployments, that doesn’t have to mean ditching Java EE. The presentation shows how WildFly Swarm can construct a single JAR containing a Java EE application, along with whatever WildFly components it would require, that can be deployed easily and quickly to any environment with a JVM.'
   - speaker_name: José
     speaker_lastname: Paumard
@@ -112,7 +112,7 @@ featured_speakers:
     title: 'Shenandoah: An Ultralow-Pause-Time Garbage Collector for OpenJDK '
     date: 'Tuesday, Oct 27, 5:30 p.m.'
     location: 'Hilton—Continental Ballroom 4'
-    url: /video/youtube/mcyVJSoRHHg/
+    url: video/youtube/mcyVJSoRHHg/
     description: 'Modern machines have more memory and more processors than ever. Service-level agreement (SLA) applications guarantee response times of 10 to 500 milliseconds. To meet the lower end of that goal, we need garbage collection algorithms that are efficient enough to enable programs to run in the available memory but also optimized to never interrupt the running program for more than a handful of milliseconds. Shenandoah is an open source low-pause-time collector for OpenJDK designed to meet those goals. Learn more in this session.'
   - speaker_name: Markus
     speaker_lastname: Eisele
@@ -175,7 +175,7 @@ featured_speakers:
     title: 'Standardized Extension-Building in Java EE with CDI and JCA'
     date: 'Wednesday, Oct 28, 4:30 p.m.'
     location: 'Parc 55—Mission'
-    url: /video/youtube/I-Po2phF-_M
+    url: video/youtube/I-Po2phF-_M
     description: 'In 2003 the Java EE ecosystem received a gift with extensions: JCA 1.5 support in J2EE 1.4. However, it wasn’t until Java EE 5, in 2006, that extensions were really talked about. In Java EE 5, we received Contexts and Dependency Injection (CDI). Along with the namesake of the specification, extensions were introduced. Together we have the ability to extend the platform to do whatever we need. The possibilities of these extensions are limited only by your imagination. You’ve heard about CDI and the extensibility of Java EE 6 and seen enough to pique your curiosity. This session will sate that curiosity and give you enough information to build great extensions for your application and business.'
   - speaker_name: Max
     speaker_lastname: Andersen
@@ -202,7 +202,7 @@ featured_speakers:
     title: 'Securing Web Applications: A Practical Guide'
     date: 'Monday, Oct 26, 8:30 a.m.'
     location: 'Hilton—Plaza Room A'
-    url: /video/youtube/dg0BaPIpdfI/
+    url: video/youtube/dg0BaPIpdfI/
     description: 'In the 1990s, the World Wide Web was just a collection of static pages with zero interactivity. Today the "new" web has a plethora of emerging frameworks and tools, simply increasing the number of threats. The complexity of software development has also grown with the need for things like single-sign-on support, LDAP integration, social identity providers, and SAML v2.0 authentication. Delegating the security logic to an external framework is the way to ensure some best practices. This technical tutorial guides the participants through all the common vulnerabilities and how to secure their applications in practice with Keycloak. The tutorial is meant for Java EE developers and has a really low learning curve.'
   - speaker_name: Antoine
     speaker_lastname: Sabot-Durand
@@ -220,7 +220,7 @@ featured_speakers:
     title: 'Java Cryptography Deep Dive: Taming the Beast'
     date: 'Tuesday, Oct 27, 8:30 a.m.'
     location: 'Hilton—Plaza Room A'
-    url: /video/youtube/Q37niG_hCcA/
+    url: video/youtube/Q37niG_hCcA/
     description: 'Over the years, Java has become much more than just a programming language: it’s also an enterprise platform for developing Java EE applications. However, security and cryptography, at some level, are easy to get wrong. Most of the time, we don’t care which algorithms—SHA-256 or SHA-512, RSA or ECC, AES-128 or AES-256, padding schemes, iteration number, key sizes—are ideal for encryption or if a poor choice could benefit attackers. Developers need to keep an eye on so many problems that with just a single wrong line of code, they can potentially introduce a new weakness. Learn more in this session.'
   - speaker_name: Rafael
     speaker_lastname: Benevides
@@ -229,7 +229,7 @@ featured_speakers:
     title: 'Docker for Java EE Developers '
     date: 'Wednesday, Oct 28, 3:00 p.m.'
     location: 'Hilton—Franciscan Room B/C/D'
-    url: /video/youtube/pxVPkfT8DKo/
+    url: video/youtube/pxVPkfT8DKo/
     description: 'Containers are enabling developers to package their applications in new ways that are portable and work consistently everywhere: on your machine, in production, in your data center, and in the cloud. And Docker has become the de facto standard for those portable containers in the cloud. This lab offers developers an intro-level hands-on session with Docker, from installation to exploring Docker Hub, to crafting their own images, to adding Java apps and running custom containers. This is a BYOL (bring your own laptop) session, so bring your Windows, OS X, or Linux laptop and be ready to dig into a tool that promises to be at the forefront of our industry for some time to come.'
   - speaker_name: Dalibor
     speaker_lastname: Topic
