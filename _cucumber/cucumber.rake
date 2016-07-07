@@ -86,6 +86,7 @@ end
 
 def cleanup
   p '. . . . Deleting old reports and screenshots  . . . .'
+  File.delete('cucumber_failures.log') if File.exist?('cucumber_failures.log')
   FileUtils.rm_rf('_cucumber/reports')
   Dir.mkdir('_cucumber/reports')
   FileUtils.rm_rf('_cucumber/screenshots')
