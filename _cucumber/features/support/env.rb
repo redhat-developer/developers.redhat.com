@@ -46,18 +46,19 @@ Before do
   @page = Site.new(@driver)
 end
 
-at_exit {
+at_exit do
+
+  browser.driver.quit
 
   ReportBuilder.configure do |config|
     config.json_path = '_cucumber/reports/'
     config.report_path = '_cucumber/reports/rhd_test_report'
-    config.report_types = [:json, :html]
-    config.report_tabs = [:overview, :features, :scenarios, :errors]
+    config.report_types = [:html]
+    config.report_tabs = [:overview, :features, :errors]
     config.report_title = "RHD Test Results - #{$rhd_driver}"
     config.compress_images = false
   end
 
-  browser.driver.quit
   ReportBuilder.build_report
 
   if ENV['RHD_TEST_PROFILE'] == 'nightly'
@@ -77,5 +78,4 @@ at_exit {
       github_admin.cleanup
     end
   end
-
-}
+end
