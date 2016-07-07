@@ -4,15 +4,15 @@
     | Share This
   ul.share-this-buttons.social-buttons.cf
     li
-      a(href="https://twitter.com/share" class="socialite twitter-share" data-text="#{page.title}" data-url="#{site.base_url}/#{page.output_page.output_path}" rel="nofollow" target="_blank")
+      a(href="https://twitter.com/share" class="socialite twitter-share" data-text="#{page.title}" data-url="#{site.base_url}#{page.output_page.output_path}" rel="nofollow" target="_blank")
         span.vhidden
           | Tweet
     li
-      a(href="http://www.facebook.com/sharer.php?u=#{page.url}&t=#{page.title}" class="socialite facebook-share" data-href="#{site.base_url}/#{page.output_page.output_path}" data-send="false" data-type="button_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank")
+      a(href="http://www.facebook.com/sharer.php?u=#{page.url}&t=#{page.title}" class="socialite facebook-share" data-href="#{site.base_url}#{page.output_page.output_path}" data-send="false" data-type="button_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank")
         span.vhidden
           | Share on Facebook
     li
-      a(href="http://www.linkedin.com/shareArticle?mini=true&url=#{page.url}&title=#{page.title}" class="socialite linkedin-share" data-url="#{site.base_url}/#{page.output_page.output_path}" data-counter="right" rel="nofollow" target="_blank")
+      a(href="http://www.linkedin.com/shareArticle?mini=true&url=#{page.url}&title=#{page.title}" class="socialite linkedin-share" data-url="#{site.base_url}#{page.output_page.output_path}" data-counter="right" rel="nofollow" target="_blank")
         span.vhidden
           | Share on LinkedIn
     li

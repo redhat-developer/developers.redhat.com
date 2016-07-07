@@ -30,7 +30,7 @@ section.topics-dotted-graphics
                     - e.section_1.links.each do |link|
                       li
                         - if link.local_url
-                          a(href="#{site.base_url}#{link.local_url}") #{link.name}
+                          a(href="#{site.base_url}#{link.local_url}/") #{link.name}
                         - elsif link.url
                           a(href="#{link.url}") #{link.name}
               a.button(href='#{site.base_url}#{e.button.url}') #{e.button.label}
@@ -41,7 +41,7 @@ section.topics-dotted-graphics
                   - e.section_2.links.each do |link|
                     li
                       - if link.local_url
-                        a(href="#{site.base_url}#{link.local_url}") #{link.name}
+                        a(href="#{site.base_url}#{link.local_url}/") #{link.name}
                       - elsif link.url
                         a(href="#{link.url}") #{link.name}
             .large-24.medium-8.columns
@@ -51,7 +51,7 @@ section.topics-dotted-graphics
                   - e.section_3.links.each do |link|
                     li
                       - if link.local_url
-                        a(href="#{site.base_url}#{link.local_url}") #{link.name}
+                        a(href="#{site.base_url}#{link.local_url}/") #{link.name}
                       - elsif link.url
                         a(href="#{link.url}") #{link.name}
             / .large-24.medium-8.columns
