@@ -136,7 +136,7 @@ class StackOverflow < Base
       end
       count += 1
     end
-    if result.eql? false
+    if result.eql? false || count == number_of_times
       raise("Scrolled page #{number_of_times} times, expected result to be true, but was false")
     end
   end

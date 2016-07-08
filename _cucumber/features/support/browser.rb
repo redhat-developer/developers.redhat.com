@@ -123,15 +123,14 @@ class Browser
 
   # needed to set the custom download capabilities in oder to test downloads
   def browserstack_chrome
-    job_name = "RHD Acceptance Tests - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
+    job_name = "RHD Acceptance Tests - Chrome on Windows 8.1: #{Time.now.strftime '%Y-%m-%d %H:%M'}"
 
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     caps['chromeOptions']['args'] = %w[--disable-popup-blocking --ignore-ssl-errors --disable-download-protection]
     caps['browser'] = 'Chrome'
-    caps['browser_version'] = '49.0'
-    caps['os'] = 'OS X'
-    caps['os_version'] = 'El Capitan'
+    caps['os'] = 'Windows'
+    caps['os_version'] = '8.1'
     caps['project'] = job_name
     caps['browserstack.debug'] = 'true'
     caps['acceptSslCerts'] = 'true'
