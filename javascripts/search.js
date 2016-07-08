@@ -29,6 +29,21 @@ search.service('searchService',function($http, $q) {
 });
 
 /*
+  Directive to add target=_blank to KCS and solutions
+ */
+search.directive('resourceType', function () {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      if(attrs.resourceType == 'solution')
+        element.attr("target", "_blank");
+      else
+        element.attr("target", "_self");
+    }
+  };
+});
+
+/*
   Filter to return human readable time ago
 */
 search.filter('timeAgo', function() {
