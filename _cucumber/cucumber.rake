@@ -7,14 +7,16 @@ task :features do
   cleanup
   p ". . . . HOST TO TEST = #{ENV['HOST_TO_TEST']} . . . ."
 
-  unless ENV['PARALLEL_TEST'].eql?('false') || ENV['CUCUMBER_TAGS'].eql?('@wip')
-    profile = 'parallel'
+  if ENV['RHD_TEST_PROFILE']
+    profile = ENV['RHD_TEST_PROFILE']
+  else
+    profile='parallel'
   end
 
-  if ENV['CUCUMBER_TAGS'].to_s.empty?
-    tags = nil
-  else
+  if ENV['CUCUMBER_TAGS']
     tags = ENV['CUCUMBER_TAGS']
+  else
+    tags = nil
   end
 
   if ENV['ghprbActualCommit'].to_s.empty?
@@ -55,25 +57,36 @@ def run(profile, tag)
   unless tag.eql?(nil)
     tag_string = "--tags #{tag}"
   end
-
-  if profile.eql?('parallel')
-    if tag.eql?(nil)
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
-    else
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
-    end
-  else
+  if profile.eql?('slow')
     if tag.eql?(nil)
       system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
     else
       system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
     end
+  else
+    if tag.eql?(nil)
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
+    else
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
+    end
   end
+  rerun(profile)
   $?.exitstatus
+end
+
+def rerun(profile)
+  if profile.eql?('nightly')
+    unless File.size('cucumber_failures.log') == 0
+      p '. . . . . There were failures during the nightly test run, rerunning failed scenarios . . . . .'
+      system('bundle exec cucumber @cucumber_failures.log')
+    end
+    $?.exitstatus
+  end
 end
 
 def cleanup
   p '. . . . Deleting old reports and screenshots  . . . .'
+  File.delete('cucumber_failures.log') if File.exist?('cucumber_failures.log')
   FileUtils.rm_rf('_cucumber/reports')
   Dir.mkdir('_cucumber/reports')
   FileUtils.rm_rf('_cucumber/screenshots')

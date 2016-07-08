@@ -1,3 +1,7 @@
+Before do
+  @driver.manage.delete_all_cookies
+end
+
 Before('@mobile') do
   resize_window_to_mobile
 end
@@ -88,4 +92,3 @@ end
 def resize_window_by(width, height)
   @driver.manage.window.resize_to(width, height)
 end
-

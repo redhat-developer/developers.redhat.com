@@ -2,5 +2,7 @@
 $output_folder = "out/#{ENV['BUILD_NUMBER'] || 'logs'}"
 %>
 
-default: -r _cucumber/features/--strict -f pretty -t ~@ignore -t ~@manual -t ~@later --format json -o _cucumber/reports/cucumber.json
-parallel:  -r _cucumber/features/ -f progress -t ~@ignore -t ~@manual -t ~@later --format json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
+default: -r _cucumber/features/ -f pretty -t ~@ignore -t ~@manual -t ~@later --format json -o _cucumber/reports/cucumber.json
+parallel:  -r _cucumber/features/ -f progress -t ~@ignore -t ~@manual -t ~@later -t ~@nightly --format json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
+nightly:  -r _cucumber/features/ -f progress -t ~@ignore -t ~@manual -t ~@later --format json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log
+slow: -p default
