@@ -35,17 +35,21 @@ Finally, yes, you can install on bare metal if you wish. #{site.base_url}/produc
 
 Here’s the list of instructions to install .NET Core on Red Hat Enterprise Linux:
 
-1. Run `sudo yum install -y rh-dotnetcore10`
+1. Register your RHEL machine using your developer subscription
+2. Run `subscription-manager repos --enable=rhel-7-server-dotnet-rpms`
+3. Run `sudo yum install -y rh-dotnetcore10`
 
-That’s it! That’s the list!
+You can verify your installation by running `scl enable rh-dotnetcore10 \-- dotnet --version` from the command line. 
 
-You can verify your installation by running `dotnet --version` from the command line.
+See the full https://access.redhat.com/documentation/en/net-core/1.0/getting-started-guide/[Getting Started Guide] for more information.
 
 ## Step4 Content
 
 You’re only three steps away from creating and running your first app, the “Hello world” app.
 
-First, run `dotnet new`. This will create the source code for the “Hello world” app. You can look around the source code and all the generated files to get a sense of what’s necessary to support a .NET Core application.
+First, run `scl enable rh-dotnetcore10 bash`. This will put you in a bash shell where the `dotnet` binary is available.
+
+Then, run `dotnet new`. This will create the source code for the “Hello world” app. You can look around the source code and all the generated files to get a sense of what’s necessary to support a .NET Core application.
 
 Next, run `dotnet restore`. This will fetch all the necessary dependency libraries (DLLs) from NuGet.org.
 
