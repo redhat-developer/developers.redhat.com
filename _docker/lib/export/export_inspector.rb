@@ -1,3 +1,5 @@
+require 'uri/http'
+
 #
 # The purpose of this class is to inspect an export directory to ensure that all pages that should be there, are in fact there.
 #
@@ -9,8 +11,8 @@ class ExportInspector
   # Determines the filesystem path at which the .html page export should exist
   #
   def determine_expected_filesystem_path(url)
-    first_slash = url.index('/', 'http://'.length)
-    page_path = url[first_slash..url.length]
+    uri = URI.parse url
+    page_path = uri.path
     if page_path == '/'
       '/index.html'
     else
@@ -22,8 +24,8 @@ class ExportInspector
   # Checks to see if the path exists at the expected path in the export directory
   #
   def check_if_path_exists(url, expected_file_path, export_directory)
-    expected_path = "#{export_directory}#{expected_file_path}"
-    exists = FileTest.exist?(expected_path)
+    expected_path = File.join export_directory, expected_file_path
+    exists = File.exist?(expected_path)
     unless exists
       puts "WARNING: Cannot locate export of '#{url}' at expected path: '#{expected_path}'"
     end
@@ -35,7 +37,7 @@ class ExportInspector
   #
   def inspect_export(url_list, export_directory)
 
-    puts "================================ EXPORT SUMMARY ================================"
+    puts '================================ EXPORT SUMMARY ================================'
 
     total_pages = 0
     missing_pages = 0
