@@ -14,6 +14,21 @@ class KeyCloak
     JSON.parse(data)
   end
 
+  def get_registration_date(email)
+    date = get_user_attribute(email, 'rhdTacSignDateFormatted').to_date
+    format_date(date.to_s)
+  end
+
+  def get_subscription_status(email)
+    status = get_user_attribute(email, 'rhdSubscrValid')
+    boolean(status)
+  end
+
+  def get_user_attribute(email, attribute)
+    data = get_user_by(email)
+    data[0]['attributes'][attribute].first
+  end
+
   def get_social_logins(email)
     user = get_user_by(email)
     user_id = user[0]['id']
@@ -34,6 +49,20 @@ class KeyCloak
     user_id = user[0]['id']
     puts "User ID was: #{user_id}"
     RestClient::Request.execute(:method => :delete, :url => "https://developers.stage.redhat.com/auth/admin/realms/rhd/users/#{user_id}", :headers => {'Authorization' => "Bearer #{@access_token}"}, :verify_ssl => false)
+  end
+
+  private
+
+  def format_date(date)
+    d = Date.parse(date)
+    day = d.day
+    month = d.strftime("%b")
+    year = d.year
+    "#{month} #{day}, #{year}"
+  end
+
+  def boolean(str)
+    str == 'true'
   end
 
 end

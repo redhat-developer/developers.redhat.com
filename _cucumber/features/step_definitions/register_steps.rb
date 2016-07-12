@@ -99,7 +99,6 @@ When(/^I complete the registration form$/) do
   @page.registration.fill_in_form(@site_user[:first_name], @site_user[:last_name], @site_user[:email], @site_user[:company_name], @site_user[:country], @site_user[:password], @site_user[:password])
   @page.registration.accept_terms('all')
   @page.registration.create_account
-  @date_of_registration = current_date
 end
 
 Then(/^I should see the following terms and conditions checkboxes:$/) do |table|
@@ -225,6 +224,7 @@ end
 And(/^the following newly registered details should be added to my profile:$/) do |table|
   table.raw.each do |row|
     element = row.first
+    keycloak_admin = KeyCloak.new
 
     case element
       when 'Username'
@@ -240,9 +240,11 @@ And(/^the following newly registered details should be added to my profile:$/) d
       when 'Country'
         expect(@page.edit_account.country).to eq @site_user[:country]
       when 'Red Hat Developer Program subscription date'
-        expect(@page.edit_account.agreement_date.attribute('value')).to eq @date_of_registration
+        reg_date = keycloak_admin.get_registration_date(@site_user[:email])
+        expect(@page.edit_account.agreement_date.attribute('value')).to eq reg_date
       when 'Privacy & Subscriptions status'
-        expect(@page.edit_account.receive_newsletter?).to be true
+        status = keycloak_admin.get_subscription_status(@site_user[:email])
+        expect(@page.edit_account.receive_newsletter?).to be status
       else
         raise("#{element} was not a recognised field")
     end
@@ -276,12 +278,4 @@ And(/^my registered details should visible be on my profile:$/) do |table|
     end
   end
 
-end
-
-def current_date
-  current = DateTime.now
-  day = current.day
-  month = Date.today.strftime("%b")
-  year = current.year
-  "#{month} #{day}, #{year}"
 end
