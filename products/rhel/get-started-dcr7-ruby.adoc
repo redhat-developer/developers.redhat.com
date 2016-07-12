@@ -10,6 +10,7 @@
 :tthw-langcmd: ruby
 :tthw-dciname: ruby-23-rhel7
 :tthw-hellomsg: from Ruby {tthw-lang-version-full}!
+:tthw-hellofile: hello-http.rb
 :title: "Get started building {tthw-langlong} applications in docker containers on RHEL {tthw-rhelver}"
 :awestruct-description: "Get started building {tthw-langlong} applications in docker containers on Red Hat Enterprise Linux {tthw-rhelver} in under 15 minutes."
 
@@ -79,7 +80,7 @@ COPY . /opt/app-root/src
 CMD /bin/bash -c 'ruby hello-http.rb'
 ----
 
-Create the file `hello-http.rb` with the following contents:
+Create the file `{tthw-hellofile}` with the following contents:
 
 .hello-http.rb
 [source,ruby]
