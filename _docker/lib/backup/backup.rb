@@ -22,7 +22,7 @@ class Backup
     @backup_directory = backup_directory
     @backup_strategy = backup_strategy
     @drupal_tar_name = 'drupal-filesystem.tar.gz'
-    @drupal_database_sql_dump_name = 'drupal-db.sql'
+    @drupal_database_sql_dump_name = 'drupal-db.sql.gz'
   end
 
   #
@@ -42,7 +42,7 @@ class Backup
   # Creates a SQL dump of the database named @database_name
   #
   def backup_drupal_database
-    sql_dump = "#{@backup_directory}/#{@drupal_database_sql_dump_name}.gz"
+    sql_dump = "#{@backup_directory}/#{@drupal_database_sql_dump_name}"
     @log.info("Creating SQL dump '#{sql_dump}' of Drupal database...")
 
     @process_runner.execute!("mysqldump #{@database_name} | gzip > #{sql_dump}")
