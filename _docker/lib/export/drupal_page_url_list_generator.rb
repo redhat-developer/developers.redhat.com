@@ -72,10 +72,23 @@ class DrupalPageUrlListGenerator
   def generate_page_url_list!
     sitemap_content = fetch_sitemap_contents
     links = parse_sitemap(sitemap_content)
+    save_sitemap(sitemap_content)
     write_links_to_file(links)
   end
 
+  def save_sitemap(sitemap)
+    sitemap_file = File.join @export_directory, 'sitemap.xml'
+    @log.info('Saving sitemap file')
 
-  private :fetch_sitemap_contents, :parse_sitemap, :write_links_to_file
+    FileUtils.rm(sitemap_file, :force => true)
+    FileUtils.touch(sitemap_file)
 
+    File.open(sitemap_file, 'w+') do | file |
+      file.puts(sitemap)
+    end
+
+    @log.info("Successfully wrote sitemap contents to '#{sitemap_file}'")
+  end
+
+  private :fetch_sitemap_contents, :parse_sitemap, :write_links_to_file, :save_sitemap
 end

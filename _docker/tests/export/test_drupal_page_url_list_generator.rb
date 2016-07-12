@@ -36,7 +36,7 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
     end
 
     assert_equal(lines.last, "http://192.168.99.100:32769/robots.txt\n")
-
+    assert(File.exists?(File.join(@export_directory, 'sitemap.xml')))
   end
 
   def test_should_raise_error_if_fails_to_download
