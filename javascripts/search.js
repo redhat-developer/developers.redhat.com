@@ -121,6 +121,21 @@ search.filter('jbossfix', function() {
   }
 });
 
+/*
+ Filter to remove undesirable tags from sys_tags
+ */
+search.filter('tagGroup', function() {
+  return function(tag){
+    var modifiedTags = [];
+    var matcher = new RegExp('feed_group_name_.*|feed_name_.*|red hat|redhat')
+    angular.forEach(tag, function(value){
+      if(!value.match(matcher))
+        modifiedTags.push(value)
+    });
+    return modifiedTags;
+  }
+});
+
 search.filter('timestamp', function() {
   return function(timestamp){
     var date = new Date(timestamp);
