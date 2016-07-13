@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'minitest/autorun'
 require 'mocha/mini_test'
+require 'nokogiri'
 
 require_relative '../../../_docker/tests/test_helper'
 require_relative '../../lib/export/drupal_page_url_list_generator'
@@ -37,6 +38,10 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
 
     assert_equal(lines.last, "http://192.168.99.100:32769/robots.txt\n")
     assert(File.exists?(File.join(@export_directory, 'sitemap.xml')))
+    sitemap_document = Nokogiri::XML(File.open(File.join(@export_directory, 'sitemap.xml'), 'r'))
+    sitemap_document.xpath('//xmlns:loc').each do |loc|
+      assert_match %r{http://developers\.redhat\.com/}, loc.content
+    end
   end
 
   def test_should_raise_error_if_fails_to_download

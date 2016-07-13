@@ -84,7 +84,8 @@ class DrupalPageUrlListGenerator
     FileUtils.touch(sitemap_file)
 
     File.open(sitemap_file, 'w+') do | file |
-      file.puts(sitemap)
+      # We need to rewrite the URI to point to production
+      file.puts(sitemap.gsub(%r{http://.*?/}, 'http://developers.redhat.com/'))
     end
 
     @log.info("Successfully wrote sitemap contents to '#{sitemap_file}'")
