@@ -84,6 +84,14 @@
                     <li class="register"><a>Register</a></li>
                     <li class="logged-in"><a class="logged-in-name" href="#"></a></li>
                     <li class="logged-in"><a class="logout" href="#">Logout</a></li>
+                    <li class="search-wrapper">
+                      <form class="search-bar" accept-charset="utf-8" action="/search" method="get" role="search" type="submit">
+                        <input class="user-search" type="text" placeholder="Enter your search term" id="search_list_text" name="q" maxlength="128" required/>
+                        <button type="submit" id="search-button">
+                          <i class="fa fa-search"></i>
+                        </button>
+                      </form>
+                    </li>
                 </ul>
             </nav>
         <div class="logo-wrap">
@@ -97,74 +105,78 @@
                     <li class="has-sub-nav">
                         <a href="#">Topics<i class="fa fa-angle-down"></i></a>
                         <div class="sub-nav" id="sub-nav-topics">
-                            <a href="/containers">Containers</a><a
-                                href="/mobile">Mobile</a><a href="/devops">DevOps</a><a
-                                href="/web-and-api-development">Web and API Development</a><a
-                                href="/enterprise-java">Enterprise Java</a><a
-                                href="/dotnet">.NET</a>
+                            <a href="/containers">Containers</a>
+                            <a href="/mobile">Mobile</a>
+                            <a href="/devops">DevOps</a>
+                            <a href="/web-and-api-development">Web and API Development</a>
+                            <a href="/enterprise-java">Enterprise Java</a>
+                            <a href="/dotnet">.NET</a>
+                            <a href="/iot">Internet of Things</a>
                         </div>
                     </li>
                     <li class="has-sub-nav">
                         <a href="#">Technologies<i class="fa fa-angle-down"></i></a>
                         <div class="sub-nav" id="sub-nav-technologies">
                             <div class="sub-nav-group">
-                                <a class="heading" href="/products#infrastructure_management">Infrastructure</a><a
-                                    class="hide-on-mobile" href="/products/rhel/overview">Red Hat
-                                Enterprise Linux</a><a class="hide-on-mobile indent"
-                                                       href="/products/developertoolset/overview">Red
-                                Hat Developer Toolset</a><a class="hide-on-mobile indent"
-                                                            href="/products/softwarecollections/overview">Red
-                                Hat Software Collections</a><a class="hide-on-mobile"
-                                                               href="/products/cdk/overview">Red
-                                Hat Container Development Kit</a>
+                              <a class="heading" href="/products#development_and_management">Accelerated Development and Management</a>
+                              <a class="hide-on-mobile" href="/products/datagrid/overview">Red Hat JBoss Data Grid</a>
+                              <a class="hide-on-mobile" href="/products/eap/overview">Red Hat JBoss Enterprise Application Platform</a>
+                              <a class="hide-on-mobile" href="/products/webserver/overview">Red Hat JBoss Web Server</a>
                             </div>
                             <div class="sub-nav-group">
-                                <a class="heading" href="/products#cloud_products">Cloud</a><a
-                                    class="hide-on-mobile" href="/products/openshift/overview">OpenShift
-                                Enterprise by Red Hat</a>
+                              <a class="heading" href="/products#developer_tools">Developer Tools</a>
+                              <a class="hide-on-mobile" href="/products/cdk/overview">Red Hat Container Development Kit</a>
+                              <a class="hide-on-mobile" href="/products/devsuite/overview">Red Hat Development Suite</a>
+                              <a class="hide-on-mobile" href="/products/developertoolset/overview">Red Hat Developer Toolset</a>
+                              <a class="hide-on-mobile" href="/products/devstudio/overview">Red Hat JBoss Developer Studio</a>
                             </div>
                             <div class="sub-nav-group">
-                                <a class="heading" href="/products#mobile">Mobile</a><a
-                                    class="hide-on-mobile"
-                                    href="/products/mobileplatform/overview">Red Hat Mobile
-                                Application Platform</a>
+                              <a class="heading" href="/products#infrastructure_management">Infrastructure</a>
+                              <a class="hide-on-mobile" href="/products/rhel/overview">Red Hat Enterprise Linux</a>
+                              <a class="hide-on-mobile" href="/products/softwarecollections/overview">Red Hat Software Collections</a>
                             </div>
                             <div class="sub-nav-group">
-                                <a class="heading"
-                                   href="/products#jboss_development_and_management">Middleware</a><a
-                                    class="hide-on-mobile" href="/products/devstudio/overview">Red
-                                Hat JBoss Developer Studio</a><a class="hide-on-mobile"
-                                                                 href="/products/eap/overview">Red
-                                Hat JBoss Enterprise Application Platform</a><a class="hide-on-mobile"
-                                                                                href="/products/fuse/overview">Red
-                                Hat JBoss Fuse</a><a class="hide-on-mobile"
-                                                     href="/products/webserver/overview">Red Hat
-                                JBoss Web Server</a><a class="hide-on-mobile"
-                                                       href="/products/bpmsuite/overview">Red Hat
-                                JBoss BPM Suite</a><a class="hide-on-mobile"
-                                                      href="/products/brms/overview">Red Hat JBoss
-                                BRMS</a><a class="hide-on-mobile"
-                                           href="/products/datagrid/overview">Red Hat JBoss Data
-                                Grid</a><a class="hide-on-mobile" href="/products/amq/overview">Red
-                                Hat JBoss A-MQ</a><a class="hide-on-mobile"
-                                                     href="/products/datavirt/overview">Red Hat
-                                JBoss Data Virtualization</a>
+                              <a class="heading" href="/products#integration_and_automation">Integration and Automation</a>
+                              <a class="hide-on-mobile" href="/products/amq/overview">Red Hat JBoss A-MQ</a>
+                              <a class="hide-on-mobile" href="/products/datavirt/overview">Red Hat JBoss Data Virtualization</a>
+                              <a class="hide-on-mobile" href="/products/fuse/overview">Red Hat JBoss Fuse</a>
+                              <a class="hide-on-mobile" href="/products/bpmsuite/overview">Red Hat JBoss BPM Suite</a>
+                              <a class="hide-on-mobile" href="/products/brms/overview">Red Hat JBoss BRMS</a>
                             </div>
+                          <div class="sub-nav-group">
+                            <a class="heading" href="/products#mobile">Mobile</a>
+                            <a class="hide-on-mobile" href="/products/mobileplatform/overview">Red Hat Mobile Application Platform</a>
+                          </div>
+                          <div class="sub-nav-group">
+                            <a class="heading" href="/products#private_cloud">Private Cloud</a>
+                            <a class="hide-on-mobile" href="/products/openshift/overview">OpenShift Enterprise by Red Hat</a>
+                          </div>
+                          <div class="sub-nav-group">
+                            <a class="heading" href="/products#runtimes">Runtimes</a>
+                            <a class="hide-on-mobile" href="/products/openjdk/overview">Red Hat OpenJDK</a>
+                            <a class="hide-on-mobile" href="/products/dotnet/overview">.NET Runtime for Red Hat Linux</a>
+                          </div>
                         </div>
                     </li>
                     <li class="has-sub-nav">
                         <a href="#">Community<i class="fa fa-angle-down"></i></a>
                         <div class="sub-nav pull-right" id="sub-nav-community">
-                            <a href="http://developers.redhat.com/blog">Developers Blog<span class="page-description">Insights &amp; news on Red Hat developer tools, platforms and more</span></a><a
-                                href="/events">Events<span class="page-description">Find the latest conferences, meetups, and virtual seminars</span></a>
-                            <div class="sub-nav-group"><a href="/projects">Open Source
-                                Communities<span class="page-description">Community Projects that Red Hat participates in</span></a>
-                            </div>
-                            <a href="/community/contributor">Content Contributors<span
-                                    class="page-description">Share your knowledge. Contribute content to Red Hat Developers.</span></a>
+                          <a href="http://developers.redhat.com/blog">Developers Blog<span class="page-description">Insights &amp; news on Red Hat developer tools, platforms and more</span></a>
+                          <a href="/events">Events<span class="page-description">Find the latest conferences, meetups, and virtual seminars</span></a>
+                          <div class="sub-nav-group">
+                            <a href="/projects">Open Source Communities<span class="page-description">Community Projects that Red Hat participates in</span></a>
+                          </div>
+                          <a href="/community/contributor">Content Contributors<span class="page-description">Share your knowledge. Contribute content to Red Hat Developers.</span></a>
                         </div>
                     </li>
-                    <li><a href="/resources">Resources</a></li>
+                    <li class="has-sub-nav">
+                      <a href="#">Help<i class="fa fa-angle-down"></i></a>
+                      <div class="sub-nav pull-right" id="sub-nav-help">
+                        <a href="/resources">Resources<span class="page-description">Important technical resources for you in all shapes and sizes:  blogs, books, code, videos and more.</span></a>
+                        <a href="/forums">Forums<span class="page-description">We've extended our popular JBoss.org forums to cover our entire Red Hat portfolio for you.</span></a>
+                        <a href="/stack-overflow">Stack Overflow Q&amp;A<span class="page-description">You already use Stack Overflow, so we'll help you use it to find your best answers.</span></a>
+                      </div>
+                    </li>
                     <li><a href="/downloads">Downloads </a></li>
                 </ul>
             </nav>
