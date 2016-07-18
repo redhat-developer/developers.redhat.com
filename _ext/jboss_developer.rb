@@ -387,18 +387,20 @@ module Aweplug
       #
       # Returns the Faraday::Response
       def update_page(page, content)
-        payload = create_payload page, content
         path = create_path page
+        $LOG.verbose "Updating page  with content '#{page.output_path}'"
+        payload = create_payload page, content
         patch path, payload
-      end
+     end
 
       # Public: Sends a POST request to Drupal to create a new page.
       #
       # page      - Page object from awestruct
-      # content   - Transformed content of the page
+      # content   - Transformed content of the page$
       #
       # Returns the Faraday::Response
       def create_page(page, content)
+        $LOG.verbose "Creating page '#{@base_url}#{create_path(page)}' from content '#{page.output_path}'"
         payload = create_payload page, content
         post 'entity', 'node', payload
       end

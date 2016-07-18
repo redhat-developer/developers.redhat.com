@@ -10,6 +10,7 @@
 :tthw-langcmd: node
 :tthw-dciname: nodejs-4-rhel7
 :tthw-hellomsg: from Node {tthw-lang-version-full}!
+:tthw-hellofile: hello-http.js
 :title: "Get started building {tthw-langlong} applications in docker containers on RHEL {tthw-rhelver}"
 :awestruct-description: "Get started building {tthw-langlong} applications in docker containers on Red Hat Enterprise Linux {tthw-rhelver} in under 15 minutes."
 
@@ -79,7 +80,7 @@ COPY . /opt/app-root/src
 CMD /bin/bash -c 'node hello-http.js'
 ----
 
-Create the file `hello-http.js` with the following contents:
+Create the file `{tthw-hellofile}` with the following contents:
 
 .hello-http.js
 [source,javascript]
