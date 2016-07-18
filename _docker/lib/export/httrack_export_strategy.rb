@@ -10,9 +10,10 @@ require_relative '../default_logger'
 #
 class HttrackExportStrategy
 
-  def initialize(process_runner, export_inspector)
+  def initialize(process_runner, export_inspector, export_archiver)
     @process_runner = process_runner
     @export_inspector = export_inspector
+    @export_archiver = export_archiver
     @log = DefaultLogger.logger
   end
 
@@ -68,6 +69,7 @@ class HttrackExportStrategy
 
     exported_to = "#{export_directory}/#{determine_export_directory_from_drupal_host(drupal_host)}"
     @export_inspector.inspect_export(links_file, exported_to)
+    @export_archiver.archive_site_export(exported_to)
     exported_to
   end
 

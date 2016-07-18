@@ -5,6 +5,7 @@ require_relative 'drupal_page_url_list_generator'
 require_relative 'httrack_export_strategy'
 require_relative 'static_export_rsync'
 require_relative 'export_inspector'
+require_relative 'export_archiver'
 
 #
 # Class that acts as a controller of the export process from Drupal
@@ -45,6 +46,7 @@ class Export
 end
 
 @DEFAULT_EXPORT_LOCATION = "/export"
+@DEFAULT_EXPORT_ARCHIVE_LOCATION = "/export/export-archives"
 
 if $0 == __FILE__
 
@@ -58,7 +60,7 @@ if $0 == __FILE__
   process_runner = ProcessRunner.new
   cron_invoker = CronInvoker.new(drupal_host)
   page_url_list_generator = DrupalPageUrlListGenerator.new(drupal_host, @DEFAULT_EXPORT_LOCATION)
-  export_strategy = HttrackExportStrategy.new(process_runner, ExportInspector.new)
+  export_strategy = HttrackExportStrategy.new(process_runner, ExportInspector.new, ExportArchiver.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION))
   rsync_handler = StaticExportRsync.new(process_runner)
   log = DefaultLogger.logger
 
