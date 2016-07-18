@@ -72,24 +72,27 @@ class DrupalPageUrlListGenerator
   def generate_page_url_list!
     sitemap_content = fetch_sitemap_contents
     links = parse_sitemap(sitemap_content)
-    save_sitemap(sitemap_content)
     write_links_to_file(links)
   end
 
-  def save_sitemap(sitemap)
-    sitemap_file = File.join @export_directory, 'sitemap.xml'
+  def save_sitemap(sitemap, save_location)
     @log.info('Saving sitemap file')
 
-    FileUtils.rm(sitemap_file, :force => true)
-    FileUtils.touch(sitemap_file)
+    FileUtils.rm(save_location, :force => true)
+    FileUtils.mkdir_p(File.dirname(save_location))
+    FileUtils.touch(save_location)
 
-    File.open(sitemap_file, 'w+') do | file |
-      # We need to rewrite the URI to point to production
-      file.puts(sitemap.gsub(%r{http://.*?/}, 'http://developers.redhat.com/'))
+    File.open(save_location, 'w+') do | file |
+      # We need to rewrite the URI to point to production, but only the loc nodes
+      sitemap_xml = Nokogiri::XML(sitemap)
+      sitemap_xml.xpath('//xmlns:loc').each do |loc|
+        loc.content = loc.content.gsub(%r{http://.*?/}, 'http://developers.redhat.com/')
+      end
+      file.puts(sitemap_xml.to_s)
     end
 
-    @log.info("Successfully wrote sitemap contents to '#{sitemap_file}'")
+    @log.info("Successfully wrote sitemap contents to '#{save_location}'")
   end
 
-  private :fetch_sitemap_contents, :parse_sitemap, :write_links_to_file, :save_sitemap
+  private :parse_sitemap, :write_links_to_file
 end
