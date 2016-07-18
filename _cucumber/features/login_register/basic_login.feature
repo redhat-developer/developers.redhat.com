@@ -69,15 +69,14 @@ Feature: Log in using my RHD registered details.
     When I update my password
     Then I should be logged in
 
-  @wip
-  Scenario: New User can login with active OpenShift.com account (simple user account)	User should be asked to enter all mandatory user profile fields (first name, last name, company and country) during first login
+  Scenario: New User can login with active OpenShift.com account (simple user account)
     Given I am on the Login page
     When I log in with an active OpenShift.com account
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
     And I complete the required additional information
     Then I should be registered and logged in
     When I am on the Edit Details page
-    And the following newly registered details should be added to my profile:
+    And the following additional information should be added to my profile:
       | Username                                    |
       | Email                                       |
       | First Name                                  |
@@ -87,13 +86,14 @@ Feature: Log in using my RHD registered details.
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-
-  Scenario: New User can login with active Red Hat Customer Portal account (full user account). This test should navigate to RHD user profile after login and check that data are copied correctly into RHD user profile (username, email, first name, last name, company and country).
+  Scenario: New User can login with active Red Hat Customer Portal account (full user account).
     Given I am on the Login page
-    When I log in with an active Customer portal account
+    And I log in with an active Customer portal account
+    Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
+    When I select my country and accept the RHD terms and conditions
     Then I should be logged in
     When I am on the Edit Details page
-    And the following newly registered details should be added to my profile:
+    Then the following additional information should be added to my profile:
       | Username                                    |
       | Email                                       |
       | First Name                                  |
@@ -102,3 +102,4 @@ Feature: Log in using my RHD registered details.
       | Country                                     |
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
+

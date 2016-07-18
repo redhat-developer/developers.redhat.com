@@ -58,21 +58,19 @@ at_exit do
 
   ReportBuilder.build_report
 
-  if ENV['RHD_TEST_PROFILE'] == 'nightly'
-    # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
-    admin = KeyCloak.new
-    email = admin.get_user_by("rhd_automated_tester_#{$session_id}")
-    unless email.empty?
-      email.each do |user|
-        admin.delete_user(user['email'])
-      end
+  # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
+  admin = KeyCloak.new
+  email_one = admin.get_user_by("redhat-developers-testers+session_id_#{$session_id}")
+  unless email_one.empty?
+    email_one.each do |user|
+      admin.delete_user(user['email'])
     end
+  end
 
-    # ensure that github accounts are clear at the end of test run, so they do not interfere with subsequent test runs
-    github_accounts = %w(rhdScenarioOne rhdScenarioTwo)
-    github_accounts.each do |account|
-      github_admin = GitHubAdmin.new(account, 'P@$$word01')
-      github_admin.cleanup
-    end
+  # ensure that github accounts are clear at the end of test run, so they do not interfere with subsequent test runs
+  github_accounts = %w(rhdScenarioOne rhdScenarioTwo)
+  github_accounts.each do |account|
+    github_admin = GitHubAdmin.new(account, 'P@$$word01')
+    github_admin.cleanup
   end
 end

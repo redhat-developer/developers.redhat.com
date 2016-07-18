@@ -22,14 +22,16 @@ Given(/^I log in with (an|a) (valid|invalid) email address$/) do |arg, negate|
   end
 end
 
-When(/^I log in with an (active|deactivated) OpenShift\.com account$/) do |negate|
+When(/^I log in with an active OpenShift\.com account$/) do
   it_admin = ItAdmin.new
   $site_user = it_admin.create_simple_user
   @page.login.with_existing_account($site_user[:email], $site_user[:password])
 end
 
 When(/^I log in with an (active|deactivated) Customer portal account$/) do |negate|
-  @page.login.with_existing_account('', '')
+  it_admin = ItAdmin.new
+  $site_user = it_admin.create_full_user
+  @page.login.with_existing_account($site_user[:email], $site_user[:password])
 end
 
 When(/^I log in with an account that is already linked to my Github account$/) do
@@ -75,4 +77,9 @@ end
 
 When(/^I click on the Create account link$/) do
   @page.login.click_register_link
+end
+
+When(/^I select my country and accept the RHD terms and conditions$/) do
+  @page.additional_information.fulluser_tac_accept($site_user[:country])
+  @page.additional_information.click_submit
 end

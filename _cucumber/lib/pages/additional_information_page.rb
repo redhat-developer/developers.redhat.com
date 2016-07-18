@@ -12,7 +12,8 @@ class AdditionalInformation < Base
   COUNTRY           = { id: 'user.attributes.country' }
   SUBMIT            = { xpath: "//input[@value='Submit']" }
   ACCEPT_ALL_TERMS  = { id: 'tac-checkall' }
-
+  FULL_USER_TAC1  = { id: 'user.attributes.tcacc-6' }
+  FULL_USER_TAC2    = { id: 'user.attributes.tcacc-1246' }
 
   def initialize(driver)
     super
@@ -49,7 +50,15 @@ class AdditionalInformation < Base
   end
 
   def accept_terms
+    wait_for { displayed?(ACCEPT_ALL_TERMS) }
     click_on(ACCEPT_ALL_TERMS)
+  end
+
+  def fulluser_tac_accept(country)
+    wait_for { displayed?(COUNTRY) }
+    select_country(country)
+    click_on(FULL_USER_TAC1)
+    click_on(FULL_USER_TAC2)
   end
 
 end

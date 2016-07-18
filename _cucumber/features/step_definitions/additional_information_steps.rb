@@ -9,7 +9,7 @@ When(/^I complete the required additional information$/) do
 end
 
 And(/^I complete the required additional information with a new email address$/) do
-  $site_user[:email] = "redhat-tester-#{Faker::Lorem.characters(10)}@redhat.com"
+  $site_user[:email] = "redhat-developers-testers+session_id_#{$session_id}-#{Faker::Lorem.characters(10)}@redhat.com"
   puts "Adding new email: #{$site_user[:email]}"
   @page.additional_information.fill_in($site_user[:email], 'P@$$word01', nil, nil, nil, $site_user[:country])
   @page.additional_information.accept_terms

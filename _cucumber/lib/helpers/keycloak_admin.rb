@@ -6,7 +6,7 @@ class KeyCloak
     endpoint = 'https://developers.stage.redhat.com/auth/realms/master/protocol/openid-connect/token'
     response = RestClient::Request.execute(:url => endpoint, :method => :post, :headers => request_header, :payload => request_body_map, :verify_ssl => false)
     @access_token = JSON.parse(response)['access_token']
-    @email = "redhat-developers-testers+#{Faker::Lorem.characters(10)}@redhat.com"
+    @email = "redhat-developers-testers+session_id_#{$session_id}_#{Faker::Lorem.characters(10)}@redhat.com"
     @greeting = %w(Mr. Mrs. Ms. Miss Dr. Hr Sr.).sample
     @first_name = Faker::Name.first_name
     @last_name = Faker::Name.last_name
@@ -15,7 +15,7 @@ class KeyCloak
     @address_line_one = Faker::Address.street_address
     @city = Faker::Address.city_prefix
     @postal_code = Faker::Address.postcode
-    @country = %w(US CZ UK).sample
+    @country = 'UK'
     @phone_number = '0191 1111111'
     @full_name = "#{@first_name} #{@last_name}".upcase
   end
@@ -49,13 +49,13 @@ class KeyCloak
 
     return {
         :email => @email,
-        :username => @email.gsub('@redhat.com', '').gsub('+', '-'),
+        :username => @email.gsub('@redhat.com', '').gsub('+', '-').gsub('_', ''),
         :password => @password,
         :first_name => @first_name,
         :last_name => @last_name,
         :full_name => @full_name,
         :company_name => @company_name,
-        :country => @country,
+        :country => 'United Kingdom'
     }
   end
 
@@ -131,12 +131,13 @@ class KeyCloak
   def delete_user(email)
     user = get_user_by(email)
     user_id = user[0]['id']
-    puts "User ID was: #{user_id}"
     begin
       RestClient::Request.execute(:method => :delete, :url => "https://developers.stage.redhat.com/auth/admin/realms/rhd/users/#{user_id}", :headers => {'Authorization' => "Bearer #{@access_token}"}, :verify_ssl => false)
+
     rescue => e
       raise("Failed to delete user with email '#{email}'. Response from keycloak admin was #{e}")
     end
+    puts "Deleted user ID was: #{user_id}, and email was #{email}"
   end
 
   private

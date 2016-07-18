@@ -36,7 +36,9 @@ When(/^I try to link a GitHub account to an existing account$/) do
   @github_admin = GitHubAdmin.new('rhdScenarioTwo', 'P@$$word01')
 
   # generate new user and update their Github profile
-  $site_user = @github_admin.rhd_registered_user
+  keycloak = KeyCloak.new
+  $site_user = keycloak.register_new_user
+  p "Registered user with email #{$site_user[:email]}"
   @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
 
   # click on register with Github
@@ -78,9 +80,10 @@ When(/^I try to register using a GitHub account that contains missing profile in
   # log in to Github API
   @github_admin = GitHubAdmin.new('rhdalreadyregistered02', 'P@$$word01')
 
-
-  # use existing user and update their Github profile
-  $site_user = @github_admin.rhd_registered_user
+  # generate new user and update their Github profile
+  keycloak = KeyCloak.new
+  $site_user = keycloak.register_new_user
+  p "Registered user with email #{$site_user[:email]}"
 
   @github_admin.update_profile('', $site_user[:email], '')
   puts "Added existing RHD email to Github profile: #{$site_user[:email]}"
@@ -196,7 +199,8 @@ And(/^I click on the Send Verification email button$/) do
 end
 
 And(/^I navigate to the verify email link$/) do
-  @driver.get(@verification_email)
+  @page.site_nav.close_and_reopen_browser
+  @page.site_nav.get(@verification_email)
   @page.site_nav.wait_for_ajax
 end
 
@@ -225,10 +229,39 @@ end
 And(/^the following newly registered details should be added to my profile:$/) do |table|
   table.raw.each do |row|
     element = row.first
-
+    keycloak_admin = KeyCloak.new
     case element
       when 'Username'
-        expect(@page.edit_account.username.attribute('value')).to eq $site_user[:email].gsub('@redhat.com', '').gsub('+', '-')
+        expect(@page.edit_account.username.attribute('value')).to eq $site_user[:email].gsub('@redhat.com', '').gsub('+', '-').gsub('_', '')
+      when 'Email'
+        expect(@page.edit_account.email.attribute('value')).to eq $site_user[:email]
+      when 'First Name'
+        expect(@page.edit_account.first_name.attribute('value').downcase).to eq $site_user[:first_name].downcase
+      when 'Last name'
+        expect(@page.edit_account.last_name.attribute('value').downcase).to eq $site_user[:last_name].downcase
+      when 'Company'
+        expect(@page.edit_account.company.attribute('value').downcase).to eq $site_user[:company_name].downcase
+      when 'Country'
+        expect(@page.edit_account.country).to eq $site_user[:country]
+      when 'Red Hat Developer Program subscription date'
+        reg_date = keycloak_admin.get_registration_date($site_user[:email])
+        expect(@page.edit_account.agreement_date.attribute('value')).to eq reg_date
+      when 'Privacy & Subscriptions status'
+        status = keycloak_admin.get_subscription_status($site_user[:email])
+        expect(@page.edit_account.receive_newsletter?).to be status
+      else
+        raise("#{element} was not a recognised field")
+    end
+  end
+end
+
+And(/^the following additional information should be added to my profile:$/) do |table|
+  table.raw.each do |row|
+    element = row.first
+    keycloak_admin = KeyCloak.new
+    case element
+      when 'Username'
+        expect(@page.edit_account.username.attribute('value')).to eq $site_user[:email]
       when 'Email'
         expect(@page.edit_account.email.attribute('value')).to eq $site_user[:email]
       when 'First Name'
@@ -249,33 +282,30 @@ And(/^the following newly registered details should be added to my profile:$/) d
         raise("#{element} was not a recognised field")
     end
   end
-
 end
 
-And(/^my registered details should visible be on my profile:$/) do |table|
-  table.raw.each do |row|
-    element = row.first
-
-    case element
-      when 'Username'
-        expect(@page.edit_account.username.attribute('value')).to eq $site_user[:email]
-      when 'Email'
-        expect(@page.edit_account.email.attribute('value')).to eq $site_user[:email]
-      when 'First Name'
-        expect(@page.edit_account.first_name.attribute('value')).to eq $site_user[:first_name]
-      when 'Last name'
-        expect(@page.edit_account.last_name.attribute('value')).to eq $site_user[:last_name]
-      when 'Company'
-        expect(@page.edit_account.company.attribute('value')).to eq $site_user[:company_name]
-      when 'Country'
-        expect(@page.edit_account.country).to eq $site_user[:country]
-      when 'Red Hat Developer Program subscription date'
-        expect(@page.edit_account.agreement_date.attribute('value')).to eq $site_user[:register_date]
-      when 'Privacy & Subscriptions status'
-        expect(@page.edit_account.receive_newsletter?).to be $site_user[:newsletter]
-      else
-        raise("#{element} was not a recognised field")
-    end
-  end
-
-end
+# And(/^my registered details should visible be on my profile:$/) do |table|
+#   table.raw.each do |row|
+#     element = row.first
+#     case element
+#       when 'Username'
+#         expect(@page.edit_account.username.attribute('value')).to eq $site_user[:email]
+#       when 'Email'
+#         expect(@page.edit_account.email.attribute('value')).to eq $site_user[:email]
+#       when 'First Name'
+#         expect(@page.edit_account.first_name.attribute('value')).to eq $site_user[:first_name]
+#       when 'Last name'
+#         expect(@page.edit_account.last_name.attribute('value')).to eq $site_user[:last_name]
+#       when 'Company'
+#         expect(@page.edit_account.company.attribute('value')).to eq $site_user[:company_name]
+#       when 'Country'
+#         expect(@page.edit_account.country).to eq $site_user[:country]
+#       when 'Red Hat Developer Program subscription date'
+#         expect(@page.edit_account.agreement_date.attribute('value')).to eq $site_user[:register_date]
+#       when 'Privacy & Subscriptions status'
+#         expect(@page.edit_account.receive_newsletter?).to be $site_user[:newsletter]
+#       else
+#         raise("#{element} was not a recognised field")
+#     end
+#   end
+# end

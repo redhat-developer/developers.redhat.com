@@ -2,6 +2,7 @@ class ItAdmin
 
   def initialize
     @email = "redhat-developers-testers_#{Faker::Lorem.characters(10)}@redhat.com"
+    @username = Faker::Lorem.characters(10)
     @greeting = %w(Mr. Mrs. Ms. Miss Dr. Hr Sr.).sample
     @first_name = Faker::Name.first_name
     @last_name = Faker::Name.last_name
@@ -10,9 +11,10 @@ class ItAdmin
     @address_line_one = Faker::Address.street_address
     @city = Faker::Address.city_prefix
     @postal_code = Faker::Address.postcode
-    @country = %w(US CZ UK).sample
+    @country = 'UK'
     @phone_number = '0191 1111111'
     @full_name = "#{@first_name} #{@last_name}".upcase
+    @locale = 'en_US'
   end
 
   def create_simple_user
@@ -39,7 +41,13 @@ class ItAdmin
 
     return {
         :email => @email,
-        :password => @password
+        :username => @email,
+        :password => @password,
+        :first_name => @first_name,
+        :last_name => @last_name,
+        :full_name => @full_name,
+        :company_name => @company_name,
+        :country => 'United Kingdom'
     }
   end
 
@@ -60,28 +68,54 @@ class ItAdmin
   end
 
   def create_full_user
+
     @account_details = {
-        :enabled => true,
-        :emailVerified => true,
-        :attributes => {:company => [@company_name], :country => [@country], :pwd => [@password], "tcacc-1246".to_sym => ['y'], "tcacc-1010".to_sym => ['y'], "tcacc-6".to_sym => ['y']},
-        :requiredActions => [],
-        :username => @email,
-        :email => @email,
-        :firstName => @first_name,
-        :lastName => @last_name,
+        :userType => 'P',
+        :login => @username,
+        :active => true,
+        :password => @password,
+        :system => 'WEB',
+
+        :personalInfo => {
+            :company => @company_name,
+            :firstName => @first_name,
+            :title => 'Test Engineer',
+            :greeting => @greeting,
+            :lastName => @last_name,
+            :email => @email,
+            :emailConfirmed => true,
+            :phoneNumber => @phone_number,
+            :password => @password,
+            :locale => @locale
+        },
+
+        :site => {
+            :active => true,
+            :defaultSite => true,
+            :system => 'WEB',
+            :siteType => 'MARKETING',
+            :address => {
+                :address_line_one => @address_line_one,
+                :country => @country,
+                :postalCode => @postal_code,
+                :city => @city,
+                :poBox => false
+            }
+        }
     }
+
     begin
       RestClient::Request.execute(
           :method => :post,
-          :url => 'https://developers.stage.redhat.com/auth/admin/realms/rhd/users',
+          :url => 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/createwithoutwelcome',
           :payload => @account_details.to_json,
           :verify_ssl => false,
           :headers => {
-              :Authorization => "Bearer #{@access_token}",
               :content_type => :json,
               :accept => :json
           },
       )
+
     rescue => e
       raise("Failed to create a new user: Exception was #{e}")
     end
@@ -94,7 +128,7 @@ class ItAdmin
         :last_name => @last_name,
         :full_name => @full_name,
         :company_name => @company_name,
-        :country => @country,
+        :country => 'United Kingdom',
     }
   end
 
