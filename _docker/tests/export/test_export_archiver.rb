@@ -9,7 +9,8 @@ class TestExportArchiver < MiniTest::Test
 
   def setup
     @export_directory = Dir.mktmpdir
-    @export_archiver = ExportArchiver.new(@export_directory)
+    @export_archive_pruner = mock()
+    @export_archiver = ExportArchiver.new(@export_directory, @export_archive_pruner)
   end
 
   def teardown
@@ -21,9 +22,61 @@ class TestExportArchiver < MiniTest::Test
     archive_directory[last_slash..archive_directory.length]
   end
 
+  def test_get_archive_when_existing
+    test_export = Dir.open(File.expand_path('test_export',File.dirname(__FILE__)))
+    @export_archive_pruner.expects(:prune_export_archives)
+    export_archive = @export_archiver.archive_site_export(test_export.path)
+    export_name = get_archive_name(export_archive)
+
+    assert_equal(export_archive, @export_archiver.get_archive_path(export_name))
+  end
+
+  def test_get_archive_when_not_existing
+    assert_raises(StandardError,"The requested export archive 'foo' does not exist or is not valid.") {
+      @export_archiver.get_archive_path('foo')
+    }
+  end
+
+  def test_get_archive_when_containing_no_files
+    test_export = Dir.open(File.expand_path('test_export',File.dirname(__FILE__)))
+    @export_archive_pruner.expects(:prune_export_archives)
+    export_archive = @export_archiver.archive_site_export(test_export.path)
+    archive_name = get_archive_name(export_archive)
+
+    Dir.entries(export_archive).each do | file |
+      if file.end_with?('.html')
+        FileUtils.rm_f("#{export_archive}/#{file}")
+      end
+    end
+
+    assert_raises(StandardError,"The requested export archive 'test_export' does not exist or is not valid.") {
+      @export_archiver.get_archive_path(archive_name)
+    }
+
+  end
+
+  def test_get_archive_when_containing_no_index_dot_html
+
+    test_export = Dir.open(File.expand_path('test_export',File.dirname(__FILE__)))
+    @export_archive_pruner.expects(:prune_export_archives)
+    export_archive = @export_archiver.archive_site_export(test_export.path)
+    archive_name = get_archive_name(export_archive)
+
+    Dir.entries(export_archive).each do | file |
+      if file.end_with?('index.html')
+        FileUtils.rm_f("#{export_archive}/#{file}")
+      end
+    end
+
+    assert_raises(StandardError,"The requested export archive 'test_export' does not exist or is not valid.") {
+      @export_archiver.get_archive_path(archive_name)
+    }
+  end
+
   def test_archive_exists
 
-    test_export = Dir.open('test_export')
+    test_export = Dir.open(File.expand_path('test_export',File.dirname(__FILE__)))
+    @export_archive_pruner.expects(:prune_export_archives)
     export_archive = @export_archiver.archive_site_export(test_export.path)
     export_name = get_archive_name(export_archive)
 
@@ -32,7 +85,8 @@ class TestExportArchiver < MiniTest::Test
 
   def test_archive_exists_but_empty_directory
 
-    test_export = Dir.open('test_export')
+    test_export = Dir.open(File.expand_path('test_export',File.dirname(__FILE__)))
+    @export_archive_pruner.expects(:prune_export_archives)
     export_archive = @export_archiver.archive_site_export(test_export.path)
 
     Dir.entries(export_archive).each do | file |
@@ -48,7 +102,8 @@ class TestExportArchiver < MiniTest::Test
 
   def test_archive_exists_but_missing_index_dot_html
 
-    test_export = Dir.open('test_export')
+    test_export = Dir.open(File.expand_path('test_export',File.dirname(__FILE__)))
+    @export_archive_pruner.expects(:prune_export_archives)
     export_archive = @export_archiver.archive_site_export(test_export.path)
 
     Dir.entries(export_archive).each do | file |
@@ -68,7 +123,8 @@ class TestExportArchiver < MiniTest::Test
 
   def test_should_copy_export_to_archive
 
-    test_export = Dir.open('test_export')
+    test_export = Dir.open(File.expand_path('test_export',File.dirname(__FILE__)))
+    @export_archive_pruner.expects(:prune_export_archives)
     @export_archiver.archive_site_export(test_export.path)
 
     export_archive = Dir.entries(@export_directory).select do | file |

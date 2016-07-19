@@ -13,8 +13,7 @@ class TestHttrackExportStrategy < MiniTest::Test
     @export_directory = Dir.mktmpdir
     @process_runner = mock()
     @export_inspector = mock()
-    @export_archiver = mock()
-    @httrack_export_strategy = HttrackExportStrategy.new(@process_runner, @export_inspector, @export_archiver)
+    @httrack_export_strategy = HttrackExportStrategy.new(@process_runner, @export_inspector)
     @url_list_file = File.open("#{@export_directory}/url-list.txt", 'w')
 
   end
@@ -28,7 +27,6 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -\"*/devel*\" -o0")
     @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
-    @export_archiver.expects(:archive_site_export).with("#{@export_directory}/drupal_8080")
 
     export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
     assert_equal("#{@export_directory}/drupal_8080", export_dir)
@@ -42,7 +40,6 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     @process_runner.expects(:execute!).with("cd #{@export_directory} && httrack --update")
     @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
-    @export_archiver.expects(:archive_site_export).with("#{@export_directory}/drupal_8080")
 
     export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
     assert_equal("#{@export_directory}/drupal_8080", export_dir)
@@ -51,7 +48,6 @@ class TestHttrackExportStrategy < MiniTest::Test
   def test_should_run_first_time_export_with_no_host_port
     @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://developer-drupal.web.stage.ext.phx2.redhat.com*\" -\"*/node*\" -\"*/devel*\" -o0")
     @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com")
-    @export_archiver.expects(:archive_site_export).with("#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com")
 
     export_dir = @httrack_export_strategy.export!(@url_list_file, 'developer-drupal.web.stage.ext.phx2.redhat.com', @export_directory)
     assert_equal("#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com", export_dir)
@@ -64,13 +60,9 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     @process_runner.expects(:execute!).with("cd #{@export_directory} && httrack --update")
     @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com")
-    @export_archiver.expects(:archive_site_export).with("#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com")
 
     export_dir = @httrack_export_strategy.export!(@url_list_file, 'developer-drupal.web.stage.ext.phx2.redhat.com', @export_directory)
     assert_equal("#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com", export_dir)
 
   end
-
-
-
 end

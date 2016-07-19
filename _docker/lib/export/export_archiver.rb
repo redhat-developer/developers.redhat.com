@@ -8,8 +8,9 @@ require_relative '../default_logger'
 #
 class ExportArchiver
 
-  def initialize(export_archive_directory)
+  def initialize(export_archive_directory, export_archive_pruner)
     @export_archive_directory = export_archive_directory
+    @export_archive_pruner = export_archive_pruner
     @log = DefaultLogger.logger
     make_directory(@export_archive_directory)
   end
@@ -36,6 +37,7 @@ class ExportArchiver
     @log.info("Archiving export directory '#{export_directory}' to '#{export_archive_directory.path}'...")
     copy_export_to_archive_directory(export_directory, export_archive_directory)
     @log.info("Successfully archived export directory '#{export_directory}' to '#{export_archive_directory.path}.'")
+    @export_archive_pruner.prune_export_archives
     export_archive_directory.path
   end
 
@@ -51,6 +53,14 @@ class ExportArchiver
     end
 
     exists
+  end
+
+  #
+  # Gets the path to the export in the archive, first checking that it is a valid archive.
+  #
+  def get_archive_path(archive_name)
+    raise StandardError.new("The requested export archive '#{archive_name}' does not exist or is not valid.") unless archive_exist?(archive_name)
+    "#{@export_archive_directory}/#{archive_name}"
   end
 
   #

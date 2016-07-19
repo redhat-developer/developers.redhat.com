@@ -1,6 +1,7 @@
 require 'tmpdir'
 require_relative '../../lib/process_runner'
 require_relative '../../lib/default_logger'
+require_relative 'export_archiver'
 
 #
 # This class uses rsync to copy a static export of a Drupal site to a given location on a target host.
@@ -11,17 +12,18 @@ class StaticExportRsync
 
   attr_accessor :empty_directory
 
-  def initialize(process_runner)
+  def initialize(process_runner, export_archiver)
     @process_runner = process_runner
     @log = DefaultLogger.logger
     @empty_directory = Dir.mktmpdir
+    @export_archiver = export_archiver
   end
 
   #
   # Syncs the given export_directory to the rsync target location. It is assumed that the rsync target location will be in the format
   # user@host:/required/target/path.
   #
-  def rsync_static_export(export_directory, rsync_target_location)
+  def rsync_static_export(export_directory, rsync_target_location, archive)
 
     validate_target_location_format(rsync_target_location)
 
@@ -33,17 +35,22 @@ class StaticExportRsync
 
     target_host, target_directory = final_destination.split(':')
     check_and_build_target_directory_structure(target_host, target_directory, path_to_create)
-    rsync(export_directory, final_destination)
-
+    rsync(export_directory, final_destination, true)
     @log.info("Completed rsync of '#{export_directory}' to '#{rsync_target_location}.'")
+
+    archive_rsync(export_directory) if archive
+  end
+
+  def archive_rsync(export_directory)
+    @export_archiver.archive_site_export(export_directory)
   end
 
   #
   # Performs an rsync. Rsync options copied verbatim from legacy Rakefile
   #
-  def rsync(local_folder, remote_destination)
+  def rsync(local_folder, remote_destination, delete)
     @log.info("rsyncing folder '#{local_folder}' to '#{remote_destination}'...")
-    @process_runner.execute!("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{local_folder}/ #{remote_destination}")
+    @process_runner.execute!("rsync --partial --archive --checksum --compress --omit-dir-times --quiet#{' --delete' if delete} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{local_folder}/ #{remote_destination}")
   end
 
   def replace_create_path(path)
@@ -91,7 +98,7 @@ class StaticExportRsync
          remote_path << directory
 
          if path_to_create_parts.include?(directory)
-          rsync(@empty_directory, "#{target_host}:/#{remote_path.join('/')}")
+          rsync(@empty_directory, "#{target_host}:/#{remote_path.join('/')}", false)
          end
 
        end
@@ -112,7 +119,7 @@ class StaticExportRsync
     raise StandardError.new("Rsync target '#{rsync_target_location}' is not supported. Please use format: 'user@host:/target/directory'") if !rsync_pattern.match(rsync_target_location)
   end
 
-  private :rsync, :check_and_build_target_directory_structure, :validate_target_location_format
+  private :rsync, :check_and_build_target_directory_structure, :validate_target_location_format, :archive_rsync
 
 
 end
