@@ -35,6 +35,8 @@ skips:
 ignores:
   - code: 202
   - code: 203
+  - code: 403
+  - code: 502
   - snippet: !ruby/regexp /f\.vimeocdn\.com/ # I don't see this error in real browsers
   - url: https://library.oreilly.com/book/0636920025368/continuous-enterprise-development-in-java/toc # works fine in a browser, not an error
   - url: http://venturebeat.com/2014/12/16/whats-in-a-container-you-dont-know-and-thats-a-problem/ # also not an error
