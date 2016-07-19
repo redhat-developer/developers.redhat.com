@@ -15,6 +15,7 @@ If you are on a mac then brew is required to install some dependant packages. Br
 ### Docker
 Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
 
+
 Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md). The scripts used assume you can run the `docker` command WITHOUT sudo.
 
 NOTE: We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed. 
