@@ -113,8 +113,8 @@ class DrupalInstallChecker
 
   def update_db
     puts 'Executing drush dbup'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=web', '--entity-updates', 'updb'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=web', 'cache:rebuild', 'all'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '--entity-updates', 'updb'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'cache:rebuild', 'all'])
   end
 end
 
