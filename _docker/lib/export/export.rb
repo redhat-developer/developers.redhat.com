@@ -35,6 +35,9 @@ class Export
     url_list = @page_url_list_generator.generate_page_url_list!
     export_directory = @export_strategy.export!(url_list, @drupal_host, @export_directory)
 
+    @page_url_list_generator.save_sitemap(@page_url_list_generator.fetch_sitemap_contents,
+                                          File.join(export_directory, 'sitemap.xml'))
+
     if !@rsync_destination.nil? and !@rsync_destination.empty?
       @rsync_handler.rsync_static_export(export_directory, @rsync_destination)
     else
