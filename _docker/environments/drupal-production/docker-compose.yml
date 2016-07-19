@@ -81,6 +81,18 @@ services:
       - /credentials/rsync:/home/awestruct/.ssh
       - ../../../:/home/awestruct/developer.redhat.com
 
+  rollback:
+    build:
+     context: ../../awestruct
+     args:
+      http_proxy: proxy01.util.phx2.redhat.com:8080
+      https_proxy: proxy01.util.phx2.redhat.com:8080
+    entrypoint: "ruby _docker/lib/rollback/rollback.rb rhd@filemgmt.jboss.org:/stg_htdocs/it-rhd-stg/pr/drupal/production"
+    volumes:
+     - /data/drupal-export:/export
+     - /credentials/rsync:/home/awestruct/.ssh
+     - ../../../:/home/awestruct/developer.redhat.com
+
   #
   # Testing
   #

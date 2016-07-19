@@ -65,7 +65,4 @@ class TestHttrackExportStrategy < MiniTest::Test
     assert_equal("#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com", export_dir)
 
   end
-
-
-
 end

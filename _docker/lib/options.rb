@@ -20,6 +20,12 @@ class Options
         tasks[:environment_name] = environment
       end
 
+      opts.on('--rollback-site-to EXPORT_TO_USE', String, 'Rollback the current site to the specified export archive') do | export |
+        tasks[:build] = true
+        tasks[:awestruct_command_args] = ['--rm', 'rollback', "#{export}"]
+        tasks[:supporting_services] = []
+      end
+
       opts.on('--backup [BACKUP_NAME]', String, 'Take a backup of the environment') do |backup|
         tasks[:build] = true
         tasks[:awestruct_command_args] = ['--rm', 'backup', "#{backup}"]

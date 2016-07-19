@@ -20,6 +20,13 @@ class TestOptions < Minitest::Test
     assert_equal(['--rm','export','foo@bar:/tmp/foo'], tasks[:awestruct_command_args])
   end
 
+  def test_rollback_site_to
+    tasks = Options.parse(['--rollback-site-to','export-foo'])
+    assert(tasks[:build])
+    assert_equal(['--rm','rollback','export-foo'], tasks[:awestruct_command_args])
+    assert_equal([], tasks[:supporting_services])
+  end
+
 
   def test_loads_awestruct_pull_request_environment_by_default
     tasks = Options.parse(['-t'])
