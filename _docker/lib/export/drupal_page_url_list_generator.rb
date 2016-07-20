@@ -42,6 +42,7 @@ class DrupalPageUrlListGenerator
       links << link.content
     end
 
+    links.uniq!
     # Ensure that we also grab robots.txt which will not appear in the sitemap.xml
     links << "http://#{@drupal_host}/robots.txt"
   end
