@@ -145,9 +145,9 @@ div(ng-app="search")
                   span.contributor(ng-repeat="author in r.sys_contributors" data-sys-contributor="{{author}}")
                     a.name {{author}}
                 .tags-list
-                  p(ng-show="{{r.sys_tags.length}}")
+                  p(ng-init="tagList = (r.sys_tags | tagGroup)" ng-show="{{tagList.length}}")
                     | Tags:&nbsp;
-                    span.tag(ng-repeat="tag in r.sys_tags") {{tag}}
+                    span.tag(ng-repeat="tag in tagList") {{tag}}
 
         nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
           span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
