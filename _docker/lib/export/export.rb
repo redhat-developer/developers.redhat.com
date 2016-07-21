@@ -40,7 +40,7 @@ class Export
                                           File.join(export_directory, 'sitemap.xml'))
 
     if !@rsync_destination.nil? and !@rsync_destination.empty?
-      @rsync_handler.rsync_static_export(export_directory, @rsync_destination)
+      @rsync_handler.rsync_static_export(export_directory, @rsync_destination, true)
     else
       @log.info('No rsync destination specified. Not performing rsync of export.')
     end
