@@ -18,6 +18,27 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
     FileUtils.rm_r(@export_directory)
   end
 
+  def test_should_workaround_drupal_default_hostname_magic
+
+    sitemap_contents = mock()
+    sitemap_contents.expects(:code).returns(200)
+    sitemap_contents.expects(:body).returns(File.open(File.expand_path('magic_drupal_sitemap.xml',File.dirname(__FILE__))).read)
+
+    Net::HTTP.expects(:get_response).with do | url |
+      assert_equal('http://192.168.99.100:32769/sitemap.xml', url.to_s)
+    end.returns(sitemap_contents)
+
+    @drupal_page_list_url_generator.generate_page_url_list!
+
+    lines = File.readlines("#{@export_directory}/url-list.txt")
+    assert_equal(8, lines.length)
+    lines.each do | line |
+      assert(line.start_with?('http://192.168.99.100:32769/'))
+    end
+
+    assert_equal(lines.last, "http://192.168.99.100:32769/robots.txt\n")
+  end
+
   def test_should_download_parse_and_generate_links_file
 
     sitemap_contents = mock()
