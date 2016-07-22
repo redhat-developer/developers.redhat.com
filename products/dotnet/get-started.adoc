@@ -33,11 +33,12 @@ Finally, yes, you can install on bare metal if you wish. #{site.base_url}/produc
 
 ## Step3 Content
 
-Here’s the list of instructions to install .NET Core on Red Hat Enterprise Linux:
+To install .NET Core on Red Hat Enterprise Linux, run the following commands:
 
-1. Run `sudo yum install -y rh-dotnetcore10`
-
-That’s it! That’s the list!
+1. `sudo subscription-manager repos --enable=rhel-7-server-dotnet-rpms`
+2. `sudo yum install -y scl-utils`
+3. `sudo yum install -y rh-dotnetcore10`
+4. `sudo scl enable rh-dotnetcore10 bash`
 
 You can verify your installation by running `dotnet --version` from the command line.
 
