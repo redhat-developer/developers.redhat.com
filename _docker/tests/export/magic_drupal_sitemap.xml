@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Test sitemap.xml that has hostname set to 'default' as Drupal seems want to do every now and then -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://default:32769/</loc>
+    <priority>1</priority>
+  </url>
+  <url>
+    <loc>http://default:32769/articles/no-cost-rhel-faq</loc>
+    <priority>0.5</priority>
+    <lastmod>2016-06-06T08:56:29-07:00</lastmod>
+  </url>
+  <url>
+    <loc>http://default:32769/about</loc>
+    <priority>0.5</priority>
+    <lastmod>2016-06-06T08:56:29-07:00</lastmod>
+  </url>
+  <url>
+    <loc>http://default:32769/articles/rhel-what-you-need-to-know</loc>
+    <priority>0.5</priority>
+    <lastmod>2016-06-06T08:56:31-07:00</lastmod>
+  </url>
+  <url>
+    <loc>http://default:32769/community/contributor</loc>
+    <priority>0.5</priority>
+    <lastmod>2016-06-06T08:56:31-07:00</lastmod>
+  </url>
+  <url>
+    <loc>http://default:32769/community/contributor/signup</loc>
+    <priority>0.5</priority>
+    <lastmod>2016-06-06T08:56:32-07:00</lastmod>
+  </url>
+  <url>
+    <loc>http://default:32769/confirmation</loc>
+    <priority>0.5</priority>
+    <lastmod>2016-06-06T08:56:33-07:00</lastmod>
+  </url>
+  <!-- Test to ensure duplicates are removed from the list of urls to fetch -->
+  <url>
+    <loc>http://default:32769/confirmation</loc>
+    <priority>0.5</priority>
+    <lastmod>2016-06-06T08:56:33-07:00</lastmod>
+  </url>
+</urlset>

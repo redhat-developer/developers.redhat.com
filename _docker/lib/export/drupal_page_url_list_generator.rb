@@ -39,7 +39,8 @@ class DrupalPageUrlListGenerator
     document = Nokogiri::XML(sitemap_contents)
     links = []
     document.css('url loc').each do | link |
-      links << link.content
+      uri = URI.parse(link.content)
+      links << "http://#{@drupal_host}#{uri.path}"
     end
 
     links.uniq!
