@@ -418,7 +418,7 @@ module Aweplug
                    _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
                    body: [{value: content,
                            summary: page.description,
-                           format: 'full_html'}],
+                           format: (page.drupal_format || 'full_html')}],
                            path: {alias: File.join('/', path)}
         }
         if page.drupal_type == 'rhd_solution_overview'

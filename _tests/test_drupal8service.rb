@@ -91,6 +91,27 @@ class TestDrupal8Service < Minitest::Test
     service.create_page page, content
   end
 
+  def test_create_page_as_is_html
+    service = setup_service
+    page = OpenStruct.new
+    page.output_path = '/article/testing-service/index.html'
+    page.title = 'Testing Service'
+    page.description = 'Learn how to use the Testing Service'
+    page.drupal_format = 'as_is_html'
+    content = 'Hello World'
+
+    # Setup the mock http call
+    stub_exists_call_good
+
+    stub_request(:post, 'http://testing/entity/node')
+        .with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"as_is_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
+             headers: {'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n',
+                       'Content-Type' => 'application/hal+json'})
+        .to_return(status: 201)
+
+    service.create_page page, content
+  end
+
   def test_update_page
     service = setup_service
     page = OpenStruct.new
@@ -104,6 +125,26 @@ class TestDrupal8Service < Minitest::Test
 
     stub_request(:patch, 'http://testing/article/testing-service?_format=hal_json').
         with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"full_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
+             headers: {'Accept' => 'application/hal+json', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n', 'Content-Type' => 'application/hal+json', 'User-Agent' => 'Faraday v0.9.2'}).
+        to_return(status: 204)
+
+    service.update_page(page, content)
+  end
+
+  def test_update_page_as_is_html
+    service = setup_service
+    page = OpenStruct.new
+    page.output_path = '/article/testing-service/index.html'
+    page.title = 'Testing Service'
+    page.description = 'Learn how to use the Testing Service'
+    page.drupal_format = 'as_is_html'
+    content = 'Hello World'
+
+    # Setup the mock http call
+    stub_exists_call_bad
+
+    stub_request(:patch, 'http://testing/article/testing-service?_format=hal_json').
+        with(body: "{\"title\":[{\"value\":\"Testing Service\"}],\"_links\":{\"type\":{\"href\":\"http://testing/rest/type/node/page\"}},\"body\":[{\"value\":\"Hello World\",\"summary\":\"Learn how to use the Testing Service\",\"format\":\"as_is_html\"}],\"path\":{\"alias\":\"/article/testing-service\"}}",
              headers: {'Accept' => 'application/hal+json', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization' => 'Basic dGVzdGluZzp0ZXN0aW5n', 'Content-Type' => 'application/hal+json', 'User-Agent' => 'Faraday v0.9.2'}).
         to_return(status: 204)
 
