@@ -24,7 +24,7 @@ section(class="product-graphics #{page.product.product_category}")
         .small-24.large-6.columns
           p Let's walk through everything you need to build your first application.
         .small-24.large-6.columns
-          a.button(href="../get-started/") Get Started
+          a.button(href="#{site.base_url}/products/#{page.product.id}/get-started/") Get Started
         .small-24.large-6.columns.outside-links
           a.large-24.medium-12.columns(href="http://www.redhat.com/en/about/contact/sales")
             strong Buy It
@@ -32,7 +32,7 @@ section(class="product-graphics #{page.product.product_category}")
               | Contact Sales
               i.fa.fa-caret-right
           - if page.product.has_community_page
-            a.large-24.medium-12.columns(href="../community/")
+            a.large-24.medium-12.columns(href="#{site.base_url}/products/#{page.product.id}/community/")
               strong Make it better
               p
                 | Join the community
