@@ -31,11 +31,10 @@ stackoverflow.service('searchService',function($http, $q) {
 /*
   Filter to return human readable time ago
 */
-stackoverflow.filter('timeAgo', function() {
-  return function(timestamp){
-    if(!timestamp) return;
-    var date = new Date(timestamp);
-    return $.timeago(date);
+stackoverflow.filter('timeAgo', function($sce) {
+  return function(result){
+    var time = jQuery.timeago(new Date((result._source.sys_created / 1000) * 1000));
+    return time;
   }
 });
 
@@ -56,25 +55,6 @@ stackoverflow.filter('timestamp', function() {
   }
 });
 
-stackoverflow.filter('broker', function() {
-  return function(url){
-    if(url && url.match('access.redhat.com')){
-      return app.dcp.url.broker + encodeURIComponent(url);
-    }
-    return url;
-  }
-});
-
-stackoverflow.filter('jbossfix', function() {
-  return function(url){
-    var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org','gi');
-
-    if(url && url.match(matcher)){
-      return url.replace(matcher,'https://developer.redhat.com')
-    }
-    return url;
-  }
-});
 
 /*
  Filter to remove undesirable tags from sys_tags
@@ -88,13 +68,6 @@ stackoverflow.filter('tagGroup', function() {
         modifiedTags.push(value)
     });
     return modifiedTags;
-  }
-});
-
-stackoverflow.filter('timestamp', function() {
-  return function(timestamp){
-    var date = new Date(timestamp);
-    return date.getTime();
   }
 });
 
@@ -113,6 +86,16 @@ stackoverflow.filter('question', function($sce) {
       return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0]);
     }
     return $sce.trustAsHtml(result._source.sys_content_plaintext);
+  }
+});
+
+/*
+ Filter to remove author Stack Overflow id number from 'author'
+ */
+stackoverflow.filter('author', function($sce) {
+  return function(result){
+    var authorName = result._source.author.split('-')[0];
+    return authorName;
   }
 });
 
