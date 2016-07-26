@@ -1,283 +1,282 @@
-/*
- * Stackoverflow
- * Dependencies: vendor/jQuery.js, vendor/jQuery.XDomainRequest.js, namespace.js
- * DOM Ready dependencies: vendor/jquery.timeago.js
- */
-app.stackoverflow = {
+var stackoverflow = angular.module('stackoverflow', []);
 
-  filter : function(tmpl, container, itemCount, append, from, dataIndex, callback) {
+stackoverflow.service('searchService',function($http, $q) {
+  this.getSearchResults = function(params) {
+    var deferred = $q.defer();
+    // http://dcp.stage.jboss.org/v2/rest/search?size=1&field=_source&agg=per_project_counts&agg=tag_cloud&agg=top_contributors&agg=activity_dates_histogram&agg=per_sys_type_counts
+    // http://docs.jbossorg.apiary.io/#reference/search-api/2restsearchqueryqueryhighlightsortbyfromsizeaggfieldcontentprovidertypesystypetagprojectactivitydateintervalactivitydatefromactivitydatetocontributor
 
-    var url = app.dcp.url.stackoverflow;
-
-    // set a default item count of 10
-    itemCount = itemCount || 10;
-
-    // append loading class to wrapper
-    container.addClass('stackoverflow-loading');
-    
-    // Pass search params to GTM for analytics
-    window.dataLayer = window.dataLayer || [];
-
-    /*
-      Keyword
-    */
-    var keyword = keyword || $('input[name="filter-text"]').val();
-
-    var filters = $.extend(filters, {"keyword": keyword});
-    var currentFilters = {};
-    var request_data = {};
-
-    var filter_products = $('select[name="filter-products"]');
-    if (filter_products.length && filter_products.val() !== "") {
-      var product = filter_products.val();
-      console.log("Selected product: "+ product);
-      filters['stackoverflow'] = app.products[product]['stackoverflow'];
-      window.dataLayer.push({ 'product' : product });
-    } else {
-      window.dataLayer.push({ 'product' : null });
-    }
-
-    $.each(filters, function(key, val) {
-      //if its empty, or undefined, remove it from the filters
-      if(val && val.length) {
-        currentFilters[key] = val;
-      }
+    // fold in params with defaults
+    var stackoverflow = Object.assign(params, {
+      // field: '_source',
+      field: ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
+      // Disable aggregations until ready
+      // agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
+      query_highlight: true
     });
 
-    // Prep each filter
-    var query = [];
+    var endpoint = (!!window.location.pathname.match(/\/stack-overflow/) ? app.dcp.url.stackoverflow : app.dcp.url.developer_materials);
 
-    // Pass search params to GTM for analytics
-    window.dataLayer = window.dataLayer || [];
-
-    if(currentFilters['keyword']) {
-      window.dataLayer.push({ 'keyword' : query });
-      query.push(keyword);
-      delete currentFilters['keyword']
-    } else {
-      window.dataLayer.push({ 'keyword' : null });
-    }
-
-    // Pull the json array, switch back to double quotes, then parse it.
-    if (container.data('tags')){
-      var tags = container.data('tags') || "";
-      try {
-        tags = JSON.parse(tags.replace(/'/g, "\""));
-      } catch (e) {
-        tags = "";
-      }
-    }
-    else{
-      var tags = filters['stackoverflow'];
-    }
-    console.log("filter tags: " + tags);
-    if(tags){
-      var tagsString = "";
-      for (var i = 0; i < tags.length; i++) {
-        if (i > 0) {
-          tagsString += " ";
-        }
-        tagsString += tags[i];
-      }
-      window.dataLayer.push({ 'tags' : tags });
-    } else {
-      window.dataLayer.push({ 'tags' : null });
-    }
-    window.dataLayer.push({'event': 'stackoverflow-search'});
-
-    $.ajax({
-        url : app.dcp.url.stackoverflow,
-        dataType: 'json',
-        data : {
-          "field"  : ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
-          "query" : query,
-          "tag" : tags,
-          "size" : itemCount,
-          "sortBy" : "new-create",
-          "from" : dataIndex // for pagination
-        },
-        beforeSend : function() {
-          // check if there is a previous ajax request to abort
-          if(app.stackoverflow.currentRequest && app.stackoverflow.currentRequest.readyState != 4) {
-            app.stackoverflow.currentRequest.abort();
-          }
-        },
-        error : function() {
-          $('.stackoverflow-filters').html(app.dcp.error_message);
-          $('.stackoverflow-loading').removeClass('stackoverflow-loading');
-        }
-      }).done(function(data){
-        // Delay loading this until the DOM is ready
-        // PLM: Do we really need to do this?
-        $( function() {
-          app.stackoverflow.infiniteScrollCalled = false;
-          app.stackoverflow.noScroll = false;
-          var hits = data.hits.hits;
-          if(hits.length < 10) {
-            app.stackoverflow.noScroll = true;
-          }
-          if(keyword && keyword.length) {
-            app.search.format(keyword,hits, $('.stackoverflow-filters .searchResults'));
-          }
-          var html = "";
-          for (var i = 0; i < hits.length; i++) {
-            score = hits[i]._score;
-            var d = hits[i]._source;
-            d.authorName = d.author.split('-')[0];
-            d.tags = d.sys_tags.join(', ').substr(0, 30);
-            d.dateCreated =jQuery.timeago(new Date((d.sys_created / 1000) * 1000));
-            d.qtnAccepted = "";
-            d.displayAnswr = "hide-answer";
-
-            if (d.sys_content){
-              var cRex = /(<([^>]+)>)/ig;
-              var dRex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-              qtnContent = (d.sys_content).replace(cRex , "");
-              qtnContent =  qtnContent.replace(dRex,"<a href='$1'>$1</a>");
-            }
-
-            if(d.answers){
-              var aRex = /(<([^>]+)>)/ig;
-              var bRex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-              pAnswer = d.answers[0].body.replace(aRex , "");
-              pAnswer =  pAnswer.replace(bRex,"<a href='$1'>$1</a>");
-
-              if (d.answers[0].is_accepted == true){
-                d.answer = "<strong>Accepted answer: </strong>" + pAnswer;
-                d.qtnAccepted = "accepted-answer";
-                d.displayAnswr = "display-answer";
-
-              } else {
-                d.answer = "<strong>Latest answer: </strong>" + pAnswer;
-                d.displayAnswr = "display-answer";
-              }
-            } else {
-              d.answer = "<i>Question not yet answered</i>";
-            }
-
-            html += tmpl.template(d);
-        }
-
-        // Inject HTML into the DOM
-        if(!html) {
-          html = "Sorry, no results to display.";
-        }
-        if(append) {
-          container.append(html);
-        }
-        else {
-          container.html(html);
-        }
-
-        container.removeClass('stackoverflow-loading');
-
-        $('.share-this').on('click mouseover', function() {
-          Socialite.load($(this)[0]);
-        
-        });
+    $http.get(endpoint, { params: stackoverflow })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function (err) {
+        throw new Error(err);
       });
-
-    }); // end ajax done
-  },
-
-  init : function() {
-
-    var dataIndex = 0;
-
-    /* 
-      Full stackoverflow, for the stackoverflow page
-    */
-    var $stackoverflow = $('.stackoverflow-container');
-
-    if($stackoverflow.length) {
-      app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow, 10);
-
-      // infinite scroll for full stackoverflow page
-
-      app.stackoverflow.infiniteScrollCalled = false;
-      var currentPagination = 0;
-      var stackoverflowFlag = true; // rate limiting 
-      var win = $(window);
-      var offset = 700; // pixel offset
-      win.on('scroll',function() {
-        var scrollBottom = win.scrollTop() + win.height();
-        var scrollTop = win.scrollTop();
-        var stackoverflowBottom = $stackoverflow.position().top + $stackoverflow.height();
-
-        if((scrollBottom + offset > stackoverflowBottom) && !app.stackoverflow.infiniteScrollCalled && stackoverflowFlag && !app.stackoverflow.noScroll) {
-          
-          // limit the number of times it can be called to once per second
-          stackoverflowFlag = false;
-          window.setTimeout(function(){ stackoverflowFlag = true; },1000);
-
-          app.stackoverflow.infiniteScrollCalled = true;
-          var from = $('.stackoverflow-container > div').length;
-
-          dataIndex += 10;
-          // console.log("dataIndex: " + dataIndex);
-          // load in more
-          app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow, 10, true, from, dataIndex, function() {
-            if(win.scrollTop() < 400){
-              win.scrollTop(scrollTop);
-            }
-          });
-        }
-      });
-    }
-
-    /* 
-      Product Page stackoverflow by tag
-    */
-    var $pstackoverflow = $('.product-stackoverflow-container');
-
-    if($pstackoverflow.length) {
-      app.stackoverflow.filter(app.templates.productStackoverflowTemplate, $pstackoverflow, 4);
-    }
-
-    // Event Listeners for Stackoverflow Filter
-    // When the stackoverflow filter input is changed, search
-
-    var timeOut;
-    var lastSearch = "";
-    $('form.stackoverflow-filters').on('keyup','input',function(e){
-      var el = $(this);
-      var query = el.val();
-      clearTimeout(timeOut);
-      // throttle ajax requests
-      timeOut = setTimeout(function() {
-        var $stackoverflow = $('.stackoverflow-container');
-        if(lastSearch !== query) {
-          app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow);
-          app.utils.updatePageHash(el);
-        }
-        lastSearch = query;
-      }, 300);
-    });
-
-    $('form.stackoverflow-filters').on('submit',function(e) {
-      e.preventDefault();
-    });
-
-    $('select[name="filter-products"]').on('change', function(e) {
-      e.preventDefault();
-      var el = $(this);
-      app.stackoverflow.filter(app.templates.stackoverflowTemplate, $stackoverflow);
-      app.utils.updatePageHash(el);
-    });
-
-  //  if ($('.stackoverflow-filters').length) {
-  //   if (window.location.search) {
-  //     var product_id = app.utils.getQueryVariable('filter-products');
-  //     $('option[value="'+product_id+'"]').attr('selected','selected');
-  //     app.stackoverflow.filter({project: app.products[product_id]['upstream']});
-  //   } else {
-  //     app.project.projectFilter();
-  //   }
-  // }
-
+    return deferred.promise;
   }
-};
+});
 
-// Call app.stackoverflow.init() straight away. The call is slow, and anything which requires render dependencies is
-// in jQuery DOM ready callbacks
-app.stackoverflow.init();
+/*
+  Filter to return human readable time ago
+*/
+stackoverflow.filter('timeAgo', function() {
+  return function(timestamp){
+    if(!timestamp) return;
+    var date = new Date(timestamp);
+    return $.timeago(date);
+  }
+});
+
+stackoverflow.filter('MDY', function() {
+  return function(timestamp){
+    if(!timestamp) return;
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var date = new Date(timestamp);
+    window.date = date;
+    return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+  }
+});
+
+stackoverflow.filter('timestamp', function() {
+  return function(timestamp){
+    var date = new Date(timestamp);
+    return date.getTime();
+  }
+});
+
+stackoverflow.filter('broker', function() {
+  return function(url){
+    if(url && url.match('access.redhat.com')){
+      return app.dcp.url.broker + encodeURIComponent(url);
+    }
+    return url;
+  }
+});
+
+stackoverflow.filter('jbossfix', function() {
+  return function(url){
+    var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org','gi');
+
+    if(url && url.match(matcher)){
+      return url.replace(matcher,'https://developer.redhat.com')
+    }
+    return url;
+  }
+});
+
+/*
+ Filter to remove undesirable tags from sys_tags
+ */
+stackoverflow.filter('tagGroup', function() {
+  return function(tag){
+    var modifiedTags = [];
+    var matcher = new RegExp('feed_group_name_.*|feed_name_.*|red hat|redhat')
+    angular.forEach(tag, function(value){
+      if(!value.match(matcher))
+        modifiedTags.push(value)
+    });
+    return modifiedTags;
+  }
+});
+
+stackoverflow.filter('timestamp', function() {
+  return function(timestamp){
+    var date = new Date(timestamp);
+    return date.getTime();
+  }
+});
+
+stackoverflow.filter('title', function($sce) {
+  return function(result){
+    if(result.highlight && result.highlight.sys_title) {
+      return $sce.trustAsHtml(result.highlight.sys_title);
+    }
+    return $sce.trustAsHtml(result._source.sys_title);
+  }
+});
+
+stackoverflow.filter('question', function($sce) {
+  return function(result){
+    if(result.highlight && result.highlight._source.sys_content_plaintext) {
+      return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0]);
+    }
+    return $sce.trustAsHtml(result._source.sys_content_plaintext);
+  }
+});
+
+stackoverflow.controller('StackOverflowController', ['$scope', 'searchService', searchCtrlFunc]);
+
+function searchCtrlFunc($scope, searchService) {
+
+  var isSearch = !!window.location.href.match(/\/stackoverflow\//);
+  // var searchTerm = window.location.stackoverflow.split('=');
+  var q = '';
+
+  /* defaults */
+  $scope.params = {
+    query: q,
+    sortBy: 'score',
+    size: 10,
+    size10: true,
+    from: 0,
+    sys_type: [],
+    project: '',
+    newFirst: false
+  };
+
+  // Search Page Specifics
+  if(isSearch && searchTerm) {
+    $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
+    $scope.params.type = 'rht_website';
+  }
+
+  $scope.paginate = {
+    currentPage: 1
+  };
+
+  $scope.loading = true;
+
+  $scope.resetPagination = function() {
+    $scope.params.from = 0; // start on the first page
+    $scope.paginate.currentPage = 1;
+  };
+
+  /*
+    Clean Params
+  */
+
+  $scope.cleanParams = function(p) {
+      var params = Object.assign({}, p);
+
+      // if "custom" is selected, remove it
+      if(params.publish_date_from && params.publish_date_from === 'custom') {
+        params.publish_date_from = params.publish_date_from_custom;
+      } else {
+        delete params.publish_date_from_custom;
+        delete params.publish_date_to;
+      }
+
+      // if relevance is "most recent" is turned on, set newFirst to true, otherwise remove it entirely
+      if(params.newFirst !== "true") {
+        delete params.newFirst;
+      }
+
+      // delete old size params
+      ['10', '25', '50', '100'].forEach(function(size){
+        delete params['size' + size];
+      });
+
+      // use the size10=true format
+      params['size'+params.size] = true;
+
+      // return cleaned params
+      return params;
+  };
+
+  $scope.updateSearch = function() {
+    $scope.loading = true;
+    $scope.query = $scope.params.query; // this is static until the update re-runs
+    var params = $scope.cleanParams($scope.params);
+    if(isSearch) {
+      // DOUBLE CHECK THIS LINE
+      history.pushState($scope.params,$scope.params.query,app.baseUrl + '/search/stackoverflow/?q=' + $scope.params.query);
+    }
+    searchService.getSearchResults(params).then(function(data) {
+      $scope.results = data.hits.hits;
+      $scope.totalCount = data.hits.total;
+      $scope.buildPagination(); // update pagination
+      $scope.loading = false;
+    });
+  };
+
+  /*
+   Handle Pagination
+   */
+  $scope.buildPagination = function() {
+
+    var page = $scope.paginate.currentPage;
+
+    var startAt = (page * $scope.totalCount) - $scope.params.size;
+    var endAt = page * $scope.params.size;
+    var pages = Math.ceil($scope.totalCount / $scope.params.size);
+    var lastVisible = parseFloat($scope.params.size) + $scope.params.from;
+
+    if($scope.totalCount < lastVisible) {
+      lastVisible = $scope.totalCount;
+    }
+
+    $scope.paginate = {
+      currentPage: page,
+      pagesArray: app.utils.diplayPagination(page, pages, 4),
+      pages: pages,
+      lastVisible: lastVisible
+    };
+  };
+
+  /*
+    Pagination goTo
+  */
+
+  $scope.goToPage = function(page) {
+
+    switch(page) {
+      case 'first':
+        page = 1;
+        break;
+      case 'prev':
+        page = $scope.paginate.currentPage - 1;
+        break;
+      case 'next':
+        page = $scope.paginate.currentPage + 1;
+        break;
+      case 'last':
+        page = Math.ceil($scope.totalCount / $scope.params.size);
+        break;
+      default:
+        break;
+    }
+
+    if(typeof page !== 'number') return;
+
+    $scope.params.from = (page * $scope.params.size) - $scope.params.size;
+    $scope.paginate.currentPage = page;
+    $scope.updateSearch();
+  };
+
+
+  $scope.toggleSelection = function toggleSelection(event) {
+
+    var checkbox = event.target;
+    var topicNames = checkbox.value.split(' ');
+
+    if (checkbox.checked) {
+      // Add - allow for multiple checks
+      // $scope.params.sys_type = $scope.params.sys_type.concat(topicNames);
+      // Replace - only allow one thing to be checked
+      $scope.params.sys_type = topicNames;
+    }
+    else {
+      topicNames.forEach(function(topic) {
+        var idx = $scope.params.sys_type.indexOf(topic);
+        $scope.params.sys_type.splice(idx, 1);
+      });
+    }
+    // re run the search and reset pagination
+    $scope.updateSearch();
+    $scope.resetPagination();
+  };
+
+  $scope.updateSearch();
+}
