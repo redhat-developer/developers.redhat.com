@@ -11,6 +11,8 @@ module ProductsHelper
           desc.gsub("'", "’")
         end
         return desc.chomp(' ')
+      when 'forum_desc'
+        return data['forum_desc']
       else
         raise("#{info} was not a valid product item, please check Products helper module in /lib/helpers")
     end

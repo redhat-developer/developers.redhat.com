@@ -27,7 +27,8 @@ title: Forums | Red Hat Developers
                 .large-12.columns
                   h4
                     a(id="#{product.id}" href="#{forum_url}" target="_blank")
-                      = product.name
+                      = product.forum_title || product.name
                       i.fa.fa-comments-o
                 .large-12.columns
-                  = product['index'].desc
+                  - forum_desc = product.forum_desc ? "<div class=\"paragraph\"><p>#{product.forum_desc}</p></div>" : null
+                  = forum_desc || product['index'].desc
