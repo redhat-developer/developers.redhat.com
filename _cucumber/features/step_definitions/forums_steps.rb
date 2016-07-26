@@ -15,7 +15,11 @@ end
 
 Then(/^I should see a description of the available products$/) do
   @product_ids.each do |product|
-    expect(@page.forums.forums_product_section_for(product)).to include(get_product(product, 'description'))
+    if get_product(product, 'forum_desc')
+      expect(@page.forums.forums_product_section_for(product)).to include(get_product(product, 'forum_desc'))
+    else
+      expect(@page.forums.forums_product_section_for(product)).to include(get_product(product, 'description'))
+    end
   end
 end
 

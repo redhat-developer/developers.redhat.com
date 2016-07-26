@@ -14,7 +14,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss Web Server                      |
       | Red Hat Developer Toolset                     |
       | Red Hat Software Collections                  |
-      | Red Hat Container Development Kit             |
+      | Developing on Containers                      |
       | Red Hat JBoss A-MQ                            |
       | Red Hat JBoss BRMS                            |
       | Red Hat JBoss BPM Suite                       |
@@ -32,7 +32,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss Web Server                      |
       | Red Hat Developer Toolset                     |
       | Red Hat Software Collections                  |
-      | Red Hat Container Development Kit             |
+      | Developing on Containers                       |
       | Red Hat JBoss A-MQ                            |
       | Red Hat JBoss BRMS                            |
       | Red Hat JBoss BPM Suite                       |
