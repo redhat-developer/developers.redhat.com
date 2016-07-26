@@ -33,8 +33,8 @@ app.templates.termsAndConditionsTemplate = drupalSettings.rhd.templates.termsCon
 app.templates.bookTemplate = drupalSettings.rhd.templates.book;
 app.templates.connectorTemplate = drupalSettings.rhd.templates.connector;
 
-app.templates.productStackoverflowTemplate = drupalSettings.rhd.productStackoverflowTemplate;
-app.templates.stackoverflowTemplate = drupalSettings.rhd.stackoverflowTemplate;
+app.templates.productStackoverflowTemplate = drupalSettings.rhd.templates.productStackoverflowTemplate;
+app.templates.stackoverflowTemplate = drupalSettings.rhd.templates.stackoverflowTemplate;
 /*
   FastClick variable for faster tapping on touch devices
 */
