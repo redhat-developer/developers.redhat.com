@@ -16,7 +16,7 @@ Prerequisites &#38; Required Dependencies Checklist
 == Step1 Content
 1. Install the Java SE Development Kit (JDK) 1.8. We recommend using the OpenJDK or the Oracle JDK.
 .. For Windows/Mac Development Hosts: 
-... Red Hat Developers typically downloads from Oracle’s link:http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[site].  (Make sure you get the Java *Development* Kit and not just the Java Runtime Environment).
+... Red Hat Developers typically downloads from Oracle’s link: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[site]. (Make sure you get the Java *Development* Kit and not just the Java Runtime Environment).
 .. For Red Hat Enterprise Linux Hosts: 
 ... Install OpenJDK by executing the following command:
 +
@@ -41,7 +41,7 @@ $ unzip jboss-datagrid-7.0.0-server.zip
 .. In Red Hat Enterprise Linux, open a terminal window in the target machine and navigate to where the ZIP file was downloaded. Extract the ZIP file by executing the following command: 
 +
 ----
-unzip jboss-eap-7.0.0.zip
+$ unzip jboss-eap-7.0.0.zip
 ----
 +
 6. Download the latest version of Maven. The latest at the time of this writing is link:http://maven.apache.org/download.cgi[Maven 3.3.9]. Choose the ZIP distribution.
@@ -54,7 +54,7 @@ To verify that JBoss Data Grid and JBoss EAP is working
 correctly, deploy and execute the _helloworld-jdg_ quickstart application in
 an EAP server you will now create and configure: 
 
-8. Test that your Maven and Java installations are working correctly by executing `$MAVEN_HOME/bin/mvn --version` and `$JAVA_HOME/bin/java -version` .  For instance:
+8. Test that your Maven and Java installations are working correctly by executing `$MAVEN_HOME/bin/mvn --version` and `$JAVA_HOME/bin/java -version` . For instance:
 +
 ----
 $ mvn --version
@@ -80,7 +80,7 @@ $ $JBOSS_HOME/bin/standalone.sh -Djboss.socket.binding.port-offset=100
 +
 11. In a third terminal window, download the quickstarts:
 +
-https://www.jboss.org/download-manager/file/jboss-data/jboss-datagrid-7.0.0-quickstarts.zip
+link:#{site.download_manager_base_url}/download-manager/file/jboss-data/jboss-datagrid-7.0.0-quickstarts.zipgrid-7.0.0-maven-repository.zip[Red Hat JBoss Data Grid 7 Quickstarts]
 12. Extract the quickstarts ZIP as we’ve done before, or using unzip
 +
 ----
@@ -108,11 +108,12 @@ $ mvn wildfly:deploy -s ../settings.xml -Dwildfly.port=10090
 +
 The application will be running at the following URLs: 
 
-[width="100%",cols="50%,50%",]
+[width="100%",cols="50%,50%"]
 |=======================================================================
-|*Instance 1:* |link:http://localhost:8080/jboss-helloworld-jdg[JBoss Enterprise Application Instance 1]
-
-|*Instance 2:* |link:http://localhost:8180/jboss-helloworld-jdg[JBoss Enterprise Application Instance 2]
+|*Instance 1:* 
+|link:http://localhost:8080/jboss-helloworld-jdg[JBoss Enterprise Application Instance 1]
+|*Instance 2:* 
+|link:http://localhost:8180/jboss-helloworld-jdg[JBoss Enterprise Application Instance 2]
 |=======================================================================
 
 You can test replication of entries in the following way:
@@ -145,7 +146,7 @@ $ mvn wildfly:undeploy -s ../settings.xml -Dwildfly.port=10090
 == Step3 Content
 Follow the below series to build your first application. You will build some simple examples. 
 
-[width="100%",cols="50%,50%",]
+[width="100%",cols="50%,50%"]
 |=======================================================================
 |*Step 1:* Learn more about getting started 
 |link:https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Grid/7.0/html/Getting_Started_Guide/index.html[JBoss Data Grid Getting Started Guide]
