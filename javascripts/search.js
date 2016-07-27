@@ -178,13 +178,14 @@ function searchCtrlFunc($scope, searchService) {
     from: 0,
     sys_type: [],
     project: '',
-    newFirst: false
+    newFirst: true
   };
 
   // Search Page Specifics
   if(isSearch && searchTerm) {
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
     $scope.params.type = 'rht_website';
+    $scope.params.newFirst = false;
   }
 
   $scope.paginate = {
@@ -213,8 +214,8 @@ function searchCtrlFunc($scope, searchService) {
         delete params.publish_date_to;
       }
 
-      // if relevance is "most recent" is turned on, set newFirst to true, otherwise remove it entirely
-      if(params.newFirst !== "true") {
+      // if relevance filter is turned on making newFirst == false, remove it entirely
+      if(params.newFirst == "false") {
         delete params.newFirst;
       }
 
