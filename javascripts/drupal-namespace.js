@@ -7,7 +7,8 @@ var app = window.app = {};
 /*
   Base URL
 */
-app.baseUrl = drupalSettings.path.baseUrl;
+var full_base_url = Drupal.url.toAbsolute(drupalSettings.path.baseUrl);
+app.baseUrl = full_base_url.substring(0, full_base_url.lastIndexOf('/'));
 
 /*
  Download Manager Base URL
@@ -24,6 +25,7 @@ app.cache = {};
   JS templates
 */
 app.templates = {};
+app.templates.searchpageTemplate = drupalSettings.rhd.templates.searchPageTemplate;
 app.templates.miniBuzzTemplate = drupalSettings.rhd.templates.miniBuzz;
 app.templates.productBuzzTemplate = drupalSettings.rhd.templates.productBuzz;
 app.templates.buzzTemplate = drupalSettings.rhd.templates.buzz;
@@ -31,6 +33,8 @@ app.templates.termsAndConditionsTemplate = drupalSettings.rhd.templates.termsCon
 app.templates.bookTemplate = drupalSettings.rhd.templates.book;
 app.templates.connectorTemplate = drupalSettings.rhd.templates.connector;
 
+app.templates.productStackoverflowTemplate = drupalSettings.rhd.templates.productStackoverflowTemplate;
+app.templates.stackoverflowTemplate = drupalSettings.rhd.templates.stackoverflowTemplate;
 /*
   FastClick variable for faster tapping on touch devices
 */
@@ -43,12 +47,14 @@ app.fastClick = false;
 app.dcp = {};
 app.dcp.url = {};
 app.dcp.url.search = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search';
+app.dcp.url.stackoverflow = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/stackoverflow/';
 app.dcp.url.content = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/content';
 app.dcp.url.auth_status = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/auth/status';
 app.dcp.url.rating = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/rating';
 app.dcp.url.project= drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/suggest_project_name_ngram_more_fields';
 app.dcp.url.events= drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/events';
 app.dcp.url.connectors= drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/connectors';
+app.dcp.url.broker= drupalSettings.rhd.broker;
 app.dcp.error_message = "<div class='dcp-error-message'>It appears we're unable to access this data right now. Look at <a href='http://twitter.com/jbossorg' target=_blank>@jbossorg</a> to see if there is scheduled maintenance, or try again shortly.</div>";
 app.dcp.url.developer_materials= drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/developer_materials';
 app.dcp.excludeResourceTags = ["red hat", "Red Hat", "redhat"];

@@ -165,7 +165,7 @@ search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc
 
 function searchCtrlFunc($scope, searchService) {
 
-  var isSearch = !!window.location.href.match(/\/search\//);
+  var isSearch = !!window.location.href.match(/\/search/);
   var searchTerm = window.location.search.split('=');
   var q = '';
 

@@ -80,6 +80,7 @@ profiles:
     dcp_base_protocol_relative_url: "//<%= 'docker' %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/"
 <% end %>
     push_to_searchisko: true
+    broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
 
   drupal_dev:
     <<: *docker
@@ -128,6 +129,7 @@ profiles:
     deploy:
       <<: *deploy
       path: /www_htdocs/it-rhd
+    broker: https://broker.redhat.com/partner/drc/userMapping?redirect=
 
   development_cdn:
     <<: *development

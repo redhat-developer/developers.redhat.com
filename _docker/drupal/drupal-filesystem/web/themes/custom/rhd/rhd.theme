@@ -122,4 +122,13 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 
     $template = file_get_contents($theme_path . '/templates/client-side/product_connector.html.twig');
     $rhd_settings['templates']['connector'] = $template;
+
+    $template = file_get_contents($theme_path . '/templates/client-side/product_stackoverflow_template.html.twig');
+    $rhd_settings['templates']['productStackoverflowTemplate'] = $template;
+
+    $template = file_get_contents($theme_path . '/templates/client-side/search_page_template.html.twig');
+    $rhd_settings['templates']['searchPageTemplate'] = $template;
+
+    $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
+    $rhd_settings['templates']['stackoverflowTemplate'] = $template;
 }
