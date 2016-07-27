@@ -44,6 +44,7 @@ gem 'rake', '~>10.4'
 gem "octokit", "~> 4.0"
 gem 'docker-api', :require => 'docker'
 gem 'uuid'
+gem 'listen', '3.0.8'
 
 # To use Aweplug code from a different location:
 #
