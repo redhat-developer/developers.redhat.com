@@ -101,11 +101,11 @@ Yes. In addition to the current release, Red Hat Enterprise Linux 7, you will al
 
 . *How do I get a no-cost subscription for Red Hat Enterprise Linux?*
 +
-When you register and download Red Hat Enterprise Linux Server through link:#{site.base_url}/[developers.redhat.com], the no-cost Red Hat Enterprise Linux Developer Suite subscription will be automatically added to your account. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt.
+When you register at link:#{site.base_url}/[developers.redhat.com], the no-cost Red Hat Enterprise Linux Developer Suite subscription will be automatically added to your account. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt.
 
 . *I can't find the no-cost subscription. If I try to download Red Hat Enterprise Linux, I get a message that a subscription is required.*
 +
-The no-cost subscription is only available through the Red Hat Developers site, link:#{site.base_url}/[developers.redhat.com]. While the no-cost subscription is not available from link:https://access.redhat.com/[access.redhat.com], once you've registered on link:#{site.base_url}/[developers.redhat.com] and activated your subscription by downloading through link:#{site.base_url}/[developers.redhat.com], you will have the same access to the Red Hat Customer Portal, link:https://access.redhat.com[access.redhat.com], provided to paid, self-supported subscriptions.
+The no-cost subscription is only available through the Red Hat Developers site, link:#{site.base_url}/[developers.redhat.com]. While the no-cost subscription is not available from link:https://access.redhat.com/[access.redhat.com], once you've registered on link:#{site.base_url}/[developers.redhat.com], you will have the same access to the Red Hat Customer Portal, link:https://access.redhat.com[access.redhat.com], provided to paid, self-supported subscriptions.
 
 . *How can I check that the no-cost subscription was added to my account?*
 +
@@ -113,7 +113,7 @@ You can view your subscription, the expiration date, and attached system informa
 
 . *I registered at link:#{site.base_url}/[developers.redhat.com] with my GitHub, Stack Overflow, LinkedIn, or social network account. How do I log into other Red Hat sites such as link:https://access.redhat.com[access.redhat.com]?*
 +
-Currently only link:#{site.base_url}/[developers.redhat.com] supports registration using a social network account. To log into other Red Hat sites, you will need a Red Hat login. When you download through link:#{site.base_url}/[developers.redhat.com], if you don't have a Red Hat account, one will be created for you. The username will be the email address you are registered under. The password for your Red Hat account will be set when you fill out the registration form. If you don't remember your password, a "Forgot Password" link is available on the link:https://acess.redhat.com/login[login page].
+Currently only link:#{site.base_url}/[developers.redhat.com] supports registration using a social network account. To log into other Red Hat sites, you will need a Red Hat login. When you register at link:#{site.base_url}/[developers.redhat.com], if you don't have a Red Hat account, one will be created for you. The username will be the email address you are registered under. The password for your Red Hat account will be set when you fill out the registration form. If you don't remember your password, a "Forgot Password" link is available on the link:https://acess.redhat.com/login[login page].
 
 . *While trying to register and download at link:#{site.base_url}/[developers.redhat.com], I'm getting an error that says “Your information is valid, but we're unable to upgrade your account”. How can I resolve this?*
 +
@@ -126,14 +126,14 @@ If you are having problems with your account, <<Contacting Red Hat for assistanc
 +
 You can download Red Hat Enterprise Linux Server from link:#{site.base_url}/downloads/[developers.redhat.com/downloads] or by following our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide]. When you register and download Red Hat Enterprise Linux Server through link:#{site.base_url}/[developers.redhat.com], the no-cost Red Hat Enterprise Linux Developer Suite subscription will be automatically added to your account.
 
+. *Where can I download Red Hat Enterprise Linux 6 or other releases?*
++
+Currently, only the most recent release of Red Hat Enterprise Linux is available from link:#{site.base_url}/[developers.redhat.com]. All releases of Red Hat Enterprise Linux are available on the customer portal, link:https://access.redhat.com/[access.redhat.com]. In order to get your no-cost subscription, you must first register at link:#{site.base_url}/[developers.redhat.com].
+
 . *When I try to register on link:#{site.base_url}/[developers.redhat.com] and download the software, I get an error that JavaScript is not enabled, but I've already got it enabled?*
 +
 JavaScript is required for the registration and download process on link:#{site.base_url}/[developers.redhat.com]. If JavaScript is enabled and you are still getting errors, it is possible that pop-up blockers, tracking blockers, or anti-malware software might be interfering. Try disabling them for link:#{site.base_url}/[developers.redhat.com].
 +
-
-. *Where can I download Red Hat Enterprise Linux 6 or other releases?*
-+
-Currently, only the most recent release of Red Hat Enterprise Linux is available from link:#{site.base_url}/[developers.redhat.com]. All releases of Red Hat Enterprise Linux are available on the customer portal, link:https://access.redhat.com/[access.redhat.com]. In order to get your no-cost subscription, you must first register and download through link:#{site.base_url}/downloads/[developers.redhat.com/downloads]. You do not have to complete the download to get your subscription, but you must go through the registration to the point where the download begins.
 
 . *I've enabled JavaScript and disabled pop-up blockers, but I still can't download the software. Is there any other way to get it?*
 +
@@ -183,7 +183,7 @@ During the registration and download process at link:#{site.base_url}/[developer
 
 . *During system registration, when I click _Attach_, I get an error message: “No service level will cover all installed products”, or "User is not able to register with any orgs.” How do I resolve this?*
 +
-These errors indicate that the Red Hat user you logged in as doesn't have a current subscription. The no-cost subscription is added to your account when you register and download through link:#{site.base_url}/[developers.redhat.com]. Check that your subscription got added to your account at link:https://access.redhat.com/management/[access.redhat.com/management]. You should see an active subscription for _Red Hat Enterprise Linux Developer Suite_. If a subscription was not added to your account, log in to link:#{site.base_url}/[developers.redhat.com] and try the link:#{site.base_url}/downloads[download] again. Note: You do not need to download the whole file again, you can cancel the download after it starts. Now, go back to link:https://access.redhat.com/management/[access.redhat.com/management] and see if the subscription was added to your account.
+These errors indicate that the Red Hat user you logged in as doesn't have a current subscription. The no-cost subscription is added to your account when you register at link:#{site.base_url}/[developers.redhat.com]. Check that your subscription got added to your account at link:https://access.redhat.com/management/[access.redhat.com/management]. You should see an active subscription for _Red Hat Enterprise Linux Developer Suite_. If a subscription was not added to your account, log in to link:#{site.base_url}/[developers.redhat.com] and try the link:#{site.base_url}/downloads[download] again. Note: You do not need to download the whole file again, you can cancel the download after it starts. Now, go back to link:https://access.redhat.com/management/[access.redhat.com/management] and see if the subscription was added to your account.
 +
 If you are still unable to get a subscription, see <<Contacting Red Hat for assistance>>.
 
