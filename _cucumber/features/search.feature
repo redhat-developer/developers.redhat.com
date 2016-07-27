@@ -57,7 +57,7 @@ Feature: Search Page
     Given I am on the Home page
     When I search for "Containers"
     Then the search results page is displayed
-    And I should see text "Showing "1-10" of "191" results"
+    And I should see text "Showing "1-10" of results
 
   Scenario: Typing multiple words such as "eap 7 download" in the search box from the search header (like on the homepage), should retain the spaces.
     Given I am on the Home page
