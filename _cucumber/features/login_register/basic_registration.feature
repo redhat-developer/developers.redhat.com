@@ -44,13 +44,13 @@ Feature: Basic personal registration
   Scenario: Duplicate email validation - Check it is not possible to create new account with an email already registered on RHD.
     Given I am on the Registration page
     When I try to register with an existing RHD registered email
-    Then I should see a "email" error with "Email already exists. Log In"
+    Then I should see a "email" error with "User account for this email already exists. Log In"
 
   @site_user
   Scenario: Duplicate email validation - Check it is not possible to create new account with an email already registered on OpenShift.com.
     Given I am on the Registration page
     When I try to register with an existing OpenShift registered email
-    Then I should see a "email" error with "Email already exists. Log In"
+    Then I should see a "email" error with "User account for this email already exists. Log In"
 
   @site_user @smoke
   Scenario Outline: Basic registration field level validation
