@@ -129,7 +129,3 @@ And(/^I click on the X to clear search term$/) do
   @page.search.click_clear_search
 end
 
-
-Then(/^I should see text "Showing "(\d+)\-(\d+)" of "(.*)" results"$/) do |arg1, arg2, arg3|
-  @page.search.results_text.should =~ /Showing #{arg1}-#{arg2} of \d{3} results/
-end
