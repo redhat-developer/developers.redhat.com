@@ -285,8 +285,7 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-image: cdn('http://static.jboss.org/_root/images/rhd/hero/RHDev_homehero_tablet__eap7launch_14jun2016.png');
-    &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_community_12apr2016.jpg'); }
+    background-color: #CC0000;
     .homepage-getstarted {
       min-height: 240px;
     }
@@ -329,8 +328,7 @@ ul.homepage-resources {
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    background-image: cdn('http://static.jboss.org/_root/images/rhd/hero/RHDev_homehero_mobile_eap7launch_14jun2016.png');
-    &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_community_12apr2016.jpg'); }
+    background-color: #CC0000;
   }
   .spotlights-container {
     flex-direction: column;
