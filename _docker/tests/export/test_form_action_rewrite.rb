@@ -29,6 +29,12 @@ class TestFormActionRewrite < MiniTest::Test
     html_document.css("##{form_id}").first.attributes['action'].value
   end
 
+  def test_should_rewrite_ok_with_angular_links
+    @form_action_rewrite.rewrite_form_target_urls('docker',@export_directory)
+    containers_html = get_html_document("#{@export_directory}/containers.html")
+    assert_equal('{{blah.test[0]}}',containers_html.css("#angular-link").first.attributes['href'].value)
+  end
+
   def test_should_rewrite_form_action_urls
 
     @form_action_rewrite.rewrite_form_target_urls('docker',@export_directory)

@@ -1,3 +1,4 @@
+require 'cgi'
 require 'nokogiri'
 require_relative '../default_logger'
 
@@ -35,9 +36,9 @@ class FormActionRewrite
 
       if modified
         @log.info("- Modified form target(s) in file '#{html_file}', flushing output to disk")
-        html_to_write = File.open(html_file,'w')
-        doc.write_to(html_to_write)
-        html_to_write.close
+        File.open(html_file,'w') do | file |
+          file.write(CGI::unescape(doc.to_html))
+        end
       else
         @log.info("- No modifications required to file '#{html_file}'")
       end
