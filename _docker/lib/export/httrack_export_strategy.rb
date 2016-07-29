@@ -1,4 +1,5 @@
 require_relative '../default_logger'
+require_relative 'form_action_rewrite'
 
 #
 # A class that delegates to Httrack to export a site given the list of URLs.
@@ -10,9 +11,10 @@ require_relative '../default_logger'
 #
 class HttrackExportStrategy
 
-  def initialize(process_runner, export_inspector)
+  def initialize(process_runner, export_inspector, form_action_rewrite)
     @process_runner = process_runner
     @export_inspector = export_inspector
+    @form_action_rewrite = form_action_rewrite
     @log = DefaultLogger.logger
   end
 
@@ -67,6 +69,7 @@ class HttrackExportStrategy
     end
 
     exported_to = "#{export_directory}/#{determine_export_directory_from_drupal_host(drupal_host)}"
+    @form_action_rewrite.rewrite_form_target_urls(drupal_host, exported_to)
     @export_inspector.inspect_export(links_file, exported_to)
     exported_to
   end
