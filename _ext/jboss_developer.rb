@@ -95,11 +95,6 @@ module JBoss
           end
           mod_content = doc.to_html
 
-          # HACKS!! Horrible, nasty hacks to preserve angular escaping in hrefs, possibly other places as well
-          mod_content.gsub!(/%7B/, '{')
-          mod_content.gsub!(/%7D/, '}')
-          mod_content.gsub!(/%5B/, '[')
-          mod_content.gsub!(/%5D/, ']')
           mod_content.freeze
 
           resp = @drupal.send_page page, mod_content

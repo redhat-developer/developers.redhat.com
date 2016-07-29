@@ -35,7 +35,7 @@
           / Title
           td.title
             p
-              a(ng-href="{{item.fields.sys_url_view | urlFix}}" )
+              a(href="" ng-href="{{item.fields.sys_url_view | urlFix}}" )
                 | {{item.fields.sys_title | firstIfArray}}
                 i.fa.fa-external-link(ng-hide="item | checkInternal")
             span.contributor(data-sys-contributor="{{item.fields.sys_author | firstIfArray}}")

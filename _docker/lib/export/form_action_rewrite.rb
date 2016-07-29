@@ -37,7 +37,7 @@ class FormActionRewrite
       if modified
         @log.info("- Modified form target(s) in file '#{html_file}', flushing output to disk")
         File.open(html_file,'w') do | file |
-          file.write(CGI::unescape(doc.to_html))
+          file.write(doc.to_html)
         end
       else
         @log.info("- No modifications required to file '#{html_file}'")
