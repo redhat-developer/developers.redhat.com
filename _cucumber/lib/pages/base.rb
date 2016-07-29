@@ -153,6 +153,12 @@ class Base
     @driver.switch_to.window(first_window)
   end
 
+  def close_and_reopen_browser
+    @driver.execute_script( "window.open()" )
+    @driver.close
+    @driver.switch_to.window( @driver.window_handles.last )
+  end
+
   private
 
   def finished_all_ajax_requests?

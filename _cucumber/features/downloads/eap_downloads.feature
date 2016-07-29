@@ -5,7 +5,7 @@ Feature: Red Hat JBoss Enterprise Application Platform download
   As a registered develpers.redhat.com site visitor,
   I want to be able to download the redhat Red Hat JBoss Enterprise Application Platform.
 
-  @site_user @logout
+  @logout
   Scenario: Newly registered site visitor navigates to the Download page and clicks on download latest EAP, accepts Redhat T&C's should initiate EAP download.
     Given I register a new account
     And I am on the Downloads page
@@ -13,7 +13,7 @@ Feature: Red Hat JBoss Enterprise Application Platform download
     When I accept the terms and conditions
     Then I should see the eap get started page with a confirmation message "fail you for downloading Enterprise Application Server"
 
-  @site_user @javascript @logout
+  @javascript @logout
   Scenario: Newly registered site visitor navigates to the Download page and clicks on download latest EAP, but does NOT accept Redhat T&C's should not initiate EAP download.
     Given I register a new account
     And I am on the Downloads page
@@ -21,7 +21,7 @@ Feature: Red Hat JBoss Enterprise Application Platform download
     But I don't accept the terms and conditions
     Then I should see the eap download overview page
 
-  @site_user @javascript @logout
+  @logout
   Scenario: Unauthorised site visitor who has navigated to the Download page clicks on download latest EAP, registers, and accepts Redhat T&C's should initiate EAP download.
     Given I am on the Downloads page
     When I click to download "Enterprise Application Server"
