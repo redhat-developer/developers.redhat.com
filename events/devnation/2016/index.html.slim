@@ -34,7 +34,6 @@ section.wide.wide-hero(class="#{page.hero_class}")
         .medium-15.columns.event-video
           = video_player(site.videos["https://www.youtube.com/v=#{a.youtube_id}"])
         .medium-9.columns
-          iframe.embedded-chat(src="https://kiwiirc.com/client/irc.kiwiirc.com/?&theme=mini#devnation2016")
         .large-24.columns
           span
             .session-links.y-centered
@@ -59,15 +58,6 @@ section.wide.wide-hero(class="#{page.hero_class}")
             p #{a.speaker_intro}
           - if a.meetup_id
             a.button.rsvp-button(href='http://www.meetup.com/JBoss-User-Group-Worldwide/events/#{a.meetup_id}/') RSVP
-  section
-      .row
-        .large-24.columns.divider
-          h3.caps DevOps Live
-          .row
-            .large-15.columns
-              = video_player(site.videos["https://www.youtube.com/v=wMTgIIJ-oqQ"])
-          p A live demonstration of Container-based microservices pushed through a continuous deployment pipeline.
-
   section
       .row
         .large-24.columns
