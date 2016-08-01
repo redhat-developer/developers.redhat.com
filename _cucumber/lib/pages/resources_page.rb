@@ -2,16 +2,25 @@ require_relative 'base'
 
 class ResourcesPage < Base
 
-  RESOURCES_PAGE   =  { css: '.resources' }
-  RESULT_ROW       =  { css: '.result' }
-  RESULT_DATE      =  { css: '.result-details .created-date' }
-  BLOG_POSTS       =  { id: 'blogposts' }
-  BOOKS            =  { id: 'book' }
-  CODE_ARTIFACTS   =  { id: 'code' }
-  GET_STARTED      =  { id: 'get-started' }
-  KNOWLEDGEBASE    =  { id: 'knowledge' }
-  VIDEO            =  { id: 'video' }
-  VIDEO_IMG        =  { css: '.icon-RHDev_-resources_icons_blogpost' }
+  LOADING            =  { class: 'loader'}
+  RESOURCES_PAGE     =  { css: '.resources' }
+  KEYWORD_FIELD      =  { css: '.search_field' }
+  RESULT_ROW         =  { css: '.result' }
+  RESULT_DATE        =  { css: '.result-details .created-date' }
+  BLOG_POSTS         =  { id: 'blogposts' }
+  BOOKS              =  { id: 'book' }
+  CODE_ARTIFACTS     =  { id: 'code' }
+  GET_STARTED        =  { id: 'get-started' }
+  KNOWLEDGEBASE      =  { id: 'knowledge' }
+  VIDEO              =  { id: 'video' }
+  TAGS_LIST          =  { class: 'tags-list'}
+  TAGS               =  { class: 'tag'}
+  FILTER_BY_PRODUCT  =  { class: 'search-by-product' }
+  FILTER_BY_DATE     =  { class: 'publish-date' }
+  START_DATE         =  { class: 'start-date' }
+  END_DATE           =  { class: 'end-date' }
+  RESULTS_TITLE      = { css: '.results-title'}
+
 
   def initialize(driver)
     super
@@ -19,7 +28,14 @@ class ResourcesPage < Base
     verify_page('Discover the developer materials Red Hat has to offer')
     wait_for(20) {
       questions = find_elements(RESULT_ROW)
-      questions.size == 10
+      displayed?(LOADING) == false && questions.size == 10
+    }
+  end
+
+  def loaded?
+    wait_for(20) {
+      questions = find_elements(RESULT_ROW)
+      displayed?(LOADING) == false && questions.size == 10
     }
   end
 
@@ -34,26 +50,38 @@ class ResourcesPage < Base
     case type.downcase
       when 'blog posts'
         click_on(xpath: "//label[@for='blogposts']")
-        wait_for { find(BLOG_POSTS).attribute('checked') == 'true' }
       when 'book'
         click_on(xpath: "//label[@for='book']")
-        wait_for { find(BOOKS).attribute('checked') == 'true' }
       when 'code artifact'
         click_on(xpath: "//label[@for='code']")
-        wait_for { find(CODE_ARTIFACTS).attribute('checked') == 'true' }
       when 'get started'
         click_on(xpath: "//label[@for='get-started']")
-        wait_for { find(GET_STARTED).attribute('checked') == 'true' }
       when 'knowledgebase article / solution'
         click_on(xpath: "//label[@for='knowledge']")
-        wait_for { find(KNOWLEDGEBASE).attribute('checked') == 'true' }
       when 'video'
         click_on(xpath: "//label[@for='video']")
-        wait_for { find(VIDEO).attribute('checked') == 'true' }
       else
         raise("#{type} not found")
     end
     wait_for_ajax
+    wait_for { displayed?(LOADING) == false }
+  end
+
+  def filter_by_product(product)
+    select(FILTER_BY_PRODUCT, product)
+    sleep(1.5) # slight delay to wait for search to kick-off
+    wait_for { displayed?(LOADING) == false }
+  end
+
+  def filter_by_date(date_type)
+    select(FILTER_BY_DATE, date_type)
+    sleep(1.5) # slight delay to wait for search to kick-off
+    wait_for { displayed?(LOADING) == false }
+  end
+
+  def results_title
+    wait_for { displayed?(RESULTS_TITLE) }
+    text_of(RESULTS_TITLE)
   end
 
   def results
@@ -73,6 +101,29 @@ class ResourcesPage < Base
       results << result.text
     end
     results
+  end
+
+  def results_contain_img_for(type)
+    elements = find_elements(css: ".result-icon .icon-RHDev_-resources_icons_#{type.downcase}")
+    elements.size == 10
+  end
+
+  def keyword_field
+    find(KEYWORD_FIELD)
+  end
+
+  def keyword_search(term)
+    wait_for { displayed?(KEYWORD_FIELD) }
+    type(KEYWORD_FIELD, term)
+    sleep(1.5) # slight delay to wait for search to kick-off
+    wait_for { displayed?(LOADING) == false }
+  end
+
+  def tags
+    tags = []
+    row = find_elements(TAGS)
+    row.each { |tag| tags << tag.text }
+    tags
   end
 
 end

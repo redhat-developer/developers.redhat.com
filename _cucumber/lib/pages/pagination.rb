@@ -3,12 +3,12 @@ require_relative 'base'
 class Pagination < Base
 
   RESULTS_TEXT             = { css: '#paginator > span' }
-  PAGINATION               = { class: 'pagination' }
+  PAGINATION               = { id: 'paginator' }
   CURRENT_LINK             = { class: 'current' }
 
   def initialize(driver)
     super
-    wait_for { displayed?(PAGINATION) }
+    wait_for { displayed?(PAGINATION) && displayed?(RESULTS_TEXT) }
   end
 
   def results_text
@@ -25,7 +25,7 @@ class Pagination < Base
   end
 
   def has_pagination_with(i)
-    wait_for(12) { displayed?(SEARCH_RESULTS_CONTAINER) && displayed?(PAGINATION) }
+    wait_for(12) { displayed?(PAGINATION) }
     displayed?(css: "#pagination-#{i}")
   end
 
@@ -48,15 +48,19 @@ class Pagination < Base
   end
 
   def click_pagination(link)
+    footer = find(css: ".bottom")
+    footer.location_once_scrolled_into_view
     case link
       when 'first', 'next', 'last'
         wait_for { displayed?(css: "#pagination-#{link}") }
         click_on(css: "#pagination-#{link}")
       when 'previous'
         wait_for { displayed?(css: "#pagination-prev") }
+        hover_on(css: "#pagination-prev")
         click_on(css: "#pagination-prev")
       else
         wait_for { displayed?(css: "#pagination-#{link.to_i-1}") }
+        hover_on(css: "#pagination-#{link.to_i-1}")
         click_on(css: "#pagination-#{link.to_i-1}")
     end
     wait_for_ajax
