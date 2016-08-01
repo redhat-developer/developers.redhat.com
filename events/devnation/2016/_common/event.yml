@@ -9,14 +9,14 @@ live_events:
     date: 06/28/2016 00:00:00 UTC
     youtube_id: EC2rk9Jh5Ps
     abstract:
-        "Full description coming soon."
-    speaker: Rachel Laycock - ThoughtWorks; Matthew Hicks & Ashesh Badani - Red Hat; David Aronchick - Google
+        "There are several factors to adopting the practices of Continuous Delivery. Most organizations start with tools. Should we adopt PaaS, is a container eco-system the right approach? Sadly if you currently have any legacy software or infrastructure you will soon find that these are not the hard questions you need to answer. Adopting continuous delivery practices requires change that includes organizational structure, processes and architecture. You cannot tackle one without the other as Conway's Law states they are inherently intertwined. So how do you create an organizational culture, methodology and architecture that supports rapid delivery of software, whilst still keeping your legacy systems up and running? How do you avoid common pitfalls or anti-patterns, which will hinder your ability to deliver? In this talk, I will address patterns such as micro-services, evolutionary architecture and empowered x-functional teams, which can speed up your delivery, but are not a free lunch. And how you move from your current monolith to adoption of these patterns."
+    speaker: Rachel Laycock - ThoughtWorks
   - title: "DevNation Afternoon General Session (Part 2)"
     date: 06/28/2016 00:00:00 UTC
     youtube_id: 0naQKSU0oWs
     abstract:
-        "Full description coming soon."
-    speaker: Rachel Laycock - ThoughtWorks; Matthew Hicks & Ashesh Badani - Red Hat; David Aronchick - Google
+        "Ashesh discusses cloud development and deployment using OpenShift; Matt explains OpenShift 3.0 with Kubernetes enhancements; David takes us into Kubernetes 1.3 details."
+    speaker: Matthew Hicks & Ashesh Badani - Red Hat; David Aronchick - Google
 sessions:
   - title: "Red Hat Mobile Application Platform: A walk-through"
     date: "MONDAY, JUNE 27: 1:15 p.m. to 2:15 p.m."
@@ -53,6 +53,7 @@ sessions:
     date: "MONDAY, JUNE 27: 2:30 p.m. to 3:30 p.m."
     abstract: What happens when on-demand workspaces powered by Docker are transformed into a new kind of Java IDE accessed through your browser? This session introduces Eclipse Che and shows how a cloud IDE can make developing Java projects fast and powerful. We'll compare Intellisense, content assist, machines, plug-in architecture, and performance when compared to traditional desktop IDEs. Che includes numerous forms of refactoring and uses Docker to initiate environments and machines to build and run code. We'll also cover Maven, Ant, and Gradle extensions and discusses how Che can be extended with custom code templates, Dockerfiles, and plug-ins (authored in Java, of course). Additionally, Che has a Kubernetes and OpenShift plug-in, which provides duality of environments between development and production, all structured on container topologies. We'll discuss how developers are marrying their code with containers and keeping those topologies synchronized between different environments, and the role that IDEs must play in this world.
     speaker: Tyler Jewell, CEO, Codenvy
+    youtube_id: iUxGAb9EKUU
   - title: "Learning from astronauts how to be better developers"
     date: "MONDAY, JUNE 27: 2:30 p.m. to 3:30 p.m."
     abstract: "As developers, we're constantly trying to improve the way we build systems and work as a team. Agile, DevOps, and Lean are all frameworks to help us be better developers and write better systems, but it still seems to be a constant struggle. Commander Chris Hadfield is a bona fide astronaut, test pilot, and rocket scientist, and he commanded the International Space Station for 3 months, making waves back on earth with his cover of Bowie’s Space Oddity. On returning, he wrote a book about everything he learned on his journey to becoming an astronaut. You’d be surprised by how much of it applies to application development. Application development should be easy—it ain't rocket science. In this session, you'll learn: - How Russia represents DevOps and Lean development, while America represents the waterfall method - How to create robust systems by thinking, “What could kill me next?” - How astronauts make amazing teams, and how to apply that in our own environments."
@@ -213,6 +214,7 @@ sessions:
     date: "WEDNESDAY, JUNE 29: 11:30 a.m. to 12:30 p.m."
     abstract: "Large-scale Javascript applications benefit from a modular approach that let code be reused both within the application and across repeated implementations. In this session, we'll look at the modular approach used to build reusable Javascript modules in the Red Hat mobile field workforce management application (WFM) showcased in this year's Summit middleware keynote demo. Reusable modules for WFM are packaged as node package manager (npm) modules, providing a consistent format for both server and client sides using Node.js and Browserify. Modules are loosely coupled using the Mediator pattern and they broadcast user actions and state changes giving the application and other modules the opportunity to hook into those events. Additionally, visual components are packaged in a framework-agnostic manner, providing reusable UI components. You'll leave this session understanding the challenges faced when building reusable modules for large-scale applications, and the solutions employed in building out the reusable WFM modules."
     speaker: Brian Leathem, Principal Software Engineer, Red Hat
+    youtube_id: ATcfEwp55Qs
   - title: "Push it. Push it good: Continuous integration and deployment for the people"
     date: "WEDNESDAY, JUNE 29: 11:30 a.m. to 12:30 p.m."
     abstract: "We know how to code. We know how to test. But all too often, we’re disjointed in bringing our applications to life in production. In this practical session based on the lessons showcased in the Summit middleware keynote, we’ll walk through both the concepts and software that lets developers push to production with confidence. Join the Developer Experience Engineering team as we give you a chance to quickly get started with a full deployment pipeline for new applications, focusing on: * Testability as a first-class citizen * Using the cloud as an extension of your local development environment * Reviewing your changes in isolation in a production-like environment * A smooth merge process to get your changes upstream * Getting your stuff live, reliably and efficiently See how we brought everything to life on the big stage during the middleware keynote and take some lessons home to try yourself."
