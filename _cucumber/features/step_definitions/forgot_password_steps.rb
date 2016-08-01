@@ -1,14 +1,14 @@
 When(/^submit my email address$/) do
-  @page.forgot_password.enter_email(@site_user[:email])
+  @page.forgot_password.enter_email($site_user[:email])
 end
 
 And(/^I should receive an email containing a password reset link$/) do
-  password_reset_link = get_email(@site_user[:email])
+  password_reset_link = get_email($site_user[:email])
   expect(password_reset_link.to_s).to include('reset-credentials?')
 end
 
 When(/^I navigate to the password reset URL$/) do
-  password_reset_link = get_email(@site_user[:email])
+  password_reset_link = get_email($site_user[:email])
   @driver.get(password_reset_link)
 end
 
