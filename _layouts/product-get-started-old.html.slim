@@ -89,7 +89,7 @@ div(ng-app="dcp")
         = partial 'developer-materials-results.html.slim'
 
       .large-15.more-developer-materials
-        p: a(href="../learn") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
+        p: a(href="#{site.base_url}/products/#{page.product.id}/learn") More Quickstarts and Developer Materials for #{page.product.abbreviated_name} >>
 
     = javascripts('product-get-started', true) do
       script src="#{site.base_url}/javascripts/vendor/class.create.js"
