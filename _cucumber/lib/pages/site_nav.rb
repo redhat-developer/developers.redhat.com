@@ -29,6 +29,9 @@ class SiteNav < Base
 
   def logged_in?
     wait_for_ajax
+    if is_mobile?
+      toggle_menu
+    end
     wait_for(30) { displayed?(LOGGED_IN) && displayed?(LOGGED_IN_NAME) }
     wait_for { text_of(LOGGED_IN_NAME) != '' }
     text_of(LOGGED_IN_NAME)
@@ -36,29 +39,43 @@ class SiteNav < Base
 
   def logged_out?
     wait_for_ajax
+    if is_mobile?
+      toggle_menu
+    end
     wait_for(12) { displayed?(LOGIN_LINK) }
     displayed?(REGISTER_LINK)
   end
 
   def click_login
+    if is_mobile?
+      toggle_menu
+    end
     wait_for(30) { displayed?(LOGIN_LINK) }
     click_on(LOGIN_LINK)
   end
 
   def click_logout
+    if is_mobile?
+      toggle_menu
+    end
     wait_for(30) { displayed?(LOGOUT_LINK) }
     click_on(LOGOUT_LINK)
     wait_for_ajax
   end
 
   def click_register
+    if is_mobile?
+      toggle_menu
+    end
     wait_for { displayed?(REGISTER_LINK) }
     click_on(REGISTER_LINK)
   end
 
   def toggle_menu
-    click_on(MOBILE_MENU)
-    wait_for { displayed?(MOBILE_MENU_OPEN) }
+    unless displayed?(MOBILE_MENU_OPEN)
+      click_on(MOBILE_MENU)
+      wait_for { displayed?(MOBILE_MENU_OPEN) }
+    end
   end
 
   def toggle_menu_and_tap(menu_item)
@@ -70,8 +87,8 @@ class SiteNav < Base
   def navigate_to(link)
     visit
     wait_for_ajax
-    if text_of(MOBILE_MENU).include?('MENU')
-      click_on(MOBILE_MENU)
+    if is_mobile?
+      toggle_menu
       wait_for { displayed?(MOBILE_MENU_OPEN) }
       click_on(LOGIN_LINK) if link == 'login'
       click_on(REGISTER_LINK) if link == 'register'
@@ -79,6 +96,10 @@ class SiteNav < Base
       click_on(LOGIN_LINK) if link == 'login'
       click_on(REGISTER_LINK) if link == 'register'
     end
+  end
+
+  def is_mobile?
+    displayed?(MOBILE_MENU)
   end
 
   def click_on_nav_menu(menu_item)
@@ -99,6 +120,9 @@ class SiteNav < Base
         el = DOWNLOADS
       else
         raise("#{menu_item} not recognised")
+    end
+    if is_mobile?
+      toggle_menu
     end
     wait_for { displayed?(el) }
     click_on(el)
@@ -140,6 +164,9 @@ class SiteNav < Base
         el = DOWNLOADS
       else
         raise("#{menu_item} not recognised")
+    end
+    if is_mobile?
+      toggle_menu
     end
     displayed?(el)
   end

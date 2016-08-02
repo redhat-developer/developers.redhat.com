@@ -7,7 +7,12 @@ module ProductsHelper
         return data['name']
       when 'description'
         desc = data['index']['desc'].gsub("\n", ' ')
+        if desc.include?("'")
+          desc.gsub("'", "’")
+        end
         return desc.chomp(' ')
+      when 'forum_desc'
+        return data['forum_desc']
       else
         raise("#{info} was not a valid product item, please check Products helper module in /lib/helpers")
     end

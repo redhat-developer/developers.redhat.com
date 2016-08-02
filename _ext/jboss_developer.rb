@@ -1,3 +1,4 @@
+require 'cgi'
 require 'uri'
 require 'aweplug/helpers/cdn'
 require 'aweplug/helpers/resources'
@@ -84,10 +85,23 @@ module JBoss
 
       def transform site, page, content
         if page.output_extension.include?('htm')
-          resp = @drupal.send_page page, content
+          # Strip trailing slashes for drupal export
+          doc = Nokogiri::HTML::DocumentFragment.parse(content, Encoding::UTF_8.to_s)
+
+          doc.css('a').each do |a|
+            if a['href'] && a['href'].end_with?('/')
+              a['href'] = a['href'][0..-2]
+            end
+          end
+          mod_content = doc.to_html
+
+          mod_content.freeze
+
+          resp = @drupal.send_page page, mod_content
+
           until resp.success? do
             puts "Error making drupal request to '#{page.output_path}', retrying..."
-            resp = @drupal.send_page page, content
+            resp = @drupal.send_page page, mod_content
           end
         end
         content # Don't mess up the content locally in _site
@@ -375,18 +389,20 @@ module Aweplug
       #
       # Returns the Faraday::Response
       def update_page(page, content)
-        payload = create_payload page, content
         path = create_path page
+        $LOG.verbose "Updating page  with content '#{page.output_path}'"
+        payload = create_payload page, content
         patch path, payload
-      end
+     end
 
       # Public: Sends a POST request to Drupal to create a new page.
       #
       # page      - Page object from awestruct
-      # content   - Transformed content of the page
+      # content   - Transformed content of the page$
       #
       # Returns the Faraday::Response
       def create_page(page, content)
+        $LOG.verbose "Creating page '#{@base_url}#{create_path(page)}' from content '#{page.output_path}'"
         payload = create_payload page, content
         post 'entity', 'node', payload
       end
@@ -404,7 +420,7 @@ module Aweplug
                    _links: {type: {href: File.join(@base_url, '/rest/type/node/', drupal_type)}},
                    body: [{value: content,
                            summary: page.description,
-                           format: 'full_html'}],
+                           format: (page.drupal_format || 'full_html')}],
                            path: {alias: File.join('/', path)}
         }
         if page.drupal_type == 'rhd_solution_overview'
@@ -510,7 +526,7 @@ module Aweplug
         resp = @faraday.post do |req|
           req.url '/user' + '/' + 'login'
           req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-          req.body = "name=#{username}&pass=#{password}&form_id=user_login_form"
+          req.body = URI.encode_www_form([["name", username], ["pass", password], ["form_id", "user_login_form"]])
           if @logger
             @logger.debug "request body: #{req.body}"
           end

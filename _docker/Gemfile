@@ -5,4 +5,8 @@ gem 'docker-api', :require => 'docker'
 
 group :test do
   gem 'mocha', '~> 1.1'
+  # Useful for running the tests on the commandline, and technically they are required
+  gem 'minitest'
+  gem 'minitest-reporters'
+  gem 'nokogiri'
 end

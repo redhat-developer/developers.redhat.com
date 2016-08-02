@@ -51,6 +51,27 @@ The full range of httrack configuration options are available [here](https://www
 httrack has built-in caching that should make subsequent exports of the site quicker than the first run. The export process has been designed to make use of this cache. To make sure you get a cache hit when running an export
 you need to ensure that httrack is always exporting into the same directory. In you are running the export process in a Docker container, then using a volume mounted at `/export` is recommended to facilitate the cache hit.
 
+### Rsync
+
+You can provide an optional location to rsync the export of the site to. This should be in the form:
+
+`user@host:/path/to/rsync/to`
+
+There may be times when you want to rsync to a location in which the remote directory structure does not exist. In this case you can enclose the part of the
+target path to be created in `[` and `]`. For example:
+
+```
+rhd@filemgmt.jboss.org:[/my/target/directory]
+```
+
+In this example, the `/my/target/directory` structure will be created.
+
+Alternatively you can specify part of the path to be created:
+
+```
+rhd@filemgmt.jboss.org:/it-stg-main/staging[/pr/123/build/345]
+```
+
 ### Control.rb integration
 
 The export process is integrated into control.rb. It is supported in the following environments:
@@ -69,8 +90,9 @@ You must ensure that the `export` service definition in the environment of your 
 
 #### Running the export in drupal-dev environment
 
-It is possible to run the export in the drupal-dev environment if you want to test it. However to do so you must set an environment property named `DOCKER_HOST_IP`. This variable must be set to the *public* IP of your Drupal
-instance.
+It is possible to run the export in the drupal-dev environment. As part of the drupal-dev environment definition, an Apache instance is started at docker:9000. Simply use the following after you have
+`--run-the-stack` to get a static export of the content from Drupal to this instance:
 
-The reason why this is required is so that the export process can resolve public address of the Drupal instance from within a Docker container. Because of the wide variety of development platforms e.g. docker-machine with Virtualbox for Macs,
-Linux or people running in VMs, there is no way to sensibly default this value, so you must specify it. 
+```
+bundle exec control.rb -e drupal-dev --export
+```

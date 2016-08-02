@@ -12,6 +12,7 @@ class Forums < Base
   FORUMS_INFRASTRUCTURE                           = { id: 'infrastructure' }
   FORUMS_INTEGRATION_AND_AUTOMATION               = { id: 'integration_and_automation' }
   FORUMS_ACCELERATED_DEVELOPMENT_AND_MANAGEMENT   = { id: 'accelerated_development_and_management' }
+  RUNTIMES                                        = { id: 'runtimes' }
 
   def initialize(driver)
     super
@@ -20,7 +21,7 @@ class Forums < Base
 
   def forums_product_sections
     titles = []
-    elements = [FORUMS_INFRASTRUCTURE, FORUMS_ACCELERATED_DEVELOPMENT_AND_MANAGEMENT, FORUMS_INTEGRATION_AND_AUTOMATION]
+    elements = [FORUMS_INFRASTRUCTURE, FORUMS_ACCELERATED_DEVELOPMENT_AND_MANAGEMENT, FORUMS_INTEGRATION_AND_AUTOMATION, RUNTIMES]
     elements.each { |el|
       wait_for { displayed?(el) }
       titles << text_of(el)
@@ -46,7 +47,8 @@ class Forums < Base
 
   def forums_product_section_for(product)
     wait_for(20) { displayed?(id: "development-tool-#{product}") }
-    text_of(id: "development-tool-#{product}")
+    desc = text_of(id: "development-tool-#{product}")
+    desc.gsub("’", "'")
   end
 
   def forums_product_link_for(product)

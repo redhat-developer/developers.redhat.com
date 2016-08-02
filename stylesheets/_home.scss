@@ -5,39 +5,46 @@
 
 .homepage-main {
   color: $white;
-  background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_devnation_16jun2016.png');
-  &.hero2 { background-image: url('https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_community_12apr2016.jpg'); }
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: rgb(3, 3, 25);
+  background-color: #CC0000;
   & > .row {
     @include flexbox;
     @include align-items(center);
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    margin: 35px auto;
-    img {
-      max-width: 500px;
-    }
-    h2 {
-      font-weight: 700;
-      font-size: 3.2em;
+    margin: 30px auto;
+    h3 {
       color: $white;
-      margin-bottom: 0;
     }
-    p {
-      font-size: 1.3em;
+    span {
+      max-width: 500px;
+      display: block;
+      margin: 0 150px 0 auto;
+      h4{
+        text-align: right;
+        font-weight: 700;
+        color: #9ddbe9;
+        line-height: 1.1;
+        margin: .6em auto;
+        .keyword {
+          display: inline;
+          color: $white;
+          font-size: 115%;
+          font-style: italic;
+        }
+      }
     }
     a.button {
       min-width: 250px;
     }
   }
   .homepage-getstarted {
-    min-height: 330px;
+    min-height: 360px;
     padding: 20px;
-    background-color: rgba(3, 3, 25, 0.74);
+    background-color: rgba(3,3,3,0.74);
     h4 {
       color: #eaa400;
       margin-top: 20px;
@@ -278,8 +285,7 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_devnation_16jun2016.png');
-    &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_community_12apr2016.jpg'); }
+    background-color: #CC0000;
     .homepage-getstarted {
       min-height: 240px;
     }
@@ -307,12 +313,22 @@ ul.homepage-resources {
     width: 90% !important;
     padding: 2em !important;
   }
+  .homepage-main {
+    .homepage-cta {
+      img, a.button {
+        margin: 20px auto;
+        display: block;
+      }
+      h2, h5 {
+        text-align: center;
+      }
+    }
+  }
 }
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_devnation_16jun2016.png');
-    &.hero2 { background-image: url('http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_community_12apr2016.jpg'); }
+    background-color: #CC0000;
   }
   .spotlights-container {
     flex-direction: column;

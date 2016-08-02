@@ -25,12 +25,12 @@ type: Downloads
 
     asciidoc:
       #{page.product.abbreviated_name} is only available through a full Red Hat subscription.  Download #{page.product.abbrevaited_name} by following the link below to log into the Red Hat Customer Portal and download from there.
-  - if page.product.other_product
-    h4.download-link: a(href="#{page.product.customer_portal_download_url || 'https://access.redhat.com/downloads'}")
+  - if page.product.customer_portal_download_url
+    h4.download-link: a(href="#{page.product.customer_portal_download_url}")
       i.fa.fa-download>
       | Download #{page.product.abbreviated_name} from the Red Hat Customer Portal
   - else
-    h4.download-link: a(href="https://access.redhat.com/jbossnetwork/restricted/listSoftware.html")
+    h4.download-link: a(href="https://access.redhat.com/downloads")
       i.fa.fa-download>
       | Download #{page.product.abbreviated_name} from the Red Hat Customer Portal
     br

@@ -14,6 +14,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       @page.site_nav.visit('/stack-overflow/')
     when 'product forums'
       @page.site_nav.visit('/forums/')
+    when 'edit details'
+      @page.site_nav.get('https://developers.stage.redhat.com/auth/realms/rhd/account/')
     else
       @page.site_nav.visit("/#{page.downcase}/")
   end
@@ -96,11 +98,11 @@ Then(/^each Technologies sub-menu heading should contain a link to its retrospec
     href = @page.site_nav.get_href_for(sub_items)
     case sub_items.downcase
       when 'cloud'
-        expect(href).to eq "#{$host_to_test}/products#private_cloud"
+        expect(href).to eq "#{$host_to_test}/products/#private_cloud/"
       when 'accelerated development and management'
-        expect(href).to eq "#{$host_to_test}/products#development_and_management"
+        expect(href).to eq "#{$host_to_test}/products/#development_and_management/"
       else
-        expect(href).to eq "#{$host_to_test}/products##{sub_items.downcase.gsub(' ', '_')}"
+        expect(href).to eq "#{$host_to_test}/products/##{sub_items.downcase.gsub(' ', '_')}/"
     end
   end
 end
@@ -124,9 +126,9 @@ Then(/^each Communities sub\-menu item should contain a link to its retrospectiv
   table.hashes.each do |row|
     href = @page.site_nav.get_href_for("#{row['name']}")
     if row['name'] == 'Developers Blog'
-      expect(href).to eq 'http://developers.redhat.com/blog'
+      expect(href).to eq 'http://developers.redhat.com/blog/'
     else
-      expect(href).to eq "#{$host_to_test}/#{row['href']}"
+      expect(href).to eq "#{$host_to_test}/#{row['href']}/"
     end
   end
 end

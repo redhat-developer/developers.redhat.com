@@ -22,7 +22,7 @@ class Backup
     @backup_directory = backup_directory
     @backup_strategy = backup_strategy
     @drupal_tar_name = 'drupal-filesystem.tar.gz'
-    @drupal_database_sql_dump_name = 'drupal-db.sql'
+    @drupal_database_sql_dump_name = 'drupal-db.sql.gz'
   end
 
   #
@@ -45,7 +45,7 @@ class Backup
     sql_dump = "#{@backup_directory}/#{@drupal_database_sql_dump_name}"
     @log.info("Creating SQL dump '#{sql_dump}' of Drupal database...")
 
-    @process_runner.execute!("mysqldump #{@database_name} > #{sql_dump}")
+    @process_runner.execute!("mysqldump #{@database_name} | gzip > #{sql_dump}")
     @backup_strategy.add_file_to_backup(@drupal_database_sql_dump_name)
 
     @log.info('Successfully created SQL dump of Drupal database.')
@@ -93,7 +93,7 @@ if $0 == __FILE__
   log = DefaultLogger.logger
   log.info('Beginning backup of current environment')
   begin
-    process_runner = ProcessRunner.new(true);
+    process_runner = ProcessRunner.new
     backup = Backup.new(@DEFAULT_DRUPAL_FILESYSTEM_DIRECTORY, @DEFAULT_DATABASE_NAME, @DEFAULT_BACKUP_DIRECTORY, GitBackupStrategy.new(@DEFAULT_BACKUP_DIRECTORY, process_runner), process_runner)
     backup.execute(ARGV)
     Kernel.exit!(0)

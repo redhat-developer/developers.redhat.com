@@ -13,7 +13,7 @@ Feature: Technologies Page
       | INTEGRATION AND AUTOMATION |
       | MOBILE                     |
       | PRIVATE CLOUD              |
-      | RUNTIME                    |
+      | RUNTIMES                   |
     And I should see a list of available products
     And I should see a description of available products
 

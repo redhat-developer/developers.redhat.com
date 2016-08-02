@@ -20,6 +20,12 @@ class Options
         tasks[:environment_name] = environment
       end
 
+      opts.on('--rollback-site-to EXPORT_TO_USE', String, 'Rollback the current site to the specified export archive') do | export |
+        tasks[:build] = true
+        tasks[:awestruct_command_args] = ['--rm', 'rollback', "#{export}"]
+        tasks[:supporting_services] = []
+      end
+
       opts.on('--backup [BACKUP_NAME]', String, 'Take a backup of the environment') do |backup|
         tasks[:build] = true
         tasks[:awestruct_command_args] = ['--rm', 'backup', "#{backup}"]
@@ -29,6 +35,7 @@ class Options
       opts.on('--export [EXPORT_LOCATION]', String, 'Export all content from Drupal within the environment and rsync it to EXPORT_LOCATION') do | export_location |
         tasks[:build] = true
         tasks[:awestruct_command_args] = ['--rm', 'export']
+        tasks[:supporting_services] = []
         if !export_location.nil? && !export_location.empty?
           tasks[:awestruct_command_args] << export_location
         end
@@ -58,11 +65,13 @@ class Options
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
         tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
+        tasks[:supporting_services] = []
       end
 
       opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
         tasks[:decrypt] = true
         tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
+        tasks[:supporting_services] = []
       end
 
       opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
@@ -76,8 +85,8 @@ class Options
 
         ENV['HOST_TO_TEST'] = host
 
-        if ENV['PARALLEL_TEST'].to_s.empty?
-          ENV['PARALLEL_TEST']='true'
+        if ENV['RHD_TEST_PROFILE'].to_s.empty?
+          ENV['RHD_TEST_PROFILE']= 'parallel'
         end
 
         if ENV['RHD_DOCKER_DRIVER'].to_s.empty?
@@ -92,7 +101,7 @@ class Options
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
         tasks[:supporting_services] = [ENV['RHD_DOCKER_DRIVER']]
-        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']}"]
+        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']} RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"]
       end
 
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
@@ -115,6 +124,11 @@ class Options
         tasks[:kill_all] = true
         tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
       end
+
+      opts.on('--no-decrypt','Do not attempt to decrypt the secrets file (secrets are set in the environment)') do
+        tasks[:decrypt] = false
+      end
+
 
       # No argument, shows at tail.  This will print an options summary.
       opts.on_tail('-h', '--help', 'Show this message') do

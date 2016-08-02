@@ -22,6 +22,10 @@ class StackOverflow < Base
   def initialize(driver)
     super
     verify_page('Stack Overflow')
+    wait_for(20) {
+      questions = find_elements(QUESTION_ROW)
+      questions.size >= 10
+    }
   end
 
   def product_filter
@@ -132,7 +136,7 @@ class StackOverflow < Base
       end
       count += 1
     end
-    if result.eql? false
+    if result.eql? false || count == number_of_times
       raise("Scrolled page #{number_of_times} times, expected result to be true, but was false")
     end
   end
@@ -146,7 +150,9 @@ class StackOverflow < Base
         @question_element = t
         child_elements << t['class']
         if answer == 'with'
-          return @question_element, true if child_elements.include? 'callout qtn-answer display-answer'
+          unless child_elements.include? 'answer-count accepted-answer'
+            return @question_element, true if child_elements.include? 'callout qtn-answer display-answer'
+          end
         else
           return @question_element, true if !child_elements.include? 'callout qtn-answer display-answer'
         end

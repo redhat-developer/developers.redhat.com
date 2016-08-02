@@ -73,10 +73,11 @@ class Base
   end
 
   def displayed?(locator)
-    @driver.find_element(locator).displayed?
-    true
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-    false
+    result = @driver.find_elements(locator).size > 0
+    if result
+      result = @driver.find_element(locator).displayed?
+    end
+    result
   end
 
   def custom_displayed?(el, locator)
@@ -120,14 +121,13 @@ class Base
     raise("Expected page title to include #{page_title} but was #{title}") unless title.include?(page_title)
   end
 
-  def wait_for_ajax(timeout = 60, message = nil)
+  def wait_for_ajax(timeout = 30)
     end_time = ::Time.now + timeout
     until ::Time.now > end_time
       return if finished_all_ajax_requests?
       sleep 0.5
     end
-    message = "Timed out after #{timeout} waiting for ajax requests to complete" unless message
-    raise(message)
+    true
   end
 
   def current_window
@@ -148,11 +148,9 @@ class Base
 
   def switch_window(first_window)
     all_windows = @driver.window_handles
-    new_window = all_windows.select { |this_window| this_window != first_window }
+    all_windows.select { |this_window| this_window != first_window }
     @driver.close
-
     @driver.switch_to.window(first_window)
-
   end
 
   private

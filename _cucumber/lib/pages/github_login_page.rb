@@ -13,7 +13,7 @@ class GitHubPage < Base
   end
 
   def authorize_app
-    wait_for { displayed?(AUTHORIZE_PAGE) && displayed?(AUTHORIZE_APP_BTN) }
+    wait_for(12) { displayed?(AUTHORIZE_APP_BTN) }
     click_on(AUTHORIZE_APP_BTN)
   end
 

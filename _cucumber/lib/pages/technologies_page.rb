@@ -13,6 +13,9 @@ class Technologies < Base
   CLOUD                      = { id: 'private_cloud' }
   MOBILE                     = { id: 'mobile' }
   INTEGRATION_AND_AUTOMATION = { id: 'integration_and_automation' }
+  RUNTIME                    = { id: 'runtimes' }
+
+
 
   def initialize(driver)
     super
@@ -21,7 +24,7 @@ class Technologies < Base
 
   def product_titles
     titles = []
-    elements = [INFRASTRUCTURE, CLOUD, MOBILE, INTEGRATION_AND_AUTOMATION]
+    elements = [INFRASTRUCTURE, CLOUD, MOBILE, INTEGRATION_AND_AUTOMATION, RUNTIME]
     elements.each { |el| titles << text_of(el) }
     titles
   end

@@ -99,3 +99,14 @@ services:
       - RHD_JS_DRIVER
       - RHD_DOCKER_DRIVER
       - BUILD_URL
+      - RHD_TEST_PROFILE
+
+  docker_chrome:
+   image: selenium/node-chrome
+   volumes:
+    - /dev/shm:/dev/shm
+   environment:
+    - HUB_PORT_4444_TCP_ADDR=selhub
+    - DBUS_SESSION_BUS_ADDRESS=/dev/null
+   depends_on:
+    - selhub

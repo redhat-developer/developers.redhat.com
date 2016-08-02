@@ -107,21 +107,30 @@ class Browser
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     client = Selenium::WebDriver::Remote::Http::Default.new
-    client.timeout = 120
-    Selenium::WebDriver.for(:remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
+    client.timeout = 300 # Browser launch can take a while
+    begin
+      attempts = 0
+      Selenium::WebDriver.for(:remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
+    rescue Net::ReadTimeout => e
+      if attempts == 0
+        attempts += 1
+        retry
+      else
+        raise(e)
+      end
+    end
   end
 
   # needed to set the custom download capabilities in oder to test downloads
   def browserstack_chrome
-    job_name = "RHD Acceptance Tests - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
+    job_name = "RHD Acceptance Tests - Chrome on Windows 8.1: #{Time.now.strftime '%Y-%m-%d %H:%M'}"
 
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     caps['chromeOptions']['args'] = %w[--disable-popup-blocking --ignore-ssl-errors --disable-download-protection]
     caps['browser'] = 'Chrome'
-    caps['browser_version'] = '49.0'
-    caps['os'] = 'OS X'
-    caps['os_version'] = 'El Capitan'
+    caps['os'] = 'Windows'
+    caps['os_version'] = '8.1'
     caps['project'] = job_name
     caps['browserstack.debug'] = 'true'
     caps['acceptSslCerts'] = 'true'

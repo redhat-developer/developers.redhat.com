@@ -39,9 +39,11 @@ class DrupalPageUrlListGenerator
     document = Nokogiri::XML(sitemap_contents)
     links = []
     document.css('url loc').each do | link |
-      links << link.content
+      uri = URI.parse(link.content)
+      links << "http://#{@drupal_host}#{uri.path}"
     end
 
+    links.uniq!
     # Ensure that we also grab robots.txt which will not appear in the sitemap.xml
     links << "http://#{@drupal_host}/robots.txt"
   end
@@ -75,7 +77,24 @@ class DrupalPageUrlListGenerator
     write_links_to_file(links)
   end
 
+  def save_sitemap(sitemap, save_location)
+    @log.info('Saving sitemap file')
 
-  private :fetch_sitemap_contents, :parse_sitemap, :write_links_to_file
+    FileUtils.rm(save_location, :force => true)
+    FileUtils.mkdir_p(File.dirname(save_location))
+    FileUtils.touch(save_location)
 
+    File.open(save_location, 'w+') do | file |
+      # We need to rewrite the URI to point to production, but only the loc nodes
+      sitemap_xml = Nokogiri::XML(sitemap)
+      sitemap_xml.xpath('//xmlns:loc').each do |loc|
+        loc.content = loc.content.gsub(%r{http://.*?/}, 'http://developers.redhat.com/')
+      end
+      file.puts(sitemap_xml.to_s)
+    end
+
+    @log.info("Successfully wrote sitemap contents to '#{save_location}'")
+  end
+
+  private :parse_sitemap, :write_links_to_file
 end

@@ -18,6 +18,7 @@ title: Forums | Red Hat Developers
             = category.name.to_s.gsub('_', ' ').upcase
       - category.products.each do |p|
         - if site.products[p]
+        - unless site.products[p].ignore_forums
           - product = site.products[p]
           - forum_url = (product.forum_url.nil? ? "#{site.product_forum_base_url}#{product.id}/" : product.forum_url)
           - unless ["rhel","mobileplatform","openshift"].include? product.id
@@ -26,7 +27,8 @@ title: Forums | Red Hat Developers
                 .large-12.columns
                   h4
                     a(id="#{product.id}" href="#{forum_url}" target="_blank")
-                      = product.name
+                      = product.forum_title || product.name
                       i.fa.fa-comments-o
                 .large-12.columns
-                  = product['index'].desc
+                  - forum_desc = product.forum_desc ? "<div class=\"paragraph\"><p>#{product.forum_desc}</p></div>" : null
+                  = forum_desc || product['index'].desc

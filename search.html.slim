@@ -1,6 +1,7 @@
 ---
 layout: base
 title: Search Results
+drupal_format: as_is_html
 ---
 
 div(ng-app="search")
@@ -32,7 +33,7 @@ div(ng-app="search")
           span.loader(ng-show="loading")
           .results(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
             .result.result-search(ng-repeat="result in results" ng-init="r = result")
-              h4: a(href="{{r.fields.sys_url_view[0]}}") {{r.fields.sys_title[0]}}
+              h4: a(href="" ng-href="{{r.fields.sys_url_view[0]}}") {{r.fields.sys_title[0]}}
               / section.meta-data
                 span.created-date(data-updated="{{r.fields.sys_updated[0] | timestamp}}") {{r.fields.sys_updated[0] | timeAgo}}
               p(ng-bind-html="r | description")

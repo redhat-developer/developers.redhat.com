@@ -23,8 +23,10 @@ class TestExport < MiniTest::Test
 
     @cron_invoker.expects(:invoke_cron!)
     @page_url_list_generator.expects(:generate_page_url_list!).returns(url_list_file)
+    @page_url_list_generator.expects(:fetch_sitemap_contents)
+    @page_url_list_generator.expects(:save_sitemap).with(nil, '/export/foo/sitemap.xml')
     @export_strategy.expects(:export!).with(url_list_file, @drupal_host, @export_directory).returns('/export/foo')
-    @rsync_handler.expects(:rsync_static_export).with('/export/foo', @rsync_destination)
+    @rsync_handler.expects(:rsync_static_export).with('/export/foo', @rsync_destination, true)
 
     @export.export!
   end
@@ -36,6 +38,8 @@ class TestExport < MiniTest::Test
 
     @cron_invoker.expects(:invoke_cron!)
     @page_url_list_generator.expects(:generate_page_url_list!).returns(url_list_file)
+    @page_url_list_generator.expects(:fetch_sitemap_contents)
+    @page_url_list_generator.expects(:save_sitemap).with(nil, '/export/foo/sitemap.xml')
     @export_strategy.expects(:export!).with(url_list_file, @drupal_host, @export_directory).returns('/export/foo')
     @rsync_handler.expects(:rsync_static_export).with('/export/foo', @rsync_destination).never
 

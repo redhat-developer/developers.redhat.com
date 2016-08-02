@@ -29,6 +29,21 @@ search.service('searchService',function($http, $q) {
 });
 
 /*
+  Directive to add target=_blank to KCS and solutions
+ */
+search.directive('resourceType', function () {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      if(attrs.resourceType == 'solution')
+        element.attr("target", "_blank");
+      else
+        element.attr("target", "_self");
+    }
+  };
+});
+
+/*
   Filter to return human readable time ago
 */
 search.filter('timeAgo', function() {
@@ -106,6 +121,21 @@ search.filter('jbossfix', function() {
   }
 });
 
+/*
+ Filter to remove undesirable tags from sys_tags
+ */
+search.filter('tagGroup', function() {
+  return function(tag){
+    var modifiedTags = [];
+    var matcher = new RegExp('feed_group_name_.*|feed_name_.*|red hat|redhat')
+    angular.forEach(tag, function(value){
+      if(!value.match(matcher))
+        modifiedTags.push(value)
+    });
+    return modifiedTags;
+  }
+});
+
 search.filter('timestamp', function() {
   return function(timestamp){
     var date = new Date(timestamp);
@@ -135,7 +165,7 @@ search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc
 
 function searchCtrlFunc($scope, searchService) {
 
-  var isSearch = !!window.location.href.match(/\/search\//);
+  var isSearch = !!window.location.href.match(/\/search/);
   var searchTerm = window.location.search.split('=');
   var q = '';
 
@@ -148,13 +178,14 @@ function searchCtrlFunc($scope, searchService) {
     from: 0,
     sys_type: [],
     project: '',
-    newFirst: false
+    newFirst: true
   };
 
   // Search Page Specifics
   if(isSearch && searchTerm) {
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
     $scope.params.type = 'rht_website';
+    $scope.params.newFirst = false;
   }
 
   $scope.paginate = {
@@ -183,8 +214,8 @@ function searchCtrlFunc($scope, searchService) {
         delete params.publish_date_to;
       }
 
-      // if relevance is "most recent" is turned on, set newFirst to true, otherwise remove it entirely
-      if(params.newFirst !== "true") {
+      // if relevance filter is turned on making newFirst == false, remove it entirely
+      if(params.newFirst == "false") {
         delete params.newFirst;
       }
 

@@ -1,7 +1,7 @@
 name: Red Hat JBoss Developer Studio
 abbreviated_name: JBoss Developer Studio
 product_logo: developer-studio.png
-current_version: 10.0.0.GA
+current_version: 10.0.0
 product_category: application-development
 intro_video: https://vimeo.com/95444954
 vimeo_album: http://vimeo.com/album/2982449
@@ -12,19 +12,64 @@ buzz_tags:
 index:
   desc: |
     An Eclipse-based IDE to create apps for web, mobile, transactional enterprise, and SOA-based integration apps/services.
+customer_portal_download_url: https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jbossdeveloperstudio&downloadType=distributions
 guides:
   Release_Notes:
     formats:
       html:
         url: https://access.redhat.com/articles/2361531
+  Supported_Configurations_&_Components:
+    formats:
+      html:
+        url: https://access.redhat.com/articles/427493
   Install_Red_Hat_JBoss_Developer_Studio:
     formats:
       html:
         url: https://access.redhat.com/articles/2358611
+  Get_Started_with_our_TicketMonster_Tutorial:
+    formats:
+      html:
+        url: http://www.jboss.org/ticket-monster/
   Update_Red_Hat_JBoss_Developer_Studio:
     formats:
       html:
         url: https://access.redhat.com/articles/2360061
+  Try_the_Red_Hat_Development_Suite_Installer:
+    formats:
+      html:
+        url: https://access.redhat.com/articles/2360571
+  Configuring_the_IDE:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-developer-studio/?category=configuring%2520the%2520ide&version=10.0
+  Developing_for_Enterprise:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-developer-studio/?category=developing%2520for%2520enterprise&version=10.0
+  Developing_for_the_Web:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-developer-studio/?category=developing%2520for%2520the%2520web&version=10.0
+  Developing_for_Mobile:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-developer-studio/?category=developing%2520for%2520mobile&version=10.0
+  Developing_for_the_Cloud_with_OpenShift_2:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-developer-studio/?category=developing%2520for%2520the%2520cloud%2520with%2520openshift%25202&version=10.0
+  Developing_for_the_Cloud_with_OpenShift_3:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-developer-studio/?category=developing%2520for%2520the%2520cloud%2520with%2520openshift%25203&version=10.0
+  Red_Hat_JBoss_Developer_Studio_Integration_Stack_Tooling_Documentation:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-developer-studio/?category=red%2520hat%2520jboss%2520developer%2520studio%2520integration%2520stack%2520tooling%2520documentation&version=10.0
+  More_Documentation:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-developer-studio/
 default_download_artifact_type: jar_universal
 description: 'A development environment with superior support for your entire development lifecycle.'
 upstream_projects:

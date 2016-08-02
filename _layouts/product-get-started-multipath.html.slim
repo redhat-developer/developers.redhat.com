@@ -20,9 +20,9 @@ type: Get Started
     .large-24.columns.multipath-tabs-sm
       ul.tabs.nav-tabs(data-tab role="tablist")
         li(class=(currentPage.include?('rhel7') ? 'active' : '') role="presentation")
-          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel7-#{pathName}' onclick="window.location=this.href;return false;") RHEL 7
+          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel7-#{pathName}/' onclick="window.location=this.href;return false;") RHEL 7
         li(class=(currentPage.include?('rhel6') ? 'active' : '') role="presentation")
-          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel6-#{pathName}' onclick="window.location=this.href;return false;") RHEL 6
+          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel6-#{pathName}/' onclick="window.location=this.href;return false;") RHEL 6
 
   .os-tabs.tabs-content
     section.content.active(role="tabpanel" aria-hidden="false")

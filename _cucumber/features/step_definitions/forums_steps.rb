@@ -15,12 +15,20 @@ end
 
 Then(/^I should see a description of the available products$/) do
   @product_ids.each do |product|
-    expect(@page.forums.forums_product_section_for(product)).to include(get_product(product, 'description'))
+    if get_product(product, 'forum_desc')
+      expect(@page.forums.forums_product_section_for(product)).to include(get_product(product, 'forum_desc'))
+    else
+      expect(@page.forums.forums_product_section_for(product)).to include(get_product(product, 'description'))
+    end
   end
 end
 
 Then(/^each product title should link to the relevant product forum page$/) do
   @product_ids.each do |product|
-    expect(@page.forums.forums_product_link_for(product)).to include "developer.jboss.org/en/products/#{product}"
+    if product == 'dotnet'
+      expect(@page.forums.forums_product_link_for(product)).to include "developer.jboss.org/en/topics/#{product}"
+    else
+      expect(@page.forums.forums_product_link_for(product)).to include "developer.jboss.org/en/products/#{product}"
+    end
   end
 end

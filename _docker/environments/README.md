@@ -42,7 +42,6 @@ that testing dependencies for the project need only be defined once and are cons
 rhd.settings.php is a PHP file that allows us to provide Drupal with environment properties and database connection
 details. Naturally this file is not required by environments that do not run Drupal.
 
-
 For environments that are sensitive and run Drupal e.g. Drupal Production and Drupal staging, this file is not checked in to Git. Instead
 it is deployed within the environment. This means that production database settings etc are only accessible to those
 with the correct credentials for the production environment.
@@ -51,14 +50,14 @@ For the drupal-dev environment, rhd.settings.php is checked-in because that envi
 is no security risk and it is actually desirable for you to know the database user and password to help with
 your development.
 
-#### drupal-pull-request/rhd.settings.php.erb
+#### drupal-pull-request/rhd.settings.yml.erb
 
-For the Drupal pull-request environment, rhd.settings.php has to be templated. Templating is required because we run multiple
+For the Drupal pull-request environment, rhd.settings.yml has to be templated. Templating is required because we run multiple
 instances of Drupal on the build server at the same time, but we allow Docker to chose the port that is exposed on the build host.
 
 This port is required as part of the Awestruct process that pushes content into Drupal, but we do not know it until
-we start the Drupal container. Therefore it is necessary to create the `drupal-pull-request/rhd.settings.php` file each
+we start the Drupal container. Therefore it is necessary to create the `drupal-pull-request/rhd.settings.yml` file each
 time we run a build in the drupal-pull-request environment.
 
-For this very reason, `drupal-pull-request/rhd.settings.php` should not be checked in to Git. A .gitignore directive in
+For this very reason, `drupal-pull-request/rhd.settings.yml` should not be checked in to Git. A .gitignore directive in
 the `drupal-pull-request` directory should prevent this.

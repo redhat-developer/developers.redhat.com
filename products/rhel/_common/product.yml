@@ -2,9 +2,10 @@ name: Red Hat Enterprise Linux
 abbreviated_name: RHEL
 name_append:  "For traditional development, includes Software Collections and Developer Toolset."
 product_logo: portal.png
-current_version: 7.0.0.GA
+current_version: 7.0.0
 product_category: it-infrastructure
 documentation_path: Red_Hat_Enterprise_Linux
+customer_portal_download_url: https://access.redhat.com/downloads/content/69/
 youtube_album: https://www.youtube.com/playlist?list=PLf3vm0UK6HKqLP5eJxZJIZJXtSk-neHhH
 vimeo_album: https://vimeo.com/album/3555906
 skip_installation_instructions: true
@@ -26,7 +27,6 @@ index:
     The leading enterprise operating system to speed application delivery across physical, virtual, and cloud environments.
 description: 'The world’s leading enterprise Linux platform'
 skip_maven_instructions: true
-other_product: true
 upstream_projects:
   - fedora
 rhel_install_paths:
