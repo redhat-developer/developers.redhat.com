@@ -1,5 +1,3 @@
-@basic_login
-
 Feature: Log in using my RHD registered details.
 
   As a developers.redhat customer,
@@ -21,13 +19,13 @@ Feature: Log in using my RHD registered details.
       | Login    |
       | Register |
 
-  @logout
+  @logout @basic_login
   Scenario: A customer whom has the correct login credentials can log in using their username
     Given I am on the Login page
     When I log in with a valid username
     Then I should be logged in
 
-  @logout
+  @logout @basic_login
   Scenario: A customer whom has the correct login credentials can log in using their email address
     Given I am on the Login page
     When I log in with a valid email address
@@ -43,7 +41,7 @@ Feature: Log in using my RHD registered details.
     When I log in with an invalid email address
     Then the following error message should be displayed: Invalid login or password.
 
-  @logout
+  @logout @basic_login
   Scenario: Successful logout
     Given I am on the Login page
     When I log in with a valid password
@@ -51,7 +49,7 @@ Feature: Log in using my RHD registered details.
     And I click the Logout link
     Then I should be logged out
 
-  @nightly
+  @nightly @basic_login
   Scenario: A customer who has forgotten their login details can request a password reset
     Given I am on the Login page
     When I click the forgot password link
@@ -59,7 +57,7 @@ Feature: Log in using my RHD registered details.
     Then I should see a confirmation message: "You will receive an email shortly with instructions on how to create a new password. TIP: Check your junk or spam folder if you are unable to find the email."
     And I should receive an email containing a password reset link
 
-  @logout @nightly
+  @logout @nightly @basic_login
   Scenario: A customer can successfully reset their password
     Given I am on the Login page
     When I click the forgot password link
