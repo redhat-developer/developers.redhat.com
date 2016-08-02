@@ -4,13 +4,15 @@
 :awestruct-description: "Product information about Red Hat Container Development Kit (CDK)"
 :title: Red Hat Container Development Kit
 
+:cdk-ig-url: https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/single/installation-guide/
+
 == Overview
 
 Red Hat Container Development Kit provides a pre-built Container Development Environment based on Red Hat Enterprise Linux to help you get started developing container-based applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
 
 === Get started with containers on Mac OS X, Microsoft Windows, or Linux
 
-To save you from having to assemble a container development environment from scratch, Container Development Kit delivers the latest container tools in a Red Hat Enterprise Linux virtual machine that you can use on your link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_mac_os_x[Mac OS X], link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_microsoft_windows[Microsoft Windows], or link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[Red Hat Enterprise Linux] system. In addition, you have your choice of virtualization platforms (VirtualBox, Hyper-V, and the Linux KVM/libvirt hypervisors are all supported). All of the VM configuration details on your system are handled for you by Vagrant, an open-source tool for creating and distributing portable and reproducible development environments.
+To save you from having to assemble a container development environment from scratch, Container Development Kit delivers the latest container tools in a Red Hat Enterprise Linux virtual machine that you can use on your link:{cdk-ig-url}#installing_container_development_kit_on_mac_os_x[Mac OS X], link:{cdk-ig-url}#installing_container_development_kit_on_microsoft_windows[Microsoft Windows], or link:{cdk-ig-url}#installing_container_development_kit_on_red_hat_enterprise_linux[Red Hat Enterprise Linux] system. In addition, you have your choice of virtualization platforms (VirtualBox, Hyper-V, and the Linux KVM/libvirt hypervisors are all supported). All of the VM configuration details on your system are handled for you by Vagrant, an open-source tool for creating and distributing portable and reproducible development environments.
 
 === Exclusive for Red Hat® Developers community members
 
