@@ -1,0 +1,27 @@
+<?php
+/**
+ * @file
+ * Add database configurations here.
+ */
+
+/**
+ * Implements hook_update_n().
+ */
+function rdh_common_update_8004() {
+  // Ckeck if module exists.
+  if(\Drupal::moduleHandler()->moduleExists('pathauto') == FALSE) {
+    \Drupal::moduleHandler()->addModule('pathauto');
+  }
+  // Ckeck if module exists.
+  if(\Drupal::moduleHandler()->moduleExists('features') == FALSE) {
+    \Drupal::moduleHandler()->addModule('features');
+  }
+  // Ckeck if module exists.
+  if(\Drupal::moduleHandler()->moduleExists('features_ui') == FALSE) {
+    \Drupal::moduleHandler()->addModule('features_ui');
+  }
+  // Ckeck if module exists.
+  if(\Drupal::moduleHandler()->moduleExists('config_changes') == FALSE) {
+    \Drupal::moduleHandler()->addModule('config_changes');
+  }
+} 

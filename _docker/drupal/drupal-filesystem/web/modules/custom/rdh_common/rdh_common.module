@@ -1,0 +1,48 @@
+<?php
+/**
+ * @file
+ * Add various functionalities here.
+ */
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function rdh_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // If Article add form, add custom form validator.
+  if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
+    // Override default validator with custom validator.
+    if (!empty($form['path'])) {
+      // Check if widget array is not empty.
+      if (!empty($form['path']['widget'])) {
+        $form['path']['widget'][0]['#element_validate'][0] = 'rdh_common_custom_form_validator';
+      }
+    }
+  }
+}
+
+
+/**
+ * Custom form validator.
+ */
+function rdh_common_custom_form_validator(array &$element, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Trim the submitted value of whitespace and slashes.
+  $alias = rtrim(trim($element['alias']['#value']), " \\/");
+
+  if (!empty($alias)) {
+    // Check if alias already has a slash.
+    if (substr($alias, 0, 1) !== '/') {
+      $alias = '/' . $alias;
+    }
+    $form_state->setValueForElement($element['alias'], $alias);
+    //Validate that the submitted alias does not exist yet.
+    $is_exists = \Drupal::service('path.alias_storage')->aliasExists($alias, $element['langcode']['#value'], $element['source']['#value']);
+    if ($is_exists) {
+      $form_state->setError($element, t('The alias is already in use.'));
+    }
+  }
+
+  if ($alias && $alias[0] !== '/') {
+    $form_state->setError($element, t('The alias needs to start with a slash.'));
+  }
+}
