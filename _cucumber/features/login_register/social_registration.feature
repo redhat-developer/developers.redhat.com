@@ -6,7 +6,7 @@ Feature: Social registration
   I want to register using my Github account,
   So that I can use RHD services.
 
-  @keycloak_teardown @github_teardown @logout
+  @delete_user @github_teardown @logout
   Scenario: 1 - Registration using GitHub login which contains all mandatory information (first name, last name, unique email)
     Given I am on the Registration page
     When I register a new account using my GitHub account
@@ -27,7 +27,7 @@ Feature: Social registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @keycloak_social_teardown @github_teardown @logout
+  @delete_user @github_teardown @logout
   Scenario: 2 - Registration using GitHub login which contains all mandatory information (first name, last name, but email already exists). User links GitHub account to existing account
     Given I am on the Registration page
     When I try to link a GitHub account to an existing account
@@ -36,18 +36,8 @@ Feature: Social registration
     Then I should receive an email containing a verify email link
     And I navigate to the verify email link
     Then I should be registered and logged in
-    When I am on the Edit Details page
-    And my registered details should visible be on my profile:
-      | Username                                    |
-      | Email                                       |
-      | First Name                                  |
-      | Last name                                   |
-      | Company                                     |
-      | Country                                     |
-      | Red Hat Developer Program subscription date |
-      | Privacy & Subscriptions status              |
 
-  @keycloak_teardown @github_teardown @logout
+  @delete_user @github_teardown @logout
   Scenario: 3 - Registration using GitHub login which contains all mandatory information (first name, last name, but email already exists). User changes email to create new account.
     Given I am on the Registration page
     When I try to link a GitHub account to an existing account
@@ -66,7 +56,7 @@ Feature: Social registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @keycloak_teardown @logout @github_teardown
+  @delete_user @logout @github_teardown
   Scenario: 4 - Registration using GitHub login which doesn't contain some mandatory information (first name, last name), email is unique. User is asked to fill in mandatory info during login.
     Given I am on the Registration page
     When I register a new account using a GitHub account that contains missing profile information
@@ -84,7 +74,7 @@ Feature: Social registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @keycloak_social_teardown @logout @github_teardown
+  @delete_user @logout @github_teardown
   Scenario: 5 - Registration using GitHub login which doesn't contain some mandatory the information (first name, last name), email already exists. User links social provider to existing account
     Given I am on the Registration page
     When I try to register using a GitHub account that contains missing profile information with an existing RHD registered email
@@ -94,18 +84,8 @@ Feature: Social registration
     Then I should receive an email containing a verify email link
     And I navigate to the verify email link
     Then I should be registered and logged in
-    When I am on the Edit Details page
-    And my registered details should visible be on my profile:
-      | Username                                    |
-      | Email                                       |
-      | First Name                                  |
-      | Last name                                   |
-      | Company                                     |
-      | Country                                     |
-      | Red Hat Developer Program subscription date |
-      | Privacy & Subscriptions status              |
 
-  @keycloak_social_teardown @logout @github_teardown
+  @delete_user @logout @github_teardown
   Scenario: 6 - Registration using GitHub login which doesn't contain some mandatory information (first name, last name), email that already exists. User changes email to create new account.
     Given I am on the Registration page
     When I try to register using a GitHub account that contains missing profile information with an existing RHD registered email

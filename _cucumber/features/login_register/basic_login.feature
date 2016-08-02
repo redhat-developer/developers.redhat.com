@@ -1,4 +1,6 @@
-Feature: Login Page
+@basic_login
+
+Feature: Log in using my RHD registered details.
 
   As a developers.redhat customer,
   I want to log in the site,
@@ -19,31 +21,29 @@ Feature: Login Page
       | Login    |
       | Register |
 
-  @has_username @logout
+  @logout
   Scenario: A customer whom has the correct login credentials can log in using their username
     Given I am on the Login page
     When I log in with a valid username
     Then I should be logged in
 
-  @has_username @logout
+  @logout
   Scenario: A customer whom has the correct login credentials can log in using their email address
     Given I am on the Login page
     When I log in with a valid email address
     Then I should be logged in
 
-  @accepted_terms
   Scenario: A customer has incorrect login credentials (the password is incorrect)
     Given I am on the Login page
     When I log in with an incorrect password
     Then the following error message should be displayed: Invalid login or password.
 
-  @accepted_terms
   Scenario: A customer tries to login with an invalid email address (e.g. xxx@xx)
     Given I am on the Login page
     When I log in with an invalid email address
     Then the following error message should be displayed: Invalid login or password.
 
-  @accepted_terms @logout
+  @logout
   Scenario: Successful logout
     Given I am on the Login page
     When I log in with a valid password
@@ -51,20 +51,42 @@ Feature: Login Page
     And I click the Logout link
     Then I should be logged out
 
-  @password_reset @teardown @nightly
+  @nightly
   Scenario: A customer who has forgotten their login details can request a password reset
     Given I am on the Login page
-    And I click the forgot password link
-    When submit my email address
+    When I click the forgot password link
+    And submit my email address
     Then I should see a confirmation message: "You will receive an email shortly with instructions on how to create a new password. TIP: Check your junk or spam folder if you are unable to find the email."
     And I should receive an email containing a password reset link
 
-  @password_reset @logout @nightly
+  @logout @nightly
   Scenario: A customer can successfully reset their password
     Given I am on the Login page
     When I click the forgot password link
     And submit my email address
-    When I navigate to the password reset URL
+    And I navigate to the password reset URL
     Then I should see a confirmation message: "You need to change your password to activate your account."
     When I update my password
     Then I should be logged in
+
+  @logout
+  Scenario: New User can login with active OpenShift.com account (simple user account)
+    Given I am on the Login page
+    When I log in with an active OpenShift.com account
+    Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
+    And I complete the required additional information
+    Then I should be logged in
+
+  @logout
+  Scenario: New User can login with active Red Hat Customer Portal account (full user account).
+    Given I am on the Login page
+    And I log in with a active Customer portal account
+    Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
+    When I accept the RHD terms and conditions
+    Then I should be logged in
+
+  Scenario: User can't login with deactivated Red Hat Customer Portal account (full user account)
+    Given I am on the Login page
+    When I log in with a deactivated Customer portal account
+    Then the following error message should be displayed: Your Red Hat user account is disabled, contact Customer Service at customerservice@redhat.com please.
+

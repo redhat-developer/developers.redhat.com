@@ -4,7 +4,7 @@ Feature: Basic personal registration
   I want to register,
   So that I can use its services.
 
-  @site_user @logout
+  @logout
   Scenario: Site visitor completes the registration form accepting terms by clicking "accept all terms and conditions"
     Given I am on the Registration page
     When I complete the registration form
@@ -20,7 +20,7 @@ Feature: Basic personal registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @accepted_terms @site_user @logout
+  @logout
   Scenario: Back Button test after registration should not raise error
     Given I am on the Registration page
     When I complete the registration form
@@ -28,31 +28,30 @@ Feature: Basic personal registration
     When I go back
     Then I should see the Registration page
 
-  @site_user @smoke
+  @smoke
   Scenario: Password validation
     Given I am on the Registration page
     When I try to enter passwords that do not match
     Then I should see a "password confirm" error with "Passwords don't match"
 
-  @site_user @smoke
+  @smoke
   Scenario: Email format validation - Check it is not possible to register with email address not matching format
     Given I am on the Registration page
     When I try to register with an invalid email address
     Then I should see a "email" error with "Please enter a valid email address."
 
-  @site_user @smoke
+  @smoke
   Scenario: Duplicate email validation - Check it is not possible to create new account with an email already registered on RHD.
     Given I am on the Registration page
     When I try to register with an existing RHD registered email
     Then I should see a "email" error with "User account for this email already exists. Log In"
 
-  @site_user
   Scenario: Duplicate email validation - Check it is not possible to create new account with an email already registered on OpenShift.com.
     Given I am on the Registration page
     When I try to register with an existing OpenShift registered email
     Then I should see a "email" error with "User account for this email already exists. Log In"
 
-  @site_user @smoke
+  @smoke
   Scenario Outline: Basic registration field level validation
     Given I am on the Registration page
     When I complete the registration with an empty "<field>"
