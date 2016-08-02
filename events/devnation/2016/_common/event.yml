@@ -94,10 +94,6 @@ sessions:
     speaker: Omair Majid, Senior Software Engineer, Red Hat
     youtube_id: JOrwMm2Y7Rc
     slides_id: analyzing-java-applications-using-thermostat-omair-majid
-  - title: "Container development for command line developers"
-    date: "TUESDAY, JUNE 28: 10:15 a.m. to 11:15 a.m."
-    abstract: "The container development kit (CDK) provides an on-ramp to building container-based applications by simplifying the configuration and set up of Linux container development environments. One of most talked about use cases is how developers can continue using Eclipse as their IDE, and with the help of Eclipse-docker tooling, utilize the Docker or OpenShift services running in the CDK for container-based development. However the CDK isn't just for Eclipse-based developers. Containers are for everyone and so is the CDK. In this session, we'll show you how to use the CDK to develop for OpenShift and/or Docker+Kubernetes, using command line tools, alternative IDEs, and in a completely virtualized manner. You'll learn: - How to configure your environment, obtain the client tools, and put them to use - Key ideas for integrating with other development environments - To make your development teams ready to work on containers No matter what desktop solution you're using—Red Hat Enterprise Linux, Microsoft Windows, Mac OS X, or any other Linux variant—your container development can be enabled with the CDK."
-    speaker: Lalatendu Mohanty, Senior Software Engineer, Red Hat & Praveen Kumar, Software Engineer, Red Hat & Navid Shaikh, SoftwareEngineer, Red Hat
   - title: "Optimizing code for modern processors"
     date: "TUESDAY, JUNE 28: 10:15 a.m. to 11:15 a.m."
     abstract: "Programmers use a simple sequential model of how a processor executes steps in a program, but in reality the processor's implementation is much more complex. The processor employs techniques that exploit typical characteristics of the code allowing the processor to execute the code much faster than the simple programmer's model and reduce the cost of some individual instructions by a factor of ten to one-hundred. However, the processor must preserve the behavior that the programmer expects and fallback to the slower methods when the optimization would yield results that differ from the programmer's model. Mechanisms such as caches, pipelines, branch prediction, and threading are commonly used in modern processors to improve performance. In this session, we'll explain the performance implications of these mechanisms, how to identify specific performance issues such as poor caching and branch prediction using the tools available on Linux and some optimization techniques that better match code and hardware capabilities."
@@ -261,10 +257,6 @@ sessions:
     speaker: Demitris Andreadis, Red Hat
     youtube_id: 9ZSqcz09iIo
     slides_id: boost-development-with-java-ee7-on-eap7-demitris-andreadis
-  - title: "Advanced API management: Using and extending apiman"
-    date: "WEDNESDAY, JUNE 29: 4:45 p.m. to 5:45 p.m."
-    abstract: "While basic usage of apiman will solve a lot of your API Management requirements, sometimes the basics just aren't enough. When this happens you can easily extend and customize API Management functionality in apiman through some of its more advanced features. In this session, we will quickly review the basics and then show how to use apiman's plugin framework to further customize and extend it. Learn how to easily provide your own custom policies or extend core functionality without forking or rebuilding!"
-    speaker: Eric Wittmann, Principal Software Engineer, Red Hat
   - title: "iPaaS 2.0: Fuse integration services"
     date: "WEDNESDAY, JUNE 29: 4:45 p.m. to 5:45 p.m."
     abstract: "Red Hat JBoss Fuse integration services delivers cloud-based integration based on OpenShift by Red Hat to deliver continuous delivery of tested, production-ready integration solutions. Utilizing a drag and drop, code-free UI and combining that with the integration power of Apache Camel, Fuse integration services is the next generation iPaaS. In this session, we'll walk you through why iPaaS is important, the current Fuse integration services roadmap, and the innovation happening in open source community projects to make this a reality."
