@@ -25,7 +25,20 @@ class DrupalPageUrlListGenerator
     sitemap_url = URI.parse("http://#{@drupal_host}/sitemap.xml")
     @log.info("Fetching sitemap content from '#{sitemap_url.to_s}'...")
 
-    sitemap_contents = Net::HTTP.get_response(sitemap_url)
+    # Implementing a simple retry mechanism
+    retries = [30, 60, 120] # I know this could take a while, but we want to make sure this is actually going to work
+    sitemap_contents = nil
+    begin
+      sitemap_contents = Net::HTTP.get_response(sitemap_url)
+    rescue StandardError => e
+      @log.warn("Caught #{e.class} while attempting to fetch the sitemap. Message: #{e.message}")
+      delay = retries.shift
+      if delay
+        sleep delay
+        @log.info('Retrying sitemap fetch')
+        retry
+      end
+    end
     raise StandardError.new("Failed to fetch sitemap.xml from '#{sitemap_url.to_s}'. Got status: '#{sitemap_contents.code}'") if sitemap_contents.code.to_i != 200
 
     @log.info("Successfully fetched sitemap from '#{sitemap_url.to_s}'")
