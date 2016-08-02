@@ -1,16 +1,22 @@
 live_events:
-  - title: "Watch Live: Morning General Session"
+  - title: "Morning General Session"
     date: 06/27/2016 16:30:00 UTC
-    youtube_id: MiUrYH3ybX0
+    youtube_id: Cf9Mz6npH3k
     abstract:
         "In the general session, Red Hat will be joined by some of the best and brightest minds in industry participating in a vision of how new technologies and ways of building software will evolve.  Be the first to hear the latest announcements, watch some cool demos and learn of Red Hat’s involvement in many of the tools that developers commonly use today."
     speaker: Harry Mower, Todd Mancini, Mark Little - Red Hat; Tyler Jewel - Codenvy & Scott Hanselman - Microsoft
-  - title: "Watch Live: DevNation Afternoon General Session"
+  - title: "DevNation Afternoon General Session (Part 1)"
     date: 06/28/2016 00:00:00 UTC
-    youtube_id: y87SUSOfgTY
+    youtube_id: EC2rk9Jh5Ps
     abstract:
-        "Full description coming soon."
-    speaker: Rachel Laycock - ThoughtWorks; Matthew Hicks & Ashesh Badani - Red Hat; David Aronchick - Google
+        "There are several factors to adopting the practices of Continuous Delivery. Most organizations start with tools. Should we adopt PaaS, is a container eco-system the right approach? Sadly if you currently have any legacy software or infrastructure you will soon find that these are not the hard questions you need to answer. Adopting continuous delivery practices requires change that includes organizational structure, processes and architecture. You cannot tackle one without the other as Conway's Law states they are inherently intertwined. So how do you create an organizational culture, methodology and architecture that supports rapid delivery of software, whilst still keeping your legacy systems up and running? How do you avoid common pitfalls or anti-patterns, which will hinder your ability to deliver? In this talk, I will address patterns such as micro-services, evolutionary architecture and empowered x-functional teams, which can speed up your delivery, but are not a free lunch. And how you move from your current monolith to adoption of these patterns."
+    speaker: Rachel Laycock - ThoughtWorks
+  - title: "DevNation Afternoon General Session (Part 2)"
+    date: 06/28/2016 00:00:00 UTC
+    youtube_id: 0naQKSU0oWs
+    abstract:
+        "Ashesh discusses cloud development and deployment using OpenShift; Matt explains OpenShift 3.0 with Kubernetes enhancements; David takes us into Kubernetes 1.3 details."
+    speaker: Matthew Hicks & Ashesh Badani - Red Hat; David Aronchick - Google
 sessions:
   - title: "Red Hat Mobile Application Platform: A walk-through"
     date: "MONDAY, JUNE 27: 1:15 p.m. to 2:15 p.m."
@@ -22,63 +28,77 @@ sessions:
     date: "MONDAY, JUNE 27: 1:15 p.m. to 2:15 p.m."
     abstract: Scale changes everything. What once was quite adequate for enterprise messaging can't scale to support "Internet of Things". We need new protocols, patterns and architectures to support this new world. This session will start with basic introduction to the concept of Internet of Things. Next it will discuss general technical challenges involved with the concept and explain why it is becoming mainstream now. Now we&rsquo;re ready to start talking about solutions. We will introduce some messaging patterns (like telemetry and command/control) and protocols (such as MQTT and AMQP) used in these scenarios. Finally we will see how Apache ActiveMQ is gearing up for this race. We will show tips for horizontal and vertical scaling of the broker, related projects that can help with deployments and what the future development road map looks like.
     speaker: Langdon White, Red Hat
+    youtube_id: kYmsTb70YA4
+    slides_id: cdk-20-docker-kubernetes-and-ose-on-your-desk-langdon-white
   - title: "Tracking huge files with Git LFS"
     date: "MONDAY, JUNE 27: 1:15 p.m. to 2:15 p.m."
     abstract: "Developers love Git for its raw speed, powerful history traversal, distributed nature, and the fact that it was built by uber developer Linus Torvalds. What we don't love is the fact that, out of the box, Git has terrible support for tracking large binary files. Fortunately, developers from Atlassian, GitHub, and Visual Studio Online have teamed up to work on an open source project to solve this problem: Git LFS (Large File Support). This means researchers, web designers, game developers, multimedia producers, and all other developers who need to work with large data and rich media can move off legacy-centralized systems and start using modern version control. In this session, we'll cover the computer science behind Git LFS' internals and architecture, CLI usage, and how to build an effective Git LFS workflow for a development team. You'll leave with an understanding of how Git LFS works under the hood and some practical advice on using Git LFS with your software projects and teams."
     speaker: Tim Pettersen, Senior Developer, Atlassian
+    youtube_id: 3Czmih_oVWE
   - title: "Developer meet designer"
     date: "MONDAY, JUNE 27: 1:15 p.m. to 2:15 p.m."
     abstract: "This presentation will take developers behind the scenes of the Keynote Demo to showcase how designers and a developers work together to achieve outstanding results. In this presentation, we'll identify the gap between designers and developers, and walk you through an actual example of how to build bridges that increase trust in your products. You'll learn about: - UX basics - Design within open source communities - Understanding the problems between developers and designers - The advantages (and disadvantages) of working with a designer - Coping with common pitfalls and false assumptions - Specific CSS and JS techniques used during the Keynote demo visualization You'll leave knowing that UX goes beyond the UI, with a better understanding of why working with a designer is important, and how to work together successfully."
     speaker: Andres Galante, Red Hat & Brian Leathem, Principal Software Engineer, Red Hat
+    youtube_id: VMvFUowI8u4
+    slides_id: developer-meet-designer-andres-galante-brian-leathem
   - title: "Meet the assertable Chaos Monkeys for your Docker system"
     date: "MONDAY, JUNE 27: 2:30 p.m. to 3:30 p.m."
     abstract: The production system has been targeted by troublesome random failures over a long period of time, and countless hours of debugging has yielded no valuable results. We're close to throwing in the towel. An army of Chaos Monkeys has been deployed in an attempt to force the issue, but no solution is in sight. We need to take back control. It's time to meet the Assertable Chaos Monkey, Arquillian Cube Q. Arquilian Cube Q is an extension that gives you full control over a production-like system right from the comfort of your IDE. In this session, we'll explore some of the things you can do when you have control over the whole system. We'll validate scalability and connectivity, assert the failure state, enforce service responses, and more.
     speaker: Aslak Knutsen, Senior Software Engineer, Red Hat & Bartosz Majsak, Atos Consulting Switzerland
+    youtube_id: RzSzx3SNq3w
   - title: "Developing with OpenShift without the build waits"
     date: "MONDAY, JUNE 27: 2:30 p.m. to 3:30 p.m."
     abstract: As application systems move to Platform-as-a-Service (PaaS) environments and every source code change results in a full build, a simple change can easily take minutes. This is much longer than developers are willing to wait to verify a change. And working in the cloud shouldn't mean loss of control and visibility into how an application is working. In this session, we'll cover how OpenShift by Red Hat works closely with Red Hat JBoss Developer Studio to let you push code directly to a container, see your changes as you make them, debug live in deployment, and much more.
     speaker: Peter Larsen, Sr. Solutions Architect, Red Hat
+    youtube_id: 8Sa9G8D-xZ0
   - title: "An introduction to Eclipse Che: A next-generation Java IDE"
     date: "MONDAY, JUNE 27: 2:30 p.m. to 3:30 p.m."
     abstract: What happens when on-demand workspaces powered by Docker are transformed into a new kind of Java IDE accessed through your browser? This session introduces Eclipse Che and shows how a cloud IDE can make developing Java projects fast and powerful. We'll compare Intellisense, content assist, machines, plug-in architecture, and performance when compared to traditional desktop IDEs. Che includes numerous forms of refactoring and uses Docker to initiate environments and machines to build and run code. We'll also cover Maven, Ant, and Gradle extensions and discusses how Che can be extended with custom code templates, Dockerfiles, and plug-ins (authored in Java, of course). Additionally, Che has a Kubernetes and OpenShift plug-in, which provides duality of environments between development and production, all structured on container topologies. We'll discuss how developers are marrying their code with containers and keeping those topologies synchronized between different environments, and the role that IDEs must play in this world.
     speaker: Tyler Jewell, CEO, Codenvy
+    youtube_id: iUxGAb9EKUU
   - title: "Learning from astronauts how to be better developers"
     date: "MONDAY, JUNE 27: 2:30 p.m. to 3:30 p.m."
     abstract: "As developers, we're constantly trying to improve the way we build systems and work as a team. Agile, DevOps, and Lean are all frameworks to help us be better developers and write better systems, but it still seems to be a constant struggle. Commander Chris Hadfield is a bona fide astronaut, test pilot, and rocket scientist, and he commanded the International Space Station for 3 months, making waves back on earth with his cover of Bowie’s Space Oddity. On returning, he wrote a book about everything he learned on his journey to becoming an astronaut. You’d be surprised by how much of it applies to application development. Application development should be easy—it ain't rocket science. In this session, you'll learn: - How Russia represents DevOps and Lean development, while America represents the waterfall method - How to create robust systems by thinking, “What could kill me next?” - How astronauts make amazing teams, and how to apply that in our own environments."
     speaker: Sam Atkinson, Senior Development Specialist, HSBC
+    youtube_id: wYyrevshdSI
   - title: "Putting the 'M' in MBaaS—Red Hat mobile client development platform"
     date: "MONDAY, JUNE 27: 3:45 p.m. to 4:45 p.m."
     abstract: When you hear the term "MBaaS," or "Red Hat Mobile," there is usually a lot of discussion about powerful scaling, back-end integrations, hosting options, containerization, etc. However, we can't forget what that "M" stands for, and why the platforms exist in the first place, which is to develop and deliver top-notch mobile applications to your users. In this session, we'll review what makes all of this possible—client SDKs, hybrid solutions like Cordova, and Xamarin, and our own Build Farm and Unified Push server. Not stopping there, our AppForms support makes it a snap to tie in back-end systems all the way to your app. And this is all backed by various templates, guides, and new open source resources that will help you get started and join the fun.
     speaker: Jay Balunas, Red Hat Inc.
     youtube_id: 7J2aUclsbhU
+    slides_id: putting-the-m-in-mbaasred-hat-mobile-client-development-platform-jay-balunas-64586522
   - title: "Agile is a four-letter word"
     date: "MONDAY, JUNE 27: 3:45 p.m. to 4:45 p.m."
     abstract: "Based on a wide variety of surveys taken over recent years, many companies are transitioning to something that looks more like Agile than the processes they were using in previous years. However, that transition doesn’t necessarily mean implementations have been done respectfully of the Agile Manifesto and the principles behind it. In large part, industry trends seem to indicate that the sloganization of the word has done a significant disservice to the ideas that were originally founded in 2001. To add even more pain, most people seem to be entirely unaware of the core basis of Agile which is the idea to embrace change but inspect and adapt to that change. Are we lost as an industry? Is there anyway we can recover from this problem? In this session, attendees can expect to engage in a conversation about the rise of the Agile community, the negative and positive impact it has had on the industry, and how you individually can help your organizations and teams lower the risk of encountering the negative problems, and speed your way towards the positives. Topics will include: - The intentions behind agile - Ways you can rework or improve your not so great agile situation - Things you should avoid from the start."
     speaker: Jen Krieger, Chief Agile Architect, Red Hat
+    youtube_id: jWLYKo5S300
+    slides_id: agile-is-a-fourletter-word-jen-krieger
   - title: "Java 9 modularity in action"
     date: "MONDAY, JUNE 27: 3:45 p.m. to 4:45 p.m."
     abstract: "Java 9 comes to your doorstep with major changes for all of us, whether we ordered it or not. Modularity is the big theme of the Java 9 release, and it requires rethinking how we structure, build, and run Java applications. This is great, because who doesn't like more reliable and secure applications, meanwhile killing the dreaded classpath? Additionally, Java 9 has several other smaller, but useful, features, including support for HTTP 2 and collection factory methods. In this session, we'll dive deep into the module system and other new features. We'll review the basic concepts of modules and explore modularity patterns to enhance your design and development skills, and see examples of what else to expect in Java 9. We'll give plenty examples in this practical and code-driven presentation. You'll be ready for Java 9 before you know it."
     speaker: Paul Bakker, Software architect, Luminis Technologies & Sander Mak, Luminis Technologies
+    youtube_id: WWTQeMgO65M
   - title: "A quick guide to .NET development on Red Hat Enterprise Linux"
     date: "MONDAY, JUNE 27: 3:45 p.m. to 4:45 p.m."
     abstract: "The partnership between Red Hat and Microsoft brings new possibilities for application development and deployment. .NET has long been the application platform for Microsoft developers, and for the first time it is now available to Red Hat Enterprise Linux users. In this session, we'll gently introduce .NET development, showing you the primary components and how they can be used to develop applications of your own. We'll also introduce Red Hat Enterprise Linux on Microsoft Azure, and discuss the application development process and usage of the tools essential for .NET applications. You'll leave with all you need to begin writing simple .NET applications using Red Hat Enterprise Linux for Microsoft Azure."
     speaker: Rick Wagner, Principal Software Maintenance Engineer, Red Hat
+    youtube_id: LOE0Am2KZpQ
   - title: "Open source IoT gateway: A tale of Eclipse Kura, Apache Camel, and Rhiot"
     date: "TUESDAY, JUNE 28: 10:15 a.m. to 11:15 a.m."
     abstract: "The Internet Of Things (IoT) brings the whole new challenges to the world of the messaging solutions. Gathering data from the field and delivering it to the cloud is a common task for IoT solutions. Developers find themselves struggling with field protocols on one side and data delivery protocols on the other. Eclipse Kura is a well-recognized field gateway for IoT applications. Apache Camel is a message-routing engine and a library containing a gazillion various endpoint connectors. And last, but not least, Rhiot project attempts to make the Kura and Camel developer experience even better. In this session, you'll learn how Red Hat combines Kura, Camel, and Rhiot to create rocking IoT gateway solutions."
     speaker: Henryk Konsek, Senior Software Engineer, Red Hat
+    youtube_id: DPiD7bnnaJk
   - title: "Analyzing Java applications using Thermostat"
     date: "TUESDAY, JUNE 28: 10:15 a.m. to 11:15 a.m."
     abstract: "Ever wondered how your Java application is actually working? How it's making use of scarce resources on your machine? Ever tried to look under the hood of the Java Virtual Machine (JVM) and felt lost with various tools that don't provide an overall picture, only local details? Thermostat is an open source serviceability tool to help Java developers understand what's happening inside the JVM when their programs are running. Thermostat collects and combines information from various sources—including the Hotspot JVM—to present a complete picture of how the application is behaving. In this session, you'll get a chance to see Thermostat in action as it's used to examine various Java applications, identify what's wrong and fix those problems—often without even modifying the application code. You'll also learn how to add more features to Thermostat through plug-ins. If you're a developer, sysadmin, or QA, and if there's Java in your technology stack, you'll want to learn how Thermostat can make your life easier."
     speaker: Omair Majid, Senior Software Engineer, Red Hat
-  - title: "Container development for command line developers"
-    date: "TUESDAY, JUNE 28: 10:15 a.m. to 11:15 a.m."
-    abstract: "The container development kit (CDK) provides an on-ramp to building container-based applications by simplifying the configuration and set up of Linux container development environments. One of most talked about use cases is how developers can continue using Eclipse as their IDE, and with the help of Eclipse-docker tooling, utilize the Docker or OpenShift services running in the CDK for container-based development. However the CDK isn't just for Eclipse-based developers. Containers are for everyone and so is the CDK. In this session, we'll show you how to use the CDK to develop for OpenShift and/or Docker+Kubernetes, using command line tools, alternative IDEs, and in a completely virtualized manner. You'll learn: - How to configure your environment, obtain the client tools, and put them to use - Key ideas for integrating with other development environments - To make your development teams ready to work on containers No matter what desktop solution you're using—Red Hat Enterprise Linux, Microsoft Windows, Mac OS X, or any other Linux variant—your container development can be enabled with the CDK."
-    speaker: Lalatendu Mohanty, Senior Software Engineer, Red Hat & Praveen Kumar, Software Engineer, Red Hat & Navid Shaikh, SoftwareEngineer, Red Hat
+    youtube_id: JOrwMm2Y7Rc
+    slides_id: analyzing-java-applications-using-thermostat-omair-majid
   - title: "Optimizing code for modern processors"
     date: "TUESDAY, JUNE 28: 10:15 a.m. to 11:15 a.m."
     abstract: "Programmers use a simple sequential model of how a processor executes steps in a program, but in reality the processor's implementation is much more complex. The processor employs techniques that exploit typical characteristics of the code allowing the processor to execute the code much faster than the simple programmer's model and reduce the cost of some individual instructions by a factor of ten to one-hundred. However, the processor must preserve the behavior that the programmer expects and fallback to the slower methods when the optimization would yield results that differ from the programmer's model. Mechanisms such as caches, pipelines, branch prediction, and threading are commonly used in modern processors to improve performance. In this session, we'll explain the performance implications of these mechanisms, how to identify specific performance issues such as poor caching and branch prediction using the tools available on Linux and some optimization techniques that better match code and hardware capabilities."
     speaker: William Cohen, Performance Tools Engineer, Red Hat, Inc.
+    youtube_id: jb7h8Cu9MyM
   - title: "Software Collections: Easy access to the cutting edge"
     date: "TUESDAY, JUNE 28: 10:15 a.m. to 11:15 a.m."
     abstract: "In most subscriptions, Red Hat offers access to the Red Hat Software Collections (RHSCL) and Developer Toolset (DTS). RHSCL has 20+ content sets, providing recent-but-stable versions of languages, databases, web servers, etc.—like, ruby 2.2, postgresql 9.4, and nginx 1.6—that you use for development and production runtime. The DTS provides recent-but-stable content used mainly in development—for example, Eclipse, gcc, git. Come learn how and when to use this content in RPMs and Docker containers. We will show you how to launch Drupal in minutes and install Eclipse Mars. We will also demonstrate how to build containers using this content, which makes your Dockerfiles much simpler. Lastly, we will show you how OpenShift 3 can use the same content sets."
@@ -88,6 +108,7 @@ sessions:
     date: "TUESDAY, JUNE 28: 11:30 a.m. to 12:30 p.m."
     abstract: "This session will take an in-depth look at the recently announced Red Hat Mobile Application Platform 4.0. Re-architected as a suite of containerized microservices, we'll look at how the platform uses OpenShift 3 both as an execution environment for the platform and a hosting environment for mobile developers. We'll then look at how this microservices architecture applies to mobile app development and to their role the whole way through the development stack. Finally, we'll take a look at a hands-on demo using the Red Hat Mobile Application Platform to deploy a Mobile Backend-as-a-Service (MBaaS) onto an OpenShift by Red Hat instance and how to use it to deploy mobile microservices."
     speaker: John Frizelle, Chief Architect, Mobile, Red Hat
+    youtube_id: VrcPKiHqYdk
   - title: "Make applications great again: OpenShift Enterprise 3 walk-through with Docker and Kubernetes"
     date: "TUESDAY, JUNE 28: 11:30 a.m. to 12:30 p.m."
     abstract: "Everyone's heard about Docker and how it's going to solve all of our problems, or not. In this session, we'll walk you through using Docker and discuss why using a scheduler and orchestration system is important. Then we'll dive into an actual usage of the container application platform, OpenShift Enterprise 3 by Red Hat, to show how it makes both Docker and Kubernetes accessible to the average human being. We'll keep the slides to a minimum and instead focus on live demo/coding/deployments. After deploying several containers, we'll turn up the heat by showcasing scaling and moving on to deployment strategies including blue/green."
@@ -97,79 +118,105 @@ sessions:
     date: "TUESDAY, JUNE 28: 11:30 a.m. to 12:30 p.m."
     abstract: "Users have higher expectations than ever from the applications and websites you deliver. They expect information to be organized, intuitive, and easy to use. With an average of 10 seconds to make a good first impression, it's critical that your application aligns with your user’s expectations, wants, and needs. In this session, you'll learn 7 strategies to use on any project to improve the user’s experience and keep them coming back for more."
     speaker: Tiffany Nolan, Interaction Designer, Red Hat & Catherine Robson, Red Hat
+    youtube_id: 8hkzsCXrdbw
+    slides_id: 7-musttry-user-experience-tactics-for-developers-tiffany-nolan-catherine-robson
   - title: "Developing in Python on Red Hat platforms"
     date: "TUESDAY, JUNE 28: 11:30 a.m. to 12:30 p.m."
     abstract: "Red Hat Software Collections, OpenShift and the Red Hat Container Development Kit open up many new possibilities for Python developers targeting Red Hat Enterprise Linux. At the same time, the wider Python ecosystem is undergoing two significant transitions - one being the ongoing migration from Python 2 to Python 3, and the other the shift to correctly validating HTTPS connections by default. In this session we will cover the currently available options for developing with Python on Red Hat platforms, as well as provide some insight into where things are headed in the context of the wider Python ecosystem."
     speaker: Nick Coghlan, Senior Software Engineer, Red Hat & Graham Dumpleton, Developer Advocate for OpenShift, Red Hat
+    youtube_id: tLTSQiVQ8qk
+    slides_id: developing-in-python-on-red-hat-platforms-nick-coghlan-graham-dumpleton
   - title: ".NET and Java and containers: It’s a brave new world"
     date: "TUESDAY, JUNE 28: 3:30 p.m. to 4:30 p.m."
     abstract: "Containers: they’re all the rage. But you need to stay grounded in trusted technology such as Java and .NET. Wouldn’t it be great if someone showed an example of bringing Java and .NET and containers together? Oh, and don’t be limited to just one technology stack. Well, this is that session. I’ll be using as many technologies as we can cram into 60 minutes to show how open source brings the old and new together to make both even better. You won’t want to miss this."
     speaker: Don Schenck, Red Hat
+    youtube_id: -yshGuh_Og8
   - title: "Ultimate DevOps: OpenShift Dedicated with CloudBees Jenkins Platform"
     date: "TUESDAY, JUNE 28: 3:30 p.m. to 4:30 p.m."
     abstract: "Are you ready to innovate with cloud-native app development? Are you ready to accelerate business agility with continuous delivery (CD)? Well, now you can easily do both using CloudBees Jenkins Platform within OpenShift Dedicated by Red Hat. In this session, you'll learn how to seamlessly use this CD solution to fully automate your application development, test, and delivery life cycle. Using the CloudBees platform to automate your CD pipelines allows your developers to focus on what they do best—innovating. Combine that with the elasticity and scale of the Docker-based OpenShift Dedicated environment, and you'll remove many of the obstacles to business growth. Come see the future of digital innovation."
     speaker: Andy Pemberton, Senior Director, Solution Architecture, CloudBees
+    youtube_id: 8uAjsr0Wzh4
+    slides_id: ultimate-devops-openshift-dedicated-with-cloudbees-jenkins-platform-andy-pemberton
   - title: "From object-oriented to functional-domain modeling"
     date: "TUESDAY, JUNE 28: 3:30 p.m. to 4:30 p.m."
     abstract: "The main consequence of the introduction of lambda expressions in Java 8 is the possibility of conveniently mixing the object-oriented and the functional paradigms. It's still uncommon to see functions used together with data in the business domain model. For example, it's usual to pass a list of data to a function that processes them, but there are cases when you may want to create a list of functions and pass a single data through all of them. Immutable objects leads to an inherently thread-safe domain model. Functions often compose better than objects. Side-effect-free code allows better reusability. In this session, we're: -- Not going to compare object-oriented and functional programming -- Are going to show how the two styles can be combined to take advantage of the good parts of each -- Going to look at practical examples to distill the essence of functional programming"
     speaker: Mario Fusco, Senior Software Engineer, Red Hat
+    youtube_id: fwqLHM6keWw
   - title: "Building reactive applications with Node.js and Red Hat JBoss Data Grid"
     date: "TUESDAY, JUNE 28: 3:30 p.m. to 4:30 p.m."
     abstract: "Node.js is a very popular framework for developing asynchronous, event-driven, reactive applications. Red Hat JBoss Data Grid, an in-memory distributed database designed for fast access to large volumes of data and scalability, has recently gained compatibility with Node.js letting reactive applications use it as a persistence layer. Thanks to near caching, JBoss Data Grid offers excellent response times for data queried regularly, and its continuous remote event support means data can get pushed from the data grid to the Node.js application instead of having to wait for the data grid to serve it. In this session, we'll show how to build Node.js applications that use JBoss Data Grid as a persistence layer."
     speaker: Galder Zamarreño, Senior Software Engineer, Red Hat & Divya Mehra, Red Hat
+    youtube_id: ebUbzrpCuTA
+    slides_id: building-reactive-applications-with-nodejs-and-red-hat-jboss-data-grid-galder-zamarreo-divya-mehra
   - title: "You've got microservices... Let's secure them"
     date: "TUESDAY, JUNE 28: 3:30 p.m. to 4:30 p.m."
     abstract: "You went ahead a built a whole new set of shiny microservices. While doing this, you realized you can no longer rely on your application server to handle all the authentication. Oh, and of course, one of your teams used Node.js. How are you going to secure all these endpoints so that the end user doesn’t have to authenticate against each one. In this session, we'll give a demonstration of using a centralized authentication service to secure many different microservices. The demo will be based on Project Keycloak, but it would apply as well to Stormpath, Ping.Indenty, or similar services."
     speaker: Steven Pousty, Red Hat
+    youtube_id: EDLCfTLEeJU
   - title: "How to get the most out of your Hibernate, JBoss EAP 7 application"
     date: "TUESDAY, JUNE 28: 4:45 p.m. to 5:45 p.m."
     abstract: "The fifth major release of Hibernate sports contains many internal changes developed in collaboration between the Hibernate team and the Red Hat middleware performance team. Efficient access to databases is crucial to get scalable and responsive applications. Hibernate 5 received much attention in this area. You’ll benefit from many of these improvements by merely upgrading. But it's important to understand some of these new, performance-boosting features because you will need to explicitly enable them. We'll explain the development background on all of these powerful new features and the investigation process for performance improvements. Our aim is to provide good guidance so you can make the most of it on your own applications. We'll also peek at other performance improvements made on JBoss EAP 7, like on the caching layer, the connection manager, and the web tier. We want to make sure you can all enjoy better-performing applications—that require less power and less servers—without compromising on your developer’s productivity."
     speaker: Ståle Pedersen, Senior Principal Software Engineer, Red Hat
+    youtube_id: TiS-ftzcIIQ
+    slides_id: how-to-get-the-most-out-of-your-hibernate-jboss-eap-7-application-stle-pedersen
   - title: "JavaScript: The new parts"
     date: "TUESDAY, JUNE 28: 4:45 p.m. to 5:45 p.m."
     abstract: "The new era of JavaScript is here. Survey the ECMAScript 2015 (ES6) landscape. Master arrow functions, let & const variables, modules, classes, and more. Gain JavaScript superpowers and impress your friends. See old code transformed into elegant ES6 syntax. Grow your web development skills as Michael and Joshua take you through the latest in the JavaScript universe."
     speaker: Joshua Wilson, Red Hat & Michael Clayton, Red Hat
+    youtube_id: kw-9AjB5kqI
   - title: "Cryptography: What every application developer needs to know"
     date: "TUESDAY, JUNE 28: 4:45 p.m. to 5:45 p.m."
     abstract: "Through the years, Java has become much more than just a programming language. It's also an enterprise platform for JEE application development. However, at some level, security and cryptography are easy to get wrong. Most of the time, we don't care which algorithms—SHA-256 or SHA-512, RSA or ECC, AES-128 or AES-256, padding schemes, iteration number, key sizes—are or aren't ideal for encryption, or if a poor choice could benefit attackers. In this technical session, we won't use complex math, and most of the concepts will be illustrated with source code, as we explore: - Broken cryptography - Libraries available for development - Hashing passwords and what people have been doing wrong - Usage of digital signatures - Protecting local data - How to properly exchange encryption keys - Securely sending data over the network - Preventing illegal tampering on client/server applications - SSL best practices - Cryptography in our daily basis"
     speaker: Bruno Oliveira, Software Engineer, Red Hat
+    youtube_id: 2XRU1mLK38U
   - title: "Decomposing a Java EE monolith into WildFly Swarm microservices"
     date: "TUESDAY, JUNE 28: 4:45 p.m. to 5:45 p.m."
     abstract: "In this session we'll introduce you to WildFly Swarm through the migration of TicketMonster from a Java EE monolith to Java EE microservices for parts of the stack. The services will be discoverable, provide failover with Netflix Ribbon, and utilize Netflix Hystrix for circuit breaking. TicketMonster, a full Java EE application, will be dissected into appropriate services while also retaining Java EE pieces that are appropriate. We'll then walk through several required aspects for a full services architecture. This will include securing these services with Keycloak; registering services for discovery via JGroups, Consul or Zookeeper; service logging to external sources such as logstash; and capturing service metrics with Hawkular and DropWizard Metrics. By the end of the session, we'll have converted some pieces of a Java EE application into services, while learning how WildFly Swarm integrates with external tools to provide a complete solution for service delivery."
     speaker: Ken Finnigan, Principal Software Engineer, Red Hat
+    youtube_id: YVEqq60At-M
   - title: "Getting started with C# on Red Hat Enterprise Linux and OpenShift by Red Hat"
     date: "TUESDAY, JUNE 28: 4:45 p.m. to 5:45 p.m."
     abstract: "C# is a modern, advanced general-purpose programming language and is now fully open source and supported on Linux. In this session, you'll learn how to be productive with the new, modern C# on Linux. See what it's like building high performance web workloads in ASP.NET. Learn about the tooling support available to you, including how to configure your favorite editor. Check out the improved DevOps flows enabled by the full stack app, local deployment, and native compilation. And more."
-    speaker: Jay Schmelzer, Microsoft Corporation
+    speaker: Scott Hunter, Microsoft, Jon Galloway, Microsoft
+    youtube_id: qHA3yFRd8Eo
   - title: "Scaling in-memory data grid automatically with Kubernetes"
     date: "WEDNESDAY, JUNE 29: Scaling in-memory data grid automatically with Kubernetes"
     abstract: "Kubernetes is a powerful, open source, container orchestration and cluster management tool from Google. It drew upon all the lessons learned from a near-decade of using containers at Google. In this session, we'll look beyond container orchestration with Kubernetes and take a deep dive into more advanced features such as autoscaling. But its most powerful feature is its versatile REST API, which you can use to tailor Kubernetes to your needs. In addition to the out-of-the-box Kubernetes Autoscaler, we'll look at: - How to access the Kubernetes API securely - The different Kubernetes resources such as Pod, Replication Controller, Service, etc. - How to update/manage your entire cluster using the API We'll use the techniques and the REST API to demonstrate how to cluster Infinispan, an in-memory data grid, in Kubernetes, and autoscale Infinispan using custom metrics."
     speaker: Ray Tsang, Developer Advocate, Google
-    youtube_id:
+    youtube_id: E4ACZ6_WDyo
   - title: "Building progressive web apps"
     date: "WEDNESDAY, JUNE 29: 10:15 a.m. to 11:15 a.m."
     abstract: "With the recent advancements in modern browsers, more native app-like features are coming to the browser. Things like push notifications, background sync, offline capabilities and home screen app icons have been added to browsers allowing developers to continue building web apps, but now include features that users expect from native apps. In this session we'll take an existing web app and transform it into a progressive web app. We’ll learn how to make the web app installable, how to make it work offline and finally we’ll learn how to add push notifications to re-engage our users."
     speaker: Kyle Buchanan, Senior Software Engineer, Red Hat
+    youtube_id: SRMUKKce9ZY
+    slides_id: building-progressive-web-apps-kyle-buchanan
   - title: "An introduction to Node.js for Java developers"
     date: "WEDNESDAY, JUNE 29: 10:15 a.m. to 11:15 a.m."
     abstract: "In this session, we'll present an overview of Node.js with examples pertinent to Java developers who want to learn more about this Javascript environment. We'll discuss some design patterns of interest to Java developers and look at some live examples. The session will discuss enterprise-scale Node.js, and in particular, the use of microservices."
     speaker: Richard Rodger, CTO nearForm, nearForm
+    youtube_id: G09QSAwBDfo
   - title: "Drools 7.x happenings and roadmap"
     date: "WEDNESDAY, JUNE 29: 10:15 a.m. to 11:15 a.m."
     abstract: "Do you want to catch up on the latest developments in the Drools community for the 7.x series? In this session, we'll look at changes to both the workbench and the core engine—what's available now and what's in the roadmap. The 7.x workbench has had a big usability revamp with improved advanced editors and automated deployments to the execution server. We'll look at a 'low code' example to see the authoring, deployment, and usage of decision service. This example will integrate the new forms and application directory functionality. The workbench is now highly customizable and we'll demonstrate how to add new custom editors and the mash up capability of the workbench to easily add new pages and components for your domain. The 7.x engine delivers a new hybrid reasoning capability to make it much easier to work reactively with nested objects, providing a new XPath inspired notation for list comprehension, making things much more natural for Java developers. And it now has a pluggable layer for different knowledge types, and we'll discuss and demonstrate how to integrate another subsystem such as a Bayesian Network. We'll also demonstrate the new capabilities for default and exception rules and cover pojo-rules that make use of Java 8 lambda for rules in pure Java."
     speaker: Mark Proctor, Red Hat
+    youtube_id: Kz7a3COtj1A
   - title: "DevOps moves to production"
     date: "WEDNESDAY, JUNE 29: 10:15 a.m. to 11:15 a.m."
     abstract: "Delivering an app or service fast and frequently to production isn't the same as delivering the app or service fast and frequently to its intended users. Before an app is actually 'live' it has to run the gauntlet of production deployment that stands between it and real, live users. While DevOps has helped organizations make huge strides toward continuous delivery in dev and test environments, the production environment remains a very real obstacle in realizing continuous deployment. The biggest hurdle in that obstacle course is a narrow definition of DevOps that fails to include a broad set of technologies and tools outside the Dev and Ops domain. In this session we'll explore the underlying elements of a comprehensive DevOps approach (SDN, CD/CI, and Agile) and how they mix, match, and combine to enable the operational transformation DevOps promises to achieve the ultimate goal of IT agility: continuous deployment."
     speaker: Lori MacVittie, Principal Technical Evangelist, F5 Networks
+    youtube_id: IICMq5V0y3A
+    slides_id: devops-moves-to-production-lori-macvittie
   - title: "fabric8-ing continuous improvement with Kubernetes and Jenkins Pipeline"
     date: "WEDNESDAY, JUNE 29: 11:30 a.m. to 12:30 p.m."
     abstract: "Using Docker for building and packaging small discrete microservices, and Kubernetes to ensure they stay running and gaining OOTB service discovery, significantly reduces the challenges of having a consistent way to build, package, and run applications. Then, there's how to develop, test, promote, release, support, and improve our container-based architectures, taking an idea from inception to repeatable releasing in a live environment. In this session, we'll look at how fabric8, which runs on top of OpenShift 3 by Red Hat and Kubernetes, uses Docker and Jenkins workflow for pipeline orchestration to provide an extensible OOTB CD solution. Fabric8 significantly simplifies the creation of new projects with a one-click setup and the wiring-together of tooling such and version control systems, artifact repositories, and release pipelines. With human approval, automated integration testing, ChatOps, environment + pipeline visualisation, commit traceability, and a developer experience that helps teams deliver value faster, we'll see how the strength of the open source community works together to provide a consistent approach to building and releasing software for new, cloud-based microservices."
     speaker: James Rawlings, Red Hat & James Strachan, Red Hat
+    youtube_id: VKH_3TmJ6To
   - title: "Vert.x: Microservices were never so easy"
     date: "WEDNESDAY, JUNE 29: 11:30 a.m. to 12:30 p.m."
     abstract: "Vert.x 3 is a framework to create reactive applications on the Java Virtual Machine. Vert.x 3 takes the JVM to new levels of performance yet having a small API. It lets you build scalable microservice-based applications transparently distributed and packaged as a single jar file. Due to this simplicity, deploying and managing Vert.x applications on OpenShift 3 is a breeze, upload your jar and Vert.x internal cluster manager will connect all your pods in single distributed network. Several examples are shown during the talk and demonstrate how Vert.x can simplify DevOps daily job when working together with OpenShift 3."
     speaker: Clement Escoffier, Vert.x Core Developer, RedHat
+    youtube_id: c5zKUqxL7n0
+    slides_id: vertx-microservices-were-never-so-easy-clement-escoffier
   - title: "Monitoring application-specific behavior using Thermostat and Byteman"
     date: "WEDNESDAY, JUNE 29: 11:30 a.m. to 12:30 p.m."
     abstract: "Thermostat is a Red Hat monitoring solution for middleware that lets you capture performance statistics from one or more Java deployments. In this session, we'll look at an extension to Thermostat that allows it to capture and present arbitrary application-specific data in a variety of different formats. By integrating Thermostat with Byteman, a tool that easily injects Java code almost anywhere in a running Java application, the Byteman-Thermostat integration package can gather simple data or statistics and pass them to the Thermostat back end. The back end automatically displays it in a suitable graphical format alongisde all other monitored statistics. Byteman supports un-injection and re-injection of code, making it possible to gather ad hoc statistics and tune in to specific, problematic behaviors. We'll mostly proceed by demonstrating Byteman and Thermostat in action—showing how to set up and run Thermostat with Byteman in place and providing examples of how to gather several interesting application-specific statistics from a sample Java deployment."
@@ -179,37 +226,47 @@ sessions:
     date: "WEDNESDAY, JUNE 29: 11:30 a.m. to 12:30 p.m."
     abstract: "Large-scale Javascript applications benefit from a modular approach that let code be reused both within the application and across repeated implementations. In this session, we'll look at the modular approach used to build reusable Javascript modules in the Red Hat mobile field workforce management application (WFM) showcased in this year's Summit middleware keynote demo. Reusable modules for WFM are packaged as node package manager (npm) modules, providing a consistent format for both server and client sides using Node.js and Browserify. Modules are loosely coupled using the Mediator pattern and they broadcast user actions and state changes giving the application and other modules the opportunity to hook into those events. Additionally, visual components are packaged in a framework-agnostic manner, providing reusable UI components. You'll leave this session understanding the challenges faced when building reusable modules for large-scale applications, and the solutions employed in building out the reusable WFM modules."
     speaker: Brian Leathem, Principal Software Engineer, Red Hat
+    youtube_id: ATcfEwp55Qs
+    slides_id: write-powerful-javascript-modules-to-make-your-apps-dry-brian-leathem
   - title: "Push it. Push it good: Continuous integration and deployment for the people"
     date: "WEDNESDAY, JUNE 29: 11:30 a.m. to 12:30 p.m."
     abstract: "We know how to code. We know how to test. But all too often, we’re disjointed in bringing our applications to life in production. In this practical session based on the lessons showcased in the Summit middleware keynote, we’ll walk through both the concepts and software that lets developers push to production with confidence. Join the Developer Experience Engineering team as we give you a chance to quickly get started with a full deployment pipeline for new applications, focusing on: * Testability as a first-class citizen * Using the cloud as an extension of your local development environment * Reviewing your changes in isolation in a production-like environment * A smooth merge process to get your changes upstream * Getting your stuff live, reliably and efficiently See how we brought everything to life on the big stage during the middleware keynote and take some lessons home to try yourself."
     speaker: Andrew Lee Rubinger, Software Engineer, Red Hat & Rafael Benevides, Mr, Red Hat
+    youtube_id: UkcwitksABg
   - title: "Developing and deploying cloud-native apps as resilient microservices architectures"
     date: "WEDNESDAY, JUNE 29: 3:30 p.m. to 4:30 p.m."
     abstract: "You've been hearing about microservices for months and have probably taken a look at 12-factor and cloud-native apps, too. But there's a myriad of frameworks and tools you can use to craft your software and join the pieces together into a microservices architecture. You want to use the best tool for the job, and you need a hassle-free DevOps pipeline to orchestrate and deploy all of them. In this session, you'll learn how to combine a lot of different technologies and tools in a live demo that will open your eyes to the huge possibilities that microservices can help you achieve. We'll have it all: containers, Docker, Wildfly Swarm, Spring Boot, NodeJS, .NET, OpenShift, Jenkins, Kubernetes, and more."
     speaker: Edson Yanaga, Director of Developer Experience, Red Hat
+    youtube_id: HOzUlMbfZd0
+    slides_id: developing-and-deploying-cloudnative-apps-as-resilient-microservices-architectures-edson-yanaga
   - title: "Full stack development with Node.js and NoSQL"
     date: "WEDNESDAY, JUNE 29: 3:30 p.m. to 4:30 p.m."
     abstract: "In this session, we'll talk about what's different about this generation of web applications and how a solid development approach must consider the latency, throughput, and interactivity demand by users across mobile devices, web browsers, and Internet of Things (IoT). We'll demonstrate how to include Couchbase in such applications to support a flexible data model and the easy scalability required for modern development. We'ill demonstrate how to create a full stack application focusing on the CEAN stack, which is composed of Couchbase, Express Framework, AngularJS, and Node.js."
     speaker: Nic Raboy, Developer Advocate, Couchbase & Arun Gupta, Vice President, Developer Advocacy, Couchbase
+    youtube_id: 78xynxN9zjk
+    slides_id: full-stack-development-with-nodejs-and-nosql-nic-raboy-arun-gupta
   - title: "Containers: Under the hood"
     date: "WEDNESDAY, JUNE 29: 3:30 p.m. to 4:30 p.m."
     abstract: "Despite the popularity and hype of containers, there is no need to regard containers as a block box. It is important to have an awareness of what's going on under the hood to help optimize your container requirements. In this session, we'll discuss: - Namespacing in the kernel - Copy-on-write storage choices - Portable container formats - Available container alternatives - Validation, trust, and content addressability with image verification See examples and options for your use-cases."
     speaker: Vincent Batts, Red Hat
+    youtube_id: bG2WAHuVe_g
+    slides_id: containers-under-the-hood-vincent-batts
   - title: "Boost development with Java EE7 on EAP7"
     date: "WEDNESDAY, JUNE 29: 3:30 p.m. to 4:30 p.m."
     abstract: "JBoss EAP7 brings support for the most recent industry standards and technologies, including Java EE7, the latest edition of the premier enterprise development standard. This session will provide an overview of the major additions to Java EE7, and how your team can use these capabilities on the advanced EAP7 runtime to produce better applications with less code."
-    speaker: Jason Greene, Red Hat
-  - title: "Advanced API management: Using and extending apiman"
-    date: "WEDNESDAY, JUNE 29: 4:45 p.m. to 5:45 p.m."
-    abstract: "While basic usage of apiman will solve a lot of your API Management requirements, sometimes the basics just aren't enough. When this happens you can easily extend and customize API Management functionality in apiman through some of its more advanced features. In this session, we will quickly review the basics and then show how to use apiman's plugin framework to further customize and extend it. Learn how to easily provide your own custom policies or extend core functionality without forking or rebuilding!"
-    speaker: Eric Wittmann, Principal Software Engineer, Red Hat
+    speaker: Demitris Andreadis, Red Hat
+    youtube_id: 9ZSqcz09iIo
+    slides_id: boost-development-with-java-ee7-on-eap7-demitris-andreadis
   - title: "iPaaS 2.0: Fuse integration services"
     date: "WEDNESDAY, JUNE 29: 4:45 p.m. to 5:45 p.m."
     abstract: "Red Hat JBoss Fuse integration services delivers cloud-based integration based on OpenShift by Red Hat to deliver continuous delivery of tested, production-ready integration solutions. Utilizing a drag and drop, code-free UI and combining that with the integration power of Apache Camel, Fuse integration services is the next generation iPaaS. In this session, we'll walk you through why iPaaS is important, the current Fuse integration services roadmap, and the innovation happening in open source community projects to make this a reality."
     speaker: Robert Davies, Red Hat & Keith Babo, Red Hat
     youtube_id: iLdDFjXI6gM
+    slides_id: ipaas-20-fuse-integration-services-robert-davies-keith-babo
   - title: "Shenandoah GC: Java without the garbage collection hiccups"
     date: "WEDNESDAY, JUNE 29: 4:45 p.m. to 5:45 p.m."
     abstract: "Just like a spoon full of sugar will cure your hiccups, running your JVM with -XX:+UseShenandoahGC will cure your Java garbage collection hiccups. Shenandoah GC is a new garbage collector algorithm developed for OpenJDK at Red Hat, which will produce much better pause times than the currently-available algorithms without a significant decrease in throughput. In this session, we'll explain how Shenandoah works and compare it to the currently-available OpenJDK garbage collectors."
     speaker: Christine Flood, Red Hat
+    youtube_id: N0JTvyCxiv8
+    slides_id: shenandoah-gc-java-without-the-garbage-collection-hiccups-christine-flood
 
