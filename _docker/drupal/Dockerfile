@@ -47,5 +47,5 @@ COPY scripts /var/www/drupal/scripts
 RUN chmod -v +x /var/www/drupal/scripts/run-httpd.sh
 COPY drupal-filesystem /var/www/drupal
 RUN /usr/local/bin/composer install -n
-
+ENV PATH=$PATH:/var/www/drupal/vendor/bin
 CMD ["/var/www/drupal/scripts/run-httpd.sh"]
