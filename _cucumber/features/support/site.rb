@@ -96,11 +96,6 @@ class Site
     @current_page = @community
   end
 
-  def events
-    @events ||= EventsPage.new(@driver)
-    @current_page = @events
-  end
-
   def search
     @search ||= SearchPage.new(@driver)
     @current_page = @search
@@ -124,6 +119,16 @@ class Site
   def forums
     @forums ||= Forums.new(@driver)
     @current_page = @forums
+  end
+
+  def resources
+    @resources ||= ResourcesPage.new(@driver)
+    @current_page = @resources
+  end
+
+  def pagination
+    @pagination ||= Pagination.new(@driver)
+    @current_page = @pagination
   end
 
 end

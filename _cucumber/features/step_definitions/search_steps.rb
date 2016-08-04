@@ -32,7 +32,7 @@ And(/^the result per page options should be:$/) do |table|
   table.raw.each do |links|
     results_per_page << links.first
   end
-  @page.search.results_per_page[1].should =~ results_per_page
+  @page.current_page.results_per_page[1].should =~ results_per_page
 end
 
 Then(/^I should see "([^"]*)" results containing "([^"]*)"$/) do |results_size, search_string|
@@ -42,8 +42,12 @@ Then(/^I should see "([^"]*)" results containing "([^"]*)"$/) do |results_size, 
   end
 end
 
-Then(/^I should see a message "([^"]*)"$/) do |message|
-  expect(@page.search.results_title).to eq message
+Then(/^I (should|should not) see a message "([^"]*)"$/) do |negate, message|
+  if negate.include?('not')
+    @page.current_page.results_title.should_not include(message)
+  else
+    @page.current_page.results_title.should eql?(message)
+  end
 end
 
 Then(/^there will be no results displayed$/) do
@@ -56,34 +60,34 @@ end
 
 
 Then(/^I should not see pagination with page numbers$/) do
-  expect(@page.search.has_pagination?).to be false
+  expect(@page.pagination.has_pagination?).to be false
 end
 
 Then(/^the following links should be (enabled|disabled):$/) do |link_state, table|
   table.raw.each do |links|
     link = links.first
-    expect(@page.search.pagination_links(link.downcase, link_state)).to be true
+    expect(@page.pagination.pagination_links(link.downcase, link_state)).to be true
   end
 end
 
 Then(/^I should see pagination with "([^"]*)" pages(?: (with|without) ellipsis)?$/) do |number, ellipsis|
 
-  expect(@page.search.has_pagination_with(number)).to be true
+  expect(@page.pagination.has_pagination_with(number)).to be true
 
   if ellipsis == 'with'
-    expect(@page.search.has_ellipsis?).to be true
+    expect(@page.pagination.has_ellipsis?).to be true
   else
-    expect(@page.search.has_ellipsis?).to be false
+    expect(@page.pagination.has_ellipsis?).to be false
   end
 
 end
 
 When(/^I click on the pagination "([^"]*)" link/) do |link|
-  @page.search.click_pagination(link.downcase)
+  @page.pagination.click_pagination(link.downcase)
 end
 
 Then(/^I should see page "([^"]*)" of the results$/) do |page_number|
-  expect(@page.search.current_link).to eq("#{page_number}")
+  expect(@page.pagination.current_link).to eq("#{page_number}")
 end
 
 Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
@@ -91,8 +95,8 @@ Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
 end
 
 Given(/^I am on page "([^"]*)" of the results$/) do |page_number|
-  @page.search.click_pagination(page_number)
-  @page.search.current_link.should == page_number
+  @page.pagination.click_pagination(page_number)
+  @page.pagination.current_link.should == page_number
 end
 
 Given(/^the search box is empty$/) do
@@ -129,7 +133,3 @@ And(/^I click on the X to clear search term$/) do
   @page.search.click_clear_search
 end
 
-
-Then(/^I should see text "Showing "(\d+)\-(\d+)" of "(.*)" results"$/) do |arg1, arg2, arg3|
-  @page.search.results_text.should =~ /Showing #{arg1}-#{arg2} of \d{3} results/
-end
