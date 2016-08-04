@@ -1,26 +1,16 @@
-require_relative 'base'
+require_relative 'site_base'
 
-class UpdatePassword < Base
+class UpdatePasswordPage < SiteBase
+  page_title('Update password | Red Hat Developers')
 
-  NEW_PASSWORD_FIELD         = { id: 'password-new' }
-  NEW_PASSWORD_CONFIRM_FIELD = { id: 'password-confirm' }
-  SUBMIT_NEW_PASSWORD_BTN    = { xpath: "//input[@value='Submit']" }
-  KC_FEEDBACK                = { id: 'kc-feedback' }
-
-  def initialize(driver)
-    super
-    verify_page('Update password | Red Hat Developers')
-  end
+  element(:new_password_field)         { |el| el.find(id: 'password-new') }
+  element(:new_password_confirm_field) { |el| el.find(id: 'password-confirm') }
+  action(:click_submit)                { |el| el.click_on(xpath: "//input[@value='Submit']") }
 
   def submit_new_password
-    type(NEW_PASSWORD_FIELD, 'P@$$word01')
-    type(NEW_PASSWORD_CONFIRM_FIELD, 'P@$$word01')
-    click_on(SUBMIT_NEW_PASSWORD_BTN)
-  end
-
-  def confirmation
-    wait_for { displayed?(KC_FEEDBACK) }
-    text_of(KC_FEEDBACK)
+    new_password_field.send_keys 'P@$$word01'
+    new_password_confirm_field.send_keys 'P@$$word01'
+    click_submit
   end
 
 end

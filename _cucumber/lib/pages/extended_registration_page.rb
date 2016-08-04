@@ -1,6 +1,6 @@
-require_relative 'base'
+require_relative 'site_base'
 
-class ExtendedRegistration < Base
+class ExtendedRegistration < SiteBase
 
   REGISTRATION_HINT            = { css: '.download-show' }
   EMAIL_FIELD                  = { id: 'email' }
@@ -29,12 +29,6 @@ class ExtendedRegistration < Base
   REGISTRATION_CONFIRMATION    = { id: 'registration-confirmation' }
   ACCEPT_ALL_TERMS             = { id: 'tac-checkall' }
   ACCEPT_TERMS                 = { css: '.fulluser-ttac' }
-
-  def initialize(driver)
-    super
-    wait_for { displayed?(REGISTRATION_HINT) }
-    verify_page('Register | Red Hat Developers')
-  end
 
   def registration_hint
     wait_for { displayed?(REGISTRATION_HINT) }

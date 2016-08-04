@@ -2,18 +2,7 @@ require 'yaml'
 
 module DownloadHelper
 
-  TIMEOUT = 12
-
   extend self
-
-  def download_manager_base_url
-    case $host_to_test
-      when 'http://developers.redhat.com/', 'https://developers.redhat.com/'
-        'https://developers.redhat.com/download-manager/rest/available'
-      else
-        'https://developers.stage.redhat.com/download-manager/rest/available'
-    end
-  end
 
   def get_download_data(url)
     response = RestClient::Request.execute(method: :get, url: url, verify_ssl: false, headers: {:accept => :json})
@@ -22,7 +11,7 @@ module DownloadHelper
   end
 
   def get_featured_download_for(product_id)
-    data = get_download_data(download_manager_base_url + "/#{product_id}")
+    data = get_download_data($download_manager_base_url + "/#{product_id}")
     if data[0]['featuredArtifact']['versionName'].nil?
       raise "No Featured Artifact for #{product_id}"
     else

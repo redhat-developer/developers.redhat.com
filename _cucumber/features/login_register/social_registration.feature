@@ -56,7 +56,7 @@ Feature: Social registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @delete_user @logout @github_teardown
+  @delete_user @logout @github_teardown @wip
   Scenario: 4 - Registration using GitHub login which doesn't contain some mandatory information (first name, last name), email is unique. User is asked to fill in mandatory info during login.
     Given I am on the Registration page
     When I register a new account using a GitHub account that contains missing profile information

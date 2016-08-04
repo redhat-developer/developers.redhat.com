@@ -1,5 +1,7 @@
 When(/^submit my email address$/) do
-  @page.forgot_password.enter_email($site_user[:email])
+  on ForgotPasswordPage do |page|
+    page.enter_email($site_user[:email])
+  end
 end
 
 And(/^I should receive an email containing a password reset link$/) do
@@ -13,9 +15,11 @@ When(/^I navigate to the password reset URL$/) do
 end
 
 Then(/^I should see a confirmation message: "([^"]*)"$/) do |message|
-  expect(@page.current_page.confirmation).to eq message
+  expect(@current_page.kc_feedback).to eq message
 end
 
 When(/^I update my password$/) do
-  @page.update_password.submit_new_password
+  on UpdatePasswordPage do |page|
+    page.submit_new_password
+  end
 end

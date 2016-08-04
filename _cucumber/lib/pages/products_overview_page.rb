@@ -1,7 +1,7 @@
-require_relative 'base'
+require_relative 'site_base'
 require_relative '../../../_cucumber/lib/helpers/products_helper.rb'
 
-class ProductOverviewPage < Base
+class ProductOverviewPage < SiteBase
 
   class << self
     include ProductsHelper
@@ -15,14 +15,9 @@ class ProductOverviewPage < Base
   BUZZ          = { xpath: "//*[@class='side-nav']//a[contains(text(),'Buzz')]" }
   HELP          = { xpath: "//*[@class='side-nav']//a[contains(text(),'Help')]" }
 
-  def initialize(driver)
-    super
-  end
-
   def open(page)
-    visit("/products/#{page}/overview")
+    visit("/products/#{page}/overview/")
     wait_for_ajax
-    wait_for { displayed?(css: ".products#{page}overview") }
   end
 
   def side_nav_item_displayed?(nav_item)

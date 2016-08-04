@@ -1,7 +1,9 @@
-require_relative 'base'
+require_relative 'site_base'
 require_relative '../../../_cucumber/lib/helpers/products_helper'
 
-class Technologies < Base
+class TechnologiesPage < SiteBase
+  page_url('/products/')
+  page_title('Red Hat Products')
 
   class << self
     include ProductsHelper
@@ -14,13 +16,6 @@ class Technologies < Base
   MOBILE                     = { id: 'mobile' }
   INTEGRATION_AND_AUTOMATION = { id: 'integration_and_automation' }
   RUNTIME                    = { id: 'runtimes' }
-
-
-
-  def initialize(driver)
-    super
-    verify_page('Red Hat Products')
-  end
 
   def product_titles
     titles = []

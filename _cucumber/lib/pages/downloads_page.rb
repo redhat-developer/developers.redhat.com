@@ -1,7 +1,9 @@
-require_relative 'base'
+require_relative 'site_base'
 require_relative '../../../_cucumber/lib/helpers/downloads_helper.rb'
 
-class DownloadsPage < Base
+class DownloadsPage < SiteBase
+  page_url('/downloads/')
+  page_title('Downloads | Red Hat Developers')
 
   class << self
     include DownloadHelper
@@ -13,12 +15,6 @@ class DownloadsPage < Base
   MOST_POPULAR_DOWNLOAD_BTN = { css: '.most-popular-downloads .fa-download' }
   PRODUCT_DOWNLOADS         = { css: '#downloads h5' }
   OTHER_RESOURCES           = { xpath: '//*[@id="other-resources"]/ul/li' }
-
-  def initialize(driver)
-    super
-    verify_page('Downloads | Red Hat Developers')
-    wait_for { !displayed?(FETCHING_SPINNER) }
-  end
 
   def available_downloads
     products = []

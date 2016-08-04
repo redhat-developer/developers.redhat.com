@@ -1,40 +1,35 @@
-require_relative 'base'
+require_relative 'site_base'
 
-class StackOverflow < Base
-  attr_accessor :question_with_answer_el, :question_without_answer_el
+class StackOverflowPage < SiteBase
+  page_url('/stack-overflow/')
+  page_title('Stack Overflow')
 
-  STACK_OVERFLOW_CONTAINER           =  { class: 'update' }
-  QUESTION_ROW                       =  { class: 'stackoverflow-update' }
-  VOTES                              =  { css: '.stackoverflow-update .update .votes-count p' }
-  VOTE_COUNT                         =  { css: '.stackoverflow-update .update .votes-count h4' }
-  ANSWERS                            =  { css: '.stackoverflow-update .update .answer-count p' }
-  ANSWER_COUNT                       =  { css: '.stackoverflow-update .update .answer-count h4' }
-  VIEWS                              =  { css: '.stackoverflow-update .update .views-count p' }
-  VIEW_COUNT                         =  { css: '.stackoverflow-update .update .views-count h4' }
-  QUESTION_TITLE                     =  { class: 'qtn-title' }
-  QUESTION_LINK                      =  { class: 'update-source' }
-  QUESTION_SUMMARY                   =  { class: 'qtn-content' }
-  LATEST_ANSWER                      =  { css: 'callout qtn-answer display-answer' }
-  READ_FULL_QUESTION_LINK            =  { css: 'display-answer a' }
-  AUTHOR                             =  { class: 'so-author' }
-  FILTER_BY_PRODUCT                  =  { id: 'filterProducts' }
+  element(:product_filter)            { |el| el.find(id: 'filterProducts') }
 
-  def initialize(driver)
-    super
-    verify_page('Stack Overflow')
+  elements(:question_rows)            { |el| el.find_elements(class: 'stackoverflow-update') }
+  elements(:question_summary)         { |el| el.find_elements(class: 'qtn-content') }
+  elements(:question_links)           { |el| el.find_elements(class: 'update-source') }
+  elements(:question_titles)          { |el| el.find_elements(class: 'qtn-title') }
+  elements(:answer_count)             { |el| el.find_elements(css: '.stackoverflow-update .update .answer-count h4') }
+  elements(:votes)                    { |el| el.find_elements(css: '.stackoverflow-update .update .votes-count p') }
+  elements(:answers)                  { |el| el.find_elements(css: '.stackoverflow-update .update .answer-count p') }
+  elements(:views)                    { |el| el.find_elements(css: '.stackoverflow-update .update .views-count p') }
+  elements(:author)                   { |el| el.find_elements(class: 'so-author') }
+  element(:vote_count)                { |el| el.find(css: '.stackoverflow-update .update .votes-count h4') }
+  element(:view_count)                { |el| el.find(css: '.stackoverflow-update .update .views-count h4') }
+  element(:latest_answer)             { |el| el.find(css: 'callout qtn-answer display-answer') }
+  element(:read_full_question_link)   { |el| el.find(css: 'display-answer a') }
+
+  def wait_until_loaded
     wait_for(20) {
-      questions = find_elements(QUESTION_ROW)
-      questions.size >= 10
+      stack_questions = question_rows
+      stack_questions.size >= 10
     }
-  end
-
-  def product_filter
-    find(FILTER_BY_PRODUCT)
   end
 
   def selected_filter
     select_list = wait_for {
-      element = @driver.find_element(FILTER_BY_PRODUCT)
+      element = product_filter
       element if element.displayed?
     }
     options=select_list.find_elements(:tag_name => 'option')
@@ -46,14 +41,14 @@ class StackOverflow < Base
   end
 
   def select_product(product)
-    select(FILTER_BY_PRODUCT, product)
+    select(product_filter, product)
     wait_for_ajax
   end
 
   def questions_loaded?(i)
     begin
       wait_for(20) {
-        @stack_questions = find_elements(QUESTION_ROW)
+        @stack_questions = question_rows
         @stack_questions.size == i
       }
     rescue
@@ -62,31 +57,19 @@ class StackOverflow < Base
   end
 
   def activity_summary(type)
-    case type
-      when 'Votes'
-        find_elements(VOTES)
-      when 'Answers'
-        find_elements(ANSWERS)
-      when 'Views'
-        find_elements(VIEWS)
+    case type.downcase
+      when 'votes'
+        votes
+      when 'answers'
+        answers
+      when 'views'
+        views
       else
         raise("#{type} is not a recognised activity summary element")
     end
   end
 
-  def question_titles
-    find_elements(QUESTION_LINK)
-  end
-
-  def question_summary
-    find_elements(QUESTION_SUMMARY)
-  end
-
-  def author
-    find_elements(AUTHOR)
-  end
-
-  def question_with_answer
+  def scroll_to_question_with_answer
     scroll_page(10) {
       @element, has_answer = query_questions('with')
       has_answer.eql?(true)
@@ -105,7 +88,7 @@ class StackOverflow < Base
   end
 
   def read_full_question_link
-    custom_find(@element, READ_FULL_QUESTION_LINK)
+    custom_find(@element, css: 'display-answer a')
   end
 
   def click_read_full_question_link(link)
@@ -113,10 +96,11 @@ class StackOverflow < Base
   end
 
   def scroll_to_bottom_of_page
-    find_elements(ANSWER_COUNT).last.location_once_scrolled_into_view
+    wait_until_loaded
+    answer_count.last.location_once_scrolled_into_view
     # Wait for the additional questions to load
-    current_count = find_elements(ANSWER_COUNT).length
-    until current_count < find_elements(ANSWER_COUNT).length
+    current_count = answer_count.length
+    until current_count < answer_count.length
       sleep(1)
     end
   end
@@ -125,13 +109,14 @@ class StackOverflow < Base
   private
 
   def scroll_page(number_of_times)
+    wait_until_loaded
     count = 0; result = false
     until result == true || count == number_of_times
       result = yield
-      find_elements(ANSWER_COUNT).last.location_once_scrolled_into_view
+      answer_count.last.location_once_scrolled_into_view
       # Wait for the additional questions to load
-      current_count = find_elements(ANSWER_COUNT).length
-      until current_count < find_elements(ANSWER_COUNT).length
+      current_count = answer_count.length
+      until current_count < answer_count.length
         sleep(1)
       end
       count += 1
@@ -142,6 +127,7 @@ class StackOverflow < Base
   end
 
   def query_questions(answer)
+    wait_until_loaded
     questions = @driver.find_elements(:css, '.stackoverflow-update .update .update-meta .row')
     questions.each do |q|
       child_elements = []
@@ -160,6 +146,5 @@ class StackOverflow < Base
     end
     false
   end
-
 
 end

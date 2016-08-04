@@ -1,6 +1,6 @@
-require_relative 'base'
+require_relative 'site_base'
 
-class UpgradeAccount < Base
+class UpgradeAccount < SiteBase
 
   USER_ACCOUNT_UPGRADE   = { id: 'user-account' }
   ADDRESS_LINE_ONE_FIELD = { id: 'user-account:address1' }
@@ -13,12 +13,6 @@ class UpgradeAccount < Base
   UPGRADE_ACCOUNT_BTN    = { xpath: "//input[@value='Upgrade My Account']" }
   CANCEL_BTN             = { xpath: "//input[@value='Cancel Download']" }
   ALERT_BOX              = { css: '.warning' }
-
-  def initialize(driver)
-    super
-    wait_for { displayed?(USER_ACCOUNT_UPGRADE) }
-    verify_page('Additional Information Required | Red Hat Developers')
-  end
 
   def upgrade_account_with(address_line_one, city, postal_code, phone_number, password, confirm_password)
     type(ADDRESS_LINE_ONE_FIELD, address_line_one)
