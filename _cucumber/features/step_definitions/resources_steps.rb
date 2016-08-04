@@ -19,7 +19,6 @@ end
 
 Then(/^the results should be filtered by (.*)$/) do |filter|
   updated_results = @page.resources.results
-  @initial_results.should_not == updated_results
   @page.resources.results_contain_img_for(filter).should == true
 end
 
