@@ -14,6 +14,17 @@ class FormActionRewrite
     @log = DefaultLogger.logger
   end
 
+  #
+  # Locates the link back to the index of the site. This is required so that we can re-write the search
+  # form target to be relative to the current page.
+  #
+  def locate_index_link_href(html_document, html_page)
+      home_link = html_document.css("#home-link")
+      raise StandardError.new("Unable to locate link to index.html on page '#{html_page}'") if home_link.empty?
+      raise StandardError.new("Found more than one link with id 'home-link' on page '#{html_page}'") if home_link.length > 1
+      home_link.first.attributes['href'].value
+  end
+
   def rewrite_form_target_urls(drupal_host, export_directory)
 
     @log.info("Beginning re-write for form action attributes in export directory '#{export_directory}'...")
@@ -28,7 +39,10 @@ class FormActionRewrite
 
       modified = false
       doc.css("form[action^=\"http://#{drupal_host}\"]").each do | form |
-        new_action_value = form.attributes['action'].value.gsub("http://#{drupal_host}",'')
+
+        home_link_href = locate_index_link_href(doc, html_file)
+        new_action_value = home_link_href.gsub('index.html','search.html')
+
         @log.info("-- Modifying form action '#{form.attributes['action']}' to '#{new_action_value}'")
         form.attributes['action'].value = new_action_value
         modified = true
@@ -47,6 +61,8 @@ class FormActionRewrite
     @log.info("Completed re-write of form actions in export directory '#{export_directory}'.")
 
   end
+
+  private :locate_index_link_href
 
 end
 

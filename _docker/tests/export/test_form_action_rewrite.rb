@@ -40,11 +40,11 @@ class TestFormActionRewrite < MiniTest::Test
     @form_action_rewrite.rewrite_form_target_urls('docker',@export_directory)
 
     containers_html = get_html_document("#{@export_directory}/containers.html")
-    assert_equal('/search',get_form_action_url_from_html_doc(containers_html, 'modify'))
+    assert_equal('search.html',get_form_action_url_from_html_doc(containers_html, 'modify'))
     assert_equal('http://myotherhost.com/savemefromdocker', get_form_action_url_from_html_doc(containers_html,'no-modify'))
 
     nested_containers_html = get_html_document("#{@export_directory}/nested_directory/more-containers.html")
-    assert_equal('/search',get_form_action_url_from_html_doc(nested_containers_html, 'modify'))
+    assert_equal('../search.html',get_form_action_url_from_html_doc(nested_containers_html, 'modify'))
     assert_equal('http://myotherhost.com/savemefromdocker', get_form_action_url_from_html_doc(nested_containers_html,'no-modify'))
 
   end
