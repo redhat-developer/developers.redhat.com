@@ -19,6 +19,14 @@ function rhd_theme_suggestions_page_alter(array &$suggestions, array $variables)
 }
 
 function rhd_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+    $found_suggestion_matches = preg_grep("/node__\D+__/", $suggestions);
+
+    // If we have found_suggestion_matches, just return those as they'll be more specific anyway
+    // This does feel kind of hacky, but not sure of a better solution
+    if (!is_null($found_suggestion_matches)) {
+        return $suggestions;
+    }
+
     $node = \Drupal::request()->attributes->get('node');
     if (!is_null($node) && method_exists($node, 'getType')) {
         $new_suggestion = 'node__' . $node->getType();
