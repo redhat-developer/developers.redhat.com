@@ -139,7 +139,8 @@ app.mktg_ops = {};
 app.ssoConfig = {};
 app.ssoConfig.account_url = drupalSettings.rhd.keycloak.accountUrl;
 app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
-app.ssoConfig.confirmation = '/confirmation';
+var confirmationPage = window.location.pathname.endsWith('.html') ? '/confirmation.html' : '/confirmation'
+app.ssoConfig.confirmation = window.location.protocol + "//" + window.location.hostname + (window.location.port ? (':' + window.location.port) : '') + confirmationPage
 
 app.projects = {};
 app.projects.defaultImage = "/images/design/projects/default_200x150.png";
