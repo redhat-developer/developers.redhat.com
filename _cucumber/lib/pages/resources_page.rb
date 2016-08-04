@@ -70,19 +70,19 @@ class ResourcesPage < Base
         raise("#{type} not found")
     end
     wait_for_ajax
-    wait_for { displayed?(LOADING) == false }
+    wait_for(30) { displayed?(LOADING) == false }
   end
 
   def filter_by_product(product)
     select(FILTER_BY_PRODUCT, product)
     sleep(1.5) # slight delay to wait for search to kick-off
-    wait_for { displayed?(LOADING) == false }
+    wait_for(30) { displayed?(LOADING) == false }
   end
 
   def filter_by_date(date_type)
     select(FILTER_BY_DATE, date_type)
     sleep(1.5) # slight delay to wait for search to kick-off
-    wait_for { displayed?(LOADING) == false }
+    wait_for(30) { displayed?(LOADING) == false }
   end
 
   def results
@@ -116,7 +116,7 @@ class ResourcesPage < Base
     wait_for { displayed?(KEYWORD_FIELD) }
     type(KEYWORD_FIELD, term)
     sleep(1.5) # slight delay to wait for search to kick-off
-    wait_for { displayed?(LOADING) == false }
+    wait_for(30) { displayed?(LOADING) == false }
   end
 
   def tags

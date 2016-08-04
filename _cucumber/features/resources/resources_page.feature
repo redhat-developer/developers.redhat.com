@@ -67,11 +67,13 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Given I am on the Resources page
     Then the max characters on the Keyword field should be set to "128"
 
+  @later
   Scenario: Quoted keywords should filter by items containing the full search string.
     Given I am on the Resources page
     When I enter "RHEL" into the Keyword's box
     Then the results displayed should contain "RHEL" or "Red Hat Linux"
 
+  @later
   Scenario: Non quoted keywords should filter by items containing any of the search items delimited by space.
     Given I am on the Resources page
     When I enter "Java Container Development Kit" into the Keyword's box
