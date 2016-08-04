@@ -1,4 +1,3 @@
-@ignore
 Feature: DEVELOPER-1934 - Resources update: Implementation
 
   Scenario: On first visit to the Resources page - all results should be displayed
