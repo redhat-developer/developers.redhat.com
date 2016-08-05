@@ -139,7 +139,9 @@ app.mktg_ops = {};
 app.ssoConfig = {};
 app.ssoConfig.account_url = drupalSettings.rhd.keycloak.accountUrl;
 app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
-var confirmationPage = window.location.pathname.endsWith('.html') ? '/confirmation.html' : '/confirmation'
+
+var homeLink = document.getElementById('home-link')
+var confirmationPage = homeLink != null && homeLink.attributes['href'].value.endsWith('.html') ? '/confirmation.html' : '/confirmation'
 app.ssoConfig.confirmation = window.location.protocol + "//" + window.location.hostname + (window.location.port ? (':' + window.location.port) : '') + confirmationPage
 
 app.projects = {};
