@@ -8,7 +8,7 @@
 /**
  * Implements hook_form_alter().
  */
-function rdh_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function rhd_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   // If Article add form, add custom form validator.
   if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
     // Override default validator with custom validator.
@@ -25,7 +25,7 @@ function rdh_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $for
 /**
  * Custom form validator.
  */
-function rdh_common_custom_form_validator(array &$element, \Drupal\Core\Form\FormStateInterface $form_state) {
+function rhd_common_custom_form_validator(array &$element, \Drupal\Core\Form\FormStateInterface $form_state) {
   // Trim the submitted value of whitespace and slashes.
   $alias = rtrim(trim($element['alias']['#value']), " \\/");
 
