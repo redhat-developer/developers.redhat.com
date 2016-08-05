@@ -236,7 +236,7 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.query = $scope.params.query; // this is static until the update re-runs
     var params = $scope.cleanParams($scope.params);
     if(isSearch) {
-      var searchPage = $window.location.protocol + '//' + $window.location.hostname + (window.location.port ? (':' + window.location.port) : '') + $window.location.pathname
+      var searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname
       history.pushState($scope.params,$scope.params.query, searchPage + '?q=' + $scope.params.query);
     }
     searchService.getSearchResults(params).then(function(data) {
