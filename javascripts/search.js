@@ -161,9 +161,9 @@ search.filter('description', function($sce) {
   }
 });
 
-search.controller('SearchController', ['$scope', 'searchService', searchCtrlFunc]);
+search.controller('SearchController', ['$scope','$window', 'searchService', searchCtrlFunc]);
 
-function searchCtrlFunc($scope, searchService) {
+function searchCtrlFunc($scope, $window, searchService) {
 
   var isSearch = !!window.location.href.match(/\/search/);
   var searchTerm = window.location.search.split('=');
@@ -236,7 +236,8 @@ function searchCtrlFunc($scope, searchService) {
     $scope.query = $scope.params.query; // this is static until the update re-runs
     var params = $scope.cleanParams($scope.params);
     if(isSearch) {
-      history.pushState($scope.params,$scope.params.query,app.baseUrl + '/search/?q=' + $scope.params.query);
+      searchPage = $window.location.pathname.endsWith('.html') ? '/search.html' : '/search/'
+      history.pushState($scope.params,$scope.params.query,app.baseUrl + searchPage + '?q=' + $scope.params.query);
     }
     searchService.getSearchResults(params).then(function(data) {
       $scope.results = data.hits.hits;
