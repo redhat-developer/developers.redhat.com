@@ -71,7 +71,7 @@ class DrupalInstallChecker
       puts "Installing settings for module #{module_name}..."
       process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=web','config:import:single',"#{module_name}.settings","/var/www/drupal/config/#{module_name}.settings"])
     end
-   end
+  end
 
   def install_theme
     puts 'Installing Drupal theme...'
@@ -84,7 +84,9 @@ class DrupalInstallChecker
                            'layoutmanager', 'hal', 'redhat_developers', 'syslog', 'diff', 'entity',
                            'entity_storage_migrate', 'key_value', 'multiversion', 'token', 'metatag',
                            'metatag_google_plus', 'metatag_open_graph', 'metatag_twitter_cards',
-                           'metatag_verification', 'admin_toolbar', 'admin_toolbar_tools','simple_sitemap']
+                           'metatag_verification', 'admin_toolbar', 'admin_toolbar_tools','simple_sitemap',
+                           'pathauto', 'config_update', 'ctools', 'rhd_common', 'config_changes'
+                          ]
 
     if @opts['environment'] == 'dev'
       module_install_args.push(*%w(devel kint))

@@ -133,7 +133,10 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                              'metatag_open_graph',
                                                                              'metatag_twitter_cards',
                                                                              'metatag_verification', 'admin_toolbar',
-                                                                             'admin_toolbar_tools','simple_sitemap', 'devel', 'kint']]
+                                                                             'admin_toolbar_tools','simple_sitemap',
+                                                                             'pathauto', 'config_update', 'ctools',
+                                                                             'rhd_common', 'config_changes',
+                                                                             'devel', 'kint']]
 
 
     install_checker.install_modules
@@ -151,7 +154,10 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                             'metatag_open_graph',
                                                                             'metatag_twitter_cards',
                                                                             'metatag_verification', 'admin_toolbar',
-                                                                            'admin_toolbar_tools','simple_sitemap']]
+                                                                            'admin_toolbar_tools','simple_sitemap',
+                                                                            'pathauto', 'config_update', 'ctools',
+                                                                            'rhd_common', 'config_changes'
+                                                                             ]]
 
     @install_checker.install_modules
   end
