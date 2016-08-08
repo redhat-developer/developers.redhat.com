@@ -15,7 +15,7 @@ search.service('searchService',function($http, $q) {
       query_highlight: true
     });
 
-    var endpoint = (!!window.location.pathname.match(/\/search/) ? app.dcp.url.search : app.dcp.url.developer_materials);
+    var endpoint = app.dcp.url.developer_materials;
 
     $http.get(endpoint, { params: search })
       .success(function(data){
