@@ -10,7 +10,6 @@ app.productForums = {};
 app.productForums.fetch = function() {
   
   var productId = $('.product-forums').data('tags');
-  console.log("productId: " + productId);
 
   // $.getJSON(app.dcp.url.search + '/forum_threads_by_project?project=' + productId,function(data){
   $.getJSON('http://dcp2.jboss.org/v2/rest/search/forum_threads_by_project?project=' + productId,function(data){

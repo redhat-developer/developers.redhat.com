@@ -19,7 +19,23 @@
       h4.caps
         i.fa.fa-stack-overflow
         |  Top Q&amp;A
-      .product-stackoverflow-container(data-tags="#{(JSON.dump page.parent.product.stackoverflow_tags).gsub(/"/, "'")}")
+
+      div(ng-app="search")
+        .row(ng-controller="SearchController")
+          .stackoverflow-results-container(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0" data-tags="#{(JSON.dump page.parent.product.stackoverflow_tags).gsub(/"/, "'")}" id="stackContainer")
+            div(ng-repeat="result in results | limitTo:4" ng-init="r = result")
+              .stackoverflow-product-update
+                .update
+                  .update-meta
+                    .row
+                      .large-24.columns
+                        h5.qtn-title: a(href="{{r._source.sys_url_view}}" target="_blank") Q: {{r._source.sys_title}}
+                      .large-12.columns
+                        p {{r._source.up_vote_count}} votes | {{r._source.answer_count}} answers | {{r._source.view_count}} views
+                      .large-12.columns
+                        span.right
+                          p {{r | stackDate}}
+
       h5.see-all
         a(href='#{site.base_url}/stack-overflow/#!filter-products=#{page.parent.product.id}')
           | See all related Stack Overflow Q&amp;A posts&nbsp;

@@ -21,74 +21,79 @@ section.stack-help
         a(href="#{site.base_url}/articles/how-to-post-tag-question-stack-overflow/")  How to post and tag questions at Stack Overflow
         |  to get tips on how to make sure our experts see your question.
 
-div(ng-app="stackoverflow")
-  .row#searchpage(ng-controller="StackOverflowController")
+div(ng-app="search")
+  .row(ng-controller="SearchController")
     .large-24.columns
       .row
         .large-24.columns
           form.search-bar(role="search" ng-submit="updateSearch(); resetPagination();")
             / input.user-success.user-search(required type="search" placeholder="Enter your search term" id="search_list_text" ng-model="params.query")
         .large-24.columns
-          label(for="filterProducts") Filter by Product
-          .styled-select
-            select(name="filter-products" id="filterProducts" ng-model="params.query" ng-change="updateSearch();  resetPagination();")
-              option(value="") Show all
-              option(value="eap") Red Hat JBoss Enterprise Application Platform
-              option(value="webserver") Red Hat JBoss Web Server
-              option(value="rhel") Red Hat Enterprise Linux
-              option(value="softwarecollections") Red Hat Software Collections
-              option(value="fuse") Red Hat JBoss Fuse
-              option(value="openshift") OpenShift Enterprise by Red Hat
-          .sorting
-            / h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{query}}"
-            h3.results-title(ng-if="totalCount <= 0") No results found
-            h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
-            hr
-            p
-              | Show
-              select(ng-model="params.size" ng-change="updateSearch()")
-                option(value="10") 10
-                option(value="25") 25
-                option(value="50") 50
-                option(value="100") 100
-              | results per page
-          / span.loader
-          span.loader(ng-show="loading")
-          .results.stackoverflow-results-container(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
-            .result.result-search(ng-repeat="result in results" ng-init="r = result")
-              .stackoverflow-update
-                .update
-                  .update-meta
-                    .row
-                      .large-6.columns.qtn-stats
-                        span.votes-count
-                          h4 {{r._source.up_vote_count}}
-                          p Votes
-                        span.answer-count(ng-class="(r._source.answers[0].is_accepted == true) ? 'accepted-answer' : '' ")
-                          h4 {{r._source.answer_count}}
-                          p Answers
-                        span.views-count
-                          h4 {{r._source.view_count}}
-                          p Views
-                      .large-18.columns
-                        h4: a(href="{{r._source.sys_url_view}}") {{r._source.sys_title}}
-                        p.qtn-content(ng-bind-html="r | question")
+          a.button(href="#{site.base_url}/stack-overflow/") REFRESH
+          .row
+            .large-12.columns.stackoverflow-filters
+              label(for="filterByProduct") Filter by Product
+              .styled-select
+                select(name="filter-by-product" id="filterByProduct" ng-model="params.product" ng-change="updateSearch(); resetPagination();")
+                  option(value="") Show all
+                  option(value="eap") Red Hat JBoss Enterprise Application Platform
+                  option(value="webserver") Red Hat JBoss Web Server
+                  option(value="rhel") Red Hat Enterprise Linux
+                  option(value="softwarecollections") Red Hat Software Collections
+                  option(value="fuse") Red Hat JBoss Fuse
+                  option(value="openshift") OpenShift Enterprise by Red Hat
+            .large-12.columns
+              .sorting.so-sorting
+                p(ng-if="totalCount > 10")
+                  | Show
+                  select(ng-model="params.size" ng-change="updateSearch()")
+                    option(value="10") 10
+                    option(value="25") 25
+                    option(value="50") 50
+                    option(value="100") 100
+                  | results per page
+              / span.loader
+          .row
+            .large-24.columns
+              / h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{query}}"
+              h3.results-title(ng-if="totalCount <= 0") No results found
+              h4.results-sub-title(ng-if="totalCount <= 0") Please select a different product
+              span.loader(ng-show="loading")
+              .stackoverflow-results-container(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
+                div(ng-repeat="result in results" ng-init="r = result")
+                  .stackoverflow-update
+                    .update
+                      .update-meta
+                        .row
+                          .large-6.columns.qtn-stats
+                            span.votes-count
+                              h4 {{r._source.up_vote_count}}
+                              p Votes
+                            span.answer-count(ng-class="(r._source.answers[0].is_accepted == true) ? 'accepted-answer' : '' ")
+                              h4 {{r._source.answer_count}}
+                              p Answers
+                            span.views-count
+                              h4 {{r._source.view_count}}
+                              p Views
+                          .large-18.columns
+                            h4: a(href="{{r._source.sys_url_view}}") {{r._source.sys_title}}
+                            p.qtn-content(ng-bind-html="r | question")
 
-                        .callout.qtn-answer(ng-class="r._source.answers[0] ? 'display-answer' : 'hide-answer' ")
-                          p 
-                            span(ng-show="r._source.answers[0].is_accepted == true")
-                              strong Accepted answer: 
-                            span(ng-show="r._source.answers[0].is_accepted == false")
-                              strong Latest answer: 
-                            | {{r._source.answers[0].body}}
-                          a(href="{{r._source.sys_url_view}}" target="_blank")
-                            | Read full question at Stack Overflow&nbsp;
-                            i.fa.fa-angle-right
-                        p
-                          span.so-tags
-                            strong Tags:&nbsp;
-                            span.tag(ng-repeat="tag in r._source.sys_tags")  {{tag}}
-                          span.so-author {{r._source.sys_created | timestamp}} | {{r._source.author}}
+                            .callout.qtn-answer(ng-class="r._source.answers[0] ? 'display-answer' : 'hide-answer' ")
+                              p 
+                                span(ng-show="r._source.answers[0].is_accepted == true")
+                                  strong Accepted answer: 
+                                span(ng-show="r._source.answers[0].is_accepted == false")
+                                  strong Latest answer: 
+                                | {{r._source.answers[0].body | htmlToPlaintext}}
+                              a(href="{{r._source.sys_url_view}}" target="_blank")
+                                | Read full question at Stack Overflow&nbsp;
+                                i.fa.fa-angle-right
+                            p
+                              span.so-tags
+                                strong Tags:&nbsp;
+                                span.tag(ng-repeat="tag in r._source.sys_tags")  {{tag}}
+                              span.so-author {{r | stackDate}} &#124; {{r | author}}
 
 
           nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
