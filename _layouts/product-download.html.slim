@@ -13,27 +13,19 @@ type: Downloads
   .has-download
     h2#download-development-use Download #{page.product.abbreviated_name} for Development Use
 
-    asciidoc:
-      To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the Red Hat Developer Program which provides $0 subscriptions for development use only. link:../../../faq[Read more] about the Red Hat Developer Program.
-      
-    .product-downloads(data-product-code="#{page.product.dcp_project_code}")
-      / Downloads go here via JS
+    .row
+      .large-16.columns
+        asciidoc:
+          To download #{page.product.abbreviated_name} you must have an account. You also need to accept the terms and conditions of the link:#{site.base_url}/register[Red Hat Developer Program] which provides $0 subscriptions for development use only.
+
+        h4.caps All Downloads
+
+      .product-downloads(data-product-code="#{page.product.dcp_project_code}")
+        / Downloads go here via JS
 
   .no-download
 
     h2#downloads #{page.product.abbreviated_name} Downloads
-
-    asciidoc:
-      #{page.product.abbreviated_name} is only available through a full Red Hat subscription.  Download #{page.product.abbrevaited_name} by following the link below to log into the Red Hat Customer Portal and download from there.
-  - if page.product.customer_portal_download_url
-    h4.download-link: a(href="#{page.product.customer_portal_download_url}")
-      i.fa.fa-download>
-      | Download #{page.product.abbreviated_name} from the Red Hat Customer Portal
-  - else
-    h4.download-link: a(href="https://access.redhat.com/downloads")
-      i.fa.fa-download>
-      | Download #{page.product.abbreviated_name} from the Red Hat Customer Portal
-    br
 
 .row
   - unless page.product.id == 'devstudio' || page.product.id == "cdk"
@@ -42,11 +34,9 @@ type: Downloads
       h4#ready-production-use Ready to use #{page.product.abbreviated_name} in Production?
 
       asciidoc:
-        We provide enterprise level subscriptions for #{page.product.abbreviated_name} which deliver the latest software, including security, bug fixes, and enhancements along with our industry leading support. With our subscription, you can deploy your application into a production environment and get world-class expertise and knowledge about security, stability, and maintenance for your systems. Our subscriptions are provided in a virtualization-friendly model, consumed in increments of 16, 64, or both processor core bands, and back by a choice of enterprise service levels that support any type of mission-critical deployment.
+        With a Red Hat subscription, you can deploy your application into a production environment and get world-class expertise and knowledge about security, stability, and maintenance for your systems. Our subscriptions provide many benefits including access to resources, expertise, upgrades, and the ability to directly influence our commitment to providing an exceptional customer experience. 
 
-        link:http://www.redhat.com/contact/sales.html[I need a subscription]
-
-        link:https://access.redhat.com/site/products/JBoss/[Visit the Red Hat Customer Portal for other Product Downloads]
+      a.button(href="http://www.redhat.com/contact/sales.html") I need a subscription
 
   - unless !page._upstream || page._upstream.empty?
     br
