@@ -9,12 +9,14 @@ drupal_type: rhd_microsite
 - if page.metadata
   - page.id = page.metadata[:id]
   - page.graphic = page.metadata[:graphic]
+  - page.file = page.metadata[:file]
 
 #book-download-promotion
   .microsite-tmpl(id="#{page.id}")
     .row.promotion-header
       .large-8.medium-11.small-24.columns
-        img.microsite-graphic(src="#{page.graphic}" alt="#{page.id} Graphic")
+        a(href=( page.file ? "#{site.download_manager_file_base_url}#{page.file}" : "#" ))
+          img.microsite-graphic(src="#{page.graphic}" alt="#{page.id} Graphic")
         
       .large-16.medium-13.small-24.columns
         = content
