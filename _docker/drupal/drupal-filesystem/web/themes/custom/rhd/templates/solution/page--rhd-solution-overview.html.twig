@@ -80,36 +80,36 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row solution-content">
     <div class="large-4 medium-7 small-24 columns nav-breakpoint">
         <ul class="side-nav">
             <li class="side-nav-toggle"><a href="#">Menu</a></li>
             {% if (valid_path("%s/overview"|format(solution_name_hyphen))) %}
-                <li class="active">
+                <li class="{{ active_page_class('overview') }}">
                     <a href="/{{ solution_name_hyphen }}/overview">Overview
                         <i class="fa fa-caret-right fa-lg"></i></a>
                 </li>
             {% endif %}
             {% if (valid_path("%s/adoption"|format(solution_name_hyphen))) %}
-                <li>
+                <li  class="{{ active_page_class('adoption') }}">
                     <a href="/{{ solution_name_hyphen }}/adoption">Adoption
                         <i class="fa fa-caret-right fa-lg"></i></a>
                 </li>
             {% endif %}
             {% if (valid_path("%s/benefits"|format(solution_name_hyphen))) %}
-                <li>
+                <li  class="{{ active_page_class('benefits') }}">
                     <a href="/{{ solution_name_hyphen }}/benefits">Benefits
                         <i class="fa fa-caret-right fa-lg"></i></a>
                 </li>
             {% endif %}
             {% if (valid_path("%s/learn"|format(solution_name_hyphen))) %}
-                <li>
+                <li  class="{{ active_page_class('learn') }}">
                     <a href="/{{ solution_name_hyphen }}/learn">Learn
                         <i class="fa fa-caret-right fa-lg"></i></a>
                 </li>
             {% endif %}
             {% if (valid_path("%s/buzz"|format(solution_name_hyphen))) %}
-                <li>
+                <li  class="{{ active_page_class('buzz') }}">
                     <a href="/{{ solution_name_hyphen }}/buzz">Buzz
                         <i class="fa fa-caret-right fa-lg"></i></a>
                 </li>
@@ -118,9 +118,9 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     </div>
     <div class="large-20 medium-17 small-24 columns nav-breakpoint">
         <div class="row">
-            <article{{ attributes.addClass('solution', classes) }}>
+            <article{{ attributes.addClass(classes) }}>
                 <div{{ content_attributes.addClass('node__content') }}>
-                    {{ page.content }}
+                    {{ page.content|without('field_solution_tag_line')|without('rhd_page_title') }}
                 </div>
 
             </article>

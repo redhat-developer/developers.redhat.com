@@ -59,7 +59,7 @@
     <script src="{{rhd_dtm_code}}"></script>
   {% endif %}
 </head>
-<body class="home fullbleed">
+<body class="{{ body_classes()|join(' ') }}">
  {% if (rhd_environment == 'prod') %}
     <script type="text/javascript">
       dataLayer = [{'channel' : 'developer'}];
