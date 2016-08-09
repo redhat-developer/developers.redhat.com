@@ -1,5 +1,5 @@
 services:
-  redhat_developers.twig.redhat_deevlopers_extension:
-    class: Drupal\redhat_developers\Twig\ValidPathExtension
+  redhat_developers.twig.redhat_developers_tag_extension:
+    class: Drupal\redhat_developers\Twig\RedHatDevelopersTagsExtension
     tags:
       - { name: twig.extension }
