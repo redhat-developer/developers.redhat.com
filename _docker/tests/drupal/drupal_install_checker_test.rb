@@ -190,7 +190,7 @@ class DrupalInstallCheckerTest < Minitest::Test
 
   def test_update_db
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(--root=/var/www/drupal/web --entity-updates updb)]
+                                       %w(-y --root=/var/www/drupal/web --entity-updates updb)]
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
                                        %w(--root=/var/www/drupal/web cache:rebuild all)]
 
