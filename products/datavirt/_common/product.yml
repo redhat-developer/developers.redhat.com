@@ -1,9 +1,9 @@
 name: Red Hat JBoss Data Virtualization
 abbreviated_name: JBoss Data Virtualization
 product_logo: data-virtualization.png
-current_version: 6.2.0
+current_version: 6.3.0
 product_category: application-development
-documentation_minor_version: 6.2
+documentation_minor_version: 6.3
 xpaas_url: https://www.openshift.com/developers/jboss-data-virtualization
 intro_video: https://vimeo.com/91533636
 vimeo_album: http://vimeo.com/album/2982437
@@ -18,62 +18,119 @@ buzz_tags:
   - jboss datavirt
 customer_portal_download_url: https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=data.services.platform&downloadType=distributions
 guides:
-  Administration_and_Configuration_Guide:
-    name: "Administration and Configuration"
-  API_Documentation:
-  Development_Guide_Volume_1_Client_Development:
-    name: "Development Guide: Client Development"
-  Development_Guide_Volume_2_Governance:
-    name: "Development Guide: Governance"
-  Development_Guide_Reference_Material:
-    name: "Development Guide: Reference Material"
-    formats:
-      html:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/html/Development_Guide_Volume_3_Reference_Material/index.html
-      html-single:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/html-single/Development_Guide_Volume_3_Reference_Material/index.html
-      pdf:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/pdf/Development_Guide_Volume_3_Reference_Material/Red_Hat_JBoss_Data_Virtualization-6.2-Development_Guide_Volume_3_Reference_Material-en-US.pdf
-      epub:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/epub/Development_Guide_Volume_3_Reference_Material/Red_Hat_JBoss_Data_Virtualization-6.2-Development_Guide_Volume_3_Reference_Material-en-US.epub
-  Development_Guide_Server_Development:
-    name: "Development Guide: Server Development"
-    formats:
-      html:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/html/Development_Guide_Volume_4_Server_Development/index.html
-      html-single:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/html-single/Development_Guide_Volume_4_Server_Development/index.html
-      pdf:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/pdf/Development_Guide_Volume_4_Server_Development/Red_Hat_JBoss_Data_Virtualization-6.2-Development_Guide_Volume_4_Server_Development-en-US.pdf
-      epub:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/epub/Development_Guide_Volume_4_Server_Development/Red_Hat_JBoss_Data_Virtualization-6.2-Development_Guide_Volume_4_Server_Development-en-US.epub
-  Development_Guide_Volume_5_Caching_Guide:
-    name: "Development Guide: Caching Guide"
-  Getting_Started_Guide:
-    formats:
-      html:
-        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/version-6.2/red-hat-jboss-data-virtualization-62-getting-started-guide/getting-started-guide
-      html-single:
-        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/version-6.2/getting-started-guide
-      pdf:
-        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.2-Getting_Started_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.2-Getting_Started_Guide-en-US.pdf
-      epub:
-        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.2-Getting_Started_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.2-Getting_Started_Guide-en-US.epub
-  Installation_Guide:
-  Migration_Guide:
   Release_Notes:
     formats:
       html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/html/Release_Notes/index.html
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/release-notes/
       html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/html-single/Release_Notes/index.html
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/release-notes/
       pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/pdf/Release_Notes/Red_Hat_JBoss_Data_Virtualization-6.2-Release_Notes-en-US.pdf
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Release_Notes-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Release_Notes-en-US.pdf
       epub:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Data_Virtualization/6.2/epub/Release_Notes/Red_Hat_JBoss_Data_Virtualization-6.2-Release_Notes-en-US.epub
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Release_Notes-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Release_Notes-en-US.epub
+  Getting_Started_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/getting-started-guide/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/getting-started-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Getting_Started_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Getting_Started_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Getting_Started_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Getting_Started_Guide-en-US.epub
+  Quick_Starts_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/quick-starts-guide/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/quick-starts-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Quick_Starts_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Quick_Starts_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Quick_Starts_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Quick_Starts_Guide-en-US.epub
+  Using_the_Dashboard_Builder:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/using-the-dashboard-builder/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/using-the-dashboard-builder/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Using_the_Dashboard_Builder-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Using_the_Dashboard_Builder-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Using_the_Dashboard_Builder-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Using_the_Dashboard_Builder-en-US.epub
+  Installation_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/installation-guide/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/installation-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Installation_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Installation_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Installation_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Installation_Guide-en-US.epub
+  Glossary_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/glossary-guide/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/glossary-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Glossary_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Glossary_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Glossary_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Glossary_Guide-en-US.epub
+  Administration_and_Configuration_Guide:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/administration-and-configuration-guide/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/administration-and-configuration-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Administration_and_Configuration_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Administration_and_Configuration_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Administration_and_Configuration_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Administration_and_Configuration_Guide-en-US.epub
   Security_Guide:
-  User_Guide_Volume_1_Teiid_Designer:
-  User_Guide_Volume_2_Modeshape_Tools:
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/security-guide/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/security-guide/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Security_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Security_Guide-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Security_Guide-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Security_Guide-en-US.epub
+  Development_Guide_Volume_1_Client_Development:
+    name: "Development Guide Volume 1: Client Development"
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/development-guide-volume-1-client-development/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/development-guide-volume-1-client-development/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_1_Client_Development-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_1_Client_Development-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_1_Client_Development-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_1_Client_Development-en-US.epub
+  Development_Guide_Volume_2_Governance:
+    name: "Development Guide Volume 2: Governance"
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/development-guide-volume-2-governance/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/development-guide-volume-2-governance/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_2_Governance-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_2_Governance-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_2_Governance-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_2_Governance-en-US.epub
+  Development_Guide_Volume_3_Reference_Material:
+    name: "Development Guide Volume 3: Reference Material"
+    formats:
+      html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/development-guide-volume-3-reference-material/
+      html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/single/development-guide-volume-3-reference-material/
+      pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_3_Reference_Material-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_3_Reference_Material-en-US.pdf
+      epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_3_Reference_Material-en-US/Red_Hat_JBoss_Data_Virtualization-6.3-Development_Guide_Volume_3_Reference_Material-en-US.epub
 description: 'An integration platform that unifies data from disparate sources into a single source and exposes the data as a reusable service.'
 default_download_artifact_type: installer
 downloads:
