@@ -15,7 +15,7 @@ section(class="hero hero-wide product-header #{page.product.id} #{page.product.p
       h3#product #{page.product.description}
 
 section(class="product-graphics #{page.product.product_category}")
-  - unless(page.url.include?('get-started') || page.product.id == 'devsuite')
+  - unless(['get-started', 'download', 'devsuite'].any? { |xpage| page.url.include? xpage })
     #hero-try-or-buy(class="row #{page.product.product_category}")
       .large-24.columns.hello-world
         .small-24.large-6.columns
