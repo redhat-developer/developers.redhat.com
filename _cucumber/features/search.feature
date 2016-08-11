@@ -92,7 +92,7 @@ Feature: Search Page
 
   Scenario: I search for something that returns ten (or more) pages of results should display pagination with ellipsis
     Given I am on the Home page
-    When I search for "code"
+    When I search for "developer"
     Then I should see pagination with "5" pages with ellipsis
     And the following links should be enabled:
       | Next |
