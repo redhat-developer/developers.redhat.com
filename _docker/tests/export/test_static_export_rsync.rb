@@ -31,7 +31,7 @@ class TestStaticExportRsync < MiniTest::Test
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:/my/target/directory'
 
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{export_dir}/ #{target_host_directory}")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host_directory}")
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, false)
   end
 
@@ -40,7 +40,7 @@ class TestStaticExportRsync < MiniTest::Test
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:/my/target/directory'
 
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{export_dir}/ #{target_host_directory}")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host_directory}")
     @export_archiver.expects(:archive_site_export).with(export_dir)
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, true)
   end
@@ -82,10 +82,10 @@ class TestStaticExportRsync < MiniTest::Test
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:/it-rhd-stg/stg_main[/my/target/directory]'
 
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{export_dir}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
     @export_archiver.expects(:archive_site_export).with(export_dir)
 
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, true)
@@ -97,10 +97,10 @@ class TestStaticExportRsync < MiniTest::Test
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:/it-rhd-stg/stg_main[/my/target/directory]'
 
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{export_dir}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host}:/it-rhd-stg/stg_main/my/target/directory")
 
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, false)
 
@@ -111,10 +111,10 @@ class TestStaticExportRsync < MiniTest::Test
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:[/my/target/directory]'
 
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/my")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/my/target")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/my/target/directory")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{export_dir}/ #{target_host}:/my/target/directory")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my/target")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my/target/directory")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host}:/my/target/directory")
     @export_archiver.expects(:archive_site_export).with(export_dir)
 
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, true)
@@ -126,10 +126,10 @@ class TestStaticExportRsync < MiniTest::Test
     target_host = 'rhd@filemgnt.jboss.org'
     target_host_directory = 'rhd@filemgnt.jboss.org:[/my/target/directory]'
 
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/my")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/my/target")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{@empty_directory}/ #{target_host}:/my/target/directory")
-    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{export_dir}/ #{target_host}:/my/target/directory")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my/target")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{@empty_directory}/ #{target_host}:/my/target/directory")
+    @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --delete --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{export_dir}/ #{target_host}:/my/target/directory")
 
     @static_export_rsync.rsync_static_export(export_dir, target_host_directory, false)
 
