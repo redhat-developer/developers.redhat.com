@@ -1877,6 +1877,20 @@ table.split-50 col {
   }
 }
 
+.tabs.vertical {
+  a {
+    padding: 0;
+    display: inherit;
+    &:hover {
+      background-color: inherit;
+    }
+  }
+  > li {
+    display: inherit;
+    margin-right: 0;
+  }
+}
+
 
 /* Typography */
 small {
