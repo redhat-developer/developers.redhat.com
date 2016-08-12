@@ -15,7 +15,7 @@ function rhd_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $for
     if (!empty($form['path'])) {
       // Check if widget array is not empty.
       if (!empty($form['path']['widget'])) {
-        $form['path']['widget'][0]['#element_validate'][0] = 'rdh_common_custom_form_validator';
+        $form['path']['widget'][0]['#element_validate'][0] = 'rhd_common_custom_form_validator';
       }
     }
   }

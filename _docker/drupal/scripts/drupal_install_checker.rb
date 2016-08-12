@@ -84,9 +84,7 @@ class DrupalInstallChecker
                            'layoutmanager', 'hal', 'redhat_developers', 'syslog', 'diff', 'entity',
                            'entity_storage_migrate', 'key_value', 'multiversion', 'token', 'metatag',
                            'metatag_google_plus', 'metatag_open_graph', 'metatag_twitter_cards',
-                           'metatag_verification', 'admin_toolbar', 'admin_toolbar_tools','simple_sitemap',
-                           'pathauto', 'config_update', 'ctools', 'rhd_common', 'config_changes'
-                          ]
+                           'metatag_verification', 'admin_toolbar', 'admin_toolbar_tools', 'simple_sitemap']
 
     if @opts['environment'] == 'dev'
       module_install_args.push(*%w(devel kint))
@@ -138,6 +136,6 @@ if $0 == __FILE__
     checker.install_theme
     checker.install_modules
     checker.install_module_configuration
-    checker.set_cron_key
+    checker.set_cron_key    
   end
 end

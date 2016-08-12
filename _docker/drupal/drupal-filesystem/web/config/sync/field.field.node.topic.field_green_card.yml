@@ -1,0 +1,28 @@
+uuid: 9f6a0fbe-2ac2-4ef1-8bc8-8d97c157df37
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_green_card
+    - node.type.promotion_card
+    - node.type.topic
+_core:
+  default_config_hash: 9ezyOMSFnqrxDkeq5VGG6t8bFuw5Dt8Bdau3XgJ5FFM
+id: node.topic.field_green_card
+field_name: field_green_card
+entity_type: node
+bundle: topic
+label: 'Green Card'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      promotion_card: promotion_card
+    sort:
+      field: _none
+field_type: entity_reference

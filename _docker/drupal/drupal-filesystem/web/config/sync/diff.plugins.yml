@@ -1,0 +1,165 @@
+field_types:
+  datetime:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  file:
+    type: file_field_diff_builder
+    settings:
+      show_id: 1
+      compare_description_field: 0
+      compare_display_field: 0
+      property_separator: nl
+      show_header: 1
+      markdown: drupal_html_to_text
+  image:
+    type: image_field_diff_builder
+    settings:
+      show_id: 1
+      compare_alt_field: 0
+      compare_title_field: 0
+      property_separator: nl
+      show_header: 1
+      markdown: drupal_html_to_text
+  list_string:
+    type: list_field_diff_builder
+    settings:
+      compare: key
+      show_header: 1
+      markdown: drupal_html_to_text
+  list_float:
+    type: list_field_diff_builder
+    settings:
+      compare: key
+      show_header: 1
+      markdown: drupal_html_to_text
+  list_integer:
+    type: list_field_diff_builder
+    settings:
+      compare: key
+      show_header: 1
+      markdown: drupal_html_to_text
+  path:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  taxonomy_term_reference:
+    type: term_reference_field_diff_builder
+    settings:
+      show_name: 1
+      show_id: 0
+      show_header: 1
+      markdown: drupal_html_to_text
+  text:
+    type: text_field_diff_builder
+    settings:
+      compare_format: 0
+      show_header: 1
+      markdown: drupal_html_to_text
+  text_long:
+    type: text_field_diff_builder
+    settings:
+      compare_format: 0
+      show_header: 1
+      markdown: drupal_html_to_text
+  text_with_summary:
+    type: text_summary_field_diff_builder
+    settings:
+      compare_format: 0
+      compare_summary: 0
+      show_header: 1
+      markdown: drupal_html_to_text
+  email:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  string_long:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  integer:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  created:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  string:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  changed:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  uuid:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  entity_reference:
+    type: entity_reference_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+      compare_entity_reference: 1
+  language:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  float:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  map:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  timestamp:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  boolean:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  uri:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  decimal:
+    type: core_field_diff_builder
+    settings:
+      show_header: 1
+      markdown: drupal_html_to_text
+  link:
+    type: link_field_diff_builder
+    settings:
+      compare_title: 0
+      compare_uri: 1
+      show_header: 1
+      markdown: drupal_html_to_text
+  comment:
+    type: comment_field_diff_builder
+    settings:
+      compare_key: 0
+      compare_string: 1
+      show_header: 1
+      markdown: drupal_html_to_text
+_core:
+  default_config_hash: wSrEtY3C2E5nBDYJkFrM3BiBltreevgoFpbDj6_ONTI

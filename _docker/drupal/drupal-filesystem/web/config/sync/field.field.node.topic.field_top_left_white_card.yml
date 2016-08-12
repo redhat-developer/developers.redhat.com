@@ -1,0 +1,28 @@
+uuid: 523bc37f-ed52-4e64-9300-c3214b617018
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_top_left_white_card
+    - node.type.promotion_card
+    - node.type.topic
+_core:
+  default_config_hash: IFxpCzKJESZp3V8GA-PjYlxLywXnWz_SOD-ErP3_7MU
+id: node.topic.field_top_left_white_card
+field_name: field_top_left_white_card
+entity_type: node
+bundle: topic
+label: 'Top Left White Card'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      promotion_card: promotion_card
+    sort:
+      field: _none
+field_type: entity_reference

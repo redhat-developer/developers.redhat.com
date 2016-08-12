@@ -133,10 +133,8 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                              'metatag_open_graph',
                                                                              'metatag_twitter_cards',
                                                                              'metatag_verification', 'admin_toolbar',
-                                                                             'admin_toolbar_tools','simple_sitemap',
-                                                                             'pathauto', 'config_update', 'ctools',
-                                                                             'rhd_common', 'config_changes',
-                                                                             'devel', 'kint']]
+                                                                             'admin_toolbar_tools','simple_sitemap',                                                                             
+                                                                              'devel', 'kint']]
 
 
     install_checker.install_modules
@@ -154,10 +152,7 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                             'metatag_open_graph',
                                                                             'metatag_twitter_cards',
                                                                             'metatag_verification', 'admin_toolbar',
-                                                                            'admin_toolbar_tools','simple_sitemap',
-                                                                            'pathauto', 'config_update', 'ctools',
-                                                                            'rhd_common', 'config_changes'
-                                                                             ]]
+                                                                            'admin_toolbar_tools','simple_sitemap']]
 
     @install_checker.install_modules
   end
