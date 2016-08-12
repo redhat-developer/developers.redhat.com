@@ -1868,6 +1868,15 @@ table.split-50 col {
   }
 }
 
+// Hack for drupal
+.tabs.nav-tabs li a {
+  display: inherit;
+  padding: 0;
+  &:hover, &:focus {
+    background-color: inherit;
+  }
+}
+
 
 /* Typography */
 small {
