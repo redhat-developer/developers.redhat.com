@@ -274,6 +274,13 @@ table.downloads {
       }
     }
   }
+  a.button {
+    display: block;
+    margin: 0 auto 5px auto;
+  }
+  .version-name {
+    text-align: center;
+  }
 }
 
 a.download-link {
@@ -1858,6 +1865,15 @@ table.split-50 col {
     &.active > a {
       background:$grey-3;
     }
+  }
+}
+
+// Hack for drupal
+.tabs.nav-tabs li a {
+  display: inherit;
+  padding: 0;
+  &:hover, &:focus {
+    background-color: inherit;
   }
 }
 

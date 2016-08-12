@@ -84,10 +84,11 @@ app.downloads.createDownloadLink = function(data) {
     return "";
   }
   // Pull the first one from the sorted array
-  var $downloadLink = $('<h4>').addClass('download-link').append(
-    $('<a>').attr('href', data[0].featuredArtifact.url).text(' Download ' + data[0].name + ' ' + data[0].featuredArtifact.versionName).prepend(
+  var $downloadLink = $('<div class="large-8 columns">').addClass('download-link').append(
+    $('<a class="button">').attr('href', data[0].featuredArtifact.url).text(' Download').prepend(
       $('<i>').addClass('fa fa-download')
-    )
+    ),
+    $('<div class="version-name">').text(data[0].name + ' ' + data[0].featuredArtifact.versionName)
   );
   return $downloadLink;
 }
@@ -125,7 +126,7 @@ app.downloads.display = function(data) {
   var $downloadLink = app.downloads.createDownloadLink(data);
 
   // create toggle Link
-  var $toggleLink = $('<a>').text('View Older Downloads ▾').addClass('view-older-downloads').attr('href', '#').on('click touchstart',function(e) {
+  var $toggleLink = $('<a>').text('View Older Downloads ▾').addClass('large-24 columns view-older-downloads').attr('href', '#').on('click touchstart',function(e) {
     e.preventDefault();
     $(this).next('table').toggle();
   });
@@ -144,7 +145,7 @@ app.downloads.display = function(data) {
   var currentDownloads = productArray.slice(0,end);
 
   /* loop through all the curent downloads and make their own table */
-  var $latestDownloadsTables = $("<div>");
+  var $latestDownloadsTables = $("<div>").addClass('large-24 columns');
   currentDownloads.forEach(function(product){
     console.log(product);
     $latestDownloadsTables.append( app.downloads.createDownloadTable([product]) );

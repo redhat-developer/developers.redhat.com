@@ -57,7 +57,7 @@ Feature: Search Page
     Given I am on the Home page
     When I search for "Containers"
     Then the search results page is displayed
-    And I should see text "Showing "1-10" of "191" results"
+    And I should see text "Showing "1-10" of results
 
   Scenario: Typing multiple words such as "eap 7 download" in the search box from the search header (like on the homepage), should retain the spaces.
     Given I am on the Home page
@@ -92,7 +92,7 @@ Feature: Search Page
 
   Scenario: I search for something that returns ten (or more) pages of results should display pagination with ellipsis
     Given I am on the Home page
-    When I search for "code"
+    When I search for "developer"
     Then I should see pagination with "5" pages with ellipsis
     And the following links should be enabled:
       | Next |

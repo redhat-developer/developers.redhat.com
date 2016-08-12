@@ -153,6 +153,28 @@ class Base
     @driver.switch_to.window(first_window)
   end
 
+  def results_per_page
+    default_item = default_dropdown_item(xpath: '//p/select[2]')
+    available_options = dropdown_items(xpath: '//p/select[2]')
+    return default_item, available_options
+  end
+
+  def results_sort
+    default_item = default_dropdown_item(xpath: '//p/select[1]')
+    available_options = dropdown_items(xpath: '//p/select[1]')
+    return default_item, available_options
+  end
+
+  def results_title
+    wait_for { displayed?(css: '.results-title') }
+    text_of(css: '.results-title')
+  end
+
+  def results_sub_title
+    wait_for { displayed?(css: '.results-sub-title') }
+    text_of(css: '.results-sub-title')
+  end
+
   def close_and_reopen_browser
     @driver.execute_script( "window.open()" )
     @driver.close

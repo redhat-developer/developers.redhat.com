@@ -6,7 +6,7 @@ require_relative 'export_archiver'
 #
 # This class uses rsync to copy a static export of a Drupal site to a given location on a target host.
 #
-# If the target directory structure does not exist, then it will be created first.
+# If the target directory structure does not exist, then it can be created first.
 #
 class StaticExportRsync
 
@@ -50,7 +50,7 @@ class StaticExportRsync
   #
   def rsync(local_folder, remote_destination, delete)
     @log.info("rsyncing folder '#{local_folder}' to '#{remote_destination}'...")
-    @process_runner.execute!("rsync --partial --archive --checksum --compress --omit-dir-times --quiet#{' --delete' if delete} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 #{local_folder}/ #{remote_destination}")
+    @process_runner.execute!("rsync --partial --archive --checksum --compress --omit-dir-times --quiet#{' --delete' if delete} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{local_folder}/ #{remote_destination}")
   end
 
   def replace_create_path(path)

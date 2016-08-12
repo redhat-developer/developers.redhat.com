@@ -65,11 +65,11 @@ div(ng-app="search")
             .search-inputs
               .search-input-group
                 label Keyword
-                input(type="text" placeholder="Filter by keyword" ng-model="params.query" ng-change="updateSearch(); resetPagination();" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 750, 'blur': 0 } }")
+                input(class="search_field" type="text" placeholder="Filter by keyword" ng-model="params.query" ng-change="updateSearch(); resetPagination();" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 750, 'blur': 0 } }")
 
               .search-input-group
                 label Product
-                select(ng-model="params.project" ng-change="updateSearch(); resetPagination();")
+                select(class="search-by-product" ng-model="params.project" ng-change="updateSearch(); resetPagination();")
                   option(value="") Select Product...
                   option(value="eap") JBoss Enterprise Application Platform
                   option(value="webserver") JBoss Web Server
@@ -91,7 +91,7 @@ div(ng-app="search")
 
               .search-input-group
                 label Publish Date
-                select(ng-model="params.publish_date_from" ng-change="updateSearch(); resetPagination();")
+                select(class="publish-date" ng-model="params.publish_date_from" ng-change="updateSearch(); resetPagination();")
                   option(value="") Filter by Date
                   option(value="now-1y") Past Year
                   option(value="now-3M") Past Quarter
@@ -104,10 +104,10 @@ div(ng-app="search")
                 div(ng-show="params.publish_date_from === 'custom'")
                   label
                     | Start Date
-                    input(type="date" ng-model="params.publish_date_from_custom" ng-change="updateSearch(); resetPagination();")
+                    input(class="start-date" type="date" ng-model="params.publish_date_from_custom" ng-change="updateSearch(); resetPagination();")
                   label
                     | End Date
-                    input(type="date" ng-model="params.publish_date_to" ng-change="updateSearch(); resetPagination();")
+                    input(class="end-date" type="date" ng-model="params.publish_date_to" ng-change="updateSearch(); resetPagination();")
 
         .large-24.columns.searchpage-results-container
           .sorting
@@ -121,7 +121,7 @@ div(ng-app="search")
                 option(value="false") Relevance
                 option(value="true") Most Recent
               | and show
-              select(ng-model="params.size" ng-change="updateSearch(); resetPagination();")
+              select(class="results-count" ng-model="params.size" ng-change="updateSearch(); resetPagination();")
                 option(value="10") 10
                 option(value="25") 25
                 option(value="50") 50

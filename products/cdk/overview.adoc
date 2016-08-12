@@ -1,34 +1,34 @@
 :awestruct-layout: product-overview
 :awestruct-interpolate: true
 :leveloffset: 1
-:awestruct-description: "Product information about the Red Hat Container Development Kit (CDK)"
+:awestruct-description: "Product information about Red Hat Container Development Kit (CDK)"
 :title: Red Hat Container Development Kit
+
+:cdk-ig-url: https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.1/single/installation-guide/
 
 == Overview
 
-Red Hat Container Development Kit is a pre-built container development environment based on Red Hat Enterprise Linux to help you get started developing container-based applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
+Red Hat Container Development Kit provides a pre-built Container Development Environment based on Red Hat Enterprise Linux to help you get started developing container-based applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
 
 === Get started with containers on Mac OS X, Microsoft Windows, or Linux
 
-To save you from having to assemble a container development environment from scratch, the Container Development Kit delivers the latest container tools in a Red Hat Enterprise Linux virtual machine that you can use on your link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_mac_os_x[Mac OS X], link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_microsoft_windows[Microsoft Windows], link:https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/container-development-kit-installation-guide/#installing_the_cdk_on_fedora_or_red_hat_enterprise_linux[RHEL or Fedora Linux system]. In addition, you have your choice of virtualization platforms (VirtualBox, Hyper-V, and the Linux KVM/libvirt hypervisors are all supported). All of the VM configuration details on your system are handled for you by Vagrant, an open-source tool for creating and distributing portable and reproducible development environments.
+To save you from having to assemble a container development environment from scratch, Container Development Kit delivers the latest container tools in a Red Hat Enterprise Linux virtual machine that you can use on your link:{cdk-ig-url}#installing_container_development_kit_on_mac_os_x[Mac OS X], link:{cdk-ig-url}#installing_container_development_kit_on_microsoft_windows[Microsoft Windows], or link:{cdk-ig-url}#installing_container_development_kit_on_red_hat_enterprise_linux[Red Hat Enterprise Linux] system. In addition, you have your choice of virtualization platforms (VirtualBox, Hyper-V, and the Linux KVM/libvirt hypervisors are all supported). All of the VM configuration details on your system are handled for you by Vagrant, an open-source tool for creating and distributing portable and reproducible development environments.
 
 === Exclusive for Red Hat® Developers community members
 
-Developers can now get the Red Hat Container Development Kit via no-cost Red Hat Enterprise Linux® Developer Suite subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com]. This subscription includes: Red Hat Enterprise Linux Server (all currently supported releases), additional development tools, and numerous add-ons such as resilient storage, scalable file systems, and high-performance networking. The no-cost subscription also includes access to the Red Hat Customer Portal for software updates and thousands of knowledgebase articles. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
+Developers can now get Red Hat Container Development Kit via the no-cost Red Hat Enterprise Linux® Developer Suite subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com]. This subscription includes: Red Hat Enterprise Linux Server (all currently supported releases), additional development tools, and numerous add-ons such as resilient storage, scalable file systems, and high-performance networking. The no-cost subscription also includes access to the Red Hat Customer Portal for software updates and thousands of knowledgebase articles. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
 
 === Something for all levels of container experience
 
-The Container Development Kit is for you whether you are trying Linux containers for the first time, or want to see the latest developments in container tools from Red Hat.  If you are just getting started, follow the link:#{site.base_url}/products/cdk/get-started[Get Started guide].
-If you are ready to try scaling out and orchestrating multi-container deployments, the kit includes OpenShift 3.
+Container Development Kit is for you whether you are trying Linux containers for the first time, or want to see the latest developments in container tools from Red Hat. If you are just getting started, follow the link:#{site.base_url}/products/cdk/get-started[Get Started instructions]. If you are ready to try scaling out and orchestrating multi-container deployments, the kit includes OpenShift Enterprise 3.
 
 === Want to try OpenShift 3 Platform-as-a-Service?
 
-The Container Development Kit provides a pre-built, single-machine OpenShift 3 environment, so you can try the latest version of the OpenShift platform-as-a-service that integrates support for docker-formatted containers and Kubernetes. When you bring up the rhel-ose Vagrantfile, OpenShift is started and provisioned.
-To help you get started building applications, a number of OpenShift templates are included. You can access the OpenShift Web console from your browser or work from the CLI using the oc command to deploy container applications. OpenShift is pre-configured with a local Docker registry available and a local version of Kubernetes running, so you can test the full experience in a self contained environment.
+Container Development Kit provides a pre-built, single-machine OpenShift 3 environment, so you can try the latest version of the OpenShift platform-as-a-service that integrates support for docker-formatted containers and Kubernetes. When you bring up the rhel-ose Vagrantfile, OpenShift is started and provisioned. To help you get started building applications, a number of OpenShift templates are included. You can access the OpenShift Web console from your browser or work from the CLI using the `oc` command to deploy container applications. OpenShift is pre-configured with a local Docker registry available and a local version of Kubernetes running, so you can test the full experience in a self-contained environment.
 
 === Container development right from Eclipse
 
-Eclipse integration will help streamline your development process by letting you control your containers running on the VM right from your desktop. The Container Development Kit includes the components to connect Eclipse, or another docker-cli client, running on your host system with the daemon running inside the VM. The easiest way to use Eclipse with the kit is to install the link:../../devsuite/overview[Red Hat Development Suite]. Check out link:https://www.youtube.com/watch?v=BQUCdwNgyTE[this video] for more.
+Eclipse integration will help streamline your development process by letting you control your containers running on the VM right from your desktop. Container Development Kit includes the components to connect Eclipse or a docker-cli client running on your host system with the daemon running inside the VM. The easiest way to use Eclipse with the Kit is to install the link:../../devsuite/overview[Red Hat Development Suite]. Check out link:https://www.youtube.com/watch?v=BQUCdwNgyTE[this video] for more.
 
 == Features1
 
