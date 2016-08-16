@@ -16,7 +16,7 @@ class ExportInspector
     if page_path == '/'
       '/index.html'
     else
-      "#{page_path}.html"
+      "#{page_path}/index.html"
     end
   end
 
