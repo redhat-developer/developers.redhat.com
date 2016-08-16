@@ -1,0 +1,25 @@
+---
+layout: base
+title: Page Does Not Exist
+---
+
+.row.error-page
+  .large-14.error-content
+    a(href='#{site.base_url}')
+      img(src="http://static.jboss.org/images/rhd/error/RHD_logo_graphic.png")
+    img(src="http://static.jboss.org/images/rhd/error/RHD_generalerror_graphic.png")
+    br
+    h3 Well... this isn't the page you were looking for.
+    .row
+      .large-18.columns
+        p 
+          | Sorry. But this page moved, does not exist, or *gasp* was deleted. Here are some links to help you get to the right place or you can go directly to our
+          a(href="#{site.base_url}")  home page
+          | .
+      .large-6.columns
+        ul
+          li: a.caps(href='#{site.base_url}/downloads') Downloads
+          li: a.caps(href='#{site.base_url}/resources') Resources
+          li: a.caps(href='#{site.base_url}/blog') Developers Blog
+          li: a.caps(href='#{site.base_url}/events') Events
+          li: a.caps(href='#{site.base_url}/forums') Forums
