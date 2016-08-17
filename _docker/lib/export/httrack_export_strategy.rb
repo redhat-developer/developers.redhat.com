@@ -1,5 +1,5 @@
 require_relative '../default_logger'
-require_relative 'form_action_rewrite'
+require_relative 'export_html_post_processor'
 
 #
 # A class that delegates to Httrack to export a site given the list of URLs.
@@ -14,7 +14,7 @@ class HttrackExportStrategy
   def initialize(process_runner, export_inspector, form_action_rewrite)
     @process_runner = process_runner
     @export_inspector = export_inspector
-    @form_action_rewrite = form_action_rewrite
+    @export_post_processor = form_action_rewrite
     @log = DefaultLogger.logger
   end
 
@@ -32,7 +32,7 @@ class HttrackExportStrategy
   def run_new_export(links_file, drupal_host, export_directory)
 
     @log.info("Running first time export of content from '#{drupal_host}'. Be patient, this will take time...")
-    @process_runner.execute!("httrack --list #{links_file.to_path} -O #{export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{drupal_host}*\" -\"*/node*\" -o0")
+    @process_runner.execute!("httrack --list #{links_file.to_path} -O #{export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t")
     @log.info("Completed export of content from '#{drupal_host}'")
 
   end
@@ -69,7 +69,7 @@ class HttrackExportStrategy
     end
 
     exported_to = "#{export_directory}/#{determine_export_directory_from_drupal_host(drupal_host)}"
-    @form_action_rewrite.rewrite_form_target_urls(drupal_host, exported_to)
+    @export_post_processor.post_process_html_export(drupal_host, exported_to)
     @export_inspector.inspect_export(links_file, exported_to)
     exported_to
   end

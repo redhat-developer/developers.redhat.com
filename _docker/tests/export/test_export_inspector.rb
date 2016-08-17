@@ -26,7 +26,7 @@ EOD
 
   def test_all_links_are_valid
     # Go through and create the files that are expected
-    expected_files = %w(index.html about.html events/devnation/2016.html community/contributor/signup.html articles/rhel-what-you-need-to-know.html)
+    expected_files = %w(index.html about/index.html events/devnation/2016/index.html community/contributor/signup/index.html articles/rhel-what-you-need-to-know/index.html)
 
     expected_files.each do |file|
       FileUtils.mkdir_p File.join(@export_directory, File.dirname(file))
@@ -42,10 +42,10 @@ EOD
     expected_output = <<EOD
 ================================ EXPORT SUMMARY ================================
 WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/' at expected path: '#{@export_directory}/index.html'
-WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/about' at expected path: '#{@export_directory}/about.html'
-WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/events/devnation/2016' at expected path: '#{@export_directory}/events/devnation/2016.html'
-WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/community/contributor/signup' at expected path: '#{@export_directory}/community/contributor/signup.html'
-WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/articles/rhel-what-you-need-to-know' at expected path: '#{@export_directory}/articles/rhel-what-you-need-to-know.html'
+WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/about' at expected path: '#{@export_directory}/about/index.html'
+WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/events/devnation/2016' at expected path: '#{@export_directory}/events/devnation/2016/index.html'
+WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/community/contributor/signup' at expected path: '#{@export_directory}/community/contributor/signup/index.html'
+WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/articles/rhel-what-you-need-to-know' at expected path: '#{@export_directory}/articles/rhel-what-you-need-to-know/index.html'
 WARNING: Of '5' pages, '5' are not found in the export.
 EOD
     assert_output(expected_output) do
