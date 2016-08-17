@@ -54,7 +54,7 @@ class TestExportHtmlPostProcessor < MiniTest::Test
     @export_post_processor.post_process_html_export('docker', @export_directory)
 
     index_html = get_html_document("#{@export_directory}/index.html")
-    assert_equal('../containers/',get_link_href(index_html, 'containers-link'))
+    assert_equal('containers/',get_link_href(index_html, 'containers-link'))
 
     containers_adoption_html = get_html_document("#{@export_directory}/containers/adoption/index.html")
     assert_equal('../../containers/',get_link_href(index_html, 'containers-link'))
