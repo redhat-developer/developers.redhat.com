@@ -302,14 +302,25 @@ function searchCtrlFunc($scope, $window, searchService) {
     }
     
     if (isStackOverflow) {
-      var product = $('select[name="filter-by-product"]').val();
-      $scope.params.product = product;
-      
-      if (product !== "") {
+      if(/help/.test(window.location.href)){
+        var product = (window.location.href).split("/")[4];
+        $scope.params.product = product;
+
         var tags = app.products[product]['stackoverflow'];
         params.tag = tags.slice();
+
       }
-      history.pushState($scope.params,params.tag,app.baseUrl + '/stack-overflow/?q=' + params.tag);
+      
+      else {
+        var product = $('select[name="filter-by-product"]').val();
+        $scope.params.product = product;
+
+        if (product !== "") {
+          var tags = app.products[product]['stackoverflow'];
+          params.tag = tags.slice();
+        }
+        history.pushState($scope.params,params.tag,app.baseUrl + '/stack-overflow/?q=' + params.tag);
+      }
     }
 
     searchService.getSearchResults(params).then(function(data) {

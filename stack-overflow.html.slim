@@ -29,9 +29,8 @@ div(ng-app="search")
           form.search-bar(role="search" ng-submit="updateSearch(); resetPagination();")
             / input.user-success.user-search(required type="search" placeholder="Enter your search term" id="search_list_text" ng-model="params.query")
         .large-24.columns
-          a.button(href="#{site.base_url}/stack-overflow/") REFRESH
           .row
-            .large-12.columns.stackoverflow-filters
+            .large-14.columns.stackoverflow-filters
               label(for="filterByProduct") Filter by Product
               .styled-select
                 select(name="filter-by-product" id="filterByProduct" ng-model="params.product" ng-change="updateSearch(); resetPagination();")
@@ -42,11 +41,11 @@ div(ng-app="search")
                   option(value="softwarecollections") Red Hat Software Collections
                   option(value="fuse") Red Hat JBoss Fuse
                   option(value="openshift") OpenShift Enterprise by Red Hat
-            .large-12.columns
+            .large-10.columns
               .sorting.so-sorting
                 p(ng-if="totalCount > 10")
                   | Show
-                  select(ng-model="params.size" ng-change="updateSearch()")
+                  select(class="results-count" ng-model="params.size" ng-change="updateSearch()")
                     option(value="10") 10
                     option(value="25") 25
                     option(value="50") 50

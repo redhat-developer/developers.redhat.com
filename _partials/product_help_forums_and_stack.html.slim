@@ -21,8 +21,8 @@
         |  Top Q&amp;A
 
       div(ng-app="search")
-        .row(ng-controller="SearchController")
-          .stackoverflow-results-container(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0" data-tags="#{(JSON.dump page.parent.product.stackoverflow_tags).gsub(/"/, "'")}" id="stackContainer")
+        div(ng-controller="SearchController")
+          .stackoverflow-results-container(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0" id="stackContainer")
             div(ng-repeat="result in results | limitTo:4" ng-init="r = result")
               .stackoverflow-product-update
                 .update
@@ -37,7 +37,7 @@
                           p {{r | stackDate}}
 
       h5.see-all
-        a(href='#{site.base_url}/stack-overflow/#!filter-products=#{page.parent.product.id}')
+        a(href='#{site.base_url}/stack-overflow/')
           | See all related Stack Overflow Q&amp;A posts&nbsp;
           i.fa.fa-caret-right
 br
