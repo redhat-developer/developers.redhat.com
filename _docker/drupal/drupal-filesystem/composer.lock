@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a0797d2e050922cce7bbd75906f6448f",
-    "content-hash": "32fce3fd8ff687adc9d3528f3f62e1a1",
+    "hash": "93ae782a0d4a6bd544807ee95968e8a4",
+    "content-hash": "e436eb91e70c630efa75a5067d92c739",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -870,7 +870,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/admin_toolbar-8.x-1.15.zip",
-                "reference": null,
+                "reference": "8.x-1.15",
                 "shasum": "482b24e6f01f5ba68d9da94880cc796df5f17064"
             },
             "require": {
@@ -930,7 +930,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/config_update-8.x-1.1.zip",
-                "reference": null,
+                "reference": "8.x-1.1",
                 "shasum": "21a351d44796e742944e8b2fedc283b888369e38"
             },
             "require": {
@@ -1240,7 +1240,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha26.zip",
-                "reference": null,
+                "reference": "8.x-3.0-alpha26",
                 "shasum": "7db9ce1bffb181ac5bf5c7067687e32e582de5e4"
             },
             "require": {
@@ -1322,7 +1322,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/diff-8.x-1.0-alpha3.zip",
-                "reference": null,
+                "reference": "8.x-1.0-alpha3",
                 "shasum": "97d89b9b789c23eb4b9e3561435c61ba4bd5bb1d"
             },
             "require": {
@@ -1400,7 +1400,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity-8.x-1.0-alpha3.zip",
-                "reference": null,
+                "reference": "8.x-1.0-alpha3",
                 "shasum": "67d7da97ca43468880426d1deeeccf87de7f1f40"
             },
             "require": {
@@ -1535,7 +1535,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.0-beta9.zip",
-                "reference": null,
+                "reference": "8.x-1.0-beta9",
                 "shasum": "1dcae53510167bcfc78bf332c6cf7fe13f8c1bbc"
             },
             "require": {
@@ -1589,7 +1589,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/multiversion-8.x-1.0-alpha9.zip",
-                "reference": null,
+                "reference": "8.x-1.0-alpha9",
                 "shasum": "f53fedad6e1a5be7ec976e052786d3e62d050f81"
             },
             "require": {
@@ -1632,6 +1632,58 @@
             }
         },
         {
+            "name": "drupal/pathauto",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/pathauto",
+                "reference": "05a0bc51694b70efb697b3c8b175f2884bff7b34"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/ctools": "*",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha3+16-dev",
+                    "datestamp": "1470567239"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Freso",
+                    "homepage": "https://www.drupal.org/user/27504"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                }
+            ],
+            "description": "Provides a mechanism for modules to automatically generate aliases for the content they manage.",
+            "homepage": "https://www.drupal.org/project/pathauto",
+            "support": {
+                "source": "http://cgit.drupalcode.org/pathauto"
+            },
+            "time": "2016-08-07 10:52:55"
+        },
+        {
             "name": "drupal/simple_sitemap",
             "version": "2.3.0",
             "source": {
@@ -1642,7 +1694,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/simple_sitemap-8.x-2.3.zip",
-                "reference": null,
+                "reference": "8.x-2.3",
                 "shasum": "d91b6ea47612ab18e6c87f53666d869cd1a38fed"
             },
             "require": {
@@ -1689,7 +1741,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/token-8.x-1.0-alpha2.zip",
-                "reference": null,
+                "reference": "8.x-1.0-alpha2",
                 "shasum": "b844fc463edcb15f7d750482c150b4b27a6e8200"
             },
             "require": {
@@ -5328,7 +5380,8 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
+            },
+            "time": "2016-07-23 09:36:35"
         },
         {
             "name": "fabpot/goutte",
@@ -6612,6 +6665,7 @@
         "drupal/token": 15,
         "drupal/metatag": 10,
         "drupal/multiversion": 15,
+        "drupal/pathauto": 20,
         "drupal/ctools": 15,
         "jcalderonzumba/gastonjs": 20,
         "drupal/devel": 20
