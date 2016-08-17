@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Contains Drupal\rhd_common\FirstTest
+ * Contains Drupal\rhd_common\UrlAliasWithoutSlash
  */
 
 namespace Drupal\Tests\rhd_common\Unit;
@@ -9,7 +9,7 @@ namespace Drupal\Tests\rhd_common\Unit;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * FirstTest units tests.
+ * Add a slash to node alias units tests.
  * @group rhd_common
  */
   class UrlAliasWithoutSlash extends UnitTestCase {
@@ -37,6 +37,7 @@ use Drupal\Tests\UnitTestCase;
       $entityManager->expects($this->any())->method('getStorage')->with('node')->willReturn($this->nodeStorage);
 
       $data = 'Node title is : ' . $this->node_title . PHP_EOL . 'Node Url alias is : ' . $this->node_url_alias;
+      // Output node title and alias when executing on terminal.
       fwrite(STDERR, print_r($data, TRUE));
       $this->assertsame($this->node_title, $this->node_title);
     }
