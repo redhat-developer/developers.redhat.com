@@ -59,6 +59,7 @@ class ExportHtmlPostProcessor
   def relocate_index_html(export_directory)
     FileUtils.mv("#{export_directory}/index/index.html", "#{export_directory}/index.html")
     FileUtils.rm_rf("#{export_directory}/index")
+    @process_runner.execute!("sed -i'' -e s:'\\.\\.\\/':'':g #{export_directory}/index.html")
     @log.info("Moved #{export_directory}/index/index.html to #{export_directory}/index.html.")
   end
 
