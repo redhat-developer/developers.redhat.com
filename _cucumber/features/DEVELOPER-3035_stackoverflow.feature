@@ -30,8 +30,3 @@ Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
     Then I should see a list of 10 results
     And each question should display how long ago the question was asked
 
-  Scenario: Scrolling page loads next set of 10 results.
-    Given I am on the Stack Overflow page
-    Then I should see a list of 10 results
-    When I scroll to the bottom of the page
-    Then I should see a list of 20 results

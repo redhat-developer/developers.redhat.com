@@ -153,6 +153,12 @@ class Base
     @driver.switch_to.window(first_window)
   end
 
+  def answers_per_page
+    default_item = default_dropdown_item(xpath: '//p/select[1]')
+    available_options = dropdown_items(xpath: '//p/select[1]')
+    return default_item, available_options
+  end
+
   def results_per_page
     default_item = default_dropdown_item(xpath: '//p/select[2]')
     available_options = dropdown_items(xpath: '//p/select[2]')

@@ -18,6 +18,7 @@ class StackOverflow < Base
   READ_FULL_QUESTION_LINK            =  { css: 'display-answer a' }
   AUTHOR                             =  { class: 'so-author' }
   FILTER_BY_PRODUCT                  =  { id: 'filterProducts' }
+  RESULTS_COUNT                      =  { class: 'results-count' }
 
   def initialize(driver)
     super
@@ -43,6 +44,21 @@ class StackOverflow < Base
         return g.text
       end
     end
+  end
+
+  def results_count(count)
+    select(RESULTS_COUNT, count)
+    sleep(1.5) # slight delay to wait for search to kick-off
+    wait_for { displayed?(LOADING) == false }
+  end
+
+  def results
+    results = []
+    res = find_elements(QUESTION_ROW)
+    res.each do |result|
+      results << result.text
+    end
+    results
   end
 
   def select_product(product)

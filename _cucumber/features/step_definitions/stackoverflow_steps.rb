@@ -46,9 +46,6 @@ Then(/^each question should display how long ago the question was asked$/) do
   expect(@page.stack_overflow.author.size).to eq @results
 end
 
-When(/^I scroll to the bottom of the page$/) do
-  @page.stack_overflow.scroll_to_bottom_of_page
-end
 
 Then(/^I should see a Filter by product drop down menu with the following:$/) do |table|
   table.raw.each do |row|
@@ -77,4 +74,12 @@ Given(/^I have previously filtered results by "([^"]*)"$/) do |product|
   @initial_product_titles = []
   @page.stack_overflow.question_titles.each { |title| @initial_product_titles << title.text }
   @page.stack_overflow.select_product(product)
+end
+
+Given(/^the answers per page options should be:$/) do |table|
+  answers_per_page = []
+  table.raw.each do |links|
+    answers_per_page << links.first
+  end
+  @page.current_page.answers_per_page[1].should =~ answers_per_page
 end
