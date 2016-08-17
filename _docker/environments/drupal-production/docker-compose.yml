@@ -71,15 +71,15 @@ services:
 
   export:
     build:
-     context: ../../awestruct
+     context: ../../export
      args:
        http_proxy: proxy01.util.phx2.redhat.com:8080
        https_proxy: proxy01.util.phx2.redhat.com:8080
     entrypoint: "ruby _docker/lib/export/export.rb developer-drupal.web.prod.ext.phx2.redhat.com"
     volumes:
       - /data/drupal-export:/export
-      - /credentials/rsync:/home/awestruct/.ssh
-      - ../../../:/home/awestruct/developer.redhat.com
+      - /credentials/rsync:/home/jenkins_developer/.ssh
+      - ../../../:/home/jenkins_developer/developer.redhat.com
 
   rollback:
     build:
