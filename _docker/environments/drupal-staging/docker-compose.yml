@@ -41,7 +41,7 @@ services:
     volumes:
       - /credentials/drupal/rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - /credentials/drupal/rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
-      - /data/drupal/images:/var/www/drupal/web/sites/default/images
+      - /data/drupal/files:/var/www/drupal/web/sites/default/files
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
     environment:
