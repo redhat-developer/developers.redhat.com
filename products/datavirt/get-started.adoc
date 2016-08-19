@@ -14,7 +14,7 @@ Prerequisites &#38; Required Dependencies Checklist
 12 minutes
 
 == Step1 Title
-Install & Configure JBoss DV 
+Install & Configure JBoss Data Virtualization
 
 == Step2 Title
 Set Up Dev Environment
@@ -28,25 +28,26 @@ Build your first application
 2. Unzip the Quick-Start kit.
 3. Open the terminal and change your present working directory(pwd) to home folder of Quick-Start kit.
 4. Run setup_dv.sh (.bat) script. This will:
-...a Install and Start JBoss Data Virtualization 6.3 server with default settings.
-...b Start H2 database server and populate with sample datasource for Getting Started example.
-...c Configure and deploy Web Service
-+
-If you prefer to install JBoss Data Virtualization with customized settings, please refer to https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/getting-started-guide/[Getting Started Guide] 
-+
-*Follow the steps* of https://vimeo.com/178920385[Part 1] from Getting Started video series to install JBoss Data Virtualization 6.3 GA
+... Install and Start Red Hat JBoss Data Virtualization 6.3 server with default settings.
+... Start H2 database server and populate with sample datasource for Getting Started example.
+... Configure and deploy Web Service.
+
+*Note that the above steps* for installing Red Hat JBoss Data Virtualization with default settings, and populating data sources that will be used in our Getting Started example can also be viewed in https://vimeo.com/178920385[Part 1] of Getting Started video series.
+
+If you prefer to install Red Hat JBoss Data Virtualization with customized settings, please refer to https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/getting-started-guide/[Getting Started Guide] 
+
 
 == Step2 Content
 
 1.	Install the Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK 1.8 or above.
-2.	Download http://developers.redhat.com/products/devstudio/download/[JBoss Developer Studio]
-3.	Run JBoss Developer Studio installer
+2.	Download http://developers.redhat.com/products/devstudio/download/[Red Hat JBoss Developer Studio]
+3.	Run Red Hat JBoss Developer Studio installer
 .. For MAC/Linux:
-... Go to the folder where you have downloaded JBoss Developer Studio, and execute the installer
+... Go to the folder where you have downloaded Red Hat JBoss Developer Studio, and execute the installer
 +
 `java -jar jboss-devstudio-9.1.0.GA-installer-eap.jar`
 +
-*Note:* This will execute the JBoss Developer Studio installation wizard.
+*Note:* This will execute the Red Hat JBoss Developer Studio installation wizard.
 +
 ..	For Windows:
 +
@@ -58,22 +59,20 @@ If you prefer to install JBoss Data Virtualization with customized settings, ple
 ..	In Red Hat JBoss Developer Studio, *click Help > Red Hat Central* action from the main menu.
 ..  Click the tab Software/Update and select the JBoss Data Virtualization Development option and then click *Install*
 +
-*Note:* If JBDSIS is already installed then proceed to next step. You can confirm that JBDSIS is installed on your machine by clicking *What is already installed link*.
+*Note:* If Red Hat JBoss Data Virtualization Development is already installed then proceed to next step. You can confirm that JBDSIS is installed on your machine by clicking *What is already installed link*.
 +
 *Note:* If you are facing proxy issues downloading JBDSIS plugins via Red Hat Central, then you can download JBDSIS plugins locally to your computer from this http://tools.jboss.org/downloads/devstudio_is/[link].
 +
-*Important:* Components of JBoss Developer Studio Integration Stack that are still under development and released as Early Access may not be immediately visible in the Software/Update tab under JBoss Developer Studio Integration Stack. To list early access components, in the Software/Update tab click the Enable Early Access check box and review the Early Access Features declaration.
-+
 ..	Click *Next*.
 ..	Accept any additional dependencies and license agreements, and then click *Finish* to complete.
-+
+
 *Note:* When installation is complete you will be prompted to re-launch Red Hat JBoss Developer Studio to ensure the new features are fully operational.
-+
-*Follow the steps* of https://vimeo.com/178920385[Part 1] from Getting Started video series to install JBoss Developer Studio 9.1.0.
+
+*Note that the above steps* for installing the Red Hat JBoss Developer Studio can also be viewed in https://vimeo.com/178920385[Part 1] of Getting Started video series.
 
 == Step3 Content
-You will be building federated data views pulling data from Flat file, Web and H2 relational database. These federated data views can be accessed via any JBDC client or Web Service.
-+
+Red Hat JBoss Data Virtualization allows you to easily combine data from multiple, heterogenous data sources without moving or copying any data. In this example application you will be building federated data views pulling data from Flat file, Web and H2 relational database. These federated data views can be easily accessed via any JDBC client or Web Service.
+
 *Follow the steps* of https://vimeo.com/178933702[Part 2] and https://vimeo.com/178933177[Part 3] from Getting Started video series to build your first data virtualization project.
 
 
