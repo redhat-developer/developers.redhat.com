@@ -58,17 +58,20 @@ class ResourcesPage < CommonElements
   end
 
   def keyword_search(search_string)
-    keyword_field.send_keys(search_string)
-    wait_for_results
+    type(keyword_field, search_string)
+    wait_for_loading
+    wait_until_loaded
   end
 
   def filter_by_product(product)
     select(product_filter, product)
+    wait_for_loading
     wait_for_results
   end
 
   def filter_by_publish_date(date_type)
     select(publish_date, date_type)
+    wait_for_loading
     wait_for_results
   end
 

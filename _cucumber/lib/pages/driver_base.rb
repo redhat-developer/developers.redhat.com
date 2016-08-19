@@ -60,8 +60,9 @@ class DriverBase
     @driver.find_elements(locator)
   end
 
-  def clear(locator)
-    find(locator).clear
+  def type(locator, string)
+    locator.clear
+    locator.send_keys string
   end
 
   def press_return
@@ -150,7 +151,7 @@ class DriverBase
   end
 
   def wait_until_not_displayed(seconds=6, locator)
-    wait_for(seconds) { not displayed?(locator) }
+    wait_for(seconds) { !displayed?(locator) }
   end
 
   def wait_for_ajax(timeout = 30)

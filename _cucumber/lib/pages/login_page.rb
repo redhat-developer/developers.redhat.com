@@ -15,8 +15,8 @@ class LoginPage < SiteBase
   action(:click_login_with_github) { |el| el.click_on(id: 'social-github') }
 
   def login_with(username, password)
-    username_field.send_keys(username)
-    password_field.send_keys(password)
+    type(username_field, username)
+    type(password_field, password)
     click_login_button
     wait_for_ajax
   end

@@ -9,16 +9,15 @@ class DownloadsPage < SiteBase
     include DownloadHelper
   end
 
-  MOST_POPULAR_SECTION      = { css: '.most-popular-downloads' }
-  FETCHING_SPINNER          = { css: '#downloads .fa-refresh'  }
-  DOWNLOAD_BTN              = { css: '#downloads .fa-download' }
-  MOST_POPULAR_DOWNLOAD_BTN = { css: '.most-popular-downloads .fa-download' }
-  PRODUCT_DOWNLOADS         = { css: '#downloads h5' }
-  OTHER_RESOURCES           = { xpath: '//*[@id="other-resources"]/ul/li' }
+  element(:loaded?)                        { |el| el.wait_until_not_displayed(css: '#downloads .fa-refresh') }
+  element(:most_popular_section)           { |el| el.find(css: '.most-popular-downloads') }
+  elements(:download_buttons)              { |el| el.find_elements(css: '#downloads .fa-download') }
+  elements(:most_popular_download_buttons) { |el| el.find_elements(css: '.most-popular-downloads .fa-download') }
+  elements(:product_downloads)             { |el| el.find_elements(css: '#downloads h5') }
+  elements(:other_resources)               { |el| el.find_elements(xpath: '//*[@id="other-resources"]/ul/li') }
 
   def available_downloads
     products = []
-    product_downloads = find_elements(PRODUCT_DOWNLOADS)
     product_downloads.each do |product|
       products << product.text
     end
@@ -26,22 +25,19 @@ class DownloadsPage < SiteBase
   end
 
   def other_resources_links
-    other_resources = find_elements(OTHER_RESOURCES)
     other_resources.size
   end
 
   def most_popular_downloads
-    wait_for { displayed?(MOST_POPULAR_SECTION) }
-    text_of(MOST_POPULAR_SECTION)
+    wait_for { most_popular_section.displayed? }
+    most_popular_section.text
   end
 
   def most_popular_downloads_btns
-    mp_downloads_buttons = find_elements(MOST_POPULAR_DOWNLOAD_BTN)
-    mp_downloads_buttons.size
+    most_popular_download_buttons.size
   end
 
   def download_btns
-    download_buttons = find_elements(DOWNLOAD_BTN)
     download_buttons.size
   end
 

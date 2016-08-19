@@ -44,7 +44,7 @@ class SiteBase < DriverBase
     if is_mobile?
       toggle_menu
     end
-    wait_for(30) { register_link.displayed?}
+    wait_for(30) { register_link.displayed? }
     register_link.displayed?
   end
 

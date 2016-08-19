@@ -9,25 +9,27 @@ class TechnologiesPage < SiteBase
     include ProductsHelper
   end
 
-  PRODUCTS_SECTIONS          = { css: '.development-tool' }
-  PRODUCTS_LINKS             = { css: '.development-tools h4 > a' }
-  INFRASTRUCTURE             = { id: 'infrastructure' }
-  CLOUD                      = { id: 'private_cloud' }
-  MOBILE                     = { id: 'mobile' }
-  INTEGRATION_AND_AUTOMATION = { id: 'integration_and_automation' }
-  RUNTIME                    = { id: 'runtimes' }
+  element(:products_sections)                      { |el| el.find_elements(css: '.development-tool') }
+  elements(:products_links)                        { |el| el.find_elements(css: '.development-tools h4 > a') }
+
+  element(:accelerated_development_and_management) { |el| el.text_of(id: 'accelerated_development_and_management') }
+  element(:developer_tools)                        { |el| el.text_of(id: 'developer_tools') }
+  element(:infrastructure)                         { |el| el.text_of(id: 'infrastructure') }
+  element(:integration_and_automation)             { |el| el.text_of(id: 'integration_and_automation') }
+  element(:runtimes)                               { |el| el.text_of(id: 'runtimes') }
+  element(:cloud)                                  { |el| el.text_of(id: 'private_cloud') }
+  element(:mobile)                                 { |el| el.text_of(id: 'mobile') }
 
   def product_titles
     titles = []
-    elements = [INFRASTRUCTURE, CLOUD, MOBILE, INTEGRATION_AND_AUTOMATION, RUNTIME]
-    elements.each { |el| titles << text_of(el) }
+    elements = [accelerated_development_and_management, developer_tools, infrastructure, integration_and_automation, runtimes, cloud, mobile]
+    elements.each { |el| titles << el }
     titles
   end
 
   def available_products
     products = []
-    links = find_elements(PRODUCTS_LINKS)
-    links.each do |el|
+    products_links.each do |el|
       products << el.text
     end
     products

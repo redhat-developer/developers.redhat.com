@@ -24,7 +24,9 @@ Dir["#{File.dirname(__FILE__)}/../../lib/helpers/*.rb"].each { |helper| load hel
 World PageHelper
 
 if ENV['HOST_TO_TEST'].to_s.empty?
-  $host_to_test = 'http://docker:4242'
+  $host_to_test                  = 'http://developers.stage.redhat.com'
+  $keycloak_base_url             = 'https://developers.stage.redhat.com/auth/realms/rhd/account'
+  $download_manager_base_url     = 'https://developers.stage.redhat.com/download-manager/rest/available'
 else
   case ENV['HOST_TO_TEST']
     when 'dev'
@@ -89,7 +91,7 @@ at_exit do
 
   ReportBuilder.build_report
 
-  # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
+  # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
   admin = KeyCloak.new
   email_one = admin.get_user_by("rhd-autotest+sid_#{$session_id}")
   unless email_one.empty?

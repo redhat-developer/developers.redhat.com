@@ -51,12 +51,12 @@ class RegistrationPage < SiteBase
 
   def fill_in_form(first_name, last_name, email, company, country, password, password_confirm)
     wait_for { email_field.displayed? }
-    email_field.send_keys(email)
-    password_field.send_keys(password)
-    password_confirm_field.send_keys(password_confirm)
-    first_name_field.send_keys(first_name)
-    last_name_field.send_keys(last_name)
-    company_field.send_keys(company)
+    type(email_field, email)
+    type(password_field, password)
+    type(password_confirm_field, password_confirm)
+    type(first_name_field, first_name)
+    type(last_name_field, last_name)
+    type(company_field, company)
     select(country_dropdown, country) unless country.nil?
   end
 

@@ -240,14 +240,14 @@ When(/^I complete the extended registration form and accept the terms and condit
   @page.extended_registration.click_create_account_and_download
 end
 
-When(/^I select to Choose another email$/) do
-  @page.link_to_github.click_on_choose_another_email
-end
-
 Then(/^I should receive an email containing a verify email link$/) do
   @verification_email = get_email($site_user[:email])
   puts "Verification link was: #{@verification_email}"
   expect(@verification_email.to_s).to include('first-broker-login?')
+end
+
+And(/^I click on the Send Verification email button$/) do
+  @page.link_to_github.click_send_verification_email
 end
 
 And(/^I navigate to the verify email link$/) do

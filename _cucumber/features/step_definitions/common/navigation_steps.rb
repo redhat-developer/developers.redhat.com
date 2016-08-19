@@ -5,7 +5,9 @@ Given(/^I am on the ([^"]*) page$/) do |page|
     when 'technologies'
       visit(TechnologiesPage)
     when 'downloads'
-      visit(DownloadsPage)
+      visit(DownloadsPage) do |page|
+        page.loaded?
+      end
     when 'registration'
       visit HomePage do |page|
         page.navigate_to('registration')
@@ -18,7 +20,7 @@ Given(/^I am on the ([^"]*) page$/) do |page|
         page.loaded?
       end
     when 'stack overflow'
-      visit(StackOverflowPage)
+      visit(StackOverflowPage).wait_until_loaded
     when 'resources'
       visit(ResourcesPage).wait_until_loaded
     when 'product forums'

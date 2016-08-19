@@ -13,12 +13,11 @@ When(/^I complete the required additional information$/) do
 end
 
 And(/^I complete the required additional information with a new email address$/) do
-  $site_user[:email] = "redhat-developers-testers+session_id_#{$session_id}-#{Faker::Lorem.characters(10)}@redhat.com"
+  $site_user[:email] = "rhd+session_id_#{$session_id}-#{Faker::Lorem.characters(10)}@redhat.com"
   puts "Adding new email: #{$site_user[:email]}"
 
   on AdditionalInformationPage do |page|
     page.fill_in($site_user[:email], 'P@$$word01', nil, nil, nil, $site_user[:country])
-    page.accept_terms
     page.click_submit
   end
 end
@@ -65,12 +64,13 @@ end
 
 Then(/^I should see a warning that the email is already registered$/) do
   on AdditionalInformationPage do |page|
-    expect(page.email_field_error.text).to eq "User account already exists for email #{$site_user[:email]}."
+    expect(page.email_field_error.text).to eq 'User account for this email already exists. Link your social account with the existing account.'
   end
 end
 
-And(/^I click on the Send Verification email button$/) do
+And(/^I click on the link account to social link$/) do
   on AdditionalInformationPage do |page|
-    page.click_send_verification_email
+    page.click_link_profile_to_social
+    page.wait_for_ajax
   end
 end

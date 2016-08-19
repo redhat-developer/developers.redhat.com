@@ -18,24 +18,24 @@ class AdditionalInformationPage < SiteBase
   action(:accept_tac1)             { |el| el.click_on(id: 'user.attributes.tcacc-6') }
   action(:accept_tac2)             { |el| el.click_on(id: 'user.attributes.tcacc-1246') }
   action(:click_submit)            { |el| el.click_on(xpath: "//input[@value='Submit']") }
+  action(:click_link_profile_to_social) { |el| el.click_on(link: 'Link your social account with the existing account.') }
 
   element(:error) { |el| el.text_of(css: '#kc-error-message .instruction') }
-  action(:click_on_choose_another_email) { |el| el.click_on(id: 'updateProfile') }
-  action(:click_send_verification_email) { |el| el.click_on(id: 'linkAccount') }
 
   def fill_in(email, password, first_name, last_name, company, country)
-    wait_for {email_field.displayed? }
-    email_field.send_keys(email)  unless email.nil?
+    wait_for { email_field.displayed? }
+    type(email_field, email) unless email.nil?
     enter_password(password, password) unless password.nil?
-    first_name_field.send_keys(first_name) unless first_name.nil?
-    last_name_field.send_keys(last_name) unless last_name.nil?
-    company_field.send_keys(company) unless company.nil?
+    type(first_name_field, first_name) unless first_name.nil?
+    type(last_name_field, last_name) unless last_name.nil?
+    type(company_field, company) unless company.nil?
     select_country(country) unless country.nil?
+    wait_for_ajax
   end
 
   def enter_password(password, confirm_password)
-    password_field.send_keys(password)
-    confirm_password_field.send_keys(confirm_password)
+    type(password_field, password)
+    type(confirm_password_field, confirm_password)
   end
 
   def select_country(country)
