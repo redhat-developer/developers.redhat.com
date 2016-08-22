@@ -16,7 +16,7 @@ Rapid ways to deliver reusable and loosely coupled unified data views and data s
 
 == Icon1
 
-image:#{cdn(site.base_url + '/images/icons/products/products_datacenter.png')}["Data Center Icon"] 
+image:#{cdn(site.base_url + '/images/icons/products/products_datacenter.png')}["Data Center Icon"]
 
 == Features2
 
@@ -42,7 +42,7 @@ image:#{cdn(site.base_url + '/images/icons/products/products_stopwatch.png')}["S
 
 == Detail
 
-image:#{cdn(site.base_url + '/images/products/datavirt/red-hat-jboss-datavirt.png')}["Data Virtualization", 75%]
+image:#{cdn(site.base_url + '/images/products/datavirt/mi-jdv-diagram-us98753at-201608-01-01.png')}["Data Virtualization", 75%]
 
 JBoss Data Virtualization offers comprehensive data abstraction, federation, integration, transformation, and delivery capabilities to combine data from one or multiple sources into reusable and unified logical data models accessible thru standard SQL (JDBC, ODBC, Hibernate) and/or web services (REST, OData, SOAP) interfaces for agile data utilization and sharing. It enables agile data utilization by providing following functionality:
 
@@ -52,15 +52,30 @@ JBoss Data Virtualization offers comprehensive data abstraction, federation, int
 
 JBoss Data Virtualization implements all three steps internally; hiding the technical complexities of knowing physical data locations, storage structures, APIs, access and/or merge logic, thus making it easy for developers and users to work with data.
 
-=== What's new in JBoss Data Virtualization 6.2?
+image:#{cdn(site.base_url + '/images/products/datavirt/database_trends_and_apps.jpg')}["Database Trends", 50%, link="http://www.redhat.com/datavirt"]
 
-==== - EAP 6.4.3
+=== What's new in JBoss Data Virtualization 6.3?
 
-==== - Java 8
+==== Expanded Connectivity:
 
-==== - Teiid Designer Usability Improvments
+- Apache Spark
+- JDG as materialization target for JDV
+- SAP HANA
+- HPE Vertica
+- Apache Cassandra
+- Apache HBase
+- Amazon RedShift
+- Apache Accumulo
+- Geospatial Support
+- OSIsoft PI (Tech Preview)
 
-==== - Kerberos passthrough for Cloudera, Oracle and MS SQL Server
+==== Developer Productivity:
 
-==== - HBase Technical Preview
+- OData V4
+- Teiid Designer usability improvements
+- VDB Builder CLI (Tech Preview)
 
+==== Enhanced Security:
+
+- Kerberos on REST interfaces
+- OAuth using RH-SSO
