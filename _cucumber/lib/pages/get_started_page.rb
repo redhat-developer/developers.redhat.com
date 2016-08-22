@@ -1,7 +1,7 @@
-require_relative 'base'
+require_relative 'site_base'
 require_relative '../../../_cucumber/lib/helpers/products_helper.rb'
 
-class GetStartedPage < Base
+class GetStartedPage < SiteBase
 
   class << self
     include ProductsHelper
@@ -10,15 +10,6 @@ class GetStartedPage < Base
   TC_WHEN_SIGNED    = { id: '#tcWhenSigned' }
   THANK_YOU_TEXT    = { id: 'thank-you' }
   THANK_YOU_SECTION = { css: '.downloadthankyou' }
-
-  def initialize(driver)
-    super
-    verify_page('Get Started')
-  end
-
-  def loaded?(product_id)
-    wait_for(60) { get_started_page_for(product_id) }
-  end
 
   def get_started_page_for(product)
     displayed?(css: ".products#{product}get-started")

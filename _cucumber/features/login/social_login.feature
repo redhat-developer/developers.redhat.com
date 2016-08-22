@@ -9,9 +9,3 @@ Feature: Log in using preferred social provider
     Given I am on the Login page
     When I log in with an account that is already linked to my Github account
     Then I should be logged in
-
-  @logout @github_logout @delete_user
-  Scenario: User can login and unlink a social prover
-    Given I am on the Login page
-    When I log in with an account that is already linked to my Github account
-    Then I should be logged in
