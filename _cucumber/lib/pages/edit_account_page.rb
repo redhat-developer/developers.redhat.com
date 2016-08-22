@@ -1,4 +1,4 @@
-require_relative 'site_base'
+require_relative 'abstract/site_base'
 
 class EditAccountPage < SiteBase
   page_url('/auth/realms/rhd/account/')

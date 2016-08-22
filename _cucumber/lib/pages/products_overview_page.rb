@@ -1,4 +1,4 @@
-require_relative 'site_base'
+require_relative 'abstract/site_base'
 require_relative '../../../_cucumber/lib/helpers/products_helper.rb'
 
 class ProductOverviewPage < SiteBase

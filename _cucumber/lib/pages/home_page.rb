@@ -1,4 +1,4 @@
-require_relative 'common_elements'
+require_relative 'abstract/common_elements'
 
 class HomePage < CommonElements
   page_url('/')

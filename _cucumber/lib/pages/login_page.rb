@@ -1,4 +1,4 @@
-require_relative 'site_base'
+require_relative 'abstract/site_base'
 
 class LoginPage < SiteBase
   page_title('Log In | Red Hat Developers')

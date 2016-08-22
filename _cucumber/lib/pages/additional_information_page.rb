@@ -1,4 +1,4 @@
-require_relative 'site_base'
+require_relative 'abstract/site_base'
 
 class AdditionalInformationPage < SiteBase
   page_title('Additional Action Required | Red Hat Developers')

@@ -1,4 +1,4 @@
-require_relative 'site_base'
+require_relative 'abstract/site_base'
 
 class UpdatePasswordPage < SiteBase
   page_title('Update password | Red Hat Developers')
