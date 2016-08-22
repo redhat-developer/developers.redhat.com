@@ -11,21 +11,21 @@ Enable .NET Core Repository
 2 minutes
 
 ## Step2 Title
-Setup your development environment
+Set Up Your Development Environment
 
 ## Step3 Duration
 2 minutes
 
 ## Step3 Title
-Hello World and your first application
+Hello World and Your First Application
 
 ## Prerequisites section title
 Introduction and Prerequisites
 
 ## Prerequisites section
-In this tutorial, you will set your system up to install software from the Red Hat .NET repository, which provides the latest versions of .NET Core for Red Hat Enterprise Linux. Then, you will install .NET Core and run a simple "Hello, World" application. The whole tutorial should take less than 10 minutes to complete.
+In this tutorial, you will set up your system to install software from the Red Hat .NET repository, which provides the latest versions of .NET Core for Red Hat Enterprise Linux. You will install .NET Core and run a simple "Hello, World" application. The tutorial should take less than 10 minutes to complete.
 
-Before you begin, you will need a current Red Hat Enterprise Linux 7 server subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite Subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474/[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
+Before you begin, you will need a current Red Hat Enterprise Linux 7 Server subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite Subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474/[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
 
 Using VirtualBox? You’ll find instructions #{site.base_url}/products/rhel/get-started/#tab-virtualbox[here]. Hyper-V? Your instructions are #{site.base_url}/products/rhel/get-started/#tab-hyper-v[here]. VMWare? #{site.base_url}/products/rhel/get-started/#tab-vmware[Here] is your link. KVM users, #{site.base_url}/products/rhel/get-started/#tab-kvm[this way], please. Finally, yes, you can install on bare metal if you wish. #{site.base_url}/products/rhel/get-started/#tab-bare-metal[Here] is your page.
 
@@ -33,14 +33,14 @@ If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
 ## Step1 Content
 
-In this step you will configure your system to obtain software, including the latest .NET Core from the .NET software repository. Instructions are provided for both the command line (CLI) and graphical user interface (GUI).
+In this step, you will configure your system to obtain software, including the latest .NET Core from the .NET software repository. Instructions are provided for both the command line interface (CLI) and the graphical user interface (GUI).
 
 ### Using the Red Hat Subscription Manager GUI
 
 Start _Red Hat Subscription Manager_ using the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`.
 
 . Select _Repositories_ from the _System_ menu of the subscription manager.
-. In the list of repositories, check the _Enabled_ column for _rhel-7-server-dotnet-rpms_. Note: After clicking, it might take several seconds for the check mark to appear in the enabled column.
+. In the list of repositories, check the _Enabled_ column for _rhel-7-server-dotnet-rpms_. Note: After clicking, it might take several seconds for the checkmark to appear in the enabled column.
 
 If you don’t see any .NET Core repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
 
@@ -59,7 +59,7 @@ If you don’t see any .NET repositories in the list, your subscription might no
 
 [listing,subs="attributes"]
 ----
-# subscription-manager repos --enable rhel-7-server-dotnet-rpms
+# subscription-manager repos --enable=rhel-7-server-dotnet-rpms
 ----
 
 ## Step2 Content
@@ -87,7 +87,7 @@ First, run `dotnet new`. This will create the C# source code for the “Hello wo
 
 Next, run `dotnet restore`. This will fetch all the necessary dependency libraries.
 
-Finally, run `dotnet run`. This will build and run the application. Note that you can run `dotnet build` first if you wish, but it’s not necessary for this simple console application. In the future, you’ll use `dotnet build` with command line options to do things such as build self-contained applications; apps that can be copied and run without any need to first install .NET Core.
+Finally, run `dotnet run`. This will build and run the application. Note that you can run `dotnet build` first if you wish, but it’s not necessary for this simple console application. In the future, you’ll use `dotnet build` with command line options to do things such as build self-contained applications, that is, apps that can be copied and run without any need to first install .NET Core.
 
 ### Working with .NET Core packages
 
