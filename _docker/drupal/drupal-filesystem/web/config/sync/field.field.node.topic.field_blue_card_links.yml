@@ -1,0 +1,25 @@
+uuid: fbd77468-a5c4-4531-831b-6aa1a2f10511
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blue_card_links
+    - node.type.topic
+  module:
+    - link
+_core:
+  default_config_hash: zOf1rbu6klHla0ynbRGfPk3VUlYoL1l-Bsgvs9LxVmk
+id: node.topic.field_blue_card_links
+field_name: field_blue_card_links
+entity_type: node
+bundle: topic
+label: 'Blue Card Links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

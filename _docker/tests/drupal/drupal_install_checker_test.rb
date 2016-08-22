@@ -133,7 +133,8 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                              'metatag_open_graph',
                                                                              'metatag_twitter_cards',
                                                                              'metatag_verification', 'admin_toolbar',
-                                                                             'admin_toolbar_tools','simple_sitemap', 'devel', 'kint']]
+                                                                             'admin_toolbar_tools','simple_sitemap',                                                                             
+                                                                              'devel', 'kint']]
 
 
     install_checker.install_modules

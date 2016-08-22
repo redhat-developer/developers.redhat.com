@@ -1,0 +1,28 @@
+uuid: 0e87a39c-901f-4d4e-b9fc-d2cadfc5bfcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rhd_microsite.body
+    - node.type.rhd_microsite
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: O9xVKqhRg95zn-3xYVhH5kwAuVdLB0JOxRToi1fmGzA
+id: node.rhd_microsite.default
+targetEntityType: node
+bundle: rhd_microsite
+mode: default
+content:
+  body:
+    type: text_default
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

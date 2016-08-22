@@ -1,0 +1,28 @@
+uuid: e8b9f191-b5f2-4133-a400-d407753e1019
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bottom_left_white_card
+    - node.type.promotion_card
+    - node.type.topic
+_core:
+  default_config_hash: VXBG0Q1Apj9idHGfoGlZZ9ip5otXYl380O44SLEvJJU
+id: node.topic.field_bottom_left_white_card
+field_name: field_bottom_left_white_card
+entity_type: node
+bundle: topic
+label: 'Bottom Left White Card'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      promotion_card: promotion_card
+    sort:
+      field: _none
+field_type: entity_reference

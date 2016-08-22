@@ -1,0 +1,27 @@
+uuid: 827bee13-8edb-41ef-bc5b-b6530b341c7f
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 16ASMc6frOZlzgMFSK-a7L3OZKgoKYL_MgWaWqmWng8
+id: content_team
+label: 'Content Team'
+weight: 3
+is_admin: null
+permissions:
+  - 'use text format rhd_html'
+  - 'access content overview'
+  - 'view all revisions'
+  - 'view own unpublished content'
+  - 'create rhd_microsite content'
+  - 'delete own rhd_microsite content'
+  - 'edit own rhd_microsite content'
+  - 'view rhd_microsite revisions'
+  - 'create rhd_solution_overview content'
+  - 'delete own rhd_solution_overview content'
+  - 'edit own rhd_solution_overview content'
+  - 'view rhd_solution_overview revisions'
+  - 'create url aliases'
+  - 'access in-place editing'
+  - 'access shortcuts'
+  - 'access contextual links'

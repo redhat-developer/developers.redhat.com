@@ -1,0 +1,68 @@
+uuid: eb5dbe71-4c02-4f28-ae7c-3f14b4631b57
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.rhd_html
+  module:
+    - ckeditor
+_core:
+  default_config_hash: mtttZMGKMwoNn2gqkadxGuuT6sLigH6st8i4jpCpLdM
+format: rhd_html
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Underline
+        -
+          name: Linking
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Media
+          items:
+            - Blockquote
+            - DrupalImage
+        -
+          name: 'Block Formatting'
+          items:
+            - Format
+        -
+          name: Tools
+          items:
+            - AddLayout
+            - Table
+            - Styles
+            - Source
+            - Maximize
+        -
+          name: Layout
+          items:
+            - ShowBlocks
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+            - JustifyBlock
+  plugins:
+    stylescombo:
+      styles: ''
+image_upload:
+  status: true
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

@@ -1,0 +1,25 @@
+uuid: 18e98c29-b08c-4043-8c00-fd5f0e5e8e7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_container_external_link
+    - node.type.promotion_card
+  module:
+    - link
+_core:
+  default_config_hash: gHe_1w9pmto5AG1B2wyk3x05GIUrcQ05RD_1ZHNBDfQ
+id: node.promotion_card.field_container_external_link
+field_name: field_container_external_link
+entity_type: node
+bundle: promotion_card
+label: 'Content Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

@@ -1,0 +1,14 @@
+uuid: 2f13ca69-588c-41cf-88ce-6f18e4d8f3a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_team
+  module:
+    - user
+id: user_add_role_action.content_team
+label: 'Add the Content Team role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: content_team

@@ -1,0 +1,25 @@
+resources:
+  'entity:node':
+    GET:
+      supported_formats:
+        - hal_json
+      supported_auth:
+        - basic_auth
+    POST:
+      supported_formats:
+        - hal_json
+      supported_auth:
+        - basic_auth
+    PATCH:
+      supported_formats:
+        - hal_json
+      supported_auth:
+        - basic_auth
+    DELETE:
+      supported_formats:
+        - hal_json
+      supported_auth:
+        - basic_auth
+link_domain: null
+_core:
+  default_config_hash: E9VXRiWZNet4YVBv8j9WQmTlgb-rOjo0MiCSdgV0Guw
