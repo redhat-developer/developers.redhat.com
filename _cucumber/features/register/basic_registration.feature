@@ -31,22 +31,22 @@ Feature: Basic personal registration
   Scenario: Password validation
     Given I am on the Registration page
     When I try to enter passwords that do not match
-    Then I should see a "password confirm" error with "Passwords don't match"
+    Then I should see a "password confirm field" error with "Passwords don't match"
 
   Scenario: Email format validation - Check it is not possible to register with email address not matching format
     Given I am on the Registration page
     When I try to register with an invalid email address
-    Then I should see a "email" error with "Please enter a valid email address."
+    Then I should see a "email field" error with "Please enter a valid email address."
 
   Scenario: Duplicate email validation - Check it is not possible to create new account with an email already registered on RHD.
     Given I am on the Registration page
     When I try to register with an existing RHD registered email
-    Then I should see a "email" error with "User account for this email already exists. Log In"
+    Then I should see a "email field" error with "User account for this email already exists. Log In"
 
   Scenario: Duplicate email validation - Check it is not possible to create new account with an email already registered on OpenShift.com.
     Given I am on the Registration page
     When I try to register with an existing OpenShift registered email
-    Then I should see a "email" error with "User account for this email already exists. Log In"
+    Then I should see a "email field" error with "User account for this email already exists. Log In"
 
   Scenario Outline: Basic registration field level validation
     Given I am on the Registration page
@@ -54,14 +54,14 @@ Feature: Basic personal registration
     Then I should see a "<field>" error with "<error>"
 
     Examples: Registration form fields
-      | field            | error                    |
-      | email            | Email is required        |
-      | password         | Password is required     |
-      | password confirm | Type in password again   |
-      | first name       | First name is required   |
-      | last name        | Last name is required    |
-      | company          | Company name is required |
-      | country          | Country is required      |
+      | field                  | error                    |
+      | email field            | Email is required        |
+      | password field         | Password is required     |
+      | password confirm field | Type in password again   |
+      | first name field       | First name is required   |
+      | last name field        | Last name is required    |
+      | company field          | Company name is required |
+      | country field          | Country is required      |
 
   Scenario: Customer completes registration form accepting terms by clicking accept for each term and condition.
     Given I am on the Registration page

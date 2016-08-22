@@ -1,27 +1,23 @@
-require_relative 'base'
+require_relative 'abstract/site_base'
 
-class GitHubPage < Base
+class GitHubPage < SiteBase
 
-  AUTHORIZE_PAGE    = { css: '.oauth-permissions' }
-  AUTHORIZE_APP_BTN = { css: '.btn-primary' }
-  LOGIN_FIELD       = { id: 'login_field' }
-  PASSWORD_FIELD    = { id: 'password' }
-  SIGN_IN_BTN       = { css: '#login .btn-primary' }
+  element(:username_field)           { |el| el.find(id: 'login_field' ) }
+  element(:password_field)           { |el| el.find(id: 'password' ) }
+  element(:authorize_app_btn)        { |el| el.find(name: 'authorize') }
 
-  def initialize(driver)
-    super
+  action(:click_sign_in)             { |el| el.click_on(css: '#login .btn-primary') }
+
+  def login_with(username, password)
+    wait_for { username_field.displayed? }
+    username_field.send_keys(username)
+    password_field.send_keys(password)
+    click_sign_in
   end
 
   def authorize_app
-    wait_for(12) { displayed?(AUTHORIZE_APP_BTN) }
-    click_on(AUTHORIZE_APP_BTN)
-  end
-
-  def login(username, password)
-    wait_for { displayed?(LOGIN_FIELD) && displayed?(PASSWORD_FIELD) }
-    type(LOGIN_FIELD, username)
-    type(PASSWORD_FIELD, password)
-    click_on(SIGN_IN_BTN)
+    wait_for(10) {authorize_app_btn.displayed? }
+    authorize_app_btn.click
   end
 
 end

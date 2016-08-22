@@ -1,12 +1,6 @@
-require_relative 'base'
+require_relative 'abstract/common_elements'
 
-class Home < Base
-
-  HOME_ID = { css: '.home' }
-
-  def initialize(driver)
-    super
-    verify_page('Red Hat Developers')
-  end
-
+class HomePage < CommonElements
+  page_url('/')
+  page_title('Red Hat Developers')
 end

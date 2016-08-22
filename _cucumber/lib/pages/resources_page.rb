@@ -1,55 +1,40 @@
-require_relative 'base'
+require_relative 'abstract/common_elements'
 
-class ResourcesPage < Base
+class ResourcesPage < CommonElements
+  page_url('/resources/')
+  page_title('Discover the developer materials Red Hat has to offer')
 
-  LOADING            =  { class: 'loader'}
-  RESOURCES_PAGE     =  { css: '.resources' }
-  KEYWORD_FIELD      =  { css: '.search_field' }
-  RESULT_ROW         =  { css: '.result' }
-  RESULT_DATE        =  { css: '.result-details .created-date' }
-  BLOG_POSTS         =  { id: 'blogposts' }
-  BOOKS              =  { id: 'book' }
-  CODE_ARTIFACTS     =  { id: 'code' }
-  GET_STARTED        =  { id: 'get-started' }
-  KNOWLEDGEBASE      =  { id: 'knowledge' }
-  VIDEO              =  { id: 'video' }
-  TAGS_LIST          =  { class: 'tags-list'}
-  TAGS               =  { class: 'tag'}
-  FILTER_BY_PRODUCT  =  { class: 'search-by-product' }
-  FILTER_BY_DATE     =  { class: 'publish-date' }
-  START_DATE         =  { class: 'start-date' }
-  END_DATE           =  { class: 'end-date' }
-  RESULTS_COUNT      =  { class: 'results-count' }
+  element(:blog_posts)             { |el| el.find(id: 'blogposts') }
+  element(:books)                  { |el| el.find(id: 'book') }
+  element(:code)                   { |el| el.find(id: 'code') }
+  element(:get_started)            { |el| el.find(id: 'get-started') }
+  element(:knowledgebase)          { |el| el.find(id: 'knowledge') }
+  element(:video)                  { |el| el.find(id: 'video') }
+  elements(:checkboxes)            { |el| el.find_elements(css: 'input[type="checkbox"]') }
 
+  element(:keyword_field)          { |el| el.find(class: 'search_field') }
+  element(:product_filter)         { |el| el.find(class: 'search-by-product') }
+  element(:publish_date)           { |el| el.find(class: 'publish-date') }
 
-  def initialize(driver)
-    super
-    wait_for { displayed?(RESOURCES_PAGE) }
-    verify_page('Discover the developer materials Red Hat has to offer')
-    wait_for(20) {
-      questions = find_elements(RESULT_ROW)
-      displayed?(LOADING) == false && questions.size == 10
-    }
-  end
+  elements(:result_date)           { |el| el.find_elements(css: '.result-details .created-date') }
+  elements(:result_tags)           { |el| el.find_elements(class: 'tag') }
 
-  def loaded?
-    wait_for(20) {
-      questions = find_elements(RESULT_ROW)
-      displayed?(LOADING) == false && questions.size == 10
-    }
-  end
+  element(:start_date)             { |el| el.find(class: 'publish-date') }
+  element(:end_date)               { |el| el.find(class: 'end-date') }
+  element(:results_count)          { |el| el.find(class: 'results-count') }
 
   def any_checked?
-    checkboxes = []
-    elements = find_elements(css: 'input[type="checkbox"]')
-    elements.each { |el| checkboxes << el.attribute('checked') }
-    checkboxes
+    checkboxes_arr = []
+    checkboxes.each { |el| checkboxes_arr << el.attribute('checked') }
+    checkboxes_arr
   end
 
-  def results_count(count)
-    select(RESULTS_COUNT, count)
-    sleep(1.5) # slight delay to wait for search to kick-off
-    wait_for { displayed?(LOADING) == false }
+  def results_date
+    results = []
+    result_date.each do |result|
+      results << result.text
+    end
+    results
   end
 
   def filter_by(type)
@@ -69,38 +54,25 @@ class ResourcesPage < Base
       else
         raise("#{type} not found")
     end
-    wait_for_ajax
-    wait_for(30) { displayed?(LOADING) == false }
+    wait_for_results
+  end
+
+  def keyword_search(search_string)
+    type(keyword_field, search_string)
+    wait_for_loading
+    wait_until_loaded
   end
 
   def filter_by_product(product)
-    select(FILTER_BY_PRODUCT, product)
-    sleep(1.5) # slight delay to wait for search to kick-off
-    wait_for(30) { displayed?(LOADING) == false }
+    select(product_filter, product)
+    wait_for_loading
+    wait_for_results
   end
 
-  def filter_by_date(date_type)
-    select(FILTER_BY_DATE, date_type)
-    sleep(1.5) # slight delay to wait for search to kick-off
-    wait_for(30) { displayed?(LOADING) == false }
-  end
-
-  def results
-    results = []
-    res = find_elements(RESULT_ROW)
-    res.each do |result|
-      results << result.text
-    end
-    results
-  end
-
-  def results_date
-    results = []
-    res = find_elements(RESULT_DATE)
-    res.each do |result|
-      results << result.text
-    end
-    results
+  def filter_by_publish_date(date_type)
+    select(publish_date, date_type)
+    wait_for_loading
+    wait_for_results
   end
 
   def results_contain_img_for(type)
@@ -108,22 +80,10 @@ class ResourcesPage < Base
     elements.size == 10
   end
 
-  def keyword_field
-    find(KEYWORD_FIELD)
-  end
-
-  def keyword_search(term)
-    wait_for { displayed?(KEYWORD_FIELD) }
-    type(KEYWORD_FIELD, term)
-    sleep(1.5) # slight delay to wait for search to kick-off
-    wait_for(30) { displayed?(LOADING) == false }
-  end
-
   def tags
-    tags = []
-    row = find_elements(TAGS)
-    row.each { |tag| tags << tag.text }
-    tags
+    tag_arr = []
+    result_tags.each { |tag| tag_arr << tag.text }
+    tag_arr
   end
 
 end

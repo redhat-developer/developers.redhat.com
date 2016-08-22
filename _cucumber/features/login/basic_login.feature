@@ -31,6 +31,7 @@ Feature: Log in using my RHD registered details.
     When I log in with a valid email address
     Then I should be logged in
 
+  @basic_login
   Scenario: A customer has incorrect login credentials (the password is incorrect)
     Given I am on the Login page
     When I log in with an incorrect password
