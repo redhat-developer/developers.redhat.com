@@ -19,7 +19,8 @@ end
 
 When(/^I click to filter results by "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
-    page.filter_by(filter_type)
+    page.send("filter_by_#{filter_type.downcase.gsub(' ', '_')}")
+    page.wait_for_results
   end
 end
 
@@ -31,7 +32,8 @@ end
 
 When(/^I uncheck the "([^"]*)" filter$/) do |filter_type|
   on ResourcesPage do |page|
-    page.filter_by(filter_type)
+    page.send("filter_by_#{filter_type.downcase.gsub(' ', '_')}")
+    page.wait_for_results
   end
 end
 

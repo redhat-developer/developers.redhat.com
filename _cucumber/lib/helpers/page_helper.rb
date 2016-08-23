@@ -6,7 +6,7 @@ module PageHelper
   end
 
   def on(page_class, visit=false, &block)
-    page = page_class.new(@driver, visit)
+    page = page_class.new(@browser, visit)
     block.call page if block
     @current_page = page
   end
