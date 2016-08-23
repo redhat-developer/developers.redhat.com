@@ -133,7 +133,8 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                              'metatag_open_graph',
                                                                              'metatag_twitter_cards',
                                                                              'metatag_verification', 'admin_toolbar',
-                                                                             'admin_toolbar_tools','simple_sitemap', 'devel', 'kint']]
+                                                                             'admin_toolbar_tools','simple_sitemap',                                                                             
+                                                                              'devel', 'kint']]
 
 
     install_checker.install_modules
@@ -173,6 +174,7 @@ class DrupalInstallCheckerTest < Minitest::Test
                                          "--db-pass=#{opts['database']['password']}", '--account-name=admin',
                                          "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
                                          "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
+      @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
       install_checker.install_drupal
   end
 
@@ -184,17 +186,25 @@ class DrupalInstallCheckerTest < Minitest::Test
                                          "--db-pass=#{@opts['database']['password']}", '--account-name=admin',
                                          "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
                                          "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
+      @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
 
       @install_checker.install_drupal
   end
 
   def test_update_db
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(-y --root=/var/www/drupal/web --entity-updates updb)]
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
                                        %w(--root=/var/www/drupal/web cache:rebuild all)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(-y --root=/var/www/drupal/web --entity-updates updb)]
 
     @install_checker.update_db
+    @process_exec.verify
+  end
+
+  def test_config_import
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
+
+    @install_checker.import_config
     @process_exec.verify
   end
 

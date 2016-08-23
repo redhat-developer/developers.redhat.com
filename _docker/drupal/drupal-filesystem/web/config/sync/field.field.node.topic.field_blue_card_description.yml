@@ -1,0 +1,21 @@
+uuid: ca32c882-e84f-4554-aa7f-8fe2cd95518e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blue_card_description
+    - node.type.topic
+_core:
+  default_config_hash: td1iDPNYl47FXXTsfUpdOTtlBn76jNVfqh_mHXSmQ7Q
+id: node.topic.field_blue_card_description
+field_name: field_blue_card_description
+entity_type: node
+bundle: topic
+label: 'Blue Card Description'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,39 @@
+uuid: 7bcf9782-7360-4dd6-af93-ce6464341652
+langcode: en
+status: true
+dependencies:
+  module:
+    - editor
+_core:
+  default_config_hash: ai1qYdml2s6HQZbQVHOBAau9UKxTBSlLYhTzckjOyJs
+name: 'Red Hat Developers Approved HTML'
+format: rhd_html
+weight: -10
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<a href hreflang class> <em class> <strong class> <cite class> <blockquote cite class> <code class> <ul type class> <ol start type class> <li class> <dl class> <dt class> <dd class> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <p class> <br class> <span class> <img class src alt height width data-*> <div class id data-*> <h1 class> <pre class> <u class> <table class> <caption class> <tbody class> <thead class> <tfoot class> <th class> <td class> <tr class>'
+      filter_html_help: false
+      filter_html_nofollow: false
+  filter_align:
+    id: filter_align
+    provider: filter
+    status: true
+    weight: 7
+    settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: 8
+    settings: {  }
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 11
+    settings: {  }

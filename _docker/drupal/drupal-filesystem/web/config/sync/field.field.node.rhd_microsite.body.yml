@@ -1,0 +1,24 @@
+uuid: e24d2db9-e3b0-4ea4-af7c-47bb330405c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.rhd_microsite
+  module:
+    - text
+_core:
+  default_config_hash: P1XDWBVaf_gggxV7xzI-3Ulrbf86GzjwAA9B9oMgTXc
+id: node.rhd_microsite.body
+field_name: body
+entity_type: node
+bundle: rhd_microsite
+label: Body
+description: 'Main content of the microsite'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

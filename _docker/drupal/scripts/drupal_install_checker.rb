@@ -71,7 +71,7 @@ class DrupalInstallChecker
       puts "Installing settings for module #{module_name}..."
       process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=web','config:import:single',"#{module_name}.settings","/var/www/drupal/config/#{module_name}.settings"])
     end
-   end
+  end
 
   def install_theme
     puts 'Installing Drupal theme...'
@@ -84,7 +84,7 @@ class DrupalInstallChecker
                            'layoutmanager', 'hal', 'redhat_developers', 'syslog', 'diff', 'entity',
                            'entity_storage_migrate', 'key_value', 'multiversion', 'token', 'metatag',
                            'metatag_google_plus', 'metatag_open_graph', 'metatag_twitter_cards',
-                           'metatag_verification', 'admin_toolbar', 'admin_toolbar_tools','simple_sitemap']
+                           'metatag_verification', 'admin_toolbar', 'admin_toolbar_tools', 'simple_sitemap']
 
     if @opts['environment'] == 'dev'
       module_install_args.push(*%w(devel kint))
@@ -113,8 +113,12 @@ class DrupalInstallChecker
 
   def update_db
     puts 'Executing drush dbup'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['-y','--root=/var/www/drupal/web', '--entity-updates', 'updb'])
     process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'cache:rebuild', 'all'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['-y','--root=/var/www/drupal/web', '--entity-updates', 'updb'])
+  end
+
+  def import_config
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import'])
   end
 end
 
@@ -130,12 +134,14 @@ if $0 == __FILE__
   end
 
   if checker.installed?
+    checker.import_config
     checker.update_db
   else
     checker.install_drupal
     checker.install_theme
     checker.install_modules
     checker.install_module_configuration
-    checker.set_cron_key
+    checker.set_cron_key    
+    checker.import_config
   end
 end

@@ -1,0 +1,22 @@
+uuid: d497d468-e9d3-4a89-a629-510279d278e4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - rhd
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: rhd_content
+theme: rhd
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

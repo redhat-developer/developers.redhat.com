@@ -1,0 +1,23 @@
+uuid: 93ea923c-4a5a-43f1-ac02-b479faca3a62
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_solution_name
+    - node.type.rhd_solution_overview
+_core:
+  default_config_hash: Xym0I0A8mkpTYR9mcItqMgXiO5-g2KmRnTembtHxdRs
+id: node.rhd_solution_overview.field_solution_name
+field_name: field_solution_name
+entity_type: node
+bundle: rhd_solution_overview
+label: 'Solution Name'
+description: 'Name of the solution for this overview.'
+required: true
+translatable: false
+default_value:
+  -
+    value: TODO
+default_value_callback: ''
+settings: {  }
+field_type: string

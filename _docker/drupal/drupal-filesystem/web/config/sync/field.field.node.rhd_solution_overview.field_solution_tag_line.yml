@@ -1,0 +1,23 @@
+uuid: a185288f-c431-49b1-b60c-11afa55a09c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_solution_tag_line
+    - node.type.rhd_solution_overview
+_core:
+  default_config_hash: b5iOat38xRFo0t0CzvfHd5ujvm6WLfOheGNoeaqMlwI
+id: node.rhd_solution_overview.field_solution_tag_line
+field_name: field_solution_tag_line
+entity_type: node
+bundle: rhd_solution_overview
+label: 'Solution Tag Line'
+description: 'Tag line for the solution, used in the Hero banner'
+required: true
+translatable: false
+default_value:
+  -
+    value: 'TODO Tag Line'
+default_value_callback: ''
+settings: {  }
+field_type: string

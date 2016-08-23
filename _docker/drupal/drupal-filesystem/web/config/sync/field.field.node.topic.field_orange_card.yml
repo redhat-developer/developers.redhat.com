@@ -1,0 +1,28 @@
+uuid: 6c3627e1-73ee-4885-9fd5-bc88913c7d8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_orange_card
+    - node.type.promotion_card
+    - node.type.topic
+_core:
+  default_config_hash: VMlCUrXm8no_iZFAR1sXfdMg-iWpUCt2QYbxSPPwWvg
+id: node.topic.field_orange_card
+field_name: field_orange_card
+entity_type: node
+bundle: topic
+label: 'Orange Card'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      promotion_card: promotion_card
+    sort:
+      field: _none
+field_type: entity_reference
