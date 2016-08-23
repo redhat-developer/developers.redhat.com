@@ -2,8 +2,6 @@ require 'yaml'
 
 module DownloadHelper
 
-  TIMEOUT = 12
-
   extend self
 
   def download_manager_base_url
