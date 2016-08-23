@@ -6,16 +6,29 @@ search.service('searchService',function($http, $q) {
     // http://dcp.stage.jboss.org/v2/rest/search?size=1&field=_source&agg=per_project_counts&agg=tag_cloud&agg=top_contributors&agg=activity_dates_histogram&agg=per_sys_type_counts
     // http://docs.jbossorg.apiary.io/#reference/search-api/2restsearchqueryqueryhighlightsortbyfromsizeaggfieldcontentprovidertypesystypetagprojectactivitydateintervalactivitydatefromactivitydatetocontributor
 
-    // fold in params with defaults
-    var search = Object.assign(params, {
-      // field: '_source',
-      field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated', 'sys_type', 'thumbnail', 'sys_created'],
-      // Disable aggregations until ready
-      // agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
-      query_highlight: true
-    });
+    if((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href))) {
+      var isStackOverflow = true;
+    }
 
-    var endpoint = app.dcp.url.developer_materials;
+    if(isStackOverflow) {
+      var search = Object.assign(params, {
+        field: ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
+        query_highlight: true
+      });
+      var endpoint = app.dcp.url.stackoverflow;
+    }
+    else {
+      // fold in params with defaults
+      var search = Object.assign(params, {
+        // field: '_source',
+        field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated', 'sys_type', 'thumbnail', 'sys_created'],
+        // Disable aggregations until ready
+        // agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
+        query_highlight: true
+      });
+
+      var endpoint = app.dcp.url.developer_materials;
+    }
 
     $http.get(endpoint, { params: search })
       .success(function(data){
@@ -163,7 +176,44 @@ search.filter('description', function($sce) {
 
 search.controller('SearchController', ['$scope','$window', 'searchService', searchCtrlFunc]);
 
+search.filter('question', function($sce) {
+  return function(result){
+    if(result.highlight && result.highlight._source.sys_content_plaintext) {
+      return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0]);
+    }
+    return $sce.trustAsHtml(result._source.sys_content_plaintext);
+  }
+});
+
+search.filter('htmlToPlaintext', function($sce) {
+  return function(result){
+    return String(result).replace(/<[^>]+>/gm, '');
+  }
+});
+
+/*
+ Filter to remove Stack Overflow author id number from 'author'
+ */
+search.filter('author', function($sce) {
+  return function(result){
+    var authorName = result._source.author.split('-')[0];
+    return authorName;
+  }
+});
+
+/*
+ Filter to make Stack Overflow question date human readable
+ */
+search.filter('stackDate', function($sce) {
+  return function(result){
+    var time = jQuery.timeago(new Date((result._source.sys_created / 1000) * 1000));
+    return time;
+  }
+});
+
 function searchCtrlFunc($scope, $window, searchService) {
+
+  var isStackOverflow = ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href)));
 
   var isSearch = !!window.location.href.match(/\/search/);
   var searchTerm = window.location.search.split('=');
@@ -186,6 +236,15 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
     $scope.params.type = 'rht_website';
     $scope.params.newFirst = false;
+  }
+
+  if(isStackOverflow && searchTerm){
+
+    $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
+    $scope.params.sortBy = 'new-create';
+    $scope.params.newFirst = false;
+    $scope.params.tag = [];
+
   }
 
   $scope.paginate = {
@@ -234,14 +293,40 @@ function searchCtrlFunc($scope, $window, searchService) {
   $scope.updateSearch = function() {
     $scope.loading = true;
     $scope.query = $scope.params.query; // this is static until the update re-runs
+    $scope.tag = $scope.params.tag; // this is static until the update re-runs
+
     var params = $scope.cleanParams($scope.params);
     if(isSearch) {
       var searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname
       history.pushState($scope.params,$scope.params.query, searchPage + '?q=' + $scope.params.query);
     }
+    
+    if (isStackOverflow) {
+      if(/help/.test(window.location.href)){
+        var product = (window.location.href).split("/")[4];
+        $scope.params.product = product;
+
+        var tags = app.products[product]['stackoverflow'];
+        params.tag = tags.slice();
+
+      }
+      
+      else {
+        var product = $('select[name="filter-by-product"]').val();
+        $scope.params.product = product;
+
+        if (product !== "") {
+          var tags = app.products[product]['stackoverflow'];
+          params.tag = tags.slice();
+        }
+        history.pushState($scope.params,params.tag,app.baseUrl + '/stack-overflow/?q=' + params.tag);
+      }
+    }
+
     searchService.getSearchResults(params).then(function(data) {
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
+      $scope.params.product = product;
       $scope.buildPagination(); // update pagination
       $scope.loading = false;
     });

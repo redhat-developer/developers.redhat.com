@@ -23,15 +23,15 @@ Before('@products, @downloads') do
 end
 
 After('@logout') do
-  site_nav = SiteNav.new(@driver)
+  nav = SiteBase.new(@driver)
   case $host_to_test
     when 'http://developers.redhat.com', 'https://developers.redhat.com'
-      site_nav.get('http://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+      nav.get('http://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
     else
-      site_nav.get('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+      nav.get('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
   end
-  site_nav.visit
-  site_nav.wait_for_ajax
+  nav.open('/')
+  nav.wait_for_ajax
 end
 
 # create test user for basic log in feature
@@ -66,7 +66,7 @@ end
 
 After('@github_teardown') do
   @github_admin.cleanup
-  nav = Base.new(@driver)
+  nav = SiteBase.new(@driver)
   nav.get('https://github.com/logout')
   nav.wait_for { nav.displayed?(xpath: "//input[@value='Sign out']") }
   nav.click_on(xpath: "//input[@value='Sign out']")
@@ -75,7 +75,7 @@ After('@github_teardown') do
 end
 
 After('@github_logout') do
-  nav = Base.new(@driver)
+  nav = SiteBase.new(@driver)
   nav.get('https://github.com/logout')
   nav.wait_for { nav.displayed?(xpath: "//input[@value='Sign out']") }
   nav.click_on(xpath: "//input[@value='Sign out']")

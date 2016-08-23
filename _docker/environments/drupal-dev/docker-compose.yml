@@ -87,7 +87,10 @@ services:
   apache:
    image: httpd:2.4.20
    command: "sh -c 'rm -f /usr/local/apache2/htdocs/index.html && httpd-foreground'"
+   links:
+    - drupal:docker
    expose:
+    - 80
     - 9000
    ports:
     - "9000:9000"
@@ -133,7 +136,7 @@ services:
       - RHD_TEST_PROFILE
 
   docker_chrome:
-   image: selenium/node-chrome
+   image: selenium/node-chrome-debug:2.53.0
    volumes:
     - /dev/shm:/dev/shm
    links:
@@ -143,6 +146,8 @@ services:
     - DBUS_SESSION_BUS_ADDRESS=/dev/null
    depends_on:
     - selhub
+   ports:
+    - "5900"
 
 #
 # Volumes

@@ -1,14 +1,9 @@
-require_relative 'base'
+require_relative 'abstract/site_base'
 require_relative '../../../_cucumber/lib/helpers/products_helper.rb'
 
-class ProductDownloadPage < Base
+class ProductDownloadPage < SiteBase
   class << self
     include ProductsHelper
-  end
-
-  def initialize(driver)
-    super
-    verify_page('Downloads')
   end
 
   def loaded?(product)

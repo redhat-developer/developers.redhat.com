@@ -1,26 +1,15 @@
-require_relative 'base'
+require_relative 'abstract/site_base'
 
-class ForgotPassword < Base
+class ForgotPasswordPage < SiteBase
 
-  PASSWORD_RESET_PAGE        = { css: '.login-reset-password' }
-  USERNAME_FIELD             = { id: 'username' }
-  SUBMIT_BTN                 = { xpath: "//input[@value='Submit']" }
-  CONFIRMATION               = { css: '.kc-feedback-text' }
-
-  def initialize(driver)
-    super
-    wait_for(30) { title.include?('Forgot your password?') }
-  end
+  element(:email_field)     { |el| el.find(id: 'username') }
+  action(:click_submit_btn) { |el| el.click_on(xpath: "//input[@value='Submit']" ) }
 
   def enter_email(email)
-    wait_for { displayed?(USERNAME_FIELD) }
-    type(USERNAME_FIELD, email)
-    click_on(SUBMIT_BTN)
-    wait_for { displayed?(CONFIRMATION) }
-  end
-
-  def confirmation
-    text_of(CONFIRMATION)
+    wait_for { title == ('Forgot your password? | Red Hat Developers') }
+    email_field.send_keys(email)
+    click_submit_btn
+    wait_for_ajax
   end
 
 end

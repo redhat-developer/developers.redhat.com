@@ -1,11 +1,47 @@
-class Base
+class DriverBase
 
-  def initialize(driver)
+  def initialize(driver, visit = false)
     @driver = driver
+    goto if visit
+    has_expected_title? if respond_to? :has_expected_title?
   end
 
-  def visit(url='/')
-    @driver.get($host_to_test + url)
+  def self.page_url(url)
+    define_method 'goto' do
+      open(url)
+    end
+  end
+
+  def open(url)
+    if url.include?('realms')
+      @driver.get($keycloak_base_url + url)
+    else
+      @driver.get($host_to_test + url)
+    end
+  end
+
+  def self.page_title(expected_title)
+    define_method 'has_expected_title?' do
+      wait_for_ajax
+      has_expected_title = expected_title.kind_of?(Regexp) ? expected_title =~ title : expected_title == title
+      raise "Expected title '#{expected_title}' instead of '#{title}'" unless has_expected_title
+    end
+  end
+
+  def method_missing(sym, *args, &block)
+    @driver.send sym, *args, &block
+  end
+
+  def self.element(element_name)
+    define_method element_name.to_s do
+      yield self
+    end
+  end
+
+  class << self
+    alias :value :element
+    alias :elements :element
+    alias :action :element
   end
 
   def get(url)
@@ -24,13 +60,9 @@ class Base
     @driver.find_elements(locator)
   end
 
-  def clear(locator)
-    find(locator).clear
-  end
-
-  def type(locator, input)
-    find(locator).clear
-    find(locator).send_keys(input)
+  def type(locator, string)
+    locator.clear
+    locator.send_keys string
   end
 
   def press_return
@@ -38,21 +70,18 @@ class Base
   end
 
   def select(locator, option)
-    select = find(locator)
-    option = select.find_element(xpath: "//option[contains(text(), '#{option}')]")
+    option = locator.find_element(xpath: "//option[contains(text(), '#{option}')]")
     option.click
   end
 
   def default_dropdown_item(loctor)
-    dropdown = find(loctor)
-    select_list = Selenium::WebDriver::Support::Select.new(dropdown)
+    select_list = Selenium::WebDriver::Support::Select.new(loctor)
     select_list.selected_options[0].text
   end
 
   def dropdown_items(loctor)
     dropdown_items = []
-    dropdown = find(loctor)
-    select_list = Selenium::WebDriver::Support::Select.new(dropdown)
+    select_list = Selenium::WebDriver::Support::Select.new(loctor)
     select_list.options.each do |item|
       dropdown_items << item.text
     end
@@ -88,6 +117,7 @@ class Base
   end
 
   def text_of(locator)
+    wait_until_displayed(locator)
     find(locator).text
   end
 
@@ -116,9 +146,12 @@ class Base
     Selenium::WebDriver::Wait.new(:timeout => seconds).until { yield }
   end
 
-  def verify_page(page_title)
-    wait_for_ajax
-    raise("Expected page title to include #{page_title} but was #{title}") unless title.include?(page_title)
+  def wait_until_displayed(seconds=6, locator)
+    wait_for(seconds) { displayed?(locator) }
+  end
+
+  def wait_until_not_displayed(seconds=6, locator)
+    wait_for(seconds) { !displayed?(locator) }
   end
 
   def wait_for_ajax(timeout = 30)
@@ -153,32 +186,10 @@ class Base
     @driver.switch_to.window(first_window)
   end
 
-  def results_per_page
-    default_item = default_dropdown_item(xpath: '//p/select[2]')
-    available_options = dropdown_items(xpath: '//p/select[2]')
-    return default_item, available_options
-  end
-
-  def results_sort
-    default_item = default_dropdown_item(xpath: '//p/select[1]')
-    available_options = dropdown_items(xpath: '//p/select[1]')
-    return default_item, available_options
-  end
-
-  def results_title
-    wait_for { displayed?(css: '.results-title') }
-    text_of(css: '.results-title')
-  end
-
-  def results_sub_title
-    wait_for { displayed?(css: '.results-sub-title') }
-    text_of(css: '.results-sub-title')
-  end
-
   def close_and_reopen_browser
-    @driver.execute_script( "window.open()" )
+    @driver.execute_script("window.open()")
     @driver.close
-    @driver.switch_to.window( @driver.window_handles.last )
+    @driver.switch_to.window(@driver.window_handles.last)
   end
 
   private

@@ -74,7 +74,8 @@ Feature: Search Page
   Scenario: I search for something should return *no* entries, such as "bfehwfbhbn"
     Given I am on the Home page
     When I search for "bfehwfbhbn"
-    Then I should see a message "No results found"
+    Then the search results page is displayed
+    And I should see a message "No results found"
     And below a I should see a message "Please try different keywords"
     And there will be no results displayed
 
@@ -88,11 +89,13 @@ Feature: Search Page
     Given I am on the Home page
     When I enter "Containers" into the Site nav search box
     And I click on the search button
-    Then I should see "10" results containing "Container"
+    Then the search results page is displayed
+    And I should see "10" results containing "Container"
 
   Scenario: I search for something that returns ten (or more) pages of results should display pagination with ellipsis
     Given I am on the Home page
     When I search for "developer"
+    Then the search results page is displayed
     Then I should see pagination with "5" pages with ellipsis
     And the following links should be enabled:
       | Next |

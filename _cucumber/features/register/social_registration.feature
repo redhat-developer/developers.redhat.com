@@ -27,7 +27,7 @@ Feature: Social registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @delete_user @github_teardown @logout
+  @delete_user @github_teardown @logout @ignore
   Scenario: 2 - Registration using GitHub login which contains all mandatory information (first name, last name, but email already exists). User links GitHub account to existing account
     Given I am on the Registration page
     When I try to link a GitHub account to an existing account
@@ -42,7 +42,6 @@ Feature: Social registration
     Given I am on the Registration page
     When I try to link a GitHub account to an existing account
     Then I should see a warning that the email is already registered
-    And I select to Choose another email
     And I complete the required additional information with a new email address
     Then I should be registered and logged in
     When I am on the Edit Details page
@@ -74,7 +73,7 @@ Feature: Social registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @delete_user @logout @github_teardown
+  @delete_user @logout @github_teardown @ignore
   Scenario: 5 - Registration using GitHub login which doesn't contain some mandatory the information (first name, last name), email already exists. User links social provider to existing account
     Given I am on the Registration page
     When I try to register using a GitHub account that contains missing profile information with an existing RHD registered email
@@ -92,7 +91,6 @@ Feature: Social registration
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
     And I complete the required additional information
     Then I should see a warning that the email is already registered
-    And I select to Choose another email
     And I complete the required additional information with a new email address
     Then I should be registered and logged in
     When I am on the Edit Details page

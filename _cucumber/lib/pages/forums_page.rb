@@ -1,30 +1,28 @@
-require_relative 'base'
+require_relative 'abstract/site_base'
 require_relative '../../../_cucumber/lib/helpers/products_helper'
 
-class Forums < Base
+class ForumsPage < SiteBase
+  page_url('/forums/')
+  page_title('Forums | Red Hat Developers')
   
   class << self
     include ProductsHelper
   end
   
-  PRODUCTS_FORUM_SECTIONS                         = { css: '.development-tool' }
-  PRODUCTS_FORUM_LINKS                            = { css: '.forums-product-categories h4 > a' }
-  FORUMS_INFRASTRUCTURE                           = { id: 'infrastructure' }
-  FORUMS_INTEGRATION_AND_AUTOMATION               = { id: 'integration_and_automation' }
-  FORUMS_ACCELERATED_DEVELOPMENT_AND_MANAGEMENT   = { id: 'accelerated_development_and_management' }
-  RUNTIMES                                        = { id: 'runtimes' }
+  elements(:product_types)                           { |el| el.find_elements(xpath: "//*[@class='development-tool']//*") }
+  elements(:forum_links)                             { |el| el.find_elements(css: '.forums-product-categories h4 > a') }
 
-  def initialize(driver)
-    super
-    verify_page('Forums | Red Hat Developers')
-  end
+  element(:accelerated_development_and_management)   { |el| el.text_of(id: 'accelerated_development_and_management') }
+  element(:developer_tools)                          { |el| el.text_of(id: 'developer_tools') }
+  element(:infrastructure)                           { |el| el.text_of(id: 'infrastructure') }
+  element(:integration_and_automation)               { |el| el.text_of(id: 'integration_and_automation') }
+  element(:runtimes)                                 { |el| el.text_of(id: 'runtimes') }
 
   def forums_product_sections
     titles = []
-    elements = [FORUMS_INFRASTRUCTURE, FORUMS_ACCELERATED_DEVELOPMENT_AND_MANAGEMENT, FORUMS_INTEGRATION_AND_AUTOMATION, RUNTIMES]
+    elements = [accelerated_development_and_management, developer_tools, infrastructure, integration_and_automation, runtimes]
     elements.each { |el|
-      wait_for { displayed?(el) }
-      titles << text_of(el)
+      titles << el
     }
     titles
   end
@@ -33,8 +31,8 @@ class Forums < Base
     products = []
     ids      = []
 
-    available_links = find_elements(PRODUCTS_FORUM_LINKS)
-    available_ids   = find_elements(xpath: "//*[@class='development-tool']//*")
+    available_links = forum_links
+    available_ids   = product_types
 
     #return available product id's
     available_ids.each { |id| ids << id.attribute('id') }
@@ -46,7 +44,6 @@ class Forums < Base
   end
 
   def forums_product_section_for(product)
-    wait_for(20) { displayed?(id: "development-tool-#{product}") }
     desc = text_of(id: "development-tool-#{product}")
     desc.gsub("’", "'")
   end

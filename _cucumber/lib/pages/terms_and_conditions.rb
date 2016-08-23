@@ -1,16 +1,10 @@
-require_relative 'base'
+require_relative 'abstract/site_base'
 
-class TermsAndConditions < Base
+class TermsAndConditions < SiteBase
 
   ACCEPT_TERMS_AND_CONDITIONS     = { xpath: "//input[@value='Accept']" }
   NOT_ACCEPT_TERMS_AND_CONDITIONS = { xpath: "//input[@value='Not Accept']"  }
   SUBSCRIPTION_TEXT               = { id: 'subscription-text' }
-
-  def initialize(driver)
-    super
-    wait_for(30) { displayed?(SUBSCRIPTION_TEXT) }
-    verify_page('T&C Acceptance | Red Hat Developers')
-  end
 
   def click_accept_tcs
     wait_for { displayed?(ACCEPT_TERMS_AND_CONDITIONS) }

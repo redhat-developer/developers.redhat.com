@@ -1,49 +1,24 @@
-require_relative 'base'
+require_relative 'abstract/site_base'
 
-class LoginPage < Base
+class LoginPage < SiteBase
+  page_title('Log In | Red Hat Developers')
 
-  LOGIN_PAGE            = { id: 'kc-form-login' }
-  TITLE                 = { css: '.centered-title' }
-  USERNAME_FIELD        = { id: 'username' }
-  PASSWORD_FIELD        = { id: 'password' }
-  LOGIN_BTN             = { id: 'kc-login' }
-  CANCEL_BTN            = { id: 'kc-cancel' }
-  FORGOT_PASSWORD_LINK  = { link: 'Forgot Password?' }
-  ERROR_MSG             = { id: 'kc-feedback' }
-  REGISTER_ACCOUNT_LINK = { link: 'Register' }
-  GITHUB_LOGIN_BTN      = { id: 'social-github' }
+  value(:loaded?)                  { |el| el.wait_until_displayed(id: 'username') }
+  element(:username_field)         { |el| el.find(id: 'username') }
+  element(:password_field)         { |el| el.find(id: 'password') }
 
-  def initialize(driver)
-    super
-    wait_for(12) { displayed?(LOGIN_PAGE) }
-    verify_page('Log In | Red Hat Developers')
-  end
+  value(:error_message)            { |el| el.text_of(id: 'kc-feedback') }
 
-  def with_existing_account(username, password)
-    type(USERNAME_FIELD, username)
-    type(PASSWORD_FIELD, password)
-    click_on(LOGIN_BTN)
+  action(:click_login_button)      { |el| el.click_on(id: 'kc-login') }
+  action(:click_register_link)     { |el| el.click_on(link: 'Register') }
+  action(:click_password_reset)    { |el| el.click_on(link: 'Forgot Password?') }
+  action(:click_login_with_github) { |el| el.click_on(id: 'social-github') }
+
+  def login_with(username, password)
+    type(username_field, username)
+    type(password_field, password)
+    click_login_button
     wait_for_ajax
-  end
-
-  def click_register_link
-    click_on(REGISTER_ACCOUNT_LINK)
-    wait_for_ajax
-  end
-
-  def click_password_reset
-    click_on(FORGOT_PASSWORD_LINK)
-    wait_for_ajax
-  end
-
-  def error_message
-    wait_for { displayed?(ERROR_MSG) }
-    text_of(ERROR_MSG)
-  end
-
-  def click_login_with_github
-    wait_for { displayed?(GITHUB_LOGIN_BTN) }
-    click_on(GITHUB_LOGIN_BTN)
   end
 
 end
