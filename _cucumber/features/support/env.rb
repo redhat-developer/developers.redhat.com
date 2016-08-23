@@ -29,41 +29,39 @@ World PageHelper
 World DriverHelper
 
 if ENV['HOST_TO_TEST'].to_s.empty?
-  $host_to_test = 'http://developers.stage.redhat.com'
+  $host_to_test                  = 'http://developers.stage.redhat.com'
   $keycloak_base_url = 'https://developers.stage.redhat.com'
-  $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
+  $download_manager_base_url     = 'https://developers.stage.redhat.com/download-manager/rest/available'
 else
   case ENV['HOST_TO_TEST']
     when 'dev'
-      $host_to_test = 'http://docker:4242'
+      $host_to_test              = 'http://docker:4242'
       $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'staging'
-      $host_to_test = 'http://developers.stage.redhat.com'
+      $host_to_test              = 'http://developers.stage.redhat.com'
       $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'production'
-      $host_to_test = 'http://developers.redhat.com'
-      $keycloak_base_url = 'https://developers.stage.redhat.com'
+      $host_to_test              = 'http://developers.redhat.com'
+      $keycloak_base_url         = 'https://developers.redhat.com'
       $download_manager_base_url = 'https://developers.redhat.com/download-manager/rest/available'
     when 'drupal_dev'
-      $host_to_test = 'http://docker:9000'
-      $keycloak_base_url = 'https://developers.stage.redhat.com'
+      $host_to_test              = 'http://docker:9000'
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'drupal_staging'
-      $host_to_test = 'http://developer-drupal.web.stage.ext.phx2.redhat.com'
-      $keycloak_base_url = 'https://developers.stage.redhat.com'
+      $host_to_test              = 'http://developer-drupal.web.stage.ext.phx2.redhat.com'
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'drupal_production'
-      $host_to_test = 'http://developer-drupal.web.prod.ext.phx2.redhat.com'
+      $host_to_test              = 'http://developer-drupal.web.prod.ext.phx2.redhat.com'
     else
-      $host_to_test = ENV['HOST_TO_TEST'].chomp('/')
-      $keycloak_base_url = 'https://developers.stage.redhat.com'
+      $host_to_test              =  ENV['HOST_TO_TEST'].chomp('/')
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
   end
 end
-
-$drupal = true if $host_to_test.include?('docker:9000')
 
 if ENV['RHD_JS_DRIVER'].to_s.empty?
   $rhd_driver = 'chrome'
@@ -94,6 +92,7 @@ end
 
 at_exit do
   b.browser.quit
+  #FileUtils.rm_rf $download_directory
 
   ReportBuilder.configure do |config|
     config.json_path = '_cucumber/reports/'

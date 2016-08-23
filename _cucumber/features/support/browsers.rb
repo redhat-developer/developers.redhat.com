@@ -4,12 +4,6 @@ class Browsers
 
   def initialize(browser_name)
     @browser = setup(browser_name)
-    maximize_window
-    delete_cookies
-  end
-
-  def maximize_window
-    @browser.driver.manage.window.maximize
   end
 
   def delete_cookies
@@ -34,22 +28,20 @@ class Browsers
       else
         browser = local_chrome
     end
+    browser.driver.manage.window.maximize
     browser
   end
 
+
+  $download_directory = "#{Dir.pwd}/_cucumber/tmp_downloads"
+  $download_directory.gsub!("/", "\\") if Selenium::WebDriver::Platform.windows?
+
   $chrome_prefs = {
-      'download' => {
-          'prompt_for_download' => false,
-      },
-      'profile' => {
-          'default_content_settings' => {'multiple-automatic-downloads' => 1},
-          'default_content_setting_values' => {'automatic_downloads' => 1},
-          'password_manager_enabled' => false,
-          'gaia_info_picture_url' => true,
-      },
-      'safebrowsing' => {
-          'enabled' => true,
-      },
+      :download => {
+          :prompt_for_download => false,
+          :directory_upgrade => true,
+          :default_directory => $download_directory
+      }
   }
 
   def local_chrome
