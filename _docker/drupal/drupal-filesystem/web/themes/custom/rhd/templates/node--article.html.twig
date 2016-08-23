@@ -81,13 +81,13 @@ other methods (such as node.delete) will result in an exception.
     </div>
     <div class="large-5 medium-5 columns">
         {% include '@rhd/share.html.twig' %}
-        {{ content.field_tags }}
+        <strong>Tags:</strong> {{ content.field_tags }}
     </div>
     <div class="clearfix"></div>
     <div class="large-4 medium-4 columns">
         <ul class="toc gsi-nav">
-            <li>TOC GOES HERE!</li>
         </ul>
+        <div>&nbsp;</div>
     </div>
     <div{{ content_attributes.addClass(["large-15", "medium-15", "columns", "gsi", "fetch-toc", "article-content"]) }}>
         {{ content.body }}
