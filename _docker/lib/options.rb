@@ -35,7 +35,6 @@ class Options
       opts.on('--export [EXPORT_LOCATION]', String, 'Export all content from Drupal within the environment and rsync it to EXPORT_LOCATION') do | export_location |
         tasks[:build] = true
         tasks[:awestruct_command_args] = ['--rm', 'export']
-        tasks[:supporting_services] = []
         if !export_location.nil? && !export_location.empty?
           tasks[:awestruct_command_args] << export_location
         end
