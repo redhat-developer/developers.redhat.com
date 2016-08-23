@@ -67,7 +67,7 @@ class StackOverflowPage < CommonElements
   end
 
   def latest_answer_section_visible?
-    @element.text.include? 'Latest answer:'
+    @element.text.include?('Latest answer:') || @element.text.include?('Accepted answer:')
   end
 
   def read_full_question_link
@@ -84,10 +84,10 @@ class StackOverflowPage < CommonElements
   def find_answer(number_of_times=3)
     count = 0; result = false
     until result == true || count == number_of_times
-      count += 1
-      click_pagination('next')
-      wait_for_results
       result = yield
+      click_pagination('next') unless result == true
+      wait_for_results
+      count += 1
     end
   end
 
@@ -100,15 +100,12 @@ class StackOverflowPage < CommonElements
         @question_element = t
         child_elements << t['class']
         if answer == 'with'
-          unless child_elements.include? 'answer-count accepted-answer'
-            return @question_element, true if child_elements.include? 'callout qtn-answer display-answer'
-          end
+          return @question_element, true if child_elements.include? 'callout qtn-answer display-answer'
         else
           return @question_element, true if !child_elements.include? 'callout qtn-answer display-answer'
         end
       end
     end
-    false
   end
 
 end
