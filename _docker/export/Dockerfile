@@ -18,5 +18,6 @@ RUN mkdir -p mkdir /export && chown jenkins_developer:jenkins_developer /export
 USER jenkins_developer
 ENV GEM_HOME /home/jenkins_developer/gems
 RUN mkdir -p /home/jenkins_developer/gems
-RUN gem install nokogiri -v 1.5.10
+RUN gem install nokogiri:1.5.10 \
+    octokit:4.0
 WORKDIR /home/jenkins_developer/developer.redhat.com
