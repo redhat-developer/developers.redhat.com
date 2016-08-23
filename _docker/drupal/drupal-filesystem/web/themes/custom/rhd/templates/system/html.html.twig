@@ -55,9 +55,6 @@
   <script src="//html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
   <js-placeholder token="{{ placeholder_token|raw }}">
-  {% if (rhd_dtm_code) %}
-    <script src="{{rhd_dtm_code}}"></script>
-  {% endif %}
 </head>
 <body class="{{ body_classes()|join(' ') }}">
  {% if (rhd_environment == 'prod') %}
@@ -71,10 +68,6 @@
     </script>
     <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"></iframe></noscript>
  {% endif %}
-{# I REALLY think this should be at the bottom of the page #}
-{% if (rhd_dtm_code) %}
-  <script type="text/javascript">_satellite.pageBottom();</script>
-{% endif %}
  {{ page_top}}
  <div class="site-wrapper">
     <header class="main clearfix">
@@ -280,5 +273,13 @@
   </div>
   <div id="fb-root"></div>
   <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+  {# This isn't being used in prod right now, I think it's a bug #}
+  {#{% if (rhd_dtm_code) %}#}
+    {#<script src="{{rhd_dtm_code}}"></script>#}
+  {#{% endif %}#}
+  {#{# I REALLY think this should be at the bottom of the page #}#}
+  {#{% if (rhd_dtm_code) %}#}
+    {#<script type="text/javascript">_satellite.pageBottom();</script>#}
+  {#{% endif %}#}
 </body>
 

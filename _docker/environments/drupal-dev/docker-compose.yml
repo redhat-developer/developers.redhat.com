@@ -102,9 +102,9 @@ services:
   export:
     links:
      - drupal:docker
-    build: ../../awestruct
+    build: ../../export
     volumes:
-     - ../../../:/home/awestruct/developer.redhat.com
+     - ../../../:/home/jenkins_developer/developer.redhat.com
      - export:/export
     entrypoint: "ruby _docker/lib/export/export.rb docker"
 

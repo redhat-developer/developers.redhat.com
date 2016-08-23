@@ -14,7 +14,7 @@ Prerequisites &#38; Required Dependencies Checklist
 12 minutes
 
 == Step1 Title
-Install JBoss DV, Configure & Verify
+Install & Configure JBoss Data Virtualization
 
 == Step2 Title
 Set Up Dev Environment
@@ -22,56 +22,59 @@ Set Up Dev Environment
 == Step3 Title
 Build your first application
 
+
 == Step1 Content
-1.	Open a terminal window and navigate to the location where the GUI installer was downloaded.
-2.	Enter the following command to launch the GUI installer: `java -jar jboss-dv-installer-6.2.0.redhat-3.jar`
-3.	A dialogue box will open followed by the End User License Agreement. If you accept the terms of the agreement, click *I accept the terms of this license agreement* and then click *Next*.
-4.	Click Next (a new folder for JBoss EAP server is created). Incase, JBoss EAP is already installed; tell Red Hat JBoss Data Virtualization where Red Hat JBoss EAP is installed. Add the file path and click *Next*
-5.	Ensure *Teiid Installation* and *Modeshape Installation* are selected. Click *Next*.
-6.	You will be prompted to create a new EAP Admin, Dashboard Admin, Teiid data access user and ModeShape user and whether you want to enable OData access and a logging role. Once created, these are added to the AdminRealm and can be used to access the Management Console and other applications secured using ManagementRealm. Enter the new username and password in the appropriate fields and click *Next*.
-You must ensure that you remember all of these passwords. They give you access to different parts of the system. The EAP account and password allows you to administer the EAP Server, the Dashboard password is for administrative functions related to the web interface, and the Teiid data access user and ModeShape user are for standard user access.
-+
-*Note* that the username and password are not allowed to match and the password must have at least eight characters, with one alphabetical character, one numeric character and one non-alpha-numeric character.
-7.	You can install Red Hat JBoss Data Virtualization either with default configuration or with additional configuration options. For this exercise, we will be using the defaults only, so select *Perform default configuration* to install Red Hat JBoss Data Virtualization with default options (the Database logging configuration is the only option selected by default). Click *Next*.
-8.	The Configure password vault screen appears. Input your desired password, which must have no fewer than six characters. Click *Next*.
-*NOTE*
-The default H2 database is not suitable for production databases. Use it in testing and evaluation environments only.
-A summary of the installation is displayed. Click *Next* for the installation to commence. This may take a few moments. Once all the components are installed, click *Next* again.
-9.	Click *Generate an installation script and properties file* if you wish to generate a script for automatic future installations. This script allows you to quickly reinstall or mass-deploy the product using the settings you have configured during the initial installation, without having to step through the wizard each time.
-10.	Make a note of the URLs of the Administration Console and the Data Virtualization Dashboard and click *Done* to exit the installer.
+1. Download the https://developers.redhat.com/download-manager/file/dv_quickstart-2.1.0-dist.zip[Quick-Start Kit].
+2. Unzip the Quick-Start kit.
+3. Open the terminal and change your present working directory(pwd) to home folder of Quick-Start kit.
+4. Run setup_dv.sh (.bat) script. This will:
+... Install and Start Red Hat JBoss Data Virtualization 6.3 server with default settings.
+... Start H2 database server and populate with sample datasource for Getting Started example.
+... Configure and deploy Web Service.
+
+*Note that the above steps* for installing Red Hat JBoss Data Virtualization with default settings, and populating data sources that will be used in our Getting Started example can also be viewed in https://vimeo.com/178920385[Part 1] of Getting Started video series.
+
+If you prefer to install Red Hat JBoss Data Virtualization with customized settings, please refer to https://access.redhat.com/documentation/en/red-hat-jboss-data-virtualization/6.3/paged/getting-started-guide/[Getting Started Guide] 
+
 
 == Step2 Content
 
-1.	Install the Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK.
-2.	Download JBoss Developer Studio 8.1.0
-3.	Run JBoss Developer Studio installer
+1.	Install the Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK 1.8 or above.
+2.	Download http://developers.redhat.com/products/devstudio/download/[Red Hat JBoss Developer Studio]
+3.	Run Red Hat JBoss Developer Studio installer
 .. For MAC/Linux:
-... Go to the folder where you have downloaded JBoss Developer Studio, and execute the installer
+... Go to the folder where you have downloaded Red Hat JBoss Developer Studio, and execute the installer
 +
-`java -jar jboss-devstudio-8.1.0.GA-installer-eap.jar`
+`java -jar jboss-devstudio-9.1.0.GA-installer-eap.jar`
 +
-*Note:* This will execute the JBoss Developer Studio installation wizard.
+*Note:* This will execute the Red Hat JBoss Developer Studio installation wizard.
 +
 ..	For Windows:
 +
-...	Right Click on jboss-devstudio-8.1.0.GA-installer-eap.jar
+...	Right Click on jboss-devstudio-9.1.0.GA-installer-eap.jar
 ...	Select *Open With >Jar Launcher*
 +
-4.	Install JBoss Developer Studio Integration Stack (JBDSIS) plugins
+4.	Install http://tools.jboss.org/downloads/devstudio_is/[JBoss Developer Studio Integration Stack (JBDSIS)] plugins
 ..	Start Red Hat JBoss Developer Studio.
-..	In Red Hat JBoss Developer Studio, *click Help > JBoss Central* action from the main menu.
+..	In Red Hat JBoss Developer Studio, *click Help > Red Hat Central* action from the main menu.
 ..  Click the tab Software/Update and select the JBoss Data Virtualization Development option and then click *Install*
 +
-*Note:* If JBDSIS is already installed then proceed to next step. You can confirm that JBDSIS is installed on your machine by clicking *What is already installed link*.
+*Note:* If Red Hat JBoss Data Virtualization Development is already installed then proceed to next step. You can confirm that JBDSIS is installed on your machine by clicking *What is already installed link*.
++
+*Note:* If you are facing proxy issues downloading JBDSIS plugins via Red Hat Central, then you can download JBDSIS plugins locally to your computer from this http://tools.jboss.org/downloads/devstudio_is/[link].
 +
 ..	Click *Next*.
 ..	Accept any additional dependencies and license agreements, and then click *Finish* to complete.
-+
+
 *Note:* When installation is complete you will be prompted to re-launch Red Hat JBoss Developer Studio to ensure the new features are fully operational.
 
-== Step3 Content
+*Note that the above steps* for installing the Red Hat JBoss Developer Studio can also be viewed in https://vimeo.com/178920385[Part 1] of Getting Started video series.
 
-Follow the below series to build your first data virtualization project. You will build a simple project which involves pulling data from a flat XML file and exposing it to VDB layer in a relational database format. The series walks you through each step, of creation of VDB layer, from start to finish.
+== Step3 Content
+Red Hat JBoss Data Virtualization allows you to easily combine data from multiple, heterogenous data sources without moving or copying any data. In this example application you will be building federated data views pulling data from Flat file, Web and H2 relational database. These federated data views can be easily accessed via any JDBC client or Web Service.
+
+*Follow the steps* of https://vimeo.com/178933702[Part 2] and https://vimeo.com/178933177[Part 3] from Getting Started video series to build your first data virtualization project.
+
 
 |===
 |Demonstration Description | Material
@@ -79,8 +82,6 @@ Follow the below series to build your first data virtualization project. You wil
 |What is JBoss Data Virtualization?
 |https://vimeo.com/150192169[Jboss Data Virtualization]
 
-|Build VDB layer with Teiid Designer
-|https://vimeo.com/76457404[Step 1], https://vimeo.com/76471307[Step 2], https://vimeo.com/76476379[Step 3]
 |===
 
 == More Resources
