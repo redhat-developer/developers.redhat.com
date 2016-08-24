@@ -34,6 +34,7 @@ class AdditionalInformationPage < SiteBase
   end
 
   def enter_password(password, confirm_password)
+
     type(password_field, password)
     type(confirm_password_field, confirm_password)
   end
