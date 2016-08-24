@@ -55,27 +55,27 @@ label_display == 'visually_hidden' ? 'visually-hidden',
 
 {% if label_hidden %}
     {% if multiple %}
-        <span{{ attributes.addClass(classes, 'field__items') }}>
+        <div{{ attributes.addClass(classes, 'field__items') }}>
             {% for item in items %}
-                <span{{ item.attributes.addClass('field__item') }}>{{ item.content }}</span>
+                <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
             {% endfor %}
-        </span>
+        </div>
     {% else %}
         {% for item in items %}
-            <span{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</span>
+            <div{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</div>
         {% endfor %}
     {% endif %}
 {% else %}
-    <span{{ attributes.addClass(classes) }}>
-        <span{{ title_attributes.addClass(title_classes) }}>{{ label }}</span>
+    <div{{ attributes.addClass(classes) }}>
+        <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
         {% if multiple %}
-        <span class="field__items">
+        <div class="field__items">
             {% endif %}
             {% for item in items %}
-                <span{{ item.attributes.addClass('field__item') }}>{{ item.content }}</span>
+                <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
             {% endfor %}
             {% if multiple %}
-        </span>
+        </div>
         {% endif %}
-    </span>
+    </div>
 {% endif %}

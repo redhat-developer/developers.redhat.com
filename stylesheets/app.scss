@@ -2085,3 +2085,12 @@ h2.home-title {
     }
   }
 }
+
+// Hacking for drupal
+.field__item, .field {
+  display: inline-block;
+}
+.field__item.button {
+  margin-left: 0;
+  margin-right: 0;
+}
