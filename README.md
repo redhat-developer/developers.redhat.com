@@ -95,23 +95,28 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
 
        eval "$(docker-machine env default)"
 
-#### Edit your boot2docker DNS servers
+#### Edit your boot2docker DNS servers & set inotify watchers
 
 1. SSH in to the default docker machine :
 
         docker-machine ssh default
 
-2. Edit the boot2docker profile:
+2. Configure inotify watchers:
+
+        sudo sysctl fs.inotify.max_user_watches=524288
+        sudo sysctl -p
+
+3. Edit the boot2docker profile:
 
         sudo vi /var/lib/boot2docker/profile
 
-3. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Replace the existing EXTRA_ARGS with the following:
+4. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Replace the existing EXTRA_ARGS with the following:
 
         EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
 
-4. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
-5. exit the boot2docker image (just type `exit` in the terminal)
-6. Restart docker-machine `docker-machine restart default`
+5. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
+6. exit the boot2docker image (just type `exit` in the terminal)
+7. Restart docker-machine `docker-machine restart default`
 
 
 #### Warning about previous containers
