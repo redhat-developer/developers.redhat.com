@@ -1,0 +1,22 @@
+uuid: 7d63b2e1-1ea1-497b-a817-df323a54cccb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.promotion_page
+  module:
+    - text
+id: node.promotion_page.body
+field_name: body
+entity_type: node
+bundle: promotion_page
+label: Body
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary
