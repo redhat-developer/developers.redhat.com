@@ -128,6 +128,14 @@ class Options
         tasks[:decrypt] = false
       end
 
+      #
+      # Required during the transition to Drupal PR building. As the Drupal PR job is a downstream of the current
+      # PR job, we don't want to kill any environment that is currently running.
+      #
+      opts.on('--no-kill','Do not attempt to stop the currently running environment (if any)') do
+        tasks[:kill_all] = false
+      end
+
 
       # No argument, shows at tail.  This will print an options summary.
       opts.on_tail('-h', '--help', 'Show this message') do
