@@ -8,6 +8,11 @@ class TestOptions < Minitest::Test
     assert_equal (4+1), 5
   end
 
+  def test_run_the_stack_with_no_kill
+    tasks = Options.parse(['--run-the-stack', '--no-kill'])
+    refute(tasks[:kill_all])
+  end
+
   def test_export_with_no_explicit_destination
     tasks = Options.parse(['--export'])
     assert(tasks[:build])
