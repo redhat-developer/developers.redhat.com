@@ -10,9 +10,11 @@
  */
 function rhd_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   // If Article add form, add custom form validator.
-  if ($form_id == 'node_article_form') {
+  if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
     $pathauto = $form['path']['widget'][0]['pathauto'];
-    $form['path']['widget'][0]['pathauto']['#default_value'] = 0;
+    if ($form_id != 'node_article_edit_form') {
+      $form['path']['widget'][0]['pathauto']['#default_value'] = 0;
+    }
     $form['path']['widget'][0]['alias']['#states']['disabled']['input[name="path[0][pathauto]"]']['checked'] = 0;
     // Override default validator with custom validator.
     if (!empty($form['path'])) {
@@ -35,6 +37,7 @@ function rhd_common_custom_form_validator(array &$element, \Drupal\Core\Form\For
   if (empty($element['pathauto']['#checked']) && empty($alias)) {
     $form_state->setError($element, t('please add a url alias.'));
   }
+  
   if (!empty($alias)) {
     // Check if alias already has a slash.
     if (substr($alias, 0, 1) !== '/') {
@@ -47,6 +50,7 @@ function rhd_common_custom_form_validator(array &$element, \Drupal\Core\Form\For
       $form_state->setError($element, t('The alias is already in use.'));
     }
   }
+
   if ($alias && $alias[0] !== '/') {
     $form_state->setError($element, t('The alias needs to start with a slash.'));
   }
