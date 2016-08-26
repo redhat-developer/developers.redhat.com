@@ -2086,11 +2086,18 @@ h2.home-title {
   }
 }
 
-// Hacking for drupal
+// Hacking for drupal, changes to fix the display of divs from drupal to display similar to spans
+// Divs must be used for quick edit to work properly, however, if the divs display like blocks it messes up our display
 .field__item, .field {
   display: inline-block;
 }
+
+// overrides for some drupal classes and instances which are a bit messed up
 .field__item.button {
   margin-left: 0;
   margin-right: 0;
 }
+.field--name-body {
+  display: block;
+}
+
