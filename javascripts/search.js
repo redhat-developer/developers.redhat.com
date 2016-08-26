@@ -319,7 +319,8 @@ function searchCtrlFunc($scope, $window, searchService) {
           var tags = app.products[product]['stackoverflow'];
           params.tag = tags.slice();
         }
-        history.pushState($scope.params,params.tag,app.baseUrl + '/stack-overflow/?q=' + params.tag);
+        var page = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname
+        history.pushState($scope.params,params.tag, page + '?q=' + params.tag);
       }
     }
 
