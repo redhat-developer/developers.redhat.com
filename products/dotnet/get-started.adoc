@@ -25,9 +25,11 @@ Introduction and Prerequisites
 ## Prerequisites section
 In this tutorial, you will set up your system to install software from the Red Hat .NET repository, which provides the latest versions of .NET Core for Red Hat Enterprise Linux. You will install .NET Core and run a simple "Hello, World" application. The tutorial should take less than 10 minutes to complete.
 
-Before you begin, you will need a current Red Hat Enterprise Linux 7 Server subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite Subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474/[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
+Before you begin, you will need a current Red Hat Enterprise Linux 7 Server subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite Subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
 
 Using VirtualBox? You’ll find instructions #{site.base_url}/products/rhel/get-started/#tab-virtualbox[here]. Hyper-V? Your instructions are #{site.base_url}/products/rhel/get-started/#tab-hyper-v[here]. VMWare? #{site.base_url}/products/rhel/get-started/#tab-vmware[Here] is your link. KVM users, #{site.base_url}/products/rhel/get-started/#tab-kvm[this way], please. Finally, yes, you can install on bare metal if you wish. #{site.base_url}/products/rhel/get-started/#tab-bare-metal[Here] is your page.
+
+Be sure to link:#{site.base_url}/products/rhel/get-started/#Step3[register and attach a subscription] to your Red Hat Enterprise Linux 7 installation to get access to .NET repositories.
 
 If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
@@ -42,7 +44,7 @@ Start _Red Hat Subscription Manager_ using the _System Tools_ group of the _Appl
 . Select _Repositories_ from the _System_ menu of the subscription manager.
 . In the list of repositories, check the _Enabled_ column for _rhel-7-server-dotnet-rpms_. Note: After clicking, it might take several seconds for the checkmark to appear in the enabled column.
 
-If you don’t see any .NET Core repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
+If you don’t see any .NET repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
 
 
 ### Using subscription-manager from the command line
@@ -204,4 +206,4 @@ Uninstalling the `rh-dotnetcore10-runtime` package will cause the dependent pack
 ----
 . *Some .NET/C# code/examples I’ve tried don’t work with .NET Core.*
 +
-.NET Core 1.0 is a new version of the .NET framework that is incompatible with the previous .NET 2.x, 3.x and 4.x series frameworks. There is a large amount of code written for .NET that will not run without modification on .NET Core.
+{empty}.NET Core 1.0 is a new version of the .NET framework that is incompatible with the previous .NET 2.x, 3.x and 4.x series frameworks. There is a large amount of code written for .NET that will not run without modification on .NET Core.

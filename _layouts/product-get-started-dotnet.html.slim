@@ -66,20 +66,6 @@ type: Get Started
                 .large-24.columns
                   - if page._step3_duration
                     i.fa.fa-clock-o  #{page._step3_duration}
-          .large-6.columns.step-cards(data-equalizer-watch)
-            a.card(href="#Step4")
-              .row
-                .small-4.large-4.columns
-                  h2.step-num 4.
-                .small-20.large-20.columns
-                  - if !page._step4_title
-                    h4 Step Four Cool Title
-                  - else
-                    h4 #{page._step4_title}
-              .row
-                .large-24.columns
-                  - if page._step4_duration
-                    i.fa.fa-clock-o  #{page._step4_duration}
           .large-24.columns
             - if page._before_you_begin_section
               .large-24#BeforeYouBeginSection
@@ -132,20 +118,6 @@ type: Get Started
           - if page._step3_content
             .large-24#Step3Content
               = page._step3_content
-
-          .large-24.step-header#Step4
-            h4
-              .step-num 4.
-              - if !page._step4_title
-                h4 Build your first #{page.product.abbreviated_name} application
-              - else
-                h4 #{page._step4_title}
-              .duration
-                - if page._step4_duration
-                  i.fa.fa-clock-o  #{page._step4_duration}
-          - if page._step4_content
-            .large-24#Step4Content
-              = page._step4_content
 
           - if page._extra_section
             - if page._extra_section_title
