@@ -1,7 +1,7 @@
 require_relative 'abstract/site_base'
 
 class LoginPage < SiteBase
-  page_title('Log In | Red Hat Developers')
+  #page_title('Log In | Red Hat Developers')
 
   value(:loaded?)                  { |el| el.wait_until_displayed(id: 'username') }
   element(:username_field)         { |el| el.find(id: 'username') }
