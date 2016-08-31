@@ -96,11 +96,14 @@ profiles:
     base_url: http://docker/
     dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
+    push_to_searchisko: false
 
   drupal_pull_request:
     <<: *docker
     base_url: http://stumpjumper.lab4.eng.bos.redhat.com:<%= ENV['DRUPAL_HOST_PORT'] %>/
-    dcp_base_protocol_relative_url: //stumpjumper.lab4.eng.bos.redhat.com:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    dcp_base_url: http://dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    push_to_searchisko: false
     drupal_base_url: http://drupal/
 
   drupal_staging:
