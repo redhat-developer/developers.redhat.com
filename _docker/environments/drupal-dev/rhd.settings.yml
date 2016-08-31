@@ -10,6 +10,7 @@ drupal:
   host: docker
   port: "80"
 searchisko:
+  protocol: 'http'
   host: docker
   port: "8080"
   baseProtocolRelativeUrl: 'docker:8080'
