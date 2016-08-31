@@ -1,3 +1,4 @@
+@ignore
 Feature: Search Page
 
   As a site visitor,

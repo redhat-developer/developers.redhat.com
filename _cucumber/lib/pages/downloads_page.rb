@@ -3,7 +3,7 @@ require_relative '../../../_cucumber/lib/helpers/downloads_helper.rb'
 
 class DownloadsPage < SiteBase
   page_url('/downloads/')
-  page_title('Downloads | Red Hat Developers')
+  #page_title('Downloads | Red Hat Developers')
 
   class << self
     include DownloadHelper
