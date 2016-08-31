@@ -3,7 +3,7 @@ require_relative '../../../_cucumber/lib/helpers/products_helper'
 
 class TechnologiesPage < SiteBase
   page_url('/products/')
-  page_title('Red Hat Products')
+  #page_title('Red Hat Products')
 
   class << self
     include ProductsHelper
