@@ -43,6 +43,9 @@
     @extend .flex-center;
   }
 }
+.hero.hero-wide.product-header {
+    margin-bottom: 0;
+}
 
 .product-header {
   background-position: top center;
@@ -118,13 +121,13 @@
   background-repeat: no-repeat;
   
   &.storage-and-big-data {
-    background-image: cdn('../images/design/products/dotted_lines_top_left_orange.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+    background-image: url('http://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_orange-1.png'),  url('http://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png');
   }
   &.it-infrastructure {
-    background-image: cdn('../images/design/products/dotted_lines_top_left_blue.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+    background-image: url('http://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_blue-1.png'),  url('http://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png');
   }
   &.application-development {
-    background-image: cdn('../images/design/products/dotted_lines_top_left_green.png'),  cdn('../images/design/products/dotted_lines_bottom_right_gray.png');
+    background-image: url('http://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_top_left_green-1.png'),  url('http://static.jboss.org/images/rhd/backgrounds/_images_design_products_dotted_lines_bottom_right_gray-1.png');
   }
 
   .row.content {
