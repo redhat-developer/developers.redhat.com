@@ -15,7 +15,7 @@ app.sso = function () {
                 // once the promise comes back, listen for a click on logout
                 $('a.logout').on('click',function(e) {
                     e.preventDefault();
-                    keycloak.logout({"redirectUri":app.baseUrl});
+                    keycloak.logout({"redirectUri":app.ssoConfig.logout_url});
                 });
 
             }).error(clearTokens);
