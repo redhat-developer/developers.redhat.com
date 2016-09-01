@@ -247,7 +247,6 @@ function searchCtrlFunc($scope, $window, searchService) {
   /* defaults */
   $scope.params = {
     query: q,
-    sortBy: 'score',
     size: 10,
     size10: true,
     from: 0,
@@ -259,14 +258,12 @@ function searchCtrlFunc($scope, $window, searchService) {
   // Search Page Specifics
   if(isSearch && searchTerm) {
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
-    // $scope.params.newFirst = false;
   }
 
   // Stack Oveflow Page Specifics
   if(isStackOverflow && searchTerm){
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
     $scope.params.sortBy = 'new-create';
-    // $scope.params.newFirst = false;
     $scope.params.tag = [];
   }
 
@@ -322,13 +319,13 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.query = $scope.params.query; // this is static until the update re-runs
     $scope.tag = $scope.params.tag; // this is static until the update re-runs
 
-    // if Most Recent filter is turned on making sortBy == true, add newFirst flag
-    if($scope.params.sortBy == "new") {
-      $scope.params.newFirst = true;
-    }
-
     var params = $scope.cleanParams($scope.params);
     
+    // if Sort by filter selection changed from New First to Most Recent, remove newFirst flag
+    if(params.newFirst == "false") {
+      delete params.newFirst;
+    }
+
     if(isSearch) {
       var searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname
       history.pushState($scope.params,$scope.params.query, searchPage + '?q=' + $scope.params.query);

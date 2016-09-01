@@ -19,9 +19,9 @@ div(ng-app="search")
             hr
             p
               | Sort results by
-              select(ng-model="params.sortBy" ng-change="updateSearch()")
-                option(value="score") Relevance
-                option(value="new") Most Recent
+              select(ng-model="params.newFirst" ng-change="updateSearch()")
+                option(value="false") Relevance
+                option(value="true") Most Recent
               | and show
               select(ng-model="params.size" ng-change="updateSearch()")
                 option(value="10") 10
