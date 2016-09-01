@@ -3,8 +3,6 @@ var search = angular.module('search', []);
 search.service('searchService',function($http, $q) {
   this.getSearchResults = function(params) {
     var deferred = $q.defer();
-    // http://dcp.stage.jboss.org/v2/rest/search?size=1&field=_source&agg=per_project_counts&agg=tag_cloud&agg=top_contributors&agg=activity_dates_histogram&agg=per_sys_type_counts
-    // http://docs.jbossorg.apiary.io/#reference/search-api/2restsearchqueryqueryhighlightsortbyfromsizeaggfieldcontentprovidertypesystypetagprojectactivitydateintervalactivitydatefromactivitydatetocontributor
 
     if((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href))) {
       var isStackOverflow = true;
@@ -20,13 +18,12 @@ search.service('searchService',function($http, $q) {
     else {
       // fold in params with defaults
       var search = Object.assign(params, {
-        // field: '_source',
-        field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated', 'sys_type', 'thumbnail', 'sys_created'],
-        // Disable aggregations until ready
-        // agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
         query_highlight: true
       });
 
+      if(/resources/.test(window.location.href)) {
+        search.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo','jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
+      }
       var endpoint = app.dcp.url.developer_materials;
     }
 
@@ -64,6 +61,30 @@ search.filter('timeAgo', function() {
     if(!timestamp) return;
     var date = new Date(timestamp);
     return $.timeago(date);
+  }
+});
+
+search.filter('type', function() {
+  return function(sys_type){
+    var types = {
+      video: 'Video',
+      blogpost: 'Blog Post',
+      jbossdeveloper_book: 'Book',
+      book: 'Book',
+      article: 'Article',
+      solution: 'Article',
+      demo: 'Demo',
+      quickstart: 'quickstart',
+      jbossdeveloper_archetype: 'Demo',
+      jbossdeveloper_bom: 'Demo',
+      quickstart_early_access: 'Demo',
+      jbossdeveloper_example: 'Get Started',
+      jbossdeveloper_event: 'Event',
+      jbossorg_sbs_forum: 'Forum',
+      forumthread: 'Forum',
+      stackoverflow_thread: 'Stack Overflow'
+    }
+    return types[sys_type];
   }
 });
 
@@ -167,6 +188,9 @@ search.filter('title', function($sce) {
 
 search.filter('description', function($sce) {
   return function(result){
+    // if(result.fields.sys_type == 'stackoverflow_thread'){
+    //   return $sce.trustAsHtml(result.fields.sys_content_plaintext[0]);
+    // }
     if(result.highlight && result.highlight.sys_content_plaintext) {
       return $sce.trustAsHtml(result.highlight.sys_content_plaintext[0]);
     }
@@ -214,7 +238,6 @@ search.filter('stackDate', function($sce) {
 function searchCtrlFunc($scope, $window, searchService) {
 
   var isStackOverflow = ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href)));
-
   var isSearch = !!window.location.href.match(/\/search/);
   var searchTerm = window.location.search.split('=');
   var q = '';
@@ -228,23 +251,21 @@ function searchCtrlFunc($scope, $window, searchService) {
     from: 0,
     sys_type: [],
     project: '',
-    newFirst: true
+    newFirst: false
   };
 
   // Search Page Specifics
   if(isSearch && searchTerm) {
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
-    $scope.params.type = 'rht_website';
-    $scope.params.newFirst = false;
+    // $scope.params.newFirst = false;
   }
 
+  // Stack Oveflow Page Specifics
   if(isStackOverflow && searchTerm){
-
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
     $scope.params.sortBy = 'new-create';
-    $scope.params.newFirst = false;
+    // $scope.params.newFirst = false;
     $scope.params.tag = [];
-
   }
 
   $scope.paginate = {
@@ -274,7 +295,7 @@ function searchCtrlFunc($scope, $window, searchService) {
       }
 
       // if relevance filter is turned on making newFirst == false, remove it entirely
-      if(params.newFirst == "false") {
+      if(params.newFirst == false) {
         delete params.newFirst;
       }
 
@@ -286,6 +307,10 @@ function searchCtrlFunc($scope, $window, searchService) {
       // use the size10=true format
       params['size'+params.size] = true;
 
+      if(isStackOverflow != true){
+        delete params.size;
+      }
+
       // return cleaned params
       return params;
   };
@@ -295,7 +320,13 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.query = $scope.params.query; // this is static until the update re-runs
     $scope.tag = $scope.params.tag; // this is static until the update re-runs
 
+    // if Most Recent filter is turned on making sortBy == true, add newFirst flag
+    if($scope.params.sortBy == "new") {
+      $scope.params.newFirst = true;
+    }
+
     var params = $scope.cleanParams($scope.params);
+    
     if(isSearch) {
       var searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname
       history.pushState($scope.params,$scope.params.query, searchPage + '?q=' + $scope.params.query);
