@@ -18,7 +18,9 @@ search.service('searchService',function($http, $q) {
     else {
       // fold in params with defaults
       var search = Object.assign(params, {
-        query_highlight: true
+        query_highlight: true,
+        type: ['jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum','jbossorg_blog', 'rht_website']
+
       });
 
       if(/resources/.test(window.location.href)) {
