@@ -1,16 +1,15 @@
-uuid: 8b8a5197-4f3d-4db8-9453-faff07d1eb2f
 langcode: en
 status: true
 dependencies:
   module:
     - node
-_core:
-  default_config_hash: W0FtOGf-NcNctqkSDF0gQ9Pf8lG9IWrJFOMecVauPAU
-id: node.field_blue_card_description
-field_name: field_blue_card_description
+id: node.field_author_name
+field_name: field_author_name
 entity_type: node
-type: string_long
+type: string
 settings:
+  max_length: 255
+  is_ascii: false
   case_sensitive: false
 module: core
 locked: false

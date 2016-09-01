@@ -33,7 +33,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_blue_card_description:
-    weight: 8
+    weight: 7
     settings:
       rows: 5
       placeholder: ''
@@ -47,14 +47,14 @@ content:
     third_party_settings: {  }
     type: link_default
   field_blue_card_title:
-    weight: 7
+    weight: 8
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_bottom_left_white_card:
-    weight: 16
+    weight: 28
     settings:
       match_operator: CONTAINS
       size: 60
@@ -62,7 +62,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_bottom_right_white_card:
-    weight: 17
+    weight: 29
     settings:
       match_operator: CONTAINS
       size: 60
@@ -101,7 +101,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_top_left_white_card:
-    weight: 14
+    weight: 26
     settings:
       match_operator: CONTAINS
       size: 60
@@ -109,7 +109,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
   field_top_right_white_card:
-    weight: 15
+    weight: 27
     settings:
       match_operator: CONTAINS
       size: 60
