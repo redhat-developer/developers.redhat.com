@@ -90,13 +90,15 @@ profiles:
     base_url: http://docker/
     dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
+    push_to_searchisko: false
+
 
   drupal_dev_local_dcp:
     <<: *docker
     base_url: http://docker/
     dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
-    push_to_searchisko: false
+    push_to_searchisko: true
 
   drupal_pull_request:
     <<: *docker
