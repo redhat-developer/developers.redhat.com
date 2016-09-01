@@ -29,7 +29,14 @@ Before you begin, you will need a current Red Hat Enterprise Linux 7 Server subs
 
 Using VirtualBox? You’ll find instructions #{site.base_url}/products/rhel/get-started/#tab-virtualbox[here]. Hyper-V? Your instructions are #{site.base_url}/products/rhel/get-started/#tab-hyper-v[here]. VMWare? #{site.base_url}/products/rhel/get-started/#tab-vmware[Here] is your link. KVM users, #{site.base_url}/products/rhel/get-started/#tab-kvm[this way], please. Finally, yes, you can install on bare metal if you wish. #{site.base_url}/products/rhel/get-started/#tab-bare-metal[Here] is your page.
 
-Be sure to link:#{site.base_url}/products/rhel/get-started/#Step3[register and attach a subscription] to your Red Hat Enterprise Linux 7 installation to get access to .NET repositories.
+Be sure to link:#{site.base_url}/products/rhel/get-started/#Step3[register and attach a subscription] to your Red Hat Enterprise Linux 7 installation to get access to .NET repositories. If this is a VM, you can register and attach by using `subscription-manager`:
+
+[listing,subs="attributes"]
+----
+$ su -
+# subscription-manager register --auto-attach
+----
+
 
 If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
