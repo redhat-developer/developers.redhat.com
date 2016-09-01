@@ -11,6 +11,7 @@ drupal:
   port: "80"
 searchisko:
   host: docker
+  protocol: "http"
   port: "8080"
   baseProtocolRelativeUrl: 'docker:8080'
 database:
@@ -19,4 +20,3 @@ database:
   username: 'drupal'
   password: 'drupal'
   name: 'drupal'
-
