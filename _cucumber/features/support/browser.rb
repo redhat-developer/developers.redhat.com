@@ -100,11 +100,13 @@ class Browser
   def local_chrome
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
-    Selenium::WebDriver.for(:chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes], :desired_capabilities => caps)
+    Selenium::WebDriver.for(:chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes --incognito], :desired_capabilities => caps)
   end
 
   def docker_chrome
-    caps = Selenium::WebDriver::Remote::Capabilities.chrome
+    chrome_switches = %w[--ignore-certificate-errors --disable-popup-blocking --incognito]
+    caps_opts = {'chrome.switches' => chrome_switches}
+    caps = Selenium::WebDriver::Remote::Capabilities.chrome(caps_opts)
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 300 # Browser launch can take a while

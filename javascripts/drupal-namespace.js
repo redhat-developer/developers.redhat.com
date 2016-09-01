@@ -127,8 +127,7 @@ app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
 var homeLink = document.getElementById('home-link')
 var confirmationPage = homeLink != null && homeLink.attributes['href'].value.endsWith('.html') ? 'confirmation.html' : 'confirmation'
 app.ssoConfig.confirmation = confirmationPage == 'confirmation.html' ? homeLink.href.replace('index.html',confirmationPage) : homeLink.href + confirmationPage
-app.ssoConfig.logout_url = homeLink.attributes['href']
-
+app.ssoConfig.logout_url = homeLink.href
 app.projects = {};
 app.projects.defaultImage = "/images/design/projects/default_200x150.png";
 
