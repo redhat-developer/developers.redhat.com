@@ -38,7 +38,7 @@ div(ng-app="search")
                 span.created-date(data-updated="{{r.fields.sys_updated[0] | timestamp}}") {{r.fields.sys_updated[0] | timeAgo}}
               p.result-info
                 span.caps {{ r.fields.sys_type | type }}
-                span(data-updated="{{r.fields.sys_created[0] | timestamp}}" ng-if="r.fields.sys_type != 'rht_website' || r.fields.sys_type != 'article' || r.fields.sys_type != 'demo'")  |  {{r.fields.sys_created[0] | MDY}}
+                span(data-updated="{{r.fields.sys_created[0] | timestamp}}" ng-show="r.fields.sys_type != 'webpage' || r.fields.sys_type != 'article' || r.fields.sys_type != 'demo'")    {{r.fields.sys_created[0] | MDY}}
               p(ng-bind-html="r | description")
               .tags-list
                 p

@@ -84,7 +84,8 @@ search.filter('type', function() {
       jbossdeveloper_event: 'Event',
       jbossorg_sbs_forum: 'Forum',
       forumthread: 'Forum',
-      stackoverflow_thread: 'Stack Overflow'
+      stackoverflow_thread: 'Stack Overflow',
+      webpage: 'Webpage'
     }
     return types[sys_type];
   }
@@ -96,6 +97,9 @@ search.filter('MDY', function() {
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var date = new Date(timestamp);
     window.date = date;
+    if(!!window.location.href.match(/\/search/)){
+      return " | " + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+    };
     return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
   }
 });
@@ -169,13 +173,6 @@ search.filter('tagGroup', function() {
         modifiedTags.push(value)
     });
     return modifiedTags;
-  }
-});
-
-search.filter('timestamp', function() {
-  return function(timestamp){
-    var date = new Date(timestamp);
-    return date.getTime();
   }
 });
 
