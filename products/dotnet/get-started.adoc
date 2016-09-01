@@ -77,11 +77,19 @@ $ su -
 ## Step3 Content
 
 Under your normal user ID, start a _Terminal_ window. First, use `scl
-enable` to add .NET Core 1.0 to your environment, then run `dotnet --version` to see the version number:
+enable` to add .NET Core 1.0 to your environment:
 
 [listing,subs="attributes"]
 ----
 $ scl enable rh-dotnetcore10 bash
+----
+
+Every time you start a new shell, you’ll need to re-run the `scl enable` command. Consider <<enable-permanently,enabling it permanently>>.
+
+Now, run `dotnet --version` to see the version number:
+
+[listing,subs="attributes"]
+----
 $ dotnet --version
 ----
 
@@ -99,6 +107,7 @@ While it is possible to change the system profile to make .NET Core packages par
 
 
 #### Permanently enable .NET Core in your development environment
+[[enable-permanently]]
 
 To make the .NET Core packages a permanent part of your development environment, you can add it to the login script for your specific user ID. this is the recommend approach for development as only processes run under your user ID will be affected.
 
