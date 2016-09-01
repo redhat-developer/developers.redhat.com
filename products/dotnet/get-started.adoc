@@ -93,7 +93,7 @@ Now, run `dotnet --version` to see the version number:
 $ dotnet --version
 ----
 
-First, run `dotnet new`. This will create the C# source code for the “Hello world” app. You can look around the source code and all the generated files to get a sense of what’s necessary to support a .NET Core application.
+First, run `dotnet new`. This will create the C# source code for the “Hello, World” app. You can look around the source code and all the generated files to get a sense of what’s necessary to support a .NET Core application.
 
 Next, run `dotnet restore`. This will fetch all the necessary dependency libraries.
 
@@ -101,7 +101,7 @@ Finally, run `dotnet run`. This will build and run the application. Note that yo
 
 ### Working with .NET Core packages
 
-The .NET Core software packages are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login, or start a new terminal session, `scl enable` needs to be run again.
+The .NET Core software packages are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login or start a new terminal session, you will need to run `scl enable`.
 
 While it is possible to change the system profile to make .NET Core packages part of the system’s global environment, this is not recommended. Doing this can cause conflicts and unexpected problems with other applications because the system version of the package is obscured by having the other version in the path first.
 
@@ -109,7 +109,7 @@ While it is possible to change the system profile to make .NET Core packages par
 #### Permanently enable .NET Core in your development environment
 [[enable-permanently]]
 
-To make the .NET Core packages a permanent part of your development environment, you can add it to the login script for your specific user ID. this is the recommend approach for development as only processes run under your user ID will be affected.
+To make the .NET Core packages a permanent part of your development environment, you can add it to the login script for your specific user ID. This is the recommend approach for development as only processes run under your user ID will be affected.
 
 Using your preferred text editor, add the following line to your `~/.bashrc`:
 
@@ -120,7 +120,7 @@ Using your preferred text editor, add the following line to your `~/.bashrc`:
 source scl_source enable rh-dotnetcore10
 ----
 
-After making the change, you should log out and log back in again.
+After making the change, you should log out and log in again.
 
 When you deliver an application that uses .NET Core packages, a best practice is to have your startup script handle the `scl enable` step for your application. You should not ask your users to change their environment as this is likely to create conflicts with other applications.
 
@@ -164,7 +164,7 @@ Red Hat delivers the resources and ecosystem of experts to help you be more prod
 
 . *As a developer, how can I get a Red Hat Enterprise Linux subscription that includes .NET Core?*
 +
-Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by #{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through developers.redhat.com. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
+Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by #{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through developers.redhat.com. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide], which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
 
 . *I can't find the .NET Core repository on my system*.
 +
@@ -188,7 +188,7 @@ Yes, .NET Core is available as a docker-formatted container image from the Red H
 +
 The open source community that is the upstream for .NET Core can be found at link:https://github.com/dotnet/core[github.com/dotnet/core].
 
-. *I’ve installed rh-dotnetcore10 but `dotnet` is not in my path.*
+. *I’ve installed rh-dotnetcore10, but `dotnet` is not in my path.*
 +
 *I can’t find the `dotnet` command.*
 +
@@ -215,4 +215,4 @@ Uninstalling the `rh-dotnetcore10-runtime` package will cause the dependent pack
 ----
 . *Some .NET/C# code/examples I’ve tried don’t work with .NET Core.*
 +
-{empty}.NET Core 1.0 is a new version of the .NET framework that is incompatible with the previous .NET 2.x, 3.x and 4.x series frameworks. There is a large amount of code written for .NET that will not run without modification on .NET Core.
+{empty}.NET Core 1.0 is a new version of the .NET framework that is incompatible with the previous .NET 2.x, 3.x, and 4.x series frameworks. There is a large amount of code written for .NET that will not run without modification on .NET Core.
