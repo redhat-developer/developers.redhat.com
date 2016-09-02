@@ -71,7 +71,8 @@ var globs = {
     'javascripts/a-b-testing.js',
     'javascripts/stackoverflow.js',
     'javascripts/product-forums.js',
-    '!javascripts/namespace.js'
+    '!javascripts/namespace.js',
+    'javascripts/custom-jira-collector.js'
   ],
   "styles": ['stylesheets/*.scss']
 };
