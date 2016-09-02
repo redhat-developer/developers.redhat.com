@@ -1,4 +1,3 @@
-@ignore
 Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
 
   Scenario: Results should be displayed with Votes, answers and views section
