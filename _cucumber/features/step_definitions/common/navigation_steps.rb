@@ -23,6 +23,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       visit(StackOverflowPage).wait_until_loaded
     when 'resources'
       visit(ResourcesPage).wait_until_loaded
+    when 'search'
+      visit(SearchPage).wait_until_loaded
     when 'product forums'
       visit(ForumsPage)
     when 'edit details'

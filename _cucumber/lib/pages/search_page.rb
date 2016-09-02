@@ -1,6 +1,7 @@
 require_relative 'abstract/common_elements'
 
 class SearchPage < CommonElements
+  page_url('/search/')
   #page_title('Search Results | Red Hat Developers')
 
   element(:search_box) { |el| el.find(id: 'search_list_text') }
