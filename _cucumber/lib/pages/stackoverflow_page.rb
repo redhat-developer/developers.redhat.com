@@ -4,7 +4,7 @@ class StackOverflowPage < CommonElements
   attr_accessor :element
 
   page_url('/stack-overflow/')
-  page_title('Stack Overflow')
+  #page_title('Stack Overflow | Red Hat Developers')
 
   element(:product_filter)            { |el| el.find(id: 'filterByProduct') }
 

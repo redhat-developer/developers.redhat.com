@@ -1,7 +1,7 @@
 require_relative 'abstract/site_base'
 
 class AdditionalInformationPage < SiteBase
-  page_title('Additional Action Required | Red Hat Developers')
+  #page_title('Additional Action Required | Red Hat Developers')
 
   value(:feedback)                 { |el| el.text_of(css: '.warning') }
 

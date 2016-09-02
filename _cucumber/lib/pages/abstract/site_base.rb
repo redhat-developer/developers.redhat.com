@@ -52,6 +52,7 @@ class SiteBase < DriverBase
     if is_mobile?
       toggle_menu
     end
+    wait_for(30) { login_link.displayed? }
     login_link.click
   end
 
@@ -67,6 +68,7 @@ class SiteBase < DriverBase
     if is_mobile?
       toggle_menu
     end
+    wait_for(30) { register_link.displayed? }
     register_link.click
   end
 
@@ -87,12 +89,12 @@ class SiteBase < DriverBase
     wait_for_ajax
     if is_mobile?
       toggle_menu
-      login_link.click if link == 'login'
-      register_link.click if link == 'registration'
+      click_login if link == 'login'
+      click_register if link == 'registration'
       logged_in_name.click if link == 'edit details'
     else
-      login_link.click if link == 'login'
-      register_link.click if link == 'registration'
+      click_login if link == 'login'
+      click_register if link == 'registration'
       logged_in_name.click if link == 'edit details'
     end
     wait_for_ajax

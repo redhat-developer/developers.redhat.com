@@ -3,13 +3,13 @@ require_relative '../../../_cucumber/lib/helpers/downloads_helper.rb'
 
 class DownloadsPage < SiteBase
   page_url('/downloads/')
-  page_title('Downloads | Red Hat Developers')
+  #page_title('Downloads | Red Hat Developers')
 
   class << self
     include DownloadHelper
   end
 
-  element(:loaded?)                        { |el| el.wait_until_not_displayed(css: '#downloads .fa-refresh') }
+  element(:loaded?)                        { |el| el.wait_until_not_displayed(12, css: '#downloads .fa-refresh') }
   element(:most_popular_section)           { |el| el.find(css: '.most-popular-downloads') }
   elements(:download_buttons)              { |el| el.find_elements(css: '#downloads .fa-download') }
   elements(:most_popular_download_buttons) { |el| el.find_elements(css: '.most-popular-downloads .fa-download') }

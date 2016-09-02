@@ -85,6 +85,7 @@ end
 
 After do |scenario|
   if scenario.failed?
+    puts "Failed on page: #{@driver.current_url}"
     screenshot = "_cucumber/screenshots/FAILED_#{scenario.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')}.png"
     @driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'

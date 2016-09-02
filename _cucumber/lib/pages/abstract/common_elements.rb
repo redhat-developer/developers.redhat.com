@@ -2,7 +2,7 @@ require_relative 'site_base'
 
 class CommonElements < SiteBase
 
-  value(:wait_until_loaded)           { |el| el.wait_until_not_displayed(class: 'loader') }
+  value(:wait_until_loaded)           { |el| el.wait_until_not_displayed(30, class: 'loader') }
   value(:wait_for_loading)            { |el| el.wait_until_displayed(class: 'loader') }
   value(:results_loaded?)             { |el| el.displayed?(class: 'search-results-loaded') }
   value(:results_title)               { |el| el.text_of(class: 'results-title') }

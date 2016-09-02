@@ -1,7 +1,7 @@
 require_relative 'abstract/site_base'
 
 class UpdatePasswordPage < SiteBase
-  page_title('Update password | Red Hat Developers')
+  #page_title('Update password | Red Hat Developers')
 
   element(:new_password_field)         { |el| el.find(id: 'password-new') }
   element(:new_password_confirm_field) { |el| el.find(id: 'password-confirm') }

@@ -2,7 +2,7 @@ require_relative 'abstract/common_elements'
 
 class ResourcesPage < CommonElements
   page_url('/resources/')
-  page_title('Discover the developer materials Red Hat has to offer')
+  #page_title('Discover the developer materials Red Hat has to offer | Red Hat Developers')
 
   element(:blog_posts)             { |el| el.find(id: 'blogposts') }
   element(:books)                  { |el| el.find(id: 'book') }

@@ -2,7 +2,7 @@ require_relative 'abstract/site_base'
 
 class RegistrationPage < SiteBase
   page_url('/register/')
-  page_title('Register | Red Hat Developers')
+  #page_title('Register | Red Hat Developers')
 
   value(:register_with_email_section_displayed?)   { |el| el.displayed?(id: 'login-choice-email') }
   value(:register_with_social_section_displayed?)  { |el| el.displayed?(id: 'login-choice-social') }
