@@ -125,6 +125,11 @@ class TestRhdEnvironment < MiniTest::Test
     assert_equal(%w(mysql searchisko), @environment.get_supporting_services)
   end
 
+  def test_supporting_services_drupal_dev_local_dcp
+    @environment.environment_name = 'drupal-dev-local-dcp'
+    assert_equal(%w(apache mysql searchisko drupalmysql drupal), @environment.get_supporting_services)
+  end
+
   def test_supporting_services_drupal_dev
     @environment.environment_name = 'drupal-dev'
     assert_equal(%w(apache mysql searchisko drupalmysql drupal), @environment.get_supporting_services)
