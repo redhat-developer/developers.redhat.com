@@ -151,9 +151,11 @@ class DriverBase
   end
 
   def wait_until_not_displayed(seconds=6, locator)
-    wait_for(seconds) {
-      !displayed?(locator)
-    }
+    begin
+      wait_for(seconds) { !displayed?(locator) }
+    rescue
+      wait_for(seconds) { !displayed?(locator) }
+    end
   end
 
   def wait_for_ajax(timeout = 30)

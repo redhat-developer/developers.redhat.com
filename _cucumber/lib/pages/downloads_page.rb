@@ -9,7 +9,7 @@ class DownloadsPage < SiteBase
     include DownloadHelper
   end
 
-  element(:loaded?)                        { |el| el.wait_until_not_displayed(css: '#downloads .fa-refresh') }
+  element(:loaded?)                        { |el| el.wait_until_not_displayed(12, css: '#downloads .fa-refresh') }
   element(:most_popular_section)           { |el| el.find(css: '.most-popular-downloads') }
   elements(:download_buttons)              { |el| el.find_elements(css: '#downloads .fa-download') }
   elements(:most_popular_download_buttons) { |el| el.find_elements(css: '.most-popular-downloads .fa-download') }

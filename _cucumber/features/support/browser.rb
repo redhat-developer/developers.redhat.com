@@ -100,7 +100,7 @@ class Browser
   def local_chrome
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
-    Selenium::WebDriver.for(:chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes --incognito], :desired_capabilities => caps)
+    Selenium::WebDriver.for(:chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes], :desired_capabilities => caps)
   end
 
   def docker_chrome
