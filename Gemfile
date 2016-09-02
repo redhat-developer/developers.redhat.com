@@ -68,8 +68,6 @@ group :test do
   gem 'parallel_tests', '~> 1.9.0'
   gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'
-  gem 'chromedriver-helper', '0.0.6'
-  gem 'site_prism', '~> 2.7'
   gem 'mocha'
   gem 'gmail', '~> 0.6.0'
   gem 'faker', '~> 1.6', '>= 1.6.1'

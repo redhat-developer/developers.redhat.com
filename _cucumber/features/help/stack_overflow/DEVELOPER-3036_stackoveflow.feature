@@ -1,4 +1,3 @@
-@ignore
 Feature: DEVELOPER-3036 - SO: Main page: add 'Filter by Product'
 
   Scenario: SO page should have a 'Filter by Product' section

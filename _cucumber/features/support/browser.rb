@@ -20,25 +20,25 @@ class Browser
 
   def setup(browser_name)
 
-      case browser_name
-        when 'firefox'
-          driver = local_firefox
-        when 'docker_firefox'
-          driver =  docker_firefox
-        when 'browserstack_firefox'
-          driver = browserstack_firefox
-        when 'chrome'
-          driver = local_chrome
-        when 'docker_chrome'
-          driver = docker_chrome
-        when 'browserstack_chrome'
-          driver = browserstack_chrome
-        when 'browserstack'
-          driver = browserstack(ENV['RHD_BS_BROWSER'])
-        else
-          driver = local_chrome
-      end
-      driver
+    case browser_name
+      when 'firefox'
+        driver = local_firefox
+      when 'docker_firefox'
+        driver = docker_firefox
+      when 'browserstack_firefox'
+        driver = browserstack_firefox
+      when 'chrome'
+        driver = local_chrome
+      when 'docker_chrome'
+        driver = docker_chrome
+      when 'browserstack_chrome'
+        driver = browserstack_chrome
+      when 'browserstack'
+        driver = browserstack(ENV['RHD_BS_BROWSER'])
+      else
+        driver = local_chrome
+    end
+    driver
   end
 
   def local_firefox
@@ -98,9 +98,12 @@ class Browser
   }
 
   def local_chrome
+    # Specify the driver path
+    chromedriver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os.to_s}", "chromedriver")
+    Selenium::WebDriver::Chrome.driver_path = chromedriver_path
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
-    Selenium::WebDriver.for(:chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes], :desired_capabilities => caps)
+    Selenium::WebDriver.for(:chrome, :switches => %w[--disable-popup-blocking --ignore-ssl-errors=yes --incognito], :desired_capabilities => caps)
   end
 
   def docker_chrome
@@ -126,7 +129,6 @@ class Browser
   # needed to set the custom download capabilities in oder to test downloads
   def browserstack_chrome
     job_name = "RHD Acceptance Tests - Chrome on Windows 8.1: #{Time.now.strftime '%Y-%m-%d %H:%M'}"
-
     caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     caps['chromeOptions']['args'] = %w[--disable-popup-blocking --ignore-ssl-errors --disable-download-protection]

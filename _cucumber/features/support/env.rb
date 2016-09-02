@@ -21,6 +21,9 @@ require_relative 'browser'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/*.rb"].each { |helper| load helper }
 
+$os = :linux if RUBY_PLATFORM.include? 'linux'
+$os = :mac if RUBY_PLATFORM.include? 'darwin'
+
 World PageHelper
 
 if ENV['HOST_TO_TEST'].to_s.empty?
@@ -100,10 +103,4 @@ at_exit do
     end
   end
 
-  # ensure that github accounts are clear at the end of test run, so they do not interfere with subsequent test runs
-  github_accounts = %w(rhdScenarioOne rhdScenarioTwo)
-  github_accounts.each do |account|
-    github_admin = GitHubAdmin.new(account, 'P@$$word01')
-    github_admin.cleanup
-  end
 end
