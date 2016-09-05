@@ -61,6 +61,12 @@ class SiteBase < GenericBasePage
     on LoginPage
   end
 
+  def open_register_page
+    toggle_menu if is_mobile?
+    click_register
+    on RegistrationPage
+  end
+
   def logged_in?
     toggle_menu if is_mobile?
     wait_for(10, 'User was not logged in after 30 seconds!') { is_logged_in? }

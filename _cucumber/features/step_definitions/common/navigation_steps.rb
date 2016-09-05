@@ -9,7 +9,9 @@ Given(/^I am on the ([^"]*) page$/) do |page|
         page.wait_until_loaded
       end
     when 'registration'
-      visit RegistrationPage
+      visit HomePage do |page|
+        page.open_register_page
+      end
     when 'login'
       visit HomePage do |page|
         page.open_login_page
