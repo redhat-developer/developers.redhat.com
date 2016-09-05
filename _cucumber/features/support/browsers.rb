@@ -59,10 +59,9 @@ class Browsers
   end
 
   def docker_chrome
-    # Specify the driver path
-    chromedriver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os.to_s}", "chromedriver")
-    Selenium::WebDriver::Chrome.driver_path = chromedriver_path
-    caps = Selenium::WebDriver::Remote::Capabilities.chrome
+    chrome_switches = %w[--ignore-certificate-errors --disable-popup-blocking --incognito]
+    caps_opts = {'chrome.switches' => chrome_switches}
+    caps = Selenium::WebDriver::Remote::Capabilities.chrome(caps_opts)
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 300 # Browser launch can take a while
@@ -79,11 +78,11 @@ class Browsers
     end
   end
 
+
   # # needed to set the custom download capabilities in oder to test downloads
   def browserstack_chrome
     job_name = "RHD Acceptance Tests - Chrome on Windows 8.1: #{Time.now.strftime '%Y-%m-%d %H:%M'}"
-
-    caps = Selenium::WebDriver::Remote::Capabilities.new
+    caps = Selenium::WebDriver::Remote::Capabilities.chrome
     caps['chromeOptions'] = {'prefs' => $chrome_prefs}
     caps['chromeOptions']['args'] = %w[--disable-popup-blocking --ignore-ssl-errors --disable-download-protection]
     caps['browser'] = 'Chrome'
@@ -100,7 +99,7 @@ class Browsers
   # needed to set the custom download capabilities in oder to test downloads
   def browserstack_firefox
     job_name = "RHD Acceptance Tests - #{Time.now.strftime '%Y-%m-%d %H:%M'}"
-    profile = Selenium::WebDriver::Remote::Capabilities.new
+    profile = Selenium::WebDriver::Firefox::Profile.new
     profile['browser.download.folderList'] = 1
     profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/zip, application/java-archive, application/octet-stream, application/jar, images/jpeg, application/pdf'
     profile['pdfjs.disabled'] = true
