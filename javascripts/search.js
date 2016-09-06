@@ -249,7 +249,8 @@ function searchCtrlFunc($scope, $window, searchService) {
     from: 0,
     sys_type: [],
     project: '',
-    newFirst: false
+    newFirst: false,
+    sortBy: 'relevance'
   };
 
   // Search Page Specifics
@@ -260,7 +261,6 @@ function searchCtrlFunc($scope, $window, searchService) {
   // Stack Oveflow Page Specifics
   if(isStackOverflow && searchTerm){
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
-    $scope.params.sortBy = 'new-create';
     $scope.params.tag = [];
   }
 
@@ -289,6 +289,15 @@ function searchCtrlFunc($scope, $window, searchService) {
         delete params.publish_date_from_custom;
         delete params.publish_date_to;
       }
+      
+      if(params.sortBy == "relevance") {
+        params.newFirst = false;
+      }
+      else{
+        params.newFirst = true;
+      }
+
+      delete params.sortBy;
 
       // if relevance filter is turned on making newFirst == false, remove it entirely
       if(params.newFirst == false) {
@@ -319,7 +328,7 @@ function searchCtrlFunc($scope, $window, searchService) {
     var params = $scope.cleanParams($scope.params);
     
     // if Sort by filter selection changed from New First to Most Recent, remove newFirst flag
-    if(params.newFirst == "false") {
+    if(params.sortBy == "relevance") {
       delete params.newFirst;
     }
 
