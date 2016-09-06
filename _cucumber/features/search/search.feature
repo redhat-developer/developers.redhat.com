@@ -183,3 +183,57 @@ Feature: Search Page
     Given I visit a previous search from a bookmark
     Then the Search page should be displayed
     And the search query is replayed.
+
+  @later
+  Scenario Outline: Blog posts are searchable
+    Given I search for "<search_term>"
+    When the search results page is displayed
+    Then I should see "10" results containing "<search_term>"
+ 
+    Examples: blog posts
+      | search_term                         |
+      | Red Hat JBoss Data Grid 7.0 is out  |
+      | Knowledge Driven Microservices      |
+      | Gems: A Few Helpful dotnet commands |
+
+  @later
+  Scenario Outline: StackOverflow posts are searchable
+    Given I search for "<search_term>"
+    When the search results page is displayed
+    Then I should see "10" results containing "<search_term>"
+ 
+    Examples: stackoverflow posts
+      | search_term                                     |
+      | Liferay 6.2 JBoss bundle is not getting started |
+      | Installing NodeJS on RHEL(4)?                   |
+      | New JDBC Driver for JBoss 6 EAP                 |
+
+  @later
+  Scenario Outline: KCS Documents are searchable
+    Given I search for "<search_term>"
+    When the search results page is displayed
+    Then I should see "10" results containing "<search_term>"
+ 
+    Examples: KCS Documents
+      | search_term                                              |
+      | How to disable Advisory topics and messages in A-MQ?     |
+      | External topic subscriber to fabric can't create session |
+      | How to configure wildcards in Virtual topic ?            |
+
+  @later
+  Scenario Outline: Books are searchable
+    Given I search for "<search_term>"
+    When the search results page is displayed
+    Then I should see "10" results containing "<search_term>"
+ 
+    Examples: Books
+      | search_term                     |
+      | Java Persistence with Hibernate |
+      | Advanced JAX-WS Web Services    |
+      | Mobile and Web Messaging        |
+
+  @later
+  Scenario: Events are searchable
+    Given I search for "DevNation"
+    When the search results page is displayed
+    Then I should see "10" results containing "DevNation"
