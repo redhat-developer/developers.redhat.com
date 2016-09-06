@@ -20,7 +20,7 @@ div(ng-app="search")
             p
               | Sort results by
               select(ng-model="params.newFirst" ng-change="updateSearch()")
-                option(value="false") Relevance
+                option(value="false" selected) Relevance
                 option(value="true") Most Recent
               | and show
               select(ng-model="params.size" ng-change="updateSearch()")
