@@ -137,7 +137,7 @@ div(ng-app="search")
               .result-details
                 img.video-thumb(ng-show="{{r.thumbnail.length}}" ng-src="{{r.thumbnail[0]}}")
                 h4
-                  a(href="" ng-href="{{r.sys_url_view[0] | broker | jbossfix}}" resource-type="{{r.sys_type[0]}}") {{r.sys_title[0]}}
+                  a(href="" ng-href="{{r.sys_url_view[0] | jbossfix}}" resource-type="{{r.sys_type[0]}}") {{r.sys_title[0]}}
                 section.meta-data
                   / pre {{r | json}}
                   span.created-date(data-updated="{{r.sys_created[0] | timestamp}}") {{r.sys_created[0] | MDY}}
