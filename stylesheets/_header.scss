@@ -184,6 +184,12 @@ nav.accounts {
   }
 }
 
+@include tablet-portrait-and-down {
+  nav.accounts ul {
+    padding-top: 0;
+  }
+}
+
 /*
   Layout
  */
