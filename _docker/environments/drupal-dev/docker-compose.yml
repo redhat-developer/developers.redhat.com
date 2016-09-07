@@ -110,6 +110,7 @@ services:
      - ../../../:/home/jenkins_developer/developer.redhat.com
      - export:/export
     entrypoint: "ruby _docker/lib/export/export.rb docker"
+    user: root
 
   #
   # Testing

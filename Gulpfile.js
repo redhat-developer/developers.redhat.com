@@ -7,6 +7,7 @@ var sassUtils = require("node-sass-utils")(sass);
 var globs = {
   // TODO: Need to find a fix for adobe analytics
   "scripts": [
+    'javascripts/vendor/angular-1.3.3.js',
     'javascripts/drupal-namespace.js',
     'javascripts/vendor/jquery.xdomainrequest.js',
     'javascripts/extensions.js',
@@ -84,6 +85,7 @@ gulp.task('scripts',function() {
     .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
     .pipe(plugins.injectString.prepend('var $ = jQuery;'))
     .pipe(plugins.concat('all.js'))
+    .pipe(plugins.uglify())
     .pipe(plugins.rename('all.min.js'))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())

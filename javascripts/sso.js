@@ -6,16 +6,16 @@ app.sso = function () {
                 saveTokens();
 
                 $('a.logged-in-name')
-                    .text(keycloak.tokenParsed['name'])
-                    .attr('href', app.ssoConfig.account_url)
-                    .show();
+                        .text(keycloak.tokenParsed['name'])
+                        .attr('href', app.ssoConfig.account_url)
+                        .show();
                 $('li.login, li.register, li.login-divider, section.register-banner, .devnation-hidden-code').hide();
                 $('section.contributors-banner, .devnation-code').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl())
                 // once the promise comes back, listen for a click on logout
-                $('a.logout').on('click',function(e) {
+                $('a.logout').on('click', function (e) {
                     e.preventDefault();
-                    keycloak.logout({"redirectUri":app.ssoConfig.logout_url});
+                    keycloak.logout({"redirectUri": app.ssoConfig.logout_url});
                 });
 
             }).error(clearTokens);
@@ -23,13 +23,13 @@ app.sso = function () {
             $('li.login, section.register-banner, .devnation-hidden-code').show();
             $('li.logged-in, section.contributors-banner, .devnation-code').hide();
             $('li.logged-in').hide();
-            $('li.login a').on('click',function(e){
+            $('li.login a').on('click', function (e) {
                 e.preventDefault();
                 keycloak.login();
             });
-            $('li.register a, a.keycloak-url').on('click',function(e){
+            $('li.register a, a.keycloak-url').on('click', function (e) {
                 e.preventDefault();
-                keycloak.login({ action : 'register', redirectUri : app.ssoConfig.confirmation });
+                keycloak.login({action: 'register', redirectUri: app.ssoConfig.confirmation});
             });
         }
     }
@@ -113,7 +113,7 @@ app.sso = function () {
         if ($('.downloadthankyou').length) {
             app.termsAndConditions.download();
         }
-        
+
     }).error(function () {
         updateUser();
     });

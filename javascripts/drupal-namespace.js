@@ -5,8 +5,8 @@
 var app = window.app = {};
 
 /*
-  Base URL
-*/
+ Base URL
+ */
 var full_base_url = Drupal.url.toAbsolute(drupalSettings.path.baseUrl);
 app.baseUrl = full_base_url.substring(0, full_base_url.lastIndexOf('/'));
 
@@ -16,14 +16,14 @@ app.baseUrl = full_base_url.substring(0, full_base_url.lastIndexOf('/'));
 app.downloadManagerBaseUrl = drupalSettings.rhd.downloadManager.baseUrl;
 
 /*
-  Website Cache
-*/
+ Website Cache
+ */
 app.cache = {};
 
 
 /*
-  JS templates
-*/
+ JS templates
+ */
 app.templates = {};
 app.templates.searchpageTemplate = drupalSettings.rhd.templates.searchPageTemplate;
 app.templates.miniBuzzTemplate = drupalSettings.rhd.templates.miniBuzz;
@@ -36,13 +36,13 @@ app.templates.connectorTemplate = drupalSettings.rhd.templates.connector;
 app.templates.productStackoverflowTemplate = drupalSettings.rhd.templates.productStackoverflowTemplate;
 app.templates.stackoverflowTemplate = drupalSettings.rhd.templates.stackoverflowTemplate;
 /*
-  FastClick variable for faster tapping on touch devices
-*/
+ FastClick variable for faster tapping on touch devices
+ */
 app.fastClick = false;
 
 /*
-  DCP setup
-*/
+ DCP setup
+ */
 
 app.dcp = {};
 app.dcp.url = {};
@@ -51,64 +51,92 @@ app.dcp.url.stackoverflow = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v
 app.dcp.url.content = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/content';
 app.dcp.url.auth_status = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/auth/status';
 app.dcp.url.rating = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/rating';
-app.dcp.url.project= drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/suggest_project_name_ngram_more_fields';
-app.dcp.url.events= drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/events';
-app.dcp.url.connectors= drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/connectors';
-app.dcp.url.broker= drupalSettings.rhd.broker;
+app.dcp.url.project = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/suggest_project_name_ngram_more_fields';
+app.dcp.url.events = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/events';
+app.dcp.url.connectors = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/connectors';
+app.dcp.url.broker = drupalSettings.rhd.broker;
 app.dcp.error_message = "<div class='dcp-error-message'>It appears we're unable to access this data right now. Look at <a href='http://twitter.com/jbossorg' target=_blank>@jbossorg</a> to see if there is scheduled maintenance, or try again shortly.</div>";
-app.dcp.url.developer_materials= drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/developer_materials';
+app.dcp.url.developer_materials = drupalSettings.rhd.dcp.baseProtocolRelativeUrl + '/v2/rest/search/developer_materials';
 app.dcp.excludeResourceTags = ["red hat", "Red Hat", "redhat"];
 
 // TODO: I pulled this from another file, we should find a better way to keep these up to date
 app.dcp.availableTopics = ["AOP", "ActiveMQ", "ActiveMQ Endpoint", "Android", "AngularJS", "Apache Cordova",
-        "Apache Deltaspike", "AppClient", "Arquillian", "Asynchronous EJB", "Asynchronous Servlet", "BMT", "BPMS", "BRMS",
-        "BV", "Backbone", "Batch", "Batch 1.0", "Bean Validation 1.1", "Bundle packaging and deployment", "CDI", "CDI 1.1",
-        "CEP", "CMT", "CXF", "CXFRS Endpoint", "Camel", "Concurrency Utilities", "Content Base Routing", "Cordova",
-        "Crash Recovery", "DOM", "DOM4J", "Dandellion", "DeltaSpike", "Deltaspike", "Drools", "EAR",
-        "EE Concurrency Utilities", "EJB", "EJB 3.1 Timer", "EJB 3", "EL 3.0", "Fabric8", "File Endpoint", "Forge", "Fuse",
-        "GWT", "Github API", "H2", "HASingleton", "HTML5", "Hibernate", "Hibernate 3", "Hibernate 4", "HornetQ", "Hot Rod",
-        "HotRod", "Http4 Endpoint", "Infinispan", "Interceptor 1.2", "Interceptors", "JAAS", "JACC", "JASPIC", "JAX-RS",
-        "JAX-RS 2.0", "JAX-RS Client API", "JAX-WS", "JAX-WS 2.2", "JAXB transformation", "JAXP", "JBoss BPM Suite",
-        "JBoss BRMS", "JBoss Data Grid", "JBoss DataVirt", "JBoss EAP", "JBoss Fuse", "JBoss Logging Tools", "JBoss Modules",
-        "JBoss ON", "JCA 1.7", "JMS", "JMS 2.0", "JMX", "JNDI", "JPA", "JPA 2.0", "JPA 2.1", "JQuery", "JSF", "JSF 2.2", "JSF2",
-        "JSON", "JSON-P", "JSON-P 1.0", "JSP", "JSTL", "JTA", "JTA 1.2", "JTS", "JUnit", "JWS", "JWT", "Java", "Java EE 7",
-        "Java Servlet", "JavaMail", "JavaScript", "JavaScript Cordova", "Javamail 1.5", "Jenkins", "Junit", "Logging", "MBean",
-        "MDB", "Maven", "Memcached", "Nexus", "OAuth", "OSGi", "Objective-C", "Optaplanner", "PicketLink",
-        "PicketLink Federation", "PicketLink IDM", "Portal Container", "Portal Extension", "Portlet", "Portlet Bridge",
-        "REST", "RESTful", "RF4", "RecipientList Endpoint with dynamic Restful URL",
-        "Red Hat JBoss Enterprise Application Platform (JBoss EAP)", "Red Hat JBoss Portal", "Remote Query", "RestEasy",
-        "Resteasy", "RichFaces", "SAML", "SAML v2.0", "SAX", "SFSB EJB", "SLSB EJB", "SQL Endpoint", "Security", "Servlet",
-        "Servlet 3.1", "Servlet Filter", "Servlet Listener", "Servlets", "Set up the activemq for messaging broker.",
-        "Shrinkwrap", "Singleton", "Sonar", "Spring", "Spring Boot", "Spring Data", "Spring MVC", "Spring MVC Annotations",
-        "Topcoat", "Transactions", "Unified Push Java Client", "WAR", "WS-AT", "WS-BA", "WS-Trust", "WebSocket",
-        "WebSocket through STOMP", "Websocket 1.0", "i18n", "iOS", "jBPM", "jQuery", "jQuery Mobile", "l10n", "webjars"];
+    "Apache Deltaspike", "AppClient", "Arquillian", "Asynchronous EJB", "Asynchronous Servlet", "BMT", "BPMS", "BRMS",
+    "BV", "Backbone", "Batch", "Batch 1.0", "Bean Validation 1.1", "Bundle packaging and deployment", "CDI", "CDI 1.1",
+    "CEP", "CMT", "CXF", "CXFRS Endpoint", "Camel", "Concurrency Utilities", "Content Base Routing", "Cordova",
+    "Crash Recovery", "DOM", "DOM4J", "Dandellion", "DeltaSpike", "Deltaspike", "Drools", "EAR",
+    "EE Concurrency Utilities", "EJB", "EJB 3.1 Timer", "EJB 3", "EL 3.0", "Fabric8", "File Endpoint", "Forge", "Fuse",
+    "GWT", "Github API", "H2", "HASingleton", "HTML5", "Hibernate", "Hibernate 3", "Hibernate 4", "HornetQ", "Hot Rod",
+    "HotRod", "Http4 Endpoint", "Infinispan", "Interceptor 1.2", "Interceptors", "JAAS", "JACC", "JASPIC", "JAX-RS",
+    "JAX-RS 2.0", "JAX-RS Client API", "JAX-WS", "JAX-WS 2.2", "JAXB transformation", "JAXP", "JBoss BPM Suite",
+    "JBoss BRMS", "JBoss Data Grid", "JBoss DataVirt", "JBoss EAP", "JBoss Fuse", "JBoss Logging Tools", "JBoss Modules",
+    "JBoss ON", "JCA 1.7", "JMS", "JMS 2.0", "JMX", "JNDI", "JPA", "JPA 2.0", "JPA 2.1", "JQuery", "JSF", "JSF 2.2", "JSF2",
+    "JSON", "JSON-P", "JSON-P 1.0", "JSP", "JSTL", "JTA", "JTA 1.2", "JTS", "JUnit", "JWS", "JWT", "Java", "Java EE 7",
+    "Java Servlet", "JavaMail", "JavaScript", "JavaScript Cordova", "Javamail 1.5", "Jenkins", "Junit", "Logging", "MBean",
+    "MDB", "Maven", "Memcached", "Nexus", "OAuth", "OSGi", "Objective-C", "Optaplanner", "PicketLink",
+    "PicketLink Federation", "PicketLink IDM", "Portal Container", "Portal Extension", "Portlet", "Portlet Bridge",
+    "REST", "RESTful", "RF4", "RecipientList Endpoint with dynamic Restful URL",
+    "Red Hat JBoss Enterprise Application Platform (JBoss EAP)", "Red Hat JBoss Portal", "Remote Query", "RestEasy",
+    "Resteasy", "RichFaces", "SAML", "SAML v2.0", "SAX", "SFSB EJB", "SLSB EJB", "SQL Endpoint", "Security", "Servlet",
+    "Servlet 3.1", "Servlet Filter", "Servlet Listener", "Servlets", "Set up the activemq for messaging broker.",
+    "Shrinkwrap", "Singleton", "Sonar", "Spring", "Spring Boot", "Spring Data", "Spring MVC", "Spring MVC Annotations",
+    "Topcoat", "Transactions", "Unified Push Java Client", "WAR", "WS-AT", "WS-BA", "WS-Trust", "WebSocket",
+    "WebSocket through STOMP", "Websocket 1.0", "i18n", "iOS", "jBPM", "jQuery", "jQuery Mobile", "l10n", "webjars"];
 
 app.dcp.thumbnails = {
     // jboss
-    "jbossdeveloper_quickstart" : "/images/design/get-started/jbossdeveloper_quickstart.png",
-    "jbossdeveloper_archetype" : "/images/design/get-started/jbossdeveloper_archetype.png",
-    "jbossdeveloper_bom" : "/images/design/get-started/jbossdeveloper_bom.png",
-    "jbossdeveloper_demo" : "/images/design/get-started/jbossdeveloper_demo.png",
+    "jbossdeveloper_quickstart": "/images/design/get-started/jbossdeveloper_quickstart.png",
+    "jbossdeveloper_archetype": "/images/design/get-started/jbossdeveloper_archetype.png",
+    "jbossdeveloper_bom": "/images/design/get-started/jbossdeveloper_bom.png",
+    "jbossdeveloper_demo": "/images/design/get-started/jbossdeveloper_demo.png",
     // futurerproof for when jboss goes unprefixed
-    "quickstart" : "/images/design/get-started/jbossdeveloper_quickstart.png",
-    "archetype" : "/images/design/get-started/jbossdeveloper_archetype.png",
-    "bom" : "/images/design/get-started/jbossdeveloper_bom.png",
-    "demo" : "/images/design/get-started/jbossdeveloper_demo.png",
+    "quickstart": "/images/design/get-started/jbossdeveloper_quickstart.png",
+    "archetype": "/images/design/get-started/jbossdeveloper_archetype.png",
+    "bom": "/images/design/get-started/jbossdeveloper_bom.png",
+    "demo": "/images/design/get-started/jbossdeveloper_demo.png",
     // redhat
-    "solution" : "/images/design/get-started/solution.png",
-    "article" : "/images/design/get-started/article.png",
+    "solution": "/images/design/get-started/solution.png",
+    "article": "/images/design/get-started/article.png",
     // need icons?
-    "rht_knowledgebase_article" : "/images/design/get-started/article.png",
-    "rht_knowledgebase_solution" : "/images/design/get-started/solution.png",
-    "jbossdeveloper_vimeo" : "/images/design/get-started/article.png",
-    "jbossdeveloper_connector" : "/images/design/get-started/article.png"
+    "rht_knowledgebase_article": "/images/design/get-started/article.png",
+    "rht_knowledgebase_solution": "/images/design/get-started/solution.png",
+    "jbossdeveloper_vimeo": "/images/design/get-started/article.png",
+    "jbossdeveloper_connector": "/images/design/get-started/article.png"
 };
 
 /*
-  Products
-  TODO: I pulled this from another file, we may need to figure out a better way to keep these up to date.
-*/
-app.products = {"amq": {"upstream": ["activemq","fabric8"],"stackoverflow": "_none"},"bpmsuite": {"upstream": ["drools","guvnor","optaplanner","jbpm"],"stackoverflow": "_none"},"brms": {"upstream": ["optaplanner","drools","guvnor"],"stackoverflow": "_none"},"cdk": {"upstream": null,"stackoverflow": "_none"},"datagrid": {"upstream": ["infinispan","jgroups","hibernate_subprojects_search"],"stackoverflow": "_none"},"datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"],"stackoverflow": "_none"},"developertoolset": {"upstream": null,"stackoverflow": "_none"},"devstudio": {"upstream": ["jbosstools"],"stackoverflow": "_none"},"devsuite": {"upstream": null,"stackoverflow": "_none"},"dotnet": {"upstream": null,"stackoverflow": "_none"},"eap": {"upstream": ["wildfly","jgroups","hibernate","hornetq","jbossclustering","jbossmc","narayana","jbossweb","jbossws","ironjacamar","jgroups","mod_cluster","jbossas_osgi","jbosssso","picketlink","resteasy","weld","wise","xnio"],"stackoverflow": ["jboss","jboss7.x","jboss5.x","jboss6.x","jboss-eap-6","jboss-4.0.x"]},"fuse": {"upstream": ["camel","karaf","activemq","cxf","fabric8","switchyard","hawtio"],"stackoverflow": ["jbossfuse"]},"mobileplatform": {"upstream": null,"stackoverflow": "_none"},"openjdk": {"upstream": null,"stackoverflow": "_none"},"openshift": {"upstream": null,"stackoverflow": ["openshift","openshift-client-tools","openshift-enterprise","openshift-cartridge","openshift-php-cartridges","openshift-gears","openshift-web-console","Openshift-env-variables"]},"rhel": {"upstream": ["fedora"],"stackoverflow": ["rhel","rhel5","rhel6","rhel7","rhel-scl"]},"softwarecollections": {"upstream": null,"stackoverflow": ["rhel-scl"]},"webserver": {"upstream": ["tomcat","httpd","mod_cluster"],"stackoverflow": ["jboss-web"]}};
+ Products
+ TODO: I pulled this from another file, we may need to figure out a better way to keep these up to date.
+ */
+app.products = {
+    "amq": {"upstream": ["activemq", "fabric8"], "stackoverflow": "_none"},
+    "bpmsuite": {"upstream": ["drools", "guvnor", "optaplanner", "jbpm"], "stackoverflow": "_none"},
+    "brms": {"upstream": ["optaplanner", "drools", "guvnor"], "stackoverflow": "_none"},
+    "cdk": {"upstream": null, "stackoverflow": "_none"},
+    "datagrid": {"upstream": ["infinispan", "jgroups", "hibernate_subprojects_search"], "stackoverflow": "_none"},
+    "datavirt": {"upstream": ["teiid", "teiiddesigner", "modeshape"], "stackoverflow": "_none"},
+    "developertoolset": {"upstream": null, "stackoverflow": "_none"},
+    "devstudio": {"upstream": ["jbosstools"], "stackoverflow": "_none"},
+    "devsuite": {"upstream": null, "stackoverflow": "_none"},
+    "dotnet": {"upstream": null, "stackoverflow": "_none"},
+    "eap": {
+        "upstream": ["wildfly", "jgroups", "hibernate", "hornetq", "jbossclustering", "jbossmc", "narayana", "jbossweb", "jbossws", "ironjacamar", "jgroups", "mod_cluster", "jbossas_osgi", "jbosssso", "picketlink", "resteasy", "weld", "wise", "xnio"],
+        "stackoverflow": ["jboss", "jboss7.x", "jboss5.x", "jboss6.x", "jboss-eap-6", "jboss-4.0.x"]
+    },
+    "fuse": {
+        "upstream": ["camel", "karaf", "activemq", "cxf", "fabric8", "switchyard", "hawtio"],
+        "stackoverflow": ["jbossfuse"]
+    },
+    "mobileplatform": {"upstream": null, "stackoverflow": "_none"},
+    "openjdk": {"upstream": null, "stackoverflow": "_none"},
+    "openshift": {
+        "upstream": null,
+        "stackoverflow": ["openshift", "openshift-client-tools", "openshift-enterprise", "openshift-cartridge", "openshift-php-cartridges", "openshift-gears", "openshift-web-console", "Openshift-env-variables"]
+    },
+    "rhel": {"upstream": ["fedora"], "stackoverflow": ["rhel", "rhel5", "rhel6", "rhel7", "rhel-scl"]},
+    "softwarecollections": {"upstream": null, "stackoverflow": ["rhel-scl"]},
+    "webserver": {"upstream": ["tomcat", "httpd", "mod_cluster"], "stackoverflow": ["jboss-web"]}
+};
 
 /*
  * Marketing ops
@@ -124,10 +152,10 @@ app.ssoConfig = {};
 app.ssoConfig.account_url = drupalSettings.rhd.keycloak.accountUrl;
 app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
 
-var homeLink = document.getElementById('home-link')
-var confirmationPage = homeLink != null && homeLink.attributes['href'].value.endsWith('.html') ? 'confirmation.html' : 'confirmation'
-app.ssoConfig.confirmation = confirmationPage == 'confirmation.html' ? homeLink.href.replace('index.html',confirmationPage) : homeLink.href + confirmationPage
-app.ssoConfig.logout_url = homeLink.href
+var homeLink = document.getElementById('home-link');
+var confirmationPage = homeLink !== null && homeLink.attributes.href.value.endsWith('.html') ? 'confirmation.html' : 'confirmation';
+app.ssoConfig.confirmation = confirmationPage === 'confirmation.html' ? homeLink.href.replace('index.html', confirmationPage) : homeLink.href + confirmationPage;
+app.ssoConfig.logout_url = homeLink.href;
 app.projects = {};
 app.projects.defaultImage = "/images/design/projects/default_200x150.png";
 

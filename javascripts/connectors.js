@@ -60,10 +60,10 @@ app.connectors = {
         app.connectors.hideCodeSnippetIfEmpty(overlay_content.find('.connector-b'));
         app.connectors.hideDocsLinkIfEmpty(overlay_content);
         app.connectors.hideExtLinkIfEmpty(overlay_content);
-        app.connectors.open(overlay_content.html());  
+        app.connectors.open(overlay_content.html());
     },
-    
-    orderByPriority: function(e) {
+
+    orderByPriority: function (e) {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
         app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.PRIORITY);
@@ -72,7 +72,7 @@ app.connectors = {
         $('.order-priority').addClass('active');
     },
 
-    orderByAlpha: function(e) {
+    orderByAlpha: function (e) {
         e.preventDefault();
         var targetProductFilter = $('[data-target-product]').data('target-product');
         app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, app.connectors.orderBy.SYS_TITLE);
@@ -93,7 +93,7 @@ app.connectors = {
      * @param {string=} orderBy
      * @param {Array.<string>=} featuredIDs
      */
-    connectorFilter : function(query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
+    connectorFilter: function (query, container, target_product, thumbnailSize, orderBy, featuredIDs) {
         var url = app.dcp.url.connectors;
 
         var request_data = {};
@@ -119,15 +119,15 @@ app.connectors = {
         $("ul.connector-results").addClass('loading');
 
         $.ajax({
-            url : url,
+            url: url,
             dataType: 'json',
-            data : request_data,
-            container : container,
-            thumbnailSize : thumbnailSize,
-            error : function() {
+            data: request_data,
+            container: container,
+            thumbnailSize: thumbnailSize,
+            error: function () {
                 $('ul.connector-results').html(app.dcp.error_message);
             }
-        }).done(function(data){
+        }).done(function (data) {
             var container = this.container || $('ul.connector-results');
             var thumbnailSize = this.thumbnailSize || "200x150";
             app.connectors.format(data, container, thumbnailSize);
@@ -159,12 +159,12 @@ app.connectors = {
             if (!('sys_content' in props)) {
                 props.sys_content = props.sys_description;
             }
-            
+
             //Limit the short description length, in-case the source data is invalid.
-            if (props.sys_description.length > 150 ) {
-                props.sys_description = props.sys_description.slice(0,146).concat(' ...');
+            if (props.sys_description.length > 150) {
+                props.sys_description = props.sys_description.slice(0, 146).concat(' ...');
             }
-            
+
             //The templating fails if these values are undefined. There's probably a better way to do this.
             if (!props.code_snippet_1) {
                 props.code_snippet_1 = '';
@@ -175,15 +175,15 @@ app.connectors = {
             if (!props.more_details_url) {
                 props.more_details_url = '';
             }
-            if(!props.link_1_text || !props.link_1_url){
-               props.link_1_text = '';
+            if (!props.link_1_text || !props.link_1_url) {
+                props.link_1_text = '';
                 props.link_1_url = '';
             }
-            if(!props.link_2_text || !props.link_2_url){
+            if (!props.link_2_text || !props.link_2_url) {
                 props.link_2_text = '';
                 props.link_2_url = '';
             }
-            
+
             var connectorTemplate = app.templates.connectorTemplate;
             html += connectorTemplate.template(props);
 
@@ -196,31 +196,31 @@ app.connectors = {
 
 $(function () {
 
-    $('ul.connector-results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
-    $('ul.featured-connectors-results').on('click','a.fn-open-connector',app.connectors.displayOverlay);
-    
-    $('.link-list').on('click','a.order-priority',app.connectors.orderByPriority);
-    $('.link-list').on('click','a.order-alpha',app.connectors.orderByAlpha);
-    
+    $('ul.connector-results').on('click', 'a.fn-open-connector', app.connectors.displayOverlay);
+    $('ul.featured-connectors-results').on('click', 'a.fn-open-connector', app.connectors.displayOverlay);
+
+    $('.link-list').on('click', 'a.order-priority', app.connectors.orderByPriority);
+    $('.link-list').on('click', 'a.order-alpha', app.connectors.orderByAlpha);
+
     $('.overlay-close').on('click', app.connectors.close);
 
     var targetProductFilter = $('[data-target-product]').data('target-product');
     var orderBy = $('[data-order-by]').data('order-by');
-    
+
     /*
-        All Connectors
+     All Connectors
      */
     var connectorResults = $('.connector-results');
-    if(connectorResults.length) {
+    if (connectorResults.length) {
         app.connectors.connectorFilter(null, $('ul.connector-results'), targetProductFilter, null, orderBy);
     }
 
-    
+
     /*
-        Featured Connectors
+     Featured Connectors
      */
     var featuredConnectorIds = $('.featured-connector-ids');
-    if(featuredConnectorIds.length) {
+    if (featuredConnectorIds.length) {
         var featuredIds = JSON.parse(featuredConnectorIds.text());
         if ($.isArray(featuredIds) && featuredIds.length > 0) {
             app.connectors.connectorFilter(null, $('ul.featured-connectors-results'), targetProductFilter, '500x400', null, featuredIds);
