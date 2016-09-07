@@ -1,31 +1,33 @@
-require_relative 'abstract/common_elements'
+require_relative 'abstract/standardised_search'
 
-class ResourcesPage < CommonElements
+class ResourcesPage < StandardisedSearch
   page_url('/resources/')
-  #page_title('Discover the developer materials Red Hat has to offer | Red Hat Developers')
+  expected_element(:h2, text: 'Resources')
+  #page_title('Discover the developer materials Red Hat has to offer')
 
-  element(:blog_posts)             { |el| el.find(id: 'blogposts') }
-  element(:books)                  { |el| el.find(id: 'book') }
-  element(:code)                   { |el| el.find(id: 'code') }
-  element(:get_started)            { |el| el.find(id: 'get-started') }
-  element(:knowledgebase)          { |el| el.find(id: 'knowledge') }
-  element(:video)                  { |el| el.find(id: 'video') }
-  elements(:checkboxes)            { |el| el.find_elements(css: 'input[type="checkbox"]') }
+  element(:blog_posts)             { |b| b.element(xpath: "//label[@for='blogposts']") }
+  element(:books)                  { |b| b.element(xpath: "//label[@for='book']") }
+  element(:code)                   { |b| b.element(xpath: "//label[@for='code']") }
+  element(:get_started)            { |b| b.element(xpath: "//label[@for='get-started']") }
+  element(:knowledgebase)          { |b| b.element(xpath: "//label[@for='knowledge']") }
+  element(:video)                  { |b| b.element(xpath: "//label[@for='video']") }
+  elements(:checkbox_filters)      { |b| b.checkboxes(css: 'input[type="checkbox"]') }
+  element(:keyword_field)          { |b| b.text_field(class: 'search_field') }
+  element(:product_filter)         { |b| b.select_list(class: 'search-by-product') }
+  element(:publish_date)           { |b| b.select_list(class: 'publish-date') }
+  elements(:result_date)           { |b| b.spans(css: '.result-details .created-date') }
+  elements(:result_tags)           { |b| b.spans(class: 'tag') }
 
-  element(:keyword_field)          { |el| el.find(class: 'search_field') }
-  element(:product_filter)         { |el| el.find(class: 'search-by-product') }
-  element(:publish_date)           { |el| el.find(class: 'publish-date') }
-
-  elements(:result_date)           { |el| el.find_elements(css: '.result-details .created-date') }
-  elements(:result_tags)           { |el| el.find_elements(class: 'tag') }
-
-  element(:start_date)             { |el| el.find(class: 'publish-date') }
-  element(:end_date)               { |el| el.find(class: 'end-date') }
-  element(:results_count)          { |el| el.find(class: 'results-count') }
+  action(:filter_by_blog_posts)    { |p| p.blog_posts.when_present.click }
+  action(:filter_by_book)          { |p| p.books.when_present.click }
+  action(:filter_by_code_artifact) { |p| p.code.when_present.click }
+  action(:filter_by_get_started)   { |p| p.get_started.when_present.click }
+  action(:filter_by_knowledgebase) { |p| p.knowledgebase.when_present.click }
+  action(:filter_by_video)         { |p| p.video.when_present.click }
 
   def any_checked?
     checkboxes_arr = []
-    checkboxes.each { |el| checkboxes_arr << el.attribute('checked') }
+    checkbox_filters.each { |el| checkboxes_arr << el.attribute_value('checked') }
     checkboxes_arr
   end
 
@@ -37,26 +39,6 @@ class ResourcesPage < CommonElements
     results
   end
 
-  def filter_by(type)
-    case type.downcase
-      when 'blog posts'
-        click_on(xpath: "//label[@for='blogposts']")
-      when 'book'
-        click_on(xpath: "//label[@for='book']")
-      when 'code artifact'
-        click_on(xpath: "//label[@for='code']")
-      when 'get started'
-        click_on(xpath: "//label[@for='get-started']")
-      when 'knowledgebase article / solution'
-        click_on(xpath: "//label[@for='knowledge']")
-      when 'video'
-        click_on(xpath: "//label[@for='video']")
-      else
-        raise("#{type} not found")
-    end
-    wait_for_results
-  end
-
   def keyword_search(search_string)
     type(keyword_field, search_string)
     wait_for_loading
@@ -64,19 +46,18 @@ class ResourcesPage < CommonElements
   end
 
   def filter_by_product(product)
-    select(product_filter, product)
-    wait_for_loading
+    product_filter.when_present.select(product)
     wait_for_results
   end
 
   def filter_by_publish_date(date_type)
-    select(publish_date, date_type)
-    wait_for_loading
+    publish_date.when_present.select(date_type)
     wait_for_results
   end
 
   def results_contain_img_for(type)
-    elements = find_elements(css: ".result-icon .icon-RHDev_-resources_icons_#{type.downcase}")
+    wait_for_results
+    elements = @browser.images(css: ".result-icon .icon-RHDev_-resources_icons_#{type.downcase}")
     elements.size == 10
   end
 

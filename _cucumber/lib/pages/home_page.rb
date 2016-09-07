@@ -1,6 +1,6 @@
-require_relative 'abstract/common_elements'
+require_relative 'abstract/site_base'
 
-class HomePage < CommonElements
+class HomePage < SiteBase
   page_url('/')
   #page_title('Red Hat Developers')
 end

@@ -97,10 +97,10 @@ Feature: Search Page
     When I search for "developer"
     Then the search results page is displayed
     Then I should see pagination with "5" pages with ellipsis
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -108,7 +108,7 @@ Feature: Search Page
     Given I have previously searched for "code"
     When I click on the pagination "Next" link
     Then I should see page "2" of the results
-    And the following links should be enabled:
+    And the following links should be available:
       | First    |
       | Previous |
       | Next     |
@@ -119,10 +119,10 @@ Feature: Search Page
     And I am on page "2" of the results
     When I click on the pagination "Previous" link
     Then I should see page "1" of the results
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -138,10 +138,10 @@ Feature: Search Page
     Given I am on the Home page
     When I search for "I can't find anything that has 5 pages"
     Then I should see pagination with "5" pages without ellipsis
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -156,10 +156,10 @@ Feature: Search Page
     Given I am on the Home page
     When I search for "?"
     Then I should see pagination with "2" pages
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 

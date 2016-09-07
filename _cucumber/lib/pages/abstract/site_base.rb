@@ -1,139 +1,130 @@
-require_relative 'driver_base'
+require_relative 'generic_base_page'
+require_relative '../../../../_cucumber/lib/helpers/driver_helper'
+require_relative '../../../../_cucumber/lib/helpers/page_helper'
 
-class SiteBase < DriverBase
+class SiteBase < GenericBasePage
+  include DriverHelper, PageHelper
 
-  value(:search_field_visible?) { |el| el.displayed?(css: '.accounts .search-wrapper .user-search') }
-  element(:search_box)          { |el| el.find(css: '.accounts .search-wrapper .user-search') }
-  action(:click_search_button)  { |el| el.click_on(id: 'search-button') }
+  element(:login_link)              { |b| b.li(class: 'login') }
+  element(:logout_link)             { |b| b.link(class: 'logout') }
+  element(:register_link)           { |b| b.li(class: 'register') }
+  element(:logged_in_name)          { |b| b.li(class: 'logged-in-name') }
+  element(:mobile_menu)             { |b| b.link(class: 'nav-toggle')}
+  element(:site_nav_search_box)     { |b| b.text_field(css: '.accounts .search-wrapper .user-search') }
+  element(:search_button)           { |b| b.button(id: 'search-button') }
+  element(:logged_in)               { |b| b.li(class: 'logged-in') }
+  element(:mobile_nav)              { |b| b.element(class: 'nav-open') }
+  element(:kc_feedback_text)        { |b| b.element(class: 'kc-feedback-text') }
+  element(:topics_link)             { |b| b.link(text: 'Topics') }
+  element(:technologies_link)       { |b| b.link(text: 'Technologies') }
+  element(:community_link)          { |b| b.link(text: 'Community') }
+  element(:help_link)               { |b| b.link(text: 'Help') }
+  element(:downloads_link)          { |b| b.link(text: 'Downloads') }
+  element(:sub_nav)                 { |b| b.li(class: 'sub-nav-open') }
+  element(:topics_sub_nav)          { |b| b.div(id: 'sub-nav-topics') }
+  element(:technologies_sub_nav)    { |b| b.div(id: 'sub-nav-technologies') }
+  element(:community_sub_nav)       { |b| b.div(id: 'sub-nav-community') }
+  element(:help_sub_nav)            { |b| b.div(id: 'sub-nav-help') }
 
-  element(:login_link)          { |el| el.find(css: '.login') }
-  element(:logout_link)         { |el| el.find(css: '.logout') }
-  element(:register_link)       { |el| el.find(css: '.register') }
-  element(:logged_in_name)      { |el| el.find(css: '.logged-in-name') }
-  element(:mobile_menu)         { |el| el.find(css: '.nav-toggle')}
+  value(:search_field_visible?)     { |p| p.site_nav_search_box.present? }
+  value(:is_mobile?)                { |p| p.mobile_menu.present? }
+  value(:is_logged_in?)             { |p| p.logged_in.present? }
+  value(:is_logged_out?)            { |p| p.login_link.present? }
+  value(:mobile_menu_open?)         { |p| p.mobile_nav.present? }
+  value(:sub_nav_open?)             { |p| p.sub_nav.present? }
+  value(:name)                      { |p| p.logged_in.when_present.text }
+  value(:kc_feedback)               { |p| p.kc_feedback_text.when_present.text }
 
-  value(:is_mobile?)            { |el| el.displayed?(css: '.nav-toggle') }
-  value(:logged_in)             { |el| el.displayed?(css: '.logged-in') }
-  value(:mobile_menu_open?)     { |el| el.displayed?(css: '.nav-open') }
-  value(:sub_nav_open?)         { |el| el.displayed?(css: '.sub-nav-open' ) }
-
-  value(:kc_feedback)           { |el| el.text_of(css: '.kc-feedback-text') }
+  action(:click_login_link)         { |p| p.login_link.when_present.click }
+  action(:click_logout_link)        { |p| p.logout_link.when_present.click }
+  action(:click_register_link)      { |p| p.register_link.when_present.click }
+  action(:toggle_mobile_menu)       { |p| p.mobile_menu.click }
+  action(:click_search_button)      { |p| p.search_button.click }
 
   def search_for(search_string)
     enter_search_term(search_string)
     press_return
-    wait_for_ajax
   end
 
   def enter_search_term(search_string)
-    search_box.send_keys(search_string)
-  end
-
-  def logged_in?
-    wait_for_ajax
-    if is_mobile?
-      toggle_menu
-    end
-    wait_for(30) { logged_in }
-    wait_for { logged_in_name.text != '' }
-    logged_in_name.text
-  end
-
-  def logged_out?
-    wait_for_ajax
-    if is_mobile?
-      toggle_menu
-    end
-    wait_for(30) { register_link.displayed? }
-    register_link.displayed?
-  end
-
-  def click_login
-    if is_mobile?
-      toggle_menu
-    end
-    wait_for(30) { login_link.displayed? }
-    login_link.click
-  end
-
-  def click_logout
-    if is_mobile?
-      toggle_menu
-    end
-    logout_link.click
-    wait_for_ajax
-  end
-
-  def click_register
-    if is_mobile?
-      toggle_menu
-    end
-    wait_for(30) { register_link.displayed? }
-    register_link.click
+    type(site_nav_search_box, search_string)
   end
 
   def toggle_menu
-    unless mobile_menu_open?
-      mobile_menu.click
-    end
-    wait_for { mobile_menu_open? }
+    toggle_mobile_menu unless mobile_menu_open?
+    wait_for(3, 'Failed to toggle mobile menu!') { mobile_menu_open? }
+  end
+
+  def open_login_page
+    toggle_menu if is_mobile?
+    click_login
+    on LoginPage
+  end
+
+  def open_register_page
+    toggle_menu if is_mobile?
+    click_register
+    on RegistrationPage
+  end
+
+  def logged_in?
+    toggle_menu if is_mobile?
+    wait_for(10, 'User was not logged in after 30 seconds!') { is_logged_in? }
+    wait_for { name != '' }
+    name
+  end
+
+  def logged_out?
+    toggle_menu if is_mobile?
+    wait_for(10, 'User was not logged out after 30 seconds!') { is_logged_out? }
+    is_logged_out?
+  end
+
+  def click_login
+    toggle_menu if is_mobile?
+    click_login_link
+  end
+
+  def click_logout
+    toggle_menu if is_mobile?
+    click_logout_link
+    logout_link.wait_while_present
+  end
+
+  def click_register
+    toggle_menu if is_mobile?
+    click_register_link
   end
 
   def toggle_menu_and_tap(menu_item)
-    mobile_menu.click
-    wait_for { mobile_menu_open? }
+    toggle_menu
     click_on_nav_menu(menu_item)
   end
 
-  def navigate_to(link)
-    wait_for_ajax
-    if is_mobile?
-      toggle_menu
-      click_login if link == 'login'
-      click_register if link == 'registration'
-      logged_in_name.click if link == 'edit details'
-    else
-      click_login if link == 'login'
-      click_register if link == 'registration'
-      logged_in_name.click if link == 'edit details'
-    end
-    wait_for_ajax
-  end
-
   def click_on_nav_menu(menu_item)
-    if is_mobile?
-      toggle_menu
-    end
-    wait_for { displayed?(xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{menu_item.capitalize}')]") }
-    click_on(xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{menu_item.capitalize}')]")
-  end
-
-  def hover_over_nav_menu(menu_item)
-    hover_on(xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{menu_item.capitalize}')]")
+    send("#{menu_item.downcase}_link").when_present.click
   end
 
   def menu_item_present?(menu_item)
-    if is_mobile?
-      toggle_menu
-    end
+    toggle_menu if is_mobile?
     case menu_item
       when 'login'
-        login_link.displayed?
+        login_link.present?
       when 'register'
-        register_link.displayed?
+        register_link.present?
       else
-        displayed?(xpath: "//nav[@class='mega-menu']//ul/li/*[contains(text(),'#{menu_item.capitalize}')]")
+        send("#{menu_item}_link").present?
     end
   end
 
   def sub_menu_items(menu_item, resolution)
-    wait_for { sub_nav_open? } if resolution == 'mobile'
-    text_of(xpath: "//*[@id='sub-nav-#{menu_item.downcase}']")
+    wait_for(3, 'Timed out waiting for Sub Nav to open!') { sub_nav_open? } if resolution == 'mobile'
+    send("#{menu_item}_sub_nav").when_present.text
   end
 
   def get_href_for(link)
-    href = find(partial_link_text: link)
-    href.attribute('href')
+    href = @browser.a(text: /#{link}/)
+    href.attribute_value('href')
   end
 
 end
