@@ -1,18 +1,17 @@
-require_relative 'abstract/common_elements'
+require_relative 'abstract/standardised_search'
+require_relative '../../../_cucumber/lib/helpers/driver_helper'
 
-class SearchPage < CommonElements
-  page_url('/search/')
-  #page_title('Search Results | Red Hat Developers')
+class SearchPage < StandardisedSearch
 
-  element(:search_box) { |el| el.find(id: 'search_list_text') }
+  element(:search_box) { |el| el.text_field(id: 'search_list_text') }
 
   def enter_search_term(search_string)
-    search_box.send_keys(search_string)
+    type(search_box, search_string)
   end
 
   def search_results
     results = []
-    wait_for(30) { results_loaded? }
+    wait_until_results_loaded
     result_row.each do |result|
       results << result.text
     end

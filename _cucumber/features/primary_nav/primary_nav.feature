@@ -24,7 +24,7 @@ Feature: Site navigation menu
   @desktop @smoke
   Scenario: Hovering over the TOPICS menu should display additional sub-menu with options
     Given I am on the Home page
-    When I hover over the Topics menu item
+    When I click on the Topics menu item
     Then I should see the following "Topics" desktop sub-menu items:
       | Containers              |
       | Mobile                  |
@@ -37,7 +37,7 @@ Feature: Site navigation menu
   @desktop @smoke
   Scenario: TOPICS sub-menu items should link to retrospective pages
     Given I am on the Home page
-    When I hover over the Topics menu item
+    When I click on the Topics menu item
     Then each Topics sub-menu item should contain a link to its retrospective page:
       | name                    | href                    |
       | Containers              | containers              |
@@ -64,11 +64,11 @@ Feature: Site navigation menu
   @products @desktop @smoke
   Scenario: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
     Given I am on the Home page
-    When I hover over the Technologies menu item
+    When I click on the Technologies menu item
     Then I should see the following "Technologies" desktop sub-menu items:
-      | INFRASTRUCTURE |
-      | CLOUD          |
-      | MOBILE         |
+      | INFRASTRUCTURE                         |
+      | CLOUD                                  |
+      | MOBILE                                 |
       | ACCELERATED DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION             |
       | DEVELOPER TOOLS                        |
@@ -78,7 +78,7 @@ Feature: Site navigation menu
   @products @desktop
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
     Given I am on the Home page
-    When I hover over the Technologies menu item
+    When I click on the Technologies menu item
     Then each Technologies sub-menu heading should contain a link to its retrospective section of the technologies page:
       | INFRASTRUCTURE                         |
       | CLOUD                                  |
@@ -91,7 +91,7 @@ Feature: Site navigation menu
   @products @desktop @smoke
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
     Given I am on the Home page
-    When I hover over the Technologies menu item
+    When I click on the Technologies menu item
     Then each available technology should link to their retrospective product overview page
 
   @mobile @smoke
@@ -99,9 +99,9 @@ Feature: Site navigation menu
     Given I am on the Home page
     When I tap on Technologies menu item
     Then I should see the following "Technologies" mobile sub-menu items:
-      | INFRASTRUCTURE |
-      | CLOUD          |
-      | MOBILE         |
+      | INFRASTRUCTURE                         |
+      | CLOUD                                  |
+      | MOBILE                                 |
       | ACCELERATED DEVELOPMENT AND MANAGEMENT |
       | INTEGRATION AND AUTOMATION             |
       | DEVELOPER TOOLS                        |
@@ -110,7 +110,7 @@ Feature: Site navigation menu
   @desktop @smoke
   Scenario: Hovering over the COMMUNITIES menu should display additional sub-menu with options
     Given I am on the Home page
-    When I hover over the Community menu item
+    When  I click on the Community menu item
     Then I should see the following Community sub-menu items and their description:
       | name                    | description                                                     |
       | Developers Blog         | Insights & news on Red Hat developer tools, platforms and more  |
@@ -121,13 +121,13 @@ Feature: Site navigation menu
   @products @desktop @smoke
   Scenario: COMMUNITIES sub-menu items should link to retrospective pages
     Given I am on the Home page
-    When I hover over the Community menu item
+    When  I click on the Community menu item
     Then each Communities sub-menu item should contain a link to its retrospective page:
-      | name                    | href                      |
-      | Developers Blog         | blog                      |
-      | Events                  | events                    |
-      | Open Source Communities | projects                  |
-      | Content Contributors    | community/contributor     |
+      | name                    | href                  |
+      | Developers Blog         | blog                  |
+      | Events                  | events                |
+      | Open Source Communities | projects              |
+      | Content Contributors    | community/contributor |
 
   @mobile @smoke
   Scenario: Tapping COMMUNITY from drop down menu on Mobile/Tablet should display additional communities
@@ -142,28 +142,28 @@ Feature: Site navigation menu
   @desktop @smoke
   Scenario: Hovering over the HELP menu should display additional sub-menu with options
     Given I am on the Home page
-    When I hover over the Help menu item
+    When  I click on the Help menu item
     Then I should see the following Help sub-menu items and their description:
-      | name                 | description                                                                                           |
-      | Resources            | Important technical resources for you in all shapes and sizes: blogs, books, code, videos and more.   |
-      | Forums               | We've extended our popular JBoss.org forums to cover our entire Red Hat portfolio for you.            |
-      | Stack Overflow Q&A   | You already use Stack Overflow, so we'll help you use it to find your best answers.                   |
+      | name               | description                                                                                         |
+      | Resources          | Important technical resources for you in all shapes and sizes: blogs, books, code, videos and more. |
+      | Forums             | We've extended our popular JBoss.org forums to cover our entire Red Hat portfolio for you.          |
+      | Stack Overflow Q&A | You already use Stack Overflow, so we'll help you use it to find your best answers.                 |
 
   @products @desktop @smoke
   Scenario: HELP sub-menu items should link to retrospective pages
     Given I am on the Home page
-    When I hover over the Help menu item
+    When I click on the Help menu item
     Then each Help sub-menu item should contain a link to its retrospective page:
-      | name                | href                  |
-      | Resources           | resources             |
-      | Forums              | forums                |
-      | Stack Overflow Q&A  | stack-overflow        |
+      | name               | href           |
+      | Resources          | resources      |
+      | Forums             | forums         |
+      | Stack Overflow Q&A | stack-overflow |
 
   @mobile @smoke
   Scenario: Tapping HELP from drop down menu on Mobile/Tablet should display additional help
     Given I am on the Home page
     When I tap on Help menu item
     Then I should see the following "Help" mobile sub-menu items:
-      | Resources           |
-      | Forums              |
-      | Stack Overflow Q&A  |
+      | Resources          |
+      | Forums             |
+      | Stack Overflow Q&A |

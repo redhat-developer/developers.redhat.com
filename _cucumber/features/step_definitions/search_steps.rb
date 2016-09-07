@@ -6,7 +6,7 @@ end
 
 Then(/^the search box should contain "([^"]*)"$/) do |search_term|
   on SearchPage do |page|
-    expect(page.search_box.attribute('value')).to eq search_term
+    expect(page.search_box.when_present.attribute_value('value')).to eq search_term
   end
 end
 
@@ -26,14 +26,6 @@ And(/^the result sorting options should be:$/) do |table|
   @current_page.results_sort[1].should =~ sort_options
 end
 
-And(/^the result per page options should be:$/) do |table|
-  results_per_page = []
-  table.raw.each do |links|
-    results_per_page << links.first
-  end
-  @current_page.results_per_page[1].should =~ results_per_page
-end
-
 Then(/^I should see "([^"]*)" results containing "([^"]*)"$/) do |results_size, search_string|
   expect(@current_page.search_results.size).to eq results_size.to_i
   @current_page.search_results.each do |result|
@@ -49,12 +41,11 @@ Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
 end
 
 Given(/^the search box is empty$/) do
-  expect(@current_page.search_box.attribute('value')).to eq ''
+  expect(@current_page.site_nav_search_box.attribute_value('value')).to eq ''
 end
 
 When(/^I click on the search button$/) do
   @current_page.click_search_button
-  @current_page.wait_for_ajax
 end
 
 When(/^I click on clear search button$/) do
