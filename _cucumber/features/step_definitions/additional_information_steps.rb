@@ -1,6 +1,6 @@
 Then(/^I should be asked to fill in mandatory information with a message "([^"]*)"$/) do |message|
   on AdditionalInformationPage do |page|
-    page.feedback.should == message
+    expect(page.feedback).to eq(message)
   end
 end
 
@@ -65,12 +65,5 @@ end
 Then(/^I should see a warning that the email is already registered$/) do
   on AdditionalInformationPage do |page|
     expect(page.email_field_error.text).to eq 'User account for this email already exists. Link your social account with the existing account.'
-  end
-end
-
-And(/^I click on the link account to social link$/) do
-  on AdditionalInformationPage do |page|
-    page.click_link_profile_to_social
-    page.wait_for_ajax
   end
 end
