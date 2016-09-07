@@ -1,6 +1,7 @@
 cache:
   page:
     max_age: 0
+    use_internal: true
 css:
   preprocess: true
   gzip: true
@@ -15,3 +16,5 @@ js:
 stale_file_threshold: 2592000
 _core:
   default_config_hash: b2cssrj-lOmATIbdehfCqfCFgVR0qCdxxWhwqa2KBVQ
+response:
+  gzip: true

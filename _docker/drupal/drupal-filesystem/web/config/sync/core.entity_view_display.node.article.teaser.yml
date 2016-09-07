@@ -1,4 +1,4 @@
-uuid: d2c79450-41ae-40fc-a91f-8a4617652f47
+uuid: 29f12966-b8f8-425d-8725-442d790ab0f5
 langcode: en
 status: true
 dependencies:
@@ -6,12 +6,9 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_image
     - field.field.node.article.field_tags
-    - image.style.medium
     - node.type.article
   module:
-    - image
     - text
     - user
 _core:
@@ -28,14 +25,6 @@ content:
       trim_length: 600
     third_party_settings: {  }
     label: hidden
-  field_image:
-    type: image
-    weight: -1
-    settings:
-      image_style: medium
-      image_link: content
-    third_party_settings: {  }
-    label: hidden
   field_tags:
     type: entity_reference_label
     weight: 10
@@ -47,5 +36,4 @@ content:
     weight: 100
 hidden:
   comment: true
-  field_image: true
   field_tags: true
