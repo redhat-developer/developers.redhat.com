@@ -3,7 +3,7 @@
 }
 
 .wide-hero.javaone {
-  background-image: cdn('../images/javaone/2015/javaone_microsite_desktop_hero.png');
+  
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11,15 +11,36 @@
   padding: 20px;
   padding-top: 40px;
   min-height: 260px;
-  @include tablet-portrait-and-down {
-    background: cdn('../images/javaone/2015/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
-    min-height: 400px;
+  
+  &.javaone2015{ background-image: cdn('../images/javaone/2015/javaone_microsite_desktop_hero.png');}
+  &.javaone2016{ 
+    background-image: url('http://static.jboss.org/images/rhd/microsite/javaone2016_banner_desktop_25aug2016.jpg');
+    min-height: 200px;
   }
+
+  @include tablet-portrait-and-down {
+    &.javaone2015{
+      background: cdn('../images/javaone/2015/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
+      min-height: 400px;
+    }
+    &.javaone2016{
+      background: url('http://static.jboss.org/images/rhd/microsite/javaone2016_banner_tablet_25aug2016.jpg') top center / cover repeat-x;
+      min-height: 400px;
+    }
+  }
+
+  @include mobile-portrait-and-down {
+    &.javaone2016{
+      background: url('http://static.jboss.org/images/rhd/microsite/javaone2016_banner_mobile_25aug2016.jpg') top center / cover repeat-x;
+      min-height: 430px;
+    }
+  }
+
 }
 
 #javaone-microsite {
   section{
-    padding: 35px 0;
+    padding: 15px 0 35px 0;
     &.inverse {
       background-color: #0d5884;
       padding: 25px 0;
@@ -94,6 +115,10 @@
   }
   .past-events {
     margin-top: 1em;
+  }
+  .session-day{
+    color: #0d5884;
+    margin: 20px 0 30px 0;
   }
   @include mobile-landscape-and-down {
     .past-events a{
