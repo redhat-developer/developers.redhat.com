@@ -33,12 +33,26 @@ class DrupalPageUrlListGenerator
   end
 
   #
+  # Makes an HTTP GET to retreive the robots.txt file
+  #
+  def fetch_robots
+    robots_url = URI.parse "http://#{@drupal_host}/robots.txt"
+    @log.info("Fetching robots.txt content from '#{robots_url.to_s}'...")
+
+    robots_contents = Net::HTTP.get_response(robots_url)
+    raise StandardError.new("Failed to fetch robots.txt from '#{robots_url.to_s}'. Got status: '#{robots_contents.code}'") if robots_contents.code.to_i != 200
+
+    @log.info("Successfully fetched robots.txt from '#{robots_url.to_s}'")
+    robots_contents.body
+  end
+
+  #
   # Parses the contents of the sitemap into a list of links
   #
   def parse_sitemap(sitemap_contents)
     document = Nokogiri::XML(sitemap_contents)
     links = []
-    document.css('url loc').each do | link |
+    document.css('url loc').each do |link|
       uri = URI.parse(link.content)
       links << "http://#{@drupal_host}#{uri.path}"
     end
@@ -59,7 +73,7 @@ class DrupalPageUrlListGenerator
     FileUtils.rm("#{links_file}", :force => true)
     FileUtils.touch("#{links_file}")
 
-    File.open("#{links_file}", 'w+') do | file |
+    File.open("#{links_file}", 'w+') do |file|
       file.puts(links)
       @log.info("Successfully wrote '#{links.length}' links to '#{links_file}'")
       file
@@ -84,7 +98,7 @@ class DrupalPageUrlListGenerator
     FileUtils.mkdir_p(File.dirname(save_location))
     FileUtils.touch(save_location)
 
-    File.open(save_location, 'w+') do | file |
+    File.open(save_location, 'w+') do |file|
       # We need to rewrite the URI to point to production, but only the loc nodes
       sitemap_xml = Nokogiri::XML(sitemap)
       sitemap_xml.xpath('//xmlns:loc').each do |loc|
@@ -94,6 +108,21 @@ class DrupalPageUrlListGenerator
     end
 
     @log.info("Successfully wrote sitemap contents to '#{save_location}'")
+  end
+
+  def save_robots(robots, save_location)
+    @log.info('Saving robots file')
+
+    FileUtils.rm(save_location, :force => true)
+    FileUtils.mkdir_p(File.dirname(save_location))
+    FileUtils.touch(save_location)
+
+    File.open(save_location, 'w+') do |file|
+      # We need to rewrite the URI to point to production, but only the loc nodes
+      file.puts(robots.to_s)
+    end
+
+    @log.info("Successfully wrote robots contents to '#{save_location}'")
   end
 
   private :parse_sitemap, :write_links_to_file

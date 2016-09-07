@@ -113,4 +113,23 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
       assert_match %r{http://www\.sitemaps\.org/schemas/sitemap/0\.9}, urlset.namespace.href
     end
   end
+
+  def test_save_robots
+    # Mock setup
+    robots_contents = mock()
+    robots_contents.expects(:code).returns(200)
+    robots_contents.expects(:body).returns('')
+
+    Net::HTTP.expects(:get_response).with do | url |
+      assert_equal('http://192.168.99.100:32769/robots.txt', url.to_s)
+    end.returns(robots_contents)
+
+    # Execution
+    robots_contents = @drupal_page_list_url_generator.fetch_robots
+    robot_location = File.join(@export_directory, 'test', 'robots.txt')
+
+    @drupal_page_list_url_generator.save_robots(robots_contents, robot_location)
+
+    assert(File.exists?(robot_location))
+  end
 end
