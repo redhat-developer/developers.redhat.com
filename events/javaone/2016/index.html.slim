@@ -3,9 +3,9 @@ layout: base
 body_class: fullbleed
 primary_nav_hidden: true
 interpolate: true
-hero_class: javaone2015
+hero_class: javaone2016
 title: JavaOne
-description: Red Hat Developers' sessions and speakers at JavaOne 2015
+description: Red Hat Developers' sessions and speakers at JavaOne 2016
 ---
 
 .wide.wide-hero.javaone(class="#{page.hero_class}")==hero
@@ -14,11 +14,11 @@ description: Red Hat Developers' sessions and speakers at JavaOne 2015
   section.site-header
     .row
       .large-18.small-24.columns
-        h2 RED HAT AT JAVA ONE
+        h2 JAVA ONE
       .large-6.small-24.columns
         = partial("share.html.slim", :url => "#{site.base_url}#{page.url}", :title => "#{page.title}")
       .large-24.column
-        p It's a wrap! JavaOne 2015 may be over, but you can still catch the presentations on microservices, OpenShift 3, WildFly, Docker and more.
+        p Stop by booth 5301 to snag a T-shirt, stickers or other Red Hat freebies we’ll be handing out.
     .row.event-nav
       .large-24.columns
         ul.nav-list
@@ -32,30 +32,44 @@ description: Red Hat Developers' sessions and speakers at JavaOne 2015
               |  Featured Red Hat Speakers
         br
         p
-          | Looking for a session from a past JavaOne event? Check out the
-          a href='#previous-events'  Previous JavaOne Events
-          |  section below for more information. 
+          | We’ll have live sessions at our booth on topics like: Kubernetes, Docker, Red Hat OpenShift, Red Hat JBoss, Microservices, Vert.x, Wildfly Swarm and more. See below for our full schedule:
+
   section.inverse
     .row
       .large-15.small-24.columns
-        h2.caps JavaOne 2015
+        h2.caps JavaOne 2016
       .large-9.small-24.columns.javaone-date
         i.fa.fa-calendar.fa-2x
-        h6  Sunday, October 25 - Thursday, October 29, 2015
+        h6   September 18, 2016 - September 22nd, 2016
   section#minibooth-sessions
     .row
       .large-24.columns
         h3 MINIBOOTH SESSIONS
-        br
-        ul.session-list.small-block-grid-1.large-block-grid-2
-          - page.javaone.minibooth_sessions.each do |session|
-            li
-              .session
-                .watch-now
-                  a(href="#{site.base_url}/#{session.url}")
-                    i.fa.fa-video-camera
-                    |  Watch now
-                .large-24
+
+        .large-20.small-24.columns
+          h5.session-day Monday, September 19
+          ul.session-list
+            - page.javaone.minibooth_sessions.monday.each do |session|
+              li
+                .session
+                  h4 #{session.title}
+                  h6 #{session.date}  -  #{session.speaker}
+                  p #{session.description}
+        .large-20.small-24.columns
+          h5.session-day Tuesday, September 20
+          ul.session-list
+            - page.javaone.minibooth_sessions.tuesday.each do |session|
+              li
+                .session
+                  h4 #{session.title}
+                  h6 #{session.date}  -  #{session.speaker}
+                  p #{session.description}
+        .large-20.small-24.columns
+          h5.session-day Wednesday, September 21
+          ul.session-list
+            - page.javaone.minibooth_sessions.wednesday.each do |session|
+              li
+                .session
                   h4 #{session.title}
                   h6 #{session.date}  -  #{session.speaker}
                   p #{session.description}
@@ -67,21 +81,13 @@ description: Red Hat Developers' sessions and speakers at JavaOne 2015
           - page.javaone.featured_speakers.each do |speaker|
             li.row
               .large-3.small-10.columns
-                img(src=cdn("#{site.base_url}/images/javaone/2015/#{speaker.speaker_img}") alt="")
+                img(src=cdn("#{site.base_url}/images/javaone/2016/#{speaker.speaker_img}") alt="")
               .large-4.small-14.columns.speaker-info
                 p #{speaker.speaker_name}
                 strong #{speaker.speaker_lastname}
                 p #{speaker.speaker_title}
               .large-17.columns
-                .row.talk-info
-                  .columns class="#{speaker.url.nil? ? 'large-24' : 'large-13'}"
-                    h4 #{speaker.title}
-                  - unless !speaker.url
-                    .large-11.columns(href="#{site.base_url}/#{speaker.url}")
-                      a Stream the mini-booth version of this session
-                  .large-24.columns
-                    p #{speaker.date} - #{speaker.location}
-                .row  
+                .row
                   p.large-24.columns #{speaker.description}
   section.inverse-light#previous-events
     .row
@@ -89,6 +95,10 @@ description: Red Hat Developers' sessions and speakers at JavaOne 2015
         h3.caps PREVIOUS JAVAONE EVENTS
       .large-24.columns
         ul.past-events
+          li 
+             p
+              a(href='#{site.base_url}/events/javaone/2015') JavaOne 2015
+              | &emsp;October 25 - October 29, 2015 | San Francisco
           li 
              p
               a(href='http://www.jboss.org/events/javaone/2014') JavaOne 2014
