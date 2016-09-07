@@ -2,7 +2,6 @@ require_relative 'abstract/standardised_search'
 require_relative '../../../_cucumber/lib/helpers/driver_helper'
 
 class SearchPage < StandardisedSearch
-  include DriverHelper
 
   element(:search_box) { |el| el.text_field(id: 'search_list_text') }
 

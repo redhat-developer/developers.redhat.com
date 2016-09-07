@@ -11,8 +11,10 @@ Then(/^I should see "([^"]*)" results ordered by Most Recent first$/) do |arg|
     top_result = results.first
     results.delete(top_result)
     results.each do |date|
-      remaining = DateTime.parse(date).to_date.to_s
-      top_result.should >= remaining
+      unless date == ''
+        remaining = DateTime.parse(date).to_date.to_s
+        top_result.should >= remaining
+      end
     end
   end
 end
@@ -21,6 +23,7 @@ When(/^I click to filter results by "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
     page.send("filter_by_#{filter_type.downcase.gsub(' ', '_')}")
     page.wait_for_results
+    @results = page.results
   end
 end
 
@@ -39,8 +42,7 @@ end
 
 Then(/^the default set of results are displayed$/) do
   on ResourcesPage do |page|
-    results = page.results
-    @initial_results.should == results
+    page.results.should_not == @results
   end
 end
 
@@ -137,7 +139,8 @@ Then(/^the results should be from "([^"]*)"$/) do |publish_date|
         when 'Past Month'
           valid = Date.today.prev_month <= Date.parse(remaining, "%d-%m-%Y")
         when 'Past Quarter'
-          valid = Date.today.prev_month - 3 <= Date.parse(remaining, "%d-%m-%Y")
+          q = Date.today.quarter
+          valid = q <= Date.parse(remaining, "%d-%m-%Y").quarter
         when 'Past Year'
           valid = Date.today.prev_year <= Date.parse(remaining, "%d-%m-%Y")
         else
@@ -158,5 +161,20 @@ end
 When(/^I select "([^"]*)" from the results per page filter$/) do |results_per_page|
   on ResourcesPage do |page|
     page.select_results_per_page(results_per_page)
+  end
+end
+
+class Date
+  def quarter
+    case self.month
+      when 1,2,3
+        return 1
+      when 4,5,6
+        return 2
+      when 7,8,9
+        return 3
+      when 10,11,12
+        return 4
+    end
   end
 end
