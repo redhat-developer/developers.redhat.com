@@ -268,27 +268,27 @@ To run the acceptance tests against the locally running Drupal site export:
  
 To run the acceptance tests against the locally running Awestruct site build: 
 
-1. Ensure the Drupal Awestruct container is running (bundle exec ./control.rb -e awestruct-dev --run-the-stack)
+1. Ensure the Drupal Awestruct container is running.
 2. Run the following command:  `bundle exec ./control.rb -e awestruct-dev --acceptance_test_target=http://docker:4242`
 
 To run the acceptance tests against the remote host:
 
-1. Run the following command:  `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=host_you_want_to_test`
+    bundle exec ./control.rb -e drupal-dev --acceptance_test_target=host_you_want_to_test
 
-There are a number of short keys to run the tests on our various environments:
+There are a number of short keys that can be used to run the tests on our various environments:
 
 1. Awestruct Dev: Run `bundle exec ./control.rb -e awestruct-dev --acceptance_test_target=dev` 
 2. Drupal Dev: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=drupal_dev`
 3. Staging: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=staging`
 4. Production: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=production`
 
-# NOTE - Never run the acceptance tests against production. This can interfere with site stats! We have a set of smoke tests that can be ran agaist production, for a quick sanity check of the site. Smoke tests can be executed by running the following: 
+_NOTE:_ - Never run the acceptance tests against production. This can interfere with site stats! We have a set of smoke tests that can be ran agaist production, for a quick sanity check of the site. Smoke tests can be executed by running the following: 
 
-    `CUCUMBER_TAGS=@smoke bundle exec ./control.rb -e drupal-dev --acceptance_test_target=production`
+    CUCUMBER_TAGS=@smoke bundle exec ./control.rb -e drupal-dev --acceptance_test_target=production
 
 When working locally, you may find it quicker to run the tests outside of docker. Providing you have your stack already running (if testing a local build). Execute the following:
 
-    `rake features HOST_TO_TEST=host_you_wish_to_test`
+    rake features HOST_TO_TEST=host_you_wish_to_test
     
 ## Drupal Configuration Changes
 
