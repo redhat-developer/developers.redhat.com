@@ -265,7 +265,7 @@ To run the acceptance tests against the locally running Drupal site export, ensu
 
     bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker:9000
  
-To run the acceptance tests against the locally running Awestruct site build, ensure the Drupal Awestruct container is running.
+To run the acceptance tests against the locally running Awestruct site build, ensure the Awestruct container is running.
 
     bundle exec ./control.rb -e awestruct-dev --acceptance_test_target=http://docker:4242
 
