@@ -15,7 +15,7 @@ class GenericBasePage
 
   def open(url)
     if url.include?('realms')
-      @browser.goto($keycloak_base_url)
+      @browser.goto($keycloak_base_url + url)
     else
       @browser.goto($host_to_test + url)
     end

@@ -36,11 +36,11 @@ else
   case ENV['HOST_TO_TEST']
     when 'dev'
       $host_to_test              = 'http://docker:4242'
-      $keycloak_base_url = 'https://developers.stage.redhat.com'
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'staging'
       $host_to_test              = 'http://developers.stage.redhat.com'
-      $keycloak_base_url = 'https://developers.stage.redhat.com'
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'production'
       $host_to_test              = 'http://developers.redhat.com'
