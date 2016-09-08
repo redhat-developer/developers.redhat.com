@@ -2,30 +2,33 @@ var search = angular.module('search', []);
 
 search.service('searchService', ['$http', '$q', function ($http, $q) {
     this.getSearchResults = function (params) {
-        var deferred = $q.defer();
+        var deferred = $q.defer(),
+                search = null,
+                endpoint = null;
 
         if ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href))) {
             var isStackOverflow = true;
         }
 
         if (isStackOverflow) {
-            var search = Object.assign(params, {
+            search = Object.assign(params, {
                 field: ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
                 query_highlight: true
             });
-            var endpoint = app.dcp.url.stackoverflow;
+            endpoint = app.dcp.url.stackoverflow;
         }
         else {
             // fold in params with defaults
-            var search = Object.assign(params, {
-                // field: '_source',
-                field: ['sys_url_view', 'sys_title', 'sys_last_activity_date', 'sys_description', 'sys_tags', 'sys_project', 'sys_contributor', 'sys_updated', 'sys_type', 'thumbnail', 'sys_created'],
-                // Disable aggregations until ready
-                // agg: ['per_project_counts','tag_cloud', 'top_contributors', 'activity_dates_histogram', 'per_sys_type_counts'],
-                query_highlight: true
+            search = Object.assign(params, {
+                query_highlight: true,
+                type: ['jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum', 'jbossorg_blog', 'rht_website']
+
             });
 
-            var endpoint = app.dcp.url.developer_materials;
+            if (/resources/.test(window.location.href)) {
+                search.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
+            }
+            endpoint = app.dcp.url.developer_materials;
         }
 
         $http.get(endpoint, {params: search})
@@ -65,29 +68,29 @@ search.filter('timeAgo', function () {
     };
 });
 
-search.filter('type', function() {
-  return function(sys_type) {
-    var types = {
-      video: 'Video',
-      blogpost: 'Blog Post',
-      jbossdeveloper_book: 'Book',
-      book: 'Book',
-      article: 'Article',
-      solution: 'Article',
-      demo: 'Demo',
-      quickstart: 'quickstart',
-      jbossdeveloper_archetype: 'Demo',
-      jbossdeveloper_bom: 'Demo',
-      quickstart_early_access: 'Demo',
-      jbossdeveloper_example: 'Get Started',
-      jbossdeveloper_event: 'Event',
-      jbossorg_sbs_forum: 'Forum',
-      forumthread: 'Forum',
-      stackoverflow_thread: 'Stack Overflow',
-      webpage: 'Webpage'
-    }
-    return types[sys_type];
-  };
+search.filter('type', function () {
+    return function (sys_type) {
+        var types = {
+            video: 'Video',
+            blogpost: 'Blog Post',
+            jbossdeveloper_book: 'Book',
+            book: 'Book',
+            article: 'Article',
+            solution: 'Article',
+            demo: 'Demo',
+            quickstart: 'quickstart',
+            jbossdeveloper_archetype: 'Demo',
+            jbossdeveloper_bom: 'Demo',
+            quickstart_early_access: 'Demo',
+            jbossdeveloper_example: 'Get Started',
+            jbossdeveloper_event: 'Event',
+            jbossorg_sbs_forum: 'Forum',
+            forumthread: 'Forum',
+            stackoverflow_thread: 'Stack Overflow',
+            webpage: 'Webpage'
+        };
+        return types[sys_type];
+    };
 });
 
 search.filter('MDY', function () {
@@ -96,6 +99,9 @@ search.filter('MDY', function () {
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         var date = new Date(timestamp);
         window.date = date;
+        if (!!window.location.href.match(/\/search/)) {
+            return " | " + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+        }
         return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
     };
 });
@@ -243,29 +249,24 @@ function searchCtrlFunc($scope, $window, searchService) {
     /* defaults */
     $scope.params = {
         query: q,
-        sortBy: 'score',
         size: 10,
         size10: true,
         from: 0,
         sys_type: [],
         project: '',
-        newFirst: true
+        newFirst: false,
+        sortBy: 'relevance'
     };
 
     // Search Page Specifics
     if (isSearch && searchTerm) {
         $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g, ' '));
-        $scope.params.type = 'rht_website';
-        $scope.params.newFirst = false;
     }
 
+    // Stack Overflow Page Specifics
     if (isStackOverflow && searchTerm) {
-
         $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g, ' '));
-        $scope.params.sortBy = 'new-create';
-        $scope.params.newFirst = false;
         $scope.params.tag = [];
-
     }
 
     $scope.paginate = {
@@ -294,8 +295,16 @@ function searchCtrlFunc($scope, $window, searchService) {
             delete params.publish_date_to;
         }
 
+        if (params.sortBy == "relevance") {
+            params.newFirst = false;
+        } else {
+            params.newFirst = true;
+        }
+
+        delete params.sortBy;
+
         // if relevance filter is turned on making newFirst == false, remove it entirely
-        if (params.newFirst == "false") {
+        if (params.newFirst == false) {
             delete params.newFirst;
         }
 
@@ -307,6 +316,10 @@ function searchCtrlFunc($scope, $window, searchService) {
         // use the size10=true format
         params['size' + params.size] = true;
 
+        if (isStackOverflow != true) {
+            delete params.size;
+        }
+
         // return cleaned params
         return params;
     };
@@ -315,32 +328,39 @@ function searchCtrlFunc($scope, $window, searchService) {
         $scope.loading = true;
         $scope.query = $scope.params.query; // this is static until the update re-runs
         $scope.tag = $scope.params.tag; // this is static until the update re-runs
+        var product = null, tags = null;
 
         var params = $scope.cleanParams($scope.params);
+
+        // if Sort by filter selection changed from New First to Most Recent, remove newFirst flag
+        if (params.sortBy == "relevance") {
+            delete params.newFirst;
+        }
+
         if (isSearch) {
-            var searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname
+            var searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname;
             history.pushState($scope.params, $scope.params.query, searchPage + '?q=' + $scope.params.query);
         }
 
         if (isStackOverflow) {
             if (/help/.test(window.location.href)) {
-                var product = (window.location.href).split("/")[4];
+                product = (window.location.href).split("/")[4];
                 $scope.params.product = product;
 
-                var tags = app.products[product]['stackoverflow'];
+                tags = app.products[product]['stackoverflow'];
                 params.tag = tags.slice();
 
             }
 
             else {
-                var product = $('select[name="filter-by-product"]').val();
+                product = $('select[name="filter-by-product"]').val();
                 $scope.params.product = product;
 
                 if (product !== "") {
-                    var tags = app.products[product]['stackoverflow'];
+                    tags = app.products[product]['stackoverflow'];
                     params.tag = tags.slice();
                 }
-                var page = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname
+                var page = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname;
                 history.pushState($scope.params, params.tag, page + '?q=' + params.tag);
             }
         }
@@ -358,11 +378,7 @@ function searchCtrlFunc($scope, $window, searchService) {
      Handle Pagination
      */
     $scope.buildPagination = function () {
-
         var page = $scope.paginate.currentPage;
-
-        var startAt = (page * $scope.totalCount) - $scope.params.size;
-        var endAt = page * $scope.params.size;
         var pages = Math.ceil($scope.totalCount / $scope.params.size);
         var lastVisible = parseFloat($scope.params.size) + $scope.params.from;
 
