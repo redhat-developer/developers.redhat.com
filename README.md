@@ -261,15 +261,13 @@ Run the unit tests (also available using `guard` locally).
 ## Running Acceptance Tests (slow)
 This section explians how a developer can run the front-end Acceptance Tests.
 
-To run the acceptance tests against the locally running Drupal site export: 
+To run the acceptance tests against the locally running Drupal site export, ensure the Drupal Docker container is running and the site has been exported.
 
-1. Ensure the Drupal Docker container is running and the site has been exported.
-2. Run the following command:  `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker:9000`
+    bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker:9000
  
-To run the acceptance tests against the locally running Awestruct site build: 
+To run the acceptance tests against the locally running Awestruct site build, ensure the Drupal Awestruct container is running.
 
-1. Ensure the Drupal Awestruct container is running.
-2. Run the following command:  `bundle exec ./control.rb -e awestruct-dev --acceptance_test_target=http://docker:4242`
+    bundle exec ./control.rb -e awestruct-dev --acceptance_test_target=http://docker:4242
 
 To run the acceptance tests against the remote host:
 
