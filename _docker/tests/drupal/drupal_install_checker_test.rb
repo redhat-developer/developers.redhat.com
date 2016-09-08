@@ -33,6 +33,16 @@ class DrupalInstallCheckerTest < Minitest::Test
     assert @install_checker.rhd_settings_exists?
   end
 
+  def test_workaround_workspace_bug
+    @process_exec.expect :exec!, true, ['mysql', ["--host=#{@opts['database']['host']}",
+                                                  "--port=#{@opts['database']['port']}",
+                                                  "--user=#{@opts['database']['username']}",
+                                                  "--password=#{@opts['database']['password']}",
+                                                  '--execute=update workspace set id=1 where id=9', "#{@opts['database']['name']}"]]
+
+    assert @install_checker.workaround_workspace_bug
+  end
+
   def test_rhd_settings_exists_when_false
     refute @install_checker.rhd_settings_exists?
   end
