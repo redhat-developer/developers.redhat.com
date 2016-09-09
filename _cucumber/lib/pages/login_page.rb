@@ -1,7 +1,6 @@
 require_relative 'abstract/site_base'
 
 class LoginPage < SiteBase
-  expected_element(:h1, text: 'Log In')
   #page_title('Log In | Red Hat Developers')
 
   element(:heading)                { |b| b.h1(text: 'Log In') }

@@ -153,8 +153,13 @@ When(/^I complete the registration with an empty "([^"]*)"$/) do |field|
 end
 
 When(/^I register a new account$/) do
-  visit RegistrationPage do |page|
+  $site_user = generate_user
+  visit HomePage do |page|
+    page.open_register_page
+  end
+  on RegistrationPage do |page|
     page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
+    page.accept_all_terms
     page.create_account
   end
 end
@@ -231,4 +236,8 @@ And(/^I navigate to the verify email link$/) do
   @page.site_nav.close_and_reopen_browser
   @page.site_nav.get(@verification_email)
   @page.site_nav.wait_for_ajax
+end
+
+And(/^I am logged in$/) do
+  expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
 end

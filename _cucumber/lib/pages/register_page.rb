@@ -1,7 +1,6 @@
 require_relative 'abstract/site_base'
 
 class RegistrationPage < SiteBase
-  page_url('/register/')
   expected_element(:h1, text: "We're glad you're here")
   #page_title('Register | Red Hat Developers')
 

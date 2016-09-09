@@ -54,7 +54,7 @@ module DownloadHelper
         'brms'
       when 'Data Virtualization'
         'datavirt'
-      when 'Red Hat Container Development Kit (CDK)'
+      when 'Red Hat Container Development Kit'
         'cdk'
       when 'Red Hat Enterprise Linux'
         'rhel'
