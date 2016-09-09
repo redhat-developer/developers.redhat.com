@@ -211,7 +211,13 @@ On successful build, you should be able to access the site at http://docker.
 ## Development Environment Setup after reboot
 Assuming you already had a functioning environment before the reboot, you need to:
 
-JASON: PLEASE PROVIDE INSTRUCTIONS
+1. Install npm, best to follow the instructions at https://docs.npmjs.com/getting-started/installing-node
+2. Insure the required Ruby Gems are installed for the docker control scripts to function:
+
+```
+cd _docker
+bundle install
+```
 
 ## Full Rebuild of Development Environment (slow)
 If you need to edit an Awestruct file (not CSS or JS), you need to rebuild the whole environment.
@@ -290,17 +296,32 @@ When working locally, you may find it quicker to run the tests outside of docker
     
 ## Drupal Configuration Changes
 
-JASON: PLEASE PROVIDE INSTRUCTIONS
+The easiest way to do this is to make the necessary changes in the UI of Drupal, then export them to the `sync` directory.
+
+Exporting can be done from within the UI, then manually copying the contents of the zip file into the `sync` directory, or it can be done via drush.
+
+To use drush you will need to shell into the docker container using
+
+```
+docker exec -it drupaldev_drupal_1 /bin/bash
+```
+
+You can then export using:
+
+```
+cd web
+drush config-export
+```
 
 ## Drupal Module Development
 
-JASON: PLEASE PROVIDE INSTRUCTIONS
+All module development must happen in the `_docker/drupal/drupal-filesystem/web/modules/custom/<module name>` directory. Work is typically done using PhpStorm or text editor. If you are modifying the yaml files of an existing module you may need to restart the Drupal container for everything to be correctly picked up and applied. You could also attempt to use the `drush updatedb` command, though it may not pick up everything.
+
+New modules must have at least the basics in place and the `drupal_install_checker.rb` file updated to install the module on container build.
 
 ## Migrating an Awestruct Page to Drupal
 
-JASON: PLEASE PROVIDE INSTRUCTIONS
-
-
+JASON: PLEASE PROVIDE INSTRUCTIONS (I haven't gone through this just yet but I plan on having the workflow being something like 1. create the page in drupal 2. add a new front-matter attribute to the existing page(s) in awestruct 3. send pull request 4. have pages published)
 
 ## secrets.gpg management
 This sections describes how a member of the Red Hat Developers Engineering team can grant access to the secrets file for new developers.
