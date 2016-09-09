@@ -241,3 +241,50 @@ end
 And(/^I am logged in$/) do
   expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
 end
+
+And(/^I choose to register a new account using my GitHub account$/) do
+  on LoginPage do |page|
+    page.click_register_link
+  end
+  @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
+  $site_user = @github_admin.generate_user_for_session($session_id)
+  @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
+  puts "Added new email to Github profile: #{$site_user[:email]}"
+  on RegistrationPage do |page|
+    page.click_register_with_github
+  end
+  on GitHubPage do |page|
+    page.login_with('rhdScenarioOne', 'P@$$word01')
+    page.authorize_app
+  end
+  on AdditionalActionPage do |page|
+    expect(page.email_field.value).to eq $site_user[:email]
+  end
+end
+
+When(/^I choose to register a new account using a GitHub account that contains missing profile information$/) do
+
+  on LoginPage do |page|
+    page.click_register_link
+  end
+
+  # log in to Github API
+  @github_admin = GitHubAdmin.new('rhdalreadyregistered01', 'P@$$word01')
+
+  # generate new user and update their Github profile
+  $site_user = @github_admin.generate_user_for_session($session_id)
+
+  @github_admin.update_profile('', $site_user[:email], '')
+  puts "Added new email to Github profile: #{$site_user[:email]}"
+
+  on RegistrationPage do |page|
+    page.click_register_with_github
+  end
+
+  on GitHubPage do |page|
+    page.login_with('rhdalreadyregistered01', 'P@$$word01')
+    page.authorize_app
+  end
+
+end
+

@@ -1,4 +1,6 @@
+@desktop
 @downloads
+@download_test
 @product_download
 
 Feature: Product Download Page - An authorised customer can download CDK via download manager when acepting Red Hat T&C's.

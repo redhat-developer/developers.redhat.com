@@ -10,6 +10,15 @@ module DownloadHelper
     JSON.parse(response)
   end
 
+  def get_dm_available_downloads
+    test = []
+    data = get_download_data($download_manager_base_url)
+    data.each { |code|
+      test << code['productCode']
+    }
+    test
+  end
+
   def get_featured_download_for(product_id)
     data = get_download_data($download_manager_base_url + "/#{product_id}")
     if data[0]['featuredArtifact']['versionName'].nil?
@@ -58,6 +67,12 @@ module DownloadHelper
         'cdk'
       when 'Red Hat Enterprise Linux'
         'rhel'
+      when '.NET Runtime for Red Hat Linux'
+        'dotnet'
+      when 'Red Hat JBoss A-MQ'
+        'amq'
+      when 'Red Hat Development Suite'
+        'devsuite'
       else
         raise "No mapping for #{product}! See Downloads Helper"
     end
