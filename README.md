@@ -375,6 +375,15 @@ If merge conflicts exist, you will need to do the fiollowing steps to fix the co
       
 5. Raise a PR from your branch onto the long running branch in upstream. Note that the PR tests will fail, as they don't expect a PR to be raised on a branch other than 'master'.
 
+## Migrating a page into Drupal
+
+1. Create the Drupal version of the page, but don't assign a URL alias (or assign a temporary alias)
+2. Review the Drupal version of the page
+3. Annotate the Awestruct version of the page by adding the `ignore_export: true` front matter variable to the page being exported. If the page being exported is an asciidoc page then it must be `:awestruct-ignore_export: true` instead. This will ensure that the Drupal export ignores the page and is not pushed into Drupal, whilst the legacy Awestruct CI job will still build the page.
+4. Delete the Awestruct pushed version of the page from Drupal
+5. Switch the URL alias of the Drupal version of the page, to use the alias of the deleted Awestruct pushed version of the page.
+6. Wait for the Drupal site to be exported, this will take about an hour for it to show up. 
+
 ## <a name="CommonIssues"></a>Common issues
 This area documents fixes to common issues:
 
