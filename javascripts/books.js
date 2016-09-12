@@ -46,7 +46,7 @@ app.books = {
   performFilter : function() {
     var bookTemplate = app.templates.bookTemplate;
     var contributorTemplate = "<span class=\"contributor\" data-sys-contributor=\"<!=author!>\">" +
-            "<a class=\"name\"><!=normalizedAuthor!></a>" +
+            "<a class=\"name link-sm\"><!=normalizedAuthor!></a>" +
           "</span>";
     $('ul.book-list').empty();
 

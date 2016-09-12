@@ -135,9 +135,21 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 a {
   color:$link;
   cursor:pointer;
-  &:hover {
-    color:$linkhover;
-  }
+  &:hover { color: $linkhover; }
+
+  &.dark-background{ color: $link-dark-background; }
+  &.link-sm {color: $link-sm; }
+  &.link-sm-dark {color: $link-sm-dark-background; }
+  &.link-sm-grey {color: $link-sm-grey-background; }
+
+}
+
+.link-sm a {
+  color: $link-sm;
+}
+
+small a {
+  color:$link-sm;
 }
 
 button, .button {
@@ -1177,6 +1189,7 @@ form.dev-mat-filters, .project-filters {
 
 a.filters-clear {
   font-size: 14px;
+  color: $link-sm;
   text-decoration: underline;
   padding-left: 5px;
   position: relative;

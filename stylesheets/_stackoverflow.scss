@@ -40,7 +40,7 @@
       float: right;
     }
     a h5.qtn-title, a {
-      color: #46a1da;
+      color: $link;
     }
     p.qtn-content {
       overflow: hidden;
@@ -106,9 +106,9 @@
     margin-bottom: 5px;
   }
   a {
-    color: #08C0FC;
+    color: $link-dark-background;
     &:hover, &:active {
-      color: #46a1da;
+      color: $link;
     }
   }
 }
