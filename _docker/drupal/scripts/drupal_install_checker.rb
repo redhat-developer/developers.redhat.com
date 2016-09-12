@@ -118,7 +118,11 @@ class DrupalInstallChecker
   end
 
   def import_config
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete active field.storage.node.field_author_name'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all'])
   end
 end
 
@@ -141,7 +145,7 @@ if $0 == __FILE__
     checker.install_theme
     checker.install_modules
     checker.install_module_configuration
-    checker.set_cron_key    
+    checker.set_cron_key
     checker.import_config
   end
 end
