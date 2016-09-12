@@ -50,6 +50,7 @@ class Export
 
 end
 
+@DEFAULT_STATIC_RESOURCES = File.expand_path('static',File.dirname(__FILE__))
 @DEFAULT_EXPORT_LOCATION = "/export"
 @DEFAULT_EXPORT_ARCHIVE_LOCATION = "/export/export-archives"
 
@@ -65,7 +66,7 @@ if $0 == __FILE__
   process_runner = ProcessRunner.new
   cron_invoker = CronInvoker.new(drupal_host)
   page_url_list_generator = DrupalPageUrlListGenerator.new(drupal_host, @DEFAULT_EXPORT_LOCATION)
-  export_strategy = HttrackExportStrategy.new(process_runner, ExportInspector.new, ExportHtmlPostProcessor.new(process_runner))
+  export_strategy = HttrackExportStrategy.new(process_runner, ExportInspector.new, ExportHtmlPostProcessor.new(process_runner, @DEFAULT_STATIC_RESOURCES))
   rsync_handler = StaticExportRsync.new(process_runner, ExportArchiver.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION, ExportArchivePruner.new(@DEFAULT_EXPORT_ARCHIVE_LOCATION)))
   log = DefaultLogger.logger
 

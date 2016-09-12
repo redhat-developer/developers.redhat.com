@@ -1,10 +1,13 @@
 require 'cgi'
 require 'nokogiri'
+require 'fileutils'
 require_relative '../default_logger'
 
 #
-# This class is used to post-process an httrack export of a site. It will recursively
-# search the passed directory and look for any .html files.
+# This class is used to post-process an httrack export of a site. It performs primarily 2 tasks:
+#
+# 1: Post process the HTML to improve site structure
+# 2: Add in static resources e.g. robots.txt, .htaccess files that are not included by the httrack export process
 #
 # The primary reason for this thing existing is that we wish to maintain a trailing URL structure when the site is exported
 # e.g. http://developers.redhat.com/containers/ and not http://developers.redhat.com/containers.html
@@ -13,9 +16,10 @@ require_relative '../default_logger'
 #
 class ExportHtmlPostProcessor
 
-  def initialize(process_runner)
+  def initialize(process_runner, static_file_directory)
     @log = DefaultLogger.logger
     @process_runner = process_runner
+    @static_file_directory = static_file_directory
   end
 
   #
@@ -30,12 +34,22 @@ class ExportHtmlPostProcessor
   end
 
   #
+  # Copies in the static resources that should be part of the export directory structure.
+  #
+  def copy_static_resources(export_directory)
+    @log.info("Copying static resources from '#{@static_file_directory}' to '#{export_directory}'...")
+    FileUtils.cp_r("#{@static_file_directory}/.", export_directory)
+    @log.info("Completed copy of static resources from '#{@static_file_directory}'.")
+  end
+
+  #
   # Performs post-processing on the HTML export to make it fit the requiring site structure.
   #
   def post_process_html_export(drupal_host, export_directory)
     relocate_index_html(export_directory)
     rewrite_links_for_trailing_slash_url_structure(export_directory)
     rewrite_form_target_urls(drupal_host, export_directory)
+    copy_static_resources(export_directory)
   end
 
   #
