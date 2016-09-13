@@ -1,3 +1,5 @@
+@downloads
+
 Feature: Red Hat JBoss Enterprise Application Platform download
 
   In order to build container-based applications,
