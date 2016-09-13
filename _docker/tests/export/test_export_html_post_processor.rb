@@ -11,10 +11,12 @@ require_relative '../test_helper'
 class TestExportHtmlPostProcessor < MiniTest::Test
 
   def setup
-    @export_post_processor = ExportHtmlPostProcessor.new(ProcessRunner.new)
     @export_directory = Dir.mktmpdir
     test_export = Dir.open(File.expand_path('test_export_form_rewrite',File.dirname(__FILE__)))
     FileUtils.cp_r("#{test_export.path}/.", @export_directory)
+
+    test_static_resources = File.expand_path('test_static_resources',File.dirname(__FILE__))
+    @export_post_processor = ExportHtmlPostProcessor.new(ProcessRunner.new, test_static_resources)
   end
 
   def teardown
@@ -33,6 +35,13 @@ class TestExportHtmlPostProcessor < MiniTest::Test
 
   def get_form_action_url_from_html_doc(html_document, form_id)
     html_document.css("##{form_id}").first.attributes['action'].value
+  end
+
+  def test_should_copy_static_resources
+    @export_post_processor.post_process_html_export('docker', @export_directory)
+    assert(File.exist?("#{@export_directory}/robots.txt"))
+    assert(File.exist?("#{@export_directory}/.htaccess"))
+    assert(File.exist?("#{@export_directory}/nested/nested-file.txt"))
   end
 
   def test_should_rewrite_index_html_link
