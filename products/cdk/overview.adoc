@@ -8,7 +8,7 @@
 
 == Overview
 
-Red Hat Container Development Kit provides a pre-built Container Development Environment based on Red Hat Enterprise Linux to help you get started developing container-based applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
+Red Hat Container Development Kit provides a pre-built Container Development Environment based on Red Hat Enterprise Linux to help you develop container-based (sometimes called Docker) applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
 
 === Get started with containers on Mac OS X, Microsoft Windows, or Linux
 
@@ -26,9 +26,9 @@ Container Development Kit is for you whether you are trying Linux containers for
 
 Container Development Kit provides a pre-built, single-machine OpenShift 3 environment, so you can try the latest version of the OpenShift platform-as-a-service that integrates support for docker-formatted containers and Kubernetes. When you bring up the rhel-ose Vagrantfile, OpenShift is started and provisioned. To help you get started building applications, a number of OpenShift templates are included. You can access the OpenShift Web console from your browser or work from the CLI using the `oc` command to deploy container applications. OpenShift is pre-configured with a local Docker registry available and a local version of Kubernetes running, so you can test the full experience in a self-contained environment.
 
-=== Container development right from Eclipse
+=== New easy setup for Windows users
 
-Eclipse integration will help streamline your development process by letting you control your containers running on the VM right from your desktop. Container Development Kit includes the components to connect Eclipse or a docker-cli client running on your host system with the daemon running inside the VM. The easiest way to use Eclipse with the Kit is to install the link:../../devsuite/overview[Red Hat Development Suite]. Check out link:https://www.youtube.com/watch?v=BQUCdwNgyTE[this video] for more.
+Now available with the new #{site.base_url}/products/devsuite/overview/[Red Hat Development Suite], Eclipse integration helps streamline your development process by letting you control your containers running on the VM right from your Windows desktop. The “DevSuite” includes Container Development Kit which has the components to connect Eclipse or a docker-cli client running on your host system with the daemon running inside the VM. The DevSuite also includes Red Hat JBoss Developer Studio and OpenJDK. Check out https://www.youtube.com/watch?v=BQUCdwNgyTE[this video] for more.
 
 == Features1
 
