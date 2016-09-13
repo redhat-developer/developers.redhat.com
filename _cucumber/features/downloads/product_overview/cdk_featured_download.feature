@@ -1,6 +1,5 @@
 @downloads
 @product_download
-@ignore
 
 Feature: Product Download Page - An authorised customer can download CDK via download manager when acepting Red Hat T&C's.
 
@@ -14,7 +13,7 @@ Feature: Product Download Page - An authorised customer can download CDK via dow
     When I click to download the featured download of "Red Hat Container Development Kit"
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Container Development Kit"
 
-  @basic_login @logout
+  @basic_login @logout @ignore
   Scenario: Unauthorized custom must log in in order to Download CDK
     Given I am on the Product Download page for eap
     When I click to download the featured download of "Red Hat Container Development Kit"
