@@ -102,6 +102,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "stackoverflow";
 @import "forums";
 @import "error-pages";
+@import "adaptive-placeholder";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -2085,5 +2086,32 @@ h2.home-title {
       font-size: 1.8em;
       margin-right: 15px;
     }
+  }
+}
+
+h5.login-label {
+  text-transform: uppercase;
+  color: $red;
+  margin-bottom: 1em;
+}
+
+form.login-form {
+  max-width: 21em;
+  
+  input[type='email'] + label, 
+  input[type='text'] + label, 
+  input[type='password'] + label {
+    margin-bottom: 0;
+    font-family: "Overpass", "Open Sans", Helvetica, sans-serif !important;
+    color: #656565;
+    &::before {
+      color: #656565;
+    }
+  }
+
+  small {
+    float: right;
+    margin-bottom: 10px;
+    color: #656565;
   }
 }

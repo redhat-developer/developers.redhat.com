@@ -1,0 +1,223 @@
+.rhd-adaptive-placeholder{
+  
+  // Adaptive Placeholders. 
+  // This is an example for a git repo found on https://github.com/zellwk/adaptivePlaceholders
+   input,
+   textarea {
+    font-family: inherit;
+    /* 1 */
+    font-size: 100%;
+    /* 2 */
+    margin: 0;
+    /* 3 */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  label {
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+  }
+
+   textarea {
+    overflow: auto;
+    /* 1 */
+    vertical-align: top;
+    /* 2 */
+  }
+
+  $ap-default: (
+    height: 3em,
+    margin: 1em,
+    border: 1px,
+    border-radius: 1.5em,
+    font-size: 1em,
+    border-color: #cccccc, //grey
+    label-color: #999999, //grey
+    active-color: #e87e22, // orange
+    valid-color: #23a045, // green
+    placeholder-background-color: white,
+    textarea: false
+    );
+
+  $adaptive-placeholder: ();
+
+
+  // adaptive-placeholder
+  // --------------------
+  // - Creates adaptive placeholder
+
+  @mixin adaptive-placeholder($map: $adaptive-placeholder) {
+    // Only overwrite ap defaults if $map is $adaptive-placeholder
+    @if $map == $adaptive-placeholder {
+      $ap-default: map-merge($ap-default, $map) !global;
+      $map: $ap-default;
+    }
+    // Updates default map with new values
+    $map: map-merge($ap-default, $map);
+    // Gets variables
+    $height: map-get($map, height);
+    $margin: map-get($map, margin);
+    $border: map-get($map, border);
+    // $radius: map-get($map, border-radius);
+    $font-size: map-get($map, font-size);
+    $border-color: map-get($map, border-color);
+    $label-color: map-get($map, label-color);
+    $active-color: map-get($map, active-color);
+    $valid-color: map-get($map, valid-color);
+    $placeholder-background: map-get($map, placeholder-background-color);
+    $isTextarea: map-get($map, textarea);
+    $borders: $border * 2;
+
+
+    // Warnings for best practices
+    @if $height < 2 * $margin {
+      @warn "height needs to be at least 2x margin";
+    }
+
+    @if $height < $font-size {
+      @warn "height needs to be at least >= font-size";
+    }
+
+    // Input / Textarea properties
+    background-color: $placeholder-background;
+    height: calc(#{$height} + #{$borders});
+    padding: $margin;
+    font-size: $font-size;
+    border: $border solid $border-color;
+    // border-radius: $radius;
+
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    resize: none;
+    outline: none;
+    &:hover {
+      border: $border solid $border-color;
+    }
+    // &:focus,
+    // &:active {
+    //   border: $border solid $active-color;
+    //   & + label:before {
+    //     color: $active-color;
+    //   }
+    // }
+    // Placeholder Styles
+    & + label {
+      display: block;
+      font-size: $font-size;
+
+      // Vertically align label with input
+      @if $isTextarea {
+        height: calc(#{$height} + #{$borders});
+        line-height: 1;
+        padding-top: calc(#{$margin} + #{$border});
+      }
+      @else {
+        height: $height;
+        line-height: $height;
+      }
+
+      // Offset label correctly with negative margins
+      @if $isTextarea {
+        margin-top: calc(-#{$height} - #{$borders});
+      }
+      @else {
+        margin-top: calc(-#{$height} - #{$border});
+      }
+      margin-bottom: 1em;
+      pointer-events: none; // allows clicking through label
+
+      &:before {
+        // Initial Text
+        content: attr(placeholder);
+        display: inline-block;
+        color: $label-color;
+        margin: 0 calc(#{$margin} + #{$borders});
+        white-space: nowrap;
+        // Transformation properties
+
+        -webkit-transition-property: -webkit-transform, color;
+        transition-property: transform, color;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+        // Set origin to left center so it scales to the left instead of center center
+        -webkit-transform-origin: left center;
+        -ms-transform-origin: left center;
+        transform-origin: left center;
+      }
+    }
+
+    // Focused, active and valid states for input and placeholder
+    // Shifts up and adds a background white
+    &:focus,
+    &.active,
+    &:valid {
+      & + label:before {
+        background: $placeholder-background;
+        // set padding for left & right of tiny placeholder text
+        line-height: 1;
+        padding: 0 $border * 1.5;
+        @if $isTextarea {
+          -webkit-transform: translateY(calc((-#{$margin} - 0.5em) - #{$border * 0.5})) scale(0.8, 0.8);
+          -ms-transform: translateY(calc((-#{$margin} - 0.5em) - #{$border * 0.5})) scale(0.8, 0.8);
+          transform: translateY(calc((-#{$margin} - 0.5em) - #{$border * 0.5})) scale(0.8, 0.8);
+        }
+        @else {
+          -webkit-transform: translateY(calc(-#{$height} / 2 - #{$border}/2)) scale(0.8, 0.8);
+          -ms-transform: translateY(calc(-#{$height} / 2 - #{$border}/2)) scale(0.8, 0.8);
+          transform: translateY(calc(-#{$height} / 2 - #{$border}/2)) scale(0.8, 0.8);
+        }
+      }
+    }
+    // Change placeholder value once text is entered.
+    &:valid {
+      // border: $border solid $valid-color;
+      & + label:before {
+        content: attr(alt);
+        // color: $valid-color;
+      }
+    }
+  }
+
+
+  // Set Defaults for Adaptive Placeholder 
+  // See all available variables at https://github.com/zellwk/adaptivePlaceholders
+  $adaptive-placeholder: (
+    height: 3em,
+    margin: 1em,
+    font-size: 1em,
+      );
+
+  // Set Adaptive Placeholder to use with Textareas
+  // Note the use of textarea key
+  $textarea-placeholder: (
+    height: 18em,
+    // border-radius: 16px,
+    textarea: true,
+    );
+
+
+  // Calling adaptive placeholder for input
+  input[type='password'],
+  input[type='email'],
+  input[type='text'] {
+    width: 21em;
+    @include adaptive-placeholder();
+  }
+
+  // calling adaptive placeholder for textarea
+  textarea {
+    width: 18em;
+    @include adaptive-placeholder($textarea-placeholder);
+  }
+}
