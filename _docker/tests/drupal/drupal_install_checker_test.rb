@@ -143,7 +143,7 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                              'metatag_open_graph',
                                                                              'metatag_twitter_cards',
                                                                              'metatag_verification', 'admin_toolbar',
-                                                                             'admin_toolbar_tools','simple_sitemap',                                                                             
+                                                                             'admin_toolbar_tools','simple_sitemap',
                                                                               'devel', 'kint']]
 
 
@@ -212,7 +212,11 @@ class DrupalInstallCheckerTest < Minitest::Test
   end
 
   def test_config_import
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete active field.storage.node.field_author_name']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all']]
 
     @install_checker.import_config
     @process_exec.verify
