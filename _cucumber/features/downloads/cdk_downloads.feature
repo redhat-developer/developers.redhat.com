@@ -1,4 +1,5 @@
 @ignore
+@downloads
 
 Feature: Red Hat Container Development Kit (CDK) download
 
