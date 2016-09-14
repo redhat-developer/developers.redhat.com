@@ -41,7 +41,6 @@ services:
       - "80"
     links:
       - drupalmysql
-      - searchisko
     volumes:
       - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
