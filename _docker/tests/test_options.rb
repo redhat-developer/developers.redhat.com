@@ -109,7 +109,7 @@ class TestOptions < Minitest::Test
   def test_kill
     tasks = Options.parse (["-r"])
     assert(tasks[:kill_all])
-    assert_equal(tasks[:supporting_services], %w(mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w())
     assert_equal(nil, tasks[:awestruct_command_args])
   end
 
@@ -123,14 +123,14 @@ class TestOptions < Minitest::Test
   def test_kill_drupal_dev
     tasks = Options.parse (['-e drupal-dev',"-r"])
     assert(tasks[:kill_all])
-    assert_equal(tasks[:supporting_services], %w(apache mysql searchisko drupalmysql drupal))
+    assert_equal(tasks[:supporting_services], %w(apache drupalmysql drupal))
     assert_equal(nil, tasks[:awestruct_command_args])
   end
 
   def test_kill_drupal_pull_request
     tasks = Options.parse (['-e drupal-pull-request',"-r"])
     assert(tasks[:kill_all])
-    assert_equal(tasks[:supporting_services], %w(mysql searchisko drupalmysql drupal))
+    assert_equal(tasks[:supporting_services], %w(drupalmysql drupal))
     assert_equal(nil, tasks[:awestruct_command_args])
   end
 
@@ -150,10 +150,10 @@ class TestOptions < Minitest::Test
 
   def test_supporting_services
     tasks = Options.parse (["-r"])
-    assert_equal(tasks[:supporting_services], %w(mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w())
 
     tasks = Options.parse (["--run-the-stack"])
-    assert_equal(tasks[:supporting_services], %w(mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w())
   end
 
   def test_awestruct_command_drupal_dev
@@ -243,7 +243,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert(tasks[:build])
-    assert_equal(tasks[:supporting_services], %w(mysql searchisko drupalmysql drupal))
+    assert_equal(tasks[:supporting_services], %w(drupalmysql drupal))
   end
 
   def test_run_stage_pr
@@ -252,7 +252,7 @@ class TestOptions < Minitest::Test
     assert_equal(["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
     assert(tasks[:build])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(tasks[:supporting_services], %w(mysql searchisko))
+    assert_equal(tasks[:supporting_services], %w())
   end
 
   def test_run_stage_pr_drupal
@@ -262,7 +262,7 @@ class TestOptions < Minitest::Test
     assert_equal(["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,6] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
     assert(tasks[:build])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(tasks[:supporting_services], %w(mysql searchisko drupalmysql drupal))
+    assert_equal(tasks[:supporting_services], %w(drupalmysql drupal))
   end
 
   def test_run_the_stack_with_no_decrypt
@@ -297,7 +297,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(%w(apache mysql searchisko drupalmysql drupal), tasks[:supporting_services])
+    assert_equal(%w(apache drupalmysql drupal), tasks[:supporting_services])
     assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
   end
 
@@ -308,7 +308,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(%w(mysql searchisko drupalmysql drupal), tasks[:supporting_services])
+    assert_equal(%w(drupalmysql drupal), tasks[:supporting_services])
     assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
   end
 
@@ -318,7 +318,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert_equal(%w(mysql searchisko), tasks[:supporting_services])
+    assert_equal(%w(), tasks[:supporting_services])
     assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
   end
 
