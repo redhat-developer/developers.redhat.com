@@ -24,7 +24,9 @@ class DownloadsPage < SiteBase
   end
 
   def click_to_download(url)
-    @browser.element(xpath: "//*[@id='downloads']//a[@href='#{url}']").when_present.click
+    myelement = @browser.element(xpath: "//*[@id='downloads']//a[@href='#{url}']")
+    @browser.execute_script "window.scrollTo(#{myelement.element.wd.location[0]},#{myelement.element.wd.location[1]})"
+    myelement.when_present.fire_event('click')
   end
 
 end

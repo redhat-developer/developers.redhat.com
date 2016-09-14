@@ -102,6 +102,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "stackoverflow";
 @import "forums";
 @import "error-pages";
+@import "adaptive-placeholder";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -135,9 +136,21 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 a {
   color:$link;
   cursor:pointer;
-  &:hover {
-    color:$linkhover;
-  }
+  &:hover { color: $linkhover; }
+
+  &.dark-background{ color: $link-dark-background; }
+  &.link-sm {color: $link-sm; }
+  &.link-sm-dark {color: $link-sm-dark-background; }
+  &.link-sm-grey {color: $link-sm-grey-background; }
+
+}
+
+.link-sm a {
+  color: $link-sm;
+}
+
+small a {
+  color:$link-sm;
 }
 
 button, .button {
@@ -1177,6 +1190,7 @@ form.dev-mat-filters, .project-filters {
 
 a.filters-clear {
   font-size: 14px;
+  color: $link-sm;
   text-decoration: underline;
   padding-left: 5px;
   position: relative;
@@ -1970,6 +1984,9 @@ label.inline{
   p {
     margin-bottom: 0;
   }
+  a {
+    color: $link-grey-background;
+  }
 }
 
 .button.button--solution {
@@ -2085,5 +2102,32 @@ h2.home-title {
       font-size: 1.8em;
       margin-right: 15px;
     }
+  }
+}
+
+h5.login-label {
+  text-transform: uppercase;
+  color: $red;
+  margin-bottom: 1em;
+}
+
+form.login-form {
+  max-width: 21em;
+  
+  input[type='email'] + label, 
+  input[type='text'] + label, 
+  input[type='password'] + label {
+    margin-bottom: 0;
+    font-family: "Overpass", "Open Sans", Helvetica, sans-serif !important;
+    color: #656565;
+    &::before {
+      color: #656565;
+    }
+  }
+
+  small {
+    float: right;
+    margin-bottom: 10px;
+    color: #656565;
   }
 }

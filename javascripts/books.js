@@ -13,7 +13,7 @@ app.books = {
         }
 
         var filterKeys = [
-            "keyword",
+            "keyword"
         ];
 
         var hashParams = hashParams || app.utils.getParametersFromHash();
@@ -46,7 +46,7 @@ app.books = {
     performFilter: function () {
         var bookTemplate = app.templates.bookTemplate;
         var contributorTemplate = "<span class=\"contributor\" data-sys-contributor=\"<!=author!>\">" +
-                "<a class=\"name\"><!=normalizedAuthor!></a>" +
+                "<a class=\"name link-sm\"><!=normalizedAuthor!></a>" +
                 "</span>";
         $('ul.book-list').empty();
 
@@ -65,12 +65,12 @@ app.books = {
         var keyword = $('input[name="filter-text"]').val();
 
         $.extend(filters, {
-            "keyword": keyword,
+            "keyword": keyword
         });
 
         /* Store the raw form values in local storage. */
         var formValues = {
-            "keyword": keyword,
+            "keyword": keyword
         };
         if (this.supportsLocalStorage()) {
             $.each(formValues, function (key, val) {
@@ -122,7 +122,7 @@ app.books = {
             var results = data.hits.hits;
             for (var k = 0; k < results.length; k++) {
                 var book = results[k].fields;
-                var authors = ""
+                var authors = "";
                 if (!book.sys_url_view) {
                     book.sys_url_view = ""
                 }

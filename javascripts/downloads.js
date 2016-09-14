@@ -43,7 +43,7 @@ app.downloads.createDownloadTable = function (products) {
                         $('<td>').text(versionName),
                         $('<td>').text(dateString),
                         $('<td>').text(file.description),
-                        $('<td>').addClass('download-links').append(app.downloads.createInstallerLink(file))
+                        $('<td>').addClass('download-links link-sm').append(app.downloads.createInstallerLink(file))
                 );
 
             } else {

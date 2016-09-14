@@ -59,6 +59,19 @@ class DrupalInstallChecker
     end
   end
 
+  #
+  # This works-around a bug in the workspace module install in staging and production environments. We need to set the
+  # initial id of the row inserted into the workspace table to 1 from 9. In environments where this does not occur e.g
+  # drupal-dev, drupal-pull-request, this method is essentially a null-op
+  #
+  def workaround_workspace_bug
+    process_executor.exec!('mysql', ["--host=#{@opts['database']['host']}",
+                                     "--port=#{@opts['database']['port']}",
+                                     "--user=#{@opts['database']['username']}",
+                                     "--password=#{@opts['database']['password']}",
+                                     '--execute=update workspace set id=1 where id=9', "#{@opts['database']['name']}"])
+  end
+
   def installed?
     settings_exists? && rhd_settings_exists? && mysql_connect? && tables_exists?
   end
@@ -118,7 +131,11 @@ class DrupalInstallChecker
   end
 
   def import_config
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete active field.storage.node.field_author_name'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all'])
   end
 end
 
@@ -141,7 +158,8 @@ if $0 == __FILE__
     checker.install_theme
     checker.install_modules
     checker.install_module_configuration
-    checker.set_cron_key    
+    checker.set_cron_key
     checker.import_config
+    checker.workaround_workspace_bug
   end
 end

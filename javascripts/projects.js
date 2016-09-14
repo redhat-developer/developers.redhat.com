@@ -286,10 +286,163 @@ $(function () {
         app.utils.updatePageHash(el);
     });
 
-    $('.project-filters-clear').on('click', function (e) {
-        e.preventDefault();
-        app.project.clearFilters($(this));
-    });
+    var html = "";
+
+    // loop over every hit
+    for (var i = 0; i < hits.length; i++) {
+      var props = hits[i].fields;
+
+      var imgsrc = "http://static.jboss.org/" + (props.specialIcon || props.sys_project) + "/images/" + (props.specialIcon || props.sys_project) + "_" + thumbnailSize + ".png";
+
+      var template = "<li class=\"upstream\">"
+        + "<div class=\"defaultprojectimage\">"
+        + "<p class=\"image-link\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "' alt='" + props.projectName + "'></p></div>"
+        + "<h5 class=\"solution-name\"><p class=\"solution-name-link\">"
+        + props.projectName + "</p></h3><p></p><a class=\"solution-overlay-learn link-sm\">Learn more</a>";
+
+      if (props.downloadsLink) {
+        template += " | <a href=\""
+          + app.project.getCorrectUrl(props.downloadsLink) + "\" class=\"link-sm\">Download</a>";
+      }
+
+
+      var list = "<div class=\"upstream-more-content\">" + "<ul class='project-details-list'>";
+
+      if (props.docsLink) {
+        var correctLink = app.project.getCorrectUrl(props.docsLink);
+        list += "<li>Docs: <a href='"+correctLink+"'>Documentation</a></li>";
+      }
+      if (props.communityLink) {
+        var correctLink = app.project.getCorrectUrl(props.communityLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Community: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.knowledgeBaseLink) {
+        var correctLink = app.project.getCorrectUrl(props.knowledgeBaseLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>KnowledgeBase: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.userForumLink) {
+        var correctLink = app.project.getCorrectUrl(props.userForumLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>User Forum: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.devForumLink) {
+        var correctLink = app.project.getCorrectUrl(props.devForumLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Dev Forum: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.mailingListLink) {
+        var correctLink = app.project.getCorrectUrl(props.mailingListLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Mailing List: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.chatLink) {
+        var correctLink = app.project.getCorrectUrl(props.chatLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Chat: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.blogLink) {
+        var correctLink = app.project.getCorrectUrl(props.blogLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Blog: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.issueTrackerLink) {
+        var correctLink = app.project.getCorrectUrl(props.issueTrackerLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Issue: <a href='"+correctLink+"'>"+ viewLink +"</a></li>";
+      }
+      if (props.jiraLink) {
+        var correctLink = app.project.getCorrectUrl(props.jiraLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>JIRA: <a href='"+correctLink+"'>"+ viewLink +"</a></li>";
+      }
+      if (props.srcLink) {
+        var correctLink = app.project.getCorrectUrl(props.srcLink);
+        list += "<li>Source: <a href='"+correctLink+"'>"+ correctLink +"</a></li>";
+      }
+      if (props.anonymousLink) {
+        var correctLink = app.project.getCorrectUrl(props.anonymousLink);
+        list += "<li>Anonymous Source: <a href='"+correctLink+"'>"+ correctLink +"</a></li>";
+      }
+      if (props.commiterLink) {
+        var correctLink = app.project.getCorrectUrl(props.commiterLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Committer Source Access: <a href='"+correctLink+"'></a></li>";
+      }
+      if (props.fisheyeLink) {
+        var correctLink = app.project.getCorrectUrl(props.fisheyeLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>FishEye: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.viewvcLink) {
+        var correctLink = app.project.getCorrectUrl(props.viewvcLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>View Source<a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.githubLink) {
+        var correctLink = app.project.getCorrectUrl(props.githubLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Github: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.anonymousGitLink) {
+        var correctLink = app.project.getCorrectUrl(props.anonymousGitLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Anonymous Git: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.committerGitLink) {
+        var correctLink = app.project.getCorrectUrl(props.committerGitLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Committer Git: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.buildLink) {
+        var correctLink = app.project.getCorrectUrl(props.buildLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Build: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+      if (props.hudsonLink) {
+        var correctLink = app.project.getCorrectUrl(props.hudsonLink);
+        var viewLink = correctLink.replace(/https?:\/\//,'');
+        list += "<li>Jenkins: <a href='"+correctLink+"'>"+viewLink+"</a></li>";
+      }
+
+      list += "</ul></div>";
+
+      // modal overlay content
+      var projectContent = $('<div>').addClass('project-content row');
+      var projectContentLeft = $('<div>').addClass('large-6 project-content-left columns').html("<img src='"+imgsrc+"' alt='" + props.projectName + "'>");
+      var projectContentRight = $('<div>').addClass('large-18 project-content-right  columns');
+
+      // downloads link
+      if (props.downloadsLink) {
+        projectContentLeft.append("<p><a class='upstream-download' href=\""+ app.project.getCorrectUrl(props.downloadsLink) + "\"><i class=\"fa fa-download\"></i> Download</a></p>");
+      }
+
+      // project url
+      projectContentLeft.append("<p><a href='"+app.project.getCorrectUrl(props.sys_url_view)+"'>Visit home page</a></p>");
+
+      // social links
+      var social = $('<ul>').addClass('project-social');
+      if (props.twitterLink) {
+        var correctLink = app.project.getCorrectUrl(props.twitterLink);
+        social.append("<li><a href='"+props.twitterLink+"'><i class='fa fa-twitter'></i></a></li>");
+      }
+
+      projectContentLeft.append(social);
+
+      projectContentRight.append( $("<h3>").html("<a href='"+app.project.getCorrectUrl(props.sys_url_view)+"'>"+props.sys_project_name+"</a>") );
+      projectContentRight.append( $("<p>").text(props.description) );
+      projectContentRight.append(list);
+      projectContent.append(projectContentLeft);
+      projectContent.append(projectContentRight);
+
+      template += $('<div>').append(projectContent.clone()).html();
+
+      // close the list item
+      template += "</li>";
+      // Append template to HTML
+      html += template;
+    }
 
     if ($('.project-filters').length) {
         if (window.location.search) {

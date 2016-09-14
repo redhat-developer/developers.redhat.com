@@ -33,6 +33,16 @@ class DrupalInstallCheckerTest < Minitest::Test
     assert @install_checker.rhd_settings_exists?
   end
 
+  def test_workaround_workspace_bug
+    @process_exec.expect :exec!, true, ['mysql', ["--host=#{@opts['database']['host']}",
+                                                  "--port=#{@opts['database']['port']}",
+                                                  "--user=#{@opts['database']['username']}",
+                                                  "--password=#{@opts['database']['password']}",
+                                                  '--execute=update workspace set id=1 where id=9', "#{@opts['database']['name']}"]]
+
+    assert @install_checker.workaround_workspace_bug
+  end
+
   def test_rhd_settings_exists_when_false
     refute @install_checker.rhd_settings_exists?
   end
@@ -133,7 +143,7 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                              'metatag_open_graph',
                                                                              'metatag_twitter_cards',
                                                                              'metatag_verification', 'admin_toolbar',
-                                                                             'admin_toolbar_tools','simple_sitemap',                                                                             
+                                                                             'admin_toolbar_tools','simple_sitemap',
                                                                               'devel', 'kint']]
 
 
@@ -202,7 +212,11 @@ class DrupalInstallCheckerTest < Minitest::Test
   end
 
   def test_config_import
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete active field.storage.node.field_author_name']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all']]
 
     @install_checker.import_config
     @process_exec.verify
