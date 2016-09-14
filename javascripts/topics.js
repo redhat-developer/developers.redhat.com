@@ -41,9 +41,14 @@ app.topics.render = function(materials) {
     var timeAgo = $.timeago(timeStamp);
 
     if (material.fields.sys_type[0] == 'blogpost'){
-      if (material.fields.sys_url_view[0].startsWith('http://developerblog.redhat.com') || material.fields.sys_url_view[0].startsWith('https://developerblog.redhat.com') || material.fields.sys_url_view[0].startsWith('http://developers.redhat.com/blog/') || material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog/')) {
+      if (material.fields.sys_url_view[0].startsWith('http://developers.redhat.com/blog') || material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog')) {
         material.fields.sys_url_view[0] = material.fields.sys_url_view[0];
-      } else {
+      }
+      else if(material.fields.sys_url_view[0].match(/http(s?):\/\/developerblog.redhat.com\/.*/g)){
+        material.fields.sys_url_view[0] = material.fields.sys_url_view[0].replace(/http(s?):\/\/developerblog.redhat.com\//, 'http://developers.redhat.com/blog/')
+      }
+
+      else {
         var post_id = /-(.+)/.exec(material._id)[1];
         material.fields.sys_url_view[0] = "//planet.jboss.org/post/" + post_id;
       }

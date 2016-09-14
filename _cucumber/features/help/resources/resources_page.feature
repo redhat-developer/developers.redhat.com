@@ -38,13 +38,13 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Then the results should be filtered by <result>
 
     Examples: Filter types and results.
-      | filter type                      | result     |
-      | Blog Posts                       | blogpost   |
-      | Book                             | book       |
-      | Code Artifact                    | demo       |
-      | Get Started                      | getstarted |
-      | Knowledgebase Article / Solution | article    |
-      | Video                            | video      |
+      | filter type   | result     |
+      | Blog Posts    | blogpost   |
+      | Book          | book       |
+      | Code Artifact | demo       |
+      | Get Started   | getstarted |
+      | Knowledgebase | article    |
+      | Video         | video      |
 
   Scenario: Clicking on the remove filter icon should replay results without filter.
     Given I am on the Resources page
@@ -87,10 +87,11 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Then some of the results should contain a single author
     And the author should not be clickable
 
+  @later
   Scenario: Results must contain a relevant tag that relates to the product.
     Given I am on the Resources page
-    When I enter "Containers" into the Keyword's box
-    Then some of the results should contain a "Containers" tag
+    When I enter "eap" into the Keyword's box
+    Then some of the results should contain a "eap" tag
 
   Scenario: Filter by product should display results related to that product
     Given I am on the Resources page
@@ -133,10 +134,10 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Given I am on the Resources page
     And results have loaded
     Then I should see pagination with "5" pages with ellipsis
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -145,10 +146,10 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Given I am on the Resources page
     When I enter "?" into the Keyword's box
     Then I should see pagination with "2" pages
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    But the following links should be disabled:
+    But the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -157,10 +158,10 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Given I am on the Resources page
     When I search for "?"
     Then I should see pagination with "5" pages without ellipsis
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -170,7 +171,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Then I should see pagination with "5" pages with ellipsis
     When I click on the pagination "Next" link
     Then I should see page "2" of the results
-    And the following links should be enabled:
+    And the following links should be available:
       | First    |
       | Previous |
       | Next     |
@@ -181,9 +182,9 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     And I am on page "2" of the results
     When I click on the pagination "Previous" link
     Then I should see page "1" of the results
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |

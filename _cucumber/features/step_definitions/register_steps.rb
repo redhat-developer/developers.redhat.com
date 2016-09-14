@@ -115,21 +115,9 @@ end
 When(/^I complete the registration form$/) do
   $site_user = generate_user
   on RegistrationPage do |page|
-    page.expand_register_choice_email # if the user is on a mobile device
     page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
-    page.accept_terms('all')
+    page.accept_all_terms
     page.create_account
-    page.wait_for_ajax
-  end
-end
-
-Then(/^I should see the following terms and conditions checkboxes:$/) do |table|
-  on RegistrationPage do |page|
-    page.expand_register_choice_email # if the user is on a mobile device
-    table.raw.each do |row|
-      term = row.first
-      page.terms_and_conditions_section.text.should include term
-    end
   end
 end
 
@@ -142,7 +130,6 @@ end
 When(/^I complete the registration with an empty "([^"]*)"$/) do |field|
   $site_user = generate_user
   on RegistrationPage do |page|
-    page.expand_register_choice_email # if the user is on a mobile device
     case field
       when 'email field'
         page.fill_in_form($site_user[:first_name], $site_user[:last_name], '', $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
@@ -166,16 +153,15 @@ When(/^I complete the registration with an empty "([^"]*)"$/) do |field|
 end
 
 When(/^I register a new account$/) do
-  on HomePage do |page|
-    page.navigate_to('register')
+  $site_user = generate_user
+  visit HomePage do |page|
+    page.open_register_page
   end
-
   on RegistrationPage do |page|
     page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
+    page.accept_all_terms
     page.create_account
-    page.wait_for_ajax
   end
-
 end
 
 Then(/^I should be registered and logged in$/) do
@@ -185,7 +171,6 @@ end
 When(/^I try to enter passwords that do not match$/) do
   $site_user = generate_user
   on RegistrationPage do |page|
-    page.expand_register_choice_email # if the user is on a mobile device
     page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:password], 'password')
     page.create_account
   end
@@ -193,20 +178,17 @@ end
 
 Then(/^I should see a "([^"]*)" error with "([^"]*)"$/) do |field, field_warning|
   on RegistrationPage do |page|
-    expect(page.send("#{field.gsub(' ', '_')}_error")).to eq field_warning
+    expect(page.send("#{field.gsub(' ', '_')}_error")).to eq(field_warning)
   end
 end
 
 Then(/^I should see the Registration page$/) do
-  on RegistrationPage do |page|
-    expect(page.title).to eq 'Register | Red Hat Developers'
-  end
+  on RegistrationPage
 end
 
 When(/^I try to register with an existing OpenShift registered email$/) do
   $site_user = generate_user
   on RegistrationPage do |page|
-    page.expand_register_choice_email # if the user is on a mobile device
     page.fill_in_form($site_user[:first_name], $site_user[:last_name], 'velias+emailveriftest@redhat.com', $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
   end
 end
@@ -217,11 +199,11 @@ Then(/^each term should link to relevant terms and conditions page:$/) do |table
     table.hashes.each do |row|
       case row[:term]
         when 'Red Hat Developer Program'
-          page.find(link_text: 'Red Hat Developer Program Terms & Conditions').attribute('href').should include row[:url]
+          page.rhd_developer_terms.attribute_value('href').should include row[:url]
         when 'Red Hat Subscription Agreement'
-          page.find(link_text: 'Red Hat Subscription Agreement').attribute('href').should include row[:url]
+          page.rhd_subscription_terms.attribute_value('href').should include row[:url]
         when 'Red Hat Portals Terms of Use'
-          page.find(link_text: 'Red Hat Portals Terms of Use').attribute('href').should include row[:url]
+          page.rh_portal_terms.attribute_value('href').should include row[:url]
         else
           raise("#{row[:term]} is not a recognised term")
       end
@@ -254,4 +236,8 @@ And(/^I navigate to the verify email link$/) do
   @page.site_nav.close_and_reopen_browser
   @page.site_nav.get(@verification_email)
   @page.site_nav.wait_for_ajax
+end
+
+And(/^I am logged in$/) do
+  expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
 end

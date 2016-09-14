@@ -114,13 +114,18 @@
               li.logged-in
                 a.logged-in-name(href="#")
               li.logged-in
-                a.logout(href="#{site.base_url}") Logout
+                a.logout(href="#{site.base_url}") Log Out
               - unless page.url.include?('search')
-                li.search-wrapper
+                li.search-wrapper.desktop
                   form.search-bar(accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit")
                     input.user-search(type="text" placeholder="Enter your search term" id="search_list_text" name="q" maxlength="128" required)
                     button(type="submit" id="search-button")
                       i.fa.fa-search
+            - unless page.url.include?('search')
+              div.search-wrapper.mobile
+                form.search-bar(accept-charset="UTF-8" action="#{site.base_url}/search/" method="get" role="search" type="submit")
+                  input.user-search(type="text" placeholder="Enter your search term" id="search_list_text" name="q" maxlength="128" required)
+                  button(type="submit" id="search-button")
           .logo-wrap
             h1.logo
               a(href="#{site.base_url}" title="Red Hat Developers")

@@ -63,13 +63,6 @@ Feature: Basic personal registration
       | company field          | Company name is required |
       | country field          | Country is required      |
 
-  Scenario: Customer completes registration form accepting terms by clicking accept for each term and condition.
-    Given I am on the Registration page
-    Then I should see the following terms and conditions checkboxes:
-      | I have read and agree to the Red Hat Developer Program Terms & Conditions and agree to use the Red Hat Subscriptions(s) for development purposes only. |
-      | I have read and agree to the Red Hat Subscription Agreement.                                                                                           |
-      | I have read and agree to the Red Hat Portals Terms of Use and Export Control Agreement.                                                                |
-
   Scenario: Terms should link to relevant terms and conditions page
     Given I am on the Registration page
     Then each term should link to relevant terms and conditions page:

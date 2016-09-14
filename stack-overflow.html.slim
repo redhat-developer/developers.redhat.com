@@ -75,7 +75,7 @@ div(ng-app="search")
                               h4 {{r._source.view_count}}
                               p Views
                           .large-18.columns
-                            h4: a(href="{{r._source.sys_url_view}}") {{r._source.sys_title}}
+                            h4: a(ng-href="{{r._source.sys_url_view}}") {{r._source.sys_title}}
                             p.qtn-content(ng-bind-html="r | question")
 
                             .callout.qtn-answer(ng-class="r._source.answers[0] ? 'display-answer' : 'hide-answer' ")
@@ -85,7 +85,7 @@ div(ng-app="search")
                                 span(ng-show="r._source.answers[0].is_accepted == false")
                                   strong Latest answer: 
                                 | {{r._source.answers[0].body | htmlToPlaintext}}
-                              a(href="{{r._source.sys_url_view}}" target="_blank")
+                              a(ng-href="{{r._source.sys_url_view}}" target="_blank")
                                 | Read full question at Stack Overflow&nbsp;
                                 i.fa.fa-angle-right
                             p

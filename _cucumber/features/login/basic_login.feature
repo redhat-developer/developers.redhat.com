@@ -50,7 +50,7 @@ Feature: Log in using my RHD registered details.
     And I click the Logout link
     Then I should be logged out
 
-  @nightly @basic_login
+  @nightly @basic_login @ignore
   Scenario: A customer who has forgotten their login details can request a password reset
     Given I am on the Login page
     When I click the forgot password link
@@ -58,7 +58,7 @@ Feature: Log in using my RHD registered details.
     Then I should see a confirmation message: "You will receive an email shortly with instructions on how to create a new password. TIP: Check your junk or spam folder if you are unable to find the email."
     And I should receive an email containing a password reset link
 
-  @logout @nightly @basic_login
+  @logout @nightly @basic_login @ignore
   Scenario: A customer can successfully reset their password
     Given I am on the Login page
     When I click the forgot password link

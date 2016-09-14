@@ -108,23 +108,7 @@ app.dcp.thumbnails = {
   Products
   TODO: I pulled this from another file, we may need to figure out a better way to keep these up to date.
 */
-app.products = {
-        "amq": {"upstream": ["activemq", "fabric8"]},
-        "bpmsuite": {"upstream": ["drools", "guvnor", "optaplanner", "jbpm"]},
-        "brms": {"upstream": ["optaplanner", "drools", "guvnor"]},
-        "cdk": {"upstream": "_none"},
-        "datagrid": {"upstream": ["infinispan", "jgroups", "hibernate_subprojects_search"]},
-        "datavirt": {"upstream": ["teiid", "teiiddesigner", "modeshape"]},
-        "developertoolset": {"upstream": "_none"},
-        "devstudio": {"upstream": ["jbosstools"]},
-        "eap": {"upstream": ["wildfly", "jgroups", "hibernate", "hornetq", "jbossclustering", "jbossmc", "narayana", "jbossweb", "jbossws", "ironjacamar", "jgroups", "mod_cluster", "jbossas_osgi", "jbosssso", "picketlink", "resteasy", "weld", "wise", "xnio"]},
-        "fuse": {"upstream": ["camel", "karaf", "activemq", "cxf", "fabric8"]},
-        "mobileplatform": {"upstream": "_none"},
-        "openshift": {"upstream": "_none"},
-        "rhel": {"upstream": ["fedora"]},
-        "softwarecollections": {"upstream": "_none"},
-        "webserver": {"upstream": ["tomcat", "httpd", "mod_cluster"]}
-    };
+app.products = {"amq": {"upstream": ["activemq","fabric8"],"stackoverflow": "_none"},"bpmsuite": {"upstream": ["drools","guvnor","optaplanner","jbpm"],"stackoverflow": "_none"},"brms": {"upstream": ["optaplanner","drools","guvnor"],"stackoverflow": "_none"},"cdk": {"upstream": null,"stackoverflow": "_none"},"datagrid": {"upstream": ["infinispan","jgroups","hibernate_subprojects_search"],"stackoverflow": "_none"},"datavirt": {"upstream": ["teiid","teiiddesigner","modeshape"],"stackoverflow": "_none"},"developertoolset": {"upstream": null,"stackoverflow": "_none"},"devstudio": {"upstream": ["jbosstools"],"stackoverflow": "_none"},"devsuite": {"upstream": null,"stackoverflow": "_none"},"dotnet": {"upstream": null,"stackoverflow": "_none"},"eap": {"upstream": ["wildfly","jgroups","hibernate","hornetq","jbossclustering","jbossmc","narayana","jbossweb","jbossws","ironjacamar","jgroups","mod_cluster","jbossas_osgi","jbosssso","picketlink","resteasy","weld","wise","xnio"],"stackoverflow": ["jboss","jboss7.x","jboss5.x","jboss6.x","jboss-eap-6","jboss-4.0.x"]},"fuse": {"upstream": ["camel","karaf","activemq","cxf","fabric8","switchyard","hawtio"],"stackoverflow": ["jbossfuse"]},"mobileplatform": {"upstream": null,"stackoverflow": "_none"},"openjdk": {"upstream": null,"stackoverflow": "_none"},"openshift": {"upstream": null,"stackoverflow": ["openshift","openshift-client-tools","openshift-enterprise","openshift-cartridge","openshift-php-cartridges","openshift-gears","openshift-web-console","Openshift-env-variables"]},"rhel": {"upstream": ["fedora"],"stackoverflow": ["rhel","rhel5","rhel6","rhel7","rhel-scl"]},"softwarecollections": {"upstream": null,"stackoverflow": ["rhel-scl"]},"webserver": {"upstream": ["tomcat","httpd","mod_cluster"],"stackoverflow": ["jboss-web"]}};
 
 /*
  * Marketing ops
@@ -141,9 +125,8 @@ app.ssoConfig.account_url = drupalSettings.rhd.keycloak.accountUrl;
 app.ssoConfig.auth_url = drupalSettings.rhd.keycloak.authUrl;
 
 var homeLink = document.getElementById('home-link')
-var confirmationPage = homeLink != null && homeLink.attributes['href'].value.endsWith('.html') ? 'confirmation.html' : 'confirmation'
-app.ssoConfig.confirmation = confirmationPage == 'confirmation.html' ? homeLink.href.replace('index.html',confirmationPage) : homeLink.href + confirmationPage
-
+app.ssoConfig.confirmation = homeLink.href + '/confirmation'
+app.ssoConfig.logout_url = homeLink.href
 app.projects = {};
 app.projects.defaultImage = "/images/design/projects/default_200x150.png";
 

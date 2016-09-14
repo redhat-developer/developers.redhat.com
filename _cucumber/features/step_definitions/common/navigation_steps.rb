@@ -2,33 +2,28 @@ Given(/^I am on the ([^"]*) page$/) do |page|
   case page.downcase
     when 'home'
       visit(HomePage)
-    when 'technologies'
-      visit(TechnologiesPage)
+     when 'technologies'
+       visit(TechnologiesPage)
     when 'downloads'
       visit(DownloadsPage) do |page|
-        page.loaded?
+        page.wait_until_loaded
       end
     when 'registration'
       visit HomePage do |page|
-        page.navigate_to('registration')
+        page.open_register_page
       end
     when 'login'
       visit HomePage do |page|
-        page.navigate_to('login')
-      end
-      on LoginPage do |page|
-        page.loaded?
+        page.open_login_page
       end
     when 'stack overflow'
-      visit(StackOverflowPage).wait_until_loaded
+      visit(StackOverflowPage).wait_for_results
     when 'resources'
-      visit(ResourcesPage).wait_until_loaded
+      visit(ResourcesPage).wait_for_results
     when 'product forums'
       visit(ForumsPage)
     when 'edit details'
-      visit(EditAccountPage) do |page|
-        page.loaded?
-      end
+      visit(EditAccountPage)
     else
       raise("expected page '#{page}' was not recognised, please check feature")
   end
@@ -55,25 +50,24 @@ Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
 end
 
 When(/^I go back$/) do
-  @current_page.go_back
+  @browser.driver.navigate.back
 end
 
 Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
   table.raw.each do |row|
     menu_item = row.first
-    result = (@current_page.menu_item_present?(menu_item.downcase))
-    result.should == true
+    expect(@current_page.menu_item_present?(menu_item.downcase)).to be true
   end
 end
 
-When(/^I hover over the ([^"]*) menu item$/) do |menu_item|
-  @current_page.hover_over_nav_menu(menu_item.downcase)
+When(/^I click on the ([^"]*) menu item$/) do |menu_item|
+  @current_page.click_on_nav_menu(menu_item)
 end
 
 Then(/^I should see the following "(Topics|Technologies|Community|Help)" (desktop|mobile) sub\-menu items:$/) do |tab, resolution, table|
   table.raw.each do |row|
     sub_items = row.first
-    expect(@current_page.sub_menu_items(tab.downcase, resolution)).to include(sub_items)
+    expect(@current_page.sub_menu_items(tab.downcase, resolution)).to include(sub_items), "#{sub_items} was not found!"
   end
 end
 

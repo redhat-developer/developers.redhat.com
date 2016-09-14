@@ -103,12 +103,12 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 
     $rhd_settings['downloadManager'] = array();
     $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
-    $rhd_settings['dcp']['baseProtocolRelativeUrl'] = "http://" . $env_settings->get('searchisko')['host'] . ":"
+    $rhd_settings['dcp']['baseProtocolRelativeUrl'] = $env_settings->get('searchisko')['protocol'] . "://" . $env_settings->get('searchisko')['host'] . ":"
         . $env_settings->get('searchisko')['port'];
 
     $rhd_settings['keycloak'] = array();
     $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
-    $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['accountUrl'];
+    $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
 
     $theme_path = drupal_get_path('theme', 'rhd');
 

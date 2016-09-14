@@ -1,100 +1,66 @@
 require_relative 'abstract/site_base'
 
 class RegistrationPage < SiteBase
-  page_url('/register/')
-  page_title('Register | Red Hat Developers')
+  expected_element(:h1, text: "We're glad you're here")
+  #page_title('Register | Red Hat Developers')
 
-  value(:register_with_email_section_displayed?)   { |el| el.displayed?(id: 'login-choice-email') }
-  value(:register_with_social_section_displayed?)  { |el| el.displayed?(id: 'login-choice-social') }
+  element(:expand_register_with_email)             { |b| b.link(id: 'register-expand-choice-email') }
+  element(:expand_register_with_social)            { |b| b.link(id: 'register-expand-choice-social') }
+  element(:email_field)                            { |b| b.text_field(id: 'email') }
+  element(:password_field)                         { |b| b.text_field(id: 'password') }
+  element(:password_confirm_field)                 { |b| b.text_field(id: 'password-confirm') }
+  element(:first_name_field)                       { |b| b.text_field(id: 'firstName') }
+  element(:last_name_field)                        { |b| b.text_field(id: 'lastName') }
+  element(:company_field)                          { |b| b.text_field(id: 'user.attributes.company') }
+  element(:country_dropdown)                       { |b| b.select_list(id: 'user.attributes.country') }
+  element(:greeting_field)                         { |b| b.text_field(id: 'user.attributes.greeting') }
+  element(:address_line_one_field)                 { |b| b.text_field(id: 'user.attributes.addressLine1') }
+  element(:city_field)                             { |b| b.text_field(id: 'user.attributes.addressCity') }
+  element(:postcode_field)                         { |b| b.text_field(id: 'user.attributes.addressPostalCode') }
+  element(:phone_number_field)                     { |b| b.text_field(id: 'user.attributes.phoneNumber') }
+  element(:finish_button)                          { |b| b.button(value: 'Create my account') }
+  element(:terms_and_conditions_section)           { |b| b.element(class: 'tac-all-wrapper') }
+  element(:all_terms)                              { |b| b.checkbox(id: 'tac-checkall') }
+  element(:github_button)                          { |b| b.button(id: 'social-github') }
+  element(:rhd_developer_terms)                    { |b| b.link(text: 'Red Hat Developer Program Terms & Conditions') }
+  element(:rhd_subscription_terms)                 { |b| b.link(text: 'Red Hat Subscription Agreement') }
+  element(:rh_portal_terms)                        { |b| b.link(text: 'Red Hat Portals Terms of Use') }
 
-  element(:expand_register_with_email)  { |el| el.find(id: 'register-expand-choice-email') }
-  element(:expand_register_with_social) { |el| el.find(id: 'register-expand-choice-social') }
+  value(:email_field_error)                        { |b| b.label(id: 'email-error').when_present.text }
+  value(:password_field_error)                     { |b| b.label(id: 'password-error').when_present.text }
+  value(:password_confirm_field_error)             { |b| b.label(id: 'password-confirm-error').when_present.text }
+  value(:first_name_field_error)                   { |b| b.label(id: 'firstName-error').when_present.text }
+  value(:last_name_field_error)                    { |b| b.label(id: 'lastName-error').when_present.text }
+  value(:company_field_error)                      { |b| b.label(id: 'user.attributes.company-error').when_present.text }
+  value(:country_field_error)                      { |b| b.label(id: 'user.attributes.country-error').when_present.text}
 
-  element(:email_field)                 { |el| el.find(id: 'email') }
-  value(:email_field_error)             { |el| el.text_of(id: 'email-error') }
-
-  element(:password_field)              { |el| el.find(id: 'password') }
-  value(:password_field_error)          { |el| el.text_of(id: 'password-error') }
-
-  element(:password_confirm_field)      { |el| el.find(id: 'password-confirm') }
-  value(:password_confirm_field_error)  { |el| el.text_of(id: 'password-confirm-error') }
-
-  element(:first_name_field)            { |el| el.find(id: 'firstName') }
-  value(:first_name_field_error)        { |el| el.text_of(id: 'firstName-error') }
-
-  element(:last_name_field)             { |el| el.find(id: 'lastName') }
-  value(:last_name_field_error)         { |el| el.text_of(id: 'lastName-error') }
-
-  element(:company_field)               { |el| el.find(id: 'user.attributes.company') }
-  value(:company_field_error)           { |el| el.text_of(id: 'user.attributes.company-error') }
-
-  element(:country_dropdown)            { |el| el.find(id: 'user.attributes.country') }
-  value(:country_field_error)           { |el| el.text_of(id: 'user.attributes.country-error') }
-
-  element(:greeting_field)              { |el| el.find(id: 'user.attributes.greeting') }
-
-  element(:address_line_one_field)      { |el| el.find(id: 'user.attributes.addressLine1') }
-  element(:city_field)                  { |el| el.find(id: 'user.attributes.addressCity') }
-  element(:postcode_field)              { |el| el.find(id: 'user.attributes.addressPostalCode') }
-  element(:phone_number_field)          { |el| el.find(id: 'user.attributes.phoneNumber') }
-  element(:finish_button)               { |el| el.find(xpath: "//input[@value='Create my account']") }
-
-  element(:terms_and_conditions_section) { |el| el.find(class: 'tac-all-wrapper') }
-  element(:accept_all_terms)             { |el| el.find(id: 'tac-checkall') }
-  element(:developer_terms)              { |el| el.find(id: 'user.attributes.tcacc-1246') }
-  element(:redhat_subscription_terms)    { |el| el.find(id: 'user.attributes.tcacc-6') }
-  element(:redhat_portal_terms)          { |el| el.find(id: 'user.attributes.tcacc-1010') }
-
-  element(:github_button)                { |el| el.find(id: 'social-github') }
-
-  action(:create_account)                {|el|  el.click_on(xpath: "//input[@value='Create my account']")}
+  action(:accept_all_terms)                        { |p| p.all_terms.click }
+  action(:create_account)                          { |p| p.finish_button.click }
+  action(:click_github_button)                     { |p| p.github_button.when_present.click }
 
   def fill_in_form(first_name, last_name, email, company, country, password, password_confirm)
-    wait_for { email_field.displayed? }
+    expand_register_choice_email
     type(email_field, email)
     type(password_field, password)
     type(password_confirm_field, password_confirm)
     type(first_name_field, first_name)
     type(last_name_field, last_name)
     type(company_field, company)
-    select(country_dropdown, country) unless country.nil?
+    select_country(country) unless country.nil?
+  end
+
+  def select_country(country)
+    country_dropdown.select(country)
   end
 
   def expand_register_choice_email
-    if expand_register_with_email.displayed?
-      expand_register_with_email.click
-      wait_for { register_with_email_section_displayed? }
-    end
-  end
-
-  def expand_register_choice_social
-    if expand_register_with_social.displayed?
-      expand_register_with_social.click
-      wait_for { register_with_social_section_displayed? }
-    end
+    expand_register_with_email.click if expand_register_with_email.present?
+    email_field.wait_until_present
   end
 
   def click_register_with_github
-    if expand_register_with_social.displayed?
-      expand_register_with_social.click
-    end
-    wait_for { github_button.displayed? }
-    github_button.click
-  end
-
-  def accept_terms(term)
-    case term
-      when 'all'
-        accept_all_terms.click
-      when 'developer'
-        developer_terms.click
-      when 'red hat'
-        redhat_subscription_terms.click
-      when 'portal'
-        redhat_portal_terms.click
-      else
-        raise("#{term} is not a recognised condition")
-    end
+    expand_register_with_social.click if expand_register_with_social.present?
+    click_github_button
   end
 
 end

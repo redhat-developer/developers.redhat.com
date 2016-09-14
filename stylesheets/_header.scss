@@ -109,7 +109,7 @@ header.main {
   a {
     font-size:14px;
     padding:5px 0;
-    color:$blue;
+    color:$link;
     display: block;
     font-weight:900;
     &.heading {
@@ -181,6 +181,12 @@ nav.accounts {
     &:placeholder-shown {
       text-transform: uppercase;
     }
+  }
+}
+
+@include tablet-portrait-and-down {
+  nav.accounts ul {
+    padding-top: 0;
   }
 }
 

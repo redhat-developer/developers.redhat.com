@@ -1,20 +1,19 @@
 require_relative 'abstract/site_base'
-require_relative '../../../_cucumber/lib/helpers/downloads_helper.rb'
 
 class DownloadsPage < SiteBase
   page_url('/downloads/')
-  page_title('Downloads | Red Hat Developers')
+  expected_element(:h2, text: 'Downloads')
+  #page_title('Downloads | Red Hat Developers')
 
-  class << self
-    include DownloadHelper
-  end
+  element(:wait_until_loaded)              { |b| b.element(css: '#downloads .fa-refresh').wait_while_present }
+  element(:most_popular_section)           { |b| b.div(class: 'most-popular-downloads') }
+  elements(:download_buttons)              { |b| b.buttons(css: '#downloads .fa-download') }
+  elements(:most_popular_download_buttons) { |b| b.buttons(css: '.most-popular-downloads .fa-download') }
+  elements(:product_downloads)             { |b| b.divs(css: '#downloads h5') }
 
-  element(:loaded?)                        { |el| el.wait_until_not_displayed(css: '#downloads .fa-refresh') }
-  element(:most_popular_section)           { |el| el.find(css: '.most-popular-downloads') }
-  elements(:download_buttons)              { |el| el.find_elements(css: '#downloads .fa-download') }
-  elements(:most_popular_download_buttons) { |el| el.find_elements(css: '.most-popular-downloads .fa-download') }
-  elements(:product_downloads)             { |el| el.find_elements(css: '#downloads h5') }
-  elements(:other_resources)               { |el| el.find_elements(xpath: '//*[@id="other-resources"]/ul/li') }
+  value(:most_popular_downloads)           { |p| p.most_popular_section.when_present.text }
+  value(:most_popular_downloads_btns)      { |p| p.most_popular_download_buttons.size }
+  value(:download_btns)                    { |p| p.download_buttons.size }
 
   def available_downloads
     products = []
@@ -24,26 +23,10 @@ class DownloadsPage < SiteBase
     products
   end
 
-  def other_resources_links
-    other_resources.size
-  end
-
-  def most_popular_downloads
-    wait_for { most_popular_section.displayed? }
-    most_popular_section.text
-  end
-
-  def most_popular_downloads_btns
-    most_popular_download_buttons.size
-  end
-
-  def download_btns
-    download_buttons.size
-  end
-
   def click_to_download(url)
-    click_on(xpath: "//*[@id='downloads']//a[@href='#{url}']")
-    wait_for_ajax
+    myelement = @browser.element(xpath: "//*[@id='downloads']//a[@href='#{url}']")
+    @browser.execute_script "window.scrollTo(#{myelement.element.wd.location[0]},#{myelement.element.wd.location[1]})"
+    myelement.when_present.fire_event('click')
   end
 
 end
