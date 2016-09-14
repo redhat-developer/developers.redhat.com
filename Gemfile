@@ -53,7 +53,8 @@ gem 'listen', '3.0.8'
 #
 # From a location on your disk:
 #
-gem 'aweplug', git: 'https://github.com/awestruct/aweplug'
+#gem 'aweplug', git: 'https://github.com/awestruct/aweplug'
+gem 'aweplug', git: 'https://github.com/lightguard/aweplug'
 
 group :test do
   gem 'climate_control'
