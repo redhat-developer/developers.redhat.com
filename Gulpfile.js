@@ -73,6 +73,7 @@ var globs = {
     'javascripts/product-forums.js',
     '!javascripts/namespace.js',
     'javascripts/custom-jira-collector.js'
+    'javascripts/adaptive-placeholder.js'
   ],
   "styles": ['stylesheets/*.scss']
 };

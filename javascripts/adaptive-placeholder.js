@@ -4,7 +4,7 @@ app.adaptivePlaceholder = {
     var input = $(this);
     var value = input.val();
     
-    if(value != '' && value != undefined) {
+    if (value !== "" && value != undefined) {
       input.addClass('filled');
     } else {
       input.removeClass('filled');
