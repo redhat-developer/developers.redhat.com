@@ -1,0 +1,78 @@
+uuid: bb0fa325-8692-4e85-8dc0-5ce8ed12832b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_pages
+    - node.type.product
+    - paragraphs.paragraphs_type.buzz
+    - paragraphs.paragraphs_type.community
+    - paragraphs.paragraphs_type.docs_and_apis
+    - paragraphs.paragraphs_type.download
+    - paragraphs.paragraphs_type.get_started
+    - paragraphs.paragraphs_type.help
+    - paragraphs.paragraphs_type.learn
+    - paragraphs.paragraphs_type.overview
+    - paragraphs.paragraphs_type.resources
+    - paragraphs.paragraphs_type.updates
+  module:
+    - entity_reference_revisions
+id: node.product.field_product_pages
+field_name: field_product_pages
+entity_type: node
+bundle: product
+label: 'Product Pages'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      buzz: buzz
+      community: community
+      docs_and_apis: docs_and_apis
+      download: download
+      get_started: get_started
+      help: help
+      learn: learn
+      overview: overview
+      updates: updates
+      resources: resources
+    target_bundles_drag_drop:
+      buzz:
+        enabled: true
+        weight: 11
+      community:
+        enabled: true
+        weight: 12
+      docs_and_apis:
+        enabled: true
+        weight: 13
+      download:
+        enabled: true
+        weight: 14
+      get_started:
+        enabled: true
+        weight: 15
+      help:
+        enabled: true
+        weight: 16
+      learn:
+        enabled: true
+        weight: 17
+      main_content:
+        weight: 18
+        enabled: false
+      overview:
+        enabled: true
+        weight: 19
+      updates:
+        enabled: true
+        weight: 20
+      resources:
+        enabled: true
+        weight: 21
+field_type: entity_reference_revisions

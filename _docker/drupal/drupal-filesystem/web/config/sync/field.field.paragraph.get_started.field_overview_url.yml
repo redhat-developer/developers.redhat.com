@@ -1,0 +1,21 @@
+uuid: e8d02a5c-0a48-4339-b954-526c621069d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_url
+    - paragraphs.paragraphs_type.get_started
+id: paragraph.get_started.field_overview_url
+field_name: field_overview_url
+entity_type: paragraph
+bundle: get_started
+label: Url
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'Get Started'
+default_value_callback: ''
+settings: {  }
+field_type: string

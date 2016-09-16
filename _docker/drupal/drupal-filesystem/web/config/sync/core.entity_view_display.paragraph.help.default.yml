@@ -1,0 +1,41 @@
+uuid: 257c6cb2-a2a1-40bc-8ea8-0d5a7a793686
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.help.field_overview_hide_get_started
+    - field.field.paragraph.help.field_overview_main_content
+    - field.field.paragraph.help.field_overview_url
+    - paragraphs.paragraphs_type.help
+  module:
+    - text
+id: paragraph.help.default
+targetEntityType: paragraph
+bundle: help
+mode: default
+content:
+  field_overview_hide_get_started:
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_overview_main_content:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_overview_url:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

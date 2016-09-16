@@ -1,0 +1,41 @@
+uuid: 2092994d-2a32-46ad-bbf4-79db51597317
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.docs_and_apis.field_overview_hide_get_started
+    - field.field.paragraph.docs_and_apis.field_overview_main_content
+    - field.field.paragraph.docs_and_apis.field_overview_url
+    - paragraphs.paragraphs_type.docs_and_apis
+  module:
+    - text
+id: paragraph.docs_and_apis.default
+targetEntityType: paragraph
+bundle: docs_and_apis
+mode: default
+content:
+  field_overview_hide_get_started:
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_overview_main_content:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_overview_url:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

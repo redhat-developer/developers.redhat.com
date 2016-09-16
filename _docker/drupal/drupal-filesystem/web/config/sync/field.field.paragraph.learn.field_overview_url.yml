@@ -1,0 +1,21 @@
+uuid: 00d575d8-841c-406a-b327-5eb2fdb1c01d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_url
+    - paragraphs.paragraphs_type.learn
+id: paragraph.learn.field_overview_url
+field_name: field_overview_url
+entity_type: paragraph
+bundle: learn
+label: Url
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: Learn
+default_value_callback: ''
+settings: {  }
+field_type: string

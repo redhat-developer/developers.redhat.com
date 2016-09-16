@@ -1,0 +1,21 @@
+uuid: 820114dd-0091-46f6-8bae-329b1be5ffd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_get_started
+    - node.type.product
+  module:
+    - text
+id: node.product.field_product_get_started
+field_name: field_product_get_started
+entity_type: node
+bundle: product
+label: 'Get Started'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,7 @@
+rhd_common.main_page_controller:
+  path: '/products/{node}/{second}'
+  defaults:
+    _controller: '\Drupal\rhd_common\Controller\ProductPageController::productPage'
+    _title: 'Product Page'
+  requirements:
+    _permission: 'access content'

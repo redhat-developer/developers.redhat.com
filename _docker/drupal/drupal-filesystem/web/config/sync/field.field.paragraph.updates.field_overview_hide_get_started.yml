@@ -1,0 +1,23 @@
+uuid: 8f3879f7-52e0-40d7-861d-f4de404bfb93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_hide_get_started
+    - paragraphs.paragraphs_type.updates
+id: paragraph.updates.field_overview_hide_get_started
+field_name: field_overview_hide_get_started
+entity_type: paragraph
+bundle: updates
+label: 'Hide Get Started'
+description: 'Hide Get Started block on this page.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Hide Get Started'
+  off_label: 'Off'
+field_type: boolean

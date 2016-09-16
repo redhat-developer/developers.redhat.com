@@ -56,3 +56,23 @@ function rhd_common_custom_form_validator(array &$element, \Drupal\Core\Form\For
     $form_state->setError($element, t('The alias needs to start with a slash.'));
   }
 }
+
+
+
+/**
+ * Implements hook_theme().
+ */
+function rhd_common_theme($existing, $type, $theme, $path) {
+  return array(
+    'product-pages' => array(
+      'variables' => array(
+        'title' => NULL,
+        'summary' => NULL,
+        'get_started' => NULL,
+        'disable_get_started' => NULL,
+        'product_pages' => NULL,
+        'main_content' => NULL,
+      ),
+    ),
+  );
+}

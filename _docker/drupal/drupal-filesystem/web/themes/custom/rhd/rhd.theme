@@ -140,3 +140,39 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
     $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
     $rhd_settings['templates']['stackoverflowTemplate'] = $template;
 }
+
+
+/**
+ * Implements template_preprocess_node().
+ */
+function rhd_preprocess_node(&$variables){
+  $variables['node'] = $variables['elements']['#node'];
+  $node = $variables['node'];
+  $nid = $node->id();
+  if ($node->getType() == 'product') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+    if ($path_args[1] == 'node') {
+      $pages = reset($node->field_product_pages);
+      $overview_page_id = $pages[0]->target_id;
+      $overview_page_paragraph = entity_load('paragraph', $overview_page_id);
+      $overview_page_content = $overview_page_paragraph->field_overview_main_content->value;
+      $active_page = $overview_page_paragraph->field_overview_url->value;
+    }
+    $variables['main_content'] = $overview_page_content;
+    foreach($node->field_product_pages as $product_page) {
+      $product_pages_id = $product_page->target_id;
+      $load_paragraph = entity_load('paragraph', $product_pages_id);
+      $overview_url = $load_paragraph->field_overview_url->value;
+      $url_string = str_replace(' ', '-', strtolower($overview_url));
+      if ($active_page == $overview_url) {
+        $product_pages_url[] = array('title' => $overview_url, 'url' => '/products/' . $nid . '/' .$url_string, 'active' => 1);
+      }
+       if ($active_page != $overview_url) {
+        $product_pages_url[] = array('title' => $overview_url, 'url' => '/products/' . $nid . '/' .$url_string);
+      }
+    }
+    $variables['product_pages'] = $product_pages_url;
+  }
+}
+

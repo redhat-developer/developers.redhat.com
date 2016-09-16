@@ -1,0 +1,21 @@
+uuid: ee78aa9f-8f6c-46ab-9326-0fe3e0f36c88
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_main_content
+    - paragraphs.paragraphs_type.overview
+  module:
+    - text
+id: paragraph.overview.field_overview_main_content
+field_name: field_overview_main_content
+entity_type: paragraph
+bundle: overview
+label: 'Main Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
