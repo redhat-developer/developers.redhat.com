@@ -2104,30 +2104,3 @@ h2.home-title {
     }
   }
 }
-
-h5.login-label {
-  text-transform: uppercase;
-  color: $red;
-  margin-bottom: 1em;
-}
-
-form.login-form {
-  max-width: 21em;
-  
-  input[type='email'] + label, 
-  input[type='text'] + label, 
-  input[type='password'] + label {
-    margin-bottom: 0;
-    font-family: "Overpass", "Open Sans", Helvetica, sans-serif !important;
-    color: #656565;
-    &::before {
-      color: #656565;
-    }
-  }
-
-  small {
-    float: right;
-    margin-bottom: 10px;
-    color: #656565;
-  }
-}
