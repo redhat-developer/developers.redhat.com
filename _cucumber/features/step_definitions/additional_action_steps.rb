@@ -4,11 +4,23 @@ Then(/^I should be asked to fill in mandatory information with a message "([^"]*
   end
 end
 
-When(/^I complete the required additional information$/) do
+When(/^I complete the missing information$/) do
   on AdditionalActionPage do |page|
     page.fill_in(nil, 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:country])
+  end
+end
+
+When(/^I complete the required additional information$/) do
+  on AdditionalActionPage do |page|
+    page.fill_in($site_user[:email], 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:country])
     page.accept_all_terms
     page.click_submit
+  end
+end
+
+When(/^I add an email address that is already RHD registered$/) do
+  on AdditionalActionPage do |page|
+    page.enter_email($site_user[:email])
   end
 end
 
@@ -17,17 +29,18 @@ And(/^I complete the required additional information with a new email address$/)
   puts "Adding new email: #{$site_user[:email]}"
 
   on AdditionalActionPage do |page|
-    page.fill_in($site_user[:email], 'P@$$word01', nil, nil, nil, $site_user[:country])
+    page.fill_in($site_user[:email], 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:country])
+    page.accept_all_terms
     page.click_submit
   end
 end
 
 Then(/^I should see the pre\-filled details from Github in the additional details form$/) do
   on AdditionalActionPage do |page|
-    expect(page.email_field.attribute('value')).to eq $site_user[:email]
-    expect(page.first_name_field.attribute('value')).to eq $site_user[:first_name]
-    expect(page.last_name_field.attribute('value')).to eq $site_user[:last_name]
-    expect(page.company_field.attribute('value')).to eq $site_user[:company_name]
+    expect(page.email_field.attribute_value('value')).to eq $site_user[:email]
+    expect(page.first_name_field.attribute_value('value')).to eq $site_user[:first_name]
+    expect(page.last_name_field.attribute_value('value')).to eq $site_user[:last_name]
+    expect(page.company_field.attribute_value('value')).to eq $site_user[:company_name]
   end
 end
 
@@ -64,6 +77,14 @@ end
 
 Then(/^I should see a warning that the email is already registered$/) do
   on AdditionalActionPage do |page|
-    expect(page.email_field_error.text).to eq 'User account for this email already exists. Link your social account with the existing account.'
+    #move focus to password field to make the warning show up quicker
+    page.enter_password('','')
+    expect(page.email_field_error_text).to eq 'User account for this email already exists. Link your social account with the existing account.'
+  end
+end
+
+And(/^I click on the Link my social account with the existing account link$/) do
+  on AdditionalActionPage do |page|
+    page.click_link_profile_to_social
   end
 end

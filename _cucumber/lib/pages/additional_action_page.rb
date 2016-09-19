@@ -26,6 +26,7 @@ class AdditionalActionPage < SiteBase
   action(:click_link_profile_to_social)  { |p| p.link_profile_to_social.when_present.click }
 
   value(:feedback)                       { |p| p.warning.when_present.text }
+  value(:email_field_error_text)         { |p| p.email_field_error.when_present.text }
 
   def fill_in(email, password, first_name, last_name, company, country)
     type(email_field, email) unless email.nil?
@@ -34,6 +35,10 @@ class AdditionalActionPage < SiteBase
     type(last_name_field, last_name) unless last_name.nil?
     type(company_field, company) unless company.nil?
     select_country(country) unless country.nil?
+  end
+
+  def enter_email(email)
+    type(email_field, email)
   end
 
   def enter_password(password, confirm_password)
@@ -48,25 +53,5 @@ class AdditionalActionPage < SiteBase
   def enter_company(company)
     type(company_field, company)
   end
-
-
-  def fulluser_tac_accept
-    accept_tac1
-    accept_tac2
-  end
-
-  def accept_terms(term)
-    case term
-      when 'all'
-        accept_all_terms
-      when 'developer'
-        accept_tac1
-      when 'red hat'
-        accept_tac2
-      else
-        raise("#{term} is not a recognised condition")
-    end
-  end
-
 
 end
