@@ -4,6 +4,12 @@
  * @file
  * Functions to support theming in the RHD theme.
  */
+use Drupal\field_collection\Entity\FieldCollectionItem;
+use Drupal\Core\Url;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Field\FieldItemBase;
+use Drupal\Core\Link;
+
 
 function rhd_theme_suggestions_page_alter(array &$suggestions, array $variables) {
     $node = \Drupal::request()->attributes->get('node');
@@ -103,12 +109,12 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 
     $rhd_settings['downloadManager'] = array();
     $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
-    $rhd_settings['dcp']['baseProtocolRelativeUrl'] = $env_settings->get('searchisko')['protocol'] . "://" . $env_settings->get('searchisko')['host'] . ":"
+    $rhd_settings['dcp']['baseProtocolRelativeUrl'] = "http://" . $env_settings->get('searchisko')['host'] . ":"
         . $env_settings->get('searchisko')['port'];
 
     $rhd_settings['keycloak'] = array();
     $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
-    $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
+    $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['accountUrl'];
 
     $theme_path = drupal_get_path('theme', 'rhd');
 
@@ -141,17 +147,17 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
     $rhd_settings['templates']['stackoverflowTemplate'] = $template;
 }
 
-
 /**
  * Implements template_preprocess_node().
  */
-function rhd_preprocess_node(&$variables){
+function rhd_preprocess_node(&$variables) {
   $variables['node'] = $variables['elements']['#node'];
   $node = $variables['node'];
   $nid = $node->id();
   if ($node->getType() == 'product') {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_args = explode('/', $current_path);
+    $product_code = $node->field_product_machine_name->value;
     if ($path_args[1] == 'node') {
       $pages = reset($node->field_product_pages);
       $overview_page_id = $pages[0]->target_id;
@@ -160,19 +166,23 @@ function rhd_preprocess_node(&$variables){
       $active_page = $overview_page_paragraph->field_overview_url->value;
     }
     $variables['main_content'] = $overview_page_content;
-    foreach($node->field_product_pages as $product_page) {
+    foreach ($node->field_product_pages as $product_page) {
       $product_pages_id = $product_page->target_id;
       $load_paragraph = entity_load('paragraph', $product_pages_id);
       $overview_url = $load_paragraph->field_overview_url->value;
       $url_string = str_replace(' ', '-', strtolower($overview_url));
+      $url = Url::fromRoute('rhd_common.main_page_controller', array('product_code' => $product_code, 'sub_page' => $url_string))->toString();
       if ($active_page == $overview_url) {
-        $product_pages_url[] = array('title' => $overview_url, 'url' => '/products/' . $nid . '/' .$url_string, 'active' => 1);
+        $product_pages_url[] = array(
+          'title' => $overview_url,
+          'url' => $url,
+          'active' => 1,
+        );
       }
-       if ($active_page != $overview_url) {
-        $product_pages_url[] = array('title' => $overview_url, 'url' => '/products/' . $nid . '/' .$url_string);
+      if ($active_page != $overview_url) {
+        $product_pages_url[] = array('title' => $overview_url, 'url' => $url);
       }
     }
     $variables['product_pages'] = $product_pages_url;
   }
 }
-

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "59b54d7ade7415ca60e31b9b20fae2a1",
-    "content-hash": "c2258835a5a5e50c879df98e6df79351",
+    "hash": "5478504b474539de8229c90632113e69",
+    "content-hash": "b017cf67619a3f2c92e34f6430c39bc2",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1646,6 +1646,109 @@
             "time": "2016-08-11 08:38:41"
         },
         {
+            "name": "drupal/field_collection",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/field_collection",
+                "reference": "e72f3e436d80b3d9946b5fb9c2ae42ea8afe1bf9"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha1+29-dev",
+                    "datestamp": "1471286339"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Wolfgang Ziegler (fago)",
+                    "homepage": "https://www.drupal.org/u/fago",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Joel Muzzerall (jmuzz)",
+                    "homepage": "https://www.drupal.org/u/jmuzz",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "larowlan",
+                    "homepage": "https://www.drupal.org/user/395439"
+                }
+            ],
+            "description": "Provides a field collection field, to which any number of fields can be attached.",
+            "homepage": "https://drupal.org/project/field_collection",
+            "support": {
+                "source": "http://cgit.drupalcode.org/field_collection",
+                "issues": "https://drupal.org/project/issues/field_collection"
+            },
+            "time": "2016-08-15 18:34:45"
+        },
+        {
+            "name": "drupal/field_group",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/field_group",
+                "reference": "77c5dfa28f7a4d7880bedc1cd2accf2d5986697c"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc4+24-dev",
+                    "datestamp": "1466856839"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Hydra",
+                    "homepage": "https://www.drupal.org/user/647364"
+                },
+                {
+                    "name": "Stalski",
+                    "homepage": "https://www.drupal.org/user/322618"
+                },
+                {
+                    "name": "jyve",
+                    "homepage": "https://www.drupal.org/user/591438"
+                },
+                {
+                    "name": "swentel",
+                    "homepage": "https://www.drupal.org/user/107403"
+                },
+                {
+                    "name": "zuuperman",
+                    "homepage": "https://www.drupal.org/user/361625"
+                }
+            ],
+            "description": "Provides the field_group module.",
+            "homepage": "https://www.drupal.org/project/field_group",
+            "support": {
+                "source": "http://cgit.drupalcode.org/field_group"
+            },
+            "time": "2016-06-25 12:10:54"
+        },
+        {
             "name": "drupal/key_value",
             "version": "8.1.0",
             "source": {
@@ -1931,6 +2034,48 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/simple_sitemap"
             }
+        },
+        {
+            "name": "drupal/subpathauto",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/subpathauto",
+                "reference": "76a830e0531da4648dcf44638ba2160306531c3c"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1472969339"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "lauriii",
+                    "homepage": "https://www.drupal.org/user/1078742"
+                }
+            ],
+            "description": "Provides support for extending sub-paths of URL aliases.",
+            "homepage": "https://www.drupal.org/project/subpathauto",
+            "support": {
+                "source": "http://cgit.drupalcode.org/subpathauto"
+            },
+            "time": "2016-09-04 06:08:39"
         },
         {
             "name": "drupal/token",
@@ -3346,22 +3491,30 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
                 "shasum": ""
             },
+            "require": {
+                "php": ">=5.3.0"
+            },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3375,12 +3528,13 @@
                 }
             ],
             "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
             "keywords": [
                 "log",
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2016-09-19 16:02:08"
         },
         {
             "name": "psy/psysh",
@@ -5563,7 +5717,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel",
-                "reference": "5a6e35d3b710296c629c28a28b7c450f08a6e33b"
+                "reference": "623a3b480a202a9d281c60f76ac806f3da0d4555"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -5578,8 +5732,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha1+24-dev",
-                    "datestamp": "1473834239"
+                    "version": "8.x-1.0-alpha1+25-dev",
+                    "datestamp": "1474112339"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -6728,6 +6882,9 @@
         "drupal/ctools": 15,
         "drupal/entity_reference_revisions": 20,
         "drupal/paragraphs": 20,
+        "drupal/subpathauto": 20,
+        "drupal/field_collection": 20,
+        "drupal/field_group": 20,
         "jcalderonzumba/gastonjs": 20,
         "drupal/devel": 20
     },

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.product.field_product_get_started
+    - field.field.node.product.field_product_machine_name
     - field.field.node.product.field_product_pages
     - field.field.node.product.field_product_summary
     - node.type.product
@@ -22,6 +23,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+  field_product_machine_name:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_product_pages:
     type: entity_reference_revisions_entity_view
     weight: 107

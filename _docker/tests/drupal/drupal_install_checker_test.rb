@@ -201,13 +201,6 @@ class DrupalInstallCheckerTest < Minitest::Test
     @process_exec.verify
   end
 
-  def test_config_import
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
-
-    @install_checker.import_config
-    @process_exec.verify
-  end
-
   def yaml_opts_prod
     opts = <<yml
 environment: prod

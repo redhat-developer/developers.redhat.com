@@ -1,10 +1,11 @@
-uuid: 3591a3ac-9024-4ad2-be0f-9a117562bcc8
+uuid: 44265869-bb01-4e34-be7e-0c4785b14036
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.comment
+    - field.field.node.article.field_author_name
     - field.field.node.article.field_tags
     - node.type.article
   module:
@@ -31,6 +32,13 @@ content:
     settings:
       pager_id: 0
     third_party_settings: {  }
+  field_author_name:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_tags:
     type: entity_reference_label
     weight: 10

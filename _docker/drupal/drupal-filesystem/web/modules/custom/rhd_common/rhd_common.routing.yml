@@ -1,5 +1,5 @@
 rhd_common.main_page_controller:
-  path: '/products/{node}/{second}'
+  path: '/products/{product_code}/{sub_page}'
   defaults:
     _controller: '\Drupal\rhd_common\Controller\ProductPageController::productPage'
     _title: 'Product Page'

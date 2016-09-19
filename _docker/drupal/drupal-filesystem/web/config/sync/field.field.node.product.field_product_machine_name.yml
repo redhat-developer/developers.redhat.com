@@ -1,0 +1,19 @@
+uuid: f1ad4eec-91bc-47ea-9829-e3995d3b2ca9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_machine_name
+    - node.type.product
+id: node.product.field_product_machine_name
+field_name: field_product_machine_name
+entity_type: node
+bundle: product
+label: 'Product Machine Name'
+description: 'Add the product machine name or product code like datagrid for JBOSS DATA GRID.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
