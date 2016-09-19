@@ -7,7 +7,7 @@ class GitHubAdmin
   def generate_user_for_session(session_id)
 
     {
-        email: "rhd-autotest+sid_#{session_id}_#{Faker::Lorem.characters(5)}@redhat.com",
+        email: "redhat-developers-testers+sid_#{session_id}_#{Faker::Lorem.characters(5)}@redhat.com",
         first_name: 'RED HAT',
         last_name: 'TEST',
         company_name: 'RED HAT',

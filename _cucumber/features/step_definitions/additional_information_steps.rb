@@ -64,6 +64,12 @@ end
 
 Then(/^I should see a warning that the email is already registered$/) do
   on AdditionalInformationPage do |page|
-    expect(page.email_field_error.text).to eq 'User account for this email already exists. Link your social account with the existing account.'
+    expect(page.email_field_error_text).to eq 'User account for this email already exists. Link your social account with the existing account.'
+  end
+end
+
+And(/^I click on the Link my social account with the existing account link$/) do
+  on AdditionalInformationPage do |page|
+    page.click_link_profile_to_social
   end
 end

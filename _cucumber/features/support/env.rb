@@ -107,7 +107,7 @@ at_exit do
 
   # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
   admin = KeyCloak.new
-  email_one = admin.get_user_by("rhd-autotest+sid_#{$session_id}")
+  email_one = admin.get_user_by("redhat-developers-testers+sid_#{$session_id}")
   unless email_one.empty?
     email_one.each do |user|
       admin.delete_user(user['email'])
