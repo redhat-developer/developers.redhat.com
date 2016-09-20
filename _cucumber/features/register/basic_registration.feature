@@ -5,6 +5,22 @@ Feature: Basic personal registration
   So that I can use its services.
 
   @logout
+  Scenario: User can register by navigating directly to the /register page
+    Given I navigate to the "/register" page
+    When I complete the registration form
+    Then I should be registered and logged in
+    When I am on the Edit Details page
+    And the following newly registered details should be added to my profile:
+      | Username                                    |
+      | Email                                       |
+      | First Name                                  |
+      | Last name                                   |
+      | Company                                     |
+      | Country                                     |
+      | Red Hat Developer Program subscription date |
+      | Privacy & Subscriptions status              |
+
+  @logout
   Scenario: Site visitor completes the registration form accepting terms by clicking "accept all terms and conditions"
     Given I am on the Registration page
     When I complete the registration form
