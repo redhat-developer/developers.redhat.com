@@ -13,12 +13,12 @@
             h4 <!=view_count!>
             p Views
         .large-18.columns
-          a.update-source(href="<!=sys_url_view!>" target="_blank")
+          a.update-source(href="<!=sys_url_view!>" target="_blank" rel="noopener noreferrer")
             h5.qtn-title <!=sys_title!>
           p.qtn-content <!=qtnContent!>
           .callout.qtn-answer(class="<!=displayAnswr!>")
             p <!=answer!>
-            a(href="<!=sys_url_view!>" target="_blank")
+            a(href="<!=sys_url_view!>" target="_blank" rel="noopener noreferrer")
               | Read full question at Stack Overflow&nbsp;
               i.fa.fa-angle-right
           p

@@ -85,7 +85,7 @@ div(ng-app="search")
                                 span(ng-show="r._source.answers[0].is_accepted == false")
                                   strong Latest answer: 
                                 | {{r._source.answers[0].body | htmlToPlaintext}}
-                              a(ng-href="{{r._source.sys_url_view}}" target="_blank")
+                              a(ng-href="{{r._source.sys_url_view}}" target="_blank" rel="noopener noreferrer")
                                 | Read full question at Stack Overflow&nbsp;
                                 i.fa.fa-angle-right
                             p
