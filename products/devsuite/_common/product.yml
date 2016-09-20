@@ -31,3 +31,16 @@ guides:
         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_Development_Suite-1.1-Installation_Guide-en-US/Red_Hat_Development_Suite-1.1-Installation_Guide-en-US.pdf
       epub:
         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_Development_Suite-1.1-Installation_Guide-en-US/Red_Hat_Development_Suite-1.1-Installation_Guide-en-US.epub
+get_started_paths:
+  - id: "nodejs"
+    name: Node.js
+    default_file: ../cdk/get-started-cdk2-nodejs
+  - id: "php"
+    name: PHP
+    default_file: ../cdk/get-started-cdk2-php
+  - id: "python"
+    name: Python
+    default_file: ../cdk/get-started-cdk2-python
+  - id: "ruby"
+    name: Ruby
+    default_file: ../cdk/get-started-cdk2-ruby
