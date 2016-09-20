@@ -42,7 +42,7 @@ module JBoss
                 end
                 final_location = final_path.relative_path_from(site_base).to_s
               end
-              resource = Aweplug::Helpers::Resources::SingleResource.new @site.dir, @site.cdn_http_base, @site.cdn_out_dir, @site.minify, @site.cdn_version 
+              resource = Aweplug::Helpers::Resources::SingleResource.new @site.dir, @site.cdn_http_base, @site.cdn_out_dir, @site.minify, @site.cdn_version
               lines << "image#{match_data.captures.first}#{resource.path(final_location)}[#{match_data.captures.last}]"
             else
               lines << line
@@ -85,23 +85,25 @@ module JBoss
 
       def transform site, page, content
         if page.output_extension.include?('htm')
-          # Strip trailing slashes for drupal export
-          doc = Nokogiri::HTML::DocumentFragment.parse(content, Encoding::UTF_8.to_s)
+          unless page.ignore_export
+            # Strip trailing slashes for drupal export
+            doc = Nokogiri::HTML::DocumentFragment.parse(content, Encoding::UTF_8.to_s)
 
-          doc.css('a').each do |a|
-            if a['href'] && a['href'].end_with?('/')
-              a['href'] = a['href'][0..-2]
+            doc.css('a').each do |a|
+              if a['href'] && a['href'].end_with?('/')
+                a['href'] = a['href'][0..-2]
+              end
             end
-          end
-          mod_content = doc.to_html
+            mod_content = doc.to_html
 
-          mod_content.freeze
+            mod_content.freeze
 
-          resp = @drupal.send_page page, mod_content
-
-          until resp.success? do
-            puts "Error making drupal request to '#{page.output_path}', retrying..."
             resp = @drupal.send_page page, mod_content
+
+            until resp.success? do
+              puts "Error making drupal request to '#{page.output_path}', retrying..."
+              resp = @drupal.send_page page, mod_content
+            end
           end
         end
         content # Don't mess up the content locally in _site
@@ -221,7 +223,7 @@ module JBoss
         end
       end
 
-      def download_manager_path(product, version) 
+      def download_manager_path(product, version)
         "#{site.download_manager_file_base_url}/#{product}/#{version}/download"
       end
 
@@ -269,7 +271,7 @@ module JBoss
         SPRITES_PATH = Pathname.new("images").join(SPRITES_DIR)
 
         def initialize
-          
+
         end
 
         def execute(site)
@@ -548,7 +550,7 @@ end
 # Hack for our own purposes with QuickStarts
 module Kramdown
   module Parser
-    class QuickStartParser 
+    class QuickStartParser
       def add_link(el, href, title, alt_text = nil)
         if el.type == :a
           if href =~ /^http[s]?:/
@@ -557,7 +559,7 @@ module Kramdown
             el.attr['href'] = href.gsub('CONTRIBUTING.md', 'contributing/index.html')
           else
             el.attr['href'] = href
-          end 
+          end
         else
           # TODO something needs to be done about images too
           el.attr['src'] = href
@@ -569,7 +571,7 @@ module Kramdown
       end
     end
   end
-end 
+end
 
 class DateTime
   def pretty
@@ -578,11 +580,11 @@ class DateTime
     case a
     when 0 then 'just now'
     when 1 then 'a second ago'
-    when 2..59 then a.to_s+' seconds ago' 
+    when 2..59 then a.to_s+' seconds ago'
     when 60..119 then 'a minute ago' #120 = 2 minutes
     when 120..3540 then (a/60).to_i.to_s+' minutes ago'
     when 3541..7100 then 'an hour ago' # 3600 = 1 hour
-    when 7101..82800 then ((a+99)/3600).to_i.to_s+' hours ago' 
+    when 7101..82800 then ((a+99)/3600).to_i.to_s+' hours ago'
     when 82801..172000 then 'a day ago' # 86400 = 1 day
     when 172001..518400 then ((a+800)/(60*60*24)).to_i.to_s+' days ago'
     when 518400..1036800 then 'a week ago'

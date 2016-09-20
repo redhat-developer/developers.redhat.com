@@ -101,6 +101,8 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "gids";
 @import "stackoverflow";
 @import "forums";
+@import "error-pages";
+@import "adaptive-placeholder";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -134,9 +136,21 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 a {
   color:$link;
   cursor:pointer;
-  &:hover {
-    color:$linkhover;
-  }
+  &:hover { color: $linkhover; }
+
+  &.dark-background{ color: $link-dark-background; }
+  &.link-sm {color: $link-sm; }
+  &.link-sm-dark {color: $link-sm-dark-background; }
+  &.link-sm-grey {color: $link-sm-grey-background; }
+
+}
+
+.link-sm a {
+  color: $link-sm;
+}
+
+small a {
+  color:$link-sm;
 }
 
 button, .button {
@@ -452,6 +466,7 @@ body.fullbleed {
   background-position: bottom center;
   min-height: 400px;
   padding-bottom: emCalc(100px);
+  flex: 1;
 }
 
 
@@ -1175,6 +1190,7 @@ form.dev-mat-filters, .project-filters {
 
 a.filters-clear {
   font-size: 14px;
+  color: $link-sm;
   text-decoration: underline;
   padding-left: 5px;
   position: relative;
@@ -1967,6 +1983,9 @@ label.inline{
   margin: 15px 0;
   p {
     margin-bottom: 0;
+  }
+  a {
+    color: $link-grey-background;
   }
 }
 

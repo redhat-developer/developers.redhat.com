@@ -1,0 +1,125 @@
+---
+layout: base
+body_class: fullbleed
+primary_nav_hidden: true
+interpolate: true
+hero_class: javaone2016
+title: JavaOne
+description: Red Hat Developers' sessions and speakers at JavaOne 2016
+---
+
+.wide.wide-hero.javaone(class="#{page.hero_class}")==hero
+
+#javaone-microsite
+  section.site-header
+    .row
+      .large-18.small-24.columns
+        h2 JAVA ONE
+      .large-6.small-24.columns
+        = partial("share.html.slim", :url => "#{site.base_url}#{page.url}", :title => "#{page.title}")
+      .large-24.column
+        p Stop by booth 5301 to snag a T-shirt, stickers or other Red Hat freebies we’ll be handing out.
+    .row.event-nav
+      .large-24.columns
+        ul.nav-list
+          li
+            a href="#minibooth-sessions" 
+              i.fa.fa-film.fa-2x
+              |  Mini-Booth Session Recordings
+          li
+            a href="#featured-speakers" 
+              i.fa.fa-group.fa-2x
+              |  Featured Red Hat Speakers
+        br
+        p
+          | We’ll have live sessions at our booth on topics like: Kubernetes, Docker, Red Hat OpenShift, Red Hat JBoss, Microservices, Vert.x, Wildfly Swarm and more. See below for our full schedule:
+
+  section.inverse
+    .row
+      .large-15.small-24.columns
+        h2.caps JavaOne 2016
+      .large-9.small-24.columns.javaone-date
+        i.fa.fa-calendar.fa-2x
+        h6   September 18, 2016 - September 22nd, 2016
+  section#minibooth-sessions
+    .row
+      .large-24.columns
+        h3 MINIBOOTH SESSIONS
+
+        .large-20.small-24.columns
+          h5.session-day Monday, September 19
+          ul.session-list
+            - page.javaone.minibooth_sessions.monday.each do |session|
+              li
+                .session
+                  h4 #{session.title}
+                  h6 #{session.date}  -  #{session.speaker}
+                  p #{session.description}
+        .large-20.small-24.columns
+          h5.session-day Tuesday, September 20
+          ul.session-list
+            - page.javaone.minibooth_sessions.tuesday.each do |session|
+              li
+                .session
+                  h4 #{session.title}
+                  h6 #{session.date}  -  #{session.speaker}
+                  p #{session.description}
+        .large-20.small-24.columns
+          h5.session-day Wednesday, September 21
+          ul.session-list
+            - page.javaone.minibooth_sessions.wednesday.each do |session|
+              li
+                .session
+                  h4 #{session.title}
+                  h6 #{session.date}  -  #{session.speaker}
+                  p #{session.description}
+  section.inverse#featured-speakers
+    .row
+      .large-24.column
+        h2 RED HAT FEATURED SPEAKERS
+        ul.speakers-list
+          - page.javaone.featured_speakers.each do |speaker|
+            li.row
+              .large-3.small-10.columns
+                img(src=cdn("#{site.base_url}/images/javaone/2016/#{speaker.speaker_img}") alt="")
+              .large-4.small-14.columns.speaker-info
+                p #{speaker.speaker_name}
+                strong #{speaker.speaker_lastname}
+                p #{speaker.speaker_title}
+              .large-17.columns
+                .row
+                  p.large-24.columns #{speaker.description}
+  section.inverse-light#previous-events
+    .row
+      .large-24.columns
+        h3.caps PREVIOUS JAVAONE EVENTS
+      .large-24.columns
+        ul.past-events
+          li 
+             p
+              a(href='#{site.base_url}/events/javaone/2015') JavaOne 2015
+              | &emsp;October 25 - October 29, 2015 | San Francisco
+          li 
+             p
+              a(href='http://www.jboss.org/events/javaone/2014') JavaOne 2014
+              | &emsp;September 28 - October 2, 2014 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2013') JavaOne 2013
+              | &emsp;September 22 - September 26, 2013 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2012') JavaOne 2012
+              | &emsp;September 30 - October 4, 2012 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2011') JavaOne 2011
+              | &emsp;October 2 - October 6, 2011 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2010') JavaOne 2010
+              | &emsp;September 19 - September 23, 2010 | San Francisco
+          li 
+            p
+              a(href='http://www.jboss.org/events/javaone/2009') JavaOne 2009
+              | &emsp;June 2 - June 5, 2009 | San Francisco                       

@@ -1,22 +1,26 @@
 require_relative 'abstract/site_base'
-require_relative '../../../_cucumber/lib/helpers/products_helper.rb'
 
 class ProductOverviewPage < SiteBase
 
-  class << self
-    include ProductsHelper
-  end
-
-  element(:loaded?)  { |el| el.wait_until_displayed(class: 'side-nav') }
+  element(:side_nav)  { |b| b.ul(class: 'side-nav') }
 
   def open_overview_for(product)
     open("/products/#{product}/overview/")
-    wait_for_ajax
-    loaded?
+    side_nav.wait_until_present
+  end
+
+  def open_download_for(product)
+    open("/products/#{product}/download/")
+    side_nav.wait_until_present
   end
 
   def side_nav_item_displayed?(nav_item)
-    displayed?(xpath: "//*[@class='side-nav']//a[contains(text(),'#{nav_item.split.map(&:capitalize).join(' ')}')]")
+    @browser.link(xpath: "//*[@class='side-nav']//a[contains(text(),'#{nav_item.split.map(&:capitalize).join(' ')}')]").present?
+  end
+
+  def click_to_download(url)
+    myelement = @browser.link(xpath: "//*//a[@href='#{url}']", :index => 0)
+    myelement.when_present.fire_event('click')
   end
 
 end

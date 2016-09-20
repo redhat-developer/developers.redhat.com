@@ -1,4 +1,4 @@
-require 'selenium-webdriver'
+require 'watir'
 require 'rspec'
 require 'require_all'
 require 'fileutils'
@@ -17,37 +17,42 @@ require 'report_builder'
 require 'octokit'
 require 'date'
 require 'active_support/core_ext'
-require_relative 'browser'
+require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
+Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/*.rb"].each { |helper| load helper }
 
+$os = :linux if RUBY_PLATFORM.include? 'linux'
+$os = :mac if RUBY_PLATFORM.include? 'darwin'
+
 World PageHelper
+World DriverHelper
 
 if ENV['HOST_TO_TEST'].to_s.empty?
   $host_to_test                  = 'http://developers.stage.redhat.com'
-  $keycloak_base_url             = 'https://developers.stage.redhat.com/auth/realms/rhd/account'
+  $keycloak_base_url = 'https://developers.stage.redhat.com'
   $download_manager_base_url     = 'https://developers.stage.redhat.com/download-manager/rest/available'
 else
   case ENV['HOST_TO_TEST']
     when 'dev'
       $host_to_test              = 'http://docker:4242'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com/auth/realms/rhd/account/'
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'staging'
       $host_to_test              = 'http://developers.stage.redhat.com'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com/auth/realms/rhd/account'
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'production'
       $host_to_test              = 'http://developers.redhat.com'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com/auth/realms/rhd/account'
+      $keycloak_base_url         = 'https://developers.redhat.com'
       $download_manager_base_url = 'https://developers.redhat.com/download-manager/rest/available'
     when 'drupal_dev'
       $host_to_test              = 'http://docker:9000'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com/auth/realms/rhd/account'
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'drupal_staging'
       $host_to_test              = 'http://developer-drupal.web.stage.ext.phx2.redhat.com'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com/auth/realms/rhd/account'
+      $keycloak_base_url         = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'drupal_production'
       $host_to_test              = 'http://developer-drupal.web.prod.ext.phx2.redhat.com'
@@ -58,10 +63,6 @@ else
   end
 end
 
-if $host_to_test.include?('docker:9000')
-  $drupal = true
-end
-
 if ENV['RHD_JS_DRIVER'].to_s.empty?
   $rhd_driver = 'chrome'
 else
@@ -70,15 +71,28 @@ end
 
 $session_id = Faker::Number.number(5)
 
-browser = Browser.new($rhd_driver)
+b = Browsers.new($rhd_driver)
 
 Before do
-  @driver = browser.driver
+  @browser = b.browser
+end
+
+Before do
+  b.delete_cookies
+end
+
+After do |scenario|
+  if scenario.failed?
+    Dir::mkdir('screenshots') if not File.directory?('screenshots')
+    screenshot = "_cucumber/screenshots/FAILED_#{scenario.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')}.png"
+    @browser.driver.save_screenshot(screenshot)
+    embed screenshot, 'image/png'
+  end
 end
 
 at_exit do
-
-  browser.driver.quit
+  b.browser.quit
+  #FileUtils.rm_rf $download_directory
 
   ReportBuilder.configure do |config|
     config.json_path = '_cucumber/reports/'
@@ -100,10 +114,4 @@ at_exit do
     end
   end
 
-  # ensure that github accounts are clear at the end of test run, so they do not interfere with subsequent test runs
-  github_accounts = %w(rhdScenarioOne rhdScenarioTwo)
-  github_accounts.each do |account|
-    github_admin = GitHubAdmin.new(account, 'P@$$word01')
-    github_admin.cleanup
-  end
 end

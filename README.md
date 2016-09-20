@@ -347,6 +347,7 @@ Minimally the following list of recipients is required to encrypt the file:
 * Ian R Hamilton <ian.hamilton@rubygemtsl.co.uk> (ID: 0xA8B212D4D48C38CE created at Mon 25 Apr 07:14:17 2016)
 * Redhat Developers CI (Key for Redhat Developers CI) <redhat-developers-ci@redhat.com> (ID: 0x8C622DEDD25F49F5 created at Wed 25 May 11:27:02 2016)
 * Jim Applebee <japplebe@redhat.com>    (ID: 0xE8DCBAF94F5923D9 created at Fri 22 Jul 2016 11:11:23 AM MDT)
+* Luke Dary <ldary@redhat.com>	 	(ID: 0x90236EFBD2509930 created at Thu 15 Sep 2016 08:32:40 AM MDT)
 
 If you add a new recipient to the file, ensure you update the list above.
 
@@ -374,6 +375,16 @@ If merge conflicts exist, you will need to do the fiollowing steps to fix the co
         git push <your fork alias> <branch name>
       
 5. Raise a PR from your branch onto the long running branch in upstream. Note that the PR tests will fail, as they don't expect a PR to be raised on a branch other than 'master'.
+
+## Migrating a page into Drupal
+
+1. Create the Drupal version of the page, but don't assign a URL alias (or assign a temporary alias)
+2. Review the Drupal version of the page
+3. Annotate the Awestruct version of the page by adding the `ignore_export: true` front matter variable to the page being exported. If the page being exported is an asciidoc page then it must be `:awestruct-ignore_export: true` instead. This will ensure that the Drupal export ignores the page and is not pushed into Drupal, whilst the legacy Awestruct CI job will still build the page.
+4. Delete the Awestruct pushed version of the page from Drupal
+5. Manually delete the old alias: Configuration -> Search and metadata -> URL Aliases -> Find the alias you want to re-use and delete it
+6. Switch the URL alias of the Drupal version of the page, to use the alias of the deleted Awestruct pushed version of the page.
+7. Wait for the Drupal site to be exported, this will take about an hour for it to show up. 
 
 ## <a name="CommonIssues"></a>Common issues
 This area documents fixes to common issues:

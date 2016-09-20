@@ -2,22 +2,18 @@ require_relative 'abstract/site_base'
 
 class GitHubPage < SiteBase
 
-  element(:username_field)           { |el| el.find(id: 'login_field' ) }
-  element(:password_field)           { |el| el.find(id: 'password' ) }
-  element(:authorize_app_btn)        { |el| el.find(name: 'authorize') }
+  element(:username_field)    { |b| b.text_field(id: 'login_field' ) }
+  element(:password_field)    { |b| b.text_field(id: 'password' ) }
+  element(:sign_in_btn)       { |b| b.button(css: '#login .btn-primary') }
+  element(:authorize_app_btn) { |b| b.button(name: 'authorize') }
 
-  action(:click_sign_in)             { |el| el.click_on(css: '#login .btn-primary') }
+  action(:click_sign_in)      { |p| p.sign_in_btn.when_present.click }
+  action(:authorize_app)      { |p| p.authorize_app_btn.when_present.click }
 
   def login_with(username, password)
-    wait_for { username_field.displayed? }
-    username_field.send_keys(username)
-    password_field.send_keys(password)
+    type(username_field, username)
+    type(password_field, password)
     click_sign_in
-  end
-
-  def authorize_app
-    wait_for(10) {authorize_app_btn.displayed? }
-    authorize_app_btn.click
   end
 
 end

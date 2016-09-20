@@ -8,7 +8,7 @@
 
 == Overview
 
-Red Hat Container Development Kit provides a pre-built Container Development Environment based on Red Hat Enterprise Linux to help you get started developing container-based applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
+Red Hat Container Development Kit provides a pre-built Container Development Environment based on Red Hat Enterprise Linux to help you get started developing container-based applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our Container Platform solution, OpenShift Enterprise 3.
 
 === Get started with containers on Mac OS X, Microsoft Windows, or Linux
 
@@ -22,9 +22,9 @@ Developers can now get Red Hat Container Development Kit via the no-cost Red Hat
 
 Container Development Kit is for you whether you are trying Linux containers for the first time, or want to see the latest developments in container tools from Red Hat. If you are just getting started, follow the link:#{site.base_url}/products/cdk/get-started[Get Started instructions]. If you are ready to try scaling out and orchestrating multi-container deployments, the kit includes OpenShift Enterprise 3.
 
-=== Want to try OpenShift 3 Platform-as-a-Service?
+=== Want to try OpenShift Container Platform?
 
-Container Development Kit provides a pre-built, single-machine OpenShift 3 environment, so you can try the latest version of the OpenShift platform-as-a-service that integrates support for docker-formatted containers and Kubernetes. When you bring up the rhel-ose Vagrantfile, OpenShift is started and provisioned. To help you get started building applications, a number of OpenShift templates are included. You can access the OpenShift Web console from your browser or work from the CLI using the `oc` command to deploy container applications. OpenShift is pre-configured with a local Docker registry available and a local version of Kubernetes running, so you can test the full experience in a self-contained environment.
+Container Development Kit provides a pre-built, single-machine OpenShift 3 environment, so you can try the latest version of the OpenShift Container Platform that integrates support for docker-formatted containers and Kubernetes. When you bring up the rhel-ose Vagrantfile, OpenShift is started and provisioned. To help you get started building applications, a number of OpenShift templates are included. You can access the OpenShift Web console from your browser or work from the CLI using the `oc` command to deploy container applications. OpenShift is pre-configured with a local Docker registry available and a local version of Kubernetes running, so you can test the full experience in a self-contained environment.
 
 === Container development right from Eclipse
 
