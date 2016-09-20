@@ -21,7 +21,7 @@ class RegistrationPage < SiteBase
   element(:finish_button)                          { |b| b.button(value: 'Create my account') }
   element(:terms_and_conditions_section)           { |b| b.element(class: 'tac-all-wrapper') }
   element(:all_terms)                              { |b| b.checkbox(id: 'tac-checkall') }
-  element(:github_button)                          { |b| b.button(id: 'social-github') }
+  element(:github_button)                          { |b| b.link(id: 'social-github') }
   element(:rhd_developer_terms)                    { |b| b.link(text: 'Red Hat Developer Program Terms & Conditions') }
   element(:rhd_subscription_terms)                 { |b| b.link(text: 'Red Hat Subscription Agreement') }
   element(:rh_portal_terms)                        { |b| b.link(text: 'Red Hat Portals Terms of Use') }
@@ -37,6 +37,7 @@ class RegistrationPage < SiteBase
   action(:accept_all_terms)                        { |p| p.all_terms.click }
   action(:create_account)                          { |p| p.finish_button.click }
   action(:click_github_button)                     { |p| p.github_button.when_present.click }
+  action(:click_link_social_to_existing_acc)       { |p| p.link_social_to_existing_acc.when_present.click }
 
   def fill_in_form(first_name, last_name, email, company, country, password, password_confirm)
     expand_register_choice_email

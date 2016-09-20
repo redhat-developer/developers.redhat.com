@@ -16,16 +16,17 @@ class AdditionalInformationPage < SiteBase
   element(:tac1)                         { |b| b.checkbox(id: 'user.attributes.tcacc-6') }
   element(:tac2)                         { |b| b.checkbox(id: 'user.attributes.tcacc-1246') }
   element(:submit_btn)                   { |b| b.button(value: 'Submit') }
-  element(:link_profile_to_social)       { |b| b.link(text: 'Link your social account with the existing account.') }
+  element(:link_profile_to_social)       { |b| b.element(css: '#email-error > a') }
   element(:warning)                      { |b| b.element(class: 'warning') }
 
   action(:accept_all_terms)              { |p| p.all_terms.when_present.click }
   action(:accept_tac1)                   { |p| p.tac1.when_present.click }
   action(:accept_tac2)                   { |p| p.tac2.when_present.click }
   action(:click_submit)                  { |p| p.submit_btn.when_present.click }
-  action(:click_link_profile_to_social)  { |p| p.link_profile_to_social.when_present.click }
+  action(:click_link_profile_to_social)  { |p| p.link_profile_to_social.when_present(30).click }
 
   value(:feedback)                       { |p| p.warning.when_present.text }
+  element(:email_field_error_text)       { |p| p.email_field_error.when_present.text}
 
   def fill_in(email, password, first_name, last_name, company, country)
     type(email_field, email) unless email.nil?
