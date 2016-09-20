@@ -6,6 +6,10 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Implements hook_form_alter().
@@ -74,3 +78,25 @@ function rhd_common_theme($existing, $type, $theme, $path) {
     ),
   );
 }
+
+/**
+ * Implements hook_node_view().
+ */
+function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  if ($view_mode == 'full' && $node->getType() == 'product') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+    if ($path_args[1] == 'node') {
+      $product_code = $node->field_product_machine_name->value;
+      if (!empty($product_code)) {
+        $url = Url::fromRoute('rhd_common.main_page_controller', array(
+          'product_code' => $product_code,
+          'sub_page' => 'overview',
+        ), array('absolute' => TRUE))->toString();
+        $response = new RedirectResponse($url);
+        $response->send();
+      }
+    }
+  }
+}
+

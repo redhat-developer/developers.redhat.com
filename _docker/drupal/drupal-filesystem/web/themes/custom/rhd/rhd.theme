@@ -109,12 +109,12 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 
     $rhd_settings['downloadManager'] = array();
     $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
-    $rhd_settings['dcp']['baseProtocolRelativeUrl'] = "http://" . $env_settings->get('searchisko')['host'] . ":"
+    $rhd_settings['dcp']['baseProtocolRelativeUrl'] = $env_settings->get('searchisko')['protocol'] . "://" . $env_settings->get('searchisko')['host'] . ":"
         . $env_settings->get('searchisko')['port'];
 
     $rhd_settings['keycloak'] = array();
     $rhd_settings['keycloak']['accountUrl'] = $env_settings->get('keycloak')['accountUrl'];
-    $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['accountUrl'];
+    $rhd_settings['keycloak']['authUrl'] = $env_settings->get('keycloak')['authUrl'];
 
     $theme_path = drupal_get_path('theme', 'rhd');
 
@@ -171,7 +171,10 @@ function rhd_preprocess_node(&$variables) {
       $load_paragraph = entity_load('paragraph', $product_pages_id);
       $overview_url = $load_paragraph->field_overview_url->value;
       $url_string = str_replace(' ', '-', strtolower($overview_url));
-      $url = Url::fromRoute('rhd_common.main_page_controller', array('product_code' => $product_code, 'sub_page' => $url_string))->toString();
+      $url = Url::fromRoute('rhd_common.main_page_controller', array(
+          'product_code' => $product_code,
+          'sub_page' => $url_string,
+        ), array('absolute' => TRUE))->toString();
       if ($active_page == $overview_url) {
         $product_pages_url[] = array(
           'title' => $overview_url,
