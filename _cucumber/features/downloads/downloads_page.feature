@@ -19,3 +19,4 @@ Feature: Download Page - Unauthorised customer
     Given I am on the Downloads page
     Then I should see a list of products available for download
     And a 'DOWNLOAD' button for each available product Download
+    And each download button that uses Download Manager should link to the latest available download for that product

@@ -1,7 +1,7 @@
 require_relative 'abstract/site_base'
 
 class RegistrationPage < SiteBase
-  expected_element(:h1, text: "We're glad you're here")
+  expected_element(:text_field, id: 'email')
   #page_title('Register | Red Hat Developers')
 
   element(:expand_register_with_email)             { |b| b.link(id: 'register-expand-choice-email') }
@@ -21,7 +21,7 @@ class RegistrationPage < SiteBase
   element(:finish_button)                          { |b| b.button(value: 'Create my account') }
   element(:terms_and_conditions_section)           { |b| b.element(class: 'tac-all-wrapper') }
   element(:all_terms)                              { |b| b.checkbox(id: 'tac-checkall') }
-  element(:github_button)                          { |b| b.button(id: 'social-github') }
+  element(:github_button)                          { |b| b.link(id: 'social-github') }
   element(:rhd_developer_terms)                    { |b| b.link(text: 'Red Hat Developer Program Terms & Conditions') }
   element(:rhd_subscription_terms)                 { |b| b.link(text: 'Red Hat Subscription Agreement') }
   element(:rh_portal_terms)                        { |b| b.link(text: 'Red Hat Portals Terms of Use') }

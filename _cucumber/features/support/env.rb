@@ -17,6 +17,7 @@ require 'report_builder'
 require 'octokit'
 require 'date'
 require 'active_support/core_ext'
+require 'webdriver-user-agent'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract*.rb"].each { |page| load page }
@@ -81,18 +82,10 @@ Before do
   b.delete_cookies
 end
 
-After do |scenario|
-  if scenario.failed?
-    Dir::mkdir('screenshots') if not File.directory?('screenshots')
-    screenshot = "_cucumber/screenshots/FAILED_#{scenario.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')}.png"
-    @browser.driver.save_screenshot(screenshot)
-    embed screenshot, 'image/png'
-  end
-end
-
 at_exit do
   b.browser.quit
-  #FileUtils.rm_rf $download_directory
+
+  FileUtils.rm_rf $download_directory
 
   ReportBuilder.configure do |config|
     config.json_path = '_cucumber/reports/'
