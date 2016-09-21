@@ -16,7 +16,7 @@ Feature: Product Download Page - An authorised customer can download EAP via dow
     Then I should see the eap get started page with a confirmation message "Thank you for downloading Enterprise Application Server"
 
   @basic_login @logout
-  Scenario: Unauthorized custom must log in in order to Download CDK
+  Scenario: Unauthorized customer must log in in order to Download EAP
     Given I am on the Product Download page for eap
     When I click to download the featured download of "Enterprise Application Server"
     And I log in with a valid username

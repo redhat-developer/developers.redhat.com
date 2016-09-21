@@ -16,7 +16,7 @@ Feature: Product Download Page - An authorised customer can download RHEL via do
     Then I should see the rhel get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
 
   @basic_login @logout
-  Scenario: Unauthorized custom must log in in order to Download RHEL
+  Scenario: Unauthorized customer must log in in order to Download RHEL
     Given I am on the Product Download page for rhel
     When I click to download the featured download of "Red Hat Enterprise Linux"
     And I log in with a valid username
