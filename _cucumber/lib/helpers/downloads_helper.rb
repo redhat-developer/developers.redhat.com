@@ -51,7 +51,7 @@ module DownloadHelper
     case product
       when 'JBoss Developer Studio'
         'devstudio'
-      when 'Enterprise Application Server'
+      when 'Enterprise Application Platform'
         'eap'
       when 'JBoss Data Grid'
         'datagrid'
