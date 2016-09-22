@@ -41,7 +41,7 @@ Feature: Enterprise Application Platform download
   @nightly @logout @delete_user @github_teardown
   Scenario: User starts download and registers using Social login providers which doesn't provide some mandatory informations (first name, last name, email). User is asked to fill in all user profile mandatory informations (email, fistt name, last name, company and country) together with RHD T&C acceptance, then download starts
     Given I am on the Downloads page
-    When I click to download "Enterprise Application Server"
+    When I click to download "Enterprise Application Platform"
     Then I should see the Log in page with the message "We're sorry, but this content is for members only"
     When I choose to register a new account using a GitHub account that contains missing profile information
     And I complete the required additional information
@@ -59,7 +59,7 @@ Feature: Enterprise Application Platform download
   @logout @delete_user @ignore
   Scenario: 7. User starts download and login with active Red Hat Customer Portal account (full user account)
     Given I am on the Downloads page
-    When I click to download "Enterprise Application Server"
+    When I click to download "Enterprise Application Platform"
     And I log in with a active Customer portal account
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
     When I accept the RHD terms and conditions

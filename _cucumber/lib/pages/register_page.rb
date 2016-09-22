@@ -37,6 +37,7 @@ class RegistrationPage < SiteBase
   action(:accept_all_terms)                        { |p| p.all_terms.click }
   action(:create_account)                          { |p| p.finish_button.click }
   action(:click_github_button)                     { |p| p.github_button.when_present.click }
+  action(:click_link_social_to_existing_acc)       { |p| p.link_social_to_existing_acc.when_present.click }
 
   def fill_in_form(first_name, last_name, email, company, country, password, password_confirm)
     expand_register_choice_email
