@@ -61,7 +61,7 @@ Awestruct::Extensions::Pipeline.new do
 
   extension JBoss::Developer::Events.new
 
-  extension Aweplug::Extensions::Books.new("site.book_isbns.collect { |i,b| b }")
+  extension Aweplug::Extensions::Books.new("site.book_isbns.collect { |i,b| b }", site.push_to_searchisko)
 
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'customer_portal_articles',
                                                        key: '1440-gFstcyCyFhXISvTIlzrmXZo7Ligs-hla5z9eSQA',
