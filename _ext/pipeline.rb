@@ -32,7 +32,6 @@ require 'active_support' # HACK for autosupport required by duration
 require 'slim/include'
 
 Awestruct::Extensions::Pipeline.new do
-
   # At the top, so that all passwords, logins and keys are available
   extension JBoss::Developer::Vault.new
 
@@ -175,7 +174,7 @@ Awestruct::Extensions::Pipeline.new do
                                                        by: 'col')
 
   # Must be loaded after CommonDir
-  extension JBoss::Developer::Extensions::Product.new site.push_to_searchisko
+  extension JBoss::Developer::Extensions::Product.new push_to_searchisko: site.push_to_searchisko
 
   # Demos reference products, so it needs to be done further down the pipeline
   extension Aweplug::Extensions::Kramdown::Demo.new(url: 'https://raw.githubusercontent.com/jboss-developer/jboss-developer-demos/master/demos.yaml',
