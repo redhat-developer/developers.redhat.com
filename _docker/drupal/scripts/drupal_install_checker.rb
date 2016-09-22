@@ -115,13 +115,15 @@ class DrupalInstallChecker
 
   def install_drupal
     puts 'Installing Drupal, please wait...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
-                           ['--root=web', 'site:install', 'standard', '--langcode=en', '--db-type=mysql',
-                            "--db-host=#{@opts['database']['host']}", "--db-name=#{@opts['database']['name']}",
-                            "--db-user=#{@opts['database']['username']}", "--db-port=#{@opts['database']['port']}",
-                            "--db-pass=#{@opts['database']['password']}", '--account-name=admin',
-                            "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
-                            "--account-mail='admin@example.com'", '--account-pass=admin', '-n'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush',
+                           ['--root=/var/www/drupal/web', 'si', 'standard', '--locale=en',
+                            "--db-url=mysql://#{@opts['database']['username']}:#{@opts['database']['password']}@#{@opts['database']['host']}:#{@opts['database']['port']}/#{@opts['database']['name']}",
+                            '--site-name=Red Hat Developers', '--site-mail=test@example.com',
+                            "--account-name=#{@opts['drupal']['admin']['name']}",
+                            "--account-pass=#{@opts['drupal']['admin']['password']}",
+                            "--account-mail=#{@opts['drupal']['admin']['mail']}",
+                            '--config-dir=/var/www/drupal/web/config/sync',
+                            '-y'])
   end
 
   def update_db
@@ -131,11 +133,11 @@ class DrupalInstallChecker
   end
 
   def import_config
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete active field.storage.node.field_author_name'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y', 'cim', '--skip-modules=devel'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr', 'all'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete', 'active', 'field.storage.node.field_author_name'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y', 'cim', '--skip-modules=devel'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr', 'all'])
   end
 end
 
@@ -155,11 +157,11 @@ if $0 == __FILE__
     checker.update_db
   else
     checker.install_drupal
-    checker.install_theme
-    checker.install_modules
-    checker.install_module_configuration
+    # checker.install_theme
+    # checker.install_modules
+    # checker.install_module_configuration
     checker.set_cron_key
-    checker.import_config
+    # checker.import_config
     checker.workaround_workspace_bug
   end
 end

@@ -48,6 +48,7 @@ services:
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
 
   drupalmysql:
+    #image: mariadb:10.0.24
     image: mariadb:10.0.15
     environment:
       - MYSQL_USER=drupal
@@ -56,6 +57,10 @@ services:
       - MYSQL_ROOT_PASSWORD=superdupersecret
     expose:
       - "3306"
+    ports:
+      - "3306"
+    #volumes:
+      #- /tmp/prod_dump.sql.gz:/docker-entrypoint-initdb.d/prod_dump.sql.gz
 
   apache:
    image: httpd:2.4.20

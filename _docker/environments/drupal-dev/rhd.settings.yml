@@ -9,6 +9,10 @@ keycloak:
 drupal:
   host: docker
   port: "80"
+  admin:
+    name: 'admin'
+    password: 'admin'
+    mail: 'admin@example.com'
 searchisko:
   protocol: 'http'
   host: dcp.stage.jboss.org
