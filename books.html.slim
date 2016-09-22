@@ -14,7 +14,7 @@ description: All the books about Red Hat products and projects ever written
   ul.book-list.small-block-grid-2.large-block-grid-5
     - site.books.each do |book|
       li.book.columns.large-6(data-isbn="#{book['isbn']}")
-        a.book-preview(href="#{book['preview_link']}" target="_blank") Preview
+        a.book-preview(href="#{book['preview_link']}" target="_blank" rel="noopener noreferrer") Preview
         img(src="#{book['thumbnail']}" alt="#{book.sys_title} Cover Image")
         h4
           | #{book.sys_title}

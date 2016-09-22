@@ -29,4 +29,8 @@ class DownloadsPage < SiteBase
     myelement.when_present.fire_event('click')
   end
 
+  def download_buttons_linked_to_dm(url)
+    @browser.element(xpath: "//*[@id='downloads']//a[@href='#{url}']").present?
+  end
+
 end

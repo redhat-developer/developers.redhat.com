@@ -10,7 +10,7 @@
         |  Latest Discussions
       ul.product-forums.product-forums-latest(data-tags="#{(page.parent.product.id)}")
       h5.right 
-        a(id="#{page.parent.product.id}" href="#{site.product_forum_base_url}#{page.parent.product.id}" target="_blank")
+        a(id="#{page.parent.product.id}" href="#{site.product_forum_base_url}#{page.parent.product.id}" target="_blank" rel="noopener noreferrer")
           | See all related forums discussions&nbsp;
           i.fa.fa-caret-right
 
@@ -29,7 +29,7 @@
                   .update-meta
                     .row
                       .large-24.columns
-                        h5.qtn-title: a(href="{{r._source.sys_url_view}}" target="_blank") Q: {{r._source.sys_title}}
+                        h5.qtn-title: a(href="{{r._source.sys_url_view}}" target="_blank" rel="noopener noreferrer") Q: {{r._source.sys_title}}
                       .large-12.columns
                         p {{r._source.up_vote_count}} votes | {{r._source.answer_count}} answers | {{r._source.view_count}} views
                       .large-12.columns

@@ -1,7 +1,7 @@
 class ItAdmin
 
   def initialize
-    @email = "rhd-autotest+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com"
+    @email = "redhat-developers-testers+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com"
     @username = Faker::Lorem.characters(10)
     @greeting = 'Mr.'
     @first_name = Faker::Name.first_name

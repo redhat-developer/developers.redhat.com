@@ -65,6 +65,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
   gem 'watir', '>= 6.0.0.beta2'
+  gem 'webdriver-user-agent'
   gem 'parallel_tests', '~> 1.9.0'
   gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'

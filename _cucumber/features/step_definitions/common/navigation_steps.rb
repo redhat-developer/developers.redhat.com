@@ -145,3 +145,7 @@ Then(/^each Help sub\-menu item should contain a link to its retrospective page:
     end
   end
 end
+
+Given(/^I navigate to the "(.*)" page$/) do |url|
+  @browser.goto($host_to_test + url)
+end

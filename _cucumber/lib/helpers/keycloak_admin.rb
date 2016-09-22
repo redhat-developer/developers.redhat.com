@@ -6,7 +6,7 @@ class KeyCloak
     endpoint = 'https://developers.stage.redhat.com/auth/realms/master/protocol/openid-connect/token'
     response = RestClient::Request.execute(:url => endpoint, :method => :post, :headers => request_header, :payload => request_body_map, :verify_ssl => false)
     @access_token = JSON.parse(response)['access_token']
-    @email = "rhd-autotest+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com"
+    @email = "redhat-developers-testers+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com"
     @greeting = %w(Mr. Mrs. Ms. Miss Dr. Hr Sr.).sample
     @first_name = Faker::Name.first_name
     @last_name = Faker::Name.last_name

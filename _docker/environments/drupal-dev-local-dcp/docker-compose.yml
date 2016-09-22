@@ -127,11 +127,9 @@ services:
     environment:
       - ghprbActualCommit
       - github_status_api_token
-      - PARALLEL_TEST
       - CUCUMBER_TAGS
       - SELENIUM_HOST=http://selhub:4444/wd/hub
       - RHD_JS_DRIVER
-      - RHD_DOCKER_DRIVER
       - BUILD_URL
       - RHD_TEST_PROFILE
 
@@ -139,6 +137,22 @@ services:
    image: selenium/node-chrome-debug:2.53.0
    volumes:
     - /dev/shm:/dev/shm
+    - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
+   links:
+    - apache:docker
+   environment:
+    - HUB_PORT_4444_TCP_ADDR=selhub
+    - DBUS_SESSION_BUS_ADDRESS=/dev/null
+   depends_on:
+    - selhub
+   ports:
+    - "5900"
+
+  docker_firefox:
+   image: selenium/node-firefox-debug:2.53.0
+   volumes:
+    - /dev/shm:/dev/shm
+    - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
    links:
     - apache:docker
    environment:
