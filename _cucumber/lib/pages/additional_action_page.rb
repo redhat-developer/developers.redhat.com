@@ -54,4 +54,9 @@ class AdditionalActionPage < SiteBase
     type(company_field, company)
   end
 
+  def fulluser_tac_accept
+    accept_tac1
+    accept_tac2
+  end
+
 end
