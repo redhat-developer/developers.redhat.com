@@ -177,6 +177,7 @@ class TestDrupal8Service < Minitest::Test
     page.output_path = '/article/testing-service/index.html'
     page.title = 'Testing Service'
     page.description = 'Learn how to use the Testing Service'
+    page.input_mtime = Time.now
     content = 'Hello World'
 
     # Setup the mock http call
@@ -200,9 +201,10 @@ class TestDrupal8Service < Minitest::Test
     # Set up data needed for the initialization of the class under test
     site = OpenStruct.new
     site.drupal_base_url = 'http://testing'
+    site.base_url = 'http://testing'
 
-    ENV['drupal_user'] = 'testing'
-    ENV['drupal_password'] = 'testing'
+    site.drupal_user = 'testing'
+    site.drupal_password = 'testing'
 
     # Setup mocking HTTP requests for auth
     stub_request(:post, 'http://testing/user/login')
@@ -216,19 +218,39 @@ class TestDrupal8Service < Minitest::Test
         .with(headers: {'Cookie'=>'session-cookie'})
     .to_return(status: 200, body: 'some-token')
 
-    @service = Aweplug::Helpers::Drupal8Service.default(site)
+    stub_request(:get, "http://testing/cron/rhd")
+        .to_return(:status => 200, :body => "", :headers => {})
+
+    stub_request(:get, "http://testing/sitemap.xml")
+        .to_return(status: 200, body:
+            "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'></urlset>",
+                   :headers => {})
+
+    @service = Aweplug::Helpers::Drupal8Service.new(site.to_h)
   end
 
   def stub_exists_call_good
-    stub_request(:get, 'http://testing/article/testing-service')
-        .with(headers: {'Cookie' => 'session-cookie'})
-        .to_return(status: 200)
+    stub_request(:get, "http://testing/sitemap.xml")
+      .to_return(status: 200, body:
+"<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>
+  <url>
+    <loc>http://developer-drupal.web.prod.ext.phx2.redhat.com/article/testing-service</loc>
+    <priority>1</priority>
+    <lastmod>2016-09-01T02:43:43-07:00</lastmod>
+  </url>
+</urlset>", :headers => {})
   end
 
   def stub_exists_call_bad
-    stub_request(:get, 'http://testing/article/testing-service')
-        .with(headers: {'Cookie' => 'session-cookie'})
-        .to_return(status: 404)
+    stub_request(:get, "http://testing/sitemap.xml")
+        .to_return(status: 200, body:
+            "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>
+  <url>
+    <loc>http://developer-drupal.web.prod.ext.phx2.redhat.com/</loc>
+    <priority>1</priority>
+    <lastmod>2016-09-01T02:43:43-07:00</lastmod>
+  </url>
+</urlset>", :headers => {})
   end
 
   private :setup_service, :stub_exists_call_good, :stub_exists_call_bad
