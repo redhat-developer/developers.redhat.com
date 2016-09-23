@@ -2,7 +2,7 @@
 :awestruct-interpolate: true
 
 == Prerequisites section title
-Prerequisites &#38; Required Dependencies Checklist
+Install the Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK 1.8 or above
 
 == Step1 Duration
 5 minutes
@@ -24,11 +24,10 @@ Build your first Fuse application
 
 
 == Step1 Content
-1.	Install the Java SE Development Kit (JDK), we recommend OpenJDK or Oracle JDK 1.8 or above
-2. Download  https://developers.redhat.com/download-manager/file/jboss-fuse-karaf-6.3.0.redhat-187.zip[JBoss Fuse].
+1. Download  https://developers.redhat.com/download-manager/file/jboss-fuse-karaf-6.3.0.redhat-187.zip[JBoss Fuse].
 2. Unzip JBoss Fuse to any directory in your machine.
 3. Change your present working directory(pwd) to this installed folder of JBoss Fuse.
-4. Open and edit *users.properties* located under *etc* folder in the installation folder 
+... Open and edit *users.properties* located under *etc* folder in the installation folder 
 ... Go to the last line Remove the "#" before admin=admin... , this will specified an administrator role user with ID: admin and Password: admin 
 
 
