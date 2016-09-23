@@ -128,16 +128,17 @@ class DrupalInstallChecker
 
   def update_db
     puts 'Executing drush dbup'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'cache:rebuild', 'all'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['-y','--root=/var/www/drupal/web', '--entity-updates', 'updb'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb))
   end
 
   def import_config
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y', 'cim', '--skip-modules=devel'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr', 'all'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete', 'active', 'field.storage.node.field_author_name'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y', 'cim', '--skip-modules=devel'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr', 'all'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
+                           %w(--root=/var/www/drupal/web config:delete active field.storage.node.field_author_name))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
   end
 end
 
