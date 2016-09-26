@@ -10,6 +10,17 @@ Feature: Site navigation menu
       | Help         |
       | Downloads    |
 
+  @mobile
+  Scenario: Primary navigation is hidden behind a menu when on mobile devices
+    Given I am on the Home page
+    When I tap on Menu menu item
+    Then I should see a primary nav bar with the following tabs:
+      | Topics       |
+      | Technologies |
+      | Community    |
+      | Help         |
+      | Downloads    |
+
   @desktop @smoke
   Scenario: Hovering over the TOPICS menu should display additional sub-menu with options
     Given I am on the Home page
@@ -36,6 +47,19 @@ Feature: Site navigation menu
       | Enterprise Java         | enterprise-java         |
       | .NET                    | dotnet                  |
       | Internet of Things      | iot                     |
+
+  @mobile
+  Scenario: Tapping TOPICS from drop down menu on Mobile/Tablet should display additional topics
+    Given I am on the Home page
+    When I tap on Topics menu item
+    Then I should see the following "Topics" mobile sub-menu items:
+      | Containers              |
+      | Mobile                  |
+      | DevOps                  |
+      | Web and API Development |
+      | Enterprise Java         |
+      | .NET                    |
+      | Internet of Things      |
 
   @products @desktop @smoke
   Scenario: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
@@ -70,6 +94,19 @@ Feature: Site navigation menu
     When I click on the Technologies menu item
     Then each available technology should link to their retrospective product overview page
 
+  @mobile
+  Scenario: Tapping TECHNOLOGIES from drop down menu on Mobile/Tablet should display additional technologies
+    Given I am on the Home page
+    When I tap on Technologies menu item
+    Then I should see the following "Technologies" mobile sub-menu items:
+      | INFRASTRUCTURE                         |
+      | CLOUD                                  |
+      | MOBILE                                 |
+      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
+      | INTEGRATION AND AUTOMATION             |
+      | DEVELOPER TOOLS                        |
+      | RUNTIMES                               |
+
   @desktop @smoke
   Scenario: Hovering over the COMMUNITIES menu should display additional sub-menu with options
     Given I am on the Home page
@@ -92,6 +129,16 @@ Feature: Site navigation menu
       | Open Source Communities | projects              |
       | Content Contributors    | community/contributor |
 
+  @mobile
+  Scenario: Tapping COMMUNITY from drop down menu on Mobile/Tablet should display additional communities
+    Given I am on the Home page
+    When I tap on Community menu item
+    Then I should see the following "Community" mobile sub-menu items:
+      | Developers Blog         |
+      | Events                  |
+      | Open Source Communities |
+      | Content Contributors    |
+
   @desktop @smoke
   Scenario: Hovering over the HELP menu should display additional sub-menu with options
     Given I am on the Home page
@@ -111,3 +158,12 @@ Feature: Site navigation menu
       | Resources          | resources      |
       | Forums             | forums         |
       | Stack Overflow Q&A | stack-overflow |
+
+  @mobile
+  Scenario: Tapping HELP from drop down menu on Mobile/Tablet should display additional help
+    Given I am on the Home page
+    When I tap on Help menu item
+    Then I should see the following "Help" mobile sub-menu items:
+      | Resources          |
+      | Forums             |
+      | Stack Overflow Q&A |

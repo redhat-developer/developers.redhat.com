@@ -39,14 +39,19 @@ class SiteBase < GenericBasePage
   action(:click_logout_link)        { |p| p.logout_link.when_present.click }
   action(:click_register_link)      { |p| p.register_link.when_present.click }
   action(:toggle_mobile_menu)       { |p| p.mobile_menu.click }
-  action(:click_search_button)      { |p| p.search_button.click }
+  action(:click_search_button)      { |p| p.search_button.when_present.click }
 
   def search_for(search_string)
     enter_search_term(search_string)
-    press_return
+    begin
+      press_return
+    rescue
+      click_search_button
+    end
   end
 
   def enter_search_term(search_string)
+    toggle_menu
     type(site_nav_search_box, search_string)
   end
 
@@ -58,37 +63,46 @@ class SiteBase < GenericBasePage
   end
 
   def toggle_menu
-    toggle_mobile_menu unless mobile_menu_open?
-    wait_for(3, 'Failed to toggle mobile menu!') { mobile_menu_open? }
+    if is_mobile?
+      toggle_mobile_menu unless mobile_menu_open?
+      wait_for(3, 'Failed to toggle mobile menu!') { mobile_menu_open? }
+    end
   end
+
+  def toggle_menu_close
+    if mobile_menu_open?
+    toggle_mobile_menu
+    sub_nav.wait_while_present
+    end
+  end
+
 
   def open_login_page
     toggle_menu if is_mobile?
     click_login
-    on LoginPage
   end
 
   def open_register_page
     toggle_menu if is_mobile?
     click_register
-    on RegistrationPage
   end
 
   def logged_in?
     toggle_menu if is_mobile?
-    wait_for(10, 'User was not logged in after 30 seconds!') { is_logged_in? }
+    wait_for(10, 'User was not logged in after 10 seconds!') { is_logged_in? }
     wait_for { name != '' }
     name
   end
 
   def logged_out?
     toggle_menu if is_mobile?
-    wait_for(10, 'User was not logged out after 30 seconds!') { is_logged_out? }
+    wait_for(10, 'User was not logged out after 10 seconds!') { is_logged_out? }
     is_logged_out?
   end
 
   def click_login
     toggle_menu if is_mobile?
+    logout_link.wait_while_present
     click_login_link
   end
 
@@ -101,6 +115,11 @@ class SiteBase < GenericBasePage
   def click_register
     toggle_menu if is_mobile?
     click_register_link
+  end
+
+  def click_profile
+    toggle_menu if is_mobile?
+
   end
 
   def toggle_menu_and_tap(menu_item)

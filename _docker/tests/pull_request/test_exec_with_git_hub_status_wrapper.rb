@@ -37,10 +37,10 @@ class TestExecWithGitHubStatusWrapper < MiniTest::Test
 
   def test_initialise_github_statuses
 
-    statuses = 'Blinkr,Acceptance Tests,Unit Tests'
+    statuses = 'Blinkr,Desktop Acceptance Tests,Mobile Acceptance Tests,Unit Tests'
 
     execution_wrapper = mock()
-    execution_wrapper.expects(:initialise_contexts).with(['Blinkr','Acceptance Tests','Unit Tests'])
+    execution_wrapper.expects(:initialise_contexts).with(['Blinkr','Desktop Acceptance Tests','Mobile Acceptance Tests','Unit Tests'])
 
     initialise_github_statuses(execution_wrapper, statuses)
 

@@ -75,16 +75,14 @@ class StandardisedSearch < SiteBase
 
   def click_pagination(link)
     elem = send("pagination_#{link}_link")
-    elem_pos = elem.wd.location["y"]
-    @browser.execute_script("window.scroll(0, #{elem_pos})")
+    @browser.execute_script('arguments[0].scrollIntoView();', elem)
     elem.when_present.click
     wait_for_results
   end
 
   def go_to_pagination_no(i)
     elem = @browser.li(css: "#pagination-#{i.to_i-1}")
-    elem_pos = elem.wd.location["y"]
-    @browser.execute_script("window.scroll(0, #{elem_pos})")
+    @browser.execute_script('arguments[0].scrollIntoView();', elem)
     elem.when_present.click
     wait_for_results
   end

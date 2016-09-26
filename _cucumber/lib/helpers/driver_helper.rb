@@ -16,7 +16,7 @@ module DriverHelper
   end
 
   def press_return
-    @browser.driver.action.send_keys(:return).perform
+    @browser.send_keys :enter
   end
 
   def custom_find(el, locator)
