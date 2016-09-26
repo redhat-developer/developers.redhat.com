@@ -1,11 +1,10 @@
 @desktop
 @downloads
 @download_test
-@ignore
 
 Feature: User can download promotional cheat sheets
 
-  @logout
+  @basic_login @logout @wip
   Scenario Outline: Verify that users can download cheatsheets
     Given I am on the promotion page for the "<cheat sheet>"
     When I click on the Download Now button
@@ -14,18 +13,6 @@ Feature: User can download promotional cheat sheets
 
     Examples: Cheat Sheets
       | cheat sheet        | file name                     |
-      | docker-cheatsheet  | Docker_Cheat_Sheet.pdf        |
+      #| docker-cheatsheet  | Docker_Cheat_Sheet.pdf        |
       | mongodb-cheatsheet | MongoDB_Shell_Cheat_Sheet.pdf |
 
-  @logout @nightly
-  Scenario Outline: Sanity check to verify that cheat sheets are downloadable (not a physical download)
-    Given I am a registered site visitor
-    And I am on the promotion page for the "<url>"
-    When I click on the Download Now button
-    And I log in with a valid username
-    Then the file should be downloadable
-
-    Examples: Cheat Sheets
-      | url                |
-      | docker-cheatsheet  |
-      | mongodb-cheatsheet |

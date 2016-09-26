@@ -1,3 +1,4 @@
+@ignore
 Feature: Log in using my RHD registered details.
 
   As a developers.redhat customer,

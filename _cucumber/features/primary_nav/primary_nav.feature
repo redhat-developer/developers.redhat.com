@@ -1,3 +1,4 @@
+@ignore
 Feature: Site navigation menu
 
   @desktop @smoke

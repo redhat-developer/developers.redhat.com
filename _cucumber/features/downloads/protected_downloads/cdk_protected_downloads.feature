@@ -2,6 +2,8 @@
 @downloads
 @download_test
 
+@ignore
+
 Feature: Red Hat Container Development Kit download
 
   @logout

@@ -16,8 +16,6 @@ require 'pry'
 require 'report_builder'
 require 'octokit'
 require 'date'
-require 'active_support/core_ext'
-require 'webdriver-user-agent'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract*.rb"].each { |page| load page }

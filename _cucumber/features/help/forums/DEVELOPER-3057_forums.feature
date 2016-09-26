@@ -1,3 +1,4 @@
+@ignore
 Feature: DEVELOPER-3057 - Forums: Product forums landing page
 
   Scenario: Product forums landing page should display a list of available products separated by sections.

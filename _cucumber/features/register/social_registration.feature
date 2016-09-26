@@ -1,3 +1,4 @@
+@ignore
 @nightly
 
 Feature: Social registration

@@ -2,6 +2,8 @@
 @downloads
 @download_test
 
+@ignore
+
 Feature: Enterprise Application Platform download
 
   @logout
