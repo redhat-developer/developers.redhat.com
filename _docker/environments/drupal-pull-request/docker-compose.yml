@@ -48,7 +48,7 @@ services:
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
 
   drupalmysql:
-    image: mariadb:10.0.15
+    image: mariadb:10.0.24
     environment:
       - MYSQL_USER=drupal
       - MYSQL_PASSWORD=drupal
