@@ -4,10 +4,10 @@
     padding: 0;
   }
 
+  select,
   textarea,
   input {
     padding: 12px 20px;
-    min-width: 300px;
     
     &:focus {
       border: 1px solid $gray;
@@ -24,6 +24,12 @@
     &:-webkit-autofill {
       -webkit-box-shadow: 0 0 0px 1000px white inset;
     }
+  }
+
+  select {
+    background-color: $white;
+    padding: 11px 20px;
+    cursor: pointer;
   }
 
   textarea {
@@ -63,10 +69,6 @@
     
     & + .field {
       margin-top: 20px;
-    }
-
-    &:last-child {
-      text-align: right;
     }
   }
 

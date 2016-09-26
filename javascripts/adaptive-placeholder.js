@@ -15,6 +15,6 @@ app.adaptivePlaceholder = {
 
 $(function() {
   if ($('.rhd-adaptive-placeholder').length) {
-    $('input, textarea').on('blur', app.adaptivePlaceholder.changeFilledState);
+    $('input, textarea, select').on('blur', app.adaptivePlaceholder.changeFilledState);
   }
 });
