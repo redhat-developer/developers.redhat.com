@@ -1,13 +1,11 @@
-uuid: 855e42c0-0aef-4c0f-805e-fd8ed01856b4
+uuid: 1e28ed58-95af-4d4a-b322-5df899e19e45
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_author_name
     - field.field.node.article.field_tags
-    - image.style.thumbnail
     - node.type.article
   module:
     - comment
@@ -22,7 +20,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 1
     settings:
       rows: 9
       summary_rows: 3
@@ -30,45 +28,35 @@ content:
     third_party_settings: {  }
   comment:
     type: comment_default
-    weight: 9
+    weight: 20
     settings: {  }
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 10
     settings: {  }
     third_party_settings: {  }
-  field_author_name:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
   field_tags:
     type: entity_reference_autocomplete_tags
     weight: 3
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 10
+    weight: 30
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 7
+    weight: 15
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 16
     third_party_settings: {  }
   title:
     type: string_textfield
