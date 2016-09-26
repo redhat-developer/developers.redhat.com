@@ -84,12 +84,22 @@ class Options
 
         ENV['HOST_TO_TEST'] = host
 
-        if ENV['RHD_TEST_PROFILE'].to_s.empty?
-          ENV['RHD_TEST_PROFILE']= 'parallel'
-        end
-
         if ENV['RHD_JS_DRIVER'].to_s.empty?
           ENV['RHD_JS_DRIVER'] = 'docker_chrome'
+          ENV['RHD_DOCKER_DRIVER'] = 'docker_chrome'
+        elsif ENV['RHD_JS_DRIVER'] == 'docker_firefox'
+          ENV['RHD_DOCKER_DRIVER'] = 'docker_firefox'
+        else
+          ENV['RHD_DOCKER_DRIVER'] = 'docker_chrome'
+        end
+
+        if ENV['RHD_TEST_PROFILE'].to_s.empty?
+          ENV['RHD_TEST_PROFILE']= 'desktop'
+          ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:Desktop Acceptance Tests'
+        elsif ENV['RHD_TEST_PROFILE'] == 'desktop'
+          ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:Desktop Acceptance Tests'
+        else
+          ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:Mobile Acceptance Tests'
         end
 
         if ENV['RHD_BROWSER_SCALE'].to_s.empty?
@@ -98,8 +108,8 @@ class Options
 
         tasks[:kill_all] = false
         tasks[:build] = true
-        tasks[:scale_grid] = "#{ENV['RHD_JS_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
-        tasks[:supporting_services] = [ENV['RHD_JS_DRIVER']]
+        tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
+        tasks[:supporting_services] = [ENV['RHD_DOCKER_DRIVER']]
         tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_JS_DRIVER']} RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"]
       end
 

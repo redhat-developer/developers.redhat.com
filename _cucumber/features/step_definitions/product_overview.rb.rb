@@ -4,10 +4,13 @@ And(/^I am on the Product Download page for (.*)$/) do |product|
   end
 end
 
-When(/^I click to download the featured download of "([^"]*)"$/) do |product|
-  @product_id = get_product_id(product)
-  url = get_featured_download_for(@product_id)
+Then(/^the (.*) download button should link to the latest available download$/) do |product_id|
+  url = get_featured_download_for(product_id)
   on ProductOverviewPage do |page|
-    page.click_to_download(url[1])
+    if product_id == 'rhel'
+      page.download_rhel.when_present.href.should == url[1]
+    else
+      page.download_btn.when_present.href.should == url[1]
+    end
   end
 end
