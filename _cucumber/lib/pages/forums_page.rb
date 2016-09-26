@@ -10,25 +10,14 @@ class ForumsPage < SiteBase
     include ProductsHelper
   end
 
-  elements(:product_types)                           { |b| b.divs(class: 'development-tool') }
-  elements(:forum_links)                             { |b| b.links(css: '.forums-product-categories h4 > a') }
+  elements(:product_types)   { |b| b.divs(class: 'development-tool') }
+  elements(:forum_links)     { |b| b.links(css: '.forums-product-categories h4 > a') }
 
-  element(:accelerated_development_and_management)   { |b| b.h4(id: 'accelerated_development_and_management') }
-  element(:developer_tools)                          { |b| b.h4(id: 'developer_tools') }
-  element(:infrastructure)                           { |b| b.h4(id: 'infrastructure') }
-  element(:integration_and_automation)               { |b| b.h4(id: 'integration_and_automation') }
-  element(:runtimes)                                 { |b| b.h4(id: 'runtimes') }
-
-  def forums_product_sections
-    titles = []
-    elements = [accelerated_development_and_management, developer_tools, infrastructure, integration_and_automation, runtimes]
-    elements.each { |el|
-      titles << el.text
-    }
-    titles
+  def product_title(category)
+    @browser.div(id: "#{category}").when_present.text
   end
 
-  def forums_available_products
+  def available_products
     products = []
     ids      = []
 

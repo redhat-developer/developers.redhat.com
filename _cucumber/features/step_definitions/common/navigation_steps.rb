@@ -2,8 +2,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
   case page.downcase
     when 'home'
       visit(HomePage)
-     when 'technologies'
-       visit(TechnologiesPage)
+    when 'technologies'
+      visit(TechnologiesPage)
     when 'downloads'
       visit(DownloadsPage) do |page|
         page.wait_until_loaded
@@ -24,6 +24,10 @@ Given(/^I am on the ([^"]*) page$/) do |page|
       visit(ForumsPage)
     when 'edit details'
       visit(EditAccountPage)
+    when 'social login'
+      visit(SocialLoginPage)
+    when 'change password'
+      visit(ChangePasswordPage)
     else
       raise("expected page '#{page}' was not recognised, please check feature")
   end
@@ -50,7 +54,8 @@ Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
 end
 
 When(/^I go back$/) do
-  @browser.driver.navigate.back
+  sleep(6) #give previous request time to complete before navigating back.
+  @browser.back
 end
 
 Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
@@ -72,7 +77,8 @@ Then(/^I should see the following "(Topics|Technologies|Community|Help)" (deskto
 end
 
 And(/^the sub\-menu should include a list of available technologies$/) do
-  @product_names.each do |products|
+  product_names = ProductsHelper.get_products[1]
+  product_names.each do |products|
     expect(@current_page.sub_menu_items('technologies', 'desktop')).to include(products)
   end
 end

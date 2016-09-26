@@ -1,20 +1,21 @@
-Then(/^I should see the following main products sections:$/) do |table|
-  on TechnologiesPage do |page|
-    table.raw.each do |sections|
-      section = sections.first
-      expect(page.product_titles).to include section
-    end
+Then(/^I should see product sections with headings$/) do
+  categories = ProductsHelper.categories
+  if @browser.url.include?('forums')
+    forum_categories = categories[0] - [:mobile, :private_cloud]
+    forum_categories.each { |category| expect(@current_page.product_title(category.to_s)).to eq(category.to_s.gsub('_', ' ').upcase!) }
+  else
+    categories[0].each { |category| expect(@current_page.product_title(category.to_s)).to eq(category.to_s.gsub('_', ' ').upcase!) }
   end
 end
 
 Then(/^I should see a list of available products$/) do
-  on TechnologiesPage do |page|
-    page.available_products.should =~ @product_names
-  end
+  product_names = ProductsHelper.get_products[1]
+  @current_page.available_products.should =~ product_names
 end
 
 Then(/^I should see a description of available products$/) do
-  @product_ids.each do |product|
+  product_ids = ProductsHelper.get_products[0]
+  product_ids.each do |product|
     on TechnologiesPage do |page|
       desc = page.product_description_for(product)
       desc.gsub("’", "'").should == get_product(product, 'description')
@@ -23,7 +24,8 @@ Then(/^I should see a description of available products$/) do
 end
 
 Then(/^each product title should link to the relevant product overview page$/) do
-  @product_ids.each do |product|
+  product_ids = ProductsHelper.get_products[0]
+  product_ids.each do |product|
     on TechnologiesPage do |page|
       expect(page.product_link_for(product)).to include "#{$host_to_test}/products/#{product}"
     end
@@ -31,10 +33,12 @@ Then(/^each product title should link to the relevant product overview page$/) d
 end
 
 When(/^products have a Get Started link available$/) do
+  @products_with_get_started = get_products_with_links('get-started.adoc')[0]
 end
 
 Then(/^I should see a 'Get started' button for each product$/) do
-  @product_ids.each do |product|
+  product_ids = ProductsHelper.get_products[0]
+  product_ids.each do |product|
     on TechnologiesPage do |page|
       if product == 'openjdk'
         expect(page.get_started_button_for(product)).to include "#{$host_to_test}/products/#{product}/overview"
@@ -50,6 +54,7 @@ Then(/^I should see a 'Get started' button for each product$/) do
 end
 
 When(/^products have a Learn link available$/) do
+  @products_with_learn_link = get_products_with_links('learn.html.slim')[0]
 end
 
 Then(/^I should see a 'Learn' link for each product$/) do
@@ -61,6 +66,7 @@ Then(/^I should see a 'Learn' link for each product$/) do
 end
 
 When(/^the products have Docs and API's available$/) do
+  @products_with_docs = get_products_with_links('docs-and-apis.adoc')[0]
 end
 
 Then(/^I should see a 'Docs and APIs' link for each product$/) do
@@ -72,6 +78,7 @@ Then(/^I should see a 'Docs and APIs' link for each product$/) do
 end
 
 When(/^the products have Downloads available$/) do
+  @technologies_with_downloads = get_expected_downloads[0]
 end
 
 Then(/^I should see a 'Downloads' link for each product$/) do
