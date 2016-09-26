@@ -43,50 +43,54 @@ Edit the file `AMQ_HOME/etc/user.properties`. Uncomment the last line so that sy
 `AMQ_HOME/bin/start`
 +
 TIP: To check the status of the A-MQ broker you can execute the status script found in the same directory as the start script. To learn more about the various scripts see the link:https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_A-MQ/6.2/html/Console_Reference/index.html[customer portal].​
-
++
 video::184305760[vimeo]
+
 +
 * *Next Steps:* Congratulate yourself. You have just installed and started the JBoss A-MQ Broker. Next up, Install the developer environment...
 
 == Step2 Content
 *Connecting to A-MQ:*
 
-You may execute following command to check thes messages have been enqueue/dequeued
+1. *Current runtime status:*
++
+a. You may execute following command to check thes messages have been enqueue/dequeued
 
-For Linux/MAC:
-
+* For Linux/MAC:
++
 `AMQ_HOME/bin/client activemq:dstat`
 
-For Windows:
-
+* For Windows:
++
 `AMQ_HOME\bin\client.bat activemq:dstat`
     
-Or simply go to the adminstration console and login with *ID:admin* and *PASSWORD:admin*
+b. Or simply go to the adminstration console and login with *ID:admin* and *PASSWORD:admin*
++
+`http://localhost:8181`
 
-    `http://localhost:8181` 
 
-
-1. To validate the installation with a simple JMS producer and consumer, type:
-
-For Linux/MAC:
-
+2. *Produce and consume messages*
++
+a.Sending messages to broker, 
+*For Linux/MAC:
++
 `AMQ_HOME/bin/client "activemq:producer --user <Username> --password <Password>"`
 
-For Windows:
-
+*For Windows:
++
 `AMQ_HOME\bin\client.bat "activemq:producer --user <Username> --password <Password>"`
 
++
+b. Consume messages:
 
-2. Consume messages:
-
-For Linux/MAC:
-
+*For Linux/MAC:
++
 `AMQ_HOME/bin/client "activemq:consumer --user <Username> --password <Password>"`
 
-For Windows:
-
+*For Windows:
++
 `AMQ_HOME\bin\client.bat "activemq:consumer --user <Username> --password <Password>"`
-
++
 video::184305594[vimeo]
-
-Congratulate yourself! You’ve just sent and received messages via Red Hat JBoss A­MQ. Visit frequently to view more tutorials on connecting via MQTT, STOMP and other topics around A­MQ.
++
+* *Congratulate yourself! You’ve just sent and received messages via Red Hat JBoss A­MQ. Visit frequently to view more tutorials on connecting via MQTT, STOMP and other topics around A­MQ.
