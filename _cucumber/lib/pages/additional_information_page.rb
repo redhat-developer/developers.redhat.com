@@ -24,13 +24,13 @@ class AdditionalInformationPage < SiteBase
   element(:link_profile_to_social)       { |b| b.element(css: '#email-error > a') }
   element(:warning)                      { |b| b.element(class: 'warning') }
 
-  action(:accept_all_terms)              { |p| p.all_terms.when_present.click }
-  action(:click_submit)                  { |p| p.submit_btn.when_present.click }
-  action(:click_cancel)                  { |p| p.cancel_download_btn.when_present.click }
-  action(:click_link_profile_to_social)  { |p| p.link_profile_to_social.when_present(30).click }
+  action(:accept_all_terms)              { |p| p.all_terms.click }
+  action(:click_submit)                  { |p| p.submit_btn.click }
+  action(:click_cancel)                  { |p| p.cancel_download_btn.click }
+  action(:click_link_profile_to_social)  { |p| p.link_profile_to_social.click }
 
-  value(:feedback)                       { |p| p.warning.when_present.text }
-  element(:email_field_error_text)       { |p| p.email_field_error.when_present.text}
+  value(:feedback)                       { |p| p.warning.text }
+  element(:email_field_error_text)       { |p| p.email_field_error.text}
 
   def fill_in(email, password, first_name, last_name, company, country)
     type(email_field, email) unless email.nil?
@@ -47,7 +47,7 @@ class AdditionalInformationPage < SiteBase
   end
 
   def select_country(country)
-    country_dropdown.when_present.select(country)
+    country_dropdown.select(country)
   end
 
   def enter_company(company)

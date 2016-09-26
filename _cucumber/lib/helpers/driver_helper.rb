@@ -1,7 +1,7 @@
 module DriverHelper
 
   def type(locator, string)
-    locator.when_present.set(string)
+    locator.set(string)
   end
 
   def default_dropdown_item(locator)
@@ -16,7 +16,7 @@ module DriverHelper
   end
 
   def press_return
-    @browser.driver.action.send_keys(:return).perform
+    @browser.send_keys :enter
   end
 
   def custom_find(el, locator)
@@ -25,14 +25,6 @@ module DriverHelper
 
   def custom_click_on(el, locator)
     el.find_element(locator).click
-  end
-
-  def wait_for(seconds=6, *custom_message)
-    if custom_message
-      Watir::Wait.until(seconds, custom_message) { yield }
-    else
-      Watir::Wait.until { yield }
-    end
   end
 
   def current_window
@@ -48,7 +40,7 @@ module DriverHelper
   end
 
   def wait_for_windows(size)
-    wait_for(10) { get_windows.size == size }
+    get_windows.size == size
   end
 
   def switch_window(first_window)

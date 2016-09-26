@@ -1,8 +1,10 @@
 Then(/^the search field (should|should not) be displayed within the site header$/) do |negate|
   if negate.include?('not')
+    @current_page.toggle_menu
     expect(@current_page.search_field_visible?).to be false
   else
-    @current_page.site_nav_search_box.wait_until_present
+    @current_page.toggle_menu
+    @current_page.site_nav_search_box
   end
 end
 
@@ -86,4 +88,14 @@ And(/^the result per page options should be:$/) do |table|
     results_per_page << links.first
   end
   @current_page.results_per_page[1].should =~ results_per_page
+end
+
+Given(/^I am a logged out$/) do
+  @current_page.click_logout
+  @current_page.logged_out?
+end
+
+When(/^I have an active Customer portal account$/) do
+  it_admin = ItAdmin.new
+  $site_user = it_admin.create_full_user
 end

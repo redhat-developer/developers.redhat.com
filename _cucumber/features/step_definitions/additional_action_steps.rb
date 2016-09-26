@@ -6,13 +6,13 @@ end
 
 When(/^I complete the missing information$/) do
   on AdditionalActionPage do |page|
-    page.fill_in(nil, 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:country], $site_user[:city], $site_user[:state])
+    page.fill_in(nil, 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:phone_number], $site_user[:country], $site_user[:city], $site_user[:state])
   end
 end
 
 When(/^I complete the required additional information$/) do
   on AdditionalActionPage do |page|
-    page.fill_in($site_user[:email], 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:country], $site_user[:city], $site_user[:state])
+    page.fill_in($site_user[:email], 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], '0191 1111111', $site_user[:country], $site_user[:city], $site_user[:state])
     page.accept_all_terms
     page.click_submit
   end
@@ -29,7 +29,7 @@ And(/^I complete the required additional information with a new email address$/)
   puts "Adding new email: #{$site_user[:email]}"
 
   on AdditionalActionPage do |page|
-    page.fill_in($site_user[:email], 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:country], $site_user[:city], $site_user[:state])
+    page.fill_in($site_user[:email], 'P@$$word01', $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:phone_number], $site_user[:country], $site_user[:city], $site_user[:state])
     page.accept_all_terms
     page.click_submit
   end
@@ -53,6 +53,12 @@ end
 And(/^select my country of residence$/) do
   on AdditionalActionPage do |page|
     page.select_country($site_user[:country])
+  end
+end
+
+And(/^enter my phone number$/) do
+  on AdditionalActionPage do |page|
+    page.enter_phone_number($site_user[:phone_number])
   end
 end
 

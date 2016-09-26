@@ -1,4 +1,6 @@
 require 'report_builder'
+require 'colorize'
+require 'colorized_string'
 
 class TestRunner
 
@@ -15,32 +17,22 @@ class TestRunner
 
   end
 
-  def run(profile, tag)
-
+  def run(profile, tag=nil)
     tag_string = tag unless tag.eql?(nil)
-
-    if profile.eql?('slow')
-      if tag.eql?(nil)
-        command = system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
-      else
-        command = system("cucumber _cucumber -r _cucumber/features/ -p #{profile} #{tag_string}")
-      end
+    if tag.eql?(nil)
+      command = system "parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 10"
     else
-      if tag.eql?(nil)
-        command = system "bundle exec parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 10"
-      else
-        command = system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 10")
-      end
+      command = system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 10")
     end
     rerun(profile) unless command == true
     $?.exitstatus
   end
 
   def rerun(profile)
-    puts ('. . . . . There were failures during the test run! Attempt one of rerunning failed scenarios . . . . .')
+    puts ColorizedString.new('. . . . . There were failures during the test run! Attempt one of rerunning failed scenarios . . . . .').red
     command = system('bundle exec cucumber --profile rerun_failures')
     unless command == true
-      puts ('. . . . . There were failures during the rerun! Attempt two of rerunning failed scenarios . . . . .')
+      puts ColorizedString.new('. . . . . There were failures during first rerun! Attempt two of rerunning failed scenarios . . . . .').red
       system("bundle exec cucumber @_cucumber/tmp/#{profile}/rerunner.txt")
     end
     $?.exitstatus

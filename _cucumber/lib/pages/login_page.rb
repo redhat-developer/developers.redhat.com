@@ -13,12 +13,12 @@ class LoginPage < SiteBase
   element(:password_reset)         { |b| b.link(text: 'Forgot Password?') }
   element(:login_with_github)      { |b| b.link(id: 'social-github') }
 
-  value(:error_message)            { |p| p.kc_feedback.when_present.text }
+  value(:error_message)            { |p| p.kc_feedback.text }
 
   action(:click_login_button)      { |p| p.login_button.click }
   action(:click_register_link)     { |b| b.register_link.click }
   action(:click_password_reset)    { |b| b.password_reset.click }
-  action(:click_login_with_github) { |b| b.login_with_github.when_present.click }
+  action(:click_login_with_github) { |b| b.login_with_github.click }
 
   def login_with(username, password)
     type(username_field, username)

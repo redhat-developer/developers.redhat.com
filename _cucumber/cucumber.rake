@@ -1,9 +1,7 @@
 require 'fileutils'
-require_relative '../_lib/github'
 require_relative 'test_runner'
 
-
-task :features => [ :_features, :report_builder ]
+task :features => [:_features, :report_builder]
 
 task :_features do
 
