@@ -58,6 +58,8 @@ services:
       - MYSQL_ROOT_PASSWORD=superdupersecret
     expose:
       - "3306"
+    volumes:
+      - ../../drupal/prod_db.sql.gz:/docker-entrypoint-initdb.d/prod_db.sql.gz
 
   mysql:
     build: ../../mysql

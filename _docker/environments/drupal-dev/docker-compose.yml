@@ -58,8 +58,8 @@ services:
       - "3306"
     ports:
       - "3306"
-    #volumes:
-      #- /tmp/prod_dump.sql.gz:/docker-entrypoint-initdb.d/prod_dump.sql.gz
+    volumes:
+      - ../../drupal/prod_db.sql.gz:/docker-entrypoint-initdb.d/prod_db.sql.gz
 
   apache:
    image: httpd:2.4.20
