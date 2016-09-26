@@ -71,27 +71,29 @@ b. Or simply go to the adminstration console and login with *ID:admin* and *PASS
 
 2. *Produce and consume messages*
 +
-a.Sending messages to broker
+a. Sending messages to broker
 
-*For Linux/MAC:
+* For Linux/MAC:
 +
 `AMQ_HOME/bin/client "activemq:producer --user <Username> --password <Password>"`
 
-*For Windows:
+* For Windows:
 +
 `AMQ_HOME\bin\client.bat "activemq:producer --user <Username> --password <Password>"`
 
+b. Consume messages from broker:
 
-b. Consume messages:
-
-*For Linux/MAC:
+* For Linux/MAC:
 +
 `AMQ_HOME/bin/client "activemq:consumer --user <Username> --password <Password>"`
 
-*For Windows:
+* For Windows:
 +
 `AMQ_HOME\bin\client.bat "activemq:consumer --user <Username> --password <Password>"`
 +
+
 video::184305594[vimeo]
+
 +
-* *Congratulate yourself! You’ve just sent and received messages via Red Hat JBoss A­MQ. Visit frequently to view more tutorials on connecting via MQTT, STOMP and other topics around A­MQ.
+
+Congratulate yourself! You’ve just sent and received messages via Red Hat JBoss A­MQ. Visit frequently to view more tutorials on connecting via MQTT, STOMP and other topics around A­MQ.
