@@ -20,6 +20,8 @@ class Browsers
         browser = local_chrome
       when 'iphone'
         browser = local_iphone
+      when 'android'
+        browser = local_android_phone
       when 'docker_chrome'
         browser = docker_chrome
       when 'docker_firefox'
@@ -62,10 +64,42 @@ class Browsers
   end
 
   def local_iphone
+    $download_directory = File.join("#{Dir.pwd}/_cucumber", 'tmp_downloads')
+    FileUtils.mkdir_p $download_directory
+    raise('Download directory was not created!') unless Dir.exist?($download_directory)
+
+    chrome_prefs = {
+        :download => {
+            :prompt_for_download => false,
+            :directory_upgrade => true,
+            :default_directory => $download_directory
+        }
+    }
+
     chromedriver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os.to_s}", "chromedriver")
     Selenium::WebDriver::Chrome.driver_path = chromedriver_path
-    driver = Webdriver::UserAgent.driver(:browser => :chrome, :prefs => $chrome_prefs, :agent => :iphone, :orientation => :portrait)
+    driver = Webdriver::UserAgent.driver(:browser => :chrome, :prefs => chrome_prefs, :agent => :iphone, :orientation => :portrait)
     Watir::Browser.new(driver)
+  end
+
+  def local_android_phone
+    $download_directory = File.join("#{Dir.pwd}/_cucumber", 'tmp_downloads')
+    FileUtils.mkdir_p $download_directory
+    raise('Download directory was not created!') unless Dir.exist?($download_directory)
+    chrome_prefs = {
+        :download => {
+            :prompt_for_download => false,
+            :directory_upgrade => true,
+            :default_directory => $download_directory
+        }
+    }
+    chromedriver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os.to_s}", "chromedriver")
+    Selenium::WebDriver::Chrome.driver_path = chromedriver_path
+
+    mobile_emulation = { "deviceName" => "Google Nexus 6" }
+    caps = Selenium::WebDriver::Remote::Capabilities.chrome
+    caps['chromeOptions'] = {'prefs' => chrome_prefs, 'mobileEmulation' => mobile_emulation}
+    Watir::Browser.new(:chrome, :desired_capabilities => caps)
   end
 
   def docker_chrome
