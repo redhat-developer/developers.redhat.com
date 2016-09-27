@@ -12,8 +12,10 @@ Prerequisites
 5 minutes
 
 == Step2 Duration
-5 minutes
+1 minutes
 
+== Step3 Duration
+1 minutes
 
 
 == Step1 Content
@@ -44,7 +46,7 @@ Edit the file `AMQ_HOME/etc/user.properties`. Uncomment the last line so that sy
 +
 TIP: To check the status of the A-MQ broker you can execute the status script found in the same directory as the start script. To learn more about the various scripts see the link:https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_A-MQ/6.2/html/Console_Reference/index.html[customer portal].​
 +
-video::184305760[vimeo]
+video::184305594[vimeo]
 
 +
 * *Next Steps:* Congratulate yourself. You have just installed and started the JBoss A-MQ Broker. Next up, Install the developer environment...
@@ -52,8 +54,7 @@ video::184305760[vimeo]
 == Step2 Content
 *Connecting to A-MQ:*
 
-1. *Current runtime status:*
-+
+
 a. You may execute following command to check thes messages have been enqueue/dequeued
 
 * For Linux/MAC:
@@ -68,9 +69,10 @@ b. Or simply go to the adminstration console and login with *ID:admin* and *PASS
 +
 `http://localhost:8181`
 
+== Step3 Content
+*Produce and consume messages:*
 
-2. *Produce and consume messages* 
-+
+
 a. Sending messages to broker
 
 * For Linux/MAC:
@@ -91,8 +93,8 @@ b. Consume messages from broker:
 +
 `AMQ_HOME\bin\client.bat "activemq:consumer --user <Username> --password <Password>"`
 +
+video::184305760[vimeo]
 
-video::184305594[vimeo]
 
 +
 

@@ -36,7 +36,7 @@ video::183851396[vimeo]
 
 == Step2 Content
 
-1.	Download  https://developers.redhat.com/download-manager/file/devstudio-integration-stack-9.0.2-SNAPSHOT-standalone-installer.jar[Red Hat JBoss Developer Studio one step installer for Fuse]
+1.	Download  https://developers.redhat.com/download-manager/file/devstudio-integration-stack-9.0.2.GA-standalone-installer.jar[Red Hat JBoss Developer Studio one step installer for Fuse]
 2.	Run Red Hat JBoss Developer Studio installer
 .. For MAC/Linux:
 ... Go to the folder where you have downloaded Red Hat JBoss Developer Studio, and execute the installer
@@ -67,15 +67,15 @@ With your tooling and runtime installed, you’re ready to start your first proj
 
 The CBR quick start watches a directory for incoming orders and dispatches them to outgoing directories based on the customer country contained in the order XML. We will import the quick start into your workspace and then build it from scratch so you see how it works.
 
-. Right click on Project explorer and choose *Fuse Integration Project*
-. Give it a name and choose *Fuse 6.3* as runtime environement
+. First, to create the project, right click on Project explorer and choose *Fuse Integration Project*
+. Name the project and choose *Fuse 6.3* as runtime environement
 . Create with existing template *Content Base Routing*
-. In the Servers view, add a new Fuse 6.3 Server and select the *jboss-fuse-6.3.0.redhat-xxx* as your runtimer server
-. Back to the Servers view, select your runtime server and click the green arrow to start it.
-. Right-click on the server after it is started and select *Add and Remove…* from the context menu.
+. To point the tool to our runtime server. In the Servers view, add a new Fuse 6.3 Server and select the *jboss-fuse-6.3.0.redhat-xxx*
+. Back to the Servers view, select your runtime server and click the green arrow to start it, this now will start your runtime Fuse server.
+. To deploy your project to the runtime server. Right-click on the server after it is started and select *Add and Remove…* from the context menu.
 . In the “Add and Remove…” dialog, select your project and click the Add > button and Click *Finish*.
 . You can check that everything is ok by issuing the command in the Shell tab: osgi:list
-. Your bundle should be present at the end of the list (something like “JBoss Fuse Quickstart: camel-cbr (6.3.0.redhat-xxx)”).
+. Your bundle should be present at the end of the list (something like “Fuse CBR Quickstart”).
 
 #### Testing the Project
 Drag the xml files locate under your project folder */src/main/data* to the input endpoint located in *JMX view* under Server *Connections -> Endpoints*
