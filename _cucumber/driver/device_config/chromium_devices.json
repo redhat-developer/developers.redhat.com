@@ -1,49 +1,5 @@
 {
-  "Google Nexus 6": {
-    "ua": "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36",
-    "browser": {
-      "name": "Chrome",
-      "version": "48.0.2564.23",
-      "major": "48"
-    },
-    "engine": {
-      "version": "537.36",
-      "name": "WebKit"
-    },
-    "os": {
-      "name": "Android",
-      "version": "5.1.1"
-    },
-    "device": {
-      "model": "Nexus 6",
-      "vendor": "Motorola",
-      "type": "mobile"
-    },
-    "cpu": {}
-  },
-  "Google Nexus 7": {
-    "ua": "Mozilla/5.0 (Linux; Android 4.3; Nexus 7 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Safari/537.36",
-    "browser": {
-      "name": "Chrome",
-      "version": "48.0.2564.23",
-      "major": "48"
-    },
-    "engine": {
-      "version": "537.36",
-      "name": "WebKit"
-    },
-    "os": {
-      "name": "Android",
-      "version": "4.3"
-    },
-    "device": {
-      "model": "Nexus 7",
-      "vendor": "Asus",
-      "type": "tablet"
-    },
-    "cpu": {}
-  },
-  "Google Nexus 4": {
+  "nexus_4": {
     "ua": "Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36",
     "browser": {
       "name": "Chrome",
@@ -59,22 +15,14 @@
       "version": "4.4.2"
     },
     "device": {
+      "name": "Google Nexus 4",
       "model": "Nexus 4",
       "vendor": "LG",
       "type": "mobile"
     },
     "cpu": {}
   },
-  "Google Nexus 5": {
-    "user_agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36"
-  },
-  "Apple iPad": {
-    "user_agent": "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
-  },
-  "Samsung Galaxy": {
-    "user_agent": "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36"
-  },
-  "Apple iPhone 5": {
+  "nexus_5": {
     "ua": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36",
     "browser": {
       "name": "Chrome",
@@ -90,57 +38,60 @@
       "version": "6.0"
     },
     "device": {
+      "name": "Google Nexus 5",
       "model": "Nexus 5",
       "vendor": "LG",
       "type": "mobile"
     },
     "cpu": {}
   },
-  "Apple iPhone 6": {
-    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+  "nexus_6": {
+    "ua": "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36",
     "browser": {
-      "name": "Mobile Safari",
-      "version": "9.0",
-      "major": "9"
+      "name": "Chrome",
+      "version": "48.0.2564.23",
+      "major": "48"
     },
     "engine": {
-      "version": "601.1.46",
+      "version": "537.36",
       "name": "WebKit"
     },
     "os": {
-      "name": "iOS",
-      "version": "9.1"
+      "name": "Android",
+      "version": "5.1.1"
     },
     "device": {
-      "model": "iPhone",
-      "vendor": "Apple",
+      "name": "Google Nexus 6",
+      "model": "Nexus 6",
+      "vendor": "Motorola",
       "type": "mobile"
     },
     "cpu": {}
   },
-  "Apple iPhone 6 Plus": {
-    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+  "nexus_7": {
+    "ua": "Mozilla/5.0 (Linux; Android 4.3; Nexus 7 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Safari/537.36",
     "browser": {
-      "name": "Mobile Safari",
-      "version": "9.0",
-      "major": "9"
+      "name": "Chrome",
+      "version": "48.0.2564.23",
+      "major": "48"
     },
     "engine": {
-      "version": "601.1.46",
+      "version": "537.36",
       "name": "WebKit"
     },
     "os": {
-      "name": "iOS",
-      "version": "9.1"
+      "name": "Android",
+      "version": "4.3"
     },
     "device": {
-      "model": "iPhone",
-      "vendor": "Apple",
-      "type": "mobile"
+      "name": "Google Nexus 7",
+      "model": "Nexus 7",
+      "vendor": "Asus",
+      "type": "tablet"
     },
     "cpu": {}
   },
-  "Apple iPad Mini": {
+  "ipad": {
     "ua": "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
     "browser": {
       "name": "Mobile Safari",
@@ -156,13 +107,107 @@
       "version": "9.1"
     },
     "device": {
-      "model": "iPad",
+      "name": "Apple iPad",
+      "model": "Apple iPad",
       "vendor": "Apple",
       "type": "tablet"
     },
     "cpu": {}
   },
-  "Amazon Kindle Fire HDX": {
+  "iphone_5": {
+    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+    "browser": {
+      "name": "Mobile Safari",
+      "version": "9.0",
+      "major": "9"
+    },
+    "engine": {
+      "version": "601.1.46",
+      "name": "WebKit"
+    },
+    "os": {
+      "name": "iOS",
+      "version": "9.1"
+    },
+    "device": {
+      "name": "Apple iPhone 5",
+      "model": "Apple iPhone 5",
+      "vendor": "Apple",
+      "type": "mobile"
+    },
+    "cpu": {}
+  },
+  "iphone_6": {
+    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+    "browser": {
+      "name": "Mobile Safari",
+      "version": "9.0",
+      "major": "9"
+    },
+    "engine": {
+      "version": "601.1.46",
+      "name": "WebKit"
+    },
+    "os": {
+      "name": "iOS",
+      "version": "9.1"
+    },
+    "device": {
+      "name": "Apple iPhone 6",
+      "model": "Apple iPhone 6",
+      "vendor": "Apple",
+      "type": "mobile"
+    },
+    "cpu": {}
+  },
+  "apple_iPhone_6_plus": {
+    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+    "browser": {
+      "name": "Mobile Safari",
+      "version": "9.0",
+      "major": "9"
+    },
+    "engine": {
+      "version": "601.1.46",
+      "name": "WebKit"
+    },
+    "os": {
+      "name": "iOS",
+      "version": "9.1"
+    },
+    "device": {
+      "name": "Apple iPhone 6 Plus",
+      "model": "Apple iPhone 6 Plus",
+      "vendor": "Apple",
+      "type": "mobile"
+    },
+    "cpu": {
+    }
+  },
+  "apple_ipad_mini": {
+    "ua": "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+    "browser": {
+      "name": "Mobile Safari",
+      "version": "9.0",
+      "major": "9"
+    },
+    "engine": {
+      "version": "601.1.46",
+      "name": "WebKit"
+    },
+    "os": {
+      "name": "iOS",
+      "version": "9.1"
+    },
+    "device": {
+      "name": "Apple iPad Mini",
+      "model": "Apple iPad Mini",
+      "vendor": "Apple",
+      "type": "tablet"
+    },
+    "cpu": {}
+  },
+  "kindle_fire": {
     "ua": "Mozilla/5.0 (Linux; U; en-us; KFAPWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.13 Safari/535.19 Silk-Accelerated=true",
     "browser": {
       "name": "Silk",
@@ -177,13 +222,14 @@
       "name": "Linux"
     },
     "device": {
-      "model": "KFAPWI",
+      "name": "Amazon Kindle Fire HDX",
+      "model": "Amazon Kindle Fire HDX",
       "vendor": "Amazon",
       "type": "tablet"
     },
     "cpu": {}
   },
-  "Samsung Galaxy S III": {
+  "galaxy_s_3": {
     "ua": "Mozilla/5.0 (Linux; U; Android 4.0; en-us; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
     "browser": {
       "name": "Android Browser",
@@ -199,36 +245,15 @@
       "version": "4.0"
     },
     "device": {
-      "model": "GT-I9300",
+      "name": "Samsung Galaxy S III",
+      "model": "Samsung Galaxy S III",
       "vendor": "Samsung",
       "type": "mobile"
     },
     "cpu": {}
   },
-  "Samsung Galaxy": {
-    "ua": "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36",
-    "browser": {
-      "name": "Chrome",
-      "version": "48.0.2564.23",
-      "major": "48"
-    },
-    "engine": {
-      "version": "537.36",
-      "name": "WebKit"
-    },
-    "os": {
-      "name": "Android",
-      "version": "5.0"
-    },
-    "device": {
-      "type": "mobile"
-    },
-    "cpu": {}
-  },
-  "Note 3": {
-    "user_agent": ""
-  },
-  "Google Nexus 10": {
+
+  "note_3": {
     "ua": "Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
     "browser": {
       "name": "Android Browser",
@@ -244,9 +269,33 @@
       "version": "4.3"
     },
     "device": {
+      "name": "Samsung Galaxy Note 3",
       "model": "SM-N900",
       "vendor": "Samsung",
       "type": "mobile"
+    },
+    "cpu": {}
+  },
+  "nexus_10": {
+    "ua": "Mozilla/5.0 (Linux; Android 4.3; Nexus 10 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Safari/537.36",
+    "browser": {
+      "name": "Chrome",
+      "version": "48.0.2564.23",
+      "major": "48"
+    },
+    "engine": {
+      "version": "537.36",
+      "name": "WebKit"
+    },
+    "os": {
+      "name": "Android",
+      "version": "4.3"
+    },
+    "device": {
+      "name": "Google Nexus 10",
+      "model": "Nexus 10",
+      "vendor": "Samsung",
+      "type": "tablet"
     },
     "cpu": {}
   }

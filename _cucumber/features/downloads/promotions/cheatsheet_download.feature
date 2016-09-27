@@ -13,7 +13,7 @@ Feature: User can download promotional cheat sheets
 
     Examples: Cheat Sheets
       | cheat sheet        | file name                     |
-      | docker-cheatsheet  | Docker_Cheat_Sheet.pdf        |
+      #| docker-cheatsheet  | Docker_Cheat_Sheet.pdf        |
       | mongodb-cheatsheet | MongoDB_Shell_Cheat_Sheet.pdf |
 
   @basic_login @logout @nightly
