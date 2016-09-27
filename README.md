@@ -85,6 +85,8 @@ Download the [MySQL data dump](https://github.com/redhat-developer/searchisko-do
 
 Download the [ElasticSearch data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_es_data.tar.gz) and copy to `_docker/searchisko/searchisko_es_data.tar.gz`.
 
+Download the Drupal MySQL data dump from stumpjumper.lab4.eng.bos.redhat.com. The file will be named like `prod_db_[date timestamp].sql.gz` right in the directory when you sftp into stumpjumper.lab4.eng.bos.redhat.com. It must be saved in `_docker/drupal` as `prod_db.sql.gz`. If you do not have access to stumpjumper, you can ask a member of the team for the data dump as well.
+
 Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Docker-machine, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `docker-machine ip default`
 
 Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
