@@ -26,7 +26,7 @@ class Browsers
         config = JSON.parse(json)
         if config.include?(browser_name)
           if ENV['RHD_DOCKER_DRIVER'].to_s.empty?
-            browser = mobile(browser_name)
+            browser = chrome(browser_name)
           else
             browser = docker_chrome(browser_name)
           end
@@ -37,7 +37,7 @@ class Browsers
     browser
   end
 
-  def chrome
+  def chrome(device_name = nil)
     $download_directory = File.join("#{Dir.pwd}/_cucumber", 'tmp_downloads')
     FileUtils.mkdir_p $download_directory
     raise('Download directory was not created!') unless Dir.exist?($download_directory)
@@ -49,35 +49,26 @@ class Browsers
             :default_directory => $download_directory
         }
     }
-    chromedriver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os.to_s}", "chromedriver")
-    Selenium::WebDriver::Chrome.driver_path = chromedriver_path
-    Watir::Browser.new(:chrome, :prefs => chrome_prefs)
-  end
 
-  def mobile(device_name)
-    ENV['MOBILE'] = 'true'
-    $download_directory = File.join("#{Dir.pwd}/_cucumber", 'tmp_downloads')
-    FileUtils.mkdir_p $download_directory
-    raise('Download directory was not created!') unless Dir.exist?($download_directory)
-    chrome_prefs = {
-        :download => {
-            :prompt_for_download => false,
-            :directory_upgrade => true,
-            :default_directory => $download_directory
-        }
-    }
+    chrome_switches = %w[--ignore-certificate-errors --disable-popup-blocking]
+    caps_opts = {'chrome.switches' => chrome_switches}
+
     chromedriver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os.to_s}", "chromedriver")
     Selenium::WebDriver::Chrome.driver_path = chromedriver_path
 
-    json = File.read('_cucumber/driver/device_config/chromium_devices.json')
-    config = JSON.parse(json)
-    raise "Invalid device specified! Was '#{device_name}'" unless config.include?(device_name)
-    puts device_name
-    device = config[device_name]['device']['name']
-    puts ">>>> Executing tests on browser emulated version of #{config[device_name]['device']['name']} <<<<"
-    mobile_emulation = {"deviceName" => device}
-    caps = Selenium::WebDriver::Remote::Capabilities.chrome
-    caps['chromeOptions'] = {'prefs' => chrome_prefs, 'mobileEmulation' => mobile_emulation}
+    if device_name == nil
+      caps = Selenium::WebDriver::Remote::Capabilities.chrome
+      caps['chromeOptions'] = {'prefs' => chrome_prefs}
+    else
+      json = File.read('_cucumber/driver/device_config/chromium_devices.json')
+      config = JSON.parse(json)
+      raise "Invalid device specified! Was '#{device_name}'" unless config.include?(device_name)
+      dut = config[device_name]['device']['name']
+      puts ">>>> Executing tests on browser emulated version of #{dut} <<<<"
+      mobile_emulation = {"deviceName" => dut}
+      caps = Selenium::WebDriver::Remote::Capabilities.chrome(caps_opts)
+      caps['chromeOptions'] = {'prefs' => chrome_prefs, 'mobileEmulation' => mobile_emulation}
+    end
     Watir::Browser.new(:chrome, :desired_capabilities => caps)
   end
 
@@ -125,45 +116,6 @@ class Browsers
       end
     end
   end
-
-  # def docker_mobile(device_name)
-  #   $download_directory = File.join("#{Dir.pwd}/_cucumber", 'tmp_downloads')
-  #   raise('Download directory was not created!') unless Dir.exist?($download_directory)
-  #
-  #   chrome_prefs = {
-  #       :download => {
-  #           :prompt_for_download => false,
-  #           :directory_upgrade => true,
-  #           :default_directory => $download_directory
-  #       }
-  #   }
-  #   chrome_switches = %w[--ignore-certificate-errors --disable-popup-blocking --incognito]
-  #   caps_opts = {'chrome.switches' => chrome_switches}
-  #
-  #   json = File.read('_cucumber/driver/device_config/chromium_devices.json')
-  #   config = JSON.parse(json)
-  #   device = config[device_name]['device']['name']
-  #   raise "Invalid device specified! Was '#{device_name}'" unless config.include?(device_name)
-  #
-  #   puts ">>>> Executing tests on browser emulated version of #{config[device_name]['device']['name']} <<<<"
-  #   mobile_emulation = {"deviceName" => device}
-  #
-  #   caps = Selenium::WebDriver::Remote::Capabilities.chrome(caps_opts)
-  #   caps['chromeOptions'] = {'prefs' => chrome_prefs, 'mobileEmulation' => mobile_emulation}
-  #   client = Selenium::WebDriver::Remote::Http::Default.new
-  #   client.timeout = 300 # Browser launch can take a while
-  #   begin
-  #     attempts = 0
-  #     Watir::Browser.new(:remote, :url => ENV['SELENIUM_HOST'], :desired_capabilities => caps, http_client: client)
-  #   rescue Net::ReadTimeout => e
-  #     if attempts == 0
-  #       attempts += 1
-  #       retry
-  #     else
-  #       raise(e)
-  #     end
-  #   end
-  # end
 
   def docker_firefox
     $download_directory = File.join("#{Dir.pwd}/_cucumber", 'tmp_downloads')
