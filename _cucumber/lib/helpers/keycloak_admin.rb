@@ -15,7 +15,7 @@ class KeyCloak
     @address_line_one = Faker::Address.street_address
     @city = Faker::Address.city_prefix
     @postal_code = Faker::Address.postcode
-    @country = 'UK'
+    @country = 'GB'
     @phone_number = '0191 1111111'
     @full_name = "#{@first_name} #{@last_name}".upcase
   end
