@@ -26,11 +26,11 @@ Prerequisites
 +
 a. Download the latest version of Red Hat JBoss A-MQ. The latest
 at the time of this writing is link:#{site.download_manager_file_base_url}/jboss-amq-6.3.0.GA.zip[Red Hat JBoss A-MQ 6.3.0 GA].
-b. Unzip JBoss-AQ to any destination. The document will refer to this directory as AMQ_HOME
+b. Unzip JBoss A-MQ to any destination. The document will refer to this directory as AMQ_HOME
 * On Windows or Mac, you can extract the contents of the ZIP archive by double clicking on the ZIP file.
 * On Red Hat Enterprise Linux, open a terminal window in the target machine and navigate to where the ZIP file was downloaded. Extract the ZIP file by executing the following command:
 +
-`unzip jboss-a-mq-6.2.1.redhat-084.zip`
+`unzip jboss-a-mq-6.3.0.redhat-xxx.zip`
 +
 2. *Add users to A-MQ:*
 +
@@ -39,7 +39,7 @@ Edit the file `AMQ_HOME/etc/user.properties`. Uncomment the last line so that sy
 `admin=admin,admin,manager,viewer,Operator,Maintainer,Deployer, Auditor,Administrator,SuperUser`
 +
 3. *Start the A-MQ broker:* Scripts to start and stop the A-MQ broker are found within the `AMQ_HOME/bin` directory.
-* For Windows: Double-click on the `AMQ/bin/start.bat` file and accept security pop-ups as they appear.
+* For Windows: Double-click on the `AMQ_HOME/bin/start.bat` file and accept security pop-ups as they appear.
 * For Red Hat Enterprise Linux and Mac: Execute the following command:
 +
 `AMQ_HOME/bin/start`

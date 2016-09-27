@@ -36,7 +36,7 @@ video::183851396[vimeo]
 
 == Step2 Content
 
-1.	Download  https://developers.redhat.com/download-manager/file/devstudio-integration-stack-9.0.2.GA-standalone-installer.jar[Red Hat JBoss Developer Studio one step installer for Fuse]
+1.	Download  {jbdsis-standalone-installer-download-url}[Red Hat JBoss Developer Studio one step installer for Fuse]
 2.	Run Red Hat JBoss Developer Studio installer
 .. For MAC/Linux:
 ... Go to the folder where you have downloaded Red Hat JBoss Developer Studio, and execute the installer
@@ -53,7 +53,7 @@ video::183851396[vimeo]
 3.	During installation
 ..	Accept the terms and condition.
 ..	Choose your prefered installation path.
-..  Select JVM (Java 8)s
+..  Select Java 8 JVM
 ..  Configure runtime server by pointing to the installation directory from Step One.
 ..	Select *JBoss Fuse Development* as addition features.
 
@@ -67,7 +67,7 @@ With your tooling and runtime installed, you’re ready to start your first proj
 
 The CBR quick start watches a directory for incoming orders and dispatches them to outgoing directories based on the customer country contained in the order XML. We will import the quick start into your workspace and then build it from scratch so you see how it works.
 
-. First, to create the project, right click on Project explorer and choose *Fuse Integration Project*
+. First, to create the project, right click on Project explorer and choose New -> *Fuse Integration Project*
 . Name the project and choose *Fuse 6.3* as runtime environement
 . Create with existing template *Content Base Routing*
 . To point the tool to our runtime server. In the Servers view, add a new Fuse 6.3 Server and select the *jboss-fuse-6.3.0.redhat-xxx*
