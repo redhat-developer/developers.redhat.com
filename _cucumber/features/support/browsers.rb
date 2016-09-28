@@ -21,6 +21,8 @@ class Browsers
         browser = docker_chrome
       when 'docker_firefox'
         browser = docker_firefox
+      when 'ios_simulator'
+        browser = ios_simulator
       else
         json = File.read('_cucumber/driver/device_config/chromium_devices.json')
         config = JSON.parse(json)
@@ -35,6 +37,12 @@ class Browsers
         end
     end
     browser
+  end
+
+  def ios_simulator
+    caps = {platformName: 'ios', deviceName: 'iPhone 6', browserName: 'Safari', platformVersion: '9.2'}
+    driver = Selenium::WebDriver.for(:remote, desired_capabilities: caps, url: server_url)
+    Watir::Browser.new(driver)
   end
 
   def chrome(device_name = nil)
