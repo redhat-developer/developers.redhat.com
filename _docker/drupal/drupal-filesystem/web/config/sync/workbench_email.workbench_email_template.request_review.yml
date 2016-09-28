@@ -1,0 +1,17 @@
+uuid: 1f8e2d7a-5b67-48f2-a0a4-3881dab87f33
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.administrator
+id: request_review
+label: 'Request Review'
+subject: 'A new Request for Review'
+roles:
+  administrator: administrator
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi,\r\n\r\n[node:title] is requested for review. Please review it.\r\n\r\nThank you"
+  format: plain_text

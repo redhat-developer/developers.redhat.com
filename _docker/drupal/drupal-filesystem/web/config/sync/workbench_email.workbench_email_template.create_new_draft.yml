@@ -1,0 +1,17 @@
+uuid: 69a337cf-436f-46cc-be9f-ca00e7379323
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.administrator
+id: create_new_draft
+label: 'Create New Draft'
+subject: 'Content is changed from Published to Draft'
+roles:
+  administrator: administrator
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi,\r\n\r\n[node:title] is changed to draft form published state.\r\n\r\nThank you"
+  format: plain_text

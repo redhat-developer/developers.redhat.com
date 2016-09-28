@@ -1,0 +1,17 @@
+uuid: c48f85ef-1622-4289-bf18-711f71ea470c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.administrator
+id: new_draft
+label: Draft
+subject: 'New draft created.'
+roles:
+  administrator: administrator
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi,\r\n\r\n[node:title] is newly created draft. Please review it.\r\n\r\nThank you"
+  format: plain_text

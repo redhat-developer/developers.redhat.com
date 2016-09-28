@@ -1,0 +1,17 @@
+uuid: 0dcfcef4-8bea-4581-9cfd-bee87d632452
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.administrator
+id: send_back_to_draft
+label: 'Send Back to Draft'
+subject: '[node:title] is sent back to Draft.'
+roles:
+  administrator: administrator
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi,\r\n\r\n[node:title] is sent back to draft. Please review it."
+  format: plain_text

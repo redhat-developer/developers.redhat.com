@@ -1,0 +1,24 @@
+uuid: fe2c66ad-25d3-40f4-b83b-db605d7056e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.scheduled_update.field_moderation_state_1
+    - scheduled_updates.scheduled_update_type.schedule_updates
+id: scheduled_update.schedule_updates.field_moderation_state_1
+field_name: field_moderation_state_1
+entity_type: scheduled_update
+bundle: schedule_updates
+label: 'Moderation state'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    -
+      target_id: null
+default_value_callback: ''
+settings:
+  handler: 'default:moderation_state'
+  handler_settings: {  }
+field_type: entity_reference

@@ -1,0 +1,23 @@
+uuid: a9b12c3d-be93-42c6-829d-ac3fb7984e58
+langcode: en
+status: true
+dependencies:
+  config:
+    - workbench_moderation.moderation_state.draft
+    - workbench_moderation.moderation_state.needs_review
+  module:
+    - workbench_email
+  enforced:
+    config:
+      - workbench_email.workbench_email_template.request_review
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      request_review: request_review
+_core:
+  default_config_hash: p6eas0aLuO28hEMmbcOu_2s8Ht7xJpvkVP5ihosF0KI
+id: draft_needs_review
+label: 'Request Review'
+stateFrom: draft
+stateTo: needs_review
+weight: -10

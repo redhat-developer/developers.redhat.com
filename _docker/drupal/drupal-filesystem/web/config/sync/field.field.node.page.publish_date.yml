@@ -1,0 +1,24 @@
+uuid: 2541273b-afc1-41a6-9b8a-6d360d9ef66c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.publish_date
+    - node.type.page
+    - scheduled_updates.scheduled_update_type.schedule_updates
+id: node.page.publish_date
+field_name: publish_date
+entity_type: node
+bundle: page
+label: 'Publish Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler_settings:
+    target_bundles:
+      - schedule_updates
+  handler: 'default:scheduled_update'
+field_type: entity_reference

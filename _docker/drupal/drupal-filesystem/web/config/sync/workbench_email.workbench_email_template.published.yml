@@ -1,0 +1,17 @@
+uuid: 8c06296a-93a3-4d4d-8312-1008a720c64b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.administrator
+id: published
+label: Published
+subject: '[node:title] is Published.'
+roles:
+  administrator: administrator
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi,\r\n\r\nThis is a gentle reminder that [node:title] is published now.\r\n\r\nThank you\r\n"
+  format: plain_text

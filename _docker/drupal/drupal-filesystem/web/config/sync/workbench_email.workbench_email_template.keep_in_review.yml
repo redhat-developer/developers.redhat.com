@@ -1,0 +1,17 @@
+uuid: 7513d5bc-55cb-41a5-b7c8-241fce60e8f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.administrator
+id: keep_in_review
+label: 'Keep in Review'
+subject: 'Keep in Review'
+roles:
+  administrator: administrator
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi\r\n\r\n[node:title] is requested to keep in review. \r\n\r\nThank you"
+  format: plain_text

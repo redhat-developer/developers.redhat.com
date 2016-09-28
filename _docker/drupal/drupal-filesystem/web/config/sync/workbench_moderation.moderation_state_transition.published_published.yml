@@ -1,0 +1,22 @@
+uuid: aa44a64b-512d-43a6-960c-e48d8e14962b
+langcode: en
+status: true
+dependencies:
+  config:
+    - workbench_moderation.moderation_state.published
+  module:
+    - workbench_email
+  enforced:
+    config:
+      - workbench_email.workbench_email_template.published
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      published: published
+_core:
+  default_config_hash: fAcec0ABnHQUhr8wXigy5e9n-byT_C1EnWWqjKY_ENE
+id: published_published
+label: Publish
+stateFrom: published
+stateTo: published
+weight: -4

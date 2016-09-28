@@ -1,0 +1,24 @@
+uuid: a9c60d53-9248-412c-9071-7aeef8c4b915
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.publish_date
+    - node.type.promotion_card
+    - scheduled_updates.scheduled_update_type.schedule_updates
+id: node.promotion_card.publish_date
+field_name: publish_date
+entity_type: node
+bundle: promotion_card
+label: 'Publish Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler_settings:
+    target_bundles:
+      - schedule_updates
+  handler: 'default:scheduled_update'
+field_type: entity_reference

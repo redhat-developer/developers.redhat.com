@@ -1,0 +1,22 @@
+uuid: d1a1b35d-17cb-4b42-9601-d70a7d235337
+langcode: en
+status: true
+dependencies:
+  config:
+    - workbench_moderation.moderation_state.draft
+  module:
+    - workbench_email
+  enforced:
+    config:
+      - workbench_email.workbench_email_template.new_draft
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      new_draft: new_draft
+_core:
+  default_config_hash: PlP9tjzxwj2pY25wmi8m3UGiipeTRn8m93sBBqFoK8o
+id: draft_draft
+label: 'Create New Draft'
+stateFrom: draft
+stateTo: draft
+weight: -11
