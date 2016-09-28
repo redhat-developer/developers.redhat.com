@@ -43,7 +43,7 @@ module JBoss
         # Add identifier and other required fields for Searchisko Content Object
         searchisko_hash.merge!({:sys_url_view => "#{site.base_url}/events/event#!id=#{id}"})
         
-        unless !site.push_to_searchisko || site.profile =~ /development/
+        if site.push_to_searchisko
           searchisko.push_content('jbossdeveloper_event',
                                   id,
                                   searchisko_hash.to_json)
