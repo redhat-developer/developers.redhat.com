@@ -27,12 +27,12 @@ Feature: Social registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @delete_user @github_teardown @logout @ignore
+  @delete_user @github_teardown @logout
   Scenario: 2 - Registration using GitHub login which contains all mandatory information (first name, last name, but email already exists). User links GitHub account to existing account
     Given I am on the Registration page
-    When I try to link a GitHub account to an existing account
+    When I link a GitHub account to my existing account
     Then I should see a warning that the email is already registered
-    When I click on the Send Verification email button
+    When I click on the Link my social account with the existing account link
     Then I should receive an email containing a verify email link
     And I navigate to the verify email link
     Then I should be registered and logged in
@@ -40,7 +40,7 @@ Feature: Social registration
   @delete_user @github_teardown @logout
   Scenario: 3 - Registration using GitHub login which contains all mandatory information (first name, last name, but email already exists). User changes email to create new account.
     Given I am on the Registration page
-    When I try to link a GitHub account to an existing account
+    When I link a GitHub account to my existing account
     Then I should see a warning that the email is already registered
     And I complete the required additional information with a new email address
     Then I should be registered and logged in
@@ -73,13 +73,13 @@ Feature: Social registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @delete_user @logout @github_teardown @ignore
+  @delete_user @logout @github_teardown
   Scenario: 5 - Registration using GitHub login which doesn't contain some mandatory the information (first name, last name), email already exists. User links social provider to existing account
     Given I am on the Registration page
     When I try to register using a GitHub account that contains missing profile information with an existing RHD registered email
-    And I complete the required additional information
+    And I complete the missing information
     Then I should see a warning that the email is already registered
-    And I click on the Send Verification email button
+    When I click on the Link my social account with the existing account link
     Then I should receive an email containing a verify email link
     And I navigate to the verify email link
     Then I should be registered and logged in
@@ -89,7 +89,7 @@ Feature: Social registration
     Given I am on the Registration page
     When I try to register using a GitHub account that contains missing profile information with an existing RHD registered email
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
-    And I complete the required additional information
+    And I add an email address that is already RHD registered
     Then I should see a warning that the email is already registered
     And I complete the required additional information with a new email address
     Then I should be registered and logged in

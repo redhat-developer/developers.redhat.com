@@ -1,0 +1,14 @@
+uuid: 44b8061b-d960-4283-91d9-48cb9b034379
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_team
+  module:
+    - user
+id: user_remove_role_action.content_team
+label: 'Remove the Content Team role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: content_team

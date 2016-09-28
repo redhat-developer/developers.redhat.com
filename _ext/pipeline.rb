@@ -32,7 +32,6 @@ require 'active_support' # HACK for autosupport required by duration
 require 'slim/include'
 
 Awestruct::Extensions::Pipeline.new do
-
   # At the top, so that all passwords, logins and keys are available
   extension JBoss::Developer::Vault.new
 
@@ -61,7 +60,7 @@ Awestruct::Extensions::Pipeline.new do
 
   extension JBoss::Developer::Events.new
 
-  extension Aweplug::Extensions::Books.new("site.book_isbns.collect { |i,b| b }")
+  extension Aweplug::Extensions::Books.new("site.book_isbns.collect { |i,b| b }", site.push_to_searchisko)
 
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'customer_portal_articles',
                                                        key: '1440-gFstcyCyFhXISvTIlzrmXZo7Ligs-hla5z9eSQA',
@@ -90,53 +89,63 @@ Awestruct::Extensions::Pipeline.new do
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/eap',
                                                           excludes: ['_eap-quickstarts/template'],
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           product: 'eap')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_brms-quickstarts',
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/brms',
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           product: 'brms')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jdg-quickstarts',
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/datagrid',
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           product: 'datagrid')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_jon-quickstarts',
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/operationsnetwork',
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           product: 'operationsnetwork')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_picketlink-quickstarts',
                                                           layout: 'get-started-item',
                                                           experimental: true,
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           output_dir: '/quickstarts/picketlink')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_portal-quickstarts',
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/portal',
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           product: 'portal')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_sandbox-quickstarts',
                                                           layout: 'get-started-item',
                                                           experimental: true,
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           output_dir: '/quickstarts/sandbox')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_wfk-quickstarts',
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/wfk',
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           product: 'wfk')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_fuse-quickstarts',
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/fuse',
                                                           subdirectory: true,
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           excludes: ['_fuse-quickstarts/template','_fuse-quickstarts/switchyard'],
                                                           product: 'fuse')
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_unifiedpush-quickstarts',
                                                           layout: 'get-started-item',
                                                           output_dir: '/quickstarts/unifiedpush',
+                                                          push_to_searchisko: site.push_to_searchisko,
                                                           product: 'unifiedpush')
 
   extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
@@ -148,7 +157,7 @@ Awestruct::Extensions::Pipeline.new do
                                                      output_dir: 'ticket-monster',
                                                      additional_excludes: ['ticket-monster.asciidoc'],
                                                      additional_metadata_keys: ['thumbnail'],
-                                                     push_to_searchisko: true)
+                                                     push_to_searchisko: site.push_to_searchisko)
 
   extension JBoss::Developer::Extensions::Nav.new
 
@@ -165,13 +174,13 @@ Awestruct::Extensions::Pipeline.new do
                                                        by: 'col')
 
   # Must be loaded after CommonDir
-  extension JBoss::Developer::Extensions::Product.new
+  extension JBoss::Developer::Extensions::Product.new push_to_searchisko: site.push_to_searchisko
 
   # Demos reference products, so it needs to be done further down the pipeline
   extension Aweplug::Extensions::Kramdown::Demo.new(url: 'https://raw.githubusercontent.com/jboss-developer/jboss-developer-demos/master/demos.yaml',
                                                     layout: 'get-started-item',
                                                     output_dir: '/demos',
-                                                    push_to_searchisko: true)
+                                                    push_to_searchisko: site.push_to_searchisko)
 
   # Load vimeo videos from a google spreadsheet
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'vimeo',
@@ -179,7 +188,7 @@ Awestruct::Extensions::Pipeline.new do
                                                        worksheet_title: 'Vimeo Videos',
                                                        col_labels: true,
                                                        by: 'row')
-  extension Aweplug::Extensions::Video.new("site.vimeo.collect {|i,v| v['vimeo_url']}")
+  extension Aweplug::Extensions::Video.new("site.vimeo.collect {|i,v| v['vimeo_url']}", site.push_to_searchisko)
 
   # Load youtube videos from a google spreadsheet
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'youtube',
@@ -187,7 +196,7 @@ Awestruct::Extensions::Pipeline.new do
                                                        worksheet_title: 'YouTube Videos',
                                                        col_labels: true,
                                                        by: 'row')
-  extension Aweplug::Extensions::Video.new("site.youtube.collect {|i,v| v['youtube_url']}")
+  extension Aweplug::Extensions::Video.new("site.youtube.collect {|i,v| v['youtube_url']}", site.push_to_searchisko)
 
   # Load indexifier
   extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]

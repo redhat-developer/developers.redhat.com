@@ -1,0 +1,22 @@
+uuid: e767964c-80d3-4281-a020-1060b20d2e1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.promotion_card
+id: node.promotion_card.status
+field_name: status
+entity_type: node
+bundle: promotion_card
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

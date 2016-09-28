@@ -47,5 +47,5 @@ RUN wget http://production.cf.rubygems.org/rubygems/rubygems-2.4.1.tgz \
     && rm -rf /tmp/* \
     && echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
-RUN gem install bundler --no-rdoc --no-ri
+RUN gem install bundler --version 1.11.2 --no-rdoc --no-ri
 

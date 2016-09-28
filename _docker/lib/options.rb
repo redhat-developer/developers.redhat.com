@@ -88,8 +88,8 @@ class Options
           ENV['RHD_TEST_PROFILE']= 'parallel'
         end
 
-        if ENV['RHD_DOCKER_DRIVER'].to_s.empty?
-          ENV['RHD_DOCKER_DRIVER'] = 'docker_chrome'
+        if ENV['RHD_JS_DRIVER'].to_s.empty?
+          ENV['RHD_JS_DRIVER'] = 'docker_chrome'
         end
 
         if ENV['RHD_BROWSER_SCALE'].to_s.empty?
@@ -98,9 +98,9 @@ class Options
 
         tasks[:kill_all] = false
         tasks[:build] = true
-        tasks[:scale_grid] = "#{ENV['RHD_DOCKER_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
-        tasks[:supporting_services] = [ENV['RHD_DOCKER_DRIVER']]
-        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_DOCKER_DRIVER']} RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"]
+        tasks[:scale_grid] = "#{ENV['RHD_JS_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
+        tasks[:supporting_services] = [ENV['RHD_JS_DRIVER']]
+        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_JS_DRIVER']} RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"]
       end
 
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|

@@ -8,7 +8,9 @@
 
 Single Development Tool, Tailored for Extreme Productivity.
 
-JBoss® Developer Studio provides superior support for your entire development lifecycle. It includes a broad set of tooling capabilities and support for multiple programming models and frameworks, including Container Development (Docker, OpenShift, Red Hat CDK), Java™ Enterprise Edition 7, RichFaces, JavaServer Faces (JSF), Enterprise JavaBeans (EJB), Java Persistence API (JPA), and Hibernate®, JAX-RS with RESTEasy, Contexts Dependency Injection (CDI), HTML5, and many other popular technologies. It provides developer choice in supporting multiple JVMs, productivity with Maven, and in testing with Arquillian. It is fully tested and certified to ensure that all its plug-ins, runtime components, and their dependencies are compatible with each other
+JBoss® Developer Studio provides superior support for your entire development lifecycle. It includes a broad set of tooling capabilities and support for multiple programming models and frameworks, including container development (deploying via OpenShift, link:#{site.base_url}/products/cdk/overview/[Red Hat Container Development Kit], or Docker), Java™ Enterprise Edition 7, JavaServer Faces (JSF), Enterprise JavaBeans (EJB), Java Persistence API (JPA), and Hibernate®, JAX-RS with RESTEasy, Contexts Dependency Injection (CDI), HTML5, and many other popular technologies. It provides developer choice in supporting multiple JVMs, productivity with Maven, and in testing with Arquillian. It is fully tested and certified to ensure that all its plug-ins, runtime components, and their dependencies are compatible with each other
+
+As of version 10.1, there is also an online installer available for Windows users. You can use the http://developers.redhat.com/products/devsuite/overview/[Red Hat Development Suite installer] to install JBoss Developer Studio, plus optionally OpenJDK, the Red Hat Container Development Kit, and other dependencies too.
 
 == Features1
 
@@ -39,3 +41,9 @@ With LiveReload, BrowserSim, and jQuery Mobile Tools, we make developing for mob
 == Icon3
 
 image:#{cdn(site.base_url + '/images/icons/products/products_phone.png')}["Phone Icon"]
+
+== Detail
+
+=== New easy container setup for Windows users
+
+Now available as part of the new #{site.base_url}/products/devsuite/overview/[Red Hat Development Suite], DevStudio with Eclipse integration helps streamline your development process by letting you control your containers running on the VM right from your Windows desktop. The “DevSuite” includes the Container Development Kit which has the components to connect Eclipse or a docker-cli client running on your host system with the daemon running inside the VM. The DevSuite also includes OpenJDK for Windows. Check out https://www.youtube.com/watch?v=BQUCdwNgyTE[this video] for more.

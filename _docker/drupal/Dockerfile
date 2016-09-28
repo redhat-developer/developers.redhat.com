@@ -25,6 +25,7 @@ RUN yum-config-manager --enable remi-php70; \
            php-mysqlnd \
            php-opcache \
            php-xml \
+           sendmail \
            tar; \
     yum clean all
 

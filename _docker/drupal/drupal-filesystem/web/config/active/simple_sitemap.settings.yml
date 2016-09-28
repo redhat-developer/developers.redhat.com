@@ -1,0 +1,26 @@
+custom:
+  -
+    path: /
+    priority: !!float 1
+entity_types:
+  node_type:
+    article:
+      index: 1
+      priority: 0.5
+    page:
+      index: 1
+      priority: 0.5
+    rhd_microsite:
+      index: 1
+      priority: 0.5
+    rhd_solution_overview:
+      index: 1
+      priority: 0.5
+    topic:
+      index: 1
+      priority: 0.5
+settings:
+  max_links: 5000
+  cron_generate: true
+  remove_duplicates: true
+  batch_process_limit: 1500
