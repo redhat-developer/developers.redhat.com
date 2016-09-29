@@ -137,7 +137,6 @@ class KeyCloak
     rescue => e
       raise("Failed to delete user with email '#{email}'. Response from keycloak admin was #{e}")
     end
-    puts "Deleted user ID was: #{user_id}, and email was #{email}"
   end
 
   private

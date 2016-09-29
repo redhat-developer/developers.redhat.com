@@ -18,26 +18,6 @@ Before('@products, @downloads') do
   @products_with_help = get_products_with_links('help.html.slim')[0]
 end
 
-# create test user for basic log in feature
-Before('@basic_login') do
-  unless $created_test_user
-    # register user only once, unless otherwise stated
-    keycloak = KeyCloak.new
-    $site_user = keycloak.register_new_user
-    $basic_login = $site_user[:email]
-    p "Registered user with email #{$site_user[:email]}"
-    $created_test_user = true
-  end
-end
-
-at_exit {
-  if defined?($basic_login)
-    keycloak_admin = KeyCloak.new
-    keycloak_admin.delete_user($basic_login)
-    p "Deleted user with email #{$basic_login}"
-  end
-}
-
 After('@delete_user') do
   keycloak_admin = KeyCloak.new
   keycloak_admin.delete_user($site_user[:email])
