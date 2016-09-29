@@ -66,7 +66,7 @@ end
 Then(/^the file should be downloadable$/) do
   on PromotionsPage do |page|
     content_length, content_type = page.get_download
-    expect(content_type).to eql('text/html; charset=UTF-8')
+    expect(content_type.downcase).to eql('text/html; charset=utf-8')
     expect(content_length.to_i).to be > 0
   end
 end
