@@ -12,18 +12,20 @@ Feature: Red Hat Enterprise Linux download
     And I click to download "Red Hat Enterprise Linux"
     Then I should see the rhel get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
 
-  @basic_login @logout
+  @logout
   Scenario: 2. Logged out user who accepted RHD T&C already tries to download - is asked to login then download starts
-    Given I am on the Downloads page
-    And I click to download "Red Hat Enterprise Linux"
+    Given I am a registered site visitor
+    And I am on the Downloads page
+    When I click to download "Red Hat Enterprise Linux"
     And I log in with a valid username
     Then I should see the rhel get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
 
-  @logout @basic_login
+  @logout
   Scenario: 3. Logged in user who accepted RHD T&C already tries to download - is not asked to login nor accept T&C, download starts immediatelly
-    Given I have previously logged in
-    And I am on the Downloads page
-    When I click to download "Red Hat Enterprise Linux"
+    Given I am a registered site visitor
+    And I have previously logged in
+    When I am on the Downloads page
+    And I click to download "Red Hat Enterprise Linux"
     Then I should see the rhel get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
 
   @nightly @delete_user @github_teardown @logout

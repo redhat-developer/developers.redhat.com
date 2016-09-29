@@ -93,17 +93,24 @@ at_exit do
     config.report_types = [:html]
     config.report_tabs = [:overview, :features, :errors]
     config.report_title = "RHD Test Results - #{$rhd_driver}"
-    config.compress_images = false
+    config.compress_images = true
   end
 
   ReportBuilder.build_report
 
-  # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
-  admin = KeyCloak.new
-  email_one = admin.get_user_by("redhat-developers-testers+sid_#{$session_id}")
-  unless email_one.empty?
-    email_one.each do |user|
-      admin.delete_user(user['email'])
+  if defined?($basic_login)
+    keycloak_admin = KeyCloak.new
+    keycloak_admin.delete_user($basic_login)
+  end
+
+  if ENV['RHD_TEST_PROFILE'] == 'nightly'
+    # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
+    admin = KeyCloak.new
+    email_one = admin.get_user_by("redhat-developers-testers+sid_#{$session_id}")
+    unless email_one.empty?
+      email_one.each do |user|
+        admin.delete_user(user['email'])
+      end
     end
   end
 

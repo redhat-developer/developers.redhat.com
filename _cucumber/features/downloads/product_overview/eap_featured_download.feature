@@ -15,9 +15,10 @@ Feature: Product Download Page - An authorised customer can download EAP via dow
     When I click to download the featured download of "Enterprise Application Platform"
     Then I should see the eap get started page with a confirmation message "Thank you for downloading Enterprise Application Platform"
 
-  @basic_login @logout
+  @logout
   Scenario: Unauthorized customer must log in in order to Download EAP
-    Given I am on the Product Download page for eap
+    Given I am a registered site visitor
+    And I am on the Product Download page for eap
     When I click to download the featured download of "Enterprise Application Platform"
     And I log in with a valid username
     Then I should see the eap get started page with a confirmation message "Thank you for downloading Enterprise Application Platform"
