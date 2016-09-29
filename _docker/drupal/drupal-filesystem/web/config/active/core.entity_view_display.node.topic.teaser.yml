@@ -1,0 +1,44 @@
+uuid: a5a32a17-193b-4fd0-8a54-844962aefd35
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.topic.field_blue_card_description
+    - field.field.node.topic.field_blue_card_links
+    - field.field.node.topic.field_blue_card_title
+    - field.field.node.topic.field_bottom_left_white_card
+    - field.field.node.topic.field_bottom_right_white_card
+    - field.field.node.topic.field_green_card
+    - field.field.node.topic.field_grey_card
+    - field.field.node.topic.field_orange_card
+    - field.field.node.topic.field_tags
+    - field.field.node.topic.field_top_left_white_card
+    - field.field.node.topic.field_top_right_white_card
+    - field.field.node.topic.field_topic_sub_title
+    - node.type.topic
+  module:
+    - user
+_core:
+  default_config_hash: iUsAIF5T1LQYKmX3AcQ9r5F46BEMyDaF-U71NIBkpwE
+id: node.topic.teaser
+targetEntityType: node
+bundle: topic
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  field_blue_card_description: true
+  field_blue_card_links: true
+  field_blue_card_title: true
+  field_bottom_left_white_card: true
+  field_bottom_right_white_card: true
+  field_green_card: true
+  field_grey_card: true
+  field_orange_card: true
+  field_sub_title: true
+  field_tags: true
+  field_top_left_white_card: true
+  field_top_right_white_card: true
+  field_topic_sub_title: true

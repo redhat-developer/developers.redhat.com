@@ -107,3 +107,18 @@ When(/^I click on the Create account link$/) do
     page.click_register_link
   end
 end
+
+Given(/^I have previously logged in$/) do
+  visit HomePage do |page|
+    page.open_login_page
+  end
+  on LoginPage do |page|
+    page.login_with($site_user[:email], $site_user[:password])
+  end
+  expect(@current_page.logged_in?).to eq($site_user[:full_name])
+end
+
+Then(/^I should see the Log in page with the message "([^"]*)"$/) do |title|
+  on LoginPage
+  expect(@browser.text).to include(title)
+end

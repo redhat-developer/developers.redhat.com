@@ -1,0 +1,14 @@
+uuid: bcc6a820-5939-4b47-b8c6-48b3063d4cdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.topics_owners
+  module:
+    - user
+id: user_remove_role_action.topics_owners
+label: 'Remove the Topics Owners role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: topics_owners
