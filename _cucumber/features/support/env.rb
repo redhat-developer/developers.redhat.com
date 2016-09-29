@@ -98,11 +98,6 @@ at_exit do
 
   ReportBuilder.build_report
 
-  if defined?($basic_login)
-    keycloak_admin = KeyCloak.new
-    keycloak_admin.delete_user($basic_login)
-  end
-
   if ENV['RHD_TEST_PROFILE'] == 'nightly'
     # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
     admin = KeyCloak.new

@@ -20,7 +20,7 @@ Feature: Red Hat Container Development Kit download
     And I log in with a valid username
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Container Development Kit"
 
-  @logout
+  @logout @nightly
   Scenario: 3. Logged in user who accepted RHD T&C already tries to download - is not asked to login nor accept T&C, download starts immediatelly
     Given I am a registered site visitor
     And I have previously logged in
