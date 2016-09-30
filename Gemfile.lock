@@ -337,6 +337,13 @@ GEM
       macaddr (~> 1.0)
     watir (6.0.1)
       selenium-webdriver (~> 3.0)
+    watir-webdriver (0.9.9)
+      selenium-webdriver (>= 2.46.2)
+    watir-webdriver-performance (0.2.4)
+      watir-webdriver
+    webdrivers (2.3.2)
+      nokogiri (~> 1.6)
+      zip
     webmock (2.1.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -345,6 +352,7 @@ GEM
     xml-simple (1.1.5)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
+    zip (2.0.2)
 
 PLATFORMS
   ruby
@@ -400,6 +408,8 @@ DEPENDENCIES
   uglifier (~> 2.0.1)
   uuid
   watir (~> 6.0.0)
+  watir-webdriver-performance
+  webdrivers (~> 2.3)
   webmock (~> 2.0)
 
 BUNDLED WITH
