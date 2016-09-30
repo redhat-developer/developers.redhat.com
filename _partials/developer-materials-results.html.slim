@@ -16,7 +16,7 @@
     /     i.fa.fa-align-justify
     /     |  List
 
-    table.developer-materials-grid(ng-hide="data.layout === 'grid' || !data.layout")
+    table.developer-materials-grid(ng-hide="data.layout === 'grid' || !data.layout" ng-if="!data.loading")
       thead
         tr
           td.topics Topics

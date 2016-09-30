@@ -1,0 +1,22 @@
+uuid: ca7d892c-50e8-447f-9ab6-04ce502b50ef
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - rhd
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: rhd_help
+theme: rhd
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

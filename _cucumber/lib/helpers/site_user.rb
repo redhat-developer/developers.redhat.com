@@ -3,7 +3,7 @@ module SiteUser
   def generate_user
 
     {
-        email: "rhd-autotest+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com",
+        email: "redhat-developers-testers+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com",
         greeting: %w(Mr. Mrs. Ms. Miss Dr. Hr Sr.).sample,
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,

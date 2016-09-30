@@ -102,6 +102,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "stackoverflow";
 @import "forums";
 @import "error-pages";
+@import "adaptive-placeholder";
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
@@ -135,9 +136,21 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 a {
   color:$link;
   cursor:pointer;
-  &:hover {
-    color:$linkhover;
-  }
+  &:hover { color: $linkhover; }
+
+  &.dark-background{ color: $link-dark-background; }
+  &.link-sm {color: $link-sm; }
+  &.link-sm-dark {color: $link-sm-dark-background; }
+  &.link-sm-grey {color: $link-sm-grey-background; }
+
+}
+
+.link-sm a {
+  color: $link-sm;
+}
+
+small a {
+  color:$link-sm;
 }
 
 button, .button {
@@ -146,10 +159,11 @@ button, .button {
   text-transform: uppercase;
   text-decoration: none;
   border:0;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   padding:9px 40px;
   transition:background .2s ease-in 0s;
+  line-height: 1.2em;
 
   &:hover, &:focus {
     background: #AD0000;
@@ -1177,6 +1191,7 @@ form.dev-mat-filters, .project-filters {
 
 a.filters-clear {
   font-size: 14px;
+  color: $link-sm;
   text-decoration: underline;
   padding-left: 5px;
   position: relative;
@@ -1970,6 +1985,9 @@ label.inline{
   p {
     margin-bottom: 0;
   }
+  a {
+    color: $link-grey-background;
+  }
 }
 
 .button.button--solution {
@@ -2087,3 +2105,19 @@ h2.home-title {
     }
   }
 }
+
+// Hacking for drupal, changes to fix the display of divs from drupal to display similar to spans
+// Divs must be used for quick edit to work properly, however, if the divs display like blocks it messes up our display
+.field__item, .field {
+  display: inline-block;
+}
+
+// overrides for some drupal classes and instances which are a bit messed up
+.field__item.button {
+  margin-left: 0;
+  margin-right: 0;
+}
+.field--name-body {
+  display: block;
+}
+

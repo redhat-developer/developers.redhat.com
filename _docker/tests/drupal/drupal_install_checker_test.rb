@@ -143,7 +143,7 @@ class DrupalInstallCheckerTest < Minitest::Test
                                                                              'metatag_open_graph',
                                                                              'metatag_twitter_cards',
                                                                              'metatag_verification', 'admin_toolbar',
-                                                                             'admin_toolbar_tools','simple_sitemap',                                                                             
+                                                                             'admin_toolbar_tools','simple_sitemap',
                                                                               'devel', 'kint']]
 
 
@@ -177,33 +177,38 @@ class DrupalInstallCheckerTest < Minitest::Test
       opts = yaml_opts_dev
       install_checker = DrupalInstallChecker.new(@drupal_site, @process_exec, opts)
 
-      @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
-                                        ['--root=web', 'site:install', 'standard', '--langcode=en', '--db-type=mysql',
-                                         "--db-host=#{opts['database']['host']}", "--db-name=#{opts['database']['name']}",
-                                         "--db-user=#{opts['database']['username']}", "--db-port=#{opts['database']['port']}",
-                                         "--db-pass=#{opts['database']['password']}", '--account-name=admin',
-                                         "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
-                                         "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
-      @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
+      @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                         ['--root=/var/www/drupal/web', 'si', 'standard', '--locale=en',
+                                          "--db-url=mysql://#{opts['database']['username']}:#{opts['database']['password']}@#{opts['database']['host']}:#{opts['database']['port']}/#{opts['database']['name']}",
+                                          '--site-name=Red Hat Developers', '--site-mail=test@example.com',
+                                          "--account-name=#{opts['drupal']['admin']['name']}",
+                                          "--account-pass=#{opts['drupal']['admin']['password']}",
+                                          "--account-mail=#{opts['drupal']['admin']['mail']}",
+                                          '--config-dir=/var/www/drupal/web/config/sync',
+                                          '-y']]
       install_checker.install_drupal
   end
 
   def test_installing_for_prod
-      @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
-                                        ['--root=web','site:install', 'standard', '--langcode=en', '--db-type=mysql',
-                                         "--db-host=#{@opts['database']['host']}", "--db-name=#{@opts['database']['name']}",
-                                         "--db-user=#{@opts['database']['username']}", "--db-port=#{@opts['database']['port']}",
-                                         "--db-pass=#{@opts['database']['password']}", '--account-name=admin',
-                                         "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
-                                         "--account-mail='admin@example.com'", '--account-pass=admin', '-n']]
-      @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
+    opts = yaml_opts_prod
+    install_checker = DrupalInstallChecker.new(@drupal_site, @process_exec, opts)
 
-      @install_checker.install_drupal
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       ['--root=/var/www/drupal/web', 'si', 'standard', '--locale=en',
+                                        "--db-url=mysql://#{opts['database']['username']}:#{opts['database']['password']}@#{opts['database']['host']}:#{opts['database']['port']}/#{opts['database']['name']}",
+                                        '--site-name=Red Hat Developers', '--site-mail=test@example.com',
+                                        "--account-name=#{opts['drupal']['admin']['name']}",
+                                        "--account-pass=#{opts['drupal']['admin']['password']}",
+                                        "--account-mail=#{opts['drupal']['admin']['mail']}",
+                                        '--config-dir=/var/www/drupal/web/config/sync',
+                                        '-y']]
+
+    install_checker.install_drupal
   end
 
   def test_update_db
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
-                                       %w(--root=/var/www/drupal/web cache:rebuild all)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web cr all)]
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
                                        %w(-y --root=/var/www/drupal/web --entity-updates updb)]
 
@@ -212,7 +217,16 @@ class DrupalInstallCheckerTest < Minitest::Test
   end
 
   def test_config_import
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web -y cim --skip-modules=devel)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web cr all)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
+                                       %w(--root=/var/www/drupal/web config:delete active field.storage.node.field_author_name)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web -y cim --skip-modules=devel)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web cr all)]
 
     @install_checker.import_config
     @process_exec.verify
@@ -227,6 +241,11 @@ database:
   username: 'prod-testing'
   password: 'password'
   name: 'drupal-prod'
+drupal:
+  admin:
+    name: 'joe'
+    password: 'secret'
+    mail: 'joe@example.com'
 yml
     YAML.load opts
   end
@@ -240,6 +259,11 @@ database:
   username: 'test'
   password: 'password'
   name: 'drupal-dev'
+drupal:
+  admin:
+    name: 'admin'
+    password: 'admin'
+    mail: 'admin@example.com'
 yml
     YAML.load opts
   end

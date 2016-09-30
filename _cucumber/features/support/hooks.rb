@@ -18,35 +18,6 @@ Before('@products, @downloads') do
   @products_with_help = get_products_with_links('help.html.slim')[0]
 end
 
-After('@logout') do
-  case $host_to_test
-    when 'http://developers.redhat.com', 'https://developers.redhat.com'
-      @browser.goto('http://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
-    else
-      @browser.goto('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
-  end
-end
-
-# create test user for basic log in feature
-Before('@basic_login') do
-  unless $created_test_user
-    # register user only once, unless otherwise stated
-    keycloak = KeyCloak.new
-    $site_user = keycloak.register_new_user
-    $basic_login = $site_user[:email]
-    p "Registered user with email #{$site_user[:email]}"
-    $created_test_user = true
-  end
-end
-
-at_exit {
-  if defined?($basic_login)
-    keycloak_admin = KeyCloak.new
-    keycloak_admin.delete_user($basic_login)
-    p "Deleted user with email #{$basic_login}"
-  end
-}
-
 After('@delete_user') do
   keycloak_admin = KeyCloak.new
   keycloak_admin.delete_user($site_user[:email])
@@ -70,6 +41,30 @@ After('@github_logout') do
   @browser.button(xpath: "//input[@value='Sign out']").when_present.click
   sleep(1.5) # give it time to log out without relying on github elememts.
   @browser.driver.manage.delete_all_cookies
+end
+
+After('@logout') do
+  on SiteBase do |page|
+    unless page.is_logged_out?
+      page.click_logout
+      page.is_logged_out?
+    end
+  end
+  case $host_to_test
+    when 'http://developers.redhat.com', 'https://developers.redhat.com'
+      @browser.goto('http://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+    else
+      @browser.goto('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+  end
+end
+
+After do |scenario|
+  if scenario.failed?
+    Dir::mkdir('screenshots') if not File.directory?('screenshots')
+    screenshot = "_cucumber/screenshots/FAILED_#{scenario.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')}.png"
+    @browser.driver.save_screenshot(screenshot)
+    embed screenshot, 'image/png'
+  end
 end
 
 def resize_window_to_mobile

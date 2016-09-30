@@ -1,0 +1,21 @@
+uuid: 9afcb2bd-b034-4505-8400-b52428654d92
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: NueNlJcetcQmmAUw03cugN-i6st3_gTIQ7KBB37beUE
+id: node.field_bottom_right_white_card
+field_name: field_bottom_right_white_card
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

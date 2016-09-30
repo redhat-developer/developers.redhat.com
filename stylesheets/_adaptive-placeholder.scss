@@ -1,0 +1,75 @@
+.rhd-adaptive-placeholder{
+  form {
+    margin: 0;
+    padding: 0;
+  }
+
+  select,
+  textarea,
+  input {
+    padding: 12px 20px;
+    
+    &:focus {
+      border: 1px solid $gray;
+      outline: none;
+    }
+    
+    &.filled,
+    &:focus {
+      & + label {
+        bottom: 100%;
+      }
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+  }
+
+  select {
+    background-color: $white;
+    padding: 11px 20px;
+    cursor: pointer;
+  }
+
+  textarea {
+    overflow: auto;
+    & + label {
+      bottom: 100%;
+      transform: translateY(150%);
+    }
+
+    &:focus {
+      background-color: #fff;
+    }
+    
+    &.filled + label,
+    &:focus + label {
+      transform: translateY(50%);
+    }
+  }
+
+  label {
+    position: absolute;
+    bottom: 50%;
+    left: 20px;
+    z-index: 10;
+    padding: 2px;
+    font-size: 14px;
+    transform: translateY(50%);
+    background-color: #fff;
+    transition: ease-out .15s;
+    transition-property: bottom, color, transform;
+    cursor: text;
+  }
+
+  .field {
+    position: relative;
+    list-style: none;
+    
+    & + .field {
+      margin-top: 20px;
+    }
+  }
+
+}

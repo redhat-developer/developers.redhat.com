@@ -110,11 +110,11 @@ app.project = {
         + "<div class=\"defaultprojectimage\">"
         + "<p class=\"image-link\"><img onerror=\"app.project.fallbackImage(this)\" src='" + imgsrc + "' alt='" + props.projectName + "'></p></div>"
         + "<h5 class=\"solution-name\"><p class=\"solution-name-link\">"
-        + props.projectName + "</p></h3><p></p><a class=\"solution-overlay-learn\">Learn more</a>";
+        + props.projectName + "</p></h3><p></p><a class=\"solution-overlay-learn link-sm\">Learn more</a>";
 
       if (props.downloadsLink) {
         template += " | <a href=\""
-          + app.project.getCorrectUrl(props.downloadsLink) + "\">Download</a>";
+          + app.project.getCorrectUrl(props.downloadsLink) + "\" class=\"link-sm\">Download</a>";
       }
 
 

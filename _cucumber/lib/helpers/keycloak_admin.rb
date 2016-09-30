@@ -6,7 +6,7 @@ class KeyCloak
     endpoint = 'https://developers.stage.redhat.com/auth/realms/master/protocol/openid-connect/token'
     response = RestClient::Request.execute(:url => endpoint, :method => :post, :headers => request_header, :payload => request_body_map, :verify_ssl => false)
     @access_token = JSON.parse(response)['access_token']
-    @email = "rhd-autotest+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com"
+    @email = "redhat-developers-testers+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com"
     @greeting = %w(Mr. Mrs. Ms. Miss Dr. Hr Sr.).sample
     @first_name = Faker::Name.first_name
     @last_name = Faker::Name.last_name
@@ -15,7 +15,7 @@ class KeyCloak
     @address_line_one = Faker::Address.street_address
     @city = Faker::Address.city_prefix
     @postal_code = Faker::Address.postcode
-    @country = 'UK'
+    @country = 'GB'
     @phone_number = '0191 1111111'
     @full_name = "#{@first_name} #{@last_name}".upcase
   end
@@ -137,7 +137,6 @@ class KeyCloak
     rescue => e
       raise("Failed to delete user with email '#{email}'. Response from keycloak admin was #{e}")
     end
-    puts "Deleted user ID was: #{user_id}, and email was #{email}"
   end
 
   private

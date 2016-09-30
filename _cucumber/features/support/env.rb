@@ -17,6 +17,7 @@ require 'report_builder'
 require 'octokit'
 require 'date'
 require 'active_support/core_ext'
+require 'webdriver-user-agent'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract*.rb"].each { |page| load page }
@@ -81,18 +82,10 @@ Before do
   b.delete_cookies
 end
 
-After do |scenario|
-  if scenario.failed?
-    Dir::mkdir('screenshots') if not File.directory?('screenshots')
-    screenshot = "_cucumber/screenshots/FAILED_#{scenario.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')}.png"
-    @browser.driver.save_screenshot(screenshot)
-    embed screenshot, 'image/png'
-  end
-end
-
 at_exit do
   b.browser.quit
-  #FileUtils.rm_rf $download_directory
+
+  FileUtils.rm_rf $download_directory
 
   ReportBuilder.configure do |config|
     config.json_path = '_cucumber/reports/'
@@ -100,17 +93,19 @@ at_exit do
     config.report_types = [:html]
     config.report_tabs = [:overview, :features, :errors]
     config.report_title = "RHD Test Results - #{$rhd_driver}"
-    config.compress_images = false
+    config.compress_images = true
   end
 
   ReportBuilder.build_report
 
-  # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
-  admin = KeyCloak.new
-  email_one = admin.get_user_by("rhd-autotest+sid_#{$session_id}")
-  unless email_one.empty?
-    email_one.each do |user|
-      admin.delete_user(user['email'])
+  if ENV['RHD_TEST_PROFILE'] == 'nightly'
+    # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
+    admin = KeyCloak.new
+    email_one = admin.get_user_by("redhat-developers-testers+sid_#{$session_id}")
+    unless email_one.empty?
+      email_one.each do |user|
+        admin.delete_user(user['email'])
+      end
     end
   end
 
