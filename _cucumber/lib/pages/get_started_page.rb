@@ -8,6 +8,7 @@ class GetStartedPage < SiteBase
 
   def loaded?(product)
     @browser.element(css: ".products#{product}get-started").wait_until_present
+    print_page_load
   end
 
 end

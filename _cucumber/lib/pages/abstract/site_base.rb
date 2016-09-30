@@ -58,12 +58,14 @@ class SiteBase < GenericBasePage
   def open_login_page
     toggle_menu if is_mobile?
     click_login
+    print_page_load
     on LoginPage
   end
 
   def open_register_page
     toggle_menu if is_mobile?
     click_register
+    print_page_load
     on RegistrationPage
   end
 
