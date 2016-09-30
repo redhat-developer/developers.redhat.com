@@ -144,5 +144,5 @@ $('.has-sub-nav > a').on('click',function(e){
 
 $('a[href*="download-manager"]').on('click', function(e) {
   e.preventDefault();
-  window.location.href = e.target.href;
+  window.location.href = e.currentTarget.href;
 });
