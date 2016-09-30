@@ -18,6 +18,7 @@ require 'octokit'
 require 'date'
 require 'active_support/core_ext'
 require 'webdriver-user-agent'
+require 'watir-webdriver-performance'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract*.rb"].each { |page| load page }
