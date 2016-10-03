@@ -52,30 +52,9 @@ set title_classes = [
 label_display == 'visually_hidden' ? 'visually-hidden',
 ]
 %}
-
-{% if label_hidden %}
-    {% if multiple %}
-        <div{{ attributes.addClass(classes, 'field__items') }}>
-            {% for item in items %}
-                <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
-            {% endfor %}
-        </div>
-    {% else %}
-        {% for item in items %}
-            <div{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</div>
-        {% endfor %}
-    {% endif %}
-{% else %}
-    <div{{ attributes.addClass(classes) }}>
-        <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
-        {% if multiple %}
-        <div class="field__items">
-            {% endif %}
-            {% for item in items %}
-                <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
-            {% endfor %}
-            {% if multiple %}
-        </div>
-        {% endif %}
-    </div>
-{% endif %}
+<div{{ attributes.addClass(classes) }}>
+   <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+   {% for item in items %}
+     <div{{ item.attributes.addClass(['field__item', 'button']) }}>{{ item.content }}</div>
+   {% endfor %}
+</div>
