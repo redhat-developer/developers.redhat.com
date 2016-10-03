@@ -2,8 +2,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
   case page.downcase
     when 'home'
       visit(HomePage)
-     when 'technologies'
-       visit(TechnologiesPage)
+    when 'technologies'
+      visit(TechnologiesPage)
     when 'downloads'
       visit(DownloadsPage) do |page|
         page.wait_until_loaded
