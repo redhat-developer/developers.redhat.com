@@ -48,7 +48,7 @@ services:
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
 
   drupalmysql:
-    image: mariadb:10.0.15
+    image: mariadb:10.0.24
     environment:
       - MYSQL_USER=drupal
       - MYSQL_PASSWORD=drupal
@@ -56,6 +56,8 @@ services:
       - MYSQL_ROOT_PASSWORD=superdupersecret
     expose:
       - "3306"
+    volumes:
+      - ../../drupal/prod_db.sql.gz:/docker-entrypoint-initdb.d/prod_db.sql.gz
 
   #
   # Environment actions
@@ -109,9 +111,21 @@ services:
      - RHD_TEST_PROFILE
 
   docker_chrome:
-   image: selenium/node-chrome
+   image: selenium/node-chrome-debug:2.53.0
    volumes:
     - /dev/shm:/dev/shm
+    - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
+   environment:
+    - HUB_PORT_4444_TCP_ADDR=selhub
+    - DBUS_SESSION_BUS_ADDRESS=/dev/null
+   depends_on:
+    - selhub
+
+  docker_firefox:
+   image: selenium/node-firefox-debug:2.53.0
+   volumes:
+    - /dev/shm:/dev/shm
+    - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
    environment:
     - HUB_PORT_4444_TCP_ADDR=selhub
     - DBUS_SESSION_BUS_ADDRESS=/dev/null

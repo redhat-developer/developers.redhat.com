@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5478504b474539de8229c90632113e69",
-    "content-hash": "b017cf67619a3f2c92e34f6430c39bc2",
+    "hash": "c23efee90b149b6660c56142864fbea8",
+    "content-hash": "e3661e108ff81222bcb39f200d32885a",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1548,11 +1548,17 @@
         },
         {
             "name": "drupal/entity_reference_revisions",
-            "version": "dev-1.x",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/entity_reference_revisions",
-                "reference": "60b67aa022e5697b3189bbc8f60bd75927c4cdbb"
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_reference_revisions-8.x-1.0.zip",
+                "reference": null,
+                "shasum": "85d5c182208beb4358fe3943a624182f590d1e0d"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -1566,8 +1572,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0+3-dev",
-                    "datestamp": "1473871439"
+                    "version": "8.x-1.0",
+                    "datestamp": "1469725576"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1592,8 +1598,7 @@
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "http://cgit.drupalcode.org/entity_reference_revisions"
-            },
-            "time": "2016-09-01 02:27:07"
+            }
         },
         {
             "name": "drupal/entity_storage_migrate",
@@ -1647,11 +1652,17 @@
         },
         {
             "name": "drupal/field_collection",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/field_collection",
-                "reference": "e72f3e436d80b3d9946b5fb9c2ae42ea8afe1bf9"
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_collection-8.x-1.0-alpha1.zip",
+                "reference": null,
+                "shasum": "4d529021cf113e3026b3fd88ac2571dc72e70e8d"
             },
             "require": {
                 "drupal/core": "*"
@@ -1662,8 +1673,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha1+29-dev",
-                    "datestamp": "1471286339"
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1460462939"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1672,14 +1683,12 @@
             ],
             "authors": [
                 {
-                    "name": "Wolfgang Ziegler (fago)",
-                    "homepage": "https://www.drupal.org/u/fago",
-                    "role": "Maintainer"
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
                 },
                 {
-                    "name": "Joel Muzzerall (jmuzz)",
-                    "homepage": "https://www.drupal.org/u/jmuzz",
-                    "role": "Co-maintainer"
+                    "name": "jmuzz",
+                    "homepage": "https://www.drupal.org/user/2607886"
                 },
                 {
                     "name": "larowlan",
@@ -1687,20 +1696,24 @@
                 }
             ],
             "description": "Provides a field collection field, to which any number of fields can be attached.",
-            "homepage": "https://drupal.org/project/field_collection",
+            "homepage": "https://www.drupal.org/project/field_collection",
             "support": {
-                "source": "http://cgit.drupalcode.org/field_collection",
-                "issues": "https://drupal.org/project/issues/field_collection"
-            },
-            "time": "2016-08-15 18:34:45"
+                "source": "http://cgit.drupalcode.org/field_collection"
+            }
         },
         {
             "name": "drupal/field_group",
-            "version": "dev-1.x",
+            "version": "1.0.0-rc4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/field_group",
-                "reference": "77c5dfa28f7a4d7880bedc1cd2accf2d5986697c"
+                "reference": "8.x-1.0-rc4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_group-8.x-1.0-rc4.zip",
+                "reference": null,
+                "shasum": "085ce08ad15e68837e8f8017f81eb3f7b33cb324"
             },
             "require": {
                 "drupal/core": "*"
@@ -1711,8 +1724,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc4+24-dev",
-                    "datestamp": "1466856839"
+                    "version": "8.x-1.0-rc4",
+                    "datestamp": "1449771240"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1745,8 +1758,7 @@
             "homepage": "https://www.drupal.org/project/field_group",
             "support": {
                 "source": "http://cgit.drupalcode.org/field_group"
-            },
-            "time": "2016-06-25 12:10:54"
+            }
         },
         {
             "name": "drupal/key_value",
@@ -1883,11 +1895,17 @@
         },
         {
             "name": "drupal/paragraphs",
-            "version": "dev-1.x",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/paragraphs",
-                "reference": "271c7bf57785ebd9d00cd0e51532b14c7571fbba"
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.0.zip",
+                "reference": null,
+                "shasum": "4fcbd6a50f5b725a9ba66ee105d6f8a1385ff2c8"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -1896,7 +1914,6 @@
             "suggest": {
                 "drupal/core": "Required by drupal/paragraphs_demo",
                 "drupal/diff": "Required by drupal/paragraphs",
-                "drupal/inline_entity_form": "Required by drupal/paragraphs",
                 "drupal/replicate": "Required by drupal/paragraphs",
                 "drupal/search_api": "Required by drupal/paragraphs_demo",
                 "drupal/search_api_db": "Required by drupal/paragraphs_demo"
@@ -1907,8 +1924,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0+11-dev",
-                    "datestamp": "1473868985"
+                    "version": "8.x-1.0",
+                    "datestamp": "1469726249"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1933,8 +1950,7 @@
             "homepage": "https://www.drupal.org/project/paragraphs",
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
-            },
-            "time": "2016-09-14 16:00:08"
+            }
         },
         {
             "name": "drupal/pathauto",
@@ -2037,11 +2053,17 @@
         },
         {
             "name": "drupal/subpathauto",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/subpathauto",
-                "reference": "76a830e0531da4648dcf44638ba2160306531c3c"
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/subpathauto-8.x-1.0-alpha1.zip",
+                "reference": null,
+                "shasum": "a7a1f71eab7e7a857af9d248d67f06702cf4c1c4"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2052,8 +2074,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1472969339"
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1472970239"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2074,8 +2096,7 @@
             "homepage": "https://www.drupal.org/project/subpathauto",
             "support": {
                 "source": "http://cgit.drupalcode.org/subpathauto"
-            },
-            "time": "2016-09-04 06:08:39"
+            }
         },
         {
             "name": "drupal/token",
@@ -2760,16 +2781,16 @@
         },
         {
             "name": "masterminds/html5",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Masterminds/html5-php.git",
-                "reference": "170aa5cb35b29fccafbf5ea63487c013f396fdc9"
+                "reference": "7866e93dcf0245de22378414e0c2c7350abc45af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/170aa5cb35b29fccafbf5ea63487c013f396fdc9",
-                "reference": "170aa5cb35b29fccafbf5ea63487c013f396fdc9",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/7866e93dcf0245de22378414e0c2c7350abc45af",
+                "reference": "7866e93dcf0245de22378414e0c2c7350abc45af",
                 "shasum": ""
             },
             "require": {
@@ -2784,7 +2805,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -2821,7 +2842,7 @@
                 "serializer",
                 "xml"
             ],
-            "time": "2016-05-10 14:11:45"
+            "time": "2016-09-22 11:01:11"
         },
         {
             "name": "nikic/php-parser",
@@ -5227,16 +5248,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.24.2",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "33093f6e310e6976baeac7b14f3a6ec02f2d79b7"
+                "reference": "f16a634ab08d87e520da5671ec52153d627f10f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/33093f6e310e6976baeac7b14f3a6ec02f2d79b7",
-                "reference": "33093f6e310e6976baeac7b14f3a6ec02f2d79b7",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f16a634ab08d87e520da5671ec52153d627f10f6",
+                "reference": "f16a634ab08d87e520da5671ec52153d627f10f6",
                 "shasum": ""
             },
             "require": {
@@ -5249,7 +5270,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.24-dev"
+                    "dev-master": "1.25-dev"
                 }
             },
             "autoload": {
@@ -5284,7 +5305,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-09-01 17:50:53"
+            "time": "2016-09-21 23:05:12"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -5717,7 +5738,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel",
-                "reference": "623a3b480a202a9d281c60f76ac806f3da0d4555"
+                "reference": "d96f9a7dc353add59c5e051efc98dbd978eb629f"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -5732,8 +5753,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha1+25-dev",
-                    "datestamp": "1474112339"
+                    "version": "8.x-1.0-alpha1+26-dev",
+                    "datestamp": "1475165039"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5790,7 +5811,8 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
+            },
+            "time": "2016-09-29 15:59:51"
         },
         {
             "name": "fabpot/goutte",
@@ -6880,11 +6902,9 @@
         "drupal/multiversion": 15,
         "drupal/pathauto": 20,
         "drupal/ctools": 15,
-        "drupal/entity_reference_revisions": 20,
-        "drupal/paragraphs": 20,
-        "drupal/subpathauto": 20,
-        "drupal/field_collection": 20,
-        "drupal/field_group": 20,
+        "drupal/subpathauto": 15,
+        "drupal/field_collection": 15,
+        "drupal/field_group": 5,
         "jcalderonzumba/gastonjs": 20,
         "drupal/devel": 20
     },

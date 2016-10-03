@@ -1,7 +1,7 @@
 class ItAdmin
 
   def initialize
-    @email = "rhd-autotest+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com"
+    @email = "redhat-developers-testers+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com"
     @username = Faker::Lorem.characters(10)
     @greeting = 'Mr.'
     @first_name = Faker::Name.first_name
@@ -11,7 +11,7 @@ class ItAdmin
     @address_line_one = Faker::Address.street_address
     @city = Faker::Address.city_prefix
     @postal_code = Faker::Address.postcode
-    @country = 'UK'
+    @country = 'GB'
     @phone_number = '0191 1111111'
     @full_name = "#{@first_name} #{@last_name}".upcase
     @locale = 'en_GB'

@@ -100,8 +100,14 @@ module JBoss
 
             resp = @drupal.send_page page, mod_content
 
+            if resp.nil?
+              $LOG.info "No call to Drupal necessary for '#{page.output_path}'." if $LOG.info?
+              return content
+            end
+
+            # If we receive a nil response, we didn't actually make any updates / creations calls, which is fine
             until resp.success? do
-              puts "Error making drupal request to '#{page.output_path}', retrying..."
+              $LOG.warn "Error making drupal request to '#{page.output_path}', retrying..." if $LOG.warn?
               resp = @drupal.send_page page, mod_content
             end
           end
@@ -350,6 +356,8 @@ module Aweplug
         end
         FileUtils.mkdir_p '_tmp'
         @logger = Logger.new('_tmp/drupal8.log', 'daily')
+        @drupal_pages = nil # cache for pages and last mod times from drupal
+
         new_opts = opts.merge({:no_cache => true, :logger => @logger})
         @faraday = Aweplug::Helpers::FaradayHelper.default(new_opts[:base_url], new_opts)
         @faraday.builder.delete(Faraday::Response::RaiseError) #remove response status checking since data not in the cache isn't necessarily an error.
@@ -358,6 +366,7 @@ module Aweplug
         @base_url = new_opts[:base_url]
         @basic_auth = Base64.encode64("#{new_opts[:drupal_user]}:#{new_opts[:drupal_password]}").gsub("\n", '').freeze
         token new_opts[:drupal_user], new_opts[:drupal_password]
+        fetch_sitemap
       end
 
       # Public: Wrapper around exists?, create_page, and update_page
@@ -366,8 +375,10 @@ module Aweplug
       # content   - Transformed content of the page
       # Returns the Faraday::Response
       def send_page(page, content)
-        if exists? page
-          update_page page, content
+        path = create_path page
+        if exists?(page) && !@drupal_pages["/#{path}"].nil?
+          # We know the page exists, but if the content in drupal is newer than the mtime on the page, don't update it
+          update_page page, content if page.input_mtime.to_datetime > @drupal_pages["/#{path}"]
         else
           create_page page, content
         end
@@ -379,10 +390,51 @@ module Aweplug
       #
       # Returns Boolean for the existence of the page within Drupal.
       def exists?(page)
+        fetch_sitemap if @drupal_pages.nil? || @drupal_pages.empty?
+
         path = create_path page
-        resp = @faraday.get("/#{path}", nil, {Cookie: @cookie})
-        resp.success?
+        @drupal_pages.has_key? "/#{path}"
       end
+
+      # Private: Issues a GET to Drupal to retrieve the sitemap.
+      def fetch_sitemap
+        $LOG.verbose 'Calling Drupal cron and sitemap' if $LOG.verbose?
+        cron_request = @faraday.get('/cron/rhd')
+
+        unless cron_request.success?
+          $LOG.error "Error invoking drupal cron. Status: #{cron_request.status}." if $LOG.error?
+          exit(1)
+        end
+
+        sitemap_request = @faraday.get('/sitemap.xml')
+        unless sitemap_request.success?
+          $LOG.error "Error retreiving drupal sitemap. Status: #{sitemap_request.status}" if $LOG.error?
+          exit(1)
+        end
+
+        parse_sitemap(sitemap_request)
+      end
+      private :fetch_sitemap
+
+      # Private: Parses the sitemap and stores it in the @drupal_pages
+      #
+      # response - A Faraday::Response object
+      def parse_sitemap(response)
+        sitemap_xml = Nokogiri::XML(response.body)
+        @drupal_pages = {}
+
+        sitemap_xml.xpath('//ns:url', {'ns' => 'http://www.sitemaps.org/schemas/sitemap/0.9'}).each do |url|
+          loc = url.element_children.find{|k| k.name == 'loc'}.text
+          mod_time = nil
+
+          lastmod_elm = url.element_children.find{|k| k.name == 'lastmod'}
+          if lastmod_elm
+            mod_time = DateTime.parse lastmod_elm.text
+          end
+          @drupal_pages[URI.parse(loc).path] = mod_time
+        end
+      end
+      private :parse_sitemap
 
       # Public: Sends a PATCH request to Drupal to update an existing page.
       #
@@ -392,7 +444,7 @@ module Aweplug
       # Returns the Faraday::Response
       def update_page(page, content)
         path = create_path page
-        $LOG.verbose "Updating page  with content '#{page.output_path}'"
+        $LOG.verbose "Updating page  with content '#{page.output_path}'" if $LOG.verbose?
         payload = create_payload page, content
         patch path, payload
      end
@@ -404,7 +456,7 @@ module Aweplug
       #
       # Returns the Faraday::Response
       def create_page(page, content)
-        $LOG.verbose "Creating page '#{@base_url}#{create_path(page)}' from content '#{page.output_path}'"
+        $LOG.verbose "Creating page '#{@base_url}#{create_path(page)}' from content '#{page.output_path}'" if $LOG.verbose?
         payload = create_payload page, content
         post 'entity', 'node', payload
       end
@@ -542,7 +594,7 @@ module Aweplug
         @token = resp.body if resp.success?
       end
 
-      private :create_path, :login, :token, :initialize, :create_payload
+      private :create_path, :login, :token, :create_payload
     end
   end
 end

@@ -66,6 +66,29 @@ When(/^I try to link a GitHub account to an existing account$/) do
 
 end
 
+When(/^I link a GitHub account to my existing account$/) do
+  @github_admin = GitHubAdmin.new('rhdScenarioTwo', 'P@$$word01')
+
+  # generate new user and update their Github profile
+  keycloak = KeyCloak.new
+  $site_user = keycloak.register_new_user
+  p "Registered user with email #{$site_user[:email]}"
+  @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
+
+  on RegistrationPage do |page|
+    page.click_register_with_github
+  end
+
+  on GitHubPage do |page|
+    page.login_with('rhdScenarioTwo', 'P@$$word01')
+    page.authorize_app
+  end
+
+  on AdditionalActionPage do |page|
+    page.fill_in(nil, 'P@$$word01', nil, nil, nil, $site_user[:country])
+  end
+end
+
 When(/^I register a new account using a GitHub account that contains missing profile information$/) do
 
   # log in to Github API
@@ -211,6 +234,25 @@ Then(/^each term should link to relevant terms and conditions page:$/) do |table
   end
 end
 
+Then(/^I should receive an email containing a verify email link$/) do
+  @verification_email = get_email($site_user[:email])
+  puts "Verification link was: #{@verification_email}"
+  expect(@verification_email.to_s).to include('first-broker-login?')
+end
+
+And(/^I navigate to the verify email link$/) do
+  close_and_reopen_browser
+  @browser.goto(@verification_email)
+end
+
+
+
+
+
+
+
+
+
 
 Then(/^I should see the extended registration page with a message "([^"]*)"$/) do |message|
   expect(@page.extended_registration.registration_hint).to include(message)
@@ -222,22 +264,53 @@ When(/^I complete the extended registration form and accept the terms and condit
   @page.extended_registration.click_create_account_and_download
 end
 
-Then(/^I should receive an email containing a verify email link$/) do
-  @verification_email = get_email($site_user[:email])
-  puts "Verification link was: #{@verification_email}"
-  expect(@verification_email.to_s).to include('first-broker-login?')
-end
-
-And(/^I click on the Send Verification email button$/) do
-  @page.link_to_github.click_send_verification_email
-end
-
-And(/^I navigate to the verify email link$/) do
-  @page.site_nav.close_and_reopen_browser
-  @page.site_nav.get(@verification_email)
-  @page.site_nav.wait_for_ajax
-end
-
 And(/^I am logged in$/) do
   expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
 end
+
+And(/^I choose to register a new account using my GitHub account$/) do
+  on LoginPage do |page|
+    page.click_register_link
+  end
+  @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
+  $site_user = @github_admin.generate_user_for_session($session_id)
+  @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
+  puts "Added new email to Github profile: #{$site_user[:email]}"
+  on RegistrationPage do |page|
+    page.click_register_with_github
+  end
+  on GitHubPage do |page|
+    page.login_with('rhdScenarioOne', 'P@$$word01')
+    page.authorize_app
+  end
+  on AdditionalActionPage do |page|
+    expect(page.email_field.value).to eq $site_user[:email]
+  end
+end
+
+When(/^I choose to register a new account using a GitHub account that contains missing profile information$/) do
+
+  on LoginPage do |page|
+    page.click_register_link
+  end
+
+  # log in to Github API
+  @github_admin = GitHubAdmin.new('rhdalreadyregistered01', 'P@$$word01')
+
+  # generate new user and update their Github profile
+  $site_user = @github_admin.generate_user_for_session($session_id)
+
+  @github_admin.update_profile('', $site_user[:email], '')
+  puts "Added new email to Github profile: #{$site_user[:email]}"
+
+  on RegistrationPage do |page|
+    page.click_register_with_github
+  end
+
+  on GitHubPage do |page|
+    page.login_with('rhdalreadyregistered01', 'P@$$word01')
+    page.authorize_app
+  end
+
+end
+
