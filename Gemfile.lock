@@ -345,6 +345,10 @@ GEM
       macaddr (~> 1.0)
     watir (6.0.0.beta4)
       selenium-webdriver (>= 3.0.0.beta2.1)
+    watir-webdriver (0.9.3)
+      selenium-webdriver (>= 2.46.2)
+    watir-webdriver-performance (0.2.4)
+      watir-webdriver
     webdriver-user-agent (7.4)
       facets
       json
@@ -422,6 +426,7 @@ DEPENDENCIES
   uglifier (~> 2.0.1)
   uuid
   watir (>= 6.0.0.beta2)
+  watir-webdriver-performance
   webdriver-user-agent
   webmock (~> 2.0)
   wraith (~> 1.3.0)

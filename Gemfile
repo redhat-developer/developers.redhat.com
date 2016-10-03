@@ -74,6 +74,7 @@ group :test do
   gem 'faker', '~> 1.6', '>= 1.6.1'
   gem 'report_builder', '~> 0.1.2'
   gem 'webmock', '~> 2.0'
+  gem 'watir-webdriver-performance'
 end
 
 group :development do
