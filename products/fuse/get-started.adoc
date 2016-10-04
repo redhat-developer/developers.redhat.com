@@ -2,221 +2,242 @@
 :awestruct-interpolate: true
 
 
-## Extra section title
-Where to begin?
+## Fuse Runtime
 
-## Extra section
+=== Prerequisites
+To build JBoss Fuse applications, you need https://maven.apache.org/[Apache Maven]. If you do not already have it installed, follow the instructions on the https://maven.apache.org/download.cgi[Apache Maven Download] page.
 
-Welcome! This document details the steps to get you up and running quickly with the Red Hat JBoss Fuse runtime and tooling.
+=== Install and configure your development environment
+The following steps will install a local version of JBoss Developer Studio 9.1.0 (the Eclipse Mars edition) along with the Fuse tooling.
 
-#### Install and configure your development environment
-The following steps will install a local version of JBoss Developer Studio 8.1.0 (the Eclipse Luna edition) along with the Fuse tooling.
-
-. Install the Java SE Development Kit (JDK), we recommend Oracle JDK or OpenJDK. (Must be Java 7 compatible.)
-. Download the JBDS 8.1.0 standalone installer from http://developers.redhat.com/products/devstudio/download/ <http://developers.redhat.com/products/devstudio/download/> or click the link here - https://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-standalone_jar.jar <https://developers.redhat.com/download-manager/file/jboss-devstudio-8.1.0.GA-standalone_jar.jar>
+. Install the Java SE Development Kit (JDK), we recommend Oracle JDK or OpenJDK. (Must be Java 8 compatible.)
+. Download the {jbdsis-standalone-installer-download-url}[Red Hat JBoss Developer Studio Integration Stack 9.0.2.GA Stand-Alone Installer].
 . Run the installer
 .. For Mac / Windows Development Hosts:
 ... Go to the folder you have downloaded the installer and either:
-.... Right Click on the installer jar
-.... Select "Open With → Jar Launcher"
+.... Right-click on the installer jar
+.... Select *Open With->Jar Launcher*
 ... Or double-click on the jar to start the installer (on Windows).
 .. For Linux Development Hosts:
-... Go to the folder where you have downloaded JBoss Developer Studio, and execute the installer
+... Go to the folder where you have downloaded the installer and execute it with
 .... java -jar [installer].jar +
 Note: This will execute the installation wizard.
 . In the wizard, ensure that you select your JDK, not the JRE chosen by default.
+. Also in the wizard, on the *Select Additional Features to Install* page, ensure you select *JBoss Fuse Development*
 . Start Developer Studio.
-. In the JBoss Central view, select the Software/Update tab.
-. *Enable “Early access” checkbox*
-. Click the “JBoss Fuse Development” checkbox.
-. Click the Install/Update button.
-. In the Install dialog, click Next and then click Next again.
-. Accept the terms of the license agreement and click Finish.
-. When you see the Security Warning message warning you about unsigned content, click OK.
-. Restart JBoss Developer Studio.
+.  Configure Maven:
+.. In JBoss Developer Studio, click *Window->Preferences*
+.. Type `maven` in the filter text box to view options related to Maven.
+.. In the results, expand *JBoss Tools* and click *JBoss Maven Integration*
+..  Click the *Configure Maven Repositories* button.
+..  Click *Add Repository* and then click the downward facing arrow in the *Profile ID:* field to view the available Maven repositories.
+.. Select *redhat-ga-repository* from the drop-down list profile and then click *OK*.
+.. In the *Maven Repositories* dialog, click *Finish*.
+.. When prompted to confirm the updates to your `settings.xml` file, click *Yes*.
 
-#### Red Hat JBoss Fuse Runtime
-Now that you have JBoss Developer Studio and Fuse Tools installed, you can install a local version of the Fuse runtime to explore.
+=== Define a JBoss Fuse Server
+Now that you have Developer Studio and Fuse Tools installed, you can install a reference to your installed Fuse runtime to explore via the tooling.
 
-#### From within JBDS
-. Start JBoss Developer Studio.
-. Find the Servers view in the JBoss (default) perspective.
-. Click the “No servers are available. Click this link to create a new server…” link.
-. In the “New Server” wizard, choose JBoss Fuse->JBoss Fuse 6.2 Server. Click Next.
-. On the “JBoss Fuse Runtime” page, click “Download and install runtime…”
-. In the “Download Runtimes” dialog, select JBoss Fuse 6.2.1 and click Next.
-. On the “JBoss.org Credentials” page - specify your jboss.org user name and password or click the link and follow the directions to create credentials if you . don’t yet have them. Click Next.
-. Accept the license agreement. Click Next.
-. Specify the location where you want the runtime installed. Click Finish.
-. Allow the download to finish and install locally. Click Finish.
-. Using your system file browser (outside of Eclipse) or the Remote Systems view (inside Eclipse - Window->Show View->Other…, Remote Systems->Remote Systems), go . to the directory where you installed fuse and edit the /jboss-fuse-6.2.1.redhat-084/etc/users.properties file. Uncomment the _admin_ user on the last line.
-. On the Servers tab, click on the green start button to start the Fuse Server.
-. If you get a Warning about Remote Host Identification, click Yes.
+. Download the Red Hat JBoss Fuse on Karaf Installer.
+.. Browse to the {fuse-on-karaf-download-url}[JBoss Fuse Software Downloads] page on the Red Hat Customer Portal and, when prompted, login to your customer account.
+.. Select the version 6.3.0 from the *Version* dropdown menu and click the Download link for the *Red Hat JBoss Fuse 6.3.0 on Karaf Installer* package.
+. To install the Fuse runtime, unpack the downloaded `.zip` file into a convenient location on your file system.
+This is the Fuse runtime installation directory, `_FuseInstall_`.
+. Add a user to the Fuse runtime. Open the `_FuseInstall_/etc/users.properties` file in a text editor and look for the following entry:
++
+----
+#admin=admin,admin,manager,viewer,Operator, Maintainer, Deployer, Auditor, Administrator, SuperUser
+----
++
+Delete the `#` character at the start of the line and customize the username, `<USERNAME>`, and password, `<PASSWORD>` in the entry:
++
+----
+<USERNAME>=<PASSWORD>,admin,manager,viewer,Operator, Maintainer, Deployer, Auditor, Administrator, SuperUser
+----
++
+Save the `users.properties` file.
+. Start Developer Studio.
+. Find the *Servers* view in the JBoss (default) perspective.
+. Click the *No servers are available. Click this link to create a new server* link.
+. In the *New Server* wizard, choose *JBoss Fuse->JBoss Fuse 6.3 Server*. Click Next.
+. On the *JBoss Fuse Runtime* page, type the directory where your JBoss Fuse 6.3 server was installed or click *Browse* and find the directory in the *File* dialog.
+. Click *Next*.
+. Update the user name and password you set up during the server installation process.
+. Click *Finish*.
+. On the *Servers* tab, select your new server and click on the green start button to start the Fuse Server.
+. If you get a Warning about *Remote Host Identification*, click *Yes*.
 
-You will see text pop up on the Console tab as the server starts and a new “Shell” tab will appear. This is a hosted version of the Fuse console that you can use in Eclipse.
+You will see text pop up on the *Console* tab as the server starts and a new *Shell* tab will appear. This is a hosted version of the Fuse console that you can use in Eclipse.
 
-To get an idea of all the capabilities that come pre-loaded in your server, you can type “osgi:list” at the console prompt.
+To get an idea of all the capabilities that come pre-loaded in your server, you can type `osgi:list` at the console prompt.
 
-### Starting your first project
-With your tooling and runtime installed, you’re ready to start your first project. We’ll get you started with a Camel Content Based Router (CBR) pattern and a simple example included with the Fuse server you downloaded and installed.
+=== Your First Project
 
-The CBR quick start watches a directory for incoming orders and dispatches them to outgoing directories based on the customer country contained in the order XML. We will import the quick start into your workspace and then build it from scratch so you see how it works.
+With your tooling and runtime installed, you're ready to start your first project.
+We'll get you started with a http://www.enterpriseintegrationpatterns.com/ContentBasedRouter.html[Camel Content Based Router (CBR)] pattern.
 
-In studying this quick start you will learn:
+The CBR quickstart watches a directory for incoming orders and dispatches them to outgoing directories based on the customer country contained in the order XML.
+We will import the quick start into your workspace and then build it from scratch so you see how it works.
 
-* how to define a Camel route using the Blueprint XML syntax
-* how to deploy an OSGi bundle in JBoss Fuse
-* how to use the CBR enterprise integration pattern
+=== Create a New Project
 
-For more information see:
+First, we need to create a new Fuse Project:
 
-* http://www.enterpriseintegrationpatterns.com/ContentBasedRouter.html <http://www.enterpriseintegrationpatterns.com/ContentBasedRouter.html> for more information about the CBR EIP
-* https://access.redhat.com/documentation/en/red-hat-jboss-fuse/ <https://access.redhat.com/documentation/en/red-hat-jboss-fuse/> for more information about using JBoss Fuse
+. Create New Fuse Integration Project.
+. Call it `fuse-camel-cbr`. Click *Next*.
+. Select your Fuse 6.3 server as the *Target Runtime*. Click *Next*.
+. Select *Use a predefined template*.
+. Select the *JBoss Fuse->Beginner->Content Based Router* template.
+. Ensure that *Blueprint DSL* is selected.
+. Click *Finish*.
 
-#### Importing the Quick Start into your Workspace
-In your Fuse runtime installation, you will find a “quickstarts” folder. We are going to import a project from there.
+=== Deploy the Project to the Server
 
-. Click File->Import… Select the Maven->Existing Maven Projects entry and click Next.
-. Click Browse… and find your Fuse runtime installation’s “quickstarts” folder. Drill in to find the beginner/camel-cbr directory and select it.
-. Click OK to close the dialog. You should see the /pom.xml file selected in the Projects list when you get back to the wizard.
-. Click Finish. You will see the beginner-camel-cbr project appear in your Project Explorer tab.
-. Let it finish importing. Then right-click on the project and select “Enable Fuse Camel Nature.”
-. If you want to take a look at the Camel route, go into the Camel Contexts node beneath the project and double-click on the src/main/resources/OSGI-INF/blueprint/cbr.xml file. Feel free to check out the flow from the input directory to the various destinations specified in the route. We’ll take a closer look at the various pieces in the “Building the Quick Start from scratch in the tooling” section later in this document.
+. In the *Servers* view, if your server isn’t already started - select your runtime server and click the green arrow to start it.
+. Right-click on the server after it is started and select *Add and Remove* from the context menu.
+. In the *Add and Remove* dialog, select your `fuse-camel-cbr` project and click the *Add >* button.
+. Click *Finish*.
+. You can check that everything is ok by issuing the command in the *Shell* tab: `osgi:list`
+. Your bundle should be present at the end of the list - for example, something like:
++
+----
+[ 302] [Active         ] [Created         ] [           ] [   80] Fuse CBR Quickstart (1.0.0.SNAPSHOT)
+----
 
-#### Deploying the Quick Start to the Server
-
-. In the Servers view, select your runtime server and click the green arrow to start it.
-. Right-click on the server after it is started and select “Add and Remove…” from the context menu.
-. In the “Add and Remove…” dialog, select your beginner-camel-cbr project and click the Add > button.
-. Click Finish.
-. You can check that everything is ok by issuing the command in the Shell tab: osgi:list
-. Your bundle should be present at the end of the list (something like “JBoss Fuse Quickstart: camel-cbr (6.2.1.redhat-084)”).
-
-#### Testing the Project
+=== Test the Project
 As soon as the Camel route has been started, it will create a directory work/cbr/input in your JBoss Fuse installation.
 
-There are a couple of ways to test your Camel route and see it in action.
+Now you can test your Camel route and see it in action.
 
-#### Through the File System
-Copy the files you find in this quick start's src/main/fabric8/data directory to the newly created work/cbr/input directory. You can do this in your system file browser (outside of Eclipse) or the Remote Systems view (inside Eclipse - Window->Show View->Other…, Remote Systems->Remote Systems). You can click and drag files from the Project Explorer into a directory in the Remote Systems view to trigger the Camel route processing.
+Copy the files you find in this quickstart's `src/main/fabric8/data` directory to the newly created `work/cbr/input` directory.
+You can do this in your system file browser (outside of Eclipse) or the *Remote Systems* view (inside Eclipse - *Window->Show View->Other*, and then *Remote Systems->Remote Systems*).
+You can click and drag files from the *Project Explorer* into a directory in the *Remote Systems* view to trigger the Camel route processing.
 
-Wait a few moments and you will find the same files organized by country under the work/cbr/output directory:
+Wait a few moments and you will find the same files organized by country under the `work/cbr/output` directory:
 
-* order1.xml in work/cbr/output/others
-* order2.xml and order4.xml in work/cbr/output/uk
-* order3.xml and order5.xml in work/cbr/output/us
+* `order1.xml` in `work/cbr/output/others`
+* `order2.xml` and `order4.xml` in `work/cbr/output/uk`
+* `order3.xml` and `order5.xml` in `work/cbr/output/us`
 
-Note that if you use the Remote Systems view, you may need to manually refresh the runtime directory to see folders and files as they are added and removed. Select the directory to refresh in the tree and hit F5 or select the “Refresh” button on the view toolbar.
+Note that if you use the *Remote Systems* view, you may need to manually refresh the runtime directory to see folders and files as they are added and removed.
+Select the directory to refresh in the tree and hit F5 or select the *Refresh¨ button on the view toolbar.
 
-Use log:display in the Fuse shell to check out the business logging.
+Use `log:display` in the Fuse shell to check out the business logging.
 
-#### Undeploying the Project
+You can also use the JMX Navigator to see your deployed Camel project and interact with the exposed Camel endpoints that way. See the documentation for details.
+
+=== Undeploy the Project
+
 To stop and undeploy the bundle in the Fuse server:
 
-. In the Servers view, select your running runtime server.
-. Right-click on the server and select “Add and Remove…” from the context menu.
-. In the “Add and Remove…” dialog, select your beginner-camel-cbr project and click the Remove > button.
-. Click Finish.
-. You can check that everything is ok by issuing the command in the Fuse console: osgi:list
+. In the *Servers* view, select your running runtime server.
+. Right-click on the server and select *Add and Remove* from the context menu.
+. In the *Add and Remove* dialog, select your `fuse-camel-cbr` project and click the *Remove >* button.
+. Click *Finish*.
+. You can check that everything is ok by issuing the command in the Fuse console: `osgi:list`
 . Your bundle should no longer be present at the end of the list.
 
-#### Building the Quick Start from scratch in the tooling
-Now that you’ve seen the CBR quick start in action, let’s build one of our own so you can see how the pieces go together.
+=== Next Steps
 
-Essentially we’re creating a Camel route that watches a file directory for any incoming orders in XML format.
-
-* If it finds a country code for the United Kingdom (i.e. “UK”), route it into an outgoing folder for the UK.
-* If it finds a country code for the United States (i.e. “US”), route it into an outgoing folder for the US.
-* And anything else it finds, route into an outgoing folder for “Others”.
-
-So let’s get started…
-
-First, we need to create a new Fuse Project with a Blueprint Camel route.
-
-. Create New Fuse Project.
-. Call it “fuse-camel-cbr”.
-. Select camel-archetype-blueprint as the archetype.
-. Specify "fuse.getting.started" as the group id and "camel-cbr" as the artifact id.
-. Click Finish.
-
-Next, we’ll copy over those data files we tested with in the beginner-camel-cbr project. Copy the src/main/fabric8/data directory into your project from the beginner-camel-cbr quickstart.
-
-Now open the blueprint.xml camel configuration in the Camel Editor if it’s not already open.
-
-By default, the project wizard creates a route with a few components. We want to start from scratch, so we will go through the components in the default route and delete them one at a time to clean things up.
-
-Once that’s done, the first thing we want to do is draw a line in the sand where our input files will be located. In this case, we want a File component to watch a directory in the file system. Drag the Components->File component from the palette onto your editor to create it. We will call the area with all the squares the “canvas” for the editor.
-
-Then in the Properties view for the File component, go to the Advanced tab, find the Path tab, and enter "work/cbr/input" as your new Directory Name. Lastly, on the Consumer tab, check the Delete check box.
-
-Next, we want to log that we received a message. We can do that with a Log component. Drag the Components->Log component from the palette onto the canvas. In the Properties for the Log component, go to the Details tab and enter “Receiving order ${file:name}” as the new Message. Now each time the Camel route processes what it finds in our initial directory, we’ll get a message in the log with the file name.
-
-Now we will have to connect our file component to the log. Hover over the file component icon and you should see an arrow in the floating button bar that appears. Click the arrow and drag it to the log component, then release your mouse button. We will need to do that for other components as we move through this process as well.
-
-With the beginning of the route set up, let’s focus on the choice. We want our orders to go different places depending on the country code we find inside. That’s handled by a Choice component in the route. Drag the Routing->Choice component from the palette onto the canvas and connect the log to it as we connected the file and log components.
-
-Now we’ll define the conditions for our “Choice.”
-
-The first one will go to the UK. Drag the Routing->When component from the palette onto the canvas and connect it to your Choice element. In the Properties for the When component, select XPath as the expression language and provide "/order:order/order:customer/order:country = 'UK'" as the actual expression. From a functional perspective, we are saying that when we see a “‘UK’ order.country value” we want to do something.
-
-Now drag the Components->File component from the palette onto the canvas and connect it to the When component. This is where we want the UK files to go. In the Properties for the new File component, go to the Advanced tab, find the Path tab, and enter “work/cbr/output/uk” as the new Directory Name. Essentially we’re giving the Camel route a bucket into which to sort any UK orders.
-
-With the UK path handled, we can now deal with the US orders. Drag another Routing->When component from the palette onto the canvas and connect it to your Choice element. In the Properties for the When component, select XPath as the expression language and provide "/order:order/order:customer/order:country = 'US'" as the actual expression.
-
-Like before, we’ll need to create a folder for the US orders to be moved into. Drag the Components->File component from the palette onto the canvas and connect it to the “US” When component. In the Properties for the new File component, go to the Advanced tab, find the Path tab, and enter “work/cbr/output/us” as the new Directory Name.
-
-Lastly we’ll deal with the “default” case to handle orders that aren’t bound for the UK or the US. Drag the Routing->Otherwise component from the palette onto the canvas and connect it to your Choice element.
-
-Just like before, we’ll need a new folder for our “other” case. Drag the Components->File component from the palette onto the When component. In the Properties for the new File component, go to the Advanced tab, find the Path tab, and enter “work/cbr/output/others” as the new Directory Name.
-
-Lastly we’ll signal that we’re done processing a file. Drag the Components->Log component from the palette onto the canvas. In the Properties for the Log component, go to the Details tab and enter “Done processing ${file:name}” as the new Message.
-
-Still with us so far?
-
-You’ll notice that we haven’t logged the individual cases for the “Choice” like we had in the quick start. But you can add those while you play with this example on your own.
-
-Now you can add your project to the server (see <<_deploying_the_quick_start_to_the_server,“Deploying the Quick Start to the Server”>> in an earlier section) and test it (see <<_testing_the_project,“Testing the Project”>> from earlier) to see it in action.
-
-### Next Steps
 You now know how to:
 
-* Import one of the many provided quickstarts into your workspace.
+* Create one of the available Fuse project templates in your workspace.
 * Deploy a project into a running Fuse server.
-* Test a simple project in two different ways.
+* Test a simple project.
 * Undeploy the project from the server.
-* And create your own Fuse project from scratch with a running Camel route.
-
-Where do you go from here?
-
-|===
-|Demonstration Description | Material
-
-| What is JBoss Fuse?
-| https://github.com/jboss-fuse/quickstarts/tree/master/cbr[Demo source], https://vimeo.com/130279093[Video]
-
-| Tooling
-| https://vimeo.com/131199128[Tooling Usability Improvements], https://vimeo.com/130987010[Debugger Support], https://vimeo.com/131250890[Transformation Tooling], https://www.youtube.com/watch?v=iY4PF4TyFTI[Installing SAP Tooling], https://www.youtube.com/watch?v=2IeqsoOhycY[Using SAP Tooling], Installation video (TBD)
-
-| What is Apache Camel? What are Enterprise Integration Patterns (EIP)?
-| https://vimeo.com/130280300[Video about connectors], https://vimeo.com/130281513[Video about EIPS], https://github.com/jboss-fuse/quickstarts/tree/master/eip[Demo source]
-
-| Managing JBoss Fuse with Fuse Fabric
-| https://vimeo.com/130283717[Video]
-
-| Step by step build the Home Loan Application with Microservices Architecture
-| https://vimeo.com/130284677[Video 1 Service with Simple EIP], https://vimeo.com/130285316[Video 2 Persisting to Database]
-
-| Business requirements change. Extend the home loan application. New SaaS applications? No problem..
-| https://vimeo.com/130286282[Video 3 Integrating with SaaS], https://vimeo.com/130286646[Video 4 Composing services]
-
-| Business expanding. Extend the home loan application to partners, suppliers.
-| https://vimeo.com/130286799[Video 5 Exposing Restful Web service]
-
-| Innovate further. Try, experiment, test, deploy.
-| https://vimeo.com/130286968[Video 6 Testing and Debugging], https://vimeo.com/130287082[Video 7 Deploy and manage in Fabric]
-
-| Alternate running environment (or container)
-| link:https://vimeo.com/146080419[Video 7 Running integration on Jboss EAP]
-|===
 
 
+## EAP Runtime
+
+=== Prerequisites
+To build JBoss Fuse applications, you need https://maven.apache.org/[Apache Maven]. If you do not already have it installed, follow the instructions on the https://maven.apache.org/download.cgi[Apache Maven Download] page.
+
+Make sure you have your JBoss Fuse on EAP runtime already installed and set up. See {installation-on-eap-link}/[Installation on JBoss EAP] for details.
+
+=== Install and configure your development environment
+
+The following steps will install a local version of JBoss Developer Studio 9.1.0 (the Eclipse Mars edition) along with the Fuse tooling.
+
+. Install the Java SE Development Kit (JDK), we recommend Oracle JDK or OpenJDK. (Must be Java 8 compatible.)
+. Download the {jbdsis-standalone-installer-download-url}[Red Hat JBoss Developer Studio Integration Stack 9.0.2.GA Stand-Alone Installer].
+. Run the installer
+.. For Mac / Windows Development Hosts:
+... Go to the folder you have downloaded the installer and either:
+.... Right-click on the installer jar
+.... Select *Open With->Jar Launcher*
+... Or double-click on the jar to start the installer (on Windows).
+.. For Linux Development Hosts:
+... Go to the folder where you have downloaded the installer and execute it with
+.... java -jar [installer].jar +
+Note: This will execute the installation wizard.
+. In the wizard, ensure that you select your JDK, not the JRE chosen by default.
+. Also in the wizard, on the *Select Additional Features to Install* page, ensure you select *JBoss Fuse Development*
+. Start Developer Studio.
+.  Configure Maven:
+.. In JBoss Developer Studio, click *Window->Preferences*
+.. Type `maven` in the filter text box to view options related to Maven.
+.. In the results, expand *JBoss Tools* and click *JBoss Maven Integration*
+..  Click the *Configure Maven Repositories* button.
+..  Click *Add Repository* and then click the downward facing arrow in the *Profile ID:* field to view the available Maven repositories.
+.. Select *redhat-ga-repository* from the drop-down list profile and then click *OK*.
+.. In the *Maven Repositories* dialog, click *Finish*.
+.. When prompted to confirm the updates to your `settings.xml` file, click *Yes*.
+
+=== Define a JBoss EAP Server
+Now that you have Developer Studio and Fuse Tools installed, you can install a reference to your installed Fuse on EAP runtime to explore via the tooling.
+
+. Start Developer Studio.
+. Find the *Servers* view in the JBoss (default) perspective.
+. Click the *No servers are available. Click this link to create a new server* link.
+. In the *New Server* wizard, choose *Red Hat JBoss Middleware->Red Hat JBoss Enterprise Application Platform 6.1+*. Click *Next*.
+. On the *Create a new Server Adapter* page, accept the default settings. Click *Next*.
+. On the *JBoss Runtime* page, type the directory where your JBoss Fuse on EAP server was installed or click *Browse* and find the directory in the *File* dialog.
+. Click *Next*.
+. Update the user name and password you set up during the server installation process.
+. Click *Finish*.
+. On the *Servers* tab, select your new server and click on the green start button to start the EAP Server.
+
+=== Your First Project
+With your tooling and runtime installed, you're ready to start your first project. We'll get you started with a Spring-based Camel route on EAP.
+
+=== Create a New Project
+First, we need to create a new Fuse Project.
+
+. Select *File->New->Fuse Integration Project*.
+. Call it `eap-camel`. Click *Next*.
+. Select your Fuse on EAP server as the *Target Runtime*. Click *Next*.
+. Select *Use a predefined template*.
+. Select the *Fuse on EAP->Medium->Spring on EAP* template.
+. Click *Finish*.
+
+=== Deploy the Project to the Server
+
+. In the *Servers* view, if your server isn’t already started - select your runtime server and click the green arrow to start it.
+. Right-click on the server after it is started and select *Add and Remove* from the context menu.
+. In the *Add and Remove* dialog, select your `eap-camel` project and click the *Add >* button.
+. Click *Finish*.
+
+=== Test the Project
+As soon as the Camel route has been started, it will be available via a web address on your EAP server: http://localhost:8080/eap-camel?name=Kermit
+
+You can view it in your favorite browser or directly in Eclipse through the Internal Web Browser (*Window->Show View->Other*, and then *General->Internal Web Browser*).
+
+You should see in the console at that web address: “Hello Kermit”
+
+=== Undeploy the Project
+
+To stop and undeploy the bundle in the Fuse server:
+
+. In the *Servers* view, select your running runtime server.
+. Right-click on the server and select *Add and Remove* from the context menu.
+. In the *Add and Remove* dialog, select your `eap-camel` project and click the *Remove >* button.
+. Click *Finish*.
+
+=== Next Steps
+
+You now know how to:
+
+* Create one of the available Fuse project templates in your workspace.
+* Deploy a project into a running Fuse on EAP server.
+* Test a simple project.
+* Undeploy the project from the server.
