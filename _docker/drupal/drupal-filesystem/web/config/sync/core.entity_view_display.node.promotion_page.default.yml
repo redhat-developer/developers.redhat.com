@@ -1,0 +1,46 @@
+uuid: 2d63f7a0-109d-45f0-8d34-31fdf1cd03fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.promotion_page.body
+    - field.field.node.promotion_page.field_call_to_action_link
+    - field.field.node.promotion_page.field_promotion_page_left_image
+    - node.type.promotion_page
+  module:
+    - image
+    - link
+    - text
+    - user
+id: node.promotion_page.default
+targetEntityType: node
+bundle: promotion_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_call_to_action_link:
+    weight: 103
+    label: visually_hidden
+    settings:
+      trim_length: 120
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+  field_promotion_page_left_image:
+    weight: 102
+    label: visually_hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+hidden:
+  links: true
