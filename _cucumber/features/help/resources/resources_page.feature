@@ -104,6 +104,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     When I click to filter results by "Video"
     Then all of the results should contain a "video" thumbnail
 
+  @later
   Scenario Outline: Selecting drop down menu options from Publish Date should filter results.
     Given I am on the Resources page
     When I change the Publish date drop down menu to "<option>"
