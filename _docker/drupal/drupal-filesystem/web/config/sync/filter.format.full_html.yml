@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - token_filter
 _core:
   default_config_hash: hewPmBgni9jlDK_IjLxUx1HsTbinK-hdl0lOwjbteIY
 name: 'Full HTML'
@@ -33,4 +34,19 @@ filters:
     provider: editor
     status: true
     weight: 11
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: false
+    weight: -10
+    settings:
+      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <img src alt data-entity-type data-entity-uuid data-align data-caption> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <p> <h1> <pre>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: true
+    weight: 0
     settings: {  }
