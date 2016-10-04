@@ -1,6 +1,8 @@
 @smoke
 @products
 
+@ignore
+
 Feature: Technologies Page
 
   In order to find out more about available Red Hat products,
