@@ -54,15 +54,6 @@ Note: This will execute the installation wizard.
 ..  Configure the runtime server by pointing to the `_FuseInstall_` directory (see <<fuse-karaf-install-runtime>>).
 ..	Select *JBoss Fuse Development* as additional features
 . Developer environment will start up. Accept any additional dependencies and license agreements.
-.  Configure Maven:
-.. In JBoss Developer Studio, click *Window->Preferences*
-.. Type `maven` in the filter text box to view options related to Maven.
-.. In the results, expand *JBoss Tools* and click *JBoss Maven Integration*
-..  Click the *Configure Maven Repositories* button.
-..  Click *Add Repository* and then click the downward facing arrow in the *Profile ID:* field to view the available Maven repositories.
-.. Select *redhat-ga-repository* from the drop-down list profile and then click *OK*.
-.. In the *Maven Repositories* dialog, click *Finish*.
-.. When prompted to confirm the updates to your `settings.xml` file, click *Yes*.
 
 === Build your first Fuse application
 
@@ -203,15 +194,6 @@ Note: This will execute the installation wizard.
 . In the wizard, ensure that you select your JDK, not the JRE chosen by default.
 . Also in the wizard, on the *Select Additional Features to Install* page, ensure you select *JBoss Fuse Development*
 . Start Developer Studio.
-.  Configure Maven:
-.. In JBoss Developer Studio, click *Window->Preferences*
-.. Type `maven` in the filter text box to view options related to Maven.
-.. In the results, expand *JBoss Tools* and click *JBoss Maven Integration*
-..  Click the *Configure Maven Repositories* button.
-..  Click *Add Repository* and then click the downward facing arrow in the *Profile ID:* field to view the available Maven repositories.
-.. Select *redhat-ga-repository* from the drop-down list profile and then click *OK*.
-.. In the *Maven Repositories* dialog, click *Finish*.
-.. When prompted to confirm the updates to your `settings.xml` file, click *Yes*.
 
 === Define a JBoss EAP Server
 Now that you have Developer Studio and Fuse Tools installed, you can install a reference to your installed Fuse on EAP runtime to explore via the tooling.
