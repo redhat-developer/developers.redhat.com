@@ -26,6 +26,7 @@ class ProductPageController extends ControllerBase {
     $disable = 0;
     $product_pages_url = array();
     $main_content = '';
+    $buzz_tags = '';
     if (!empty($nid)) {
       $node_obj = node_load($nid);
       $title = $node_obj->title->value;
@@ -58,6 +59,9 @@ class ProductPageController extends ControllerBase {
           if (isset($load_paragraph->field_overview_main_content)) {
             $main_content = $load_paragraph->field_overview_main_content->value;
           }
+          if (isset($load_paragraph->field_buzz_tags)) {
+            $buzz_tags = explode(",", $load_paragraph->field_buzz_tags->value);
+          }
         }
       }
       $disable = 0;
@@ -73,6 +77,7 @@ class ProductPageController extends ControllerBase {
       '#disable_get_started' => $disable,
       '#product_pages' => $product_pages_url,
       '#main_content' => $main_content,
+      '#buzz_tags' => $buzz_tags,
     ];
   }
 
