@@ -48,12 +48,14 @@ java -jar devstudio-integration-stack-9.0.2.GA-standalone-installer.jar
 +
 Note: This will execute the installation wizard.
 .	During installation:
-..	Accept the terms and conditions
-..	Choose your preferred installation path
-..  Select the Java 8 JVM
-..  Configure the runtime server by pointing to the `_FuseInstall_` directory (see <<fuse-karaf-install-runtime>>).
-..	Select *JBoss Fuse Development* as additional features
-. Developer environment will start up. Accept any additional dependencies and license agreements.
+.. Accept the terms and conditions
+.. Choose your preferred installation path
+.. Select the Java 8 JVM
+.. At the *Select Platforms and Servers* step, configure the runtime server by clicking *Add* and browsing to the location of the `_FuseInstall_` directory (see <<fuse-karaf-install-runtime>>)
+.. Select *JBoss Fuse Development* as additional features
+. Developer environment will start up.
+When the *Searching for runtimes* dialog appears, click *OK* to create the JBoss Fuse runtime.
+. Accept any additional dependencies and license agreements.
 
 === Build your first Fuse application
 
