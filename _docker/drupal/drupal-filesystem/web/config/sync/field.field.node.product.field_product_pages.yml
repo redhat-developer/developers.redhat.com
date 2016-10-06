@@ -7,6 +7,7 @@ dependencies:
     - node.type.product
     - paragraphs.paragraphs_type.buzz
     - paragraphs.paragraphs_type.community
+    - paragraphs.paragraphs_type.connectors
     - paragraphs.paragraphs_type.docs_and_apis
     - paragraphs.paragraphs_type.download
     - paragraphs.paragraphs_type.get_started
@@ -36,6 +37,7 @@ settings:
       docs_and_apis: docs_and_apis
       download: download
       get_started: get_started
+      connectors: connectors
       help: help
       learn: learn
       overview: overview
@@ -57,6 +59,9 @@ settings:
       get_started:
         enabled: true
         weight: 15
+      connectors:
+        enabled: true
+        weight: 16
       help:
         enabled: true
         weight: 16
@@ -64,6 +69,9 @@ settings:
         enabled: true
         weight: 17
       main_content:
+        weight: 18
+        enabled: false
+      document_details:
         weight: 18
         enabled: false
       overview:

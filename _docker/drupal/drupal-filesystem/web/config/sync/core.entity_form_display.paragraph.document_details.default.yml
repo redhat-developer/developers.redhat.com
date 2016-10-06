@@ -1,0 +1,42 @@
+uuid: 321ac14f-ff34-4c19-a020-ed4263e8b052
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.document_details.field_document_description
+    - field.field.paragraph.document_details.field_document_title
+    - field.field.paragraph.document_details.field_document_url
+    - paragraphs.paragraphs_type.document_details
+  module:
+    - link
+    - text
+id: paragraph.document_details.default
+targetEntityType: paragraph
+bundle: document_details
+mode: default
+content:
+  field_document_description:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_document_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_document_url:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+hidden:
+  created: true
+  status: true
+  uid: true

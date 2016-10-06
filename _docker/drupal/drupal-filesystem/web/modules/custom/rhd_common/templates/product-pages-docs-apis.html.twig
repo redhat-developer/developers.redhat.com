@@ -105,7 +105,25 @@
           </div>
           <div class="large-20 medium-17 small-24 columns text-content nav-breakpoint">
           {{ main_content|raw }}
-          </div>
+          {% for row in documents_row  %}
+          <div class="row" id="guides-row">
+            <div class="large-16 small-15 columns">
+              <h5>{{row.doc_title|t}}</h5>
+              <p>{{row.doc_description|t}}</p>
+              </div>
+              <div class="large-8 small-9 columns">
+              <a class="button tiny dropdown" data-dropdown="{{row.id}}" aria-expanded="false">View As &nbsp;<i class="fa fa-caret-down"></i></a>
+              <ul id="{{row.id}}" class="f-dropdown" data-dropdown-content="">
+              
+              {% for documents_link_data in row.url  %}
+                <li><a href="{{documents_link_data.link_url}}">{{documents_link_data.link_title}}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+        </div>
+        {% endfor %}
+        {{all_download_versions|raw}}
+        </div>
         </div>
       </div>
   </section>

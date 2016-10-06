@@ -76,6 +76,18 @@ function rhd_common_theme($existing, $type, $theme, $path) {
         'main_content' => NULL,
       ),
     ),
+    'product-pages-docs-apis' => array(
+      'variables' => array(
+        'title' => NULL,
+        'summary' => NULL,
+        'get_started' => NULL,
+        'disable_get_started' => NULL,
+        'product_pages' => NULL,
+        'main_content' => NULL,
+        'documents_row' => NULL,
+        'all_download_versions' => NULL,
+      ),
+    ),
   );
 }
 

@@ -1,0 +1,44 @@
+uuid: da7ff3ad-6ce4-4807-acb3-6df1201c0e20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.document_details.field_document_description
+    - field.field.paragraph.document_details.field_document_title
+    - field.field.paragraph.document_details.field_document_url
+    - paragraphs.paragraphs_type.document_details
+  module:
+    - link
+    - text
+id: paragraph.document_details.default
+targetEntityType: paragraph
+bundle: document_details
+mode: default
+content:
+  field_document_description:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_document_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_document_url:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+hidden:
+  created: true
+  uid: true

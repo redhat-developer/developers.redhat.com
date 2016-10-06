@@ -3,17 +3,34 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.docs_and_apis.field_add_documents
+    - field.field.paragraph.docs_and_apis.field_all_document_versions
     - field.field.paragraph.docs_and_apis.field_overview_hide_get_started
     - field.field.paragraph.docs_and_apis.field_overview_main_content
     - field.field.paragraph.docs_and_apis.field_overview_url
     - paragraphs.paragraphs_type.docs_and_apis
   module:
+    - entity_reference_revisions
     - text
 id: paragraph.docs_and_apis.default
 targetEntityType: paragraph
 bundle: docs_and_apis
 mode: default
 content:
+  field_add_documents:
+    type: entity_reference_revisions_entity_view
+    weight: 7
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_all_document_versions:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
   field_overview_hide_get_started:
     weight: 6
     label: above
