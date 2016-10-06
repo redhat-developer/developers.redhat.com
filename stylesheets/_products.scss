@@ -156,8 +156,10 @@ section.mobile.product-header {
   }
 }
 
+
+// should only display in mobile
 .mobile.build-panel {
-  display: block;
+  display: none;
   border-style: solid;
   border-width: 1px;
   border-color: $grey-4;
@@ -475,6 +477,10 @@ section.mobile.product-header, .mobile.build-panel {
   }
   .row.content.product-page-content {
     padding-top: 0;
+  }
+  
+  .mobile.build-panel {
+    display: block;
   }
 }
 
