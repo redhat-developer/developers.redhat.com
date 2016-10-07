@@ -73,6 +73,7 @@
  */
 #}
 
+{% set current_url = '' %}
 <article{{ attributes }}>
   <section class="hero hero-wide product-header datagrid application-development">
     <div class="row">
@@ -98,13 +99,17 @@
               {% endif %}
                 {% if member is not empty %}   
                   <a href="{{member.url}}">{{ member.title|t }}<i class="fa fa-caret-right fa-lg"></i></a>
+                  {% set current_url = member.url %}
                 {% endif %}
               </li>
              {% endfor %}
             </ul>
           </div>
-          <div class="large-20 medium-17 small-24 columns text-content nav-breakpoint">
-          {{ main_content|raw }}
+          <div class="large-20 medium-17 small-24 columns">
+            {{ main_content|raw }}
+            {% if 'buzz' in current_url %}
+              <div class="product-buzz-container" data-tags="{{ buzz_tags|json_encode }}"></div>
+            {% endif %}
           </div>
         </div>
       </div>

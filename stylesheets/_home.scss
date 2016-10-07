@@ -5,37 +5,31 @@
 
 .homepage-main {
   color: $white;
+  background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_cheatsheet_09sep2016.png");
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #CC0000;
+  background-color: #8a0101;
   & > .row {
     @include flexbox;
     @include align-items(center);
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    margin: 30px auto;
-    h3 {
+    margin: 0 auto;
+    h2, h3, h4{
       color: $white;
+      font-weight: 700;
+      text-transform: uppercase;
     }
-    span {
-      max-width: 500px;
-      display: block;
-      margin: 0 150px 0 auto;
-      h4{
-        text-align: right;
-        font-weight: 700;
-        color: #9ddbe9;
-        line-height: 1.1;
-        margin: .6em auto;
-        .keyword {
-          display: inline;
-          color: $white;
-          font-size: 115%;
-          font-style: italic;
-        }
-      }
+    h2 {
+      color: #cecbcb;
+      font-size: 4em;
+      margin-bottom: 0;
+      line-height: 1.2;
+    }
+    h3 {
+      font-size: 2em;
     }
     a.button {
       min-width: 250px;
@@ -72,15 +66,6 @@
       p {
         margin-top: 8px;
         margin-bottom: 10px;
-      }
-    }
-    a.learn-more {
-      text-transform: uppercase;
-      color: #eaa400;
-      font-weight: 700;
-      float: right;
-      i {
-        margin-left: 5px;
       }
     }
   }
@@ -278,12 +263,13 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-color: #CC0000;
+    background-color: #8a0101;
+    background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_cheatsheet_09sep2016.png");
+    .homepage-cta {
+      margin: 30px auto;
+    }
     .homepage-getstarted {
       min-height: 240px;
-    }
-    .video-thumb img {
-      max-width: 300px;
     }
   }
   span.type-icon {
@@ -292,9 +278,6 @@ ul.homepage-resources {
   .spotlight-item {
     width: calc(33.333% - 16px);
     margin: 8px;
-  }
-  .homepage-getstarted a.learn-more {
-    float: none !important;
   }
 }
 
@@ -308,12 +291,12 @@ ul.homepage-resources {
   }
   .homepage-main {
     .homepage-cta {
-      img, a.button {
+      h2 {
+        font-size: 3em;
+      }
+      a.button {
         margin: 20px auto;
         display: block;
-      }
-      h2, h5 {
-        text-align: center;
       }
     }
   }
@@ -321,7 +304,8 @@ ul.homepage-resources {
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    background-color: #CC0000;
+    background-color: #8a0101;
+    background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_cheatsheet09sep2016.png");
   }
   .spotlights-container {
     flex-direction: column;

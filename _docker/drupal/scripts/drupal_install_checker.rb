@@ -131,12 +131,14 @@ class DrupalInstallChecker
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb))
   end
+
   def import_config
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete active field.storage.node.field_author_name'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
+                           %w(--root=/var/www/drupal/web config:delete active field.storage.node.field_author_name))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
   end
 end
 
@@ -152,7 +154,7 @@ if $0 == __FILE__
   end
 
   if checker.installed?
-    checker.import_config 
+    checker.import_config
     checker.update_db
   else
     checker.install_drupal
@@ -160,7 +162,7 @@ if $0 == __FILE__
     # checker.install_modules
     # checker.install_module_configuration
     checker.set_cron_key
-    checker.import_config
+    # checker.import_config
     checker.workaround_workspace_bug
   end
 end

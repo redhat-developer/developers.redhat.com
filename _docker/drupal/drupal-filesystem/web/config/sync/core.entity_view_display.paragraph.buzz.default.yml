@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.buzz.field_buzz_tags
     - field.field.paragraph.buzz.field_overview_hide_get_started
     - field.field.paragraph.buzz.field_overview_main_content
     - field.field.paragraph.buzz.field_overview_url
@@ -14,6 +15,12 @@ targetEntityType: paragraph
 bundle: buzz
 mode: default
 content:
+  field_buzz_tags:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
   field_overview_hide_get_started:
     weight: 6
     label: above

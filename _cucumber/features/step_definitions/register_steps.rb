@@ -1,3 +1,9 @@
+Given(/^I am a registered site visitor$/) do
+  keycloak = KeyCloak.new
+  $site_user = keycloak.register_new_user
+  $basic_login = $site_user[:email]
+end
+
 When(/^I click to register with my GitHub account$/) do
   on RegistrationPage do |page|
     page.click_register_with_github
@@ -246,14 +252,6 @@ And(/^I navigate to the verify email link$/) do
 end
 
 
-
-
-
-
-
-
-
-
 Then(/^I should see the extended registration page with a message "([^"]*)"$/) do |message|
   expect(@page.extended_registration.registration_hint).to include(message)
 end
@@ -313,4 +311,3 @@ When(/^I choose to register a new account using a GitHub account that contains m
   end
 
 end
-

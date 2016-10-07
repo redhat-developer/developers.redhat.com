@@ -214,18 +214,22 @@ class DrupalInstallCheckerTest < Minitest::Test
 
     @install_checker.update_db
     @process_exec.verify
+  end
 
   def test_config_import
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim']]
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all']]
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:delete active field.storage.node.field_author_name']]
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', '-y cim']]
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush', ['--root=/var/www/drupal/web', 'cr all']]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web -y cim --skip-modules=devel)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web cr all)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drupal',
+                                       %w(--root=/var/www/drupal/web config:delete active field.storage.node.field_author_name)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web -y cim --skip-modules=devel)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web cr all)]
 
     @install_checker.import_config
     @process_exec.verify
-  end
-
   end
 
   def yaml_opts_prod
