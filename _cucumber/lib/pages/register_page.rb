@@ -26,13 +26,13 @@ class RegistrationPage < SiteBase
   element(:rhd_subscription_terms)                 { |b| b.link(text: 'Red Hat Subscription Agreement') }
   element(:rh_portal_terms)                        { |b| b.link(text: 'Red Hat Portals Terms of Use') }
 
-  value(:email_field_error)                        { |b| b.label(id: 'email-error').when_present.text }
-  value(:password_field_error)                     { |b| b.label(id: 'password-error').when_present.text }
-  value(:password_confirm_field_error)             { |b| b.label(id: 'password-confirm-error').when_present.text }
-  value(:first_name_field_error)                   { |b| b.label(id: 'firstName-error').when_present.text }
-  value(:last_name_field_error)                    { |b| b.label(id: 'lastName-error').when_present.text }
-  value(:company_field_error)                      { |b| b.label(id: 'user.attributes.company-error').when_present.text }
-  value(:country_field_error)                      { |b| b.label(id: 'user.attributes.country-error').when_present.text}
+  value(:email_field_error)                        { |b| b.span(id: 'email-error').when_present.text }
+  value(:password_field_error)                     { |b| b.span(id: 'password-error').when_present.text }
+  value(:password_confirm_field_error)             { |b| b.span(id: 'password-confirm-error').when_present.text }
+  value(:first_name_field_error)                   { |b| b.span(id: 'firstName-error').when_present.text }
+  value(:last_name_field_error)                    { |b| b.span(id: 'lastName-error').when_present.text }
+  value(:company_field_error)                      { |b| b.span(id: 'user.attributes.company-error').when_present.text }
+  value(:country_field_error)                      { |b| b.span(id: 'user.attributes.country-error').when_present.text}
 
   action(:accept_all_terms)                        { |p| p.all_terms.click }
   action(:create_account)                          { |p| p.finish_button.click }
