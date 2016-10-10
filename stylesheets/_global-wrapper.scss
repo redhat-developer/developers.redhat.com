@@ -209,6 +209,9 @@ i.jd-redhat:before {
   @include transition(all 0.3s);
   position: relative;
   left:0%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 // Footer Nav (this is only shown on mobile)

@@ -97,10 +97,10 @@ Feature: Search Page
     When I search for "developer"
     Then the search results page is displayed
     Then I should see pagination with "5" pages with ellipsis
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -108,7 +108,7 @@ Feature: Search Page
     Given I have previously searched for "code"
     When I click on the pagination "Next" link
     Then I should see page "2" of the results
-    And the following links should be enabled:
+    And the following links should be available:
       | First    |
       | Previous |
       | Next     |
@@ -119,10 +119,10 @@ Feature: Search Page
     And I am on page "2" of the results
     When I click on the pagination "Previous" link
     Then I should see page "1" of the results
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -138,10 +138,10 @@ Feature: Search Page
     Given I am on the Home page
     When I search for "I can't find anything that has 5 pages"
     Then I should see pagination with "5" pages without ellipsis
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -156,10 +156,10 @@ Feature: Search Page
     Given I am on the Home page
     When I search for "?"
     Then I should see pagination with "2" pages
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -183,3 +183,57 @@ Feature: Search Page
     Given I visit a previous search from a bookmark
     Then the Search page should be displayed
     And the search query is replayed.
+
+  @later
+  Scenario Outline: Blog posts are searchable
+    Given I search for "<search_term>"
+    When the search results page is displayed
+    Then I should see "10" results containing "<search_term>"
+ 
+    Examples: blog posts
+      | search_term                         |
+      | Red Hat JBoss Data Grid 7.0 is out  |
+      | Knowledge Driven Microservices      |
+      | Gems: A Few Helpful dotnet commands |
+
+  @later
+  Scenario Outline: StackOverflow posts are searchable
+    Given I search for "<search_term>"
+    When the search results page is displayed
+    Then I should see "10" results containing "<search_term>"
+ 
+    Examples: stackoverflow posts
+      | search_term                                     |
+      | Liferay 6.2 JBoss bundle is not getting started |
+      | Installing NodeJS on RHEL(4)?                   |
+      | New JDBC Driver for JBoss 6 EAP                 |
+
+  @later
+  Scenario Outline: KCS Documents are searchable
+    Given I search for "<search_term>"
+    When the search results page is displayed
+    Then I should see "10" results containing "<search_term>"
+ 
+    Examples: KCS Documents
+      | search_term                                              |
+      | How to disable Advisory topics and messages in A-MQ?     |
+      | External topic subscriber to fabric can't create session |
+      | How to configure wildcards in Virtual topic ?            |
+
+  @later
+  Scenario Outline: Books are searchable
+    Given I search for "<search_term>"
+    When the search results page is displayed
+    Then I should see "10" results containing "<search_term>"
+ 
+    Examples: Books
+      | search_term                     |
+      | Java Persistence with Hibernate |
+      | Advanced JAX-WS Web Services    |
+      | Mobile and Web Messaging        |
+
+  @later
+  Scenario: Events are searchable
+    Given I search for "DevNation"
+    When the search results page is displayed
+    Then I should see "10" results containing "DevNation"

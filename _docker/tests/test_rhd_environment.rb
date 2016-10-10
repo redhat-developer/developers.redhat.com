@@ -122,17 +122,22 @@ class TestRhdEnvironment < MiniTest::Test
 
   def test_supporting_services_awestruct_pull_request
     @environment.environment_name = 'awestruct-pull-request'
-    assert_equal(%w(mysql searchisko), @environment.get_supporting_services)
+    assert_equal(%w(), @environment.get_supporting_services)
+  end
+
+  def test_supporting_services_drupal_dev_local_dcp
+    @environment.environment_name = 'drupal-dev-local-dcp'
+    assert_equal(%w(apache mysql searchisko drupalmysql drupal), @environment.get_supporting_services)
   end
 
   def test_supporting_services_drupal_dev
     @environment.environment_name = 'drupal-dev'
-    assert_equal(%w(apache mysql searchisko drupalmysql drupal), @environment.get_supporting_services)
+    assert_equal(%w(apache drupalmysql drupal), @environment.get_supporting_services)
   end
 
   def test_supporting_services_drupal_pull_request
     @environment.environment_name = 'drupal-pull-request'
-    assert_equal(%w(mysql searchisko drupalmysql drupal), @environment.get_supporting_services)
+    assert_equal(%w(drupalmysql drupal), @environment.get_supporting_services)
   end
 
   def test_supporting_services_drupal_staging

@@ -10,6 +10,15 @@ module DownloadHelper
     JSON.parse(response)
   end
 
+  def get_dm_available_downloads
+    test = []
+    data = get_download_data($download_manager_base_url)
+    data.each { |code|
+      test << code['productCode']
+    }
+    test
+  end
+
   def get_featured_download_for(product_id)
     data = get_download_data($download_manager_base_url + "/#{product_id}")
     if data[0]['featuredArtifact']['versionName'].nil?
@@ -42,7 +51,7 @@ module DownloadHelper
     case product
       when 'JBoss Developer Studio'
         'devstudio'
-      when 'Enterprise Application Server'
+      when 'Enterprise Application Platform'
         'eap'
       when 'JBoss Data Grid'
         'datagrid'
@@ -54,10 +63,16 @@ module DownloadHelper
         'brms'
       when 'Data Virtualization'
         'datavirt'
-      when 'Red Hat Container Development Kit (CDK)'
+      when 'Red Hat Container Development Kit'
         'cdk'
       when 'Red Hat Enterprise Linux'
         'rhel'
+      when '.NET Runtime for Red Hat Linux'
+        'dotnet'
+      when 'Red Hat JBoss A-MQ'
+        'amq'
+      when 'Red Hat Development Suite'
+        'devsuite'
       else
         raise "No mapping for #{product}! See Downloads Helper"
     end

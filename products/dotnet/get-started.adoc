@@ -25,9 +25,18 @@ Introduction and Prerequisites
 ## Prerequisites section
 In this tutorial, you will set up your system to install software from the Red Hat .NET repository, which provides the latest versions of .NET Core for Red Hat Enterprise Linux. You will install .NET Core and run a simple "Hello, World" application. The tutorial should take less than 10 minutes to complete.
 
-Before you begin, you will need a current Red Hat Enterprise Linux 7 Server subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite Subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474/[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
+Before you begin, you will need a current Red Hat Enterprise Linux 7 Server subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite Subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
 
 Using VirtualBox? You’ll find instructions #{site.base_url}/products/rhel/get-started/#tab-virtualbox[here]. Hyper-V? Your instructions are #{site.base_url}/products/rhel/get-started/#tab-hyper-v[here]. VMWare? #{site.base_url}/products/rhel/get-started/#tab-vmware[Here] is your link. KVM users, #{site.base_url}/products/rhel/get-started/#tab-kvm[this way], please. Finally, yes, you can install on bare metal if you wish. #{site.base_url}/products/rhel/get-started/#tab-bare-metal[Here] is your page.
+
+Be sure to link:#{site.base_url}/products/rhel/get-started/#Step3[register and attach a subscription] to your Red Hat Enterprise Linux 7 installation to get access to .NET repositories. If this is a VM, you can register and attach by using `subscription-manager`:
+
+[listing,subs="attributes"]
+----
+$ su -
+# subscription-manager register --auto-attach
+----
+
 
 If you need help, see <<troubleshooting,Troubleshooting and FAQ>>.
 
@@ -42,7 +51,7 @@ Start _Red Hat Subscription Manager_ using the _System Tools_ group of the _Appl
 . Select _Repositories_ from the _System_ menu of the subscription manager.
 . In the list of repositories, check the _Enabled_ column for _rhel-7-server-dotnet-rpms_. Note: After clicking, it might take several seconds for the checkmark to appear in the enabled column.
 
-If you don’t see any .NET Core repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
+If you don’t see any .NET repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
 
 
 ### Using subscription-manager from the command line
@@ -75,15 +84,23 @@ $ su -
 ## Step3 Content
 
 Under your normal user ID, start a _Terminal_ window. First, use `scl
-enable` to add .NET Core 1.0 to your environment, then run `dotnet --version` to see the version number:
+enable` to add .NET Core 1.0 to your environment:
 
 [listing,subs="attributes"]
 ----
 $ scl enable rh-dotnetcore10 bash
+----
+
+Every time you start a new shell, you’ll need to re-run the `scl enable` command. Consider <<enable-permanently,enabling it permanently>>.
+
+Now, run `dotnet --version` to see the version number:
+
+[listing,subs="attributes"]
+----
 $ dotnet --version
 ----
 
-First, run `dotnet new`. This will create the C# source code for the “Hello world” app. You can look around the source code and all the generated files to get a sense of what’s necessary to support a .NET Core application.
+First, run `dotnet new`. This will create the C# source code for the “Hello, World” app. You can look around the source code and all the generated files to get a sense of what’s necessary to support a .NET Core application.
 
 Next, run `dotnet restore`. This will fetch all the necessary dependency libraries.
 
@@ -91,14 +108,15 @@ Finally, run `dotnet run`. This will build and run the application. Note that yo
 
 ### Working with .NET Core packages
 
-The .NET Core software packages are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login, or start a new terminal session, `scl enable` needs to be run again.
+The .NET Core software packages are designed to allow multiple versions of software to be installed concurrently. To accomplish this, the desired package is added to your runtime environment as needed with the `scl enable` command. When `scl enable` runs, it modifies environment variables and then runs the specified command. The environmental changes only affect the command that is run by `scl` and any processes that are run from that command. The steps in this tutorial run the command `bash` to start a new interactive shell to work in the updated environment. The changes aren’t permanent. Typing `exit` will return to the original shell with the original environment. Each time you login or start a new terminal session, you will need to run `scl enable`.
 
 While it is possible to change the system profile to make .NET Core packages part of the system’s global environment, this is not recommended. Doing this can cause conflicts and unexpected problems with other applications because the system version of the package is obscured by having the other version in the path first.
 
 
 #### Permanently enable .NET Core in your development environment
+[[enable-permanently]]
 
-To make the .NET Core packages a permanent part of your development environment, you can add it to the login script for your specific user ID. this is the recommend approach for development as only processes run under your user ID will be affected.
+To make the .NET Core packages a permanent part of your development environment, you can add it to the login script for your specific user ID. This is the recommend approach for development as only processes run under your user ID will be affected.
 
 Using your preferred text editor, add the following line to your `~/.bashrc`:
 
@@ -109,7 +127,7 @@ Using your preferred text editor, add the following line to your `~/.bashrc`:
 source scl_source enable rh-dotnetcore10
 ----
 
-After making the change, you should log out and log back in again.
+After making the change, you should log out and log in again.
 
 When you deliver an application that uses .NET Core packages, a best practice is to have your startup script handle the `scl enable` step for your application. You should not ask your users to change their environment as this is likely to create conflicts with other applications.
 
@@ -153,7 +171,7 @@ Red Hat delivers the resources and ecosystem of experts to help you be more prod
 
 . *As a developer, how can I get a Red Hat Enterprise Linux subscription that includes .NET Core?*
 +
-Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by #{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through developers.redhat.com. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide] which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
+Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscription for development purposes by #{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through developers.redhat.com. We recommend you follow our link:#{site.base_url}/products/rhel/get-started/[Getting Started Guide], which covers downloading and installing Red Hat Enterprise Linux on a physical system or virtual machine (VM) using your choice of VirtualBox, VMware, Microsoft Hyper-V, or Linux KVM/Libvirt. For more information, see link:#{site.base_url}/articles/no-cost-rhel-faq/[Frequently asked questions: no-cost Red Hat Enterprise Linux Developer Suite].
 
 . *I can't find the .NET Core repository on my system*.
 +
@@ -177,7 +195,7 @@ Yes, .NET Core is available as a docker-formatted container image from the Red H
 +
 The open source community that is the upstream for .NET Core can be found at link:https://github.com/dotnet/core[github.com/dotnet/core].
 
-. *I’ve installed rh-dotnetcore10 but `dotnet` is not in my path.*
+. *I’ve installed rh-dotnetcore10, but `dotnet` is not in my path.*
 +
 *I can’t find the `dotnet` command.*
 +
@@ -204,4 +222,4 @@ Uninstalling the `rh-dotnetcore10-runtime` package will cause the dependent pack
 ----
 . *Some .NET/C# code/examples I’ve tried don’t work with .NET Core.*
 +
-.NET Core 1.0 is a new version of the .NET framework that is incompatible with the previous .NET 2.x, 3.x and 4.x series frameworks. There is a large amount of code written for .NET that will not run without modification on .NET Core.
+{empty}.NET Core 1.0 is a new version of the .NET framework that is incompatible with the previous .NET 2.x, 3.x, and 4.x series frameworks. There is a large amount of code written for .NET that will not run without modification on .NET Core.

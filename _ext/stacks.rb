@@ -163,7 +163,7 @@ module JBoss::Developer::Extensions
         }
 
         #metadata[:boms] << bom
-        unless !@push_to_searchisko || !site.push_to_searchisko
+        if @push_to_searchisko
           searchisko.push_content(metadata[:searchisko_type], metadata[:searchisko_id], bom_dcp.to_json)
         end
         bom_page.send('metadata=', metadata)
@@ -256,7 +256,7 @@ module JBoss::Developer::Extensions
             :versions => archetype['allVersions'],
             :sys_project => metadata[:target_product]
           }
-          unless !@push_to_searchisko || !site.push_to_searchisko
+          if @push_to_searchisko
             searchisko.push_content(metadata[:searchisko_type], metadata[:searchisko_id] , archetype_dcp.to_json)
           end
           archetype_page.send('metadata=', metadata)

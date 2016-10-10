@@ -59,6 +59,19 @@ class DrupalInstallChecker
     end
   end
 
+  #
+  # This works-around a bug in the workspace module install in staging and production environments. We need to set the
+  # initial id of the row inserted into the workspace table to 1 from 9. In environments where this does not occur e.g
+  # drupal-dev, drupal-pull-request, this method is essentially a null-op
+  #
+  def workaround_workspace_bug
+    process_executor.exec!('mysql', ["--host=#{@opts['database']['host']}",
+                                     "--port=#{@opts['database']['port']}",
+                                     "--user=#{@opts['database']['username']}",
+                                     "--password=#{@opts['database']['password']}",
+                                     '--execute=update workspace set id=1 where id=9', "#{@opts['database']['name']}"])
+  end
+
   def installed?
     settings_exists? && rhd_settings_exists? && mysql_connect? && tables_exists?
   end
@@ -102,23 +115,30 @@ class DrupalInstallChecker
 
   def install_drupal
     puts 'Installing Drupal, please wait...'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
-                           ['--root=web', 'site:install', 'standard', '--langcode=en', '--db-type=mysql',
-                            "--db-host=#{@opts['database']['host']}", "--db-name=#{@opts['database']['name']}",
-                            "--db-user=#{@opts['database']['username']}", "--db-port=#{@opts['database']['port']}",
-                            "--db-pass=#{@opts['database']['password']}", '--account-name=admin',
-                            "--site-name='Red Hat Developers'", "--site-mail='test@example.com'",
-                            "--account-mail='admin@example.com'", '--account-pass=admin', '-n'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush',
+                           ['--root=/var/www/drupal/web', 'si', 'standard', '--locale=en',
+                            "--db-url=mysql://#{@opts['database']['username']}:#{@opts['database']['password']}@#{@opts['database']['host']}:#{@opts['database']['port']}/#{@opts['database']['name']}",
+                            '--site-name=Red Hat Developers', '--site-mail=test@example.com',
+                            "--account-name=#{@opts['drupal']['admin']['name']}",
+                            "--account-pass=#{@opts['drupal']['admin']['password']}",
+                            "--account-mail=#{@opts['drupal']['admin']['mail']}",
+                            '--config-dir=/var/www/drupal/web/config/sync',
+                            '-y'])
   end
 
   def update_db
     puts 'Executing drush dbup'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'cache:rebuild', 'all'])
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', ['-y','--root=/var/www/drupal/web', '--entity-updates', 'updb'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb))
   end
 
   def import_config
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal', ['--root=/var/www/drupal/web', 'config:import'])
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
+                           %w(--root=/var/www/drupal/web config:delete active field.storage.node.field_author_name))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
   end
 end
 
@@ -138,10 +158,11 @@ if $0 == __FILE__
     checker.update_db
   else
     checker.install_drupal
-    checker.install_theme
-    checker.install_modules
-    checker.install_module_configuration
-    checker.set_cron_key    
-    checker.import_config
+    # checker.install_theme
+    # checker.install_modules
+    # checker.install_module_configuration
+    checker.set_cron_key
+    # checker.import_config
+    checker.workaround_workspace_bug
   end
 end

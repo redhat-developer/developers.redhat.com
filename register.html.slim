@@ -5,13 +5,31 @@ head
   script
     include javascripts/vendor/keycloak.js
   javascript:
+
+    var keycloakAuthUrl = "#{site.keycloak_auth_url}"
+
+    /*
+     DEVELOPER-3509: This works around an issue with httrack export re-writing in-line Javascript. Without this charCodeAt
+     comparison, the URL to which the user is sent is incorrect when trying to register. Longer term the issue
+     here is that in-line Javascript and httrack do not play nicely together.
+     */
+    if (keycloakAuthUrl.charCodeAt(keycloakAuthUrl.length -1) == 47) {
+      keycloakAuthUrl = keycloakAuthUrl.substring(0, keycloakAuthUrl.length -1)
+    }
+
     var keycloak = Keycloak({
-      url: "#{site.keycloak_auth_url}",
+      url: keycloakAuthUrl,
       realm: 'rhd',
       clientId: 'web'
     });
 
-    var redirectUri = '#{site.base_url}/confirmation';
+    /*
+     The use of home-link here is to work-around the httrack export process that will rewrite all links
+     to be relative, rather than absolute. This causes the registration process to fail as it rejects a
+     non-absolute URL
+     */
+    var homeLink = document.getElementById('home-link')
+    var redirectUri = homeLink == undefined ? '#{site.base_url}/confirmation' : homeLink.href + '/confirmation'
 
     keycloak.init().success(function (authenticated) {
       if (!authenticated) {
@@ -20,8 +38,8 @@ head
         window.location = redirectUri;
       }
     }).error(function () {
-        // failed to initialize
-        keycloak.login({ action : 'register', redirectUri : redirectUri });
+      // failed to initialize
+      keycloak.login({ action : 'register', redirectUri : redirectUri });
     });
 body
   p Redirecting ...

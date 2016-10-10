@@ -100,6 +100,7 @@ app.ssoConfig = {};
 app.ssoConfig.account_url = '#{site.keycloak_account_url}';
 app.ssoConfig.auth_url = '#{site.keycloak_auth_url}';
 app.ssoConfig.confirmation = '#{site.base_url}/confirmation';
+app.ssoConfig.logout_url = '#{site.base_url}'
 
 app.projects = {};
 app.projects.defaultImage = "#{cdn( site.base_url + '/images/design/projects/default_200x150.png')}";

@@ -15,18 +15,18 @@ Prerequisites &#38; Required Dependencies Checklist
 
 == Step1 Content
 1.  Install the Java SE Development Kit (JDK) version 8. We recommend using the OpenJDK or the Oracle JDK.
-2.  Download link:#{site.download_manager_base_url}/download-manager/file/devstudio-10.0.0.GA-installer-eap.jar[JBoss Developer Studio 10.0.0 with JBoss EAP]
+2.  Download link:#{site.download_manager_base_url}/download-manager/file/devstudio-10.1.0.GA-installer-eap.jar[JBoss Developer Studio 10.1.0.GA with JBoss EAP]
 3.  Run the JBoss Developer Studio installer.
 .. For Mac/Windows Development Hosts:
 ...  Go to the folder that contains the downloadeded JBoss Developer Studio JAR file.
-...  Right-click `devstudio-10.0.0.GA-installer-eap.jar`
+...  Right-click `devstudio-10.1.0.GA-installer-eap.jar`
 ... Select _Open With -> Jar Launcher_
 .. For Linux Development Hosts:
 ... Go to the folder that contains the JBoss Developer Studio JAR file
 ... Execute the installer:
 +
 ----
-$ java -jar devstudio-10.0.0.GA-installer-eap.jar
+$ java -jar devstudio-10.1.0.GA-installer-eap.jar
 ----
 +
 .. Follow the on-screen instructions to continue the installation process.
@@ -85,5 +85,5 @@ These instructions are used to build some simple example applications as well as
 
 == More Resources
 
-* link:../learn[See Quickstarts, Videos, and other Learning materials]
-* link:../buzz[Read about how other people are using DevStudio]
+* link:#{site.base_url}/products/devstudio/learn[See Quickstarts, Videos, and other Learning materials]
+* link:#{site.base_url}/products/devstudio/buzz[Read about how other people are using DevStudio]

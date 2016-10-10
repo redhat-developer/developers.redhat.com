@@ -5,6 +5,22 @@ Feature: Basic personal registration
   So that I can use its services.
 
   @logout
+  Scenario: User can register by navigating directly to the /register page
+    Given I navigate to the "/register" page
+    When I complete the registration form
+    Then I should be registered and logged in
+    When I am on the Edit Details page
+    And the following newly registered details should be added to my profile:
+      | Username                                    |
+      | Email                                       |
+      | First Name                                  |
+      | Last name                                   |
+      | Company                                     |
+      | Country                                     |
+      | Red Hat Developer Program subscription date |
+      | Privacy & Subscriptions status              |
+
+  @logout
   Scenario: Site visitor completes the registration form accepting terms by clicking "accept all terms and conditions"
     Given I am on the Registration page
     When I complete the registration form
@@ -62,13 +78,6 @@ Feature: Basic personal registration
       | last name field        | Last name is required    |
       | company field          | Company name is required |
       | country field          | Country is required      |
-
-  Scenario: Customer completes registration form accepting terms by clicking accept for each term and condition.
-    Given I am on the Registration page
-    Then I should see the following terms and conditions checkboxes:
-      | I have read and agree to the Red Hat Developer Program Terms & Conditions and agree to use the Red Hat Subscriptions(s) for development purposes only. |
-      | I have read and agree to the Red Hat Subscription Agreement.                                                                                           |
-      | I have read and agree to the Red Hat Portals Terms of Use and Export Control Agreement.                                                                |
 
   Scenario: Terms should link to relevant terms and conditions page
     Given I am on the Registration page

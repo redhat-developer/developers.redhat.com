@@ -70,13 +70,13 @@ When(/^I log in with an account that is already linked to my Github account$/) d
 end
 
 Then(/^I should be logged in$/) do
-  expect(@current_page.logged_in?).to eq $site_user[:full_name]
+  expect(@current_page.logged_in?).to eq($site_user[:full_name])
 end
 
 Then(/^I should still be be logged in on the Home page$/) do
   expect(@current_page.logged_in?).to eq $site_user[:full_name]
   on HomePage do |page|
-    expect(page.title).to eq 'Red Hat Developers'
+    expect(page.title).to eq('Red Hat Developers')
   end
 end
 
@@ -86,14 +86,13 @@ end
 
 And(/^the following error message should be displayed: (.*)$/) do |message|
   on LoginPage do |page|
-    expect(page.error_message).to eq message
+    expect(page.error_message).to eq(message)
   end
 end
 
 And(/^I click the forgot password link$/) do
   on LoginPage do |page|
     page.click_password_reset
-    page.wait_for_ajax
   end
 end
 
@@ -107,4 +106,19 @@ When(/^I click on the Create account link$/) do
   on LoginPage do |page|
     page.click_register_link
   end
+end
+
+Given(/^I have previously logged in$/) do
+  visit HomePage do |page|
+    page.open_login_page
+  end
+  on LoginPage do |page|
+    page.login_with($site_user[:email], $site_user[:password])
+  end
+  expect(@current_page.logged_in?).to eq($site_user[:full_name])
+end
+
+Then(/^I should see the Log in page with the message "([^"]*)"$/) do |title|
+  on LoginPage
+  expect(@browser.text).to include(title)
 end

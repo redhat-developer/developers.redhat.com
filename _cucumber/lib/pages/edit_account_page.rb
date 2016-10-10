@@ -1,20 +1,21 @@
 require_relative 'abstract/site_base'
 
 class EditAccountPage < SiteBase
-  page_url('/auth/realms/rhd/account/')
+  page_url('/auth/realms/rhd/account')
+  expected_element(:h2, text: 'Edit Account')
+  #page_title('Edit Account | Red Hat Developers')
 
-  value(:loaded?)               { |el| el.wait_until_displayed(id: 'accounts-sidenav') }
-  element(:email)               { |el| el.find(id: 'email') }
-  element(:username)            { |el| el.find(id: 'username') }
-  element(:first_name)          { |el| el.find(id: 'firstName') }
-  element(:last_name)           { |el| el.find(id: 'lastName') }
-  element(:company)             { |el| el.find(id: 'user.attributes.company') }
-  element(:country_dropdown)    { |el| el.find(id: 'user.attributes.country') }
-  element(:agreement_date)      { |el| el.find(id: 'user.attributes.rhdTacSignDate') }
-  element(:receive_newsletter)  { |el| el.find(id: 'user.attributes.newsletter') }
+  element(:email)               { |b| b.text_field(id: 'email') }
+  element(:username)            { |b| b.text_field(id: 'username') }
+  element(:first_name)          { |b| b.text_field(id: 'firstName') }
+  element(:last_name)           { |b| b.text_field(id: 'lastName') }
+  element(:company)             { |b| b.text_field(id: 'user.attributes.company') }
+  element(:country_dropdown)    { |b| b.select_list(id: 'user.attributes.country') }
+  element(:agreement_date)      { |b| b.text_field(id: 'user.attributes.rhdTacSignDate') }
+  element(:receive_newsletter)  { |b| b.checkbox(id: 'user.attributes.newsletter') }
 
   def country
-    default_dropdown_item(country_dropdown)
+    country_dropdown.selected_options[0].text
   end
 
 end

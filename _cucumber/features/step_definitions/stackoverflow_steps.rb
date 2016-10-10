@@ -22,7 +22,7 @@ end
 
 Then(/^each question should link to the relevant question on Stack Overflow$/) do
   on StackOverflowPage do |page|
-    page.question_links.each { |link| expect(link.attribute('href')).to include 'http://stackoverflow.com/questions/' }
+    page.question_links.each { |link| expect(link.href).to include 'http://stackoverflow.com/questions/' }
   end
 end
 

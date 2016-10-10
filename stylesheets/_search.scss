@@ -441,10 +441,28 @@ img.video-thumb {
   }
 }
 
+div.search-wrapper.mobile {
+  display: none;
+}
+
+@include tablet-portrait-and-down {
+  li.search-wrapper.desktop {
+    display: none;
+  }
+  div.search-wrapper.mobile {
+    display: block;
+    margin: 20px 15px;
+    padding-bottom: 0;
+  }
+}
+
 @include mobile-landscape-and-down {
   .search-input-group {
     @include flex-basis(100%);
     width:100%;
     marign:0;
+  }
+  div.search-wrapper.mobile input{
+    width: 100%;
   }
 }

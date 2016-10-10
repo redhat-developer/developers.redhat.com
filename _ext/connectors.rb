@@ -33,7 +33,7 @@ module JBoss
             searchisko_hash['priority'] = 100
           end 
         
-          unless !site.push_to_searchisko || site.profile =~ /development/
+          if site.push_to_searchisko
             searchisko.push_content('jbossdeveloper_connector',
                         id,
                         searchisko_hash.to_json)

@@ -9,11 +9,15 @@ keycloak:
 drupal:
   host: docker
   port: "80"
+  admin:
+    name: 'admin'
+    password: 'admin'
+    mail: 'admin@example.com'
 searchisko:
   protocol: 'http'
-  host: docker
-  port: "8080"
-  baseProtocolRelativeUrl: 'docker:8080'
+  host: dcp.stage.jboss.org
+  port: "80"
+  baseProtocolRelativeUrl: 'dcp.stage.jboss.org:80'
 database:
   host:  drupalmysql
   port: '3306'

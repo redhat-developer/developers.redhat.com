@@ -34,10 +34,10 @@ Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
     Given I am on the Stack Overflow page
     Then I should see a list of 10 results
     And I should see pagination with "5" pages with ellipsis
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -47,7 +47,7 @@ Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
     Then I should see pagination with "5" pages with ellipsis
     When I click on the pagination "Next" link
     Then I should see page "2" of the results
-    And the following links should be enabled:
+    And the following links should be available:
       | First    |
       | Previous |
       | Next     |
@@ -59,10 +59,10 @@ Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
     When I am on page "2" of the results
     When I click on the pagination "Previous" link
     Then I should see page "1" of the results
-    And the following links should be enabled:
+    And the following links should be available:
       | Next |
       | Last |
-    And the following links should be disabled:
+    And the following links should be unavailable:
       | First    |
       | Previous |
 

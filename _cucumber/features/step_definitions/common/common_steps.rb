@@ -2,16 +2,16 @@ Then(/^the search field (should|should not) be displayed within the site header$
   if negate.include?('not')
     expect(@current_page.search_field_visible?).to be false
   else
-    expect(@current_page.search_field_visible?).to be true
+    @current_page.site_nav_search_box.wait_until_present
   end
 end
 
 Then(/^the max characters for the search box should be "([^"]*)" characters\.$/) do |max_length|
-  expect(@current_page.search_box.attribute('maxlength')).to eq max_length
+  expect(@current_page.site_nav_search_box.attribute_value('maxlength')).to eq(max_length)
 end
 
 Then(/^I should placeholder text within the search field "([^"]*)"$/) do |hint|
-  expect(@current_page.search_box.attribute('placeholder')).to eq hint
+  expect(@current_page.site_nav_search_box.attribute_value('placeholder')).to eq(hint)
 end
 
 Then(/^I should see text "Showing "(\d+)\-(\d+)" of results$/) do |arg1, arg2|
@@ -25,9 +25,9 @@ end
 
 Then(/^I (should|should not) see a message "([^"]*)"$/) do |negate, message|
   if negate.include?('not')
-    @current_page.results_title.should_not include(message)
+    @current_page.results_title_text.should_not include(message)
   else
-    @current_page.results_title.should eql?(message)
+    @current_page.results_title_text.should eql?(message)
   end
 end
 
@@ -36,16 +36,17 @@ Then(/^there will be no results displayed$/) do
 end
 
 Then(/^below a I should see a message "([^"]*)"$/) do |message|
-  expect(@current_page.results_sub_title).to eq message
+  expect(@current_page.results_sub_title.text).to eq message
 end
 
 Then(/^I should not see pagination with page numbers$/) do
   expect(@current_page.has_pagination?).to be false
 end
 
-Then(/^the following links should be (enabled|disabled):$/) do |link_state, table|
+Then(/^the following links should be (available|unavailable):$/) do |link_state, table|
   table.raw.each do |links|
     link = links.first
+    link = 'prev' if link == 'Previous'
     expect(@current_page.pagination_links(link.downcase, link_state)).to be true
   end
 end
@@ -67,14 +68,22 @@ When(/^I click on the pagination "([^"]*)" link/) do |link|
 end
 
 Then(/^I should see page "([^"]*)" of the results$/) do |page_number|
-  expect(@current_page.current_link).to eq("#{page_number}")
+  expect(@current_page.current_link_text).to eq("#{page_number}")
 end
 
 Given(/^I am on page "([^"]*)" of the results$/) do |page_number|
-  @current_page.click_pagination(page_number)
-  @current_page.current_link.should == page_number
+  @current_page.go_to_pagination_no(page_number)
+  @current_page.current_link_text.should == page_number
 end
 
 When(/^I enter "([^"]*)" into the Site nav search box$/) do |search_string|
   @current_page.enter_search_term(search_string)
+end
+
+And(/^the result per page options should be:$/) do |table|
+  results_per_page = []
+  table.raw.each do |links|
+    results_per_page << links.first
+  end
+  @current_page.results_per_page[1].should =~ results_per_page
 end

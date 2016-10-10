@@ -13,10 +13,19 @@ task :features do
     profile='parallel'
   end
 
-  if ENV['CUCUMBER_TAGS']
-    tags = ENV['CUCUMBER_TAGS']
-  else
+  if ENV['CUCUMBER_TAGS'].to_s.empty?
     tags = nil
+  else
+    tag_arr = []
+    if ENV['CUCUMBER_TAGS'].include?(',')
+      tag = ENV['CUCUMBER_TAGS'].split(',')
+      tag.each do |cuke_tag|
+        tag_arr << "--tags #{cuke_tag}"
+      end
+      tags = tag_arr.join(' ')
+    else
+      tags = "--tags #{ENV['CUCUMBER_TAGS']}"
+    end
   end
 
   if ENV['ghprbActualCommit'].to_s.empty?
@@ -54,9 +63,8 @@ task :debug, :times do |task, args|
 end
 
 def run(profile, tag)
-  unless tag.eql?(nil)
-    tag_string = "--tags #{tag}"
-  end
+  tag_string = tag unless tag.eql?(nil)
+
   if profile.eql?('slow')
     if tag.eql?(nil)
       system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
