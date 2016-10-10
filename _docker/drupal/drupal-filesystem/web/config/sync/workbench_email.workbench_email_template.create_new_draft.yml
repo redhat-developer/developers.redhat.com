@@ -3,12 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - user.role.administrator
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
 id: create_new_draft
 label: 'Create New Draft'
 subject: 'Content is changed from Published to Draft'
 roles:
-  administrator: administrator
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
 bundles: {  }
 fields: {  }
 author: false

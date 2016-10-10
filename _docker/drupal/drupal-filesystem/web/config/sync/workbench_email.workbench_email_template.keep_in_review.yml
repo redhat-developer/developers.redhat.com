@@ -1,14 +1,18 @@
-uuid: 7513d5bc-55cb-41a5-b7c8-241fce60e8f3
+uuid: 83ffc03d-9055-402f-aaf0-64ea24802ebd
 langcode: en
 status: true
 dependencies:
   config:
-    - user.role.administrator
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
 id: keep_in_review
 label: 'Keep in Review'
 subject: 'Keep in Review'
 roles:
-  administrator: administrator
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
 bundles: {  }
 fields: {  }
 author: false

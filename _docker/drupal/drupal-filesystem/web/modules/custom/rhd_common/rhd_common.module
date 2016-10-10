@@ -56,3 +56,36 @@ function rhd_common_custom_form_validator(array &$element, \Drupal\Core\Form\For
     $form_state->setError($element, t('The alias needs to start with a slash.'));
   }
 }
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node_form.
+ */
+function rhd_common_form_node_form_alter(&$form, FormStateInterface $form_state) {
+  if (isset($form['publish_date'])) {
+    $form['scheduling_options'] = array(
+      '#type' => 'details',
+      '#title' => t('Scheduling Options'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#group' => 'advanced',
+      '#weight' => -2, //Tab location
+    );
+    $form['scheduling_options']['und'][0] = $form['publish_date'];
+     // Unset publish date field.
+    unset($form['publish_date']);
+  }
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function rhd_common_user_login($account) {
+  $roles = array('content_author', 'content_editor', 'content_publisher');
+  $user_roles = $account->getRoles();
+  $module_exists = \Drupal::moduleHandler()->moduleExists('workbench');
+  if (array_intersect($roles, $user_roles) && $module_exists) {
+     $url = Url::fromRoute('workbench.content')->toString();
+     $response = new RedirectResponse($url);
+     $response->send(); 
+  }
+}

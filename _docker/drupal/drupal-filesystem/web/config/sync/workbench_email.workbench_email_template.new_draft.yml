@@ -3,15 +3,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - user.role.administrator
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
 id: new_draft
 label: Draft
 subject: 'New draft created.'
 roles:
-  administrator: administrator
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
 bundles: {  }
 fields: {  }
 author: false
 body:
-  value: "Hi,\r\n\r\n[node:title] is newly created draft. Please review it.\r\n\r\nThank you"
+  value: "Hi,\r\n\r\n[node:title] is a newly created draft. Please review it.\r\n\r\nThank you"
   format: plain_text

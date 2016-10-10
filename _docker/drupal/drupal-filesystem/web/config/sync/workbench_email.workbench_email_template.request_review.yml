@@ -1,14 +1,18 @@
-uuid: 1f8e2d7a-5b67-48f2-a0a4-3881dab87f33
+uuid: 850ebab1-2ae9-4d36-a4bf-e241aaf1370b
 langcode: en
 status: true
 dependencies:
   config:
-    - user.role.administrator
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
 id: request_review
 label: 'Request Review'
 subject: 'A new Request for Review'
 roles:
-  administrator: administrator
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
 bundles: {  }
 fields: {  }
 author: false

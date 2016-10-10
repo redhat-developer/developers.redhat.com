@@ -1,11 +1,11 @@
-uuid: e528bdb5-c675-4496-b8ae-57bf39118618
+uuid: 91b88053-1b68-465b-945a-6b45b52cb8e7
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.publish_date
     - node.type.rhd_microsite
-    - scheduled_updates.scheduled_update_type.schedule_updates
+    - scheduled_updates.scheduled_update_type.publish_content
 id: node.rhd_microsite.publish_date
 field_name: publish_date
 entity_type: node
@@ -19,6 +19,6 @@ default_value_callback: ''
 settings:
   handler_settings:
     target_bundles:
-      - schedule_updates
+      - publish_content
   handler: 'default:scheduled_update'
 field_type: entity_reference

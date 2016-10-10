@@ -1,17 +1,21 @@
-uuid: 8c06296a-93a3-4d4d-8312-1008a720c64b
+uuid: 666a3d36-e29c-450e-9b00-2c7b6a4914db
 langcode: en
 status: true
 dependencies:
   config:
-    - user.role.administrator
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
 id: published
 label: Published
 subject: '[node:title] is Published.'
 roles:
-  administrator: administrator
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
 bundles: {  }
 fields: {  }
 author: false
 body:
-  value: "Hi,\r\n\r\nThis is a gentle reminder that [node:title] is published now.\r\n\r\nThank you\r\n"
+  value: "Hi,\r\n\r\n[node:title] is published now.\r\n\r\nThank you"
   format: plain_text

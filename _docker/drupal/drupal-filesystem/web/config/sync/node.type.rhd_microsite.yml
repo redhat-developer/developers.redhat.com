@@ -4,16 +4,25 @@ status: true
 dependencies:
   module:
     - menu_ui
+    - workbench_moderation
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
 _core:
   default_config_hash: 2AG3ZHbNnnCRLYx9Cz3rUnYEOc8gOuTVFfGFzMktGEI
 name: 'Red Hat Developers Microsite Content Type'
 type: rhd_microsite
 description: 'A microsite isn''t much more than raw content'
 help: 'Add a new instance of this type to create a new microsite'
-new_revision: true
+new_revision: null
 preview_mode: 1
 display_submitted: false

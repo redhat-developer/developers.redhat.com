@@ -1,11 +1,11 @@
-uuid: ba3bce7a-362e-4749-b0a9-3e1594452865
+uuid: 55be8593-fefa-4592-bb49-90185e5255d4
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.publish_date
     - node.type.topic
-    - scheduled_updates.scheduled_update_type.schedule_updates
+    - scheduled_updates.scheduled_update_type.publish_content
 id: node.topic.publish_date
 field_name: publish_date
 entity_type: node
@@ -19,6 +19,6 @@ default_value_callback: ''
 settings:
   handler_settings:
     target_bundles:
-      - schedule_updates
+      - publish_content
   handler: 'default:scheduled_update'
 field_type: entity_reference
