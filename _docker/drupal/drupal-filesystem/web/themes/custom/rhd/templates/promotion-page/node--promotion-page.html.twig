@@ -65,31 +65,19 @@ other methods (such as node.delete) will result in an exception.
 * @ingroup themeable
 */
 #}
-<div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-article") }}>
-    <div class="large-19 medium-19 columns">
-        {{ title_prefix }}
-        <h2{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h2>
-        {{ title_suffix }}
-        <div class="gsi-meta article-info">
-            <ul>
-                <li><strong{{ author_attributes }}>By <a>{{content.field_content_author}}</a> </strong></li>
-                <li class="right">
-                    <small>Published: {{ date }}</small>
-                </li>
-            </ul>
-        </div>
+<article{{ attributes.addClass('microsite-tmpl') }}>
+  <div{{ content_attributes.addClass(['row', 'promotion-header']) }}>
+    <div class="large-8 medium-11 small-24 columns">
+      {{ content.field_promotion_page_left_image }}
     </div>
-    <div class="large-5 medium-5 columns">
-        {% include '@rhd/share.html.twig' %}
-        <strong>Tags:</strong> {{ content.field_tags }}
+    <div class="large-16 medium-13 small-24 columns">
+      {{ title_prefix }}
+        <h3{{ title_attributes }}>
+          {{ label }}
+        </h3>
+      {{ title_suffix }}
+      {{ content.body }}
+      {{ content.field_call_to_action_link }}
     </div>
-    <div class="clearfix"></div>
-    <div class="large-4 medium-4 columns">
-        <ul class="toc gsi-nav">
-        </ul>
-        <div>&nbsp;</div>
-    </div>
-    <div{{ content_attributes.addClass(["large-15", "medium-15", "columns", "gsi", "fetch-toc", "article-content"]) }}>
-        {{ content.body }}
-    </div>
-</div>
+  </div>
+</article>

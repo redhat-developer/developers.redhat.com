@@ -1,75 +1,66 @@
-uuid: 1e28ed58-95af-4d4a-b322-5df899e19e45
+uuid: 2a79956b-27b2-44b2-85de-195b3ac26d4f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.article.body
-    - field.field.node.article.comment
-    - field.field.node.article.field_author_name
-    - field.field.node.article.field_content_author
-    - field.field.node.article.field_image
-    - field.field.node.article.field_tags
-    - node.type.article
+    - field.field.node.promotion_page.body
+    - field.field.node.promotion_page.field_call_to_action_link
+    - field.field.node.promotion_page.field_promotion_page_left_image
+    - image.style.thumbnail
+    - node.type.promotion_page
   module:
-    - comment
+    - image
+    - link
     - path
     - text
-_core:
-  default_config_hash: 7CvVDwPYotAZFBa36mcpMKZOfVRRp_iGuPHpHaavI6E
-id: node.article.default
+id: node.promotion_page.default
 targetEntityType: node
-bundle: article
+bundle: promotion_page
 mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 6
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
-  comment:
-    type: comment_default
-    weight: 8
-    settings: {  }
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 5
+    weight: 2
     settings: {  }
     third_party_settings: {  }
-  field_content_author:
-    weight: 1
+  field_call_to_action_link:
+    weight: 8
     settings:
-      size: 60
-      placeholder: ''
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
-    type: string_textfield
-  field_tags:
-    type: entity_reference_autocomplete_tags
-    weight: 3
+    type: link_default
+  field_promotion_page_left_image:
+    weight: 7
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
+    type: image_image
   path:
     type: path
-    weight: 9
+    weight: 5
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 6
+    weight: 3
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 7
+    weight: 4
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -80,12 +71,10 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 4
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden:
-  field_author_name: true
-  field_image: true
+hidden: {  }

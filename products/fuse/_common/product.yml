@@ -1,7 +1,7 @@
 name: Red Hat JBoss Fuse
 abbreviated_name: JBoss Fuse
 product_logo: fuse.png
-current_version: 6.2.0
+current_version: 6.3.0
 product_category: application-development
 default_download_artifact_type: zip
 skip_installation_instructions: true
@@ -21,41 +21,276 @@ customer_portal_download_url: https://access.redhat.com/jbossnetwork/restricted/
 documentation_path: Red_Hat_JBoss_Fuse
 description: 'A lightweight integration platform.'
 guides:
-  Apache_Camel_Component_Reference:
-  Apache_Camel_Development_Guide:
-  Apache_CXF_Development_Guide:
-  Apache_CXF_Security_Guide:
-  API_Reference:
-   formats:
+  Installation_on_Apache_Karaf:
+    formats:
       html:
-  Console_Reference:
-  Deploying_into_a_Web_Server:
-  Deploying_into_the_Container:
-  Fabric_Guide:
-  Getting_Started:
-  Glossary:
-  Installation_Guide:
-  JON_Performance_Metrics_Reference:
-  Management_Console_User_Guide:
-  Managing_OSGi_Dependencies:
-  Migration_Guide:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/installation-on-apache-karaf/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/installation-on-apache-karaf
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Installation_on_Apache_Karaf-en-US/Red_Hat_JBoss_Fuse-6.3-Installation_on_Apache_Karaf-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Installation_on_Apache_Karaf-en-US/Red_Hat_JBoss_Fuse-6.3-Installation_on_Apache_Karaf-en-US.epub
+  Installation_on_JBoss_EAP:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/installation-on-jboss-eap/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/installation-on-jboss-eap
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Installation_on_JBoss_EAP-en-US/Red_Hat_JBoss_Fuse-6.3-Installation_on_JBoss_EAP-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Installation_on_JBoss_EAP-en-US/Red_Hat_JBoss_Fuse-6.3-Installation_on_JBoss_EAP-en-US.epub
+  Developing_and_Deploying_Applications:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/developing-and-deploying-applications/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/developing-and-deploying-applications/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Developing_and_Deploying_Applications-en-US/Red_Hat_JBoss_Fuse-6.3-Developing_and_Deploying_Applications-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Developing_and_Deploying_Applications-en-US/Red_Hat_JBoss_Fuse-6.3-Developing_and_Deploying_Applications-en-US.epub
   Release_Notes:
     formats:
       html:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html/Release_Notes/index.html
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/release-notes/
       html-single:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/html-single/Release_Notes/index.html
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/release-notes/
       pdf:
-        url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/pdf/Release_Notes/Red_Hat_JBoss_Fuse-6.2-Release_Notes-en-US.pdf
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Release_Notes-en-US/Red_Hat_JBoss_Fuse-6.3-Release_Notes-en-US.pdf
       epub:
-        url: https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Fuse/6.2/epub/Release_Notes/Red_Hat_JBoss_Fuse-6.2-Release_Notes-en-US.epub
-    Security_Guide:
-  Tooling_Tutorials:
-  Tooling_User_Guide:
-  Transaction_Guide:
-  XML_Configuration_Reference:
-   formats:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Release_Notes-en-US/Red_Hat_JBoss_Fuse-6.3-Release_Notes-en-US.epub
+  Migration_Guide:
+    formats:
       html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/migration-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/migration-guide
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Migration_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Migration_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Migration_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Migration_Guide-en-US.epub
+  Fabric_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/fabric-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/fabric-guide
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Fabric_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Fabric_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Fabric_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Fabric_Guide-en-US.epub
+  Tooling_Tutorials:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/tooling-tutorials/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/tooling-tutorials/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Tooling_Tutorials-en-US/Red_Hat_JBoss_Fuse-6.3-Tooling_Tutorials-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Tooling_Tutorials-en-US/Red_Hat_JBoss_Fuse-6.3-Tooling_Tutorials-en-US.epub
+  Tooling_User_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/tooling-user-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/tooling-user-guide
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Tooling_User_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Tooling_User_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Tooling_User_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Tooling_User_Guide-en-US.epub
+  Configuring_and_Running_JBoss_Fuse:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/configuring-and-running-jboss-fuse/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/configuring-and-running-jboss-fuse
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Configuring_and_Running_JBoss_Fuse-en-US/Red_Hat_JBoss_Fuse-6.3-Configuring_and_Running_JBoss_Fuse-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Configuring_and_Running_JBoss_Fuse-en-US/Red_Hat_JBoss_Fuse-6.3-Configuring_and_Running_JBoss_Fuse-en-US.epub
+  Deploying_into_Apache_Karaf:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/deploying-into-apache-karaf/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/deploying-into-apache-karaf/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Deploying_into_Apache_Karaf-en-US/Red_Hat_JBoss_Fuse-6.3-Deploying_into_Apache_Karaf-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Deploying_into_Apache_Karaf-en-US/Red_Hat_JBoss_Fuse-6.3-Deploying_into_Apache_Karaf-en-US.epub
+  Managing_OSGi_Dependencies:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/managing-osgi-dependencies/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/managing-osgi-dependencies
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Managing_OSGi_Dependencies-en-US/Red_Hat_JBoss_Fuse-6.3-Managing_OSGi_Dependencies-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Managing_OSGi_Dependencies-en-US/Red_Hat_JBoss_Fuse-6.3-Managing_OSGi_Dependencies-en-US.epub
+  Security_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/security-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/security-guide
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Security_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Security_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Security_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Security_Guide-en-US.epub
+  Transaction_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/transaction-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/transaction-guide/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Transaction_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Transaction_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Transaction_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Transaction_Guide-en-US.epub
+  Management_Console_User_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/management-console-user-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/management-console-user-guide/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Management_Console_User_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Management_Console_User_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Management_Console_User_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Management_Console_User_Guide-en-US.epub
+  Administration_and_Configuration_on_JBoss_EAP:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/administration-and-configuration-on-jboss-eap/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/administration-and-configuration-on-jboss-eap/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Administration_and_Configuration_on_JBoss_EAP-en-US/Red_Hat_JBoss_Fuse-6.3-Administration_and_Configuration_on_JBoss_EAP-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Administration_and_Configuration_on_JBoss_EAP-en-US/Red_Hat_JBoss_Fuse-6.3-Administration_and_Configuration_on_JBoss_EAP-en-US.epub
+  Security_on_JBoss_EAP:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/security-on-jboss-eap/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/security-on-jboss-eap/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Security_on_JBoss_EAP-en-US/Red_Hat_JBoss_Fuse-6.3-Security_on_JBoss_EAP-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Security_on_JBoss_EAP-en-US/Red_Hat_JBoss_Fuse-6.3-Security_on_JBoss_EAP-en-US.epub
+  Deploying_into_a_Web_Server:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/deploying-into-a-web-server/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/deploying-into-a-web-server
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Deploying_into_a_Web_Server-en-US/Red_Hat_JBoss_Fuse-6.3-Deploying_into_a_Web_Server-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Deploying_into_a_Web_Server-en-US/Red_Hat_JBoss_Fuse-6.3-Deploying_into_a_Web_Server-en-US.epub
+  Apache_Camel_Development_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/apache-camel-development-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/apache-camel-development-guide/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Apache_Camel_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Apache_Camel_Development_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Apache_Camel_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Apache_Camel_Development_Guide-en-US.epub
+  Apache_Camel_Component_Reference:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/apache-camel-component-reference/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/apache-camel-component-reference
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Apache_Camel_Component_Reference-en-US/Red_Hat_JBoss_Fuse-6.3-Apache_Camel_Component_Reference-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Apache_Camel_Component_Reference-en-US/Red_Hat_JBoss_Fuse-6.3-Apache_Camel_Component_Reference-en-US.epub
+  Apache_CXF_Development_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/apache-cxf-development-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/apache-cxf-development-guide
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Apache_CXF_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Apache_CXF_Development_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Apache_CXF_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Apache_CXF_Development_Guide-en-US.epub
+  Apache_CXF_Security_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/apache-cxf-security-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/apache-cxf-security-guide/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Apache_CXF_Security_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Apache_CXF_Security_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Apache_CXF_Security_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Apache_CXF_Security_Guide-en-US.epub
+  SwitchYard_Development_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/switchyard-development-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/switchyard-development-guide/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-SwitchYard_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-SwitchYard_Development_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-SwitchYard_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-SwitchYard_Development_Guide-en-US.epub
+  Smooks_Development_Guide:
+    formats:
+     html:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/smooks-development-guide/
+     html-single:
+        url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/smooks-development-guide
+     pdf:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Smooks_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Smooks_Development_Guide-en-US.pdf
+     epub:
+        url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Smooks_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Smooks_Development_Guide-en-US.epub
+  BPEL_Development_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/bpel-development-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/bpel-development-guide
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-BPEL_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-BPEL_Development_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-BPEL_Development_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-BPEL_Development_Guide-en-US.epub
+  Glossary:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/glossary/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/glossary
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Glossary-en-US/Red_Hat_JBoss_Fuse-6.3-Glossary-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Glossary-en-US/Red_Hat_JBoss_Fuse-6.3-Glossary-en-US.epub
+  Console_Reference:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/console-reference/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/console-reference
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Console_Reference-en-US/Red_Hat_JBoss_Fuse-6.3-Console_Reference-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Console_Reference-en-US/Red_Hat_JBoss_Fuse-6.3-Console_Reference-en-US.epub
+  Integration_Guide:
+    formats:
+      html:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/integration-guide/
+      html-single:
+         url: https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/single/integration-guide/
+      pdf:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Integration_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Integration_Guide-en-US.pdf
+      epub:
+         url: https://access.redhat.com/webassets/avalon/d/Red_Hat_JBoss_Fuse-6.3-Integration_Guide-en-US/Red_Hat_JBoss_Fuse-6.3-Integration_Guide-en-US.epub
 upstream_projects:
   - camel
   - karaf
