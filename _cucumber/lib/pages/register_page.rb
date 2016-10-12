@@ -16,6 +16,7 @@ class RegistrationPage < SiteBase
   element(:greeting_field)                         { |b| b.text_field(id: 'user.attributes.greeting') }
   element(:address_line_one_field)                 { |b| b.text_field(id: 'user.attributes.addressLine1') }
   element(:city_field)                             { |b| b.text_field(id: 'user.attributes.addressCity') }
+  element(:state_dropdown)                         { |b| b.select_list(id: 'user.attributes.addressState') }
   element(:postcode_field)                         { |b| b.text_field(id: 'user.attributes.addressPostalCode') }
   element(:phone_number_field)                     { |b| b.text_field(id: 'user.attributes.phoneNumber') }
   element(:finish_button)                          { |b| b.button(value: 'Create my account') }
@@ -26,20 +27,22 @@ class RegistrationPage < SiteBase
   element(:rhd_subscription_terms)                 { |b| b.link(text: 'Red Hat Subscription Agreement') }
   element(:rh_portal_terms)                        { |b| b.link(text: 'Red Hat Portals Terms of Use') }
 
-  value(:email_field_error)                        { |b| b.label(id: 'email-error').when_present.text }
-  value(:password_field_error)                     { |b| b.label(id: 'password-error').when_present.text }
-  value(:password_confirm_field_error)             { |b| b.label(id: 'password-confirm-error').when_present.text }
-  value(:first_name_field_error)                   { |b| b.label(id: 'firstName-error').when_present.text }
-  value(:last_name_field_error)                    { |b| b.label(id: 'lastName-error').when_present.text }
-  value(:company_field_error)                      { |b| b.label(id: 'user.attributes.company-error').when_present.text }
-  value(:country_field_error)                      { |b| b.label(id: 'user.attributes.country-error').when_present.text}
+  value(:email_field_error)                        { |b| b.span(id: 'email-error').when_present.text }
+  value(:password_field_error)                     { |b| b.span(id: 'password-error').when_present.text }
+  value(:password_confirm_field_error)             { |b| b.span(id: 'password-confirm-error').when_present.text }
+  value(:first_name_field_error)                   { |b| b.span(id: 'firstName-error').when_present.text }
+  value(:last_name_field_error)                    { |b| b.span(id: 'lastName-error').when_present.text }
+  value(:company_field_error)                      { |b| b.span(id: 'user.attributes.company-error').when_present.text }
+  value(:country_field_error)                      { |b| b.span(id: 'user.attributes.country-error').when_present.text}
+  value(:city_field_error)                         { |b| b.span(id: 'user.attributes.addressCity-error').when_present.text}
+  value(:state_field_error)                        { |b| b.span(id: 'user.attributes.addressState-error').when_present.text}
 
   action(:accept_all_terms)                        { |p| p.all_terms.click }
   action(:create_account)                          { |p| p.finish_button.click }
   action(:click_github_button)                     { |p| p.github_button.when_present.click }
   action(:click_link_social_to_existing_acc)       { |p| p.link_social_to_existing_acc.when_present.click }
 
-  def fill_in_form(first_name, last_name, email, company, country, password, password_confirm)
+  def fill_in_form(first_name, last_name, email, company, country=nil, city=nil, state=nil, password, password_confirm)
     expand_register_choice_email
     type(email_field, email)
     type(password_field, password)
@@ -48,10 +51,16 @@ class RegistrationPage < SiteBase
     type(last_name_field, last_name)
     type(company_field, company)
     select_country(country) unless country.nil?
+    type(city_field, city) unless city.nil?
+    select_state(state) unless state.nil?
   end
 
   def select_country(country)
     country_dropdown.select(country)
+  end
+
+  def select_state(state)
+    state_dropdown.select(state)
   end
 
   def expand_register_choice_email
