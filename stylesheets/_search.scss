@@ -441,18 +441,14 @@ img.video-thumb {
   }
 }
 
-div.search-wrapper.mobile {
-  display: none;
-}
-
 @include tablet-portrait-and-down {
-  li.search-wrapper.desktop {
-    display: none;
-  }
-  div.search-wrapper.mobile {
-    display: block;
-    margin: 20px 15px;
-    padding-bottom: 0;
+  nav.accounts div.search-wrapper {
+    top: 0;
+    width: 100%;
+    input.user-search {
+      height: 50px;
+      width: 100%;
+    }
   }
 }
 
