@@ -10,8 +10,10 @@ class AdditionalActionPage < SiteBase
   element(:confirm_password_field)       { |b| b.text_field(id: 'password-confirm') }
   element(:first_name_field)             { |b| b.text_field(id: 'firstName') }
   element(:last_name_field)              { |b| b.text_field(id: 'lastName') }
+  element(:city_field)                   { |b| b.text_field(id: 'user.attributes.addressCity') }
   element(:company_field)                { |b| b.text_field(id: 'user.attributes.company') }
   element(:country_dropdown)             { |b| b.select_list(id: 'user.attributes.country') }
+  element(:state_dropdown)               { |b| b.select_list(id: 'user.attributes.addressState') }
   element(:all_terms)                    { |b| b.checkbox(id: 'tac-checkall') }
   element(:tac1)                         { |b| b.checkbox(id: 'user.attributes.tcacc-6') }
   element(:tac2)                         { |b| b.checkbox(id: 'user.attributes.tcacc-1246') }
@@ -28,13 +30,15 @@ class AdditionalActionPage < SiteBase
   value(:feedback)                       { |p| p.warning.when_present.text }
   value(:email_field_error_text)         { |p| p.email_field_error.when_present.text }
 
-  def fill_in(email, password, first_name, last_name, company, country)
+  def fill_in(email, password, first_name, last_name, company, country, city, state)
     type(email_field, email) unless email.nil?
     enter_password(password, password) unless password.nil?
     type(first_name_field, first_name) unless first_name.nil?
     type(last_name_field, last_name) unless last_name.nil?
     type(company_field, company) unless company.nil?
     select_country(country) unless country.nil?
+    select_state(state) unless state.nil?
+    type(city_field, city) unless city.nil?
   end
 
   def enter_email(email)
@@ -48,6 +52,14 @@ class AdditionalActionPage < SiteBase
 
   def select_country(country)
     country_dropdown.when_present.select(country)
+  end
+
+  def select_state(state)
+    state_dropdown.when_present.select(state)
+  end
+
+  def enter_city(city)
+    type(city_field, city)
   end
 
   def enter_company(company)
