@@ -14,8 +14,6 @@ And(/^the following newly registered details should be added to my profile:$/) d
           expect(page.last_name.value.downcase).to eq $site_user[:last_name].downcase
         when 'Company'
           expect(page.company.value.downcase).to eq $site_user[:company_name].downcase
-        when 'Country'
-          expect(page.country).to eq $site_user[:country]
         when 'Red Hat Developer Program subscription date'
           reg_date = keycloak_admin.get_registration_date($site_user[:email])
           expect(page.agreement_date.value).to eq reg_date
