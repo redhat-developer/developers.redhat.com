@@ -140,14 +140,19 @@
 div.mobile.product-color {
   margin: -15px -15px 10px -15px;
   padding-bottom: 0;
-  border-top: 9px solid $app-development;
+
+  &.storage-and-big-data {border-top: 9px solid $storage;}
+  &.it-infrastructure {border-top: 9px solid $infrastructure-alt;}
+  &.application-development {border-top: 9px solid $app-development;}
+
 }
 
-section.mobile.product-header {
+.mobile.product-header {
   background-image: none;
   background-color: $white;
   color: $grey-7;
   border-bottom: none;
+  padding-bottom: 0;
 
   h3 {
     font-weight: 600;
@@ -178,7 +183,7 @@ section.mobile.product-header {
 
 }
 
-section.mobile.product-header, .mobile.build-panel {
+.mobile.product-header, .mobile.build-panel {
   a.button {
     display: block;
 
