@@ -273,6 +273,7 @@ end
 
 When(/^I register a new account$/) do
   $site_user = generate_user
+  puts "Registered user details: #{$site_user[:email]}, #{$site_user[:password]}, #{$site_user[:first_name]} #{$site_user[:last_name]}, #{$site_user[:company_name]}, #{$site_user[:country]}"
   visit HomePage do |page|
     page.open_register_page
   end
