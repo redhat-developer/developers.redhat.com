@@ -32,7 +32,12 @@
         "drupal/simple_sitemap": "2.3.0",
 	"drupal/pathauto": "dev-1.x",
         "drupal/config_update": "1.1.0",
-        "drupal/ctools": "3.0.0-alpha26"
+        "drupal/ctools": "3.0.0-alpha26",
+        "drupal/scheduled_updates": "dev-1.x",
+        "drupal/inline_entity_form": "dev-1.x",
+        "drupal/workbench": "1.0-alpha2",
+        "drupal/workbench_moderation": "dev-2.x",
+        "drupal/workbench_email": "dev-1.x"
     },
     "require-dev": {
         "behat/mink": "1.7.1",
@@ -86,6 +91,9 @@
         "patches": {
             "drupal/core": {
                 "Avoid to check the render context to detect early rendering for Non-GET requests.": "2663638-2.patch"
+            },
+            "drupal/scheduled_updates": {
+                "No canonical link for update types": "https://www.drupal.org/files/issues/scheduled_updates-no-canonical-link-for-update-type.patch"     
             }
         }
     }

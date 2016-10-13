@@ -1,0 +1,23 @@
+uuid: d48b59f9-96ba-475f-890d-993da81050d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - workbench_moderation.moderation_state.archived
+    - workbench_moderation.moderation_state.published
+  module:
+    - workbench_email
+  enforced:
+    config:
+      - workbench_email.workbench_email_template.archive
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      archive: archive
+_core:
+  default_config_hash: n1R8yl6YLhQY2aPEXy5LQCU77k6ZfU2nRhHS3POl1fA
+id: published_archived
+label: Archive
+stateFrom: published
+stateTo: archived
+weight: -3

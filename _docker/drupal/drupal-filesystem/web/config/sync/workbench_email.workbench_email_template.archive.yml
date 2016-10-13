@@ -1,0 +1,21 @@
+uuid: e0648ab4-0791-4981-a22a-d04a773c3d24
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
+id: archive
+label: Archive
+subject: 'Content state is changed to Archive'
+roles:
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi,\r\n\r\n[node:title] is changed to Archive from Published. Please review.\r\n\r\nThank you"
+  format: plain_text

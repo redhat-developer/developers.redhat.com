@@ -1,0 +1,21 @@
+uuid: 1ae79a09-4ee1-444b-9356-2dec5f740c48
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
+id: send_back_to_draft
+label: 'Send Back to Draft'
+subject: '[node:title] is sent back to Draft.'
+roles:
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi,\r\n\r\n[node:title] is sent back to draft. Please review it.\r\n\r\nThank you"
+  format: plain_text

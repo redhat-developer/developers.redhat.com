@@ -1,0 +1,17 @@
+uuid: e892a05e-ebfd-4bda-b4a3-92cacc8ab814
+langcode: en
+status: true
+dependencies: {  }
+id: publish_content
+label: 'Publish Content'
+update_entity_type: node
+update_types_supported:
+  - embedded
+field_map:
+  field_moderation_state: moderation_state
+update_runner:
+  id: latest_revision
+  after_run: DELETE
+  invalid_update_behavior: DELETE
+  create_revisions: BUNDLE_DEFAULT
+  update_user: USER_UPDATE_RUNNER

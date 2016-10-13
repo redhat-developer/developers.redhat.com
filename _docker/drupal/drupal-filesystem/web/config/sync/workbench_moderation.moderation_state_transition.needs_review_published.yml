@@ -1,0 +1,23 @@
+uuid: cfa643cd-8495-4032-9443-5ae06c51387c
+langcode: en
+status: true
+dependencies:
+  config:
+    - workbench_moderation.moderation_state.needs_review
+    - workbench_moderation.moderation_state.published
+  module:
+    - workbench_email
+  enforced:
+    config:
+      - workbench_email.workbench_email_template.published
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      published: published
+_core:
+  default_config_hash: VXyoFvRkXMLJtm0BpblTlBBrGiznxeDSoycaEEYsBVM
+id: needs_review_published
+label: Publish
+stateFrom: needs_review
+stateTo: published
+weight: -7
