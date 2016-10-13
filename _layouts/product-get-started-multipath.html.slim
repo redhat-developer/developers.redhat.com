@@ -18,14 +18,14 @@ type: Get Started
   - pathName = ((currentPage.rpartition("-"))[-1]).chomp("/");
   - if (currentPage.include?('rhel7') || currentPage.include?('rhel6')) && pathName != 'java'
     .large-24.columns.multipath-tabs-sm
-      ul.tabs.nav-tabs(data-tab role="tablist")
+      ul.tabs.nav-tabs.current-tabs(data-tab role="tablist")
         li(class=(currentPage.include?('rhel7') ? 'active' : '') role="presentation")
           a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel7-#{pathName}/' onclick="window.location=this.href;return false;") RHEL 7
         li(class=(currentPage.include?('rhel6') ? 'active' : '') role="presentation")
           a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel6-#{pathName}/' onclick="window.location=this.href;return false;") RHEL 6
 
   .os-tabs.tabs-content
-    section.content.active(role="tabpanel" aria-hidden="false")
+    section.content.active.update-content(role="tabpanel" aria-hidden="false")
         .row(data-equalizer)
           .large-8.columns.step-cards(data-equalizer-watch)
             a.card(href="#Step1")
@@ -141,4 +141,4 @@ type: Get Started
 = javascripts('product-get-started', true) do
   script src="#{site.base_url}/javascripts/vendor/class.create.js"
   script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
-  script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"      
+  script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"     
