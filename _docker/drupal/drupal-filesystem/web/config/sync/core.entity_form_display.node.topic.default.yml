@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.topic.field_blue_card_title
     - field.field.node.topic.field_bottom_left_white_card
     - field.field.node.topic.field_bottom_right_white_card
+    - field.field.node.topic.field_data_tags
     - field.field.node.topic.field_green_card
     - field.field.node.topic.field_grey_card
     - field.field.node.topic.field_orange_card
@@ -69,6 +70,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_data_tags:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_green_card:
     weight: 12
     settings:
