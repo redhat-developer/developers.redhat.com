@@ -41,7 +41,6 @@ class ResourcesPage < StandardisedSearch
 
   def keyword_search(search_string)
     type(keyword_field, search_string)
-    wait_for_loading
     wait_until_loaded
   end
 

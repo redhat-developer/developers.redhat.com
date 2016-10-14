@@ -135,10 +135,6 @@ class DrupalInstallChecker
   def import_config
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
-    process_executor.exec!('/var/www/drupal/vendor/bin/drupal',
-                           %w(--root=/var/www/drupal/web config:delete active field.storage.node.field_author_name))
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
   end
 end
 
@@ -147,13 +143,16 @@ if $0 == __FILE__
   opts = YAML.load_file(File.join(drupal_site_dir, 'rhd.settings.yml'))
   checker = DrupalInstallChecker.new(drupal_site_dir, ProcessExecutor.new, opts)
 
+  puts 'Waiting for mysql to boot up...'
   mysql_up = false
+
   until mysql_up
-    puts 'Waiting for mysql to boot up...'
     mysql_up = checker.mysql_connect?
+    sleep(3)
   end
 
   if checker.installed?
+    puts 'Updating configuration...'
     checker.import_config
     checker.update_db
   else

@@ -23,7 +23,6 @@ Feature: Social registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Country                                     |
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
@@ -51,7 +50,6 @@ Feature: Social registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Country                                     |
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
@@ -69,7 +67,6 @@ Feature: Social registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Country                                     |
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
@@ -100,6 +97,5 @@ Feature: Social registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Country                                     |
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |

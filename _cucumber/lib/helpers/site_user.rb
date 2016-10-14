@@ -1,6 +1,26 @@
 module SiteUser
 
-  def generate_user
+  def generate_user(country=nil)
+
+    country = ['United States', 'Czech Republic', 'United Kingdom', 'Canada'].sample if country == nil
+
+    case country
+      when 'United States'
+        state = 'Washington'
+        city = 'Washington DC'
+      when 'Canada'
+        state = 'Ontario'
+        city = 'Ottawa'
+      when 'Mexico'
+        state = 'Mexico'
+        city = 'Mexico City'
+      when 'Ukraine'
+        state = nil
+        city = 'Kiev'
+      else
+        state = nil
+        city = nil
+    end
 
     {
         email: "redhat-developers-testers+sid_#{$session_id}_#{Faker::Lorem.characters(5)}@redhat.com",
@@ -10,9 +30,10 @@ module SiteUser
         password: Faker::Internet.password,
         company_name: Faker::Company.name,
         address_line_one: Faker::Address.street_address,
-        city: Faker::Address.city_prefix,
+        city: city,
+        state: state,
         postal_code: Faker::Address.postcode,
-        country: ['United States', 'Czech Republic', 'United Kingdom'].sample,
+        country: country,
         phone_number: '0191 1111111'
 
     }

@@ -5,6 +5,70 @@ Feature: Basic personal registration
   So that I can use its services.
 
   @logout
+  Scenario Outline: United States, Canada and Mexico customer must be prompted to enter state and city.
+    Given I am on the Registration page
+    When I complete the registration form, selecting my country as "<country>"
+    Then I should be registered and logged in
+    When I am on the Edit Details page
+    And the following newly registered details should be added to my profile:
+      | Username                                    |
+      | Email                                       |
+      | First Name                                  |
+      | Last name                                   |
+      | Company                                     |
+      | Red Hat Developer Program subscription date |
+      | Privacy & Subscriptions status              |
+
+    Examples: countries whom are required to enter city and state
+      | country       |
+      | United States |
+      | Canada        |
+      | Mexico        |
+
+
+  Scenario Outline: United States, Canada and Mexico customer must be prompted to enter state - validation message
+    Given I am on the Registration page
+    When I complete the registration with my country as "<country>" with an empty "state field"
+    Then I should see a "state field" error with "State/Province is required"
+
+    Examples: countries whom are required to enter city and state
+      | country       |
+      | United States |
+      | Canada        |
+      | Mexico        |
+
+  Scenario Outline: United States, Canada and Mexico customer must be prompted to enter city - validation message
+    Given I am on the Registration page
+    When I complete the registration with my country as "<country>" with an empty "city field"
+    Then I should see a "city field" error with "City is required"
+
+    Examples: countries whom are required to enter city and state
+      | country       |
+      | United States |
+      | Canada        |
+      | Mexico        |
+
+  Scenario: Customer from Ukraine must be prompted to enter city - validation message
+    Given I am on the Registration page
+    When I complete the registration with my country as "Ukraine" with an empty "city field"
+    Then I should see a "city field" error with "City is required"
+
+  @logout
+  Scenario: Customers from Ukraine must be prompted to enter city when registering.
+    Given I am on the Registration page
+    When I complete the registration form, selecting my country as "Ukraine"
+    Then I should be registered and logged in
+    When I am on the Edit Details page
+    And the following newly registered details should be added to my profile:
+      | Username                                    |
+      | Email                                       |
+      | First Name                                  |
+      | Last name                                   |
+      | Company                                     |
+      | Red Hat Developer Program subscription date |
+      | Privacy & Subscriptions status              |
+
+  @logout
   Scenario: User can register by navigating directly to the /register page
     Given I navigate to the "/register" page
     When I complete the registration form
@@ -16,7 +80,6 @@ Feature: Basic personal registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Country                                     |
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
@@ -32,7 +95,6 @@ Feature: Basic personal registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Country                                     |
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 

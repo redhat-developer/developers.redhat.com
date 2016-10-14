@@ -123,6 +123,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     When I enter "bfehwfbhbn" into the Keyword's box
     Then I should see a message "No results found"
 
+  @later
   Scenario: When no results message has previously been displayed, and then I search for a valid resource, the results are displayed and the message is removed.
     Given I am on the Resources page
     And I enter "bfehwfbhbn" into the Keyword's box
