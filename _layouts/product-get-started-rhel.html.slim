@@ -13,7 +13,7 @@ type: Get Started
 
   - if page.product.rhel_install_paths
     .large-24.columns.multipath-tabs-sm
-      ul.tabs.nav-tabs(data-tab role="tablist" data-options="deep_linking:true;scroll_to_content:false")
+      ul.tabs.nav-tabs.current-tabs(data-tab role="tablist" data-options="deep_linking:true;scroll_to_content:false")
         - page.product.rhel_install_paths.each do |rpath|
           li(role="presentation" class=(rpath.id.eql?('bare-metal') ? 'active' : ''))
             a(href="##{rpath.id}" role="tab" data-toggle="tab" aria-controls="#{rpath.id}") #{rpath.name}
@@ -46,7 +46,7 @@ type: Get Started
           .small-20.large-19.columns
             .tabs-content
               - page.product.rhel_install_paths.each do |rpath|
-                section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}")
+                section.update-content(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id='#{rpath.id}')
                   - q = rpath.id
                   - if q == 'bare-metal'
                     h4 = page._step2_baremetal_title
@@ -119,7 +119,7 @@ type: Get Started
           .small-23.columns.step2-title
             .tabs-content
               - page.product.rhel_install_paths.each do |rpath|
-                section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}")
+                section.update-content(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id='#{rpath.id}')
                   - q = rpath.id
                   - if q == 'bare-metal'
                     h4 = page._step2_baremetal_title
@@ -135,7 +135,7 @@ type: Get Started
     div#expandStepTwo
       .tabs-content
         - page.product.rhel_install_paths.each do |rpath|
-          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}") 
+          section.update-content(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id='#{rpath.id}') 
             - if page._step2_pre_install
               .large-24#Step2PreInstall
                 = page._step2_pre_install
@@ -167,7 +167,7 @@ type: Get Started
     div#expandStepThree
       .tabs-content
         - page.product.rhel_install_paths.each do |rpath|
-          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id="#{rpath.id}")
+          section(role="tabpanel" aria-hidden="false" class=(rpath.id.eql?('bare-metal') ? 'active content' : 'content') id='#{rpath.id}')
             - q = rpath.id
             - if q == 'bare-metal'
               = page._step3_baremetal_content
@@ -245,4 +245,5 @@ type: Get Started
   script src="#{site.base_url}/javascripts/vendor/class.create.js"
   script src="#{site.base_url}/javascripts/vendor/jquery-encoder-0.1.0.js"
   script src="#{site.base_url}/javascripts/vendor/jquery.filedownload.js"      
+  script src="#{site.base_url}/javascripts/current-tab.js"      
 
