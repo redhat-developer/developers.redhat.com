@@ -85,8 +85,6 @@ end
 at_exit do
   b.browser.quit
 
-  FileUtils.rm_rf $download_directory
-
   ReportBuilder.configure do |config|
     config.json_path = '_cucumber/reports/'
     config.report_path = '_cucumber/reports/rhd_test_report'
