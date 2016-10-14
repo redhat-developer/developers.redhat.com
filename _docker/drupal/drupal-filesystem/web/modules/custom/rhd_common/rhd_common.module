@@ -1,14 +1,20 @@
 <?php
+
 /**
  * @file
  * Add various functionalities here.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Implements hook_form_alter().
  */
-function rhd_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // If Article add form, add custom form validator.
   if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
     $pathauto = $form['path']['widget'][0]['pathauto'];
@@ -26,25 +32,24 @@ function rhd_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $for
   }
 }
 
-
 /**
  * Custom form validator.
  */
-function rhd_common_custom_form_validator(array &$element, \Drupal\Core\Form\FormStateInterface $form_state) {
+function rhd_common_custom_form_validator(array &$element, FormStateInterface $form_state) {
   // Trim the submitted value of whitespace and slashes.
   $alias = rtrim(trim($element['alias']['#value']), " \\/");
   $element['alias']['#attached']['library'][] = 'rhd_common/sample_library';
   if (empty($element['pathauto']['#checked']) && empty($alias)) {
     $form_state->setError($element, t('please add a url alias.'));
   }
-  
+
   if (!empty($alias)) {
     // Check if alias already has a slash.
     if (substr($alias, 0, 1) !== '/') {
       $alias = '/' . $alias;
     }
     $form_state->setValueForElement($element['alias'], $alias);
-    //Validate that the submitted alias does not exist yet.
+    // Validate that the submitted alias does not exist yet.
     $is_exists = \Drupal::service('path.alias_storage')->aliasExists($alias, $element['langcode']['#value'], $element['source']['#value']);
     if ($is_exists) {
       $form_state->setError($element, t('The alias is already in use.'));
@@ -55,3 +60,56 @@ function rhd_common_custom_form_validator(array &$element, \Drupal\Core\Form\For
     $form_state->setError($element, t('The alias needs to start with a slash.'));
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function rhd_common_theme($existing, $type, $theme, $path) {
+  return array(
+    'product-pages' => array(
+      'variables' => array(
+        'title' => NULL,
+        'summary' => NULL,
+        'get_started' => NULL,
+        'disable_get_started' => NULL,
+        'product_pages' => NULL,
+        'main_content' => NULL,
+        'buzz_tags' => NULL,
+      ),
+    ),
+    'product-pages-docs-apis' => array(
+      'variables' => array(
+        'title' => NULL,
+        'summary' => NULL,
+        'get_started' => NULL,
+        'disable_get_started' => NULL,
+        'product_pages' => NULL,
+        'main_content' => NULL,
+        'documents_row' => NULL,
+        'all_download_versions' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  if ($view_mode == 'full' && $node->getType() == 'product') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+    if ($path_args[1] == 'node') {
+      $product_code = $node->field_product_machine_name->value;
+      if (!empty($product_code)) {
+        $url = Url::fromRoute('rhd_common.main_page_controller', array(
+          'product_code' => $product_code,
+          'sub_page' => 'overview',
+        ), array('absolute' => TRUE))->toString();
+        $response = new RedirectResponse($url);
+        $response->send();
+      }
+    }
+  }
+}
+

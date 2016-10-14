@@ -1,0 +1,41 @@
+uuid: 4b70c7c1-0693-41ae-adbb-17adde554a32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.community.field_overview_hide_get_started
+    - field.field.paragraph.community.field_overview_main_content
+    - field.field.paragraph.community.field_overview_url
+    - paragraphs.paragraphs_type.community
+  module:
+    - text
+id: paragraph.community.default
+targetEntityType: paragraph
+bundle: community
+mode: default
+content:
+  field_overview_hide_get_started:
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_overview_main_content:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_overview_url:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

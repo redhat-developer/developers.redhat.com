@@ -1,0 +1,41 @@
+uuid: 76578d60-b8fc-4b3e-ab6c-d16bda200c56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.learn.field_overview_hide_get_started
+    - field.field.paragraph.learn.field_overview_main_content
+    - field.field.paragraph.learn.field_overview_url
+    - paragraphs.paragraphs_type.learn
+  module:
+    - text
+id: paragraph.learn.default
+targetEntityType: paragraph
+bundle: learn
+mode: default
+content:
+  field_overview_hide_get_started:
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_overview_main_content:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_overview_url:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

@@ -1,0 +1,19 @@
+uuid: 298f7a88-40cf-4b5d-96d9-42b7c3b2e427
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_product_summary
+field_name: field_product_summary
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

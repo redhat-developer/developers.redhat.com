@@ -1,0 +1,21 @@
+uuid: 5f2346b3-aa96-470c-a22d-925e16b4d3d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_overview_main_content
+    - paragraphs.paragraphs_type.get_started
+  module:
+    - text
+id: paragraph.get_started.field_overview_main_content
+field_name: field_overview_main_content
+entity_type: paragraph
+bundle: get_started
+label: 'Main Content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

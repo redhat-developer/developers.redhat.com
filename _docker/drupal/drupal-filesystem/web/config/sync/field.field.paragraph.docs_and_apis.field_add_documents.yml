@@ -1,0 +1,63 @@
+uuid: 6e742a26-2e29-4e00-82eb-0e624c0d7c66
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_add_documents
+    - paragraphs.paragraphs_type.docs_and_apis
+    - paragraphs.paragraphs_type.document_details
+  module:
+    - entity_reference_revisions
+id: paragraph.docs_and_apis.field_add_documents
+field_name: field_add_documents
+entity_type: paragraph
+bundle: docs_and_apis
+label: 'Add Documents'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      document_details: document_details
+    target_bundles_drag_drop:
+      buzz:
+        weight: 13
+        enabled: false
+      community:
+        weight: 14
+        enabled: false
+      docs_and_apis:
+        weight: 15
+        enabled: false
+      document_details:
+        enabled: true
+        weight: 16
+      download:
+        weight: 17
+        enabled: false
+      get_started:
+        weight: 18
+        enabled: false
+      help:
+        weight: 19
+        enabled: false
+      learn:
+        weight: 20
+        enabled: false
+      main_content:
+        weight: 21
+        enabled: false
+      overview:
+        weight: 22
+        enabled: false
+      resources:
+        weight: 23
+        enabled: false
+      updates:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

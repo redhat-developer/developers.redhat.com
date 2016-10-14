@@ -1,0 +1,21 @@
+uuid: bdc109d0-38c5-4012-aaf5-4976dc6c79aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_all_document_versions
+    - paragraphs.paragraphs_type.docs_and_apis
+  module:
+    - text
+id: paragraph.docs_and_apis.field_all_document_versions
+field_name: field_all_document_versions
+entity_type: paragraph
+bundle: docs_and_apis
+label: 'All Document Versions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,40 @@
+uuid: a1e1655e-ea18-4613-bc1b-045d3d6e2c3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.resources.field_overview_hide_get_started
+    - field.field.paragraph.resources.field_overview_main_content
+    - field.field.paragraph.resources.field_overview_url
+    - paragraphs.paragraphs_type.resources
+  module:
+    - text
+id: paragraph.resources.default
+targetEntityType: paragraph
+bundle: resources
+mode: default
+content:
+  field_overview_hide_get_started:
+    weight: 1
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_overview_main_content:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_overview_url:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  status: true
+  uid: true

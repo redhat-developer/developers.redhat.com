@@ -20,8 +20,11 @@ module:
   dynamic_page_cache: 0
   editor: 0
   entity: 0
+  entity_reference_revisions: 1
   entity_storage_migrate: 0
   field: 0
+  field_collection: 1
+  field_group: 1
   field_ui: 0
   file: 0
   filter: 0
@@ -42,16 +45,19 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  paragraphs: 1
   path: 0
   pathauto: 1
   quickedit: 0
   rdf: 0
   redhat_developers: 0
   rest: 0
+  rhd_common: 0
   search: 0
   serialization: 0
   shortcut: 0
   simple_sitemap: 0
+  subpathauto: 1
   syslog: 0
   system: 0
   taxonomy: 0
@@ -62,7 +68,9 @@ module:
   update: 0
   user: 0
   views_ui: 0
+  ctools: 1
   menu_link_content: 1
+  pathauto: 1
   views: 10
   standard: 1000
 theme:
