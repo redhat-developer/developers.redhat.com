@@ -67,12 +67,6 @@ section.topics-dotted-graphics#IoT
               .tertiary-tall-promo
                 h4 #{c.title}
                 p #{c.description}
-                - if c.tags
-                  span.promo-tags
-                    .promo-tags-label Tags:
-                    ul
-                      - c.tags.each do |tag|
-                        li #{tag}
 
         .large-12.columns
           .row
@@ -86,12 +80,7 @@ section.topics-dotted-graphics#IoT
                   .tertiary-promo
                     h5 #{d.title}
                     p #{d.description}
-                    - if d.tags
-                      span.promo-tags
-                        .promo-tags-label Tags:
-                        ul
-                          - d.tags.each do |tag|
-                            li #{tag}
+
         .large-6.columns.right
           - page.solution.right_side_promo.each do |e|
             .right-side-promo

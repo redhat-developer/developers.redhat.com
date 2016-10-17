@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - token_filter
 _core:
   default_config_hash: ai1qYdml2s6HQZbQVHOBAau9UKxTBSlLYhTzckjOyJs
 name: 'Red Hat Developers Approved HTML'
@@ -37,3 +38,10 @@ filters:
     status: true
     weight: 11
     settings: {  }
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: true
+    weight: 0
+    settings: {  }
+    
