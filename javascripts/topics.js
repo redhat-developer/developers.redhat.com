@@ -70,9 +70,6 @@ app.topics.render = function(materials) {
       '<p class="description">',
       material.fields.sys_description[0],
       '</p>',
-      '<p class="tags">Tags: ',
-      tags + "...",
-      '</p>',
       '</li>',
       '</a>'
     ].join('');
