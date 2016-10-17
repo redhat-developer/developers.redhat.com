@@ -6,7 +6,7 @@ end
 
 class GitHub
 
-  @@valid_contexts = ['Unit Tests', 'Site Preview', 'Acceptance Tests', 'Blinkr']
+  @@valid_contexts = ['Unit Tests', 'Site Preview', 'Acceptance Tests']
 
   Octokit.configure do |c|
     c.access_token = ENV['github_status_api_token']
