@@ -100,7 +100,7 @@ end
 Then(/^each Topics sub\-menu item should contain a link to its retrospective page:$/) do |table|
   table.hashes.each do |row|
     href = @current_page.get_href_for("#{row['name']}")
-    expect(href).to include "#{$host_to_test}/#{row['href']}"
+    expect(href).to include "/#{row['href']}"
   end
 end
 
@@ -127,7 +127,7 @@ Then(/^each available technology should link to their retrospective product over
   product_ids.each do |product_id|
     @product_id = product_id
   end
-  expect(@href).to include "#{$host_to_test}/products/#{@product_id}/overview"
+  expect(@href).to include "/products/#{@product_id}/overview"
 end
 
 Then(/^each Communities sub\-menu item should contain a link to its retrospective page:$/) do |table|
@@ -136,7 +136,7 @@ Then(/^each Communities sub\-menu item should contain a link to its retrospectiv
     if row['name'] == 'Developers Blog'
       expect(href).to include 'http://developers.redhat.com/blog'
     else
-      expect(href).to include "#{$host_to_test}/#{row['href']}"
+      expect(href).to include "/#{row['href']}"
     end
   end
 end
@@ -145,9 +145,9 @@ Then(/^each Help sub\-menu item should contain a link to its retrospective page:
   table.hashes.each do |row|
     href = @current_page.get_href_for("#{row['name']}")
     if row['name'] == 'Resources'
-      expect(href).to include "#{$host_to_test}/resources"
+      expect(href).to include "/resources"
     else
-      expect(href).to include "#{$host_to_test}/#{row['href']}"
+      expect(href).to include "/#{row['href']}"
     end
   end
 end
