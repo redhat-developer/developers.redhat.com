@@ -6,7 +6,7 @@ class ResourcesPage < StandardisedSearch
   #page_title('Discover the developer materials Red Hat has to offer')
 
   element(:blog_posts)             { |b| b.element(xpath: "//label[@for='blogposts']") }
-  element(:books)                  { |b| b.element(xpath: "//label[@for='book']") }
+  element(:book)                   { |b| b.element(xpath: "//label[@for='book']") }
   element(:code)                   { |b| b.element(xpath: "//label[@for='code']") }
   element(:get_started)            { |b| b.element(xpath: "//label[@for='get-started']") }
   element(:knowledgebase)          { |b| b.element(xpath: "//label[@for='knowledge']") }
@@ -42,6 +42,12 @@ class ResourcesPage < StandardisedSearch
   def keyword_search(search_string)
     type(keyword_field, search_string)
     wait_until_loaded
+  end
+
+  def filter_by(filter_type)
+    element = send("#{filter_type.downcase.gsub(' ', '_')}")
+    element.when_present.fire_event('click')
+    wait_for_results
   end
 
   def filter_by_product(product)

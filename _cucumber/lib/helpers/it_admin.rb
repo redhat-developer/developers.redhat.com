@@ -152,6 +152,7 @@ class ItAdmin
             :accept => :json
         }
     )
+    JSON.parse(@user_profile)
   end
 
   def disable_user(email)
@@ -181,6 +182,70 @@ class ItAdmin
 
         :personalSite => {
             :id => hash[0]['personalSite']['id'],
+            :defaultSite => 'true',
+            :siteType => 'MARKETING',
+
+            :address => {
+                :address1 => @address_line_one,
+                :countryCode => @country,
+                :postalCode => @postal_code,
+                :city => @city,
+                :poBox => 'false'
+            },
+            :active => 'false',
+        }
+    }
+    tries = 0
+    begin
+      RestClient::Request.execute(
+          :method => :post,
+          :url => 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/update',
+          :payload => @account_details.to_json,
+          :verify_ssl => false,
+          :headers => {
+              :content_type => :json,
+              :accept => :json
+          },
+      )
+
+    rescue => e
+      tries += 1
+      if tries <= 10
+        p "attempt #{tries}"
+        retry
+      else
+        raise("Failed to update user: Exception was #{e}")
+      end
+    end
+  end
+
+  def update_user(email, company, first_name, last_name)
+    user_profile = find_user_by_email(email)
+    puts user_profile
+    puts "#{user_profile[0]['id']}!!!!!!!!"
+    @account_details = {
+        :id => user_profile[0]['id'],
+        :login => @username,
+        :userType => 'P',
+        :active => 'false',
+        :password => @password,
+        :system => 'WEB',
+
+        :personalInfo => {
+            :company => company,
+            :firstName => first_name,
+            :title => 'Test Engineer',
+            :greeting => @greeting,
+            :lastName => last_name,
+            :email => @email,
+            :emailConfirmed => 'true',
+            :phoneNumber => '0191 2222222',
+            :password => @password,
+            :locale => @locale
+        },
+
+        :personalSite => {
+            :id => user_profile[0]['personalSite']['id'],
             :defaultSite => 'true',
             :siteType => 'MARKETING',
 

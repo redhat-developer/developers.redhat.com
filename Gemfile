@@ -56,6 +56,7 @@ gem 'listen', '3.0.8'
 gem 'aweplug', git: 'https://github.com/awestruct/aweplug'
 
 group :test do
+  gem 'colorize'
   gem 'climate_control'
   gem 'guard'
   gem 'guard-minitest'
@@ -64,8 +65,7 @@ group :test do
   gem 'cucumber', '~>2.0'
   gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
-  gem 'watir', '>= 6.0.0.beta2'
-  gem 'webdriver-user-agent'
+  gem 'watir', '>= 6.0.0.beta5'
   gem 'parallel_tests', '~> 1.9.0'
   gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'

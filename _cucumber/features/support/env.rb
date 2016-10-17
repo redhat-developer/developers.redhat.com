@@ -16,8 +16,8 @@ require 'pry'
 require 'report_builder'
 require 'octokit'
 require 'date'
-require 'active_support/core_ext'
-require 'webdriver-user-agent'
+require 'colorize'
+require 'colorized_string'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract*.rb"].each { |page| load page }
@@ -30,38 +30,42 @@ World PageHelper
 World DriverHelper
 
 if ENV['HOST_TO_TEST'].to_s.empty?
-  $host_to_test                  = 'http://developers.stage.redhat.com'
+  $host_to_test = 'https://developers.stage.redhat.com'
   $keycloak_base_url = 'https://developers.stage.redhat.com'
-  $download_manager_base_url     = 'https://developers.stage.redhat.com/download-manager/rest/available'
+  $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
 else
   case ENV['HOST_TO_TEST']
     when 'dev'
-      $host_to_test              = 'http://docker:4242'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com'
+      $host_to_test = 'http://docker:4242'
+      $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'staging'
-      $host_to_test              = 'http://developers.stage.redhat.com'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com'
+      $host_to_test = 'https://developers.stage.redhat.com'
+      $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'production'
-      $host_to_test              = 'http://developers.redhat.com'
-      $keycloak_base_url         = 'https://developers.redhat.com'
+      $host_to_test = 'https://developers.redhat.com'
+      $keycloak_base_url = 'https://developers.redhat.com'
       $download_manager_base_url = 'https://developers.redhat.com/download-manager/rest/available'
     when 'drupal_dev'
-      $host_to_test              = 'http://docker:9000'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com'
+      $host_to_test = 'https://docker:9000'
+      $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
     when 'drupal_staging'
-      $host_to_test              = 'http://developer-drupal.web.stage.ext.phx2.redhat.com'
-      $keycloak_base_url         = 'https://developers.stage.redhat.com'
+      $host_to_test = 'https://developer-drupal.web.stage.ext.phx2.redhat.com'
+      $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
-    when 'drupal_production'
-      $host_to_test              = 'http://developer-drupal.web.prod.ext.phx2.redhat.com'
+    when 'drupal_productions'
+      $host_to_test = 'https://developer-drupal.web.prod.ext.phx2.redhat.com'
     else
-      $host_to_test              =  ENV['HOST_TO_TEST'].chomp('/')
-      $keycloak_base_url         = 'https://developers.stage.redhat.com'
+      $host_to_test = ENV['HOST_TO_TEST'].chomp('/')
+      unless $host_to_test =~ [/\Ahttps:\/\//]
+        $host_to_test = $host_to_test.gsub('http://','https://')
+      end
+      $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
   end
+  puts ColorizedString.new(". . . . HOST TO TEST = #{$host_to_test} . . . .").blue
 end
 
 if ENV['RHD_JS_DRIVER'].to_s.empty?
@@ -84,17 +88,6 @@ end
 
 at_exit do
   b.browser.quit
-
-  ReportBuilder.configure do |config|
-    config.json_path = '_cucumber/reports/'
-    config.report_path = '_cucumber/reports/rhd_test_report'
-    config.report_types = [:html]
-    config.report_tabs = [:overview, :features, :errors]
-    config.report_title = "RHD Test Results - #{$rhd_driver}"
-    config.compress_images = true
-  end
-
-  ReportBuilder.build_report
 
   if ENV['RHD_TEST_PROFILE'] == 'nightly'
     # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs

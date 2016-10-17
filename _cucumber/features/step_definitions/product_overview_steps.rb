@@ -6,6 +6,7 @@ Given(/^I am on the Product Overview page for each (.*)$/) do |product_id|
 end
 
 Then(/^I should see a side-nav with the following options:$/) do |table|
+
   on ProductOverviewPage do |page|
     table.raw.each do |links|
       link = links.first
