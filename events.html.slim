@@ -11,7 +11,7 @@ drupal_format: as_is_html
 
 .row(ng-app="dcp")
   .large-24.columns
-    .slider-wrapper
+    /! .slider-wrapper
       .slider#slider.slider-side-by-side(data-timeout="3000", data-shuffle="true")
         .swipe-wrap
           .slide
@@ -28,20 +28,20 @@ drupal_format: as_is_html
     h4.events-header#find Find webinars and events within the industry, community or sponsored by Red Hat.
 
     div(ng-controller="eventsController")
-      / .events-control.large-24
-      /   form.events-filter.row
-      /     .large-8.columns
-      /       label(for="region") Region:
-      /       select(ng-model="filter.region" ng-options="option.value as option.text for option in filters.regions" ng-change="getEvents()")
-      /         option(value="") All
-      /     .large-8.columns
-      /       label(for="product") Product:
-      /       select(ng-model="filter.target_product" ng-options="option.value as option.text for option in filters.products" ng-change="getEvents()")
-      /         option(value="") All
-      /     .large-8.columns
-      /       label(for="product") Solution:
-      /       select(ng-model="filter.solution" ng-options="option.value as option.text for option in filters.solutions" ng-change="getEvents()")
-      /         option(value="") All
+      /! .events-control.large-24
+         form.events-filter.row
+           .large-8.columns
+             label(for="region") Region:
+             select(ng-model="filter.region" ng-options="option.value as option.text for option in filters.regions" ng-change="getEvents()")
+               option(value="") All
+           .large-8.columns
+             label(for="product") Product:
+             select(ng-model="filter.target_product" ng-options="option.value as option.text for option in filters.products" ng-change="getEvents()")
+               option(value="") All
+           .large-8.columns
+             label(for="product") Solution:
+             select(ng-model="filter.solution" ng-options="option.value as option.text for option in filters.solutions" ng-change="getEvents()")
+               option(value="") All
 
       p(ng-hide="monthKeys.length") Sorry, there are no events to show. Please alter your search criteria.
       .month(ng-repeat="monthKey in monthKeys | orderBy" ng-show="monthKeys.length")

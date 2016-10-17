@@ -97,9 +97,6 @@ other methods (such as node.delete) will result in an exception.
                             <div class="description">
                                 {{ content.field_blue_card_description }}
                             </div>
-                            <div class="promo-tags"><span class="promo-tags-label">Tags:</span>
-                                {{ content.field_tags }}
-                            </div>
                             <div class="row promo-links">
                                 {# TODO: I will need to add a new field override for the links #}
                                 {{ content.field_blue_card_links }}
@@ -142,6 +139,4 @@ other methods (such as node.delete) will result in an exception.
         </div>
     </section>
 </div>
-<div id="topic-resources" class="row" data-tags="">
-    <ul class="topic-resources topic-resources-list small-block-grid-1 medium-block-grid-2 large-block-grid-4"></ul>
-</div>
+{{content.field_data_tags}}

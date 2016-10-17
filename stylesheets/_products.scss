@@ -137,6 +137,63 @@
 
 }
 
+div.mobile.product-color {
+  margin: -15px -15px 10px -15px;
+  padding-bottom: 0;
+
+  &.storage-and-big-data {border-top: 9px solid $storage;}
+  &.it-infrastructure {border-top: 9px solid $infrastructure-alt;}
+  &.application-development {border-top: 9px solid $app-development;}
+
+}
+
+.mobile.product-header {
+  background-image: none;
+  background-color: $white;
+  color: $grey-7;
+  border-bottom: none;
+  padding-bottom: 0;
+
+  h3 {
+    font-weight: 600;
+    color: $headline-grey;
+    margin-bottom: 20px;
+  }
+}
+
+
+// should only display in mobile
+.mobile.build-panel {
+  display: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $grey-4;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  background: $grey-2;
+  color: #333333;
+
+  .fa-caret-right:before {
+    margin-left: 5px;
+  }
+
+  .outside-links strong{
+    color: $black;
+  }
+
+}
+
+.mobile.product-header, .mobile.build-panel {
+  a.button {
+    display: block;
+
+    &.inverse {
+      border: 2px solid $red;
+      margin-left: 0;
+    }
+  }
+}
+
 @include tablet-landscape-and-down {
   .product-graphics {
     &.storage-and-big-data, &.it-infrastructure, &.application-development {
@@ -166,13 +223,13 @@
   background-color: rgba(0, 0, 0, 0.77);
   padding: 20px 15px 15px 15px;
   &.storage-and-big-data {
-    border-bottom: 9px solid #F0AB00;
+    border-bottom: 9px solid $storage;
   }
   &.it-infrastructure {
-    border-bottom: 9px solid #0088ce;
+    border-bottom: 9px solid $infrastructure-alt;
   }
   &.application-development {
-    border-bottom: 9px solid #92D400;
+    border-bottom: 9px solid $app-development;
   }
   h2, .breadcrumbs > *:before, .breadcrumbs a{
     color: $white;
@@ -201,13 +258,13 @@
   background-color: rgba(255, 255, 255, 0.9);
 
   &.storage-and-big-data {
-    border-bottom: 1px dashed #F0AB00;
+    border-bottom: 1px dashed $storage;
   }
   &.it-infrastructure {
-    border-bottom: 1px dashed #0088ce;
+    border-bottom: 1px dashed $infrastructure-alt;
   }
   &.application-development {
-    border-bottom: 1px dashed #92D400;
+    border-bottom: 1px dashed $app-development;
   }
   .button {
     width: 100%;
@@ -406,6 +463,32 @@
   }
 }
 
+@include mobile-landscape-and-down {
+  #hero-try-or-buy {
+    display: none;
+  }
+
+  .side-nav li.side-nav-toggle {
+    background: $grey-7 !important;
+  }
+
+  .product-page-content {
+    padding-top: 0px;
+
+    h2:first-of-type {
+      font-size: 22px;
+      font-weight: 700;
+    }
+  }
+  .row.content.product-page-content {
+    padding-top: 0;
+  }
+  
+  .mobile.build-panel {
+    display: block;
+  }
+}
+
 ul.product-langs {
   margin-top: 25px !important;
   li {
@@ -501,7 +584,7 @@ ul.product-langs {
 .docs-and-apis-ec table{
   width: 100%;
   caption {
-    color: #424242;
+    color: $grey-7;
   }
 }
 

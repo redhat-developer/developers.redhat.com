@@ -73,23 +73,21 @@ def run(profile, tag)
     end
   else
     if tag.eql?(nil)
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\"")
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 10")
     else
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\"")
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 10")
     end
   end
-  rerun(profile)
+  rerun
   $?.exitstatus
 end
 
-def rerun(profile)
-  if profile.eql?('nightly')
-    unless File.size('cucumber_failures.log') == 0
-      p '. . . . . There were failures during the nightly test run, rerunning failed scenarios . . . . .'
-      system('bundle exec cucumber @cucumber_failures.log')
-    end
-    $?.exitstatus
+def rerun
+  unless File.size('cucumber_failures.log') == 0
+    p '. . . . . There were failures during the test run, rerunning failed scenarios . . . . .'
+    system("bundle exec cucumber @cucumber_failures.log --format html --out _cucumber/reports/cucumber_rerun.html --format json -o _cucumber/reports/cucumber_rerun.json RHD_JS_DRIVER=#{ENV['RHD_JS_DRIVER']}")
   end
+  $?.exitstatus
 end
 
 def cleanup
