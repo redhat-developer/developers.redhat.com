@@ -2,7 +2,7 @@ module SiteUser
 
   def generate_user(country=nil)
 
-    country = ['United States', 'Czech Republic', 'United Kingdom', 'Canada', 'Mexico', 'Ukraine'].sample if country == nil
+    country = ['United States', 'Czech Republic', 'United Kingdom', 'Canada'].sample if country == nil
 
     case country
       when 'United States'
