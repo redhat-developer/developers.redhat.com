@@ -67,7 +67,6 @@ var globs = {
     'javascripts/vjbug-jira-collector.js',
     'javascripts/vjbug.js',
     'javascripts/tabs.js',
-    'javascripts/vendor/adobe-ab-testing.js',
     'javascripts/a-b-testing.js',
     'javascripts/stackoverflow.js',
     'javascripts/product-forums.js',
