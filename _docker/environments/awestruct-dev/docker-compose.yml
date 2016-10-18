@@ -115,7 +115,7 @@ services:
       - RHD_TEST_PROFILE
 
   docker_chrome:
-   image: selenium/node-chrome-debug:2.53.0
+   image: selenium/node-chrome:3.0.0-dubnium
    volumes:
     - /dev/shm:/dev/shm
     - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
@@ -126,7 +126,7 @@ services:
     - selhub
 
    docker_firefox:
-    image: selenium/node-firefox-debug:2.53.0
+    image: selenium/node-firefox:3.0.0-dubnium
     volumes:
      - /dev/shm:/dev/shm
      - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads

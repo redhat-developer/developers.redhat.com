@@ -104,9 +104,9 @@ def run(profile, tag)
     end
   else
     if tag.eql?(nil)
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 10")
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 5")
     else
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 10")
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 5")
     end
   end
   rerun
