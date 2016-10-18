@@ -41,6 +41,7 @@ Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
 end
 
 Given(/^the search box is empty$/) do
+  @current_page.toggle_menu
   expect(@current_page.site_nav_search_box.attribute_value('value')).to eq ''
 end
 
@@ -56,7 +57,3 @@ Then(/^nothing will happen and no search will be initiated$/) do
   expect(@current_page.search_field_visible?).to be true
 end
 
-And(/^"([^"]*)" related to "([^"]*)"$/) do |tags, search_string|
-  expect(@current_page.tags.downcase).to include "#{tags}:"
-  expect(@current_page.tags.downcase).to include search_string.downcase
-end

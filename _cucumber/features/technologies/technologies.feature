@@ -1,5 +1,4 @@
 @smoke
-@products
 
 Feature: Technologies Page
 
@@ -9,14 +8,7 @@ Feature: Technologies Page
 
   Scenario: Product landing page should display a list of available products separated by sections.
     Given I am on the Technologies page
-    Then I should see the following main products sections:
-      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
-      | DEVELOPER TOOLS                        |
-      | INFRASTRUCTURE                         |
-      | INTEGRATION AND AUTOMATION             |
-      | MOBILE                                 |
-      | PRIVATE CLOUD                          |
-      | RUNTIMES                               |
+    Then I should see product sections with headings
     And I should see a list of available products
     And I should see a description of available products
 

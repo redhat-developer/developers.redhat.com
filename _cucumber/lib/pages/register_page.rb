@@ -1,7 +1,7 @@
 require_relative 'abstract/site_base'
 
 class RegistrationPage < SiteBase
-  expected_element(:text_field, id: 'email')
+  expected_element(:div, id: 'kc-register')
   #page_title('Register | Red Hat Developers')
 
   element(:expand_register_with_email)             { |b| b.link(id: 'register-expand-choice-email') }
@@ -27,6 +27,7 @@ class RegistrationPage < SiteBase
   element(:rhd_subscription_terms)                 { |b| b.link(text: 'Red Hat Subscription Agreement') }
   element(:rh_portal_terms)                        { |b| b.link(text: 'Red Hat Portals Terms of Use') }
 
+  value(:thanks_message)                           { |b| b.h2(class: 'divider').when_present.text }
   value(:email_field_error)                        { |b| b.span(id: 'email-error').when_present.text }
   value(:password_field_error)                     { |b| b.span(id: 'password-error').when_present.text }
   value(:password_confirm_field_error)             { |b| b.span(id: 'password-confirm-error').when_present.text }
@@ -64,12 +65,12 @@ class RegistrationPage < SiteBase
   end
 
   def expand_register_choice_email
-    expand_register_with_email.click if expand_register_with_email.present?
+    expand_register_with_email.click if expand_register_with_email.visible?
     email_field.wait_until_present
   end
 
   def click_register_with_github
-    expand_register_with_social.click if expand_register_with_social.present?
+    expand_register_with_social.click if expand_register_with_social.visible?
     click_github_button
   end
 
