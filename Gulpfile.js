@@ -74,7 +74,8 @@ var globs = {
     '!javascripts/namespace.js',
     'javascripts/custom-jira-collector.js',
     'javascripts/adaptive-placeholder.js',
-    'javascripts/current-tab.js'
+    'javascripts/current-tab.js',
+    'javascripts/referrer.js'
   ],
   "styles": ['stylesheets/*.scss']
 };
@@ -84,8 +85,8 @@ gulp.task('scripts',function() {
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.init())
     .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
-    .pipe(plugins.injectString.prepend('var $ = jQuery;'))
     .pipe(plugins.concat('all.js'))
+    .pipe(plugins.injectString.prepend('var $ = jQuery;'))
     .pipe(plugins.rename('all.min.js'))
     // Uncomment this if you need source maps
     //.pipe(plugins.sourcemaps.write())
