@@ -18,6 +18,30 @@ Given(/^I log in with (an|a) (valid|incorrect) username$/) do |arg, negate|
   end
 end
 
+When(/^I am logged into RHD$/) do
+  visit HomePage do |page|
+    page.open_login_page
+    on LoginPage do |page|
+      page.login_with($site_user[:username], $site_user[:password])
+      expect(page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    end
+  end
+end
+
+Given(/^I am logged in to RHD using my portal account$/) do
+  visit HomePage do |page|
+    page.open_login_page
+  end
+  on LoginPage do |page|
+    page.login_with($site_user[:email], $site_user[:password])
+  end
+  on AdditionalInformationPage do |page|
+    page.fulluser_tac_accept
+    page.click_submit
+    expect(page.logged_in?).to eq($site_user[:full_name])
+  end
+end
+
 Given(/^I log in with (an|a) (valid|invalid) email address$/) do |arg, negate|
   on LoginPage do |page|
     if negate.eql?('valid')
@@ -128,4 +152,12 @@ end
 Then(/^I should see the Log in page with the message "([^"]*)"$/) do |title|
   on LoginPage
   expect(@browser.text).to include(title)
+end
+
+Then(/^I can log back into RHD using my newly created password$/) do
+  @current_page.open_login_page
+  on LoginPage do |page|
+    page.login_with($site_user[:email], 'NewPa$$word')
+    expect(page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+  end
 end

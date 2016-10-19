@@ -41,7 +41,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
       | filter type   | result     |
       | Blog Posts    | blogpost   |
       | Book          | book       |
-      | Code Artifact | demo       |
+      | Code          | demo       |
       | Get Started   | getstarted |
       | Knowledgebase | article    |
       | Video         | video      |
@@ -167,6 +167,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
       | First    |
       | Previous |
 
+  @desktop
   Scenario: Clicking on the ‘Next’ link takes me to the next set of results.
     Given I am on the Resources page
     And results have loaded
@@ -179,6 +180,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
       | Next     |
       | Last     |
 
+  @desktop
   Scenario: Clicking on the ‘Previous’ link takes me back to the previous set of results.
     Given I am on the Resources page
     And I am on page "2" of the results

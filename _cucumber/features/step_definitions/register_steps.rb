@@ -2,6 +2,7 @@ Given(/^I am a registered site visitor$/) do
   keycloak = KeyCloak.new
   $site_user = keycloak.register_new_user
   $basic_login = $site_user[:email]
+  puts "Created RHD user #{$site_user[:email]}"
 end
 
 When(/^I click to register with my GitHub account$/) do
@@ -13,7 +14,6 @@ end
 When(/^I try to register with an invalid email address$/) do
   $site_user = generate_user
   on RegistrationPage do |page|
-    page.expand_register_choice_email # if the user is on a mobile device
     page.fill_in_form($site_user[:first_name], $site_user[:last_name], 'email.co.uk', $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
     page.create_account
   end
@@ -22,7 +22,6 @@ end
 When(/^I try to register with an existing RHD registered email$/) do
   $site_user = generate_user
   on RegistrationPage do |page|
-    page.expand_register_choice_email # if the user is on a mobile device
     page.fill_in_form($site_user[:first_name], $site_user[:last_name], 'uk.redhat.test.user+full-site-user@gmail.com', $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
   end
 end
@@ -281,6 +280,8 @@ When(/^I register a new account$/) do
     page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:city], $site_user[:state], $site_user[:password], $site_user[:password])
     page.accept_all_terms
     page.create_account
+    page.thanks_message.should == 'Thanks for Registering!'
+    @browser.refresh
   end
 end
 
@@ -361,7 +362,14 @@ When(/^I complete the extended registration form and accept the terms and condit
 end
 
 And(/^I am logged in$/) do
-  expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+  begin
+    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    @current_page.toggle_menu_close
+  rescue
+    @browser.refresh
+    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    @current_page.toggle_menu_close
+  end
 end
 
 And(/^I choose to register a new account using my GitHub account$/) do

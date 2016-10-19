@@ -3,6 +3,8 @@ require 'parallel'
 require 'fileutils'
 require_relative '../_lib/github'
 require 'report_builder'
+require 'colorize'
+require 'colorized_string'
 
 task :cleanup do
   puts('. . . . Deleting old reports and screenshots  . . . .')
@@ -37,17 +39,25 @@ task :parallel_run do
     end
   end
 
+  # set build description
+  if profile == 'mobile'
+    @build_description = 'Mobile Acceptance Tests'
+  else
+    @build_description = 'Desktop Acceptance Tests'
+  end
+
   if ENV['ghprbActualCommit'].to_s.empty?
     status_code = run(profile, tags)
   else
-    options = {:context => 'Acceptance Tests', :description => "Acceptance Tests pending", :target_url => ENV['BUILD_URL']}
+    puts ColorizedString.new('Sending progress to Github . . . ').blue
+    options = {:context => 'Acceptance Tests', :description => "#{@build_description} pending", :target_url => ENV['BUILD_URL']}
     GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'pending', options)
     status_code = run(profile, tags)
     if status_code == 0
-      options[:description] = "Acceptance Tests finished ok!"
+      options[:description] = "#{@build_description} finished ok!"
       GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'success', options)
     else
-      options[:description] = "Acceptance Tests failed"
+      options[:description] = "#{@build_description} failed"
       puts GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'failure', options)
     end
   end
@@ -76,12 +86,12 @@ end
 task :rerun do
   # rerun attempt one
   if File.exist?('cucumber_failures.log') && File.size('cucumber_failures.log') > 0
-    puts ('. . . . . There were failures during the test run! Attempt one of rerunning failed scenarios . . . . .')
+    puts ColorizedString.new('. . . . . There were failures during the test run! Attempt one of rerunning failed scenarios . . . . .').red
     system('bundle exec cucumber @cucumber_failures.log -f rerun --out cucumber_failures1.log')
   end
   # rerun attempt two
   if File.exist?('cucumber_failures1.log') && File.size('cucumber_failures1.log') > 0
-    puts('. . . . . There were failures during first rerun! Attempt two of rerunning failed scenarios . . . . .')
+    puts ColorizedString.new('. . . . . There were failures during first rerun! Attempt two of rerunning failed scenarios . . . . .').red
     system('bundle exec cucumber @cucumber_failures1.log')
   end
   $?.exitstatus
@@ -102,7 +112,6 @@ end
 task :features => [ :cleanup, :parallel_run, :rerun, :cucumber_report  ]
 
 task :wip do
-  cleanup
   if ENV['RHD_TEST_PROFILE'].to_s.empty?
     profile = 'default'
   else
@@ -112,7 +121,6 @@ task :wip do
 end
 
 task :debugger do
-  cleanup
   system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
