@@ -1,5 +1,5 @@
 @nightly
-
+@kc
 Feature: Social registration
 
   As a visitor on the developers.redhat.com website,

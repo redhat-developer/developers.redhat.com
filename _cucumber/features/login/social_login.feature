@@ -1,3 +1,4 @@
+@kc
 Feature: Log in using preferred social provider
 
   As a developers.redhat customer,

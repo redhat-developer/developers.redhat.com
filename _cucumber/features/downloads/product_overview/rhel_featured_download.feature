@@ -3,6 +3,8 @@
 @product_download
 @download_test
 @nightly
+@kc
+@dm
 
 Feature: Product Download Page - An authorised customer can download RHEL via download manager when acepting Red Hat T&C's.
 
