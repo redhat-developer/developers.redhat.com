@@ -46,64 +46,63 @@
 <head>
   {% if (rhd_dtm_code) %}
   <script>
-  var digitalData = {
-    "listing": {
-      "browseFilter": "", {# Default empty string for now #}
-      "query": "", {# "Site search (SOLR): Query string parameter ""q"" Resource search (Drupal): Query string parameter ""search""" #}
-      "queryMethod": "manual", {# Hard-coded to "manual" for now #}
-      "refinementType": "", {# Default empty string for now #}
-      "refinementValue": "", {# Default empty string for now #}
-      "resultCount": "", {# "Site search (SOLR): 0 if no results, -1 otherwise (real result count implementation backlogged as of 5/10) Resource search (Drupal): Real result count based on Drupal view results" #}
-      "searchType": "" {# "Site search (SOLR): ""search"" Resource search (Drupal): ""resources""" #}
-    },
-    "page": {
-      "attributes": {
-        "queryParameters": "", {# All query parameters via drupal_get_query_parameters() #}
-        "referringSearchEngine": "" {# Default empty string for now  #}
-      },
-      "category": {
-        "contentType": "", {# Resource content types: resource_type taxonomy field value Video content types: resource_type taxonomy field value (always ""video"") Resource content type > Resource type taxonomy.  ie: <meta name=""taxonomy-resource_type"" content=""Whitepaper"" />.  Video detail page should be <meta name=""taxonomy-resource_type"" content=""Video"" />.  Value should be blank if the CMS content type does not have a meta resource type taxonomy on the page." #}
-        "keyPage": "false", {# Hard-coded to "false" for now #}
-        "keyPageType": "", {# Default empty string for now #}
-        "pageType": "{{ node_type }}", {# "If Drupal node, content type machine name CMS content type (Blog, Event, Success Story, etc); IE: <meta name=""node-type"" content=""resource"" /> or <meta name=""node-type"" content=""event"" />" #}
-        "primaryCategory": "", {# First part of request URL path after language (i.e. https://www.redhat.com/LANG/PRIMARY_CATEGORY/) #}
-        "subCategories": [] {# All but last parts of request URL path after primary category (i.e. https://www.redhat.com/LANG/PRIMARY_CATEGORY/{SUB_CATEGORY/}*/TITLE_OR_LAST_PATH_PART) #}
-      },
-      "pageInfo": {
-        "cms": "rhd", {# RH CMS <profile "rh" version> #}
-        "contentFindingMethod": "", {# Default empty string for now #}
-        "contentID": "", {# If Drupal node, nid (node ID) #}
-        "contentPortal": "", {# Default empty string for now #}
-        "destinationURL": window.location.href, {# Absolute URL of current page #}
-        "errorMessage": "", {# HTTP error text if not 200 #}
-        "errorType": "", {# HTTP error code if not 200 #}
-        "language": "{{ html_attributes['lang'] }}", {# Drupal language code (i.e. $GLOBALS['language']->language) #}
-        "pageName": "{{ head_title['title'] }}".split('|')[0] || "{{ head_title['title'] }}", {# Last section (separated by " | ") of analytics title #}
-        "referringDomain": document.referrer, {# JavaScript: Full referrer URL from document.referrer #}
-        "referringURL": document.referrer.split('/')[2] || "", {# JavaScript: Host portion of document.referrer #}
-        "sysEnv": window.innerWidth <= 768 ? "tablet" : "desktop", {# JavaScript: "tablet" if window.innerWidth <= 768 (pixels), "desktop" otherwise #}
-        "template": "", {# Default empty string for now #}
-        "title": "{{ head_title['title'] }}" {# Metatag title (most of the time matches HTML markup "<title>" value) #}
-      }
-    },
-    "user": [{
-      "profile": [{
-        "profileInfo": {
-          "daysSinceLastPurchase": "", {# Default empty string for now #}
-          "demandbaseSID": "", {# "s_dmdbase" cookie value #}
-          "eloquaGUID": "", {# "rh_elqCustomerGUID" cookie value #}
-          "lastLoginDate": "", {# "true" if "rh_user" cookie value has a value before the first "|", "false" otherwise #}
-          "lastPurchaseDate": "", {# Default empty string for now #}
-          "loggedIn": "", {# Default empty string for now #}
-          "profileID": "", {# Default empty string for now #}
-          "subscriptionFrequency": "", {# Default empty string for now #}
-          "subscriptionLevel": "" {# Default empty string for now #}
+  var digitalData = {{ rhd_dtm_script|json_encode(constant('JSON_PRETTY_PRINT'))|raw }};
+
+  ( function( w, d, dd, undefined ) {
+      var categoryObj = getCategories();
+
+      function getCookie( name ) {
+        var value = "; " + document.cookie;
+        var parts = value.split( "; " + name + "=" );
+        if ( parts.length == 2 ) {
+          return parts.pop().split( ";" ).shift();
         }
-      }]
-    }]
-  };
+      }
+
+      function getCategories() {
+        var categories = { primaryCategory: "", subCategories: [] },
+          url = window.location.href.split('/');
+        for(var i=3, l=url.length; i<l; i++) {
+          if(i !== 3 && categories.subCategories.length <= 3) { 
+            categories.subCategories.push(url[i]);
+          } else {
+            categories.primaryCategory = url[i];
+          }
+        }
+        return categories;
+      }
+
+      dd.page.category.primaryCategory = categoryObj.primaryCategory;
+      dd.page.category.subCategories = categoryObj.subCategories;
+      dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
+
+      if ( d.referrer ) {
+        var a = d.createElement( "a" );
+        a.href = d.referrer;
+
+        dd.page.pageInfo.referringDomain = a.hostname;
+        dd.page.pageInfo.referringURL = a.href;
+      }
+
+      dd.page.pageInfo.sysEnv = ( w.innerWidth <= 768 ) ? "tablet" : "desktop";
+      var elqGUID = getCookie( "rh_elqCustomerGUID" );
+      if ( elqGUID ) {
+        dd.user[ 0 ].profile[ 0 ].profileInfo.eloquaGUID = elqGUID;
+      }
+      var userData = getCookie( "rh_user" );
+      if ( userData ) {
+        var rhLogin = userData.split( "\|" );
+        if ( rhLogin[ 0 ] ) {
+          dd.user[ 0 ].profile[ 0 ].profileInfo.loggedIn = "true";
+        }
+      }
+      var dmdBase = getCookie( "s_dmdbase" );
+      if ( dmdBase ) {
+        dd.user[ 0 ].profile[ 0 ].profileInfo.demandbaseSID = dmdBase;
+      }
+    } )( window, document, digitalData );
   </script>
-  <script src="{{rhd_dtm_code}}"></script>
+  <script id="adobe_dtm" src="{{rhd_dtm_code}}"></script>
   {% endif %}
   <!--TODO: metrics here--><!--TODO: include Adobe A/B testing inline-->
   <head-placeholder token="{{ placeholder_token|raw }}">
