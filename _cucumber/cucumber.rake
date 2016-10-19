@@ -51,12 +51,12 @@ task :parallel_run do
       puts GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'failure', options)
     end
   end
+  generate_report
   status_code
 end
 
 def run(profile, tag)
   tag_string = tag unless tag.eql?(nil)
-
   if profile.eql?('slow')
     if tag.eql?(nil)
       system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
@@ -73,6 +73,18 @@ def run(profile, tag)
   $?.exitstatus
 end
 
+def generate_report
+  ReportBuilder.configure do |config|
+    config.json_path = '_cucumber/reports/'
+    config.report_path = '_cucumber/reports/rhd_test_report'
+    config.report_types = [:json, :html]
+    config.report_tabs = [:overview, :features, :errors]
+    config.report_title = 'RHD Test Results'
+    config.compress_images = true
+  end
+  ReportBuilder.build_report
+end
+
 task :rerun do
   # rerun attempt one
   if File.exist?('cucumber_failures.log') && File.size('cucumber_failures.log') > 0
@@ -87,22 +99,9 @@ task :rerun do
   $?.exitstatus
 end
 
-task :cucumber_report do
-  ReportBuilder.configure do |config|
-    config.json_path = '_cucumber/reports/'
-    config.report_path = '_cucumber/reports/rhd_test_report'
-    config.report_types = [:json, :html]
-    config.report_tabs = [:overview, :features, :errors]
-    config.report_title = 'RHD Test Results'
-    config.compress_images = true
-  end
-  ReportBuilder.build_report
-end
-
-task :features => [ :cleanup, :parallel_run, :rerun, :cucumber_report  ]
+task :features => [:cleanup, :parallel_run, :rerun]
 
 task :wip do
-  cleanup
   if ENV['RHD_TEST_PROFILE'].to_s.empty?
     profile = 'default'
   else
@@ -112,7 +111,6 @@ task :wip do
 end
 
 task :debugger do
-  cleanup
   system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
