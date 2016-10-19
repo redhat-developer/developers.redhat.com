@@ -44,10 +44,10 @@ task :parallel_run do
     GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'pending', options)
     status_code = run(profile, tags)
     if status_code == 0
-      options[:description] = "#{@build_description} finished ok!"
+      options[:description] = "Acceptance Tests finished ok!"
       GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'success', options)
     else
-      options[:description] = "#{@build_description} failed"
+      options[:description] = "Acceptance Tests failed"
       puts GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'failure', options)
     end
   end
