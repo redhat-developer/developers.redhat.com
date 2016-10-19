@@ -85,17 +85,6 @@ end
 at_exit do
   b.browser.quit
 
-  ReportBuilder.configure do |config|
-    config.json_path = '_cucumber/reports/'
-    config.report_path = '_cucumber/reports/rhd_test_report'
-    config.report_types = [:html]
-    config.report_tabs = [:overview, :features, :errors]
-    config.report_title = "RHD Test Results - #{$rhd_driver}"
-    config.compress_images = true
-  end
-
-  ReportBuilder.build_report
-
   if ENV['RHD_TEST_PROFILE'] == 'nightly'
     # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
     admin = KeyCloak.new

@@ -41,7 +41,7 @@ Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
 end
 
 Given(/^the search box is empty$/) do
-  expect(@current_page.site_nav_search_box.attribute_value('value')).to eq ''
+  expect(@current_page.site_nav_search_box.when_present.attribute_value('value')).to eq ''
 end
 
 When(/^I click on the search button$/) do
@@ -59,4 +59,25 @@ end
 And(/^"([^"]*)" related to "([^"]*)"$/) do |tags, search_string|
   expect(@current_page.tags.downcase).to include "#{tags}:"
   expect(@current_page.tags.downcase).to include search_string.downcase
+end
+
+Then(/^the "([^"]*)" product overview page should be the first result$/) do |arg|
+  wait_for(30) {
+    url = @current_page.first_result_attribute
+    url.include? '/products/rhel/overview'
+  }
+end
+
+Then(/^the related topic page for "([^"]*)" should be the first result$/) do |link|
+  wait_for(30) {
+    url = @current_page.first_result_attribute
+    url.include? link
+  }
+end
+
+Then(/^first result should contain "(.*)"$/) do |res|
+  wait_for(30) {
+    url = @current_page.first_result_attribute
+    url.include? res
+  }
 end

@@ -189,7 +189,7 @@ Feature: Search Page
     Given I search for "<search_term>"
     When the search results page is displayed
     Then I should see "10" results containing "<search_term>"
- 
+
     Examples: blog posts
       | search_term                         |
       | Red Hat JBoss Data Grid 7.0 is out  |
@@ -201,7 +201,7 @@ Feature: Search Page
     Given I search for "<search_term>"
     When the search results page is displayed
     Then I should see "10" results containing "<search_term>"
- 
+
     Examples: stackoverflow posts
       | search_term                                     |
       | Liferay 6.2 JBoss bundle is not getting started |
@@ -213,7 +213,7 @@ Feature: Search Page
     Given I search for "<search_term>"
     When the search results page is displayed
     Then I should see "10" results containing "<search_term>"
- 
+
     Examples: KCS Documents
       | search_term                                              |
       | How to disable Advisory topics and messages in A-MQ?     |
@@ -225,7 +225,7 @@ Feature: Search Page
     Given I search for "<search_term>"
     When the search results page is displayed
     Then I should see "10" results containing "<search_term>"
- 
+
     Examples: Books
       | search_term                     |
       | Java Persistence with Hibernate |
@@ -237,3 +237,32 @@ Feature: Search Page
     Given I search for "DevNation"
     When the search results page is displayed
     Then I should see "10" results containing "DevNation"
+
+  Scenario Outline: DEVELOPER-3077 - Topics should be listed first in results
+    Given I am on the Home page
+    When I search for "<topic>"
+    And the search results page is displayed
+    Then the related topic page for "<url>" should be the first result
+
+    Examples: of Red hat Topics
+      | topic                   | url                     |
+      | Containers              | containers              |
+      | Mobile                  | mobile                  |
+      | DevOps                  | devops                  |
+      | Web and API Development | web-and-api-development |
+      | Enterprise Java         | enterprise-java         |
+      | .NET                    | dotnet                  |
+      | Internet of Things      | iot                     |
+
+  Scenario: DEVELOPER-3078 - User searches on /search for 'red hat developers', the first result should be for http://developers.redhat.com/about.
+    Given I am on the Home page
+    When I search for "red hat developers"
+    And the search results page is displayed
+    Then first result should contain "http://developers.redhat.com/about"
+
+  Scenario: DEVELOPER-3079 - Searching for 'enterprise linux' should return 'RHEL' product pages first
+    Given I am on the Home page
+    When I search for "enterprise linux"
+    And the search results page is displayed
+    Then the "RHEL" product overview page should be the first result
+    Then I should see "10" results containing "Enterprise Linux"
