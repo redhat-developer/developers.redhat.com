@@ -100,8 +100,6 @@ task :cucumber_report do
 end
 
 task :features => [ :cleanup, :parallel_run, :rerun, :cucumber_report  ]
-Rake::Task['features'].invoke
-
 
 task :wip do
   cleanup
