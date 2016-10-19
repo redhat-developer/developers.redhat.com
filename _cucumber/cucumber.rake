@@ -2,15 +2,28 @@ require 'rubygems'
 require 'parallel'
 require 'fileutils'
 require_relative '../_lib/github'
+require 'report_builder'
 
+desc 'Rake task to run acceptance tests, rerunning any failed tests'
 task :features do
+
+  # clean up any files/directories that may be hanging around from previous test runs
   cleanup
-  p ". . . . HOST TO TEST = #{ENV['HOST_TO_TEST']} . . . ."
+
+  # cucumber report config
+  ReportBuilder.configure do |config|
+    config.json_path = '_cucumber/reports/'
+    config.report_path = '_cucumber/reports/rhd_test_report'
+    config.report_types = [:json, :html]
+    config.report_tabs = [:overview, :features, :errors]
+    config.report_title = 'RHD Test Results'
+    config.compress_images = true
+  end
 
   if ENV['RHD_TEST_PROFILE']
     profile = ENV['RHD_TEST_PROFILE']
   else
-    profile='parallel'
+    profile = 'desktop'
   end
 
   if ENV['CUCUMBER_TAGS'].to_s.empty?
@@ -28,28 +41,41 @@ task :features do
     end
   end
 
+  # set build description
+  if profile == 'mobile'
+    @build_description = 'Mobile Acceptance Tests'
+  else
+    @build_description = 'Desktop Acceptance Tests'
+  end
+
   if ENV['ghprbActualCommit'].to_s.empty?
     status_code = run(profile, tags)
   else
-    p 'Sending progress to Github . . . '
-    options = {:context => 'Acceptance Tests', :description => 'Acceptance Tests pending', :target_url => ENV['BUILD_URL']}
-    GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "pending", options)
+    options = {:context => 'Acceptance Tests', :description => "#{@build_description} pending", :target_url => ENV['BUILD_URL']}
+    GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'pending', options)
     status_code = run(profile, tags)
     if status_code == 0
-      options[:description] = 'Acceptance Tests finished ok!'
-      GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "success", options)
+      options[:description] = "#{@build_description} finished ok!"
+      GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'success', options)
     else
-      options[:description] = 'Acceptance Tests failed'
-      puts GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "failure", options)
+      options[:description] = "#{@build_description} failed"
+      puts GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], 'failure', options)
     end
   end
-  puts "Acceptance tests resulted with status code of #{status_code}"
+
+  ReportBuilder.build_report
+
   exit(status_code)
 end
 
 task :wip do
   cleanup
-  system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
+  if ENV['RHD_TEST_PROFILE'].to_s.empty?
+    profile = 'default'
+  else
+    profile = ENV['RHD_TEST_PROFILE']
+  end
+  system("cucumber _cucumber -r _cucumber/features/ --tags @wip --profile #{profile}")
 end
 
 task :debugger do
@@ -83,16 +109,23 @@ def run(profile, tag)
 end
 
 def rerun
-  unless File.size('cucumber_failures.log') == 0
-    p '. . . . . There were failures during the test run, rerunning failed scenarios . . . . .'
-    system("bundle exec cucumber @cucumber_failures.log --format html --out _cucumber/reports/cucumber_rerun.html --format json -o _cucumber/reports/cucumber_rerun.json RHD_JS_DRIVER=#{ENV['RHD_JS_DRIVER']}")
+  # rerun attempt one
+  if File.exist?('cucumber_failures.log') && File.size('cucumber_failures.log') > 0
+    puts ('. . . . . There were failures during the test run! Attempt one of rerunning failed scenarios . . . . .')
+    system('bundle exec cucumber @cucumber_failures.log -f rerun --out cucumber_failures1.log')
+  end
+  # rerun attempt two
+  if File.exist?('cucumber_failures1.log') && File.size('cucumber_failures1.log') > 0
+    puts('. . . . . There were failures during first rerun! Attempt two of rerunning failed scenarios . . . . .')
+    system('bundle exec cucumber @cucumber_failures1.log')
   end
   $?.exitstatus
 end
 
 def cleanup
-  p '. . . . Deleting old reports and screenshots  . . . .'
+  puts('. . . . Deleting old reports and screenshots  . . . .')
   File.delete('cucumber_failures.log') if File.exist?('cucumber_failures.log')
+  File.delete('cucumber_failures1.log') if File.exist?('cucumber_failures1.log')
   FileUtils.rm_rf('_cucumber/reports')
   Dir.mkdir('_cucumber/reports')
   FileUtils.rm_rf('_cucumber/screenshots')

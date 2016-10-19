@@ -70,7 +70,14 @@ When(/^I log in with an account that is already linked to my Github account$/) d
 end
 
 Then(/^I should be logged in$/) do
-  expect(@current_page.logged_in?).to eq($site_user[:full_name])
+  begin
+    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    @current_page.toggle_menu_close
+  rescue
+    visit HomePage
+    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    @current_page.toggle_menu_close
+  end
 end
 
 Then(/^I should still be be logged in on the Home page$/) do

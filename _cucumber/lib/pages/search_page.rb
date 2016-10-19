@@ -3,7 +3,10 @@ require_relative '../../../_cucumber/lib/helpers/driver_helper'
 
 class SearchPage < StandardisedSearch
 
-  element(:search_box) { |el| el.text_field(id: 'search_list_text') }
+  element(:search_box)           { |b| b.text_field(id: 'search_list_text') }
+  elements(:first_result)        { |b| b.link(css: 'h4 > a', :index => 0) }
+
+  value(:first_result_attribute) { |p| p.first_result.href }
 
   def enter_search_term(search_string)
     type(search_box, search_string)
