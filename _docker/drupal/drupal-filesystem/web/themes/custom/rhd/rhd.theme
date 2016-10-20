@@ -158,7 +158,7 @@ function redhat_www_ddo_default() {
             'refinementValue' => '',
             'resultCount' => '',
             'searchType' => '',
-            ),
+        ),
         'page' => array(
             'attributes' => array(
                 'queryParameters' => '',
@@ -190,28 +190,28 @@ function redhat_www_ddo_default() {
         ),
         'user' => array(
             array(
-            'profile' => array(
-                array(
-                'profileInfo' => array(
-                    'accountID' => '',
-                    'daysSinceLastPurchase' => '',
-                    'daysSinceRegistration' => $user->created->value,
-                    'eloquaGUID' => '',
-                    'keyCloakID' => '',
-                    'loggedIn' => 'false',
-                    'profileID' => '',
-                    'registered' => false,
-                    'socialAccountsLinked' => array(),
-                    'subscriptionFrequency' => '',
-                    'subscriptionLevel' => '',
-                    'userAgent' => $useragent,
+                'profile' => array(
+                    array(
+                        'profileInfo' => array(
+                            'accountID' => '',
+                            'daysSinceLastPurchase' => '',
+                            'daysSinceRegistration' => $user->created->value,
+                            'eloquaGUID' => '',
+                            'keyCloakID' => '',
+                            'loggedIn' => 'false',
+                            'profileID' => '',
+                            'registered' => false,
+                            'socialAccountsLinked' => array(),
+                            'subscriptionFrequency' => '',
+                            'subscriptionLevel' => '',
+                            'userAgent' => $useragent,
+                        ),
+                    ),
                 ),
-                ),
-            ),
             ),
         ),
     );
- 
+
 
     return $ddo;
 }
