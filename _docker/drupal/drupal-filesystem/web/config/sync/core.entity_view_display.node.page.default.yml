@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.publish_date
     - node.type.page
   module:
     - text
@@ -23,4 +24,12 @@ content:
     third_party_settings: {  }
   links:
     weight: 101
-hidden: {  }
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  og_group: true
+  publish_date: true

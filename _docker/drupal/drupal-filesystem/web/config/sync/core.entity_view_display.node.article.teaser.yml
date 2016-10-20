@@ -37,9 +37,12 @@ content:
     label: above
   links:
     weight: 100
+  workbench_moderation_control:
+    weight: -20
 hidden:
   comment: true
   field_author_name: true
   field_content_author: true
   field_image: true
   field_tags: true
+  publish_date: true

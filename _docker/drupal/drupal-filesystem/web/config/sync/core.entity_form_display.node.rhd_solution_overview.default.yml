@@ -6,10 +6,13 @@ dependencies:
     - field.field.node.rhd_solution_overview.body
     - field.field.node.rhd_solution_overview.field_solution_name
     - field.field.node.rhd_solution_overview.field_solution_tag_line
+    - field.field.node.rhd_solution_overview.publish_date
     - node.type.rhd_solution_overview
   module:
+    - inline_entity_form
     - path
     - text
+    - workbench_moderation
 _core:
   default_config_hash: N1G4YpU-OJJAhmbC38nBhHuoLJ5hSX5qGTgotRsPTeo
 id: node.rhd_solution_overview.default
@@ -54,6 +57,18 @@ content:
     settings:
       display_label: true
     weight: 5
+    third_party_settings: {  }
+  publish_date:
+    type: inline_entity_form_complex
+    weight: 11
+    settings:
+      override_labels: true
+      label_singular: 'Publish Date'
+      label_plural: 'Publish Dates'
+      allow_new: true
+      match_operator: CONTAINS
+      allow_existing: false
+      form_mode: default
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox

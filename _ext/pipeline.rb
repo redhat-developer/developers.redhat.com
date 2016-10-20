@@ -148,7 +148,7 @@ Awestruct::Extensions::Pipeline.new do
                                                           push_to_searchisko: site.push_to_searchisko,
                                                           product: 'unifiedpush')
 
-  extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack'
+  extension JBoss::Developer::Extensions::Stacks.new 'stacks.yaml', 'get-started-item', '_jdf-stack', site.push_to_searchisko
   extension JBoss::Developer::Extensions::AsciidoctorExtensionRegister.new
 
   extension Aweplug::Extensions::AsciidocExample.new(repository: '_ticket-monster',

@@ -46,7 +46,22 @@ WORKDIR /var/www/drupal
 COPY apache/drupal.conf /etc/httpd/conf.d/drupal.conf
 COPY scripts /var/www/drupal/scripts
 RUN chmod -v +x /var/www/drupal/scripts/run-httpd.sh
-COPY drupal-filesystem /var/www/drupal
+
+# Get Drupal in here
+# Doing this in multiple steps so less things change on a day to day build and builds take less time
+COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock drupal-filesystem/2663638-2.patch /var/www/drupal/
 RUN /usr/local/bin/composer install -n
+
+# Copy in the custom things we create
+COPY drupal-filesystem/web/sites/default /var/www/drupal/web/sites/default
+COPY drupal-filesystem/web/modules/custom /var/www/drupal/web/modules/custom
+COPY drupal-filesystem/web/themes/custom /var/www/drupal/web/themes/custom
+
+# Copy in the configuration
+COPY drupal-filesystem/web/config /var/www/drupal/web/config
+
 ENV PATH=$PATH:/var/www/drupal/vendor/bin
+
+# QoL change if you need to docker exec in, you're already at the drupal root
+WORKDIR /var/www/drupal/web 
 CMD ["/var/www/drupal/scripts/run-httpd.sh"]

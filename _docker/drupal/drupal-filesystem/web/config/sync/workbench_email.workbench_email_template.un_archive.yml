@@ -1,0 +1,21 @@
+uuid: 3af976a1-e55a-4ad9-8d15-2ae19434270f
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
+id: un_archive
+label: Un-archive
+subject: 'Content state is changed to Published'
+roles:
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi,\r\n\r\n[node:title] is set to published from Archive state.\r\n\r\nThank you"
+  format: plain_text

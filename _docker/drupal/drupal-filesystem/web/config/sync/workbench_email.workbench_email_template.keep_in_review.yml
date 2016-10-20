@@ -1,0 +1,21 @@
+uuid: 83ffc03d-9055-402f-aaf0-64ea24802ebd
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_author
+    - user.role.content_editor
+    - user.role.content_publisher
+id: keep_in_review
+label: 'Keep in Review'
+subject: 'Keep in Review'
+roles:
+  content_author: content_author
+  content_editor: content_editor
+  content_publisher: content_publisher
+bundles: {  }
+fields: {  }
+author: false
+body:
+  value: "Hi\r\n\r\n[node:title] is requested to keep in review. \r\n\r\nThank you"
+  format: plain_text

@@ -1,0 +1,20 @@
+uuid: 6891ec84-2536-4957-ba25-a0f44d5afe8f
+langcode: en
+status: true
+dependencies:
+  module:
+    - scheduled_updates
+    - workbench_moderation
+id: scheduled_update.field_moderation_state_1
+field_name: field_moderation_state_1
+entity_type: scheduled_update
+type: entity_reference
+settings:
+  target_type: moderation_state
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
