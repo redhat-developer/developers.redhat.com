@@ -2,6 +2,7 @@ require 'rubygems'
 require 'parallel'
 require 'fileutils'
 require_relative '../_lib/github'
+require 'report_builder'
 
 task :features do
   cleanup
@@ -78,8 +79,26 @@ def run(profile, tag)
       system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 10")
     end
   end
-  rerun
-  $?.exitstatus
+
+  test_exit_code = $?.exitstatus
+  if test_exit_code != 0
+    test_exit_code = rerun
+  end
+  generate_reports
+  test_exit_code
+end
+
+def generate_reports
+
+  ReportBuilder.configure do |config|
+    config.json_path = '_cucumber/reports/'
+    config.report_path = '_cucumber/reports/rhd_test_report'
+    config.report_types = [:json, :html]
+    config.report_tabs = [:overview, :features, :errors]
+    config.report_title = 'RHD Test Results'
+    config.compress_images = true
+    end
+  ReportBuilder.build_report
 end
 
 def rerun
