@@ -444,9 +444,23 @@ module Aweplug
       # Returns the Faraday::Response
       def update_page(page, content)
         path = create_path page
-        $LOG.verbose "Updating page  with content '#{page.output_path}'" if $LOG.verbose?
-        payload = create_payload page, content
-        patch path, payload
+
+        # Get all the current values
+        resp = get('', path, {'_format' => 'hal_json'})
+        payload = JSON.parse resp.body
+
+        # Update the fields we want, and remove the fields we can't update
+        new_body_payload = create_payload page, content
+        payload['body'].first['value'] = new_body_payload[:body].first[:value]
+        payload['body'].first['summary'] = new_body_payload[:body].first[:summary]
+        payload.delete 'changed'
+        payload.delete 'revision_timestamp'
+        payload['_embedded'].delete (payload['_embedded'].keys.find {|k| k.include? 'revision_uid'})
+
+        node_path = "/node/#{payload['nid'].first['value']}"
+
+        $LOG.verbose "Updating page with content '#{page.output_path}' at path #{node_path}" if $LOG.verbose?
+        patch node_path, payload
      end
 
       # Public: Sends a POST request to Drupal to create a new page.
@@ -511,7 +525,7 @@ module Aweplug
       def get(endpoint, path, params = {})
         response = @faraday.get URI.escape(endpoint + "/" + path) do |req|
           req.headers['Content-Type'] = 'application/json'
-          req.headers['Accept'] = 'application/json'
+          req.headers['Accept'] = 'application/json,application/hal+json'
           req.headers['X-CSRF-Token'] = @token if @token
           req.headers['Cookie'] = @cookie if @cookie
           req.headers['Authorization'] = "Basic #{@basic_auth}" if @basic_auth
