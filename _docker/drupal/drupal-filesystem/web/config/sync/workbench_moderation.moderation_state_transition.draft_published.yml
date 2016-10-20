@@ -1,0 +1,23 @@
+uuid: 9935d650-a5f6-4b20-957e-70bf4da13d36
+langcode: en
+status: true
+dependencies:
+  config:
+    - workbench_moderation.moderation_state.draft
+    - workbench_moderation.moderation_state.published
+  module:
+    - workbench_email
+  enforced:
+    config:
+      - workbench_email.workbench_email_template.published
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      published: published
+_core:
+  default_config_hash: qTergiISOB-CWMTXkWxPk2qgmA2r9iviwM0iw93UmlU
+id: draft_published
+label: Publish
+stateFrom: draft
+stateTo: published
+weight: -9

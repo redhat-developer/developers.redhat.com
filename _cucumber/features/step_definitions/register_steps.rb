@@ -285,7 +285,14 @@ When(/^I register a new account$/) do
 end
 
 Then(/^I should be registered and logged in$/) do
-  expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+  begin
+    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    @current_page.toggle_menu_close
+  rescue
+    visit HomePage
+    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    @current_page.toggle_menu_close
+  end
 end
 
 When(/^I try to enter passwords that do not match$/) do

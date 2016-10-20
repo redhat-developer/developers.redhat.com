@@ -85,7 +85,7 @@ class Options
         ENV['HOST_TO_TEST'] = host
 
         if ENV['RHD_TEST_PROFILE'].to_s.empty?
-          ENV['RHD_TEST_PROFILE']= 'parallel'
+          ENV['RHD_TEST_PROFILE']= 'desktop'
         end
 
         if ENV['RHD_JS_DRIVER'].to_s.empty?

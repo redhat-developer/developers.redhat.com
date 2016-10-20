@@ -2,6 +2,8 @@
 @downloads
 @download_test
 @ignore
+@kc
+@dm
 
 Feature: User can download promotional cheat sheets
 

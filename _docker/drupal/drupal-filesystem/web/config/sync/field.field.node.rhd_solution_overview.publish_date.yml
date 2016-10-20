@@ -1,0 +1,24 @@
+uuid: cb95b1e9-a1a8-426d-8929-cd92b28f8dc5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.publish_date
+    - node.type.rhd_solution_overview
+    - scheduled_updates.scheduled_update_type.publish_content
+id: node.rhd_solution_overview.publish_date
+field_name: publish_date
+entity_type: node
+bundle: rhd_solution_overview
+label: 'Publish Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler_settings:
+    target_bundles:
+      - publish_content
+  handler: 'default:scheduled_update'
+field_type: entity_reference

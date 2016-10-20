@@ -16,16 +16,22 @@ type: Get Started
         = page._path_intro_section 
   - currentPage = page.url
   - pathName = ((currentPage.rpartition("-"))[-1]).chomp("/");
-  - if (currentPage.include?('rhel7') || currentPage.include?('rhel6')) && pathName != 'java'
+  - if currentPage.include?('rhel7') && pathName != 'java'
     .large-24.columns.multipath-tabs-sm
       ul.tabs.nav-tabs.current-tabs(data-tab role="tablist")
         li(class=(currentPage.include?('rhel7') ? 'active' : '') role="presentation")
+          a(href='#panel1' onclick="return false;") RHEL 7
+        li(role="presentation")
+          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel6-#{pathName}/' onclick="window.location=this.href;return false;") RHEL 6
+  - if currentPage.include?('rhel6') && pathName != 'java'
+    .large-24.columns.multipath-tabs-sm
+      ul.tabs.nav-tabs.current-tabs(data-tab role="tablist")
+        li(role="presentation")
           a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel7-#{pathName}/' onclick="window.location=this.href;return false;") RHEL 7
         li(class=(currentPage.include?('rhel6') ? 'active' : '') role="presentation")
-          a(href='#{site.base_url}/products/#{page.product.id}/get-started-rhel6-#{pathName}/' onclick="window.location=this.href;return false;") RHEL 6
-
+          a(href='#panel1' onclick="return false;") RHEL 6
   .os-tabs.tabs-content
-    section.content.active.update-content(role="tabpanel" aria-hidden="false")
+    section#panel1.content.update-content.active(role="tabpanel" aria-hidden="false")
         .row(data-equalizer)
           .large-8.columns.step-cards(data-equalizer-watch)
             a.card(href="#Step1")

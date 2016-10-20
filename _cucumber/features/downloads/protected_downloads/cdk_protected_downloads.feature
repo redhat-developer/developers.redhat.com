@@ -1,6 +1,8 @@
 @desktop
 @downloads
 @download_test
+@kc
+@dm
 
 Feature: Red Hat Container Development Kit download
 

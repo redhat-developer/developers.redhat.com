@@ -50,6 +50,13 @@ class SiteBase < GenericBasePage
     type(site_nav_search_box, search_string)
   end
 
+  def toggle_menu_close
+    if mobile_menu_open?
+      toggle_mobile_menu
+      sub_nav.wait_while_present
+    end
+  end
+
   def toggle_menu
     toggle_mobile_menu unless mobile_menu_open?
     wait_for(3, 'Failed to toggle mobile menu!') { mobile_menu_open? }
