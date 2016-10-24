@@ -399,7 +399,9 @@ module Aweplug
       # Private: Issues a GET to Drupal to retrieve the sitemap.
       def fetch_sitemap
         $LOG.verbose 'Calling Drupal cron and sitemap' if $LOG.verbose?
-        cron_request = @faraday.get('/cron/rhd')
+        cron_request = @faraday.get('/cron/rhd') do |req|
+          req.options['timeout'] = 600;
+        end
 
         unless cron_request.success?
           $LOG.error "Error invoking drupal cron. Status: #{cron_request.status}." if $LOG.error?
@@ -476,8 +478,7 @@ module Aweplug
                            summary: page.description,
                            format: (page.drupal_format || 'full_html')}],
                    path: {alias: File.join('/', path)},
-                   status: [{value: '1', lang: 'en'}],
-                   moderation_state: [{target_id: "published", lang: "en"}]
+                   status: [{value: '1', lang: 'en'}]
         }
         if page.drupal_type == 'rhd_solution_overview'
           payload[:field_solution_name] = [{:value => page.solution.name }]

@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - token_filter
 _core:
   default_config_hash: P8ddpAIKtawJDi5SzOwCzVnnNYqONewSTJ6Xn0dW_aQ
 name: 'Basic HTML'
@@ -42,4 +43,10 @@ filters:
     provider: editor
     status: true
     weight: 11
+    settings: {  }
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: true
+    weight: 0
     settings: {  }

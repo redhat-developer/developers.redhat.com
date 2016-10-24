@@ -16,14 +16,11 @@ dependencies:
     - field.field.node.topic.field_top_left_white_card
     - field.field.node.topic.field_top_right_white_card
     - field.field.node.topic.field_topic_sub_title
-    - field.field.node.topic.publish_date
     - node.type.topic
   module:
-    - inline_entity_form
     - link
     - path
     - text
-    - workbench_moderation
 _core:
   default_config_hash: jGHPzwirnVEHycI_Us_SlVTxaYU9EzvezuoXpUM_NeU
 id: node.topic.default
@@ -144,18 +141,6 @@ content:
     settings:
       display_label: true
     weight: 3
-    third_party_settings: {  }
-  publish_date:
-    type: inline_entity_form_complex
-    weight: 11
-    settings:
-      override_labels: true
-      label_singular: 'Publish Date'
-      label_plural: 'Publish Dates'
-      allow_new: true
-      match_operator: CONTAINS
-      allow_existing: false
-      form_mode: default
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox

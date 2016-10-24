@@ -1,0 +1,22 @@
+uuid: d950bfab-e5f3-45e3-8a8e-961cebf6a6de
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.promotion_page
+id: node.promotion_page.status
+field_name: status
+entity_type: node
+bundle: promotion_page
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,8 +1,18 @@
 general_settings:
-  theme: default
   radio_behavior: simple
   context_lines_leading: 1
   context_lines_trailing: 1
   revision_pager_limit: 50
+  layout_plugins:
+    visual_inline:
+      weight: 4
+      enabled: false
+    split_fields:
+      enabled: true
+      weight: 5
+    unified_fields:
+      enabled: true
+      weight: 6
+  visual_inline_theme: default
 _core:
   default_config_hash: 2GE7UJUi0iGBPVb9DkGqN4bHjIsphvlb2DM8a-uej4s

@@ -5,7 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.promotion_card.field_container_external_link
-    - field.field.node.promotion_card.field_container_tags
     - field.field.node.promotion_card.field_containers_short_summary
     - node.type.promotion_card
   module:
@@ -30,14 +29,6 @@ content:
       url_plain: false
       rel: '0'
     third_party_settings: {  }
-  field_container_tags:
-    type: entity_reference_entity_view
-    weight: 2
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
   field_containers_short_summary:
     type: text_default
     weight: 1
@@ -45,4 +36,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_container_tags: true
   links: true

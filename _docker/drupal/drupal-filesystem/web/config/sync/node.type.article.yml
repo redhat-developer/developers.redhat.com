@@ -3,22 +3,18 @@ langcode: en
 status: true
 dependencies:
   module:
-    - workbench_moderation
+    - menu_ui
 third_party_settings:
-  workbench_moderation:
-    enabled: true
-    allowed_moderation_states:
-      - published
-      - archived
-      - draft
-      - needs_review
-    default_moderation_state: draft
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
 _core:
   default_config_hash: i4OVV5qrD7abstl4SKS8v5Ee7PuxrL548iZVSty1HRg
 name: Article
 type: article
 description: 'Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.'
 help: ''
-new_revision: true
+new_revision: null
 preview_mode: 1
 display_submitted: false
