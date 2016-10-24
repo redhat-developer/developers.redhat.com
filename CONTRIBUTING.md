@@ -443,7 +443,7 @@ Now update the Spreadsheet to make the new header graphic option available.
 This update will be visable after the next site build. Typically this takes upto 6hrs.
 
 ### How to add a book
-To add a book to http://developers.redhat.com/books:
+To add a book to http://developers.redhat.com/books & http://developers.redhat.com/resources
 
 1. Open the [Books Spreadsheet](https://docs.google.com/spreadsheets/d/1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g/edit?usp=sharing) 
  1. This spreadsheet can be shared with anyone who requests it using their Red Hat Google Drive account.
