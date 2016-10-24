@@ -6,7 +6,7 @@ _core:
   default_config_hash: 16ASMc6frOZlzgMFSK-a7L3OZKgoKYL_MgWaWqmWng8
 id: content_team
 label: 'Content Team'
-weight: -7
+weight: 3
 is_admin: null
 permissions:
   0: 'use text format rhd_html'
@@ -24,6 +24,7 @@ permissions:
   12: 'create url aliases'
   13: 'access in-place editing'
   14: 'access shortcuts'
+  15: 'access contextual links'
   16: 'view the administration theme'
   17: 'access toolbar'
   18: 'edit any rhd_microsite content'
@@ -42,27 +43,10 @@ permissions:
   31: 'create topic content'
   32: 'delete own topic content'
   33: 'edit any topic content'
-  34: 'edit own topic content'
   35: 'revert topic revisions'
   36: 'view topic revisions'
   37: 'access content'
   38: 'revert promotion_card revisions'
   39: 'revert rhd_microsite revisions'
   40: 'revert rhd_solution_overview revisions'
-  43: 'create scheduling_options scheduled updates'
-  44: 'edit own scheduling_options scheduled updates'
-  45: 'delete own scheduling_options scheduled updates'
-  46: 'create schedule_updates scheduled updates'
-  47: 'delete own schedule_updates scheduled updates'
-  48: 'edit own schedule_updates scheduled updates'
-  49: 'view moderation states'
-  50: 'use published_archived transition'
-  51: 'use published_draft transition'
-  52: 'use draft_draft transition'
-  53: 'use needs_review_needs_review transition'
-  54: 'use published_published transition'
-  55: 'use draft_published transition'
-  56: 'use needs_review_published transition'
-  57: 'use draft_needs_review transition'
-  58: 'use needs_review_draft transition'
-  59: 'use archived_published transition'
+  41: 'edit own topic content'

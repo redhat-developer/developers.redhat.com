@@ -476,8 +476,7 @@ module Aweplug
                            summary: page.description,
                            format: (page.drupal_format || 'full_html')}],
                    path: {alias: File.join('/', path)},
-                   status: [{value: '1', lang: 'en'}],
-                   moderation_state: [{target_id: "published", lang: "en"}]
+                   status: [{value: '1', lang: 'en'}]
         }
         if page.drupal_type == 'rhd_solution_overview'
           payload[:field_solution_name] = [{:value => page.solution.name }]

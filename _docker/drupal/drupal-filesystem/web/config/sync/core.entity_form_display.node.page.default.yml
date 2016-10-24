@@ -4,13 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
-    - field.field.node.page.publish_date
     - node.type.page
   module:
-    - inline_entity_form
     - path
     - text
-    - workbench_moderation
 _core:
   default_config_hash: KSvzyFhdLuxniTsunUnUfpfMmod2l57GibtVjL8ymHM
 id: node.page.default
@@ -41,18 +38,6 @@ content:
     settings:
       display_label: true
     weight: 15
-    third_party_settings: {  }
-  publish_date:
-    type: inline_entity_form_complex
-    weight: 11
-    settings:
-      override_labels: true
-      label_singular: 'Publish Date'
-      label_plural: 'Publish Dates'
-      allow_new: true
-      match_operator: CONTAINS
-      allow_existing: false
-      form_mode: default
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox

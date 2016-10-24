@@ -4,19 +4,10 @@ status: true
 dependencies:
   module:
     - menu_ui
-    - workbench_moderation
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-  workbench_moderation:
-    enabled: true
-    allowed_moderation_states:
-      - published
-      - archived
-      - draft
-      - needs_review
-    default_moderation_state: draft
 _core:
   default_config_hash: bF8TqQJcUKpx9K5FV6MT61vNmPmID6yEpap4LnuY0oA
 name: 'Promotion Card'
