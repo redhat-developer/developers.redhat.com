@@ -150,15 +150,6 @@ function redhat_www_ddo_default() {
     $node = \Drupal::request()->attributes->get('node');
 
     $ddo = array(
-        'listing' => array(
-            'browseFilter' => '',
-            'query' => '',
-            'queryMethod' => '',
-            'refinementType' => '',
-            'refinementValue' => '',
-            'resultCount' => '',
-            'searchType' => '',
-        ),
         'page' => array(
             'attributes' => array(
                 'queryParameters' => '',
@@ -186,6 +177,15 @@ function redhat_www_ddo_default() {
                 'syndicationIds' => array(),
                 'sysEnv' => '',
                 'title' => $node->title->value,
+            ),
+            'listing' => array(
+                'browseFilter' => '',
+                'query' => '',
+                'queryMethod' => '',
+                'refinementType' => '',
+                'refinementValue' => '',
+                'resultCount' => '',
+                'searchType' => '',
             ),
         ),
         'user' => array(
