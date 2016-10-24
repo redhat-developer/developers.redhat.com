@@ -38,12 +38,6 @@ filters:
     status: true
     weight: -46
     settings: {  }
-  token_filter:
-    id: token_filter
-    provider: token_filter
-    status: true
-    weight: -50
-    settings: {  }
   filter_autop:
     id: filter_autop
     provider: filter
@@ -75,3 +69,9 @@ filters:
     weight: -43
     settings:
       filter_url_length: 72
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: true
+    weight: -50
+    settings: {  }
