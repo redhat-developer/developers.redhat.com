@@ -445,11 +445,10 @@ This update will be visable after the next site build. Typically this takes upto
 ### How to add a book
 To add a book to http://developers.redhat.com/books:
 
-1. Check that Google Books knows about the book, by searching for the ISBN13 at http://books.google.com/ 
- 1. If it doesn’t appear, the details will need filling in manually in a later step. Alternatively the author, or contributor, can work with the publisher as described [here](https://support.google.com/books/answer/43782?hl=en).
-2. Open the [Books Spreadsheet]( https://docs.google.com/spreadsheets/d/1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g/edit?usp=sharing) and add the ISBN13 for the book in the next cell in the list. 
+1. Open the [Books Spreadsheet](https://docs.google.com/spreadsheets/d/1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g/edit?usp=sharing) 
  1. This spreadsheet can be shared with anyone who requests it using their Red Hat Google Drive account.
-3. If the book is missing from http://books.google.com, or some specific data is missing/incorrect; the fields can be overridden in the spreadsheet row for the book.
+2. Fill out as much data as possible for the book.
+ 1. Ensure "Pull From Google" is set to "No".
 3. Wait 6hrs and check http://developers.redhat.com/books to make sure the book appears.
  1. If it doesn't [Create a DEVELOPER JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa)
 
