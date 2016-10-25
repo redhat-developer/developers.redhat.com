@@ -238,6 +238,7 @@ function searchCtrlFunc($scope, $window, searchService) {
 
   var isStackOverflow = ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href)));
   var isSearch = !!window.location.href.match(/\/search/);
+  var isResources = !!window.location.href.match(/\/resources/);
   var searchTerm = window.location.search.split('=');
   var q = '';
 
@@ -252,6 +253,11 @@ function searchCtrlFunc($scope, $window, searchService) {
     newFirst: false,
     sortBy: 'relevance'
   };
+
+  // Resources Page Specifics
+  if(isResources) {
+    $scope.params.sortBy = 'most-recent';
+  }
 
   // Search Page Specifics
   if(isSearch && searchTerm) {
