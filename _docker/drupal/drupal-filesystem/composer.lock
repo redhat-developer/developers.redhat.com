@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1971e1bc939ccf299c3e28cf70e70650",
-    "content-hash": "2e37f6de630f6cf4c7bc9ec4a38b9053",
+    "hash": "370e635a2d876969b02ef241ea707c79",
+    "content-hash": "03baaf1e8c4924868e8eca4b5c6b3fc3",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1414,7 +1414,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0-alpha26",
-                    "datestamp": "1462560839"
+                    "datestamp": "1471723439"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1823,18 +1823,21 @@
             }
         },
         {
-            "name": "drupal/inline_entity_form",
-            "version": "dev-1.x",
+            "name": "drupal/key_value",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/inline_entity_form",
-                "reference": "8227e2879c9d4c19bf6d402cbba35d59350da56b"
+                "url": "https://git.drupal.org/project/key_value",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/key_value-8.x-1.0.zip",
+                "reference": null,
+                "shasum": "855ae74d28f7385341f2378aa39b26990bb2136c"
             },
             "require": {
-                "drupal/core": "~8.0"
-            },
-            "suggest": {
-                "drupal/entity_reference_revisions": "Required by drupal/inline_entity_form"
+                "drupal/core": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -1842,8 +1845,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha6+13-dev",
-                    "datestamp": "1476832739"
+                    "version": "8.x-1.0",
+                    "datestamp": "1450370339"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1852,58 +1855,23 @@
             ],
             "authors": [
                 {
-                    "name": "bojanz",
-                    "homepage": "https://www.drupal.org/user/86106"
+                    "name": "dixon_",
+                    "homepage": "https://www.drupal.org/user/239911"
                 },
                 {
-                    "name": "dawehner",
-                    "homepage": "https://www.drupal.org/user/99340"
+                    "name": "jeqq",
+                    "homepage": "https://www.drupal.org/user/1427908"
                 },
                 {
-                    "name": "rszrama",
-                    "homepage": "https://www.drupal.org/user/49344"
-                },
-                {
-                    "name": "slashrsm",
-                    "homepage": "https://www.drupal.org/user/744628"
-                },
-                {
-                    "name": "webflo",
-                    "homepage": "https://www.drupal.org/user/254778"
+                    "name": "timmillwood",
+                    "homepage": "https://www.drupal.org/user/227849"
                 }
-            ],
-            "description": "Provides a widget for inline management (creation, modification, removal) of referenced entities.",
-            "homepage": "https://www.drupal.org/project/inline_entity_form",
-            "support": {
-                "source": "http://cgit.drupalcode.org/inline_entity_form"
-            },
-            "time": "2016-10-18 23:16:30"
-        },
-        {
-            "name": "drupal/key_value",
-            "version": "8.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/key_value.git",
-                "reference": "e5cf1d9918c63869f1a265bb82c40b25370a5dea"
-            },
-            "require": {
-                "drupal/core": "8.*",
-                "drupal/serialization": "8.*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0+"
             ],
             "description": "Extends the core key-value API with a backend for lists and sorted sets that you can do range queries on.",
             "homepage": "https://www.drupal.org/project/key_value",
-            "time": "2015-12-05 00:22:40"
+            "support": {
+                "source": "http://cgit.drupalcode.org/key_value"
+            }
         },
         {
             "name": "drupal/metatag",
@@ -2122,52 +2090,6 @@
                 "source": "http://cgit.drupalcode.org/pathauto"
             },
             "time": "2016-10-12 14:18:39"
-        },
-        {
-            "name": "drupal/scheduled_updates",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/scheduled_updates",
-                "reference": "d974e6849ea33e11892d1a0c8268119e0f6bd2f7"
-            },
-            "require": {
-                "drupal/core": "*",
-                "drupal/inline_entity_form": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha5+7-dev",
-                    "datestamp": "1466362739"
-                },
-                "patches_applied": {
-                    "No canonical link for update types": "https://www.drupal.org/files/issues/scheduled_updates-no-canonical-link-for-update-type.patch"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "tedbow",
-                    "homepage": "https://www.drupal.org/user/240860"
-                }
-            ],
-            "description": "My Awesome Module",
-            "homepage": "http://drupal.org/project/scheduled_updates",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/scheduled_updates",
-                "issues": "http://drupal.org/project/issues/scheduled_updates"
-            },
-            "time": "2016-06-19 18:59:45"
         },
         {
             "name": "drupal/simple_sitemap",
@@ -2390,218 +2312,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/token_filter"
             }
-        },
-        {
-            "name": "drupal/workbench",
-            "version": "1.0.0-alpha2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/workbench",
-                "reference": "8.x-1.0-alpha2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/workbench-8.x-1.0-alpha2.zip",
-                "reference": null,
-                "shasum": "c199262bbd4b495bac07606ecde409e1db85f97e"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha2",
-                    "datestamp": "1466709239"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Reid",
-                    "homepage": "https://www.drupal.org/user/53892"
-                },
-                {
-                    "name": "agentrickard",
-                    "homepage": "https://www.drupal.org/user/20975"
-                },
-                {
-                    "name": "bbinkovitz",
-                    "homepage": "https://www.drupal.org/user/161263"
-                },
-                {
-                    "name": "becw",
-                    "homepage": "https://www.drupal.org/user/81067"
-                },
-                {
-                    "name": "caroltron",
-                    "homepage": "https://www.drupal.org/user/171342"
-                },
-                {
-                    "name": "robeano",
-                    "homepage": "https://www.drupal.org/user/67660"
-                },
-                {
-                    "name": "stevector",
-                    "homepage": "https://www.drupal.org/user/179805"
-                }
-            ],
-            "description": "Editorial dashboards and shortcuts.",
-            "homepage": "https://www.drupal.org/project/workbench",
-            "support": {
-                "source": "http://cgit.drupalcode.org/workbench"
-            }
-        },
-        {
-            "name": "drupal/workbench_email",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/workbench_email",
-                "reference": "11533a54e5dd87966dc8735b18f812c0e907ef48"
-            },
-            "require": {
-                "drupal/core": "*",
-                "drupal/workbench_moderation": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha3+0-dev",
-                    "datestamp": "1475800439"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "frosev",
-                    "homepage": "https://www.drupal.org/user/195325"
-                },
-                {
-                    "name": "larowlan",
-                    "homepage": "https://www.drupal.org/user/395439"
-                },
-                {
-                    "name": "teknic",
-                    "homepage": "https://www.drupal.org/user/367359"
-                },
-                {
-                    "name": "unobot",
-                    "homepage": "https://www.drupal.org/user/731188"
-                }
-            ],
-            "description": "Send emails to users when workbench transitions occur",
-            "homepage": "https://www.drupal.org/project/workbench_email",
-            "support": {
-                "source": "http://cgit.drupalcode.org/workbench_email"
-            },
-            "time": "2016-10-07 00:32:09"
-        },
-        {
-            "name": "drupal/workbench_moderation",
-            "version": "dev-2.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/workbench_moderation",
-                "reference": "661c2108c84e961a00ae7174c91053858447a7d2"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.x-dev",
-                    "datestamp": "1468486439"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Crell",
-                    "homepage": "https://www.drupal.org/user/26398"
-                },
-                {
-                    "name": "Dave Reid",
-                    "homepage": "https://www.drupal.org/user/53892"
-                },
-                {
-                    "name": "agentrickard",
-                    "homepage": "https://www.drupal.org/user/20975"
-                },
-                {
-                    "name": "becw",
-                    "homepage": "https://www.drupal.org/user/81067"
-                },
-                {
-                    "name": "caroltron",
-                    "homepage": "https://www.drupal.org/user/171342"
-                },
-                {
-                    "name": "colan",
-                    "homepage": "https://www.drupal.org/user/58704"
-                },
-                {
-                    "name": "das-peter",
-                    "homepage": "https://www.drupal.org/user/762870"
-                },
-                {
-                    "name": "josephdpurcell",
-                    "homepage": "https://www.drupal.org/user/2944035"
-                },
-                {
-                    "name": "larowlan",
-                    "homepage": "https://www.drupal.org/user/395439"
-                },
-                {
-                    "name": "robeano",
-                    "homepage": "https://www.drupal.org/user/67660"
-                },
-                {
-                    "name": "srjosh",
-                    "homepage": "https://www.drupal.org/user/165878"
-                },
-                {
-                    "name": "stevector",
-                    "homepage": "https://www.drupal.org/user/179805"
-                },
-                {
-                    "name": "tedbow",
-                    "homepage": "https://www.drupal.org/user/240860"
-                },
-                {
-                    "name": "timmillwood",
-                    "homepage": "https://www.drupal.org/user/227849"
-                }
-            ],
-            "description": "Provides moderation states for content",
-            "homepage": "http://drupal.org/project/workbench_moderation",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/workbench_moderation",
-                "issues": "http://drupal.org/project/issues/workbench_moderation"
-            },
-            "time": "2016-06-28 04:04:37"
         },
         {
             "name": "drush/drush",
@@ -6376,8 +6086,7 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            },
-            "time": "2016-10-01 14:05:48"
+            }
         },
         {
             "name": "fabpot/goutte",
@@ -7468,11 +7177,6 @@
         "drupal/pathauto": 20,
         "drupal/ctools": 15,
         "drupal/token_filter": 10,
-        "drupal/scheduled_updates": 20,
-        "drupal/inline_entity_form": 20,
-        "drupal/workbench": 15,
-        "drupal/workbench_moderation": 20,
-        "drupal/workbench_email": 20,
         "drupal/subpathauto": 15,
         "drupal/field_collection": 20,
         "drupal/field_group": 5,

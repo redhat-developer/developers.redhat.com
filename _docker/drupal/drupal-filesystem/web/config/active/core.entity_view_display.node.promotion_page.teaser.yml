@@ -1,0 +1,38 @@
+uuid: 0a00f168-0b37-4770-b415-5e24eef02aa4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.promotion_page.body
+    - field.field.node.promotion_page.field_call_to_action_link
+    - field.field.node.promotion_page.field_promotion_page_left_image
+    - image.style.thumbnail
+    - node.type.promotion_page
+  module:
+    - image
+    - text
+    - user
+id: node.promotion_page.teaser
+targetEntityType: node
+bundle: promotion_page
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_promotion_page_left_image:
+    type: image
+    weight: 0
+    label: visually_hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+hidden:
+  field_call_to_action_link: true
+  links: true

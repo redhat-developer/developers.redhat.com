@@ -4,9 +4,10 @@ status: true
 dependencies: {  }
 id: topics_owners
 label: 'Topics Owners'
-weight: -6
+weight: 4
 is_admin: null
 permissions:
+  0: 'access contextual links'
   1: 'use text format rhd_html'
   2: 'access content overview'
   3: 'view own unpublished content'
@@ -17,7 +18,6 @@ permissions:
   8: 'view article revisions'
   9: 'create topic content'
   10: 'delete own topic content'
-  11: 'edit own topic content'
   12: 'revert topic revisions'
   13: 'view topic revisions'
   14: 'create url aliases'
@@ -35,20 +35,3 @@ permissions:
   29: 'edit any promotion_card content'
   30: 'edit any topic content'
   31: 'edit own topic content'
-  33: 'create scheduling_options scheduled updates'
-  34: 'edit own scheduling_options scheduled updates'
-  35: 'delete own scheduling_options scheduled updates'
-  36: 'create schedule_updates scheduled updates'
-  37: 'delete own schedule_updates scheduled updates'
-  38: 'edit own schedule_updates scheduled updates'
-  39: 'view moderation states'
-  40: 'use published_archived transition'
-  41: 'use published_draft transition'
-  42: 'use draft_draft transition'
-  43: 'use needs_review_needs_review transition'
-  44: 'use published_published transition'
-  45: 'use draft_published transition'
-  46: 'use needs_review_published transition'
-  47: 'use draft_needs_review transition'
-  48: 'use needs_review_draft transition'
-  49: 'use archived_published transition'
