@@ -75,6 +75,7 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${export_destination}
     - github_status_sha1=${ghprbActualCommit}
+    - drupal.export.fail_on_missing
 
   #
   # Testing
