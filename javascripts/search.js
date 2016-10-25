@@ -361,6 +361,14 @@ function searchCtrlFunc($scope, $window, searchService) {
     }
 
     searchService.getSearchResults(params).then(function(data) {
+      if (!window.digitalData) {
+        digitalData = {page: {listing : {}}};
+      } 
+      digitalData.page.listing.query = $scope.params.query;
+      digitalData.page.listing.queryMethod = "manual";
+      digitalData.page.listing.resultCount = data.hits.total;
+      digitalData.page.listing.browseFilter = product;
+
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
       $scope.params.product = product;

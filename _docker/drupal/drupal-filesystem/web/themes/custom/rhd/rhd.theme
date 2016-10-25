@@ -93,6 +93,7 @@ function rhd_preprocess_html(array &$variables) {
 
     $variables['rhd_environment'] = $environment;
     $variables['rhd_dtm_code'] = $dtm_code;
+    $variables['rhd_dtm_script'] = redhat_www_ddo_default();
 }
 
 function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
@@ -139,4 +140,78 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 
     $template = file_get_contents($theme_path . '/templates/client-side/stackoverflow_template.html.twig');
     $rhd_settings['templates']['stackoverflowTemplate'] = $template;
+}
+
+function redhat_www_ddo_default() {
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $request = \Drupal::request();
+    $useragent = $request->headers->get('user-agent');
+    $query = $request->query;
+    $node = \Drupal::request()->attributes->get('node');
+
+    $ddo = array(
+        'page' => array(
+            'attributes' => array(
+                'queryParameters' => '',
+            ),
+            'category' => array(
+                'contentType' => '',
+                'contentSubType' => '',
+                'keyPage' => false,
+                'keyPageType' => '',
+                'pageType' => '',
+                'primaryCategory' => '',
+                'subCategories' => array(),
+            ),
+            'pageInfo' => array(
+                'breadCrumbs' => array(),
+                'cms' => 'drupal',
+                'destinationURL' => '',
+                'errorMessage' => '',
+                'errorType' => '',
+                'language' => $node->langcode->value,
+                'pageID' => $node->nid->value,
+                'pageName' => '',
+                'referringDomain' => '',
+                'referringURL' => '',
+                'syndicationIds' => array(),
+                'sysEnv' => '',
+                'title' => $node->title->value,
+            ),
+            'listing' => array(
+                'browseFilter' => '',
+                'query' => '',
+                'queryMethod' => '',
+                'refinementType' => '',
+                'refinementValue' => '',
+                'resultCount' => '',
+                'searchType' => '',
+            ),
+        ),
+        'user' => array(
+            array(
+                'profile' => array(
+                    array(
+                        'profileInfo' => array(
+                            'accountID' => '',
+                            'daysSinceLastPurchase' => '',
+                            'daysSinceRegistration' => $user->created->value,
+                            'eloquaGUID' => '',
+                            'keyCloakID' => '',
+                            'loggedIn' => 'false',
+                            'profileID' => '',
+                            'registered' => false,
+                            'socialAccountsLinked' => array(),
+                            'subscriptionFrequency' => '',
+                            'subscriptionLevel' => '',
+                            'userAgent' => $useragent,
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    );
+
+
+    return $ddo;
 }
