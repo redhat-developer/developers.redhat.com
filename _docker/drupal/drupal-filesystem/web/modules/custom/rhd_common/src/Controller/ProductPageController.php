@@ -83,7 +83,13 @@ class ProductPageController extends ControllerBase {
         $link_icon = '<i class="fa fa-caret-right fa-lg"></i>';
         $page_links['#items'][] = [
           '#type' => 'link',
-          '#title' => Markup::create(t($load_paragraph->field_overview_url->value) . $link_icon),
+          '#title' => [
+            '#type' => 'inline_template',
+            '#template' => "{{text}}" . $link_icon,
+            '#context' => [
+              'text' => t($load_paragraph->field_overview_url->value)
+            ]
+          ],
           '#url' => Url::fromRoute('rhd_common.main_page_controller', [
             'product_code' => $product_code,
             'sub_page' => $url_string,
