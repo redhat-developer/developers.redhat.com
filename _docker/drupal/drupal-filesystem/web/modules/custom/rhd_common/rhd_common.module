@@ -50,7 +50,8 @@ function rhd_common_custom_form_validator(array &$element, FormStateInterface $f
     }
     $form_state->setValueForElement($element['alias'], $alias);
     // Validate that the submitted alias does not exist yet.
-    $is_exists = \Drupal::service('path.alias_storage')->aliasExists($alias, $element['langcode']['#value'], $element['source']['#value']);
+    $is_exists = \Drupal::service('path.alias_storage')
+      ->aliasExists($alias, $element['langcode']['#value'], $element['source']['#value']);
     if ($is_exists) {
       $form_state->setError($element, t('The alias is already in use.'));
     }
@@ -75,7 +76,7 @@ function rhd_common_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInte
       '#weight' => -2, //Tab location
     );
     $form['scheduling_options']['und'][0] = $form['publish_date'];
-     // Unset publish date field.
+    // Unset publish date field.
     unset($form['publish_date']);
   }
 }
@@ -88,51 +89,34 @@ function rhd_common_user_login($account) {
   $user_roles = $account->getRoles();
   $module_exists = \Drupal::moduleHandler()->moduleExists('workbench');
   if (array_intersect($roles, $user_roles) && $module_exists) {
-     $url = Url::fromRoute('workbench.content')->toString();
-     $response = new RedirectResponse($url);
-     $response->send(); 
+    $url = Url::fromRoute('workbench.content')->toString();
+    $response = new RedirectResponse($url);
+    $response->send();
   }
 }
+
 /**
  * Implements hook_theme().
  */
 function rhd_common_theme($existing, $type, $theme, $path) {
-  return array(
-    'product-pages' => array(
-      'variables' => array(
-        'title' => NULL,
-        'summary' => NULL,
-        'get_started' => NULL,
-        'disable_get_started' => NULL,
-        'product_pages' => NULL,
-        'main_content' => NULL,
-        'buzz_tags' => NULL,
-      ),
-    ),
-    'product-pages-docs-apis' => array(
-      'variables' => array(
-        'title' => NULL,
-        'summary' => NULL,
-        'get_started' => NULL,
-        'disable_get_started' => NULL,
-        'product_pages' => NULL,
-        'main_content' => NULL,
-        'documents_row' => NULL,
-        'all_download_versions' => NULL,
-      ),
-    ),
-  );
+  return [
+    'product-pages' => [
+      'render element' => 'elements',
+    ]
+  ];
 }
 
 /**
  * Implements hook_node_view().
  */
-function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
-  if ($view_mode == 'full' && $node->getType() == 'product') {
+function rhd_common_product_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  if ($view_mode == 'full') {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_args = explode('/', $current_path);
     if ($path_args[1] == 'node') {
-      $product_code = $node->field_product_machine_name->value;
+      $product_code = $node->getTypedData()
+        ->get('field_product_machine_name')
+        ->getValue();
       if (!empty($product_code)) {
         $url = Url::fromRoute('rhd_common.main_page_controller', array(
           'product_code' => $product_code,

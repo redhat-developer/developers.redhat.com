@@ -1,0 +1,9 @@
+{% if content.field_buzz_tags %}
+    {% set buzz_tags = content.field_buzz_tags[0]['#context']['value']|split(',')|json_encode %}
+{% endif %}
+
+{{ content.field_overview_main_content }}
+
+{% if buzz_tags %}
+    <div class="product-buzz-container" data-tags="{{ buzz_tags }}"></div>
+{% endif %}

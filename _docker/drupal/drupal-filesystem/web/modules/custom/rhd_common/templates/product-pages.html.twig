@@ -73,45 +73,36 @@
  */
 #}
 
-{% set current_url = '' %}
+{% set product_machine_name = elements.field_product_machine_name[0]['#context']['value']|lower %}
+{% set active_paragraph = elements.active_paragraph['#paragraph'] %}
 <article{{ attributes }}>
-  <section class="hero hero-wide product-header datagrid application-development">
-    <div class="row">
-      <div class="large-24">
-        <h2 {{ title_attributes }}>{{ title }}</h2>
-        {{ summary|raw }}
-      </div>
-    </div>
-  </section>
-  <section class="product-graphics application-development">
-    {% if not disable_get_started %}
-      {{ get_started|raw }}
-    {% endif %}  
-     <div class="row content">
-        <div class="large-24">
-          <div class="large-4 medium-7 small-24 columns nav-breakpoint">
-            <ul class="side-nav"><li class="side-nav-toggle"><a href="#">Menu</a></li>
-              {% for member in product_pages  %}
-              {% if member.active %}
-                <li class="active">
-              {% else %}
-                 <li>
-              {% endif %}
-                {% if member is not empty %}   
-                  <a href="{{member.url}}">{{ member.title|t }}<i class="fa fa-caret-right fa-lg"></i></a>
-                  {% set current_url = member.url %}
-                {% endif %}
-              </li>
-             {% endfor %}
-            </ul>
-          </div>
-          <div class="large-20 medium-17 small-24 columns">
-            {{ main_content|raw }}
-            {% if 'buzz' in current_url %}
-              <div class="product-buzz-container" data-tags="{{ buzz_tags|json_encode }}"></div>
-            {% endif %}
-          </div>
+    <section class="hero hero-wide product-header {{ product_machine_name }} application-development">
+        <div class="row">
+            <div class="large-24">
+                {{ title_prefix }}
+                <h2 {{ title_attributes }}>{{ elements.title }}</h2>
+                {{ title_suffix }}
+                <h3 id="product">{{ elements.field_product_summary }}</h3>
+            </div>
         </div>
-      </div>
-  </section>
+    </section>
+    <section{{ content_attributes.addClass(["product-graphics", "application-development"]) }}>
+        {% if not active_paragraph.field_overview_hide_get_started.value %}
+            <div id="hero-try-or-buy" class="row application-development">
+                <div class="large-24 columns hello-world">
+                    {{ elements.field_product_get_started }}
+                </div>
+            </div>
+        {% endif %}
+        <div class="row content">
+            <div class="large-24">
+                <div class="large-4 medium-7 small-24 columns nav-breakpoint">
+                    {{ elements.page_links }}
+                </div>
+                <div class="large-20 medium-17 small-24 columns">
+                    {{ elements.active_paragraph }}
+                </div>
+            </div>
+        </div>
+    </section>
 </article>
