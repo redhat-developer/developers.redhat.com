@@ -32,10 +32,8 @@ class ExportInspector
     fail_on_missing = ENV['drupal.export.fail_on_missing']
     fail = true
 
-    if !fail_on_missing.nil? && !fail_on_missing.empty?
-      if fail_on_missing.to_s == 'false'
-        fail = false
-      end
+    unless fail_on_missing.nil? || fail_on_missing.empty?
+      fail = false if fail_on_missing =~ /false/
     end
     fail
   end
