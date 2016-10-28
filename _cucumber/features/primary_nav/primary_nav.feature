@@ -16,12 +16,13 @@ Feature: Site navigation menu
     When I click on the Topics menu item
     Then I should see the following "Topics" desktop sub-menu items:
       | Containers              |
-      | Mobile                  |
       | DevOps                  |
-      | Web and API Development |
       | Enterprise Java         |
-      | .NET                    |
       | Internet of Things      |
+      | Microservices           |
+      | Mobile                  |
+      | Web and API Development |
+      | .NET                    |
 
   @desktop @smoke
   Scenario: TOPICS sub-menu items should link to retrospective pages
@@ -36,6 +37,7 @@ Feature: Site navigation menu
       | Enterprise Java         | enterprise-java         |
       | .NET                    | dotnet                  |
       | Internet of Things      | iot                     |
+      | Microservices           | microservices           |
 
   @products @desktop @smoke
   Scenario: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
