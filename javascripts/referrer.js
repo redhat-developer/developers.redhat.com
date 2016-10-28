@@ -16,7 +16,7 @@
           referrerHTML.insertAfter('.contributors-main');
           break;
         case 'quickstarts': // after id start
-          referrerHTML.insertAfter('#start');
+          referrerHTML.insertBefore('.node__content');
           break;
         case 'events': // after class hero
           referrerHTML.insertAfter('.hero');
