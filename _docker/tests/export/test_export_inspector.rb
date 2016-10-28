@@ -22,9 +22,10 @@ EOD
 
   def teardown
     FileUtils.remove_entry_secure @export_directory
+    ENV['drupal.export.fail_on_missing'] = nil
   end
 
-  def test_all_links_are_valid
+  def test_all_pages_present_in_export
     # Go through and create the files that are expected
     expected_files = %w(index.html about/index.html events/devnation/2016/index.html community/contributor/signup/index.html articles/rhel-what-you-need-to-know/index.html)
 
@@ -38,7 +39,28 @@ EOD
     end
   end
 
-  def test_no_links_are_valid
+  def test_should_fail_when_pages_missing_from_export
+    assert_raises(StandardError, "There are '5' pages missing from the site export (see warnings for missing content). Failing export process.") do
+      @inspector.inspect_export(@url_list, @export_directory)
+    end
+  end
+
+  def test_should_fail_when_pages_missing_and_override_empty
+    ENV['drupal.export.fail_on_missing'] = ''
+    assert_raises(StandardError, "There are '5' pages missing from the site export (see warnings for missing content). Failing export process.") do
+      @inspector.inspect_export(@url_list, @export_directory)
+    end
+  end
+
+  def test_should_fail_when_pages_missing_and_override_nil
+    ENV['drupal.export.fail_on_missing'] = nil
+    assert_raises(StandardError, "There are '5' pages missing from the site export (see warnings for missing content). Failing export process.") do
+      @inspector.inspect_export(@url_list, @export_directory)
+    end
+  end
+
+
+  def test_missing_pages_in_export_but_set_to_ignore
     expected_output = <<EOD
 ================================ EXPORT SUMMARY ================================
 WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/' at expected path: '#{@export_directory}/index.html'
@@ -48,8 +70,9 @@ WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.red
 WARNING: Cannot locate export of 'http://developer-drupal.web.stage.ext.phx2.redhat.com/articles/rhel-what-you-need-to-know' at expected path: '#{@export_directory}/articles/rhel-what-you-need-to-know/index.html'
 WARNING: Of '5' pages, '5' are not found in the export.
 EOD
+    ENV['drupal.export.fail_on_missing'] = 'false'
     assert_output(expected_output) do
-      @inspector.inspect_export @url_list, @export_directory
+      @inspector.inspect_export(@url_list, @export_directory)
     end
   end
 end

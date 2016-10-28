@@ -81,6 +81,8 @@ services:
       - /data/drupal-export:/export
       - /credentials/rsync:/home/jenkins_developer/.ssh
       - ../../../:/home/jenkins_developer/developer.redhat.com
+    environment:
+     - drupal.export.fail_on_missing
 
   rollback:
     build:
