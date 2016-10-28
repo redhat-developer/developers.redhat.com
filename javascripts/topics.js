@@ -26,7 +26,7 @@ app.topics.fetch = function() {
         tagsString += (tags[i]).toLowerCase();
       }
     }
-  $.getJSON(app.dcp.url.search + '/resources?tags_or_logic=true&newFirst=true&size25=true&tag=' + tagsString, function(data){
+  $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&newFirst=true&size25=true&tag=' + tagsString, function(data){
     if(data.hits && data.hits.hits) {
       app.topics.render(data.hits.hits);
     }
