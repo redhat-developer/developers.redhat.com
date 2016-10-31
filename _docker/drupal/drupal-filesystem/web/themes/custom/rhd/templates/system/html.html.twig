@@ -63,11 +63,12 @@
         var categories = { primaryCategory: "", subCategories: [] },
           url = window.location.href.split(/\//);
         for(var i=3, l=url.length; i<l; i++) {
-          if(i !== 3 && categories.subCategories.length <= 3) { 
-            categories.subCategories.push(url[i]);
-          } else {
-            categories.primaryCategory = url[i];
-          }
+          if(categories.subCategories.length <= 3) {
+            if( i !== 3 ) {
+              categories.subCategories.push(url[i]);
+            } else {
+              categories.primaryCategory = url[i];
+            }
         }
         return categories;
       }
