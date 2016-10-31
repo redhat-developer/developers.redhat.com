@@ -87,3 +87,7 @@ And(/^the result per page options should be:$/) do |table|
   end
   @current_page.results_per_page[1].should =~ results_per_page
 end
+
+And(/^I sort results by "([^"]*)"$/) do |sort_by|
+  @current_page.select_filter_by(sort_by)
+end

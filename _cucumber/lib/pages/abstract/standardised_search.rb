@@ -52,7 +52,7 @@ class StandardisedSearch < SiteBase
   end
 
   def select_filter_by(option)
-    select(results_sort_filter, option)
+    results_sort_filter.when_present.select(option)
     wait_for_results
   end
 
