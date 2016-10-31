@@ -49,12 +49,10 @@ task :features do
 end
 
 task :wip do
-  cleanup
   system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
 end
 
 task :debugger do
-  cleanup
   system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
@@ -66,6 +64,14 @@ end
 def run(profile, tag)
   tag_string = tag unless tag.eql?(nil)
 
+  if ENV['BUILD_NUMBER']
+    $rerun_dir = File.join("#{Dir.pwd}/_cucumber", "#{ENV['BUILD_NUMBER']}_failures")
+    FileUtils.mkdir_p($rerun_dir)
+  else
+    $rerun_dir = File.join("#{Dir.pwd}/_cucumber", 'failures')
+    FileUtils.mkdir_p($rerun_dir)
+  end
+
   if profile.eql?('slow')
     if tag.eql?(nil)
       system("cucumber _cucumber -r _cucumber/features/ -p #{profile}")
@@ -74,9 +80,9 @@ def run(profile, tag)
     end
   else
     if tag.eql?(nil)
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 10")
+      system "bundle exec parallel_cucumber _cucumber/features/ -o \"-p #{profile} --format ParallelTests::Cucumber::FailuresLogger --out #{$rerun_dir}/cucumber_failures.log\" -n 10"
     else
-      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 10")
+      system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string} --format ParallelTests::Cucumber::FailuresLogger --out #{$rerun_dir}/cucumber_failures.log\" -n 10")
     end
   end
 
@@ -97,27 +103,32 @@ def generate_reports
     config.report_tabs = [:overview, :features, :errors]
     config.report_title = 'RHD Test Results'
     config.compress_images = true
-    end
+  end
   ReportBuilder.build_report
 end
 
 def rerun
   # rerun attempt one
-  if File.exist?('cucumber_failures.log') && File.size('cucumber_failures.log') > 0
-    puts ('. . . . . There were failures during the test run! Attempt one of rerunning failed scenarios . . . . .')
-    system('bundle exec cucumber @cucumber_failures.log -f rerun --out cucumber_failures1.log')
+  if File.exist?("#{$rerun_dir}/cucumber_failures.log") && File.size("#{$rerun_dir}/cucumber_failures.log") > 0
+    puts ('. . . . . There were failures during the test ruco n! Attempt one of rerunning failed scenarios . . . . .')
+    system("bundle exec cucumber @#{$rerun_dir}/cucumber_failures.log -f rerun --out #{$rerun_dir}/cucumber_failures1.log")
   end
   # rerun attempt two
-  if File.exist?('cucumber_failures1.log') && File.size('cucumber_failures1.log') > 0
+  if File.exist?("#{$rerun_dir}/cucumber_failures1.log") && File.size("#{$rerun_dir}/cucumber_failures1.log") > 0
     puts('. . . . . There were failures during first rerun! Attempt two of rerunning failed scenarios . . . . .')
-    system('bundle exec cucumber @cucumber_failures1.log')
+    system("bundle exec cucumber @#{$rerun_dir}/cucumber_failures1.log")
   end
   $?.exitstatus
 end
 
 def cleanup
   p '. . . . Deleting old reports and screenshots  . . . .'
-  File.delete('cucumber_failures.log') if File.exist?('cucumber_failures.log')
+  if ENV['BUILD_NUMBER']
+    FileUtils.rm_rf("_cucumber/#{ENV['BUILD_NUMBER']}_failures") if Dir.exist?("_cucumber/#{ENV['BUILD_NUMBER']}_failures")
+  else
+    FileUtils.rm_rf('_cucumber/failures') if Dir.exist?('_cucumber/failures')
+  end
+
   FileUtils.rm_rf('_cucumber/reports')
   Dir.mkdir('_cucumber/reports')
   FileUtils.rm_rf('_cucumber/screenshots')
