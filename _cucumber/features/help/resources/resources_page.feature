@@ -18,7 +18,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Given I am on the Resources page
     And results have loaded
     When I select "<number>" from the results per page filter
-    Then I should see "<number>" results ordered by Most Recent first
+    Then I should see "<number>" results ordered by Most Recent
 
     Examples: results per page
       | number |
@@ -29,7 +29,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
 
   Scenario:  On first visit to the Resources page - most recent item should be at the top
     Given I am on the Resources page
-    Then I should see "10" results ordered by Most Recent first
+    Then I should see "10" results ordered by Most Recent
 
   Scenario Outline: User can filter results by resource type, Blog, Book, Code Artifact, Video
     Given I am on the Resources page
@@ -49,8 +49,8 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
   Scenario: Clicking on the remove filter icon should replay results without filter.
     Given I am on the Resources page
     And results have loaded
-    And I click to filter results by "Blog Posts"
-    When I uncheck the "Blog Posts" filter
+    And I click to filter results by "Code Artifact"
+    When I uncheck the "Code Artifact" filter
     Then the default set of results are displayed
 
   Scenario: It should not be possible to filter by more than one type, if a different filter type is selected the results should display the new type.
