@@ -1,6 +1,6 @@
 (function() {
   $(function() { 
-    var referrerHTML = $('<section id="referral-alert"><div class="row content"><div class="large-24 columns"><div class="large-24 columns"><div class="alert-box info radius"><h4>You have been redirected from JBoss.org to Red Hat Developers.</h4><p>It'+"'"+'s true — JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="http://developers.redhat.com/">developers.redhat.com.</a></p><a class="close">x</a></div></div></div></div></section>');
+    var referrerHTML = $('<section id="referral-alert"><div class="row content"><div class="large-24 columns"><div class="alert-box info radius"><h4>You have been redirected from JBoss.org to Red Hat Developers.</h4><p>It'+"'"+'s true — JBoss Developer and Red Hat Developers are one and the same, and you can find all the great stuff you were looking for right here on <a href="http://developers.redhat.com/">developers.redhat.com.</a></p><a class="close">x</a></div></div></div></section>');
     if(isReferrer('jbd')) {
       switch (getPrimaryCategory()) {
         case 'products': // before class .mobile.product-header
