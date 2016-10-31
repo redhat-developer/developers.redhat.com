@@ -61,7 +61,7 @@
 
       function getCategories() {
         var categories = { primaryCategory: "", subCategories: [] },
-          url = window.location.href.split('/');
+          url = window.location.href.split(/\//);
         for(var i=3, l=url.length; i<l; i++) {
           if(i !== 3 && categories.subCategories.length <= 3) { 
             categories.subCategories.push(url[i]);
@@ -75,6 +75,7 @@
       dd.page.category.primaryCategory = categoryObj.primaryCategory;
       dd.page.category.subCategories = categoryObj.subCategories;
       dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
+      dd.page.pageInfo.destinationURL = window.location.href;
 
       if ( d.referrer ) {
         var a = d.createElement( "a" );
