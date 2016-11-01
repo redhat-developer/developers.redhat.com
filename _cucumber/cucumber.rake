@@ -30,13 +30,13 @@ task :features do
   end
 
   if ENV['ghprbActualCommit'].to_s.empty?
-    status_code = run(profile, tags)
+    test_exit_code = run(profile, tags)
   else
     p 'Sending progress to Github . . . '
     options = {:context => 'Acceptance Tests', :description => 'Acceptance Tests pending', :target_url => ENV['BUILD_URL']}
     GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "pending", options)
-    status_code = run(profile, tags)
-    if status_code == 0
+    test_exit_code = run(profile, tags)
+    if test_exit_code == 0
       options[:description] = 'Acceptance Tests finished ok!'
       GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "success", options)
     else
@@ -44,8 +44,14 @@ task :features do
       puts GitHub.update_status($github_org, $github_repo, ENV['ghprbActualCommit'], "failure", options)
     end
   end
-  puts "Acceptance tests resulted with status code of #{status_code}"
-  exit(status_code)
+  if test_exit_code != 0
+    rerun_exit_code = rerun
+    generate_reports
+    exit(rerun_exit_code)
+  else
+    generate_reports
+    exit(test_exit_code)
+  end
 end
 
 task :wip do
@@ -67,9 +73,11 @@ def run(profile, tag)
   if ENV['BUILD_NUMBER']
     $rerun_dir = File.join("#{Dir.pwd}/_cucumber", "#{ENV['BUILD_NUMBER']}_failures")
     FileUtils.mkdir_p($rerun_dir)
+    puts "Rerun dir was: #{$rerun_dir}"
   else
     $rerun_dir = File.join("#{Dir.pwd}/_cucumber", 'failures')
     FileUtils.mkdir_p($rerun_dir)
+    puts "Rerun dir was: #{$rerun_dir}"
   end
 
   if profile.eql?('slow')
@@ -85,17 +93,10 @@ def run(profile, tag)
       system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string} --format ParallelTests::Cucumber::FailuresLogger --out #{$rerun_dir}/cucumber_failures.log\" -n 10")
     end
   end
-
-  test_exit_code = $?.exitstatus
-  if test_exit_code != 0
-    test_exit_code = rerun
-  end
-  generate_reports
-  test_exit_code
+  $?.exitstatus
 end
 
 def generate_reports
-
   ReportBuilder.configure do |config|
     config.json_path = '_cucumber/reports/'
     config.report_path = '_cucumber/reports/rhd_test_report'
@@ -110,7 +111,7 @@ end
 def rerun
   # rerun attempt one
   if File.exist?("#{$rerun_dir}/cucumber_failures.log") && File.size("#{$rerun_dir}/cucumber_failures.log") > 0
-    puts ('. . . . . There were failures during the test ruco n! Attempt one of rerunning failed scenarios . . . . .')
+    puts ('. . . . . There were failures during the test run! Attempt one of rerunning failed scenarios . . . . .')
     system("bundle exec cucumber @#{$rerun_dir}/cucumber_failures.log -f rerun --out #{$rerun_dir}/cucumber_failures1.log")
   end
   # rerun attempt two

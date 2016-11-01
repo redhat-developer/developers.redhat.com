@@ -1,8 +1,6 @@
 default:
   -r _cucumber/features/
-  -f pretty -t ~@ignore
-  -t ~@manual
-  -t ~@later RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] %>
+  -f pretty RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] %>
 
 parallel:
   -r _cucumber/features/
