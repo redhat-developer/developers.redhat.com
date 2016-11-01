@@ -110,6 +110,7 @@ services:
      - RHD_JS_DRIVER
      - RHD_DOCKER_DRIVER
      - RHD_TEST_PROFILE
+     - BUILD_NUMBER
 
   docker_chrome:
    image: selenium/node-chrome-debug:2.53.0

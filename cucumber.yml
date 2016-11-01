@@ -1,7 +1,39 @@
-default: -r _cucumber/features/ -f pretty -t ~@ignore -t ~@manual -t ~@later RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] %>
-parallel:  -r _cucumber/features/ -f progress --profile parallel_html -t ~@ignore -t ~@manual -t ~@later -t ~@nightly --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log
-nightly:  -r _cucumber/features/ -f progress --profile parallel_html -t ~@ignore -t ~@manual -t ~@later --format ParallelTests::Cucumber::FailuresLogger  --out cucumber_failures.log
-parallel_html: --format json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
-slow: -p default
-desktop: --profile parallel -t ~@mobile
-mobile: --profile parallel -t ~@downloads -t ~@desktop
+default:
+  -r _cucumber/features/
+  -f pretty RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] %>
+
+parallel:
+  -r _cucumber/features/
+  -f progress
+  -p parallel_html
+  -t ~@ignore
+  -t ~@manual
+  -t ~@later
+  -t ~@nightly
+
+nightly:
+  -r _cucumber/features/
+  -f progress
+  -p parallel_html
+  -t ~@ignore
+  -t ~@manual
+  -t ~@later
+
+parallel_html:
+  -f json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
+
+slow:
+  -p default
+
+desktop:
+  -p parallel
+  -t ~@mobile
+
+mobile:
+  -profile parallel
+  -t ~@downloads
+  -t ~@desktop
+
+
+
+
