@@ -13,10 +13,8 @@ require 'json'
 require 'uuid'
 require 'fileutils'
 require 'pry'
-require 'report_builder'
 require 'octokit'
 require 'date'
-require 'active_support/core_ext'
 require 'webdriver-user-agent'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
@@ -82,6 +80,7 @@ Before do
   b.delete_cookies
 end
 
+
 at_exit do
   b.browser.quit
 
@@ -97,3 +96,4 @@ at_exit do
   end
 
 end
+

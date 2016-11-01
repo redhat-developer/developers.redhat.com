@@ -91,7 +91,7 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=Drupal:Unit Tests,Drupal:Acceptance Tests,Drupal:Exported Site Preview,Drupal:Drupal Site
+    - github_status_initialise=Drupal:Unit Tests,Drupal:FE Acceptance Tests,Drupal:FE KC/DM Acceptance Tests,Drupal:Exported Site Preview,Drupal:Drupal Site
 
   acceptance_tests:
    build: ../../awestruct
@@ -100,7 +100,7 @@ services:
    entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb"
    environment:
      - github_status_api_token
-     - github_status_context=Drupal:Acceptance Tests
+     - github_status_context=${ACCEPTANCE_TEST_DESCRIPTION}
      - github_status_repo=redhat-developer/developers.redhat.com
      - github_status_target_url=${BUILD_URL}artifact/_cucumber/reports/rhd_test_report.html
      - github_status_sha1=${ghprbActualCommit}
