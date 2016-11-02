@@ -1,5 +1,29 @@
 var search = angular.module('search', []);
 
+/*
+  Modify $browser.url()
+  We need proper + and not encoded + in the URL
+  https://github.com/angular/angular.js/issues/3042
+*/
+
+search.config(function($provide){
+  $provide.decorator('$browser', function($delegate) {
+      var superUrl = $delegate.url;
+      $delegate.url = function(url, replace) {
+          if(url !== undefined) {
+              return superUrl(url.replace(/\%20/g,"+"), replace);
+          } else {
+              return superUrl().replace(/\+/g,"%20");
+          }
+      }
+      return $delegate;
+  });
+});
+
+
+/*
+  Create a service for fetching materials
+*/
 search.service('searchService',function($http, $q) {
   this.getSearchResults = function(searchTerms, params) {
     var deferred = $q.defer();
@@ -24,9 +48,11 @@ search.service('searchService',function($http, $q) {
       });
 
       if (/resources/.test(window.location.href)) {
+        search.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo','jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
         if (searchTerms) {
           search.query = decodeURIComponent(decodeURIComponent(searchTerms)); // stop it from being encoded twice
-        } else {
+        }
+        if (!search.type) {
           search.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo','jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
         }
       }
@@ -201,8 +227,6 @@ search.filter('description', function($sce) {
   }
 });
 
-search.controller('SearchController', ['$scope','$window', 'searchService', searchCtrlFunc]);
-
 search.filter('question', function($sce) {
   return function(result) {
     if (result.highlight && result.highlight._source.sys_content_plaintext) {
@@ -237,6 +261,8 @@ search.filter('stackDate', function($sce) {
     return time;
   }
 });
+
+search.controller('SearchController', ['$scope','$window', 'searchService', searchCtrlFunc]);
 
 function searchCtrlFunc($scope, $window, searchService) {
 
@@ -349,21 +375,30 @@ function searchCtrlFunc($scope, $window, searchService) {
 
 
     if ($scope.params.sys_type && $scope.params.sys_type.length) {
-      searchTerms.push("sys_type:("+$scope.params.sys_type.join(" ")+")");
-    } 
-    // else {
-    //   // There are no types, set the default ones
-    //   searchTerms.push("sys_type:(jbossdeveloper_quickstart jbossdeveloper_demo jbossdeveloper_bom jbossdeveloper_archetype jbossdeveloper_example jbossdeveloper_vimeojbossdeveloper_youtube jbossdeveloper_book rht_knowledgebase_article rht_knowledgebase_solution jbossorg_blog)");
-    // }
-
-    if ($scope.params.publish_date_from) {
-      searchTerms.push("publish_date_from:"+$scope.params.publish_date_from);
+      searchTerms.push("sys_type:"+ $scope.params.sys_type);
     }
 
-    searchTerms = searchTerms.join(" AND ");
+    if ($scope.params.query) {
+      searchTerms.push("query:"+ $scope.params.query);
+    }
+    if ($scope.params.project) {
+      searchTerms.push("project:"+ $scope.params.project);
+    }
+
+    if ($scope.params.publish_date_from) {
+      searchTerms.push("publish_date_from:"+ $scope.params.publish_date_from);
+    }
+
+    if ($scope.params.publish_date_from_custom) {
+      searchTerms.push("publish_date_from_custom:"+ $scope.params.publish_date_from_custom);
+    }
+
+    if ($scope.params.publish_date_to) {
+      searchTerms.push("publish_date_to:"+ $scope.params.publish_date_to);
+    }
 
     $scope.data.searchTerms = searchTerms;
-
+    searchTerms = searchTerms.join(" AND ");
     return searchTerms;
   };
 
@@ -374,7 +409,6 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.tag = $scope.params.tag; // this is static until the update re-runs
 
     var params = $scope.cleanParams($scope.params);
-    
     // if Sort by filter selection changed from New First to Most Recent, remove newFirst flag
     if (params.sortBy == "relevance") {
       delete params.newFirst;
@@ -411,8 +445,24 @@ function searchCtrlFunc($scope, $window, searchService) {
     var createdString = $scope.filter.createString();
 
     if (isResources && createdString !== "") {
-      // update the page hash
-      window.location.hash = "!" + $.param($scope.params);
+
+      var filterParams = jQuery.extend({}, $scope.params)
+
+      if (filterParams.query === "") {
+        delete filterParams.query;
+      }
+      if (filterParams.project === "") {
+        delete filterParams.project;
+      }
+      if (filterParams.size10) {
+        delete filterParams.size10;
+      }
+      if (filterParams.from == 0) {
+        delete filterParams.from;
+      }
+      delete filterParams.newFirst;
+
+      window.location.hash = "!" + $.param(filterParams);
     }
     
     searchService.getSearchResults(createdString, params).then(function(data) {

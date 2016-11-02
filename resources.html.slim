@@ -99,16 +99,16 @@ div(ng-app="search")
                   option(value="now-1M") Past Month
                   option(value="now-7d") Past Week
                   option(value="now-1d") Past Day
-                  option(value="custom") Custom
+              /     option(value="custom") Custom
 
-              .search-input-group.custom-dates
-                div(ng-show="params.publish_date_from === 'custom'")
-                  label
-                    | Start Date
-                    input(class="start-date" type="date" ng-model="params.publish_date_from_custom" ng-change="updateSearch(); resetPagination();")
-                  label
-                    | End Date
-                    input(class="end-date" type="date" ng-model="params.publish_date_to" ng-change="updateSearch(); resetPagination();")
+              / .search-input-group.custom-dates
+              /   div(ng-show="params.publish_date_from === 'custom'")
+              /     label
+              /       | Start Date
+              /       input(class="start-date" type="date" ng-model="params.publish_date_from_custom" ng-change="updateSearch(); resetPagination();")
+              /     label
+              /       | End Date
+              /       input(class="end-date" type="date" ng-model="params.publish_date_to" ng-change="updateSearch(); resetPagination();")
 
         .large-24.columns.searchpage-results-container
           .sorting
