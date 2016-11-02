@@ -5,11 +5,9 @@
 - page.nav_items = {"overview" => "Overview", "adoption" => "Adoption", "benefits" => "Benefits", "learn" => "Learn", "buzz" => "Buzz"}
 
 /The menu items, created by iterating over the array defined above
-ul.side-nav
+ul.side-nav.rhd-sub-nav
   li.side-nav-toggle
     a(href="#") Menu
   - page.nav_items.each do |k,v|
     - if site.engine.page_by_source_path "solutions/#{page.parent.solution.id}/#{k}"
-      li(class="#{k == page.solution_subsection ? "active" : ""}"): a(href="../#{k}/")
-        | #{v}
-        i.fa.fa-caret-right.fa-lg
+      li(class="#{k == page.solution_subsection ? "active" : ""}"): a(href="../#{k}/") #{v}

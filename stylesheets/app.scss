@@ -2130,3 +2130,51 @@ h2.home-title {
   display: block;
 }
 
+
+// Sub-navigation styles for product and solution pages
+ul.side-nav.rhd-sub-nav{
+  li {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #BDBDBD;
+    a {
+      text-align: left;
+      color: $grey-6;
+      text-transform: none;
+      font-weight: 500;
+    }
+    &:hover a{
+      font-weight: 500 !important;
+    }
+    &.active, &:active {
+      border-bottom: 2px solid $red;
+    }
+    &.active:hover{
+      font-weight: 600;
+      color: black;
+    }
+  }
+
+  li.side-nav-toggle {
+    background-color: $grey-7;
+    margin-bottom: 10px;
+    &:active, &:hover, &:focus {
+      border: none;
+      a {
+        font-weight: 600;
+      }
+    }
+    a {
+      text-transform: uppercase;
+      text-align: right;
+      margin-bottom: 4px;
+      &:after {
+        position: relative;
+        bottom: 2px;
+      }
+    }
+    &:hover a{
+      font-weight: 600 !important;
+    }
+  }
+}
+
