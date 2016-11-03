@@ -19,10 +19,44 @@ class TestRhdEnvironment < MiniTest::Test
     ENV['DRUPAL_HOST_PORT'] = nil
     ENV['SEARCHISKO_HOST_IP'] = nil
     ENV['SEARCHISKO_HOST_PORT'] = nil
+    ENV['ghprbPullId'] = nil
 
     FileUtils.rm("#{@environments_directory}/valid-environment/test.txt", :force => true)
     FileUtils.rm("#{@environments_directory}/drupal-pull-request/rhd.settings.yml", :force => true)
   end
+
+  def test_drupal_pr_environment_preselects_drupal_port
+    ENV['ghprbPullId'] = '1205'
+    @environment.environment_name = 'drupal-pull-request'
+    @environment.initialize_environment
+
+    assert_equal(36205, ENV['DRUPAL_HOST_PORT'].to_i)
+
+  end
+
+  def test_drupal_pr_environment_does_not_preselect_port_if_required_env_variable_empty
+    ENV['ghprbPullId'] = ''
+    @environment.environment_name = 'drupal-pull-request'
+    @environment.initialize_environment
+
+    assert_equal(nil, ENV['DRUPAL_HOST_PORT'])
+  end
+
+  def test_drupal_pr_environment_does_not_preselect_port_if_required_env_variable_missing
+    @environment.environment_name = 'drupal-pull-request'
+    @environment.initialize_environment
+
+    assert_equal(nil, ENV['DRUPAL_HOST_PORT'])
+  end
+
+  def test_non_drupal_pr_environment_does_not_preselect_drupal_port
+    ENV['ghprbPullId'] = '1205'
+    @environment.environment_name = 'drupal-production'
+    @environment.initialize_environment
+
+    assert_equal(nil, ENV['DRUPAL_HOST_PORT'])
+  end
+
 
   def test_get_testing_docker_compose_file
     assert_equal("#{@testing_directory}/docker-compose.yml", @environment.get_testing_docker_compose_file)

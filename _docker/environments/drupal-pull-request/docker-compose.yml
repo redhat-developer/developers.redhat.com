@@ -38,7 +38,7 @@ services:
   drupal:
     build: ../../drupal
     ports:
-      - "80"
+      - "${DRUPAL_HOST_PORT}:80"
     links:
       - drupalmysql
     volumes:
