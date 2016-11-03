@@ -25,7 +25,7 @@ Introduction and Prerequisites
 ## Prerequisites section
 In this tutorial, you will set up your system to install software from the Red Hat .NET repository, which provides the latest versions of .NET Core for Red Hat Enterprise Linux. You will install .NET Core and run a simple "Hello, World" application. The tutorial should take less than 10 minutes to complete.
 
-Before you begin, you will need a current Red Hat Enterprise Linux 7 Server subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite Subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
+Before you begin, you will need a current Red Hat Enterprise Linux 7 Server or Workstation subscription that allows you to download software and get updates from Red Hat. Developers can get a no-cost Red Hat Enterprise Linux Developer Suite Subscription for development purposes by link:#{site.download_manager_base_url}/download-manager/link/1350474[registering and downloading] through link:#{site.base_url}/[developers.redhat.com].
 
 Using VirtualBox? You’ll find instructions #{site.base_url}/products/rhel/get-started/#tab-virtualbox[here]. Hyper-V? Your instructions are #{site.base_url}/products/rhel/get-started/#tab-hyper-v[here]. VMWare? #{site.base_url}/products/rhel/get-started/#tab-vmware[Here] is your link. KVM users, #{site.base_url}/products/rhel/get-started/#tab-kvm[this way], please. Finally, yes, you can install on bare metal if you wish. #{site.base_url}/products/rhel/get-started/#tab-bare-metal[Here] is your page.
 
@@ -49,7 +49,7 @@ In this step, you will configure your system to obtain software, including the l
 Start _Red Hat Subscription Manager_ using the _System Tools_ group of the _Applications_ menu. Alternatively, you can start it from the command prompt by typing `subscription-manager-gui`.
 
 . Select _Repositories_ from the _System_ menu of the subscription manager.
-. In the list of repositories, check the _Enabled_ column for _rhel-7-server-dotnet-rpms_. Note: After clicking, it might take several seconds for the checkmark to appear in the enabled column.
+. In the list of repositories, check the _Enabled_ column for _rhel-7-server-dotnet-rpms_.  If you are using a Workstation version of Red Hat Enterprise Linux, the repository will be named _rhel-7-workstation-dotnet-rpms_.  Note: After clicking, it might take several seconds for the checkmark to appear in the enabled column.
 
 If you don’t see any .NET repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information. +
 
@@ -65,6 +65,8 @@ $ su -
 ----
 
 If you don’t see any .NET repositories in the list, your subscription might not include it. See <<troubleshooting,Troubleshooting and FAQ>> for more information.
+
+If you are using a Workstation edition of Red Hat Enterprise Linux, change `-server-` to `-workstation-` in the following commands:
 
 [listing,subs="attributes"]
 ----
@@ -144,9 +146,19 @@ $ yum list available rh-dotnetcore10\*
 ----
 
 *View the full list of packages* +
+
+For Red Hat Enterprise Linux Server edition:
+
 [listing,subs="attributes"]
 ----
 $ yum --disablerepo="*" --enablerepo="rhel-7-server-dotnet-rpms" list available
+----
+
+For Red Hat Enterprise Linux Workstation edition:
+
+[listing,subs="attributes"]
+----
+$ yum --disablerepo="*" --enablerepo="rhel-7-workstation-dotnet-rpms" list available
 ----
 
 // This content goes inside the box: "Want to know more?"
@@ -177,7 +189,7 @@ Developers can get a no-cost Red Hat Enterprise Linux Developer Suite subscripti
 +
 Some Red Hat Enterprise Linux subscriptions do not include access to .NET Core.
 +
-The name of the repository depends on whether you have a server or workstation version of Red Hat Enterprise Linux installed. You can use `subscription-manager` to view the available software repositories and verify that you have access to .NET Core for Red Hat Enterprise Linux:
+The name of the repository depends on whether you have a Server or Workstation version of Red Hat Enterprise Linux installed. You can use `subscription-manager` to view the available software repositories and verify that you have access to .NET Core for Red Hat Enterprise Linux:
 +
 [listing,subs="attributes"]
 ----
