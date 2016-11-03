@@ -2148,9 +2148,9 @@ ul.side-nav.rhd-sub-nav{
     &.active, &:active {
       border-bottom: 2px solid $red;
     }
-    &.active:hover{
-      font-weight: 600;
-      color: black;
+    &.active:hover a{
+      font-weight: 600 !important;
+      color: $black;
     }
   }
 
@@ -2158,7 +2158,6 @@ ul.side-nav.rhd-sub-nav{
     background-color: $grey-7;
     margin-bottom: 10px;
     &:active, &:hover, &:focus {
-      border: none;
       a {
         font-weight: 600;
       }
