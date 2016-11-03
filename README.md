@@ -9,7 +9,7 @@ Towards the end some miscellaneous topics are covered.
 
 ## First time Environment Setup
 Docker must be used in development.
-This simplifies the setup, and makes your development environment consistent with other developers and our CI servers.
+Docker simplifies the setup, and makes your development environment consistent with other developers and our CI servers.
 This works best on Linux, but we do have Mac users that are developing successfully in this environment.
 The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
 
@@ -30,7 +30,7 @@ The native 'Docker for Mac' offering may work now, but at the time of writing (A
 For Mac and Windows follow these instructions to install the latest docker for your system [here] (https://www.docker.com/products/docker-toolbox).
 It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
 
-The scripts used assume you can run the `docker` command WITHOUT sudo.
+The scripts assume you can run the `docker` command WITHOUT sudo.
 
 NOTE: We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed.
 
@@ -51,7 +51,7 @@ If there is anything missing in this guide please submit a PR.
 ### Basic Ruby install
 In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`.
 In order to run this you will require ruby 2.1 or greater.
-The following instructions install ruby via rbenv.
+The following instructions install ruby via 'rbenv'.
 You can use other methods, but your mileage may vary and it may make it harder for us to support you.
 If you already have RVM installed you'll need to [remove it to use rbenv](http://stackoverflow.com/a/3558763/2012130).
 
@@ -136,13 +136,12 @@ Download the [MySQL data dump](https://github.com/redhat-developer/searchisko-do
 
 Download the [ElasticSearch data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_es_data.tar.gz) and copy to `_docker/searchisko/searchisko_es_data.tar.gz`.
 
-Download the Drupal MySQL data dump from stumpjumper.lab4.eng.bos.redhat.com.
+Download the Drupal MySQL data dump from `stumpjumper.lab4.eng.bos.redhat.com`.
 The file will be named like `prod_db_[date timestamp].sql.gz` right in the directory when you sftp into stumpjumper.lab4.eng.bos.redhat.com.
-It must be saved in `_docker/drupal` as `prod_db.sql.gz`. If you do not have access to stumpjumper, you can ask a member of the team for the data dump as well.
+It must be saved in `_docker/drupal` as `prod_db.sql.gz`. If you do not have access to `stumpjumper`, you can ask a member of the team for the data dump as well.
 
 Add the host `docker` to your `/etc/hosts` file.
 If you are building on Linux, set the IP address to `127.0.0.1`.
-
 If you are on a Mac and thus using Docker-machine, you will need to set the IP address to that of your Boot2Docker image.
 You can discover this IP address by running `docker-machine ip default`
 
@@ -211,13 +210,11 @@ On successful build, you should be able to access the site at http://docker.
 ## Development Environment Setup after reboot
 Assuming you already had a functioning environment before the reboot, you need to:
 
-1. Install npm, best to follow the instructions at https://docs.npmjs.com/getting-started/installing-node
-2. Insure the required Ruby Gems are installed for the docker control scripts to function:
+1. Ensure Docker is running
+2. Check you can view the site at http://docker
 
-```
-cd _docker
-bundle install
-```
+If the above fails, you should do a "Full Rebuild of Development Environment". See next section.
+      
 
 ## Full Rebuild of Development Environment (slow)
 If you need to edit an Awestruct file (not CSS or JS), you need to rebuild the whole environment.
@@ -231,7 +228,7 @@ To rebuild the full environment:
 ## Drupal Page Layout Changes (fast)
 If you are just making a change to the layout file of a Drupal page, follow these steps:
 
-1. Ensure the Drupal Docker container running.
+1. Ensure the Drupal Docker container is running.
 2. Make your change(s) to the layout file(s) (*.twig files).
 3. Direct your web browser at a page affected by the change.
 4. Observe that the change has been made.
@@ -264,16 +261,25 @@ Run the unit tests (also available using `guard` locally).
 
       bundle exec ./control.rb -t
 
+
+## Running the Site Export
+The production site is actually a static export of the content offered by the (internally hosted) Drupal production server.
+An export process is executed in order to create the static version of the site.
+These section describes how to run this from your development environment.
+
+<Todo>
+
+
 ## Running Acceptance Tests (slow)
-This section explians how a developer can run the front-end Acceptance Tests.
+This section explains how a developer can run the front-end Acceptance Tests.
 
 To run the acceptance tests against the locally running Drupal site export, ensure the Drupal Docker container is running and the site has been exported.
 
     bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker:9000
  
-To run the acceptance tests against the locally running Awestruct site build, ensure the Awestruct container is running.
+To run the acceptance tests against the locally running Drupal server
 
-    bundle exec ./control.rb -e awestruct-dev --acceptance_test_target=http://docker:4242
+     bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker
 
 To run the acceptance tests against the remote host:
 
@@ -281,18 +287,22 @@ To run the acceptance tests against the remote host:
 
 There are a number of short keys that can be used to run the tests on our various environments:
 
-1. Awestruct Dev: Run `bundle exec ./control.rb -e awestruct-dev --acceptance_test_target=dev` 
-2. Drupal Dev: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=drupal_dev`
-3. Staging: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=staging`
-4. Production: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=production`
+1. Drupal Dev: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=drupal_dev`
+2. Staging: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=staging`
 
-_NOTE:_ - Never run the acceptance tests against production. This can interfere with site stats! We have a set of smoke tests that can be ran agaist production, for a quick sanity check of the site. Smoke tests can be executed by running the following: 
+_NOTE:_ - Never run the acceptance tests against production.
+This can interfere with site stats! 
+We have a set of smoke tests that can be ran against production, for a quick sanity check of the site.
+Smoke tests can be executed by running the following: 
 
     CUCUMBER_TAGS=@smoke bundle exec ./control.rb -e drupal-dev --acceptance_test_target=production
 
-When working locally, you may find it quicker to run the tests outside of docker. Providing you have your stack already running (if testing a local build). Execute the following:
+When working locally, you may find it quicker to run the tests outside of docker.
+Providing you have your stack already running (if testing a local build).
+Execute the following:
 
     rake features HOST_TO_TEST=host_you_wish_to_test
+    
     
 ## Drupal Configuration Changes
 
@@ -315,13 +325,25 @@ drush config-export
 
 ## Drupal Module Development
 
-All module development must happen in the `_docker/drupal/drupal-filesystem/web/modules/custom/<module name>` directory. Work is typically done using PhpStorm or text editor. If you are modifying the yaml files of an existing module you may need to restart the Drupal container for everything to be correctly picked up and applied. You could also attempt to use the `drush updatedb` command, though it may not pick up everything.
+All module development must happen in the `_docker/drupal/drupal-filesystem/web/modules/custom/<module name>` directory.
+Work is typically done using PhpStorm or text editor.
+If you are modifying the yaml files of an existing module you may need to restart the Drupal container for everything to be correctly picked up and applied.
+You could also attempt to use the `drush updatedb` command, though it may not pick up everything.
 
 New modules must have at least the basics in place and the `drupal_install_checker.rb` file updated to install the module on container build.
 
-## Migrating an Awestruct Page to Drupal
 
-JASON: PLEASE PROVIDE INSTRUCTIONS (I haven't gone through this just yet but I plan on having the workflow being something like 1. create the page in drupal 2. add a new front-matter attribute to the existing page(s) in awestruct 3. send pull request 4. have pages published)
+## Migrating an Awestruct Page to Drupal
+To migrate a page from Awestruct to Drupal:
+
+1. Create the Drupal version of the page, but don't assign a URL alias (or assign a temporary alias)
+2. Review the Drupal version of the page
+3. Annotate the Awestruct version of the page by adding the `ignore_export: true` front matter variable to the page being exported. If the page being exported is an asciidoc page then it must be `:awestruct-ignore_export: true` instead. This will ensure that the Drupal export ignores the page and is not pushed into Drupal, whilst the legacy Awestruct CI job will still build the page.
+4. Delete the Awestruct pushed version of the page from Drupal
+5. Manually delete the old alias: Configuration -> Search and metadata -> URL Aliases -> Find the alias you want to re-use and delete it
+6. Switch the URL alias of the Drupal version of the page, to use the alias of the deleted Awestruct pushed version of the page.
+7. Wait for the Drupal site to be exported, this will take about an hour for it to show up. 
+
 
 ## secrets.gpg management
 This sections describes how a member of the Red Hat Developers Engineering team can grant access to the secrets file for new developers.
@@ -370,7 +392,6 @@ Minimally the following list of recipients is required to encrypt the file:
 * Luke Dary <ldary@redhat.com>	 	(ID: 0x90236EFBD2509930 created at Thu 15 Sep 2016 08:32:40 AM MDT)
 
 NOTE: If you add a new recipient to the file, ensure you update the list above.
->>>>>>> Updated Docs to describe Drupal development process only. Other tidy-ups too
 
 
 ## Updating the Staging Integration Branch
@@ -401,15 +422,7 @@ If merge conflicts exist, you will need to do the following steps to fix the con
       
 5. Raise a PR from your branch onto the long running branch in upstream. Note that the PR tests will fail, as they don't expect a PR to be raised on a branch other than 'master'.
 
-## Migrating a page into Drupal
 
-1. Create the Drupal version of the page, but don't assign a URL alias (or assign a temporary alias)
-2. Review the Drupal version of the page
-3. Annotate the Awestruct version of the page by adding the `ignore_export: true` front matter variable to the page being exported. If the page being exported is an asciidoc page then it must be `:awestruct-ignore_export: true` instead. This will ensure that the Drupal export ignores the page and is not pushed into Drupal, whilst the legacy Awestruct CI job will still build the page.
-4. Delete the Awestruct pushed version of the page from Drupal
-5. Manually delete the old alias: Configuration -> Search and metadata -> URL Aliases -> Find the alias you want to re-use and delete it
-6. Switch the URL alias of the Drupal version of the page, to use the alias of the deleted Awestruct pushed version of the page.
-7. Wait for the Drupal site to be exported, this will take about an hour for it to show up. 
 
 ## <a name="CommonIssues"></a>Common issues
 This area documents fixes to common issues:
