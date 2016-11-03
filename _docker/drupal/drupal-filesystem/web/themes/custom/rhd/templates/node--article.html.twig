@@ -66,13 +66,14 @@ other methods (such as node.delete) will result in an exception.
 */
 #}
 <div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-article") }}>
+  <div class="row">
     <div class="large-19 medium-19 columns">
         {{ title_prefix }}
         <h2{{ title_attributes.setAttribute("id", "developer-materials") }}>{{ label }}</h2>
         {{ title_suffix }}
         <div class="gsi-meta article-info">
             <ul>
-                <li><strong{{ author_attributes }}>By <a>{{content.field_content_author}}</a> </strong></li>
+                <li><strong{{ author_attributes }}>By {{content.field_content_author}} </strong></li>
                 <li class="right">
                     <small>Published: {{ date }}</small>
                 </li>
@@ -83,7 +84,8 @@ other methods (such as node.delete) will result in an exception.
         {% include '@rhd/share.html.twig' %}
         <strong>Tags:</strong> {{ content.field_tags }}
     </div>
-    <div class="clearfix"></div>
+  </div>
+  <div class="row">
     <div class="large-4 medium-4 columns">
         <ul class="toc gsi-nav">
         </ul>
@@ -92,4 +94,6 @@ other methods (such as node.delete) will result in an exception.
     <div{{ content_attributes.addClass(["large-15", "medium-15", "columns", "gsi", "fetch-toc", "article-content"]) }}>
         {{ content.body }}
     </div>
+  </div>
+
 </div>
