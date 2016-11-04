@@ -313,6 +313,13 @@ def start_and_wait_for_supporting_services(environment, supporting_services, sys
 end
 
 #
+# Delegates to the environment for initialisation
+#
+def initialise_environment(environment)
+  environment.initialize_environment
+end
+
+#
 # This guard allows the functions within this script to be unit tested without actually executing the script
 #
 if $0 == __FILE__
@@ -320,6 +327,7 @@ if $0 == __FILE__
   system_exec = SystemCalls.new
   tasks = Options.parse ARGV
   environment = load_environment(tasks)
+  initialise_environment(environment)
 
   #the docker url is taken from DOCKER_HOST env variable otherwise
   Docker.url = tasks[:docker] if tasks[:docker]

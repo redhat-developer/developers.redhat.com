@@ -5,31 +5,26 @@
 
 .homepage-main {
   color: $white;
-  background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_cheatsheet_09sep2016.png");
+  background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_dotnetbook_27oct2016.png");
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #8a0101;
+  background-color: #b9b9b9;
   & > .row {
     @include flexbox;
     @include align-items(center);
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    margin: 0 auto;
-    h2, h3, h4{
-      color: $white;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
+    margin: 40px 0;
     h2 {
-      color: #cecbcb;
-      font-size: 4em;
+      font-weight: 700;
       margin-bottom: 0;
       line-height: 1.2;
+      font-size: 3.2em;
     }
     h3 {
-      font-size: 2em;
+      font-size: 2.5em;
     }
     a.button {
       min-width: 250px;
@@ -67,6 +62,14 @@
         margin-top: 8px;
         margin-bottom: 10px;
       }
+    }
+  }
+  img {
+    max-height: 350px;
+    display: block;
+    margin: 25px auto;
+    &.mobile {
+      display: none;
     }
   }
 }
@@ -263,8 +266,8 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-color: #8a0101;
-    background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_cheatsheet_09sep2016.png");
+    background-color: #b9b9b9;
+    background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_dotnetbook_27oct2016.png");
     .homepage-cta {
       margin: 30px auto;
     }
@@ -291,21 +294,28 @@ ul.homepage-resources {
   }
   .homepage-main {
     .homepage-cta {
-      h2 {
-        font-size: 3em;
+      h2, h3 {
+        font-size: 2em;
       }
       a.button {
         margin: 20px auto;
         display: block;
       }
     }
+    img.desktop {
+      display: none;
+    }
+    img.mobile {
+      display: block;
+      max-height: 300px;
+    }
   }
 }
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    background-color: #8a0101;
-    background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_cheatsheet09sep2016.png");
+    background-color: #b9b9b9;
+    background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_dotnetbook_27oct2016.png");
   }
   .spotlights-container {
     flex-direction: column;

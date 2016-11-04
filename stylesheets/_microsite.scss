@@ -360,3 +360,23 @@ body.microsite-multi-page, body.microsite {
   margin: 10px auto 40px auto;
   display: block;
 }
+
+.microsite-tmpl .button.mailto-btn {
+  display: none;
+}
+
+@include mobile-landscape-and-down {
+  .microsite-tmpl .button.mailto-btn,
+  .microsite-tmpl .button.mailto-btn:hover,
+  .microsite-tmpl .button.mailto-btn:active,
+  .microsite-tmpl .button.mailto-btn:visited,
+  .microsite-tmpl .button.mailto-btn:focus {
+    background: $white;
+    border: 2px solid $accent-blue;
+    color: $accent-blue;
+    display: block;
+  }
+  .microsite-tmpl .button.download-btn {
+    display: block;
+  }
+}

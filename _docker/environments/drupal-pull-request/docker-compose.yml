@@ -38,7 +38,7 @@ services:
   drupal:
     build: ../../drupal
     ports:
-      - "80"
+      - "${DRUPAL_HOST_PORT}:80"
     links:
       - drupalmysql
     volumes:
@@ -75,6 +75,7 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${export_destination}
     - github_status_sha1=${ghprbActualCommit}
+    - drupal.export.fail_on_missing
 
   #
   # Testing
@@ -109,6 +110,7 @@ services:
      - RHD_JS_DRIVER
      - RHD_DOCKER_DRIVER
      - RHD_TEST_PROFILE
+     - BUILD_NUMBER
 
   docker_chrome:
    image: selenium/node-chrome-debug:2.53.0

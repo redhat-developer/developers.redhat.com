@@ -20,6 +20,12 @@ class TestControl < Minitest::Test
     ENV['cdn_prefix'] = @previous_cdn_prefix
   end
 
+  def test_should_initialise_environment
+    environment = mock()
+    environment.expects(:initialize_environment)
+    initialise_environment(environment)
+  end
+
   def test_bind_drupal_container_details_into_environment
 
     environment = mock()

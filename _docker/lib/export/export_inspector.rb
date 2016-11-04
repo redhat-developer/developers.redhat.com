@@ -2,6 +2,11 @@ require 'uri/http'
 
 #
 # The purpose of this class is to inspect an export directory to ensure that all pages that should be there, are in fact there.
+# If a page is missing from the export, then an exception is raised causing the export process to fail.
+#
+# The raising of an exception can be overridden if the 'drupal.export.fail_on_missing' system property is set to 'false'. This
+# should only be used in situations where you want the export to continue even if there is content missing e.g. you're having a very
+# bad time of things with Drupal.
 #
 # @author rblake@redhat.com
 #
@@ -18,6 +23,19 @@ class ExportInspector
     else
       "#{page_path}/index.html"
     end
+  end
+
+  #
+  # Determines if the process should fail if content is missing from the export
+  #
+  def should_fail_on_missing_content
+    fail_on_missing = ENV['drupal.export.fail_on_missing']
+    fail = true
+
+    unless fail_on_missing.nil? || fail_on_missing.empty?
+      fail = false if fail_on_missing =~ /false/
+    end
+    fail
   end
 
   #
@@ -58,11 +76,16 @@ class ExportInspector
 
     if missing_pages > 0
       puts "WARNING: Of '#{total_pages}' pages, '#{missing_pages}' are not found in the export."
+
+      if should_fail_on_missing_content
+        raise StandardError.new("There are '#{missing_pages}' pages missing from the site export (see warnings for missing content). Failing export process.")
+      end
+
     end
 
   end
 
-  private :determine_expected_filesystem_path, :check_if_path_exists
+  private :determine_expected_filesystem_path, :check_if_path_exists, :should_fail_on_missing_content
 
 
 end

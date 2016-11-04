@@ -87,6 +87,8 @@ services:
      - ../../../:/home/jenkins_developer/developer.redhat.com
      - export:/export
     entrypoint: "ruby _docker/lib/export/export.rb docker"
+    environment:
+     - drupal.export.fail_on_missing
 
   #
   # Testing
