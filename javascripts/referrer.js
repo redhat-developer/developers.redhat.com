@@ -26,6 +26,7 @@
         case 'community': // after class contributors-main
           referrerHTML.insertAfter('.contributors-main');
           break;
+        case 'articles':
         case 'quickstarts': // after id start
           referrerHTML.insertBefore('.node__content');
           break;
@@ -66,6 +67,6 @@
   }
 
   function getPrimaryCategory() {
-    return window.location.href.split('?')[0].split('/')[3];
+    return window.location.href.split('?')[0].split('#')[0].split('/')[3];
   }
 }());
