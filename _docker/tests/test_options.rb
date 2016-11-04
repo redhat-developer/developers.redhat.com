@@ -216,6 +216,12 @@ class TestOptions < Minitest::Test
     end
   end
 
+  def test_acceptance_test_profile_task
+    ClimateControl.modify RHD_TEST_PROFILE: 'desktop' do
+      assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
+    end
+  end
+
   def test_run_pr_reap
     tasks = Options.parse (["--docker-pr-reap"])
     refute(tasks[:acceptance_test_target_task])
