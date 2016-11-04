@@ -4,11 +4,22 @@
     if(isReferrer('jbd')) {
       switch (getPrimaryCategory()) {
         case 'products': // before class .mobile.product-header
-          referrerHTML.insertBefore('.mobile.product-header');
+          if ($('.mobile.product-header').length > 0) {
+            referrerHTML.insertBefore('.mobile.product-header');
+          } else {
+            referrerHTML.insertAfter('.hero');
+          }
           break;
         case 'downloads': // before class most-popular-downloads
           referrerHTML.insertBefore('.most-popular-downloads');
           break;
+        case 'devops':
+        case 'enterprise-java':
+        case 'iot':
+        case 'microservices':
+        case 'mobile':
+        case 'web-and-api-development':
+        case 'dotnet':
         case 'containers': // first of class topics-main
           referrerHTML.insertBefore('.topics-main div:first');
           break;
@@ -18,8 +29,14 @@
         case 'quickstarts': // after id start
           referrerHTML.insertBefore('.node__content');
           break;
+        case 'forums':
         case 'events': // after class hero
           referrerHTML.insertAfter('.hero');
+          break;
+        case 'projects':
+        case 'resources':
+        case 'stack-overflow':
+          referrerHTML.insertAfter('header:first');
           break;
         case '':
           referrerHTML.insertAfter('.spotlights-wrap');
