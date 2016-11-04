@@ -7,7 +7,7 @@
 /The menu items, created by iterating over the array defined above
 ul.side-nav.rhd-sub-nav
   li.side-nav-toggle
-    a(href="#") Menu
+    a(href="#") More
   - page.nav_items.each do |k,v|
     - if site.engine.page_by_source_path "solutions/#{page.parent.solution.id}/#{k}"
       li(class="#{k == page.solution_subsection ? "active" : ""}"): a(href="../#{k}/") #{v}
