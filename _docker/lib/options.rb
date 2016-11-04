@@ -5,6 +5,9 @@ class Options
   def self.parse(args)
     tasks = {}
     tasks[:environment_name] = 'awestruct-pull-request'
+    # Defaults for acceptance tests unless overridden
+    ENV['RHD_TEST_PROFILE'] = profile
+    ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
 
     opts_parse = OptionParser.new do |opts|
       opts.banner = 'Usage: control.rb [options]'
@@ -83,9 +86,6 @@ class Options
       opts.on('--acceptance_test_target HOST_TO_TEST', String, 'runs the cucumber features against the specified HOST_TO_TEST') do |host|
 
         ENV['HOST_TO_TEST'] = host
-
-        ENV['RHD_TEST_PROFILE'] = 'desktop'
-        ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
 
         if ENV['RHD_JS_DRIVER'].to_s.empty?
           ENV['RHD_JS_DRIVER'] = 'docker_chrome'
