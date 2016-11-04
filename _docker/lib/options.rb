@@ -6,7 +6,7 @@ class Options
     tasks = {}
     tasks[:environment_name] = 'awestruct-pull-request'
     # Defaults for acceptance tests unless overridden
-    ENV['RHD_TEST_PROFILE'] = profile
+    ENV['RHD_TEST_PROFILE'] = 'desktop'
     ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
 
     opts_parse = OptionParser.new do |opts|
