@@ -26,13 +26,32 @@
         case 'community': // after class contributors-main
           referrerHTML.insertAfter('.contributors-main');
           break;
+        case 'about':
+        case 'books': 
         case 'articles':
         case 'quickstarts': // after id start
           referrerHTML.insertBefore('.node__content');
           break;
+        case 'spotlights':
+        case 'variants':
+        case 'vjbug':
+        case 'terms-and-conditions':
+        case 'ticket-monster':
+        case 'archetypes':
+        case 'boms':
+        case 'demos':
+        case 'general-error':
+        case 'video':
+        case 'promotions':
+        case 'webinars':
+        case 'devnation2015':
         case 'forums':
         case 'events': // after class hero
-          referrerHTML.insertAfter('.hero');
+          if ($('.hero').length > 0) {
+            referrerHTML.insertAfter('.hero');
+          } else { 
+            referrerHTML.insertBefore('#page');
+          }
           break;
         case 'projects':
         case 'resources':
