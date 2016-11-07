@@ -67,17 +67,35 @@ other methods (such as node.delete) will result in an exception.
 #}
 <article{{ attributes.addClass('microsite-tmpl') }}>
   <div{{ content_attributes.addClass(['row', 'promotion-header']) }}>
-    <div class="large-8 medium-11 small-24 columns">
-      {{ content.field_promotion_page_left_image }}
+    <div class="small-24 columns show-for-small-only">
+      <h3{{ title_attributes }}>
+        {{ label }}
+      </h3>
     </div>
-    <div class="large-16 medium-13 small-24 columns">
-      {{ title_prefix }}
-        <h3{{ title_attributes }}>
-          {{ label }}
-        </h3>
+    <div class="medium-6 small-11 columns">
+      <a href="{{ content.field_call_to_action_link[0]['#url'] }}">
+        {{ content.field_promotion_page_left_image }}
+      </a>
+    </div>
+
+    <div class="small-13 columns show-for-small-only">
+      {{ content.field_call_to_action_link }}
+      <div class="mailto-link">
+        {{ content.field_mail_to_link }}
+      </div>
+    </div>
+
+    <div class="medium-18 small-24 columns">
+      <div class="hide-for-small-only">
+        {{ title_prefix }}
+          <h3{{ title_attributes }}>
+            {{ label }}
+          </h3>
+      </div>
       {{ title_suffix }}
       {{ content.body }}
       {{ content.field_call_to_action_link }}
+      {{ content.field_mail_to_link }}
     </div>
   </div>
 </article>

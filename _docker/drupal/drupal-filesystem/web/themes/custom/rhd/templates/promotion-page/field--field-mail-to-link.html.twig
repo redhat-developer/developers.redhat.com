@@ -55,6 +55,6 @@ label_display == 'visually_hidden' ? 'visually-hidden',
 <div{{ attributes.addClass(classes) }}>
    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
    {% for item in items %}
-     <div{{ item.attributes.addClass(['field__item', 'button', 'download-btn']) }}>{{ item.content }}</div>
+     <div{{ item.attributes.addClass(['field__item', 'button', 'mailto-btn', 'show-for-small-only']) }}>{{ item.content }}</div>
    {% endfor %}
 </div>

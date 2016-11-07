@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.promotion_page.body
     - field.field.node.promotion_page.field_call_to_action_link
+    - field.field.node.promotion_page.field_mail_to_link
     - field.field.node.promotion_page.field_promotion_page_left_image
     - image.style.thumbnail
     - node.type.promotion_page
@@ -35,4 +36,5 @@ content:
     third_party_settings: {  }
 hidden:
   field_call_to_action_link: true
+  field_mail_to_link: true
   links: true
