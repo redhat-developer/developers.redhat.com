@@ -9,14 +9,14 @@ rerun_text = ''
     test_env_num.to_s
   end
 
-  rerun_file = "_cucumber/tmp/rerun#{env_num_str}.txt"
+  rerun_file = "_cucumber/tmp/#{ENV['RHD_TEST_PROFILE']}/rerun#{env_num_str}.txt"
   if File.file?(rerun_file)
     rerun_text << ' ' + IO.read(rerun_file)
     File.delete(rerun_file)
   end
 end
 
-rerun_failures_opts = " -r _cucumber/features/ --format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun_text} -f rerun -o _cucumber/tmp/rerunner.txt"
+rerun_failures_opts = " -r _cucumber/features/ --format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun_text} -f rerun -o _cucumber/tmp/#{ENV['RHD_TEST_PROFILE']}/rerunner.txt"
 
 std_opts = "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} --strict --tags ~@wip"
 
@@ -35,7 +35,7 @@ parallel:
   -t ~@later
   -t ~@nightly
   -f rerun
-  -o _cucumber/tmp/rerun<%= ENV['TEST_ENV_NUMBER'] %>.txt
+  -o _cucumber/tmp/<%=ENV['RHD_TEST_PROFILE']%>/rerun<%= ENV['TEST_ENV_NUMBER'] %>.txt
 
 rerun_failures: <%= rerun_failures_opts %>
 
@@ -48,7 +48,7 @@ nightly:
   -t ~@later
 
 parallel_html:
-  -f json -o _cucumber/reports/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
+  -f json -o _cucumber/reports/<%= ENV['RHD_TEST_PROFILE'] %>/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
 
 slow:
   -p default

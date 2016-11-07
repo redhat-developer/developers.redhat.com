@@ -7,13 +7,11 @@ task :features => [ :_features, :report_builder ]
 
 task :_features do
 
-  test_runner = TestRunner.new
-  test_runner.cleanup
-
   if ENV['RHD_TEST_PROFILE']
-    profile = ENV['RHD_TEST_PROFILE']
+    @profile = ENV['RHD_TEST_PROFILE']
   else
-    profile = 'desktop'
+    @profile = 'desktop'
+    ENV['RHD_TEST_PROFILE'] = @profile
   end
 
   if ENV['CUCUMBER_TAGS'].to_s.empty?
@@ -30,12 +28,14 @@ task :_features do
       tags = "--tags #{ENV['CUCUMBER_TAGS']}"
     end
   end
-  @exit_status = test_runner.run(profile, tags)
+  test_runner = TestRunner.new
+  test_runner.cleanup(@profile)
+  @exit_status = test_runner.run(@profile, tags)
 end
 
 task :report_builder do
   test_runner = TestRunner.new
-  test_runner.generate_report
+  test_runner.generate_report(@profile)
   exit(@exit_status)
 end
 
