@@ -66,7 +66,7 @@ class KeyCloak
   end
 
   def get_registration_date(email)
-    date = get_user_attribute(email, 'rhdTacSignDateFormatted').to_date
+    date = get_user_attribute(email, 'rhdTacSignDateFormatted')
     format_date(date.to_s)
   end
 

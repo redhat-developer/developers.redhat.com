@@ -66,5 +66,4 @@ mobile:
 
 kc_dm:
   -p parallel
-  -t @kc
-  -t @dm
+  --tags @kc --tags ~@dm
