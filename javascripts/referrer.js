@@ -28,10 +28,10 @@
           break;
         case 'about':
         case 'books': 
-        case 'articles':
         case 'quickstarts': // after id start
           referrerHTML.insertBefore('.node__content');
           break;
+        case 'articles':
         case 'spotlights':
         case 'variants':
         case 'vjbug':
