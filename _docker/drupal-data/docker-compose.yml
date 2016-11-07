@@ -1,0 +1,10 @@
+version: '2'
+services:
+ drupal_data_generator:
+  image: drupalproduction_backup:latest
+  entrypoint: "ruby /developers.redhat.com/_docker/lib/drupal-data/run.rb"
+  volumes:
+   - /data/drupal:/drupal
+   - /credentials/db/my.cnf:/home/jenkins_developer/.my.cnf
+   - ../../:/developers.redhat.com
+   - ./:/backups
