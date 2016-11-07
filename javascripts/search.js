@@ -1,14 +1,38 @@
 var search = angular.module('search', []);
 
+/*
+  Modify $browser.url()
+  We need proper + and not encoded + in the URL
+  https://github.com/angular/angular.js/issues/3042
+*/
+
+search.config(function($provide){
+  $provide.decorator('$browser', function($delegate) {
+      var superUrl = $delegate.url;
+      $delegate.url = function(url, replace) {
+          if(url !== undefined) {
+              return superUrl(url.replace(/\%20/g,"+"), replace);
+          } else {
+              return superUrl().replace(/\+/g,"%20");
+          }
+      }
+      return $delegate;
+  });
+});
+
+
+/*
+  Create a service for fetching materials
+*/
 search.service('searchService',function($http, $q) {
-  this.getSearchResults = function(params) {
+  this.getSearchResults = function(searchTerms, params) {
     var deferred = $q.defer();
 
-    if((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href))) {
+    if ((/stack-overflow/.test(window.location.href)) || (/help/.test(window.location.href))) {
       var isStackOverflow = true;
     }
 
-    if(isStackOverflow) {
+    if (isStackOverflow) {
       var search = Object.assign(params, {
         field: ["sys_url_view", "sys_title", "is_answered", "author", "sys_tags", "answers", "sys_created", "view_count", "answer_count", "down_vote_count", "up_vote_count", "sys_content"],
         query_highlight: true
@@ -23,14 +47,20 @@ search.service('searchService',function($http, $q) {
 
       });
 
-      if(/resources/.test(window.location.href)) {
+      if (/resources/.test(window.location.href)) {
         search.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo','jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
+        if (searchTerms) {
+          search.query = decodeURIComponent(decodeURIComponent(searchTerms)); // stop it from being encoded twice
+        }
+        if (!search.type) {
+          search.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo','jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
+        }
       }
       var endpoint = app.dcp.url.developer_materials;
     }
 
     $http.get(endpoint, { params: search })
-      .success(function(data){
+      .success(function(data) {
         deferred.resolve(data);
       })
       .error(function (err) {
@@ -47,7 +77,7 @@ search.directive('resourceType', function () {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
-      if(attrs.resourceType == 'solution')
+      if (attrs.resourceType == 'solution')
         element.attr("target", "_blank");
       else
         element.attr("target", "_self");
@@ -59,15 +89,15 @@ search.directive('resourceType', function () {
   Filter to return human readable time ago
 */
 search.filter('timeAgo', function() {
-  return function(timestamp){
-    if(!timestamp) return;
+  return function(timestamp) {
+    if (!timestamp) return;
     var date = new Date(timestamp);
     return $.timeago(date);
   }
 });
 
 search.filter('type', function() {
-  return function(sys_type){
+  return function(sys_type) {
     var types = {
       video: 'Video',
       blogpost: 'Blog Post',
@@ -92,12 +122,12 @@ search.filter('type', function() {
 });
 
 search.filter('MDY', function() {
-  return function(timestamp){
-    if(!timestamp) return;
+  return function(timestamp) {
+    if (!timestamp) return;
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var date = new Date(timestamp);
     window.date = date;
-    if(!!window.location.href.match(/\/search/)){
+    if (!!window.location.href.match(/\/search/)) {
       return " | " + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
     };
     return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
@@ -105,14 +135,14 @@ search.filter('MDY', function() {
 });
 
 search.filter('timestamp', function() {
-  return function(timestamp){
+  return function(timestamp) {
     var date = new Date(timestamp);
     return date.getTime();
   }
 });
 
 search.filter('wordcount', function() {
-  return function(description){
+  return function(description) {
     description = description || '';
     var wordCount = 50;
     var peices = description.split(' ');
@@ -142,8 +172,8 @@ search.filter('icon', function() {
 });
 
 search.filter('broker', function() {
-  return function(url){
-    if(url && url.match('access.redhat.com')){
+  return function(url) {
+    if (url && url.match('access.redhat.com')) {
       return app.dcp.url.broker + encodeURIComponent(url);
     }
     return url;
@@ -151,10 +181,10 @@ search.filter('broker', function() {
 });
 
 search.filter('jbossfix', function() {
-  return function(url){
+  return function(url) {
     var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org','gi');
 
-    if(url && url.match(matcher)){
+    if (url && url.match(matcher)) {
       return url.replace(matcher,'https://developer.redhat.com')
     }
     return url;
@@ -165,11 +195,11 @@ search.filter('jbossfix', function() {
  Filter to remove undesirable tags from sys_tags
  */
 search.filter('tagGroup', function() {
-  return function(tag){
+  return function(tag) {
     var modifiedTags = [];
     var matcher = new RegExp('feed_group_name_.*|feed_name_.*|red hat|redhat')
-    angular.forEach(tag, function(value){
-      if(!value.match(matcher))
+    angular.forEach(tag, function(value) {
+      if (!value.match(matcher))
         modifiedTags.push(value)
     });
     return modifiedTags;
@@ -177,8 +207,8 @@ search.filter('tagGroup', function() {
 });
 
 search.filter('title', function($sce) {
-  return function(result){
-    if(result.highlight && result.highlight.sys_title) {
+  return function(result) {
+    if (result.highlight && result.highlight.sys_title) {
       return $sce.trustAsHtml(result.highlight.sys_title[0]);
     }
     return $sce.trustAsHtml(result.fields.sys_title[0]);
@@ -186,22 +216,20 @@ search.filter('title', function($sce) {
 });
 
 search.filter('description', function($sce) {
-  return function(result){
-    // if(result.fields.sys_type == 'stackoverflow_thread'){
+  return function(result) {
+    // if (result.fields.sys_type == 'stackoverflow_thread') {
     //   return $sce.trustAsHtml(result.fields.sys_content_plaintext[0]);
     // }
-    if(result.highlight && result.highlight.sys_content_plaintext) {
+    if (result.highlight && result.highlight.sys_content_plaintext) {
       return $sce.trustAsHtml(result.highlight.sys_content_plaintext[0]);
     }
     return $sce.trustAsHtml(result.fields.sys_description[0]);
   }
 });
 
-search.controller('SearchController', ['$scope','$window', 'searchService', searchCtrlFunc]);
-
 search.filter('question', function($sce) {
-  return function(result){
-    if(result.highlight && result.highlight._source.sys_content_plaintext) {
+  return function(result) {
+    if (result.highlight && result.highlight._source.sys_content_plaintext) {
       return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0]);
     }
     return $sce.trustAsHtml(result._source.sys_content_plaintext);
@@ -209,7 +237,7 @@ search.filter('question', function($sce) {
 });
 
 search.filter('htmlToPlaintext', function($sce) {
-  return function(result){
+  return function(result) {
     return String(result).replace(/<[^>]+>/gm, '');
   }
 });
@@ -218,7 +246,7 @@ search.filter('htmlToPlaintext', function($sce) {
  Filter to remove Stack Overflow author id number from 'author'
  */
 search.filter('author', function($sce) {
-  return function(result){
+  return function(result) {
     var authorName = result._source.author.split('-')[0];
     return authorName;
   }
@@ -228,11 +256,13 @@ search.filter('author', function($sce) {
  Filter to make Stack Overflow question date human readable
  */
 search.filter('stackDate', function($sce) {
-  return function(result){
+  return function(result) {
     var time = jQuery.timeago(new Date((result._source.sys_created / 1000) * 1000));
     return time;
   }
 });
+
+search.controller('SearchController', ['$scope','$window', 'searchService', searchCtrlFunc]);
 
 function searchCtrlFunc($scope, $window, searchService) {
 
@@ -242,30 +272,33 @@ function searchCtrlFunc($scope, $window, searchService) {
   var searchTerm = window.location.search.split('=');
   var q = '';
 
+  $scope.data = {};
+  $scope.filter = {}; // stores util functions
+
   /* defaults */
   $scope.params = {
-    query: q,
-    size: 10,
-    size10: true,
-    from: 0,
     sys_type: [],
     project: '',
-    newFirst: false,
-    sortBy: 'relevance'
+    sortBy: 'relevance',
+    size: 10,
+    query: q,
+    size10: true,
+    from: 0,
+    newFirst: false
   };
 
   // Resources Page Specifics
-  if(isResources) {
+  if (isResources) {
     $scope.params.sortBy = 'most-recent';
   }
 
   // Search Page Specifics
-  if(isSearch && searchTerm) {
+  if (isSearch && searchTerm) {
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
   }
 
   // Stack Oveflow Page Specifics
-  if(isStackOverflow && searchTerm){
+  if (isStackOverflow && searchTerm) {
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
     $scope.params.tag = [];
   }
@@ -281,22 +314,22 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.paginate.currentPage = 1;
   };
 
+
   /*
     Clean Params
   */
-
   $scope.cleanParams = function(p) {
       var params = Object.assign({}, p);
 
       // if "custom" is selected, remove it
-      if(params.publish_date_from && params.publish_date_from === 'custom') {
+      if (params.publish_date_from && params.publish_date_from === 'custom') {
         params.publish_date_from = params.publish_date_from_custom;
       } else {
         delete params.publish_date_from_custom;
         delete params.publish_date_to;
       }
       
-      if(params.sortBy == "relevance") {
+      if (params.sortBy == "relevance") {
         params.newFirst = false;
       }
       else{
@@ -306,19 +339,19 @@ function searchCtrlFunc($scope, $window, searchService) {
       delete params.sortBy;
 
       // if relevance filter is turned on making newFirst == false, remove it entirely
-      if(params.newFirst == false) {
+      if (params.newFirst == false) {
         delete params.newFirst;
       }
 
       // delete old size params
-      ['10', '25', '50', '100'].forEach(function(size){
+      ['10', '25', '50', '100'].forEach(function(size) {
         delete params['size' + size];
       });
 
       // use the size10=true format
       params['size'+params.size] = true;
 
-      if(isStackOverflow != true){
+      if (isStackOverflow != true) {
         delete params.size;
       }
 
@@ -326,25 +359,68 @@ function searchCtrlFunc($scope, $window, searchService) {
       return params;
   };
 
+
+  $scope.filter.createString = function() {
+
+    // if not on the resources page, skip createString
+    if (!isResources) {
+      return;
+    }
+
+    var searchTerms = [];
+
+    if ($scope.params.query) {
+      searchTerms.push($scope.params.query);
+    }
+
+
+    if ($scope.params.sys_type && $scope.params.sys_type.length) {
+      searchTerms.push("sys_type:"+ $scope.params.sys_type);
+    }
+
+    if ($scope.params.query) {
+      searchTerms.push("query:"+ $scope.params.query);
+    }
+    if ($scope.params.project) {
+      searchTerms.push("project:"+ $scope.params.project);
+    }
+
+    if ($scope.params.publish_date_from) {
+      searchTerms.push("publish_date_from:"+ $scope.params.publish_date_from);
+    }
+
+    if ($scope.params.publish_date_from_custom) {
+      searchTerms.push("publish_date_from_custom:"+ $scope.params.publish_date_from_custom);
+    }
+
+    if ($scope.params.publish_date_to) {
+      searchTerms.push("publish_date_to:"+ $scope.params.publish_date_to);
+    }
+
+    $scope.data.searchTerms = searchTerms;
+    searchTerms = searchTerms.join(" AND ");
+    return searchTerms;
+  };
+
+
   $scope.updateSearch = function() {
     $scope.loading = true;
     $scope.query = $scope.params.query; // this is static until the update re-runs
     $scope.tag = $scope.params.tag; // this is static until the update re-runs
 
     var params = $scope.cleanParams($scope.params);
-    
     // if Sort by filter selection changed from New First to Most Recent, remove newFirst flag
-    if(params.sortBy == "relevance") {
+    if (params.sortBy == "relevance") {
       delete params.newFirst;
     }
 
-    if(isSearch) {
+    if (isSearch) {
       var searchPage = $window.location.protocol + '//' + $window.location.hostname + ($window.location.port ? (':' + $window.location.port) : '') + $window.location.pathname
       history.pushState($scope.params,$scope.params.query, searchPage + '?q=' + $scope.params.query);
     }
     
     if (isStackOverflow) {
-      if(/help/.test(window.location.href)){
+      if (/help/.test(window.location.href)) {
         var product = (window.location.href).split("/")[4];
         $scope.params.product = product;
 
@@ -366,7 +442,30 @@ function searchCtrlFunc($scope, $window, searchService) {
       }
     }
 
-    searchService.getSearchResults(params).then(function(data) {
+    var createdString = $scope.filter.createString();
+
+    if (isResources && createdString !== "") {
+
+      var filterParams = jQuery.extend({}, $scope.params)
+
+      if (filterParams.query === "") {
+        delete filterParams.query;
+      }
+      if (filterParams.project === "") {
+        delete filterParams.project;
+      }
+      if (filterParams.size10) {
+        delete filterParams.size10;
+      }
+      if (filterParams.from == 0) {
+        delete filterParams.from;
+      }
+      delete filterParams.newFirst;
+
+      window.location.hash = "!" + $.param(filterParams);
+    }
+    
+    searchService.getSearchResults(createdString, params).then(function(data) {
       if (!window.digitalData) {
         digitalData = {page: {listing : {}}};
       } 
@@ -377,11 +476,41 @@ function searchCtrlFunc($scope, $window, searchService) {
 
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;
-      $scope.params.product = product;
+      // $scope.params.product = product;
       $scope.buildPagination(); // update pagination
       $scope.loading = false;
     });
+
   };
+
+
+  $scope.filter.restore = function() {
+
+    // if we do not have a window hash or are not on the resources page, skip restoring
+    if (!window.location.hash || !isResources) {
+      $scope.updateSearch(); // run with no filters
+      return;
+    }
+
+    if (window.location.hash) {
+
+      var hashFilters = window.location.hash.replace('#!','');
+      var filters = deparam(hashFilters);
+
+      // check for single string sys_type
+      if (typeof $scope.params.sys_type === "string") {
+        // convert to array with 1 item
+        var filterArr = [];
+        filterArr.push(filters.sys_type);
+        filters.sys_type = filterArr;
+      }
+
+      $scope.params = filters;
+
+    }
+    $scope.updateSearch();
+  }
+
 
   /*
    Handle Pagination
@@ -395,7 +524,7 @@ function searchCtrlFunc($scope, $window, searchService) {
     var pages = Math.ceil($scope.totalCount / $scope.params.size);
     var lastVisible = parseFloat($scope.params.size) + $scope.params.from;
 
-    if($scope.totalCount < lastVisible) {
+    if ($scope.totalCount < lastVisible) {
       lastVisible = $scope.totalCount;
     }
 
@@ -430,7 +559,7 @@ function searchCtrlFunc($scope, $window, searchService) {
         break;
     }
 
-    if(typeof page !== 'number') return;
+    if (typeof page !== 'number') return;
 
     $scope.params.from = (page * $scope.params.size) - $scope.params.size;
     $scope.paginate.currentPage = page;
@@ -459,6 +588,11 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.updateSearch();
     $scope.resetPagination();
   };
+
+  /*
+    Get latest materials on page load
+  */
+  window.setTimeout($scope.filter.restore, 0);
 
   $scope.updateSearch();
 }
