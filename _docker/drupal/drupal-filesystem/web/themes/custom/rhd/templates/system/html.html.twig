@@ -45,8 +45,24 @@
 <!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]-->
 <head>
   {% if (rhd_dtm_code) %}
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
   var digitalData = {{ rhd_dtm_script|json_encode()|raw }};
+
+  /**
+  * Creates and dispatches an event trigger
+  * @param {String} evt - The name of the event
+  */
+  function sendCustomEvent(evt){
+    if(document.createEvent && document.body.dispatchEvent){
+      var event = document.createEvent('Event');
+      event.initEvent(evt, true, true); //can bubble, and is cancellable
+      document.body.dispatchEvent(event);
+    } else if(window.CustomEvent && document.body.dispatchEvent) {
+      var event = new CustomEvent(evt, {bubbles: true, cancelable: true});
+      document.body.dispatchEvent(event);
+    }
+  }
 
   ( function( w, d, dd, undefined ) {
       var categoryObj = getCategories();
@@ -59,23 +75,35 @@
         }
       }
 
+      function getQueryParams() {
+        return window.location.href.split('?')[1] ? window.location.href.split('?')[1].replace(/=/g,':').split('&') : "";
+      }
+
       function getCategories() {
         var categories = { primaryCategory: "", subCategories: [] },
-          url = window.location.href.split(/\//);
+          url = window.location.href.split('?')[0].split('#')[0].split(/\//);
         for(var i=3, l=url.length; i<l; i++) {
-          if(categories.subCategories.length <= 3) {
-            if( i !== 3 ) {
-              categories.subCategories.push(url[i]);
-            } else {
-              categories.primaryCategory = url[i];
-            }
+          if (i !== 3 && categories.subCategories.length <= 3) { 
+            categories.subCategories.push(url[i]);
+          }
+          
+          if (i === 3) {
+            categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
           }
         }
         return categories;
       }
 
+      function getPageName() {
+        var page = window.location.href.split('?')[0].split('#')[0].split(/\//).pop();
+        return page.length > 0 ? page : 'home page';
+      }
+
+      dd.page.attributes.queryParameters = getQueryParams();
       dd.page.category.primaryCategory = categoryObj.primaryCategory;
       dd.page.category.subCategories = categoryObj.subCategories;
+      dd.page.pageInfo.destinationURL = window.location.href;
+      dd.page.pageInfo.pageName = getPageName();
       dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
       dd.page.pageInfo.destinationURL = window.location.href;
 

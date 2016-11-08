@@ -31,6 +31,27 @@ app.bookDownload = {
         $.fileDownload(tcDownloadURL);
       }
 
+      var ddDownloadEvent = {
+        eventInfo: {
+          eventAction: 'book_download',
+          eventName: 'download',
+          fileName: tcDownloadFileName,
+          fileType: 'book',
+          productDetail: "", // Concatenation of Product Variant (Name), Version, Architecture.
+          timeStamp: new Date(),
+          processed: {
+            adobeAnalytics: false
+          }
+        }
+      };
+
+      //Push it onto the event array of the digitalData object
+      window.digitalData = window.digitalData || {};
+      digitalData.event = digitalData.event || [];
+      digitalData.event.push(ddDownloadEvent);
+      //Create and dispatch an event trigger
+      sendCustomEvent('downloadEvent');
+
       // Inform GTM that we have requested a product download
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ 'product_download_file_name' : tcDownloadFileName });
