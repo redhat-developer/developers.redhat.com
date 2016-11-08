@@ -49,8 +49,9 @@ class TestDrupalDataImageBuilder < Minitest::Test
 
     @process_runner.expects(:execute!).with("cd #{@working_directory} && docker-compose run --rm drupal_data_generator")
     @process_runner.expects(:execute!).with("cd #{@working_directory} && docker build -t redhatdeveloper/drupal-data:latest -t redhatdeveloper/drupal-data:456 .")
-    @process_runner.expects(:execute!).with("docker push redhatdeveloper/drupal-data:latest")
-    @process_runner.expects(:execute!).with("docker push redhatdeveloper/drupal-data:456")
+    @process_runner.expects(:execute!).with('docker push redhatdeveloper/drupal-data:latest')
+    @process_runner.expects(:execute!).with('docker push redhatdeveloper/drupal-data:456')
+    @process_runner.expects(:execute!).with('docker rmi redhatdeveloper/drupal-data:latest redhatdeveloper/drupal-data:456')
 
     @drupal_data_image_builder.build_and_push_docker_image(456)
   end

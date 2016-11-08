@@ -48,11 +48,19 @@ class DrupalDataImageBuilder
     @process_runner.execute!("docker push #{@repository_name}:#{image_version}")
   end
 
+  #
+  # Ensure that we delete any created images after they have been pushed so that we do not fill-up the Docker engine storage
+  #
+  def clean_generated_images(image_version)
+    @process_runner.execute!("docker rmi #{@repository_name}:latest #{@repository_name}:#{image_version}")
+  end
+
   def build_and_push_docker_image(image_version)
     generate_drupal_backup
     verify_required_data_files!
     build_docker_image(image_version)
     push_image_to_docker_hub(image_version)
+    clean_generated_images(image_version)
   end
 
   private :verify_required_data_files!, :push_image_to_docker_hub, :build_docker_image, :generate_drupal_backup
