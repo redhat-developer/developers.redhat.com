@@ -191,6 +191,28 @@ app.downloads.populateLinks = function() {
         $el.attr('href', $el.data('fallback-url'));
       }
 
+      $el.click(function() {
+        var ddDownloadEvent = {
+          eventInfo: {
+            eventAction: 'download',
+            eventName: 'download',
+            fileName: featuredArtifact.url,
+            fileType: productCode,
+            productDetail: [productCode, data[0].featuredArtifact].join('|'), // Concatenation of Product Variant (Name), Version, Architecture.
+            timeStamp: new Date(),
+            processed: {
+              adobeAnalytics: false
+            }
+          }
+        };
+
+        //Push it onto the event array of the digitalData object
+        window.digitalData = window.digitalData || {};
+        digitalData.event = digitalData.event || [];
+        digitalData.event.push(ddDownloadEvent);
+        //Create and dispatch an event trigger
+        sendCustomEvent('downloadEvent');
+      });
     });
   });
 
