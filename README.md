@@ -2,102 +2,160 @@
 
 Powering the [Red Hat Developers site](http://developers.redhat.com/).
 
-## Developer setup
-We recommend that Docker be used in development. This simplifies the setup, and makes your development environment consistent with other developers and our CI servers. The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
+This document provides a developer with the instructions needed to setup and use the development environment.
+It is ordered chronologically.
+It starts by describing how to do first time setup of the environment and then moves onto instructions for day-to-day development tasks, such as testing and changing of code.
+Towards the end some miscellaneous topics are covered.
+
+## First time Environment Setup
+Docker must be used in development.
+Docker simplifies the setup, and makes your development environment consistent with other developers and our CI servers.
+This works best on Linux, but we do have Mac users that are developing successfully in this environment.
+The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
 
 There are some [Common Issues](#CommonIssues) you may encounter, check them out before seeking help.
 
-Skip to the [Site Build Setup](#site_build_setup) section if you don't want to use Docker.
 ### Utilities
-You should be running a bash shell (Linux or OSX) and you will require: git and curl.
-### Brew (OSX only)
-If you are on a mac then brew is required to install some dependant packages. Brew is like apt-get or yum for mac. [Follow their instructions](http://brew.sh/) and make sure that `brew doctor` completes without error.
+You should be running a bash shell (Linux or Mac) and you will require: git and curl.
+
+### Brew (Mac only)
+If you are on a mac then brew is required to install some dependant packages.
+Brew is like apt-get or yum for mac.
+[Follow their instructions](http://brew.sh/) and make sure that `brew doctor` completes without error.
+
 ### Docker
-Follow the instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/). It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
+For Linux, follow these instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/).
+Currently 'Docker Toolbox' is recommended for Mac and Windows development.
+The native 'Docker for Mac' offering may work now, but at the time of writing (August 2016) it crashed a lot for us.
+For Mac and Windows follow these instructions to install the latest docker for your system [here] (https://www.docker.com/products/docker-toolbox).
+It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
 
-Once you have Docker installed and set up you can have a look at the common developer tasks and how they can be managed with Docker [HERE](_docker/README.md). The scripts used assume you can run the `docker` command WITHOUT sudo.
+The scripts assume you can run the `docker` command WITHOUT sudo.
 
-NOTE: We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed. 
+NOTE: We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed.
 
 ### Docker Compose
-OSX: Docker compose will have been installed as part of the docker toolbox.
+Mac and Windows: Docker compose will have been installed as part of the docker toolbox.
+Linux: Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
 
-Non-OSX:Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
 ### Sanity test
-At this point you need to and should be able to run the following commands without error:
-```bash
-docker run hello-world
-docker-compose version
-```
-If you have trouble running either of these commands please refer back to docker installation instructions. At this point no project specific steps have been taken, so docker is the reference point for fixing issues. If there is anything missing in this guide please submit a PR.
+At this point you must be able to run the following commands without error:
+
+      docker run hello-world
+      docker-compose version
+
+If you have trouble running either of these commands please refer back to docker installation instructions.
+At this point no project specific steps have been taken, so docker is the reference point for fixing issues.
+If there is anything missing in this guide please submit a PR.
 
 ### Basic Ruby install
-In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`. In order to run this you will require ruby 2.1 or greater. The following instructions install ruby via rbenv. You can use other methods, but your mileage may vary. If you already have RVM installed you'll need to [remove it to use rbenv](http://stackoverflow.com/a/3558763/2012130).
+In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`.
+In order to run this you will require ruby 2.1 or greater.
+The following instructions install ruby via 'rbenv'.
+You can use other methods, but your mileage may vary and it may make it harder for us to support you.
+If you already have RVM installed you'll need to [remove it to use rbenv](http://stackoverflow.com/a/3558763/2012130).
+
 #### Pre-requisites for Ruby installation
-OSX:
-```bash
-brew install openssl libyaml libffi
-```
+Mac:
+
+      brew install openssl libyaml libffi
+
 Ubuntu/Debian/Mint:
-```bash
-apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
-```
+
+      apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+
 Centos/Fedora:
-```bash
-yum install -y gcc openssl-devel bzip2 libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
-```
+
+      yum install -y gcc openssl-devel bzip2 libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
+
 #### Installation of rbenv
-####OSX
-```bash
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-source ~/.bash_profile
-```
-####Linux
-```bash
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-source ~/.bashrc
-```
+Mac: 
+
+      git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+      echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+      echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+      source ~/.bash_profile
+
+Linux:
+
+      git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+      echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+      echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+      source ~/.bashrc
+
 #### Installation of rbenv-build
-```bash
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-```
+
+      git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
 #### Install and Setup ruby
-```bash
-rbenv install 2.1.2
-rbenv global 2.1.2
-gem update --system
-gem install bundler
-rbenv rehash
-```
+
+      rbenv install 2.1.2
+      rbenv global 2.1.2
+      gem update --system
+      gem install bundler
+      rbenv rehash
+
 ### Project checkout
 Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
-```bash
-git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
-cd developers.redhat.com
-git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
-```
+
+      git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
+      cd developers.redhat.com
+      git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
+
+### Secrets File Access
+In order to build the site you must request access to the secrets file (`_config/secrets.yaml.gpg`).
+This is needed so that you can access the various API keys needed to call services used in the site build.
+The secrets file is checked into git (so always contains an up-to-date version of all keys, passwords and usernames).
+The file is encrypted using GPG.
+
+To gain access to the secrets file:
+
+Mac:
+
+1. Install GPGSuite from [here](https://gpgtools.org/gpgsuite.html)
+2. Create a new key-pair in GPGSuite.
+3. Upload the public-key to the key server so that people can access it.
+4. Notify someone on the Red Hat Developers Engineering team that you want your key adding to the vault. Be sure to let them know the email address you associated with the key.
+5. Wait for a Pull Request to be created (by the engineering team) for the secrets file update.
+6. Review the secrets file update by copying the `secrets.yaml.gpg` file from the Pull Request into the `_config/secrets.yaml.gpg` location of your code checkout.
+7. Proceed with the following instructions and comment on the Pull Request when you have confirmed that you can build the site, and thus the secret file update was successful.
+
+Linux and Windows:
+
+Please contact Paul Robinson.
+There are people who have done this, I just don't have the documentation yet.
+
 ### Set up
+
+Request access to the production data dumps first.
+This allows you to have a production-like environment in development.
+To request access, send the Red Hat Developers Engineering team your GitHub ID and request access to the `searchisko-docker` repo in the `redhat-developer` organisation.
+Once you have access:
+
 Download the [MySQL data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_mysql_data.tar.gz) and copy to `_docker/mysql/searchisko_mysql_data.tar.gz`.
 
 Download the [ElasticSearch data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_es_data.tar.gz) and copy to `_docker/searchisko/searchisko_es_data.tar.gz`.
 
-Download the Drupal MySQL data dump from stumpjumper.lab4.eng.bos.redhat.com. The file will be named like `prod_db_[date timestamp].sql.gz` right in the directory when you sftp into stumpjumper.lab4.eng.bos.redhat.com. It must be saved in `_docker/drupal` as `prod_db.sql.gz`. If you do not have access to stumpjumper, you can ask a member of the team for the data dump as well.
+Download the Drupal MySQL data dump from `stumpjumper.lab4.eng.bos.redhat.com`.
+The file will be named like `prod_db_[date timestamp].sql.gz` right in the directory when you sftp into stumpjumper.lab4.eng.bos.redhat.com.
+It must be saved in `_docker/drupal` as `prod_db.sql.gz`. If you do not have access to `stumpjumper`, you can ask a member of the team for the data dump as well.
 
-Add the host `docker` to your `/etc/hosts` file. If you are building on Linux, set the IP address to `127.0.0.1`. If you are on a Mac and thus using Docker-machine, you will need to set the IP address to that of your Boot2Docker image. You can discover this IP address by running `docker-machine ip default`
+Add the host `docker` to your `/etc/hosts` file.
+If you are building on Linux, set the IP address to `127.0.0.1`.
+If you are on a Mac and thus using Docker-machine, you will need to set the IP address to that of your Boot2Docker image.
+You can discover this IP address by running `docker-machine ip default`
 
 Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
 
-###Docker-machine setup (OSX only)
+### Docker-machine setup (Mac only)
 
-You'll probably want to start docker with 'Docker quickstart terminal'. However to run docker commands in any shell, run:
+To run docker commands in any shell, run:
 
        eval "$(docker-machine env default)"
+       
+You need to run this every time you start a new shell.
 
-#### Edit your boot2docker DNS servers & set inotify watchers
+#### Edit your docker-machine DNS servers and set 'inotify watchers'
 
 1. SSH in to the default docker machine :
 
@@ -123,196 +181,175 @@ You'll probably want to start docker with 'Docker quickstart terminal'. However 
 
 #### Warning about previous containers
 
-We've found that left over containers from previously failed attempts can cause problems. Docker will give an output on how it reccomends you deal with this. Please follow the advice there.
+We've found that left over containers from previously failed attempts can cause problems.
+Docker will give an output on how it recommends you deal with this.
+Please follow the advice there.
 
 ### Node.js install
 
-If you're using the Drupal containers you will need to install Node.js and npm.
-
-_NOTE:_ Node.js and npm both need to be installed on the host machine, not in the docker container. 
+_NOTE:_ Node.js and npm both need to be installed on the host machine, not in the docker container.
 
 1. Please follow https://nodejs.org/en/ for downloads and install of node and npm. Everything should work on nodejs versions > 0.10
 2. Execute the following command to get the node environment setup:
 
     npm install
 
-###Run the stack!
+### Run the stack!
 _NOTE:_ You must be connected to the Red Hat VPN to build the Docker images.
 
-_NOTE:_ The first time to build and run the site will take a long time (15-45 minutes) as a lot of docker images need to be built.
+_NOTE:_ The first time to build and run the site will take a long time (upto 1hr) as a lot of docker images need to be built.
 
 Run the following commands to build the images and start the containers:
 
-```
-bundle exec ./control.rb --run-the-stack
-```
+      bundle exec ./control.rb -e drupal-dev --run-the-stack
 
-This will take a while the first time. This starts all required services and then  runs awestruct in preview mode. The script won't finish until you stop it with `CTRL+C`. At the start of the build the script will output the ports the services are listening on for access outside of docker. Typically you'll only need to worry about awestruct and searchisko ports. Those will be available on host `docker` and the corresponding port for that service.
+This starts all required services and then runs awestruct to push all the legacy pages into the Drupal server.
+On successful build, you should be able to access the site at http://docker.
 
-NOTE: When `preview` is run, you may see errors from guard/listen about a folder being watched already, as far I as I can tell this is harmless and you can ignore those.
 
-###Important Control.rb commands
+## Development Environment Setup after reboot
+Assuming you already had a functioning environment before the reboot, you need to:
+
+1. Ensure Docker is running
+2. Check you can view the site at http://docker
+
+If the above fails, you should do a "Full Rebuild of Development Environment". See next section.
+      
+
+## Full Rebuild of Development Environment (slow)
+If you need to edit an Awestruct file (not CSS or JS), you need to rebuild the whole environment.
+This is slow, so try to find an alternative if you can.
+Migrating the content to Drupal might be an option to speed up the development.
+To rebuild the full environment:
+
+     bundle exec ./control.rb -e drupal-dev --run-the-stack
+
+
+## Drupal Page Layout Changes (fast)
+If you are just making a change to the layout file of a Drupal page, follow these steps:
+
+1. Ensure the Drupal Docker container is running.
+2. Make your change(s) to the layout file(s) (*.twig files).
+3. Direct your web browser at a page affected by the change.
+4. Observe that the change has been made.
+
+
+## JavaScript and CSS Changes (fast)
+If you need to make a change to a JavaScript or CSS file, you just need to re-run Gulp (takes ~2secs) and then observe your change.
+To do this:
+
+1. Ensure the Drupal Docker container running.
+2. Make your required changes.
+3. Run `gulp` in the root of the project.
+3. Direct your web browser at a page affected by the change.
+4. Observe that the change has been made.
+
+
+## Awestruct Page Changes (slow)
+If you need to make a change to a page that is generated by Drupal (most likely a .slim or .yml file) you will need to run the full Awestruct build pipeline.
+To do this:
+
+1. Ensure the Drupal Docker container running.
+2. Make your required changes.
+3. Run `bundle exec ./control.rb -e drupal-dev -g`
+3. Direct your web browser at a page affected by the change.
+4. Observe that the change has been made.
+      
+
+## Running Unit Tests (fast)
 Run the unit tests (also available using `guard` locally).
 
-`bundle exec ./control.rb -t`
+      bundle exec ./control.rb -t
 
-To build and start all services:
 
-`bundle exec ./control.rb --run-the-stack`
+## Running the Site Export
+The production site is actually a static export of the content offered by the (internally hosted) Drupal production server.
+An export process is executed in order to create the static version of the site.
+These section describes how to run this from your development environment.
 
-To run the acceptance tests (where HOST_TO_TEST is the host you are interested in:
+<Todo>
 
-`bundle exec ./control.rb --acceptance_test_target[=HOST_TO_TEST]`
 
-To run the acceptance tests against the locally running docker stack:
+## Running Acceptance Tests (slow)
+This section explains how a developer can run the front-end Acceptance Tests.
 
-`bundle exec ./control.rb --acceptance_test_docker`
+To run the acceptance tests against the locally running Drupal site export, ensure the Drupal Docker container is running and the site has been exported.
 
-To build the docker images:
+    bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker:9000
+ 
+To run the acceptance tests against the locally running Drupal server
 
-`bundle exec ./control.rb -b`
+     bundle exec ./control.rb -e drupal-dev --acceptance_test_target=http://docker
 
-To restart the (non awestruct services)
+To run the acceptance tests against the remote host:
 
-`bundle exec ./control.rb -r`
+    bundle exec ./control.rb -e drupal-dev --acceptance_test_target=host_you_want_to_test
 
-To run awestruct in preview mode
+There are a number of short keys that can be used to run the tests on our various environments:
 
-`bundle exec ./control.rb -p`
+1. Drupal Dev: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=drupal_dev`
+2. Staging: Run `bundle exec ./control.rb -e drupal-dev --acceptance_test_target=staging`
 
-To run with drupal enabled
+_NOTE:_ - Never run the acceptance tests against production.
+This can interfere with site stats! 
+We have a set of smoke tests that can be ran against production, for a quick sanity check of the site.
+Smoke tests can be executed by running the following: 
 
-`bundle exec ./control.rb -u [-g, -p, -r, --run-the-stack]`
+    CUCUMBER_TAGS=@smoke bundle exec ./control.rb -e drupal-dev --acceptance_test_target=production
 
-This means that any of the previous commands may be run with drupal by using the `-u` flag. The `-b` flag does not need the `-u` flag to build the drupal image.
+When working locally, you may find it quicker to run the tests outside of docker.
+Providing you have your stack already running (if testing a local build).
+Execute the following:
 
-### <a name="site_build_setup"></a> Site Build without Docker
+    rake features HOST_TO_TEST=host_you_wish_to_test
+    
+    
+## Drupal Configuration Changes
 
-1. Configure environment variables needed for the site.
-    * Request the following values from the Red Hat Developers team:
+The easiest way to do this is to make the necessary changes in the UI of Drupal, then export them to the `sync` directory.
 
-            vimeo_access_token_secret
-            vimeo_client_secret
-            vimeo_access_token
-            dcp_user
-            dcp_password
-            google_api_key
+Exporting can be done from within the UI, then manually copying the contents of the zip file into the `sync` directory, or it can be done via drush.
 
-    * Export the values in the appropriate startup script. For example:
+To use drush you will need to shell into the docker container using
 
-            export vimeo_access_token_secret=<VIMEO_ACCESS_TOKEN_SECRET>
-            export vimeo_client_secret=<VIMEO_CLIENT_SECRET>
-            export dcp_user=<DCP_USER>
-            export dcp_password=<DCP_PASSWORD>
+```
+docker exec -it drupaldev_drupal_1 /bin/bash
+```
 
-   Alternatively, if you plan to do frequent development on the site, you can request access to the password vault. The password vault is checked in to git (so always contains an up to date version of all keys, passwords and usernames), and is encrypted using GPG. To request access from the Red Hat Developers team, send them the email address associated with your GPG key. To find out more about GPG (including how to create a key) read https://www.gnupg.org/gph/en/manual.html. If you are on Mac, we recommend GPGSuite which provides Keychain management for your GPG key.
+You can then export using:
 
-2. Configure the software.
-    _NOTE:_ You must use a version of Ruby installed via RVM.
-    * Install RVM from here http://rvm.io if you don't already have it.
-    * [upgrade RVM](http://rvm.io/rvm/upgrading).
-    * Install the correct Ruby version (See [here](http://stackoverflow.com/questions/22605921/fresh-installs-of-rvm-and-ruby-2-1-1-dyld-library-pathing-error) for details on why '--disable-binary' is needed):
+```
+cd web
+drush config-export
+```
 
-            rvm install ruby-2.1.2 --disable-binary
+## Drupal Module Development
 
-    * If you see the `Error running 'requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl'` error message, you may need to run the following, and then retry the above install command:
+All module development must happen in the `_docker/drupal/drupal-filesystem/web/modules/custom/<module name>` directory.
+Work is typically done using PhpStorm or text editor.
+If you are modifying the yaml files of an existing module you may need to restart the Drupal container for everything to be correctly picked up and applied.
+You could also attempt to use the `drush updatedb` command, though it may not pick up everything.
 
-            rvm requirements
+New modules must have at least the basics in place and the `drupal_install_checker.rb` file updated to install the module on container build.
 
-    * Install any required supporting software. For example, on Fedora you may need to:
 
-            sudo yum install -y rubygem-nokogiri
-            sudo yum install -y gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel
-            sudo sysctl fs.inotify.max_user_watches=524288
-            sudo sysctl -p
+## Migrating an Awestruct Page to Drupal
+To migrate a page from Awestruct to Drupal:
 
-3. Bootstrap the environment (only needed the first time)
+1. Create the Drupal version of the page, but don't assign a URL alias (or assign a temporary alias)
+2. Review the Drupal version of the page
+3. Annotate the Awestruct version of the page by adding the `ignore_export: true` front matter variable to the page being exported. If the page being exported is an asciidoc page then it must be `:awestruct-ignore_export: true` instead. This will ensure that the Drupal export ignores the page and is not pushed into Drupal, whilst the legacy Awestruct CI job will still build the page.
+4. Delete the Awestruct pushed version of the page from Drupal
+5. Manually delete the old alias: Configuration -> Search and metadata -> URL Aliases -> Find the alias you want to re-use and delete it
+6. Switch the URL alias of the Drupal version of the page, to use the alias of the deleted Awestruct pushed version of the page.
+7. Wait for the Drupal site to be exported, this will take about an hour for it to show up. 
 
-        bundle install
-
-4. Configure the environment:
-
-        rake setup
-
-5. If using Docker, set the Drupal credentials:
-
-        export drupal_user=admin
-        export drupal_password=admin
-
-6. Build the site for display at <http://localhost:4242> and <http://docker:8081> (if using Docker)
-
-        rake clean preview
-
-_NOTE_ The site will take a long time to build for the first time (10 minutes+). Subsequent builds are much quicker.
-
-If the build was successful, you should be able to visit the site here: <http://localhost:4242> and <http://docker:8081> (if using Docker).
-
-> Everything below is copied across verbatim from www.jboss.org. Proceed with caution.
-
-
-## Development
-
-New pages should be added to the root with the extension `.html.slim`
-
-### Updating the DCP
-
-Updates to the DCP should happen automatically if the build is being done on the build server or if you are using docker, however, if
-it is down or there is another emergency situation and the site needs to be built and content pushed to the
-DCP for staging or production please contact Pete Muir, Jason Porter, Andrew Rubinger or Ray Ploski. Below
-are steps to setup the environment for pushing content to the DCP.
-
-In order to update content in the DCP you must have the URL set in config.yaml and the following two environment variables set:
-
-    export dcp_user=jboss-developer
-    export dcp_password=<see one of the people above for this>
-
-If these two variables are not set you will see a warning during the build:
-
-    Missing username and / or password for searchisko
-
-You can then preview the staging site, which will also push data to the DCP staging server:
-
-    rake preview[staging]
-
-Alternatively, you can preview/deploy to staging or production and the associated DCP server will also be updated.
-
-## Deployment
-
-Run `rake deploy[staging]` or `rake deploy[production]`
-
-To tag:
-
-`rake deploy[staging,tagname]`
-
-To run in Awestruct in development mode, execute:
-
-`rake` (this is the equivalent to `rake preview`)
-
-To clean the generated site before you build, execute:
-
-`rake clean preview`
-
-To deploy using the production profile, execute:
-
-`rake deploy`
-
-To run the smoke test features execute:
-
-`rake acceptance_test_target=http://host_you_want:8080`
-
-To get a list of all tasks, execute:
-
-`rake -T`
-
-Now you're Awestruct with rake!
-
-## Continuous integration
-
-Builds occur automatically when pull requests are submitted. Builds and deploys happen when pushes to the master branch occur.
 
 ## secrets.gpg management
+This sections describes how a member of the Red Hat Developers Engineering team can grant access to the secrets file for new developers.
 
-The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients. A plugin for vim such as vim-gnupg (https://github.com/jamessan/vim-gnupg) makes editing the file easy:
+The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients.
+A plugin for vim such as vim-gnupg (https://github.com/jamessan/vim-gnupg) makes editing the file easy:
 
 1. Install vim and vim-gnupg e.g. using pathogen
 2. Open the file `_config/secrets.yaml.gpg` using vim
@@ -321,7 +358,10 @@ The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients. A p
 5. Write and quit this edit area, and the main file using `:wq` and `:wq`
 6. Commit the updated `_config/secrets.yaml.gpg`
 
-In order to do this, you will need load the user's public key in to your keychain. You will need to add the key to your keychain using your preferred tool on your platform. For example, we recommend GPGSuite for Mac OS. In this case:
+In order to do this, you will need load the user's public key in to your keychain.
+You will need to add the key to your keychain using your preferred tool on your platform.
+For example, we recommend GPGSuite for Mac OS.
+In this case:
 
 1. load `GPG Keychain Access` application
 2. Select `key` -> `Retreive rom key server`
@@ -351,16 +391,20 @@ Minimally the following list of recipients is required to encrypt the file:
 * Jim Applebee <japplebe@redhat.com>    (ID: 0xE8DCBAF94F5923D9 created at Fri 22 Jul 2016 11:11:23 AM MDT)
 * Luke Dary <ldary@redhat.com>	 	(ID: 0x90236EFBD2509930 created at Thu 15 Sep 2016 08:32:40 AM MDT)
 
-If you add a new recipient to the file, ensure you update the list above.
+NOTE: If you add a new recipient to the file, ensure you update the list above.
+
 
 ## Updating the Staging Integration Branch
-developers.stage.redhat.com hosts a build of the site that uses staging instances of Download Manager and KeyCloak. After the migration to DCP 2, it will also use the staging instance of the DCP. The purpose of this environment is to test new versions of the back-end services before they go into production. 
+developers.stage.redhat.com hosts a build of the site that uses staging instances of Download Manager and KeyCloak.
+The purpose of this environment is to test new versions of the back-end services before they go into production.
 
-This build is also used for long-term site changes that need to be tested by the wider team, prior to going live into production.
+Sometimes, this build is also used for long-term site changes that need to be tested by the wider team, prior to going live into production.
+Although most of the time, it just has the `master` code deployed to it.
 
-The simplest way to update the branch, is by raising a PR from 'master' onto the new long running branch. This can simply be merged, if there are no merge conflicts. 
+When a staging branch is used, the simplest way to update the branch, is by raising a PR from 'master' onto the new long running branch.
+This can simply be merged, if there are no merge conflicts.
 
-If merge conflicts exist, you will need to do the fiollowing steps to fix the conflicts:
+If merge conflicts exist, you will need to do the following steps to fix the conflicts:
 
 1. If you don't have this branch already fetched on your laptop, run:
 
@@ -378,15 +422,7 @@ If merge conflicts exist, you will need to do the fiollowing steps to fix the co
       
 5. Raise a PR from your branch onto the long running branch in upstream. Note that the PR tests will fail, as they don't expect a PR to be raised on a branch other than 'master'.
 
-## Migrating a page into Drupal
 
-1. Create the Drupal version of the page, but don't assign a URL alias (or assign a temporary alias)
-2. Review the Drupal version of the page
-3. Annotate the Awestruct version of the page by adding the `ignore_export: true` front matter variable to the page being exported. If the page being exported is an asciidoc page then it must be `:awestruct-ignore_export: true` instead. This will ensure that the Drupal export ignores the page and is not pushed into Drupal, whilst the legacy Awestruct CI job will still build the page.
-4. Delete the Awestruct pushed version of the page from Drupal
-5. Manually delete the old alias: Configuration -> Search and metadata -> URL Aliases -> Find the alias you want to re-use and delete it
-6. Switch the URL alias of the Drupal version of the page, to use the alias of the deleted Awestruct pushed version of the page.
-7. Wait for the Drupal site to be exported, this will take about an hour for it to show up. 
 
 ## <a name="CommonIssues"></a>Common issues
 This area documents fixes to common issues:
@@ -418,18 +454,22 @@ sudo pip install docker-compose
 If you get an error with the message 'no address for docker (Resolv::ResolvError)' you need to ensure that the host 'docker' is added as an alias to localhost in your /etc/hosts file. Instructions for this are available in the Docker section of this document.
 
 ### "Too many open files"
-This can be caused by running out of file descriptors. Currently only seen on Macs. See the following for how to fix: http://superuser.com/questions/433746/is-there-a-fix-for-the-too-many-open-files-in-system-error-on-os-x-10-7-1
+This can be caused by running out of file descriptors.
+Currently only seen on Macs.
+See the following for how to fix: http://superuser.com/questions/433746/is-there-a-fix-for-the-too-many-open-files-in-system-error-on-os-x-10-7-1
 
 ### "An error occurred: getaddrinfo: nodename nor servname provided, or not known"
 Same fix as "Too many open files"
 
 ### "Unable to decrypt vault (GPGME::Error::BadPassphrase)"
-If using GNU PGP, sometimes you're not presented with a popup asking for the passphrase. This will result in the following error being presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
+If using GNU PGP, sometimes you're not presented with a popup asking for the passphrase.
+This will result in the following error being presented:  `Unable to decrypt vault (GPGME::Error::BadPassphrase)`.
 To fix, use the instructions in the following url:
 https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
 
 ### "SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed"
-If you get this error, you may be seeing it because your SSL cert file is out of date.  You can fix this by:
+If you get this error, you may be seeing it because your SSL cert file is out of date.
+You can fix this by:
 
 1. Downloading http://curl.haxx.se/ca/cacert.pem
 2. Setting the environment variable SSL_CERT_FILE to the /path/to/file/cacert.pem
