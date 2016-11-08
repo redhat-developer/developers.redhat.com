@@ -46,6 +46,10 @@ services:
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
+    depends_on:
+     - drupal_data
+    volumes_from:
+     - drupal_data
 
   drupalmysql:
     image: mariadb:10.0.24
@@ -56,8 +60,18 @@ services:
       - MYSQL_ROOT_PASSWORD=superdupersecret
     expose:
       - "3306"
-    volumes:
-      - ../../drupal/prod_db.sql.gz:/docker-entrypoint-initdb.d/prod_db.sql.gz
+    depends_on:
+     - drupal_data
+    volumes_from:
+     - drupal_data
+
+  # Drupal production data
+  drupal_data:
+   image: redhatdeveloper/drupal-data:latest
+   volumes:
+    - /var/www/drupal/web/config/active
+    - /var/www/drupal/web/sites/default/files
+    - /docker-entrypoint-initdb.d
 
   #
   # Environment actions
