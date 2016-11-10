@@ -368,12 +368,50 @@ function searchCtrlFunc($scope, $window, searchService) {
 
     searchService.getSearchResults(params).then(function(data) {
       if (!window.digitalData) {
-        digitalData = {page: {listing : {}}};
+        digitalData = {page: {listing : {}, category: {}}, event: []};
       } 
-      digitalData.page.listing.query = $scope.params.query;
-      digitalData.page.listing.queryMethod = "manual";
-      digitalData.page.listing.resultCount = data.hits.total;
-      digitalData.page.listing.browseFilter = product;
+      var ddSearchEvent = {
+        eventInfo: {
+          eventName: 'internal search',
+          eventAction: 'search',
+          listing: {
+            browseFilter: digitalData.page.category.primaryCategory || "internal search",
+            listSorting: [{
+              sortAttribute: $scope.params.sortBy,
+              sortOrder: "descending"
+            }],
+            query: $scope.params.query,
+            queryMethod: "manual",
+            refinement: [{
+              refinementType: "publish date",
+              refinementValue: $scope.params.publish_date_from || ""
+              },
+              {
+              refinementType: "product",
+              refinementValue: $scope.params.project
+              },
+              {
+              refinementType: "sys_type",
+              refinementValue: $scope.params.sys_type.join(',')
+              },
+              {
+              refinementType: "size",
+              refinementValue: $scope.params.size
+              }
+              ],
+            resultCount: data.hits.total,
+            searchType: digitalData.page.category.primaryCategory || ""
+          },
+          timeStamp: new Date(),
+          processed: {
+            adobeAnalytics: false
+          }
+        }
+      };
+
+      digitalData.event.push(ddSearchEvent);
+      digitalData.page.listing = ddSearchEvent.eventInfo.listing;
+      sendCustomEvent('ajaxSearch');
 
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;

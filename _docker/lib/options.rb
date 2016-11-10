@@ -5,6 +5,9 @@ class Options
   def self.parse(args)
     tasks = {}
     tasks[:environment_name] = 'awestruct-pull-request'
+    # Defaults for acceptance tests unless overridden
+    ENV['RHD_TEST_PROFILE'] = 'desktop'
+    ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
 
     opts_parse = OptionParser.new do |opts|
       opts.banner = 'Usage: control.rb [options]'
@@ -84,10 +87,6 @@ class Options
 
         ENV['HOST_TO_TEST'] = host
 
-        if ENV['RHD_TEST_PROFILE'].to_s.empty?
-          ENV['RHD_TEST_PROFILE']= 'desktop'
-        end
-
         if ENV['RHD_JS_DRIVER'].to_s.empty?
           ENV['RHD_JS_DRIVER'] = 'docker_chrome'
         end
@@ -100,7 +99,22 @@ class Options
         tasks[:build] = true
         tasks[:scale_grid] = "#{ENV['RHD_JS_DRIVER']}=#{ENV['RHD_BROWSER_SCALE']}"
         tasks[:supporting_services] = [ENV['RHD_JS_DRIVER']]
-        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports','acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_JS_DRIVER']} RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"]
+        tasks[:acceptance_test_target_task] = ['--rm', '--service-ports', 'acceptance_tests', "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_JS_DRIVER']} RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"]
+      end
+
+      opts.on('--acceptance_test_profile RHD_TEST_PROFILE', String, 'Set the profile for the acceptance tests') do |profile|
+
+        ENV['RHD_TEST_PROFILE'] = profile
+        case profile
+          when 'desktop'
+            ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
+          when 'mobile'
+            ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Mobile Acceptance Tests'
+          when 'kc_dm'
+            ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE KC/DM Acceptance Tests'
+          else
+            raise("#{profile} is not a recognised cucumber profile, see cucumber.yml file in project root")
+        end
       end
 
       opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
