@@ -2,7 +2,7 @@ require_relative 'abstract/site_base'
 
 class ProductOverviewPage < SiteBase
 
-  element(:side_nav)  { |b| b.ul(class: 'side-nav') }
+  element(:side_nav)  { |b| b.li(class: 'side-nav') }
 
   def open_overview_for(product)
     open("/products/#{product}/overview/")
@@ -15,7 +15,7 @@ class ProductOverviewPage < SiteBase
   end
 
   def side_nav_item_displayed?(nav_item)
-    @browser.link(xpath: "//*[@class='side-nav']//a[contains(text(),'#{nav_item.split.map(&:capitalize).join(' ')}')]").present?
+    side_nav.when_present.text.include?(nav_item)
   end
 
   def click_to_download(url)
