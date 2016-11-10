@@ -46,8 +46,6 @@ services:
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
-    depends_on:
-     - drupal_data
     volumes_from:
      - drupal_data
 
@@ -60,8 +58,6 @@ services:
       - MYSQL_ROOT_PASSWORD=superdupersecret
     expose:
       - "3306"
-    depends_on:
-     - drupal_data
     volumes_from:
      - drupal_data
 

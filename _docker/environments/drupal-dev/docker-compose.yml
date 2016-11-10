@@ -46,8 +46,6 @@ services:
       - ../../drupal/drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
-    depends_on:
-      - drupal_data
     volumes_from:
       - drupal_data
 
@@ -62,8 +60,6 @@ services:
       - "3306"
     ports:
       - "3306"
-    depends_on:
-      - drupal_data
     volumes_from:
       - drupal_data
 
