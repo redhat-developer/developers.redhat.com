@@ -47,7 +47,9 @@
   {% if (rhd_dtm_code) %}
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
-  var digitalData = {{ rhd_dtm_script|json_encode()|raw }};
+  var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
+    baseUrl = "{{ rhd_url }}",
+    relURL = window.location.href.replace(/https?:\/\//,'').replace(baseUrl.replace(/https?:\/\//,''),'').replace(/\/$/,'');
 
   /**
   * Creates and dispatches an event trigger
@@ -76,12 +78,12 @@
       }
 
       function getQueryParams() {
-        return window.location.href.split('?')[1] ? window.location.href.split('?')[1].replace(/=/g,':').split('&') : "";
+        return relURL.split('?')[1] ? relURL.split('?')[1].replace(/=/g,':').split('&') : "";
       }
 
       function getCategories() {
         var categories = { primaryCategory: "", subCategories: [] },
-          url = window.location.href.split('?')[0].split('#')[0].split(/\//);
+          url = relURL.split('?')[0].split('#')[0].split(/\//);
         for(var i=3, l=url.length; i<l; i++) {
           if (i !== 3 && categories.subCategories.length <= 3) { 
             categories.subCategories.push(url[i]);
@@ -95,7 +97,8 @@
       }
 
       function getPageName() {
-        var page = window.location.href.split('?')[0].split('#')[0].split(/\//).pop();
+        var splitURL = relURL.split('?')[0].split('#')[0].split(/\//),
+          page = splitURL.pop();
         return page.length > 0 ? page : 'home page';
       }
 
@@ -105,7 +108,6 @@
       dd.page.pageInfo.destinationURL = window.location.href;
       dd.page.pageInfo.pageName = getPageName();
       dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
-      dd.page.pageInfo.destinationURL = window.location.href;
 
       if ( d.referrer ) {
         var a = d.createElement( "a" );
@@ -116,21 +118,12 @@
       }
 
       dd.page.pageInfo.sysEnv = ( w.innerWidth <= 768 ) ? "tablet" : "desktop";
+
       var elqGUID = getCookie( "rh_elqCustomerGUID" );
       if ( elqGUID ) {
         dd.user[ 0 ].profile[ 0 ].profileInfo.eloquaGUID = elqGUID;
       }
-      var userData = getCookie( "rh_user" );
-      if ( userData ) {
-        var rhLogin = userData.split( "\|" );
-        if ( rhLogin[ 0 ] ) {
-          dd.user[ 0 ].profile[ 0 ].profileInfo.loggedIn = "true";
-        }
-      }
-      var dmdBase = getCookie( "s_dmdbase" );
-      if ( dmdBase ) {
-        dd.user[ 0 ].profile[ 0 ].profileInfo.demandbaseSID = dmdBase;
-      }
+
     } )( window, document, digitalData );
   </script>
   <script id="adobe_dtm" src="{{rhd_dtm_code}}"></script>
