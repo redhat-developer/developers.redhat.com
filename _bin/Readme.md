@@ -30,11 +30,13 @@ To find a list of pages with duplicate titles or descriptions:
       
 E.g. To find duplicate titles:
 
-      python3 ./duplicates.py "https://dcp2.jboss.org"  "title" $dcp_super_user $dcp_super_user_password
+      python3 ./duplicates.py "https://dcp2.jboss.org"  "title" $dcp_super_provider $dcp_super_provider_password
       
 E.g. To find duplicate descriptions:
 
-      python3 ./duplicates.py "https://dcp2.jboss.org"  "description" $dcp_super_user $dcp_super_user_password
+      python3 ./duplicates.py "https://dcp2.jboss.org"  "description" $dcp_super_provider $dcp_super_provider_password
+      
+_Note:_ The DCP SuperProvider password can be found here: https://mojo.redhat.com/docs/DOC-85791
       
       
 ## Find Web Pages with Missing Meta-Data needed by /search
