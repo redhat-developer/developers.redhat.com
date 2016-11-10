@@ -63,6 +63,6 @@ class DrupalDataImageBuilder
     clean_generated_images(image_version)
   end
 
-  private :verify_required_data_files!, :push_image_to_docker_hub, :build_docker_image, :generate_drupal_backup
+  private :verify_required_data_files!, :push_image_to_docker_hub, :build_docker_image, :generate_drupal_backup, :clean_generated_images
 
 end
