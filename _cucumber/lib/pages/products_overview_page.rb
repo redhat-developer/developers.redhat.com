@@ -2,7 +2,7 @@ require_relative 'abstract/site_base'
 
 class ProductOverviewPage < SiteBase
 
-  element(:side_nav)  { |b| b.li(class: 'side-nav') }
+  element(:side_nav)  { |b| b.ul(class: 'side-nav') }
 
   def open_overview_for(product)
     open("/products/#{product}/overview/")
