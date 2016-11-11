@@ -15,7 +15,7 @@ class ProductOverviewPage < SiteBase
   end
 
   def side_nav_item_displayed?(nav_item)
-    @browser.link(xpath: "//*[@class='side-nav']//a[contains(text(),'#{nav_item.split.map(&:capitalize).join(' ')}')]").present?
+    side_nav.when_present.text.include?(nav_item)
   end
 
   def click_to_download(url)
