@@ -48,7 +48,7 @@
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
   var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
-    baseUrl = "{{ rhd_url }}",
+    baseUrl = unescape("{{ rhd_url }}"),
     relURL = window.location.href.replace(/https?:\/\//,'').replace(baseUrl.replace(/https?:\/\//,''),'').replace(/\/$/,'');
 
   /**

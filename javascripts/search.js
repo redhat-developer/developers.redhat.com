@@ -400,6 +400,7 @@ function searchCtrlFunc($scope, $window, searchService) {
             query: $scope.params.query,
             queryMethod: "system generated",
             resultCount: data.hits.total,
+            resultsShown: $scope.params.size,
             searchType: digitalData.page.category.primaryCategory || ""
           },
           timeStamp: new Date(),
@@ -428,10 +429,6 @@ function searchCtrlFunc($scope, $window, searchService) {
           {
           refinementType: "sys_type",
           refinementValue: types[$scope.params.sys_type[0]]
-          },
-          {
-          refinementType: "size",
-          refinementValue: $scope.params.size
           }
         ];
       } else {

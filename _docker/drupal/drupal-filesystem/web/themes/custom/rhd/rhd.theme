@@ -93,7 +93,7 @@ function rhd_preprocess_html(array &$variables) {
     $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
 
     $variables['rhd_environment'] = $environment;
-    $variables['rhd_url'] = $base_url;
+    $variables['rhd_url'] = urlencode($base_url);
     $variables['rhd_dtm_code'] = $dtm_code;
     $variables['rhd_dtm_script'] = redhat_www_ddo_default();
 }
