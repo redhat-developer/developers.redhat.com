@@ -20,20 +20,20 @@ content:
   field_add_documents:
     type: entity_reference_revisions_entity_view
     weight: 7
-    label: above
+    label: visually_hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
   field_all_document_versions:
     weight: 8
-    label: above
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_overview_hide_get_started:
     weight: 6
-    label: above
+    label: visually_hidden
     settings:
       format: default
       format_custom_false: ''
@@ -42,13 +42,13 @@ content:
     type: boolean
   field_overview_main_content:
     weight: 5
-    label: above
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_overview_url:
     weight: 4
-    label: above
+    label: visually_hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }

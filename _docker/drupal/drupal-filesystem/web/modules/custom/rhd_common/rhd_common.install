@@ -1,0 +1,65 @@
+<?php
+
+/*
+ * Add langcode field to file_revision table.
+ *
+ * This is required before updating to Drupal 8.2.
+ * Otherwise, 'drush entup' reports -
+ *   file entity type :
+ *     The Language code field needs to be updated.
+ *
+ * The entity update fails with an SQL syntax error. The cause is
+ * the Multiversion module which created the file_revision table.
+ *
+ * This function updates the storage without having to do a risky
+ * migration of all files.
+ */
+function rhd_common_update_8200() {
+  try {
+    $langcode_storage_schema = [
+      'file_managed' => [
+        'fields' => [
+          'langcode' => [
+            'type' => 'varchar_ascii',
+            'length' => 12,
+            'not null' => TRUE,
+          ],
+        ],
+      ],
+      'file_revision' => [
+        'fields' => [
+          'langcode' => [
+            'type' => 'varchar_ascii',
+            'length' => 12,
+            'not null' => TRUE,
+          ],
+        ],
+      ],
+    ];
+    \Drupal::keyValue('entity.storage_schema.sql')
+      ->set('file.field_schema_data.langcode', $langcode_storage_schema);
+
+    $database = \Drupal::database();
+    $table_name = 'file_revision';
+    $column_name = 'langcode';
+    if ($database->schema()->tableExists($table_name) && !$database->schema()
+        ->fieldExists($table_name, $column_name)
+    ) {
+      $database->schema()->addField($table_name, $column_name, [
+        'type' => 'varchar',
+        'length' => '12',
+        'not null' => TRUE,
+        'description' => 'Language code',
+        'default' => 'en-gb',
+      ]);
+
+      $update_manager = \Drupal::entityDefinitionUpdateManager();
+      $update_manager->updateEntityType($update_manager->getEntityType('file'));
+      $langcode_storage = $update_manager->getFieldStorageDefinition('langcode', 'file');
+      $langcode_storage->setRevisionable(TRUE);
+      $update_manager->updateFieldStorageDefinition($langcode_storage);
+    }
+  } catch (\Exception $e) {
+    \Drupal::logger('MY_MODULE')->error($e->getMessage());
+  }
+}

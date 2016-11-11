@@ -1,9 +1,25 @@
+{%
+set classes = [
+'paragraph',
+'paragraph--type--' ~ paragraph.bundle|clean_class,
+view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+]
+%}
+
 {% if content.field_buzz_tags %}
     {% set buzz_tags = content.field_buzz_tags[0]['#context']['value']|split(',')|json_encode %}
 {% endif %}
 
-{{ content.field_overview_main_content }}
+<div{{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    <div{{ title_attributes }}>{{ label }}</div>
+    {{ title_suffix }}
 
-{% if buzz_tags %}
-    <div class="product-buzz-container" data-tags="{{ buzz_tags }}"></div>
-{% endif %}
+    <div{{ content_attributes }}>
+        {{ content.field_overview_main_content }}
+
+        {% if buzz_tags %}
+            <div class="product-buzz-container" data-tags="{{ buzz_tags }}"></div>
+        {% endif %}
+    </div>
+</div>

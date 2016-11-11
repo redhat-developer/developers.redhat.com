@@ -16,7 +16,7 @@ mode: default
 content:
   field_overview_hide_get_started:
     weight: 5
-    label: above
+    label: visually_hidden
     settings:
       format: default
       format_custom_false: ''
@@ -25,13 +25,13 @@ content:
     type: boolean
   field_overview_main_content:
     weight: 4
-    label: above
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_overview_url:
     weight: 3
-    label: above
+    label: visually_hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }

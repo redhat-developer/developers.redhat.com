@@ -176,7 +176,7 @@ display:
           entity_field: changed
       filters:
         status:
-          value: true
+          value: '1'
           table: comment_field_data
           field: status
           id: status
@@ -187,7 +187,7 @@ display:
           entity_type: comment
           entity_field: status
         status_node:
-          value: true
+          value: '1'
           table: node_field_data
           field: status
           relationship: node

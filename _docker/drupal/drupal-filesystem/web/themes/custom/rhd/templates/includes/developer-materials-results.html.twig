@@ -1,0 +1,91 @@
+<div>
+    <div class="developer-material-results">
+        <table class="developer-materials-grid" ng-hide="data.layout === 'grid' || !data.layout" ng-if="!data.loading">
+            <thead>
+            <tr>
+                <td class="topics">Topics</td>
+                <td class="title">Title</td>
+                <td class="description">Description</td>
+                <td class="product" ng-hide="filters.project">Product</td>
+                <td class="format">Format</td>
+                <td class="publish-date">Publish Date</td>
+            </tr>
+            </thead>
+            {# TODO: figure out the correct way to reference this image #}
+            <tbody><img class="loader" ng-show="data.loading" src="/images/icons/ajax-loader.gif"/>
+            <tr class="material get-started-placeholder-{% verbatim %}{{ item.fields.sys_type }}{% endverbatim %}"
+                ng-repeat="item in data.displayedMaterials | noURL" ng-show="!data.loading">
+                <td class="topics">{% verbatim %}{{ item.fields.sys_tags | removeExcludedTags }}{% endverbatim %}</td>
+                <td class="title"><p><a href=""
+                                        ng-href="{% verbatim %}{{ item.fields.sys_url_view | urlFix }}{% endverbatim %}">{% verbatim %}{{ item.fields.sys_title | firstIfArray }}{% endverbatim %}
+                            <i class="fa fa-external-link" ng-hide="item | checkInternal"></i></a></p><span
+                            class="contributor"
+                            data-sys-contributor="{% verbatim %}{{ item.fields.sys_author | firstIfArray }}{% endverbatim %}"><a
+                                class="name">{% verbatim %}{{ item.fields.sys_author | name }}{% endverbatim %}</a></span>
+                </td>
+                <td class="description">{% verbatim %}{{ item.fields.sys_description | truncate }}{% endverbatim %}</td>
+                <td class="product"
+                    ng-hide="filters.project">{% verbatim %}{{ item.fields.target_product.join(', ') }}{% endverbatim %}</td>
+                <td class="format">{% verbatim %}{{ item.fields.sys_type | formatName:this }}{% endverbatim %}</td>
+                <td class="publish-date">{% verbatim %}{{ item.fields.sys_created | timeAgo }}{% endverbatim %}</td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ng-hide="data.layout === 'list'">
+            <li class="material" ng-repeat="item in data.displayedMaterials">
+                <div class="get-started-placeholder-{% verbatim %}{{ item.fields.sys_type }}{% endverbatim %}"><a
+                            ng-href="{% verbatim %}{{ item.fields.sys_url_view | firstIfArray }}{% endverbatim %}"><img
+                                ng-src="{% verbatim %}{{ item | thumbnailURL }}{% endverbatim %}"/></a><a
+                            class="banner experimental"
+                            ng-show="item.fields.experimental"></a><a
+                            class="banner premium" ng-show="item.fields.sys_url_view | isPremium"></a><span
+                            class="label material-level-{% verbatim %}{{ item.fields.level }}{% endverbatim %}"
+                            ng-show="item.fields.duration">{% verbatim %}{{ item.fields.duration | HHMMSS }}{% endverbatim %}</span><span
+                            class="label material-level-{% verbatim %}{{ item.fields.level }}{% endverbatim %}"
+                            ng-show="item.fields.level">{% verbatim %}{{ item.fields.level | firstIfArray }}{% endverbatim %}</span>
+                    <div class="material-info"><h5><a
+                                    ng-href="{% verbatim %}{{ item.fields.sys_url_view | firstIfArray }}{% endverbatim %}">{% verbatim %}{{ item.fields.sys_title | firstIfArray }}{% endverbatim %}</a>
+                        </h5><span class="contributor"
+                                   data-sys-contributor="{% verbatim %}{{ item.fields.sys_author | firstIfArray }}{% endverbatim %}"><a
+                                    class="name"></a></span>
+                        <p class="material-datestamp">{% verbatim %}{{ item.fields.sys_created | timeAgo }}{% endverbatim %}</p>
+                    </div>
+                    <p>{% verbatim %}{{ item.fields.sys_description | truncate }}{% endverbatim %}&hellip;</p></div>
+            </li>
+        </ul>
+    </div>
+    <div class="panel" ng-hide="data.materials.length || data.loading">Sorry there were no results, please modify your
+        search query.
+    </div>
+</div>
+<div class="large-24" ng-hide="data.loading">
+    <div class="large-7 columns" id="show-entries"><label class="inline">Show</label><select name="show-entries"
+                                                                                             ng-change="fetchAndUpdate();"
+                                                                                             ng-model="pagination.size">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+        </select><label class="inline">entries</label><br/>
+        <p>
+            Showing {% verbatim %}{{ (paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber }}{% endverbatim %}
+            to {% verbatim %}{{ Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber }}{% endverbatim %}
+            of {% verbatim %}{{ data.total | safeNumber }}{% endverbatim %} entries</p></div>
+    <div class="large-17 small-24 columns">
+        <nav id="paginator" ng-hide="pagination.viewall || !data.materials.length || data.loading">
+            <ul class="pagination">
+                <li ng-class="{unavailable: paginate.currentPage < 2}"><a ng-click="firstPage()">First</a></li>
+                <li ng-class="{unavailable: paginate.currentPage < 2}"><a ng-click="previousPage()">Previous</a></li>
+                <li ng-class="{current: page == paginate.currentPage}"
+                    ng-repeat="page in paginate.pagesArray track by $index"><a
+                            data-page="{% verbatim %}{{ page }}{% endverbatim %}"
+                            ng-click="goToPage(page)">{% verbatim %}{{ page }}{% endverbatim %}</a>
+                </li>
+                <li ng-class="{unavailable: paginate.currentPage >= paginate.pages}"><a
+                            ng-click="nextPage()">Next</a></li>
+                <li ng-class="{unavailable: paginate.currentPage  == paginate.pages}"><a ng-click="lastPage()">Last</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

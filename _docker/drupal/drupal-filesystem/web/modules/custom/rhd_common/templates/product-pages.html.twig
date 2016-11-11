@@ -78,7 +78,7 @@
 <article{{ attributes }}>
     <section class="hero hero-wide product-header {{ product_machine_name }} application-development">
         <div class="row">
-            <div class="large-24">
+            <div class="large-24 columns">
                 {{ title_prefix }}
                 <h2 {{ title_attributes }}>{{ elements.title }}</h2>
                 {{ title_suffix }}
@@ -88,9 +88,11 @@
     </section>
     <section{{ content_attributes.addClass(["product-graphics", "application-development"]) }}>
         {% if not active_paragraph.field_overview_hide_get_started.value %}
-            <div id="hero-try-or-buy" class="row application-development">
-                <div class="large-24 columns hello-world">
-                    {{ elements.field_product_get_started }}
+            <div class="large-24 columns">
+                <div id="hero-try-or-buy" class="row application-development">
+                    <div class="large-24 columns hello-world">
+                        {{ elements.field_product_get_started }}
+                    </div>
                 </div>
             </div>
         {% endif %}
@@ -100,6 +102,7 @@
                     {{ elements.page_links }}
                 </div>
                 <div class="large-20 medium-17 small-24 columns">
+                    {{ kint(elements.active_paragraph|keys) }}
                     {{ elements.active_paragraph }}
                 </div>
             </div>

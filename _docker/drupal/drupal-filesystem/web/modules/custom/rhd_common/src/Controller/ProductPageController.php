@@ -48,7 +48,11 @@ class ProductPageController extends ControllerBase {
 
     if (!empty($nid)) {
       $active_paragraph = NULL;
+      $active_sub_page = NULL;
+
       $node_obj = Node::load($nid);
+
+      // This render array will hold the left side navigation links
       $page_links = [
         '#theme' => 'item_list',
         '#list_type' => 'ul',
@@ -63,21 +67,23 @@ class ProductPageController extends ControllerBase {
         ]
       ];
 
-      foreach ($node_obj->field_product_pages as $product_page) {
-        $active_sub_page = NULL;
-        $product_pages_id = $product_page->target_id;
+      // Iterate over all the product sub pages configured for this product
+      // Find the active one, create links for the left side nav
+      foreach ($node_obj->field_product_pages as $cur_sub_page) {
+        $product_pages_id = $cur_sub_page->target_id;
 
         // entity_load paragraph type.
-        $load_paragraph = $this->entityTypeManager()
+        $sub_page_paragraph = $this->entityTypeManager()
           ->getStorage('paragraph')
           ->load($product_pages_id);
 
         // Prepare left nav links data.
-        $overview_url = $load_paragraph->field_overview_url->value;
-        $url_string = str_replace(' ', '-', strtolower($overview_url));
+        $sub_page_url = $sub_page_paragraph->field_overview_url->value;
+        $sub_page_url_string = str_replace(' ', '-', strtolower($sub_page_url));
 
-        if ($url_string == $sub_page) {
+        if ($sub_page_url_string == $sub_page) {
           $active_sub_page = $product_pages_id;
+          $active_paragraph = $sub_page_paragraph;
         }
 
         $link_icon = '<i class="fa fa-caret-right fa-lg"></i>';
@@ -87,15 +93,15 @@ class ProductPageController extends ControllerBase {
             '#type' => 'inline_template',
             '#template' => "{{text}}" . $link_icon,
             '#context' => [
-              'text' => t($load_paragraph->field_overview_url->value)
+              'text' => t($sub_page_paragraph->field_overview_url->value)
             ]
           ],
           '#url' => Url::fromRoute('rhd_common.main_page_controller', [
             'product_code' => $product_code,
-            'sub_page' => $url_string,
+            'sub_page' => $sub_page_url_string,
           ]),
-          '#wrapper_attributes' => (function () use ($active_sub_page) {
-            if (!empty($active_sub_page)) {
+          '#wrapper_attributes' => (function () use ($sub_page, $sub_page_url_string) {
+            if ($sub_page_url_string == $sub_page) {
               return ['class' => 'active'];
             }
             else {
@@ -112,16 +118,9 @@ class ProductPageController extends ControllerBase {
       $build['#theme'] = 'product-pages';
       $build['page_links'] = $page_links;
 
-      // Process active sub page and fetch paragraph data.
-      if (!empty($active_sub_page)) {
-        $active_paragraph = $this->entityTypeManager()
-          ->getStorage('paragraph')
-          ->load($active_sub_page);
-
-        $build['active_paragraph'] = $this->entityTypeManager()
-          ->getViewBuilder($active_paragraph->getEntityTypeId())
-          ->view($active_paragraph, 'full');
-      }
+      $build['active_paragraph'] = $this->entityTypeManager()
+        ->getViewBuilder($active_paragraph->getEntityTypeId())
+        ->view($active_paragraph, 'full');
     }
 
     return $build;

@@ -5,3 +5,12 @@ rhd_common.main_page_controller:
     _title: 'Product Page'
   requirements:
     _permission: 'access content'
+rhd_common.product_overview:
+  path: '/products/{product_code}'
+  defaults:
+    _controller: '\Drupal\rhd_common\Controller\ProductPageController::productPage'
+    _title: 'Product Page'
+    sub_page: 'overview'
+  requirements:
+    _permission: 'access content'
+
