@@ -59,11 +59,11 @@ app.sso = function () {
     function updateAnalytics(usr) {
         var ddUserAuthEvent = {
             eventInfo: {
-                eventName: 'user authentication',
-                eventAction: 'authenticate',
+                eventName: 'user data',
+                eventAction: 'available',
                 user: [{
                     profile: [{
-                        profileInfo: {}
+                        profileInfo: usr
                     }]
                 }],
                 timeStamp: new Date(),
@@ -72,7 +72,6 @@ app.sso = function () {
                 }
             }
         };
-        ddUserAuthEvent.eventInfo.user[0].profile[0].profileInfo = usr;
 
         //Push it onto the event array of the digitalData object
         window.digitalData = window.digitalData || {};
@@ -82,7 +81,7 @@ app.sso = function () {
         digitalData.user = digitalData.user || [{ profile: [{ profileInfo: {} }] }];
         digitalData.user[0].profile[0].profileInfo = usr;
         //Create and dispatch an event trigger using the predefined function
-        sendCustomEvent('ajaxAuth');
+        sendCustomEvent('ajaxAuthEvent');
     }
 
     function saveTokens() {
