@@ -97,10 +97,14 @@ function rhd_preprocess_html(array &$variables) {
 }
 
 function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
+    global $base_url;
     $env_settings = \Drupal::config('redhat_developers');
 
     $settings['rhd'] = array();
     $rhd_settings = &$settings['rhd'];
+
+    $rhd_settings['siteInfo'] = array();
+    $rhd_settings['siteInfo']['baseURL'] = $base_url;
 
     $rhd_settings['downloadManager'] = array();
     $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];

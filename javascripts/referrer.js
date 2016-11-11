@@ -86,6 +86,8 @@
   }
 
   function getPrimaryCategory() {
-    return window.location.href.split('?')[0].split('#')[0].split('/')[3];
+    prtcl = /https?:\/\//;
+    category = window.location.href.replace(prtcl,'').replace(drupalSettings.rhd.siteInfo.baseURL.replace(prtcl,''),'').replace(/\/$/,'').split('?')[0].split('#')[0].split('/');
+    return category.length > 1 ? category[1] : category[0]; 
   }
 }());
