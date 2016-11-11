@@ -137,4 +137,11 @@ function rhd_common_preprocess_paragraph(&$variables) {
   $parent_node = $variables['paragraph']->getParentEntity();
   $product_machine_name = current($parent_node->field_product_machine_name->getValue());
   $variables['product_machine_name'] = $product_machine_name['value'];
+
+  // Same thing for the name of the product
+  $variables['product_name'] = $parent_node->label();
+
+  if ($variables['paragraph']->field_display_projects) {
+    $variables['display_projects'] = (bool) $variables['paragraph']->field_display_projects->value;
+  }
 }
