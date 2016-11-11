@@ -15,6 +15,13 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     <div{{ content_attributes }}>
         <span data-target-product="{{ product_machine_name }}"></span>
         <span data-order-by="priority"></span>
+        {% if content.field_overview_main_content %}
+            <div class="row">
+                <div class="large-24 columns">
+                    {{ content.field_overview_main_content }}
+                </div>
+            </div>
+        {% endif %}
         <div class="row">
             <div class="large-24 columns">
                 <div class="featured-projects">
@@ -31,7 +38,6 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                     <strong>Order By</strong>
                     <a href="#" class="active order-priority"><i class="fa fa-sort-amount-desc"></i>Importance</a>
                     <a href="#" class="order-alpha"><i class="fa fa-sort-alpha-asc"></i>Alphabetically</a>
-                    {{ content.field_overview_main_content }}
                 </p>
                 <ul class="large-block-grid-4 medium-block-grid-2 connector-results"></ul>
                 <small>&#42;All registered trademarks belong to their respective owners.</small>
