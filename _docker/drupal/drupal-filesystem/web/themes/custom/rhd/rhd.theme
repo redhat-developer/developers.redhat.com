@@ -88,10 +88,12 @@ function rhd_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $v
 }
 
 function rhd_preprocess_html(array &$variables) {
+    global $base_url;
     $environment = \Drupal::config('redhat_developers')->get('environment');
     $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
 
     $variables['rhd_environment'] = $environment;
+    $variables['rhd_url'] = urlencode($base_url);
     $variables['rhd_dtm_code'] = $dtm_code;
     $variables['rhd_dtm_script'] = redhat_www_ddo_default();
 }
@@ -143,10 +145,7 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 }
 
 function redhat_www_ddo_default() {
-    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
     $request = \Drupal::request();
-    $useragent = $request->headers->get('user-agent');
-    $query = $request->query;
     $node = \Drupal::request()->attributes->get('node');
 
     $ddo = array(
@@ -195,16 +194,16 @@ function redhat_www_ddo_default() {
                         'profileInfo' => array(
                             'accountID' => '',
                             'daysSinceLastPurchase' => '',
-                            'daysSinceRegistration' => $user->created->value,
+                            'daysSinceRegistration' => '',
                             'eloquaGUID' => 'POPULATE ELOQUA ID',
                             'keyCloakID' => '',
-                            'loggedIn' => 'false',
+                            'loggedIn' => false,
                             'profileID' => '',
                             'registered' => false,
                             'socialAccountsLinked' => array(),
                             'subscriptionFrequency' => '',
                             'subscriptionLevel' => '',
-                            'userAgent' => $useragent,
+                            'userAgent' => '',
                         ),
                     ),
                 ),
