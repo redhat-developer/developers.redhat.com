@@ -42,6 +42,27 @@ class TestRhdEnvironment < MiniTest::Test
     assert_equal(nil, ENV['DRUPAL_HOST_PORT'])
   end
 
+  def test_should_pull_drupal_data_image_for_drupal_dev
+    @environment.environment_name = 'drupal-dev'
+    assert(@environment.pull_drupal_data_image?)
+  end
+
+  def test_should_pull_drupal_data_image_for_drupal_pr
+    @environment.environment_name = 'drupal-pull-request'
+    assert(@environment.pull_drupal_data_image?)
+  end
+
+  def test_should_not_pull_drupal_data_for_staging
+    @environment.environment_name = 'drupal-staging'
+    refute(@environment.pull_drupal_data_image?)
+  end
+
+  def test_should_not_pull_drupal_data_for_production
+    @environment.environment_name = 'drupal-production'
+    refute(@environment.pull_drupal_data_image?)
+  end
+
+
   def test_drupal_pr_environment_does_not_preselect_port_if_required_env_variable_missing
     @environment.environment_name = 'drupal-pull-request'
     @environment.initialize_environment

@@ -41,6 +41,13 @@ class RhdEnvironment
   end
 
   #
+  # Before starting execution, should we check to pull the latest data image into this environment
+  #
+  def pull_drupal_data_image?
+    @environment_name == 'drupal-dev' || @environment_name == 'drupal-pull-request'
+  end
+
+  #
   # Get the path to the docker-compose.yml file for this environment
   #
   def get_docker_compose_file

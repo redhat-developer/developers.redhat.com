@@ -46,6 +46,8 @@ services:
       - ../../drupal/drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
+    volumes_from:
+      - drupal_data
 
   drupalmysql:
     image: mariadb:10.0.24
@@ -58,8 +60,8 @@ services:
       - "3306"
     ports:
       - "3306"
-    volumes:
-      - ../../drupal/prod_db.sql.gz:/docker-entrypoint-initdb.d/prod_db.sql.gz
+    volumes_from:
+      - drupal_data
 
   apache:
    image: httpd:2.4.20
@@ -76,6 +78,14 @@ services:
     - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
     - ./apache/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
 
+  # Drupal production data
+  drupal_data:
+   image: redhatdeveloper/drupal-data:latest
+   volumes:
+    - /var/www/drupal/web/config/active
+    - /var/www/drupal/web/sites/default/files
+    - /docker-entrypoint-initdb.d
+
   #
   # Environment actions
   #
@@ -89,6 +99,8 @@ services:
     entrypoint: "ruby _docker/lib/export/export.rb docker"
     environment:
      - drupal.export.fail_on_missing
+
+
 
   #
   # Testing
