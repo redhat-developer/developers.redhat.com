@@ -88,12 +88,10 @@ function rhd_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $v
 }
 
 function rhd_preprocess_html(array &$variables) {
-    global $base_url;
     $environment = \Drupal::config('redhat_developers')->get('environment');
     $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
 
     $variables['rhd_environment'] = $environment;
-    $variables['rhd_url'] = urlencode($base_url);
     $variables['rhd_dtm_code'] = $dtm_code;
     $variables['rhd_dtm_script'] = redhat_www_ddo_default();
 }
