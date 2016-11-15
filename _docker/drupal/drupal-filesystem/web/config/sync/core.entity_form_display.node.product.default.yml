@@ -9,9 +9,51 @@ dependencies:
     - field.field.node.product.field_product_summary
     - node.type.product
   module:
+    - field_group
     - paragraphs
     - path
     - text
+third_party_settings:
+  field_group:
+    group_global_information:
+      children:
+        - field_product_summary
+        - field_product_get_started
+      parent_name: group_product_info
+      weight: 2
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+      label: 'Global Information'
+    group_sub_pages:
+      children:
+        - field_product_pages
+      parent_name: group_product_info
+      weight: 3
+      format_type: tab
+      format_settings:
+        formatter: closed
+        description: ''
+        classes: ''
+        id: ''
+        required_fields: true
+      label: 'Sub Pages'
+    group_product_info:
+      children:
+        - group_global_information
+        - group_sub_pages
+      parent_name: ''
+      weight: 1
+      format_type: tabs
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: 'Product Information'
 id: node.product.default
 targetEntityType: node
 bundle: product
@@ -19,7 +61,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 4
     settings: {  }
     third_party_settings: {  }
   field_product_get_started:
@@ -30,7 +72,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
   field_product_machine_name:
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''
@@ -42,8 +84,8 @@ content:
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
+      edit_mode: closed
+      add_mode: select
       form_display_mode: default
     third_party_settings: {  }
   field_product_summary:
@@ -55,20 +97,8 @@ content:
     type: text_textarea
   path:
     type: path
-    weight: 9
+    weight: 5
     settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 7
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 8
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -79,10 +109,12 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  promote: true
+  sticky: true

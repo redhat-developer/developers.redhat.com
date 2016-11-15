@@ -6,8 +6,10 @@ dependencies:
     - field.field.paragraph.get_started.field_overview_hide_get_started
     - field.field.paragraph.get_started.field_overview_main_content
     - field.field.paragraph.get_started.field_overview_url
+    - field.field.paragraph.get_started.field_tabs
     - paragraphs.paragraphs_type.get_started
   module:
+    - entity_reference_revisions
     - text
 id: paragraph.get_started.default
 targetEntityType: paragraph
@@ -36,6 +38,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+  field_tabs:
+    type: entity_reference_revisions_entity_view
+    weight: 7
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
 hidden:
   created: true
   uid: true

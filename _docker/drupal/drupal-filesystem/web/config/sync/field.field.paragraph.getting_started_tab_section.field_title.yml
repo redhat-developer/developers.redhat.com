@@ -1,0 +1,19 @@
+uuid: 5a8c1a26-a55d-48ae-9751-6017dc893603
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.getting_started_tab_section
+id: paragraph.getting_started_tab_section.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: getting_started_tab_section
+label: Title
+description: 'Title of the tab'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

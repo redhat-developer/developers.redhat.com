@@ -102,6 +102,9 @@ function rhd_common_theme($existing, $type, $theme, $path) {
   return [
     'product-pages' => [
       'render element' => 'elements',
+    ],
+    'get_started_tabs' => [
+      'variables' => ['items' => []]
     ]
   ];
 }
@@ -135,13 +138,110 @@ function rhd_common_preprocess_paragraph(&$variables) {
   // Pulling out the product_machine_name field from the parent node of the
   // paragraph so we can use it in the paragraph template as well.
   $parent_node = $variables['paragraph']->getParentEntity();
-  $product_machine_name = current($parent_node->field_product_machine_name->getValue());
-  $variables['product_machine_name'] = $product_machine_name['value'];
+  if ($parent_node instanceof \Drupal\Core\Entity\FieldableEntityInterface) {
+    if ($parent_node->hasField('field_product_machine_name')) {
+      $product_machine_name = current($parent_node->field_product_machine_name->getValue());
+      $variables['product_machine_name'] = $product_machine_name['value'];
 
-  // Same thing for the name of the product
-  $variables['product_name'] = $parent_node->label();
-
-  if ($variables['paragraph']->field_display_projects) {
-    $variables['display_projects'] = (bool) $variables['paragraph']->field_display_projects->value;
+      // Same thing for the name of the product
+      $variables['product_name'] = $parent_node->label();
+    }
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_paragraph__community(&$variables) {
+  $paragraph = $variables['#paragraph'];
+  $variables['display_projects'] = (bool) $paragraph->field_display_projects->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_paragraph__get_started(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $tab_count = $paragraph->field_tabs->count();
+  $tab_links = [];
+
+  $variables['tab_panels'] = [
+    '#theme' => 'get_started_tabs',
+    '#items' => []
+  ];
+
+  // Build up a render array for the tab bar.
+  // This is much easier here than in twig where I cannot access php functions.
+  // We only want to show a tab bar if there's more than one tab
+  if ($tab_count > 1) {
+    $tab_links = [
+      '#theme' => 'item_list',
+      '#list_type' => 'ul',
+      '#attributes' => [
+        'class' => 'tabs nav-tabs current-tabs',
+        'data-tab' => '',
+        'role' => 'tablist',
+//        'data-options' => 'deep_linking:true;scroll_to_content:false'
+        'data-options' => 'scroll_to_content:false'
+      ]
+    ];
+  }
+
+  foreach ($paragraph->field_tabs as $index => $tab_item) {
+    $tab = $tab_item->entity;
+    $url_field_title = strtolower(str_replace(' ', '', $tab->field_title->value));
+    $variables['tab_panels']['#items'][] = $tab;
+
+    if ($tab_count > 1) {
+      $tab_links['#items'][] = [
+        '#type' => 'link',
+        '#title' => $tab->field_title->value,
+        '#url' => Url::fromUri('internal:#' . $url_field_title),
+        '#attributes' => [
+          'role' => 'tab',
+          'tabindex' => '0',
+          'aria-selected' => 'false',
+          'aria-controls' => $url_field_title
+        ],
+        // #wrapper_attributes are for the li, or the things wrapping the link
+        '#wrapper_attributes' => [
+          'role' => 'presentation',
+          'class' => (function () use ($index) {
+            if ($index === 0) {
+              return 'active';
+            }
+            else {
+              return '';
+            }
+          })()
+        ]
+      ];
+    }
+  }
+
+  $variables['tab_bar'] = $tab_links;
+}
+
+function rhd_common_preprocess_get_started_tabs(&$variables) {
+  // Each item is going to be a reference to a paragraph,
+  // we want the actual paragraph available in the view
+  foreach ($variables['items'] as $tab_index => $tab) {
+     $variables['tabs'][$tab_index] = [
+       'title' => $tab->field_title->value,
+       'preamble' => $tab->field_body->view(['label' => 'visually_hidden']),
+       'sections' => []
+     ];
+
+    foreach ($tab->field_blue_sections as $blue_section_index => $blue_section) {
+      $blue_section_entity = $blue_section->entity;
+      $variables['tabs'][$tab_index]['sections'][$blue_section_index] = [];
+      $blue_section_render = &$variables['tabs'][$tab_index]['sections'][$blue_section_index];
+
+      $blue_section_render['title'] = $blue_section_entity->field_title->value;
+      $blue_section_render['minutes'] = $blue_section_entity->field_minutes_to_complete->value;
+      $blue_section_render['body'] = $blue_section_entity->field_body->view(['label' => 'visually_hidden']);
+    }
+  }
+  unset($variables['items']);
+}
+
