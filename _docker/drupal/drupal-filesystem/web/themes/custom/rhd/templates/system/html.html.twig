@@ -83,12 +83,12 @@
       function getCategories() {
         var categories = { primaryCategory: "", subCategories: [] },
           url = relURL.split('?')[0].split('#')[0].split(/\//);
-        for(var i=3, l=url.length; i<l; i++) {
-          if (i !== 3 && categories.subCategories.length <= 3) { 
+        for(var i=1, l=url.length; i<l; i++) {
+          if (i !== 0 && i <= 3) { 
             categories.subCategories.push(url[i]);
           }
           
-          if (i === 3) {
+          if (i === 1) {
             categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
           }
         }
