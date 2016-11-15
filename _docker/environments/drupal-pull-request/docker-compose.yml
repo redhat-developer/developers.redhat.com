@@ -101,7 +101,7 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=Drupal:Unit Tests,Drupal:FE Acceptance Tests,Drupal:FE KC/DM Acceptance Tests,Drupal:Exported Site Preview,Drupal:Drupal Site
+    - github_status_initialise=Drupal:Unit Tests,Drupal:FE Acceptance Tests,Drupal:Mobile FE Acceptance Tests,Drupal:FE KC/DM Acceptance Tests,Drupal:Exported Site Preview,Drupal:Drupal Site
 
   acceptance_tests:
    build: ../../awestruct
@@ -136,7 +136,6 @@ services:
   docker_firefox:
    image: selenium/node-firefox-debug:2.53.0
    volumes:
-    - /dev/shm:/dev/shm
     - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
    environment:
     - HUB_PORT_4444_TCP_ADDR=selhub

@@ -21,9 +21,9 @@ class GenericBasePage
     end
   end
 
-  def self.expected_element(type, identifier, timeout=30)
+  def self.expected_element(type, identifier)
     define_method 'expected_element' do
-      @browser.send("#{type.to_s}", identifier).wait_until_present(timeout)
+      @browser.send("#{type.to_s}", identifier)
     end
   end
 

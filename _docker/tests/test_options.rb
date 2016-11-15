@@ -222,6 +222,12 @@ class TestOptions < Minitest::Test
     end
   end
 
+  def test_acceptance_test_driver_task
+    ClimateControl.modify RHD_DOCKER_DRIVER: 'docker_chrome' do
+      assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
+    end
+  end
+
   def test_run_pr_reap
     tasks = Options.parse (["--docker-pr-reap"])
     refute(tasks[:acceptance_test_target_task])

@@ -1,7 +1,7 @@
 require_relative 'abstract/site_base'
 
 class RegistrationPage < SiteBase
-  expected_element(:text_field, id: 'email')
+  expected_element(:div, id: 'kc-register')
   #page_title('Register | Red Hat Developers')
 
   element(:expand_register_with_email)             { |b| b.link(id: 'register-expand-choice-email') }
@@ -27,20 +27,21 @@ class RegistrationPage < SiteBase
   element(:rhd_subscription_terms)                 { |b| b.link(text: 'Red Hat Subscription Agreement') }
   element(:rh_portal_terms)                        { |b| b.link(text: 'Red Hat Portals Terms of Use') }
 
-  value(:email_field_error)                        { |b| b.span(id: 'email-error').when_present.text }
-  value(:password_field_error)                     { |b| b.span(id: 'password-error').when_present.text }
-  value(:password_confirm_field_error)             { |b| b.span(id: 'password-confirm-error').when_present.text }
-  value(:first_name_field_error)                   { |b| b.span(id: 'firstName-error').when_present.text }
-  value(:last_name_field_error)                    { |b| b.span(id: 'lastName-error').when_present.text }
-  value(:company_field_error)                      { |b| b.span(id: 'user.attributes.company-error').when_present.text }
-  value(:country_field_error)                      { |b| b.span(id: 'user.attributes.country-error').when_present.text}
-  value(:city_field_error)                         { |b| b.span(id: 'user.attributes.addressCity-error').when_present.text}
-  value(:state_field_error)                        { |b| b.span(id: 'user.attributes.addressState-error').when_present.text}
+  value(:thanks_message)                           { |b| b.h2(class: 'divider').text }
+  value(:email_field_error)                        { |b| b.span(id: 'email-error').text }
+  value(:password_field_error)                     { |b| b.span(id: 'password-error').text }
+  value(:password_confirm_field_error)             { |b| b.span(id: 'password-confirm-error').text }
+  value(:first_name_field_error)                   { |b| b.span(id: 'firstName-error').text }
+  value(:last_name_field_error)                    { |b| b.span(id: 'lastName-error').text }
+  value(:company_field_error)                      { |b| b.span(id: 'user.attributes.company-error').text }
+  value(:country_field_error)                      { |b| b.span(id: 'user.attributes.country-error').text}
+  value(:city_field_error)                         { |b| b.span(id: 'user.attributes.addressCity-error').text}
+  value(:state_field_error)                        { |b| b.span(id: 'user.attributes.addressState-error').text}
 
   action(:accept_all_terms)                        { |p| p.all_terms.click }
   action(:create_account)                          { |p| p.finish_button.click }
-  action(:click_github_button)                     { |p| p.github_button.when_present.click }
-  action(:click_link_social_to_existing_acc)       { |p| p.link_social_to_existing_acc.when_present.click }
+  action(:click_github_button)                     { |p| p.github_button.click }
+  action(:click_link_social_to_existing_acc)       { |p| p.link_social_to_existing_acc.click }
 
   def fill_in_form(first_name, last_name, email, company, country=nil, city=nil, state=nil, password, password_confirm)
     expand_register_choice_email
@@ -64,12 +65,11 @@ class RegistrationPage < SiteBase
   end
 
   def expand_register_choice_email
-    expand_register_with_email.click if expand_register_with_email.present?
-    email_field.wait_until_present
+    expand_register_with_email.click if expand_register_with_email.visible?
   end
 
   def click_register_with_github
-    expand_register_with_social.click if expand_register_with_social.present?
+    expand_register_with_social.click if expand_register_with_social.visible?
     click_github_button
   end
 
