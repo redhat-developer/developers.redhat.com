@@ -16,6 +16,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     {{ title_suffix }}
 
     <div{{ content_attributes }}>
+        <h2 class="buzz">Buzz about {{ product_short_name }}</h2>
         {{ content.field_overview_main_content }}
 
         {% if buzz_tags %}
