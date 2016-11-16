@@ -15,7 +15,7 @@
                         Date</strong></label><input id="publish-date" max="4" name="filter-publish-date"
                                                     ng-change="filter.updateDate(); filter.applyFilters()"
                                                     ng-model="data.dateNumber" type="range" value="0"/><span
-                        class="skill-display">{% verbatim %}{{ data.displayDate || 'All' }}{% endverbatim %}</span></div>
+                        class="skill-display">{{ '{{ ' }}data.displayDate || 'All' {{ '}}' }}</span></div>
         </div>
     </form>
 </div>

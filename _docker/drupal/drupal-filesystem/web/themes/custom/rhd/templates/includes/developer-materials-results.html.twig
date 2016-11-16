@@ -11,46 +11,45 @@
                 <td class="publish-date">Publish Date</td>
             </tr>
             </thead>
-            {# TODO: figure out the correct way to reference this image #}
-            <tbody><img class="loader" ng-show="data.loading" src="/images/icons/ajax-loader.gif"/>
-            <tr class="material get-started-placeholder-{% verbatim %}{{ item.fields.sys_type }}{% endverbatim %}"
+            <tbody><img class="loader" ng-show="data.loading" src="{{ base_url }}/images/icons/ajax-loader.gif"/>
+            <tr class="material get-started-placeholder-{{ '{{' }} item.fields.sys_type {{ '}}' }}"
                 ng-repeat="item in data.displayedMaterials | noURL" ng-show="!data.loading">
-                <td class="topics">{% verbatim %}{{ item.fields.sys_tags | removeExcludedTags }}{% endverbatim %}</td>
+                <td class="topics">{{ '{{ ' }}item.fields.sys_tags | removeExcludedTags {{ '}}' }}</td>
                 <td class="title"><p><a href=""
-                                        ng-href="{% verbatim %}{{ item.fields.sys_url_view | urlFix }}{% endverbatim %}">{% verbatim %}{{ item.fields.sys_title | firstIfArray }}{% endverbatim %}
+                                        ng-href="{{ '}}' }} item.fields.sys_url_view | urlFix {{ '}}' }}">{{ '{{' }} item.fields.sys_title | firstIfArray {{ '}}' }}
                             <i class="fa fa-external-link" ng-hide="item | checkInternal"></i></a></p><span
                             class="contributor"
-                            data-sys-contributor="{% verbatim %}{{ item.fields.sys_author | firstIfArray }}{% endverbatim %}"><a
-                                class="name">{% verbatim %}{{ item.fields.sys_author | name }}{% endverbatim %}</a></span>
+                            data-sys-contributor="{{ '{{' }} item.fields.sys_author | firstIfArray {{ '}}' }}"><a
+                                class="name">{{ '{{' }} item.fields.sys_author | name {{ '}}' }}</a></span>
                 </td>
-                <td class="description">{% verbatim %}{{ item.fields.sys_description | truncate }}{% endverbatim %}</td>
+                <td class="description">{{ '{{' }} item.fields.sys_description | truncate {{ '}}' }}</td>
                 <td class="product"
-                    ng-hide="filters.project">{% verbatim %}{{ item.fields.target_product.join(', ') }}{% endverbatim %}</td>
-                <td class="format">{% verbatim %}{{ item.fields.sys_type | formatName:this }}{% endverbatim %}</td>
-                <td class="publish-date">{% verbatim %}{{ item.fields.sys_created | timeAgo }}{% endverbatim %}</td>
+                    ng-hide="filters.project">{{ '{{' }} item.fields.target_product.join(', ') {{ '}}' }}</td>
+                <td class="format">{{ '{{' }} item.fields.sys_type | formatName:this {{ '}}' }}</td>
+                <td class="publish-date">{{ '{{' }} item.fields.sys_created | timeAgo {{ '}}' }}</td>
             </tr>
             </tbody>
         </table>
         <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ng-hide="data.layout === 'list'">
             <li class="material" ng-repeat="item in data.displayedMaterials">
-                <div class="get-started-placeholder-{% verbatim %}{{ item.fields.sys_type }}{% endverbatim %}"><a
-                            ng-href="{% verbatim %}{{ item.fields.sys_url_view | firstIfArray }}{% endverbatim %}"><img
-                                ng-src="{% verbatim %}{{ item | thumbnailURL }}{% endverbatim %}"/></a><a
+                <div class="get-started-placeholder-{{ '{{' }} item.fields.sys_type {{ '}}' }}"><a
+                            ng-href="{{ '{{' }} item.fields.sys_url_view | firstIfArray {{ '}}' }}"><img
+                                ng-src="{{ '{{' }} item | thumbnailURL {{ '}}' }}"/></a><a
                             class="banner experimental"
                             ng-show="item.fields.experimental"></a><a
                             class="banner premium" ng-show="item.fields.sys_url_view | isPremium"></a><span
-                            class="label material-level-{% verbatim %}{{ item.fields.level }}{% endverbatim %}"
-                            ng-show="item.fields.duration">{% verbatim %}{{ item.fields.duration | HHMMSS }}{% endverbatim %}</span><span
-                            class="label material-level-{% verbatim %}{{ item.fields.level }}{% endverbatim %}"
-                            ng-show="item.fields.level">{% verbatim %}{{ item.fields.level | firstIfArray }}{% endverbatim %}</span>
+                            class="label material-level-{{ '{{' }} item.fields.level {{ '}}' }}"
+                            ng-show="item.fields.duration">{{ '{{' }} item.fields.duration | HHMMSS {{ '}}' }}</span><span
+                            class="label material-level-{{ '{{' }} item.fields.level {{ '}}' }}"
+                            ng-show="item.fields.level">{{ '{{' }} item.fields.level | firstIfArray {{ '}}' }}</span>
                     <div class="material-info"><h5><a
-                                    ng-href="{% verbatim %}{{ item.fields.sys_url_view | firstIfArray }}{% endverbatim %}">{% verbatim %}{{ item.fields.sys_title | firstIfArray }}{% endverbatim %}</a>
+                                    ng-href="{{ '{{' }} item.fields.sys_url_view | firstIfArray {{ '}}' }}">{{ '{{' }} item.fields.sys_title | firstIfArray {{ '}}' }}</a>
                         </h5><span class="contributor"
-                                   data-sys-contributor="{% verbatim %}{{ item.fields.sys_author | firstIfArray }}{% endverbatim %}"><a
+                                   data-sys-contributor="{{ '{{' }} item.fields.sys_author | firstIfArray {{ '}}' }}"><a
                                     class="name"></a></span>
-                        <p class="material-datestamp">{% verbatim %}{{ item.fields.sys_created | timeAgo }}{% endverbatim %}</p>
+                        <p class="material-datestamp">{{ '{{' }} item.fields.sys_created | timeAgo {{ '}}' }}</p>
                     </div>
-                    <p>{% verbatim %}{{ item.fields.sys_description | truncate }}{% endverbatim %}&hellip;</p></div>
+                    <p>{{ '{{' }} item.fields.sys_description | truncate {{ '}}' }}&hellip;</p></div>
             </li>
         </ul>
     </div>
@@ -68,9 +67,9 @@
             <option value="25">25</option>
         </select><label class="inline">entries</label><br/>
         <p>
-            Showing {% verbatim %}{{ (paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber }}{% endverbatim %}
-            to {% verbatim %}{{ Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber }}{% endverbatim %}
-            of {% verbatim %}{{ data.total | safeNumber }}{% endverbatim %} entries</p></div>
+            Showing {{ '{{' }} (paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber {{ '}}' }}
+            to {{ '{{' }} Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber {{ '}}' }}
+            of {{ '{{' }} data.total | safeNumber {{ '}}' }} entries</p></div>
     <div class="large-17 small-24 columns">
         <nav id="paginator" ng-hide="pagination.viewall || !data.materials.length || data.loading">
             <ul class="pagination">
@@ -78,8 +77,8 @@
                 <li ng-class="{unavailable: paginate.currentPage < 2}"><a ng-click="previousPage()">Previous</a></li>
                 <li ng-class="{current: page == paginate.currentPage}"
                     ng-repeat="page in paginate.pagesArray track by $index"><a
-                            data-page="{% verbatim %}{{ page }}{% endverbatim %}"
-                            ng-click="goToPage(page)">{% verbatim %}{{ page }}{% endverbatim %}</a>
+                            data-page="{{ '{{' }} page {{ '}}' }}"
+                            ng-click="goToPage(page)">{{ '{{' }} page {{ '}}' }}</a>
                 </li>
                 <li ng-class="{unavailable: paginate.currentPage >= paginate.pages}"><a
                             ng-click="nextPage()">Next</a></li>
