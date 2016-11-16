@@ -146,6 +146,15 @@ function rhd_common_preprocess_paragraph(&$variables) {
       // Same thing for the name of the product
       $variables['product_name'] = $parent_node->label();
     }
+
+    // Same thing for the short name, but if there isn't one, use the long name
+    if ($parent_node->hasField('field_product_short_name')) {
+      $product_short_name = current($parent_node->field_product_short_name->getValue());
+      $variables['product_short_name'] = $product_short_name['value'];
+    }
+    else {
+      $variables['product_short_name'] = $variables['product_name'];
+    }
   }
 }
 
@@ -155,6 +164,14 @@ function rhd_common_preprocess_paragraph(&$variables) {
 function rhd_common_preprocess_paragraph__community(&$variables) {
   $paragraph = $variables['#paragraph'];
   $variables['display_projects'] = (bool) $paragraph->field_display_projects->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_paragraph__download(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $variables['offer_subscription'] = (bool) $paragraph->field_offer_subscription->value;
 }
 
 /**
@@ -181,8 +198,7 @@ function rhd_common_preprocess_paragraph__get_started(&$variables) {
         'class' => 'tabs nav-tabs current-tabs',
         'data-tab' => '',
         'role' => 'tablist',
-//        'data-options' => 'deep_linking:true;scroll_to_content:false'
-        'data-options' => 'scroll_to_content:false'
+        'data-options' => 'scroll_to_content:false' // removing 'deep_linking:true;' because it breaks things
       ]
     ];
   }

@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.product.field_product_get_started
     - field.field.node.product.field_product_machine_name
     - field.field.node.product.field_product_pages
+    - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
     - node.type.product
   module:
@@ -19,13 +20,13 @@ mode: default
 content:
   field_product_get_started:
     weight: 104
-    label: hidden
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_product_machine_name:
     weight: 108
-    label: above
+    label: visually_hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -33,19 +34,23 @@ content:
   field_product_pages:
     type: entity_reference_revisions_entity_view
     weight: 107
-    label: hidden
+    label: visually_hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  field_product_short_name:
+    weight: 109
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_product_summary:
     weight: 105
-    label: hidden
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  links: true

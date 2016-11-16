@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.product.field_product_get_started
     - field.field.node.product.field_product_machine_name
     - field.field.node.product.field_product_pages
+    - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
     - node.type.product
   module:
@@ -23,12 +24,13 @@ third_party_settings:
       weight: 2
       format_type: tab
       format_settings:
+        label: 'Global Sub Page Information'
         formatter: closed
         description: ''
-        classes: ''
-        id: ''
         required_fields: true
-      label: 'Global Information'
+        id: ''
+        classes: ''
+      label: 'Global Sub Page Information'
     group_sub_pages:
       children:
         - field_product_pages
@@ -36,18 +38,19 @@ third_party_settings:
       weight: 3
       format_type: tab
       format_settings:
+        label: 'Individual Sub Pages'
         formatter: closed
         description: ''
-        classes: ''
-        id: ''
         required_fields: true
-      label: 'Sub Pages'
+        id: ''
+        classes: ''
+      label: 'Individual Sub Pages'
     group_product_info:
       children:
         - group_global_information
         - group_sub_pages
       parent_name: ''
-      weight: 1
+      weight: 3
       format_type: tabs
       format_settings:
         id: ''
@@ -61,7 +64,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
   field_product_get_started:
@@ -72,7 +75,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
   field_product_machine_name:
-    weight: 0
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -88,6 +91,13 @@ content:
       add_mode: select
       form_display_mode: default
     third_party_settings: {  }
+  field_product_short_name:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_product_summary:
     weight: 2
     settings:
@@ -97,7 +107,7 @@ content:
     type: text_textarea
   path:
     type: path
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
   title:
@@ -109,7 +119,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
