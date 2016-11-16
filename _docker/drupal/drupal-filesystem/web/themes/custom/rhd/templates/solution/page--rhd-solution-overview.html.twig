@@ -72,7 +72,7 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 {% set solution_name = node.get('field_solution_name').getValue()|first.value %}
 {% set solution_tagline = node.get('field_solution_tag_line').getValue()|first.value %}
 {{ attach_library('classy/node') }}
-<div class="topics-header {{ solution_name_hyphen }}">
+<div class="hero topics-header {{ solution_name_hyphen }}">
     <div class="row">
         <div class="large-24">
             <h2>{{ solution_name }}</h2>
