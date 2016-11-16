@@ -48,8 +48,7 @@
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
   var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
-    baseUrl = unescape("{{ rhd_url }}"),
-    relURL = window.location.href.replace(/https?:\/\//,'').replace(baseUrl.replace(/https?:\/\//,''),'').replace(/\/$/,'');
+    relURL = window.location.href.replace(/https?:\/\//,'').replace(window.location.host,'').replace(/\/$/,'');
 
   /**
   * Creates and dispatches an event trigger
@@ -84,12 +83,12 @@
       function getCategories() {
         var categories = { primaryCategory: "", subCategories: [] },
           url = relURL.split('?')[0].split('#')[0].split(/\//);
-        for(var i=3, l=url.length; i<l; i++) {
-          if (i !== 3 && categories.subCategories.length <= 3) { 
+        for(var i=1, l=url.length; i<l; i++) {
+          if (i !== 1 && i <= 3) { 
             categories.subCategories.push(url[i]);
           }
           
-          if (i === 3) {
+          if (i === 1) {
             categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
           }
         }
