@@ -33,7 +33,7 @@ class TestOptions < Minitest::Test
     def initialize(pr)
       @pr = pr
       @deleted = false
-    end  
+    end
 
     def delete
       @deleted = true
@@ -45,11 +45,15 @@ class TestOptions < Minitest::Test
     prs = [1,2,3]
     containers = prs.map{|pr| MyFakeContainer.new(pr)}
     networks = prs.map{|pr| MyFakeNetwork.new(pr)}
-    
+
+    Kernel.expects(:system).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr1*)').returns(true)
+    Kernel.expects(:system).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr2*)').returns(true)
+    Kernel.expects(:system).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr3*)').returns(true)
+
     Docker::Container.stubs(:all).returns containers
-    Docker::Network.stubs(:get).with("rhdpr1_default").returns networks[0]
-    Docker::Network.stubs(:get).with("rhdpr2_default").returns networks[1]
-    Docker::Network.stubs(:get).with("rhdpr3_default").returns networks[2]
+    Docker::Network.stubs(:get).with('rhdpr1_default').returns networks[0]
+    Docker::Network.stubs(:get).with('rhdpr2_default').returns networks[1]
+    Docker::Network.stubs(:get).with('rhdpr3_default').returns networks[2]
 
     pulls = Reaper.kill_and_remove_prs(prs)
 
@@ -63,11 +67,14 @@ class TestOptions < Minitest::Test
     prs = [1,2,3]
     containers = prs.map{|pr| MyFakeContainer.new(pr)}
     networks = [MyFakeNetwork.new(6.7), MyFakeNetwork.new(8)]
-    
+
+    Kernel.expects(:system).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr6.7*)').returns(true)
+    Kernel.expects(:system).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr8*)').returns(true)
+
     Docker::Container.stubs(:all).returns containers
-    Docker::Network.stubs(:get).with("rhdpr6.7_default").returns networks[0]
-    Docker::Network.stubs(:get).with("rhdpr8_default").returns networks[1]
-    
+    Docker::Network.stubs(:get).with('rhdpr6.7_default').returns networks[0]
+    Docker::Network.stubs(:get).with('rhdpr8_default').returns networks[1]
+
     pulls = Reaper.kill_and_remove_prs([6.7,8])
 
     assert_equal([], pulls)
@@ -83,14 +90,18 @@ class TestOptions < Minitest::Test
 
     networks = prs.map{|pr| MyFakeNetwork.new(pr)}
 
+    Kernel.expects(:system).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr1*)').returns(true)
+    Kernel.expects(:system).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr2*)').returns(true)
+    Kernel.expects(:system).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr3*)').returns(true)
+
     Docker::Container.stubs(:all).returns containers
-    Docker::Network.stubs(:get).with("rhdpr1_default").returns networks[0]
-    Docker::Network.stubs(:get).with("rhdpr2_default").returns networks[1]
-    Docker::Network.stubs(:get).with("rhdpr3_default").returns networks[2]
+    Docker::Network.stubs(:get).with('rhdpr1_default').returns networks[0]
+    Docker::Network.stubs(:get).with('rhdpr2_default').returns networks[1]
+    Docker::Network.stubs(:get).with('rhdpr3_default').returns networks[2]
 
     pulls = Reaper.kill_and_remove_prs(prs)
 
-    assert_equal(['id1', 'id2', 'id3'], pulls)
+    assert_equal(%w(id1 id2 id3), pulls)
     assert_equal([false, true, true, true, false], containers.map{|x| x.removed})
     assert_equal([false, true, true, true, false], containers.map{|x| x.killed})
     assert(networks.all?{|n| n.deleted})

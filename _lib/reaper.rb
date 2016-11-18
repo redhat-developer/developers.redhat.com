@@ -4,10 +4,8 @@ class Reaper
 
   def self.kill_and_remove_prs(prs_to_reap)
     containers = Docker::Container.all
-    to_kill = extract_prs(containers, prs_to_reap)
+    to_kill = find_pr_docker_containers(containers, prs_to_reap)
     ids = to_kill.map{|c| c.id}
-
-    puts "Going to kill and remove containers with ids: #{ids.join(',')}"
 
     to_kill.each do |c|
       puts "Killing and removing container with id: '#{c.id}'"
@@ -15,17 +13,21 @@ class Reaper
       c.remove
     end
 
-    clean_pr_networks(prs_to_reap)
+    prs_to_reap.each  do | pull_request |
+      clean_pr_network(pull_request)
+      clean_docker_images(pull_request)
+    end
 
     ids
   end
 
   #
-  # Deletes the docker network associated with each of the given pull requests
+  # Cleans all docker images associated with the pull request. Assumes that images are named in the format
+  # rhdpr#{pr}_
   #
-  def self.clean_pr_networks(prs_to_reap)
-    prs_to_reap.each { |pr| clean_pr_network(pr) }
-  end 
+  def self.clean_docker_images(pr)
+    Kernel.system("docker rmi $(docker images --format \"{{.Repository}}\" rhdpr#{pr}*)")
+  end
 
   #
   # Deletes the Docker network associated with the pull request. This assumes the network will be named "rhdpr{#pr}_default"
@@ -33,7 +35,7 @@ class Reaper
   # and help prevent Docker from running out of networks
   #
   def self.clean_pr_network(pr)
-    
+
     networkName="rhdpr#{pr}_default"
     puts "Deleting Docker network '#{networkName}' for pull request '#{pr}'"
 
@@ -47,12 +49,12 @@ class Reaper
 
   end
 
-  def self.extract_prs(containers, prs_to_reap)
+  def self.find_pr_docker_containers(containers, prs_to_reap)
     prs_to_reap.flat_map do |pr|
       containers.select{|c| c.info["Labels"]["com.docker.compose.project"]=="rhdpr#{pr}"}
     end
   end
 
-  private_class_method :extract_prs, :clean_pr_networks, :clean_pr_network
+  private_class_method :find_pr_docker_containers, :clean_pr_network, :clean_docker_images
 
 end
