@@ -32,11 +32,24 @@ It's unlikely you will want to use the packages provided by your system (e.g. fr
 
 The scripts assume you can run the `docker` command WITHOUT sudo.
 
-NOTE: We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed.
+**NOTE:** We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed.
 
 ### Docker Compose
 Mac and Windows: Docker compose will have been installed as part of the docker toolbox.
 Linux: Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
+
+### Register at DockerHub
+
+The project uses private Docker repositories for certain images and to access these you will need to register at [DockerHub](https://hub.docker.com). Once you have registered, give your
+username to a member of the project team who can grant you access privileges on the private repositories for the project
+
+Additionally you need to ensure that the Docker daemon on your local machine is authenticated with your new DockerHub account. To do this run the following:
+
+```
+docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
+```
+
+For the above, replace `$DOCKER_HUB_USERNAME` and `$DOCKER_HUB_PASSWORD` with your account details.
 
 ### Sanity test
 At this point you must be able to run the following commands without error:
@@ -135,10 +148,6 @@ Once you have access:
 Download the [MySQL data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_mysql_data.tar.gz) and copy to `_docker/mysql/searchisko_mysql_data.tar.gz`.
 
 Download the [ElasticSearch data dump](https://github.com/redhat-developer/searchisko-docker/raw/master/searchisko/searchisko_es_data.tar.gz) and copy to `_docker/searchisko/searchisko_es_data.tar.gz`.
-
-Download the Drupal MySQL data dump from `stumpjumper.lab4.eng.bos.redhat.com`.
-The file will be named like `prod_db_[date timestamp].sql.gz` right in the directory when you sftp into stumpjumper.lab4.eng.bos.redhat.com.
-It must be saved in `_docker/drupal` as `prod_db.sql.gz`. If you do not have access to `stumpjumper`, you can ask a member of the team for the data dump as well.
 
 Add the host `docker` to your `/etc/hosts` file.
 If you are building on Linux, set the IP address to `127.0.0.1`.
@@ -259,15 +268,21 @@ To do this:
 ## Running Unit Tests (fast)
 Run the unit tests (also available using `guard` locally).
 
-      bundle exec ./control.rb -t
+      bundle exec ./control.rb -e drupal-dev -t
 
 
 ## Running the Site Export
 The production site is actually a static export of the content offered by the (internally hosted) Drupal production server.
+
 An export process is executed in order to create the static version of the site.
+
 These section describes how to run this from your development environment.
 
-<Todo>
+```
+bundle exec ./control.rb -e drupal-dev --export
+```
+
+Once the export process has completed, you will be able to access the static HTML version of the site at http://docker:9000 on your machine.
 
 
 ## Running Acceptance Tests (slow)

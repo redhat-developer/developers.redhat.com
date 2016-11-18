@@ -1,5 +1,7 @@
 module ProductsHelper
 
+  extend self
+
   def get_product(product_id, info)
     data = YAML.load_file("products/#{product_id}/_common/product.yml")
     case info
@@ -49,6 +51,17 @@ module ProductsHelper
     end
     raise("There was a problem returning the products with #{link_type}, please check Products helper module in /lib/helpers") unless product_type.size == product_id.size
     return product_id, product_type
+  end
+
+  def categories
+    product_title = []
+    product_id = []
+    data = YAML.load_file('_config/categories.yml')
+    data.each do |product|
+      product_title << product['name']
+      product_id << product['products']
+    end
+    return product_title, product_id
   end
 
 end

@@ -315,8 +315,13 @@ end
 #
 # Delegates to the environment for initialisation
 #
-def initialise_environment(environment)
+def initialise_environment(environment, system_exec)
   environment.initialize_environment
+  if environment.pull_drupal_data_image?
+    puts '- Pulling drupal_data image from Docker Hub...'
+    system_exec.execute_docker_compose(environment, :pull, %w(drupal_data));
+    puts '- Completed pull of drupal_data image from Docker Hub.'
+  end
 end
 
 #
@@ -327,7 +332,7 @@ if $0 == __FILE__
   system_exec = SystemCalls.new
   tasks = Options.parse ARGV
   environment = load_environment(tasks)
-  initialise_environment(environment)
+  initialise_environment(environment, system_exec)
 
   #the docker url is taken from DOCKER_HOST env variable otherwise
   Docker.url = tasks[:docker] if tasks[:docker]

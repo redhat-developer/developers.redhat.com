@@ -62,8 +62,16 @@ desktop:
 mobile:
   -p parallel
   -t ~@dm
-  -t ~@desktop
+  -t ~@kc
+  -t ~@desktop RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] || 'iphone_6' %>
 
 kc_dm:
   -p parallel
-  --tags @kc --tags ~@dm
+  -t @kc
+  -t ~@dm
+
+kc_dm_mobile:
+  -p parallel
+  -t ~@desktop RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] || 'iphone_6' %>
+  -t @kc
+  -t ~@dm

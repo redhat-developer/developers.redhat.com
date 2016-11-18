@@ -46,6 +46,8 @@ services:
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
       - ../../../images:/var/www/drupal/web/images:ro
       - ../../../stylesheets/fonts:/var/www/drupal/web/fonts:ro
+    volumes_from:
+     - drupal_data
 
   drupalmysql:
     image: mariadb:10.0.24
@@ -56,8 +58,16 @@ services:
       - MYSQL_ROOT_PASSWORD=superdupersecret
     expose:
       - "3306"
-    volumes:
-      - ../../drupal/prod_db.sql.gz:/docker-entrypoint-initdb.d/prod_db.sql.gz
+    volumes_from:
+     - drupal_data
+
+  # Drupal production data
+  drupal_data:
+   image: redhatdeveloper/drupal-data:latest
+   volumes:
+    - /var/www/drupal/web/config/active
+    - /var/www/drupal/web/sites/default/files
+    - /docker-entrypoint-initdb.d
 
   #
   # Environment actions
@@ -91,7 +101,7 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=Drupal:Unit Tests,Drupal:FE Acceptance Tests,Drupal:FE KC/DM Acceptance Tests,Drupal:Exported Site Preview,Drupal:Drupal Site
+    - github_status_initialise=Drupal:Unit Tests,Drupal:FE Acceptance Tests,Drupal:Mobile FE Acceptance Tests,Drupal:FE KC/DM Acceptance Tests,Drupal:Exported Site Preview,Drupal:Drupal Site
 
   acceptance_tests:
    build: ../../awestruct
@@ -126,7 +136,6 @@ services:
   docker_firefox:
    image: selenium/node-firefox-debug:2.53.0
    volumes:
-    - /dev/shm:/dev/shm
     - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
    environment:
     - HUB_PORT_4444_TCP_ADDR=selhub

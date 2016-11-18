@@ -55,6 +55,7 @@ class KeyCloak
         :last_name => @last_name,
         :full_name => @full_name,
         :company_name => @company_name,
+        :phone_number => @phone_number,
         :country => 'United Kingdom'
     }
   end

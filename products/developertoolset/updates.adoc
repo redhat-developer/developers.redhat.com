@@ -3,10 +3,39 @@
 :leveloffset: 1
 :awestruct-description: "Get updates of the Red Hat Developer Toolset (DTS) for C/C++ developers"
 
-[[dts-41-beta]]
-== Red Hat Developer Toolset 4.1 Beta
 
-Red Hat Developer Toolset 4.1 Beta is now available with updated versions of the GNU Compiler Collection, the Eclipse IDE, and number of updates to toolchain components and performance tools such as Dynist and SystemTap. Red Hat Developer Toolset delivers the latest stable versions of the C, C++, and Fortran compilers and supporting development tools to enhance developer productivity and improve deployment times.
+= Red Hat Developer Toolset
+
+= Red Hat Developer Toolset 6
+
+Red Hat Developer Toolset 6 is now available with updated versions of the GNU Compiler Collection, the Eclipse IDE, and number of updates to toolchain components and performance tools such as Dynist and SystemTap. Red Hat Developer Toolset delivers the latest stable versions of the C, C++, and Fortran compilers and supporting development tools to enhance developer productivity and improve deployment times.
+
+
+== New Developer Toolset 6 platform coverage includes:
+* Red Hat Enterprise Linux for Power (both BE and LE)
+* Red Hat Enterprise Linux for z Systems
+* Red Hat Enterprise Linux Server for ARM Developer Preview.
+
+
+== New Developer Toolset 6 features are:
+* GNU Compiler Collection (GCC) 6.2.1
+* GNU Project Debugger (GDB) 7.12
+* Eclipse 4.6.1 (now a separately installable item)
+* Git 2.9.3
+* binutils 2.27
+* elfutils 0.167
+* Valgrind 3.12
+* Dyninst 9.2.0
+* strace 4.12
+* SystemTap 3.0
+
+
+*NOTE:  There was no Developer Toolset 5. We skipped this number so that the Developer Toolset version number would match the GCC version number.*
+
+
+= Red Hat Developer Toolset 4.1
+
+Red Hat Developer Toolset 4.1 is now available with updated versions of the GNU Compiler Collection, the Eclipse IDE, and number of updates to toolchain components and performance tools such as Dynist and SystemTap. Red Hat Developer Toolset delivers the latest stable versions of the C, C++, and Fortran compilers and supporting development tools to enhance developer productivity and improve deployment times.
 
 
 === Release highlights
@@ -25,21 +54,8 @@ For a complete list of what is included, see the link:https://access.redhat.com/
 
 === Container images available
 
-For building, debugging, and analyzing container-based applications, Red Hat Developer Toolset 4.1 Beta components are also provided as docker-formatted container images from the Red Hat Container Registry. Container images are available with the C, C++, or Fortran compilers and the debugging/analysis tools: dyninst, gdb, oprofile, systemtap, and valgrind.
+For building, debugging, and analyzing container-based applications, Red Hat Developer Toolset 4.1 components are also provided as docker-formatted container images from the Red Hat Container Registry. Container images are available with the C, C++, or Fortran compilers and the debugging/analysis tools: dyninst, gdb, oprofile, systemtap, and valgrind.
 
 For more information, see link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html/User_Guide/sect-Red_Hat_Developer_Toolset-Container-Images.html[Using Red Hat Developer Toolset Container Images].
 
 
-=== Get started today
-
-For ease of installation, Red Hat Developer Toolset 4.1 Beta is packaged as a link:#{site.base_url}/products/softwarecollections[Red Hat Software Collection]. Using software collections allows Red Hat Developer Toolset to be installed alongside the versions included in Red Hat Enterprise Linux.
-
-Installation instructions are available in the link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4-Beta/html-single/User_Guide/index.html[Red Hat Developer Toolset 4.1 Beta User Guide]
-
-
-*Helpful Resources* +
-link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html-single/4.1_Release_Notes/index.html[Red Hat Developer Toolset 4.1 Beta Release Notes] +
-link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html-single/User_Guide/index.html[Red Hat Developer Toolset 4.1 Beta User Guide] +
-link:https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/4/html/User_Guide/sect-Red_Hat_Developer_Toolset-Container-Images.html[Using Red Hat Developer Toolset Container Images] +
-link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/2.2_Release_Notes/index.html[Red Hat Software Collections 2.2 Beta Release Notes] +
-link:https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/2-Beta/html-single/Packaging_Guide/index.html[Red Hat Software Collections 2.2 Beta Packaging Guide] +

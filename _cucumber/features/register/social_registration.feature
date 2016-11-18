@@ -1,5 +1,6 @@
 @nightly
 @kc
+
 Feature: Social registration
 
   As a visitor on the developers.redhat.com website,
@@ -11,10 +12,7 @@ Feature: Social registration
     Given I am on the Registration page
     When I register a new account using my GitHub account
     Then I should see the pre-filled details from Github in the additional details form
-    And I create a new password
-    And select my country of residence
-    And I click accept all terms and conditions
-    When I click on the Submit button
+    And I complete the required additional information
     Then I should be registered and logged in
     When I am on the Edit Details page
     And the following newly registered details should be added to my profile:

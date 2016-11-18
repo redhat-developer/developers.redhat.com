@@ -64,13 +64,6 @@ Feature: Search Page
     When I search for "eap 7 download"
     Then the search box should contain "eap 7 download"
 
-  @later
-  Scenario: Search results should be listed with tags
-    Given I am on the Home page
-    When I search for "Containers"
-    Then I should see "10" results containing "Container"
-    And "TAGS" related to "Containers"
-
   Scenario: I search for something should return *no* entries, such as "bfehwfbhbn"
     Given I am on the Home page
     When I search for "bfehwfbhbn"
@@ -114,6 +107,7 @@ Feature: Search Page
       | Next     |
       | Last     |
 
+  @desktop
   Scenario: When I previously clicked on the 'Next' link - clicking on the ‘Previous’ link takes back to the previous set of results.
     Given I have previously searched for "code"
     And I am on page "2" of the results

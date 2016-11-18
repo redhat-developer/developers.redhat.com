@@ -4,10 +4,10 @@ class GetStartedPage < SiteBase
 
   element(:download_thankyou)  { |b| b.div(id: 'downloadthankyou') }
 
-  value(:thank_you_text)  { |p| p.download_thankyou.when_present.text }
+  value(:thank_you_text)  { |p| p.download_thankyou.text }
 
   def loaded?(product)
-    @browser.element(css: ".products#{product}get-started").wait_until_present
+    @browser.element(css: ".products#{product}get-started")
   end
 
 end

@@ -64,8 +64,7 @@ group :test do
   gem 'cucumber', '~>2.0'
   gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
-  gem 'watir', '>= 6.0.0.beta2'
-  gem 'webdriver-user-agent'
+  gem 'watir', '~> 6.0.0'
   gem 'parallel_tests', '~> 1.9.0'
   gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'
@@ -74,6 +73,7 @@ group :test do
   gem 'faker', '~> 1.6', '>= 1.6.1'
   gem 'report_builder', '~> 0.1.2'
   gem 'webmock', '~> 2.0'
+  gem 'colorize'
 end
 
 group :development do
