@@ -26,7 +26,7 @@ app.topics.fetch = function() {
         tagsString += (tags[i]).toLowerCase();
       }
     }
-  $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&newFirst=true&size25=true&tag=' + tagsString + '&exclude_sys_type=stackoverflow_thread', function(data){
+  $.getJSON(app.dcp.url.search + '/developer_materials?tags_or_logic=true&newFirst=true&size25=true&tag=' + tagsString + '&&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossorg_blog', function(data){
     if(data.hits && data.hits.hits) {
       app.topics.render(data.hits.hits);
     }
