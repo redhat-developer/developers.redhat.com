@@ -74,7 +74,8 @@ var globs = {
     'javascripts/custom-jira-collector.js',
     'javascripts/adaptive-placeholder.js',
     //'javascripts/current-tab.js',
-    'javascripts/referrer.js'
+    'javascripts/referrer.js',
+    'javascripts/jboss-docker.js'
   ],
   "styles": ['stylesheets/*.scss']
 };
