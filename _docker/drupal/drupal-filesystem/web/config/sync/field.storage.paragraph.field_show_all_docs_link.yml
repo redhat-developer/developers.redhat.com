@@ -1,18 +1,17 @@
-uuid: 11eeed34-3e38-4086-b310-f374e94af87d
+uuid: 99953e1e-5a1e-4152-a39e-a945d0f08c37
 langcode: en
 status: true
 dependencies:
   module:
-    - link
     - paragraphs
-id: paragraph.field_document_url
-field_name: field_document_url
+id: paragraph.field_show_all_docs_link
+field_name: field_show_all_docs_link
 entity_type: paragraph
-type: link
+type: boolean
 settings: {  }
-module: link
+module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

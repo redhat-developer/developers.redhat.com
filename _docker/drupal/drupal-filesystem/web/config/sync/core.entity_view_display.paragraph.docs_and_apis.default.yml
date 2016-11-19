@@ -4,13 +4,17 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.docs_and_apis.field_add_documents
-    - field.field.paragraph.docs_and_apis.field_all_document_versions
+    - field.field.paragraph.docs_and_apis.field_more_resources
     - field.field.paragraph.docs_and_apis.field_overview_hide_get_started
     - field.field.paragraph.docs_and_apis.field_overview_main_content
     - field.field.paragraph.docs_and_apis.field_overview_url
+    - field.field.paragraph.docs_and_apis.field_product_documentation_code
+    - field.field.paragraph.docs_and_apis.field_show_all_docs_link
+    - field.field.paragraph.docs_and_apis.field_supported_configurations
     - paragraphs.paragraphs_type.docs_and_apis
   module:
     - entity_reference_revisions
+    - options
     - text
 id: paragraph.docs_and_apis.default
 targetEntityType: paragraph
@@ -25,8 +29,8 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-  field_all_document_versions:
-    weight: 8
+  field_more_resources:
+    weight: 11
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
@@ -53,6 +57,27 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+  field_product_documentation_code:
+    weight: 9
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_show_all_docs_link:
+    weight: 10
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_supported_configurations:
+    weight: 12
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
 hidden:
   created: true
   uid: true

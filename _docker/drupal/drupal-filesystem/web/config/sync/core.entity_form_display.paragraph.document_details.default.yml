@@ -5,10 +5,9 @@ dependencies:
   config:
     - field.field.paragraph.document_details.field_document_description
     - field.field.paragraph.document_details.field_document_title
-    - field.field.paragraph.document_details.field_document_url
+    - field.field.paragraph.document_details.field_formats
     - paragraphs.paragraphs_type.document_details
   module:
-    - link
     - text
 id: paragraph.document_details.default
 targetEntityType: paragraph
@@ -29,13 +28,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_document_url:
+  field_formats:
     weight: 2
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
+    settings: {  }
     third_party_settings: {  }
-    type: link_default
+    type: options_buttons
 hidden:
   created: true
   status: true

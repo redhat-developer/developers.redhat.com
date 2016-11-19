@@ -1,0 +1,63 @@
+uuid: 67ff4342-e761-45ad-aea6-ad4e53df3520
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_product_documentation_code
+field_name: field_product_documentation_code
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Red_Hat_JBoss_Data_Grid
+      label: 'Red Hat JBoss Data Grid'
+    -
+      value: red-hat-jboss-enterprise-application-platform
+      label: 'Red Hat JBoss EAP'
+    -
+      value: Red_Hat_JBoss_Web_Server
+      label: 'Red Hat JBoss Web Server'
+    -
+      value: red-hat-container-development-kit
+      label: 'Red Hat CDK'
+    -
+      value: red-hat-development-suite
+      label: 'Red Hat Development Suite'
+    -
+      value: Red_Hat_Developer_Toolset
+      label: 'Red Hat Developer Toolset'
+    -
+      value: red-hat-jboss-developer-studio
+      label: 'Red Hat JBoss Developer Studio'
+    -
+      value: Red_Hat_Software_Collections
+      label: 'Red Hat Software Collections'
+    -
+      value: Red_Hat_JBoss_A-MQ
+      label: 'Red Hat JBoss A-MQ'
+    -
+      value: red-hat-jboss-data-virtualization
+      label: 'Red Hat JBoss Data Virt'
+    -
+      value: red-hat-jboss-fuse
+      label: 'Red Hat JBoss Fuse'
+    -
+      value: Red_Hat_JBoss_BPM_Suite
+      label: 'Red Hat JBoss BPM Suite'
+    -
+      value: Red_Hat_JBoss_BRMS
+      label: 'Red Hat JBoss BRMS'
+    -
+      value: OpenShift_Enterprise
+      label: 'OpenShift Enterprise'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

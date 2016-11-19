@@ -5,10 +5,10 @@ dependencies:
   config:
     - field.field.paragraph.document_details.field_document_description
     - field.field.paragraph.document_details.field_document_title
-    - field.field.paragraph.document_details.field_document_url
+    - field.field.paragraph.document_details.field_formats
     - paragraphs.paragraphs_type.document_details
   module:
-    - link
+    - options
     - text
 id: paragraph.document_details.default
 targetEntityType: paragraph
@@ -17,28 +17,23 @@ mode: default
 content:
   field_document_description:
     weight: 1
-    label: above
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
   field_document_title:
     weight: 0
-    label: above
+    label: visually_hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_document_url:
+  field_formats:
     weight: 2
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+    label: visually_hidden
+    settings: {  }
     third_party_settings: {  }
-    type: link
+    type: list_default
 hidden:
   created: true
   uid: true

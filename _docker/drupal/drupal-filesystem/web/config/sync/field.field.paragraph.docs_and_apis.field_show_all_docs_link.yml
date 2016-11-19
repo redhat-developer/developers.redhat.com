@@ -1,0 +1,23 @@
+uuid: 76fbfc1c-5f44-4683-af42-22c430e432fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_show_all_docs_link
+    - paragraphs.paragraphs_type.docs_and_apis
+id: paragraph.docs_and_apis.field_show_all_docs_link
+field_name: field_show_all_docs_link
+entity_type: paragraph
+bundle: docs_and_apis
+label: 'Show All Docs Link'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

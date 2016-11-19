@@ -1,0 +1,21 @@
+uuid: 8de66320-d079-4a6a-b7b2-90f022db20d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_product_documentation_code
+    - paragraphs.paragraphs_type.docs_and_apis
+  module:
+    - options
+id: paragraph.docs_and_apis.field_product_documentation_code
+field_name: field_product_documentation_code
+entity_type: paragraph
+bundle: docs_and_apis
+label: 'Product Documentation Code'
+description: 'Product Code for Documentation'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
