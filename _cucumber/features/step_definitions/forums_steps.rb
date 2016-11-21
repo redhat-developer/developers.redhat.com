@@ -1,4 +1,4 @@
-Then(/^I should see the following products sections:$/) do |table|
+Then(/^I should see products sections f:$/) do |table|
   on ForumsPage do |page|
     table.raw.each do |sections|
       section = sections.first
@@ -9,11 +9,11 @@ end
 
 Then(/^I should see the following forum products:$/) do |table|
   on ForumsPage do |page|
-    products, @product_ids = page.forums_available_products
-    table.raw.each do |sections|
-      product = sections.first
-      expect(products).to include product
-    end
+    products, @product_ids = page.available_products
+    expected_products = []
+    data = table.raw
+    data.each { |row| expected_products << row }
+    products.should =~ expected_products.flatten
   end
 end
 

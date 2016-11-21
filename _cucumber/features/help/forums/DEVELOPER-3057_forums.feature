@@ -2,16 +2,13 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
 
   Scenario: Product forums landing page should display a list of available products separated by sections.
     Given I am on the Product forums page
-    Then I should see the following products sections:
-      | ACCELERATED DEVELOPMENT AND MANAGEMENT |
-      | INFRASTRUCTURE                         |
-      | INTEGRATION AND AUTOMATION             |
-      | RUNTIMES                               |
+    Then I should see product sections with headings
     And I should see the following forum products:
       | Red Hat JBoss Data Grid                       |
       | Red Hat JBoss Developer Studio                |
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
+      | Developing on Containers                      |
       | Red Hat Developer Toolset                     |
       | Red Hat Software Collections                  |
       | Red Hat JBoss A-MQ                            |
@@ -28,6 +25,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss Developer Studio                |
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
+      | Developing on Containers                      |
       | Red Hat Developer Toolset                     |
       | Red Hat Software Collections                  |
       | Red Hat JBoss A-MQ                            |

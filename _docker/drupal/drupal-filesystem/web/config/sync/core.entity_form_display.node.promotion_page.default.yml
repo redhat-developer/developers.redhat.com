@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.promotion_page.body
     - field.field.node.promotion_page.field_call_to_action_link
+    - field.field.node.promotion_page.field_mail_to_link
     - field.field.node.promotion_page.field_promotion_page_left_image
     - image.style.thumbnail
     - node.type.promotion_page
@@ -33,6 +34,13 @@ content:
     third_party_settings: {  }
   field_call_to_action_link:
     weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_mail_to_link:
+    weight: 26
     settings:
       placeholder_url: ''
       placeholder_title: ''

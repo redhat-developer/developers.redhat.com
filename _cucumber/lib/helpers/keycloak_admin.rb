@@ -55,6 +55,7 @@ class KeyCloak
         :last_name => @last_name,
         :full_name => @full_name,
         :company_name => @company_name,
+        :phone_number => @phone_number,
         :country => 'United Kingdom'
     }
   end
@@ -66,7 +67,7 @@ class KeyCloak
   end
 
   def get_registration_date(email)
-    date = get_user_attribute(email, 'rhdTacSignDateFormatted').to_date
+    date = get_user_attribute(email, 'rhdTacSignDateFormatted')
     format_date(date.to_s)
   end
 

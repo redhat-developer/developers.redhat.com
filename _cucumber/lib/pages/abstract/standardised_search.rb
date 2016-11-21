@@ -18,15 +18,15 @@ class StandardisedSearch < SiteBase
   element(:pagination_last_link)       { |b| b.li(id: 'pagination-last') }
   element(:pagination_previous_link)   { |b| b.li(id: 'pagination-prev') }
 
-  value(:wait_until_loaded)            { |p| p.loading_spinner.wait_while_present }
-  value(:wait_for_loading)             { |p| p.loading_spinner.wait_until_present }
-  value(:wait_until_results_loaded)    { |p| p.results_loaded.wait_until_present }
-  value(:results_title_text)           { |p| p.results_title.when_present.text }
-  value(:results_sub_title_text)       { |p| p.results_sub_title.when_present.text }
-  value(:results_text)                 { |p| p.no_of_results_text.when_present.text }
+  value(:wait_until_loaded)            { |p| p.loading_spinner.wait_while(&:present?)}
+  value(:wait_for_loading)             { |p| p.loading_spinner.wait_until(&:present?) }
+  value(:wait_until_results_loaded)    { |p| p.results_loaded.wait_until(&:present?) }
+  value(:results_title_text)           { |p| p.results_title.text }
+  value(:results_sub_title_text)       { |p| p.results_sub_title.text }
+  value(:results_text)                 { |p| p.no_of_results_text.text }
   value(:has_pagination?)              { |p| p.pagination.present? }
-  value(:has_ellipsis?)                { |p| p.li(css: "#pagination-#{5}").when_present.text.include?('⋯') }
-  value(:current_link_text)            { |p| p.current_link.when_present.text}
+  value(:has_ellipsis?)                { |p| p.li(css: "#pagination-#{5}").text.include?('⋯') }
+  value(:current_link_text)            { |p| p.current_link.text}
   value(:results_loaded?)              { |p| p.results_loaded.present? }
 
   def wait_for_results
@@ -47,7 +47,7 @@ class StandardisedSearch < SiteBase
   end
 
   def select_results_per_page(option)
-    results_per_page_filter.when_present.select(option)
+    results_per_page_filter.select(option)
     wait_for_results
   end
 
@@ -59,7 +59,7 @@ class StandardisedSearch < SiteBase
   def results
     results = []
     result_row.each do |result|
-      results << result.when_present.text
+      results << result.text
     end
     results
   end
@@ -75,17 +75,15 @@ class StandardisedSearch < SiteBase
 
   def click_pagination(link)
     elem = send("pagination_#{link}_link")
-    elem_pos = elem.wd.location["y"]
-    @browser.execute_script("window.scroll(0, #{elem_pos})")
-    elem.when_present.click
+    @browser.execute_script('arguments[0].scrollIntoView();', elem)
+    elem.click
     wait_for_results
   end
 
   def go_to_pagination_no(i)
     elem = @browser.li(css: "#pagination-#{i.to_i-1}")
-    elem_pos = elem.wd.location["y"]
-    @browser.execute_script("window.scroll(0, #{elem_pos})")
-    elem.when_present.click
+    @browser.execute_script('arguments[0].scrollIntoView();', elem)
+    elem.click
     wait_for_results
   end
 

@@ -5,23 +5,21 @@ Then(/^none of the product filters should be checked$/) do
   end
 end
 
-Then(/^I should see "([^"]*)" results ordered by Most Recent first$/) do |arg|
+Then(/^I should see "([^"]*)" results ordered by (.*)$/) do |results_size, default_sort|
   on ResourcesPage do |page|
-    results = page.results_date
-    top_result = results.first
-    results.delete(top_result)
-    results.each do |date|
-      unless date == ''
-        remaining = DateTime.parse(date).to_date.to_s
-        top_result.should >= remaining
-      end
-    end
+    page.results_sort[0].should == default_sort
+    all_results = page.results_date
+    top_result = all_results.first
+    results = all_results - [top_result]
+    results.each { |date|
+      raise("Results were not ordered by most recent, the order was #{results}") unless DateTime.parse(date) <= DateTime.parse(top_result)
+    }
   end
 end
 
 When(/^I click to filter results by "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
-    page.send("filter_by_#{filter_type.downcase.gsub(' ', '_')}")
+    page.filter_by(filter_type)
     page.wait_for_results
     @results = page.results
   end
@@ -35,14 +33,14 @@ end
 
 When(/^I uncheck the "([^"]*)" filter$/) do |filter_type|
   on ResourcesPage do |page|
-    page.send("filter_by_#{filter_type.downcase.gsub(' ', '_')}")
+    page.filter_by(filter_type.downcase.gsub(' ', '_'))
     page.wait_for_results
   end
 end
 
 Then(/^the default set of results are displayed$/) do
   on ResourcesPage do |page|
-    page.results.should_not == @results
+    page.results.should_not =~ @results
   end
 end
 
@@ -167,13 +165,13 @@ end
 class Date
   def quarter
     case self.month
-      when 1,2,3
+      when 1, 2, 3
         return 1
-      when 4,5,6
+      when 4, 5, 6
         return 2
-      when 7,8,9
+      when 7, 8, 9
         return 3
-      when 10,11,12
+      when 10, 11, 12
         return 4
     end
   end

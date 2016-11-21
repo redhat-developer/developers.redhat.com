@@ -45,8 +45,25 @@
 <!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]-->
 <head>
   {% if (rhd_dtm_code) %}
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
-  var digitalData = {{ rhd_dtm_script|json_encode()|raw }};
+  var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
+    relURL = window.location.href.replace(/https?:\/\//,'').replace(window.location.host,'').replace(/\/$/,'');
+
+  /**
+  * Creates and dispatches an event trigger
+  * @param {String} evt - The name of the event
+  */
+  function sendCustomEvent(evt){
+    if(document.createEvent && document.body.dispatchEvent){
+      var event = document.createEvent('Event');
+      event.initEvent(evt, true, true); //can bubble, and is cancellable
+      document.body.dispatchEvent(event);
+    } else if(window.CustomEvent && document.body.dispatchEvent) {
+      var event = new CustomEvent(evt, {bubbles: true, cancelable: true});
+      document.body.dispatchEvent(event);
+    }
+  }
 
   ( function( w, d, dd, undefined ) {
       var categoryObj = getCategories();
@@ -59,25 +76,37 @@
         }
       }
 
+      function getQueryParams() {
+        return relURL.split('?')[1] ? relURL.split('?')[1].replace(/=/g,':').split('&') : "";
+      }
+
       function getCategories() {
         var categories = { primaryCategory: "", subCategories: [] },
-          url = window.location.href.split(/\//);
-        for(var i=3, l=url.length; i<l; i++) {
-          if(categories.subCategories.length <= 3) {
-            if( i !== 3 ) {
-              categories.subCategories.push(url[i]);
-            } else {
-              categories.primaryCategory = url[i];
-            }
+          url = relURL.split('?')[0].split('#')[0].split(/\//);
+        for(var i=1, l=url.length; i<l; i++) {
+          if (i !== 1 && i <= 3) { 
+            categories.subCategories.push(url[i]);
+          }
+          
+          if (i === 1) {
+            categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
           }
         }
         return categories;
       }
 
+      function getPageName() {
+        var splitURL = relURL.split('?')[0].split('#')[0].split(/\//),
+          page = splitURL.pop();
+        return page.length > 0 ? page : 'home page';
+      }
+
+      dd.page.attributes.queryParameters = getQueryParams();
       dd.page.category.primaryCategory = categoryObj.primaryCategory;
       dd.page.category.subCategories = categoryObj.subCategories;
-      dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
       dd.page.pageInfo.destinationURL = window.location.href;
+      dd.page.pageInfo.pageName = getPageName();
+      dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
 
       if ( d.referrer ) {
         var a = d.createElement( "a" );
@@ -88,21 +117,12 @@
       }
 
       dd.page.pageInfo.sysEnv = ( w.innerWidth <= 768 ) ? "tablet" : "desktop";
+
       var elqGUID = getCookie( "rh_elqCustomerGUID" );
       if ( elqGUID ) {
         dd.user[ 0 ].profile[ 0 ].profileInfo.eloquaGUID = elqGUID;
       }
-      var userData = getCookie( "rh_user" );
-      if ( userData ) {
-        var rhLogin = userData.split( "\|" );
-        if ( rhLogin[ 0 ] ) {
-          dd.user[ 0 ].profile[ 0 ].profileInfo.loggedIn = "true";
-        }
-      }
-      var dmdBase = getCookie( "s_dmdbase" );
-      if ( dmdBase ) {
-        dd.user[ 0 ].profile[ 0 ].profileInfo.demandbaseSID = dmdBase;
-      }
+
     } )( window, document, digitalData );
   </script>
   <script id="adobe_dtm" src="{{rhd_dtm_code}}"></script>
@@ -126,10 +146,10 @@
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-NJWS5L');
     </script>
-    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"></iframe></noscript>
  {% endif %}
  {{ page_top}}
  <div class="site-wrapper">

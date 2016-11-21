@@ -21,10 +21,23 @@ class TestControl < Minitest::Test
   end
 
   def test_should_initialise_environment
+
+    system_exec = mock()
     environment = mock()
     environment.expects(:initialize_environment)
-    initialise_environment(environment)
+    environment.expects(:pull_drupal_data_image?).returns(false)
+    initialise_environment(environment, system_exec)
   end
+
+  def test_should_initialise_environment_and_pull_latest_image_if_required
+    system_exec = mock()
+    environment = mock()
+    environment.expects(:initialize_environment)
+    environment.expects(:pull_drupal_data_image?).returns(true)
+    system_exec.expects(:execute_docker_compose).with(environment, :pull, %w(drupal_data))
+    initialise_environment(environment, system_exec)
+  end
+
 
   def test_bind_drupal_container_details_into_environment
 

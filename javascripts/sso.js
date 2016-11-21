@@ -1,6 +1,8 @@
 app.sso = function () {
 
     function updateUser() {
+        var usr = digitalData.user[0].profile[0].profileInfo;
+
         if (keycloak.authenticated) {
             keycloak.updateToken().success(function () {
                 saveTokens();
@@ -18,6 +20,21 @@ app.sso = function () {
                     keycloak.logout({"redirectUri":app.ssoConfig.logout_url});
                 });
 
+                usr.loggedIn = true;
+                usr.registered = true;
+                usr.keyCloakID = keycloak.tokenParsed['id'];
+                usr.daysSinceRegistration = daysDiff(Date.now(), keycloak.tokenParsed['createdTimestamp']);
+                
+                if (typeof Object.keys == "function") {
+                    usr.socialAccountsLinked = Object.keys(keycloak.tokenParsed['user-social-links'])
+                } else {
+                    for (social in keycloak.tokenParsed['user-social-links']) {
+                        usr.socialAccountsLinked.push(social);
+                    }
+                }
+
+                updateAnalytics(usr);
+
             }).error(clearTokens);
         } else {
             $('li.login, section.register-banner, .devnation-hidden-code').show();
@@ -32,6 +49,38 @@ app.sso = function () {
                 keycloak.login({ action : 'register', redirectUri : app.ssoConfig.confirmation });
             });
         }
+    }
+
+    function daysDiff(dt1, dt2) {
+        return Math.trunc(Math.abs(dt1-dt2)/(1000*60*60*24))
+    }
+
+    function updateAnalytics(usr) {
+        var ddUserAuthEvent = {
+            eventInfo: {
+                eventName: 'user data',
+                eventAction: 'available',
+                user: [{
+                    profile: [{
+                        profileInfo: usr
+                    }]
+                }],
+                timeStamp: new Date(),
+                processed: {
+                    adobeAnalytics: false
+                }
+            }
+        };
+
+        //Push it onto the event array of the digitalData object
+        window.digitalData = window.digitalData || {};
+        digitalData.event = digitalData.event || [];
+        digitalData.event.push(ddUserAuthEvent);
+        //Update digitalData.page.listing objects
+        digitalData.user = digitalData.user || [{ profile: [{ profileInfo: {} }] }];
+        digitalData.user[0].profile[0].profileInfo = usr;
+        //Create and dispatch an event trigger using the predefined function
+        sendCustomEvent('ajaxAuthEvent');
     }
 
     function saveTokens() {

@@ -9,7 +9,7 @@ class ForgotPasswordPage < SiteBase
 
   def enter_email(email)
     type(email_field, email)
-    submit_btn.when_present.click
+    submit_btn.click
   end
 
 end

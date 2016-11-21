@@ -240,6 +240,7 @@ function searchCtrlFunc($scope, $window, searchService) {
   var isSearch = !!window.location.href.match(/\/search/);
   var isResources = !!window.location.href.match(/\/resources/);
   var searchTerm = window.location.search.split('=');
+  var isFirstSearch = true;
   var q = '';
 
   /* defaults */
@@ -327,6 +328,7 @@ function searchCtrlFunc($scope, $window, searchService) {
   };
 
   $scope.updateSearch = function() {
+
     $scope.loading = true;
     $scope.query = $scope.params.query; // this is static until the update re-runs
     $scope.tag = $scope.params.tag; // this is static until the update re-runs
@@ -368,12 +370,74 @@ function searchCtrlFunc($scope, $window, searchService) {
 
     searchService.getSearchResults(params).then(function(data) {
       if (!window.digitalData) {
-        digitalData = {page: {listing : {}}};
+        digitalData = {page: {listing : {}, category: {}}, event: []};
       } 
-      digitalData.page.listing.query = $scope.params.query;
-      digitalData.page.listing.queryMethod = "manual";
-      digitalData.page.listing.resultCount = data.hits.total;
-      digitalData.page.listing.browseFilter = product;
+      var types = {
+        video: 'Video',
+        blogpost: 'Blog Post',
+        jbossdeveloper_book: 'Book',
+        book: 'Book',
+        article: 'Article',
+        solution: 'Article',
+        demo: 'Demo',
+        quickstart: 'quickstart',
+        jbossdeveloper_archetype: 'Demo',
+        jbossdeveloper_bom: 'Demo',
+        quickstart_early_access: 'Demo',
+        jbossdeveloper_example: 'Get Started',
+        jbossdeveloper_event: 'Event',
+        jbossorg_sbs_forum: 'Forum',
+        forumthread: 'Forum',
+        stackoverflow_thread: 'Stack Overflow',
+        webpage: 'Webpage'
+      },
+      ddSearchEvent = {
+        eventInfo: {
+          eventName: 'internal search',
+          eventAction: 'search',
+          listing: {
+            browseFilter:  types[$scope.params.sys_type[0]] || "internal search",
+            query: $scope.params.query,
+            queryMethod: "system generated",
+            resultCount: data.hits.total,
+            resultsShown: $scope.params.size,
+            searchType: digitalData.page.category.primaryCategory || ""
+          },
+          timeStamp: new Date(),
+          processed: {
+            adobeAnalytics: false
+          }
+        }
+      };
+
+      if(!isFirstSearch) {
+        ddSearchEvent.eventInfo.listing.listSorting = [{
+          sortAttribute: $scope.params.sortBy,
+          sortOrder: "descending"
+        }];
+
+        ddSearchEvent.eventInfo.listing.queryMethod =  $scope.params.query === "" ? "system generated" : "manual";
+
+        ddSearchEvent.eventInfo.listing.refinement = [{
+          refinementType: "publish date",
+          refinementValue: $scope.params.publish_date_from || ""
+          },
+          {
+          refinementType: "product",
+          refinementValue: $scope.params.project
+          },
+          {
+          refinementType: "sys_type",
+          refinementValue: types[$scope.params.sys_type[0]]
+          }
+        ];
+      } else {
+        isFirstSearch = false;
+      }
+
+      digitalData.event.push(ddSearchEvent);
+      digitalData.page.listing = ddSearchEvent.eventInfo.listing;
+      sendCustomEvent('ajaxSearch');
 
       $scope.results = data.hits.hits;
       $scope.totalCount = data.hits.total;

@@ -143,16 +143,13 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 }
 
 function redhat_www_ddo_default() {
-    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
     $request = \Drupal::request();
-    $useragent = $request->headers->get('user-agent');
-    $query = $request->query;
     $node = \Drupal::request()->attributes->get('node');
 
     $ddo = array(
         'page' => array(
             'attributes' => array(
-                'queryParameters' => '',
+                'queryParameters' => ''
             ),
             'category' => array(
                 'contentType' => '',
@@ -165,7 +162,7 @@ function redhat_www_ddo_default() {
             ),
             'pageInfo' => array(
                 'breadCrumbs' => array(),
-                'cms' => 'drupal',
+                'cms' => 'RHD CMS 8',
                 'destinationURL' => '',
                 'errorMessage' => '',
                 'errorType' => '',
@@ -195,21 +192,22 @@ function redhat_www_ddo_default() {
                         'profileInfo' => array(
                             'accountID' => '',
                             'daysSinceLastPurchase' => '',
-                            'daysSinceRegistration' => $user->created->value,
-                            'eloquaGUID' => '',
+                            'daysSinceRegistration' => '',
+                            'eloquaGUID' => 'POPULATE ELOQUA ID',
                             'keyCloakID' => '',
-                            'loggedIn' => 'false',
+                            'loggedIn' => false,
                             'profileID' => '',
                             'registered' => false,
                             'socialAccountsLinked' => array(),
                             'subscriptionFrequency' => '',
                             'subscriptionLevel' => '',
-                            'userAgent' => $useragent,
+                            'userAgent' => '',
                         ),
                     ),
                 ),
             ),
         ),
+        'event' => array(),
     );
 
 

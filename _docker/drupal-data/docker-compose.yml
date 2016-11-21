@@ -1,0 +1,13 @@
+version: '2'
+services:
+ drupal_data_generator:
+  image: drupalproduction_backup:latest
+  entrypoint: "ruby developer.redhat.com/_docker/lib/drupal-data/run.rb"
+  environment:
+   - http_proxy=proxy01.util.phx2.redhat.com:8080
+   - https_proxy=proxy01.util.phx2.redhat.com:8080
+  volumes:
+   - /data/drupal:/drupal
+   - /credentials/db/my.cnf:/home/jenkins_developer/.my.cnf
+   - ../../:/home/jenkins_developer/developer.redhat.com
+   - ./:/backups
