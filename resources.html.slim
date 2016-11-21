@@ -112,7 +112,7 @@ div(ng-app="search")
 
         .large-24.columns.searchpage-results-container
           .sorting
-            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found {{ params.query ? ' for ' + params.query : '' }}
+            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found
             h3.results-title(ng-if="totalCount <= 0") No results found
             h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
             hr
