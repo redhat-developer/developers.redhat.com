@@ -162,6 +162,10 @@ When(/^I select "([^"]*)" from the results per page filter$/) do |results_per_pa
   end
 end
 
+Then(/^the URL should include the selected filters$/) do
+  @browser.url.include?('type=video&product=cdk')
+end
+
 class Date
   def quarter
     case self.month
