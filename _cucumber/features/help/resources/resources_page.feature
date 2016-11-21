@@ -178,3 +178,17 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     And the following links should be unavailable:
       | First    |
       | Previous |
+
+  Scenario: When a user selects a product filter, the URL is updated to reflect the selection.
+    Given I am on the Resources page
+    And I click to filter results by "Video"
+    And select "Red Hat Container Development Kit" from the product filter
+    When results have loaded
+    Then the URL should include the selected filters
+ 
+  @manual
+  Scenario: User navigates to a previously filtered /resources URL 
+    Given I have previously filtered results by "Video" and "Red Hat Container Development Kit" 
+    When I copy the URL
+    And paste the URL into a new tab
+    Then the results should be filtered by  "Video" and "Red Hat Container Development Kit"
