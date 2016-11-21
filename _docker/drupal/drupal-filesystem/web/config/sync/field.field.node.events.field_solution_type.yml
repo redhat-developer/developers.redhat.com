@@ -1,0 +1,21 @@
+uuid: 989c9e3e-04e9-4de2-9cf7-313202b6ba63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_solution_type
+    - node.type.events
+  module:
+    - options
+id: node.events.field_solution_type
+field_name: field_solution_type
+entity_type: node
+bundle: events
+label: 'Solution Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
