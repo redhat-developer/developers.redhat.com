@@ -79,6 +79,7 @@ br
       h3.divider#ExtraSection #{page._extra_section_title}
     = page._extra_section
 
+/ Displays same content types as Resources page
 div(ng-app="dcp")
   .developer-materials(ng-controller="developerMaterialsController")
     - if page.product.featured_items

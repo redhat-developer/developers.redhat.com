@@ -102,6 +102,11 @@ dcp.service('materialService', function($http, $q) {
     ) {
       query.sys_type = params.sys_type;
     }
+
+    if (!params.type) {
+      query.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo','jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
+    }
+
     if (params.publish_date) {
       query.publish_date = params.publish_date;
     }
