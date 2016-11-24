@@ -90,7 +90,7 @@ services:
         https_proxy: proxy01.util.phx2.redhat.com:8080
     volumes:
       - ../../../:/home/awestruct/developer.redhat.com
-    entrypoint: "bundle exec rake test"co master
+    entrypoint: "bundle exec rake test"
 
   acceptance_tests:
     build: ../../awestruct
