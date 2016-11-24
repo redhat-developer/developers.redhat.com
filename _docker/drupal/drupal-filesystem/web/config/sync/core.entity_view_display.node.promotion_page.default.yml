@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.promotion_page.body
     - field.field.node.promotion_page.field_call_to_action_link
+    - field.field.node.promotion_page.field_mail_to_link
     - field.field.node.promotion_page.field_promotion_page_left_image
     - node.type.promotion_page
   module:
@@ -32,6 +33,17 @@ content:
       url_plain: false
       rel: '0'
       target: '0'
+    third_party_settings: {  }
+    type: link
+  field_mail_to_link:
+    weight: 104
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
     type: link
   field_promotion_page_left_image:

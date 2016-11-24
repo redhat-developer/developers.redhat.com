@@ -19,6 +19,35 @@ class RhdEnvironment
   end
 
   #
+  # This method gives the environment a chance to initialise anything that it might need. Typically this will be
+  # setting/loading properties, but it can be anything
+  #
+  def initialize_environment
+    if @environment_name == 'drupal-pull-request'
+      pull_request_number = ENV['ghprbPullId']
+
+      #
+      # In a drupal PR environment, we take the pull request number and add it to 35000 to provide
+      # a consistent port number for the Drupal instance throughout the life of the pull-request. The
+      # 'DRUPAL_HOST_PORT' env variable is passed to the docker-compose commmand, which is used
+      # as a template variable when setting the Drupal port that is exposed on the local machine.
+      #
+      unless pull_request_number.nil? || pull_request_number.empty?
+        pr_drupal_port = 35000 + pull_request_number.to_i
+        ENV['DRUPAL_HOST_PORT'] = pr_drupal_port.to_s
+        puts "- Drupal port has been bound to '#{pr_drupal_port}'."
+      end
+    end
+  end
+
+  #
+  # Before starting execution, should we check to pull the latest data image into this environment
+  #
+  def pull_drupal_data_image?
+    @environment_name == 'drupal-dev' || @environment_name == 'drupal-pull-request'
+  end
+
+  #
   # Get the path to the docker-compose.yml file for this environment
   #
   def get_docker_compose_file

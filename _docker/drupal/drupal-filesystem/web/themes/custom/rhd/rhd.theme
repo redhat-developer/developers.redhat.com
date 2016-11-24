@@ -99,6 +99,7 @@ function rhd_preprocess_html(array &$variables) {
 
     $variables['rhd_environment'] = $environment;
     $variables['rhd_dtm_code'] = $dtm_code;
+    $variables['rhd_dtm_script'] = redhat_www_ddo_default();
 }
 
 function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
@@ -189,3 +190,76 @@ function rhd_preprocess_node(&$variables) {
     $variables['product_pages'] = $product_pages_url;
   }
 }
+
+function redhat_www_ddo_default() {
+    $request = \Drupal::request();
+    $node = \Drupal::request()->attributes->get('node');
+
+    $ddo = array(
+        'page' => array(
+            'attributes' => array(
+                'queryParameters' => ''
+            ),
+            'category' => array(
+                'contentType' => '',
+                'contentSubType' => '',
+                'keyPage' => false,
+                'keyPageType' => '',
+                'pageType' => '',
+                'primaryCategory' => '',
+                'subCategories' => array(),
+            ),
+            'pageInfo' => array(
+                'breadCrumbs' => array(),
+                'cms' => 'RHD CMS 8',
+                'destinationURL' => '',
+                'errorMessage' => '',
+                'errorType' => '',
+                'language' => $node->langcode->value,
+                'pageID' => $node->nid->value,
+                'pageName' => '',
+                'referringDomain' => '',
+                'referringURL' => '',
+                'syndicationIds' => array(),
+                'sysEnv' => '',
+                'title' => $node->title->value,
+            ),
+            'listing' => array(
+                'browseFilter' => '',
+                'query' => '',
+                'queryMethod' => '',
+                'refinementType' => '',
+                'refinementValue' => '',
+                'resultCount' => '',
+                'searchType' => '',
+            ),
+        ),
+        'user' => array(
+            array(
+                'profile' => array(
+                    array(
+                        'profileInfo' => array(
+                            'accountID' => '',
+                            'daysSinceLastPurchase' => '',
+                            'daysSinceRegistration' => '',
+                            'eloquaGUID' => 'POPULATE ELOQUA ID',
+                            'keyCloakID' => '',
+                            'loggedIn' => false,
+                            'profileID' => '',
+                            'registered' => false,
+                            'socialAccountsLinked' => array(),
+                            'subscriptionFrequency' => '',
+                            'subscriptionLevel' => '',
+                            'userAgent' => '',
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        'event' => array(),
+    );
+
+
+    return $ddo;
+}
+

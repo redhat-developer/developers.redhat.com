@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a10ea91a3a56e161a2701d120572f2a5",
-    "content-hash": "b8d2382617dd814e1fc4e96af987341b",
+    "hash": "d4541feeaacaafe51890a8c5784ef79c",
+    "content-hash": "152601265695125368e5be547cadc267",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1992,17 +1992,11 @@
         },
         {
             "name": "drupal/entity",
-            "version": "1.0.0-alpha3",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/entity",
-                "reference": "8.x-1.0-alpha3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity-8.x-1.0-alpha3.zip",
-                "reference": null,
-                "shasum": "67d7da97ca43468880426d1deeeccf87de7f1f40"
+                "reference": "879356bbf75608f86d8fb89d76a21dc1e99a39ae"
             },
             "require": {
                 "drupal/core": "~8.1"
@@ -2013,8 +2007,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha3",
-                    "datestamp": "1461748139"
+                    "version": "8.x-1.0-alpha3+11-dev",
+                    "datestamp": "1476267239"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2047,7 +2041,8 @@
             "homepage": "http://drupal.org/project/entity",
             "support": {
                 "source": "http://cgit.drupalcode.org/entity"
-            }
+            },
+            "time": "2016-10-12 10:12:36"
         },
         {
             "name": "drupal/entity_reference_revisions",
@@ -2757,6 +2752,65 @@
                 "source": "https://cgit.drupalcode.org/simple_sitemap",
                 "issues": "https://drupal.org/project/issues/simple_sitemap",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/smtp",
+            "version": "1.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/smtp",
+                "reference": "8.x-1.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/smtp-8.x-1.0-alpha2.zip",
+                "reference": null,
+                "shasum": "b68b7323209232b810dee55078f54567da5bcc3e"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha2",
+                    "datestamp": "1476701339"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "José San Martin",
+                    "homepage": "https://www.drupal.org/user/72012"
+                },
+                {
+                    "name": "LukeLast",
+                    "homepage": "https://www.drupal.org/user/30151"
+                },
+                {
+                    "name": "oadaeh",
+                    "homepage": "https://www.drupal.org/user/4649"
+                },
+                {
+                    "name": "wundo",
+                    "homepage": "https://www.drupal.org/user/25523"
+                },
+                {
+                    "name": "yettyn",
+                    "homepage": "https://www.drupal.org/user/93281"
+                }
+            ],
+            "description": "Allow for site emails to be sent through an SMTP server of your choice.",
+            "homepage": "https://www.drupal.org/project/smtp",
+            "support": {
+                "source": "http://cgit.drupalcode.org/smtp"
             }
         },
         {
@@ -8068,7 +8122,7 @@
         "drupal/console": 5,
         "drupal/console-core": 5,
         "drupal/console-en": 5,
-        "drupal/entity": 15,
+        "drupal/entity": 20,
         "drupal/entity_storage_migrate": 20,
         "drupal/diff": 10,
         "drupal/token": 10,
@@ -8083,6 +8137,7 @@
         "drupal/field_collection": 20,
         "drupal/field_group": 20,
         "drupal/linkit": 10,
+        "drupal/smtp": 15,
         "jcalderonzumba/gastonjs": 20,
         "drupal/devel": 20
     },

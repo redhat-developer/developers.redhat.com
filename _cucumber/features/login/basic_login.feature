@@ -82,6 +82,7 @@ Feature: Log in using my RHD registered details.
     When I accept the RHD terms and conditions
     Then I should be logged in
 
+  # returns 500 error from I.T backend
   @ignore
   Scenario: User can't login with deactivated Red Hat Customer Portal account (full user account)
     Given I am on the Login page

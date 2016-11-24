@@ -45,65 +45,87 @@
 <!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]-->
 <head>
   {% if (rhd_dtm_code) %}
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
-  var digitalData = {
-    "listing": {
-      "browseFilter": "", {# Default empty string for now #}
-      "query": "", {# "Site search (SOLR): Query string parameter ""q"" Resource search (Drupal): Query string parameter ""search""" #}
-      "queryMethod": "manual", {# Hard-coded to "manual" for now #}
-      "refinementType": "", {# Default empty string for now #}
-      "refinementValue": "", {# Default empty string for now #}
-      "resultCount": "", {# "Site search (SOLR): 0 if no results, -1 otherwise (real result count implementation backlogged as of 5/10) Resource search (Drupal): Real result count based on Drupal view results" #}
-      "searchType": "" {# "Site search (SOLR): ""search"" Resource search (Drupal): ""resources""" #}
-    },
-    "page": {
-      "attributes": {
-        "queryParameters": "", {# All query parameters via drupal_get_query_parameters() #}
-        "referringSearchEngine": "" {# Default empty string for now  #}
-      },
-      "category": {
-        "contentType": "", {# Resource content types: resource_type taxonomy field value Video content types: resource_type taxonomy field value (always ""video"") Resource content type > Resource type taxonomy.  ie: <meta name=""taxonomy-resource_type"" content=""Whitepaper"" />.  Video detail page should be <meta name=""taxonomy-resource_type"" content=""Video"" />.  Value should be blank if the CMS content type does not have a meta resource type taxonomy on the page." #}
-        "keyPage": "false", {# Hard-coded to "false" for now #}
-        "keyPageType": "", {# Default empty string for now #}
-        "pageType": "{{ node_type }}", {# "If Drupal node, content type machine name CMS content type (Blog, Event, Success Story, etc); IE: <meta name=""node-type"" content=""resource"" /> or <meta name=""node-type"" content=""event"" />" #}
-        "primaryCategory": "", {# First part of request URL path after language (i.e. https://www.redhat.com/LANG/PRIMARY_CATEGORY/) #}
-        "subCategories": [] {# All but last parts of request URL path after primary category (i.e. https://www.redhat.com/LANG/PRIMARY_CATEGORY/{SUB_CATEGORY/}*/TITLE_OR_LAST_PATH_PART) #}
-      },
-      "pageInfo": {
-        "cms": "rhd", {# RH CMS <profile "rh" version> #}
-        "contentFindingMethod": "", {# Default empty string for now #}
-        "contentID": "", {# If Drupal node, nid (node ID) #}
-        "contentPortal": "", {# Default empty string for now #}
-        "destinationURL": window.location.href, {# Absolute URL of current page #}
-        "errorMessage": "", {# HTTP error text if not 200 #}
-        "errorType": "", {# HTTP error code if not 200 #}
-        "language": "{{ html_attributes['lang'] }}", {# Drupal language code (i.e. $GLOBALS['language']->language) #}
-        "pageName": "{{ head_title['title'] }}".split('|')[0] || "{{ head_title['title'] }}", {# Last section (separated by " | ") of analytics title #}
-        "referringDomain": document.referrer, {# JavaScript: Full referrer URL from document.referrer #}
-        "referringURL": document.referrer.split('/')[2] || "", {# JavaScript: Host portion of document.referrer #}
-        "sysEnv": window.innerWidth <= 768 ? "tablet" : "desktop", {# JavaScript: "tablet" if window.innerWidth <= 768 (pixels), "desktop" otherwise #}
-        "template": "", {# Default empty string for now #}
-        "title": "{{ head_title['title'] }}" {# Metatag title (most of the time matches HTML markup "<title>" value) #}
-      }
-    },
-    "user": [{
-      "profile": [{
-        "profileInfo": {
-          "daysSinceLastPurchase": "", {# Default empty string for now #}
-          "demandbaseSID": "", {# "s_dmdbase" cookie value #}
-          "eloquaGUID": "", {# "rh_elqCustomerGUID" cookie value #}
-          "lastLoginDate": "", {# "true" if "rh_user" cookie value has a value before the first "|", "false" otherwise #}
-          "lastPurchaseDate": "", {# Default empty string for now #}
-          "loggedIn": "", {# Default empty string for now #}
-          "profileID": "", {# Default empty string for now #}
-          "subscriptionFrequency": "", {# Default empty string for now #}
-          "subscriptionLevel": "" {# Default empty string for now #}
+  var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
+    relURL = window.location.href.replace(/https?:\/\//,'').replace(window.location.host,'').replace(/\/$/,'');
+
+  /**
+  * Creates and dispatches an event trigger
+  * @param {String} evt - The name of the event
+  */
+  function sendCustomEvent(evt){
+    if(document.createEvent && document.body.dispatchEvent){
+      var event = document.createEvent('Event');
+      event.initEvent(evt, true, true); //can bubble, and is cancellable
+      document.body.dispatchEvent(event);
+    } else if(window.CustomEvent && document.body.dispatchEvent) {
+      var event = new CustomEvent(evt, {bubbles: true, cancelable: true});
+      document.body.dispatchEvent(event);
+    }
+  }
+
+  ( function( w, d, dd, undefined ) {
+      var categoryObj = getCategories();
+
+      function getCookie( name ) {
+        var value = "; " + document.cookie;
+        var parts = value.split( "; " + name + "=" );
+        if ( parts.length == 2 ) {
+          return parts.pop().split( ";" ).shift();
         }
-      }]
-    }]
-  };
+      }
+
+      function getQueryParams() {
+        return relURL.split('?')[1] ? relURL.split('?')[1].replace(/=/g,':').split('&') : "";
+      }
+
+      function getCategories() {
+        var categories = { primaryCategory: "", subCategories: [] },
+          url = relURL.split('?')[0].split('#')[0].split(/\//);
+        for(var i=1, l=url.length; i<l; i++) {
+          if (i !== 1 && i <= 3) { 
+            categories.subCategories.push(url[i]);
+          }
+          
+          if (i === 1) {
+            categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
+          }
+        }
+        return categories;
+      }
+
+      function getPageName() {
+        var splitURL = relURL.split('?')[0].split('#')[0].split(/\//),
+          page = splitURL.pop();
+        return page.length > 0 ? page : 'home page';
+      }
+
+      dd.page.attributes.queryParameters = getQueryParams();
+      dd.page.category.primaryCategory = categoryObj.primaryCategory;
+      dd.page.category.subCategories = categoryObj.subCategories;
+      dd.page.pageInfo.destinationURL = window.location.href;
+      dd.page.pageInfo.pageName = getPageName();
+      dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
+
+      if ( d.referrer ) {
+        var a = d.createElement( "a" );
+        a.href = d.referrer;
+
+        dd.page.pageInfo.referringDomain = a.hostname;
+        dd.page.pageInfo.referringURL = a.href;
+      }
+
+      dd.page.pageInfo.sysEnv = ( w.innerWidth <= 768 ) ? "tablet" : "desktop";
+
+      var elqGUID = getCookie( "rh_elqCustomerGUID" );
+      if ( elqGUID ) {
+        dd.user[ 0 ].profile[ 0 ].profileInfo.eloquaGUID = elqGUID;
+      }
+
+    } )( window, document, digitalData );
   </script>
-  <script src="{{rhd_dtm_code}}"></script>
+  <script id="adobe_dtm" src="{{rhd_dtm_code}}"></script>
   {% endif %}
   <!--TODO: metrics here--><!--TODO: include Adobe A/B testing inline-->
   <head-placeholder token="{{ placeholder_token|raw }}">
@@ -124,10 +146,10 @@
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-NJWS5L');
     </script>
-    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0"></iframe></noscript>
  {% endif %}
  {{ page_top}}
  <div class="site-wrapper">
@@ -164,12 +186,13 @@
                         <a href="#">Topics<i class="fa fa-angle-down"></i></a>
                         <div class="sub-nav" id="sub-nav-topics">
                             <a href="/containers">Containers</a>
-                            <a href="/mobile">Mobile</a>
                             <a href="/devops">DevOps</a>
-                            <a href="/web-and-api-development">Web and API Development</a>
                             <a href="/enterprise-java">Enterprise Java</a>
-                            <a href="/dotnet">.NET</a>
                             <a href="/iot">Internet of Things</a>
+                            <a href="/microservices">Microservices</a>
+                            <a href="/mobile">Mobile</a>
+                            <a href="/web-and-api-development">Web and API Development</a>
+                            <a href="/dotnet">.NET</a>
                         </div>
                     </li>
                     <li class="has-sub-nav">

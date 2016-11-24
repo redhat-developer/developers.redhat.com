@@ -67,7 +67,6 @@ var globs = {
     'javascripts/vjbug-jira-collector.js',
     'javascripts/vjbug.js',
     'javascripts/tabs.js',
-    'javascripts/vendor/adobe-ab-testing.js',
     'javascripts/a-b-testing.js',
     'javascripts/stackoverflow.js',
     'javascripts/product-forums.js',
@@ -75,7 +74,8 @@ var globs = {
     'javascripts/custom-jira-collector.js',
     'javascripts/adaptive-placeholder.js',
     //'javascripts/current-tab.js',
-    'javascripts/referrer.js'
+    'javascripts/referrer.js',
+    'javascripts/jboss-docker.js'
   ],
   "styles": ['stylesheets/*.scss']
 };

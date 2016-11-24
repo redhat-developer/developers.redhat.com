@@ -31,12 +31,11 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
     @drupal_page_list_url_generator.generate_page_url_list!
 
     lines = File.readlines("#{@export_directory}/url-list.txt")
-    assert_equal(8, lines.length)
+    assert_equal(7, lines.length)
     lines.each do | line |
       assert(line.start_with?('http://192.168.99.100:32769/'))
     end
 
-    assert_equal(lines.last, "http://192.168.99.100:32769/robots.txt\n")
   end
 
   def test_should_download_parse_and_generate_links_file
@@ -52,12 +51,11 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
     @drupal_page_list_url_generator.generate_page_url_list!
 
     lines = File.readlines("#{@export_directory}/url-list.txt")
-    assert_equal(8, lines.length)
+    assert_equal(7, lines.length)
     lines.each do | line |
       assert(line.start_with?('http://192.168.99.100:32769/'))
     end
 
-    assert_equal(lines.last, "http://192.168.99.100:32769/robots.txt\n")
   end
 
   def test_should_raise_error_if_fails_to_download

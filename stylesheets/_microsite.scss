@@ -128,7 +128,7 @@
 
   .wide-hero {
     width:100%; // fallback
-    width: calc(100% + 10px); // acount for the wrapper margin
+    width: calc(100% + 5px); // acount for the wrapper margin
     margin-left: -5px;
   }
 
@@ -290,11 +290,6 @@ body.microsite-multi-page, body.microsite {
   display: block;
 }
 
-.linuxcheat-graphic {
-  max-width: 275px;
-  margin-bottom: 1.2em;
-}
-
 .devnation-discount {
   h3 {
     margin-bottom: 20px;
@@ -339,9 +334,6 @@ body.microsite-multi-page, body.microsite {
 // Styles for microsite-2 layout
 .microsite-tmpl {
   margin-top: 3em;
-  h3 {
-    text-transform: uppercase;
-  }
   ul li p {
     margin-bottom: 5px;
   }
@@ -357,6 +349,62 @@ body.microsite-multi-page, body.microsite {
 }
 
 .microsite-graphic {
-  margin: 10px auto 40px auto;
+  margin: 5px auto 40px auto;
   display: block;
+}
+
+.microsite-tmpl .button.mailto-btn a,
+.microsite-tmpl .mailto-link  a{
+  display: none;
+}
+
+@include tablet-landscape-and-down {
+  .microsite-tmpl {
+    margin-top: 15px;
+  }
+  .microsite-tmpl .field--name-field-call-to-action-link,
+  .microsite-tmpl .field--name-field-mail-to-link {
+    width: 100%;
+  }
+
+  .microsite-tmpl .field__item img {
+    margin-bottom: 25px;
+  }
+
+  .microsite-tmpl .mailto-link {
+    .button.mailto-btn {
+      border: none;
+      padding: 0;
+      a {
+        display: block;
+      }
+      a:after {
+        content: "\f0da";
+        font-family: "FontAwesome";
+        margin-left: 3px;
+      }
+    }
+  }
+
+  .microsite-tmpl .button.mailto-btn {
+    display: block !important;
+    background: $white;
+    border: 2px solid $accent-blue;
+    color: $accent-blue;
+  }
+
+  .field__item.button.mailto-btn a {
+    color: $accent-blue;
+    display: block;
+  }
+
+  .field--name-title {
+    margin-bottom: 10px;
+  }
+
+  .microsite-tmpl .button.download-btn {
+    display: block;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

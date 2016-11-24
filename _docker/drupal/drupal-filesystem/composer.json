@@ -47,8 +47,8 @@
         "drupal/media_entity": "1.5",
         "drupal/video_embed_field": "1.3",
         "drupal/media_entity_image": "1.2",
-        "drupal/entity": "1.0-alpha3",
-        "drupal/editor_advanced_link": "1.3"
+        "drupal/editor_advanced_link": "1.3",
+        "drupal/smtp": "1.0.0-alpha2"
     },
     "require-dev": {
         "behat/mink": "1.7.1",
@@ -102,6 +102,9 @@
         "patches": {
             "drupal/core": {
                 "Avoid to check the render context to detect early rendering for Non-GET requests.": "2663638-2.patch"
+            },
+            "drupal/scheduled_updates": {
+                "No canonical link for update types": "https://www.drupal.org/files/issues/scheduled_updates-no-canonical-link-for-update-type.patch"     
             }
         }
     }

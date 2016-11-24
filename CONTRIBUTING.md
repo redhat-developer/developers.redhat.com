@@ -150,6 +150,7 @@ Once you have access to the `Red Hat Developers` YouTube account:
 1. Visit https://www.youtube.com/c/RedHatDevelopers/playlists
 2. Switch to the `Red Hat Developers` account, using the account switcher in the top-right corner. 
 3. Select the playlist for the product that the video relates to. Select the `Miscellaneous` playlist if it relates to no product.
+        note: if the video is on your desktop, click 'upload'.
 4. Click `Add Videos`.
 5. Find the video you want to add, and select it.
 6. The video should appear on the site within 6 hours.

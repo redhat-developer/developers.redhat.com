@@ -28,10 +28,8 @@ class StackOverflowPage < StandardisedSearch
 
   def questions_loaded?(i)
     begin
-      wait_for {
         @stack_questions = question_rows
         @stack_questions.size == i
-      }
     rescue
       raise("Expected #{i} results but received #{@stack_questions.size}")
     end
