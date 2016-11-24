@@ -6,9 +6,15 @@ dependencies:
     - field.field.paragraph.overview.field_overview_hide_get_started
     - field.field.paragraph.overview.field_overview_main_content
     - field.field.paragraph.overview.field_overview_url
+    - field.field.paragraph.overview.field_page_description
+    - field.field.paragraph.overview.field_product_overview_features
+    - field.field.paragraph.overview.field_product_overview_video
+    - field.field.paragraph.overview.field_secondary_content
     - paragraphs.paragraphs_type.overview
   module:
+    - entity_reference_revisions
     - text
+    - video_embed_field
 id: paragraph.overview.default
 targetEntityType: paragraph
 bundle: overview
@@ -36,6 +42,37 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+  field_page_description:
+    weight: 4
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_product_overview_features:
+    type: entity_reference_revisions_entity_view
+    weight: 7
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_product_overview_video:
+    weight: 6
+    label: visually_hidden
+    settings:
+      responsive: true
+      width: 854
+      height: 480
+      autoplay: true
+    third_party_settings: {  }
+    type: video_embed_field_video
+  field_secondary_content:
+    weight: 5
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
 hidden:
   created: true
   uid: true

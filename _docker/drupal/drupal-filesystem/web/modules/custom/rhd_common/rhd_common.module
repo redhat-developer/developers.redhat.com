@@ -9,263 +9,308 @@ use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_form_alter().
  */
-function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  // If Article add form, add custom form validator.
-  if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
-    $pathauto = $form['path']['widget'][0]['pathauto'];
-    if ($form_id != 'node_article_edit_form') {
-      $form['path']['widget'][0]['pathauto']['#default_value'] = 0;
+function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+    // If Article add form, add custom form validator.
+    if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
+        $pathauto = $form['path']['widget'][0]['pathauto'];
+        if ($form_id != 'node_article_edit_form') {
+            $form['path']['widget'][0]['pathauto']['#default_value'] = 0;
+        }
+        $form['path']['widget'][0]['alias']['#states']['disabled']['input[name="path[0][pathauto]"]']['checked'] = 0;
+        // Override default validator with custom validator.
+        if (!empty($form['path'])) {
+            // Check if widget array is not empty.
+            if (!empty($form['path']['widget'])) {
+                $form['path']['widget'][0]['#element_validate'][0] = 'rhd_common_custom_form_validator';
+            }
+        }
     }
-    $form['path']['widget'][0]['alias']['#states']['disabled']['input[name="path[0][pathauto]"]']['checked'] = 0;
-    // Override default validator with custom validator.
-    if (!empty($form['path'])) {
-      // Check if widget array is not empty.
-      if (!empty($form['path']['widget'])) {
-        $form['path']['widget'][0]['#element_validate'][0] = 'rhd_common_custom_form_validator';
-      }
-    }
-  }
 }
 
 
 /**
  * Custom form validator.
  */
-function rhd_common_custom_form_validator(array &$element, FormStateInterface $form_state) {
-  // Trim the submitted value of whitespace and slashes.
-  $alias = rtrim(trim($element['alias']['#value']), " \\/");
-  $element['alias']['#attached']['library'][] = 'rhd_common/sample_library';
-  if (empty($element['pathauto']['#checked']) && empty($alias)) {
-    $form_state->setError($element, t('please add a url alias.'));
-  }
-
-  if (!empty($alias)) {
-    // Check if alias already has a slash.
-    if (substr($alias, 0, 1) !== '/') {
-      $alias = '/' . $alias;
+function rhd_common_custom_form_validator(array &$element, FormStateInterface $form_state)
+{
+    // Trim the submitted value of whitespace and slashes.
+    $alias = rtrim(trim($element['alias']['#value']), " \\/");
+    $element['alias']['#attached']['library'][] = 'rhd_common/sample_library';
+    if (empty($element['pathauto']['#checked']) && empty($alias)) {
+        $form_state->setError($element, t('please add a url alias.'));
     }
-    $form_state->setValueForElement($element['alias'], $alias);
-    // Validate that the submitted alias does not exist yet.
-    $is_exists = \Drupal::service('path.alias_storage')
-      ->aliasExists($alias, $element['langcode']['#value'], $element['source']['#value']);
-    if ($is_exists) {
-      $form_state->setError($element, t('The alias is already in use.'));
+
+    if (!empty($alias)) {
+        // Check if alias already has a slash.
+        if (substr($alias, 0, 1) !== '/') {
+            $alias = '/' . $alias;
+        }
+        $form_state->setValueForElement($element['alias'], $alias);
+        // Validate that the submitted alias does not exist yet.
+        $is_exists = \Drupal::service('path.alias_storage')
+          ->aliasExists($alias, $element['langcode']['#value'], $element['source']['#value']);
+        if ($is_exists) {
+            $form_state->setError($element, t('The alias is already in use.'));
+        }
     }
-  }
 
-  if ($alias && $alias[0] !== '/') {
-    $form_state->setError($element, t('The alias needs to start with a slash.'));
-  }
-}
-
-/**
- * Implements hook_form_BASE_FORM_ID_alter() for node_form.
- */
-function rhd_common_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-  if (isset($form['publish_date'])) {
-    $form['scheduling_options'] = array(
-      '#type' => 'details',
-      '#title' => t('Scheduling Options'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-      '#group' => 'advanced',
-      '#weight' => -2, //Tab location
-    );
-    $form['scheduling_options']['und'][0] = $form['publish_date'];
-    // Unset publish date field.
-    unset($form['publish_date']);
-  }
-}
-
-/**
- * Implements hook_user_login().
- */
-function rhd_common_user_login($account) {
-  $roles = array('content_author', 'content_editor', 'content_publisher');
-  $user_roles = $account->getRoles();
-  $module_exists = \Drupal::moduleHandler()->moduleExists('workbench');
-  if (array_intersect($roles, $user_roles) && $module_exists) {
-    $url = Url::fromRoute('workbench.content')->toString();
-    $response = new RedirectResponse($url);
-    $response->send();
-  }
+    if ($alias && $alias[0] !== '/') {
+        $form_state->setError($element, t('The alias needs to start with a slash.'));
+    }
 }
 
 /**
  * Implements hook_theme().
  */
-function rhd_common_theme($existing, $type, $theme, $path) {
-  return [
-    'product-pages' => [
-      'render element' => 'elements',
-    ],
-    'get_started_tabs' => [
-      'variables' => ['items' => []]
-    ]
-  ];
+function rhd_common_theme($existing, $type, $theme, $path)
+{
+    return [
+      'product-pages' => [
+        'render element' => 'elements',
+      ],
+      'get_started_tabs' => [
+        'variables' => ['items' => []]
+      ]
+    ];
 }
 
 /**
  * Implements hook_node_view().
  */
-function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
-  if ($view_mode == 'full') {
-    $current_path = \Drupal::service('path.current')->getPath();
-    $path_args = explode('/', $current_path);
-    if ($path_args[1] == 'node') {
-      $product_code = $node->field_product_machine_name->value;
-      if (!empty($product_code)) {
-        $url = Url::fromRoute('rhd_common.main_page_controller', array(
-          'product_code' => $product_code,
-          'sub_page' => 'overview',
-        ), array('absolute' => TRUE))->toString();
-        $response = new RedirectResponse($url);
-        $response->send();
-      }
+function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode)
+{
+    if ($view_mode == 'full') {
+        $current_path = \Drupal::service('path.current')->getPath();
+        $path_args = explode('/', $current_path);
+        if ($path_args[1] == 'node') {
+            $product_code = $node->field_product_machine_name->value;
+            if (!empty($product_code)) {
+                $url = Url::fromRoute('rhd_common.main_page_controller', array(
+                  'product_code' => $product_code,
+                  'sub_page' => 'overview',
+                ), array('absolute' => true))->toString();
+                $response = new RedirectResponse($url);
+                $response->send();
+            }
+        }
     }
-  }
 }
 
 /**
  * Implements hook_preprocess_HOOK().
  */
-function rhd_common_preprocess_paragraph(&$variables) {
-  // I don't like the way you have to do this, but that just seems to be drupal
-  // Pulling out the product_machine_name field from the parent node of the
-  // paragraph so we can use it in the paragraph template as well.
-  $parent_node = $variables['paragraph']->getParentEntity();
-  if ($parent_node instanceof \Drupal\Core\Entity\FieldableEntityInterface) {
-    if ($parent_node->hasField('field_product_machine_name')) {
-      $product_machine_name = current($parent_node->field_product_machine_name->getValue());
-      $variables['product_machine_name'] = $product_machine_name['value'];
+function rhd_common_preprocess_paragraph(&$variables)
+{
+    // I don't like the way you have to do this, but that just seems to be drupal
+    // Pulling out the product_machine_name field from the parent node of the
+    // paragraph so we can use it in the paragraph template as well.
+    $entity = $variables['paragraph']->getParentEntity();
+    if ($entity instanceof \Drupal\Core\Entity\FieldableEntityInterface) {
+        if ($entity->hasField('field_product_machine_name')) {
+            $product_machine_name = $entity->field_product_machine_name->value;
+            $variables['product_machine_name'] = $product_machine_name['value'];
 
-      // Same thing for the name of the product
-      $variables['product_name'] = $parent_node->label();
+            // Same thing for the name of the product
+            $variables['product_name'] = $entity->label();
+        }
+
+        // Same thing for the short name, but if there isn't one, use the long name
+        if ($entity->hasField('field_product_short_name')) {
+            $product_short_name = $entity->field_product_short_name->value;
+            $variables['product_short_name'] = $product_short_name['value'];
+        } else {
+            $variables['product_short_name'] = $variables['product_name'];
+        }
     }
-
-    // Same thing for the short name, but if there isn't one, use the long name
-    if ($parent_node->hasField('field_product_short_name')) {
-      $product_short_name = current($parent_node->field_product_short_name->getValue());
-      $variables['product_short_name'] = $product_short_name['value'];
-    }
-    else {
-      $variables['product_short_name'] = $variables['product_name'];
-    }
-  }
 }
 
 /**
  * Implements hook_preprocess_HOOK().
+ *
+ * Preprocessor for the overview paragraph
  */
-function rhd_common_preprocess_paragraph__community(&$variables) {
-  $paragraph = $variables['#paragraph'];
-  $variables['display_projects'] = (bool) $paragraph->field_display_projects->value;
+function rhd_common_preprocess_paragraph__overview(&$variables)
+{
+    $paragraph = $variables['paragraph'];
+    $variables['features'] = array_map('build_feature_grouping', $paragraph->field_product_overview_features->referencedEntities());
 }
 
-/**
- * Implements hook_preprocess_HOOK().
- */
-function rhd_common_preprocess_paragraph__download(&$variables) {
-  $paragraph = $variables['paragraph'];
-  $variables['offer_subscription'] = (bool) $paragraph->field_offer_subscription->value;
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function rhd_common_preprocess_paragraph__help(&$variables) {
-  $paragraph = $variables['paragraph'];
-  $variables['show_stack_overflow'] = (bool) $paragraph->field_show_stack_overflow->value;
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function rhd_common_preprocess_paragraph__get_started(&$variables) {
-  $paragraph = $variables['paragraph'];
-  $tab_count = $paragraph->field_tabs->count();
-  $tab_links = [];
-
-  $variables['tab_panels'] = [
-    '#theme' => 'get_started_tabs',
-    '#items' => []
-  ];
-
-  // Build up a render array for the tab bar.
-  // This is much easier here than in twig where I cannot access php functions.
-  // We only want to show a tab bar if there's more than one tab
-  if ($tab_count > 1) {
-    $tab_links = [
-      '#theme' => 'item_list',
-      '#list_type' => 'ul',
-      '#attributes' => [
-        'class' => 'tabs nav-tabs current-tabs',
-        'data-tab' => '',
-        'role' => 'tablist',
-        'data-options' => 'scroll_to_content:false' // removing 'deep_linking:true;' because it breaks things
-      ]
+function build_feature_grouping($feature)
+{
+    return [
+      'image' => $feature->field_paragraph_image_image->view(['label' => 'visually_hidden']),
+      'title' => $feature->field_paragraph_image_title->view(['label' => 'visually_hidden']),
+      'body' => $feature->field_paragraph_image_body->view(['label' => 'visually_hidden']),
     ];
-  }
+}
 
-  foreach ($paragraph->field_tabs as $index => $tab_item) {
-    $tab = $tab_item->entity;
-    $url_field_title = strtolower(str_replace(' ', '', $tab->field_title->value));
-    $variables['tab_panels']['#items'][] = $tab;
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_paragraph__community(&$variables)
+{
+    $paragraph = $variables['#paragraph'];
+    $variables['display_projects'] = (bool)$paragraph->field_display_projects->value;
+}
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_paragraph__download(&$variables)
+{
+    $paragraph = $variables['paragraph'];
+    $variables['offer_subscription'] = (bool)$paragraph->field_offer_subscription->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_paragraph__help(&$variables)
+{
+    $paragraph = $variables['paragraph'];
+    $variables['show_stack_overflow'] = (bool)$paragraph->field_show_stack_overflow->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_paragraph__get_started(&$variables)
+{
+    $paragraph = $variables['paragraph'];
+    $tab_count = $paragraph->field_tabs->count();
+    $tab_links = [];
+
+    $variables['tab_panels'] = [
+      '#theme' => 'get_started_tabs',
+      '#items' => []
+    ];
+
+    // Build up a render array for the tab bar.
+    // This is much easier here than in twig where I cannot access php functions.
+    // We only want to show a tab bar if there's more than one tab
     if ($tab_count > 1) {
-      $tab_links['#items'][] = [
-        '#type' => 'link',
-        '#title' => $tab->field_title->value,
-        '#url' => Url::fromUri('internal:#' . $url_field_title),
-        '#attributes' => [
-          'role' => 'tab',
-          'tabindex' => '0',
-          'aria-selected' => 'false',
-          'aria-controls' => $url_field_title
-        ],
-        // #wrapper_attributes are for the li, or the things wrapping the link
-        '#wrapper_attributes' => [
-          'role' => 'presentation',
-          'class' => (function () use ($index) {
-            if ($index === 0) {
-              return 'active';
-            }
-            else {
-              return '';
-            }
-          })()
-        ]
-      ];
+        $tab_links = [
+          '#theme' => 'item_list',
+          '#list_type' => 'ul',
+          '#attributes' => [
+            'class' => 'tabs nav-tabs current-tabs',
+            'data-tab' => '',
+            'role' => 'tablist',
+            'data-options' => 'scroll_to_content:false' // removing 'deep_linking:true;' because it breaks things
+          ]
+        ];
     }
-  }
 
-  $variables['tab_bar'] = $tab_links;
+    foreach ($paragraph->field_tabs as $index => $tab_item) {
+        $tab = $tab_item->entity;
+        $url_field_title = strtolower(str_replace(' ', '', $tab->field_title->value));
+        $variables['tab_panels']['#items'][] = $tab;
+
+        if ($tab_count > 1) {
+            $tab_links['#items'][] = [
+              '#type' => 'link',
+              '#title' => $tab->field_title->value,
+              '#url' => Url::fromUri('internal:#' . $url_field_title),
+              '#attributes' => [
+                'role' => 'tab',
+                'tabindex' => '0',
+                'aria-selected' => 'false',
+                'aria-controls' => $url_field_title
+              ],
+                // #wrapper_attributes are for the li, or the things wrapping the link
+              '#wrapper_attributes' => [
+                'role' => 'presentation',
+                'class' => (function () use ($index) {
+                    if ($index === 0) {
+                        return 'active';
+                    } else {
+                        return '';
+                    }
+                })()
+              ]
+            ];
+        }
+    }
+
+    $variables['tab_bar'] = $tab_links;
 }
 
-function rhd_common_preprocess_get_started_tabs(&$variables) {
-  // Each item is going to be a reference to a paragraph,
-  // we want the actual paragraph available in the view
-  foreach ($variables['items'] as $tab_index => $tab) {
-     $variables['tabs'][$tab_index] = [
-       'title' => $tab->field_title->value,
-       'preamble' => $tab->field_body->view(['label' => 'visually_hidden']),
-       'sections' => []
-     ];
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_get_started_tabs(&$variables)
+{
+    // Each item is going to be a reference to a paragraph,
+    // we want the actual paragraph available in the view
+    foreach ($variables['items'] as $tab_index => $tab) {
+        $variables['tabs'][$tab_index] = [
+          'title' => $tab->field_title->value,
+          'preamble' => $tab->field_body->view(['label' => 'visually_hidden']),
+          'sections' => []
+        ];
 
-    foreach ($tab->field_blue_sections as $blue_section_index => $blue_section) {
-      $blue_section_entity = $blue_section->entity;
-      $variables['tabs'][$tab_index]['sections'][$blue_section_index] = [];
-      $blue_section_render = &$variables['tabs'][$tab_index]['sections'][$blue_section_index];
+        foreach ($tab->field_blue_sections as $blue_section_index => $blue_section) {
+            $blue_section_entity = $blue_section->entity;
+            $variables['tabs'][$tab_index]['sections'][$blue_section_index] = [];
+            $blue_section_render = &$variables['tabs'][$tab_index]['sections'][$blue_section_index];
 
-      $blue_section_render['title'] = $blue_section_entity->field_title->value;
-      $blue_section_render['minutes'] = $blue_section_entity->field_minutes_to_complete->value;
-      $blue_section_render['body'] = $blue_section_entity->field_body->view(['label' => 'visually_hidden']);
+            $blue_section_render['title'] = $blue_section_entity->field_title->value;
+            $blue_section_render['minutes'] = $blue_section_entity->field_minutes_to_complete->value;
+            $blue_section_render['body'] = $blue_section_entity->field_body->view(['label' => 'visually_hidden']);
+        }
     }
-  }
-  unset($variables['items']);
+    unset($variables['items']);
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function rhd_common_preprocess_paragraph__docs_and_apis(&$variables)
+{
+    $paragraph = $variables['paragraph'];
+    $variables['product_documentation_code'] = $paragraph->field_product_documentation_code->value;
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ *
+ * Add in the metatags for the product pages
+ */
+function rhd_common_page_attachments_alter(array &$attachments)
+{
+    // We only want to do this for product pages, everything else will have meta tags
+    if (\Drupal::routeMatch()->getRouteName() === 'rhd_common.main_page_controller') {
+        $route_params = \Drupal::routeMatch()->getParameters()->all();
+        $connection = \Drupal::service('database');
+        $query = $connection->select('node__field_product_machine_name', 'pmn');
+        $query->fields('pmn', ['entity_id']);
+        $query->condition('pmn.field_product_machine_name_value', $route_params['product_code']);
+        $nid = $query->execute()->fetchField();
+
+        if (!empty($nid)) {
+            $entity = Node::load($nid);
+            $product_pages = $entity->field_product_pages->referencedEntities();
+            $active_paragraph = current(array_filter($product_pages, function ($entity) use ($route_params) {
+                return strtolower($entity->field_overview_url->value) === $route_params['sub_page'];
+            }));
+            $head_tags = $attachments['#attached']['html_head'];
+
+            /*
+             * TODO: with the $entity and $active_paragraph create the needed meta tags
+             *
+             * I think the description should a new field, available on every page: field_product_page_description (required)
+             *
+             * <meta name="title" content="{{product_name}} - {{active_paragraph.field_overview_url}} | 'Red Hat Developers'">
+             * <meta property="og:type" content="page">
+             * <meta property="twitter:card" content="summary">
+             * <meta name="description" content="Product information about Red Hat JBoss Enterprise Application Platform">
+             */
+        }
+    }
+}

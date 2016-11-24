@@ -4,7 +4,6 @@ namespace Drupal\rhd_common\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -121,6 +120,19 @@ class ProductPageController extends ControllerBase {
       $build['active_paragraph'] = $this->entityTypeManager()
         ->getViewBuilder($active_paragraph->getEntityTypeId())
         ->view($active_paragraph, 'full');
+
+
+      // Also product category
+      if ($node_obj->hasField('field_product_category')) {
+          $product_category = $node_obj->field_product_category->value;
+          $build['product_category'] = $product_category;
+      }
+
+      // Helper for twig to know if there is a community page
+      $product_pages = $node_obj->field_product_pages->referencedEntities();
+      $build['has_community'] = count(array_filter($product_pages, function ($entity) {
+            return strtolower($entity->field_overview_url->value) === 'community';
+        })) > 0;
     }
 
     return $build;

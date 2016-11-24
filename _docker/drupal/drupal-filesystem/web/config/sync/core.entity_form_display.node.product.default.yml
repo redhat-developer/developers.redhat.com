@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.product.field_product_get_started
+    - field.field.node.product.field_product_category
     - field.field.node.product.field_product_machine_name
     - field.field.node.product.field_product_pages
     - field.field.node.product.field_product_short_name
@@ -50,7 +50,7 @@ third_party_settings:
         - group_global_information
         - group_sub_pages
       parent_name: ''
-      weight: 3
+      weight: 4
       format_type: tabs
       format_settings:
         id: ''
@@ -64,18 +64,16 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
-  field_product_get_started:
-    weight: 3
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-  field_product_machine_name:
+  field_product_category:
     weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_product_machine_name:
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -107,7 +105,7 @@ content:
     type: text_textarea
   path:
     type: path
-    weight: 6
+    weight: 7
     settings: {  }
     third_party_settings: {  }
   title:
@@ -119,7 +117,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60

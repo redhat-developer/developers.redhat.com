@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.help.field_overview_hide_get_started
     - field.field.paragraph.help.field_overview_url
+    - field.field.paragraph.help.field_page_description
     - field.field.paragraph.help.field_show_stack_overflow
     - paragraphs.paragraphs_type.help
 id: paragraph.help.default
@@ -13,13 +14,13 @@ bundle: help
 mode: default
 content:
   field_overview_hide_get_started:
-    weight: 1
+    weight: 2
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
-  field_overview_url:
-    weight: 0
+  field_page_description:
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -33,5 +34,6 @@ content:
     type: boolean_checkbox
 hidden:
   created: true
+  field_overview_url: true
   status: true
   uid: true

@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.learn.field_overview_hide_get_started
     - field.field.paragraph.learn.field_overview_main_content
     - field.field.paragraph.learn.field_overview_url
+    - field.field.paragraph.learn.field_page_description
     - paragraphs.paragraphs_type.learn
   module:
     - text
@@ -31,6 +32,13 @@ content:
     type: text_default
   field_overview_url:
     weight: 3
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_page_description:
+    weight: 6
     label: visually_hidden
     settings:
       link_to_entity: false

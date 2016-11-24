@@ -73,12 +73,36 @@
  */
 #}
 
-{# TODO: Add the download thank you and the mobile bits#}
-
 {% set product_machine_name = elements.field_product_machine_name[0]['#context']['value']|lower %}
 {% set active_paragraph = elements.active_paragraph['#paragraph'] %}
+<section id="referral-alert" class="hide">
+    <div class="row content">
+        <div class="large-24 columns">
+            <div class="large-24 columns">
+                <div class="alert-box info radius">
+                    <h4>You have been redirected from JBoss.org to Red Hat Developers.</h4>
+                    <p>It’s true — JBoss Developer and Red Hat Developers are one
+                        and the same, and you can find all the great stuff you were
+                        looking for right here on <a href="http://developers.redhat.com/">developers.redhat.com.</a></p>
+                    <a class="close">x</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="mobile product-color {{ elements.product_category }}"></div>
+<div class="mobile product-header">
+    <div class="row">
+        <div class="large-24">
+            <h3>{{ elements.title }}</h3>
+            {# TODO: Fix these relative links #}
+            <a class="button" href="../download/">Download</a><a class="button inverse" href="../get-started/">Get
+                Started</a>
+        </div>
+    </div>
+</div>
 <article{{ attributes }}>
-    <section class="hero hero-wide product-header {{ product_machine_name }} application-development">
+    <section class="hero hero-wide product-header {{ product_machine_name }} {{ elements.product_category }}">
         <div class="row">
             <div class="large-24 columns">
                 {{ title_prefix }}
@@ -88,12 +112,21 @@
             </div>
         </div>
     </section>
-    <section{{ content_attributes.addClass(["product-graphics", "application-development"]) }}>
+    <section{{ content_attributes.addClass(["product-graphics", elements.product_category]) }}>
         {% if not active_paragraph.field_overview_hide_get_started.value %}
             <div class="large-24 columns">
-                <div id="hero-try-or-buy" class="row application-development">
+                <div id="hero-try-or-buy" class="row {{ elements.product_category }}">
                     <div class="large-24 columns hello-world">
-                        {{ elements.field_product_get_started }}
+                        <div class="small-24 large-6 columns">
+                            <h2>Hello World!</h2>
+                            <p class="caps">Build Something Today</p>
+                        </div>
+                        <div class="small-24 large-6 columns"><p>Let's walk through everything you need to build your first application.</p></div>
+                        {# TODO: Fix relative link #}
+                        <div class="small-24 large-6 columns"><a class="button" href="../get-started/">Get Started</a></div>
+                        <div class="small-24 large-6 columns outside-links">
+                            <a class="large-24 medium-12 columns" href="http://www.redhat.com/en/about/contact/sales"><strong>Buy It</strong><p>Contact Sales<i class="fa fa-caret-right"></i></p></a>{# TODO: Fix relative link #}{% if elements.has_community %}<a class="large-24 medium-12 columns" href="../community/"><strong>Make it better</strong><p>Join the community<i class="fa fa-caret-right"></i></p></a>{% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,7 +137,6 @@
                     {{ elements.page_links }}
                 </div>
                 <div class="large-20 medium-17 small-24 columns">
-                    {{ kint(elements.active_paragraph|keys) }}
                     {{ elements.active_paragraph }}
                 </div>
             </div>

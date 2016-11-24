@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.product.field_product_get_started
+    - field.field.node.product.field_product_category
     - field.field.node.product.field_product_machine_name
     - field.field.node.product.field_product_pages
     - field.field.node.product.field_product_short_name
@@ -11,6 +11,7 @@ dependencies:
     - node.type.product
   module:
     - entity_reference_revisions
+    - options
     - text
     - user
 id: node.product.default
@@ -18,12 +19,12 @@ targetEntityType: node
 bundle: product
 mode: default
 content:
-  field_product_get_started:
-    weight: 104
-    label: visually_hidden
+  field_product_category:
+    weight: 110
+    label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    type: list_default
   field_product_machine_name:
     weight: 108
     label: visually_hidden

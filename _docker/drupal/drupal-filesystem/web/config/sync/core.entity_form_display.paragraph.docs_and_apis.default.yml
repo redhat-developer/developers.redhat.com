@@ -3,82 +3,22 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.docs_and_apis.field_add_documents
     - field.field.paragraph.docs_and_apis.field_more_resources
     - field.field.paragraph.docs_and_apis.field_overview_hide_get_started
     - field.field.paragraph.docs_and_apis.field_overview_main_content
     - field.field.paragraph.docs_and_apis.field_overview_url
-    - field.field.paragraph.docs_and_apis.field_product_documentation_code
-    - field.field.paragraph.docs_and_apis.field_show_all_docs_link
+    - field.field.paragraph.docs_and_apis.field_page_description
     - field.field.paragraph.docs_and_apis.field_supported_configurations
     - paragraphs.paragraphs_type.docs_and_apis
   module:
-    - field_group
-    - paragraphs
     - text
-third_party_settings:
-  field_group:
-    group_glo:
-      children:
-        - group_global
-        - group_documents
-      parent_name: ''
-      weight: 2
-      format_type: tabs
-      format_settings:
-        id: ''
-        classes: ''
-        direction: vertical
-      label: Global
-    group_global:
-      children:
-        - field_overview_url
-        - field_overview_main_content
-        - field_overview_hide_get_started
-        - field_product_documentation_code
-        - field_show_all_docs_link
-        - field_supported_configurations
-        - field_more_resources
-      parent_name: group_glo
-      weight: 20
-      format_type: tab
-      format_settings:
-        id: ''
-        classes: ''
-        formatter: closed
-        description: ''
-        required_fields: true
-      label: 'Global Settings'
-    group_documents:
-      children:
-        - field_add_documents
-      parent_name: group_glo
-      weight: 21
-      format_type: tab
-      format_settings:
-        id: ''
-        classes: ''
-        formatter: closed
-        description: ''
-        required_fields: true
-      label: Documents
 id: paragraph.docs_and_apis.default
 targetEntityType: paragraph
 bundle: docs_and_apis
 mode: default
 content:
-  field_add_documents:
-    type: entity_reference_paragraphs
-    weight: 3
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-    third_party_settings: {  }
   field_more_resources:
-    weight: 7
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
@@ -91,32 +31,21 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
   field_overview_main_content:
-    weight: 1
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-  field_overview_url:
-    weight: 0
+  field_page_description:
+    weight: 1
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_product_documentation_code:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-  field_show_all_docs_link:
-    weight: 5
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
   field_supported_configurations:
-    weight: 6
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -124,5 +53,6 @@ content:
     type: text_textarea
 hidden:
   created: true
+  field_overview_url: true
   status: true
   uid: true

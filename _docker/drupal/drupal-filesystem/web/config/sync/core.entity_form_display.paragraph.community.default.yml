@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.community.field_overview_hide_get_started
     - field.field.paragraph.community.field_overview_main_content
     - field.field.paragraph.community.field_overview_url
+    - field.field.paragraph.community.field_page_description
     - paragraphs.paragraphs_type.community
   module:
     - text
@@ -16,26 +17,26 @@ bundle: community
 mode: default
 content:
   field_display_projects:
-    weight: 3
+    weight: 4
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
   field_overview_hide_get_started:
-    weight: 2
+    weight: 3
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
   field_overview_main_content:
-    weight: 1
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-  field_overview_url:
-    weight: 0
+  field_page_description:
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -43,5 +44,6 @@ content:
     type: string_textfield
 hidden:
   created: true
+  field_overview_url: true
   status: true
   uid: true
