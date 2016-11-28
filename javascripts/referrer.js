@@ -46,9 +46,11 @@
         case 'webinars':
         case 'devnation2015':
         case 'forums':
-        case 'events': // after class hero
-          if ($('.hero').length > 0) {
+        case 'events': // after class hero or wide-hero
+          if ($('.hero').length > 0 ) {
             referrerHTML.insertAfter('.hero');
+          } else if ($('.wide-hero').length > 0) {
+            referrerHTML.insertAfter('.wide-hero');
           } else { 
             referrerHTML.insertBefore('#page');
           }
