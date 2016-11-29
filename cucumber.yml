@@ -68,10 +68,10 @@ mobile:
 kc_dm:
   -p parallel
   -t @kc
-  -t ~@dm
+  -t @dm
 
 kc_dm_mobile:
   -p parallel
   -t ~@desktop RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] || 'iphone_6' %>
   -t @kc
-  -t ~@dm
+  -t @dm

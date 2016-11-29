@@ -1,8 +1,48 @@
-Given(/^I am a registered site visitor$/) do
-  keycloak = KeyCloak.new
-  $site_user = keycloak.register_new_user
-  $basic_login = $site_user[:email]
-  puts "Created RHD user #{$site_user[:email]}"
+When(/^I register a new account$/) do
+  @site_user = SiteUser.new
+  @site_user.generate
+  visit HomePage do |page|
+    page.open_register_page
+  end
+  on RegistrationPage do |page|
+    page.fill_in_form(@site_user.details)
+    page.accept_all_terms
+    page.create_account
+    page.thanks_message.should == 'Thanks for Registering!'
+  end
+end
+
+When(/^I register a new account in oder to download$/) do
+  @site_user = SiteUser.new
+  @site_user.generate
+  on LoginPage do |page|
+    page.click_register_link
+  end
+  on DownloadRegistrationPage do |page|
+    page.fill_download_reg_form(@site_user.details)
+    page.accept_all_terms
+    page.create_account
+  end
+end
+
+When(/^I complete the registration form, selecting my country as "(.*)"$/) do |country|
+  @site_user = SiteUser.new
+  @site_user.generate(country)
+  on RegistrationPage do |page|
+    page.fill_in_form(@site_user.details)
+    page.accept_all_terms
+    page.create_account
+  end
+end
+
+Given(/^I am a (RHD|Customer Portal|Openshift) registered site visitor(?: (with|without) a phone number)?$/) do |persona, phone_number|
+  if phone_number == 'without'
+    @site_user = SiteUser.new
+    @site_user.create('with_missing_phone')
+  else
+    @site_user = SiteUser.new
+    @site_user.create(persona.downcase.gsub(' ', '_'))
+  end
 end
 
 When(/^I click to register with my GitHub account$/) do
@@ -12,37 +52,38 @@ When(/^I click to register with my GitHub account$/) do
 end
 
 When(/^I try to register with an invalid email address$/) do
-  $site_user = generate_user
+  @site_user = SiteUser.new
+  @site_user.generate
+  @site_user.details[:email] = 'email.co.uk'
   on RegistrationPage do |page|
-    page.fill_in_form($site_user[:first_name], $site_user[:last_name], 'email.co.uk', $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
+    page.fill_in_form(@site_user.details)
     page.create_account
   end
 end
 
 When(/^I try to register with an existing RHD registered email$/) do
-  $site_user = generate_user
+  @site_user = SiteUser.new
+  @site_user.generate
+  @site_user.details[:email] = 'uk.redhat.test.user+full-site-user@gmail.com'
+
   on RegistrationPage do |page|
-    page.fill_in_form($site_user[:first_name], $site_user[:last_name], 'uk.redhat.test.user+full-site-user@gmail.com', $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
+    page.fill_in_form(@site_user.details)
   end
 end
 
 When(/^I register a new account using my GitHub account$/) do
   @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
-
-  # generate new user and update their Github profile
-  $site_user = @github_admin.generate_user_for_session($session_id)
-  @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
-  puts "Added new email to Github profile: #{$site_user[:email]}"
+  @site_user = SiteUser.new
+  @site_user.generate
+  @github_admin.update_profile("#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}", @site_user.details[:email], @site_user.details[:company_name])
 
   on RegistrationPage do |page|
     page.click_register_with_github
   end
-
   on GitHubPage do |page|
     page.login_with('rhdScenarioOne', 'P@$$word01')
     page.authorize_app
   end
-
 end
 
 When(/^I register a new account from (.*) using my GitHub account$/) do |country|
@@ -63,7 +104,6 @@ When(/^I register a new account from (.*) using my GitHub account$/) do |country
   end
 
 end
-
 
 
 When(/^I try to link a GitHub account to an existing account$/) do
@@ -95,11 +135,9 @@ end
 When(/^I link a GitHub account to my existing account$/) do
   @github_admin = GitHubAdmin.new('rhdScenarioTwo', 'P@$$word01')
 
-  # generate new user and update their Github profile
-  keycloak = KeyCloak.new
-  $site_user = keycloak.register_new_user
-  p "Registered user with email #{$site_user[:email]}"
-  @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
+  @site_user = SiteUser.new
+  @site_user.create('rhd')
+  @github_admin.update_profile("#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}", @site_user.details[:email], @site_user.details[:company_name])
 
   on RegistrationPage do |page|
     page.click_register_with_github
@@ -111,30 +149,22 @@ When(/^I link a GitHub account to my existing account$/) do
   end
 
   on AdditionalActionPage do |page|
-    page.fill_in(nil, 'P@$$word01', nil, nil, nil, '0191 1111111', $site_user[:country], $site_user[:city], $site_user[:state])
+    page.fill_in(@site_user.details)
   end
 end
 
 When(/^I register a new account using a GitHub account that contains missing profile information$/) do
-
-  # log in to Github API
   @github_admin = GitHubAdmin.new('rhdalreadyregistered01', 'P@$$word01')
-
-  # generate new user and update their Github profile
-  $site_user = @github_admin.generate_user_for_session($session_id)
-
-  @github_admin.update_profile('', $site_user[:email], '')
-  puts "Added new email to Github profile: #{$site_user[:email]}"
-
+  @site_user = SiteUser.new
+  @site_user.generate
+  @github_admin.update_profile('', @site_user.details[:email], '')
   on RegistrationPage do |page|
     page.click_register_with_github
   end
-
   on GitHubPage do |page|
     page.login_with('rhdalreadyregistered01', 'P@$$word01')
     page.authorize_app
   end
-
 end
 
 When(/^I register a new account from (.*) using a GitHub account that contains missing profile information$/) do |country|
@@ -162,21 +192,14 @@ end
 
 When(/^I try to register using a GitHub account that contains missing profile information with an existing RHD registered email$/) do
 
-  # log in to Github API
   @github_admin = GitHubAdmin.new('rhdalreadyregistered02', 'P@$$word01')
-
-  # generate new user and update their Github profile
-  keycloak = KeyCloak.new
-  $site_user = keycloak.register_new_user
-  p "Registered user with email #{$site_user[:email]}"
-
-  @github_admin.update_profile('', $site_user[:email], '')
-  puts "Added existing RHD email to Github profile: #{$site_user[:email]}"
+  @site_user = SiteUser.new
+  @site_user.create('rhd')
+  @github_admin.update_profile('', @site_user.details[:email], '')
 
   on RegistrationPage do |page|
     page.click_register_with_github
   end
-
   on GitHubPage do |page|
     page.login_with('rhdalreadyregistered02', 'P@$$word01')
     page.authorize_app
@@ -185,25 +208,10 @@ When(/^I try to register using a GitHub account that contains missing profile in
 end
 
 When(/^I complete the registration form$/) do
-  $site_user = generate_user
+  @site_user = SiteUser.new
+  @site_user.generate
   on RegistrationPage do |page|
-    page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:city], $site_user[:state], $site_user[:password], $site_user[:password])
-    page.accept_all_terms
-    page.create_account
-  end
-end
-
-When(/^I complete the registration form, selecting my country as "(.*)"$/) do |country|
-  $site_user = generate_user(country)
-  on RegistrationPage do |page|
-    case country
-      when 'United States', 'Mexico', 'Canada'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:city], $site_user[:state], $site_user[:password], $site_user[:password])
-      when 'Ukraine'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:city], nil, $site_user[:password], $site_user[:password])
-      else
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], nil, nil, $site_user[:password], $site_user[:password])
-    end
+    page.fill_in_form(@site_user.details)
     page.accept_all_terms
     page.create_account
   end
@@ -216,23 +224,31 @@ And(/^I click on the Create Account button$/) do
 end
 
 When(/^I complete the registration with an empty "([^"]*)"$/) do |field|
-  $site_user = generate_user
+  @site_user = SiteUser.new
+  @site_user.generate
   on RegistrationPage do |page|
     case field
       when 'email field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], '', $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
+        @site_user.details[:email] = ''
+        page.fill_in_form(@site_user.details)
       when 'password field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], '', $site_user[:password])
+        @site_user.details[:password] = ''
+        page.fill_in_form(@site_user.details)
       when 'password confirm field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:password], '')
+        @site_user.details[:password] = ''
+        page.fill_in_form(@site_user.details)
       when 'first name field'
-        page.fill_in_form('', $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
+        @site_user.details[:first_name] = ''
+        page.fill_in_form(@site_user.details)
       when 'last name field'
-        page.fill_in_form($site_user[:first_name], '', $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
+        @site_user.details[:last_name] = ''
+        page.fill_in_form(@site_user.details)
       when 'company field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], '', $site_user[:country], $site_user[:password], $site_user[:password])
+        @site_user.details[:company_name] = ''
+        page.fill_in_form(@site_user.details)
       when 'country field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], nil, $site_user[:password], $site_user[:password])
+        @site_user.details[:country] = ''
+        page.fill_in_form(@site_user.details)
       else
         raise("#{field} was not a recognised field")
     end
@@ -242,27 +258,37 @@ end
 
 
 When(/^I complete the registration with my country as "(.*)" with an empty "(.*)"$/) do |country, field|
-  $site_user = generate_user(country)
+  @site_user = SiteUser.new
+  @site_user.generate(country)
   on RegistrationPage do |page|
     case field
       when 'email field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], '', $site_user[:company_name], country, nil, nil, $site_user[:password], $site_user[:password])
+        @site_user.details[:email] = ''
+        page.fill_in_form(@site_user.details)
       when 'password field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], country, nil, nil, '', $site_user[:password])
+        @site_user.details[:password] = ''
+        page.fill_in_form(@site_user.details)
       when 'password confirm field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], country, nil, nil, $site_user[:password], '')
+        @site_user.details[:password] = ''
+        page.fill_in_form(@site_user.details)
       when 'first name field'
-        page.fill_in_form('', $site_user[:last_name], $site_user[:email], $site_user[:company_name], country, nil, nil, $site_user[:password], $site_user[:password])
+        @site_user.details[:first_name] = ''
+        page.fill_in_form(@site_user.details)
       when 'last name field'
-        page.fill_in_form($site_user[:first_name], '', $site_user[:email], $site_user[:company_name], country, $site_user[:password], $site_user[:password])
+        @site_user.details[:last_name] = ''
+        page.fill_in_form(@site_user.details)
       when 'company field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], '', country, nil, nil, $site_user[:password], $site_user[:password])
+        @site_user.details[:company_name] = ''
+        page.fill_in_form(@site_user.details)
       when 'country field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], nil, nil, nil, $site_user[:password], $site_user[:password])
+        @site_user.details[:country] = ''
+        page.fill_in_form(@site_user.details)
       when 'state field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:city], nil, $site_user[:password], $site_user[:password])
+        @site_user.details[:state] = ''
+        page.fill_in_form(@site_user.details)
       when 'city field'
-        page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], nil, nil, $site_user[:password], $site_user[:password])
+        @site_user.details[:city] = ''
+        page.fill_in_form(@site_user.details)
       else
         raise("#{field} was not a recognised field")
     end
@@ -270,36 +296,22 @@ When(/^I complete the registration with my country as "(.*)" with an empty "(.*)
   end
 end
 
-When(/^I register a new account$/) do
-  $site_user = generate_user
-  puts "Registered user details: #{$site_user[:email]}, #{$site_user[:password]}, #{$site_user[:first_name]} #{$site_user[:last_name]}, #{$site_user[:company_name]}, #{$site_user[:country]}"
-  visit HomePage do |page|
-    page.open_register_page
-  end
-  on RegistrationPage do |page|
-    page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:city], $site_user[:state], $site_user[:password], $site_user[:password])
-    page.accept_all_terms
-    page.create_account
-    page.thanks_message.should == 'Thanks for Registering!'
-    @browser.refresh
-  end
-end
-
 Then(/^I should be registered and logged in$/) do
   begin
-    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
   rescue
     visit HomePage
-    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
   end
 end
 
 When(/^I try to enter passwords that do not match$/) do
-  $site_user = generate_user
+  @site_user = SiteUser.new
+  @site_user.generate
   on RegistrationPage do |page|
-    page.fill_in_form($site_user[:first_name], $site_user[:last_name], $site_user[:email], $site_user[:company_name], $site_user[:country], $site_user[:password], 'password')
+    page.enter_password(@site_user.details[:password], '123')
     page.create_account
   end
 end
@@ -315,9 +327,11 @@ Then(/^I should see the Registration page$/) do
 end
 
 When(/^I try to register with an existing OpenShift registered email$/) do
-  $site_user = generate_user
+  @site_user = SiteUser.new
+  @site_user.generate
   on RegistrationPage do |page|
-    page.fill_in_form($site_user[:first_name], $site_user[:last_name], 'velias+emailveriftest@redhat.com', $site_user[:company_name], $site_user[:country], $site_user[:password], $site_user[:password])
+    @site_user.details[:email] = 'velias+emailveriftest@redhat.com'
+    page.fill_in_form(@site_user.details)
   end
 end
 
@@ -340,7 +354,7 @@ Then(/^each term should link to relevant terms and conditions page:$/) do |table
 end
 
 Then(/^I should receive an email containing a verify email link$/) do
-  @verification_email = get_email($site_user[:email])
+  @verification_email = get_email(@site_user.details[:email])
   puts "Verification link was: #{@verification_email}"
   expect(@verification_email.to_s).to include('first-broker-login?')
 end
@@ -348,17 +362,6 @@ end
 And(/^I navigate to the verify email link$/) do
   close_and_reopen_browser
   @browser.goto(@verification_email)
-end
-
-
-Then(/^I should see the extended registration page with a message "([^"]*)"$/) do |message|
-  expect(@page.extended_registration.registration_hint).to include(message)
-end
-
-When(/^I complete the extended registration form and accept the terms and conditions$/) do
-  @page.extended_registration.fill_in_extended_form($site_user[:email], $site_user[:password], $site_user[:password], $site_user[:greeting], $site_user[:first_name], $site_user[:last_name], $site_user[:company_name], $site_user[:address_line_one], $site_user[:city], $site_user[:postal_code], $site_user[:country], $site_user[:phone_number])
-  @page.extended_registration.checkall_tac
-  @page.extended_registration.click_create_account_and_download
 end
 
 And(/^I am logged in$/) do
@@ -376,11 +379,13 @@ And(/^I choose to register a new account using my GitHub account$/) do
   on LoginPage do |page|
     page.click_register_link
   end
+
   @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
-  $site_user = @github_admin.generate_user_for_session($session_id)
-  @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
-  puts "Added new email to Github profile: #{$site_user[:email]}"
-  on RegistrationPage do |page|
+  @site_user = SiteUser.new
+  @site_user.generate
+  @github_admin.update_profile("#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}", @site_user.details[:email], @site_user.details[:company_name])
+
+  on DownloadRegistrationPage do |page|
     page.click_register_with_github
   end
   on GitHubPage do |page|
@@ -388,7 +393,7 @@ And(/^I choose to register a new account using my GitHub account$/) do
     page.authorize_app
   end
   on AdditionalActionPage do |page|
-    expect(page.email_field.value).to eq $site_user[:email]
+    expect(page.email_field.value).to eq @site_user.details[:email]
   end
 end
 
@@ -398,16 +403,14 @@ When(/^I choose to register a new account using a GitHub account that contains m
     page.click_register_link
   end
 
-  # log in to Github API
   @github_admin = GitHubAdmin.new('rhdalreadyregistered01', 'P@$$word01')
 
-  # generate new user and update their Github profile
-  $site_user = @github_admin.generate_user_for_session($session_id)
+  @site_user = SiteUser.new
+  @site_user.generate
 
-  @github_admin.update_profile('', $site_user[:email], '')
-  puts "Added new email to Github profile: #{$site_user[:email]}"
+  @github_admin.update_profile('', '', '')
 
-  on RegistrationPage do |page|
+  on DownloadRegistrationPage do |page|
     page.click_register_with_github
   end
 

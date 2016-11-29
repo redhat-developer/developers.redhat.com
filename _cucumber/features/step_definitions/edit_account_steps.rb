@@ -2,25 +2,25 @@ And(/^the following newly registered details should be added to my profile:$/) d
   on EditAccountPage do |page|
     table.raw.each do |row|
       element = row.first
-      keycloak_admin = KeyCloak.new
+      keycloak_admin = KeyCloakAdmin.new
       case element
         when 'Username'
-          expect(page.username_field.value).to eq $site_user[:email].gsub('@redhat.com', '').gsub('+', '-').gsub('_', '')
+          expect(page.username_field.value).to eq @site_user.details[:email].gsub('@redhat.com', '').gsub('+', '-').gsub('_', '')
         when 'Email'
-          expect(page.email_field.value).to eq $site_user[:email]
+          expect(page.email_field.value).to eq @site_user.details[:email]
         when 'First Name'
-          expect(page.first_name_field.value.downcase).to eq $site_user[:first_name].downcase
+          expect(page.first_name_field.value.downcase).to eq @site_user.details[:first_name].downcase
         when 'Last name'
-          expect(page.last_name_field.value.downcase).to eq $site_user[:last_name].downcase
+          expect(page.last_name_field.value.downcase).to eq @site_user.details[:last_name].downcase
         when 'Company'
-          expect(page.company_field.value.downcase).to eq $site_user[:company_name].downcase
+          expect(page.company_field.value.downcase).to eq @site_user.details[:company_name].downcase
         when 'Country'
-          expect(page.country).to eq $site_user[:country]
+          expect(page.country).to eq @site_user.details[:country]
         when 'Red Hat Developer Program subscription date'
-          reg_date = keycloak_admin.get_registration_date($site_user[:email])
+          reg_date = keycloak_admin.get_registration_date(@site_user.details[:email])
           expect(page.agreement_date.value).to eq reg_date
         when 'Privacy & Subscriptions status'
-          status = keycloak_admin.get_subscription_status($site_user[:email])
+          status = keycloak_admin.get_subscription_status(@site_user.details[:email])
           expect(page.receive_newsletter.set?).to be status
         else
           raise("#{element} was not a recognised field")
@@ -36,22 +36,22 @@ And(/^the following additional information should be added to my profile:$/) do 
       keycloak_admin = KeyCloak.new
       case element
         when 'Username'
-          expect(page.username_field.attribute('value')).to eq $site_user[:email]
+          expect(page.username_field.attribute('value')).to eq @site_user.details[:email]
         when 'Email'
-          expect(page.email_field.attribute('value')).to eq $site_user[:email]
+          expect(page.email_field.attribute('value')).to eq @site_user.details[:email]
         when 'First Name'
-          expect(page.first_name_field.attribute('value')).to eq $site_user[:first_name]
+          expect(page.first_name_field.attribute('value')).to eq @site_user.details[:first_name]
         when 'Last name'
-          expect(page.last_name_field.attribute('value')).to eq $site_user[:last_name]
+          expect(page.last_name_field.attribute('value')).to eq @site_user.details[:last_name]
         when 'Company'
-          expect(page.company_field.attribute('value')).to eq $site_user[:company_name]
+          expect(page.company_field.attribute('value')).to eq @site_user.details[:company_name]
         when 'Country'
-          expect(page.country).to eq $site_user[:country]
+          expect(page.country).to eq @site_user.details[:country]
         when 'Red Hat Developer Program subscription date'
-          reg_date = keycloak_admin.get_registration_date($site_user[:email])
+          reg_date = keycloak_admin.get_registration_date(@site_user.details[:email])
           expect(page.agreement_date.attribute('value')).to eq reg_date
         when 'Privacy & Subscriptions status'
-          status = keycloak_admin.get_subscription_status($site_user[:email])
+          status = keycloak_admin.get_subscription_status(@site_user.details[:email])
           expect(page.receive_newsletter.selected?).to be status
         else
           raise("#{element} was not a recognised field")
@@ -61,10 +61,10 @@ And(/^the following additional information should be added to my profile:$/) do 
 end
 
 When(/^I change my email address$/) do
-  puts "Initial email address was #{$site_user[:email]}"
+  puts "Initial email address was #{@site_user.details[:email]}"
   @updated_email = $site_user[:email].gsub($session_id, Faker::Lorem.characters(5))
   $site_user[:email] = @updated_email
-  puts "Updated email email address was #{$site_user[:email]}}"
+  puts "Updated email email address was #{@site_user.details[:email]}}"
   on EditAccountPage do |page|
     page.edit_profile(@updated_email, nil, nil, nil, nil)
     page.click_save_btn
@@ -73,12 +73,12 @@ When(/^I change my email address$/) do
 end
 
 When(/^I change my details/) do
-  $site_user[:first_name] = Faker::Name.first_name
-  $site_user[:last_name] = Faker::Name.last_name
-  $site_user[:company_name] = Faker::Company.name
+  @site_user.details[:first_name] = Faker::Name.first_name
+  @site_user.details[:last_name] = Faker::Name.last_name
+  @site_user.details[:company_name] = Faker::Company.name
 
   on EditAccountPage do |page|
-    page.edit_profile($site_user[:first_name], $site_user[:last_name], $site_user[:company_name])
+    page.edit_profile(@site_user.details[:first_name], @site_user.details[:last_name], @site_user.details[:company_name])
     page.click_save_btn
     expect(page.alert_box_message).to eq('Your account has been updated.')
   end
@@ -89,14 +89,14 @@ Then(/^on my next log in I can successfully use the recently added email$/) do
   @current_page.click_logout
   @current_page.logged_out?
   on LoginPage do |page|
-    page.login_with(@updated_email, $site_user[:password])
+    page.login_with(@updated_email, @site_user.details[:password])
     expect(page.logged_in?).to be true
   end
 end
 
 And(/^the email field should be be updated on my profile$/) do
   visit EditAccountPage do |page|
-    expect(page.email_field_value).to eq $site_user[:email]
+    expect(page.email_field_value).to eq @site_user.details[:email]
   end
 end
 
@@ -105,22 +105,22 @@ Then(/^I should see a (success|error) message "([^"]*)"$/) do |negate, message|
 end
 
 And(/^my logged in name should be updated to reflect this change$/) do
-  name = "#{$site_user[:first_name]} #{$site_user[:last_name]}".upcase
+  name = "#{@site_user.details[:first_name]} #{@site_user.details[:last_name]}".upcase
   expect(@current_page.profile_name_updated?(name)).to be true
 end
 
 And(/^the customer portal should be updated$/) do
   it_admin = ItAdmin.new
-  user = it_admin.find_user_by_email($site_user[:email])
-  expect(user[0]['personalInfo']['firstName']).to eq($site_user[:first_name])
-  expect(user[0]['personalInfo']['lastName']).to eq($site_user[:last_name])
-  expect(user[0]['personalInfo']['company']).to eq($site_user[:company_name])
+  user = it_admin.find_user_by_email(@site_user.details[:email])
+  expect(user[0]['personalInfo']['firstName']).to eq(@site_user.details[:first_name])
+  expect(user[0]['personalInfo']['lastName']).to eq(@site_user.details[:last_name])
+  expect(user[0]['personalInfo']['company']).to eq(@site_user.details[:company_name])
   expect(user[0]['personalSite']['address']['countryCode']).to eq('GB')
 end
 
 And(/^my details are changed on the customer portal$/) do
   it_admin = ItAdmin.new
-  it_admin.update_user($site_user[:email], 'Just Testing Inc', 'Ian', 'Hamilton')
+  it_admin.update_user(@site_user.details[:email], 'Just Testing Inc', 'Ian', 'Hamilton')
 end
 
 Then(/^the changes from the Customer Portal are propagated to my RHD user profile$/) do
@@ -140,7 +140,7 @@ end
 
 Then(/^I should not have any social accounts associated with me$/) do
   keycloak_admin = KeyCloak.new
-  logins = keycloak_admin.get_social_logins($site_user[:email])
+  logins = keycloak_admin.get_social_logins(@site_user.details[:email])
   expect(logins.none?).to eq true
 end
 
@@ -163,13 +163,13 @@ Then(/^my account should be linked$/) do
     expect(page.remove_github_btn_present?).to be true
   end
   keycloak_admin = KeyCloak.new
-  logins = keycloak_admin.get_social_logins($site_user[:email])
+  logins = keycloak_admin.get_social_logins(@site_user.details[:email])
   expect(logins.none?).to eq false
 end
 
 When(/^I change my password$/) do
   on ChangePasswordPage do |page|
-    page.change_password($site_user[:password], 'NewPa$$word', 'NewPa$$word')
+    page.change_password(@site_user.details[:password], 'NewPa$$word', 'NewPa$$word')
     wait_for { page.alert_box_message == 'Your password has been updated.' }
   end
 end
@@ -221,13 +221,13 @@ end
 
 When(/^I enter passwords which don't match$/) do
   on ChangePasswordPage do |page|
-    page.change_password($site_user[:password], 'password01', 'P@££word01')
+    page.change_password(@site_user.details[:password], 'password01', 'P@££word01')
   end
 end
 
 When(/^I enter passwords containing less than six characters$/) do
   on ChangePasswordPage do |page|
-    page.change_password($site_user[:password], 'pass1', 'pass1')
+    page.change_password(@site_user.details[:password], 'pass1', 'pass1')
   end
 end
 

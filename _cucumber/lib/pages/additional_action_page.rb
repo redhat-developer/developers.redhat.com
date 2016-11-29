@@ -32,16 +32,16 @@ class AdditionalActionPage < SiteBase
   value(:feedback)                       { |p| p.warning.text }
   value(:email_field_error_text)         { |p| p.email_field_error.text }
 
-  def fill_in(email, password, first_name, last_name, company, phone_number, country, city, state)
-    type(email_field, email) unless email.nil?
-    enter_password(password, password) unless password.nil?
-    type(first_name_field, first_name) unless first_name.nil?
-    type(last_name_field, last_name) unless last_name.nil?
-    type(company_field, company) unless company.nil?
-    type(phone_number_field, phone_number) unless phone_number.nil?
-    select_country(country) unless country.nil?
-    select_state(state) unless state.nil?
-    type(city_field, city) unless city.nil?
+  def fill_in(options = {})
+    enter_password(options[:password], options[:password]) if password_field.present?
+    type(email_field, options[:email])
+    type(first_name_field, options[:first_name])
+    type(last_name_field, options[:last_name])
+    type(company_field, options[:company_name])
+    type(phone_number_field, options[:phone_number])
+    select_country(options[:country])
+    select_state(options[:state]) unless options[:state] == nil
+    type(city_field, options[:city]) unless options[:city] == nil
   end
 
   def enter_email(email)
