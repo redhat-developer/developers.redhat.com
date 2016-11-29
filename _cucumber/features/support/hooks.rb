@@ -8,13 +8,14 @@ Before('@products') do
 end
 
 After('@delete_user') do
-  keycloak_admin = KeyCloak.new
-  keycloak_admin.delete_user($site_user[:email])
+  keycloak_admin = KeyCloakAdmin.new
+  puts "Deleting user: #{@site_user.details[:email]}"
+  keycloak_admin.delete_user(@site_user.details[:email])
 end
 
 After('@unlink_social_provider') do
-  keycloak_admin = KeyCloak.new
-  keycloak_admin.unlink_social_provider($site_user[:email])
+  keycloak_admin = KeyCloakAdmin.new
+  keycloak_admin.unlink_social_provider(@site_user.details[:email])
 end
 
 After('@github_teardown') do

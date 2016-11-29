@@ -14,50 +14,51 @@ Feature: Log in using my RHD registered details.
 
   @logout
   Scenario: A customer whom has the correct login credentials can log in using their username
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     And I am on the Login page
     When I log in with a valid username
     Then I should be logged in
 
   @logout
   Scenario: A customer whom has the correct login credentials can log in using their email address
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     And I am on the Login page
     When I log in with a valid email address
     Then I should be logged in
 
   Scenario: A customer has incorrect login credentials (the password is incorrect)
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     And I am on the Login page
     When I log in with an incorrect password
     Then the following error message should be displayed: Invalid login or password.
 
   Scenario: A customer tries to login with an invalid email address (e.g. xxx@xx)
-    Given I am on the Login page
+    Given I am a RHD registered site visitor
+    And I am on the Login page
     When I log in with an invalid email address
     Then the following error message should be displayed: Invalid login or password.
 
   @logout
   Scenario: Successful logout
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     And I am on the Login page
     When I log in with a valid password
     Then I should be logged in
     And I click the Logout link
     Then I should be logged out
 
-  @nightly
+  @slow
   Scenario: A customer who has forgotten their login details can request a password reset
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     And I am on the Login page
     When I click the forgot password link
     And submit my email address
     Then I should see a confirmation message: "You will receive an email shortly with instructions on how to create a new password. TIP: Check your junk or spam folder if you are unable to find the email."
     And I should receive an email containing a password reset link
 
-  @nightly @logout
+  @slow @logout
   Scenario: A customer can successfully reset their password
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     And I am on the Login page
     When I click the forgot password link
     And submit my email address
@@ -69,9 +70,9 @@ Feature: Log in using my RHD registered details.
   @logout
   Scenario: New User can login with active OpenShift.com account (simple user account)
     Given I am on the Login page
-    When I log in with an active OpenShift.com account
+    When I log in with an active OpenShift account
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
-    And I complete the required additional information
+    And I complete the additional action required page and proceed
     Then I should be logged in
 
   @logout
@@ -79,7 +80,7 @@ Feature: Log in using my RHD registered details.
     Given I am on the Login page
     And I log in with a active Customer portal account
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
-    When I accept the RHD terms and conditions
+    And I complete the additional action required page and proceed
     Then I should be logged in
 
   # returns 500 error from I.T backend
