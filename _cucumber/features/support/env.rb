@@ -17,8 +17,10 @@ require 'octokit'
 require 'date'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
-Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract*.rb"].each { |page| load page }
+Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/*.rb"].each { |helper| load helper }
+Dir["#{File.dirname(__FILE__)}/../../lib/helpers/rest/*/*.rb"].each { |helper| load helper }
+Dir["#{File.dirname(__FILE__)}/../../lib/helpers/rest/*.rb"].each { |helper| load helper }
 
 $os = :linux if RUBY_PLATFORM.include? 'linux'
 $os = :mac if RUBY_PLATFORM.include? 'darwin'
@@ -80,16 +82,4 @@ end
 
 at_exit do
   b.browser.quit
-
-  if ENV['RHD_TEST_PROFILE'] == 'nightly'
-    # # ensure that all social registrations are removed from keycloak at the end of test run, so they do not interfere with subsequent test runs
-    admin = KeyCloak.new
-    email_one = admin.get_user_by("redhat-developers-testers+sid_#{$session_id}")
-    unless email_one.empty?
-      email_one.each do |user|
-        admin.delete_user(user['email'])
-      end
-    end
-  end
-
 end

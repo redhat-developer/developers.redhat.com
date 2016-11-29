@@ -5,7 +5,7 @@ class DownloadsPage < SiteBase
   expected_element(:h2, text: 'Downloads')
   #page_title('Downloads | Red Hat Developers')
 
-  element(:wait_until_loaded)              { |b| b.element(css: '#downloads .fa-refresh').wait_while(&:present?) }
+  element(:loading_spinner)                { |b| b.element(css: '#downloads .fa-refresh') }
   element(:most_popular_section)           { |b| b.div(class: 'most-popular-downloads') }
   elements(:download_buttons)              { |b| b.buttons(css: '#downloads .fa-download') }
   elements(:most_popular_download_buttons) { |b| b.buttons(css: '.most-popular-downloads .fa-download') }
@@ -14,6 +14,10 @@ class DownloadsPage < SiteBase
   value(:most_popular_downloads)           { |p| p.most_popular_section.text }
   value(:most_popular_downloads_btns)      { |p| p.most_popular_download_buttons.size }
   value(:download_btns)                    { |p| p.download_buttons.size }
+
+  def wait_until_loaded
+    wait_for_ajax && loading_spinner.wait_while(&:present?) rescue raise('Sorry Download buttons were still loading after 30 seconds')
+  end
 
   def available_downloads
     products = []

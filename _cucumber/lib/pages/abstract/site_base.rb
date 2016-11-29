@@ -5,6 +5,7 @@ require_relative '../../../../_cucumber/lib/helpers/page_helper'
 class SiteBase < GenericBasePage
   include DriverHelper, PageHelper
 
+  element(:nav)                     { |b| b.element(class: 'logged-in') }
   element(:login_link)              { |b| b.li(class: 'login') }
   element(:logout_link)             { |b| b.link(class: 'logout') }
   element(:register_link)           { |b| b.li(class: 'register') }

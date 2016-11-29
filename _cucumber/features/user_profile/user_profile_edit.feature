@@ -1,24 +1,24 @@
+@slow
 @kc
-
 Feature: User Profile Edit
 
   @logout
   Scenario: User cannot edit their username on RHD
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
     When I am on the Edit Details page
     Then the username field should be disabled
 
   @logout
   Scenario: User cannot edit their rhd registered email
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     And I am logged into RHD
     When I am on the Edit Details page
     Then the email field should be readonly
 
   @logout
   Scenario: Edit Account page required field validation
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
     When I am on the Edit Details page
      And I clear all required field
@@ -30,7 +30,7 @@ Feature: User Profile Edit
 
   @logout
   Scenario: First name field should accept no more than 45 characters
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
     When I am on the Edit Details page
      And I enter 50 characters into the "first name" field
@@ -38,7 +38,7 @@ Feature: User Profile Edit
 
   @logout
   Scenario: Company field should accept no more than 45 characters
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
     When I am on the Edit Details page
      And I enter 50 characters into the "last name" field
@@ -46,15 +46,15 @@ Feature: User Profile Edit
 
   @logout
   Scenario: Last name field should accept no more than 45 characters
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
     When I am on the Edit Details page
      And I enter 50 characters into the "last name" field
     Then I should see a "last name field" validation error "Please enter no more than 45 characters."
 
-  @logout @nightly
+  @logout
   Scenario: User can edit their RHD user profile first name, last name, company and country.
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
     When I am on the Edit Details page
      And I change my details
@@ -71,7 +71,7 @@ Feature: User Profile Edit
 
   @logout
   Scenario: RHD user profile change is propagated to Customer portal
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
     When I am on the Edit Details page
      And I change my details
@@ -89,16 +89,16 @@ Feature: User Profile Edit
 
   @logout @github_teardown @delete_user
   Scenario: User links new social account to existing RHD account
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
     And I am on the Social Login page
     When I click to link my github account
      And log into GitHub
     Then my account should be linked
 
-  @logout @nightly
+  @logout
   Scenario: User can successfully change their password
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
      And I am on the Change Password page
     When I change my password
@@ -107,7 +107,7 @@ Feature: User Profile Edit
 
   @logout
   Scenario: User enters passwords that do not match
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
      And I am logged into RHD
      And I am on the Change Password page
     When I enter passwords which don't match
@@ -115,7 +115,7 @@ Feature: User Profile Edit
 
   @logout
   Scenario: User enters passwords less than six characters
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     When I am logged into RHD
      And I am on the Change Password page
      And I enter passwords containing less than six characters
@@ -123,7 +123,7 @@ Feature: User Profile Edit
 
   @logout
   Scenario: User attempts to change password without entering their current password
-    Given I am a registered site visitor
+    Given I am a RHD registered site visitor
     When I am logged into RHD
      And I am on the Change Password page
      And I enter matching passwords, leaving my previous password empty

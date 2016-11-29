@@ -1,7 +1,7 @@
 And(/^I fill in my country and company$/) do
   on AdditionalInformationPage do |page|
-    page.enter_company($site_user[:company_name])
-    page.select_country($site_user[:country])
+    page.enter_company(@site_user.details[:company_name])
+    page.select_country(@site_user.details[:country])
   end
 end
 

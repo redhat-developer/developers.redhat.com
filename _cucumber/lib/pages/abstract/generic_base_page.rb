@@ -23,7 +23,7 @@ class GenericBasePage
 
   def self.expected_element(type, identifier)
     define_method 'expected_element' do
-      @browser.send("#{type.to_s}", identifier)
+      @browser.send("#{type.to_s}", identifier).wait_until(message: "Element #{identifier} was not visible after 30 seconds", &:present?)
     end
   end
 
@@ -32,6 +32,16 @@ class GenericBasePage
       has_expected_title = expected_title.kind_of?(Regexp) ? expected_title =~ @browser.title : expected_title == @browser.title
       raise "Expected title '#{expected_title}' instead of '#{title}'" unless has_expected_title
     end
+  end
+
+  def wait_for_ajax(message = nil)
+    end_time = ::Time.now + 30
+    until ::Time.now > end_time
+      return if @browser.execute_script("return window.jQuery != undefined && jQuery.active == 0")
+      sleep 0.5
+    end
+    message = 'Timed out waiting for ajax requests to complete' unless message
+    raise message
   end
 
   def method_missing(sym, *args, &block)
@@ -49,4 +59,5 @@ class GenericBasePage
     alias :elements :element
     alias :action :element
   end
+
 end

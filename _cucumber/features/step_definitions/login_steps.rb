@@ -1,9 +1,9 @@
 Given(/^I log in with (an|a) (valid|incorrect) password$/) do |arg, negate|
   on LoginPage do |page|
     if negate.eql?('valid')
-      page.login_with($site_user[:email], $site_user[:password])
+      page.login_with(@site_user.details[:email], @site_user.details[:password])
     else
-      page.login_with($site_user[:email], 'incorrect')
+      page.login_with(@site_user.details[:email], 'incorrect')
     end
   end
 end
@@ -11,19 +11,29 @@ end
 Given(/^I log in with (an|a) (valid|incorrect) username$/) do |arg, negate|
   on LoginPage do |page|
     if negate.eql?('valid')
-      page.login_with($site_user[:username], $site_user[:password])
+      page.login_with(@site_user.details[:username], @site_user.details[:password])
     else
       page.login_with('fail', 'password')
     end
   end
 end
 
+Given(/^I have previously logged in$/) do
+  visit HomePage do |page|
+    page.open_login_page
+  end
+  on LoginPage do |page|
+    page.login_with(@site_user.details[:email], @site_user.details[:password])
+  end
+  expect(@current_page.logged_in?).to eq(@site_user.details[:full_name])
+end
+
 When(/^I am logged into RHD$/) do
   visit HomePage do |page|
     page.open_login_page
     on LoginPage do |page|
-      page.login_with($site_user[:username], $site_user[:password])
-      expect(page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+      page.login_with(@site_user.details[:username], @site_user.details[:password])
+      expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     end
   end
 end
@@ -33,79 +43,73 @@ Given(/^I am logged in to RHD using my portal account$/) do
     page.open_login_page
   end
   on LoginPage do |page|
-    page.login_with($site_user[:email], $site_user[:password])
+    page.login_with(@site_user.details[:email], @site_user.details[:password])
   end
   on AdditionalInformationPage do |page|
     page.fulluser_tac_accept
     page.click_submit
-    expect(page.logged_in?).to eq($site_user[:full_name])
+    expect(page.logged_in?).to eq(@site_user.details[:full_name])
   end
 end
 
 Given(/^I log in with (an|a) (valid|invalid) email address$/) do |arg, negate|
   on LoginPage do |page|
     if negate.eql?('valid')
-      page.login_with($site_user[:email], $site_user[:password])
+      page.login_with(@site_user.details[:email], @site_user.details[:password])
     else
       page.login_with('testUser.com', 'P@$$word01')
     end
   end
 end
 
-When(/^I log in with an active OpenShift\.com account$/) do
-  it_admin = ItAdmin.new
-  $site_user = it_admin.create_simple_user
-  puts "Created simple user #{$site_user[:email]}"
+When(/^I log in with an active OpenShift account$/) do
+  @site_user = SiteUser.new
+  @site_user.create('openshift')
 
   on LoginPage do |page|
-    page.login_with($site_user[:email], $site_user[:password])
+    page.login_with(@site_user.details[:email], @site_user.details[:password])
   end
 end
 
 When(/^I log in with a (active|deactivated) Customer portal account$/) do |negate|
-  it_admin = ItAdmin.new
+  @site_user = SiteUser.new
   if negate == 'active'
-    $site_user = it_admin.create_full_user
+    @site_user.create('openshift')
   else
-    $site_user = it_admin.create_full_user
-    it_admin.disable_user($site_user[:email])
+    @site_user.create('openshift')
+    @site_user.deactivate(@site_user.details[:email])
   end
   on LoginPage do |page|
-    page.login_with($site_user[:email], $site_user[:password])
+    page.login_with(@site_user.details[:email], @site_user.details[:password])
   end
 end
 
 When(/^I log in with an account that is already linked to my Github account$/) do
 
-  # register new user via keycloak api
-  keycloak = KeyCloak.new
-  $site_user = keycloak.register_new_user
-
-  # link a social provider to newly registered customer using keycloak api
-  $site_user = $site_user.merge(github_account_holder)
-  keycloak.link_social_provider($site_user[:email], $site_user[:identity_provider], $site_user[:user_id], $site_user[:user_name])
-
+  @site_user = SiteUser.new
+  @site_user.create('rhd')
+  @site_user.link_social_account(@site_user.details[:email])
   on LoginPage do |page|
     page.click_login_with_github
   end
   on GitHubPage do |page|
-    page.login_with($site_user[:user_name], $site_user[:git_password])
+    page.login_with('rhdsociallogin', 'P@$$word01')
   end
 end
 
 Then(/^I should be logged in$/) do
   begin
-    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
   rescue
     visit HomePage
-    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
   end
 end
 
 Then(/^I should still be be logged in on the Home page$/) do
-  expect(@current_page.logged_in?).to eq $site_user[:full_name]
+  expect(@current_page.logged_in?).to eq @site_user.details[:full_name]
   on HomePage do |page|
     expect(page.title).to eq('Red Hat Developers')
   end
@@ -139,16 +143,6 @@ When(/^I click on the Create account link$/) do
   end
 end
 
-Given(/^I have previously logged in$/) do
-  visit HomePage do |page|
-    page.open_login_page
-  end
-  on LoginPage do |page|
-    page.login_with($site_user[:email], $site_user[:password])
-  end
-  expect(@current_page.logged_in?).to eq($site_user[:full_name])
-end
-
 Then(/^I should see the Log in page with the message "([^"]*)"$/) do |title|
   on LoginPage
   expect(@browser.text).to include(title)
@@ -157,7 +151,7 @@ end
 Then(/^I can log back into RHD using my newly created password$/) do
   @current_page.open_login_page
   on LoginPage do |page|
-    page.login_with($site_user[:email], 'NewPa$$word')
-    expect(page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+    page.login_with(@site_user.details[:email], 'NewPa$$word')
+    expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
   end
 end
