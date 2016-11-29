@@ -1,5 +1,5 @@
-@kc
 @slow
+@kc
 Feature: User Profile Edit
 
   @logout

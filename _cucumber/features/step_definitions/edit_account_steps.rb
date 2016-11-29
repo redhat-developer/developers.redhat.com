@@ -62,8 +62,8 @@ end
 
 When(/^I change my email address$/) do
   puts "Initial email address was #{@site_user.details[:email]}"
-  @updated_email = $site_user[:email].gsub($session_id, Faker::Lorem.characters(5))
-  $site_user[:email] = @updated_email
+  @updated_email = @site_user.details[:email].gsub($session_id, Faker::Lorem.characters(5))
+  @site_user.details[:email] = @updated_email
   puts "Updated email email address was #{@site_user.details[:email]}}"
   on EditAccountPage do |page|
     page.edit_profile(@updated_email, nil, nil, nil, nil)
@@ -162,7 +162,7 @@ Then(/^my account should be linked$/) do
   on SocialLoginPage do |page|
     expect(page.remove_github_btn_present?).to be true
   end
-  keycloak_admin = KeyCloak.new
+  keycloak_admin = KeyCloakAdmin.new
   logins = keycloak_admin.get_social_logins(@site_user.details[:email])
   expect(logins.none?).to eq false
 end

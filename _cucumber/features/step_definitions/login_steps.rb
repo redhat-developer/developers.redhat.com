@@ -33,7 +33,7 @@ When(/^I am logged into RHD$/) do
     page.open_login_page
     on LoginPage do |page|
       page.login_with(@site_user.details[:username], @site_user.details[:password])
-      expect(page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
+      expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     end
   end
 end
@@ -109,7 +109,7 @@ Then(/^I should be logged in$/) do
 end
 
 Then(/^I should still be be logged in on the Home page$/) do
-  expect(@current_page.logged_in?).to eq $site_user[:full_name]
+  expect(@current_page.logged_in?).to eq @site_user.details[:full_name]
   on HomePage do |page|
     expect(page.title).to eq('Red Hat Developers')
   end
@@ -151,7 +151,7 @@ end
 Then(/^I can log back into RHD using my newly created password$/) do
   @current_page.open_login_page
   on LoginPage do |page|
-    page.login_with($site_user[:email], 'NewPa$$word')
+    page.login_with(@site_user.details[:email], 'NewPa$$word')
     expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
   end
 end

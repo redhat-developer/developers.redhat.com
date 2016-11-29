@@ -86,52 +86,6 @@ When(/^I register a new account using my GitHub account$/) do
   end
 end
 
-When(/^I register a new account from (.*) using my GitHub account$/) do |country|
-  @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
-
-  # generate new user and update their Github profile
-  $site_user = @github_admin.generate_user_for_session(country, $session_id)
-  @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
-  puts "Added new email to Github profile: #{$site_user[:email]}"
-
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
-
-  on GitHubPage do |page|
-    page.login_with('rhdScenarioOne', 'P@$$word01')
-    page.authorize_app
-  end
-
-end
-
-
-When(/^I try to link a GitHub account to an existing account$/) do
-  @github_admin = GitHubAdmin.new('rhdScenarioTwo', 'P@$$word01')
-
-  # generate new user and update their Github profile
-  keycloak = KeyCloak.new
-  $site_user = keycloak.register_new_user
-  p "Registered user with email #{$site_user[:email]}"
-  @github_admin.update_profile("#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}", $site_user[:email], $site_user[:company_name])
-
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
-
-  on GitHubPage do |page|
-    page.login_with('rhdScenarioTwo', 'P@$$word01')
-    page.authorize_app
-  end
-
-  on AdditionalInformationPage do |page|
-    page.fill_in(nil, 'P@$$word01', nil, nil, nil, $site_user[:country])
-    page.accept_all_terms
-    page.click_submit
-  end
-
-end
-
 When(/^I link a GitHub account to my existing account$/) do
   @github_admin = GitHubAdmin.new('rhdScenarioTwo', 'P@$$word01')
 
@@ -166,29 +120,6 @@ When(/^I register a new account using a GitHub account that contains missing pro
     page.authorize_app
   end
 end
-
-When(/^I register a new account from (.*) using a GitHub account that contains missing profile information$/) do |country|
-
-  # log in to Github API
-  @github_admin = GitHubAdmin.new('rhdalreadyregistered01', 'P@$$word01')
-
-  # generate new user and update their Github profile
-  $site_user = @github_admin.generate_user_for_session(country, $session_id)
-
-  @github_admin.update_profile('', $site_user[:email], '')
-  puts "Added new email to Github profile: #{$site_user[:email]}"
-
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
-
-  on GitHubPage do |page|
-    page.login_with('rhdalreadyregistered01', 'P@$$word01')
-    page.authorize_app
-  end
-
-end
-
 
 When(/^I try to register using a GitHub account that contains missing profile information with an existing RHD registered email$/) do
 
@@ -362,17 +293,6 @@ end
 And(/^I navigate to the verify email link$/) do
   close_and_reopen_browser
   @browser.goto(@verification_email)
-end
-
-And(/^I am logged in$/) do
-  begin
-    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
-    @current_page.toggle_menu_close
-  rescue
-    @browser.refresh
-    expect(@current_page.logged_in?).to eq "#{$site_user[:first_name].upcase} #{$site_user[:last_name].upcase}"
-    @current_page.toggle_menu_close
-  end
 end
 
 And(/^I choose to register a new account using my GitHub account$/) do

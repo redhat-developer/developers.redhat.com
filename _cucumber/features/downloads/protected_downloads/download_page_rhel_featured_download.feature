@@ -1,5 +1,4 @@
 @desktop
-@kc
 @dm
 Feature: Download page - RHEL featured download.
 
