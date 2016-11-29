@@ -85,11 +85,11 @@ function rhd_common_theme($existing, $type, $theme, $path)
  */
 function rhd_common_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode)
 {
-    if ($view_mode == 'full') {
+    if ($view_mode == 'full' && $node->getType() === 'product') {
         $current_path = \Drupal::service('path.current')->getPath();
         $path_args = explode('/', $current_path);
         if ($path_args[1] == 'node') {
-            $product_code = $node->field_product_machine_name->value;
+            $product_code = $node->field_url_product_name->value;
             if (!empty($product_code)) {
                 $url = Url::fromRoute('rhd_common.main_page_controller', array(
                   'product_code' => $product_code,
@@ -113,8 +113,7 @@ function rhd_common_preprocess_paragraph(&$variables)
     $entity = $variables['paragraph']->getParentEntity();
     if ($entity instanceof \Drupal\Core\Entity\FieldableEntityInterface) {
         if ($entity->hasField('field_product_machine_name')) {
-            $product_machine_name = $entity->field_product_machine_name->value;
-            $variables['product_machine_name'] = $product_machine_name['value'];
+            $variables['product_machine_name'] = $entity->field_product_machine_name->value;
 
             // Same thing for the name of the product
             $variables['product_name'] = $entity->label();
@@ -122,8 +121,7 @@ function rhd_common_preprocess_paragraph(&$variables)
 
         // Same thing for the short name, but if there isn't one, use the long name
         if ($entity->hasField('field_product_short_name')) {
-            $product_short_name = $entity->field_product_short_name->value;
-            $variables['product_short_name'] = $product_short_name['value'];
+            $variables['product_short_name'] = $entity->field_product_short_name->value;
         } else {
             $variables['product_short_name'] = $variables['product_name'];
         }
@@ -202,7 +200,7 @@ function rhd_common_preprocess_paragraph__get_started(&$variables)
             'class' => 'tabs nav-tabs current-tabs',
             'data-tab' => '',
             'role' => 'tablist',
-            'data-options' => 'scroll_to_content:false' // removing 'deep_linking:true;' because it breaks things
+            'data-options' => 'scroll_to_content:false;deep_linking:true;'
           ]
         ];
     }

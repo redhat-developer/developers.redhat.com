@@ -8,18 +8,17 @@ dependencies:
     - field.field.node.product.field_product_pages
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
+    - field.field.node.product.field_url_product_name
     - node.type.product
   module:
     - field_group
     - paragraphs
-    - path
     - text
 third_party_settings:
   field_group:
     group_global_information:
       children:
         - field_product_summary
-        - field_product_get_started
       parent_name: group_product_info
       weight: 2
       format_type: tab
@@ -50,7 +49,7 @@ third_party_settings:
         - group_global_information
         - group_sub_pages
       parent_name: ''
-      weight: 4
+      weight: 5
       format_type: tabs
       format_settings:
         id: ''
@@ -64,7 +63,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 7
     settings: {  }
     third_party_settings: {  }
   field_product_category:
@@ -103,11 +102,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-  path:
-    type: path
-    weight: 7
-    settings: {  }
+  field_url_product_name:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
+    type: string_textfield
   title:
     type: string_textfield
     weight: 0
@@ -117,12 +118,13 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  path: true
   promote: true
   sticky: true

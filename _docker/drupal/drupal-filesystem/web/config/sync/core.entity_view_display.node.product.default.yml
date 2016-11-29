@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.product.field_product_pages
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
+    - field.field.node.product.field_url_product_name
     - node.type.product
   module:
     - entity_reference_revisions
@@ -53,5 +54,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+  field_url_product_name:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
 hidden:
   links: true

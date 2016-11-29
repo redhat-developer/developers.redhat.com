@@ -10,19 +10,15 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     {{ title_suffix }}
 
     <div{{ content_attributes }}>
-        <div id="get-started-instructions" class="tthw-steps" data-spy="scroll" data-target="#steps-scroll">
-            <div class="row">
-                <div class="large-17 columns" id="get-started">
-                    <h2>Get Started</h2>
-                </div>
-            </div>
-        </div>
+        <h2 id="get-started">Get Started</h2>
         {% if content.field_overview_main_content|render|striptags|trim is not empty %}
             {{ content.field_overview_main_content }}
         {% else %}
-            <div class="multipath-tabs-sm">
-                {{ tab_bar }}
-            </div>
+            {% if tab_bar|render|striptags|trim is not empty %}
+                <div class="multipath-tabs-sm">
+                    {{ tab_bar }}
+                </div>
+            {% endif %}
             <div>
                 {{ tab_panels }}
             </div>
