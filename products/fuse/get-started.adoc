@@ -1,7 +1,7 @@
 :awestruct-layout: product-get-started-fuse
 :awestruct-interpolate: true
 
-:jbdsis-standalone-installer-download-url: https://developers.redhat.com/download-manager/file/devstudio-10.0.0.GA-installer-standalone.jar
+:jbdsis-standalone-installer-download-url: https://developers.redhat.com/download-manager/file/devstudio-integration-stack-10.0.0.GA-standalone-installer.jar
 :fuse-on-karaf-download-url: https://developers.redhat.com/download-manager/file/jboss-fuse-karaf-6.3.0.redhat-187.zip
 :eap-download-url: https://developers.redhat.com/download-manager/file/jboss-eap-6.4.0.GA-installer.jar
 :fuse-on-eap-download-url: https://developers.redhat.com/download-manager/content/origin/files/sha256/84/847cd3a03bc3ae41b1b997b2bae34dadaa8a8fee4b45dd70de8b53bb32f953dd/fuse-eap-installer-6.3.0.redhat-187.jar
@@ -196,7 +196,7 @@ java -jar <TEMP_LOCATION>/fuse-eap-installer-6.3.0.redhat-187.jar
 
 === Set up your development environment
 
-The following steps will install a local version of JBoss Developer Studio 9.1.0 (the Eclipse Mars edition) along with the Fuse tooling.
+The following steps will install a local version of JBoss Developer Studio 10.0.0 (the Eclipse Neon edition) along with the Fuse tooling.
 
 . Download the {jbdsis-standalone-installer-download-url}[Red Hat JBoss Developer Studio Integration Stack 10.0.0.GA Stand-Alone Installer].
 . Go to the folder where you have downloaded the installer and execute it with
