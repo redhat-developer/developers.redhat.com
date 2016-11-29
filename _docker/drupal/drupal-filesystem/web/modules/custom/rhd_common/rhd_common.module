@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\node\Entity\Node;
+use Drupal\Component\Utility\NestedArray;
 
 /**
  * Implements hook_form_alter().
@@ -284,31 +285,108 @@ function rhd_common_page_attachments_alter(array &$attachments)
 {
     // We only want to do this for product pages, everything else will have meta tags
     if (\Drupal::routeMatch()->getRouteName() === 'rhd_common.main_page_controller') {
+        // Pull in all the services we need
         $route_params = \Drupal::routeMatch()->getParameters()->all();
-        $connection = \Drupal::service('database');
-        $query = $connection->select('node__field_product_machine_name', 'pmn');
-        $query->fields('pmn', ['entity_id']);
-        $query->condition('pmn.field_product_machine_name_value', $route_params['product_code']);
-        $nid = $query->execute()->fetchField();
+        $query = \Drupal::service('entity.query')->get('node', 'AND');
+        $global_metatag_manager = \Drupal::entityTypeManager()->getStorage('metatag_defaults');
+        $metatag_manager = \Drupal::service('metatag.manager');
 
-        if (!empty($nid)) {
-            $entity = Node::load($nid);
-            $product_pages = $entity->field_product_pages->referencedEntities();
+        // Find the product based on the product_code
+        $query->condition('field_url_product_name', $route_params['product_code']);
+        $nid = current($query->execute());
+        $product = Node::load($nid);
+
+        if (isset($product)) {
+            // Figure out which sub page we're on
+            $product_pages = $product->field_product_pages->referencedEntities();
             $active_paragraph = current(array_filter($product_pages, function ($entity) use ($route_params) {
                 return strtolower($entity->field_overview_url->value) === $route_params['sub_page'];
             }));
-            $head_tags = $attachments['#attached']['html_head'];
 
-            /*
-             * TODO: with the $entity and $active_paragraph create the needed meta tags
-             *
-             * I think the description should a new field, available on every page: field_product_page_description (required)
-             *
-             * <meta name="title" content="{{product_name}} - {{active_paragraph.field_overview_url}} | 'Red Hat Developers'">
-             * <meta property="og:type" content="page">
-             * <meta property="twitter:card" content="summary">
-             * <meta name="description" content="Product information about Red Hat JBoss Enterprise Application Platform">
-             */
+            // Get all the meta tags, many were missed so we're redoing all this logic :(
+            $metatags = $global_metatag_manager->load('global');
+            $entity_metatags = $global_metatag_manager->load($product->getEntityTypeId());
+            $bundle_metatags = $global_metatag_manager->load($product->getEntityTypeId() . '__' . $product->bundle());
+
+            if (isset($bundle_metatags)) {
+                $metatags->overwriteTags($bundle_metatags->get('tags'));
+            }
+
+            if (isset($entity_metatags)) {
+                $metatags->overwriteTags($entity_metatags->get('tags'));
+            }
+
+            $metatags->overwriteTags([
+              'description' => $active_paragraph->field_page_description->value,
+              'title' => $product->label() . ' ' . ucwords($route_params['sub_page']) . ' | [site:name]'
+            ]);
+            $metatags_elements = $metatag_manager->generateElements($metatags->get('tags'), $product);
+
+            $merged_array = NestedArray::mergeDeep($metatags_elements['#attached']['html_head'], $attachments['#attached']['html_head']);
+            $attachments['#attached']['html_head'] = $merged_array;
         }
     }
+}
+
+/**
+ * Implements hook_simple_sitemap_links_alter().
+ *
+ * Add in our product pages.
+ */
+function rhd_common_simple_sitemap_links_alter(&$links)
+{
+    $product_node_ids = drupal_static('sitemap_product_node_ids', []);
+
+    if (empty($product_nodes)) {
+        $query = \Drupal::entityQuery('node');
+        $query->condition('status', 1);
+        $query->condition('type', 'product');
+        $product_node_ids = $query->execute();
+    }
+
+    $products_in_sitemap = found_product_in_sitemap($links, $product_node_ids);
+
+    // lambda function to overcome the inability to pass $links by reference :(
+    // this add all the sub pages to the list of links and unsets the one with the node entry
+    $callback = function ($product_node_link, $product_node_link_index) use (&$links) {
+        $product = Node::load($links[$product_node_link_index]['entity_info']['id']);
+        $sub_pages = $product->field_product_pages->referencedEntities();
+        $entries = array_map('build_subpage_link_entry', $sub_pages, array_fill(0, count($sub_pages), $links[$product_node_link_index]));
+        $links = array_merge($links, $entries);
+    };
+
+    array_walk($products_in_sitemap, $callback);
+    unset($links[current(array_keys($products_in_sitemap))]);
+}
+
+/**
+ * Builds a link entry for a sub page
+ * @param \Drupal\paragraphs\Entity\Paragraph $sub_page
+ * @param $template
+ * @return array Link entry for sub page
+ */
+function build_subpage_link_entry($sub_page, $template)
+{
+    $base_url = \Drupal::request()->getSchemeAndHttpHost();
+    $url_product_name = $sub_page->getParentEntity()->field_url_product_name->value;
+    $sub_page_slug = strtolower(str_replace(' ', '-', $sub_page->field_overview_url->value));
+
+    $template['path'] = "products/$url_product_name/$sub_page_slug";
+    $template['url'] = "$base_url/{$template['path']}";
+    $template['alternate_urls']['en'] = $template['url'];
+
+    return $template;
+}
+
+/**
+ * Returns an array af links which are for product nodes
+ * @param array $links Links in the sitemap
+ * @param array $product_ids node ids of products
+ * @return array An array with the link entry for a product, the key is key in the $links array
+ */
+function found_product_in_sitemap($links, $product_ids)
+{
+    return array_filter($links, function ($link) use ($product_ids) {
+        return in_array($link['entity_info']['id'], $product_ids);
+    });
 }
