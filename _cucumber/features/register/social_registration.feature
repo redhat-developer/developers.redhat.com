@@ -73,7 +73,7 @@ Feature: Social registration
   Scenario: 5 - Registration using GitHub login which doesn't contain some mandatory the information (first name, last name), email already exists. User links social provider to existing account
     Given I am on the Registration page
     When I try to register using a GitHub account that contains missing profile information with an existing RHD registered email
-    And I complete the missing information
+    And I complete the additional action required page and proceed
     Then I should see a warning that the email is already registered
     When I click on the Link my social account with the existing account link
     Then I should receive an email containing a verify email link

@@ -9,7 +9,7 @@ Feature: Download page - RHEL featured download.
     And I am on the Downloads page
     When I click to download "Red Hat Enterprise Linux"
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
-    And I complete the required additional information
+    And I complete the additional action required page and proceed
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
     And the download should initiate
 
@@ -37,7 +37,7 @@ Feature: Download page - RHEL featured download.
     And I click to download "Red Hat Enterprise Linux"
     And I log in with a valid username
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
-    And I complete the required additional information
+    And I complete the additional action required page and proceed
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
     And the download should initiate
 
@@ -55,11 +55,7 @@ Feature: Download page - RHEL featured download.
     Given I am on the Downloads page
     When I click to download "Red Hat Enterprise Linux"
     When I choose to register a new account using my GitHub account
-    And I create a new password
-    And select my country of residence
-    And I enter my phone number
-    And I click accept all terms and conditions
-    And I click on the Submit button
+    And I complete the additional action required page and proceed
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
 
   @slow @logout @delete_user @github_teardown @clear_download
@@ -67,10 +63,7 @@ Feature: Download page - RHEL featured download.
     Given I am on the Downloads page
     When I click to download "Red Hat Enterprise Linux"
     And I choose to register a new account using a GitHub account that contains missing profile information
-    And I create a new password
-    And I complete the required additional information
-    And I click accept all terms and conditions
-    And I click on the Submit button
+    And I complete the additional action required page and proceed
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
     And the download should initiate
 
@@ -79,10 +72,7 @@ Feature: Download page - RHEL featured download.
     Given I am on the Downloads page
     When I click to download "Red Hat Enterprise Linux"
     And I log in with an active OpenShift account
-    And I create a new password
-    And I complete the required additional information
-    And I click accept all terms and conditions
-    And I click on the Submit button
+    And I complete the additional action required page and proceed
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
     And the download should initiate
 
@@ -91,9 +81,6 @@ Feature: Download page - RHEL featured download.
     Given I am on the Downloads page
     When I click to download "Red Hat Enterprise Linux"
     And I log in with a active Customer portal account
-    And I create a new password
-    And I complete the required additional information
-    And I click accept all terms and conditions
-    And I click on the Submit button
+    And I complete the additional action required page and proceed
     Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Enterprise Linux"
     And the download should initiate

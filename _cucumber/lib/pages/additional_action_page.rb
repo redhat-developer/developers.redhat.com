@@ -2,7 +2,6 @@ require_relative 'abstract/site_base'
 
 class AdditionalActionPage < SiteBase
   expected_element(:h1, text: 'Additional Action Required')
-  #page_title('Additional Action Required | Red Hat Developers')
 
   element(:email_field)                  { |b| b.text_field(id: 'email') }
   element(:email_field_error)            { |b| b.element(id: 'email-error')}
