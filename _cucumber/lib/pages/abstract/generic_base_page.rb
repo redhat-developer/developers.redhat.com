@@ -23,7 +23,7 @@ class GenericBasePage
 
   def self.expected_element(type, identifier)
     define_method 'expected_element' do
-      @browser.send("#{type.to_s}", identifier)
+      @browser.send("#{type.to_s}", identifier).wait_until(message: "Element #{identifier} was not visible after 30 seconds", &:present?)
     end
   end
 

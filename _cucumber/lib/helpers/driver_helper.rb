@@ -56,4 +56,21 @@ module DriverHelper
     @browser.driver.switch_to.window(@browser.driver.window_handles.last)
   end
 
+  def wait_for(timeout=30, message='default', &block)
+    begin
+      Timeout::timeout(timeout) do
+        until block.call
+          sleep 0.2
+        end
+        true
+      end
+    rescue Exception => e
+      if message == 'default'
+        raise("Timed out after #{timeout} second(s) as block (#{block}) evaluated to false . Error: #{e}")
+      else
+        raise(message)
+      end
+    end
+  end
+
 end
