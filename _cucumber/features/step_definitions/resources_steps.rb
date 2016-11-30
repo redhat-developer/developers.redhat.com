@@ -25,9 +25,11 @@ When(/^I click to filter results by "([^"]*)"$/) do |filter_type|
   end
 end
 
-Then(/^the results should be filtered by (.*)$/) do |filter|
+Then(/^the results should be filtered by (.*)$/) do |filter_type|
   on ResourcesPage do |page|
-    page.results_contain_img_for(filter).should == true
+    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") {
+      page.results_contain_img_for(filter_type).size == 10
+    }
   end
 end
 
@@ -46,13 +48,17 @@ end
 
 And(/^the results for "([^"]*)" are displayed$/) do |filter_type|
   on ResourcesPage do |page|
-    page.results_contain_img_for(filter_type).should == true
+    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") {
+      page.results_contain_img_for(filter_type).size == 10
+    }
   end
 end
 
 And(/^the results displayed should not contain "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
-    page.results_contain_img_for(filter_type).should_not == true
+    wait_for(30, "Images for #{filter_type} were still displayed after 30 seconds") {
+      page.results_contain_img_for(filter_type).size == 0
+    }
   end
 end
 
@@ -116,9 +122,11 @@ When(/^I change the Publish date drop down menu to "([^"]*)"$/) do |date_type|
   end
 end
 
-Then(/^all of the results should contain a "([^"]*)" thumbnail$/) do |filter|
+Then(/^all of the results should contain a "([^"]*)" thumbnail$/) do |filter_type|
   on ResourcesPage do |page|
-    page.results_contain_img_for(filter).should == true
+    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") {
+      page.results_contain_img_for(filter_type).size == 10
+    }
   end
 end
 
@@ -163,7 +171,7 @@ When(/^I select "([^"]*)" from the results per page filter$/) do |results_per_pa
 end
 
 Then(/^the URL should include the selected filters$/) do
-  @browser.url.include?('type=video&product=cdk')
+  @browser.url.should include('type=video&product=cdk')
 end
 
 class Date
