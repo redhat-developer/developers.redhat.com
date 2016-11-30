@@ -10,6 +10,7 @@ type: Help
 
 - if page.product.stackoverflow_tags
   = partial "product_help_forums_and_stack.html.slim", {'parent' => page}
+
 - else
   = partial "product_help_forums.html.slim", {'parent' => page}
 
