@@ -110,7 +110,7 @@ div(ng-app="search")
                     | End Date
                     input(class="end-date" type="date" ng-model="params.publish_date_to" ng-change="updateSearch(); resetPagination();")
 
-        .large-24.columns.searchpage-results-container
+        .large-24.columns.searchpage-results-container#scrollPoint
           .sorting
             h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found
             h3.results-title(ng-if="totalCount <= 0") No results found

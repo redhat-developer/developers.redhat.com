@@ -608,6 +608,15 @@ function searchCtrlFunc($scope, $window, searchService) {
       pages: pages,
       lastVisible: lastVisible
     };
+
+    if (isSearch && $scope.paginate.currentPage > 1) {
+      $(window).scrollTop(0);
+    }
+    if (!isSearch && $scope.paginate.currentPage > 1) {
+      var element = document.getElementById("scrollPoint");
+      element.scrollIntoView();
+    }
+    
   };
 
   /*

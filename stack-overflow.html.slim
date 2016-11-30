@@ -29,7 +29,7 @@ div(ng-app="search")
         .large-24.columns
           form.search-bar(role="search" ng-submit="updateSearch(); resetPagination();")
             / input.user-success.user-search(required type="search" placeholder="Enter your search term" id="search_list_text" ng-model="params.query")
-        .large-24.columns
+        .large-24.columns#scrollPoint
           .row
             .large-14.columns.stackoverflow-filters
               label(for="filterByProduct") Filter by Product
