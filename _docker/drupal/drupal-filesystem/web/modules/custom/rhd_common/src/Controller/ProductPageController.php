@@ -141,6 +141,8 @@ class ProductPageController extends ControllerBase
               })) > 0;
         }
 
+        $build['#cache']['max-age'] = 0; // Disable caching of these product pages
+
         return $build;
     }
 
