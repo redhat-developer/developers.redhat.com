@@ -416,8 +416,8 @@ Note: Please specify if the new slider image is supposed to replace one of the e
 3. In GitHub, go [to the events template](https://github.com/redhat-developer/developers.redhat.com/blob/master/events.html.slim) and edit the image links under the desired .slide
 
         a(href="#{site.base_url}/events/msbuild/2016/")
-          img.mobile(src=“http://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
-          img.desktop(src=“http://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
+          img.mobile(src=“https://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
+          img.desktop(src=“https://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
 
 4. Raise a pull request for your change.
 
