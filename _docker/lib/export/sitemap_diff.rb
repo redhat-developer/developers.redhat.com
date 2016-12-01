@@ -9,7 +9,7 @@ require 'net/http'
 class SitemapDiff
 
   def initialize
-    @developers_sitemap = "http://developers.redhat.com/sitemap.xml"
+    @developers_sitemap = "https://developers.redhat.com/sitemap.xml"
   end
 
   def get_sitemap_links(sitemap_location)
@@ -42,12 +42,12 @@ class SitemapDiff
     links_in_existing_not_in_compared = existing_links - sitemap_to_compare
     links_in_compared_not_in_existing = sitemap_to_compare - existing_links
 
-    puts "=== The following pages are in the sitemap of http://developers.redhat.com/sitemap.xml but not in the sitemap at #{compared_sitemap}: ==="
+    puts "=== The following pages are in the sitemap of https://developers.redhat.com/sitemap.xml but not in the sitemap at #{compared_sitemap}: ==="
     links_in_existing_not_in_compared.each do | link |
       puts "- #{link}"
     end
 
-    puts "=== The following pages are in the sitemap at '#{compared_sitemap}' but not in the http://developers.redhat.com/sitemap.xml sitemap: ==="
+    puts "=== The following pages are in the sitemap at '#{compared_sitemap}' but not in the https://developers.redhat.com/sitemap.xml sitemap: ==="
     links_in_compared_not_in_existing.each do | link |
       puts "- #{link}"
     end

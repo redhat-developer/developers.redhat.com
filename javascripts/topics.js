@@ -42,11 +42,11 @@ app.topics.render = function(materials) {
     var canDisplay = material.fields.sys_title && material.fields.sys_description && material.fields.sys_description.length > 0;
     if (canDisplay) {
       if (material.fields.sys_type[0] == 'blogpost'){
-        if (material.fields.sys_url_view[0].startsWith('http://developers.redhat.com/blog') || material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog')) {
+        if (material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog') || material.fields.sys_url_view[0].startsWith('https://developers.redhat.com/blog')) {
           material.fields.sys_url_view[0] = material.fields.sys_url_view[0];
         }
         else if(material.fields.sys_url_view[0].match(/http(s?):\/\/developerblog.redhat.com\/.*/g)){
-          material.fields.sys_url_view[0] = material.fields.sys_url_view[0].replace(/http(s?):\/\/developerblog.redhat.com\//, 'http://developers.redhat.com/blog/')
+          material.fields.sys_url_view[0] = material.fields.sys_url_view[0].replace(/http(s?):\/\/developerblog.redhat.com\//, 'https://developers.redhat.com/blog/')
         }
 
         else {

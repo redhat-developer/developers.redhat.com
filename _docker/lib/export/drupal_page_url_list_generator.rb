@@ -87,7 +87,7 @@ class DrupalPageUrlListGenerator
       # We need to rewrite the URI to point to production, but only the loc nodes
       sitemap_xml = Nokogiri::XML(sitemap)
       sitemap_xml.xpath('//xmlns:loc').each do |loc|
-        loc.content = loc.content.gsub(%r{http://.*?/}, 'http://developers.redhat.com/')
+        loc.content = loc.content.gsub(%r{http://.*?/}, 'https://developers.redhat.com/')
       end
       file.puts(sitemap_xml.to_s)
     end
