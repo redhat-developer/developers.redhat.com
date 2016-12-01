@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.product.field_product_pages
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
+    - field.field.node.product.field_product_technology_group
     - field.field.node.product.field_url_product_name
     - node.type.product
   module:
@@ -54,6 +55,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+  field_product_technology_group:
+    weight: 112
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
   field_url_product_name:
     weight: 111
     label: above

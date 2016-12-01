@@ -134,6 +134,11 @@ class ProductPageController extends ControllerBase
                 $build['product_category'] = $product_category;
             }
 
+            // URL product name
+            if ($this->active_product->hasField('field_url_product_name')) {
+                $build['url_product_name'] = $this->active_product->field_url_product_name->value;
+            }
+
             // Helper for twig to know if there is a community page
             $product_pages = $this->active_product->field_product_pages->referencedEntities();
             $build['has_community'] = count(array_filter($product_pages, function ($entity) {
