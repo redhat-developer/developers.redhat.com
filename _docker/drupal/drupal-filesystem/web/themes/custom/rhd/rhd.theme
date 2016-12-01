@@ -102,6 +102,10 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
     $settings['rhd'] = array();
     $rhd_settings = &$settings['rhd'];
 
+    $rhd_settings['urls'] = array();
+    $rhd_settings['urls']['base_url'] = \Drupal::config('redhat_developers')->get('rhd_base_url');
+    $rhd_settings['urls']['final_base_url'] = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
+
     $rhd_settings['downloadManager'] = array();
     $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
     $rhd_settings['dcp']['baseProtocolRelativeUrl'] = $env_settings->get('searchisko')['protocol'] . "://" . $env_settings->get('searchisko')['host'] . ":"
