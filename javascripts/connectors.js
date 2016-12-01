@@ -152,7 +152,7 @@ app.connectors = {
         for (var i = 0; i < hits.length; i++) {
             var props = hits[i]._source;
 
-            props.img_path_thumb = "http://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
+            props.img_path_thumb = "https://static.jboss.org/connectors/" + props.id + "_" + thumbnailSize + ".png";
             props.fallback_img = app.connectors.fallbackImage(this);
 
             //If no 'long description', use the short one (before it is truncated)

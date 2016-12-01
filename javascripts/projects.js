@@ -104,7 +104,7 @@ app.project = {
     for (var i = 0; i < hits.length; i++) {
       var props = hits[i].fields;
 
-      var imgsrc = "http://static.jboss.org/" + (props.specialIcon || props.sys_project) + "/images/" + (props.specialIcon || props.sys_project) + "_" + thumbnailSize + ".png";
+      var imgsrc = "https://static.jboss.org/" + (props.specialIcon || props.sys_project) + "/images/" + (props.specialIcon || props.sys_project) + "_" + thumbnailSize + ".png";
 
       var template = "<li class=\"upstream\">"
         + "<div class=\"defaultprojectimage\">"
