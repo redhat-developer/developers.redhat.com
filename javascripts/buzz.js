@@ -120,11 +120,11 @@ app.buzz = {
             }
             d.updatedDate = jQuery.timeago(new Date(d.sys_created));
             d.sys_description = d.sys_description[0].substr(0,197) + '...';
-            if (d.sys_url_view[0].startsWith('http://developers.redhat.com/blog/') || d.sys_url_view[0].startsWith('https://developers.redhat.com/blog/')) {
+            if (d.sys_url_view[0].startsWith('https://developers.redhat.com/blog/') || d.sys_url_view[0].startsWith('https://developers.redhat.com/blog/')) {
               d.permanentLink = d.sys_url_view;
             }
             else if(d.sys_url_view[0].match(/http(s?):\/\/developerblog.redhat.com\/.*/g)){
-              d.permanentLink = d.sys_url_view[0].replace(/http(s?):\/\/developerblog.redhat.com\//, 'http://developers.redhat.com/blog/')
+              d.permanentLink = d.sys_url_view[0].replace(/http(s?):\/\/developerblog.redhat.com\//, 'https://developers.redhat.com/blog/')
             }
 
             else {

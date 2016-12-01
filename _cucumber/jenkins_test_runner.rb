@@ -55,7 +55,7 @@ if $0 == __FILE__
 
   host_to_test = ARGV[0]
   if host_to_test.nil? || host_to_test.empty?
-    puts 'Please specify the host to test as the first argument to this script e.g. ruby jenkins_test_runner.rb http://developers.redhat.com'
+    puts 'Please specify the host to test as the first argument to this script e.g. ruby jenkins_test_runner.rb https://developers.redhat.com'
     Kernel.exit(1)
   end
 
