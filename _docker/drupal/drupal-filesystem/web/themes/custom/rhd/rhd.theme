@@ -144,7 +144,15 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 
 function redhat_www_ddo_default() {
     $request = \Drupal::request();
+    $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404'); 
     $node = \Drupal::request()->attributes->get('node');
+    if ( $siteerror == '/node/'.$node->nid->value ) {
+        $errorType = "404";
+        $errorMessage = "404-error";
+    } else {
+        $errorType = "";
+        $errorMessage = "";
+    }
 
     $ddo = array(
         'page' => array(
@@ -164,10 +172,11 @@ function redhat_www_ddo_default() {
                 'breadCrumbs' => array(),
                 'cms' => 'RHD CMS 8',
                 'destinationURL' => '',
-                'errorMessage' => '',
-                'errorType' => '',
+                'errorMessage' => $errorMessage,
+                'errorType' => $errorType,
                 'language' => $node->langcode->value,
                 'pageID' => $node->nid->value,
+                'contentID' => $node->nid->value,
                 'pageName' => '',
                 'referringDomain' => '',
                 'referringURL' => '',
