@@ -32,6 +32,23 @@ class TestOptions < Minitest::Test
     assert_equal([], tasks[:supporting_services])
   end
 
+  def test_no_pull_option
+    tasks = Options.parse(['--no-pull'])
+    refute(tasks[:docker_pull])
+  end
+
+  def test_no_pull_defaults_to_environment_if_not_specified
+    tasks = Options.parse(['-e', 'drupal-dev'])
+    assert(tasks[:docker_pull])
+  end
+
+
+  def test_no_pull_overrides_environment_default
+    tasks = Options.parse(['-e', 'drupal-dev', '--no-pull'])
+    refute(tasks[:docker_pull])
+  end
+
+
 
   def test_loads_awestruct_pull_request_environment_by_default
     tasks = Options.parse(['-t'])

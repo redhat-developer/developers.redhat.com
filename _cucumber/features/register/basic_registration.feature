@@ -26,7 +26,6 @@ Feature: Basic personal registration
       | Canada        |
       | Mexico        |
 
-
   Scenario Outline: United States, Canada and Mexico customer must be prompted to enter state - validation message
     Given I am on the Registration page
     When I complete the registration with my country as "<country>" with an empty "state field"

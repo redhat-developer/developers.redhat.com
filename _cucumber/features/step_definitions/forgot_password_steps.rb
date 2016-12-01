@@ -1,16 +1,16 @@
 When(/^submit my email address$/) do
   on ForgotPasswordPage do |page|
-    page.enter_email($site_user[:email])
+    page.enter_email(@site_user.details[:email])
   end
 end
 
 And(/^I should receive an email containing a password reset link$/) do
-  password_reset_link = get_email($site_user[:email])
+  password_reset_link = get_email(@site_user.details[:email])
   expect(password_reset_link.to_s).to include('reset-credentials?')
 end
 
 When(/^I navigate to the password reset URL$/) do
-  password_reset_link = get_email($site_user[:email])
+  password_reset_link = get_email(@site_user.details[:email])
   @browser.goto(password_reset_link)
 end
 

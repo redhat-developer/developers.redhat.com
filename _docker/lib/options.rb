@@ -151,6 +151,11 @@ class Options
         tasks[:decrypt] = false
       end
 
+      opts.on('--no-pull','Do not attempt to pull the :latest version of the drupal-data image from Docker Hub') do
+        tasks[:docker_pull] = false
+      end
+
+
       #
       # Required during the transition to Drupal PR building. As the Drupal PR job is a downstream of the current
       # PR job, we don't want to kill any environment that is currently running.
@@ -176,6 +181,14 @@ class Options
     testing_directory = File.expand_path('../environments/testing',File.dirname(__FILE__))
     environment = RhdEnvironments.new(File.expand_path('../environments',File.dirname(__FILE__)), testing_directory).load_environment(tasks[:environment_name])
     tasks[:environment] = environment
+
+    #
+    # Unless specified explicitly by the --no-pull option, we determine if we should pull the drupal-data image based upon
+    # the defaults set by the environment in which we are running.
+    #
+    if tasks[:docker_pull].nil?
+      tasks[:docker_pull] = environment.pull_drupal_data_image?
+    end
 
     #
     # Set the list of supporting services to be started from the environment, unless the options above explicitly set it first
