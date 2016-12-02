@@ -609,13 +609,7 @@ function searchCtrlFunc($scope, $window, searchService) {
       lastVisible: lastVisible
     };
 
-    if (isSearch && $scope.paginate.currentPage > 1) {
-      $(window).scrollTop(0);
-    }
-    if (!isSearch && $scope.paginate.currentPage > 1) {
-      var element = document.getElementById("scrollPoint");
-      element.scrollIntoView();
-    }
+
     
   };
 
@@ -646,6 +640,19 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.params.from = (page * $scope.params.size) - $scope.params.size;
     $scope.paginate.currentPage = page;
     $scope.updateSearch();
+  };
+
+  /*
+    Pagination scrollPosition - scroll to specific location on pagination button click
+  */
+  $scope.scrollPosition = function(page) {
+    if (isSearch) {
+      $(window).scrollTop(0);
+    }
+    if (!isSearch) {
+      var element = document.getElementById("scrollPoint");
+      element.scrollIntoView();          
+    }
   };
 
 

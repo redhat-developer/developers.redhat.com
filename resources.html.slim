@@ -154,15 +154,15 @@ div(ng-app="search")
           span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
           ul.pagination
             li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
-              a(ng-click="goToPage('first')") First
+              a(ng-click="goToPage('first'); scrollPosition();") First
             li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
-              a(ng-click="goToPage('prev')") Previous
+              a(ng-click="goToPage('prev'); scrollPosition();") Previous
             li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
-              a(ng-click="goToPage(page)" data-page="{{page}}") {{page}}
+              a(ng-click="goToPage(page); scrollPosition();" data-page="{{page}}") {{page}}
             li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
-              a(ng-click="goToPage('next')") Next
+              a(ng-click="goToPage('next'); scrollPosition();") Next
             li#pagination-last(ng-class="paginate.currentPage == paginate.pages ? 'unavailable': 'available'")
-              a(ng-click="goToPage('last')") Last
+              a(ng-click="goToPage('last'); scrollPosition();") Last
 
 
 = javascripts("developer-materials-filter", true) do
