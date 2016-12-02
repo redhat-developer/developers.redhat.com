@@ -69,7 +69,7 @@ class ProductPageController extends ControllerBase
                 ]
               ],
               '#attributes' => [
-                'class' => 'side-nav'
+                'class' => ['side-nav', 'rhd-sub-nav']
               ]
             ];
 
@@ -92,12 +92,11 @@ class ProductPageController extends ControllerBase
                     $this->active_paragraph = $sub_page_paragraph;
                 }
 
-                $link_icon = '<i class="fa fa-caret-right fa-lg"></i>';
                 $page_links['#items'][] = [
                   '#type' => 'link',
                   '#title' => [
                     '#type' => 'inline_template',
-                    '#template' => "{{text}}" . $link_icon,
+                    '#template' => "{{text}}",
                     '#context' => [
                       'text' => t($sub_page_paragraph->field_overview_url->value)
                     ]
