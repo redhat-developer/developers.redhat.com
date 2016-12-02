@@ -608,9 +608,6 @@ function searchCtrlFunc($scope, $window, searchService) {
       pages: pages,
       lastVisible: lastVisible
     };
-
-
-    
   };
 
   /*
