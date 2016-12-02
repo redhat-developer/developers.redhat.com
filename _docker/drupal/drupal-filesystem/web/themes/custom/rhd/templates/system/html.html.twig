@@ -137,6 +137,10 @@
   <!--[if lt IE 9]>
   <script src="//html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
+  {% if (rhd_sentry_track) %}
+  <script src="{{ rhd_sentry_script }}"></script>
+  <script>Raven.config('{{ rhd_sentry_code }}').install()</script>
+  {% endif %}
   <js-placeholder token="{{ placeholder_token|raw }}">
 </head>
 <body class="{{ body_classes()|join(' ') }}">
