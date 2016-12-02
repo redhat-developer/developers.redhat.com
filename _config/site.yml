@@ -103,6 +103,7 @@ profiles:
   drupal_pull_request:
     <<: *docker
     base_url: http://stumpjumper.lab4.eng.bos.redhat.com:<%= ENV['DRUPAL_HOST_PORT'] %>/
+    final_base_url: http://developers-pr.stage.redhat.com/pr/<%= ENV['ghprbPullId'] %>/export
     dcp_base_url: http://dcp.stage.jboss.org/
     dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
     push_to_searchisko: false
