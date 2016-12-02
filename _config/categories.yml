@@ -3,7 +3,7 @@
 - name: :developer_tools
   products: [cdk, devsuite, developertoolset, devstudio]
 - name: :infrastructure
-  products: [rhel, softwarecollections]
+  products: [rhel]
 - name: :integration_and_automation
   products: [amq, brms, bpmsuite, datavirt, fuse]
 - name: :mobile
@@ -11,4 +11,4 @@
 - name: :private_cloud
   products: [openshift]
 - name: :runtimes
-  products: [openjdk, dotnet]
+  products: [softwarecollections, openjdk, dotnet]
