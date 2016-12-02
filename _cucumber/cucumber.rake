@@ -1,7 +1,7 @@
 require 'fileutils'
 require_relative 'test_runner'
 
-task :features => [:_features, :report_builder]
+task :features => [:cuke_sniffer, :_features, :report_builder]
 
 task :_features do
 
@@ -35,6 +35,13 @@ task :report_builder do
   test_runner = TestRunner.new
   test_runner.generate_report(@profile)
   exit(@exit_status)
+end
+
+task :cuke_sniffer do
+  FileUtils.rm_rf('_cucumber/reports/cuke_sniffer_report')
+  FileUtils.mkdir_p('_cucumber/reports/cuke_sniffer_report')
+  sh 'cd _cucumber/features'
+  sh 'bundle exec cuke_sniffer --out html _cucumber/reports/cuke_sniffer_report/cuke_sniffer.html'
 end
 
 task :wip do

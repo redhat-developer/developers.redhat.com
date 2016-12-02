@@ -38,20 +38,6 @@ When(/^I am logged into RHD$/) do
   end
 end
 
-Given(/^I am logged in to RHD using my portal account$/) do
-  visit HomePage do |page|
-    page.open_login_page
-  end
-  on LoginPage do |page|
-    page.login_with(@site_user.details[:email], @site_user.details[:password])
-  end
-  on AdditionalInformationPage do |page|
-    page.fulluser_tac_accept
-    page.click_submit
-    expect(page.logged_in?).to eq(@site_user.details[:full_name])
-  end
-end
-
 Given(/^I log in with (an|a) (valid|invalid) email address$/) do |arg, negate|
   on LoginPage do |page|
     if negate.eql?('valid')
@@ -108,13 +94,6 @@ Then(/^I should be logged in$/) do
   end
 end
 
-Then(/^I should still be be logged in on the Home page$/) do
-  expect(@current_page.logged_in?).to eq @site_user.details[:full_name]
-  on HomePage do |page|
-    expect(page.title).to eq('Red Hat Developers')
-  end
-end
-
 Then(/^I should be logged out$/) do
   expect(@current_page.logged_out?).to be true
 end
@@ -129,23 +108,6 @@ And(/^I click the forgot password link$/) do
   on LoginPage do |page|
     page.click_password_reset
   end
-end
-
-Then(/^I should be redirected to the RHD Log in page$/) do
-  on LoginPage do |page|
-    expect(page.title).to eq 'Login | Red Hat Developers'
-  end
-end
-
-When(/^I click on the Create account link$/) do
-  on LoginPage do |page|
-    page.click_register_link
-  end
-end
-
-Then(/^I should see the Log in page with the message "([^"]*)"$/) do |title|
-  on LoginPage
-  expect(@browser.text).to include(title)
 end
 
 Then(/^I can log back into RHD using my newly created password$/) do

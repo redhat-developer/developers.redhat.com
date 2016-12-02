@@ -1,12 +1,3 @@
-Then(/^I should see products sections f:$/) do |table|
-  on ForumsPage do |page|
-    table.raw.each do |sections|
-      section = sections.first
-      expect(page.forums_product_sections).to include section
-    end
-  end
-end
-
 Then(/^I should see the following forum products:$/) do |table|
   on ForumsPage do |page|
     products, @product_ids = page.available_products

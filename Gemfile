@@ -28,7 +28,7 @@ gem 'curb', '~> 0.8.5'
 gem 'oauth', '~> 0.3.6'
 gem 'git', '~> 1.2.5'
 gem 'oily_png', '~> 1.1.1'
-gem 'nokogiri', '~> 1.5.10'
+gem 'nokogiri', '>= 1.6.8', '~> 1.6'
 gem 'therubyracer', platforms: :ruby, require: linux_only('therubyracer')
 gem 'parallel', '~> 1.1'
 gem 'mime-types', '2.1'
@@ -66,7 +66,6 @@ group :test do
   gem 'rspec', '~>3.3'
   gem 'watir', '~> 6.0.0'
   gem 'parallel_tests', '~> 1.9.0'
-  gem 'cuke_sniffer', '~> 0.0.8'
   gem 'require_all', '~> 1.3.2'
   gem 'mocha'
   gem 'gmail', '~> 0.6.0'
@@ -74,6 +73,7 @@ group :test do
   gem 'report_builder', '~> 0.1.2'
   gem 'webmock', '~> 2.0'
   gem 'colorize'
+  gem 'cuke_sniffer', '~> 1.0', '>= 1.0.1'
 end
 
 group :development do
@@ -84,10 +84,10 @@ group :development do
   gem 'pry-byebug', require: false
 end
 
-group :vdiff do
-  gem 'wraith', '~> 1.3.0'
-end
+# group :vdiff do
+#   gem 'wraith', '~> 1.3.0'
+# end
 
-group :health do
-  gem 'blinkr', '~> 0.3'
-end
+# group :health do
+#   gem 'blinkr', '~> 0.3'
+# end
