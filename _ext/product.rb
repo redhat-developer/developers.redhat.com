@@ -44,7 +44,7 @@ module JBoss
           articles = []
           solutions = []
           site.products = {}
-          # This has been updated for DCP2 → http://dcp2-searchisko.rhcloud.com/v2/rest/search?sys_type=forumthread&agg=per_project_counts&size=1
+          # This has been updated for DCP2 → https://dcp2-searchisko.rhcloud.com/v2/rest/search?sys_type=forumthread&agg=per_project_counts&size=1
           # forum_counts = Hash[JSON.load(@searchisko.search({sys_type:'forumthread', size:1, agg:'per_project_counts'}).body)['aggregations']['per_project_counts']['per_project_counts_filter']['per_project_counts_buckets']['buckets'].map(&:values).map(&:flatten)]
           site.pages.each do |page|
             if !page.product.nil? && page.relative_source_path.start_with?('/products')

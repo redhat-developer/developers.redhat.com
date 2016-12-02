@@ -12,7 +12,7 @@ app.productForums.fetch = function() {
   var productId = $('.product-forums').data('tags');
 
   // $.getJSON(app.dcp.url.search + '/forum_threads_by_project?project=' + productId,function(data){
-  $.getJSON('http://dcp2.jboss.org/v2/rest/search/forum_threads_by_project?project=' + productId,function(data){
+  $.getJSON('https://dcp2.jboss.org/v2/rest/search/forum_threads_by_project?project=' + productId,function(data){
     if(data.hits && data.hits.hits) {
       app.productForums.render(data.hits.hits);
     }
