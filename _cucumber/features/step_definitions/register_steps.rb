@@ -45,12 +45,6 @@ Given(/^I am a (RHD|Customer Portal|Openshift) registered site visitor(?: (with|
   end
 end
 
-When(/^I click to register with my GitHub account$/) do
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
-end
-
 When(/^I try to register with an invalid email address$/) do
   @site_user = SiteUser.new
   @site_user.generate
@@ -144,12 +138,6 @@ When(/^I complete the registration form$/) do
   on RegistrationPage do |page|
     page.fill_in_form(@site_user.details)
     page.accept_all_terms
-    page.create_account
-  end
-end
-
-And(/^I click on the Create Account button$/) do
-  on RegistrationPage do |page|
     page.create_account
   end
 end
@@ -286,7 +274,6 @@ end
 
 Then(/^I should receive an email containing a verify email link$/) do
   @verification_email = get_email(@site_user.details[:email])
-  puts "Verification link was: #{@verification_email}"
   expect(@verification_email.to_s).to include('first-broker-login?')
 end
 

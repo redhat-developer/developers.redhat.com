@@ -33,16 +33,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
   end
 end
 
-When(/^I click the Login link$/) do
-  @current_page.click_login
-end
-
 When(/^I click the Logout link$/) do
   @current_page.click_logout
-end
-
-When(/^I click the Register link$/) do
-  @current_page.click_register
 end
 
 Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
@@ -54,7 +46,6 @@ Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
 end
 
 When(/^I go back$/) do
-  sleep(6) #give previous request time to complete before navigating back.
   @browser.back
 end
 

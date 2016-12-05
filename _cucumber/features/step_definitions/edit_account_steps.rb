@@ -29,49 +29,6 @@ And(/^the following newly registered details should be added to my profile:$/) d
   end
 end
 
-And(/^the following additional information should be added to my profile:$/) do |table|
-  on EditAccountPage do |page|
-    table.raw.each do |row|
-      element = row.first
-      keycloak_admin = KeyCloak.new
-      case element
-        when 'Username'
-          expect(page.username_field.attribute('value')).to eq @site_user.details[:email]
-        when 'Email'
-          expect(page.email_field.attribute('value')).to eq @site_user.details[:email]
-        when 'First Name'
-          expect(page.first_name_field.attribute('value')).to eq @site_user.details[:first_name]
-        when 'Last name'
-          expect(page.last_name_field.attribute('value')).to eq @site_user.details[:last_name]
-        when 'Company'
-          expect(page.company_field.attribute('value')).to eq @site_user.details[:company_name]
-        when 'Country'
-          expect(page.country).to eq @site_user.details[:country]
-        when 'Red Hat Developer Program subscription date'
-          reg_date = keycloak_admin.get_registration_date(@site_user.details[:email])
-          expect(page.agreement_date.attribute('value')).to eq reg_date
-        when 'Privacy & Subscriptions status'
-          status = keycloak_admin.get_subscription_status(@site_user.details[:email])
-          expect(page.receive_newsletter.selected?).to be status
-        else
-          raise("#{element} was not a recognised field")
-      end
-    end
-  end
-end
-
-When(/^I change my email address$/) do
-  puts "Initial email address was #{@site_user.details[:email]}"
-  @updated_email = @site_user.details[:email].gsub($session_id, Faker::Lorem.characters(5))
-  @site_user.details[:email] = @updated_email
-  puts "Updated email email address was #{@site_user.details[:email]}}"
-  on EditAccountPage do |page|
-    page.edit_profile(@updated_email, nil, nil, nil, nil)
-    page.click_save_btn
-    expect(page.alert_box_message).to eq('Your account has been updated.')
-  end
-end
-
 When(/^I change my details/) do
   @site_user.details[:first_name] = Faker::Name.first_name
   @site_user.details[:last_name] = Faker::Name.last_name
@@ -81,22 +38,6 @@ When(/^I change my details/) do
     page.edit_profile(@site_user.details[:first_name], @site_user.details[:last_name], @site_user.details[:company_name])
     page.click_save_btn
     expect(page.alert_box_message).to eq('Your account has been updated.')
-  end
-end
-
-
-Then(/^on my next log in I can successfully use the recently added email$/) do
-  @current_page.click_logout
-  @current_page.logged_out?
-  on LoginPage do |page|
-    page.login_with(@updated_email, @site_user.details[:password])
-    expect(page.logged_in?).to be true
-  end
-end
-
-And(/^the email field should be be updated on my profile$/) do
-  visit EditAccountPage do |page|
-    expect(page.email_field_value).to eq @site_user.details[:email]
   end
 end
 
@@ -116,19 +57,6 @@ And(/^the customer portal should be updated$/) do
   expect(user[0]['personalInfo']['lastName']).to eq(@site_user.details[:last_name])
   expect(user[0]['personalInfo']['company']).to eq(@site_user.details[:company_name])
   expect(user[0]['personalSite']['address']['countryCode']).to eq('GB')
-end
-
-And(/^my details are changed on the customer portal$/) do
-  it_admin = ItAdmin.new
-  it_admin.update_user(@site_user.details[:email], 'Just Testing Inc', 'Ian', 'Hamilton')
-end
-
-Then(/^the changes from the Customer Portal are propagated to my RHD user profile$/) do
-  visit EditAccountPage do |page|
-    expect(page.first_name_field.value.downcase).to eq 'ian'
-    expect(page.last_name_field.value.downcase).to eq 'hamilton'
-    expect(page.company_field.value.downcase).to eq 'just testing inc'
-  end
 end
 
 And(/^I unlink my social account$/) do
@@ -198,13 +126,6 @@ Then(/^I should see the following validation errors:$/) do |table|
     table.hashes.each do |row|
       expect(page.send("#{row['field'].downcase.gsub(' ', '_')}_field_error")).to eq("#{row['message']}")
     end
-  end
-end
-
-And(/^I enter invalid email address$/) do
-  on EditAccountPage do |page|
-    page.edit_profile('ian.redhat.com', nil, nil, nil, nil)
-    page.click_save_btn
   end
 end
 

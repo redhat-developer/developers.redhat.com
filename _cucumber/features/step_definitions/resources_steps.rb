@@ -56,22 +56,9 @@ And(/^the results displayed should not contain "([^"]*)"$/) do |filter_type|
   end
 end
 
-Then(/^the max characters on the Keyword field should be set to "([^"]*)"$/) do |arg|
-  on ResourcesPage do |page|
-    page.keyword_field.attribute('maxlength').should == arg
-  end
-end
-
 When(/^I enter "([^"]*)" into the Keyword's box$/) do |search_string|
   on ResourcesPage do |page|
     page.keyword_search(search_string)
-  end
-end
-
-Then(/^the results displayed should contain "([^"]*)"$/) do |search_string|
-  on ResourcesPage do |page|
-    results = page.results
-    results.each { |res| res.should include search_string }
   end
 end
 
@@ -125,8 +112,6 @@ end
 Then(/^the results should be from "([^"]*)"$/) do |publish_date|
   on ResourcesPage do |page|
     results = page.results_date
-    top_result = results.first
-    results.delete(top_result)
     results.each do |date|
       remaining = DateTime.parse(date).to_date.to_s
       case publish_date

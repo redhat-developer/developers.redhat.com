@@ -44,7 +44,6 @@ end
 
 Then(/^I should see a warning that the email is already registered$/) do
   on AdditionalActionPage do |page|
-    #move focus to password field to make the warning show up quicker
     page.enter_password('', '')
     expect(page.email_field_error_text).to eq 'User account for this email already exists. Link your social account with the existing account.'
   end
