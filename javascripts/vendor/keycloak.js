@@ -791,7 +791,7 @@
                 if (typeof event.data == "string") {
                     data = JSON.parse(event.data);
                 } else {
-                    data = event.data;
+                    return;
                 }
                 
                 var promise = loginIframe.callbackMap[data.callbackId];
