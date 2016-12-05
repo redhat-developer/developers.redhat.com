@@ -76,6 +76,27 @@ app.termsAndConditions = {
       window.dataLayer.push({'event': 'Product Download Requested'});
 
     }
+
+    var ddDownloadEvent = {
+        eventInfo: {
+          eventAction: 'download',
+          eventName: 'download',
+          fileName: tcDownloadFileName,
+          fileType: tcProduct,
+          productDetail: tcProduct, // Concatenation of Product Variant (Name), Version, Architecture.
+          timeStamp: new Date(),
+          processed: {
+            adobeAnalytics: false
+          }
+        }
+      };
+
+    //Push it onto the event array of the digitalData object
+    window.digitalData = window.digitalData || {};
+    digitalData.event = digitalData.event || [];
+    digitalData.event.push(ddDownloadEvent);
+    //Create and dispatch an event trigger
+    sendCustomEvent('downloadEvent');
   },
   /*
   * T&C banner display

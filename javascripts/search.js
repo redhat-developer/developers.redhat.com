@@ -1,5 +1,13 @@
-var search = angular.module('search', []);
+var search = angular.module('search', []),
+  searchRefinement = [];
 
+function indexOfObjectValueInArray(arr, key, val) {
+  idx = -1;
+  for(var i=0, l=arr.length; i<l; i++) {
+    if(arr[i][key] && arr[i][key] === val) { idx = i; }
+  }
+  return idx;
+}
 
 /*
   Create a service for fetching materials
@@ -191,13 +199,17 @@ search.filter('title', function($sce) {
 
 search.filter('description', function($sce) {
   return function(result) {
+    var description = "";
     // if (result.fields.sys_type == 'stackoverflow_thread') {
-    //   return $sce.trustAsHtml(result.fields.sys_content_plaintext[0]);
+    //   description = result.fields.sys_content_plaintext[0];
     // }
     if (result.highlight && result.highlight.sys_content_plaintext) {
-      return $sce.trustAsHtml(result.highlight.sys_content_plaintext[0]);
+      description = result.highlight.sys_content_plaintext[0];
     }
-    return $sce.trustAsHtml(result.fields.sys_description[0]);
+    if (result.fields && result.fields.sys_description) {
+      description = result.fields.sys_description[0];
+    }
+    return $sce.trustAsHtml(description);
   }
 });
 
@@ -261,6 +273,61 @@ function searchCtrlFunc($scope, $window, searchService) {
     from: 0,
     newFirst: false
   };
+
+  $scope.$watch('params', function(newVal, oldVal) {
+    var idx;
+    if(newVal === oldVal) { return; }
+    else {
+      if (newVal.project !== oldVal.project) {
+        idx = indexOfObjectValueInArray(searchRefinement,'refinementType','product');
+        if(idx < 0) {
+          searchRefinement.push({refinementType: 'product', refinementValue: $scope.params.project });
+        } else {
+          if($scope.params.project.length > 0) {
+            searchRefinement[idx].refinementValue = $scope.params.project;
+          } else {
+            searchRefinement = searchRefinement.splice(i,1);
+          }
+        }
+      }
+      if (newVal.sortBy !== oldVal.sortBy) {
+        idx = indexOfObjectValueInArray(searchRefinement,'refinementType','sort'); 
+        if(idx < 0) {
+          searchRefinement.push({refinementType: 'sort', refinementValue: $scope.params.sortBy }); 
+        } else {
+          if ($scope.params.sortBy.length > 0) {
+            searchRefinement[idx].refinementValue = $scope.params.sortBy;
+          } else {
+            searchRefinement = searchRefinement.splice(i,1);
+          }
+        }
+      }
+      if (newVal.publish_date_from !== oldVal.publish_date_from) { 
+        idx = indexOfObjectValueInArray(searchRefinement,'refinementType','publish date');
+        if(idx < 0) {
+          searchRefinement.push({refinementType: 'publish date', refinementValue: $scope.params.publish_date_from });
+        } else {
+          if($scope.params.publish_date_from.length > 0) {
+            searchRefinement[idx].refinementValue = $scope.params.publish_date_from;
+          } else {
+            searchRefinement = searchRefinement.splice(i,1);
+          }
+        } 
+      }
+      if (newVal.sys_type[0] !== oldVal.sys_type[0]) { 
+        idx = indexOfObjectValueInArray(searchRefinement,'refinementType','sys_type');
+        if(idx < 0) {
+          searchRefinement.push({refinementType: 'sys_type', refinementValue: $scope.params.sys_type[0]});
+        } else {
+          if($scope.params.sys_type[0].length > 0) {
+            searchRefinement[idx].refinementValue = $scope.params.sys_type[0];
+          } else {
+            searchRefinement = searchRefinement.splice(i,1);
+          }
+        }
+      }
+    }
+  }, true)
 
   // Resources Page Specifics
   if (isResources) {
@@ -416,7 +483,8 @@ function searchCtrlFunc($scope, $window, searchService) {
             queryMethod: "system generated",
             resultCount: data.hits.total,
             resultsShown: $scope.params.size,
-            searchType: digitalData.page.category.primaryCategory || ""
+            searchType: digitalData.page.category.primaryCategory || "",
+            refinement: searchRefinement
           },
           timeStamp: new Date(),
           processed: {
@@ -432,20 +500,6 @@ function searchCtrlFunc($scope, $window, searchService) {
         }];
 
         ddSearchEvent.eventInfo.listing.queryMethod =  $scope.params.query === "" ? "system generated" : "manual";
-
-        ddSearchEvent.eventInfo.listing.refinement = [{
-          refinementType: "publish date",
-          refinementValue: $scope.params.publish_date_from || ""
-          },
-          {
-          refinementType: "product",
-          refinementValue: $scope.params.project
-          },
-          {
-          refinementType: "sys_type",
-          refinementValue: types[$scope.params.sys_type[0]]
-          }
-        ];
       } else {
         isFirstSearch = false;
       }
