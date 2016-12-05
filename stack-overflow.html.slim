@@ -1,7 +1,6 @@
 ---
 layout: technology-base
 title: Stack Overflow
-ignore_export: true
 ---
 
 .hero.hero-wide.stackoverflow-main
@@ -29,7 +28,7 @@ div(ng-app="search")
         .large-24.columns
           form.search-bar(role="search" ng-submit="updateSearch(); resetPagination();")
             / input.user-success.user-search(required type="search" placeholder="Enter your search term" id="search_list_text" ng-model="params.query")
-        .large-24.columns
+        .large-24.columns#scrollPoint
           .row
             .large-14.columns.stackoverflow-filters
               label(for="filterByProduct") Filter by Product
@@ -100,14 +99,14 @@ div(ng-app="search")
             span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
             ul.pagination
               li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
-                a(ng-click="goToPage('first')") First
+                a(ng-click="goToPage('first'); scrollPosition();") First
               li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
-                a(ng-click="goToPage('prev')") Previous
+                a(ng-click="goToPage('prev'); scrollPosition();") Previous
               li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
-                a(ng-click="goToPage(page)" data-page="{{page}}")
+                a(ng-click="goToPage(page); scrollPosition();" data-page="{{page}}")
                   | {{page}}
               li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
-                a(ng-click="goToPage('next')") Next
+                a(ng-click="goToPage('next'); scrollPosition();") Next
               li#pagination-last(ng-class="paginate.currentPage  == paginate.pages ? 'unavailable': 'available'")
-                a(ng-click="goToPage('last')") Last
+                a(ng-click="goToPage('last'); scrollPosition();") Last
         .large-6.columns

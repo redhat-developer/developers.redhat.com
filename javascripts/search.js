@@ -639,6 +639,19 @@ function searchCtrlFunc($scope, $window, searchService) {
     $scope.updateSearch();
   };
 
+  /*
+    Pagination scrollPosition - scroll to specific location on pagination button click
+  */
+  $scope.scrollPosition = function(page) {
+    if (isSearch) {
+      $(window).scrollTop(0);
+    }
+    if (!isSearch) {
+      var element = document.getElementById("scrollPoint");
+      element.scrollIntoView();          
+    }
+  };
+
 
   $scope.toggleSelection = function toggleSelection(event) {
 
