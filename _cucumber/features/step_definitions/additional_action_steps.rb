@@ -50,7 +50,5 @@ Then(/^I should see a warning that the email is already registered$/) do
 end
 
 And(/^I click on the Link my social account with the existing account link$/) do
-  on AdditionalActionPage do |page|
-    page.click_link_profile_to_social
-  end
+  on AdditionalActionPage.click_link_profile_to_social
 end

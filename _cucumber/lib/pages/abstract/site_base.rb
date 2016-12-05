@@ -2,6 +2,7 @@ require_relative 'generic_base_page'
 require_relative '../../../../_cucumber/lib/helpers/driver_helper'
 require_relative '../../../../_cucumber/lib/helpers/page_helper'
 
+# this class inherits from the GenericBasePage class, it contains a set of common site wide elements and methods. All pages will inherit from this.
 class SiteBase < GenericBasePage
   include DriverHelper, PageHelper
 
@@ -10,7 +11,7 @@ class SiteBase < GenericBasePage
   element(:logout_link)             { |b| b.link(class: 'logout') }
   element(:register_link)           { |b| b.li(class: 'register') }
   element(:logged_in_name)          { |b| b.li(class: 'logged-in-name') }
-  element(:mobile_menu)             { |b| b.link(class: 'nav-toggle')}
+  element(:mobile_menu)             { |b| b.link(class: 'nav-toggle') }
   element(:site_nav_search_box)     { |b| b.text_field(css: '.accounts .search-wrapper .user-search') }
   element(:search_button)           { |b| b.button(id: 'search-button') }
   element(:logged_in)               { |b| b.li(class: 'logged-in') }
@@ -56,18 +57,12 @@ class SiteBase < GenericBasePage
   end
 
   def toggle_menu
-    if is_mobile?
-      toggle_mobile_menu unless mobile_menu_open?
-    end
+    toggle_mobile_menu if is_mobile? unless mobile_menu_open?
   end
 
   def toggle_menu_close
-    if mobile_menu_open?
-    toggle_mobile_menu
-    sub_nav.wait_while(&:present?)
-    end
+    toggle_mobile_menu && sub_nav.wait_while(&:present?) if mobile_menu_open?
   end
-
 
   def open_login_page
     toggle_menu if is_mobile?

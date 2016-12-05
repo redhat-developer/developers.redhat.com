@@ -1,3 +1,4 @@
+# this class contains a set of methods that use the I.T backend service to generate and manipulate test data (Staging ONLY)
 class ItAdmin
 
   def initialize
@@ -19,20 +20,20 @@ class ItAdmin
 
   def create_simple_user
     @account_details = {
-        :disabled => false,
-        :emailAddress => @email,
-        :emailVerified => true,
-        :joinDate => (Time.now.to_i).floor
+        disabled: false,
+        emailAddress: @email,
+        emailVerified: true,
+        joinDate: (Time.now.to_i).floor
     }
     begin
       RestClient::Request.execute(
-          :method => :post,
-          :url => 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/simpleuser/suser/thirdparty?system=rhd',
-          :payload => @account_details.to_json,
-          :headers => {
-              :content_type => :json,
-              :accept => :json
-          },
+          method: :post,
+          url: 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/simpleuser/suser/thirdparty?system=rhd',
+          payload: @account_details.to_json,
+          headers: {
+              content_type: :json,
+              accept: :json
+          }
       )
     rescue => e
       raise("Failed to create a new simple user: Exception was #{e}")
@@ -40,16 +41,16 @@ class ItAdmin
 
     change_password(@email, @password)
 
-    return {
-        :email => @email,
-        :username => @email,
-        :password => @password,
-        :first_name => @first_name,
-        :last_name => @last_name,
-        :full_name => @full_name,
-        :company_name => @company_name,
-        :phone_number => @phone_number,
-        :country => 'United Kingdom'
+    {
+        email: @email,
+        username: @email,
+        password: @password,
+        first_name: @first_name,
+        last_name: @last_name,
+        full_name: @full_name,
+        company_name: @company_name,
+        phone_number: @phone_number,
+        country: 'United Kingdom'
     }
   end
 
@@ -57,12 +58,12 @@ class ItAdmin
     email_address = CGI.escape(email)
     begin
       RestClient::Request.execute(
-          :method => :put,
-          :url => "http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/simpleuser/pwd/login=#{email_address}?password=#{password}",
-          :headers => {
-              :content_type => :json,
-              :accept => :json
-          },
+          method: :put,
+          url: "http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/simpleuser/pwd/login=#{email_address}?password=#{password}",
+          headers: {
+              content_type: :json,
+              accept: :json
+          }
       )
     rescue => e
       raise("Failed to update password: #{e}")
@@ -70,53 +71,51 @@ class ItAdmin
   end
 
   def create_full_user
-
     tries = 0
-
     @account_details = {
-        :userType => 'P',
-        :login => @username,
-        :active => true,
-        :password => @password,
-        :system => 'WEB',
+        userType: 'P',
+        login: @username,
+        active: true,
+        password: @password,
+        system: 'WEB',
 
-        :personalInfo => {
-            :company => @company_name,
-            :firstName => @first_name,
-            :title => 'Test Engineer',
-            :greeting => @greeting,
-            :lastName => @last_name,
-            :email => @email,
-            :emailConfirmed => true,
-            :phoneNumber => @phone_number,
-            :password => @password,
-            :locale => @locale
+        personalInfo: {
+            company: @company_name,
+            firstName: @first_name,
+            title: 'Test Engineer',
+            greeting: @greeting,
+            lastName: @last_name,
+            email: @email,
+            emailConfirmed: true,
+            phoneNumber: @phone_number,
+            password: @password,
+            locale: @locale
         },
 
-        :personalSite => {
-            :defaultSite => true,
-            :siteType => 'MARKETING',
+        personalSite: {
+            defaultSite: true,
+            siteType: 'MARKETING',
 
-            :address => {
-                :address1 => @address_line_one,
-                :countryCode => @country,
-                :postalCode => @postal_code,
-                :city => @city,
-                :poBox => false
+            address: {
+                address1: @address_line_one,
+                countryCode: @country,
+                postalCode: @postal_code,
+                city: @city,
+                poBox: false
             }
         }
     }
 
     begin
       RestClient::Request.execute(
-          :method => :post,
-          :url => 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/createwithoutwelcome',
-          :payload => @account_details.to_json,
-          :verify_ssl => false,
-          :headers => {
-              :content_type => :json,
-              :accept => :json
-          },
+          method: :post,
+          url: 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/createwithoutwelcome',
+          payload: @account_details.to_json,
+          verify_ssl: false,
+          headers: {
+              content_type: :json,
+              accept: :json
+          }
       )
 
     rescue => e
@@ -131,27 +130,27 @@ class ItAdmin
 
     p "Successfully created full site user with #{@email}"
 
-    return {
-        :email => @email,
-        :username => @email.gsub('@redhat.com', '').gsub('+', '-'),
-        :password => @password,
-        :first_name => @first_name,
-        :last_name => @last_name,
-        :full_name => @full_name,
-        :company_name => @company_name,
-        :phone_number => @phone_number,
-        :country => 'United Kingdom',
+    {
+        email: @email,
+        username: @email.gsub('@redhat.com', '').tr('+', '-'),
+        password: @password,
+        first_name: @first_name,
+        last_name: @last_name,
+        full_name: @full_name,
+        company_name: @company_name,
+        phone_number: @phone_number,
+        country: 'United Kingdom'
     }
   end
 
   def find_user_by_email(email)
     email_address = CGI.escape(email)
     @user_profile = RestClient::Request.execute(
-        :method => :get,
-        :url => "http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/email=#{email_address}",
-        :headers => {
-            :content_type => :json,
-            :accept => :json
+        method: :get,
+        url: "http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/email=#{email_address}",
+        headers: {
+            content_type: :json,
+            accept: :json
         }
     )
     JSON.parse(@user_profile)
@@ -160,52 +159,52 @@ class ItAdmin
   def disable_user(email)
     user_profile = find_user_by_email(email)
     @account_details = {
-        :id => user_profile[0]['id'],
-        :login => @username,
-        :userType => 'P',
-        :active => 'false',
-        :password => @password,
-        :system => 'WEB',
+        id: user_profile[0]['id'],
+        login: @username,
+        userType: 'P',
+        active: 'false',
+        password: @password,
+        system: 'WEB',
 
-        :personalInfo => {
-            :company => @company_name,
-            :firstName => @first_name,
-            :title => 'Test Engineer',
-            :greeting => @greeting,
-            :lastName => @last_name,
-            :email => @email,
-            :emailConfirmed => 'true',
-            :phoneNumber => @phone_number,
-            :password => @password,
-            :locale => @locale
+        personalInfo: {
+            company: @company_name,
+            firstName: @first_name,
+            title: 'Test Engineer',
+            greeting: @greeting,
+            lastName: @last_name,
+            email: @email,
+            emailConfirmed: 'true',
+            phoneNumber: @phone_number,
+            password: @password,
+            locale: @locale
         },
 
-        :personalSite => {
-            :id => user_profile[0]['personalSite']['id'],
-            :defaultSite => 'true',
-            :siteType => 'MARKETING',
+        personalSite: {
+            id: user_profile[0]['personalSite']['id'],
+            defaultSite: 'true',
+            siteType: 'MARKETING',
 
-            :address => {
-                :address1 => @address_line_one,
-                :countryCode => @country,
-                :postalCode => @postal_code,
-                :city => @city,
-                :poBox => 'false'
+            address: {
+                address1: @address_line_one,
+                countryCode: @country,
+                postalCode: @postal_code,
+                city: @city,
+                poBox: 'false'
             },
-            :active => 'false',
+            active: 'false'
         }
     }
     tries = 0
     begin
       RestClient::Request.execute(
-          :method => :post,
-          :url => 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/update',
-          :payload => @account_details.to_json,
-          :verify_ssl => false,
-          :headers => {
-              :content_type => :json,
-              :accept => :json
-          },
+          method: :post,
+          url: 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/update',
+          payload: @account_details.to_json,
+          verify_ssl: false,
+          headers: {
+              content_type: :json,
+              accept: :json
+          }
       )
 
     rescue => e
@@ -222,52 +221,52 @@ class ItAdmin
   def update_user(email, company, first_name, last_name)
     user_profile = find_user_by_email(email)
     @account_details = {
-        :id => user_profile[0]['id'],
-        :login => @username,
-        :userType => 'P',
-        :active => 'false',
-        :password => @password,
-        :system => 'WEB',
+        id: user_profile[0]['id'],
+        login: @username,
+        userType: 'P',
+        active: 'false',
+        password: @password,
+        system: 'WEB',
 
-        :personalInfo => {
-            :company => company,
-            :firstName => first_name,
-            :title => 'Test Engineer',
-            :greeting => @greeting,
-            :lastName => last_name,
-            :email => @email,
-            :emailConfirmed => 'true',
-            :phoneNumber => '0191 2222222',
-            :password => @password,
-            :locale => @locale
+        personalInfo: {
+            company: company,
+            firstName: first_name,
+            title: 'Test Engineer',
+            greeting: @greeting,
+            lastName: last_name,
+            email: @email,
+            emailConfirmed: 'true',
+            phoneNumber: '0191 2222222',
+            password: @password,
+            locale: @locale
         },
 
-        :personalSite => {
-            :id => user_profile[0]['personalSite']['id'],
-            :defaultSite => 'true',
-            :siteType => 'MARKETING',
+        personalSite: {
+            id: user_profile[0]['personalSite']['id'],
+            defaultSite: 'true',
+            siteType: 'MARKETING',
 
-            :address => {
-                :address1 => @address_line_one,
-                :countryCode => @country,
-                :postalCode => @postal_code,
-                :city => @city,
-                :poBox => 'false'
+            address: {
+                address1: @address_line_one,
+                countryCode: @country,
+                postalCode: @postal_code,
+                city: @city,
+                poBox: 'false'
             },
-            :active => 'false',
+            active: 'false'
         }
     }
     tries = 0
     begin
       RestClient::Request.execute(
-          :method => :post,
-          :url => 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/update',
-          :payload => @account_details.to_json,
-          :verify_ssl => false,
-          :headers => {
-              :content_type => :json,
-              :accept => :json
-          },
+          method: :post,
+          url: 'http://servicejava.edge.stage.ext.phx2.redhat.com/svcrest/user/v3/update',
+          payload: @account_details.to_json,
+          verify_ssl: false,
+          headers: {
+              content_type: :json,
+              accept: :json
+          }
       )
 
     rescue => e

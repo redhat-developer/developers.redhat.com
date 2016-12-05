@@ -1,9 +1,10 @@
 require_relative 'abstract/site_base'
 
+# this is the page class that contains all elements and common methods related to the Downloads page
 class DownloadsPage < SiteBase
   page_url('/downloads/')
   expected_element(:h2, text: 'Downloads')
-  #page_title('Downloads | Red Hat Developers')
+  # page_title('Downloads | Red Hat Developers')
 
   element(:loading_spinner)                { |b| b.element(css: '#downloads .fa-refresh') }
   element(:most_popular_section)           { |b| b.div(class: 'most-popular-downloads') }
@@ -16,7 +17,7 @@ class DownloadsPage < SiteBase
   value(:download_btns)                    { |p| p.download_buttons.size }
 
   def wait_until_loaded
-    wait_for_ajax && loading_spinner.wait_while(&:present?) rescue raise('Sorry Download buttons were still loading after 30 seconds')
+    wait_for_ajax && loading_spinner.wait_while(&:present?)
   end
 
   def available_downloads

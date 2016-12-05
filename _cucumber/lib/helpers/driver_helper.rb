@@ -1,5 +1,5 @@
+# This module contains some watir helper methods
 module DriverHelper
-
   def type(locator, string)
     locator.set(string)
   end
@@ -31,7 +31,7 @@ module DriverHelper
     @browser.driver.window_handle
   end
 
-  def get_windows
+  def windows
     @browser.driver.window_handles
     @browser.driver.window_handles.map do |w|
       @browser.driver.switch_to.window(w)
@@ -40,7 +40,7 @@ module DriverHelper
   end
 
   def wait_for_windows(size)
-    get_windows.size == size
+    windows.size == size
   end
 
   def switch_window(first_window)
@@ -51,26 +51,21 @@ module DriverHelper
   end
 
   def close_and_reopen_browser
-    @browser.driver.execute_script("window.open()")
+    @browser.driver.execute_script('window.open()')
     @browser.driver.close
     @browser.driver.switch_to.window(@browser.driver.window_handles.last)
   end
 
   def wait_for(timeout=30, message='default', &block)
-    begin
-      Timeout::timeout(timeout) do
-        until block.call
-          sleep 0.2
-        end
-        true
-      end
-    rescue Exception => e
-      if message == 'default'
-        raise("Timed out after #{timeout} second(s) as block (#{block}) evaluated to false . Error: #{e}")
-      else
-        raise(message)
-      end
+    Timeout.timeout(timeout) do
+      sleep 0.2 until block.call
+      true
+    end
+  rescue StandardError => e
+    if message == 'default'
+      raise("Timed out after #{timeout} second(s) as block (#{block}) evaluated to false . Error: #{e}")
+    else
+      raise(message)
     end
   end
-
 end

@@ -1,5 +1,6 @@
 require_relative 'abstract/site_base'
 
+# this is the page class that contains all elements and common methods related to the Login page
 class LoginPage < SiteBase
   expected_element(:text_field, id: 'username')
 

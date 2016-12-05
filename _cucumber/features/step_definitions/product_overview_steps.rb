@@ -6,7 +6,6 @@ Given(/^I am on the Product Overview page for each (.*)$/) do |product_id|
 end
 
 Then(/^I should see a side-nav with the following options:$/) do |table|
-
   on ProductOverviewPage do |page|
     table.raw.each do |links|
       link = links.first
@@ -50,6 +49,23 @@ Then(/^I should see a side-nav with the following options:$/) do |table|
             expect(page.side_nav_item_displayed?('Help')).to be false
           end
       end
+    end
+  end
+end
+
+And(/^I am on the Product Download page for (.*)$/) do |product|
+  on ProductOverviewPage do |page|
+    page.open_download_for(product)
+  end
+end
+
+Then(/^the (.*) download button should link to the latest available download$/) do |product_id|
+  url = featured_download_for(product_id)
+  on ProductOverviewPage do |page|
+    if product_id == 'rhel'
+      page.download_rhel.href.should == url[1]
+    else
+      page.download_btn.href.should == url[1]
     end
   end
 end

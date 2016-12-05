@@ -1,5 +1,5 @@
+# this module contains a method that uses gmail api in order connect to a mailbox and wait for an email to arrive, delete emails etc.
 module Email
-
   def get_email(email_address)
     tries ||= 10
     begin
@@ -14,39 +14,32 @@ module Email
       end
     end
 
-    try(7) {
-      @email = @gmail.inbox.emails(:unread, to: email_address).last
-    }
+    try(7) { @email = @gmail.inbox.emails(:unread, to: email_address).last }
 
     message_body = @email.message.body.raw_source
-    url = message_body.scan(/https?:\/\/[\S]+/).first
+    url = message_body.scan(%r{/https?:\/\/[\S]+/}).first
     # delete all mails and close the gmail session
-    @gmail.inbox.find(:to => email_address).each do |email|
-      email.delete!
-    end
+    @gmail.inbox.find(to: email_address).each(&:delete!)
     @gmail.logout
-    raise('Test user was not logged out of gmail session!') if @gmail.logged_in?.eql?(true)
+    fail('Test user was not logged out of gmail session!') if @gmail.logged_in?.eql?(true)
     encoded_url = URI.encode(url)
     URI.parse(encoded_url)
     # return valid URI
-    return encoded_url.gsub('<', '')
+    encoded_url.tr('<', '')
   end
 
   private
 
   def try(i)
-    count = 0; email = nil
-    until email != nil || count == i
+    count = 0
+    email = nil
+    until !email.nil? || count == i
       puts ' . . . waiting for email . . .'
       email = yield
       sleep 10
       count += 1
     end
-    if email.eql?(nil)
-      raise("Email was not received after #{count}0 seconds")
-    end
+    fail("Email was not received after #{count}0 seconds") if email.eql?(nil)
   end
-
 end
-
 World(Email)

@@ -1,9 +1,7 @@
 When(/^I register a new account$/) do
   @site_user = SiteUser.new
   @site_user.generate
-  visit HomePage do |page|
-    page.open_register_page
-  end
+  visit HomePage.open_register_page
   on RegistrationPage do |page|
     page.fill_in_form(@site_user.details)
     page.accept_all_terms
@@ -15,9 +13,7 @@ end
 When(/^I register a new account in oder to download$/) do
   @site_user = SiteUser.new
   @site_user.generate
-  on LoginPage do |page|
-    page.click_register_link
-  end
+  on LoginPage.click_register_link
   on DownloadRegistrationPage do |page|
     page.fill_download_reg_form(@site_user.details)
     page.accept_all_terms
@@ -41,7 +37,7 @@ Given(/^I am a (RHD|Customer Portal|Openshift) registered site visitor(?: (with|
     @site_user.create('with_missing_phone')
   else
     @site_user = SiteUser.new
-    @site_user.create(persona.downcase.gsub(' ', '_'))
+    @site_user.create(persona.downcase.tr(' ', '_'))
   end
 end
 
@@ -70,10 +66,7 @@ When(/^I register a new account using my GitHub account$/) do
   @site_user = SiteUser.new
   @site_user.generate
   @github_admin.update_profile("#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}", @site_user.details[:email], @site_user.details[:company_name])
-
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
+  on RegistrationPage.click_register_with_github
   on GitHubPage do |page|
     page.login_with('rhdScenarioOne', 'P@$$word01')
     page.authorize_app
@@ -87,9 +80,7 @@ When(/^I link a GitHub account to my existing account$/) do
   @site_user.create('rhd')
   @github_admin.update_profile("#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}", @site_user.details[:email], @site_user.details[:company_name])
 
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
+  on RegistrationPage.click_register_with_github
 
   on GitHubPage do |page|
     page.login_with('rhdScenarioTwo', 'P@$$word01')
@@ -106,9 +97,7 @@ When(/^I register a new account using a GitHub account that contains missing pro
   @site_user = SiteUser.new
   @site_user.generate
   @github_admin.update_profile('', @site_user.details[:email], '')
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
+  on RegistrationPage.click_register_with_github
   on GitHubPage do |page|
     page.login_with('rhdalreadyregistered01', 'P@$$word01')
     page.authorize_app
@@ -116,20 +105,15 @@ When(/^I register a new account using a GitHub account that contains missing pro
 end
 
 When(/^I try to register using a GitHub account that contains missing profile information with an existing RHD registered email$/) do
-
   @github_admin = GitHubAdmin.new('rhdalreadyregistered02', 'P@$$word01')
   @site_user = SiteUser.new
   @site_user.create('rhd')
   @github_admin.update_profile('', @site_user.details[:email], '')
-
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
+  on RegistrationPage.click_register_with_github
   on GitHubPage do |page|
     page.login_with('rhdalreadyregistered02', 'P@$$word01')
     page.authorize_app
   end
-
 end
 
 When(/^I complete the registration form$/) do
@@ -169,12 +153,11 @@ When(/^I complete the registration with an empty "([^"]*)"$/) do |field|
         @site_user.details[:country] = ''
         page.fill_in_form(@site_user.details)
       else
-        raise("#{field} was not a recognised field")
+        fail("#{field} was not a recognised field")
     end
     page.create_account
   end
 end
-
 
 When(/^I complete the registration with my country as "(.*)" with an empty "(.*)"$/) do |country, field|
   @site_user = SiteUser.new
@@ -209,7 +192,7 @@ When(/^I complete the registration with my country as "(.*)" with an empty "(.*)
         @site_user.details[:city] = ''
         page.fill_in_form(@site_user.details)
       else
-        raise("#{field} was not a recognised field")
+        fail("#{field} was not a recognised field")
     end
     page.create_account
   end
@@ -237,7 +220,7 @@ end
 
 Then(/^I should see a "([^"]*)" error with "([^"]*)"$/) do |field, field_warning|
   on RegistrationPage do |page|
-    expect(page.send("#{field.gsub(' ', '_')}_error")).to eq(field_warning)
+    expect(page.send("#{field.tr(' ', '_')}_error")).to eq(field_warning)
   end
 end
 
@@ -266,7 +249,7 @@ Then(/^each term should link to relevant terms and conditions page:$/) do |table
         when 'Red Hat Portals Terms of Use'
           page.rh_portal_terms.attribute_value('href').should include row[:url]
         else
-          raise("#{row[:term]} is not a recognised term")
+          fail("#{row[:term]} is not a recognised term")
       end
     end
   end
@@ -283,18 +266,12 @@ And(/^I navigate to the verify email link$/) do
 end
 
 And(/^I choose to register a new account using my GitHub account$/) do
-  on LoginPage do |page|
-    page.click_register_link
-  end
-
+  on LoginPage.click_register_link
   @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
   @site_user = SiteUser.new
   @site_user.generate
   @github_admin.update_profile("#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}", @site_user.details[:email], @site_user.details[:company_name])
-
-  on DownloadRegistrationPage do |page|
-    page.click_register_with_github
-  end
+  on DownloadRegistrationPage.click_register_with_github
   on GitHubPage do |page|
     page.login_with('rhdScenarioOne', 'P@$$word01')
     page.authorize_app
@@ -305,25 +282,14 @@ And(/^I choose to register a new account using my GitHub account$/) do
 end
 
 When(/^I choose to register a new account using a GitHub account that contains missing profile information$/) do
-
-  on LoginPage do |page|
-    page.click_register_link
-  end
-
+  on LoginPage.click_register_link
   @github_admin = GitHubAdmin.new('rhdalreadyregistered01', 'P@$$word01')
-
   @site_user = SiteUser.new
   @site_user.generate
-
   @github_admin.update_profile('', '', '')
-
-  on DownloadRegistrationPage do |page|
-    page.click_register_with_github
-  end
-
+  on DownloadRegistrationPage.click_register_with_github
   on GitHubPage do |page|
     page.login_with('rhdalreadyregistered01', 'P@$$word01')
     page.authorize_app
   end
-
 end

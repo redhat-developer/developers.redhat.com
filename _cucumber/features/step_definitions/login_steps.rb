@@ -1,4 +1,4 @@
-Given(/^I log in with (an|a) (valid|incorrect) password$/) do |arg, negate|
+Given(/^I log in with (an|a) (valid|incorrect) password$/) do |_arg, negate|
   on LoginPage do |page|
     if negate.eql?('valid')
       page.login_with(@site_user.details[:email], @site_user.details[:password])
@@ -8,7 +8,7 @@ Given(/^I log in with (an|a) (valid|incorrect) password$/) do |arg, negate|
   end
 end
 
-Given(/^I log in with (an|a) (valid|incorrect) username$/) do |arg, negate|
+Given(/^I log in with (an|a) (valid|incorrect) username$/) do |_arg, negate|
   on LoginPage do |page|
     if negate.eql?('valid')
       page.login_with(@site_user.details[:username], @site_user.details[:password])
@@ -19,26 +19,20 @@ Given(/^I log in with (an|a) (valid|incorrect) username$/) do |arg, negate|
 end
 
 Given(/^I have previously logged in$/) do
-  visit HomePage do |page|
-    page.open_login_page
-  end
-  on LoginPage do |page|
-    page.login_with(@site_user.details[:email], @site_user.details[:password])
-  end
+  visit HomePage.open_login_page
+  on LoginPage.login_with(@site_user.details[:email], @site_user.details[:password])
   expect(@current_page.logged_in?).to eq(@site_user.details[:full_name])
 end
 
 When(/^I am logged into RHD$/) do
-  visit HomePage do |page|
-    page.open_login_page
-    on LoginPage do |page|
-      page.login_with(@site_user.details[:username], @site_user.details[:password])
-      expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
-    end
+  visit HomePage.open_login_page
+  on LoginPage do |page|
+    page.login_with(@site_user.details[:username], @site_user.details[:password])
+    expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
   end
 end
 
-Given(/^I log in with (an|a) (valid|invalid) email address$/) do |arg, negate|
+Given(/^I log in with (an|a) (valid|invalid) email address$/) do |_arg, negate|
   on LoginPage do |page|
     if negate.eql?('valid')
       page.login_with(@site_user.details[:email], @site_user.details[:password])
@@ -71,13 +65,10 @@ When(/^I log in with a (active|deactivated) Customer portal account$/) do |negat
 end
 
 When(/^I log in with an account that is already linked to my Github account$/) do
-
   @site_user = SiteUser.new
   @site_user.create('rhd')
   @site_user.link_social_account(@site_user.details[:email])
-  on LoginPage do |page|
-    page.click_login_with_github
-  end
+  on LoginPage.click_login_with_github
   on GitHubPage do |page|
     page.login_with('rhdsociallogin', 'P@$$word01')
   end
@@ -105,9 +96,7 @@ And(/^the following error message should be displayed: (.*)$/) do |message|
 end
 
 And(/^I click the forgot password link$/) do
-  on LoginPage do |page|
-    page.click_password_reset
-  end
+  on LoginPage.click_password_reset
 end
 
 Then(/^I can log back into RHD using my newly created password$/) do

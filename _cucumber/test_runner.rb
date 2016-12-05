@@ -2,10 +2,10 @@ require 'report_builder'
 require 'colorize'
 require 'colorized_string'
 
+# This class contains methods for the cucumber.rake file in order to execute the full suite of acceptance tests
 class TestRunner
 
   def cleanup(profile)
-
     FileUtils.rm_rf("_cucumber/reports/#{profile}")
     FileUtils.mkdir_p("_cucumber/reports/#{profile}")
 
@@ -14,7 +14,6 @@ class TestRunner
 
     FileUtils.rm_rf("_cucumber/tmp/#{profile}")
     FileUtils.mkdir_p("_cucumber/tmp/#{profile}")
-
   end
 
   def run(profile, tag=nil)

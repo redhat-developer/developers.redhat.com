@@ -1,5 +1,6 @@
 require_relative 'abstract/site_base'
 
+# this is the page class that contains all elements and common methods related to the Registration page.
 class RegistrationPage < SiteBase
   expected_element(:h1, text: "We're glad you're here")
 
@@ -33,18 +34,14 @@ class RegistrationPage < SiteBase
   value(:first_name_field_error)                   { |b| b.span(id: 'firstName-error').text }
   value(:last_name_field_error)                    { |b| b.span(id: 'lastName-error').text }
   value(:company_field_error)                      { |b| b.span(id: 'user.attributes.company-error').text }
-  value(:country_field_error)                      { |b| b.span(id: 'user.attributes.country-error').text}
-  value(:city_field_error)                         { |b| b.span(id: 'user.attributes.addressCity-error').text}
-  value(:state_field_error)                        { |b| b.span(id: 'user.attributes.addressState-error').text}
+  value(:country_field_error)                      { |b| b.span(id: 'user.attributes.country-error').text }
+  value(:city_field_error)                         { |b| b.span(id: 'user.attributes.addressCity-error').text }
+  value(:state_field_error)                        { |b| b.span(id: 'user.attributes.addressState-error').text }
 
   action(:accept_all_terms)                        { |p| p.all_terms.click }
   action(:create_account)                          { |p| p.finish_button.click }
   action(:click_github_button)                     { |p| p.github_button.click }
   action(:click_link_social_to_existing_acc)       { |p| p.link_social_to_existing_acc.click }
-
-  COUNTRIES_WE_EXPECT_STATE = %w[United States Mexico Canada]
-  COUNTRIES_WE_EXPECT_CITY  = %w[United States Mexico Canada Ukraine]
-
 
   def fill_in_form(options = {})
     expand_register_choice_email
@@ -55,8 +52,8 @@ class RegistrationPage < SiteBase
     type(last_name_field, options[:last_name])
     type(company_field, options[:company_name])
     select_country(options[:country])
-    select_state(options[:state])  unless options[:state] == nil
-    type(city_field, options[:city]) unless options[:city] == nil
+    select_state(options[:state]) unless options[:state].nil?
+    type(city_field, options[:city]) unless options[:city].nil?
   end
 
   def enter_password(password, password_confirm)
@@ -83,10 +80,11 @@ class RegistrationPage < SiteBase
 
 end
 
+# this is the page class that contains all elements and common methods related to the Registration page that is displayed when downloading a product.
 class DownloadRegistrationPage < RegistrationPage
   expected_element(:h1, text: 'Thank you for your interest in this download')
 
-  element(:finish_button)  { |b| b.button(value: 'CREATE ACCOUNT & DOWNLOAD') }
+  element(:finish_button) { |b| b.button(value: 'CREATE ACCOUNT & DOWNLOAD') }
 
   def fill_download_reg_form(options = {})
     expand_register_choice_email
@@ -98,8 +96,8 @@ class DownloadRegistrationPage < RegistrationPage
     type(company_field, options[:company_name])
     type(phone_number_field, options[:phone_number])
     select_country(options[:country])
-    select_state(options[:state])  unless options[:state] == nil
-    type(city_field, options[:city]) unless options[:city] == nil
+    select_state(options[:state]) unless options[:state].nil?
+    type(city_field, options[:city]) unless options[:city].nil?
   end
 
 end

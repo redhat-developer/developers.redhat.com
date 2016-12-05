@@ -1,8 +1,9 @@
 require_relative 'abstract/site_base'
 
+# this is the page class that contains all elements and common methods related to the update password page.
 class UpdatePasswordPage < SiteBase
   expected_element(:h1, text: 'Update password')
-  #page_title('Update password | Red Hat Developers')
+  # page_title('Update password | Red Hat Developers')
 
   element(:new_password_field)         { |b| b.text_field(id: 'password-new') }
   element(:new_password_confirm_field) { |b| b.text_field(id: 'password-confirm') }
