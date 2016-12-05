@@ -1,6 +1,6 @@
 # Red Hat Developers Site
 
-Powering the [Red Hat Developers site](http://developers.redhat.com/).
+Powering the [Red Hat Developers site](https://developers.redhat.com/).
 
 This document provides a developer with the instructions needed to setup and use the development environment.
 It is ordered chronologically.

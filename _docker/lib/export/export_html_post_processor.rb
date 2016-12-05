@@ -10,7 +10,7 @@ require_relative '../default_logger'
 # 2: Add in static resources e.g. robots.txt, .htaccess files that are not included by the httrack export process
 #
 # The primary reason for this thing existing is that we wish to maintain a trailing URL structure when the site is exported
-# e.g. http://developers.redhat.com/containers/ and not http://developers.redhat.com/containers.html
+# e.g. https://developers.redhat.com/containers/ and not https://developers.redhat.com/containers.html
 #
 # Default out-of-the-box, we can only do the latter with Httrack, hence all of this post-processing logic to get us to the former!
 #

@@ -248,11 +248,11 @@ Feature: Search Page
       | .NET                    | dotnet                  |
       | Internet of Things      | iot                     |
 
-  Scenario: DEVELOPER-3078 - User searches on /search for 'red hat developers', the first result should be for http://developers.redhat.com/about.
+  Scenario: DEVELOPER-3078 - User searches on /search for 'red hat developers', the first result should be for https://developers.redhat.com/about.
     Given I am on the Home page
     When I search for "red hat developers"
     And the search results page is displayed
-    Then first result should contain "http://developers.redhat.com/about"
+    Then first result should contain "https://developers.redhat.com/about"
 
   Scenario: DEVELOPER-3079 - Searching for 'enterprise linux' should return 'RHEL' product pages first
     Given I am on the Home page
