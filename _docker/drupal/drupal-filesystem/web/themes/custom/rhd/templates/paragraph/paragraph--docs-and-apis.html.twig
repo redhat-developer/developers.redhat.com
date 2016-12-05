@@ -14,10 +14,14 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
             <div class="large-24 columns">
                 <h2 id="community">Docs and APIs</h2>
                 {{ content.field_overview_main_content }}
-                <h3>{{ product_name }} Supported Configurations</h3>
-                {{ content.field_supported_configurations }}
-                <h3>More Resources</h3>
-                {{ content.field_more_resources }}
+                {% if content.field_supported_configurations|render|striptags|trim is not empty %}
+                    <h3>{{ product_name }} Supported Configurations</h3>
+                    {{ content.field_supported_configurations }}
+                {% endif %}
+                {% if content.field_more_resources|render|striptags|trim is not empty %}
+                    <h3>More Resources</h3>
+                    {{ content.field_more_resources }}
+                {% endif %}
             </div>
         </div>
     </div>

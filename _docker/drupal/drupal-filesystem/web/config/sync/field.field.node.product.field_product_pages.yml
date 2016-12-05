@@ -32,55 +32,64 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      buzz: buzz
-      community: community
-      docs_and_apis: docs_and_apis
+      overview: overview
       download: download
       get_started: get_started
-      connectors: connectors
+      docs_and_apis: docs_and_apis
       help: help
+      connectors: connectors
       learn: learn
-      overview: overview
+      community: community
       updates: updates
       resources: resources
+      buzz: buzz
     target_bundles_drag_drop:
-      buzz:
-        enabled: true
-        weight: 11
-      community:
-        enabled: true
-        weight: 12
-      docs_and_apis:
-        enabled: true
-        weight: 13
-      download:
-        enabled: true
-        weight: 14
-      get_started:
-        enabled: true
-        weight: 15
-      connectors:
-        enabled: true
-        weight: 16
-      help:
-        enabled: true
-        weight: 16
-      learn:
-        enabled: true
-        weight: 17
-      main_content:
-        weight: 18
-        enabled: false
-      document_details:
-        weight: 18
-        enabled: false
       overview:
         enabled: true
-        weight: 19
+        weight: -33
+      download:
+        enabled: true
+        weight: -32
+      get_started:
+        enabled: true
+        weight: -31
+      docs_and_apis:
+        enabled: true
+        weight: -30
+      help:
+        enabled: true
+        weight: -29
+      connectors:
+        enabled: true
+        weight: -28
+      learn:
+        enabled: true
+        weight: -27
+      community:
+        enabled: true
+        weight: -26
       updates:
         enabled: true
-        weight: 20
+        weight: -25
       resources:
         enabled: true
-        weight: 21
+        weight: -24
+      buzz:
+        enabled: true
+        weight: -23
+      document_details:
+        weight: -22
+        enabled: false
+      main_content:
+        weight: -21
+        enabled: false
+      getting_started_section:
+        weight: -20
+        enabled: false
+      getting_started_tab_section:
+        weight: -19
+        enabled: false
+      paragraph_with_image:
+        weight: -18
+        enabled: false
 field_type: entity_reference_revisions

@@ -4,13 +4,12 @@ status: true
 dependencies:
   module:
     - node
-    - text
 id: node.field_product_summary
 field_name: field_product_summary
 entity_type: node
-type: text_long
+type: string
 settings: {  }
-module: text
+module: core
 locked: false
 cardinality: 1
 translatable: true

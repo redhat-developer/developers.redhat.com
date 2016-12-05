@@ -17,20 +17,6 @@ dependencies:
     - text
 third_party_settings:
   field_group:
-    group_global_information:
-      children:
-        - field_product_summary
-      parent_name: group_product_info
-      weight: 2
-      format_type: tab
-      format_settings:
-        label: 'Global Sub Page Information'
-        formatter: closed
-        description: ''
-        required_fields: true
-        id: ''
-        classes: ''
-      label: 'Global Sub Page Information'
     group_sub_pages:
       children:
         - field_product_pages
@@ -47,7 +33,6 @@ third_party_settings:
       label: 'Individual Sub Pages'
     group_product_info:
       children:
-        - group_global_information
         - group_sub_pages
       parent_name: ''
       weight: 6

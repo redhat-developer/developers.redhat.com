@@ -5,8 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_product_summary
     - node.type.product
-  module:
-    - text
 id: node.product.field_product_summary
 field_name: field_product_summary
 entity_type: node
@@ -18,4 +16,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: text_long
+field_type: string
