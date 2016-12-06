@@ -112,9 +112,9 @@ div(ng-app="search")
 
         .large-24.columns.searchpage-results-container#scrollPoint
           .sorting
-            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found
-            h3.results-title(ng-if="totalCount <= 0") No results found
-            h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
+            h3.results-title(ng-if="totalCount > 0" ng-bind-template="{{totalCount}} results found")
+            h3.results-title(ng-if="totalCount <= 0" ng-bind-template="No results found")
+            h4.results-sub-title(ng-if="totalCount <= 0" ng-bind-template="Please try different keywords")
             hr
             p
               | Sort results by
@@ -138,28 +138,28 @@ div(ng-app="search")
               .result-details
                 img.video-thumb(ng-show="{{r.thumbnail.length}}" ng-src="{{r.thumbnail[0]}}")
                 h4
-                  a(href="" ng-href="{{r.sys_url_view[0] | jbossfix}}" resource-type="{{r.sys_type[0]}}") {{r.sys_title[0]}}
+                  a(href="" ng-href="{{r.sys_url_view[0] | jbossfix}}" resource-type="{{r.sys_type[0]}}" ng-bind="r.sys_title[0]")
                 section.meta-data
                   / pre {{r | json}}
-                  span.created-date(data-updated="{{r.sys_created[0] | timestamp}}") {{r.sys_created[0] | MDY}}
-                p {{r.sys_description[0] | wordcount}}
+                  span.created-date(data-updated="{{r.sys_created[0] | timestamp}}" ng-bind="r.sys_created[0] | MDY")
+                p(ng-bind="r.sys_description[0] | wordcount")
                 / p.contributors(ng-show="{{r.sys_contributors.length}}")
                   span.contributor(ng-repeat="author in r.sys_contributors" data-sys-contributor="{{author}}")
                     a.name {{author}}
                 .tags-list
                   p(ng-init="tagList = (r.sys_tags | tagGroup)" ng-show="{{tagList.length}}")
-                    | Tags:&nbsp;
-                    span.tag(ng-repeat="tag in tagList") {{tag}}
+                    span.tag-label(ng-bind-template="Tags:")
+                    span.tag(ng-repeat="tag in tagList" ng-bind=" tag")
 
         nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
-          span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
+          span( ng-bind-template="Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results")
           ul.pagination
             li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
               a(ng-click="goToPage('first'); scrollPosition();") First
             li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
               a(ng-click="goToPage('prev'); scrollPosition();") Previous
             li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
-              a(ng-click="goToPage(page); scrollPosition();" data-page="{{page}}") {{page}}
+              a(ng-click="goToPage(page); scrollPosition();" data-page="{{page}}" ng-bind="page")
             li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
               a(ng-click="goToPage('next'); scrollPosition();") Next
             li#pagination-last(ng-class="paginate.currentPage == paginate.pages ? 'unavailable': 'available'")
