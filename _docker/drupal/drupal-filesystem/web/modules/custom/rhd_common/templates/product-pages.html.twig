@@ -1,0 +1,153 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set product_machine_name = elements.field_product_machine_name[0]['#context']['value']|lower %}
+{% set active_paragraph = elements.active_paragraph['#paragraph'] %}
+<section id="referral-alert" class="hide">
+    <div class="row content">
+        <div class="large-24 columns">
+            <div class="large-24 columns">
+                <div class="alert-box info radius">
+                    <h4>You have been redirected from JBoss.org to Red Hat Developers.</h4>
+                    <p>It’s true — JBoss Developer and Red Hat Developers are one
+                        and the same, and you can find all the great stuff you were
+                        looking for right here on <a href="http://developers.redhat.com/">developers.redhat.com.</a></p>
+                    <a class="close">x</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="mobile product-color {{ elements.product_category }}"></div>
+<div class="mobile product-header">
+    <div class="row">
+        <div class="large-24 columns">
+            <h3>{{ elements.title }}</h3>
+            <a class="button"
+               href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'downloads'}) }}">Download</a><a
+                    class="button inverse" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'get-started'}) }}">Get
+                Started</a>
+        </div>
+    </div>
+</div>
+<article{{ attributes }}>
+    <section class="hero hero-wide product-header {{ product_machine_name }} {{ elements.product_category }}">
+        <div class="row">
+            <div class="large-24 columns">
+                {{ title_prefix }}
+                <h2 {{ title_attributes }}>{{ elements.title }}</h2>
+                {{ title_suffix }}
+                <h3 id="product">{{ elements.field_product_summary }}</h3>
+            </div>
+        </div>
+    </section>
+    <section{{ content_attributes.addClass(["product-graphics", elements.product_category]) }}>
+        {% if not active_paragraph.field_overview_hide_get_started.value %}
+            <div class="large-24 columns">
+                <div id="hero-try-or-buy" class="row {{ elements.product_category }}">
+                    <div class="large-24 columns hello-world">
+                        <div class="small-24 large-6 columns">
+                            <h2>Hello World!</h2>
+                            <p class="caps">Build Something Today</p>
+                        </div>
+                        <div class="small-24 large-6 columns"><p>Let's walk through everything you need to build your
+                                first application.</p></div>
+                        <div class="small-24 large-6 columns"><a class="button" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'get-started'}) }}">Get Started</a>
+                        </div>
+                        <div class="small-24 large-6 columns outside-links">
+                            <a class="large-24 medium-12 columns"
+                               href="http://www.redhat.com/en/about/contact/sales"><strong>Buy It</strong>
+                                <p>Contact Sales<i class="fa fa-caret-right"></i></p>
+                            </a>{% if elements.has_community %}<a
+                                    class="large-24 medium-12 columns" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'community'}) }}"><strong>Make it
+                                    better</strong>
+                                <p>Join the community<i class="fa fa-caret-right"></i></p></a>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row content">
+            <div class="large-24 columns">
+                <div class="large-4 medium-7 small-24 columns nav-breakpoint">
+                    {{ elements.page_links }}
+                </div>
+                <div class="large-20 medium-17 small-24 columns">
+                    {{ elements.active_paragraph }}
+                </div>
+            </div>
+        </div>
+    </section>
+</article>

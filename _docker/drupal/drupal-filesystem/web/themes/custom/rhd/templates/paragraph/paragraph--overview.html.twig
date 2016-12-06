@@ -1,0 +1,37 @@
+{% set classes = [
+'paragraph',
+'paragraph--type--' ~ paragraph.bundle|clean_class,
+view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+] %}
+
+<div{{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    <div{{ title_attributes }}>{{ label }}</div>
+    {{ title_suffix }}
+
+    <div{{ content_attributes }}>
+        <div class="row">
+            <div class="large-13 columns">
+                <h2 id="community">Overview</h2>
+                {{ content.field_overview_main_content }}
+            </div>
+            <div class="large-11 columns right product-video">
+                {{ content.field_product_overview_video }}
+            </div>
+        </div>
+        <div class="row" id="product-features">
+            {% for feature in features %}
+                <div class="large-{{ 24 / (features|length) }} columns">
+                    <div>{{ feature.image }}</div>
+                    <h4>{{ feature.title }}</h4>
+                    <div>{{ feature.body }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="large-24 columns">
+                {{ content.field_secondary_content }}
+            </div>
+        </div>
+    </div>
+</div>

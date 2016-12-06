@@ -1,0 +1,56 @@
+uuid: 5941b0dd-0d14-4402-a843-2fa3ee3b318f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.buzz.field_buzz_tags
+    - field.field.paragraph.buzz.field_overview_hide_get_started
+    - field.field.paragraph.buzz.field_overview_main_content
+    - field.field.paragraph.buzz.field_overview_url
+    - field.field.paragraph.buzz.field_page_description
+    - paragraphs.paragraphs_type.buzz
+  module:
+    - text
+id: paragraph.buzz.default
+targetEntityType: paragraph
+bundle: buzz
+mode: default
+content:
+  field_buzz_tags:
+    weight: 7
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_overview_hide_get_started:
+    weight: 6
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_overview_main_content:
+    weight: 5
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_overview_url:
+    weight: 4
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_page_description:
+    weight: 8
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

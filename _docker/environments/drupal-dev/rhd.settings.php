@@ -3,6 +3,7 @@ use Symfony\Component\Yaml\Yaml;
 
 $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
 
+$settings['twig_debug'] = TRUE;
 $config['system.performance']['css']['preprocess'] = FALSE;
 $config['system.performance']['js']['preprocess'] = FALSE;
 $config['automated_cron.settings']['interval'] = 0;

@@ -11,6 +11,8 @@ module:
   color: 0
   comment: 0
   config: 0
+  config_update: 0
+  config_update_ui: 0
   contact: 0
   contextual: 0
   datetime: 0
@@ -18,6 +20,7 @@ module:
   diff: 0
   dynamic_page_cache: 0
   editor: 0
+  editor_advanced_link: 0
   entity: 0
   entity_storage_migrate: 0
   field: 0
@@ -31,8 +34,13 @@ module:
   key_value: 0
   layoutmanager: 0
   link: 0
+  linkit: 0
+  media_entity: 0
+  media_entity_image: 0
   menu_ui: 0
   metatag: 0
+  metatag_dc: 0
+  metatag_facebook: 0
   metatag_google_plus: 0
   metatag_open_graph: 0
   metatag_twitter_cards: 0
@@ -60,10 +68,20 @@ module:
   tour: 0
   update: 0
   user: 0
+  video_embed_field: 0
+  video_embed_media: 0
+  video_embed_wysiwyg: 0
   views_ui: 0
+  conflict: 1
   ctools: 1
+  entity_reference_revisions: 1
+  field_collection: 1
+  field_group: 1
   menu_link_content: 1
+  paragraphs: 1
   pathauto: 1
+  rhd_common: 1
+  subpathauto: 1
   token_filter: 1
   views: 10
   standard: 1000

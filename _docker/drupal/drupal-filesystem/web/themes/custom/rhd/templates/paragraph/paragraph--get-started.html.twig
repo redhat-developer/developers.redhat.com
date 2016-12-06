@@ -1,0 +1,27 @@
+{% set classes = [
+'paragraph',
+'paragraph--type--' ~ paragraph.bundle|clean_class,
+view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+] %}
+
+<div{{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    <div{{ title_attributes }}>{{ label }}</div>
+    {{ title_suffix }}
+
+    <div{{ content_attributes }}>
+        <h2 id="get-started">Get Started</h2>
+        {% if content.field_overview_main_content|render|striptags|trim is not empty %}
+            {{ content.field_overview_main_content }}
+        {% else %}
+            {% if tab_bar|render|striptags|trim is not empty %}
+                <div class="multipath-tabs-sm">
+                    {{ tab_bar }}
+                </div>
+            {% endif %}
+            <div>
+                {{ tab_panels }}
+            </div>
+        {% endif %}
+    </div>
+</div>
