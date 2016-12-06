@@ -90,10 +90,16 @@ function rhd_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $v
 function rhd_preprocess_html(array &$variables) {
     $environment = \Drupal::config('redhat_developers')->get('environment');
     $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
+    $sentry_track = \Drupal::config('redhat_developers')->get('sentry_track');
+    $sentry_script = \Drupal::config('redhat_developers')->get('sentry_script');
+    $sentry_code = \Drupal::config('redhat_developers')->get('sentry_code');
 
     $variables['rhd_environment'] = $environment;
     $variables['rhd_dtm_code'] = $dtm_code;
     $variables['rhd_dtm_script'] = redhat_www_ddo_default();
+    $variables['rhd_sentry_track'] = $sentry_track;
+    $variables['rhd_sentry_script'] = $sentry_script;
+    $variables['rhd_sentry_code'] = $sentry_code;
 }
 
 function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
@@ -101,6 +107,10 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 
     $settings['rhd'] = array();
     $rhd_settings = &$settings['rhd'];
+
+    $rhd_settings['urls'] = array();
+    $rhd_settings['urls']['base_url'] = \Drupal::config('redhat_developers')->get('rhd_base_url');
+    $rhd_settings['urls']['final_base_url'] = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
 
     $rhd_settings['downloadManager'] = array();
     $rhd_settings['downloadManager']['baseUrl'] = $env_settings->get('downloadManager')['baseUrl'];
@@ -144,7 +154,15 @@ function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAsse
 
 function redhat_www_ddo_default() {
     $request = \Drupal::request();
+    $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404'); 
     $node = \Drupal::request()->attributes->get('node');
+    if ( $siteerror == '/node/'.$node->nid->value ) {
+        $errorType = "404";
+        $errorMessage = "404-error";
+    } else {
+        $errorType = "";
+        $errorMessage = "";
+    }
 
     $ddo = array(
         'page' => array(
@@ -164,10 +182,11 @@ function redhat_www_ddo_default() {
                 'breadCrumbs' => array(),
                 'cms' => 'RHD CMS 8',
                 'destinationURL' => '',
-                'errorMessage' => '',
-                'errorType' => '',
+                'errorMessage' => $errorMessage,
+                'errorType' => $errorType,
                 'language' => $node->langcode->value,
                 'pageID' => $node->nid->value,
+                'contentID' => $node->nid->value,
                 'pageName' => '',
                 'referringDomain' => '',
                 'referringURL' => '',

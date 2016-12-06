@@ -2,7 +2,6 @@ require_relative 'abstract/site_base'
 
 class LoginPage < SiteBase
   expected_element(:text_field, id: 'username')
-  #page_title('Log In | Red Hat Developers')
 
   element(:heading)                { |b| b.h1(text: 'Log In') }
   element(:username_field)         { |b| b.text_field(id: 'username') }

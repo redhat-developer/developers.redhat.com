@@ -37,6 +37,13 @@ task :report_builder do
   exit(@exit_status)
 end
 
+task :cuke_sniffer do
+  FileUtils.rm_rf('_cucumber/reports/cuke_sniffer')
+  FileUtils.mkdir_p('_cucumber/reports/cuke_sniffer')
+  sh 'cd _cucumber/features'
+  sh 'bundle exec cuke_sniffer --out html _cucumber/reports/cuke_sniffer/cuke_sniffer.html'
+end
+
 task :wip do
   system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
 end

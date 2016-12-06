@@ -8,13 +8,14 @@ Before('@products') do
 end
 
 After('@delete_user') do
-  keycloak_admin = KeyCloak.new
-  keycloak_admin.delete_user($site_user[:email])
+  keycloak_admin = KeyCloakAdmin.new
+  puts "Deleting user: #{@site_user.details[:email]}"
+  keycloak_admin.delete_user(@site_user.details[:email])
 end
 
 After('@unlink_social_provider') do
-  keycloak_admin = KeyCloak.new
-  keycloak_admin.unlink_social_provider($site_user[:email])
+  keycloak_admin = KeyCloakAdmin.new
+  keycloak_admin.unlink_social_provider(@site_user.details[:email])
 end
 
 After('@github_teardown') do
@@ -34,8 +35,8 @@ end
 
 After('@logout') do
   case $host_to_test
-    when 'http://developers.redhat.com', 'https://developers.redhat.com'
-      @browser.goto('http://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+    when 'https://developers.redhat.com', 'https://developers.redhat.com'
+      @browser.goto('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
     else
       @browser.goto('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
   end

@@ -14,6 +14,7 @@ services:
       - github_status_repo=redhat-developer/developers.redhat.com
       - github_status_target_url=http://stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}
       - github_status_sha1=${ghprbActualCommit}
+      - ghprbPullId
       - google_api_key
       - dcp_user
       - dcp_password

@@ -57,11 +57,6 @@ Then(/^nothing will happen and no search will be initiated$/) do
   expect(@current_page.search_field_visible?).to be true
 end
 
-And(/^"([^"]*)" related to "([^"]*)"$/) do |tags, search_string|
-  expect(@current_page.tags.downcase).to include "#{tags}:"
-  expect(@current_page.tags.downcase).to include search_string.downcase
-end
-
 Then(/^the "([^"]*)" product overview page should be the first result$/) do |arg|
   url = @current_page.first_result_attribute
   url.include? '/products/rhel/overview'
@@ -75,4 +70,9 @@ end
 Then(/^first result should contain "(.*)"$/) do |res|
   url = @current_page.first_result_attribute
   url.include? res
+end
+
+Then(/^I should be scrolled to the top of the page$/) do
+  scroll =  @browser.driver.execute_script("return window.scrollY")
+  expect(scroll).to eq 0
 end

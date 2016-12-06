@@ -51,11 +51,6 @@ class StandardisedSearch < SiteBase
     wait_for_results
   end
 
-  def select_filter_by(option)
-    select(results_sort_filter, option)
-    wait_for_results
-  end
-
   def results
     results = []
     result_row.each do |result|

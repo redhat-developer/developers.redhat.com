@@ -84,10 +84,10 @@
         var categories = { primaryCategory: "", subCategories: [] },
           url = relURL.split('?')[0].split('#')[0].split(/\//);
         for(var i=1, l=url.length; i<l; i++) {
-          if (i !== 1 && i <= 3) { 
+          if (i !== 1 && i <= 3) {
             categories.subCategories.push(url[i]);
           }
-          
+
           if (i === 1) {
             categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
           }
@@ -137,6 +137,10 @@
   <!--[if lt IE 9]>
   <script src="//html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
+  {% if (rhd_sentry_track) %}
+  <script src="{{ rhd_sentry_script }}"></script>
+  <script>Raven.config('{{ rhd_sentry_code }}').install()</script>
+  {% endif %}
   <js-placeholder token="{{ placeholder_token|raw }}">
 </head>
 <body class="{{ body_classes()|join(' ') }}">
@@ -242,7 +246,7 @@
                     <li class="has-sub-nav">
                         <a href="#">Community<i class="fa fa-angle-down"></i></a>
                         <div class="sub-nav pull-right" id="sub-nav-community">
-                          <a href="http://developers.redhat.com/blog">Developers Blog<span class="page-description">Insights &amp; news on Red Hat developer tools, platforms and more</span></a>
+                          <a href="https://developers.redhat.com/blog">Developers Blog<span class="page-description">Insights &amp; news on Red Hat developer tools, platforms and more</span></a>
                           <a href="/events">Events<span class="page-description">Find the latest conferences, meetups, and virtual seminars</span></a>
                           <div class="sub-nav-group">
                             <a href="/projects">Open Source Communities<span class="page-description">Community Projects that Red Hat participates in</span></a>
@@ -357,12 +361,12 @@
   </div>
   <div id="fb-root"></div>
   <js-bottom-placeholder token="{{ placeholder_token|raw }}">
-  
+
   {# This MUST be at the bottom of the page #}
   {% if (rhd_dtm_code) %}
   <script type="text/javascript">
-    if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {  
-        _satellite.pageBottom();  
+    if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+        _satellite.pageBottom();
     }
   </script>
   {% endif %}

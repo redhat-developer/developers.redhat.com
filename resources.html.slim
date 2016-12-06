@@ -3,7 +3,6 @@ layout: base
 title: Discover the developer materials Red Hat has to offer
 description: Red Hat has extensive materials to help you get started. On offer are quickstarts, tutorials, videos, articles and more.
 drupal_format: as_is_html
-ignore_export: true
 ---
 
 .hero.hero-wide.hero-resources
@@ -110,9 +109,9 @@ div(ng-app="search")
                     | End Date
                     input(class="end-date" type="date" ng-model="params.publish_date_to" ng-change="updateSearch(); resetPagination();")
 
-        .large-24.columns.searchpage-results-container
+        .large-24.columns.searchpage-results-container#scrollPoint
           .sorting
-            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found {{ params.query ? ' for ' + params.query : '' }}
+            h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found
             h3.results-title(ng-if="totalCount <= 0") No results found
             h4.results-sub-title(ng-if="totalCount <= 0") Please try different keywords
             hr
@@ -155,15 +154,15 @@ div(ng-app="search")
           span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
           ul.pagination
             li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
-              a(ng-click="goToPage('first')") First
+              a(ng-click="goToPage('first'); scrollPosition();") First
             li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
-              a(ng-click="goToPage('prev')") Previous
+              a(ng-click="goToPage('prev'); scrollPosition();") Previous
             li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
-              a(ng-click="goToPage(page)" data-page="{{page}}") {{page}}
+              a(ng-click="goToPage(page); scrollPosition();" data-page="{{page}}") {{page}}
             li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
-              a(ng-click="goToPage('next')") Next
+              a(ng-click="goToPage('next'); scrollPosition();") Next
             li#pagination-last(ng-class="paginate.currentPage == paginate.pages ? 'unavailable': 'available'")
-              a(ng-click="goToPage('last')") Last
+              a(ng-click="goToPage('last'); scrollPosition();") Last
 
 
 = javascripts("developer-materials-filter", true) do

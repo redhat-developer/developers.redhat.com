@@ -33,16 +33,8 @@ Given(/^I am on the ([^"]*) page$/) do |page|
   end
 end
 
-When(/^I click the Login link$/) do
-  @current_page.click_login
-end
-
 When(/^I click the Logout link$/) do
   @current_page.click_logout
-end
-
-When(/^I click the Register link$/) do
-  @current_page.click_register
 end
 
 Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
@@ -54,7 +46,6 @@ Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
 end
 
 When(/^I go back$/) do
-  sleep(6) #give previous request time to complete before navigating back.
   @browser.back
 end
 
@@ -134,7 +125,7 @@ Then(/^each Communities sub\-menu item should contain a link to its retrospectiv
   table.hashes.each do |row|
     href = @current_page.get_href_for("#{row['name']}")
     if row['name'] == 'Developers Blog'
-      expect(href).to include 'http://developers.redhat.com/blog'
+      expect(href).to include 'https://developers.redhat.com/blog'
     else
       expect(href).to include "/#{row['href']}"
     end

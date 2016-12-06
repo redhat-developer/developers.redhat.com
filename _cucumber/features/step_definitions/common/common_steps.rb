@@ -90,12 +90,3 @@ And(/^the result per page options should be:$/) do |table|
   @current_page.results_per_page[1].should =~ results_per_page
 end
 
-Given(/^I am a logged out$/) do
-  @current_page.click_logout
-  @current_page.logged_out?
-end
-
-When(/^I have an active Customer portal account$/) do
-  it_admin = ItAdmin.new
-  $site_user = it_admin.create_full_user
-end

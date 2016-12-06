@@ -17,8 +17,8 @@ ignore_export: true
         .swipe-wrap
           .slide
             a(href="http://www.devnation.org/")
-              img.mobile(src="http://static.jboss.org/images/rhd/hero/RHDev_eventshero_mobile_devnation_03292016.png" alt="An Open Source Conference, By And For Developers Across The Globe")
-              img.desktop(src="http://static.jboss.org/images/rhd/hero/RHDev_eventshero_devnation_desktop_h250_03292015_.png" alt="An Open Source Conference, By And For Developers Across The Globe")      
+              img.mobile(src="https://static.jboss.org/images/rhd/hero/RHDev_eventshero_mobile_devnation_03292016.png" alt="An Open Source Conference, By And For Developers Across The Globe")
+              img.desktop(src="https://static.jboss.org/images/rhd/hero/RHDev_eventshero_devnation_desktop_h250_03292015_.png" alt="An Open Source Conference, By And For Developers Across The Globe")      
       .slider-pager
       .slider-controls
         a.slider-prev(data-direction="prev")
@@ -52,7 +52,7 @@ ignore_export: true
           li.event-item(ng-repeat="event in events[monthKey] | orderBy: 'start_date'")
             .event
               .event-head
-                img(ng-if="'default' !== event.image" ng-src="http://static.jboss.org/images/rhd/events/event_{{event.image}}.png")
+                img(ng-if="'default' !== event.image" ng-src="https://static.jboss.org/images/rhd/events/event_{{event.image}}.png")
                 .event-date(ng-class="{'multiday': event.end_date !== event.start_date}")
                    p
                     span.start(ng-class="{'multimonth': (event.start_date | moment:'MMM') !== (event.end_date | moment:'MMM'), 'same-month': (event.start_date | moment:'MMM') == (event.end_date | moment:'MMM') }")

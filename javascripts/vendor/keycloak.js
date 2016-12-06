@@ -783,10 +783,17 @@
             document.body.appendChild(iframe);
 
             var messageCallback = function(event) {
+                var data;
                 if (event.origin !== loginIframe.iframeOrigin) {
                     return;
                 }
-                var data = JSON.parse(event.data);
+
+                if (typeof event.data == "string") {
+                    data = JSON.parse(event.data);
+                } else {
+                    return;
+                }
+                
                 var promise = loginIframe.callbackMap[data.callbackId];
                 delete loginIframe.callbackMap[data.callbackId];
 

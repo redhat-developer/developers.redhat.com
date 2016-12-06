@@ -1,8 +1,7 @@
 require_relative 'abstract/site_base'
 
 class RegistrationPage < SiteBase
-  expected_element(:div, id: 'kc-register')
-  #page_title('Register | Red Hat Developers')
+  expected_element(:h1, text: "We're glad you're here")
 
   element(:expand_register_with_email)             { |b| b.link(id: 'register-expand-choice-email') }
   element(:expand_register_with_social)            { |b| b.link(id: 'register-expand-choice-social') }
@@ -43,17 +42,26 @@ class RegistrationPage < SiteBase
   action(:click_github_button)                     { |p| p.github_button.click }
   action(:click_link_social_to_existing_acc)       { |p| p.link_social_to_existing_acc.click }
 
-  def fill_in_form(first_name, last_name, email, company, country=nil, city=nil, state=nil, password, password_confirm)
+  COUNTRIES_WE_EXPECT_STATE = %w[United States Mexico Canada]
+  COUNTRIES_WE_EXPECT_CITY  = %w[United States Mexico Canada Ukraine]
+
+
+  def fill_in_form(options = {})
     expand_register_choice_email
-    type(email_field, email)
+    type(email_field, options[:email])
+    type(password_field, options[:password])
+    type(password_confirm_field, options[:password])
+    type(first_name_field, options[:first_name])
+    type(last_name_field, options[:last_name])
+    type(company_field, options[:company_name])
+    select_country(options[:country])
+    select_state(options[:state])  unless options[:state] == nil
+    type(city_field, options[:city]) unless options[:city] == nil
+  end
+
+  def enter_password(password, password_confirm)
     type(password_field, password)
     type(password_confirm_field, password_confirm)
-    type(first_name_field, first_name)
-    type(last_name_field, last_name)
-    type(company_field, company)
-    select_country(country) unless country.nil?
-    type(city_field, city) unless city.nil?
-    select_state(state) unless state.nil?
   end
 
   def select_country(country)
@@ -71,6 +79,27 @@ class RegistrationPage < SiteBase
   def click_register_with_github
     expand_register_with_social.click if expand_register_with_social.visible?
     click_github_button
+  end
+
+end
+
+class DownloadRegistrationPage < RegistrationPage
+  expected_element(:h1, text: 'Thank you for your interest in this download')
+
+  element(:finish_button)  { |b| b.button(value: 'CREATE ACCOUNT & DOWNLOAD') }
+
+  def fill_download_reg_form(options = {})
+    expand_register_choice_email
+    type(email_field, options[:email])
+    type(password_field, options[:password])
+    type(password_confirm_field, options[:password])
+    type(first_name_field, options[:first_name])
+    type(last_name_field, options[:last_name])
+    type(company_field, options[:company_name])
+    type(phone_number_field, options[:phone_number])
+    select_country(options[:country])
+    select_state(options[:state])  unless options[:state] == nil
+    type(city_field, options[:city]) unless options[:city] == nil
   end
 
 end
