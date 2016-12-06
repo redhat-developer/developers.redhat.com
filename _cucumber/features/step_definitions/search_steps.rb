@@ -71,3 +71,8 @@ Then(/^first result should contain "(.*)"$/) do |res|
   url = @current_page.first_result_attribute
   url.include? res
 end
+
+Then(/^I should be scrolled to the top of the page$/) do
+  scroll =  @browser.driver.execute_script("return window.scrollY")
+  expect(scroll).to eq 0
+end

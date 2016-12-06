@@ -35,8 +35,8 @@ end
 
 After('@logout') do
   case $host_to_test
-    when 'http://developers.redhat.com', 'https://developers.redhat.com'
-      @browser.goto('http://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+    when 'https://developers.redhat.com', 'https://developers.redhat.com'
+      @browser.goto('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
     else
       @browser.goto('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
   end

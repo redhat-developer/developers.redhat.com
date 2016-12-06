@@ -104,7 +104,7 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
 
     sitemap_document = Nokogiri::XML(File.open(sitemap_location, 'r'))
     sitemap_document.xpath('//xmlns:loc').each do |loc|
-      assert_match %r{http://developers\.redhat\.com/}, loc.content
+      assert_match %r{https://developers\.redhat\.com/}, loc.content
     end
 
     sitemap_document.xpath('/xmlns:urlset').each do |urlset|

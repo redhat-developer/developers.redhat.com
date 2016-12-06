@@ -56,8 +56,7 @@ class ResourcesPage < StandardisedSearch
 
   def results_contain_img_for(type)
     wait_for_results
-    elements = @browser.images(css: ".result-icon .icon-RHDev_-resources_icons_#{type.downcase}")
-    elements.size == 10
+    @browser.images(css: ".result-icon .icon-RHDev_-resources_icons_#{type.downcase}")
   end
 
   def tags

@@ -125,7 +125,7 @@ Then(/^each Communities sub\-menu item should contain a link to its retrospectiv
   table.hashes.each do |row|
     href = @current_page.get_href_for("#{row['name']}")
     if row['name'] == 'Developers Blog'
-      expect(href).to include 'http://developers.redhat.com/blog'
+      expect(href).to include 'https://developers.redhat.com/blog'
     else
       expect(href).to include "/#{row['href']}"
     end

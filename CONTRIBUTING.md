@@ -88,7 +88,7 @@ The Pull request will then be reviewed by the Red Hat Developers team, and you m
 
 
 ## Developer Materials
-Currently we have a number of different types of developer materials that can be searched from http://developers.redhat.com/resources and `http://developers.redhat.com/<product code>/learn`. These are described as follows:
+Currently we have a number of different types of developer materials that can be searched from https://developers.redhat.com/resources and `https://developers.redhat.com/<product code>/learn`. These are described as follows:
 
 1. Quickstarts. These demonstrate a small number of technologies in as simple a way as possible. The guidelines are quite strict around the structure and scope of the quickstarts. This makes it easier for the Red Hat Developer team to maintain the large quantity of quickstarts that we have and also gives the user a consistent experience. Currently we only support quickstarts that are located in one of the JBoss Developer quickstarts repositories on https://github.com/jboss-developer.
 2. Demos. These are larger applications than quickstarts and don't have as strict guidelines. They can also be located in external repositories outside of the JBoss Developer GitHub organization.
@@ -210,7 +210,7 @@ If Ticket Monster has released a new version, the download link in `ticket-monst
 
 
 ## How to Make Changes to the Product Pages
-The product pages are those linked from http://developers.redhat.com/products.
+The product pages are those linked from https://developers.redhat.com/products.
 This section covers the various contributions that can be made to these pages.
 
 ### How to Request a new product download
@@ -227,22 +227,22 @@ This section covers the various contributions that can be made to these pages.
 
 ### How to add a new product download
 
-First add the downloads to the [Download Manager](http://developers.redhat.com/download-manager/).
+First add the downloads to the [Download Manager](https://developers.redhat.com/download-manager/).
 
 The following steps are currently required, but will no longer be when the downloads are automatically fetched from the download manager.
 
-1. Ensure the download is available in the [Download Manager](http://developers.redhat.com/download-manager).
+1. Ensure the download is available in the [Download Manager](https://developers.redhat.com/download-manager).
 2. Add a download item to the associated product's `product.yml` file. As an example here is [JBoss EAP's product.yml](https://github.com/redhat-developer/developers.redhat.com/blob/master/products/eap/_common/product.yml)
 3. Update the `current_version:` field in the `product.yml` **only** if you are adding a GA release (i.e. not an Alpha or Beta).
 4. Build the site locally
 5. Visit the download page on your local build to verify the download is appearing correctly
-6. Inspect each of the download links and paste the part after `http://developers.redhat.com/download-manager/file` into the associated `Short URL` field of the download item in the [Download Manager](http://developers.redhat.com/download-manager). Take a look at existing downloads for examples. Remember the preceding `/` character. 
+6. Inspect each of the download links and paste the part after `https://developers.redhat.com/download-manager/file` into the associated `Short URL` field of the download item in the [Download Manager](https://developers.redhat.com/download-manager). Take a look at existing downloads for examples. Remember the preceding `/` character. 
 7. [Raise a PR](#fixing) for your change.
 
 
 ### How to Highlight a particular Developer material
 A particular developer material can be highlighted on each product's developer materials page.
-For example, notice the banner visible on [the EAP Developer Materials page](http://developers.redhat.com/products/eap/learn/#!projectCode=eap).
+For example, notice the banner visible on [the EAP Developer Materials page](https://developers.redhat.com/products/eap/learn/#!projectCode=eap).
 To change this:
 
 1. [Create a JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) for your change. Include:
@@ -277,7 +277,7 @@ If you are requesting a series of text changes, then putting them in a single is
 7. The PR is merged.
 
 ### How to add/remove an item to the Training section
-See the [EAP Product Overview Page](http://developers.redhat.com/products/eap/overview/) on the right-hand-side for an example of the training links.
+See the [EAP Product Overview Page](https://developers.redhat.com/products/eap/overview/) on the right-hand-side for an example of the training links.
 
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) for the change request. Include:
  1. The link to the training overview page.
@@ -287,7 +287,7 @@ See the [EAP Product Overview Page](http://developers.redhat.com/products/eap/ov
 4. [Raise a PR](#fixing) for your change.
 
 ### How to add/remove an item to the Webinars section
-See the [EAP Product Overview Page](http://developers.redhat.com/products/eap/overview/) on the right-hand-side for an example of the Webinars links.
+See the [EAP Product Overview Page](https://developers.redhat.com/products/eap/overview/) on the right-hand-side for an example of the Webinars links.
 
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) for the change request. Include:
  1. The link to the Webinar overview page.
@@ -299,7 +299,7 @@ See the [EAP Product Overview Page](http://developers.redhat.com/products/eap/ov
 
 
 ### How to add/remove an upstream project from the Community page
-See the [EAP Community Page](http://developers.redhat.com/products/eap/overview/), towards the bottom is a list of all upstream projects included in this product. 
+See the [EAP Community Page](https://developers.redhat.com/products/eap/overview/), towards the bottom is a list of all upstream projects included in this product. 
 To add or remove from this list:
 
 1. Raise a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa) for the change request. Include:
@@ -347,14 +347,14 @@ To add/remove item(s) in the 'More Resources' area of the 'Resources' page:
 
 
 ## Upstream Projects
-The upstream projects page is located at http://developers.redhat.com/projects.
+The upstream projects page is located at https://developers.redhat.com/projects.
 This section covers details on how to make changes to the data visible on this page.
 
 ## How to Add a New Upstream Project
 
 1. Create a properties file for your project. For example, see the [Netty properties file](https://github.com/jboss-developer/project-properties/blob/master/netty.properties).
 2. Upload the file to some externally visible location. For example, the projects source repository.
-3. Send a link to the properties file to help@jboss.org, asking for it to be added to http://developers.redhat.com/projects.
+3. Send a link to the properties file to help@jboss.org, asking for it to be added to https://developers.redhat.com/projects.
 4. Once the project appears on the projects page, check to see if it has an icon. If it doesn't, follow [these instructions](#icon) .
 
 ### How to Update an Upstream Project's details
@@ -379,13 +379,13 @@ By default, project data is pulled from the project's Magnolia page. To start us
 
 
 ### <a name="icon"></a> How to Change an Upstream Project's Icon
-To change the icon currently displayed for a project on http://developers.redhat.com/projects:
+To change the icon currently displayed for a project on https://developers.redhat.com/projects:
 
 1. [Create a DESIGN JIRA issue](https://issues.jboss.org/secure/DESIGN/CreateIssue!default.jspa)
 2. If you intend to do the following steps, assign to yourself. Otherwise leave unassigned and skip the following steps.
 3. Create a new image for the project
 4. Using the `design` account, upload it to the project's directory on filemgmt.jboss.org. For example, the AeroGear logo is located at: `filemgmt.jboss.org:/static_htdocs/aerogear/images/aerogear_200x150.png`. Take care to follow the exact format as the image links are generated.
-5. Wait a short while for caches to clear before it appears on http://developers.redhat.com/projects.
+5. Wait a short while for caches to clear before it appears on https://developers.redhat.com/projects.
 
 ## Other Site changes
 This section covers miscellaneous contributions that can be made.
@@ -416,8 +416,8 @@ Note: Please specify if the new slider image is supposed to replace one of the e
 3. In GitHub, go [to the events template](https://github.com/redhat-developer/developers.redhat.com/blob/master/events.html.slim) and edit the image links under the desired .slide
 
         a(href="#{site.base_url}/events/msbuild/2016/")
-          img.mobile(src=“http://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
-          img.desktop(src=“http://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
+          img.mobile(src=“https://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
+          img.desktop(src=“https://static.jboss.org/PATH-TO-IMAGE” alt="ADD IMAGE ALT TEXT HERE")
 
 4. Raise a pull request for your change.
 
@@ -426,7 +426,7 @@ In the event spreadsheet there are several event card graphics to choose from. T
 
 First, create the graphics and upload them:
 
-1. Create two header PNG graphics. One for JBoss Developer (http://www.jboss.org/events) and one for Red Hat Developers (http://developers.redhat.com/events). NOTE: they MUST be PNG graphics, JPEG is not supported.
+1. Create two header PNG graphics. One for JBoss Developer (http://www.jboss.org/events) and one for Red Hat Developers (https://developers.redhat.com/events). NOTE: they MUST be PNG graphics, JPEG is not supported.
 2. Upload the JBoss Developer graphic to `filemgmt.jboss.org:/static_htdocs/_root/images/events/event_<image id>.png`. It is important that you follow the same naming convention as used by the other images. This is because the page that will display the image uses this pattern to predict the image's URL.
 3. Upload the Red Hat Developers graphic to `filemgmt.jboss.org:/static_htdocs/_root/images/rhd/events/event_<image id>.png`. It is important that you follow the same naming convention as used by the other images. This is because the page that will display the image uses this pattern to predict the image's URL.
 
@@ -444,17 +444,17 @@ Now update the Spreadsheet to make the new header graphic option available.
 This update will be visable after the next site build. Typically this takes upto 6hrs.
 
 ### How to add a book
-To add a book to http://developers.redhat.com/books & http://developers.redhat.com/resources
+To add a book to https://developers.redhat.com/books & https://developers.redhat.com/resources
 
 1. Open the [Books Spreadsheet](https://docs.google.com/spreadsheets/d/1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g/edit?usp=sharing) 
  1. This spreadsheet can be shared with anyone who requests it using their Red Hat Google Drive account.
 2. Fill out as much data as possible for the book.
  1. Ensure "Pull From Google" is set to "No".
-3. Wait 6hrs and check http://developers.redhat.com/books to make sure the book appears.
+3. Wait 6hrs and check https://developers.redhat.com/books to make sure the book appears.
  1. If it doesn't [Create a DEVELOPER JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa)
 
 ### How to fix data associated with a book
-If a book entry on http://developers.redhat.com/books is missing data or is displaying incorrect data, then:
+If a book entry on https://developers.redhat.com/books is missing data or is displaying incorrect data, then:
 
 1. Open the [Books Spreadsheet]( https://docs.google.com/spreadsheets/d/1QdE32458GN8v-sDGOqoBx5RJ3X44P_W-umxsCHMxL0g/edit?usp=sharing) and add the ISBN13 for the book in the next cell in the list. 
  1. This spreadsheet can be shared with anyone who requests it using their Red Hat Google Drive account.
@@ -526,12 +526,12 @@ Note: only the first three row items will be displayed on the homepage, so one o
 ## How to Create a 'Solution'
 The simplest way to create a solution is to use the default template and drop in pieces of text and images into the place-holders. Look at the [example solution code](https://github.com/redhat-developer/developers.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb) for what is required.
 
-See the [Unified Push Solution's code](https://github.com/redhat-developer/developers.redhat.com/tree/master/solutions/unifiedpush) for an example that uses an entirely custom layout. The [Docker Solution code](https://github.com/redhat-developer/developers.redhat.com/blob/master/solutions/docker/index.adoc) provides an example of where the default layout was used, but with an additional custom layout section at the bottom. Look at the [live Docker page](http://developers.redhat.com/docker/) and notice that above the "Available Docker Images" title is using the default layout and under this title is a custom layout.
+See the [Unified Push Solution's code](https://github.com/redhat-developer/developers.redhat.com/tree/master/solutions/unifiedpush) for an example that uses an entirely custom layout. The [Docker Solution code](https://github.com/redhat-developer/developers.redhat.com/blob/master/solutions/docker/index.adoc) provides an example of where the default layout was used, but with an additional custom layout section at the bottom. Look at the [live Docker page](https://developers.redhat.com/docker/) and notice that above the "Available Docker Images" title is using the default layout and under this title is a custom layout.
 
 To create a solution:
 
 1. Create your initial layout by copying the [example solution code](https://github.com/redhat-developer/developers.redhat.com/commit/980430df61951bd6f77ea6cadf1c6a065ac711cb).
-2. Think of an ID for your solution. This will be used to identify it in several place and will become part of the URL of its page. E.g: http://developers.redhat.com/mysolution.
+2. Think of an ID for your solution. This will be used to identify it in several place and will become part of the URL of its page. E.g: https://developers.redhat.com/mysolution.
   1. Good names are short, descriptive and contain just lower-case alpha-numeric characters.
 2. Rename the solution's directory to that of your solution:
     mv ./solution/example ./solution/mysolution
@@ -547,8 +547,8 @@ The following table describes the purpose of each key. __Note:__ items marked wi
 |----|-------|
 |name*|The name is used as a short title to identify your solution in a variety of places on the site. Keep it short and human readable. 
 |sub_title|An optional sub-title that will appear under the main title on the Solution's main page.
-|long_description*|A long description to show when the user clicks on the Solution in the [all Solutions page](http://developers.redhat.com/solutions/).
-|overview_links|An optional list of links to show when the user clicks on the Solution in the [all Solutions page](http://developers.redhat.com/solutions/).
+|long_description*|A long description to show when the user clicks on the Solution in the [all Solutions page](https://developers.redhat.com/solutions/).
+|overview_links|An optional list of links to show when the user clicks on the Solution in the [all Solutions page](https://developers.redhat.com/solutions/).
 |speech_bubble|An optional speech bubble to show towards the top of the Solution's main page. 
 |image_link|An optional link to display under the Solution's logo towards the top of the Solution's main page.
 |related_solutions|An optional list of related solutions to show down the right-hand side of the Solution's main page. Solution IDs are used to identify each related Solution.
@@ -578,8 +578,8 @@ Microsites can either be single paged or multi-paged. Take a look at the followi
 
 |Type|Description|Resources|
 |----|-----------|---------|
-|Single Page|A single page microsite, with no sub-navigation|[Live](http://developers.redhat.com/microsite), [Source](https://github.com/redhat-developer/developers.redhat.com/blob/master/microsite.html.slim)
-|Multi-page|A multiple-page microsite with a single level of sub-navigation|[Live](http://developers.redhat.com/microsite-multi-page/), [Source](https://github.com/redhat-developer/developers.redhat.com/blob/master/microsite-multi-page.html.slim)
+|Single Page|A single page microsite, with no sub-navigation|[Live](https://developers.redhat.com/microsite), [Source](https://github.com/redhat-developer/developers.redhat.com/blob/master/microsite.html.slim)
+|Multi-page|A multiple-page microsite with a single level of sub-navigation|[Live](https://developers.redhat.com/microsite-multi-page/), [Source](https://github.com/redhat-developer/developers.redhat.com/blob/master/microsite-multi-page.html.slim)
 
 Before creating a Microsite, please [contact us](#contact) to ensure that a 'Microsite' is the right place for your content.
 
