@@ -1,0 +1,18 @@
+rhd_common.main_page_controller:
+  path: '/products/{product_code}/{sub_page}'
+  defaults:
+    _controller: '\Drupal\rhd_common\Controller\ProductPageController::productPage'
+    _title_callback: '\Drupal\rhd_common\Controller\ProductPageController::getPageTitle'
+    _entity_view: 'product.full'
+  requirements:
+    _permission: 'access content'
+rhd_common.product_overview:
+  path: '/products/{product_code}'
+  defaults:
+    _controller: '\Drupal\rhd_common\Controller\ProductPageController::productPage'
+#    _title_callback: '\Drupal\rhd_common\Controller\ProductPageController::getPageTitle'
+    _entity_view: 'product.full'
+    sub_page: 'overview'
+  requirements:
+    _permission: 'access content'
+

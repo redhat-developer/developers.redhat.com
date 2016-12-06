@@ -3,7 +3,7 @@ custom:
     path: /
     priority: !!float 1
 entity_types:
-  node_type:
+  node:
     article:
       index: 1
       priority: 0.5
@@ -22,8 +22,15 @@ entity_types:
     promotion_page:
       index: 1
       priority: 0.5
+    product:
+      index: 1
+      priority: 0.5
+  field_collection_item: {  }
+  paragraph: {  }
+  taxonomy_term: {  }
 settings:
   max_links: 5000
   cron_generate: true
   remove_duplicates: true
   batch_process_limit: 1500
+  skip_untranslated: false

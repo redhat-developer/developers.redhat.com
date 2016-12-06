@@ -1,0 +1,70 @@
+<div class="downloadthankyou hide" id="downloadthankyou">
+    <div class="thankyouclose"><a href="#" onclick="$('div#downloadthankyou').hide('slow');"></a></div>
+    <h2 id="thank-you">Thank you for downloading </h2>
+    <p id="download-problems" style="display: block;">Your download should start automatically. If you have any problems
+        with the download, please use the<a id="tcDownloadLink" href="#"> direct link</a>.</p>
+    <br><br>
+    <div class="large-24 thankyoupanels" style="display: none;">
+        <div class="row">
+            <div class="large-2 columns"><i class="fa fa-file-text fa-2x"></i></div>
+            <div class="large-22 columns"><p style="display: none;">By downloading this product you have agreed with our
+                    <a href="{{ base_url }}/terms-and-conditions/">terms and conditions </a>on <span id="tcWhenSigned"></span>.
+                    You will be notified again in <span id="tcEndsIn"></span>after your subscription ends. </p></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="has-download">
+        <h2 id="download-development-use">Download {{ product_short_name }} for Development Use</h2>
+        <div class="row">
+            <div class="large-16 columns">
+                <p> To download {{ product_short_name }} you must have an account and accept the terms and
+                    conditions of the {{ link('Red Hat Developer Program', 'internal:/register') }} which provides
+                    no-cost
+                    subscriptions for development use only.
+                </p>
+                <h4 class="caps">All Downloads</h4>
+            </div>
+            <div class="product-downloads" data-product-code="{{ product_machine_name }}"></div>
+        </div>
+    </div>
+    <div class="no-download">
+        <h2 id="downloads">{{ product_short_name }} Downloads</h2>
+    </div>
+</div>
+<div class="row">
+    {% if offer_subscription %}
+        <div class="large-16 small-24 columns"><br>
+            <h4 id="ready-production-use">Ready to use {{ product_short_name }} in Production?</h4>
+            <p>
+                With a Red Hat subscription, you can deploy your application into a production environment and get
+                world-class
+                expertise and knowledge about security, stability, and maintenance for your systems. Our subscriptions
+                provide
+                many benefits including access to resources, expertise, upgrades, and the ability to directly influence
+                our
+                commitment to providing an exceptional customer experience.
+            </p>
+            {{ link('I need a subscription','https://www.redhat.com/contact/sales.html') }}
+        </div>
+    {% endif %}
+    {% if content.field_upstream_section|render|striptags|trim is not empty %}
+        <div class="large-8 small-24 columns panel callout">
+            <h5 id="prefer-upstream">Prefer to use the Upstream Project Version?</h5>
+            {{ content.field_upstream_section }}
+        </div>
+    {% endif %}
+</div>
+{% if content.field_xpaas_link|render|striptags|trim is not empty %}
+    <div class="row">
+        <div class="large-24 columns">
+            <h4 id="jboss-xpaas-services">JBoss xPaaS Services for OpenShift</h4>
+            <p>
+                You can also deploy applications using {{ product_short_name }} on OpenShift, meaning you don't even need to
+                download the bits! Try {{ product_short_name }} and other middleware products on OpenShift Online to get
+                your applications up and running even faster.
+                {{ content.field_xpaas_link }}
+            </p>
+        </div>
+    </div>
+{% endif %}

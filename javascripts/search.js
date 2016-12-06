@@ -213,6 +213,7 @@ search.filter('description', function($sce) {
   }
 });
 
+
 search.filter('question', function($sce) {
   return function(result) {
     if (result.highlight && result.highlight._source.sys_content_plaintext) {
@@ -423,7 +424,7 @@ function searchCtrlFunc($scope, $window, searchService) {
     
     if (isStackOverflow) {
       if (/help/.test(window.location.href)) {
-        var product = (window.location.href).split("/")[4];
+        var product = $('#stackOverflowProduct').data('product');
         $scope.params.product = product;
 
         var tags = app.products[product]['stackoverflow'];

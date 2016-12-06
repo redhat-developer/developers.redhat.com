@@ -35,6 +35,7 @@ settings:
           items:
             - Blockquote
             - DrupalImage
+            - video_embed
         -
           name: 'Block Formatting'
           items:
@@ -60,6 +61,16 @@ settings:
       language_list: un
     stylescombo:
       styles: a.button|Button
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: default
+    video_embed:
+      defaults:
+        children:
+          autoplay: true
+          responsive: true
+          width: '854'
+          height: '480'
 image_upload:
   status: true
   scheme: public
