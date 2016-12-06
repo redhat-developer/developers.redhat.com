@@ -89,7 +89,7 @@
 
   function getPrimaryCategory() {
     prtcl = /https?:\/\//;
-    category = window.location.href.replace(prtcl,'').replace(window.location.host,'').replace(/\/$/,'').split('?')[0].split('#')[0].split(/\//);
+    category = window.location.href.replace(prtcl,'').replace(drupalSettings.rhd.urls.base_url,'').replace(drupalSettings.rhd.urls.final_base_url,'').replace(/\/$/,'').split('?')[0].split('#')[0].split(/\//);
     return category.length > 1 ? category[1] : category[0]; 
   }
 }());
