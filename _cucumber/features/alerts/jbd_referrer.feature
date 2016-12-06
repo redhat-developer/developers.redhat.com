@@ -9,7 +9,7 @@ Examples: referred pages with an alert
   |           |
   | products  |
   | products/fuse/overview |
-  | resources |
+  | resources/#! |
   | downloads |
   | devops    |
   | dotnet    |
