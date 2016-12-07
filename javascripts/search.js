@@ -217,9 +217,9 @@ search.filter('description', function($sce) {
 search.filter('question', function($sce) {
   return function(result) {
     if (result.highlight && result.highlight._source.sys_content_plaintext) {
-      return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0]);
+      return $sce.trustAsHtml(result.highlight._source.sys_content_plaintext[0].replace(/<[^>]+>/gm, ''));
     }
-    return $sce.trustAsHtml(result._source.sys_content_plaintext);
+    return $sce.trustAsHtml(result._source.sys_content_plaintext.replace(/<[^>]+>/gm, ''));
   }
 });
 
