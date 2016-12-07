@@ -21,20 +21,20 @@ bundle: overview
 mode: default
 content:
   field_overview_hide_get_started:
-    weight: 2
+    weight: 1
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
   field_overview_main_content:
-    weight: 3
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
   field_page_description:
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''
@@ -42,21 +42,21 @@ content:
     type: string_textfield
   field_product_overview_features:
     type: entity_reference_paragraphs
-    weight: 6
+    weight: 4
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: 'Feature Image with Text'
+      title_plural: 'Feature Images with Text'
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
   field_product_overview_video:
-    weight: 5
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: video_embed_field_textfield
   field_secondary_content:
-    weight: 4
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
