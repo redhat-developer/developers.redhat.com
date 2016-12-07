@@ -99,6 +99,8 @@ function rhd_preprocess_html(array &$variables) {
     $sentry_track = \Drupal::config('redhat_developers')->get('sentry_track');
     $sentry_script = \Drupal::config('redhat_developers')->get('sentry_script');
     $sentry_code = \Drupal::config('redhat_developers')->get('sentry_code');
+    $rhd_base_url = \Drupal::config('redhat_developers')->get('rhd_base_url');
+    $rhd_final_base_url = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
 
     $variables['rhd_environment'] = $environment;
     $variables['rhd_dtm_code'] = $dtm_code;
@@ -106,6 +108,8 @@ function rhd_preprocess_html(array &$variables) {
     $variables['rhd_sentry_track'] = $sentry_track;
     $variables['rhd_sentry_script'] = $sentry_script;
     $variables['rhd_sentry_code'] = $sentry_code;
+    $variables['rhd_base_url'] = $rhd_base_url;
+    $variables['rhd_final_base_url'] = $rhd_final_base_url;
 }
 
 function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
