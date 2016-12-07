@@ -5,6 +5,12 @@ require 'colorized_string'
 # This class contains methods for the cucumber.rake file in order to execute the full suite of acceptance tests
 class TestRunner
 
+  def code_analyzer
+    puts ColorizedString.new('. . . . . Executing RuboCop the Ruby static code analyzer. This task will enforce many of the guidelines outlined in the community Ruby Style Guide. . . . . .').blue
+    system('cd _cucumber && rubocop')
+    $?.exitstatus
+  end
+
   def cleanup(profile)
     FileUtils.rm_rf("_cucumber/reports/#{profile}")
     FileUtils.mkdir_p("_cucumber/reports/#{profile}")
@@ -19,7 +25,7 @@ class TestRunner
   def run(profile, tag=nil)
     tag_string = tag unless tag.eql?(nil)
     if tag.eql?(nil)
-      command = system "parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 10"
+      command = system("parallel_cucumber _cucumber/features/ -o \"-p #{profile}\" -n 10")
     else
       command = system("parallel_cucumber _cucumber/features/ -o \"-p #{profile} #{tag_string}\" -n 10")
     end

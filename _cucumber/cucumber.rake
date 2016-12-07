@@ -1,7 +1,7 @@
 require 'fileutils'
 require_relative 'test_runner'
 
-task features: [:_features, :report_builder]
+task features: [:rubocop, :_features, :report_builder]
 
 task :_features do
   if ENV['RHD_TEST_PROFILE']
@@ -44,7 +44,8 @@ task :cuke_sniffer do
 end
 
 task :rubocop do
-  sh 'cd _cucumber && rubocop'
+  test_runner = TestRunner.new
+  test_runner.code_analyzer
 end
 
 task :wip do
