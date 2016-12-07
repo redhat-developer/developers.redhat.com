@@ -83,7 +83,6 @@ Feature: Search Page
     When I enter "Containers" into the Site nav search box
     And I click on the search button
     Then the search results page is displayed
-    And I should see "10" results containing "Container"
 
   Scenario: I search for something that returns ten (or more) pages of results should display pagination with ellipsis
     Given I am on the Home page
@@ -259,7 +258,6 @@ Feature: Search Page
     When I search for "enterprise linux"
     And the search results page is displayed
     Then the "RHEL" product overview page should be the first result
-    Then I should see "10" results containing "Enterprise Linux"
 
   Scenario: DEVELOPER-3557 - Site Search: Page does not scroll back to top
     Given I have previously searched for "code"
