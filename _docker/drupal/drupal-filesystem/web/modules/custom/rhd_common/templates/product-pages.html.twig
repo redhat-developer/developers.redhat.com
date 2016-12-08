@@ -115,25 +115,27 @@
     </section>
     <section{{ content_attributes.addClass(["product-graphics", elements.product_category]) }}>
         {% if not active_paragraph.field_overview_hide_get_started.value %}
-            <div class="large-24 columns">
-                <div id="hero-try-or-buy" class="row {{ elements.product_category }}">
-                    <div class="large-24 columns hello-world">
-                        <div class="small-24 large-6 columns">
-                            <h2>Hello World!</h2>
-                            <p class="caps">Build Something Today</p>
-                        </div>
-                        <div class="small-24 large-6 columns"><p>Let's walk through everything you need to build your
-                                first application.</p></div>
-                        <div class="small-24 large-6 columns"><a class="button" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'get-started'}) }}">Get Started</a>
-                        </div>
-                        <div class="small-24 large-6 columns outside-links">
-                            <a class="large-24 medium-12 columns"
-                               href="http://www.redhat.com/en/about/contact/sales"><strong>Buy It</strong>
-                                <p>Contact Sales<i class="fa fa-caret-right"></i></p>
-                            </a>{% if elements.has_community %}<a
-                                    class="large-24 medium-12 columns" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'community'}) }}"><strong>Make it
-                                    better</strong>
-                                <p>Join the community<i class="fa fa-caret-right"></i></p></a>{% endif %}
+            <div class="row">
+                <div class="large-24 columns">
+                    <div id="hero-try-or-buy" class="row {{ elements.product_category }}">
+                        <div class="large-24 columns hello-world">
+                            <div class="small-24 large-6 columns">
+                                <h2>Hello World!</h2>
+                                <p class="caps">Build Something Today</p>
+                            </div>
+                            <div class="small-24 large-6 columns"><p>Let's walk through everything you need to build your
+                                    first application.</p></div>
+                            <div class="small-24 large-6 columns"><a class="button" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'get-started'}) }}">Get Started</a>
+                            </div>
+                            <div class="small-24 large-6 columns outside-links">
+                                <a class="large-24 medium-12 columns"
+                                   href="http://www.redhat.com/en/about/contact/sales"><strong>Buy It</strong>
+                                    <p>Contact Sales<i class="fa fa-caret-right"></i></p>
+                                </a>{% if elements.has_community %}<a
+                                class="large-24 medium-12 columns" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'community'}) }}"><strong>Make it
+                                        better</strong>
+                                    <p>Join the community<i class="fa fa-caret-right"></i></p></a>{% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,6 +148,21 @@
                 </div>
                 <div class="large-20 medium-17 small-24 columns">
                     {{ elements.active_paragraph }}
+                </div>
+            </div>
+        </div>
+        <div class="mobile build-panel">
+            <div class="row">
+                <h4 class="caps">Build Something Today</h4>
+                <p>Let's walk through everything you need to build your first application.</p>
+                <a class="button" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'download'}) }}">Download</a>
+                <a class="button inverse" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'get-started'}) }}">Get Started</a>
+                <div class="outside-links">
+                    <a class="large-24 medium-12 columns" href="http://www.redhat.com/en/about/contact/sales"><strong>Buy It</strong>
+                        <p>
+                            Contact Sales<i class="fa fa-caret-right"></i>
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>

@@ -23,5 +23,8 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                 {{ tab_panels }}
             </div>
         {% endif %}
+        {% if content.field_secondary_content|render|striptags|trim is not empty %}
+            {{ content.field_secondary_content }}
+        {% endif %}
     </div>
 </div>

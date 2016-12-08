@@ -8,7 +8,10 @@ id: node.field_product_summary
 field_name: field_product_summary
 entity_type: node
 type: string
-settings: {  }
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
 module: core
 locked: false
 cardinality: 1
