@@ -37,10 +37,8 @@ task :report_builder do
 end
 
 task :cuke_sniffer do
-  FileUtils.rm_rf('_cucumber/reports/cuke_sniffer')
-  FileUtils.mkdir_p('_cucumber/reports/cuke_sniffer')
-  sh 'cd _cucumber/features'
-  sh 'bundle exec cuke_sniffer --out html _cucumber/reports/cuke_sniffer/cuke_sniffer.html'
+  test_runner = TestRunner.new
+  test_runner.cuke_sniffer
 end
 
 task :rubocop do
@@ -48,8 +46,11 @@ task :rubocop do
   test_runner.code_analyzer
 end
 
-task :wip do
-  system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
+task wip: [:rubocop, :_wip]
+
+task :_wip do
+  test_runner = TestRunner.new
+  test_runner.wip
 end
 
 task :debugger do

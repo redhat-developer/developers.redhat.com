@@ -5,6 +5,14 @@ require 'colorized_string'
 # This class contains methods for the cucumber.rake file in order to execute the full suite of acceptance tests
 class TestRunner
 
+  def cuke_sniffer
+    puts ColorizedString.new('. . . . . Executing Cuke Sniffer used to root out smells in your cukes . . . . .').blue
+    FileUtils.rm_rf('_cucumber/reports/cuke_sniffer')
+    FileUtils.mkdir_p('_cucumber/reports/cuke_sniffer')
+    sh 'cd _cucumber/features'
+    sh 'bundle exec cuke_sniffer --out html _cucumber/reports/cuke_sniffer/cuke_sniffer.html'
+  end
+
   def code_analyzer
     puts ColorizedString.new('. . . . . Executing RuboCop the Ruby static code analyzer. This task will enforce many of the guidelines outlined in the community Ruby Style Guide. . . . . .').blue
     system('cd _cucumber && rubocop')
@@ -41,6 +49,10 @@ class TestRunner
       system("bundle exec cucumber @_cucumber/tmp/#{profile}/rerunner.txt")
     end
     $?.exitstatus
+  end
+
+  def wip
+    system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
   end
 
   def generate_report(profile)

@@ -1,7 +1,9 @@
 When(/^I click to download "([^"]*)"$/) do |product|
   data = all_available_downloads
   url = featured_download_for(data[product])
-  on DownloadsPage.click_to_download(url[1])
+  on DownloadsPage do |page|
+    page.click_to_download(url[1])
+  end
 end
 
 Then(/^a 'DOWNLOAD' button for each Most Popular Download$/) do
@@ -55,7 +57,9 @@ When(/^I click on the Download Now button for "([^"]*)"$/) do |product_name|
   data = all_available_downloads
   url = featured_download_for(data["Media: #{product_name}"])
   @download = url[1].gsub('https://developers.stage.redhat.com/download-manager/file/', '')
-  on PromotionsPage.click_download_btn
+  on PromotionsPage do |page|
+    page.click_download_btn
+  end
 end
 
 When(/^I click on the promotional image for "([^"]*)"$/) do |product_name|
