@@ -5,7 +5,7 @@ And(/^the following newly registered details should be added to my profile:$/) d
       keycloak_admin = KeyCloakAdmin.new
       case element
         when 'Username'
-          expect(page.username_field.value).to eq @site_user.details[:email].tr('@redhat.com', '').tr('+', '-').tr('_', '')
+          expect(page.username_field.value).to eq @site_user.details[:email].sub('@redhat.com', '').gsub('+', '-').gsub('_', '')
         when 'Email'
           expect(page.email_field.value).to eq @site_user.details[:email]
         when 'First Name'
@@ -73,7 +73,9 @@ Then(/^I should not have any social accounts associated with me$/) do
 end
 
 When(/^I click to link my github account$/) do
-  on SocialLoginPage.click_add_github_btn
+  on SocialLoginPage do |page|
+    page.click_add_github_btn
+  end
 end
 
 And(/^log into GitHub$/) do
@@ -122,18 +124,18 @@ end
 Then(/^I should see the following validation errors:$/) do |table|
   on EditAccountPage do |page|
     table.hashes.each do |row|
-      expect(page.send("#{row['field'].downcase.tr(' ', '_')}_field_error")).to eq("#{row['message']}")
+      expect(page.send("#{row['field'].downcase.gsub(' ', '_')}_field_error")).to eq("#{row['message']}")
     end
   end
 end
 
 Then(/^I should see a "(.*)" validation error "(.*)"$/) do |field, field_error|
-  expect(@current_page.send("#{field.downcase.tr(' ', '_')}_error")).to eq(field_error)
+  expect(@current_page.send("#{field.downcase.gsub(' ', '_')}_error")).to eq(field_error)
 end
 
 And(/^I enter (\d+) characters into the "([^"]*)" field$/) do |characters, field|
   on EditAccountPage do |page|
-    type(page.send("#{field.downcase.tr(' ', '_')}_field"), Faker::Lorem.characters(characters.to_i))
+    type(page.send("#{field.downcase.gsub(' ', '_')}_field"), Faker::Lorem.characters(characters.to_i))
     page.click_save_btn
   end
 end

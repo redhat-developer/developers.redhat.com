@@ -25,7 +25,7 @@ module Email
     encoded_url = URI.encode(url)
     URI.parse(encoded_url)
     # return valid URI
-    encoded_url.tr('<', '')
+    encoded_url.sub('<', '')
   end
 
   private

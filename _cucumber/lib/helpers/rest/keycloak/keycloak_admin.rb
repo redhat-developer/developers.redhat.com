@@ -50,7 +50,7 @@ class KeyCloakAdmin
 
     {
         email: @email,
-        username: @email.gsub('@redhat.com', '').tr('+', '-').tr('_', ''),
+        username: @email.gsub('@redhat.com', '').sub('+', '-').sub('_', ''),
         password: @password,
         first_name: @first_name,
         last_name: @last_name,

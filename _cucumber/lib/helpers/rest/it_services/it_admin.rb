@@ -132,7 +132,7 @@ class ItAdmin
 
     {
         email: @email,
-        username: @email.gsub('@redhat.com', '').tr('+', '-'),
+        username: @email.sub('@redhat.com', '').sub('+', '-'),
         password: @password,
         first_name: @first_name,
         last_name: @last_name,

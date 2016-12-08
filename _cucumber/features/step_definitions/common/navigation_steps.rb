@@ -7,9 +7,13 @@ Given(/^I am on the ([^"]*) page$/) do |page|
     when 'downloads'
       visit(DownloadsPage).wait_until_loaded
     when 'registration'
-      visit HomePage.open_register_page
+      visit HomePage do |p|
+        p.open_register_page
+      end
     when 'login'
-      visit HomePage.open_login_page
+      visit HomePage do |p|
+        p.open_login_page
+      end
     when 'stack overflow'
       visit(StackOverflowPage).wait_for_results
     when 'resources'

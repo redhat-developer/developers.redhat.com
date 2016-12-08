@@ -19,17 +19,23 @@ Given(/^I log in with (an|a) (valid|incorrect) username$/) do |_arg, negate|
 end
 
 Given(/^I have previously logged in$/) do
-  visit HomePage.open_login_page
-  on LoginPage.login_with(@site_user.details[:email], @site_user.details[:password])
+  visit HomePage do |page|
+    page.open_login_page
+  end
+  on LoginPage do |page|
+    page.login_with(@site_user.details[:email], @site_user.details[:password])
+  end
   expect(@current_page.logged_in?).to eq(@site_user.details[:full_name])
 end
 
 When(/^I am logged into RHD$/) do
-  visit HomePage.open_login_page
-  on LoginPage do |page|
-    page.login_with(@site_user.details[:username], @site_user.details[:password])
-    expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
+  visit HomePage do |page|
+    page.open_login_page
   end
+  on LoginPage do |page|
+    page.login_with(@site_user.details[:email], @site_user.details[:password])
+  end
+  expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
 end
 
 Given(/^I log in with (an|a) (valid|invalid) email address$/) do |_arg, negate|
@@ -45,7 +51,6 @@ end
 When(/^I log in with an active OpenShift account$/) do
   @site_user = SiteUser.new
   @site_user.create('openshift')
-
   on LoginPage do |page|
     page.login_with(@site_user.details[:email], @site_user.details[:password])
   end
@@ -68,7 +73,9 @@ When(/^I log in with an account that is already linked to my Github account$/) d
   @site_user = SiteUser.new
   @site_user.create('rhd')
   @site_user.link_social_account(@site_user.details[:email])
-  on LoginPage.click_login_with_github
+  on LoginPage do |page|
+    page.click_login_with_github
+  end
   on GitHubPage do |page|
     page.login_with('rhdsociallogin', 'P@$$word01')
   end
@@ -79,6 +86,7 @@ Then(/^I should be logged in$/) do
     expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
   rescue
+    @browser.refresh
     visit HomePage
     expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
@@ -96,7 +104,9 @@ And(/^the following error message should be displayed: (.*)$/) do |message|
 end
 
 And(/^I click the forgot password link$/) do
-  on LoginPage.click_password_reset
+  on LoginPage do |page|
+    page.click_password_reset
+  end
 end
 
 Then(/^I can log back into RHD using my newly created password$/) do
