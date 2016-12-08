@@ -37,13 +37,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-  field_overview_url:
-    type: string_textfield
-    weight: 5
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_page_description:
     weight: 0
     settings:
@@ -60,5 +53,6 @@ content:
     type: text_textarea
 hidden:
   created: true
+  field_overview_url: true
   status: true
   uid: true
