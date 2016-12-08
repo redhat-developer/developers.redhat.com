@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.download.field_overview_hide_get_started
     - field.field.paragraph.download.field_overview_url
     - field.field.paragraph.download.field_page_description
+    - field.field.paragraph.download.field_subscription_link
     - field.field.paragraph.download.field_upstream_section
     - field.field.paragraph.download.field_xpaas_link
     - paragraphs.paragraphs_type.download
@@ -50,6 +51,17 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+  field_subscription_link:
+    weight: 12
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      rel: nofollow
+      url_only: false
+      url_plain: false
+      target: '0'
+    third_party_settings: {  }
+    type: link_separate
   field_upstream_section:
     weight: 9
     label: visually_hidden

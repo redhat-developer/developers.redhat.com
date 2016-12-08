@@ -45,7 +45,7 @@
                 our
                 commitment to providing an exceptional customer experience.
             </p>
-            {{ link('I need a subscription','https://www.redhat.com/contact/sales.html') }}
+            <a href="{{ content.field_subscription_link['#items']|first.uri }}" class="button">I need a subscription</a></div>
         </div>
     {% endif %}
     {% if content.field_upstream_section|render|striptags|trim is not empty %}
