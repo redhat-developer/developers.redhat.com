@@ -259,7 +259,6 @@ Feature: Search Page
     When I search for "enterprise linux"
     And the search results page is displayed
     Then the "RHEL" product overview page should be the first result
-    Then I should see "10" results containing "Enterprise Linux"
 
   Scenario: DEVELOPER-3557 - Site Search: Page does not scroll back to top
     Given I have previously searched for "code"

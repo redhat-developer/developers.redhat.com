@@ -20,7 +20,7 @@ class Browsers
       when 'docker_firefox'
         browser = docker_firefox
       else
-        default(browser_name)
+        browser = default(browser_name)
     end
     browser
   end

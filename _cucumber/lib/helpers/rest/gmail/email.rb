@@ -17,7 +17,7 @@ module Email
     try(7) { @email = @gmail.inbox.emails(:unread, to: email_address).last }
 
     message_body = @email.message.body.raw_source
-    url = message_body.scan(%r{/https?:\/\/[\S]+/}).first
+    url = message_body.scan(/https?:\/\/[\S]+/).first
     # delete all mails and close the gmail session
     @gmail.inbox.find(to: email_address).each(&:delete!)
     @gmail.logout
@@ -25,7 +25,7 @@ module Email
     encoded_url = URI.encode(url)
     URI.parse(encoded_url)
     # return valid URI
-    encoded_url.sub('<', '')
+    encoded_url.gsub('<', '')
   end
 
   private
