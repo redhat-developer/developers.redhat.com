@@ -49,3 +49,7 @@ Feature: Sanity checks of production
       | datavirt   |
       | fuse       |
       | openshift  |
+
+  Scenario: Search page with results should be loaded within 6 seconds.
+    Given I navigate to the "/search/?q=containers" page
+    Then the page should load within "6" seconds
