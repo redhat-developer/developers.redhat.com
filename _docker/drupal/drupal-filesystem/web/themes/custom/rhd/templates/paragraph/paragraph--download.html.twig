@@ -32,6 +32,13 @@
         <h2 id="downloads">{{ product_short_name }} Downloads</h2>
     </div>
 </div>
+{% if content.field_overview_main_content|render|striptags|trim is not empty %}
+    <div class="row">
+        <div class="large-16 small-24 columns">
+                {{ content.field_overview_main_content }}
+        </div>
+    </div>
+{% endif %}
 <div class="row">
     {% if offer_subscription %}
         <div class="large-16 small-24 columns"><br>
@@ -45,7 +52,7 @@
                 our
                 commitment to providing an exceptional customer experience.
             </p>
-            {{ link('I need a subscription','https://www.redhat.com/contact/sales.html') }}
+            <a href="{{ content.field_subscription_link['#items']|first.uri }}" class="button">I need a subscription</a></div>
         </div>
     {% endif %}
     {% if content.field_upstream_section|render|striptags|trim is not empty %}
