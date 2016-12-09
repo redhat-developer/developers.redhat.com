@@ -1,10 +1,9 @@
 require 'fileutils'
 require_relative 'test_runner'
 
-task :features => [:_features, :report_builder]
+task features: [:rubocop, :_features, :report_builder]
 
 task :_features do
-
   if ENV['RHD_TEST_PROFILE']
     @profile = ENV['RHD_TEST_PROFILE']
   else
@@ -38,21 +37,27 @@ task :report_builder do
 end
 
 task :cuke_sniffer do
-  FileUtils.rm_rf('_cucumber/reports/cuke_sniffer')
-  FileUtils.mkdir_p('_cucumber/reports/cuke_sniffer')
-  sh 'cd _cucumber/features'
-  sh 'bundle exec cuke_sniffer --out html _cucumber/reports/cuke_sniffer/cuke_sniffer.html'
+  test_runner = TestRunner.new
+  test_runner.cuke_sniffer
 end
 
-task :wip do
-  system('cucumber _cucumber -r _cucumber/features/ --tags @wip')
+task :rubocop do
+  test_runner = TestRunner.new
+  test_runner.code_analyzer
+end
+
+task wip: [:rubocop, :_wip]
+
+task :_wip do
+  test_runner = TestRunner.new
+  test_runner.wip
 end
 
 task :debugger do
   system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
-task :debug, :times do |task, args|
+task :debug, :times do |args|
   puts "Executing scenario tagged with @debug #{args[:times]} times"
   args[:times].to_i.times { Rake::Task[:debugger].execute }
 end

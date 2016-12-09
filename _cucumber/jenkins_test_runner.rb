@@ -27,7 +27,6 @@ class JenkinsTestRunner
   # Execute the tests for the given profile
   #
   def execute_test(profile)
-
     success = true
 
     begin
@@ -51,7 +50,7 @@ def execute(jenkins_test_runner)
   Kernel.exit(tests_passed ? 0 : 1)
 end
 
-if $0 == __FILE__
+if $PROGRAM_NAME == __FILE__
 
   host_to_test = ARGV[0]
   if host_to_test.nil? || host_to_test.empty?

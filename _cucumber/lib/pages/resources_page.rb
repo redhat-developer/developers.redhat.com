@@ -1,9 +1,10 @@
 require_relative 'abstract/standardised_search'
 
+# this is the page class that contains all elements and common methods related to the Resources page
 class ResourcesPage < StandardisedSearch
   page_url('/resources/')
   expected_element(:h2, text: 'Resources')
-  #page_title('Discover the developer materials Red Hat has to offer')
+  # page_title('Discover the developer materials Red Hat has to offer')
 
   element(:blog_posts)             { |b| b.element(xpath: "//label[@for='blogposts']") }
   element(:book)                   { |b| b.element(xpath: "//label[@for='book']") }
@@ -19,10 +20,9 @@ class ResourcesPage < StandardisedSearch
   elements(:result_date)           { |b| b.spans(css: '.result-details .created-date') }
   elements(:result_tags)           { |b| b.spans(class: 'tag') }
 
-
   def filter_by(type)
-    myelement = send("#{type.downcase.gsub(' ', '_')}")
-    myelement.fire_event('click')
+    element = send("#{type.downcase.tr(' ', '_')}")
+    element.fire_event('click')
   end
 
   def any_checked?

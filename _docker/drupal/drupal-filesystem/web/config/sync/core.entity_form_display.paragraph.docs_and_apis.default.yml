@@ -18,34 +18,41 @@ bundle: docs_and_apis
 mode: default
 content:
   field_more_resources:
-    weight: 5
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
   field_overview_hide_get_started:
-    weight: 2
+    weight: 1
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
   field_overview_main_content:
-    weight: 3
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+  field_overview_url:
+    type: string_textfield
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_page_description:
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_supported_configurations:
-    weight: 4
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -53,6 +60,5 @@ content:
     type: text_textarea
 hidden:
   created: true
-  field_overview_url: true
   status: true
   uid: true

@@ -5,15 +5,15 @@ Then(/^none of the product filters should be checked$/) do
   end
 end
 
-Then(/^I should see "([^"]*)" results ordered by (.*)$/) do |results_size, default_sort|
+Then(/^I should see "([^"]*)" results ordered by (.*)$/) do |_results_size, default_sort|
   on ResourcesPage do |page|
-    page.results_sort[0].should == default_sort
+    page.results_sort[0].should be == default_sort
     all_results = page.results_date
     top_result = all_results.first
     results = all_results - [top_result]
-    results.each { |date|
-      raise("Results were not ordered by most recent, the order was #{results}") unless DateTime.parse(date) <= DateTime.parse(top_result)
-    }
+    results.each do |date|
+      fail("Results were not ordered by most recent, the order was #{results}") unless DateTime.parse(date) <= DateTime.parse(top_result)
+    end
   end
 end
 
@@ -27,15 +27,13 @@ end
 
 Then(/^the results should be filtered by (.*)$/) do |filter_type|
   on ResourcesPage do |page|
-    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") {
-      page.results_contain_img_for(filter_type).size == 10
-    }
+    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
   end
 end
 
 When(/^I uncheck the "([^"]*)" filter$/) do |filter_type|
   on ResourcesPage do |page|
-    page.filter_by(filter_type.downcase.gsub(' ', '_'))
+    page.filter_by(filter_type.downcase.sub(' ', '_'))
     page.wait_for_results
   end
 end
@@ -48,17 +46,13 @@ end
 
 And(/^the results for "([^"]*)" are displayed$/) do |filter_type|
   on ResourcesPage do |page|
-    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") {
-      page.results_contain_img_for(filter_type).size == 10
-    }
+    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
   end
 end
 
 And(/^the results displayed should not contain "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
-    wait_for(30, "Images for #{filter_type} were still displayed after 30 seconds") {
-      page.results_contain_img_for(filter_type).size == 0
-    }
+    wait_for(30, "Images for #{filter_type} were still displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 0 }
   end
 end
 
@@ -71,10 +65,10 @@ end
 Then(/^the results displayed should contain "([^"]*)" or "([^"]*)"$/) do |term1, term2|
   on ResourcesPage do |page|
     results = page.results
-    results.each { |res|
+    results.each do |res|
       result = res.downcase.include?(term1.downcase) || res.downcase.include?(term2.downcase)
       result.should be true
-    }
+    end
   end
 end
 
@@ -111,9 +105,7 @@ end
 
 Then(/^all of the results should contain a "([^"]*)" thumbnail$/) do |filter_type|
   on ResourcesPage do |page|
-    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") {
-      page.results_contain_img_for(filter_type).size == 10
-    }
+    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
   end
 end
 
@@ -124,18 +116,18 @@ Then(/^the results should be from "([^"]*)"$/) do |publish_date|
       remaining = DateTime.parse(date).to_date.to_s
       case publish_date
         when 'Past Day'
-          valid = Date.today - 1 <= Date.parse(remaining, "%d-%m-%Y")
+          valid = Date.today - 1 <= Date.parse(remaining, '%d-%m-%Y')
         when 'Past Week'
-          valid = Date.today - 7 <= Date.parse(remaining, "%d-%m-%Y")
+          valid = Date.today - 7 <= Date.parse(remaining, '%d-%m-%Y')
         when 'Past Month'
-          valid = Date.today.prev_month <= Date.parse(remaining, "%d-%m-%Y")
+          valid = Date.today.prev_month <= Date.parse(remaining, '%d-%m-%Y')
         when 'Past Quarter'
           q = Date.today.quarter
-          valid = q <= Date.parse(remaining, "%d-%m-%Y").quarter
+          valid = q <= Date.parse(remaining, '%d-%m-%Y').quarter
         when 'Past Year'
-          valid = Date.today.prev_year <= Date.parse(remaining, "%d-%m-%Y")
+          valid = Date.today.prev_year <= Date.parse(remaining, '%d-%m-%Y')
         else
-          raise("#{publish_date} is not a valid filter type")
+          fail("#{publish_date} is not a valid filter type")
       end
       valid.should == true
     end
@@ -159,9 +151,10 @@ Then(/^the URL should include the selected filters$/) do
   @browser.url.should include('type=video&product=cdk')
 end
 
+# class to return current quarter for current month
 class Date
   def quarter
-    case self.month
+    case month
       when 1, 2, 3
         return 1
       when 4, 5, 6

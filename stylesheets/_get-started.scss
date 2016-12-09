@@ -674,6 +674,15 @@ ul.toc {
   }
 }
 
+.box.callout {
+  border: 5px solid #e6e7e8;
+  padding: 1.5rem;
+  margin: 3rem 0;
+  ul li:before{ 
+    display: none;
+  }
+}
+
 @include mobile-landscape-and-down {
   #get-started-instructions {
     ul li p, ol li p {

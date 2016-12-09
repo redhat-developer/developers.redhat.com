@@ -57,7 +57,7 @@ Then(/^nothing will happen and no search will be initiated$/) do
   expect(@current_page.search_field_visible?).to be true
 end
 
-Then(/^the "([^"]*)" product overview page should be the first result$/) do |arg|
+Then(/^the "([^"]*)" product overview page should be the first result$/) do |_arg|
   url = @current_page.first_result_attribute
   url.include? '/products/rhel/overview'
 end
@@ -73,6 +73,6 @@ Then(/^first result should contain "(.*)"$/) do |res|
 end
 
 Then(/^I should be scrolled to the top of the page$/) do
-  scroll =  @browser.driver.execute_script("return window.scrollY")
+  scroll = @browser.driver.execute_script('return window.scrollY')
   expect(scroll).to eq 0
 end

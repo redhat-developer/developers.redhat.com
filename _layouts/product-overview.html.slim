@@ -15,6 +15,7 @@ h2#overview Overview
     span
       = page._overview
   .large-11.columns.right.product-video
+      // video URL listed as intro_video or intro_youtube in product.yml
       = video_player(video(page.product.intro_video)) if page.product.intro_video
       = video_player(site.videos["#{page.product.intro_youtube}"]) if page.product.intro_youtube
 

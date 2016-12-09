@@ -1,9 +1,10 @@
 require_relative 'abstract/site_base'
 
+# this is the page class that contains all elements and common methods related to the GitHub login page
 class GitHubPage < SiteBase
 
-  element(:username_field)    { |b| b.text_field(name: 'login' ) }
-  element(:password_field)    { |b| b.text_field(name: 'password' ) }
+  element(:username_field)    { |b| b.text_field(name: 'login') }
+  element(:password_field)    { |b| b.text_field(name: 'password') }
   element(:sign_in_btn)       { |b| b.button(value: 'Sign in') }
   element(:authorize_app_btn) { |b| b.button(name: 'authorize') }
 
