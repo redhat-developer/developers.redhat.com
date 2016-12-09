@@ -1,4 +1,5 @@
 @smoke
+@prod
 Feature: Sanity checks of production
 
   Scenario Outline: Login/Register page performance
