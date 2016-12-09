@@ -1,10 +1,11 @@
 require_relative 'abstract/standardised_search'
 require_relative '../../../_cucumber/lib/helpers/driver_helper'
 
+# this is the page class that contains all elements and common methods related to the Search page.
 class SearchPage < StandardisedSearch
 
   element(:search_box)           { |b| b.text_field(id: 'search_list_text') }
-  elements(:first_result)        { |b| b.link(css: 'h4 > a', :index => 0) }
+  elements(:first_result)        { |b| b.link(css: 'h4 > a', index: 0) }
 
   value(:first_result_attribute) { |p| p.first_result.href }
 
@@ -28,5 +29,4 @@ class SearchPage < StandardisedSearch
     end
     results
   end
-
 end

@@ -5,16 +5,14 @@ Given(/^I am on the ([^"]*) page$/) do |page|
     when 'technologies'
       visit(TechnologiesPage)
     when 'downloads'
-      visit(DownloadsPage) do |page|
-        page.wait_until_loaded
-      end
+      visit(DownloadsPage).wait_until_loaded
     when 'registration'
-      visit HomePage do |page|
-        page.open_register_page
+      visit HomePage do |p|
+        p.open_register_page
       end
     when 'login'
-      visit HomePage do |page|
-        page.open_login_page
+      visit HomePage do |p|
+        p.open_login_page
       end
     when 'stack overflow'
       visit(StackOverflowPage).wait_for_results
@@ -29,7 +27,7 @@ Given(/^I am on the ([^"]*) page$/) do |page|
     when 'change password'
       visit(ChangePasswordPage)
     else
-      raise("expected page '#{page}' was not recognised, please check feature")
+      fail("expected page '#{page}' was not recognised, please check feature")
   end
 end
 
@@ -68,7 +66,7 @@ Then(/^I should see the following "(Topics|Technologies|Community|Help)" sub\-me
 end
 
 And(/^the sub\-menu should include a list of available technologies$/) do
-  product_names = ProductsHelper.get_products[1]
+  product_names = ProductsHelper.products[1]
   product_names.each do |products|
     expect(@current_page.sub_menu_items('technologies')).to include(products)
   end
@@ -101,17 +99,17 @@ Then(/^each Technologies sub-menu heading should contain a link to its retrospec
     href = @current_page.get_href_for(sub_items)
     case sub_items.downcase
       when 'cloud'
-        expect(href).to include "#private_cloud"
+        expect(href).to include '#private_cloud'
       when 'accelerated development and management'
-        expect(href).to include "#development_and_management"
+        expect(href).to include '#development_and_management'
       else
-        expect(href).to include "##{sub_items.downcase.gsub(' ', '_')}"
+        expect(href).to include "##{sub_items.downcase.tr(' ', '_')}"
     end
   end
 end
 
 Then(/^each available technology should link to their retrospective product overview page$/) do
-  product_ids, product_names = get_products
+  product_ids, product_names = products
   product_names.each do |product_name|
     @href = @current_page.get_href_for(product_name)
   end
@@ -136,7 +134,7 @@ Then(/^each Help sub\-menu item should contain a link to its retrospective page:
   table.hashes.each do |row|
     href = @current_page.get_href_for("#{row['name']}")
     if row['name'] == 'Resources'
-      expect(href).to include "/resources"
+      expect(href).to include '/resources'
     else
       expect(href).to include "/#{row['href']}"
     end

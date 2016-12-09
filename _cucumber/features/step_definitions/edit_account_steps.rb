@@ -5,7 +5,7 @@ And(/^the following newly registered details should be added to my profile:$/) d
       keycloak_admin = KeyCloakAdmin.new
       case element
         when 'Username'
-          expect(page.username_field.value).to eq @site_user.details[:email].gsub('@redhat.com', '').gsub('+', '-').gsub('_', '')
+          expect(page.username_field.value).to eq @site_user.details[:email].sub('@redhat.com', '').gsub('+', '-').gsub('_', '')
         when 'Email'
           expect(page.email_field.value).to eq @site_user.details[:email]
         when 'First Name'
@@ -23,7 +23,7 @@ And(/^the following newly registered details should be added to my profile:$/) d
           status = keycloak_admin.get_subscription_status(@site_user.details[:email])
           expect(page.receive_newsletter.set?).to be status
         else
-          raise("#{element} was not a recognised field")
+          fail("#{element} was not a recognised field")
       end
     end
   end
@@ -41,7 +41,7 @@ When(/^I change my details/) do
   end
 end
 
-Then(/^I should see a (success|error) message "([^"]*)"$/) do |negate, message|
+Then(/^I should see a (success|error) message "([^"]*)"$/) do |_negate, message|
   expect(@current_page.alert_box_message).to eq message
 end
 

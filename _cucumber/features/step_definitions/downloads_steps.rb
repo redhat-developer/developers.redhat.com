@@ -1,6 +1,6 @@
 When(/^I click to download "([^"]*)"$/) do |product|
-  data = get_all_available_downloads
-  url = get_featured_download_for(data[product])
+  data = all_available_downloads
+  url = featured_download_for(data[product])
   on DownloadsPage do |page|
     page.click_to_download(url[1])
   end
@@ -13,15 +13,15 @@ Then(/^a 'DOWNLOAD' button for each Most Popular Download$/) do
 end
 
 And(/^each download button that uses Download Manager should link to the latest available download for that product$/) do
-  dm = get_product_downloads_from_dm[0]
-  ad = get_expected_downloads[0]
+  dm = product_downloads_from_dm[0]
+  ad = expected_downloads[0]
   diff = ad - dm
-  downloads = get_product_downloads_from_dm[0] -= diff
+  downloads = product_downloads_from_dm[0] -= diff
   on DownloadsPage do |page|
-    downloads.each { |product_id|
-      url = get_featured_download_for(product_id)
-      raise("Download for #{product_id} was not available!") unless page.download_buttons_linked_to_dm(url[1]) == true
-    }
+    downloads.each do |product_id|
+      url = featured_download_for(product_id)
+      fail("Download for #{product_id} was not available!") unless page.download_buttons_linked_to_dm(url[1]) == true
+    end
   end
 end
 
@@ -37,13 +37,13 @@ end
 
 Then(/^I should see a list of products available for download$/) do
   on DownloadsPage do |page|
-    page.available_downloads.should =~ get_expected_downloads[1]
+    page.available_downloads.should =~ expected_downloads[1]
   end
 end
 
 And(/^a 'DOWNLOAD' button for each available product Download$/) do
   on DownloadsPage do |page|
-    expect(page.download_btns).to eq get_expected_downloads[0].size
+    expect(page.download_btns).to eq expected_downloads[0].size
   end
 end
 
@@ -54,8 +54,8 @@ Given(/^I am on the promotion page for the "([^"]*)"$/) do |arg|
 end
 
 When(/^I click on the Download Now button for "([^"]*)"$/) do |product_name|
-  data = get_all_available_downloads
-  url = get_featured_download_for(data["Media: #{product_name}"])
+  data = all_available_downloads
+  url = featured_download_for(data["Media: #{product_name}"])
   @download = url[1].gsub('https://developers.stage.redhat.com/download-manager/file/', '')
   on PromotionsPage do |page|
     page.click_download_btn
@@ -63,22 +63,18 @@ When(/^I click on the Download Now button for "([^"]*)"$/) do |product_name|
 end
 
 When(/^I click on the promotional image for "([^"]*)"$/) do |product_name|
-  data = get_all_available_downloads
-  url = get_featured_download_for(data["Media: #{product_name}"])
+  data = all_available_downloads
+  url = featured_download_for(data["Media: #{product_name}"])
   @download = url[1].gsub('https://developers.stage.redhat.com/download-manager/file/', '')
-  on PromotionsPage do |page|
-    page.click_promo_image
-  end
+  on PromotionsPage.click_promo_image
 end
 
 Then(/^the pdf download should initiate$/) do
   on PromotionsPage do |page|
-    if ENV['DEVICE']
-      page.click_download_retry_link
-    end
+    page.click_download_retry_link if ENV['DEVICE']
+    file = File.basename(DownloadHelper.download)
+    file == @download
   end
-  file = File.basename(DownloadHelper.download)
-  file == @download
 end
 
 Then(/^the download should initiate$/) do

@@ -54,15 +54,12 @@ Then(/^the following links should be (available|unavailable):$/) do |link_state,
 end
 
 Then(/^I should see pagination with "([^"]*)" pages(?: (with|without) ellipsis)?$/) do |number, ellipsis|
-
-  expect(@current_page.has_pagination_with(number)).to be true
-
+  expect(@current_page.pagination_with?(number)).to be true
   if ellipsis == 'with'
     expect(@current_page.has_ellipsis?).to be true
   else
     expect(@current_page.has_ellipsis?).to be false
   end
-
 end
 
 When(/^I click on the pagination "([^"]*)" link/) do |link|
@@ -89,4 +86,3 @@ And(/^the result per page options should be:$/) do |table|
   end
   @current_page.results_per_page[1].should =~ results_per_page
 end
-

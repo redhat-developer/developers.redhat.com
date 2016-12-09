@@ -1,6 +1,7 @@
 require_relative 'keycloak/keycloak_admin'
 require_relative 'it_services/it_admin'
 
+# this class is a wrapper for the i.t and keycloak admin classes and is used to create and manipulate test data for test scenarios.
 class SiteUser
   attr_reader :details
 
@@ -20,7 +21,6 @@ class SiteUser
     KeyCloakAdmin.new.link_social_provider(email, 'github', '20190656', 'rhdsociallogin')
   end
 
-
   protected
 
   def create_new_rhd_user
@@ -29,10 +29,6 @@ class SiteUser
 
   def create_new_openshift_user
     ItAdmin.new.create_simple_user
-  end
-
-  def create_new_customer_portal_user
-    ItAdmin.new.create_full_user
   end
 
   def create_new_customer_portal_user
@@ -53,7 +49,7 @@ class SiteUser
   end
 
   def generate_customer_credentials(country = nil)
-    if country == nil
+    if country.nil?
       c = ['Czech Republic', 'United Kingdom'].sample
     else
       c = country

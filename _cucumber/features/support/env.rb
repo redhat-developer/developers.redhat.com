@@ -58,9 +58,6 @@ else
       $host_to_test = 'https://developer-drupal.web.prod.ext.phx2.redhat.com'
     else
       $host_to_test = ENV['HOST_TO_TEST'].chomp('/')
-      unless $host_to_test =~ [/\Ahttps:\/\//]
-        $host_to_test = $host_to_test.gsub('http://', 'https://')
-      end
       $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
   end

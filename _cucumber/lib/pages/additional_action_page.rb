@@ -1,10 +1,11 @@
 require_relative 'abstract/site_base'
 
+# this is the page class that contains all elements and common methods related to the Additional Action page
 class AdditionalActionPage < SiteBase
   expected_element(:h1, text: 'Additional Action Required')
 
   element(:email_field)                  { |b| b.text_field(id: 'email') }
-  element(:email_field_error)            { |b| b.element(id: 'email-error')}
+  element(:email_field_error)            { |b| b.element(id: 'email-error') }
   element(:password_field)               { |b| b.text_field(id: 'user.attributes.pwd') }
   element(:confirm_password_field)       { |b| b.text_field(id: 'password-confirm') }
   element(:first_name_field)             { |b| b.text_field(id: 'firstName') }
@@ -39,8 +40,8 @@ class AdditionalActionPage < SiteBase
     type(company_field, options[:company_name])
     type(phone_number_field, options[:phone_number])
     select_country(options[:country])
-    select_state(options[:state]) unless options[:state] == nil
-    type(city_field, options[:city]) unless options[:city] == nil
+    select_state(options[:state]) unless options[:state].nil?
+    type(city_field, options[:city]) unless options[:city].nil?
   end
 
   def enter_email(email)

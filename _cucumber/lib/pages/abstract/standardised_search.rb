@@ -1,5 +1,7 @@
 require_relative 'site_base'
 
+# this class contains common elements that are located on pages that use standardised search code. Currently at the time of writing these are Search,
+# Stack Overflow, and Resources pages, therefore the pages will inherit this class.
 class StandardisedSearch < SiteBase
 
   element(:results_per_page_filter)    { |b| b.select_list(xpath: '//p/select[2]') }
@@ -18,7 +20,7 @@ class StandardisedSearch < SiteBase
   element(:pagination_last_link)       { |b| b.li(id: 'pagination-last') }
   element(:pagination_previous_link)   { |b| b.li(id: 'pagination-prev') }
 
-  value(:wait_until_loaded)            { |p| p.loading_spinner.wait_while(&:present?)}
+  value(:wait_until_loaded)            { |p| p.loading_spinner.wait_while(&:present?) }
   value(:wait_for_loading)             { |p| p.loading_spinner.wait_until(&:present?) }
   value(:wait_until_results_loaded)    { |p| p.results_loaded.wait_until(&:present?) }
   value(:results_title_text)           { |p| p.results_title.text }
@@ -26,7 +28,7 @@ class StandardisedSearch < SiteBase
   value(:results_text)                 { |p| p.no_of_results_text.text }
   value(:has_pagination?)              { |p| p.pagination.present? }
   value(:has_ellipsis?)                { |p| p.li(css: "#pagination-#{5}").text.include?('⋯') }
-  value(:current_link_text)            { |p| p.current_link.text}
+  value(:current_link_text)            { |p| p.current_link.text }
   value(:results_loaded?)              { |p| p.results_loaded.present? }
 
   def wait_for_results
@@ -37,13 +39,13 @@ class StandardisedSearch < SiteBase
   def results_per_page
     default_item = default_dropdown_item(results_per_page_filter)
     available_options = dropdown_items(results_per_page_filter)
-    return default_item, available_options
+    [default_item, available_options]
   end
 
   def results_sort
     default_item = default_dropdown_item(results_sort_filter)
     available_options = dropdown_items(results_sort_filter)
-    return default_item, available_options
+    [default_item, available_options]
   end
 
   def select_results_per_page(option)
@@ -59,7 +61,7 @@ class StandardisedSearch < SiteBase
     results
   end
 
-  def has_pagination_with(i)
+  def pagination_with?(i)
     wait_for_results
     @browser.li(css: "#pagination-#{i}").present?
   end
@@ -76,7 +78,7 @@ class StandardisedSearch < SiteBase
   end
 
   def go_to_pagination_no(i)
-    elem = @browser.li(css: "#pagination-#{i.to_i-1}")
+    elem = @browser.li(css: "#pagination-#{i.to_i - 1}")
     @browser.execute_script('arguments[0].scrollIntoView();', elem)
     elem.click
     wait_for_results
