@@ -111,6 +111,13 @@ h3.downloads-header {
   }
 }
 
+div.download-loading{
+  &.loading {
+    background:cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+    min-height:250px;
+  }
+}
+
 .has-download, .no-download {
   display: none;
 }
