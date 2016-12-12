@@ -337,7 +337,7 @@ function rhd_common_simple_sitemap_links_alter(&$links)
 {
     $product_node_ids = drupal_static('sitemap_product_node_ids', []);
 
-    if (empty($product_nodes)) {
+    if (empty($product_nodes_ids)) {
         $query = \Drupal::entityQuery('node');
         $query->condition('status', 1);
         $query->condition('type', 'product');
@@ -356,6 +356,9 @@ function rhd_common_simple_sitemap_links_alter(&$links)
     };
 
     array_walk($products_in_sitemap, $callback);
+    $links = array_filter($links, function ($value) use ($product_node_ids) {
+        return !in_array($value['entity_info']['id'], $product_node_ids);
+    } );
     unset($links[current(array_keys($products_in_sitemap))]);
 }
 
