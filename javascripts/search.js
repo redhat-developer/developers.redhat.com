@@ -167,8 +167,8 @@ search.filter('jbossfix', function() {
     var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org','gi'),
       baseURLMatch = new RegExp(drupalSettings.rhd.urls.base_url, 'gi'),
       finalURLMatch = new RegExp(drupalSettings.rhd.urls.final_base_url, 'gi')
-      isBaseURL = window.location.href.match(baseURLMatch).length > 0,
-      isFinalURL = window.location.href.match(finalURLMatch).length > 0;
+      isBaseURL = window.location.href.match(baseURLMatch),
+      isFinalURL = window.location.href.match(finalURLMatch);
 
     if (url && url.match(matcher) && isBaseURL) {
       return url.replace(matcher,'https://'+drupalSettings.rhd.urls.base_url)
