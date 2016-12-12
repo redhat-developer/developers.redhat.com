@@ -40,6 +40,9 @@ class Export
     @page_url_list_generator.save_sitemap(@page_url_list_generator.fetch_sitemap_contents,
                                           File.join(export_directory, 'sitemap.xml'))
 
+    @page_url_list_generator.save_robots(@page_url_list_generator.fetch_robots,
+                                         File.join(export_directory, 'robots.txt'))
+
     if !@rsync_destination.nil? and !@rsync_destination.empty?
       @rsync_handler.rsync_static_export(export_directory, @rsync_destination, true)
     else
