@@ -1,6 +1,8 @@
 require 'report_builder'
 require 'colorize'
 require 'colorized_string'
+require_relative 'merge_cucumber_json_reports'
+require 'fileutils'
 
 # This class contains methods for the cucumber.rake file in order to execute the full suite of acceptance tests
 class TestRunner
@@ -66,5 +68,4 @@ class TestRunner
     end
     ReportBuilder.build_report
   end
-
 end
