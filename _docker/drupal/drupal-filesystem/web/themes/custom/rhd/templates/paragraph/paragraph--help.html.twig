@@ -40,22 +40,24 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                                      ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0"
                                      id="stackContainer">
                                     <div ng-repeat="result in results | limitTo:4" ng-init="r = result">
-                                        <div class="stackoverflow-product-update">
-                                            <div class="update">
+                                        <div class="stackoverflow-product-update row">
+                                            <div class="update large-24 columns">
                                                 <div class="update-meta">
                                                     <div class="row">
-                                                        <div class="large-24 columns">
-                                                            <h5 class="qtn-title">
-                                                                <a href="{{ '{{ ' }}r._source.sys_url_view{{ '}}' }}" target="_blank" rel="noopener noreferrer">Q: {{ '{{ ' }}r._source.sys_title{{ '}}' }}</a>
-                                                            </h5>
+                                                        <h5 class="qtn-title large-24 columns">
+                                                            <a href="{{ '{{ ' }}r._source.sys_url_view{{ '}}' }}"
+                                                               target="_blank" rel="noopener noreferrer">Q: {{ '{{ ' }}
+                                                                r._source.sys_title{{ '}}' }}</a>
+                                                        </h5>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="large-12 columns">
+                                                            <p>{% verbatim %}{{r._source.up_vote_count}} votes | {{r._source.answer_count}} answers | {{r._source.view_count}} views{% endverbatim %}</p>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="large-12 columns">
-                                                                <p>{% verbatim %}{{r._source.up_vote_count}} votes | {{r._source.answer_count}} answers | {{r._source.view_count}} views{% endverbatim %}</p>
-                                                            </div>
-                                                            <div class="large-12 columns"><span class="right">
-                                                            <p>{{ '{{' }}r | stackDate {{ '}}' }}</p>
-                                                            </span></div>
+                                                        <div class="large-12 columns">
+                                                            <span class="right">
+                                                                <p>{{ '{{' }}r | stackDate {{ '}}' }}</p>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
