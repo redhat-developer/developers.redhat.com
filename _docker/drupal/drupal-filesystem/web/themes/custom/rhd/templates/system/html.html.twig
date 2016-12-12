@@ -44,16 +44,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]-->
 <head>
-  {% if (rhd_dtm_code) %}
-  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
-  var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
-    relURL = window.location.href.replace(/https?:\/\//,'').replace('{{ rhd_base_url }}','').replace('{{ rhd_final_base_url }}','').replace(/\/$/,'');
-
-  /**
-  * Creates and dispatches an event trigger
-  * @param {String} evt - The name of the event
-  */
   function sendCustomEvent(evt){
     if(document.createEvent && document.body.dispatchEvent){
       var event = document.createEvent('Event');
@@ -64,6 +55,17 @@
       document.body.dispatchEvent(event);
     }
   }
+  </script>
+  {% if (rhd_dtm_code) %}
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
+  <script>
+  var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
+    relURL = window.location.href.replace(/https?:\/\//,'').replace('{{ rhd_base_url }}','').replace('{{ rhd_final_base_url }}','').replace(/\/$/,'');
+
+  /**
+  * Creates and dispatches an event trigger
+  * @param {String} evt - The name of the event
+  */
 
   ( function( w, d, dd, undefined ) {
       var categoryObj = getCategories();
