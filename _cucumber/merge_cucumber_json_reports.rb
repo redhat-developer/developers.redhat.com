@@ -66,19 +66,16 @@ class CucumberJSONMerger
   def replace_scenario(sname, sline, scenario, feature)
     @master.find { |f| f['uri'] == feature }['elements'].delete_if do |e|
       exists = e['keyword'].include?('Scenario') && e['name'] == sname && e['line'] == sline
-      puts "Replacing #{sname} on line #{sline} in #{feature} in master" if exists
       exists
     end
     append_scenario(scenario, feature)
   end
 
   def append_scenario(scenario, feature)
-    puts "Need to append SCENARIO: #{scenario['name']} to FEATURE: #{feature} in master"
     @master.find { |f| f['uri'] == feature }['elements'] << scenario
   end
 
   def append_feature(feature)
-    puts "Need to append FEATURE: '#{feature['name']}' in master"
     @master.push feature
   end
 end
