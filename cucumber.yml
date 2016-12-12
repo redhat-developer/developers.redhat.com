@@ -37,7 +37,9 @@ parallel:
   -f rerun
   -o _cucumber/tmp/<%=ENV['RHD_TEST_PROFILE']%>/rerun<%= ENV['TEST_ENV_NUMBER'] %>.txt
 
-rerun_failures: <%= rerun_failures_opts %>
+rerun_failures:
+  <%= rerun_failures_opts %>
+  -f json -o _cucumber/reports/<%= ENV['RHD_TEST_PROFILE'] %>/rerun.json
 
 nightly:
   -r _cucumber/features/
