@@ -15,6 +15,8 @@ require 'fileutils'
 require 'pry'
 require 'octokit'
 require 'date'
+require 'watir-webdriver-performance'
+require 'webdrivers'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract/*.rb"].each { |page| load page }
@@ -58,8 +60,13 @@ else
       $host_to_test = 'https://developer-drupal.web.prod.ext.phx2.redhat.com'
     else
       $host_to_test = ENV['HOST_TO_TEST'].chomp('/')
-      $keycloak_base_url = 'https://developers.stage.redhat.com'
-      $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
+      if $host_to_test == ('https://developers.redhat.com' || 'http://developers.redhat.com')
+        $keycloak_base_url = 'https://developers.redhat.com'
+        $download_manager_base_url = 'https://developers.redhat.com/download-manager/rest/available'
+      else
+        $keycloak_base_url = 'https://developers.stage.redhat.com'
+        $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
+      end
   end
 end
 

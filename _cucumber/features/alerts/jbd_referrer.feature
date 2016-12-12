@@ -1,3 +1,4 @@
+@smoke
 Feature: JBoss redirect to RHD
 
   Scenario Outline: Being redirected from a JBoss Developers page should show an alert message saying as such

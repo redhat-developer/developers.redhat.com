@@ -46,21 +46,18 @@ class Browsers
     FileUtils.mkdir_p $download_directory
 
     chrome_prefs = {
-          download: {
-              prompt_for_download: false,
-              directory_upgrade: true,
-              default_directory: $download_directory
+        download: {
+            prompt_for_download: false,
+            directory_upgrade: true,
+            default_directory: $download_directory
         },
-          safebrowsing: {
-              enabled: true
+        safebrowsing: {
+            enabled: true
         }
     }
 
     chrome_switches = %w(--ignore-certificate-errors --disable-popup-blocking)
     caps_opts = { 'chrome.switches' => chrome_switches }
-
-    chromedriver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os}", 'chromedriver')
-    Selenium::WebDriver::Chrome.driver_path = chromedriver_path
 
     if device_name.nil?
       caps = Selenium::WebDriver::Remote::Capabilities.chrome

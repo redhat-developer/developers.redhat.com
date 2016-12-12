@@ -20,6 +20,16 @@ class GenericBasePage
     else
       @browser.goto($host_to_test + url)
     end
+    print_page_load(url)
+  end
+
+  def print_page_load(url = nil)
+    load_secs = @browser.performance.summary[:response_time] / 1000
+    if url.nil?
+      puts "Load Time: #{load_secs} seconds for url #{@browser.url}."
+    else
+      puts "Load Time: #{load_secs} seconds for url '#{url}'."
+    end if $rhd_driver.include?('chrome')
   end
 
   def self.expected_element(type, identifier)
