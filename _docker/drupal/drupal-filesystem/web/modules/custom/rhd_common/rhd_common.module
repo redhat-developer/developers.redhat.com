@@ -154,7 +154,7 @@ function build_feature_grouping($feature)
  */
 function rhd_common_preprocess_paragraph__community(&$variables)
 {
-    $paragraph = $variables['#paragraph'];
+    $paragraph = $variables['paragraph'];
     $variables['display_projects'] = (bool)$paragraph->field_display_projects->value;
 }
 
