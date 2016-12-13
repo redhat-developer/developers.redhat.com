@@ -59,9 +59,9 @@ end
 When(/^I log in with a (active|deactivated) Customer portal account$/) do |negate|
   @site_user = SiteUser.new
   if negate == 'active'
-    @site_user.create('openshift')
+    @site_user.create('customer_portal')
   else
-    @site_user.create('openshift')
+    @site_user.create('customer_portal')
     @site_user.deactivate(@site_user.details[:email])
   end
   on LoginPage do |page|
