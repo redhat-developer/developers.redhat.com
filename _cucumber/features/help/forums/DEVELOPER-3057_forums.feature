@@ -5,11 +5,8 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
     Then I should see product sections with headings
     And I should see the following forum products:
       | Red Hat JBoss Data Grid                       |
-      | Red Hat JBoss Developer Studio                |
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
-      | Developing on Containers                      |
-      | Red Hat Developer Toolset                     |
       | Red Hat Software Collections                  |
       | Red Hat JBoss A-MQ                            |
       | Red Hat JBoss BRMS                            |
@@ -22,11 +19,8 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
     Given I am on the Product forums page
     Then I should see the following forum products:
       | Red Hat JBoss Data Grid                       |
-      | Red Hat JBoss Developer Studio                |
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
-      | Developing on Containers                      |
-      | Red Hat Developer Toolset                     |
       | Red Hat Software Collections                  |
       | Red Hat JBoss A-MQ                            |
       | Red Hat JBoss BRMS                            |

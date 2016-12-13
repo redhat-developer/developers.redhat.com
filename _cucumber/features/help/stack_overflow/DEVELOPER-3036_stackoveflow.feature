@@ -10,6 +10,10 @@ Feature: DEVELOPER-3036 - SO: Main page: add 'Filter by Product'
       | Red Hat Software Collections                  |
       | Red Hat JBoss Fuse                            |
       | OpenShift Enterprise by Red Hat               |
+      | Red Hat OpenJDK                               |
+      | Red Hat Developer Toolset                     |
+      | Red Hat Developer Container Kit               |
+      | Red Hat JBoss Developer Studio                |
 
   Scenario: When a user selects a product from the products filter the results are updated containing questions relating to that product.
     Given I am on the Stack Overflow page
