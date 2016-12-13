@@ -424,7 +424,12 @@ function searchCtrlFunc($scope, $window, searchService) {
     
     if (isStackOverflow) {
       if (/help/.test(window.location.href)) {
-        var product = $('#stackOverflowProduct').data('product');
+        if ($('#stackOverflowProduct').length) {
+          var product = $('#stackOverflowProduct').data('product');
+        } else {
+          product = (window.location.href).split("/")[4];
+        }
+
         $scope.params.product = product;
 
         var tags = app.products[product]['stackoverflow'];
