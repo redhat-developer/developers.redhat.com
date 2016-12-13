@@ -137,7 +137,8 @@ function rhd_common_preprocess_paragraph(&$variables)
 function rhd_common_preprocess_paragraph__overview(&$variables)
 {
     $paragraph = $variables['paragraph'];
-    $variables['features'] = array_map('build_feature_grouping', $paragraph->field_product_overview_features->referencedEntities());
+    $variables['features'] = array_map('build_feature_grouping',
+      $paragraph->field_product_overview_features->referencedEntities());
 }
 
 function build_feature_grouping($feature)
@@ -322,7 +323,8 @@ function rhd_common_page_attachments_alter(array &$attachments)
             ]);
             $metatags_elements = $metatag_manager->generateElements($metatags->get('tags'), $product);
 
-            $merged_array = NestedArray::mergeDeep($metatags_elements['#attached']['html_head'], $attachments['#attached']['html_head']);
+            $merged_array = NestedArray::mergeDeep($metatags_elements['#attached']['html_head'],
+              $attachments['#attached']['html_head']);
             $attachments['#attached']['html_head'] = $merged_array;
         }
     }
@@ -351,15 +353,18 @@ function rhd_common_simple_sitemap_links_alter(&$links)
     $callback = function ($product_node_link, $product_node_link_index) use (&$links) {
         $product = Node::load($links[$product_node_link_index]['entity_info']['id']);
         $sub_pages = $product->field_product_pages->referencedEntities();
-        $entries = array_map('build_subpage_link_entry', $sub_pages, array_fill(0, count($sub_pages), $links[$product_node_link_index]));
+        $entries = array_map('build_subpage_link_entry', $sub_pages,
+          array_fill(0, count($sub_pages), $links[$product_node_link_index]));
         $links = array_merge($links, $entries);
+        $links[$product_node_link_index] = null;
     };
 
-    array_walk($products_in_sitemap, $callback);
-    $links = array_filter($links, function ($value) use ($product_node_ids) {
-        return !in_array($value['entity_info']['id'], $product_node_ids);
-    } );
-    unset($links[current(array_keys($products_in_sitemap))]);
+    array_walk($products_in_sitemap, $callback); // Add in the sub pages to the sitemap
+
+    // Remove any null entries that were set above
+    $links = array_filter($links, function ($value) {
+        return isset($value);
+    });
 }
 
 /**
