@@ -4,7 +4,7 @@
 
 :cdk-ig-paged-url: https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.3/paged/installation-guide/
 
-## Windows Step1
+== Windows Step1
 
 The easiest way to install the Red Hat Container Development Kit is to use the Red Hat Development Suite installer.
 
@@ -32,7 +32,7 @@ image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_4.png')}[Downl
 +
 image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_5.png')}[Close Installer]
 
-## Mac And Linux Step1
+== Mac And Linux Step1
 
 In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Developer Suite includes Red Hat Enterprise Linux Server, and additional development tools.
 Download the link:#{site.download_manager_file_base_url}cdk-2.3.0.zip[cdk-2.3.0.zip].
@@ -43,7 +43,7 @@ Download the link:#{site.download_manager_file_base_url}cdk-2.3.0.zip[cdk-2.3.0.
 [.callout-light]
 *NOTE:* Later in this guide, you will need the Red Hat username and password you create during registration for accessing Red Hat sites.
 
-## Mac And Linux Step2
+== Mac And Linux Step2
 
 The Container Development Kit delivers the latest container runtime environment and container tools in a Red Hat Enterprise Linux virtual machine (VM). To use the kit you will need:
 
@@ -51,7 +51,7 @@ The Container Development Kit delivers the latest container runtime environment 
 . http://www.vagrantup.com/about.html[Vagrant, window='_blank'], an open source tool for creating and distributing portable development environments.
 . The CDK Red Hat Enterprise Linux Vagrant box that matches your virtualization platform.
 
-### Install a virtualization platform (hypervisor)
+=== Install a virtualization platform (hypervisor)
 
 First, download and install a virtualization platform:
 
@@ -61,7 +61,7 @@ First, download and install a virtualization platform:
 [.callout-light]
 *NOTE:* If you are using macOS or a Linux distribution other than Red Hat Enterprise Linux, Fedora, or CentOS, VirtualBox is recommended.
 
-### Install Vagrant
+=== Install Vagrant
 
 Next, install Vagrant. All of the Container Development Environment configuration and managment on your development system will be handled for you by Vagrant.
 
@@ -77,7 +77,7 @@ If you are using:
 
 For other Linux distributions, install Vagrant using the packages included with your distribution if it includes a recent version. Alternatively, download a `.deb` or `.rpm` package from https://vagrantup.com/downloads.html[vagrantup.com, window='_blank'].
 
-### Download the Container Development Environment
+=== Download the Container Development Environment
 
 Next, download the environment that matches your virtualization platform:
 
@@ -86,20 +86,21 @@ Next, download the environment that matches your virtualization platform:
 * #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-32.x86_64.vagrant-libvirt.box[Red Hat Enterprise Linux 7.3 Vagrant box for KVM/libvirt, window='_blank']
 * #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-32.x86_64.vagrant-hyperv.box[Red Hat Enterprise Linux 7.3 Vagrant box for Hyper-V, window='_blank']
 
-NOTE: Even though the Vagrant box file names indicate that they are based on Red Hat Enterprise Linux 7.2, they are really based on Red Hat Enterprise Linux 7.3.
+[.callout-light]
+*NOTE:* Even though the Vagrant box file names indicate that they are based on Red Hat Enterprise Linux 7.2, they are really based on Red Hat Enterprise Linux 7.3.
 
-## Mac And Linux Step3
+== Mac And Linux Step3
 
 Next, install the Container Development Kit by following the {cdk-ig-paged-url}[CDK Installation Guide, window='_blank'] for your operating system:
 
 * {cdk-ig-paged-url}chapter-4-installing-container-development-kit-on-macos[Installing CDK on macOS, window='_blank']
 * {cdk-ig-paged-url}chapter-5-installing-container-development-kit-on-red-hat-enterprise-linux[Installing CDK on Red Hat Enterprise Linux, window='_blank']
 
-## Development Technologies
+== Development Technologies
 
 Select your development technology and then build "Hello, World" in a container:
 
-## Nodejs Tab
+== Nodejs Tab
 
 [.large-17.columns.recommended]
 *Node.js v4*
@@ -108,7 +109,7 @@ Node.js® is an event-driven I/O server-side JavaScript runtime that is lightwei
 [.large-7.columns.tc-button]
 #{site.base_url}/products/cdk/get-started-cdk2-nodejs/[Get Started]
 
-## PHP Tab
+== PHP Tab
 
 [.large-17.columns.recommended]
 *PHP 5.6*
@@ -117,7 +118,7 @@ PHP is a widely-used, open source, general-purpose scripting language that is es
 [.large-7.columns.tc-button]
 #{site.base_url}/products/cdk/get-started-cdk2-php/[Get Started]
 
-## Python Tab
+== Python Tab
 
 [.large-17.columns.recommended]
 *Python 3.5*
@@ -126,7 +127,7 @@ Python is an interpreted, object-oriented, high-level programming language with 
 [.large-7.columns.tc-button]
 #{site.base_url}/products/cdk/get-started-cdk2-python/[Get Started]
 
-## Ruby Tab
+== Ruby Tab
 
 [.large-17.columns.recommended]
 *Ruby 2.3*
