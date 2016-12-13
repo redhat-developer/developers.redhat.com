@@ -13,7 +13,7 @@ title: Forums | Red Hat Developers
 .row.forums-product-categories
   - site.categories.each do |category|
     .large-24.product-category
-      - unless ["mobile","private_cloud", "infrastructure"].include? category.name.to_s
+      - unless ["mobile","cloud", "infrastructure"].include? category.name.to_s
         .large-24.category-label(id="#{category.name.to_s}")
           h4
             = category.name.to_s.gsub('_', ' ').upcase

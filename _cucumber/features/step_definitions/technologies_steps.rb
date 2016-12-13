@@ -1,7 +1,7 @@
 Then(/^I should see product sections with headings$/) do
   categories = ProductsHelper.categories
   if @browser.url.include?('forums')
-    forum_categories = categories[0] - [:mobile, :private_cloud, :infrastructure]
+    forum_categories = categories[0] - [:mobile, :cloud, :infrastructure]
     forum_categories.each { |category| expect(@current_page.product_title(category.to_s)).to eq(category.to_s.tr('_', ' ').upcase!) }
   else
     categories[0].each { |category| expect(@current_page.product_title(category.to_s)).to eq(category.to_s.tr('_', ' ').upcase!) }
