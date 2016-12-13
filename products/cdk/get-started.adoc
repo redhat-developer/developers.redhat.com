@@ -2,18 +2,20 @@
 :awestruct-interpolate: true
 :linkattrs:
 
+:cdk-ig-paged-url: https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.3/paged/installation-guide/
+
 ## Windows Step1
 
 The easiest way to install the Red Hat Container Development Kit is to use the Red Hat Development Suite installer.
 
-. Download the link:#{site.download_manager_file_base_url}devsuite-1.1.0-GA-bundle-installer.exe?tp=devsuite[Red Hat Development Suite 1.1] installer
+. Download the link:#{site.download_manager_file_base_url}devsuite-1.2.0-GA-bundle-installer.exe?tp=devsuite[Red Hat Development Suite 1.2] installer
 . Double click on the downloaded file to launch the installer. If you have User Account Control enabled, you will need to click _Yes_ to allow  the installer to run with adminstrator-level permissions.
 . Enter your Red Hat Developers username and password, and click _Login_.
 +
 image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_1.png')}[Login to Red Hat Developers]
 + 
 [.callout-light]
-*NOTE:* If you haven't directly downloaded the Red Hat Development Suite from Red Hat Developers, your account may not have the correct entitlements to install the Container Development Kit. The easiest way to add the entitlements is to visit Red Hat Developers and initiate a download of the Red Hat Development Suite. We are working on a fix to enable you to add the entitlements to your account without starting a new download.
+*NOTE:* If you haven't directly downloaded the Red Hat Development Suite from Red Hat Developers, your account may not have the correct entitlements to install Container Development Kit. The easiest way to add the entitlements is to visit Red Hat Developers and initiate a download of the Red Hat Development Suite. We are working on a fix to enable you to add the entitlements to your account without starting a new download.
 . Choose the folder you wish to use to install Red Hat Development Suite, and click _Continue_.
 +
 image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_2.png')}[Choose Install Location]
@@ -33,7 +35,7 @@ image:#{cdn(site.base_url + '/images/products/cdk/DevSuite_Screen_5.png')}[Close
 ## Mac And Linux Step1
 
 In this step, you download the first of two Red Container Development Kit (CDK) files. For the download, you will need to register with developers.redhat.com. After you register as a developer, you will be given a subscription for Red Hat Enterprise Linux Developer Suite, which will give you access to the CDK. Developer Suite includes Red Hat Enterprise Linux Server, and additional development tools.
-Download the link:#{site.download_manager_file_base_url}cdk-2.2.0.zip[cdk-2.2.0.zip].
+Download the link:#{site.download_manager_file_base_url}cdk-2.3.0.zip[cdk-2.3.0.zip].
 
 [.callout-light]
 *NOTE:* The Red Hat Development Suite is not yet available on Mac or Linux, so manual installation is required.
@@ -53,11 +55,11 @@ The Container Development Kit delivers the latest container runtime environment 
 
 First, download and install a virtualization platform:
 
-* https://www.virtualbox.org/wiki/Downloads[VirtualBox, window='_blank'] (for Mac OS X or Linux)
+* https://www.virtualbox.org/wiki/Downloads[VirtualBox, window='_blank'] (for macOS or Linux)
 * Linux KVM/libvirt (for Red Hat Enterprise Linux, CentOS, or Fedora)
 
 [.callout-light]
-*NOTE:* If you are using Mac OS X or a Linux distribution other than Red Hat Enterprise Linux, Fedora, or CentOS, VirtualBox is recommended.
+*NOTE:* If you are using macOS or a Linux distribution other than Red Hat Enterprise Linux, Fedora, or CentOS, VirtualBox is recommended.
 
 ### Install Vagrant
 
@@ -68,8 +70,8 @@ Next, install Vagrant. All of the Container Development Environment configuratio
 
 If you are using:
 
-* Mac OS X, install Vagrant using the instructions in the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.2/installation-guide/#mac-soft-install[CDK Installation Guide, window='_blank'].
-* Red Hat Enterprise Linux, install the _Vagrant Software Collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.2/installation-guide/#installing_virtualization_and_container_development_kit_components[CDK Installation Guide, window='_blank'].
+* macOS, install Vagrant using the instructions in the {cdk-ig-paged-url}chapter-4-installing-container-development-kit-on-macos#mac-soft-install[CDK Installation Guide, window='_blank'].
+* Red Hat Enterprise Linux, install the _Vagrant Software Collection_ using the instructions in the {cdk-ig-paged-url}chapter-5-installing-container-development-kit-on-red-hat-enterprise-linux#installing_virtualization_and_container_development_kit_components[CDK Installation Guide, window='_blank'].
 //* CentOS Linux, install the _Vagrant Software Collection_ using the instructions in the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.2/installation-guide/#installing_virtualization_and_container_development_kit_components[CDK Installation Guide, window='_blank'].
 //* Fedora 23, install the Vagrant packages included with Fedora using `dnf`. See the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.2/installation-guide/#installing_virtualization_and_container_development_kit_components[CDK Installation Guide, window='_blank'].
 
@@ -80,16 +82,18 @@ For other Linux distributions, install Vagrant using the packages included with 
 Next, download the environment that matches your virtualization platform:
 
 // FIXME These will need to be updated for GA and later.
-* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-29.x86_64.vagrant-virtualbox.box[Red Hat Enterprise Linux 7.2 Vagrant box for VirtualBox, window='_blank']
-* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-29.x86_64.vagrant-libvirt.box[Red Hat Enterprise Linux 7.2 Vagrant box for KVM/libvirt, window='_blank']
-* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-29.x86_64.vagrant-hyperv.box[Red Hat Enterprise Linux 7.2 Vagrant box for Hyper-V, window='_blank']
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-32.x86_64.vagrant-virtualbox.box[Red Hat Enterprise Linux 7.3 Vagrant box for VirtualBox, window='_blank']
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-32.x86_64.vagrant-libvirt.box[Red Hat Enterprise Linux 7.3 Vagrant box for KVM/libvirt, window='_blank']
+* #{site.download_manager_base_url}/download-manager/file/rhel-cdk-kubernetes-7.2-32.x86_64.vagrant-hyperv.box[Red Hat Enterprise Linux 7.3 Vagrant box for Hyper-V, window='_blank']
+
+NOTE: Even though the Vagrant box file names indicate that they are based on Red Hat Enterprise Linux 7.2, they are really based on Red Hat Enterprise Linux 7.3.
 
 ## Mac And Linux Step3
 
-Next, install the Container Development Kit by following the https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.2/installation-guide/[CDK Installation Guide, window='_blank'] for your operating system:
+Next, install the Container Development Kit by following the {cdk-ig-paged-url}[CDK Installation Guide, window='_blank'] for your operating system:
 
-* https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.2/installation-guide/#installing_container_development_kit_on_mac_os_x[Installing CDK on Mac OS X, window='_blank']
-* https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.2/installation-guide/#installing_container_development_kit_on_red_hat_enterprise_linux[Installing CDK on Red Hat Enterprise Linux, window='_blank']
+* {cdk-ig-paged-url}chapter-4-installing-container-development-kit-on-macos[Installing CDK on macOS, window='_blank']
+* {cdk-ig-paged-url}chapter-5-installing-container-development-kit-on-red-hat-enterprise-linux[Installing CDK on Red Hat Enterprise Linux, window='_blank']
 
 ## Development Technologies
 
