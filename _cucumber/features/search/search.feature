@@ -84,7 +84,6 @@ Feature: Search Page
     When I enter "Containers" into the Site nav search box
     And I click on the search button
     Then the search results page is displayed
-    And I should see "10" results containing "Container"
 
   Scenario: I search for something that returns ten (or more) pages of results should display pagination with ellipsis
     Given I am on the Home page
