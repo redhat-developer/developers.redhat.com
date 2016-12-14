@@ -34,6 +34,7 @@ task :json_merge do
   c = CucumberJSONMerger.new(@profile)
   c.run
   c.rerun
+  c.rerun_2
   File.open("_cucumber/reports/#{@profile}/combined.json", 'w+').write c.master.to_json
   file = File.join("_cucumber/reports/#{@profile}/", 'cucumber*')
   files = Dir.glob(file)
@@ -41,6 +42,7 @@ task :json_merge do
     File.delete(f)
   end
   File.delete("_cucumber/reports/#{@profile}/rerun.json") if File.exist?("_cucumber/reports/#{@profile}/rerun.json")
+  File.delete("_cucumber/reports/#{@profile}/rerun2.json") if File.exist?("_cucumber/reports/#{@profile}/rerun2.json")
 end
 
 task :report_builder do
@@ -67,10 +69,11 @@ task :_wip do
 end
 
 task :debugger do
-  system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
+  system("parallel_cucumber _cucumber/features/ -o \"--tags @debug\" -n 10")
+  # system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
-task :debug, :times do |args|
+task :debug, :times do |_task, args|
   puts "Executing scenario tagged with @debug #{args[:times]} times"
   args[:times].to_i.times { Rake::Task[:debugger].execute }
 end

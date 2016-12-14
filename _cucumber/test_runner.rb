@@ -48,7 +48,7 @@ class TestRunner
     command = system('bundle exec cucumber --profile rerun_failures')
     unless command == true
       puts ColorizedString.new('. . . . . There were failures during first rerun! Attempt two of rerunning failed scenarios . . . . .').red
-      system("bundle exec cucumber @_cucumber/tmp/#{profile}/rerunner.txt")
+      system("bundle exec cucumber @_cucumber/tmp/#{profile}/rerunner.txt -f json -o _cucumber/reports/#{profile}/rerun2.json")
     end
     $?.exitstatus
   end
