@@ -99,7 +99,7 @@ Then(/^each Technologies sub-menu heading should contain a link to its retrospec
     href = @current_page.get_href_for(sub_items)
     case sub_items.downcase
       when 'cloud'
-        expect(href).to include '#private_cloud'
+        expect(href).to include '#cloud'
       when 'accelerated development and management'
         expect(href).to include '#development_and_management'
       else

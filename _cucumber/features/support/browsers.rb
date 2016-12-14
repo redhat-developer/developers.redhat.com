@@ -10,17 +10,19 @@ class Browsers
   private
 
   def setup(browser_name)
-    case browser_name
-      when browser_name.include?('bs_')
-        browserstack(browser_name)
-      when 'chrome'
-        browser = chrome
-      when 'docker_chrome'
-        browser = docker_chrome
-      when 'docker_firefox'
-        browser = docker_firefox
-      else
-        browser = default(browser_name)
+    if browser_name.include?('bs_')
+      browser = browserstack(browser_name)
+    else
+      case browser_name
+        when 'chrome'
+          browser = chrome
+        when 'docker_chrome'
+          browser = docker_chrome
+        when 'docker_firefox'
+          browser = docker_firefox
+        else
+          browser = default(browser_name)
+      end
     end
     browser
   end

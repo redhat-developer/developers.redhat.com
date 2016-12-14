@@ -47,8 +47,16 @@ app.buzz = {
 
     // Pull the json array, switch back to double quotes, then parse it.
     var tags = container.data('tags') || "";
+
+    // Trim the whitespace from entries
+    if (Array.isArray(tags)) {
+      tags = tags.map(Function.prototype.call, String.prototype.trim);
+    }
+
     try {
-      tags = JSON.parse(tags.replace(/'/g, "\""));
+      if (typeof tags === "string") {
+        tags = JSON.parse(tags.replace(/'/g, "\""));
+      }
     } catch (e) {
       tags = "";
     }

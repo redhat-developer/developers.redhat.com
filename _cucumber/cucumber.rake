@@ -1,7 +1,7 @@
 require 'fileutils'
 require_relative 'test_runner'
 
-task features: [:rubocop, :_features, :report_builder]
+task features: [:rubocop, :_features, :json_merge, :report_builder]
 
 task :_features do
   if ENV['RHD_TEST_PROFILE']
@@ -30,6 +30,21 @@ task :_features do
   @exit_status = test_runner.run(@profile, tags)
 end
 
+task :json_merge do
+  c = CucumberJSONMerger.new(@profile)
+  c.run
+  c.rerun
+  c.rerun_2
+  File.open("_cucumber/reports/#{@profile}/combined.json", 'w+').write c.master.to_json
+  file = File.join("_cucumber/reports/#{@profile}/", 'cucumber*')
+  files = Dir.glob(file)
+  files.each do |f|
+    File.delete(f)
+  end
+  File.delete("_cucumber/reports/#{@profile}/rerun.json") if File.exist?("_cucumber/reports/#{@profile}/rerun.json")
+  File.delete("_cucumber/reports/#{@profile}/rerun2.json") if File.exist?("_cucumber/reports/#{@profile}/rerun2.json")
+end
+
 task :report_builder do
   test_runner = TestRunner.new
   test_runner.generate_report(@profile)
@@ -54,10 +69,11 @@ task :_wip do
 end
 
 task :debugger do
-  system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
+  system("parallel_cucumber _cucumber/features/ -o \"--tags @debug\" -n 10")
+  # system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
-task :debug, :times do |args|
+task :debug, :times do |_task, args|
   puts "Executing scenario tagged with @debug #{args[:times]} times"
   args[:times].to_i.times { Rake::Task[:debugger].execute }
 end

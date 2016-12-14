@@ -67,7 +67,8 @@ Feature: Log in using my RHD registered details.
     When I update my password
     Then I should be logged in
 
-  @logout
+  # returns 403 forbidden from I.T backend
+  @logout @ignore
   Scenario: New User can login with active OpenShift.com account (simple user account)
     Given I am on the Login page
     When I log in with an active OpenShift account
@@ -75,7 +76,8 @@ Feature: Log in using my RHD registered details.
     And I complete the additional action required page and proceed
     Then I should be logged in
 
-  @logout
+  # returns 403 forbidden from I.T backend
+  @logout @ignore
   Scenario: New User can login with active Red Hat Customer Portal account (full user account).
     Given I am on the Login page
     And I log in with a active Customer portal account

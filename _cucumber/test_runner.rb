@@ -1,6 +1,8 @@
 require 'report_builder'
 require 'colorize'
 require 'colorized_string'
+require_relative 'merge_cucumber_json_reports'
+require 'fileutils'
 
 # This class contains methods for the cucumber.rake file in order to execute the full suite of acceptance tests
 class TestRunner
@@ -46,7 +48,7 @@ class TestRunner
     command = system('bundle exec cucumber --profile rerun_failures')
     unless command == true
       puts ColorizedString.new('. . . . . There were failures during first rerun! Attempt two of rerunning failed scenarios . . . . .').red
-      system("bundle exec cucumber @_cucumber/tmp/#{profile}/rerunner.txt")
+      system("bundle exec cucumber @_cucumber/tmp/#{profile}/rerunner.txt -f json -o _cucumber/reports/#{profile}/rerun2.json")
     end
     $?.exitstatus
   end
@@ -66,5 +68,4 @@ class TestRunner
     end
     ReportBuilder.build_report
   end
-
 end
