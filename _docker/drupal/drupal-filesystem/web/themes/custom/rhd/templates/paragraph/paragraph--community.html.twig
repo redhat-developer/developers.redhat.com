@@ -31,20 +31,20 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                 </p>
             </div>
         </div>
-        {% if display_projects %}
-        <div class="row">
-            <div class="large-24 columns">
-                <h3 id="projects-standards">Projects and Standards included in {{ project_name }}</h3>
-                <div class="community-projects" data-product-id="{{ product_machine_name }}">
-                    <ul class="large-block-grid-4 small-block-grid-2 results" id="product-upstream-projects"></ul>
-                </div>
-            </div>
-        </div>
-        {% endif %}
         {% else %}
             <div class="row">
                 <div class="large-24 columns">
                     {{ content.field_overview_main_content }}
+                </div>
+            </div>
+        {% endif %}
+        {% if display_projects %}
+            <div class="row">
+                <div class="large-24 columns">
+                    <h3 id="projects-standards">Projects and Standards included in {{ product_name }}</h3>
+                    <div class="community-projects" data-product-id="{{ product_machine_name }}">
+                        <ul class="large-block-grid-4 small-block-grid-2 results" id="product-upstream-projects"></ul>
+                    </div>
                 </div>
             </div>
         {% endif %}
