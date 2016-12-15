@@ -11,7 +11,7 @@ slim:
   :attr_list_delims:
     '(': ')'
     '[': ']'
-download_manager_file_base_url: //developers.redhat.com/download-manager/file/
+download_manager_file_base_url: https://developers.redhat.com/download-manager/file/
 download_manager_base_url: https://developers.redhat.com
 product_documentation_base_url: https://access.redhat.com/site/documentation/en-US/
 product_forum_base_url: https://developer.jboss.org/en/products/
@@ -32,7 +32,7 @@ deploy_base: &deploy
   uncommitted: true
 
 profile_base: &profile
-  cdn_http_base: &cdn_http_base //static.jboss.org/rhd
+  cdn_http_base: &cdn_http_base https://static.jboss.org/rhd
   cdn_out_dir: &cdn_out_dir _tmp
   cdn_version: &cdn_version true
   log_faraday: true
@@ -57,10 +57,10 @@ profile_base: &profile
 profiles:
   development: &development
     dcp_base_url: https://dcp.stage.jboss.org/
-    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
-    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_file_base_url: https://developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://developers.stage.redhat.com
     log_faraday: true
     push_to_searchisko: false
@@ -86,9 +86,9 @@ profiles:
   drupal_dev:
     <<: *docker
     dcp_base_url: https://dcp.stage.jboss.org/
-    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     base_url: http://docker/
-    dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    dcp_base_protocol_relative_url: https://docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
     push_to_searchisko: false
 
@@ -96,7 +96,7 @@ profiles:
   drupal_dev_local_dcp:
     <<: *docker
     base_url: http://docker/
-    dcp_base_protocol_relative_url: //docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+    dcp_base_protocol_relative_url: https://docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
     push_to_searchisko: true
 
@@ -104,7 +104,7 @@ profiles:
     <<: *docker
     base_url: http://stumpjumper.lab4.eng.bos.redhat.com:<%= ENV['DRUPAL_HOST_PORT'] %>/
     dcp_base_url: https://dcp.stage.jboss.org/
-    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     push_to_searchisko: false
     drupal_base_url: http://drupal/
 
@@ -112,15 +112,15 @@ profiles:
     <<: *profile
     base_url: http://developer-drupal.web.stage.ext.phx2.redhat.com/
     drupal_base_url: http://developer-drupal.web.stage.ext.phx2.redhat.com/
-    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_file_base_url: https://developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://developers.stage.redhat.com
     dcp_base_url: https://dcp.stage.jboss.org/
-    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
     metrics: true
     client_side_error_logging: true
-    dtm_code: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
+    dtm_code: https://assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
     deploy:
       <<: *deploy
       path: /stg_htdocs/it-rhd-stg-main
@@ -130,13 +130,13 @@ profiles:
     base_url: http://developer-drupal.web.prod.ext.phx2.redhat.com/
     final_base_url: https://developers.redhat.com/
     drupal_base_url: http://developer-drupal.web.prod.ext.phx2.redhat.com/
-    dcp_base_protocol_relative_url: //dcp2.jboss.org/
+    dcp_base_protocol_relative_url: https://dcp2.jboss.org/
     dcp_base_url: https://dcp2.jboss.org/
     require_tag: true
     metrics: true
     client_side_error_logging: true
     disqus: jdf
-    dtm_mode: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
+    dtm_mode: https://assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
     cache_type: :local
     robots:
       disallow: false
@@ -160,12 +160,12 @@ profiles:
   staging_docker:
     <<: *profile
     dcp_base_url: https://dcp.stage.jboss.org/
-    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
 #    dcp_base_url: http://searchisko:8080/
-#    dcp_base_protocol_relative_url: //<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
+#    dcp_base_protocol_relative_url: https://<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
-    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_file_base_url: https://developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://developers.stage.redhat.com
 
     cache_type: :local
@@ -179,11 +179,11 @@ profiles:
   # Pull Request configuration (Not with Docker)
   staging:
     <<: *profile
-    dcp_base_protocol_relative_url: //<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
+    dcp_base_protocol_relative_url: https://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
     dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
-    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_file_base_url: https://developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://developers.stage.redhat.com
     metrics: false
     client_side_error_logging: true
@@ -196,16 +196,16 @@ profiles:
   staging_main_it: &staging_main_it
     <<: *profile
     base_url: https://developers.stage.redhat.com/
-    download_manager_file_base_url: //developers.stage.redhat.com/download-manager/file/
+    download_manager_file_base_url: https://developers.stage.redhat.com/download-manager/file/
     download_manager_base_url: https://developers.stage.redhat.com
     dcp_base_url: https://dcp.stage.jboss.org/
-    dcp_base_protocol_relative_url: //dcp.stage.jboss.org/
+    dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
     metrics: true
     client_side_error_logging: true
     build_threads: 1
-    dtm_code: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
+    dtm_code: https://assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
     broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
     deploy:
       <<: *deploy
@@ -215,13 +215,13 @@ profiles:
   production:
     <<: *profile
     base_url: https://developers.redhat.com/
-    dcp_base_protocol_relative_url: //dcp2.jboss.org/
+    dcp_base_protocol_relative_url: https://dcp2.jboss.org/
     dcp_base_url: https://dcp2.jboss.org/
     require_tag: true
     metrics: true
     client_side_error_logging: true
     disqus: jdf
-    dtm_mode: //assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
+    dtm_mode: https://assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5.js
     broker: https://broker.redhat.com/partner/drc/userMapping?redirect=
 
     robots:
