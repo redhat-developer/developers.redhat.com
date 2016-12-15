@@ -9,11 +9,9 @@ Feature: Product overview page
     Given I am on the Product Overview page for each <product id>
     Then I should see a side-nav with the following options:
       | Overview      |
-      | Get Started   |
       | Docs and APIs |
       | Learn         |
       | Download      |
-      | Buzz          |
       | Help          |
 
     Examples: Red Hat products
