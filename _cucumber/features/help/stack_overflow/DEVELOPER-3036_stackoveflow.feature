@@ -10,7 +10,7 @@ Feature: DEVELOPER-3036 - SO: Main page: add 'Filter by Product'
       | Red Hat Software Collections                  |
       | Red Hat JBoss Fuse                            |
       | Red Hat OpenShift Container Platform          |
-      | Red Hat OpenJDK                               |
+      | OpenJDK                                       |
       | Red Hat Developer Toolset                     |
       | Red Hat Developer Container Kit               |
       | Red Hat JBoss Developer Studio                |
