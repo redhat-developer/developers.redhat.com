@@ -33,8 +33,6 @@ app.sso = function () {
                     }
                 }
 
-                updateAnalytics(usr);
-
             }).error(clearTokens);
         } else {
             $('li.login, section.register-banner, .devnation-hidden-code').show();
@@ -49,6 +47,8 @@ app.sso = function () {
                 keycloak.login({ action : 'register', redirectUri : app.ssoConfig.confirmation });
             });
         }
+
+        updateAnalytics(usr);
     }
 
     function daysDiff(dt1, dt2) {
