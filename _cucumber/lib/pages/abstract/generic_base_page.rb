@@ -30,11 +30,12 @@ class GenericBasePage
       puts "Load Time: #{load_secs} seconds for url #{@browser.url}."
     else
       puts "Load Time: #{load_secs} seconds for url '#{url}'."
-    end if $rhd_driver.include?('chrome')
+    end if ENV['RHD_JS_DRIVER'].include?('chrome')
   end
 
   def self.expected_element(type, identifier)
     define_method 'expected_element' do
+      wait_for_ajax
       @browser.send("#{type}", identifier).wait_until(message: "Element #{identifier} was not visible after 30 seconds", &:present?)
     end
   end
@@ -49,7 +50,8 @@ class GenericBasePage
   def wait_for_ajax(message = nil)
     end_time = ::Time.now + 30
     until ::Time.now > end_time
-      return if @browser.execute_script('return window.jQuery != undefined && jQuery.active == 0')
+      loaded = @browser.execute_script('return window.jQuery != undefined && jQuery.active == 0')
+      return if loaded
       sleep 0.5
     end
     message = 'Timed out waiting for ajax requests to complete' unless message

@@ -20,7 +20,6 @@ end
 When(/^I click to filter results by "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
     page.filter_by(filter_type)
-    page.wait_for_results
     @results = page.results
   end
 end

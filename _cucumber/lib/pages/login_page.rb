@@ -2,6 +2,7 @@ require_relative 'abstract/site_base'
 
 # this is the page class that contains all elements and common methods related to the Login page
 class LoginPage < SiteBase
+  page_url '/auth/realms/rhd/account/'
   expected_element(:text_field, id: 'username')
 
   element(:heading)                { |b| b.h1(text: 'Log In') }

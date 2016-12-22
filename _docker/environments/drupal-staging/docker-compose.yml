@@ -104,6 +104,7 @@ services:
       - RHD_DOCKER_DRIVER
       - BUILD_URL
       - RHD_TEST_PROFILE
+      - RHD_REMOTE_BROWSER
 
   docker_chrome:
     image: selenium/node-chrome-debug:2.53.0

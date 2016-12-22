@@ -17,15 +17,13 @@ require 'octokit'
 require 'date'
 require 'watir-webdriver-performance'
 require 'webdrivers'
+require 'billy/watir/cucumber'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/*.rb"].each { |helper| load helper }
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/rest/*/*.rb"].each { |helper| load helper }
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/rest/*.rb"].each { |helper| load helper }
-
-$os = :linux if RUBY_PLATFORM.include? 'linux'
-$os = :mac if RUBY_PLATFORM.include? 'darwin'
 
 World PageHelper
 World DriverHelper
@@ -71,19 +69,21 @@ else
 end
 
 if ENV['RHD_JS_DRIVER'].to_s.empty?
-  $rhd_driver = 'chrome'
+  ENV['RHD_JS_DRIVER'] = 'chrome'
+  ENV['RHD_HEADLESS_MODE'] = 'false'
+  browser = Browsers.setup(ENV['RHD_JS_DRIVER'])
 else
-  $rhd_driver = ENV['RHD_JS_DRIVER']
+  ENV['RHD_HEADLESS_MODE'] = 'true' if ENV['RHD_JS_DRIVER'] == 'headless'
+  browser = Browsers.setup(ENV['RHD_JS_DRIVER'])
+end
+
+Before do
+  @browser = browser
+  $browser = @browser
 end
 
 $session_id = Faker::Number.number(5)
 
-b = Browsers.new($rhd_driver)
-
-Before do
-  @browser = b.browser
-end
-
 at_exit do
-  b.browser.quit
+  $browser.quit
 end
