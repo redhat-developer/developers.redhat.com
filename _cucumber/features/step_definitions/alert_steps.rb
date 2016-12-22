@@ -9,7 +9,7 @@ end
 Then(/^I should see a "([^"]*)" alert$/) do |msg|
   on SiteBase do |page|
     if msg.eql?('Referrer')
-      expect(page.referral_alert.present?).to eq true
+      fail("#{msg} was not visible") unless page.referral_alert_visible? == true
     else
       fail("Alert type #{msg} was not recognized")
     end

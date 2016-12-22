@@ -35,6 +35,7 @@ class SiteBase < GenericBasePage
   value(:is_logged_in?)             { |p| p.logged_in.present? }
   value(:is_logged_out?)            { |p| p.login_link.present? }
   value(:kc_feedback)               { |p| p.kc_feedback_text.text }
+  value(:referral_alert_visible?)   { |p| p.referral_alert.wait_until(&:present?).present? }
 
   action(:click_login_link)         { |p| p.login_link.click }
   action(:click_logout_link)        { |p| p.logout_link.click }
