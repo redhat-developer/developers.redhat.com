@@ -274,6 +274,10 @@ span.tag:after {
   content: ', '
 }
 
+span.tag-label{
+  margin-right: 5px;
+}
+
 span.tag:last-child:after {
   content:'';
 }
