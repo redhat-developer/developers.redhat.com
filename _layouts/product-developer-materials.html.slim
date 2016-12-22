@@ -9,7 +9,7 @@ ignore_export: true
 
 / Displays same content types as Resources page
 div(ng-app="dcp")
-  .developer-materials(ng-controller="developerMaterialsController")
+  .developer-materials(ng-controller="developerMaterialsController" ng-cloak)
     .large-24#developer-materials-filters(ng-init="data.pageType = 'sitewide'")
       = partial 'developer-materials-filters.html.slim'
     .text-content
