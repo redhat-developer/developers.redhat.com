@@ -22,6 +22,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
             {% endif %}
             <div>
                 {{ tab_panels }}
+                {# The individual tabs are rendered using the "get-started-tabs.html.twig" file in rhd_common #}
             </div>
         {% endif %}
         {% if content.field_secondary_content|render|striptags|trim is not empty %}

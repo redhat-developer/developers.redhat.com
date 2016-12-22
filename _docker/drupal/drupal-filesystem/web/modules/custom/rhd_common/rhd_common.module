@@ -263,6 +263,7 @@ function rhd_common_preprocess_get_started_tabs(&$variables)
             $blue_section_render['title'] = $blue_section_entity->field_title->value;
             $blue_section_render['minutes'] = $blue_section_entity->field_minutes_to_complete->value;
             $blue_section_render['body'] = $blue_section_entity->field_body->view(['label' => 'visually_hidden']);
+            $blue_section_render['supports_progress'] = (bool) $blue_section_entity->field_support_progress->value;
         }
     }
     unset($variables['items']);
