@@ -68,24 +68,25 @@
         </select>
         <label class="inline">entries</label>
         <br/>
-        <p ng-bind-template="Showing {{(paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber}} to {{ Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber}} of {{data.total | safeNumber}} entries"></p>
+
+        <p ng-bind-template="{{ '{{' }}(paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber{{ '}}' }} to {{ '{{' }}Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber{{ '}}' }} of {{ '{{' }} data.total | safeNumber {{ '}}' }} entries"></p>
     </div>
     <div class="large-17 small-24 columns">
         <nav id="paginator" ng-hide="pagination.viewall || !data.materials.length || data.loading">
             <ul class="pagination">
-                <li ng-class="{unavailable: paginate.currentPage < 2}">
+                <li ng-class="{{ '{{' }}unavailable: paginate.currentPage < 2{{ '}}' }}">
                     <a ng-click="firstPage()">First</a>
                 </li>
-                <li ng-class="{unavailable: paginate.currentPage < 2}">
+                <li ng-class="{{ '{{' }}unavailable: paginate.currentPage < 2{{ '}}' }}">
                     <a ng-click="previousPage()">Previous</a>
                 </li>
-                <li ng-class="{current: page == paginate.currentPage}" ng-repeat="page in paginate.pagesArray track by $index">
+                <li ng-class="{{ '{{' }}current: page == paginate.currentPage{{ '}}' }}" ng-repeat="page in paginate.pagesArray track by $index">
                     <a data-page="{{ '{{' }} page {{ '}}' }}" ng-click="goToPage(page)" ng-bind="page"></a>
                 </li>
-                <li ng-class="{unavailable: paginate.currentPage >= paginate.pages}">
+                <li ng-class="{{ '{{' }}unavailable: paginate.currentPage >= paginate.pages{{ '}}' }}">
                     <a ng-click="nextPage()">Next</a>
                 </li>
-                <li ng-class="{unavailable: paginate.currentPage  == paginate.pages}">
+                <li ng-class="{{ '{{' }}unavailable: paginate.currentPage  == paginate.pages{{ '}}' }}">
                     <a ng-click="lastPage()">Last</a>
                 </li>
             </ul>
