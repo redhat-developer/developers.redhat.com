@@ -58,9 +58,8 @@ div(ng-app="search")
               / span.loader
           .row
             .large-24.columns
-              / h3.results-title(ng-if="totalCount > 0") {{totalCount}} results found for "{{query}}"
-              h3.results-title(ng-if="totalCount <= 0") No results found
-              h4.results-sub-title(ng-if="totalCount <= 0") Please select a different product
+              h3.results-title(ng-if="totalCount <= 0" ng-bind-template="No results found")
+              h4.results-sub-title(ng-if="totalCount <= 0" ng-bind-template="Please select a different product")
               span.loader(ng-show="loading")
               .stackoverflow-results-container(ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0")
                 div(ng-repeat="result in results" ng-init="r = result")
@@ -70,45 +69,42 @@ div(ng-app="search")
                         .row
                           .large-6.columns.qtn-stats
                             span.votes-count
-                              h4 {{r._source.up_vote_count}}
-                              p Votes
+                              h4(ng-bind="r._source.up_vote_count")
+                              p(ng-bind-template="Votes")
                             span.answer-count(ng-class="(r._source.answers[0].is_accepted == true) ? 'accepted-answer' : '' ")
-                              h4 {{r._source.answer_count}}
-                              p Answers
+                              h4(ng-bind="r._source.answer_count")
+                              p(ng-bind-template="Answers")
                             span.views-count
-                              h4 {{r._source.view_count}}
-                              p Views
+                              h4(ng-bind="r._source.view_count")
+                              p(ng-bind-template="Views")
                           .large-18.columns
-                            h4: a(ng-href="{{r._source.sys_url_view}}") {{r._source.sys_title}}
+                            h4: a(ng-href="{{r._source.sys_url_view}}" ng-bind="r._source.sys_title")
                             p.qtn-content(ng-bind-html="r | question")
 
                             .callout.qtn-answer(ng-class="r._source.answers[0] ? 'display-answer' : 'hide-answer' ")
                               p 
                                 span(ng-show="r._source.answers[0].is_accepted == true")
-                                  strong Accepted answer: 
+                                  strong(ng-bind-template="Accepted answer: ")
                                 span(ng-show="r._source.answers[0].is_accepted == false")
-                                  strong Latest answer: 
-                                | {{r._source.answers[0].body | htmlToPlaintext}}
-                              a(ng-href="{{r._source.sys_url_view}}" target="_blank" rel="noopener noreferrer")
-                                | Read full question at Stack Overflow&nbsp;
-                                i.fa.fa-angle-right
+                                  strong(ng-bind-template="Latest answer: ")
+                                span(ng-bind="r._source.answers[0].body | htmlToPlaintext")
+                              a(ng-href="{{r._source.sys_url_view}}" target="_blank" rel="noopener noreferrer" ng-bind-template="Read full question at Stack Overflow&nbsp;&rsaquo;")
                             p
                               span.so-tags
-                                strong Tags:&nbsp;
-                                span.tag(ng-repeat="tag in r._source.sys_tags")  {{tag}}
-                              span.so-author {{r | stackDate}} &#124; {{r | author}}
+                                strong.tag-label(ng-bind-template="Tags:")
+                                span.tag(ng-repeat="tag in r._source.sys_tags" ng-bind="tag")
+                              span.so-author(ng-bind-template="{{r | stackDate}} &#124; {{r | author}}")
 
 
           nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
-            span Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results
+            span(ng-bind-template="Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results")
             ul.pagination
               li#pagination-first(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
                 a(ng-click="goToPage('first'); scrollPosition();") First
               li#pagination-prev(ng-class="paginate.currentPage < 2 ? 'unavailable': 'available'")
                 a(ng-click="goToPage('prev'); scrollPosition();") Previous
               li.pagination-page-number(ng-repeat="page in paginate.pagesArray track by $index" ng-class="{current: page == paginate.currentPage}" id="pagination-{{$index}}")
-                a(ng-click="goToPage(page); scrollPosition();" data-page="{{page}}")
-                  | {{page}}
+                a(ng-click="goToPage(page); scrollPosition();" data-page="{{page}}" ng-bind="page")
               li#pagination-next(ng-class="paginate.currentPage >= paginate.pages ? 'unavailable': 'available'")
                 a(ng-click="goToPage('next'); scrollPosition();") Next
               li#pagination-last(ng-class="paginate.currentPage  == paginate.pages ? 'unavailable': 'available'")

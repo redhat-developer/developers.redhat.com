@@ -9,6 +9,7 @@ app.topics = {};
 
 
 app.topics.fetch = function() {
+  $("ul.topic-resources.topic-resources-list").addClass('loading');
   var tags = ($('#topic-resources').data('tags') || "")
   // var tags = container.data('tags') || "";
     try {
@@ -76,6 +77,7 @@ app.topics.render = function(materials) {
       ].join('');
 
       html.push(item);
+      $("ul.topic-resources.topic-resources-list").removeClass('loading');
     }
   });
 

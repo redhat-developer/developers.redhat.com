@@ -135,6 +135,10 @@
 ul.homepage-resources {
   list-style: none;
   margin: 0;
+  &.loading {
+    background:cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+    min-height:250px;
+  }
   li {
     @include flexbox;
     @include align-items(flex-start);
