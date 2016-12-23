@@ -21,7 +21,11 @@ module:
   dynamic_page_cache: 0
   editor: 0
   editor_advanced_link: 0
+  embed: 0
   entity: 0
+  entity_browser: 0
+  entity_browser_entity_form: 0
+  entity_embed: 0
   entity_storage_migrate: 0
   field: 0
   field_ui: 0
@@ -31,6 +35,7 @@ module:
   help: 0
   history: 0
   image: 0
+  inline_entity_form: 0
   key_value: 0
   layoutmanager: 0
   link: 0
@@ -53,7 +58,9 @@ module:
   quickedit: 0
   rdf: 0
   redhat_developers: 0
+  replication: 0
   rest: 0
+  scheduled_updates: 0
   search: 0
   serialization: 0
   shortcut: 0
@@ -72,6 +79,8 @@ module:
   video_embed_media: 0
   video_embed_wysiwyg: 0
   views_ui: 0
+  workbench: 0
+  workbench_moderation: 0
   conflict: 1
   ctools: 1
   entity_reference_revisions: 1
@@ -84,6 +93,7 @@ module:
   subpathauto: 1
   token_filter: 1
   views: 10
+  workspace: 10
   standard: 1000
 theme:
   stable: 0
