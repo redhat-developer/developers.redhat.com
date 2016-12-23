@@ -68,7 +68,7 @@
         </select>
         <label class="inline">entries</label>
         <br/>
-        <p ng-bind-template="Showing {{(paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber}} to {{ Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber}} of {{data.total | safeNumber}} entries"></p>
+        <p ng-bind-template="{{ '{{' }}(paginate.currentPage * pagination.size - pagination.size + 1) | safeNumber{{ '}}' }} to {{ '{{' }}Math.min(data.total, paginate.currentPage * pagination.size) | safeNumber{{ '}}' }} of {{ '{{' }} data.total | safeNumber {{ '}}' }} entries"></p>
     </div>
     <div class="large-17 small-24 columns">
         <nav id="paginator" ng-hide="pagination.viewall || !data.materials.length || data.loading">
