@@ -27,7 +27,7 @@ class SiteBase < GenericBasePage
   element(:technologies_sub_nav)    { |b| b.div(id: 'sub-nav-technologies') }
   element(:community_sub_nav)       { |b| b.div(id: 'sub-nav-community') }
   element(:help_sub_nav)            { |b| b.div(id: 'sub-nav-help') }
-  element(:referral_alert)          { |b| b.element(id: 'referral-alert') }
+  element(:referral_alert)          { |b| b.element(class: 'alert-box') }
 
   value(:search_field_visible?)     { |p| p.site_nav_search_box.present? }
   value(:is_mobile?)                { |p| p.mobile_menu.present? }
