@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "50f11de8d72b3ae68506ab6218013802",
-    "content-hash": "4fb5d2eb4db73609096d50a00c1aa4c0",
+    "hash": "accbd07524f8e8a8a661f28423ad3240",
+    "content-hash": "8c77d3133b15a9c6efeb0537a134ef75",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2188,11 +2188,17 @@
         },
         {
             "name": "drupal/multiversion",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha12",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/multiversion",
-                "reference": "9b73d7fa40d3e435c4a4664afebe81dae018fa55"
+                "reference": "8.x-1.0-alpha12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/multiversion-8.x-1.0-alpha12.zip",
+                "reference": null,
+                "shasum": "521decbaf2af5bcbb225ab7699da6263ba5767d0"
             },
             "require": {
                 "drupal/conflict": "*",
@@ -2206,8 +2212,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha12+41-dev",
-                    "datestamp": "1482416583"
+                    "version": "8.x-1.0-alpha12",
+                    "datestamp": "1477470543"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2232,8 +2238,7 @@
             "homepage": "https://www.drupal.org/project/multiversion",
             "support": {
                 "source": "http://cgit.drupalcode.org/multiversion"
-            },
-            "time": "2016-12-22 14:20:18"
+            }
         },
         {
             "name": "drupal/paragraphs",
@@ -5037,16 +5042,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.29.0",
+            "version": "v1.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "74f723e542368ca2080b252740be5f1113ebb898"
+                "reference": "c6ff71094fde15d12398eaba029434b013dc5e59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/74f723e542368ca2080b252740be5f1113ebb898",
-                "reference": "74f723e542368ca2080b252740be5f1113ebb898",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c6ff71094fde15d12398eaba029434b013dc5e59",
+                "reference": "c6ff71094fde15d12398eaba029434b013dc5e59",
                 "shasum": ""
             },
             "require": {
@@ -5059,7 +5064,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.29-dev"
+                    "dev-master": "1.30-dev"
                 }
             },
             "autoload": {
@@ -5094,7 +5099,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-12-13 17:28:18"
+            "time": "2016-12-23 11:06:22"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -8335,7 +8340,7 @@
         "drupal/field_group": 20,
         "drupal/linkit": 10,
         "drupal/metatag": 20,
-        "drupal/multiversion": 20,
+        "drupal/multiversion": 15,
         "drupal/pathauto": 20,
         "drupal/replication": 15,
         "drupal/scheduled_updates": 15,
