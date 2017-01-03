@@ -12,7 +12,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "foundation/components/block-grid";
 @import "foundation/components/type";
 @import "foundation/components/buttons";
-@import "foundation/components/forms"; // *requires components/buttons
+@import "foundation/components/forms"; // *requires components/buttons 
 
 @import "foundation/components/button-groups"; // *requires components/buttons
 // @import "foundation/components/dropdown-buttons"; // *requires components/buttons
@@ -40,6 +40,8 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "foundation/components/tooltips";
 @import "foundation/components/dropdown";
 @import "foundation/components/tabs";
+
+@import "foundation/components/accordion";
 
 // Import only the compass modules we need
 // @import "compass/css3/box-shadow";

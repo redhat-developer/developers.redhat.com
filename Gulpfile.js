@@ -29,6 +29,7 @@ var globs = {
     'javascripts/foundation/foundation.tooltip.js',
     'javascripts/foundation/foundation.dropdown.js',
     'javascripts/foundation/foundation.equalizer.js',
+    'javascripts/foundation/foundation.accordion.js',
     'javascripts/vendor/swipe.js',
     'javascripts/mobile.js',
     'javascripts/vendor/jquery.resize.js',
