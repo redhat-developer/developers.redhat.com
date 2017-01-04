@@ -29,12 +29,12 @@ class DownloadsPage < SiteBase
   end
 
   def click_to_download(url)
-    myelement = @browser.element(xpath: "//*[@id='downloads']//a[@href='#{url}']")
+    myelement = $browser.element(xpath: "//*[@id='downloads']//a[@href='#{url}']")
     myelement.fire_event('click')
   end
 
   def download_buttons_linked_to_dm(url)
-    @browser.element(xpath: "//*[@id='downloads']//a[@href='#{url}']").present?
+    $browser.element(xpath: "//*[@id='downloads']//a[@href='#{url}']").present?
   end
 
 end

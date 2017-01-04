@@ -11,7 +11,7 @@ end
 
 When(/^I navigate to the password reset URL$/) do
   password_reset_link = get_email(@site_user.details[:email])
-  @browser.goto(password_reset_link)
+  $browser.goto(password_reset_link)
 end
 
 Then(/^I should see a confirmation message: "([^"]*)"$/) do |message|

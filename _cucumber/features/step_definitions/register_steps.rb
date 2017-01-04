@@ -220,7 +220,7 @@ Then(/^I should be registered and logged in$/) do
     expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
   rescue
-    @browser.refresh
+    $browser.refresh
     visit HomePage
     expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
@@ -280,7 +280,7 @@ end
 
 And(/^I navigate to the verify email link$/) do
   close_and_reopen_browser
-  @browser.goto(@verification_email)
+  $browser.goto(@verification_email)
 end
 
 And(/^I choose to register a new account using my GitHub account$/) do

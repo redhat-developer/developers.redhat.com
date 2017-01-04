@@ -42,7 +42,7 @@ Then(/^below a I should see a message "([^"]*)"$/) do |message|
 end
 
 Then(/^I should not see pagination with page numbers$/) do
-  expect(@current_page.has_pagination?).to be false
+  fail('Expected pagination not to be displayed') unless @current_page.pagination.present? == false
 end
 
 Then(/^the following links should be (available|unavailable):$/) do |link_state, table|
@@ -54,11 +54,14 @@ Then(/^the following links should be (available|unavailable):$/) do |link_state,
 end
 
 Then(/^I should see pagination with "([^"]*)" pages(?: (with|without) ellipsis)?$/) do |number, ellipsis|
-  expect(@current_page.pagination_with?(number)).to be true
+  (0..number.to_i - 1).each do |pages|
+    expect(@current_page.pagination_with?(pages)).to be true
+  end
+
   if ellipsis == 'with'
-    expect(@current_page.has_ellipsis?).to be true
+    fail('Ellipsis was not displayed') unless @current_page.ellipsis? == true
   else
-    expect(@current_page.has_ellipsis?).to be false
+    fail('Ellipsis was displayed') unless @current_page.ellipsis? == false
   end
 end
 
