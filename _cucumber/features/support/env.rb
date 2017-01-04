@@ -17,7 +17,7 @@ require 'octokit'
 require 'date'
 require 'watir-webdriver-performance'
 require 'webdrivers'
-require 'billy/watir/cucumber'
+# require 'billy/watir/cucumber'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract/*.rb"].each { |page| load page }
