@@ -1,3 +1,37 @@
+Before('@stubbed') do |scenario|
+  puts 'switching to phantomjs driver'
+  env_vars = %w(RHD_HEADLESS_MODE STUBBED_DATA)
+  env_vars.each { |var| ENV.delete(var) }
+  ENV['RHD_HEADLESS_MODE'] = 'true'
+  ENV['STUBBED_DATA'] = 'true'
+  @browser = Browsers.setup('headless')
+  $browser = @browser
+  Billy.configure do |c|
+    c.cache = true
+    c.cache_request_headers = false
+    c.whitelist = %w(cdn.ravenjs.com www.redhat.com developers.stage.redhat.com assets.adobedtm.com www.youtube.com static.jboss.org maxcdn.bootstrapcdn.com cdn.tt.omtrdc.net redhat.sc.omtrdc.net s.ytimg.com dpm.demdex.net dpal-itmarketing.itos.redhat.com issues.jboss.org redhat.tt.omtrdc.net)
+    c.path_blacklist = []
+    c.merge_cached_responses_whitelist = []
+    c.persist_cache = true
+    c.ignore_cache_port = true # defaults to true
+    c.non_successful_cache_disabled = false
+    feature_name = scenario.feature.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')
+    scenario_name = scenario.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')
+    c.cache_path = "_cucumber/lib/fixtures/req_cache/#{feature_name}/#{scenario_name}/"
+    FileUtils.mkdir_p(Billy.config.cache_path) unless File.exist?(Billy.config.cache_path)
+  end
+end
+
+After('@stubbed') do |_scenario|
+  puts("switching back to #{ENV['RHD_JS_DRIVER']} driver")
+  env_vars = %w(RHD_HEADLESS_MODE STUBBED_DATA)
+  env_vars.each { |var| ENV.delete(var) }
+  ENV['RHD_HEADLESS_MODE'] = 'false'
+  ENV['STUBBED_DATA'] = 'false'
+  @browser = Browsers.setup(ENV['RHD_JS_DRIVER'])
+  $browser = @browser
+end
+
 Before('@products') do
   @products_with_learn_link = products_with_links('learn.html.slim')[0]
   @products_with_docs = products_with_links('docs-and-apis.adoc')[0]

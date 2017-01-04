@@ -11,9 +11,7 @@ Given(/^I am on the ([^"]*) page$/) do |page|
         p.open_register_page
       end
     when 'login'
-      visit HomePage do |p|
-        p.open_login_page
-      end
+      visit LoginPage
     when 'stack overflow'
       visit(StackOverflowPage).wait_for_results
     when 'resources'

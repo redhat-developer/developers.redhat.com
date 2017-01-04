@@ -9,6 +9,7 @@ class Options
     ENV['RHD_TEST_PROFILE'] = 'desktop'
     ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
     ENV['RHD_DOCKER_DRIVER'] = 'docker_chrome'
+    ENV['RHD_REMOTE_BROWSER'] = 'true'
 
     opts_parse = OptionParser.new do |opts|
       opts.banner = 'Usage: control.rb [options]'

@@ -11,6 +11,8 @@ task :_features do
     ENV['RHD_TEST_PROFILE'] = @profile
   end
 
+  ENV['RHD_REMOTE_BROWSER'] = nil if ENV['RHD_REMOTE_BROWSER'].to_s.empty?
+
   if ENV['CUCUMBER_TAGS'].to_s.empty?
     tags = nil
   else
