@@ -124,7 +124,7 @@ services:
      - BUILD_NUMBER
      - RHD_REMOTE_BROWSER
 
-  docker_chrome:
+  chrome:
    image: selenium/node-chrome-debug:2.53.0
    volumes:
     - /dev/shm:/dev/shm
@@ -135,7 +135,7 @@ services:
    depends_on:
     - selhub
 
-  docker_firefox:
+  firefox:
    image: selenium/node-firefox-debug:2.53.0
    volumes:
     - ../../../_cucumber/tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads

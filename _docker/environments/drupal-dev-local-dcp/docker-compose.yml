@@ -136,7 +136,7 @@ services:
       - RHD_TEST_PROFILE
       - RHD_REMOTE_BROWSER
 
-  docker_chrome:
+  chrome:
    image: selenium/node-chrome-debug:3.0.1-aluminum
    volumes:
     - /dev/shm:/dev/shm
@@ -151,7 +151,7 @@ services:
    ports:
     - "5900"
 
-  docker_firefox:
+  firefox:
    image: selenium/node-firefox-debug:3.0.1-aluminum
    volumes:
     - /dev/shm:/dev/shm
