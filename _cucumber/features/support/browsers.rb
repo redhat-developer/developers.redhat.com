@@ -83,8 +83,18 @@ module Browsers
       Watir::Browser.new(:chrome, desired_capabilities: caps)
     else
       client = Selenium::WebDriver::Remote::Http::Default.new
-      client.timeout = 100 # Browser launch can take a while
-      Watir::Browser.new(:remote, url: 'http://192.168.99.100:4444/wd/hub', desired_capabilities: caps, http_client: client)
+      client.timeout = 300 # Browser launch can take a while
+      begin
+        attempts = 0
+        Watir::Browser.new(:remote, url: ENV['SELENIUM_HOST'], desired_capabilities: caps, http_client: client)
+      rescue Net::ReadTimeout => e
+        if attempts == 0
+          attempts += 1
+          retry
+        else
+          raise(e)
+        end
+      end
     end
   end
 
