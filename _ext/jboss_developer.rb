@@ -378,7 +378,8 @@ module Aweplug
         path = create_path page
         if exists?(page) && !@drupal_pages["/#{path}"].nil?
           # We know the page exists, but if the content in drupal is newer than the mtime on the page, don't update it
-          update_page page, content if page.input_mtime.to_datetime > @drupal_pages["/#{path}"]
+          #update_page page, content if page.input_mtime.to_datetime > @drupal_pages["/#{path}"]
+          update_page page, content
         else
           create_page page, content
         end
@@ -449,7 +450,7 @@ module Aweplug
         $LOG.verbose "Updating page  with content '#{page.output_path}'" if $LOG.verbose?
         payload = create_payload page, content
         patch path, payload
-     end
+      end
 
       # Public: Sends a POST request to Drupal to create a new page.
       #
