@@ -56,7 +56,7 @@ gem 'listen', '3.0.8'
 gem 'aweplug', git: 'https://github.com/awestruct/aweplug'
 
 group :test do
-  gem 'climate_control', require: false
+  gem 'climate_control'
   gem 'guard'
   gem 'guard-minitest'
   gem 'launchy', '~>2.4'
