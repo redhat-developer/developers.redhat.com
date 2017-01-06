@@ -27,17 +27,19 @@
                                             <h4>{{ section.title }}</h4>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="large-24 columns">
-                                            <i class="fa fa-clock-o">
-                                                <div class="paragraph">
-                                                    <p>
-                                                        {{ section.minutes }} {{ 'minutes'|t }}
-                                                    </p>
-                                                </div>
-                                            </i>
+                                    {% if section.minutes|render|trim is not empty %}
+                                        <div class="row">
+                                            <div class="large-24 columns">
+                                                <i class="fa fa-clock-o">
+                                                    <div class="paragraph">
+                                                        <p>
+                                                            {{ section.minutes }} {{ 'minutes'|t }}
+                                                        </p>
+                                                    </div>
+                                                </i>
+                                            </div>
                                         </div>
-                                    </div>
+                                    {% endif %}
                                 </a>
                             </div>
                         {% endfor %}
@@ -58,13 +60,15 @@
                                             <h4 id="{{ section_id }}"><span
                                                         class="step-num">{{ loop.index }}.</span> {{ section.title }}
                                             </h4>
-                                            <span class="duration">
-                                                <i class="fa fa-clock-o">
-                                                    <span class="paragraph">
-                                                        <p>{{ section.minutes }} minutes</p>
-                                                    </span>
-                                                </i>
-                                            </span>
+                                            {% if section.minutes|render|trim is not empty %}
+                                                <span class="duration">
+                                                    <i class="fa fa-clock-o">
+                                                        <span class="paragraph">
+                                                            <p>{{ section.minutes }} minutes</p>
+                                                        </span>
+                                                    </i>
+                                                </span>
+                                            {% endif %}
                                             <i class="fa fa-2x fa-angle-up right"></i>
                                         </a>
                                         {% set section_classes = [
