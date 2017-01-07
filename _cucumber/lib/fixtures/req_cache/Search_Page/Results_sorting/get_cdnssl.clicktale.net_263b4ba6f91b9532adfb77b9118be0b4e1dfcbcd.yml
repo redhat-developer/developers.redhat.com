@@ -1,0 +1,981 @@
+---
+:scope: 
+:url: https://cdnssl.clicktale.net/www14/ptc/f6653f2c-58d5-487e-a59c-2075a8d88ac5.js
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Date: Sat, 31 Dec 2016 18:35:02 GMT
+  Server: PWS/8.2.0.5
+  X-Px: ht h0-s39.p6-lhr.cdngp.net
+  Cache-Control: max-age=300
+  Expires: Mon, 25 Dec 2017 10:10:52 GMT
+  Age: '548650'
+  Content-Length: '8889'
+  Content-Type: text/javascript; charset=utf-8
+  Content-Encoding: gzip
+  Vary: Accept-Encoding
+  Last-Modified: Sun, 25 Dec 2016 10:10:52 GMT
+  Connection: close
+:content: "// Copyright 2006-2016 ClickTale Ltd., US Patent Pending\r\n// Generated
+  on: 12/22/2016 8:12:01 AM (UTC 12/22/2016 2:12:01 PM)\r\n\r\nwindow.ClickTaleGlobal
+  = window.ClickTaleGlobal || {};\r\nClickTaleGlobal.scripts = ClickTaleGlobal.scripts
+  || {};\r\nClickTaleGlobal.scripts.filter = ClickTaleGlobal.scripts.filter || (function
+  () {\r\n    var recordingThreshold = Math.random() * 100;\r\n\r\n    return {\r\n
+  \       isRecordingApproved: function(percentage) {\r\n            return recordingThreshold
+  <= percentage;\r\n        }\r\n    }\r\n})();\r\n\r\n\r\nif (typeof(ct_dispatcher)
+  == 'undefined')\r\n{\r\n\tct_dispatcher = {\r\n\t\tconfigName : null,\r\n\t\tcookieName
+  : \"ct_configName\",\r\n\t\tgetParameterByName : function (name)\r\n\t\t{\r\n\t\t\t
+  name = name.replace(/[\\[]/, \"\\\\\\[\").replace(/[\\]]/, \"\\\\\\]\");\r\n\t\t\t
+  var regexS = \"[\\\\?&]\" + name + \"=([^&#]*)\";\r\n\t\t\t var regex = new RegExp(regexS,
+  \"i\");\r\n\t\t\t var results = regex.exec(window.location.search);\r\n\t\t\t if(results
+  == null)\r\n\t\t\t   return \"\";\r\n\t\t\t else\r\n\t\t\t   return decodeURIComponent(results[1].replace(/\\+/g,
+  \" \"));\r\n\t\t},\r\n\t\tcreateCookie: function (name,value,days) \r\n\t\t{\r\n\t\t\tif
+  (days) \r\n\t\t\t{\r\n\t\t\t\tvar date = new Date();\r\n\t\t\t\tdate.setTime(date.getTime(
+  )+( days*24*60*60*1000));\r\n\t\t\t\tvar expires = \"; expires=\"+date.toGMTString(
+  );\r\n\t\t\t}\r\n\t\t\telse var expires = \"\";\r\n\t\t\tdocument.cookie = name+\"=\"+value+expires+\";
+  path=/\";\r\n\t\t},\r\n\t\treadCookie : function (name) \r\n\t\t{\r\n\t\t\tvar nameEQ
+  = name + \"=\";\r\n\t\t\tvar ca = document.cookie.split( ';');\r\n\t\t\tfor( var
+  i=0;i < ca.length;i++) \r\n\t\t\t{\r\n\t\t\t\tvar c = ca[i];\r\n\t\t\t\twhile (
+  c.charAt( 0)==' ') c = c.substring( 1,c.length);\r\n\t\t\t\tif ( c.indexOf( nameEQ)
+  == 0) return c.substring( nameEQ.length,c.length);\r\n\t\t\t}\r\n\t\t\treturn null;\r\n\t\t}\r\n\t};\r\n\t\t\r\n\t//
+  Read from querystring\r\n\tvar ct_pdc_qs_val = ct_dispatcher.getParameterByName(ct_dispatcher.cookieName);\r\n\tif
+  (ct_pdc_qs_val)\r\n\t{\r\n\t\t// Override/create cookie\r\n\t\tct_dispatcher.createCookie(ct_dispatcher.cookieName,
+  ct_pdc_qs_val, 14);\r\n\t\tct_dispatcher.configName = ct_pdc_qs_val;\r\n\t}\r\n\telse\r\n\t{\r\n\t\t//
+  Read from cookie\r\n\t\tct_dispatcher.configName = ct_dispatcher.readCookie(ct_dispatcher.cookieName);\r\n\t}\r\n\r\n\t\r\n}\r\n\r\n\tif
+  (typeof (ClickTaleCreateDOMElement) != \"function\")\r\n{\r\n\tClickTaleCreateDOMElement
+  = function(tagName)\r\n\t{\r\n\t\tif (document.createElementNS)\r\n\t\t{\r\n\t\t\treturn
+  document.createElementNS('http://www.w3.org/1999/xhtml', tagName);\r\n\t\t}\r\n\t\treturn
+  document.createElement(tagName);\r\n\t}\r\n}\r\n\r\nif (typeof (ClickTaleAppendInHead)
+  != \"function\")\r\n{\r\n\tClickTaleAppendInHead = function(element)\r\n\t{\r\n\t\tvar
+  parent = document.getElementsByTagName('head').item(0) || document.documentElement;\r\n\t\tparent.appendChild(element);\r\n\t}\r\n}\r\n\r\nif
+  (typeof (ClickTaleXHTMLCompliantScriptTagCreate) != \"function\")\r\n{\r\n\tClickTaleXHTMLCompliantScriptTagCreate
+  = function(code)\r\n\t{\r\n\t\tvar script = ClickTaleCreateDOMElement('script');\r\n\t\tscript.setAttribute(\"type\",
+  \"text/javascript\");\r\n\t\tscript.text = code;\r\n\t\treturn script;\r\n\t}\r\n}\t\r\n\t\tvar
+  configFoundPTC = false;\r\n\t\r\nif (ct_dispatcher.configName == 'dev_REDHA-103')\r\n{\r\n\tconfigFoundPTC
+  = true;\r\n\t\t\t(function(){\r\n\tvar script = ClickTaleXHTMLCompliantScriptTagCreate(\"\\/\\/
+  Copyright 2006-2016 ClickTale Ltd., US Patent Pending\\r\\n\\/\\/ PID: 25612\\r\\n\\/\\/
+  WR destination: www14\\r\\n\\/\\/ WR version: latest\\r\\n\\/\\/ Recording ratio:
+  0.5\\r\\n\\/\\/ Generated on: 12\\/22\\/2016 8:12:01 AM (UTC 12\\/22\\/2016 2:12:01
+  PM)\\r\\n(function (){\\r\\n\\tvar dependencyCallback;\\r\\n        var scriptSyncTokens
+  = [\\\"wr\\\"];\\r\\n        var dependencies = scriptSyncTokens.slice(0);\\r\\n\\tvar
+  ct2Callback, isRecorderReady;\\r\\n    var clickTaleOnReadyList = window.ClickTaleOnReadyList
+  || (window.ClickTaleOnReadyList = []);\\r\\n    function isValidToken(token) {\\r\\n
+  \       if (scriptSyncTokens.indexOf(token) \\u003e -1) {\\r\\n\\t\\t\\tvar index
+  = dependencies.indexOf(token);\\r\\n\\r\\n\\t\\t\\tif (index \\u003e -1) {\\r\\n\\t\\t\\t\\tdependencies.splice(index,
+  1);\\r\\n\\t\\t\\t\\treturn true;\\r\\n\\t\\t\\t}\\r\\n        }\\r\\n\\r\\n        return
+  false;\\r\\n    }\\r\\n\\r\\n    clickTaleOnReadyList.push(function () {\\r\\n        if
+  (ct2Callback) {\\r\\n            ct2Callback();\\r\\n        }\\r\\n\\r\\n        isRecorderReady
+  = true;\\r\\n    });\\r\\n\\r\\n    window.ClickTaleGlobal = window.ClickTaleGlobal
+  || {};\\r\\n    ClickTaleGlobal.scripts = ClickTaleGlobal.scripts || {};\\r\\n    ClickTaleGlobal.scripts.dependencies
+  = {\\r\\n        setDependencies: function (deps) {\\r\\n            scriptSyncTokens
+  = deps;\\r\\n        },\\r\\n        onDependencyResolved: function (callback) {\\r\\n
+  \           dependencyCallback = callback;\\r\\n        },\\r\\n        notifyScriptLoaded:
+  function (token) {\\r\\n            if (isValidToken(token)) {\\r\\n                if
+  (dependencies.length === 0 \\u0026\\u0026 typeof dependencyCallback === \\\"function\\\")
+  {\\r\\n                    dependencyCallback();\\r\\n                }\\r\\n            }\\r\\n
+  \       }\\r\\n    };\\r\\n\\r\\n\\tClickTaleGlobal.scripts.integration = {\\r\\n\\t\\tonReady:
+  function (callback) {\\r\\n\\t\\t\\tif (isRecorderReady) {\\r\\n\\t\\t\\t\\tcallback();\\r\\n\\t\\t\\t}\\r\\n\\t\\t\\telse
+  {\\r\\n\\t\\t\\t\\tct2Callback = callback;\\r\\n\\t\\t\\t}\\r\\n\\t\\t}\\r\\n    };\\r\\n})();\\r\\n\\r\\n\\r\\n\\r\\nfunction
+  ClickTaleCDNHTTPSRewrite(u)\\r\\n{\\r\\n\\ttry\\r\\n\\t{\\r\\n\\t\\tvar scripts
+  = document.getElementsByTagName(\\u0027script\\u0027);\\r\\n\\t\\tif(scripts.length)\\r\\n\\t\\t{\\r\\n\\t\\t\\tvar
+  script = scripts[ scripts.length - 1 ], s=\\u0027https:\\/\\/clicktalecdn.sslcs.cdngc.net\\/\\u0027;\\r\\n\\t\\t\\tif(script.src
+  \\u0026\\u0026 script.src.substr(0,s.length)==s )\\r\\n\\t\\t\\t\\treturn u.replace(\\u0027https:\\/\\/cdnssl.clicktale.net\\/\\u0027,s);\\r\\n\\t\\t}\\r\\n\\t}\\r\\n\\tcatch(e)\\r\\n\\t{\\r\\n\\t}\\r\\n\\treturn
+  u;\\r\\n} \\r\\n\\r\\nvar ClickTaleIsXHTMLCompliant = true;\\r\\nif (typeof (ClickTaleCreateDOMElement)
+  != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleCreateDOMElement = function(tagName)\\r\\n\\t{\\r\\n\\t\\tif
+  (document.createElementNS)\\r\\n\\t\\t{\\r\\n\\t\\t\\treturn document.createElementNS(\\u0027http:\\/\\/www.w3.org\\/1999\\/xhtml\\u0027,
+  tagName);\\r\\n\\t\\t}\\r\\n\\t\\treturn document.createElement(tagName);\\r\\n\\t}\\r\\n}\\r\\n\\r\\nif
+  (typeof (ClickTaleAppendInHead) != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleAppendInHead
+  = function(element)\\r\\n\\t{\\r\\n\\t\\tvar parent = document.getElementsByTagName(\\u0027head\\u0027).item(0)
+  || document.documentElement;\\r\\n\\t\\tparent.appendChild(element);\\r\\n\\t}\\r\\n}\\r\\n\\r\\nif
+  (typeof (ClickTaleXHTMLCompliantScriptTagCreate) != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleXHTMLCompliantScriptTagCreate
+  = function(code)\\r\\n\\t{\\r\\n\\t\\tvar script = ClickTaleCreateDOMElement(\\u0027script\\u0027);\\r\\n\\t\\tscript.setAttribute(\\\"type\\\",
+  \\\"text\\/javascript\\\");\\r\\n\\t\\tscript.text = code;\\r\\n\\t\\treturn script;\\r\\n\\t}\\r\\n}\\t\\r\\n\\r\\nvar
+  pccScriptElement = ClickTaleCreateDOMElement(\\u0027script\\u0027);\\r\\npccScriptElement.type
+  = \\\"text\\/javascript\\\";\\r\\npccScriptElement.src = (document.location.protocol==\\u0027https:\\u0027?\\r\\nClickTaleCDNHTTPSRewrite(\\u0027https:\\/\\/cdnssl.clicktale.net\\/www14\\/pcc\\/f6653f2c-58d5-487e-a59c-2075a8d88ac5.js?DeploymentConfigName=dev_REDHA-103\\u0026Version=2\\u0027):\\r\\n\\u0027http:\\/\\/cdn.clicktale.net\\/www14\\/pcc\\/f6653f2c-58d5-487e-a59c-2075a8d88ac5.js?DeploymentConfigName=dev_REDHA-103\\u0026Version=2\\u0027);\\r\\ndocument.body.appendChild(pccScriptElement);\\r\\n\\t\\r\\nvar
+  ClickTalePrevOnReady;\\r\\nif(typeof ClickTaleOnReady == \\u0027function\\u0027)\\r\\n{\\r\\n\\tClickTalePrevOnReady=ClickTaleOnReady;\\r\\n\\tClickTaleOnReady=undefined;\\r\\n}\\r\\n\\r\\nif
+  (typeof window.ClickTaleScriptSource == \\u0027undefined\\u0027)\\r\\n{\\r\\n\\twindow.ClickTaleScriptSource=(document.location.protocol==\\u0027https:\\u0027\\r\\n\\t\\t?ClickTaleCDNHTTPSRewrite(\\u0027https:\\/\\/cdnssl.clicktale.net\\/www\\/\\u0027)\\r\\n\\t\\t:\\u0027http:\\/\\/cdn.clicktale.net\\/www\\/\\u0027);\\r\\n}\\r\\n\\r\\n\\r\\n\\/\\/
+  Start of user-defined pre WR code (PreLoad)b\\r\\n\\/\\/PTC Code Version 7\\r\\n\\r\\nwindow.ClickTaleSettings
+  = window.ClickTaleSettings || {};\\r\\nwindow.ClickTaleSettings.PTC = window.ClickTaleSettings.PTC
+  || {};\\r\\nwindow.ClickTaleSettings.PTC.InitFuncs = [];\\r\\nwindow.ClickTaleIncludedOnWindowLoad
+  = true;\\r\\nwindow.ClickTaleIncludedOnDOMReady = true;\\r\\nwindow.ClickTaleSettings.PTC.EnableChangeMonitor
+  = false;\\r\\nwindow.ClickTaleSettings.PTC.UseTransport = true;\\r\\n\\r\\nwindow.ClickTaleSettings.CheckAgentSupport
+  = function (f, v) {\\r\\n    if (v.t == v.IE \\u0026\\u0026 v.v \\u003c= 8) {\\r\\n
+  \       window.ClickTaleSettings.PTC.okToRunPCC = false;\\r\\n        return false;\\r\\n
+  \   }\\r\\n    else {\\r\\n        if (!(v.t == v.IE \\u0026\\u0026 v.v \\u003c=
+  10)) {\\r\\n            window.ClickTaleSettings.PTC.EnableChangeMonitor = true;\\r\\n
+  \           window.ClickTaleSettings.PTC.ConfigChangeMonitor();\\r\\n        }\\r\\n
+  \       var fv = f(v);\\r\\n        window.ClickTaleSettings.PTC.okToRunPCC = fv;\\r\\n
+  \       return fv;\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.RulesObj
+  = [{\\r\\n    selector: \\\"input[type=\\\\\\\"text\\\\\\\"], input[type=\\\\\\\"tel\\\\\\\"],
+  input[type=\\\\\\\"email\\\\\\\"]\\\",\\r\\n    changeMon: {\\r\\n        Attributes:
+  [\\u0027value\\u0027],\\r\\n        Text: false\\r\\n    },\\r\\n    rewriteApi:
+  {\\r\\n        Attributes: [\\u0027value\\u0027],\\r\\n        Text: false\\r\\n
+  \   }\\r\\n},\\r\\n{\\r\\n    selector: \\\"#account-panel .rh-name\\\",\\r\\n    changeMon:
+  {\\r\\n        Attributes: false,\\r\\n        Text: true\\r\\n    },\\r\\n    rewriteApi:
+  {\\r\\n        Attributes: false,\\r\\n        Text: true\\r\\n    }\\r\\n}];\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.RulesObjRemoveEls
+  = [\\r\\n];\\r\\n\\r\\n; (function () {\\r\\n    if (typeof window.ClickTalePIISelector
+  === \\u0027string\\u0027 \\u0026\\u0026 window.ClickTalePIISelector != \\u0027\\u0027)
+  {\\r\\n        try {\\r\\n            var domNodes = document.querySelectorAll(window.ClickTalePIISelector);\\r\\n
+  \           if (domNodes) {\\r\\n                window.ClickTaleSettings.PTC.RulesObj.push({\\r\\n
+  \                   selector: window.ClickTalePIISelector,\\r\\n                    changeMon:
+  {\\r\\n                        Attributes: [\\u0027value\\u0027],\\r\\n                        Text:
+  true\\r\\n                    },\\r\\n                    rewriteApi: {\\r\\n                        Attributes:
+  [\\u0027value\\u0027],\\r\\n                        Text: true\\r\\n                    }\\r\\n
+  \               });\\r\\n            }\\r\\n        }\\r\\n        catch (err) {\\r\\n
+  \       }\\r\\n    }\\r\\n})();\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.cloneNodeIE9
+  = function (node) {\\r\\n    var clone = node.nodeType === 3 ? document.createTextNode(node.nodeValue)
+  : node.cloneNode(false);\\r\\n\\r\\n    var child = node.firstChild;\\r\\n    while
+  (child) {\\r\\n        if (child.nodeName !== \\u0027SCRIPT\\u0027) {\\r\\n            clone.appendChild(window.ClickTaleSettings.PTC.cloneNodeIE9(child));\\r\\n
+  \       }\\r\\n        else {\\r\\n            var script = document.createElement(\\u0027script\\u0027);\\r\\n
+  \           clone.appendChild(script);\\r\\n        }\\r\\n        child = child.nextSibling;\\r\\n
+  \   }\\r\\n\\r\\n    return clone;\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.ConfigChangeMonitor
+  = function () {\\r\\n\\r\\n    if (window.ClickTaleSettings.PTC.EnableChangeMonitor)
+  {\\r\\n        window.ClickTaleSettings.XHRWrapper = {\\r\\n            Enable:
+  false\\r\\n        };\\r\\n\\r\\n        var script = document.createElement(\\\"SCRIPT\\\");\\r\\n
+  \       script.src = (document.location.protocol === \\\"https:\\\" ? \\\"https:\\/\\/cdnssl.\\\"
+  : \\\"http:\\/\\/cdn.\\\") + \\\"clicktale.net\\/www\\/ChangeMonitor-latest.js\\\";\\r\\n
+  \       document.body.appendChild(script);\\r\\n\\r\\n        window.ClickTaleSettings.ChangeMonitor
+  = {\\r\\n            Enable: true,\\r\\n            AddressingMode: \\\"id\\\",\\r\\n
+  \           OnReadyHandler: function (changeMonitor) {\\r\\n                changeMonitor.observe();\\r\\n\\r\\n
+  \               var CMRemrule = window.ClickTaleSettings.PTC.RulesObjRemoveEls;\\r\\n
+  \               if (CMRemrule) {\\r\\n                    for (var i = 0; i \\u003c
+  CMRemrule.length; i++) {\\r\\n                        var rule = CMRemrule[i];\\r\\n
+  \                       var CMlocation = rule[\\u0027location\\u0027];\\r\\n                        if
+  ((!CMlocation || (CMlocation \\u0026\\u0026 document.location[CMlocation[\\u0027prop\\u0027]].toLowerCase().search(CMlocation.search)
+  != -1))) {\\r\\n                            if (rule.changeMon) {\\r\\n                                changeMonitor.exclude(rule.changeMon);\\r\\n
+  \                           }\\r\\n                            if (rule.changeMonLive)
+  {\\r\\n                                changeMonitor.exclude({ selector: rule.changeMonLive,
+  multiple: true });\\r\\n                            }\\r\\n                        }\\r\\n
+  \                   }\\r\\n                }\\r\\n            },\\r\\n            OnBeforeReadyHandler:
+  function (settings) {\\r\\n                settings.Enable = window.ClickTaleGetUID
+  ? !!ClickTaleGetUID() : false;\\r\\n                return settings;\\r\\n            },\\r\\n
+  \           Filters: {\\r\\n                MaxBufferSize: 300000,\\r\\n                MaxElementCount:
+  3000\\r\\n            },\\r\\n            PII: {\\r\\n                Text: [],\\r\\n
+  \               Attributes: []\\r\\n            }\\r\\n        }\\r\\n        var
+  RulesObj = window.ClickTaleSettings.PTC.RulesObj;\\r\\n        if (RulesObj) {\\r\\n
+  \           window.ClickTaleSettings.ChangeMonitor.PII.Text = window.ClickTaleSettings.ChangeMonitor.PII.Text
+  || [];\\r\\n            window.ClickTaleSettings.ChangeMonitor.PII.Attributes =
+  window.ClickTaleSettings.ChangeMonitor.PII.Attributes || [];\\r\\n            for
+  (var i = 0; i \\u003c RulesObj.length; i++) {\\r\\n                var CMrule =
+  RulesObj[i][\\u0027changeMon\\u0027];\\r\\n                var CMlocation = RulesObj[i][\\u0027location\\u0027];\\r\\n
+  \               if (!CMrule || (CMlocation \\u0026\\u0026 document.location[CMlocation[\\u0027prop\\u0027]].toLowerCase().search(CMlocation.search)
+  === -1)) {\\r\\n                    continue;\\r\\n                }\\r\\n                var
+  selector = RulesObj[i][\\u0027selector\\u0027];\\r\\n                var attributesArr
+  = CMrule.Attributes;\\r\\n                if (attributesArr instanceof Array) {\\r\\n
+  \                   for (var u = 0; u \\u003c attributesArr.length; u++) {\\r\\n
+  \                       var attr = attributesArr[u];\\r\\n                        window.ClickTaleSettings.ChangeMonitor.PII.Attributes.push({\\r\\n
+  \                           selector: selector,\\r\\n                            transform:
+  (function (attr) {\\r\\n                                return function (el) {\\r\\n
+  \                                   var attrs = el.attributes;\\r\\n                                    var
+  attrsToReturn = {}\\r\\n                                    for (var i = 0; i \\u003c
+  attrs.length; i++) {\\r\\n                                        var name = attrs[i].nodeName;\\r\\n
+  \                                       attrsToReturn[name] = attrs[i].nodeValue;\\r\\n
+  \                                   }\\r\\n                                    var
+  attrib = el.getAttribute(attr);;\\r\\n                                    if (typeof
+  attrib === \\u0027string\\u0027) {\\r\\n                                        attrsToReturn[attr]
+  = attrib.replace(\\/\\\\w\\/g, \\u0027-\\u0027);\\r\\n                                    }\\r\\n
+  \                                   return attrsToReturn;\\r\\n                                }\\r\\n
+  \                           })(attr)\\r\\n                        });\\r\\n                    }\\r\\n
+  \               }\\r\\n                if (CMrule.Text) {\\r\\n                    window.ClickTaleSettings.ChangeMonitor.PII.Text.push({\\r\\n
+  \                       selector: selector,\\r\\n                        transform:
+  function (el) {\\r\\n                            return el.textContent.replace(\\/\\\\w\\/g,
+  \\u0027-\\u0027);\\r\\n                        }\\r\\n                    });\\r\\n
+  \               }\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Compression
+  = {\\r\\n    Method: function () {\\r\\n        return \\\"deflate\\\";\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Persistence
+  = {\\r\\n    EnableStorage: true,\\r\\n    EnableStreams: true,\\r\\n    EnableDispatch:
+  true\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Transport = {\\r\\n    Legacy:
+  false,\\r\\n    MaxConcurrentRequests: 5\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.RewriteRules
+  = {\\r\\n    OnBeforeRewrite: function (rewriteApi) {\\r\\n        var bodyClone
+  = ((document.documentMode \\u0026\\u0026 document.documentMode \\u003c= 9) ? ClickTaleSettings.PTC.cloneNodeIE9(document.documentElement)
+  : document.documentElement.cloneNode(true));\\r\\n\\r\\n        if (window.ClickTaleSettings.PTC.RulesObj)
+  {\\r\\n            rewriteApi.add(function (buffer) {\\r\\n\\r\\n\\r\\n                var
+  RulesObj = window.ClickTaleSettings.PTC.RulesObj;\\r\\n                for (var
+  i = 0; i \\u003c RulesObj.length; i++) {\\r\\n                    var rewriteApirule
+  = RulesObj[i][\\u0027rewriteApi\\u0027];\\r\\n                    var rewriteApilocation
+  = RulesObj[i][\\u0027location\\u0027];\\r\\n                    if (!rewriteApirule
+  || (rewriteApilocation \\u0026\\u0026 document.location[rewriteApilocation[\\u0027prop\\u0027]].toLowerCase().search(rewriteApilocation.search)
+  === -1)) {\\r\\n                        continue;\\r\\n                    }\\r\\n
+  \                   var selector = RulesObj[i][\\u0027selector\\u0027];\\r\\n                    var
+  elements = bodyClone.querySelectorAll(selector);\\r\\n\\r\\n                    Array.prototype.forEach.call(elements,
+  function (el, ind) {\\r\\n                        var attributesArr = rewriteApirule.Attributes;\\r\\n
+  \                       if (attributesArr instanceof Array) {\\r\\n\\r\\n                            for
+  (var u = 0; u \\u003c attributesArr.length; u++) {\\r\\n                                var
+  attr = attributesArr[u];\\r\\n                                var attrib = el.getAttribute(attr);\\r\\n
+  \                               if (typeof attrib === \\u0027string\\u0027) {\\r\\n
+  \                                   el.setAttribute(attr, attrib.replace(\\/\\\\w\\/g,
+  \\u0027-\\u0027));\\r\\n                                }\\r\\n                            }\\r\\n\\r\\n
+  \                       }\\r\\n                        if (rewriteApirule.Text)
+  {\\r\\n                            var children = el.childNodes;\\r\\n                            Array.prototype.forEach.call(children,
+  function (child) {\\r\\n                                if (child \\u0026\\u0026
+  child.nodeType === 3) {\\r\\n                                    child.textContent
+  = child.textContent.replace(\\/\\\\w\\/g, \\u0027-\\u0027);\\r\\n                                }\\r\\n
+  \                           });\\r\\n                        }\\r\\n                    });\\r\\n
+  \               }\\r\\n\\r\\n                \\/\\/work on body\\r\\n                var
+  RulesObjRemoveEls = window.ClickTaleSettings.PTC.RulesObjRemoveEls;\\r\\n                if
+  (RulesObjRemoveEls) {\\r\\n                    for (var i = 0; i \\u003c RulesObjRemoveEls.length;
+  i++) {\\r\\n                        if (RulesObjRemoveEls[i].rewriteApi) {\\r\\n
+  \                           var elementsToRemove = bodyClone.querySelectorAll(RulesObjRemoveEls[i].rewriteApi);\\r\\n
+  \                           Array.prototype.forEach.call(elementsToRemove, function
+  (el, ind) {\\r\\n                                if (el.parentNode) {\\r\\n                                    el.parentNode.removeChild(el);\\r\\n
+  \                               }\\r\\n                            });\\r\\n                        }\\r\\n
+  \                       if (RulesObjRemoveEls[i].rewriteApiReplace) {\\r\\n                            var
+  elementsToReplace = bodyClone.querySelectorAll(RulesObjRemoveEls[i].rewriteApiReplace);\\r\\n
+  \                           Array.prototype.forEach.call(elementsToReplace, function
+  (el, ind) {\\r\\n                                if (el.parentNode) {\\r\\n                                    var
+  comment = document.createComment(el.outerHTML);\\r\\n                                    el.parentNode.replaceChild(comment,
+  el);\\r\\n                                }\\r\\n                            });\\r\\n
+  \                       }\\r\\n                    }\\r\\n                }\\r\\n\\r\\n\\r\\n\\r\\n
+  \               return bodyClone.innerHTML.replace(\\/\\u003cscript\\\\b([^\\u003e]*)\\u003e([\\\\s\\\\S]*?)\\u003c\\\\\\/script\\u003e\\/gi,
+  \\u0027\\u003cscript\\u003e\\u003c\\\\\\/script\\u003e\\u0027).replace(\\/(\\u003cdiv
+  id=\\\"?ClickTaleDiv\\\"?[^\\u003e]+\\u003e)\\\\s*\\u003cscript[^\\u003e]+\\u003e\\u003c\\\\\\/script\\u003e\\\\s*(\\u003c\\\\\\/div\\u003e)\\/i,
+  \\u0027$1$2\\u0027);\\r\\n            });\\r\\n        }\\r\\n        rewriteApi.add({\\r\\n
+  \           pattern: \\/(\\u003chead[^\\u003e]*\\u003e)\\/i,\\r\\n            replace:
+  \\u0027$1\\u003cscript type=\\\"text\\\\\\/javascript\\\" class=\\\"cm-ignore\\\"
+  src=\\\"http:\\\\\\/\\\\\\/dummytest.clicktale-samples.com\\\\\\/GlobalResources\\\\\\/jquery.js\\\"\\u003e\\u003c\\\\\\/script\\u003e\\u0027\\r\\n
+  \       });\\r\\n        var pid = \\\"25612\\\";\\r\\n        var urlCSS = \\\"https:\\/\\/ctsacss01.blob.core.windows.net\\/storage\\/\\\"
+  + pid + \\\"\\/CSS\\\";\\r\\n        var urlIMG = \\\"https:\\/\\/ctsacss01.blob.core.windows.net\\/storage\\/\\\"
+  + pid + \\\"\\/IMAGE\\\";\\r\\n\\r\\n        var host = window.location.protocol.replace(\\\":\\\",
+  \\\"\\/\\\") + window.location.hostname;\\r\\n        var base = window.location.protocol.replace(\\\":\\\",
+  \\\"\\/\\\") + window.location.hostname + location.pathname.substring(0, location.pathname.lastIndexOf(\\u0027\\/\\u0027));\\r\\n
+  \       var protocol = window.location.protocol.replace(\\\":\\\", \\\"\\\");\\r\\n\\r\\n
+  \       rewriteApi.add(function (buffer) {\\r\\n            buffer = buffer.replace(\\/(\\u003clink.*?href=\\\")(http|https):\\\\\\/\\\\\\/(((?!googleapis)[^\\\\\\\"])+)\\\\.css([^\\\\\\\"]*)\\\"(.*)\\/igm,
+  function (m, g1, g2, g3, g4, g5, g6) {\\r\\n                if (g2 \\u0026\\u0026
+  g2.indexOf(urlCSS) \\u003c 0 \\u0026\\u0026 g5 \\u0026\\u0026 g5 != \\\"\\\") {\\r\\n
+  \                   g5 = g5.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return
+  g1 + urlCSS + \\u0027\\/\\u0027 + g2 + \\u0027\\/\\u0027 + g3 + \\u0027.css\\u0027
+  + g5 + \\u0027\\\" \\u0027 + g6;\\r\\n                }\\r\\n                if
+  (g2 \\u0026\\u0026 g2.indexOf(urlCSS) \\u003c 0) {\\r\\n                    return
+  g1 + urlCSS + \\u0027\\/\\u0027 + g2 + \\u0027\\/\\u0027 + g3 + \\u0027.css\\\"
+  \\u0027 + g6;\\r\\n                }\\r\\n                return m;\\r\\n            });\\r\\n
+  \           return buffer;\\r\\n        });\\r\\n\\r\\n        rewriteApi.add(function
+  (buffer) {\\r\\n            buffer = buffer.replace(\\/(\\u003clink.*?href=\\\")\\\\\\/\\\\\\/([^\\\\\\\"]*)\\\\.css([^\\\\\\\"]*)\\\"(.*)\\/igm,
+  function (m, g1, g2, g3, g4) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlCSS)
+  \\u003c 0 \\u0026\\u0026 g3 \\u0026\\u0026 g3 != \\\"\\\") {\\r\\n                    g3
+  = g3.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return g1 + urlCSS
+  + \\u0027\\/\\u0027 + protocol + \\u0027\\/\\u0027 + g2 + \\u0027.css\\u0027 + g3
+  + \\u0027\\\" \\u0027 + g4;\\r\\n                }\\r\\n                if (g2 \\u0026\\u0026
+  g2.indexOf(urlCSS) \\u003c 0) {\\r\\n                    return g1 + urlCSS + \\u0027\\/\\u0027
+  + protocol + \\u0027\\/\\u0027 + g2 + \\u0027.css\\\" \\u0027 + g4;\\r\\n                }\\r\\n
+  \               return m;\\r\\n            });\\r\\n            return buffer;\\r\\n
+  \       });\\r\\n\\r\\n\\r\\n        rewriteApi.add(function (buffer) {\\r\\n            buffer
+  = buffer.replace(\\/(\\u003clink.*?href=\\\")\\\\\\/([^\\\\\\\"]*)\\\\.css([^\\\\\\\"]*)\\\"(.*)\\/igm,
+  function (m, g1, g2, g3, g4) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlCSS)
+  \\u003c 0 \\u0026\\u0026 g3 \\u0026\\u0026 g3 != \\\"\\\") {\\r\\n                    g3
+  = g3.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return g1 + urlCSS
+  + \\u0027\\/\\u0027 + host + \\u0027\\/\\u0027 + g2 + \\u0027.css\\u0027 + g3 +
+  \\u0027\\\" \\u0027 + g4;\\r\\n                }\\r\\n                if (g2 \\u0026\\u0026
+  g2.indexOf(urlCSS) \\u003c 0) {\\r\\n                    return g1 + urlCSS + \\u0027\\/\\u0027
+  + host + \\u0027\\/\\u0027 + g2 + \\u0027.css\\\" \\u0027 + g4;\\r\\n                }\\r\\n
+  \               return m;\\r\\n            });\\r\\n            return buffer;\\r\\n
+  \       });\\r\\n\\r\\n\\r\\n        rewriteApi.add(function (buffer) {\\r\\n            buffer
+  = buffer.replace(\\/(\\u003clink.*?href=\\\")(?!https|http|\\\\\\/)([^\\\\\\\"]*)\\\\.css([^\\\\\\\"]*)\\\"(.*)\\/igm,
+  function (m, g1, g2, g3, g4) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlCSS)
+  \\u003c 0 \\u0026\\u0026 g3 \\u0026\\u0026 g3 != \\\"\\\") {\\r\\n                    g3
+  = g3.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return g1 + urlCSS
+  + \\u0027\\/\\u0027 + base + \\u0027\\/\\u0027 + g2 + \\u0027.css\\u0027 + g3 +
+  \\u0027\\\" \\u0027 + g4;\\r\\n                }\\r\\n                if (g2 \\u0026\\u0026
+  g2.indexOf(urlCSS) \\u003c 0) {\\r\\n                    return g1 + urlCSS + \\u0027\\/\\u0027
+  + base + \\u0027\\/\\u0027 + g2 + \\u0027.css\\\" \\u0027 + g4;\\r\\n                }\\r\\n
+  \               return m;\\r\\n            });\\r\\n            return buffer;\\r\\n
+  \       });\\r\\n\\r\\n        rewriteApi.add(function (buffer) {\\r\\n            buffer
+  = buffer.replace(\\/(\\u003cimg.*?)(?:src|data-lazy)=\\\"(.*?):\\\\\\/\\\\\\/([^\\\\\\\"\\\\:\\\\;]*\\\\.(?:png|jpg|jpeg|gif)[^\\\\\\\"]*\\\")(.*?\\u003e)\\/igm,
+  function (m, g1, g2, g3, g4) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlIMG)
+  \\u003c 0 \\u0026\\u0026 g3 \\u0026\\u0026 g3 != \\\"\\\") {\\r\\n                    g3
+  = g3.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return g1 + \\u0027src=\\\"\\u0027
+  + urlIMG + \\u0027\\/\\u0027 + g2 + \\u0027\\/\\u0027 + g3 + g4;\\r\\n                }\\r\\n
+  \               return m;\\r\\n            });\\r\\n            return buffer;\\r\\n
+  \       });\\r\\n\\r\\n\\r\\n        rewriteApi.add(function (buffer) {\\r\\n            buffer
+  = buffer.replace(\\/(\\u003cimg.*?)(?:src|data-lazy)=\\\"\\\\\\/\\\\\\/([^\\\\\\\"\\\\:\\\\;]*\\\\.(?:png|jpg|jpeg|gif)[^\\\\\\\"]*\\\")(.*?\\u003e)\\/igm,
+  function (m, g1, g2, g3) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlIMG)
+  \\u003c 0) {\\r\\n                    g2 = g2.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n
+  \                   return g1 + \\u0027src=\\\"\\u0027 + urlIMG + \\u0027\\/\\u0027
+  + protocol + \\u0027\\/\\u0027 + g2 + g3;\\r\\n                }\\r\\n                return
+  m;\\r\\n            });\\r\\n            return buffer;\\r\\n        });\\r\\n\\r\\n\\r\\n
+  \       rewriteApi.add(function (buffer) {\\r\\n            buffer = buffer.replace(\\/(\\u003cimg.*?)(?:src|data-lazy)=\\\"\\\\\\/([^\\\\\\\"\\\\:\\\\;]*\\\\.(?:png|jpg|jpeg|gif)[^\\\\\\\"]*\\\")(.*?\\u003e)\\/igm,
+  function (m, g1, g2, g3) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlIMG)
+  \\u003c 0) {\\r\\n                    g2 = g2.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n
+  \                   return g1 + \\u0027src=\\\"\\u0027 + urlIMG + \\u0027\\/\\u0027
+  + host + \\u0027\\/\\u0027 + g2 + g3;\\r\\n                }\\r\\n                return
+  m;\\r\\n            });\\r\\n            return buffer;\\r\\n        });\\r\\n\\r\\n
+  \       rewriteApi.add(function (buffer) {\\r\\n            buffer = buffer.replace(\\/(\\u003cimg.*?)(?:src|data-lazy)=\\\"(?!https|http|\\\\\\/)([^\\\\\\\"\\\\:\\\\;]*\\\\.(?:png|jpg|jpeg|gif)[^\\\\\\\"]*\\\")(.*?\\u003e)\\/igm,
+  function (m, g1, g2, g3) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlIMG)
+  \\u003c 0) {\\r\\n                    g2 = g2.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n
+  \                   return g1 + \\u0027src=\\\"\\u0027 + urlIMG + \\u0027\\/\\u0027
+  + base + \\u0027\\/\\u0027 + g2 + g3;\\r\\n                }\\r\\n                return
+  m;\\r\\n            });\\r\\n            return buffer;\\r\\n        });\\r\\n\\r\\n
+  \       rewriteApi.add({\\r\\n            pattern: new RegExp(\\u0027@font-face{.*?}\\u0027,
+  \\u0027gim\\u0027),\\r\\n            replace: \\u0027\\u0027\\r\\n        });\\r\\n\\r\\n
+  \   }\\r\\n};\\r\\n\\r\\n\\/\\/ End of user-defined pre WR code\\r\\n\\r\\n\\r\\nvar
+  ClickTaleOnReady = function()\\r\\n{\\r\\n\\tvar PID=25612, \\r\\n\\t\\tRatio=0.5,
+  \\r\\n\\t\\tPartitionPrefix=\\\"www14\\\";\\r\\n\\t\\r\\n\\tif (window.navigator
+  \\u0026\\u0026 window.navigator.loadPurpose === \\\"preview\\\") {\\r\\n       return;
+  \\/\\/in preview\\r\\n\\t};\\r\\n\\t\\t\\r\\n\\t\\r\\n\\t\\/\\/ Start of user-defined
+  header code (PreInitialize)\\r\\n\\tif (typeof ClickTaleSetAllSensitive === \\\"function\\\")
+  {\\r\\n    ClickTaleSetAllSensitive();\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.InitFuncs.push(function
+  () {\\r\\n    var pcc = document.querySelector(\\u0027script[src*=\\\"clicktale\\\"][src*=\\\"pcc\\\"]\\u0027);\\r\\n
+  \   if (pcc) {\\r\\n        var versionmatch = pcc.src.match(\\/DeploymentConfigName=.+\\/i);\\r\\n
+  \       if (versionmatch \\u0026\\u0026 typeof ClickTaleExec === \\u0027function\\u0027)
+  {\\r\\n            ClickTaleExec(\\\"console.info(\\u0027\\\" + versionmatch + \\\"\\u0027);\\\");\\r\\n
+  \       }\\r\\n    }\\r\\n});\\r\\n\\r\\nfunction doUpload() {\\r\\n    window.ClickTaleSettings.PTC.InitFuncs.push(function
+  () {\\r\\n        setTimeout(function () {\\r\\n            if (typeof testversion
+  == \\u0027string\\u0027 \\u0026\\u0026 typeof ClickTaleEvent === \\u0027function\\u0027)
+  {\\r\\n                var tParams = testversion.split(\\u0027,\\u0027);\\r\\n                for
+  (var i = 0; i \\u003c tParams.length; i++) {\\r\\n                    if (tParams[i])
+  {\\r\\n                        ClickTaleEvent(tParams[i]);\\r\\n                    }\\r\\n
+  \               }\\r\\n            }\\r\\n        }, 1000);\\r\\n    });\\r\\n\\r\\n\\r\\n
+  \   ClickTaleUploadPage();\\r\\n    window.ClickTaleSSL = 1;\\r\\n    ClickTale(PID,
+  Ratio, PartitionPrefix);\\r\\n    if ((typeof ClickTalePrevOnReady == \\u0027function\\u0027)
+  \\u0026\\u0026 (ClickTaleOnReady.toString() != ClickTalePrevOnReady.toString()))
+  {\\r\\n        ClickTalePrevOnReady();\\r\\n    }\\r\\n\\r\\n    var initFuncs =
+  window.ClickTaleSettings.PTC.InitFuncs;\\r\\n    for (var i = 0, initLen = initFuncs.length;
+  i \\u003c initLen; i++) {\\r\\n        if (typeof initFuncs[i] === \\u0027function\\u0027)
+  {\\r\\n            initFuncs[i]();\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\\r\\nfunction
+  doOnlyWhen(toDoHandler, toCheckHandler, interval, times, failHandler) {\\r\\n    if
+  ((!toDoHandler) || (!toCheckHandler)) return;\\r\\n    if (typeof interval == \\\"undefined\\\")
+  interval = 1000;\\r\\n    if (typeof times == \\\"undefined\\\") times = 20;\\r\\n\\r\\n
+  \   if (--times \\u003c 0) {\\r\\n        if (typeof failHandler === \\u0027function\\u0027)
+  {\\r\\n            failHandler();\\r\\n        }\\r\\n        return;\\r\\n    }\\r\\n
+  \   if (toCheckHandler()) {\\r\\n        toDoHandler();\\r\\n        return;\\r\\n
+  \   }\\r\\n\\r\\n    setTimeout(function () { doOnlyWhen(toDoHandler, toCheckHandler,
+  interval, times, failHandler); }, interval);\\r\\n};\\r\\n\\r\\nfunction isReadyToRecord()
+  {\\r\\n    if (document.getElementById(\\u0027GatedFormContainer\\u0027)) {\\r\\n
+  \       var formEl = document.getElementById(\\u0027RespondedToCampaign\\u0027);\\r\\n
+  \       return (formEl \\u0026\\u0026 formEl.getBoundingClientRect() \\u0026\\u0026
+  formEl.getBoundingClientRect().height \\u0026\\u0026 formEl.getBoundingClientRect().width);\\r\\n
+  \   }\\r\\n    return true;\\r\\n}\\r\\n\\r\\nif (typeof ClickTaleUploadPage ===
+  \\u0027function\\u0027 \\u0026\\u0026 window.ClickTaleSettings.PTC.UseTransport)
+  {\\r\\n\\r\\n\\r\\n\\r\\n    if (window.ClickTaleSettings.PTC.EnableChangeMonitor)
+  {\\r\\n        window.ClickTaleSettings.PTC.InitFuncs.push(function () {\\r\\n            if
+  (typeof ClickTaleEvent === \\\"function\\\") {\\r\\n                ClickTaleEvent(\\\"CM\\\");\\r\\n
+  \           }\\r\\n        });\\r\\n    }\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n    doOnlyWhen(doUpload,
+  isReadyToRecord, 300, 20, doUpload);\\r\\n\\r\\n    return;\\r\\n};\\r\\n\\r\\n\\t\\/\\/
+  End of user-defined header code (PreInitialize)\\r\\n    \\r\\n\\t\\r\\n\\twindow.ClickTaleIncludedOnDOMReady=true;\\r\\n\\t\\r\\n\\tClickTale(PID,
+  Ratio, PartitionPrefix);\\r\\n\\t\\r\\n\\tif((typeof ClickTalePrevOnReady == \\u0027function\\u0027)
+  \\u0026\\u0026 (ClickTaleOnReady.toString() != ClickTalePrevOnReady.toString()))\\r\\n\\t{\\r\\n
+  \   \\tClickTalePrevOnReady();\\r\\n\\t}\\r\\n\\t\\r\\n\\t\\r\\n\\t\\/\\/ Start
+  of user-defined footer code\\r\\n\\t\\r\\n\\t\\/\\/ End of user-defined footer code\\r\\n\\t\\r\\n};\\r\\n\\r\\n
+  \\r\\n(function() {\\r\\n\\tvar div = ClickTaleCreateDOMElement(\\\"div\\\");\\r\\n\\tdiv.id
+  = \\\"ClickTaleDiv\\\";\\r\\n\\tdiv.style.display = \\\"none\\\";\\r\\n\\tdocument.body.appendChild(div);\\r\\n\\r\\n\\t\\r\\n\\t\\r\\n\\tvar
+  externalWrScript = ClickTaleCreateDOMElement(\\\"script\\\");\\r\\n\\tvar wrSrc
+  = (document.location.protocol==\\u0027https:\\u0027?\\u0027https:\\/\\/cdnssl.clicktale.net\\/www\\/\\u0027
+  : \\u0027http:\\/\\/cdn.clicktale.net\\/www\\/\\u0027) + \\u0027tc\\/WR-latest.js\\u0027;\\r\\n\\texternalWrScript.src
+  = (window.ClickTaleCDNHTTPSRewrite?ClickTaleCDNHTTPSRewrite(wrSrc):wrSrc);\\r\\n\\texternalWrScript.type
+  = \\u0027text\\/javascript\\u0027;\\r\\n\\t\\tdocument.body.appendChild(externalWrScript);\\r\\n})();\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n!function(){function
+  t(){window.addEventListener\\u0026\\u0026addEventListener(\\\"message\\\",e,!1)}function
+  e(t){var e,n=new RegExp(\\\"(clicktale.com|ct.test)($|:)\\\"),i=new RegExp(\\\"ct.test\\\"),c=!1,l=t.origin;try{e=JSON.parse(t.data)}catch(d){return}n.test(t.origin)!==!1\\u0026\\u0026(window.ct_ve_parent_window=t.source,i.test(t.origin)===!0\\u0026\\u0026(c=!0),\\\"CTload_ve\\\"===e[\\\"function\\\"]\\u0026\\u0026\\\"function\\\"==typeof
+  ClickTaleGetPID\\u0026\\u0026null!==ClickTaleGetPID()\\u0026\\u0026o(l,c))}function
+  n(t){return document.createElementNS?document.createElementNS(\\\"http:\\/\\/www.w3.org\\/1999\\/xhtml\\\",t):document.createElement(t)}function
+  o(t,e){var o=n(\\\"script\\\");o.setAttribute(\\\"type\\\",\\\"text\\/javascript\\\"),o.setAttribute(\\\"id\\\",\\\"ctVisualEditorClientModule\\\");var
+  i;i=e?document.location.protocol+\\\"\\/\\/ct.test\\/VisualEditor\\/Client\\/dist\\/veClientModule.js\\\":document.location.protocol+\\\"\\/\\/\\\"+t.match(\\/subs\\\\d*\\/)[0]+\\\".app.clicktale.com\\/VisualEditor\\/Client\\/dist\\/veClientModule.js\\\",o.src=i,document.getElementById(\\\"ctVisualEditorClientModule\\\")||document.body.appendChild(o)}try{var
+  i=window.chrome,c=window.navigator\\u0026\\u0026window.navigator.vendor;null!==i\\u0026\\u0026void
+  0!==i\\u0026\\u0026\\\"Google Inc.\\\"===c\\u0026\\u0026t()}catch(l){}}();\");\r\n\tdocument.body.appendChild(script);\t})();\r\n\t}\r\n\t\t\t\r\n\t\r\nif
+  (ct_dispatcher.configName == 'dev_REDHA-33')\r\n{\r\n\tconfigFoundPTC = true;\r\n\t\t\t(function(){\r\n\tvar
+  script = ClickTaleXHTMLCompliantScriptTagCreate(\"\\/\\/ Copyright 2006-2016 ClickTale
+  Ltd., US Patent Pending\\r\\n\\/\\/ PID: 25612\\r\\n\\/\\/ WR destination: www14\\r\\n\\/\\/
+  WR version: latest\\r\\n\\/\\/ Recording ratio: 1\\r\\n\\/\\/ Generated on: 12\\/22\\/2016
+  8:12:01 AM (UTC 12\\/22\\/2016 2:12:01 PM)\\r\\n(function (){\\r\\n\\tvar dependencyCallback;\\r\\n
+  \       var scriptSyncTokens = [\\\"wr\\\"];\\r\\n        var dependencies = scriptSyncTokens.slice(0);\\r\\n\\tvar
+  ct2Callback, isRecorderReady;\\r\\n    var clickTaleOnReadyList = window.ClickTaleOnReadyList
+  || (window.ClickTaleOnReadyList = []);\\r\\n    function isValidToken(token) {\\r\\n
+  \       if (scriptSyncTokens.indexOf(token) \\u003e -1) {\\r\\n\\t\\t\\tvar index
+  = dependencies.indexOf(token);\\r\\n\\r\\n\\t\\t\\tif (index \\u003e -1) {\\r\\n\\t\\t\\t\\tdependencies.splice(index,
+  1);\\r\\n\\t\\t\\t\\treturn true;\\r\\n\\t\\t\\t}\\r\\n        }\\r\\n\\r\\n        return
+  false;\\r\\n    }\\r\\n\\r\\n    clickTaleOnReadyList.push(function () {\\r\\n        if
+  (ct2Callback) {\\r\\n            ct2Callback();\\r\\n        }\\r\\n\\r\\n        isRecorderReady
+  = true;\\r\\n    });\\r\\n\\r\\n    window.ClickTaleGlobal = window.ClickTaleGlobal
+  || {};\\r\\n    ClickTaleGlobal.scripts = ClickTaleGlobal.scripts || {};\\r\\n    ClickTaleGlobal.scripts.dependencies
+  = {\\r\\n        setDependencies: function (deps) {\\r\\n            scriptSyncTokens
+  = deps;\\r\\n        },\\r\\n        onDependencyResolved: function (callback) {\\r\\n
+  \           dependencyCallback = callback;\\r\\n        },\\r\\n        notifyScriptLoaded:
+  function (token) {\\r\\n            if (isValidToken(token)) {\\r\\n                if
+  (dependencies.length === 0 \\u0026\\u0026 typeof dependencyCallback === \\\"function\\\")
+  {\\r\\n                    dependencyCallback();\\r\\n                }\\r\\n            }\\r\\n
+  \       }\\r\\n    };\\r\\n\\r\\n\\tClickTaleGlobal.scripts.integration = {\\r\\n\\t\\tonReady:
+  function (callback) {\\r\\n\\t\\t\\tif (isRecorderReady) {\\r\\n\\t\\t\\t\\tcallback();\\r\\n\\t\\t\\t}\\r\\n\\t\\t\\telse
+  {\\r\\n\\t\\t\\t\\tct2Callback = callback;\\r\\n\\t\\t\\t}\\r\\n\\t\\t}\\r\\n    };\\r\\n})();\\r\\n\\r\\n\\r\\n\\r\\nfunction
+  ClickTaleCDNHTTPSRewrite(u)\\r\\n{\\r\\n\\ttry\\r\\n\\t{\\r\\n\\t\\tvar scripts
+  = document.getElementsByTagName(\\u0027script\\u0027);\\r\\n\\t\\tif(scripts.length)\\r\\n\\t\\t{\\r\\n\\t\\t\\tvar
+  script = scripts[ scripts.length - 1 ], s=\\u0027https:\\/\\/clicktalecdn.sslcs.cdngc.net\\/\\u0027;\\r\\n\\t\\t\\tif(script.src
+  \\u0026\\u0026 script.src.substr(0,s.length)==s )\\r\\n\\t\\t\\t\\treturn u.replace(\\u0027https:\\/\\/cdnssl.clicktale.net\\/\\u0027,s);\\r\\n\\t\\t}\\r\\n\\t}\\r\\n\\tcatch(e)\\r\\n\\t{\\r\\n\\t}\\r\\n\\treturn
+  u;\\r\\n} \\r\\n\\r\\nvar ClickTaleIsXHTMLCompliant = true;\\r\\nif (typeof (ClickTaleCreateDOMElement)
+  != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleCreateDOMElement = function(tagName)\\r\\n\\t{\\r\\n\\t\\tif
+  (document.createElementNS)\\r\\n\\t\\t{\\r\\n\\t\\t\\treturn document.createElementNS(\\u0027http:\\/\\/www.w3.org\\/1999\\/xhtml\\u0027,
+  tagName);\\r\\n\\t\\t}\\r\\n\\t\\treturn document.createElement(tagName);\\r\\n\\t}\\r\\n}\\r\\n\\r\\nif
+  (typeof (ClickTaleAppendInHead) != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleAppendInHead
+  = function(element)\\r\\n\\t{\\r\\n\\t\\tvar parent = document.getElementsByTagName(\\u0027head\\u0027).item(0)
+  || document.documentElement;\\r\\n\\t\\tparent.appendChild(element);\\r\\n\\t}\\r\\n}\\r\\n\\r\\nif
+  (typeof (ClickTaleXHTMLCompliantScriptTagCreate) != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleXHTMLCompliantScriptTagCreate
+  = function(code)\\r\\n\\t{\\r\\n\\t\\tvar script = ClickTaleCreateDOMElement(\\u0027script\\u0027);\\r\\n\\t\\tscript.setAttribute(\\\"type\\\",
+  \\\"text\\/javascript\\\");\\r\\n\\t\\tscript.text = code;\\r\\n\\t\\treturn script;\\r\\n\\t}\\r\\n}\\t\\r\\n\\r\\nvar
+  pccScriptElement = ClickTaleCreateDOMElement(\\u0027script\\u0027);\\r\\npccScriptElement.type
+  = \\\"text\\/javascript\\\";\\r\\npccScriptElement.src = (document.location.protocol==\\u0027https:\\u0027?\\r\\nClickTaleCDNHTTPSRewrite(\\u0027https:\\/\\/cdnssl.clicktale.net\\/www14\\/pcc\\/f6653f2c-58d5-487e-a59c-2075a8d88ac5.js?DeploymentConfigName=dev_REDHA-33\\u0026Version=4\\u0027):\\r\\n\\u0027http:\\/\\/cdn.clicktale.net\\/www14\\/pcc\\/f6653f2c-58d5-487e-a59c-2075a8d88ac5.js?DeploymentConfigName=dev_REDHA-33\\u0026Version=4\\u0027);\\r\\ndocument.body.appendChild(pccScriptElement);\\r\\n\\t\\r\\nvar
+  ClickTalePrevOnReady;\\r\\nif(typeof ClickTaleOnReady == \\u0027function\\u0027)\\r\\n{\\r\\n\\tClickTalePrevOnReady=ClickTaleOnReady;\\r\\n\\tClickTaleOnReady=undefined;\\r\\n}\\r\\n\\r\\nif
+  (typeof window.ClickTaleScriptSource == \\u0027undefined\\u0027)\\r\\n{\\r\\n\\twindow.ClickTaleScriptSource=(document.location.protocol==\\u0027https:\\u0027\\r\\n\\t\\t?ClickTaleCDNHTTPSRewrite(\\u0027https:\\/\\/cdnssl.clicktale.net\\/www\\/\\u0027)\\r\\n\\t\\t:\\u0027http:\\/\\/cdn.clicktale.net\\/www\\/\\u0027);\\r\\n}\\r\\n\\r\\n\\r\\n\\/\\/
+  Start of user-defined pre WR code (PreLoad)b\\r\\n\\/\\/PTC Code Version 7\\r\\n\\r\\nwindow.ClickTaleSettings
+  = window.ClickTaleSettings || {};\\r\\nwindow.ClickTaleSettings.PTC = window.ClickTaleSettings.PTC
+  || {};\\r\\nwindow.ClickTaleIncludedOnWindowLoad = true;\\r\\nwindow.ClickTaleIncludedOnDOMReady
+  = true;\\r\\nwindow.ClickTaleSettings.PTC.EnableChangeMonitor = false;\\r\\nwindow.ClickTaleSettings.PTC.UseTransport
+  = true;\\r\\n\\r\\nwindow.ClickTaleSettings.CheckAgentSupport = function (f, v)
+  {\\r\\n    if (v.t == v.IE \\u0026\\u0026 v.v \\u003c= 8) {\\r\\n        window.ClickTaleSettings.PTC.okToRunPCC
+  = false;\\r\\n        return false;\\r\\n    }\\r\\n    else {\\r\\n        if (!(v.t
+  == v.IE \\u0026\\u0026 v.v \\u003c= 10)) {\\r\\n            window.ClickTaleSettings.PTC.EnableChangeMonitor
+  = true;\\r\\n            window.ClickTaleSettings.PTC.ConfigChangeMonitor();\\r\\n
+  \       }\\r\\n        var fv = f(v);\\r\\n        window.ClickTaleSettings.PTC.okToRunPCC
+  = fv;\\r\\n        return fv;\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.RulesObj
+  = [{\\r\\n    selector: \\\"input[type=\\\\\\\"text\\\\\\\"], input[type=\\\\\\\"tel\\\\\\\"],
+  input[type=\\\\\\\"email\\\\\\\"]\\\",\\r\\n    changeMon: {\\r\\n        Attributes:
+  [\\u0027value\\u0027],\\r\\n        Text: false\\r\\n    },\\r\\n    rewriteApi:
+  {\\r\\n        Attributes: [\\u0027value\\u0027],\\r\\n        Text: false\\r\\n
+  \   }\\r\\n},\\r\\n{\\r\\n    selector: \\\"#account-panel .rh-name\\\",\\r\\n    changeMon:
+  {\\r\\n        Attributes: false,\\r\\n        Text: true\\r\\n    },\\r\\n    rewriteApi:
+  {\\r\\n        Attributes: false,\\r\\n        Text: true\\r\\n    }\\r\\n}];\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.RulesObjRemoveEls
+  = [\\r\\n];\\r\\n\\r\\n; (function () {\\r\\n    if (typeof window.ClickTalePIISelector
+  === \\u0027string\\u0027 \\u0026\\u0026 window.ClickTalePIISelector != \\u0027\\u0027)
+  {\\r\\n        try {\\r\\n            var domNodes = document.querySelectorAll(window.ClickTalePIISelector);\\r\\n
+  \           if (domNodes) {\\r\\n                window.ClickTaleSettings.PTC.RulesObj.push({\\r\\n
+  \                   selector: window.ClickTalePIISelector,\\r\\n                    changeMon:
+  {\\r\\n                        Attributes: [\\u0027value\\u0027],\\r\\n                        Text:
+  true\\r\\n                    },\\r\\n                    rewriteApi: {\\r\\n                        Attributes:
+  [\\u0027value\\u0027],\\r\\n                        Text: true\\r\\n                    }\\r\\n
+  \               });\\r\\n            }\\r\\n        }\\r\\n        catch (err) {\\r\\n
+  \       }\\r\\n    }\\r\\n})();\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.cloneNodeIE9
+  = function (node) {\\r\\n    var clone = node.nodeType === 3 ? document.createTextNode(node.nodeValue)
+  : node.cloneNode(false);\\r\\n\\r\\n    var child = node.firstChild;\\r\\n    while
+  (child) {\\r\\n        if (child.nodeName !== \\u0027SCRIPT\\u0027) {\\r\\n            clone.appendChild(window.ClickTaleSettings.PTC.cloneNodeIE9(child));\\r\\n
+  \       }\\r\\n        else {\\r\\n            var script = document.createElement(\\u0027script\\u0027);\\r\\n
+  \           clone.appendChild(script);\\r\\n        }\\r\\n        child = child.nextSibling;\\r\\n
+  \   }\\r\\n\\r\\n    return clone;\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.ConfigChangeMonitor
+  = function () {\\r\\n\\r\\n    if (window.ClickTaleSettings.PTC.EnableChangeMonitor)
+  {\\r\\n        window.ClickTaleSettings.XHRWrapper = {\\r\\n            Enable:
+  false\\r\\n        };\\r\\n\\r\\n        var script = document.createElement(\\\"SCRIPT\\\");\\r\\n
+  \       script.src = (document.location.protocol === \\\"https:\\\" ? \\\"https:\\/\\/cdnssl.\\\"
+  : \\\"http:\\/\\/cdn.\\\") + \\\"clicktale.net\\/www\\/ChangeMonitor-latest.js\\\";\\r\\n
+  \       document.body.appendChild(script);\\r\\n\\r\\n        window.ClickTaleSettings.ChangeMonitor
+  = {\\r\\n            Enable: true,\\r\\n            AddressingMode: \\\"id\\\",\\r\\n
+  \           OnReadyHandler: function (changeMonitor) {\\r\\n                changeMonitor.observe();\\r\\n\\r\\n
+  \               var CMRemrule = window.ClickTaleSettings.PTC.RulesObjRemoveEls;\\r\\n
+  \               if (CMRemrule) {\\r\\n                    for (var i = 0; i \\u003c
+  CMRemrule.length; i++) {\\r\\n                        var rule = CMRemrule[i];\\r\\n
+  \                       var CMlocation = rule[\\u0027location\\u0027];\\r\\n                        if
+  ((!CMlocation || (CMlocation \\u0026\\u0026 document.location[CMlocation[\\u0027prop\\u0027]].toLowerCase().search(CMlocation.search)
+  === -1))) {\\r\\n                            if (rule.changeMon) {\\r\\n                                changeMonitor.exclude(rule.changeMon);\\r\\n
+  \                           }\\r\\n                            if (rule.changeMonLive)
+  {\\r\\n                                changeMonitor.exclude({ selector: rule.changeMonLive,
+  multiple: true });\\r\\n                            }\\r\\n                        }\\r\\n
+  \                   }\\r\\n                }\\r\\n            },\\r\\n            OnBeforeReadyHandler:
+  function (settings) {\\r\\n                settings.Enable = window.ClickTaleGetUID
+  ? !!ClickTaleGetUID() : false;\\r\\n                return settings;\\r\\n            },\\r\\n
+  \           Filters: {\\r\\n                MaxBufferSize: 300000,\\r\\n                MaxElementCount:
+  3000\\r\\n            },\\r\\n            PII: {\\r\\n                Text: [],\\r\\n
+  \               Attributes: []\\r\\n            }\\r\\n        }\\r\\n        var
+  RulesObj = window.ClickTaleSettings.PTC.RulesObj;\\r\\n        if (RulesObj) {\\r\\n
+  \           window.ClickTaleSettings.ChangeMonitor.PII.Text = window.ClickTaleSettings.ChangeMonitor.PII.Text
+  || [];\\r\\n            window.ClickTaleSettings.ChangeMonitor.PII.Attributes =
+  window.ClickTaleSettings.ChangeMonitor.PII.Attributes || [];\\r\\n            for
+  (var i = 0; i \\u003c RulesObj.length; i++) {\\r\\n                var CMrule =
+  RulesObj[i][\\u0027changeMon\\u0027];\\r\\n                var CMlocation = RulesObj[i][\\u0027location\\u0027];\\r\\n
+  \               if (!CMrule || (CMlocation \\u0026\\u0026 document.location[CMlocation[\\u0027prop\\u0027]].toLowerCase().search(CMlocation.search)
+  === -1)) {\\r\\n                    continue;\\r\\n                }\\r\\n                var
+  selector = RulesObj[i][\\u0027selector\\u0027];\\r\\n                var attributesArr
+  = CMrule.Attributes;\\r\\n                if (attributesArr instanceof Array) {\\r\\n
+  \                   for (var u = 0; u \\u003c attributesArr.length; u++) {\\r\\n
+  \                       var attr = attributesArr[u];\\r\\n                        window.ClickTaleSettings.ChangeMonitor.PII.Attributes.push({\\r\\n
+  \                           selector: selector,\\r\\n                            transform:
+  (function (attr) {\\r\\n                                return function (el) {\\r\\n
+  \                                   var attrs = el.attributes;\\r\\n                                    var
+  attrsToReturn = {}\\r\\n                                    for (var i = 0; i \\u003c
+  attrs.length; i++) {\\r\\n                                        var name = attrs[i].nodeName;\\r\\n
+  \                                       attrsToReturn[name] = attrs[i].nodeValue;\\r\\n
+  \                                   }\\r\\n                                    var
+  attrib = el.getAttribute(attr);;\\r\\n                                    if (typeof
+  attrib === \\u0027string\\u0027) {\\r\\n                                        attrsToReturn[attr]
+  = attrib.replace(\\/\\\\w\\/g, \\u0027-\\u0027);\\r\\n                                    }\\r\\n
+  \                                   return attrsToReturn;\\r\\n                                }\\r\\n
+  \                           })(attr)\\r\\n                        });\\r\\n                    }\\r\\n
+  \               }\\r\\n                if (CMrule.Text) {\\r\\n                    window.ClickTaleSettings.ChangeMonitor.PII.Text.push({\\r\\n
+  \                       selector: selector,\\r\\n                        transform:
+  function (el) {\\r\\n                            return el.textContent.replace(\\/\\\\w\\/g,
+  \\u0027-\\u0027);\\r\\n                        }\\r\\n                    });\\r\\n
+  \               }\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Compression
+  = {\\r\\n    Method: function () {\\r\\n        return \\\"deflate\\\";\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Persistence
+  = {\\r\\n    EnableStorage: true,\\r\\n    EnableStreams: true,\\r\\n    EnableDispatch:
+  true\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Transport = {\\r\\n    Legacy:
+  false,\\r\\n    MaxConcurrentRequests: 5\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.RewriteRules
+  = {\\r\\n    OnBeforeRewrite: function (rewriteApi) {\\r\\n        var bodyClone
+  = ((document.documentMode \\u0026\\u0026 document.documentMode \\u003c= 9) ? ClickTaleSettings.PTC.cloneNodeIE9(document.documentElement)
+  : document.documentElement.cloneNode(true));\\r\\n\\r\\n        if (window.ClickTaleSettings.PTC.RulesObj)
+  {\\r\\n            rewriteApi.add(function (buffer) {\\r\\n\\r\\n\\r\\n                var
+  RulesObj = window.ClickTaleSettings.PTC.RulesObj;\\r\\n                for (var
+  i = 0; i \\u003c RulesObj.length; i++) {\\r\\n                    var rewriteApirule
+  = RulesObj[i][\\u0027rewriteApi\\u0027];\\r\\n                    var rewriteApilocation
+  = RulesObj[i][\\u0027location\\u0027];\\r\\n                    if (!rewriteApirule
+  || (rewriteApilocation \\u0026\\u0026 document.location[rewriteApilocation[\\u0027prop\\u0027]].toLowerCase().search(rewriteApilocation.search)
+  === -1)) {\\r\\n                        continue;\\r\\n                    }\\r\\n
+  \                   var selector = RulesObj[i][\\u0027selector\\u0027];\\r\\n                    var
+  elements = bodyClone.querySelectorAll(selector);\\r\\n\\r\\n                    Array.prototype.forEach.call(elements,
+  function (el, ind) {\\r\\n                        var attributesArr = rewriteApirule.Attributes;\\r\\n
+  \                       if (attributesArr instanceof Array) {\\r\\n\\r\\n                            for
+  (var u = 0; u \\u003c attributesArr.length; u++) {\\r\\n                                var
+  attr = attributesArr[u];\\r\\n                                var attrib = el.getAttribute(attr);\\r\\n
+  \                               if (typeof attrib === \\u0027string\\u0027) {\\r\\n
+  \                                   el.setAttribute(attr, attrib.replace(\\/\\\\w\\/g,
+  \\u0027-\\u0027));\\r\\n                                }\\r\\n                            }\\r\\n\\r\\n
+  \                       }\\r\\n                        if (rewriteApirule.Text)
+  {\\r\\n                            var children = el.childNodes;\\r\\n                            Array.prototype.forEach.call(children,
+  function (child) {\\r\\n                                if (child \\u0026\\u0026
+  child.nodeType === 3) {\\r\\n                                    child.textContent
+  = child.textContent.replace(\\/\\\\w\\/g, \\u0027-\\u0027);\\r\\n                                }\\r\\n
+  \                           });\\r\\n                        }\\r\\n                    });\\r\\n
+  \               }\\r\\n\\r\\n                \\/\\/work on body\\r\\n                var
+  RulesObjRemoveEls = window.ClickTaleSettings.PTC.RulesObjRemoveEls;\\r\\n                if
+  (RulesObjRemoveEls) {\\r\\n                    for (var i = 0; i \\u003c RulesObjRemoveEls.length;
+  i++) {\\r\\n                        if (RulesObjRemoveEls[i].rewriteApi) {\\r\\n
+  \                           var elementsToRemove = bodyClone.querySelectorAll(RulesObjRemoveEls[i].rewriteApi);\\r\\n
+  \                           Array.prototype.forEach.call(elementsToRemove, function
+  (el, ind) {\\r\\n                                if (el.parentNode) {\\r\\n                                    el.parentNode.removeChild(el);\\r\\n
+  \                               }\\r\\n                            });\\r\\n                        }\\r\\n
+  \                       if (RulesObjRemoveEls[i].rewriteApiReplace) {\\r\\n                            var
+  elementsToReplace = bodyClone.querySelectorAll(RulesObjRemoveEls[i].rewriteApiReplace);\\r\\n
+  \                           Array.prototype.forEach.call(elementsToReplace, function
+  (el, ind) {\\r\\n                                if (el.parentNode) {\\r\\n                                    var
+  comment = document.createComment(el.outerHTML);\\r\\n                                    el.parentNode.replaceChild(comment,
+  el);\\r\\n                                }\\r\\n                            });\\r\\n
+  \                       }\\r\\n                    }\\r\\n                }\\r\\n\\r\\n\\r\\n\\r\\n
+  \               return bodyClone.innerHTML.replace(\\/\\u003cscript\\\\b([^\\u003e]*)\\u003e([\\\\s\\\\S]*?)\\u003c\\\\\\/script\\u003e\\/gi,
+  \\u0027\\u003cscript\\u003e\\u003c\\\\\\/script\\u003e\\u0027).replace(\\/(\\u003cdiv
+  id=\\\"?ClickTaleDiv\\\"?[^\\u003e]+\\u003e)\\\\s*\\u003cscript[^\\u003e]+\\u003e\\u003c\\\\\\/script\\u003e\\\\s*(\\u003c\\\\\\/div\\u003e)\\/i,
+  \\u0027$1$2\\u0027);\\r\\n            });\\r\\n        }\\r\\n        rewriteApi.add({\\r\\n
+  \           pattern: \\/(\\u003chead[^\\u003e]*\\u003e)\\/i,\\r\\n            replace:
+  \\u0027$1\\u003cscript type=\\\"text\\\\\\/javascript\\\" class=\\\"cm-ignore\\\"
+  src=\\\"http:\\\\\\/\\\\\\/dummytest.clicktale-samples.com\\\\\\/GlobalResources\\\\\\/jquery.js\\\"\\u003e\\u003c\\\\\\/script\\u003e\\u0027\\r\\n
+  \       });\\r\\n        rewriteApi.add(function (buffer) {\\r\\n\\r\\n            buffer
+  = buffer.replace(\\/(href=\\\")(.*?)(\\\\.css)([^\\\"]*)\\/img, function (m, g1,
+  g2, g3, g4) {\\r\\n                if (g1 \\u0026\\u0026 g4) {\\r\\n                    g4
+  = g4.replace(\\/\\\\?|\\\\.|=\\/g, \\\"-\\\");\\r\\n                    return g1
+  + \\u0027http:\\/\\/dummytest.clicktale-samples.com\\/RedHat\\u0027 + g2 + g4 +
+  g3;\\r\\n                } else {\\r\\n                    return g1 + \\u0027http:\\/\\/dummytest.clicktale-samples.com\\/RedHat\\u0027
+  + g2 + g3;\\r\\n                }\\r\\n                return m;\\r\\n            });\\r\\n
+  \           return buffer;\\r\\n        });\\r\\n    }\\r\\n};\\r\\n\\r\\n\\/\\/
+  End of user-defined pre WR code\\r\\n\\r\\n\\r\\nvar ClickTaleOnReady = function()\\r\\n{\\r\\n\\tvar
+  PID=25612, \\r\\n\\t\\tRatio=1, \\r\\n\\t\\tPartitionPrefix=\\\"www14\\\";\\r\\n\\t\\r\\n\\tif
+  (window.navigator \\u0026\\u0026 window.navigator.loadPurpose === \\\"preview\\\")
+  {\\r\\n       return; \\/\\/in preview\\r\\n\\t};\\r\\n\\t\\t\\r\\n\\t\\r\\n\\t\\/\\/
+  Start of user-defined header code (PreInitialize)\\r\\n\\tif (typeof ClickTaleSetAllSensitive
+  === \\\"function\\\") {\\r\\n    ClickTaleSetAllSensitive();\\r\\n};\\r\\n\\r\\nif
+  (typeof ClickTaleUploadPage === \\u0027function\\u0027 \\u0026\\u0026 window.ClickTaleSettings.PTC.UseTransport)
+  {\\r\\n    if (window.ClickTaleSettings.PTC.EnableChangeMonitor) {\\r\\n        if
+  (typeof ClickTaleEvent === \\\"function\\\") {\\r\\n            ClickTaleEvent(\\\"CM\\\");\\r\\n
+  \       }\\r\\n    }\\r\\n\\r\\n    setTimeout(function () {    \\r\\n        if
+  (typeof testversion == \\u0027string\\u0027 \\u0026\\u0026 typeof ClickTaleEvent
+  === \\u0027function\\u0027) {\\r\\n            var tParams = testversion.split(\\u0027,\\u0027);\\r\\n
+  \           for (var i = 0; i \\u003c tParams.length; i++) {\\r\\n                if(tParams[i]){\\r\\n
+  \                   ClickTaleEvent(tParams[i]);\\r\\n                }\\r\\n            }\\r\\n
+  \       }\\r\\n        ClickTaleUploadPage();\\r\\n        window.ClickTaleSSL =
+  1;\\r\\n        ClickTale(PID, Ratio, PartitionPrefix);\\r\\n        if((typeof
+  ClickTalePrevOnReady == \\u0027function\\u0027) \\u0026\\u0026 (ClickTaleOnReady.toString()
+  != ClickTalePrevOnReady.toString())){\\r\\n            ClickTalePrevOnReady();\\r\\n
+  \       }\\r\\n    }, 1000);\\r\\n    return;\\r\\n};\\r\\n\\r\\n\\t\\/\\/ End of
+  user-defined header code (PreInitialize)\\r\\n    \\r\\n\\t\\r\\n\\twindow.ClickTaleIncludedOnDOMReady=true;\\r\\n\\t\\r\\n\\tClickTale(PID,
+  Ratio, PartitionPrefix);\\r\\n\\t\\r\\n\\tif((typeof ClickTalePrevOnReady == \\u0027function\\u0027)
+  \\u0026\\u0026 (ClickTaleOnReady.toString() != ClickTalePrevOnReady.toString()))\\r\\n\\t{\\r\\n
+  \   \\tClickTalePrevOnReady();\\r\\n\\t}\\r\\n\\t\\r\\n\\t\\r\\n\\t\\/\\/ Start
+  of user-defined footer code\\r\\n\\t\\r\\n\\t\\/\\/ End of user-defined footer code\\r\\n\\t\\r\\n};\\r\\n\\r\\n
+  \\r\\n(function() {\\r\\n\\tvar div = ClickTaleCreateDOMElement(\\\"div\\\");\\r\\n\\tdiv.id
+  = \\\"ClickTaleDiv\\\";\\r\\n\\tdiv.style.display = \\\"none\\\";\\r\\n\\tdocument.body.appendChild(div);\\r\\n\\r\\n\\t\\r\\n\\t\\r\\n\\tvar
+  externalWrScript = ClickTaleCreateDOMElement(\\\"script\\\");\\r\\n\\tvar wrSrc
+  = (document.location.protocol==\\u0027https:\\u0027?\\u0027https:\\/\\/cdnssl.clicktale.net\\/www\\/\\u0027
+  : \\u0027http:\\/\\/cdn.clicktale.net\\/www\\/\\u0027) + \\u0027tc\\/WR-latest.js\\u0027;\\r\\n\\texternalWrScript.src
+  = (window.ClickTaleCDNHTTPSRewrite?ClickTaleCDNHTTPSRewrite(wrSrc):wrSrc);\\r\\n\\texternalWrScript.type
+  = \\u0027text\\/javascript\\u0027;\\r\\n\\t\\tdocument.body.appendChild(externalWrScript);\\r\\n})();\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n!function(){function
+  t(){window.addEventListener\\u0026\\u0026addEventListener(\\\"message\\\",e,!1)}function
+  e(t){var e,n=new RegExp(\\\"(clicktale.com|ct.test)($|:)\\\"),i=new RegExp(\\\"ct.test\\\"),c=!1,l=t.origin;try{e=JSON.parse(t.data)}catch(d){return}n.test(t.origin)!==!1\\u0026\\u0026(window.ct_ve_parent_window=t.source,i.test(t.origin)===!0\\u0026\\u0026(c=!0),\\\"CTload_ve\\\"===e[\\\"function\\\"]\\u0026\\u0026\\\"function\\\"==typeof
+  ClickTaleGetPID\\u0026\\u0026null!==ClickTaleGetPID()\\u0026\\u0026o(l,c))}function
+  n(t){return document.createElementNS?document.createElementNS(\\\"http:\\/\\/www.w3.org\\/1999\\/xhtml\\\",t):document.createElement(t)}function
+  o(t,e){var o=n(\\\"script\\\");o.setAttribute(\\\"type\\\",\\\"text\\/javascript\\\"),o.setAttribute(\\\"id\\\",\\\"ctVisualEditorClientModule\\\");var
+  i;i=e?document.location.protocol+\\\"\\/\\/ct.test\\/VisualEditor\\/Client\\/dist\\/veClientModule.js\\\":document.location.protocol+\\\"\\/\\/\\\"+t.match(\\/subs\\\\d*\\/)[0]+\\\".app.clicktale.com\\/VisualEditor\\/Client\\/dist\\/veClientModule.js\\\",o.src=i,document.getElementById(\\\"ctVisualEditorClientModule\\\")||document.body.appendChild(o)}try{var
+  i=window.chrome,c=window.navigator\\u0026\\u0026window.navigator.vendor;null!==i\\u0026\\u0026void
+  0!==i\\u0026\\u0026\\\"Google Inc.\\\"===c\\u0026\\u0026t()}catch(l){}}();\");\r\n\tdocument.body.appendChild(script);\t})();\r\n\t}\r\n\t\t\t\r\n\t\r\nif
+  (ct_dispatcher.configName == 'DisableRecordings')\r\n{\r\n\tconfigFoundPTC = true;\r\n\t\t\t(function(){\r\n\tvar
+  script = ClickTaleXHTMLCompliantScriptTagCreate(\"\\/\\/ Copyright 2006-2016 ClickTale
+  Ltd., US Patent Pending\\r\\n\\/\\/ PID: 25612\\r\\n\\/\\/ WR destination: www14\\r\\n\\/\\/
+  WR version: latest\\r\\n\\/\\/ Recording ratio: 1\\r\\n\\/\\/ Generated on: 12\\/22\\/2016
+  8:12:01 AM (UTC 12\\/22\\/2016 2:12:01 PM)\\r\\n(function (){\\r\\n\\tvar dependencyCallback;\\r\\n
+  \       var scriptSyncTokens = [\\\"wr\\\"];\\r\\n        var dependencies = scriptSyncTokens.slice(0);\\r\\n\\tvar
+  ct2Callback, isRecorderReady;\\r\\n    var clickTaleOnReadyList = window.ClickTaleOnReadyList
+  || (window.ClickTaleOnReadyList = []);\\r\\n    function isValidToken(token) {\\r\\n
+  \       if (scriptSyncTokens.indexOf(token) \\u003e -1) {\\r\\n\\t\\t\\tvar index
+  = dependencies.indexOf(token);\\r\\n\\r\\n\\t\\t\\tif (index \\u003e -1) {\\r\\n\\t\\t\\t\\tdependencies.splice(index,
+  1);\\r\\n\\t\\t\\t\\treturn true;\\r\\n\\t\\t\\t}\\r\\n        }\\r\\n\\r\\n        return
+  false;\\r\\n    }\\r\\n\\r\\n    clickTaleOnReadyList.push(function () {\\r\\n        if
+  (ct2Callback) {\\r\\n            ct2Callback();\\r\\n        }\\r\\n\\r\\n        isRecorderReady
+  = true;\\r\\n    });\\r\\n\\r\\n    window.ClickTaleGlobal = window.ClickTaleGlobal
+  || {};\\r\\n    ClickTaleGlobal.scripts = ClickTaleGlobal.scripts || {};\\r\\n    ClickTaleGlobal.scripts.dependencies
+  = {\\r\\n        setDependencies: function (deps) {\\r\\n            scriptSyncTokens
+  = deps;\\r\\n        },\\r\\n        onDependencyResolved: function (callback) {\\r\\n
+  \           dependencyCallback = callback;\\r\\n        },\\r\\n        notifyScriptLoaded:
+  function (token) {\\r\\n            if (isValidToken(token)) {\\r\\n                if
+  (dependencies.length === 0 \\u0026\\u0026 typeof dependencyCallback === \\\"function\\\")
+  {\\r\\n                    dependencyCallback();\\r\\n                }\\r\\n            }\\r\\n
+  \       }\\r\\n    };\\r\\n\\r\\n\\tClickTaleGlobal.scripts.integration = {\\r\\n\\t\\tonReady:
+  function (callback) {\\r\\n\\t\\t\\tif (isRecorderReady) {\\r\\n\\t\\t\\t\\tcallback();\\r\\n\\t\\t\\t}\\r\\n\\t\\t\\telse
+  {\\r\\n\\t\\t\\t\\tct2Callback = callback;\\r\\n\\t\\t\\t}\\r\\n\\t\\t}\\r\\n    };\\r\\n})();\\r\\n\\r\\n\\r\\n\\r\\nfunction
+  ClickTaleCDNHTTPSRewrite(u)\\r\\n{\\r\\n\\ttry\\r\\n\\t{\\r\\n\\t\\tvar scripts
+  = document.getElementsByTagName(\\u0027script\\u0027);\\r\\n\\t\\tif(scripts.length)\\r\\n\\t\\t{\\r\\n\\t\\t\\tvar
+  script = scripts[ scripts.length - 1 ], s=\\u0027https:\\/\\/clicktalecdn.sslcs.cdngc.net\\/\\u0027;\\r\\n\\t\\t\\tif(script.src
+  \\u0026\\u0026 script.src.substr(0,s.length)==s )\\r\\n\\t\\t\\t\\treturn u.replace(\\u0027https:\\/\\/cdnssl.clicktale.net\\/\\u0027,s);\\r\\n\\t\\t}\\r\\n\\t}\\r\\n\\tcatch(e)\\r\\n\\t{\\r\\n\\t}\\r\\n\\treturn
+  u;\\r\\n} \\r\\n\\r\\nvar ClickTaleIsXHTMLCompliant = true;\\r\\nif (typeof (ClickTaleCreateDOMElement)
+  != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleCreateDOMElement = function(tagName)\\r\\n\\t{\\r\\n\\t\\tif
+  (document.createElementNS)\\r\\n\\t\\t{\\r\\n\\t\\t\\treturn document.createElementNS(\\u0027http:\\/\\/www.w3.org\\/1999\\/xhtml\\u0027,
+  tagName);\\r\\n\\t\\t}\\r\\n\\t\\treturn document.createElement(tagName);\\r\\n\\t}\\r\\n}\\r\\n\\r\\nif
+  (typeof (ClickTaleAppendInHead) != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleAppendInHead
+  = function(element)\\r\\n\\t{\\r\\n\\t\\tvar parent = document.getElementsByTagName(\\u0027head\\u0027).item(0)
+  || document.documentElement;\\r\\n\\t\\tparent.appendChild(element);\\r\\n\\t}\\r\\n}\\r\\n\\r\\nif
+  (typeof (ClickTaleXHTMLCompliantScriptTagCreate) != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleXHTMLCompliantScriptTagCreate
+  = function(code)\\r\\n\\t{\\r\\n\\t\\tvar script = ClickTaleCreateDOMElement(\\u0027script\\u0027);\\r\\n\\t\\tscript.setAttribute(\\\"type\\\",
+  \\\"text\\/javascript\\\");\\r\\n\\t\\tscript.text = code;\\r\\n\\t\\treturn script;\\r\\n\\t}\\r\\n}\\t\\r\\n\\r\\n\\r\\nvar
+  ClickTalePrevOnReady;\\r\\nif(typeof ClickTaleOnReady == \\u0027function\\u0027)\\r\\n{\\r\\n\\tClickTalePrevOnReady=ClickTaleOnReady;\\r\\n\\tClickTaleOnReady=undefined;\\r\\n}\\r\\n\\r\\nif
+  (typeof window.ClickTaleScriptSource == \\u0027undefined\\u0027)\\r\\n{\\r\\n\\twindow.ClickTaleScriptSource=(document.location.protocol==\\u0027https:\\u0027\\r\\n\\t\\t?ClickTaleCDNHTTPSRewrite(\\u0027https:\\/\\/cdnssl.clicktale.net\\/www\\/\\u0027)\\r\\n\\t\\t:\\u0027http:\\/\\/cdn.clicktale.net\\/www\\/\\u0027);\\r\\n}\\r\\n\\r\\n\\r\\n\\/\\/
+  Start of user-defined pre WR code (PreLoad)b\\r\\n\\r\\n\\/\\/ End of user-defined
+  pre WR code\\r\\n\\r\\n\\r\\nvar ClickTaleOnReady = function()\\r\\n{\\r\\n\\tvar
+  PID=25612, \\r\\n\\t\\tRatio=1, \\r\\n\\t\\tPartitionPrefix=\\\"www14\\\";\\r\\n\\t\\r\\n\\tif
+  (window.navigator \\u0026\\u0026 window.navigator.loadPurpose === \\\"preview\\\")
+  {\\r\\n       return; \\/\\/in preview\\r\\n\\t};\\r\\n\\t\\t\\r\\n\\t\\r\\n\\t\\/\\/
+  Start of user-defined header code (PreInitialize)\\r\\n\\treturn;\\r\\n\\t\\/\\/
+  End of user-defined header code (PreInitialize)\\r\\n    \\r\\n\\t\\r\\n\\twindow.ClickTaleIncludedOnDOMReady=true;\\r\\n\\t\\r\\n\\tClickTale(PID,
+  Ratio, PartitionPrefix);\\r\\n\\t\\r\\n\\tif((typeof ClickTalePrevOnReady == \\u0027function\\u0027)
+  \\u0026\\u0026 (ClickTaleOnReady.toString() != ClickTalePrevOnReady.toString()))\\r\\n\\t{\\r\\n
+  \   \\tClickTalePrevOnReady();\\r\\n\\t}\\r\\n\\t\\r\\n\\t\\r\\n\\t\\/\\/ Start
+  of user-defined footer code\\r\\n\\t\\r\\n\\t\\/\\/ End of user-defined footer code\\r\\n\\t\\r\\n};\\r\\n\\r\\n
+  \\r\\n(function() {\\r\\n\\tvar div = ClickTaleCreateDOMElement(\\\"div\\\");\\r\\n\\tdiv.id
+  = \\\"ClickTaleDiv\\\";\\r\\n\\tdiv.style.display = \\\"none\\\";\\r\\n\\tdocument.body.appendChild(div);\\r\\n\\r\\n\\t\\r\\n\\t\\r\\n\\tvar
+  externalWrScript = ClickTaleCreateDOMElement(\\\"script\\\");\\r\\n\\tvar wrSrc
+  = (document.location.protocol==\\u0027https:\\u0027?\\u0027https:\\/\\/cdnssl.clicktale.net\\/www\\/\\u0027
+  : \\u0027http:\\/\\/cdn.clicktale.net\\/www\\/\\u0027) + \\u0027tc\\/WR-latest.js\\u0027;\\r\\n\\texternalWrScript.src
+  = (window.ClickTaleCDNHTTPSRewrite?ClickTaleCDNHTTPSRewrite(wrSrc):wrSrc);\\r\\n\\texternalWrScript.type
+  = \\u0027text\\/javascript\\u0027;\\r\\n\\t\\tdocument.body.appendChild(externalWrScript);\\r\\n})();\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n!function(){function
+  t(){window.addEventListener\\u0026\\u0026addEventListener(\\\"message\\\",e,!1)}function
+  e(t){var e,n=new RegExp(\\\"(clicktale.com|ct.test)($|:)\\\"),i=new RegExp(\\\"ct.test\\\"),c=!1,l=t.origin;try{e=JSON.parse(t.data)}catch(d){return}n.test(t.origin)!==!1\\u0026\\u0026(window.ct_ve_parent_window=t.source,i.test(t.origin)===!0\\u0026\\u0026(c=!0),\\\"CTload_ve\\\"===e[\\\"function\\\"]\\u0026\\u0026\\\"function\\\"==typeof
+  ClickTaleGetPID\\u0026\\u0026null!==ClickTaleGetPID()\\u0026\\u0026o(l,c))}function
+  n(t){return document.createElementNS?document.createElementNS(\\\"http:\\/\\/www.w3.org\\/1999\\/xhtml\\\",t):document.createElement(t)}function
+  o(t,e){var o=n(\\\"script\\\");o.setAttribute(\\\"type\\\",\\\"text\\/javascript\\\"),o.setAttribute(\\\"id\\\",\\\"ctVisualEditorClientModule\\\");var
+  i;i=e?document.location.protocol+\\\"\\/\\/ct.test\\/VisualEditor\\/Client\\/dist\\/veClientModule.js\\\":document.location.protocol+\\\"\\/\\/\\\"+t.match(\\/subs\\\\d*\\/)[0]+\\\".app.clicktale.com\\/VisualEditor\\/Client\\/dist\\/veClientModule.js\\\",o.src=i,document.getElementById(\\\"ctVisualEditorClientModule\\\")||document.body.appendChild(o)}try{var
+  i=window.chrome,c=window.navigator\\u0026\\u0026window.navigator.vendor;null!==i\\u0026\\u0026void
+  0!==i\\u0026\\u0026\\\"Google Inc.\\\"===c\\u0026\\u0026t()}catch(l){}}();\");\r\n\tdocument.body.appendChild(script);\t})();\r\n\t}\r\n\t\t\t\r\n\t\r\n\r\n\t//
+  Default configuration\r\nif (!configFoundPTC)\r\n{\r\n\t\t\t(function(){\r\n\tvar
+  script = ClickTaleXHTMLCompliantScriptTagCreate(\"\\/\\/ Copyright 2006-2016 ClickTale
+  Ltd., US Patent Pending\\r\\n\\/\\/ PID: 25612\\r\\n\\/\\/ WR destination: www14\\r\\n\\/\\/
+  WR version: latest\\r\\n\\/\\/ Recording ratio: 0.5\\r\\n\\/\\/ Generated on: 12\\/22\\/2016
+  8:12:01 AM (UTC 12\\/22\\/2016 2:12:01 PM)\\r\\n(function (){\\r\\n\\tvar dependencyCallback;\\r\\n
+  \       var scriptSyncTokens = [\\\"wr\\\"];\\r\\n        var dependencies = scriptSyncTokens.slice(0);\\r\\n\\tvar
+  ct2Callback, isRecorderReady;\\r\\n    var clickTaleOnReadyList = window.ClickTaleOnReadyList
+  || (window.ClickTaleOnReadyList = []);\\r\\n    function isValidToken(token) {\\r\\n
+  \       if (scriptSyncTokens.indexOf(token) \\u003e -1) {\\r\\n\\t\\t\\tvar index
+  = dependencies.indexOf(token);\\r\\n\\r\\n\\t\\t\\tif (index \\u003e -1) {\\r\\n\\t\\t\\t\\tdependencies.splice(index,
+  1);\\r\\n\\t\\t\\t\\treturn true;\\r\\n\\t\\t\\t}\\r\\n        }\\r\\n\\r\\n        return
+  false;\\r\\n    }\\r\\n\\r\\n    clickTaleOnReadyList.push(function () {\\r\\n        if
+  (ct2Callback) {\\r\\n            ct2Callback();\\r\\n        }\\r\\n\\r\\n        isRecorderReady
+  = true;\\r\\n    });\\r\\n\\r\\n    window.ClickTaleGlobal = window.ClickTaleGlobal
+  || {};\\r\\n    ClickTaleGlobal.scripts = ClickTaleGlobal.scripts || {};\\r\\n    ClickTaleGlobal.scripts.dependencies
+  = {\\r\\n        setDependencies: function (deps) {\\r\\n            scriptSyncTokens
+  = deps;\\r\\n        },\\r\\n        onDependencyResolved: function (callback) {\\r\\n
+  \           dependencyCallback = callback;\\r\\n        },\\r\\n        notifyScriptLoaded:
+  function (token) {\\r\\n            if (isValidToken(token)) {\\r\\n                if
+  (dependencies.length === 0 \\u0026\\u0026 typeof dependencyCallback === \\\"function\\\")
+  {\\r\\n                    dependencyCallback();\\r\\n                }\\r\\n            }\\r\\n
+  \       }\\r\\n    };\\r\\n\\r\\n\\tClickTaleGlobal.scripts.integration = {\\r\\n\\t\\tonReady:
+  function (callback) {\\r\\n\\t\\t\\tif (isRecorderReady) {\\r\\n\\t\\t\\t\\tcallback();\\r\\n\\t\\t\\t}\\r\\n\\t\\t\\telse
+  {\\r\\n\\t\\t\\t\\tct2Callback = callback;\\r\\n\\t\\t\\t}\\r\\n\\t\\t}\\r\\n    };\\r\\n})();\\r\\n\\r\\n\\r\\n\\r\\nfunction
+  ClickTaleCDNHTTPSRewrite(u)\\r\\n{\\r\\n\\ttry\\r\\n\\t{\\r\\n\\t\\tvar scripts
+  = document.getElementsByTagName(\\u0027script\\u0027);\\r\\n\\t\\tif(scripts.length)\\r\\n\\t\\t{\\r\\n\\t\\t\\tvar
+  script = scripts[ scripts.length - 1 ], s=\\u0027https:\\/\\/clicktalecdn.sslcs.cdngc.net\\/\\u0027;\\r\\n\\t\\t\\tif(script.src
+  \\u0026\\u0026 script.src.substr(0,s.length)==s )\\r\\n\\t\\t\\t\\treturn u.replace(\\u0027https:\\/\\/cdnssl.clicktale.net\\/\\u0027,s);\\r\\n\\t\\t}\\r\\n\\t}\\r\\n\\tcatch(e)\\r\\n\\t{\\r\\n\\t}\\r\\n\\treturn
+  u;\\r\\n} \\r\\n\\r\\nvar ClickTaleIsXHTMLCompliant = true;\\r\\nif (typeof (ClickTaleCreateDOMElement)
+  != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleCreateDOMElement = function(tagName)\\r\\n\\t{\\r\\n\\t\\tif
+  (document.createElementNS)\\r\\n\\t\\t{\\r\\n\\t\\t\\treturn document.createElementNS(\\u0027http:\\/\\/www.w3.org\\/1999\\/xhtml\\u0027,
+  tagName);\\r\\n\\t\\t}\\r\\n\\t\\treturn document.createElement(tagName);\\r\\n\\t}\\r\\n}\\r\\n\\r\\nif
+  (typeof (ClickTaleAppendInHead) != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleAppendInHead
+  = function(element)\\r\\n\\t{\\r\\n\\t\\tvar parent = document.getElementsByTagName(\\u0027head\\u0027).item(0)
+  || document.documentElement;\\r\\n\\t\\tparent.appendChild(element);\\r\\n\\t}\\r\\n}\\r\\n\\r\\nif
+  (typeof (ClickTaleXHTMLCompliantScriptTagCreate) != \\\"function\\\")\\r\\n{\\r\\n\\tClickTaleXHTMLCompliantScriptTagCreate
+  = function(code)\\r\\n\\t{\\r\\n\\t\\tvar script = ClickTaleCreateDOMElement(\\u0027script\\u0027);\\r\\n\\t\\tscript.setAttribute(\\\"type\\\",
+  \\\"text\\/javascript\\\");\\r\\n\\t\\tscript.text = code;\\r\\n\\t\\treturn script;\\r\\n\\t}\\r\\n}\\t\\r\\n\\r\\nvar
+  pccScriptElement = ClickTaleCreateDOMElement(\\u0027script\\u0027);\\r\\npccScriptElement.type
+  = \\\"text\\/javascript\\\";\\r\\npccScriptElement.src = (document.location.protocol==\\u0027https:\\u0027?\\r\\nClickTaleCDNHTTPSRewrite(\\u0027https:\\/\\/cdnssl.clicktale.net\\/www14\\/pcc\\/f6653f2c-58d5-487e-a59c-2075a8d88ac5.js?DeploymentConfigName=Release_20161221\\u0026Version=1\\u0027):\\r\\n\\u0027http:\\/\\/cdn.clicktale.net\\/www14\\/pcc\\/f6653f2c-58d5-487e-a59c-2075a8d88ac5.js?DeploymentConfigName=Release_20161221\\u0026Version=1\\u0027);\\r\\ndocument.body.appendChild(pccScriptElement);\\r\\n\\t\\r\\nvar
+  ClickTalePrevOnReady;\\r\\nif(typeof ClickTaleOnReady == \\u0027function\\u0027)\\r\\n{\\r\\n\\tClickTalePrevOnReady=ClickTaleOnReady;\\r\\n\\tClickTaleOnReady=undefined;\\r\\n}\\r\\n\\r\\nif
+  (typeof window.ClickTaleScriptSource == \\u0027undefined\\u0027)\\r\\n{\\r\\n\\twindow.ClickTaleScriptSource=(document.location.protocol==\\u0027https:\\u0027\\r\\n\\t\\t?ClickTaleCDNHTTPSRewrite(\\u0027https:\\/\\/cdnssl.clicktale.net\\/www\\/\\u0027)\\r\\n\\t\\t:\\u0027http:\\/\\/cdn.clicktale.net\\/www\\/\\u0027);\\r\\n}\\r\\n\\r\\n\\r\\n\\/\\/
+  Start of user-defined pre WR code (PreLoad)b\\r\\n\\/\\/PTC Code Version 7\\r\\n\\r\\nwindow.ClickTaleSettings
+  = window.ClickTaleSettings || {};\\r\\nwindow.ClickTaleSettings.PTC = window.ClickTaleSettings.PTC
+  || {};\\r\\nwindow.ClickTaleSettings.PTC.InitFuncs = [];\\r\\nwindow.ClickTaleIncludedOnWindowLoad
+  = true;\\r\\nwindow.ClickTaleIncludedOnDOMReady = true;\\r\\nwindow.ClickTaleSettings.PTC.EnableChangeMonitor
+  = false;\\r\\nwindow.ClickTaleSettings.PTC.UseTransport = true;\\r\\n\\r\\nwindow.ClickTaleSettings.CheckAgentSupport
+  = function (f, v) {\\r\\n    if (v.t == v.IE \\u0026\\u0026 v.v \\u003c= 8) {\\r\\n
+  \       window.ClickTaleSettings.PTC.okToRunPCC = false;\\r\\n        return false;\\r\\n
+  \   }\\r\\n    else {\\r\\n        if (!(v.t == v.IE \\u0026\\u0026 v.v \\u003c=
+  10)) {\\r\\n            window.ClickTaleSettings.PTC.EnableChangeMonitor = true;\\r\\n
+  \           window.ClickTaleSettings.PTC.ConfigChangeMonitor();\\r\\n        }\\r\\n
+  \       var fv = f(v);\\r\\n        window.ClickTaleSettings.PTC.okToRunPCC = fv;\\r\\n
+  \       return fv;\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.RulesObj
+  = [{\\r\\n    selector: \\\"input[type=\\\\\\\"text\\\\\\\"], input[type=\\\\\\\"tel\\\\\\\"],
+  input[type=\\\\\\\"email\\\\\\\"]\\\",\\r\\n    changeMon: {\\r\\n        Attributes:
+  [\\u0027value\\u0027],\\r\\n        Text: false\\r\\n    },\\r\\n    rewriteApi:
+  {\\r\\n        Attributes: [\\u0027value\\u0027],\\r\\n        Text: false\\r\\n
+  \   }\\r\\n},\\r\\n{\\r\\n    selector: \\\"#account-panel .rh-name\\\",\\r\\n    changeMon:
+  {\\r\\n        Attributes: false,\\r\\n        Text: true\\r\\n    },\\r\\n    rewriteApi:
+  {\\r\\n        Attributes: false,\\r\\n        Text: true\\r\\n    }\\r\\n}];\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.RulesObjRemoveEls
+  = [\\r\\n];\\r\\n\\r\\n; (function () {\\r\\n    if (typeof window.ClickTalePIISelector
+  === \\u0027string\\u0027 \\u0026\\u0026 window.ClickTalePIISelector != \\u0027\\u0027)
+  {\\r\\n        try {\\r\\n            var domNodes = document.querySelectorAll(window.ClickTalePIISelector);\\r\\n
+  \           if (domNodes) {\\r\\n                window.ClickTaleSettings.PTC.RulesObj.push({\\r\\n
+  \                   selector: window.ClickTalePIISelector,\\r\\n                    changeMon:
+  {\\r\\n                        Attributes: [\\u0027value\\u0027],\\r\\n                        Text:
+  true\\r\\n                    },\\r\\n                    rewriteApi: {\\r\\n                        Attributes:
+  [\\u0027value\\u0027],\\r\\n                        Text: true\\r\\n                    }\\r\\n
+  \               });\\r\\n            }\\r\\n        }\\r\\n        catch (err) {\\r\\n
+  \       }\\r\\n    }\\r\\n})();\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.cloneNodeIE9
+  = function (node) {\\r\\n    var clone = node.nodeType === 3 ? document.createTextNode(node.nodeValue)
+  : node.cloneNode(false);\\r\\n\\r\\n    var child = node.firstChild;\\r\\n    while
+  (child) {\\r\\n        if (child.nodeName !== \\u0027SCRIPT\\u0027) {\\r\\n            clone.appendChild(window.ClickTaleSettings.PTC.cloneNodeIE9(child));\\r\\n
+  \       }\\r\\n        else {\\r\\n            var script = document.createElement(\\u0027script\\u0027);\\r\\n
+  \           clone.appendChild(script);\\r\\n        }\\r\\n        child = child.nextSibling;\\r\\n
+  \   }\\r\\n\\r\\n    return clone;\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.ConfigChangeMonitor
+  = function () {\\r\\n\\r\\n    if (window.ClickTaleSettings.PTC.EnableChangeMonitor)
+  {\\r\\n        window.ClickTaleSettings.XHRWrapper = {\\r\\n            Enable:
+  false\\r\\n        };\\r\\n\\r\\n        var script = document.createElement(\\\"SCRIPT\\\");\\r\\n
+  \       script.src = (document.location.protocol === \\\"https:\\\" ? \\\"https:\\/\\/cdnssl.\\\"
+  : \\\"http:\\/\\/cdn.\\\") + \\\"clicktale.net\\/www\\/ChangeMonitor-latest.js\\\";\\r\\n
+  \       document.body.appendChild(script);\\r\\n\\r\\n        window.ClickTaleSettings.ChangeMonitor
+  = {\\r\\n            Enable: true,\\r\\n            AddressingMode: \\\"id\\\",\\r\\n
+  \           OnReadyHandler: function (changeMonitor) {\\r\\n                changeMonitor.observe();\\r\\n\\r\\n
+  \               var CMRemrule = window.ClickTaleSettings.PTC.RulesObjRemoveEls;\\r\\n
+  \               if (CMRemrule) {\\r\\n                    for (var i = 0; i \\u003c
+  CMRemrule.length; i++) {\\r\\n                        var rule = CMRemrule[i];\\r\\n
+  \                       var CMlocation = rule[\\u0027location\\u0027];\\r\\n                        if
+  ((!CMlocation || (CMlocation \\u0026\\u0026 document.location[CMlocation[\\u0027prop\\u0027]].toLowerCase().search(CMlocation.search)
+  != -1))) {\\r\\n                            if (rule.changeMon) {\\r\\n                                changeMonitor.exclude(rule.changeMon);\\r\\n
+  \                           }\\r\\n                            if (rule.changeMonLive)
+  {\\r\\n                                changeMonitor.exclude({ selector: rule.changeMonLive,
+  multiple: true });\\r\\n                            }\\r\\n                        }\\r\\n
+  \                   }\\r\\n                }\\r\\n            },\\r\\n            OnBeforeReadyHandler:
+  function (settings) {\\r\\n                settings.Enable = window.ClickTaleGetUID
+  ? !!ClickTaleGetUID() : false;\\r\\n                return settings;\\r\\n            },\\r\\n
+  \           Filters: {\\r\\n                MaxBufferSize: 300000,\\r\\n                MaxElementCount:
+  3000\\r\\n            },\\r\\n            PII: {\\r\\n                Text: [],\\r\\n
+  \               Attributes: []\\r\\n            }\\r\\n        }\\r\\n        var
+  RulesObj = window.ClickTaleSettings.PTC.RulesObj;\\r\\n        if (RulesObj) {\\r\\n
+  \           window.ClickTaleSettings.ChangeMonitor.PII.Text = window.ClickTaleSettings.ChangeMonitor.PII.Text
+  || [];\\r\\n            window.ClickTaleSettings.ChangeMonitor.PII.Attributes =
+  window.ClickTaleSettings.ChangeMonitor.PII.Attributes || [];\\r\\n            for
+  (var i = 0; i \\u003c RulesObj.length; i++) {\\r\\n                var CMrule =
+  RulesObj[i][\\u0027changeMon\\u0027];\\r\\n                var CMlocation = RulesObj[i][\\u0027location\\u0027];\\r\\n
+  \               if (!CMrule || (CMlocation \\u0026\\u0026 document.location[CMlocation[\\u0027prop\\u0027]].toLowerCase().search(CMlocation.search)
+  === -1)) {\\r\\n                    continue;\\r\\n                }\\r\\n                var
+  selector = RulesObj[i][\\u0027selector\\u0027];\\r\\n                var attributesArr
+  = CMrule.Attributes;\\r\\n                if (attributesArr instanceof Array) {\\r\\n
+  \                   for (var u = 0; u \\u003c attributesArr.length; u++) {\\r\\n
+  \                       var attr = attributesArr[u];\\r\\n                        window.ClickTaleSettings.ChangeMonitor.PII.Attributes.push({\\r\\n
+  \                           selector: selector,\\r\\n                            transform:
+  (function (attr) {\\r\\n                                return function (el) {\\r\\n
+  \                                   var attrs = el.attributes;\\r\\n                                    var
+  attrsToReturn = {}\\r\\n                                    for (var i = 0; i \\u003c
+  attrs.length; i++) {\\r\\n                                        var name = attrs[i].nodeName;\\r\\n
+  \                                       attrsToReturn[name] = attrs[i].nodeValue;\\r\\n
+  \                                   }\\r\\n                                    var
+  attrib = el.getAttribute(attr);;\\r\\n                                    if (typeof
+  attrib === \\u0027string\\u0027) {\\r\\n                                        attrsToReturn[attr]
+  = attrib.replace(\\/\\\\w\\/g, \\u0027-\\u0027);\\r\\n                                    }\\r\\n
+  \                                   return attrsToReturn;\\r\\n                                }\\r\\n
+  \                           })(attr)\\r\\n                        });\\r\\n                    }\\r\\n
+  \               }\\r\\n                if (CMrule.Text) {\\r\\n                    window.ClickTaleSettings.ChangeMonitor.PII.Text.push({\\r\\n
+  \                       selector: selector,\\r\\n                        transform:
+  function (el) {\\r\\n                            return el.textContent.replace(\\/\\\\w\\/g,
+  \\u0027-\\u0027);\\r\\n                        }\\r\\n                    });\\r\\n
+  \               }\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Compression
+  = {\\r\\n    Method: function () {\\r\\n        return \\\"deflate\\\";\\r\\n    }\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Persistence
+  = {\\r\\n    EnableStorage: true,\\r\\n    EnableStreams: true,\\r\\n    EnableDispatch:
+  true\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.Transport = {\\r\\n    Legacy:
+  false,\\r\\n    MaxConcurrentRequests: 5\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.RewriteRules
+  = {\\r\\n    OnBeforeRewrite: function (rewriteApi) {\\r\\n        var bodyClone
+  = ((document.documentMode \\u0026\\u0026 document.documentMode \\u003c= 9) ? ClickTaleSettings.PTC.cloneNodeIE9(document.documentElement)
+  : document.documentElement.cloneNode(true));\\r\\n\\r\\n        if (window.ClickTaleSettings.PTC.RulesObj)
+  {\\r\\n            rewriteApi.add(function (buffer) {\\r\\n\\r\\n\\r\\n                var
+  RulesObj = window.ClickTaleSettings.PTC.RulesObj;\\r\\n                for (var
+  i = 0; i \\u003c RulesObj.length; i++) {\\r\\n                    var rewriteApirule
+  = RulesObj[i][\\u0027rewriteApi\\u0027];\\r\\n                    var rewriteApilocation
+  = RulesObj[i][\\u0027location\\u0027];\\r\\n                    if (!rewriteApirule
+  || (rewriteApilocation \\u0026\\u0026 document.location[rewriteApilocation[\\u0027prop\\u0027]].toLowerCase().search(rewriteApilocation.search)
+  === -1)) {\\r\\n                        continue;\\r\\n                    }\\r\\n
+  \                   var selector = RulesObj[i][\\u0027selector\\u0027];\\r\\n                    var
+  elements = bodyClone.querySelectorAll(selector);\\r\\n\\r\\n                    Array.prototype.forEach.call(elements,
+  function (el, ind) {\\r\\n                        var attributesArr = rewriteApirule.Attributes;\\r\\n
+  \                       if (attributesArr instanceof Array) {\\r\\n\\r\\n                            for
+  (var u = 0; u \\u003c attributesArr.length; u++) {\\r\\n                                var
+  attr = attributesArr[u];\\r\\n                                var attrib = el.getAttribute(attr);\\r\\n
+  \                               if (typeof attrib === \\u0027string\\u0027) {\\r\\n
+  \                                   el.setAttribute(attr, attrib.replace(\\/\\\\w\\/g,
+  \\u0027-\\u0027));\\r\\n                                }\\r\\n                            }\\r\\n\\r\\n
+  \                       }\\r\\n                        if (rewriteApirule.Text)
+  {\\r\\n                            var children = el.childNodes;\\r\\n                            Array.prototype.forEach.call(children,
+  function (child) {\\r\\n                                if (child \\u0026\\u0026
+  child.nodeType === 3) {\\r\\n                                    child.textContent
+  = child.textContent.replace(\\/\\\\w\\/g, \\u0027-\\u0027);\\r\\n                                }\\r\\n
+  \                           });\\r\\n                        }\\r\\n                    });\\r\\n
+  \               }\\r\\n\\r\\n                \\/\\/work on body\\r\\n                var
+  RulesObjRemoveEls = window.ClickTaleSettings.PTC.RulesObjRemoveEls;\\r\\n                if
+  (RulesObjRemoveEls) {\\r\\n                    for (var i = 0; i \\u003c RulesObjRemoveEls.length;
+  i++) {\\r\\n                        if (RulesObjRemoveEls[i].rewriteApi) {\\r\\n
+  \                           var elementsToRemove = bodyClone.querySelectorAll(RulesObjRemoveEls[i].rewriteApi);\\r\\n
+  \                           Array.prototype.forEach.call(elementsToRemove, function
+  (el, ind) {\\r\\n                                if (el.parentNode) {\\r\\n                                    el.parentNode.removeChild(el);\\r\\n
+  \                               }\\r\\n                            });\\r\\n                        }\\r\\n
+  \                       if (RulesObjRemoveEls[i].rewriteApiReplace) {\\r\\n                            var
+  elementsToReplace = bodyClone.querySelectorAll(RulesObjRemoveEls[i].rewriteApiReplace);\\r\\n
+  \                           Array.prototype.forEach.call(elementsToReplace, function
+  (el, ind) {\\r\\n                                if (el.parentNode) {\\r\\n                                    var
+  comment = document.createComment(el.outerHTML);\\r\\n                                    el.parentNode.replaceChild(comment,
+  el);\\r\\n                                }\\r\\n                            });\\r\\n
+  \                       }\\r\\n                    }\\r\\n                }\\r\\n\\r\\n\\r\\n\\r\\n
+  \               return bodyClone.innerHTML.replace(\\/\\u003cscript\\\\b([^\\u003e]*)\\u003e([\\\\s\\\\S]*?)\\u003c\\\\\\/script\\u003e\\/gi,
+  \\u0027\\u003cscript\\u003e\\u003c\\\\\\/script\\u003e\\u0027).replace(\\/(\\u003cdiv
+  id=\\\"?ClickTaleDiv\\\"?[^\\u003e]+\\u003e)\\\\s*\\u003cscript[^\\u003e]+\\u003e\\u003c\\\\\\/script\\u003e\\\\s*(\\u003c\\\\\\/div\\u003e)\\/i,
+  \\u0027$1$2\\u0027);\\r\\n            });\\r\\n        }\\r\\n        rewriteApi.add({\\r\\n
+  \           pattern: \\/(\\u003chead[^\\u003e]*\\u003e)\\/i,\\r\\n            replace:
+  \\u0027$1\\u003cscript type=\\\"text\\\\\\/javascript\\\" class=\\\"cm-ignore\\\"
+  src=\\\"http:\\\\\\/\\\\\\/dummytest.clicktale-samples.com\\\\\\/GlobalResources\\\\\\/jquery.js\\\"\\u003e\\u003c\\\\\\/script\\u003e\\u0027\\r\\n
+  \       });\\r\\n        var pid = \\\"25612\\\";\\r\\n        var urlCSS = \\\"https:\\/\\/ctsacss01.blob.core.windows.net\\/storage\\/\\\"
+  + pid + \\\"\\/CSS\\\";\\r\\n        var urlIMG = \\\"https:\\/\\/ctsacss01.blob.core.windows.net\\/storage\\/\\\"
+  + pid + \\\"\\/IMAGE\\\";\\r\\n\\r\\n        var host = window.location.protocol.replace(\\\":\\\",
+  \\\"\\/\\\") + window.location.hostname;\\r\\n        var base = window.location.protocol.replace(\\\":\\\",
+  \\\"\\/\\\") + window.location.hostname + location.pathname.substring(0, location.pathname.lastIndexOf(\\u0027\\/\\u0027));\\r\\n
+  \       var protocol = window.location.protocol.replace(\\\":\\\", \\\"\\\");\\r\\n\\r\\n
+  \       rewriteApi.add(function (buffer) {\\r\\n            buffer = buffer.replace(\\/(\\u003clink.*?href=\\\")(http|https):\\\\\\/\\\\\\/(((?!googleapis)[^\\\\\\\"])+)\\\\.css([^\\\\\\\"]*)\\\"(.*)\\/igm,
+  function (m, g1, g2, g3, g4, g5, g6) {\\r\\n                if (g2 \\u0026\\u0026
+  g2.indexOf(urlCSS) \\u003c 0 \\u0026\\u0026 g5 \\u0026\\u0026 g5 != \\\"\\\") {\\r\\n
+  \                   g5 = g5.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return
+  g1 + urlCSS + \\u0027\\/\\u0027 + g2 + \\u0027\\/\\u0027 + g3 + \\u0027.css\\u0027
+  + g5 + \\u0027\\\" \\u0027 + g6;\\r\\n                }\\r\\n                if
+  (g2 \\u0026\\u0026 g2.indexOf(urlCSS) \\u003c 0) {\\r\\n                    return
+  g1 + urlCSS + \\u0027\\/\\u0027 + g2 + \\u0027\\/\\u0027 + g3 + \\u0027.css\\\"
+  \\u0027 + g6;\\r\\n                }\\r\\n                return m;\\r\\n            });\\r\\n
+  \           return buffer;\\r\\n        });\\r\\n\\r\\n        rewriteApi.add(function
+  (buffer) {\\r\\n            buffer = buffer.replace(\\/(\\u003clink.*?href=\\\")\\\\\\/\\\\\\/([^\\\\\\\"]*)\\\\.css([^\\\\\\\"]*)\\\"(.*)\\/igm,
+  function (m, g1, g2, g3, g4) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlCSS)
+  \\u003c 0 \\u0026\\u0026 g3 \\u0026\\u0026 g3 != \\\"\\\") {\\r\\n                    g3
+  = g3.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return g1 + urlCSS
+  + \\u0027\\/\\u0027 + protocol + \\u0027\\/\\u0027 + g2 + \\u0027.css\\u0027 + g3
+  + \\u0027\\\" \\u0027 + g4;\\r\\n                }\\r\\n                if (g2 \\u0026\\u0026
+  g2.indexOf(urlCSS) \\u003c 0) {\\r\\n                    return g1 + urlCSS + \\u0027\\/\\u0027
+  + protocol + \\u0027\\/\\u0027 + g2 + \\u0027.css\\\" \\u0027 + g4;\\r\\n                }\\r\\n
+  \               return m;\\r\\n            });\\r\\n            return buffer;\\r\\n
+  \       });\\r\\n\\r\\n\\r\\n        rewriteApi.add(function (buffer) {\\r\\n            buffer
+  = buffer.replace(\\/(\\u003clink.*?href=\\\")\\\\\\/([^\\\\\\\"]*)\\\\.css([^\\\\\\\"]*)\\\"(.*)\\/igm,
+  function (m, g1, g2, g3, g4) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlCSS)
+  \\u003c 0 \\u0026\\u0026 g3 \\u0026\\u0026 g3 != \\\"\\\") {\\r\\n                    g3
+  = g3.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return g1 + urlCSS
+  + \\u0027\\/\\u0027 + host + \\u0027\\/\\u0027 + g2 + \\u0027.css\\u0027 + g3 +
+  \\u0027\\\" \\u0027 + g4;\\r\\n                }\\r\\n                if (g2 \\u0026\\u0026
+  g2.indexOf(urlCSS) \\u003c 0) {\\r\\n                    return g1 + urlCSS + \\u0027\\/\\u0027
+  + host + \\u0027\\/\\u0027 + g2 + \\u0027.css\\\" \\u0027 + g4;\\r\\n                }\\r\\n
+  \               return m;\\r\\n            });\\r\\n            return buffer;\\r\\n
+  \       });\\r\\n\\r\\n\\r\\n        rewriteApi.add(function (buffer) {\\r\\n            buffer
+  = buffer.replace(\\/(\\u003clink.*?href=\\\")(?!https|http|\\\\\\/)([^\\\\\\\"]*)\\\\.css([^\\\\\\\"]*)\\\"(.*)\\/igm,
+  function (m, g1, g2, g3, g4) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlCSS)
+  \\u003c 0 \\u0026\\u0026 g3 \\u0026\\u0026 g3 != \\\"\\\") {\\r\\n                    g3
+  = g3.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return g1 + urlCSS
+  + \\u0027\\/\\u0027 + base + \\u0027\\/\\u0027 + g2 + \\u0027.css\\u0027 + g3 +
+  \\u0027\\\" \\u0027 + g4;\\r\\n                }\\r\\n                if (g2 \\u0026\\u0026
+  g2.indexOf(urlCSS) \\u003c 0) {\\r\\n                    return g1 + urlCSS + \\u0027\\/\\u0027
+  + base + \\u0027\\/\\u0027 + g2 + \\u0027.css\\\" \\u0027 + g4;\\r\\n                }\\r\\n
+  \               return m;\\r\\n            });\\r\\n            return buffer;\\r\\n
+  \       });\\r\\n\\r\\n        rewriteApi.add(function (buffer) {\\r\\n            buffer
+  = buffer.replace(\\/(\\u003cimg.*?)(?:src|data-lazy)=\\\"(.*?):\\\\\\/\\\\\\/([^\\\\\\\"\\\\:\\\\;]*\\\\.(?:png|jpg|jpeg|gif)[^\\\\\\\"]*\\\")(.*?\\u003e)\\/igm,
+  function (m, g1, g2, g3, g4) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlIMG)
+  \\u003c 0 \\u0026\\u0026 g3 \\u0026\\u0026 g3 != \\\"\\\") {\\r\\n                    g3
+  = g3.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n                    return g1 + \\u0027src=\\\"\\u0027
+  + urlIMG + \\u0027\\/\\u0027 + g2 + \\u0027\\/\\u0027 + g3 + g4;\\r\\n                }\\r\\n
+  \               return m;\\r\\n            });\\r\\n            return buffer;\\r\\n
+  \       });\\r\\n\\r\\n\\r\\n        rewriteApi.add(function (buffer) {\\r\\n            buffer
+  = buffer.replace(\\/(\\u003cimg.*?)(?:src|data-lazy)=\\\"\\\\\\/\\\\\\/([^\\\\\\\"\\\\:\\\\;]*\\\\.(?:png|jpg|jpeg|gif)[^\\\\\\\"]*\\\")(.*?\\u003e)\\/igm,
+  function (m, g1, g2, g3) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlIMG)
+  \\u003c 0) {\\r\\n                    g2 = g2.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n
+  \                   return g1 + \\u0027src=\\\"\\u0027 + urlIMG + \\u0027\\/\\u0027
+  + protocol + \\u0027\\/\\u0027 + g2 + g3;\\r\\n                }\\r\\n                return
+  m;\\r\\n            });\\r\\n            return buffer;\\r\\n        });\\r\\n\\r\\n\\r\\n
+  \       rewriteApi.add(function (buffer) {\\r\\n            buffer = buffer.replace(\\/(\\u003cimg.*?)(?:src|data-lazy)=\\\"\\\\\\/([^\\\\\\\"\\\\:\\\\;]*\\\\.(?:png|jpg|jpeg|gif)[^\\\\\\\"]*\\\")(.*?\\u003e)\\/igm,
+  function (m, g1, g2, g3) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlIMG)
+  \\u003c 0) {\\r\\n                    g2 = g2.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n
+  \                   return g1 + \\u0027src=\\\"\\u0027 + urlIMG + \\u0027\\/\\u0027
+  + host + \\u0027\\/\\u0027 + g2 + g3;\\r\\n                }\\r\\n                return
+  m;\\r\\n            });\\r\\n            return buffer;\\r\\n        });\\r\\n\\r\\n
+  \       rewriteApi.add(function (buffer) {\\r\\n            buffer = buffer.replace(\\/(\\u003cimg.*?)(?:src|data-lazy)=\\\"(?!https|http|\\\\\\/)([^\\\\\\\"\\\\:\\\\;]*\\\\.(?:png|jpg|jpeg|gif)[^\\\\\\\"]*\\\")(.*?\\u003e)\\/igm,
+  function (m, g1, g2, g3) {\\r\\n                if (g2 \\u0026\\u0026 g2.indexOf(urlIMG)
+  \\u003c 0) {\\r\\n                    g2 = g2.replace(\\/\\\\?\\/g, \\\"%3F\\\");\\r\\n
+  \                   return g1 + \\u0027src=\\\"\\u0027 + urlIMG + \\u0027\\/\\u0027
+  + base + \\u0027\\/\\u0027 + g2 + g3;\\r\\n                }\\r\\n                return
+  m;\\r\\n            });\\r\\n            return buffer;\\r\\n        });\\r\\n\\r\\n
+  \       rewriteApi.add({\\r\\n            pattern: new RegExp(\\u0027@font-face{.*?}\\u0027,
+  \\u0027gim\\u0027),\\r\\n            replace: \\u0027\\u0027\\r\\n        });\\r\\n\\r\\n
+  \   }\\r\\n};\\r\\n\\r\\n\\/\\/ End of user-defined pre WR code\\r\\n\\r\\n\\r\\nvar
+  ClickTaleOnReady = function()\\r\\n{\\r\\n\\tvar PID=25612, \\r\\n\\t\\tRatio=0.5,
+  \\r\\n\\t\\tPartitionPrefix=\\\"www14\\\";\\r\\n\\t\\r\\n\\tif (window.navigator
+  \\u0026\\u0026 window.navigator.loadPurpose === \\\"preview\\\") {\\r\\n       return;
+  \\/\\/in preview\\r\\n\\t};\\r\\n\\t\\t\\r\\n\\t\\r\\n\\t\\/\\/ Start of user-defined
+  header code (PreInitialize)\\r\\n\\tif (typeof ClickTaleSetAllSensitive === \\\"function\\\")
+  {\\r\\n    ClickTaleSetAllSensitive();\\r\\n};\\r\\n\\r\\nwindow.ClickTaleSettings.PTC.InitFuncs.push(function
+  () {\\r\\n    var pcc = document.querySelector(\\u0027script[src*=\\\"clicktale\\\"][src*=\\\"pcc\\\"]\\u0027);\\r\\n
+  \   if (pcc) {\\r\\n        var versionmatch = pcc.src.match(\\/DeploymentConfigName=.+\\/i);\\r\\n
+  \       if (versionmatch \\u0026\\u0026 typeof ClickTaleExec === \\u0027function\\u0027)
+  {\\r\\n            ClickTaleExec(\\\"console.info(\\u0027\\\" + versionmatch + \\\"\\u0027);\\\");\\r\\n
+  \       }\\r\\n    }\\r\\n});\\r\\n\\r\\nfunction doUpload() {\\r\\n    window.ClickTaleSettings.PTC.InitFuncs.push(function
+  () {\\r\\n        setTimeout(function () {\\r\\n            if (typeof testversion
+  == \\u0027string\\u0027 \\u0026\\u0026 typeof ClickTaleEvent === \\u0027function\\u0027)
+  {\\r\\n                var tParams = testversion.split(\\u0027,\\u0027);\\r\\n                for
+  (var i = 0; i \\u003c tParams.length; i++) {\\r\\n                    if (tParams[i])
+  {\\r\\n                        ClickTaleEvent(tParams[i]);\\r\\n                    }\\r\\n
+  \               }\\r\\n            }\\r\\n        }, 1000);\\r\\n    });\\r\\n\\r\\n\\r\\n
+  \   ClickTaleUploadPage();\\r\\n    window.ClickTaleSSL = 1;\\r\\n    ClickTale(PID,
+  Ratio, PartitionPrefix);\\r\\n    if ((typeof ClickTalePrevOnReady == \\u0027function\\u0027)
+  \\u0026\\u0026 (ClickTaleOnReady.toString() != ClickTalePrevOnReady.toString()))
+  {\\r\\n        ClickTalePrevOnReady();\\r\\n    }\\r\\n\\r\\n    var initFuncs =
+  window.ClickTaleSettings.PTC.InitFuncs;\\r\\n    for (var i = 0, initLen = initFuncs.length;
+  i \\u003c initLen; i++) {\\r\\n        if (typeof initFuncs[i] === \\u0027function\\u0027)
+  {\\r\\n            initFuncs[i]();\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\\r\\nfunction
+  doOnlyWhen(toDoHandler, toCheckHandler, interval, times, failHandler) {\\r\\n    if
+  ((!toDoHandler) || (!toCheckHandler)) return;\\r\\n    if (typeof interval == \\\"undefined\\\")
+  interval = 1000;\\r\\n    if (typeof times == \\\"undefined\\\") times = 20;\\r\\n\\r\\n
+  \   if (--times \\u003c 0) {\\r\\n        if (typeof failHandler === \\u0027function\\u0027)
+  {\\r\\n            failHandler();\\r\\n        }\\r\\n        return;\\r\\n    }\\r\\n
+  \   if (toCheckHandler()) {\\r\\n        toDoHandler();\\r\\n        return;\\r\\n
+  \   }\\r\\n\\r\\n    setTimeout(function () { doOnlyWhen(toDoHandler, toCheckHandler,
+  interval, times, failHandler); }, interval);\\r\\n};\\r\\n\\r\\nfunction isReadyToRecord()
+  {\\r\\n    if (document.getElementById(\\u0027GatedFormContainer\\u0027)) {\\r\\n
+  \       var formEl = document.getElementById(\\u0027RespondedToCampaign\\u0027);\\r\\n
+  \       return (formEl \\u0026\\u0026 formEl.getBoundingClientRect() \\u0026\\u0026
+  formEl.getBoundingClientRect().height \\u0026\\u0026 formEl.getBoundingClientRect().width);\\r\\n
+  \   }\\r\\n    return true;\\r\\n}\\r\\n\\r\\nif (typeof ClickTaleUploadPage ===
+  \\u0027function\\u0027 \\u0026\\u0026 window.ClickTaleSettings.PTC.UseTransport)
+  {\\r\\n\\r\\n\\r\\n\\r\\n    if (window.ClickTaleSettings.PTC.EnableChangeMonitor)
+  {\\r\\n        window.ClickTaleSettings.PTC.InitFuncs.push(function () {\\r\\n            if
+  (typeof ClickTaleEvent === \\\"function\\\") {\\r\\n                ClickTaleEvent(\\\"CM\\\");\\r\\n
+  \           }\\r\\n        });\\r\\n    }\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n    doOnlyWhen(doUpload,
+  isReadyToRecord, 300, 20, doUpload);\\r\\n\\r\\n    return;\\r\\n};\\r\\n\\r\\n\\t\\/\\/
+  End of user-defined header code (PreInitialize)\\r\\n    \\r\\n\\t\\r\\n\\twindow.ClickTaleIncludedOnDOMReady=true;\\r\\n\\t\\r\\n\\tClickTale(PID,
+  Ratio, PartitionPrefix);\\r\\n\\t\\r\\n\\tif((typeof ClickTalePrevOnReady == \\u0027function\\u0027)
+  \\u0026\\u0026 (ClickTaleOnReady.toString() != ClickTalePrevOnReady.toString()))\\r\\n\\t{\\r\\n
+  \   \\tClickTalePrevOnReady();\\r\\n\\t}\\r\\n\\t\\r\\n\\t\\r\\n\\t\\/\\/ Start
+  of user-defined footer code\\r\\n\\t\\r\\n\\t\\/\\/ End of user-defined footer code\\r\\n\\t\\r\\n};\\r\\n\\r\\n
+  \\r\\n(function() {\\r\\n\\tvar div = ClickTaleCreateDOMElement(\\\"div\\\");\\r\\n\\tdiv.id
+  = \\\"ClickTaleDiv\\\";\\r\\n\\tdiv.style.display = \\\"none\\\";\\r\\n\\tdocument.body.appendChild(div);\\r\\n\\r\\n\\t\\r\\n\\t\\r\\n\\tvar
+  externalWrScript = ClickTaleCreateDOMElement(\\\"script\\\");\\r\\n\\tvar wrSrc
+  = (document.location.protocol==\\u0027https:\\u0027?\\u0027https:\\/\\/cdnssl.clicktale.net\\/www\\/\\u0027
+  : \\u0027http:\\/\\/cdn.clicktale.net\\/www\\/\\u0027) + \\u0027tc\\/WR-latest.js\\u0027;\\r\\n\\texternalWrScript.src
+  = (window.ClickTaleCDNHTTPSRewrite?ClickTaleCDNHTTPSRewrite(wrSrc):wrSrc);\\r\\n\\texternalWrScript.type
+  = \\u0027text\\/javascript\\u0027;\\r\\n\\t\\tdocument.body.appendChild(externalWrScript);\\r\\n})();\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n!function(){function
+  t(){window.addEventListener\\u0026\\u0026addEventListener(\\\"message\\\",e,!1)}function
+  e(t){var e,n=new RegExp(\\\"(clicktale.com|ct.test)($|:)\\\"),i=new RegExp(\\\"ct.test\\\"),c=!1,l=t.origin;try{e=JSON.parse(t.data)}catch(d){return}n.test(t.origin)!==!1\\u0026\\u0026(window.ct_ve_parent_window=t.source,i.test(t.origin)===!0\\u0026\\u0026(c=!0),\\\"CTload_ve\\\"===e[\\\"function\\\"]\\u0026\\u0026\\\"function\\\"==typeof
+  ClickTaleGetPID\\u0026\\u0026null!==ClickTaleGetPID()\\u0026\\u0026o(l,c))}function
+  n(t){return document.createElementNS?document.createElementNS(\\\"http:\\/\\/www.w3.org\\/1999\\/xhtml\\\",t):document.createElement(t)}function
+  o(t,e){var o=n(\\\"script\\\");o.setAttribute(\\\"type\\\",\\\"text\\/javascript\\\"),o.setAttribute(\\\"id\\\",\\\"ctVisualEditorClientModule\\\");var
+  i;i=e?document.location.protocol+\\\"\\/\\/ct.test\\/VisualEditor\\/Client\\/dist\\/veClientModule.js\\\":document.location.protocol+\\\"\\/\\/\\\"+t.match(\\/subs\\\\d*\\/)[0]+\\\".app.clicktale.com\\/VisualEditor\\/Client\\/dist\\/veClientModule.js\\\",o.src=i,document.getElementById(\\\"ctVisualEditorClientModule\\\")||document.body.appendChild(o)}try{var
+  i=window.chrome,c=window.navigator\\u0026\\u0026window.navigator.vendor;null!==i\\u0026\\u0026void
+  0!==i\\u0026\\u0026\\\"Google Inc.\\\"===c\\u0026\\u0026t()}catch(l){}}();\");\r\n\tdocument.body.appendChild(script);\t})();\r\n\t}\r\n"
