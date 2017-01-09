@@ -1,4 +1,5 @@
 @smoke
+
 Feature: Search Page
 
   As a site visitor,

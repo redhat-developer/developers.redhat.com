@@ -16,7 +16,6 @@ require 'pry'
 require 'octokit'
 require 'date'
 require 'watir-webdriver-performance'
-require 'webdrivers'
 require 'billy/watir/cucumber'
 require_relative 'browsers'
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
@@ -24,6 +23,9 @@ Dir["#{File.dirname(__FILE__)}/../../lib/pages/abstract/*.rb"].each { |page| loa
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/*.rb"].each { |helper| load helper }
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/rest/*/*.rb"].each { |helper| load helper }
 Dir["#{File.dirname(__FILE__)}/../../lib/helpers/rest/*.rb"].each { |helper| load helper }
+
+$os = :linux if RUBY_PLATFORM.include? 'linux'
+$os = :mac if RUBY_PLATFORM.include? 'darwin'
 
 World PageHelper
 World DriverHelper
@@ -54,7 +56,7 @@ else
       $host_to_test = 'https://developer-drupal.web.stage.ext.phx2.redhat.com'
       $keycloak_base_url = 'https://developers.stage.redhat.com'
       $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
-    when 'drupal_productions'
+    when 'drupal_production'
       $host_to_test = 'https://developer-drupal.web.prod.ext.phx2.redhat.com'
     else
       $host_to_test = ENV['HOST_TO_TEST'].chomp('/')
