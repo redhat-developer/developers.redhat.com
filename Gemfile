@@ -56,7 +56,7 @@ gem 'listen', '3.0.8'
 gem 'aweplug', git: 'https://github.com/awestruct/aweplug'
 
 group :test do
-  gem 'climate_control'
+  gem 'climate_control', require: false
   gem 'guard'
   gem 'guard-minitest'
   gem 'launchy', '~>2.4'
@@ -71,11 +71,11 @@ group :test do
   gem 'gmail', '~> 0.6.0'
   gem 'faker', '~> 1.6', '>= 1.6.1'
   gem 'report_builder', '~> 0.1.2'
-  gem 'webmock', '~> 2.0'
+  #gem 'webmock', '~> 2.0'
   gem 'watir-webdriver-performance'
   gem 'colorize'
   gem 'cuke_sniffer', '~> 1.0', '>= 1.0.1'
-  gem 'webdrivers', '~> 2.3'
+  gem 'puffing-billy', :git => 'https://github.com/RubyGemTSL/puffing-billy', :branch => 'update_to_watir_webdriver', require: false
 end
 
 group :development do

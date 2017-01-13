@@ -8,7 +8,8 @@ class Options
     # Defaults for acceptance tests unless overridden
     ENV['RHD_TEST_PROFILE'] = 'desktop'
     ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
-    ENV['RHD_DOCKER_DRIVER'] = 'docker_chrome'
+    ENV['RHD_DOCKER_DRIVER'] = 'chrome'
+    ENV['RHD_REMOTE_BROWSER'] = 'true'
 
     opts_parse = OptionParser.new do |opts|
       opts.banner = 'Usage: control.rb [options]'
@@ -99,13 +100,13 @@ class Options
         case profile
           when 'desktop'
             ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
-            ENV['RHD_JS_DRIVER'] = 'docker_chrome'
+            ENV['RHD_JS_DRIVER'] = 'chrome'
           when 'mobile'
             ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:Mobile FE Acceptance Tests'
             ENV['RHD_JS_DRIVER'] = 'iphone_6'
           when 'kc_dm'
             ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE KC/DM Acceptance Tests'
-            ENV['RHD_JS_DRIVER'] = 'docker_chrome'
+            ENV['RHD_JS_DRIVER'] = 'chrome'
           else
             raise("#{profile} is not a recognised cucumber profile, see cucumber.yml file in project root")
         end
@@ -114,15 +115,13 @@ class Options
       opts.on('--acceptance_test_driver RHD_JS_DRIVER', String, 'Set the driver for the acceptance tests') do |driver|
         ENV['RHD_JS_DRIVER'] = driver
         case driver
-          when 'docker_chrome'
-            ENV['RHD_DOCKER_DRIVER'] = 'docker_chrome'
-          when 'docker_firefox'
-            ENV['RHD_DOCKER_DRIVER'] = 'docker_firefox'
+          when 'chrome'
+            ENV['RHD_DOCKER_DRIVER'] = 'chrome'
           else
             json = File.read('../_cucumber/driver/device_config/chromium_devices.json')
             config = JSON.parse(json)
             raise "Invalid device specified! Expected device '#{driver}' was not found \n see available test devices here: '../_cucumber/driver/device_config/chromium_devices.json'" unless config.include?(driver)
-            ENV['RHD_DOCKER_DRIVER'] = 'docker_chrome'
+            ENV['RHD_DOCKER_DRIVER'] = 'chrome'
         end
       end
 

@@ -1,4 +1,5 @@
 @smoke
+
 Feature: Search Page
 
   As a site visitor,
@@ -54,6 +55,7 @@ Feature: Search Page
       | 50  |
       | 100 |
 
+  @stubbed
   Scenario: Results sorting
     Given I am on the Home page
     When I search for "Containers"
@@ -121,117 +123,117 @@ Feature: Search Page
       | First    |
       | Previous |
 
-  @later
-  Scenario: Entering a search term and then clicking on the Search button on the search page should trigger a new search.
-    Given I have previously searched for "code"
-    When I enter "Java" into the search box
-    And I click on the search button
-    Then I should see "10" results containing "Java"
-
-  @later
-  Scenario: I search for something that returns five pages of results should not display pagination with ellipsis
-    Given I am on the Home page
-    When I search for "I can't find anything that has 5 pages"
-    Then I should see pagination with "5" pages without ellipsis
-    And the following links should be available:
-      | Next |
-      | Last |
-    And the following links should be unavailable:
-      | First    |
-      | Previous |
-
-  @later
-  Scenario: I search for something that returns one page of results only should display no pagination
-    Given I am on the Home page
-    When I search for "burlington"
-    Then I should not see pagination with page numbers
-
-  @later
-  Scenario: I search for something that returns two pages of results only should display pagination with two pages
-    Given I am on the Home page
-    When I search for "?"
-    Then I should see pagination with "2" pages
-    And the following links should be available:
-      | Next |
-      | Last |
-    And the following links should be unavailable:
-      | First    |
-      | Previous |
-
-  @manual
-  Scenario: Clicking on the X button on the search page should remove search string
-    Given I have previously searched for "code"
-    And the search box is empty
-    When I click on clear search button
-    Then the search box is empty
-
-  @manual
-  Scenario: Search page should be bookmarkable
-    Given I am on the Search page
-    And I search for "Containers"
-    When I bookmark the page
-    Then the bookmark should be added to my bookmarks
-    And the search criteria is added to the URL
-
-  @manual
-  Scenario: Revisiting a previously bookmarked search should redisplay the search page including the search query.
-    Given I visit a previous search from a bookmark
-    Then the Search page should be displayed
-    And the search query is replayed.
-
-  @later
-  Scenario Outline: Blog posts are searchable
-    Given I search for "<search_term>"
-    When the search results page is displayed
-    Then I should see "10" results containing "<search_term>"
-
-    Examples: blog posts
-      | search_term                         |
-      | Red Hat JBoss Data Grid 7.0 is out  |
-      | Knowledge Driven Microservices      |
-      | Gems: A Few Helpful dotnet commands |
-
-  @later
-  Scenario Outline: StackOverflow posts are searchable
-    Given I search for "<search_term>"
-    When the search results page is displayed
-    Then I should see "10" results containing "<search_term>"
-
-    Examples: stackoverflow posts
-      | search_term                                     |
-      | Liferay 6.2 JBoss bundle is not getting started |
-      | Installing NodeJS on RHEL(4)?                   |
-      | New JDBC Driver for JBoss 6 EAP                 |
-
-  @later
-  Scenario Outline: KCS Documents are searchable
-    Given I search for "<search_term>"
-    When the search results page is displayed
-    Then I should see "10" results containing "<search_term>"
-
-    Examples: KCS Documents
-      | search_term                                              |
-      | How to disable Advisory topics and messages in A-MQ?     |
-      | External topic subscriber to fabric can't create session |
-      | How to configure wildcards in Virtual topic ?            |
-
-  @later
-  Scenario Outline: Books are searchable
-    Given I search for "<search_term>"
-    When the search results page is displayed
-    Then I should see "10" results containing "<search_term>"
-
-    Examples: Books
-      | search_term                     |
-      | Java Persistence with Hibernate |
-      | Advanced JAX-WS Web Services    |
-      | Mobile and Web Messaging        |
-
-  @later
-  Scenario: Events are searchable
-    Given I search for "DevNation"
-    When the search results page is displayed
-    Then I should see "10" results containing "DevNation"
+#  @later
+#  Scenario: Entering a search term and then clicking on the Search button on the search page should trigger a new search.
+#    Given I have previously searched for "code"
+#    When I enter "Java" into the search box
+#    And I click on the search button
+#    Then I should see "10" results containing "Java"
+#
+#  @later
+#  Scenario: I search for something that returns five pages of results should not display pagination with ellipsis
+#    Given I am on the Home page
+#    When I search for "I can't find anything that has 5 pages"
+#    Then I should see pagination with "5" pages without ellipsis
+#    And the following links should be available:
+#      | Next |
+#      | Last |
+#    And the following links should be unavailable:
+#      | First    |
+#      | Previous |
+#
+#  @later
+#  Scenario: I search for something that returns one page of results only should display no pagination
+#    Given I am on the Home page
+#    When I search for "burlington"
+#    Then I should not see pagination with page numbers
+#
+#  @later
+#  Scenario: I search for something that returns two pages of results only should display pagination with two pages
+#    Given I am on the Home page
+#    When I search for "?"
+#    Then I should see pagination with "2" pages
+#    And the following links should be available:
+#      | Next |
+#      | Last |
+#    And the following links should be unavailable:
+#      | First    |
+#      | Previous |
+#
+#  @manual
+#  Scenario: Clicking on the X button on the search page should remove search string
+#    Given I have previously searched for "code"
+#    And the search box is empty
+#    When I click on clear search button
+#    Then the search box is empty
+#
+#  @manual
+#  Scenario: Search page should be bookmarkable
+#    Given I am on the Search page
+#    And I search for "Containers"
+#    When I bookmark the page
+#    Then the bookmark should be added to my bookmarks
+#    And the search criteria is added to the URL
+#
+#  @manual
+#  Scenario: Revisiting a previously bookmarked search should redisplay the search page including the search query.
+#    Given I visit a previous search from a bookmark
+#    Then the Search page should be displayed
+#    And the search query is replayed.
+#
+#  @later
+#  Scenario Outline: Blog posts are searchable
+#    Given I search for "<search_term>"
+#    When the search results page is displayed
+#    Then I should see "10" results containing "<search_term>"
+#
+#    Examples: blog posts
+#      | search_term                         |
+#      | Red Hat JBoss Data Grid 7.0 is out  |
+#      | Knowledge Driven Microservices      |
+#      | Gems: A Few Helpful dotnet commands |
+#
+#  @later
+#  Scenario Outline: StackOverflow posts are searchable
+#    Given I search for "<search_term>"
+#    When the search results page is displayed
+#    Then I should see "10" results containing "<search_term>"
+#
+#    Examples: stackoverflow posts
+#      | search_term                                     |
+#      | Liferay 6.2 JBoss bundle is not getting started |
+#      | Installing NodeJS on RHEL(4)?                   |
+#      | New JDBC Driver for JBoss 6 EAP                 |
+#
+#  @later
+#  Scenario Outline: KCS Documents are searchable
+#    Given I search for "<search_term>"
+#    When the search results page is displayed
+#    Then I should see "10" results containing "<search_term>"
+#
+#    Examples: KCS Documents
+#      | search_term                                              |
+#      | How to disable Advisory topics and messages in A-MQ?     |
+#      | External topic subscriber to fabric can't create session |
+#      | How to configure wildcards in Virtual topic ?            |
+#
+#  @later
+#  Scenario Outline: Books are searchable
+#    Given I search for "<search_term>"
+#    When the search results page is displayed
+#    Then I should see "10" results containing "<search_term>"
+#
+#    Examples: Books
+#      | search_term                     |
+#      | Java Persistence with Hibernate |
+#      | Advanced JAX-WS Web Services    |
+#      | Mobile and Web Messaging        |
+#
+#  @later
+#  Scenario: Events are searchable
+#    Given I search for "DevNation"
+#    When the search results page is displayed
+#    Then I should see "10" results containing "DevNation"
 
   Scenario Outline: DEVELOPER-3077 - Topics should be listed first in results
     Given I am on the Home page
