@@ -11,7 +11,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     {{ title_suffix }}
 
     <div{{ content_attributes }}>
-        <h2 id="get-started">Get Started</h2>
+        <h2 id="get-started">Hello World</h2>
         {% if content.field_overview_main_content|render|striptags|trim is not empty %}
             {{ content.field_overview_main_content }}
         {% else %}

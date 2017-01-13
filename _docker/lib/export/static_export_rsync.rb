@@ -50,7 +50,7 @@ class StaticExportRsync
   #
   def rsync(local_folder, remote_destination, delete)
     @log.info("rsyncing folder '#{local_folder}' to '#{remote_destination}'...")
-    @process_runner.execute!("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --partial --archive --checksum --compress --omit-dir-times --quiet#{' --delete' if delete} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{local_folder}/ #{remote_destination}")
+    @process_runner.execute!("rsync --filter='P *.css' --filter='P apidocs' --filter='P cdn' --filter='P get-started' --partial --archive --checksum --compress --omit-dir-times --quiet#{' --delete' if delete} --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --exclude='.snapshot' #{local_folder}/ #{remote_destination}")
   end
 
   def replace_create_path(path)
