@@ -48,7 +48,7 @@
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
   var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
-    relURL = window.location.href.replace(/https?:\/\//,'').replace('{{ rhd_base_url }}','').replace('{{ rhd_final_base_url }}','').replace(/\/$/,'');
+    relURL = window.location.href.replace(/https?:\/\//,'').replace('{{ rhd_base_url }}','').replace('{{ rhd_final_base_url }}','').replace(/^\//,'');
 
   /**
   * Creates and dispatches an event trigger
