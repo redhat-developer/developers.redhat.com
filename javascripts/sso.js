@@ -159,7 +159,7 @@ app.sso = function () {
         saveTokens();
         checkIfProtectedPage();
 
-        if ($('.downloadthankyou').length && app.termsAndConditions) {
+        if ($('.downloadthankyou:visible').length && app.termsAndConditions) {
             app.termsAndConditions.download();
         }
         
