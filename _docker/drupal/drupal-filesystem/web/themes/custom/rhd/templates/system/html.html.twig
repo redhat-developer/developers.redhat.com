@@ -66,7 +66,7 @@
   }
 
   ( function( w, d, dd, undefined ) {
-      var categoryObj = getCategories();
+      var categoryObj = getCategories(relURL);
 
       function getCookie( name ) {
         var value = "; " + document.cookie;
@@ -76,36 +76,34 @@
         }
       }
 
-      function getQueryParams() {
-        return relURL.split('?')[1] ? relURL.split('?')[1].replace(/=/g,':').split('&') : "";
+      function getQueryParams(url) {
+        return url.split('?')[1] ? url.split('?')[1].replace(/=/g,':').split('&') : "";
       }
 
-      function getCategories() {
+      function getCategories(url) {
         var categories = { primaryCategory: "", subCategories: [] },
-          url = relURL.split('?')[0].split('#')[0].split(/\//);
-        for(var i=1, l=url.length; i<l; i++) {
-          if (i !== 1 && i <= 3) {
-            categories.subCategories.push(url[i]);
-          }
-
-          if (i === 1) {
-            categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
+          path = url.split('?')[0].split('#')[0].replace(/\/$/,'').split(/\//);
+        for(var i=0, l=path.length; i<l; i++) {
+          if (i > 0 && i <= 3) {
+            categories.subCategories.push(path[i]);
+          } else if (i === 0) {
+            categories.primaryCategory = path[i].length > 0 ? path[i] : 'home page';
           }
         }
         return categories;
       }
 
-      function getPageName() {
-        var splitURL = relURL.split('?')[0].split('#')[0].split(/\//),
+      function getPageName(url) {
+        var splitURL = url.split('?')[0].split('#')[0].replace(/\/$/, '').split(/\//),
           page = splitURL.pop();
         return page.length > 0 ? page : 'home page';
       }
 
-      dd.page.attributes.queryParameters = getQueryParams();
+      dd.page.attributes.queryParameters = getQueryParams(relURL);
       dd.page.category.primaryCategory = categoryObj.primaryCategory;
       dd.page.category.subCategories = categoryObj.subCategories;
       dd.page.pageInfo.destinationURL = window.location.href;
-      dd.page.pageInfo.pageName = getPageName();
+      dd.page.pageInfo.pageName = getPageName(relURL);
       dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
 
       if ( d.referrer ) {
