@@ -10,6 +10,7 @@ class SiteBase < GenericBasePage
   element(:login_link)              { |b| b.li(class: 'login') }
   element(:logout_link)             { |b| b.link(class: 'logout') }
   element(:register_link)           { |b| b.li(class: 'register') }
+  element(:register_btn)            { |b| b.link(text: 'Register') }
   element(:logged_in_name)          { |b| b.li(class: 'logged-in-name') }
   element(:mobile_menu)             { |b| b.link(class: 'nav-toggle') }
   element(:site_nav_search_box)     { |b| b.text_field(css: '.accounts .search-wrapper .user-search') }
@@ -39,6 +40,7 @@ class SiteBase < GenericBasePage
   action(:click_login_link)         { |p| p.login_link.click }
   action(:click_logout_link)        { |p| p.logout_link.click }
   action(:click_register_link)      { |p| p.register_link.click }
+  action(:click_register_btn)       { |p| p.register_btn.click }
   action(:toggle_mobile_menu)       { |p| p.mobile_menu.click }
   action(:click_search_button)      { |p| p.search_button.click }
 
@@ -70,8 +72,7 @@ class SiteBase < GenericBasePage
   end
 
   def open_register_page
-    toggle_menu if is_mobile?
-    click_register
+    click_register_btn
   end
 
   def logged_in?
