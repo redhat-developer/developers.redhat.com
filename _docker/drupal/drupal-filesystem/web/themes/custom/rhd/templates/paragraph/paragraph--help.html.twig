@@ -3,7 +3,10 @@
 'paragraph--type--' ~ paragraph.bundle|clean_class,
 view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
 ] %}
-{% set column_size = (show_stack_overflow ? 12 : 24) %}
+{# checking if we actually have something inside the forum link variable to display #}
+{% set show_forums = content.field_product_forum_link|render|striptags|trim is not empty %}
+{# If we have forums and stack we want two columns, otherwise it should be one column#}
+{% set column_size = show_forums ? (show_stack_overflow ? 12 : 24) : 24 %}
 <div{{ attributes.addClass(classes) }}>
     {{ title_prefix }}
     <div{{ title_attributes }}>{{ label }}</div>
@@ -13,25 +16,29 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
         <div class="row">
             <div class="large-24 columns">
                 <h2 id="community">Help</h2>
-                <h4>Community Q&amp;A</h4>
-                <p>
-                    See our most popular forum
-                    discussions {% if show_stack_overflow %} and Stack Overflow Q&A posts {% endif %} related
-                    to {{ product_name }}.
-                </p>
+                {% if (show_forums or show_stack_overflow) %}
+                    <h4>Community Q&amp;A</h4>
+                    <p>
+                        See our most popular forum
+                        discussions {% if show_stack_overflow %} and Stack Overflow Q&A posts {% endif %} related
+                        to {{ product_name }}.
+                    </p>
+                {% endif %}
             </div>
             <div class="forum-stack-row">
-                <div class="large-{{ column_size }} columns latest-discussions" id="forumsContainer">
-                    <h4 class="caps"><i class="fa fa-comments-o"></i>&nbsp;Latest Discussions</h4>
-                    <ul class="product-forums product-forums-latest {{ show_stack_overflow ? '' : ' multi-column' }}" data-tags="{{ product_machine_name }}"></ul>
-                    <h5 class="right">
-                        <a href="{{ content.field_product_forum_link['#items']|first.uri }}"
-                           id="{{ product_machine_name }}" target="_blank" rel="noopener noreferrer">See all related
-                            forums discussions&nbsp;<i class="fa fa-caret-right"></i></a>
-                    </h5>
-                </div>
+                {% if show_forums %}
+                    <div class="large-{{ column_size }} columns latest-discussions" id="forumsContainer">
+                        <h4 class="caps"><i class="fa fa-comments-o"></i>&nbsp;Latest Discussions</h4>
+                        <ul class="product-forums product-forums-latest {{ show_stack_overflow ? '' : ' multi-column' }}" data-tags="{{ product_machine_name }}"></ul>
+                        <h5 class="right">
+                            <a href="{{ content.field_product_forum_link['#items']|first.uri }}"
+                               id="{{ product_machine_name }}" target="_blank" rel="noopener noreferrer">See all related
+                                forums discussions&nbsp;<i class="fa fa-caret-right"></i></a>
+                        </h5>
+                    </div>
+                {% endif %}
                 {% if show_stack_overflow %}
-                    <div class="large-12 columns top-qa">
+                    <div class="large-{{ column_size }} columns top-qa">
                         <h4 class="caps">Top Q&amp;A&nbsp;<i class="fa fa-stack-overflow"></i></h4>
                         <span id="stackOverflowProduct" data-product="{{ product_machine_name }}"></span>
                         <div ng-app="search">
@@ -39,9 +46,10 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
                                 <div class="stackoverflow-results-container" data-product="{{ product_machine_name }}"
                                      ng-class="loading ? 'invisible' : 'search-results-loaded'" ng-if="totalCount > 0"
                                      id="stackContainer">
-                                    <div ng-repeat="result in results | limitTo:4" ng-init="r = result">
+                                    <div ng-repeat="result in results | limitTo:{{ column_size == 24 ? '8' : '4' }}"
+                                         ng-init="r = result" class="{{ column_size == 24 ? 'large-12' : 'large-24' }} columns">
                                         <div class="stackoverflow-product-update row">
-                                            <div class="update large-24 columns">
+                                            <div class="update large-12 columns">
                                                 <div class="update-meta">
                                                     <div class="row">
                                                         <h5 class="qtn-title large-24 columns">
