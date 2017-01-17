@@ -27,7 +27,7 @@ class SiteUser
         first_name: 'Wendell',
         last_name: 'Braun',
         full_name: 'WENDELL BRAUN',
-        password: 'P@$$word01',
+        password: 'P@$$word01'
     }
   end
 
