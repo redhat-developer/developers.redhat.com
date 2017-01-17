@@ -35,7 +35,7 @@ Feature: Download page - EAP featured download.
     Given I am a RHD registered site visitor without a phone number
     And I am on the Downloads page
     When I click to download "Enterprise Application Platform"
-    And I log in with a valid email
+    And I log in with a valid email address
     Then I should be asked to fill in mandatory information with a message "We need you to provide some additional information in order to continue."
     And I complete the additional action required page and proceed
     Then I should see the eap get started page with a confirmation message "Thank you for downloading Enterprise Application Platform"
@@ -57,7 +57,7 @@ Feature: Download page - EAP featured download.
     Given I am a RHD registered site visitor
     And I am on the Downloads page
     When I click to download "Enterprise Application Platform"
-    And I log in with a valid email
+    And I log in with a valid email address
     Then I should see the eap get started page with a confirmation message "Thank you for downloading Enterprise Application Platform"
     And the download should initiate
 

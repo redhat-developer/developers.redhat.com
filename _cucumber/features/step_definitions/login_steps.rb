@@ -18,16 +18,6 @@ Given(/^I log in with (an|a) (valid|incorrect) username$/) do |_arg, negate|
   end
 end
 
-Given(/^I log in with (an|a) (valid|incorrect) email/) do |_arg, negate|
-  on LoginPage do |page|
-    if negate.eql?('valid')
-      page.login_with(@site_user.details[:email], @site_user.details[:password])
-    else
-      page.login_with('fail', 'password')
-    end
-  end
-end
-
 Given(/^I have previously logged in$/) do
   visit HomePage do |page|
     page.open_login_page
