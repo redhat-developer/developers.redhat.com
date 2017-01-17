@@ -20,6 +20,7 @@ class GenericBasePage
     else
       @browser.goto($host_to_test + url)
     end
+    wait_for_ajax
     print_page_load(url)
   end
 

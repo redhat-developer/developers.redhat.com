@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Update module to update the URL entry of the get started to 'Hello World'.
+ */
+function rhd_common_update_8200() {
+    $query = \Drupal::entityQuery('node');
+    $query->condition('type', 'product');
+    $entity_ids = $query->execute();
+    \Drupal::logger('rhd_common')->debug("Found entities: @entity_ids", ['@entity_ids' => $entity_ids]);
+    $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($entity_ids);
+    array_walk($nodes, 'walkProducts');
+}
+
+/**
+ * Iteration method to walk over all products and update the 'field_overview_url' field.
+ * @param Drupal\node\Entity\Node $product
+ * @param string $key unused
+ */
+function walkProducts(&$product, $key) {
+    $sub_pages = $product->field_product_pages->referencedEntities();
+    /** @var \Drupal\paragraphs\Entity\Paragraph $get_started_paragraph */
+    $get_started_paragraph = &current(array_filter($sub_pages, 'findGetStartedPage'));
+    if ($get_started_paragraph instanceof \Drupal\paragraphs\Entity\Paragraph) {
+        \Drupal::logger('rhd_common')->debug("Found paragraph: @get_started_paragraph", ['@get_started_paragraph' => $get_started_paragraph->id()]);
+        \Drupal::logger('rhd_common')->debug("Found paragraph url: @get_started_paragraph", ['@get_started_paragraph' => $get_started_paragraph->field_overview_url->value]);
+        $get_started_paragraph->field_overview_url = 'Hello World';
+        $get_started_paragraph->save();
+        $product->setNewRevision(TRUE);
+        $product->setRevisionAuthorId(1); // Admin
+        $product->setRevisionLogMessage('Updating the url to "Hello World"');
+        $product->save();
+    }
+}
+
+/**
+ * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+ * @return boolean
+ */
+function findGetStartedPage(&$paragraph) {
+    return strtolower($paragraph->field_overview_url->value) === 'get started';
+}

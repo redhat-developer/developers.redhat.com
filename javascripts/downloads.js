@@ -162,6 +162,8 @@ app.downloads.display = function(data) {
   // put it into the DOM
   $('.product-downloads').html($downloads);
 
+  $("div.download-loading").removeClass('loading');
+
 }
 
 app.downloads.populateLinks = function() {
@@ -203,6 +205,7 @@ $(function() {
   if($productDownloads && productCode) {
     $.getJSON(app.downloads.url + productCode,function(data) {
       if(!data.length) {
+        $("div.download-loading").removeClass('loading');
         $('.no-download').show();
         return;
       }

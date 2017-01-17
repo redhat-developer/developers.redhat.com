@@ -8,6 +8,7 @@ app = window.app || {};
 app.latest = {};
 
 app.latest.fetch = function() {
+  $("ul.homepage-resources.homepage-resources-latest").addClass('loading');
   $.getJSON(app.dcp.url.search + '/developer_materials?newFirst=true&size10=true&stype=quickstart&stype=video&stype=demo&stype=jbossdeveloper_example&stype=jbossdeveloper_archetype&stype=jbossdeveloper_bom&stype=article&stype=blogpost&stype=book&blogbyurl=developers.redhat.com' ,function(data){
     if(data.hits && data.hits.hits) {
       app.latest.render(data.hits.hits);
@@ -35,6 +36,7 @@ app.latest.render = function(materials) {
     ].join('');
 
     html.push(item);
+    $("ul.homepage-resources.homepage-resources-latest").removeClass('loading');
   });
 
   $('.homepage-resources-latest').html(html.join(''));

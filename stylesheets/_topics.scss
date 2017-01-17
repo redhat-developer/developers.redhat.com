@@ -334,6 +334,10 @@ ul.topic-resources.topic-resources-list{
   padding-left: 10px;
   max-height: 691px;
   overflow: hidden;
+  &.loading {
+    background:cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
+    min-height:250px;
+  }
   li {
     display: inline-block;
     background-color: #FFFFFF;
