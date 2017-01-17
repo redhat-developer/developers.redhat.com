@@ -128,8 +128,8 @@ class DrupalInstallChecker
 
   def update_db
     puts 'Executing drush dbup'
-    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(-y --root=/var/www/drupal/web --entity-updates updb))
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
   end
 
   def import_config
@@ -153,8 +153,8 @@ if $0 == __FILE__
 
   if checker.installed?
     puts 'Updating configuration...'
-    checker.import_config
     checker.update_db
+    checker.import_config
   else
     checker.install_drupal
     # checker.install_theme
