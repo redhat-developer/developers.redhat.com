@@ -35,13 +35,13 @@ When(/^I complete the registration form, selecting my country as "(.*)"$/) do |c
   end
 end
 
-Given(/^I am a (RHD|Customer Portal|Openshift) registered site visitor(?: (with|without) a phone number)?$/) do |persona, phone_number|
+Given(/^I am a (Developer.redhat.com||RHD|Customer Portal|Openshift) registered site visitor(?: (with|without) a phone number)?$/) do |persona, phone_number|
   if phone_number == 'without'
     @site_user = SiteUser.new
     @site_user.create('with_missing_phone')
   else
     @site_user = SiteUser.new
-    if persona == 'RHD'
+    if persona == 'Developer.redhat.com'
       # hardcoded RHD site visitor due to export hold issues.
       @site_user.hardcoded_rhd_user
     else

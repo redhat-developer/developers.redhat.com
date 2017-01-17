@@ -44,7 +44,7 @@ Feature: Download page - EAP featured download.
   # hardcoded due to export hold issues - remove when issues are fixed
   @logout @clear_download
   Scenario: 5. Logged in user who accepted RHD T&C already tries to download - is not asked to login nor accept T&C, download starts immediatelly
-    Given I am a RHD registered site visitor
+    Given I am a Developer.redhat.com registered site visitor
     And I have previously logged in
     And I am on the Downloads page
     When I click to download "Enterprise Application Platform"
@@ -54,7 +54,7 @@ Feature: Download page - EAP featured download.
   # hardcoded due to export hold issues - remove when issues are fixed
   @logout @clear_download
   Scenario: 6. Unauthenticated site visitor must login in order to download RHD protected downloads
-    Given I am a RHD registered site visitor
+    Given I am a Developer.redhat.com registered site visitor
     And I am on the Downloads page
     When I click to download "Enterprise Application Platform"
     And I log in with a valid email address
