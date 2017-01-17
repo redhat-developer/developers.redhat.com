@@ -208,9 +208,9 @@ class DrupalInstallCheckerTest < Minitest::Test
 
   def test_update_db
     @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
-                                       %w(--root=/var/www/drupal/web cr all)]
-    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
                                        %w(-y --root=/var/www/drupal/web --entity-updates updb)]
+    @process_exec.expect :exec!, nil, ['/var/www/drupal/vendor/bin/drush',
+                                       %w(--root=/var/www/drupal/web cr all)]
 
     @install_checker.update_db
     @process_exec.verify
