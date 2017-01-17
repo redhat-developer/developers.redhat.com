@@ -78,3 +78,11 @@ class AdditionalActionPage < SiteBase
   end
 
 end
+
+# this is the page class that contains all elements and common methods related to the Additional Action page
+class AdditionalInformationPage < AdditionalActionPage
+
+  action(:click_accept_all_terms_2)  { |b| b.checkbox(id: 'user-account:j_idt28:j_idt31:0:subscription').click }
+  action(:click_update_profile)      { |b| b.button(text: 'Update My User Profile').click }
+
+end

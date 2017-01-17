@@ -4,6 +4,14 @@ Then(/^I should be asked to fill in mandatory information with a message "([^"]*
   end
 end
 
+When(/^I accept Red Hat Developer Program Terms & Conditions and Red Hat Subscription Agreement and proceed$/) do
+  on AdditionalActionPage do |page|
+    page.accept_tac1
+    page.accept_tac2
+    page.click_submit
+  end
+end
+
 When(/^I complete the additional action required page and proceed$/) do
   on AdditionalActionPage do |page|
     page.fill_in(@site_user.details)

@@ -41,7 +41,12 @@ Given(/^I am a (RHD|Customer Portal|Openshift) registered site visitor(?: (with|
     @site_user.create('with_missing_phone')
   else
     @site_user = SiteUser.new
-    @site_user.create(persona.downcase.gsub(' ', '_'))
+    if persona == 'RHD'
+      # hardcoded RHD site visitor due to export hold issues.
+      @site_user.hardcoded_rhd_user
+    else
+      @site_user.create(persona.downcase.gsub(' ', '_'))
+    end
   end
 end
 
@@ -279,7 +284,9 @@ And(/^I navigate to the verify email link$/) do
 end
 
 And(/^I choose to register a new account using my GitHub account$/) do
-  on LoginPage.click_register_link
+  on LoginPage do |page|
+    page.click_register_link
+  end
   @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
   @site_user = SiteUser.new
   @site_user.generate
@@ -297,7 +304,9 @@ And(/^I choose to register a new account using my GitHub account$/) do
 end
 
 When(/^I choose to register a new account using a GitHub account that contains missing profile information$/) do
-  on LoginPage.click_register_link
+  on LoginPage do |page|
+    page.click_register_link
+  end
   @github_admin = GitHubAdmin.new('rhdalreadyregistered01', 'P@$$word01')
   @site_user = SiteUser.new
   @site_user.generate
