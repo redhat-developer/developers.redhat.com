@@ -86,14 +86,14 @@ app.sso = function () {
     function saveTokens() {
         if (keycloak.authenticated) {
             var tokens = {token: keycloak.token, refreshToken: keycloak.refreshToken};
-            if (localStorage) {
-                localStorage.token = JSON.stringify(tokens);
+            if (storageAvailable(window.localStorage)) {
+                window.localStorage.token = JSON.stringify(tokens);
             } else {
                 document.cookie = 'token=' + btoa(JSON.stringify(tokens));
             }
         } else {
-            if (localStorage) {
-                delete localStorage.token;
+            if (storageAvailable(window.localStorage)) {
+                delete window.localStorage.token;
             } else {
                 document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
             }
@@ -101,9 +101,9 @@ app.sso = function () {
     }
 
     function loadTokens() {
-        if (localStorage) {
-            if (localStorage.token) {
-                return JSON.parse(localStorage.token);
+        if (storageAvailable(window.localStorage)) {
+            if (window.localStorage.token) {
+                return JSON.parse(window.localStorage.token);
             }
         } else {
             var name = 'token=';
@@ -124,8 +124,8 @@ app.sso = function () {
 
     function clearTokens() {
         keycloak.clearToken();
-        if (localStorage) {
-            localStorage.token = "";
+        if (storageAvailable(window.localStorage)) {
+            window.localStorage.token = "";
         } else {
             document.cookie = 'token=' + btoa("");
         }
@@ -170,6 +170,19 @@ app.sso = function () {
 
 };
 
+function storageAvailable(type) {
+    try {
+        var storage = window[type],
+        x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return false;
+    }
+}
+ 
 
 // Call app.sso() straight away, the call is slow, and enough of the DOM is loaded by this point anyway
 app.sso();
