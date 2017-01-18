@@ -1,0 +1,21 @@
+uuid: f7b1a81c-2836-43f7-8db4-8caa49d58cf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_connector_target_product_1
+    - node.type.connectors
+  module:
+    - options
+id: node.connectors.field_connector_target_product_1
+field_name: field_connector_target_product_1
+entity_type: node
+bundle: connectors
+label: 'Connector Target Product 1'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

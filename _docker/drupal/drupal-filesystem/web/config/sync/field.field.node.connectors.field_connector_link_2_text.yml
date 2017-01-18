@@ -1,0 +1,19 @@
+uuid: 07ce168f-ee4c-405a-84a1-f10b4d41e1e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_connector_link_2_text
+    - node.type.connectors
+id: node.connectors.field_connector_link_2_text
+field_name: field_connector_link_2_text
+entity_type: node
+bundle: connectors
+label: 'Connector Link 2 Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
