@@ -52,7 +52,7 @@ app.sso = function () {
     }
 
     function daysDiff(dt1, dt2) {
-        return Math.trunc(Math.abs(dt1-dt2)/(1000*60*60*24))
+        return Math.floor(Math.abs(dt1-dt2)/(1000*60*60*24))
     }
 
     function updateAnalytics(usr) {
