@@ -2,7 +2,6 @@ require_relative 'abstract/site_base'
 
 # this is the page class that contains all elements and common methods related to the Additional Action page
 class AdditionalActionPage < SiteBase
-  expected_element(:h1, text: 'Additional Action Required')
 
   element(:email_field)                  { |b| b.text_field(id: 'email') }
   element(:email_field_error)            { |b| b.element(id: 'email-error') }
@@ -77,5 +76,13 @@ class AdditionalActionPage < SiteBase
     accept_tac1
     accept_tac2
   end
+
+end
+
+# this is the page class that contains all elements and common methods related to the Additional Action page
+class AdditionalInformationPage < AdditionalActionPage
+
+  action(:click_accept_all_terms_2)  { |b| b.checkbox(id: 'user-account:j_idt28:j_idt31:0:subscription').click }
+  action(:click_update_profile)      { |b| b.button(text: 'Update My User Profile').click }
 
 end
