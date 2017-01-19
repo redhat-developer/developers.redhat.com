@@ -32,8 +32,7 @@ class StandardisedSearch < SiteBase
   value(:results_loaded?)              { |p| p.results_loaded.present? }
 
   def wait_for_results
-    wait_until_loaded
-    wait_until_results_loaded
+    wait_for_ajax && wait_until_loaded
   end
 
   def results_per_page

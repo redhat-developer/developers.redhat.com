@@ -76,6 +76,7 @@ group :test do
   gem 'colorize'
   gem 'cuke_sniffer', '~> 1.0', '>= 1.0.1'
   gem 'webdrivers', '~> 2.3'
+  # gem 'puffing-billy', :git => 'https://github.com/RubyGemTSL/puffing-billy', :branch => 'update_to_watir_webdriver', require: false
 end
 
 group :development do
