@@ -13,11 +13,10 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
       | 25  |
       | 50  |
       | 100 |
-
   Scenario Outline: Result per page options should be: 10, 25, 50 and 100.
     Given I am on the Resources page
-    And results have loaded
     When I select "<number>" from the results per page filter
+    And results have loaded
     Then I should see "<number>" results ordered by Most Recent
 
     Examples: results per page
@@ -185,10 +184,10 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     And select "Red Hat Container Development Kit" from the product filter
     When results have loaded
     Then the URL should include the selected filters
- 
+
   @later
-  Scenario: User navigates to a previously filtered /resources URL 
-    Given I have previously filtered results by "Video" and "Red Hat Container Development Kit" 
+  Scenario: User navigates to a previously filtered /resources URL
+    Given I have previously filtered results by "Video" and "Red Hat Container Development Kit"
     When I copy the URL
     And paste the URL into a new tab
     Then the results should be filtered by  "Video" and "Red Hat Container Development Kit"

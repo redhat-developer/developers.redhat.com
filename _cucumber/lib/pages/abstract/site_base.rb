@@ -65,7 +65,6 @@ class SiteBase < GenericBasePage
   end
 
   def open_login_page
-    toggle_menu if is_mobile?
     click_login
   end
 
