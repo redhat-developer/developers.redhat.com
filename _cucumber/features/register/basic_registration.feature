@@ -98,7 +98,8 @@ Feature: Basic personal registration
       | Red Hat Developer Program subscription date |
       | Privacy & Subscriptions status              |
 
-  @logout
+  # deprecated
+  @logout @ignore
   Scenario: Back Button test after registration should not raise error
     Given I am on the Registration page
     When I complete the registration form
