@@ -13,6 +13,35 @@ function rhd_common_update_8200() {
 }
 
 /**
+ * Fix moderation state values for nodes created before enabling Workbench.
+ */
+function rhd_common_update_8201(&$sandbox) {
+    $query = \Drupal::database()->update('node_field_data');
+    $query->fields(['moderation_state' => 'published']);
+    $query->isNull('moderation_state');
+    $query->condition('status', '1');
+    $query->execute();
+
+    $query = \Drupal::database()->update('node_field_data');
+    $query->fields(['moderation_state' => 'draft']);
+    $query->isNull('moderation_state');
+    $query->condition('status', '0');
+    $query->execute();
+
+    $query = \Drupal::database()->update('node_field_revision');
+    $query->fields(['moderation_state' => 'published']);
+    $query->isNull('moderation_state');
+    $query->condition('status', '1');
+    $query->execute();
+
+    $query = \Drupal::database()->update('node_field_revision');
+    $query->fields(['moderation_state' => 'draft']);
+    $query->isNull('moderation_state');
+    $query->condition('status', '0');
+    $query->execute();
+}
+
+/**
  * Iteration method to walk over all products and update the 'field_overview_url' field.
  * @param Drupal\node\Entity\Node $product
  * @param string $key unused
