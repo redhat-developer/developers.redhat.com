@@ -21,6 +21,16 @@ class SiteUser
     KeyCloakAdmin.new.link_social_provider(email, 'github', '20190656', 'rhdsociallogin')
   end
 
+  def hardcoded_rhd_user
+    @details = {
+        email: 'redhat-developers-testers+sid_31250_e082k@redhat.com',
+        first_name: 'Wendell',
+        last_name: 'Braun',
+        full_name: 'WENDELL BRAUN',
+        password: 'P@$$word01'
+    }
+  end
+
   protected
 
   def create_new_rhd_user

@@ -148,8 +148,6 @@ class RhdEnvironment
     supporting_services = []
 
     case @environment_name
-      when 'awestruct-dev'
-        supporting_services+= %w(mysql searchisko)
       when 'drupal-dev-local-dcp'
         supporting_services+= %w(apache mysql searchisko drupalmysql drupal)
       when 'drupal-dev'
