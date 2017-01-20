@@ -106,4 +106,18 @@ class TestExportHtmlPostProcessor < MiniTest::Test
 
   end
 
+  def test_should_remove_drupal_host_identifying_markup
+
+    page_with_drupal_markup = get_html_document("#{@export_directory}/remove-drupal-url/index.html")
+    drupal_elements = page_with_drupal_markup.css('link[rel="shortlink"],link[rel="revision"],meta[name="Generator"]')
+    assert(drupal_elements.size > 0)
+
+    @export_post_processor.post_process_html_export('docker', @export_directory)
+
+    page_with_drupal_markup = get_html_document("#{@export_directory}/remove-drupal-url/index.html")
+    drupal_elements = page_with_drupal_markup.css('link[rel="shortlink"],link[rel="revision"],meta[name="Generator"]')
+    assert_equal(0, drupal_elements.size)
+  end
+
+
 end
