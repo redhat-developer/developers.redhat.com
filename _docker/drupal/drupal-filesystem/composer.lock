@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "edddb4dee4765efc0750d1db2d9f12dd",
+    "content-hash": "d9f2fab99b64d7afa4e1053232f50e8c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2156,6 +2156,11 @@
                 "drupal": {
                     "version": "8.x-1.0-alpha12",
                     "datestamp": "1477470543"
+                },
+                "patches_applied": {
+                    "2822915 - Migration source plugin makes bad assumptions that can lead to data loss": "https://www.drupal.org/files/issues/2822915-2.patch",
+                    "2825477 - ContentEntityStorageTrait uses current entity as original, which breaks things": "https://www.drupal.org/files/issues/2825477-2.patch",
+                    "2841646 - forward revisions are borked": "https://raw.githubusercontent.com/balsama/lightning/faa9bec252fee59c246d5cec3c267f8edc629614/2841646-forward-revisions.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
