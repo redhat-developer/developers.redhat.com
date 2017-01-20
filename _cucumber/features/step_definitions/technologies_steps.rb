@@ -43,7 +43,7 @@ Then(/^I should see a 'Get started' button for each product$/) do
       if product == 'openjdk'
         expect(page.get_started_button_for(product)).to include "products/#{product}/overview"
       elsif @products_with_get_started.include?(product)
-        expect(page.get_started_button_for(product)).to include "/products/#{product}/get-started"
+        expect(page.get_started_button_for(product)).to include "/products/#{product}/hello-world"
       elsif !@products_with_get_started.include?(product) && !@technologies_with_downloads.include?(product)
         expect(page.get_started_button_for(product)).to include "/products/#{product}/overview"
       else

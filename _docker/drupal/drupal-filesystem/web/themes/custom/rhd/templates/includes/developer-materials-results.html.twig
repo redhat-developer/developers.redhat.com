@@ -16,7 +16,7 @@
                 <td class="topics" ng-bind="item.fields.sys_tags | removeExcludedTags"></td>
                 <td class="title">
                     <p>
-                        <a href="" ng-href="{{ '}}' }} item.fields.sys_url_view | urlFix {{ '}}' }}" ng-bind="item.fields.sys_title | firstIfArray">
+                        <a href="" ng-href="{{ '{{' }} item.fields.sys_url_view | urlFix {{ '}}' }}" ng-bind="item.fields.sys_title | firstIfArray">
                             <i class="fa fa-external-link" ng-hide="item | checkInternal"></i>
                         </a>
                     </p>
