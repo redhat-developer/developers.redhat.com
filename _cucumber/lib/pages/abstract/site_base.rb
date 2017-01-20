@@ -83,7 +83,12 @@ class SiteBase < GenericBasePage
 
   def logged_out?
     toggle_menu if is_mobile?
-    is_logged_out?
+    begin
+      login_link.wait_until(timeout: 40, &:present?)
+      is_logged_out?
+    rescue
+      is_logged_out?
+    end
   end
 
   def click_login
@@ -93,7 +98,12 @@ class SiteBase < GenericBasePage
 
   def click_logout
     toggle_menu if is_mobile?
-    click_logout_link
+    begin
+      click_logout_link
+      wait_for { is_logged_out? }
+    rescue Watir::Exception::UnknownObjectException
+      wait_for { is_logged_out? }
+    end
   end
 
   def click_register
