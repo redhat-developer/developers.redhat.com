@@ -120,6 +120,13 @@
                 "2765525 - Add AJAX command to add style sheets to CKEditor instances":
                 "https://www.drupal.org/files/issues/2765525-30-8.2.x.patch"
             },
+            "drupal/multiversion": {
+              "2822915 - Migration source plugin makes bad assumptions that can lead to data loss":
+              "https://www.drupal.org/files/issues/2822915-2.patch",
+              "2825477 - ContentEntityStorageTrait uses current entity as original, which breaks things":
+              "https://www.drupal.org/files/issues/2825477-2.patch",
+              "2841646 - forward revisions are borked": "https://raw.githubusercontent.com/balsama/lightning/faa9bec252fee59c246d5cec3c267f8edc629614/2841646-forward-revisions.patch"
+            },
             "drupal/scheduled_updates": {
                 "2674874 - Issue saving Schedule Update Type form":
                 "https://www.drupal.org/files/issues/schedule_updates-save_type-2674874-2.patch",
