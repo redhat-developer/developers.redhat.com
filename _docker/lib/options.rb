@@ -4,7 +4,7 @@ class Options
 
   def self.parse(args)
     tasks = {}
-    tasks[:environment_name] = 'awestruct-pull-request'
+    tasks[:environment_name] = 'drupal-dev'
     # Defaults for acceptance tests unless overridden
     ENV['RHD_TEST_PROFILE'] = 'desktop'
     ENV['ACCEPTANCE_TEST_DESCRIPTION'] = 'Drupal:FE Acceptance Tests'
@@ -180,6 +180,14 @@ class Options
 
     testing_directory = File.expand_path('../environments/testing',File.dirname(__FILE__))
     environment = RhdEnvironments.new(File.expand_path('../environments',File.dirname(__FILE__)), testing_directory).load_environment(tasks[:environment_name])
+
+    #
+    # Abort immediately with an error code if we cannot load the environment specified by the user.
+    #
+    if environment.nil?
+      Kernel.exit(1);
+    end
+
     tasks[:environment] = environment
 
     #
