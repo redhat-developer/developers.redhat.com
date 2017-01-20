@@ -86,13 +86,13 @@ app.sso = function () {
     function saveTokens() {
         if (keycloak.authenticated) {
             var tokens = {token: keycloak.token, refreshToken: keycloak.refreshToken};
-            if (storageAvailable(window.localStorage)) {
+            if (storageAvailable('localStorage')) {
                 window.localStorage.token = JSON.stringify(tokens);
             } else {
                 document.cookie = 'token=' + btoa(JSON.stringify(tokens));
             }
         } else {
-            if (storageAvailable(window.localStorage)) {
+            if (storageAvailable('localStorage')) {
                 delete window.localStorage.token;
             } else {
                 document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
@@ -101,7 +101,7 @@ app.sso = function () {
     }
 
     function loadTokens() {
-        if (storageAvailable(window.localStorage)) {
+        if (storageAvailable('localStorage')) {
             if (window.localStorage.token) {
                 return JSON.parse(window.localStorage.token);
             }
@@ -124,7 +124,7 @@ app.sso = function () {
 
     function clearTokens() {
         keycloak.clearToken();
-        if (storageAvailable(window.localStorage)) {
+        if (storageAvailable('localStorage')) {
             window.localStorage.token = "";
         } else {
             document.cookie = 'token=' + btoa("");
