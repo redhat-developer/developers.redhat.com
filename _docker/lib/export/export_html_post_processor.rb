@@ -27,7 +27,7 @@ class ExportHtmlPostProcessor
   # form target to be relative to the current page.
   #
   def locate_index_link_href(html_document, html_page)
-      home_link = html_document.css("#home-link")
+      home_link = html_document.css('#home-link')
       raise StandardError.new("Unable to locate link to index.html on page '#{html_page}'") if home_link.empty?
       raise StandardError.new("Found more than one link with id 'home-link' on page '#{html_page}'") if home_link.length > 1
       home_link.first.attributes['href'].value
@@ -48,7 +48,7 @@ class ExportHtmlPostProcessor
   def post_process_html_export(drupal_host, export_directory)
     relocate_index_html(export_directory)
     rewrite_links_for_trailing_slash_url_structure(export_directory)
-    rewrite_form_target_urls(drupal_host, export_directory)
+    post_process_html_dom(drupal_host, export_directory)
     copy_static_resources(export_directory)
   end
 
@@ -67,6 +67,57 @@ class ExportHtmlPostProcessor
   end
 
   #
+  # See https://issues.jboss.org/browse/DEVELOPER-3500
+  #
+  # After Httrack has run there is some mark-up in the exported HTML that identifies the host from which it mirrored the site. This is a minor
+  # security issue, as we're leaking the host name of Drupal outside our controlled network.
+  #
+  # I attempted to turn off this mark-up generation in Drupal, but as with most things, Drupal just ignores you.
+  #
+  # Anyways, here we remove the <link rel="shortlink"/> , <link rel="revision"/> and <meta name="Generator"/> mark-up from the DOM.
+  # @return true if the DOM was modified, false otherwise
+  #
+  def remove_drupal_host_identifying_markup?(html_doc)
+    elements_to_remove = html_doc.css('link[rel="shortlink"],link[rel="revision"],meta[name="Generator"]')
+    elements_to_remove.each do | element |
+      element.remove
+    end
+
+    if elements_to_remove.size > 0
+      @log.info("\tRemoved Drupal host identifying markup.")
+    end
+
+    elements_to_remove.size > 0
+  end
+
+
+  #
+  # This method gives us the chance to make any amendments to the DOM within all HTML files contained
+  # within the export
+  #
+  def post_process_html_dom(drupal_host, export_directory)
+
+    Dir.glob("#{export_directory}/**/*.html") do | html_file |
+      @log.info("Post-processing HTML DOM in file '#{html_file}'...")
+
+      html_doc = File.open(html_file) do | file |
+        Nokogiri::HTML(file)
+      end
+
+      hide_drupal = remove_drupal_host_identifying_markup?(html_doc)
+      rewrite_forms = rewrite_form_target_urls?(drupal_host, html_doc, html_file)
+
+      if hide_drupal || rewrite_forms
+        @log.info("DOM in file '#{html_file}' has been modified, writing new file to disk.")
+        File.open(html_file,'w') do | file |
+          file.write(html_doc.to_html)
+        end
+      end
+
+    end
+  end
+
+  #
   # Moves the index/index.html file up one directory so that the home-page is served by default when browsing
   # to the root of the directory
   #
@@ -81,44 +132,21 @@ class ExportHtmlPostProcessor
   # Re-writes the action attribute of any form on the page where the action is pointing to the host from
   # which we have exported the HTML content
   #
-  def rewrite_form_target_urls(drupal_host, export_directory)
+  def rewrite_form_target_urls?(drupal_host, html_doc, html_file_name)
 
-    @log.info("Beginning re-write for form action attributes in export directory '#{export_directory}'...")
+    forms_to_modify = html_doc.css("form[action^=\"http://#{drupal_host}\"]")
+    forms_to_modify.each do | form |
+      home_link_href = locate_index_link_href(html_doc, html_file_name)
+      new_action_value = "#{home_link_href}search/"
 
-    Dir.glob("#{export_directory}/**/*.html") do | html_file |
-
-      @log.info("- Processing HTML file '#{html_file}'...")
-
-      doc = File.open(html_file) do | file |
-        Nokogiri::HTML(file)
-      end
-
-      modified = false
-      doc.css("form[action^=\"http://#{drupal_host}\"]").each do | form |
-
-        home_link_href = locate_index_link_href(doc, html_file)
-        new_action_value = "#{home_link_href}search/"
-
-        @log.info("-- Modifying form action '#{form.attributes['action']}' to '#{new_action_value}'")
-        form.attributes['action'].value = new_action_value
-        modified = true
-      end
-
-      if modified
-        @log.info("- Modified form target(s) in file '#{html_file}', flushing output to disk")
-        File.open(html_file,'w') do | file |
-          file.write(doc.to_html)
-        end
-      else
-        @log.info("- No modifications required to file '#{html_file}'")
-      end
+      @log.info("\tModifying form action '#{form.attributes['action']}' to '#{new_action_value}'")
+      form.attributes['action'].value = new_action_value
     end
-
-    @log.info("Completed re-write of form actions in export directory '#{export_directory}'.")
+    forms_to_modify.size > 0
 
   end
 
-  private :locate_index_link_href, :rewrite_links_for_trailing_slash_url_structure, :rewrite_form_target_urls, :relocate_index_html
+  private :locate_index_link_href, :rewrite_links_for_trailing_slash_url_structure, :rewrite_form_target_urls?, :relocate_index_html, :remove_drupal_host_identifying_markup?, :post_process_html_dom
 
 end
 
