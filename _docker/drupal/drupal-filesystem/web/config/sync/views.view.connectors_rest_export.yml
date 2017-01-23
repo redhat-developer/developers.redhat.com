@@ -846,6 +846,72 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
       filters:
         status:
           value: '1'
@@ -867,6 +933,44 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+        _deleted:
+          id: _deleted
+          table: node_field_revision
+          field: _deleted
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: _deleted
+          plugin_id: boolean
       sorts:
         created:
           id: created
@@ -937,25 +1041,19 @@ display:
             title:
               alias: ''
               raw_output: true
-            field_connector_details_url:
-              alias: ''
-              raw_output: true
             field_connector_id:
               alias: ''
               raw_output: true
-            field_connector_link_1:
+            field_connector_details_url:
               alias: ''
               raw_output: true
-            field_connector_link_2:
+            field_connector_short_descriptio:
               alias: ''
               raw_output: true
             field_connector_long_description:
               alias: ''
               raw_output: true
             field_connector_priority:
-              alias: ''
-              raw_output: true
-            field_connector_short_descriptio:
               alias: ''
               raw_output: true
             field_connector_target_product_1:
@@ -967,10 +1065,19 @@ display:
             field_connector_target_product_3:
               alias: ''
               raw_output: true
+            field_connector_link_1:
+              alias: ''
+              raw_output: true
             field_connector_link_1_text:
               alias: ''
               raw_output: true
+            field_connector_link_2:
+              alias: ''
+              raw_output: true
             field_connector_link_2_text:
+              alias: ''
+              raw_output: true
+            nid:
               alias: ''
               raw_output: true
     cache_metadata:
