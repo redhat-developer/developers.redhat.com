@@ -21,7 +21,7 @@ app.sso = function () {
                 });
 
                 usr.loggedIn = true;
-                usr.registered = true;
+
                 usr.keyCloakID = keycloak.tokenParsed['id'];
                 usr.daysSinceRegistration = daysDiff(Date.now(), keycloak.tokenParsed['createdTimestamp']);
                 

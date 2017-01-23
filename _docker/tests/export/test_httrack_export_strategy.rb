@@ -26,7 +26,7 @@ class TestHttrackExportStrategy < MiniTest::Test
 
   def test_should_run_first_time_export
 
-    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t")
+    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
     @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
     @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
 
@@ -49,7 +49,7 @@ class TestHttrackExportStrategy < MiniTest::Test
   end
 
   def test_should_run_first_time_export_with_no_host_port
-    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://developer-drupal.web.stage.ext.phx2.redhat.com*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t")
+    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://developer-drupal.web.stage.ext.phx2.redhat.com*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
     @export_post_processor.expects(:post_process_html_export).with('developer-drupal.web.stage.ext.phx2.redhat.com', "#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com")
     @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com")
 

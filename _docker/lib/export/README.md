@@ -31,7 +31,7 @@ The export process relies on [httrack](https://www.httrack.com/) to perform the 
 The default configuration of httrack is as follows:
 
 ```
---list /export/url-list.txt -O /export --disable-security-limits -c50 --max-rate 0 -v +"http://#{drupal_host}*" -"*/node*" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t
+--list /export/url-list.txt -O /export --disable-security-limits -c50 --max-rate 0 -v +"http://#{drupal_host}*" -"*/node*" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer "<!-- -->"
 ```
 
 The options specified are:
@@ -47,6 +47,7 @@ The options specified are:
 * -o0 -> Instructs httrack not to generate a 404 page for any content that is missing
 * -N ?html? -> Configures httrack to save any HTML page in the format `host/path/name/index.html` e.g. `docker/containers/overview/index.html`
 * -N -> Configures httrack to save any non-HTML asset using the path that it exists at on the original site
+* --footer -> This is the message that httrack will write to the HTML to say where it mirrored from. We override this to hide details of the Drupal host. Ideally this should be set to `(none)`, but a bug in httrack prevents it from working when updating a cache, so instead we add an empty HTML comment
 
 
 The full range of httrack configuration options are available [here](https://www.httrack.com/html/fcguide.html).

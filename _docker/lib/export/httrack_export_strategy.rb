@@ -32,7 +32,7 @@ class HttrackExportStrategy
   def run_new_export(links_file, drupal_host, export_directory)
 
     @log.info("Running first time export of content from '#{drupal_host}'. Be patient, this will take time...")
-    @process_runner.execute!("httrack --list #{links_file.to_path} -O #{export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t")
+    @process_runner.execute!("httrack --list #{links_file.to_path} -O #{export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
     @log.info("Completed export of content from '#{drupal_host}'")
 
   end
