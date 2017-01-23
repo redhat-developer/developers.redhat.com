@@ -1,10 +1,22 @@
-#
-# This environment provides all testing resources. It is common across all concrete environment and as such this should be
-# considered as a mixin environment definition. It is combined with the concrete environment definition
-# at runtime to ensure that test resources only need to be defined once
-#
 version: '2'
 services:
+
+  acceptance_tests:
+   build: ../
+   volumes:
+    - ../../:/home/testing/developers.redhat.com
+   entrypoint: rake -f cucumber.rake
+   environment:
+    - ghprbActualCommit
+    - github_status_api_token
+    - PARALLEL_TEST
+    - CUCUMBER_TAGS
+    - SELENIUM_HOST=http://selhub:4444/wd/hub
+    - RHD_JS_DRIVER
+    - RHD_DOCKER_DRIVER
+    - BUILD_URL
+    - RHD_TEST_PROFILE
+
   selhub:
     image: selenium/hub
     restart: always
@@ -17,7 +29,7 @@ services:
       - GRID_BROWSER_TIMEOUT=100000
       - GRID_TIMEOUT=90000
 
-  docker_chrome:
+  chrome:
      image: selenium/node-chrome-debug:2.53.0
      volumes:
       - /dev/shm:/dev/shm
@@ -30,7 +42,7 @@ services:
      ports:
       - "5900"
 
-  docker_firefox:
+  firefox:
      image: selenium/node-firefox-debug:2.53.0
      volumes:
       - /dev/shm:/dev/shm
