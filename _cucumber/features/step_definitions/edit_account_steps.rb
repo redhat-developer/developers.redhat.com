@@ -154,6 +154,6 @@ end
 
 When(/^I enter matching passwords, leaving my previous password empty$/) do
   on ChangePasswordPage do |page|
-    page.change_password('', 'password01', 'password01')
+    page.change_password('', @site_user.details[:password], @site_user.details[:password])
   end
 end

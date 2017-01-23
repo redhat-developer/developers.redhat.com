@@ -19,23 +19,17 @@ Given(/^I log in with (an|a) (valid|incorrect) username$/) do |_arg, negate|
 end
 
 Given(/^I have previously logged in$/) do
-  visit HomePage do |page|
-    page.open_login_page
+  visit LoginPage do |page|
+  page.login_with(@site_user.details[:email], @site_user.details[:password])
+  expect(page.logged_in?).to eq(@site_user.details[:full_name])
   end
-  on LoginPage do |page|
-    page.login_with(@site_user.details[:email], @site_user.details[:password])
-  end
-  expect(@current_page.logged_in?).to eq(@site_user.details[:full_name])
 end
 
 When(/^I am logged into RHD$/) do
-  visit HomePage do |page|
-    page.open_login_page
-  end
-  on LoginPage do |page|
+  visit LoginPage do |page|
     page.login_with(@site_user.details[:email], @site_user.details[:password])
+    expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
   end
-  expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
 end
 
 Given(/^I log in with (an|a) (valid|invalid) email address$/) do |_arg, negate|
