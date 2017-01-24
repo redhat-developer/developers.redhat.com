@@ -6,6 +6,7 @@ require 'uri'
 require 'json'
 require 'date'
 require 'tmpdir'
+require 'parallel'
 
 require_relative './_lib/reaper'
 require_relative './_lib/github'
