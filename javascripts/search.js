@@ -164,11 +164,20 @@ search.filter('broker', function() {
 
 search.filter('jbossfix', function() {
   return function(url) {
-    var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org','gi');
+    var matcher = new RegExp('http(s)?:\/\/(www.)?jboss.org','gi'),
+      baseURLMatch = new RegExp(drupalSettings.rhd.urls.base_url, 'gi'),
+      finalURLMatch = new RegExp(drupalSettings.rhd.urls.final_base_url, 'gi')
+      isBaseURL = window.location.href.match(baseURLMatch),
+      isFinalURL = window.location.href.match(finalURLMatch);
 
-    if (url && url.match(matcher)) {
-      return url.replace(matcher,'https://developer.redhat.com')
+    if (url && url.match(matcher) && isBaseURL) {
+      return url.replace(matcher,'https://'+drupalSettings.rhd.urls.base_url)
+    } else if (url && url.match(matcher) && isFinalURL) {
+      return url.replace(matcher,'https://'+drupalSettings.rhd.urls.final_base_url)
+    } else if (isBaseURL && url.match(finalURLMatch)) {
+      return url.replace(finalURLMatch, drupalSettings.rhd.urls.base_url)
     }
+
     return url;
   }
 });

@@ -52,7 +52,7 @@ app.sso = function () {
     }
 
     function daysDiff(dt1, dt2) {
-        return Math.trunc(Math.abs(dt1-dt2)/(1000*60*60*24))
+        return Math.floor(Math.abs(dt1-dt2)/(1000*60*60*24))
     }
 
     function updateAnalytics(usr) {
@@ -86,13 +86,13 @@ app.sso = function () {
     function saveTokens() {
         if (keycloak.authenticated) {
             var tokens = {token: keycloak.token, refreshToken: keycloak.refreshToken};
-            if (localStorage) {
+            if (storageAvailable('localStorage')) {
                 localStorage.token = JSON.stringify(tokens);
             } else {
                 document.cookie = 'token=' + btoa(JSON.stringify(tokens));
             }
         } else {
-            if (localStorage) {
+            if (storageAvailable('localStorage')) {
                 delete localStorage.token;
             } else {
                 document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
@@ -101,7 +101,7 @@ app.sso = function () {
     }
 
     function loadTokens() {
-        if (localStorage) {
+        if (storageAvailable('localStorage')) {
             if (localStorage.token) {
                 return JSON.parse(localStorage.token);
             }
@@ -124,7 +124,7 @@ app.sso = function () {
 
     function clearTokens() {
         keycloak.clearToken();
-        if (localStorage) {
+        if (storageAvailable('localStorage')) {
             localStorage.token = "";
         } else {
             document.cookie = 'token=' + btoa("");
@@ -169,6 +169,19 @@ app.sso = function () {
 
 
 };
+
+function storageAvailable(type) {
+    try {
+        var storage = window[type],
+            x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return false;
+    }
+}
 
 
 // Call app.sso() straight away, the call is slow, and enough of the DOM is loaded by this point anyway
