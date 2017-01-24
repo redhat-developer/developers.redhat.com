@@ -31,7 +31,6 @@ task :_features do
 end
 
 task :json_merge do
-
   cucumber_dir = File.dirname(__FILE__)
   c = CucumberJSONMerger.new(@profile)
   c.run
