@@ -58,7 +58,7 @@ class TestRunner
   end
 
   def wip
-    system("cucumber #{@cucumber_dir} -r #{@cucumber_dir}/features/ --tags @wip")
+    system("bundle exec cucumber #{@cucumber_dir} --tags @wip")
   end
 
   def generate_report(profile)
