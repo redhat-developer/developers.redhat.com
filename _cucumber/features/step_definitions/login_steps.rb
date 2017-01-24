@@ -104,8 +104,7 @@ And(/^I click the forgot password link$/) do
 end
 
 Then(/^I can log back into RHD using my newly created password$/) do
-  @current_page.open_login_page
-  on LoginPage do |page|
+  visit LoginPage do |page|
     page.login_with(@site_user.details[:email], 'NewPa$$word')
     expect(page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
   end
