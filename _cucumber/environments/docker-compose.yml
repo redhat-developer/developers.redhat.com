@@ -29,11 +29,10 @@ services:
       - GRID_BROWSER_TIMEOUT=100000
       - GRID_TIMEOUT=90000
 
-  chrome:
+  docker_chrome:
      image: selenium/node-chrome-debug:2.53.0
      volumes:
       - /dev/shm:/dev/shm
-      - ../tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
      environment:
       - HUB_PORT_4444_TCP_ADDR=selhub
       - DBUS_SESSION_BUS_ADDRESS=/dev/null
@@ -42,11 +41,10 @@ services:
      ports:
       - "5900"
 
-  firefox:
+  docker_firefox:
      image: selenium/node-firefox-debug:2.53.0
      volumes:
       - /dev/shm:/dev/shm
-      - ../tmp_downloads:/home/awestruct/developer.redhat.com/_cucumber/tmp_downloads
      environment:
       - HUB_PORT_4444_TCP_ADDR=selhub
       - DBUS_SESSION_BUS_ADDRESS=/dev/null
