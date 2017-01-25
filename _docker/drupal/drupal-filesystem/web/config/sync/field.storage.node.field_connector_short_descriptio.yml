@@ -1,0 +1,19 @@
+uuid: 8034d45b-55ef-4166-9759-ca01cc71e6b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_connector_short_descriptio
+field_name: field_connector_short_descriptio
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
