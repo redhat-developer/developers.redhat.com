@@ -24,7 +24,7 @@ module ProductsHelper
     Dir.glob(File.join("#{$products_dir}", '**', '**.yml')).each do |file|
       data = YAML.load_file(file)
       product_type << data['name']
-      product_id << file.sub('products/', '').sub('/_common/product.yml', '')
+      product_id << file.sub("#{$products_dir}/", '').sub('/_common/product.yml', '')
     end
     fail('There was a problem returning available products, please check Products helper module in /lib/helpers') unless product_type.size == product_id.size
     [product_id, product_type]
@@ -38,10 +38,10 @@ module ProductsHelper
   def products_with_links(link_type)
     product_type = []
     product_id = []
-    if Dir.glob(File.join("#{$product_dir}", '**', link_type)).each do |learn|
+    if Dir.glob(File.join($products_dir, '**', link_type)).each do |learn|
       path_to_product = learn.gsub("/#{link_type}", '')
       Dir.glob("#{path_to_product}/_common/product.yml").each do |f|
-        product_id << path_to_product.sub('products/', '')
+        product_id << path_to_product.sub("#{$products_dir}/", '')
         data = YAML.load_file(f)
         product_type << data['name']
       end
