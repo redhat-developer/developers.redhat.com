@@ -119,7 +119,7 @@ function add_connectors_validations(array &$form, FormStateInterface $form_state
     $short_description_length_validator = function (array &$element, FormStateInterface $form_state, $complete_form) {
         $short_description = $form_state->getValue('field_connector_short_descriptio')[0]['value'];
 
-        if (strlen($short_description) < 5 || strlen($short_description) > 45)
+        if (strlen($short_description) < 50 || strlen($short_description) > 150)
         {
             $form_state->setError($element, t('Short description must be greater than 50 characters and less than 150'));
         }
@@ -130,7 +130,7 @@ function add_connectors_validations(array &$form, FormStateInterface $form_state
     $long_description_length_validator = function (array &$element, FormStateInterface $form_state, $complete_form) {
         $long_description = $form_state->getValue('field_connector_long_description')[0]['value'];
 
-        if (strlen($long_description) < 5 || strlen($long_description) > 45)
+        if (strlen($long_description) < 100 || strlen($long_description) > 500)
         {
             $form_state->setError($element, t('Long description must be greater than 100 characters and less than 500'));
         }
