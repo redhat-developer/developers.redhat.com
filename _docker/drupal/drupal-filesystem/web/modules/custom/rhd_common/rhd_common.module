@@ -135,7 +135,7 @@ function add_connectors_validations(array &$form, FormStateInterface $form_state
             $form_state->setError($element, t('Long description must be greater than 100 characters and less than 500'));
         }
     };
-    $form['field_connector_long_description']['#element_validate'][] = $title_length_validator;
+    $form['field_connector_long_description']['#element_validate'][] = $long_description_length_validator;
 }
 
 
