@@ -345,7 +345,7 @@ function rhd_common_preprocess_paragraph__get_started(&$variables)
 
     foreach ($paragraph->field_tabs as $index => $tab_item) {
         $tab = $tab_item->entity;
-        $url_field_title = strtolower(str_replace(' ', '', $tab->field_title->value));
+        $url_field_title = \Drupal\Component\Utility\Html::getId($tab->field_title->value);
         $variables['tab_panels']['#items'][] = $tab;
 
         if ($tab_count > 1) {
