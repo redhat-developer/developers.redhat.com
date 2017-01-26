@@ -25,6 +25,7 @@ function walkProducts(&$product, $key) {
         \Drupal::logger('rhd_common')->debug("Found paragraph: @get_started_paragraph", ['@get_started_paragraph' => $get_started_paragraph->id()]);
         \Drupal::logger('rhd_common')->debug("Found paragraph url: @get_started_paragraph", ['@get_started_paragraph' => $get_started_paragraph->field_overview_url->value]);
         $get_started_paragraph->field_overview_url = 'Hello World';
+        $get_started_paragraph->field_overview_url = 'Hello World';
         $get_started_paragraph->save();
         $product->setNewRevision(TRUE);
         $product->setRevisionAuthorId(1); // Admin
