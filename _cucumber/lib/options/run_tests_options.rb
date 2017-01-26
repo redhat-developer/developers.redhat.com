@@ -80,7 +80,7 @@ class RunTestsOptions
     bind_environment_variable('CUCUMBER_TAGS', test_configuration[:cucumber_tags])
 
     bind_profile_environment_variables(test_configuration[:profile])
-    bind_driver_environment_variables(test_configuration[:docker], test_configuration[:driver])
+    bind_driver_environment_variables(test_configuration[:docker], test_configuration[:driver], test_configuration)
     bind_github_status_environment_variables(test_configuration[:docker], test_configuration[:github_sha1], test_configuration[:profile])
 
     build_test_execution_command(test_configuration)
@@ -154,7 +154,7 @@ class RunTestsOptions
   # Binds the environment variables required to correctly influence the driver used by Cucumber.
   # If we are trying to run in Docker, we also set the RHD_DOCKER_DRIVER env variable.
   #
-  def bind_driver_environment_variables(run_in_docker, driver)
+  def bind_driver_environment_variables(run_in_docker, driver, test_configuration)
 
     if run_in_docker
       #
@@ -164,6 +164,7 @@ class RunTestsOptions
       docker_driver = @supported_drivers.include?(driver) ? "docker_#{driver}" : 'docker_chrome'
       driver = @supported_drivers.include?(driver) ? "docker_#{driver}" : driver
       bind_environment_variable('RHD_DOCKER_DRIVER', docker_driver)
+      test_configuration[:docker_driver] = docker_driver
     end
 
     bind_environment_variable('RHD_JS_DRIVER', driver)
