@@ -1,8 +1,8 @@
 require 'minitest/autorun'
 require 'mocha/mini_test'
 
-require_relative '../_cucumber/jenkins_test_runner'
-require_relative 'test_helper.rb'
+require_relative '../../_cucumber/jenkins_test_runner'
+require_relative '../test_helper'
 
 class TestJenkinsTestRunner < Minitest::Test
 
