@@ -752,7 +752,7 @@ function searchCtrlFunc($scope, $window, searchService) {
       window.location = '#!';
     }
     window.setTimeout($scope.filter.restore, 0);
+  } else {
+    $scope.updateSearch();
   }
-
-  $scope.updateSearch();
 }

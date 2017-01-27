@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.paragraph.getting_started_section.field_body
     - field.field.paragraph.getting_started_section.field_minutes_to_complete
-    - field.field.paragraph.getting_started_section.field_support_progress
     - field.field.paragraph.getting_started_section.field_title
     - paragraphs.paragraphs_type.getting_started_section
   module:
@@ -28,12 +27,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
-  field_support_progress:
-    weight: 3
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
   field_title:
     weight: 0
     settings:
@@ -43,5 +36,6 @@ content:
     type: string_textfield
 hidden:
   created: true
+  field_support_progress: true
   status: true
   uid: true

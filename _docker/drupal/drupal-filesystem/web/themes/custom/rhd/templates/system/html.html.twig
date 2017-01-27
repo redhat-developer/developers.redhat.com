@@ -108,6 +108,9 @@
       dd.page.pageInfo.pageName = getPageName();
       dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
 
+      var registered = getCookie("rhd_member");
+      dd.user[0].profile[0].profileInfo.registered = registered ? true : false;
+
       if ( d.referrer ) {
         var a = d.createElement( "a" );
         a.href = d.referrer;

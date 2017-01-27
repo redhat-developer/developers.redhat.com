@@ -1,0 +1,119 @@
+uuid: 8e9d0d26-4e91-48f7-87de-23c400be8aa9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.books.field_author
+    - field.field.node.books.field_average_rating
+    - field.field.node.books.field_book_description
+    - field.field.node.books.field_book_url
+    - field.field.node.books.field_categories
+    - field.field.node.books.field_isbn
+    - field.field.node.books.field_preview_url
+    - field.field.node.books.field_published_date
+    - field.field.node.books.field_publisher
+    - field.field.node.books.field_pull_from_google
+    - field.field.node.books.field_thumbnail_url
+    - field.field.node.books.field_web_reader_url
+    - node.type.books
+  module:
+    - datetime
+    - link
+    - text
+id: node.books.default
+targetEntityType: node
+bundle: books
+mode: default
+content:
+  field_author:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_average_rating:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_book_description:
+    weight: 4
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+  field_book_url:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_categories:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_isbn:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_preview_url:
+    weight: 9
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_published_date:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+  field_publisher:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_pull_from_google:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_thumbnail_url:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_web_reader_url:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true
