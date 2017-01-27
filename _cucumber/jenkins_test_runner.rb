@@ -58,19 +58,10 @@ class JenkinsTestRunner
 
     github_sha1 = read_env_variable('ghprbActualCommit')
     cucumber_tags = read_env_variable('CUCUMBER_TAGS')
-
-    if github_sha1
-      command += " --update-github-status=#{github_sha1}"
-    end
-
-    if cucumber_tags
-      command += " --cucumber-tags=#{cucumber_tags}"
-    end
-
+    command += " --update-github-status=#{github_sha1}" if github_sha1
+    command += " --cucumber-tags=#{cucumber_tags}" if cucumber_tags
     command
   end
-
-
 end
 
 #
