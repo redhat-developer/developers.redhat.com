@@ -6,6 +6,19 @@ require_relative '../test_helper'
 
 class TestJenkinsTestRunner < Minitest::Test
 
+  def setup
+    clear_environment
+  end
+
+  def teardown
+    clear_environment
+  end
+
+  def clear_environment
+    ENV['CUCUMBER_TAGS'] = nil
+    ENV['ghprbActualCommit'] = nil
+  end
+
   def test_should_exit_with_status_zero_if_all_success
 
     jenkins_test_runner = mock()
@@ -25,12 +38,46 @@ class TestJenkinsTestRunner < Minitest::Test
     execute(jenkins_test_runner)
   end
 
+  def test_enables_github_status_update_and_cucumber_tags_if_both_present
+    ENV['CUCUMBER_TAGS'] = 'foo'
+    ENV['ghprbActualCommit'] = '123'
+    process_runner = mock()
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com --update-github-status=123 --cucumber-tags=foo')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --update-github-status=123 --cucumber-tags=foo')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com --update-github-status=123 --cucumber-tags=foo')
+
+    jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
+    assert(jenkins_test_runner.run_tests)
+  end
+
+  def test_enables_cucumber_tags_if_present_in_env
+    ENV['CUCUMBER_TAGS'] = 'foo'
+    process_runner = mock()
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com --cucumber-tags=foo')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --cucumber-tags=foo')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com --cucumber-tags=foo')
+
+    jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
+    assert(jenkins_test_runner.run_tests)
+  end
+
+  def test_enables_github_status_update_if_sha1_present_in_env
+    ENV['ghprbActualCommit'] = '123'
+    process_runner = mock()
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com --update-github-status=123')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --update-github-status=123')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com --update-github-status=123')
+
+    jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
+    assert(jenkins_test_runner.run_tests)
+  end
+
   def test_successful_execution_of_all_profiles_returns_true
 
     process_runner = mock()
-    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./control.rb -e drupal-pull-request --acceptance_test_profile=desktop --acceptance_test_target=http://foo.com')
-    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./control.rb -e drupal-pull-request --acceptance_test_profile=mobile --acceptance_test_target=http://foo.com')
-    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./control.rb -e drupal-pull-request --acceptance_test_profile=kc_dm --acceptance_test_target=http://foo.com')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com')
 
     jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
     assert(jenkins_test_runner.run_tests)
@@ -39,9 +86,9 @@ class TestJenkinsTestRunner < Minitest::Test
   def test_any_failed_profile_returns_false
 
     process_runner = mock()
-    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./control.rb -e drupal-pull-request --acceptance_test_profile=desktop --acceptance_test_target=http://foo.com')
-    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./control.rb -e drupal-pull-request --acceptance_test_profile=mobile --acceptance_test_target=http://foo.com').raises(StandardError.new('foo'))
-    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./control.rb -e drupal-pull-request --acceptance_test_profile=kc_dm --acceptance_test_target=http://foo.com')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com').raises(StandardError.new('foo'))
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com')
 
     jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
     refute(jenkins_test_runner.run_tests)

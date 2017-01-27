@@ -23,14 +23,17 @@ class JenkinsTestRunner
     tests_passed
   end
 
+  private
+
   #
   # Execute the tests for the given profile
   #
   def execute_test(profile)
     success = true
+    test_execution_command = build_run_tests_command(profile)
 
     begin
-      @process_runner.execute!("cd #{@control_script_directory} && bundle exec ruby ./control.rb -e drupal-pull-request --acceptance_test_profile=#{profile} --acceptance_test_target=#{@host_to_test}")
+      @process_runner.execute!(test_execution_command)
     rescue
       puts "Run of test profile '#{profile}' failed."
       success = false
@@ -38,7 +41,35 @@ class JenkinsTestRunner
     success
   end
 
-  private :execute_test
+  #
+  # Reads an environment variable, returning its value or nil if it is not set or empty
+  #
+  def read_env_variable(variable_name)
+    return nil if ENV[variable_name].nil? || ENV[variable_name].empty?
+    ENV[variable_name]
+  end
+
+  #
+  # Builds the command to use to execute the tests, including whether or not we should send updates to GitHub and any Cucumber tags
+  # that should be applied
+  #
+  def build_run_tests_command(profile)
+    command = "cd #{@control_script_directory} && bundle exec ruby ./run_tests.rb --use-docker --profile=#{profile} --host-to-test=#{@host_to_test}"
+
+    github_sha1 = read_env_variable('ghprbActualCommit')
+    cucumber_tags = read_env_variable('CUCUMBER_TAGS')
+
+    if github_sha1
+      command += " --update-github-status=#{github_sha1}"
+    end
+
+    if cucumber_tags
+      command += " --cucumber-tags=#{cucumber_tags}"
+    end
+
+    command
+  end
+
 
 end
 
