@@ -38,29 +38,29 @@ class RunTests
   # Runs the acceptance tests in Docker by executing a number of Docker commands in sequence
   #
   def run_tests_in_docker(test_configuration)
-    compose_project_name = get_docker_compose_project_name
+    compose_project_name = docker_compose_project_name
     compose_environment_directory = "#{@cucumber_dir}/environments"
 
     @log.info('Running acceptance tests using Docker. Launching testing environment...')
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d #{test_configuration[:docker_node]}")
-    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} scale #{test_configuration[:docker_node]}=2")
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} scale #{test_configuration[:docker_node]}=#{test_configuration[:browser_count]}")
 
     @log.info('Testing environment up and running. Running acceptance tests...')
-    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps acceptance_tests #{test_configuration[:run_tests_command]}")
-    @log.info("Completed run of acceptance tests.")
+    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps tests #{test_configuration[:run_tests_command]}")
+    @log.info('Completed run of acceptance tests.')
   end
 
   #
   # Determines the docker-compose project name that should be used. If the user has specified
   # anything using the COMPOSE_PROJECT_NAME ENV variable, we use that, otherwise default to rhdtesting
   #
-  def get_docker_compose_project_name
-      compose_project_name = ENV['COMPOSE_PROJECT_NAME']
-      if compose_project_name.nil? or compose_project_name.empty?
-        compose_project_name = 'rhdtesting'
-      end
-     compose_project_name
+  def docker_compose_project_name
+    compose_project_name = ENV['COMPOSE_PROJECT_NAME']
+    if compose_project_name.nil? || compose_project_name.empty?
+      compose_project_name = 'rhdtesting'
+    end
+    compose_project_name
   end
 
   #
@@ -75,7 +75,7 @@ class RunTests
 end
 
 # Guard to allow us to unit test this class
-if $0 == __FILE__
+if $PROGRAM_NAME == __FILE__
   cucumber_dir = File.dirname(__FILE__)
   begin
     run_tests = RunTests.new(cucumber_dir, ProcessRunner.new, RunTestsOptions.new(cucumber_dir))
@@ -84,5 +84,4 @@ if $0 == __FILE__
   rescue
     Kernel.exit(1)
   end
-
 end

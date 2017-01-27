@@ -36,12 +36,13 @@ class TestRunTests < MiniTest::Test
     test_configuration[:docker] = true
     test_configuration[:docker_node] = 'docker_chrome'
     test_configuration[:run_tests_command] = 'rake -f cucumber.rake features'
+    test_configuration[:browser_count] = 5
 
     @run_tests_options.expects(:parse_command_line).with(%w(--use-docker)).returns(test_configuration)
     @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p rhdtesting build')
     @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p rhdtesting up -d docker_chrome')
-    @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p rhdtesting scale docker_chrome=2')
-    @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p rhdtesting run --rm --no-deps acceptance_tests rake -f cucumber.rake features')
+    @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p rhdtesting scale docker_chrome=5')
+    @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p rhdtesting run --rm --no-deps tests rake -f cucumber.rake features')
 
     @run_tests.run_acceptance_tests(%w(--use-docker))
   end
@@ -54,12 +55,13 @@ class TestRunTests < MiniTest::Test
     test_configuration[:docker] = true
     test_configuration[:docker_node] = 'docker_chrome'
     test_configuration[:run_tests_command] = 'rake -f cucumber.rake features'
+    test_configuration[:browser_count] = 3
 
     @run_tests_options.expects(:parse_command_line).with(%w(--use-docker)).returns(test_configuration)
     @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p foo build')
     @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p foo up -d docker_chrome')
-    @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p foo scale docker_chrome=2')
-    @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p foo run --rm --no-deps acceptance_tests rake -f cucumber.rake features')
+    @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p foo scale docker_chrome=3')
+    @process_runner.expects(:execute!).with('cd /tmp/cucumber/environments && docker-compose -p foo run --rm --no-deps tests rake -f cucumber.rake features')
 
     @run_tests.run_acceptance_tests(%w(--use-docker))
 

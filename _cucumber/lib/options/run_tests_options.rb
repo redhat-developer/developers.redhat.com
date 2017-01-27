@@ -19,11 +19,9 @@ class RunTestsOptions
   # Parses the command line supplied to the run-test.rb wrapper script.
   #
   def parse_command_line(args)
-
-    test_configuration = create_default_test_configuration()
+    test_configuration = create_default_test_configuration
 
     option_parser = OptionParser.new do |opts|
-
       opts.banner = 'Usage: run-tests.rb [options]'
       opts.separator 'Specific options:'
 
@@ -31,15 +29,15 @@ class RunTestsOptions
         test_configuration[:host_to_test] = host
       end
 
-      opts.on('--profile PROFILE', String, 'The Cucumber profile to use when running the tests [default=desktop]') do | profile |
+      opts.on('--profile PROFILE', String, 'The Cucumber profile to use when running the tests [default=desktop]') do |profile|
         test_configuration[:profile] = profile
       end
 
-      opts.on('--cucumber-tags CUCUMBER_TAGS', String, 'The cucumber tags to use') do | cucumber_tags |
+      opts.on('--cucumber-tags CUCUMBER_TAGS', String, 'The cucumber tags to use') do |cucumber_tags|
         test_configuration[:cucumber_tags] = cucumber_tags
       end
 
-      opts.on('--driver DRIVER', String, 'The driver to use when running the tests. [default=chrome]') do | driver |
+      opts.on('--driver DRIVER', String, 'The driver to use when running the tests. [default=chrome]') do |driver|
         check_supported_driver(driver)
         test_configuration[:driver] = driver
       end
@@ -51,11 +49,11 @@ class RunTestsOptions
         test_configuration[:docker] = true
       end
 
-      opts.on('--browser-count BROWSER_COUNT', String, 'The number of browsers to launch when running the tests with Docker [default=2]') do | browser_count |
+      opts.on('--browser-count BROWSER_COUNT', String, 'The number of browsers to launch when running the tests with Docker [default=2]') do |browser_count|
         test_configuration[:browser_count] = browser_count.to_i
       end
 
-      opts.on('--update-github-status SHA1', String, 'The SHA to report test results for on GitHub') do | sha1 |
+      opts.on('--update-github-status SHA1', String, 'The SHA to report test results for on GitHub') do |sha1|
         test_configuration[:github_sha1] = sha1
       end
 
@@ -71,7 +69,6 @@ class RunTestsOptions
       puts "#{e}"
       option_parser.parse(%w(-h))
     end
-
 
     #
     # Bind the environment variables required by the tests from the user supplied configuration
@@ -114,48 +111,39 @@ class RunTestsOptions
   # Should we wish to update GitHub statuses when running in Docker, this will set the required environment variables.
   #
   def bind_github_status_environment_variables(use_docker, github_sha_1, test_profile)
+    return unless use_docker && github_sha_1
 
-    if use_docker and github_sha_1
-      bind_environment_variable('github_status_sha1', github_sha_1)
-      github_status_context = nil
+    @logger.info("Enabling update of GitHub status for SHA1: '#{github_sha_1}'")
 
-      case test_profile
-        when 'desktop'
-          github_status_context = 'Drupal:FE Acceptance Tests'
-        when 'mobile'
-          github_status_context = 'Drupal:Mobile FE Acceptance Tests'
-        when 'kc_dm'
-          github_status_context = 'Drupal:FE KC/DM Acceptance Tests'
-      end
+    bind_environment_variable('github_status_enabled', 'true')
+    bind_environment_variable('github_status_sha1', github_sha_1)
+    github_status_context = nil
 
-      bind_environment_variable('github_status_context', github_status_context)
+    case test_profile
+      when 'desktop'
+        github_status_context = 'Drupal:FE Acceptance Tests'
+      when 'mobile'
+        github_status_context = 'Drupal:Mobile FE Acceptance Tests'
+      when 'kc_dm'
+        github_status_context = 'Drupal:FE KC/DM Acceptance Tests'
     end
 
-    if !use_docker and github_sha_1
-      @logger.warn('Sending of statuses to GitHub can only be performed when running the tests in Docker. Ignorning GitHub status update request.')
-    end
-
+    bind_environment_variable('github_status_context', github_status_context)
   end
 
   #
   # Binds the profile environment variable, firstly checking that the user has supplied a valid profile
   #
   def bind_profile_environment_variables(profile)
-
-    unless @supported_profiles.include?(profile)
-      Kernel.abort("'#{profile}' is not a recognised Cucumber profile, see '#{@cucumber_dir}/cucumber.yml' file for valid profiles.")
-    end
-
+    Kernel.abort("'#{profile}' is not a recognised Cucumber profile, see '#{@cucumber_dir}/cucumber.yml' file for valid profiles.") unless @supported_profiles.include?(profile)
     bind_environment_variable('RHD_TEST_PROFILE', profile)
   end
-
 
   #
   # Binds the environment variables required to correctly influence the driver used by Cucumber.
   # If we are trying to run in Docker, we also set the RHD_DOCKER_DRIVER env variable.
   #
   def bind_driver_environment_variables(run_in_docker, driver, test_configuration)
-
     if run_in_docker
       #
       # We set the docker driver to either docker_chrome or docker_firefox. docker_chrome is the default
@@ -164,7 +152,7 @@ class RunTestsOptions
       docker_driver = @supported_drivers.include?(driver) ? "docker_#{driver}" : 'docker_chrome'
       driver = @supported_drivers.include?(driver) ? "docker_#{driver}" : driver
       bind_environment_variable('RHD_DOCKER_DRIVER', docker_driver)
-      test_configuration[:docker_driver] = docker_driver
+      test_configuration[:docker_node] = docker_driver
     end
 
     bind_environment_variable('RHD_JS_DRIVER', driver)
@@ -174,25 +162,20 @@ class RunTestsOptions
   # Checks that the user has supplied us with a valid driver name
   #
   def check_supported_driver(driver)
-
-    unless @supported_drivers.include?(driver)
-
-      # Check that the device being used for emulation is supported by chrome
-      driver_config_file = "#{@cucumber_dir}/driver/device_config/chromium_devices.json"
-      json = File.read(driver_config_file)
-      config = JSON.parse(json)
-      Kernel.abort("Invalid device specified! Device '#{driver}' was not found \n see available test devices here: '#{driver_config_file}'") unless config.include?(driver)
-    end
-
+    return if @supported_drivers.include?(driver)
+    # Check that the device being used for emulation is supported by chrome
+    driver_config_file = "#{@cucumber_dir}/driver/device_config/chromium_devices.json"
+    json = File.read(driver_config_file)
+    config = JSON.parse(json)
+    Kernel.abort("Invalid device specified! Device '#{driver}' was not found \n see available test devices here: '#{driver_config_file}'") unless config.include?(driver)
   end
 
   #
   # Binds the given env variable to the specified value
   #
   def bind_environment_variable(env_variable_name, value)
-    unless value.nil? or value.empty?
-      ENV[env_variable_name] = value;
-    end
+    return if value.nil? || value.empty?
+    ENV[env_variable_name] = value
   end
 
   #
@@ -206,5 +189,4 @@ class RunTestsOptions
     default_configuration[:docker] = false
     default_configuration
   end
-
 end

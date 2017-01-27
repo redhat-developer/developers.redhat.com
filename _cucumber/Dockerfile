@@ -8,5 +8,4 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 COPY Gemfile .
 COPY Gemfile.lock .
-RUN bundle install -j 5
-WORKDIR /home/testing/developers.redhat.com/_cucumber
+RUN bundle install -j 10

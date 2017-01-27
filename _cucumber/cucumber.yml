@@ -25,8 +25,6 @@ $config_dir = "#{File.join(File.dirname(__FILE__),'../_config')}"
 $cucumber_dir = "#{File.dirname(__FILE__)}"
 %>
 
-#$root_dir = <%File.join(File.dirname(__FILE__),'../')%>
-
 default:
   -r features/
   -f pretty RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] %>
