@@ -6,8 +6,8 @@ class CucumberJSONMerger
 
   def initialize(profile)
     @profile = profile
-    @reports = Dir.glob("_cucumber/reports/#{@profile}/*.json").map { |f| JSON.parse(File.read(f)) }
     @cucumber_dir = File.dirname(__FILE__)
+    @reports = Dir.glob("#{@cucumber_dir}/reports/#{@profile}/*.json").map { |f| JSON.parse(File.read(f)) }
     @master = @reports.shift
   end
 
