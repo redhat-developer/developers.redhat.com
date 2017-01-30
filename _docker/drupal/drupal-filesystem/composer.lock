@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "09e23b61ae75ad2573117ce38cab2e70",
+    "content-hash": "fe05094d9ad112a22b703b38786a17d5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2136,7 +2136,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/metatag",
-                "reference": "a37911fba707766412d426f6ad79a7647a65f889"
+                "reference": "920afdd74d266b67fc9ed999c25b920aaeda147c"
             },
             "require": {
                 "drupal/core": "*",
@@ -2152,8 +2152,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta12+4-dev",
-                    "datestamp": "1484763184"
+                    "version": "8.x-1.0-beta12+11-dev",
+                    "datestamp": "1485801184"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2181,7 +2181,7 @@
                 "source": "http://cgit.drupalcode.org/metatag",
                 "issues": "http://drupal.org/project/issues/metatag"
             },
-            "time": "2017-01-18 18:12:24"
+            "time": "2017-01-30 18:49:08"
         },
         {
             "name": "drupal/multiversion",
@@ -2310,7 +2310,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/pathauto",
-                "reference": "fab13069edda3a88a0c2ea145e87b923e8f1a18d"
+                "reference": "afac06bd68337785b538f71dd364843c8748ccc1"
             },
             "require": {
                 "drupal/core": "*",
@@ -2323,8 +2323,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+14-dev",
-                    "datestamp": "1484781184"
+                    "version": "8.x-1.0-rc1+0-dev",
+                    "datestamp": "1485702183"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2354,7 +2354,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/pathauto"
             },
-            "time": "2017-01-23 07:20:11"
+            "time": "2017-01-29 14:59:51"
         },
         {
             "name": "drupal/simple_sitemap",
@@ -2763,17 +2763,17 @@
         },
         {
             "name": "drupal/workbench_moderation",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/workbench_moderation",
-                "reference": "8.x-1.1"
+                "reference": "8.x-1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/workbench_moderation-8.x-1.1.zip",
+                "url": "https://ftp.drupal.org/files/projects/workbench_moderation-8.x-1.2.zip",
                 "reference": null,
-                "shasum": "3af6ed1395f0c42c0a1644653561c4d2d6ad24dd"
+                "shasum": "3d37b29ed1e7fbf398160fe2494abc4361e4341c"
             },
             "require": {
                 "drupal/core": "*"
@@ -2784,12 +2784,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1",
+                    "version": "8.x-1.2",
                     "datestamp": "1483529942"
                 },
                 "patches_applied": {
-                    "2668006 - Provide logical access control for when IPE should be applied to moderated nodes": "https://www.drupal.org/files/issues/2668006-2.patch",
-                    "2780691 - Incorrect EntityRevision paramconverter service definition causes a fatal error": "https://www.drupal.org/files/issues/workbench_moderation-invalid_service_definition.patch"
+                    "2668006 - Provide logical access control for when IPE should be applied to moderated nodes": "https://www.drupal.org/files/issues/2668006-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -7353,16 +7352,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.32",
+            "version": "4.8.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f5e1941a8dacf0d904753ff2895c6f68e54bcee1"
+                "reference": "7eb45205d27edd94bd2b3614085ea158bd1e2bca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f5e1941a8dacf0d904753ff2895c6f68e54bcee1",
-                "reference": "f5e1941a8dacf0d904753ff2895c6f68e54bcee1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7eb45205d27edd94bd2b3614085ea158bd1e2bca",
+                "reference": "7eb45205d27edd94bd2b3614085ea158bd1e2bca",
                 "shasum": ""
             },
             "require": {
@@ -7421,7 +7420,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-22T08:37:05+00:00"
+            "time": "2017-01-26T16:15:36+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -7554,16 +7553,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "1.2.2",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "6a1ed12e8b2409076ab22e3897126211ff8b1f7f"
+                "reference": "2b7424b55f5047b47ac6e5ccb20b2aea4011d9be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/6a1ed12e8b2409076ab22e3897126211ff8b1f7f",
-                "reference": "6a1ed12e8b2409076ab22e3897126211ff8b1f7f",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/2b7424b55f5047b47ac6e5ccb20b2aea4011d9be",
+                "reference": "2b7424b55f5047b47ac6e5ccb20b2aea4011d9be",
                 "shasum": ""
             },
             "require": {
@@ -7614,7 +7613,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2016-11-19T09:18:40+00:00"
+            "time": "2017-01-29T09:50:25+00:00"
         },
         {
             "name": "sebastian/diff",
