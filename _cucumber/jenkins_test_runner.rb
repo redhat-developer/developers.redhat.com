@@ -80,6 +80,6 @@ if $PROGRAM_NAME == __FILE__
     Kernel.exit(1)
   end
 
-  jenkins_test_runner = JenkinsTestRunner.new(host_to_test, "#{__dir__}/../_docker", ProcessRunner.new)
+  jenkins_test_runner = JenkinsTestRunner.new(host_to_test, "#{__dir__}", ProcessRunner.new)
   execute(jenkins_test_runner)
 end
