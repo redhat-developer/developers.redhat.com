@@ -147,7 +147,6 @@
   <js-placeholder token="{{ placeholder_token|raw }}">
 </head>
 <body class="{{ body_classes()|join(' ') }}">
-{{ kint(_context['#attached']['html_response_attachment_placeholders']) }}
  {% if (rhd_environment == 'prod') %}
     <script type="text/javascript">
       dataLayer = [{'channel' : 'developer'}];
