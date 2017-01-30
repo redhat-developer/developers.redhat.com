@@ -1,4 +1,3 @@
-@slow
 @kc
 Feature: User Profile Edit
 
@@ -127,4 +126,4 @@ Feature: User Profile Edit
     When I am logged into RHD
      And I am on the Change Password page
      And I enter matching passwords, leaving my previous password empty
-    Then I should see a error message "Please specify password."
+    Then I should see a "password field" validation error "Current password is required"

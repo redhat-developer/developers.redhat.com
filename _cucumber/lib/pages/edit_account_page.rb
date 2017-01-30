@@ -23,6 +23,7 @@ class EditAccountPage < SiteBase
   action(:click_social)               { |p| p.social_login.click }
   action(:click_password)             { |p| p.password.click }
 
+  value(:password_field_error)        { |b| b.element(id: 'password-error').text }
   value(:email_field_error)           { |b| b.element(id: 'email-error').text }
   value(:first_name_field_error)      { |b| b.element(id: 'firstName-error').text }
   value(:last_name_field_error)       { |b| b.element(id: 'lastName-error').text }

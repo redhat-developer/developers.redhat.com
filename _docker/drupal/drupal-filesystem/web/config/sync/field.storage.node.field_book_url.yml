@@ -1,0 +1,19 @@
+uuid: eccff732-c0fe-47b7-b519-20d13207c3e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_book_url
+field_name: field_book_url
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

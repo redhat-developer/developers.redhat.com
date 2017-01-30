@@ -20,6 +20,10 @@ rerun_failures_opts = " -r _cucumber/features/ --format #{ENV['CUCUMBER_FORMAT']
 
 std_opts = "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} --strict --tags ~@wip"
 
+$products_dir = "#{File.dirname(__FILE__)}/products"
+$config_dir = "#{File.dirname(__FILE__)}/_config"
+$cucumber_dir = "#{File.dirname(__FILE__)}/_cucumber"
+
 %>
 
 default:

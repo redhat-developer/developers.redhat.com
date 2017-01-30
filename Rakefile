@@ -6,6 +6,7 @@ require 'uri'
 require 'json'
 require 'date'
 require 'tmpdir'
+require 'parallel'
 
 require_relative './_lib/reaper'
 require_relative './_lib/github'
@@ -51,7 +52,7 @@ Rake::TestTask.new do |t|
   t.libs = ["_docker/lib"]
   t.warning = false
   t.verbose = true
-  t.test_files = FileList['_docker/tests/**/*.rb', '_tests/*.rb'] #Let's add more files here!
+  t.test_files = FileList['_docker/tests/**/*.rb', '_tests/**/*.rb'] #Let's add more files here!
 end
 
 desc 'Setup the environment to run Awestruct'

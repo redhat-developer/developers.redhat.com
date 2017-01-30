@@ -52,8 +52,8 @@ end
 
 After do |scenario|
   if scenario.failed?
-    Dir.mkdir('screenshots') unless Dir.exist?('_cucumber/screenshots')
-    screenshot = "_cucumber/screenshots/#{ENV['RHD_TEST_PROFILE']}/FAILED_#{scenario.name.sub(' ', '_').sub(/[^0-9A-Za-z_]/, '')}.png"
+    Dir.mkdir("#{$cucumber_dir}/screenshots") unless Dir.exist?("#{$cucumber_dir}/screenshots")
+    screenshot = "#{$cucumber_dir}/screenshots/#{ENV['RHD_TEST_PROFILE']}/FAILED_#{scenario.name.sub(' ', '_').sub(/[^0-9A-Za-z_]/, '')}.png"
     @browser.driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'
   end
