@@ -60,6 +60,8 @@ services:
       - "3306"
     ports:
       - "3306"
+    volumes:
+      - ./mariadb/my.cnf:/etc/mysql/my.cnf
     volumes_from:
       - drupal_data
 
