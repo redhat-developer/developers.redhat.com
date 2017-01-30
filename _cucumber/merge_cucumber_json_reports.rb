@@ -6,7 +6,8 @@ class CucumberJSONMerger
 
   def initialize(profile)
     @profile = profile
-    @reports = Dir.glob("_cucumber/reports/#{@profile}/*.json").map { |f| JSON.parse(File.read(f)) }
+    @cucumber_dir = File.dirname(__FILE__)
+    @reports = Dir.glob("#{@cucumber_dir}/reports/#{@profile}/*.json").map { |f| JSON.parse(File.read(f)) }
     @master = @reports.shift
   end
 
@@ -32,21 +33,21 @@ class CucumberJSONMerger
   end
 
   def rerun
-    json_rerun = Dir.glob "_cucumber/reports/#{@profile}/rerun.json"
+    json_rerun = Dir.glob "#{@cucumber_dir}/reports/#{@profile}/rerun.json"
     if json_rerun.empty?
       puts 'no rerun file found'
     else
-      @reports = [JSON.parse(File.read("_cucumber/reports/#{@profile}/rerun.json"))]
+      @reports = [JSON.parse(File.read("#{@cucumber_dir}/reports/#{@profile}/rerun.json"))]
       run
     end
   end
 
   def rerun_2
-    json_rerun = Dir.glob "_cucumber/reports/#{@profile}/rerun2.json"
+    json_rerun = Dir.glob "#{@cucumber_dir}/reports/#{@profile}/rerun2.json"
     if json_rerun.empty?
       puts 'no second rerun file found'
     else
-      @reports = [JSON.parse(File.read("_cucumber/reports/#{@profile}/rerun2.json"))]
+      @reports = [JSON.parse(File.read("#{@cucumber_dir}/reports/#{@profile}/rerun2.json"))]
       run
     end
   end

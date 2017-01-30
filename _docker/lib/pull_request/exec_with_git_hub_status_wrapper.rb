@@ -8,6 +8,7 @@
 #
 # The GitHub status API updates are controlled via environment variables set on your docker-compose container definition. The supported
 # env args are:
+# - github_status_enabled -> Should the update of GitHub statuses be enabled, true or false
 # - github_status_api_token -> The API token that should be used to communicate with the Github status API
 # - github_status_repo -> The GitHub repo to use in the format <user>/<repo>
 # - github_status_target_url -> The URL to set as the target_url in the status update
@@ -112,29 +113,60 @@ def initialise_github_statuses(execution_wrapper, contexts_to_initialise)
 end
 
 #
+# Determines if the user has set environment variables to explicitly enable/disable the GitHub
+# status update process. By default we disable the process
+#
+def determine_if_status_update_enabled
+  enabled_env_var = get_env_value('github_status_enabled',false)
+  enabled = false
+
+  unless enabled_env_var.nil? or enabled_env_var.empty?
+    enabled = 'true' == enabled_env_var.to_s ? true : false
+  end
+
+  enabled
+end
+
+#
 # Executes the command and wraps progress in the Github status API.
 #
-def execute_command(execution_wrapper, command=[])
+def execute_command_with_github_wrapper(execution_wrapper, command=[])
   command_to_execute = command.join(' ')
   execution_wrapper.execute_command_and_update_status!(command_to_execute)
 end
 
+#
+# Executes the command, not using the GitHub status wrapper if it has been disabled by the user
+#
+def execute_command(command=[])
+  DefaultLogger.logger.info("Updates of statuses to GitHub disabled as ENV variable 'github_status_enabled'=false")
+  command_to_execute = command.join(' ')
+  raise StandardError.new("Execution of command '#{command_to_execute}' failed.") unless Kernel.system(command_to_execute)
+end
 
-if $0 == __FILE__
 
-  github_status_api_token = get_env_value('github_status_api_token', true)
-  github_status_repo = get_env_value('github_status_repo', true)
-  github_status_target_url = get_env_value('github_status_target_url', true)
-  github_status_context = get_env_value('github_status_context', true)
-  github_status_sha1 = get_env_value('github_status_sha1', true)
-  github_status_initialise = get_env_value('github_status_initialise', false)
+if $PROGRAM_NAME == __FILE__
 
-  Octokit.configure do |c|
-    c.access_token = github_status_api_token
-    c.connection_options[:ssl] = { :verify => false }
+  github_status_enabled = determine_if_status_update_enabled
+
+  if github_status_enabled
+
+    github_status_api_token = get_env_value('github_status_api_token', true)
+    github_status_repo = get_env_value('github_status_repo', true)
+    github_status_target_url = get_env_value('github_status_target_url', true)
+    github_status_context = get_env_value('github_status_context', true)
+    github_status_sha1 = get_env_value('github_status_sha1', true)
+    github_status_initialise = get_env_value('github_status_initialise', false)
+
+    Octokit.configure do |c|
+      c.access_token = github_status_api_token
+      c.connection_options[:ssl] = { :verify => false }
+    end
+
+    execution_wrapper = ExecWithGitHubStatusWrapper.new(github_status_repo, github_status_sha1, github_status_context, github_status_target_url)
+    initialise_github_statuses(execution_wrapper, github_status_initialise)
+    execute_command_with_github_wrapper(execution_wrapper, ARGV)
+  else
+    execute_command(ARGV)
   end
-
-  execution_wrapper = ExecWithGitHubStatusWrapper.new(github_status_repo, github_status_sha1, github_status_context, github_status_target_url)
-  initialise_github_statuses(execution_wrapper, github_status_initialise)
-  execute_command(execution_wrapper, ARGV)
 end
