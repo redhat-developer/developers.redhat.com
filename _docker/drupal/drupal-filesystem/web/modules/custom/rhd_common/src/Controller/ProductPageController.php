@@ -125,6 +125,30 @@ class ProductPageController extends ControllerBase
                     return $this->redirect('entity.node.canonical', ['node' => '32155']);
                 }
 
+                $page_links['#items'][] = [
+                  '#type' => 'link',
+                  '#title' => [
+                    '#type' => 'inline_template',
+                    '#template' => "{{text}}",
+                    '#context' => [
+                      'text' => t(strpos($sub_page_paragraph->field_overview_url->value, 'Hello') === false ?
+                        $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!')
+                    ]
+                  ],
+                  '#url' => Url::fromRoute('rhd_common.main_page_controller', [
+                    'product_code' => $product_code,
+                    'sub_page' => $sub_page_url_string,
+                  ]),
+                  '#wrapper_attributes' => (function () use ($sub_page, $sub_page_url_string) {
+                      if ($sub_page_url_string == $sub_page) {
+                          return ['class' => 'active'];
+                      } else {
+                          return [];
+                      }
+                  })()
+                ];
+            }
+
                 $build = $this->entityTypeManager()
                   ->getViewBuilder($this->active_product->getEntityTypeId())
                   ->view($this->active_product, 'full');
@@ -154,11 +178,11 @@ class ProductPageController extends ControllerBase
                       return strtolower($entity->field_overview_url->value) === 'community';
                   })) > 0;
             }
-
-            $build['#cache']['max-age'] = 0; // Disable caching of these product pages
         } catch (\Throwable $e) {
             return $this->redirect('entity.node.canonical', ['node' => '32155']);
         }
+
+        $build['#cache']['max-age'] = 0; // Disable caching of these product pages
 
         return $build;
     }
