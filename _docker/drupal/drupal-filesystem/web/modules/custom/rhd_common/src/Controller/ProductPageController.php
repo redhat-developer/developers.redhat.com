@@ -98,7 +98,8 @@ class ProductPageController extends ControllerBase
                     '#type' => 'inline_template',
                     '#template' => "{{text}}",
                     '#context' => [
-                      'text' => t($sub_page_paragraph->field_overview_url->value)
+                      'text' => t(strpos($sub_page_paragraph->field_overview_url->value, 'Hello') === false ?
+                        $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!')
                     ]
                   ],
                   '#url' => Url::fromRoute('rhd_common.main_page_controller', [
