@@ -9,6 +9,7 @@ services:
       - ../../../:/home/awestruct/developer.redhat.com
       - ../../awestruct/overlay/ssh-key:/home/awestruct/.ssh
     environment:
+      - github_status_enabled=true
       - github_status_api_token
       - github_status_context=Drupal:Drupal Site
       - github_status_repo=redhat-developer/developers.redhat.com
@@ -81,6 +82,7 @@ services:
    entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb 'ruby _docker/lib/export/export.rb stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}'"
    network_mode: "host"
    environment:
+    - github_status_enabled=true
     - github_status_api_token
     - github_status_context=Drupal:Exported Site Preview
     - github_status_repo=redhat-developer/developers.redhat.com
@@ -97,6 +99,7 @@ services:
     - ../../../:/home/awestruct/developer.redhat.com
    entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb 'bundle exec rake test'"
    environment:
+    - github_status_enabled=true
     - github_status_api_token
     - github_status_context=Drupal:Unit Tests
     - github_status_repo=redhat-developer/developers.redhat.com
@@ -110,6 +113,7 @@ services:
      - ../../../:/home/awestruct/developer.redhat.com
    entrypoint: "ruby _docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb"
    environment:
+     - github_status_enabled=true
      - github_status_api_token
      - github_status_context=${ACCEPTANCE_TEST_DESCRIPTION}
      - github_status_repo=redhat-developer/developers.redhat.com

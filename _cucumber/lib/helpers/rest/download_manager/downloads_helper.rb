@@ -69,7 +69,7 @@ module DownloadHelper
 
   def expected_downloads
     products = []
-    data = YAML.load_file('_config/categories.yml')
+    data = YAML.load_file("#{$config_dir}/categories.yml")
     data.each do |product|
       products << product['products']
     end
