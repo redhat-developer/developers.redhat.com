@@ -6,6 +6,7 @@ class ProcessExecutor
   def exec!(cmd, args = [])
     puts "DEBUG - executing command #{cmd} #{args}"
     out, status = Open3.capture2e(cmd, *args)
+    puts "DEBUG - execution of command '#{cmd} #{args}' has failed with status code='#{status.exitstatus}'" if status.exitstatus != 0
     raise out if status.exitstatus != 0
     out
   end
