@@ -62,7 +62,7 @@ end
 And(/^I unlink my social account$/) do
   on SocialLoginPage do |page|
     page.click_remove_github_btn
-    wait_for { page.remove_github_btn_present? == false }
+    custom_wait { page.remove_github_btn_present? == false }
   end
 end
 
@@ -98,7 +98,7 @@ end
 When(/^I change my password$/) do
   on ChangePasswordPage do |page|
     page.change_password(@site_user.details[:password], 'NewPa$$word', 'NewPa$$word')
-    wait_for { page.alert_box_message == 'Your password has been updated.' }
+    custom_wait { page.alert_box_message == 'Your password has been updated.' }
   end
 end
 

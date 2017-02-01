@@ -100,9 +100,9 @@ class SiteBase < GenericBasePage
     toggle_menu if is_mobile?
     begin
       click_logout_link
-      wait_for { is_logged_out? }
+      custom_wait { is_logged_out? }
     rescue Watir::Exception::UnknownObjectException
-      wait_for { is_logged_out? }
+      custom_wait { is_logged_out? }
     end
   end
 

@@ -40,7 +40,7 @@ module DriverHelper
   end
 
   def wait_for_windows(size)
-    windows.size == size
+    custom_wait(30, "Failed to load #{size} windows") { windows.size == size }
   end
 
   def switch_window(first_window)
@@ -56,7 +56,7 @@ module DriverHelper
     @browser.driver.switch_to.window(@browser.driver.window_handles.last)
   end
 
-  def wait_for(timeout=30, message='default', &block)
+  def custom_wait(timeout=30, message='default', &block)
     Timeout.timeout(timeout) do
       sleep 0.2 until block.call
       true
