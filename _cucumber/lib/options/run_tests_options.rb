@@ -1,4 +1,5 @@
 require 'optparse'
+require 'json'
 require_relative '../../../_docker/lib/default_logger'
 
 #
