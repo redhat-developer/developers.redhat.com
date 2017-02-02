@@ -15,8 +15,4 @@ You should read the [environments README.md](environments/README.md) for more in
 
 ### The default environment
 
-The default environment is set to be the Awestruct Pull Request environment.
-This was done so that we could migrate to the new environment strategy without having to change the current or create a new pull request job in Jenkins.
-At a later date the default environment will likely be changed to something more developer friendly.
-
-
+The default environment is set to be the Drupal Dev environment.
