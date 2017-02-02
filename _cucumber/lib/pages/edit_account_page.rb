@@ -50,12 +50,12 @@ class EditAccountPage < SiteBase
 
   def profile_name_updated?(rhd_name)
     toggle_menu if is_mobile?
-    wait_for(30, 'Profile name was not updated after 30 seconds!') { nav.text == rhd_name }
+    custom_wait(30, 'Profile name was not updated after 30 seconds!') { nav.text == rhd_name }
   end
 
   def toggle_side_nav
     click_side_nav_toggle unless side_nav_open?
-    wait_for(6, 'Side nav was not opened after 6 seconds') { side_nav_open? }
+    custom_wait(6, 'Side nav was not opened after 6 seconds') { side_nav_open? }
   end
 
   def select_menu_option(option)

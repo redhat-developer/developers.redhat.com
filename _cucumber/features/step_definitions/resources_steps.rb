@@ -27,7 +27,7 @@ end
 
 Then(/^the results should be filtered by (.*)$/) do |filter_type|
   on ResourcesPage do |page|
-    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
+    custom_wait(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
   end
 end
 
@@ -46,13 +46,13 @@ end
 
 And(/^the results for "([^"]*)" are displayed$/) do |filter_type|
   on ResourcesPage do |page|
-    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
+    custom_wait(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
   end
 end
 
 And(/^the results displayed should not contain "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
-    wait_for(30, "Images for #{filter_type} were still displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 0 }
+    custom_wait(30, "Images for #{filter_type} were still displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 0 }
   end
 end
 
@@ -105,7 +105,7 @@ end
 
 Then(/^all of the results should contain a "([^"]*)" thumbnail$/) do |filter_type|
   on ResourcesPage do |page|
-    wait_for(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
+    custom_wait(30, "Images for #{filter_type} were not displayed after 30 seconds") { page.results_contain_img_for(filter_type).size == 10 }
   end
 end
 
