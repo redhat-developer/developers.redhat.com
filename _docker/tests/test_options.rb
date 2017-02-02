@@ -91,13 +91,6 @@ class TestOptions < Minitest::Test
 
     tasks = Options.parse %w(--stage-pr 1)
     assert_nil(tasks[:decrypt])
-
-    tasks = Options.parse %w(--acceptance_test_target 127.0.0.1)
-    assert_nil(tasks[:decrypt])
-
-    tasks = Options.parse %w(--docker-nightly)
-    assert_nil(tasks[:decrypt])
-
   end
 
   def test_backup_with_no_backup_name
@@ -175,30 +168,6 @@ class TestOptions < Minitest::Test
     end
   end
 
-  def test_acceptance_test_target_task
-    ClimateControl.modify RHD_TEST_PROFILE: 'desktop', RHD_JS_DRIVER: 'docker_chrome', ACCEPTANCE_TEST_DESCRIPTION: 'Drupal:FE Acceptance Tests' do
-      tasks = Options.parse (["--acceptance_test_target=http://example.com"])
-      assert(tasks[:build])
-      assert_equal('http://example.com', ENV['HOST_TO_TEST'])
-      assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
-      assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
-      assert_equal('Drupal:FE Acceptance Tests', ENV['ACCEPTANCE_TEST_DESCRIPTION'])
-      assert_equal(["--rm", "--service-ports", "acceptance_tests", "bundle exec rake features HOST_TO_TEST=#{ENV['HOST_TO_TEST']} RHD_JS_DRIVER=#{ENV['RHD_JS_DRIVER']} RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"], tasks[:acceptance_test_target_task])
-    end
-  end
-
-  def test_acceptance_test_profile_task
-    ClimateControl.modify RHD_TEST_PROFILE: 'desktop' do
-      assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
-    end
-  end
-
-  def test_acceptance_test_driver_task
-    ClimateControl.modify RHD_DOCKER_DRIVER: 'docker_chrome' do
-      assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
-    end
-  end
-
   def test_run_pr_reap
     tasks = Options.parse (["--docker-pr-reap"])
     refute(tasks[:acceptance_test_target_task])
@@ -217,16 +186,6 @@ class TestOptions < Minitest::Test
     refute(tasks[:unit_tests], expected_unit_test_tasks)
     assert(tasks[:build])
     assert_empty(tasks[:supporting_services])
-  end
-
-  def test_run_docker_nightly
-    tasks = Options.parse (['-e drupal-pull-request',"--docker-nightly"])
-    refute_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake acceptance_test_target"], tasks[:acceptance_test_target_task])
-    assert_equal(["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[docker-nightly,build,docker-nightly] clean deploy[staging_docker]"], tasks[:awestruct_command_args])
-    assert(tasks[:kill_all])
-    assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
-    assert(tasks[:build])
-    assert_equal(tasks[:supporting_services], %w(drupalmysql drupal))
   end
 
   def test_run_the_stack_with_no_decrypt
@@ -280,6 +239,6 @@ class TestOptions < Minitest::Test
   end
 
   private def expected_unit_test_tasks
-    ['--no-deps', '--rm', 'unit_tests']
+    %w(--no-deps --rm unit_tests)
   end
 end

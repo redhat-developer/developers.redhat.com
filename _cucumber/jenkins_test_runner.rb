@@ -60,7 +60,7 @@ class JenkinsTestRunner
     cucumber_tags = read_env_variable('CUCUMBER_TAGS')
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += " --cucumber-tags=#{cucumber_tags}" if cucumber_tags
-    command += " --driver=iphone_6" if profile == 'mobile'
+    command += ' --driver=iphone_6' if profile == 'mobile'
     command
   end
 end
