@@ -21,7 +21,7 @@ div(class="mobile product-color #{page.product.product_category}")
     .large-24
       h3 #{page.product.name}
       - if(page.url.include?('overview'))
-        a.button(href='#{site.base_url}/products/#{page.product.id}/download/') Download
+        a.button(href='#{site.base_url}/products/#{page.product.id}/downloads/') Download
         a.button.inverse(href='#{site.base_url}/products/#{page.product.id}/get-started/') Get Started
 
 section(class="product-graphics #{page.product.product_category}")
