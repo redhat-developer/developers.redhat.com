@@ -90,6 +90,13 @@ When(/^select "([^"]*)" from the product filter$/) do |product|
   end
 end
 
+Then(/^I select "([^"]*)" from the product filter$/) do |product|
+  on ResourcesPage do |page|
+    @initial_results = page.results
+    page.filter_by_product(product)
+  end
+end
+
 Then(/^the results should be updated$/) do
   on ResourcesPage do |page|
     updated_results = page.results
