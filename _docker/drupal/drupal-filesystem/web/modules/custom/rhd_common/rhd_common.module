@@ -4,6 +4,8 @@
  * Add various functionalities here.
  */
 
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -17,7 +19,6 @@ use Drupal\Component\Utility\NestedArray;
  */
 function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
-    kint($form_id);
     // If Article add form, add custom form validator.
     if ($form_id == 'node_article_edit_form' || $form_id == 'node_article_form') {
         $pathauto = $form['path']['widget'][0]['pathauto'];
@@ -50,11 +51,11 @@ function rhd_common_ajax_test(array &$form, FormStateInterface $form_state) {
     \Drupal::logger('rhd_common')->notice('Inside the ajax call %video_url',
       ['%video_url' => $form_state->getValue('video_resource')]);
 
-    // should create a new AjaxResponse
+    $response = new AjaxResponse();
+    $response->addCommand(new InvokeCommand('#edit-body-0-value', 'val', ['Testing insert']));
     // Do a YouTube rest call
-    // call $form_state->setValue('body', youtube description)
-    // call $form_state->setValue('title', youtube description)
-    // call ajaxResponse->addCommand(
+    // Set the title and body like above
+    return $response;
 }
 
 /**
