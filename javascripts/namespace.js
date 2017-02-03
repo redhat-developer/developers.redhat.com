@@ -83,7 +83,7 @@ app.dcp.thumbnails = {
 /*
   Products
 */
-app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'], stackoverflow: site.products[product]['stackoverflow_tags'] || '_none'}; map; })};
+app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'], stackoverflow: site.products[product]['stackoverflow_tags'], buzz_tags: site.products[product]['buzz_tags'] || '_none'}; map; })};
 
 
 /*
