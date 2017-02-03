@@ -1,3 +1,5 @@
+require 'octokit'
+
 # this class contains a set of methods that are used to update and get github profile information using the github api rest endpoint.
 class GitHubAdmin
 

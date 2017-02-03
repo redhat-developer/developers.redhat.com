@@ -9,29 +9,28 @@ rerun_text = ''
     test_env_num.to_s
   end
 
-  rerun_file = "_cucumber/tmp/#{ENV['RHD_TEST_PROFILE']}/rerun#{env_num_str}.txt"
+  rerun_file = "tmp/#{ENV['RHD_TEST_PROFILE']}/rerun#{env_num_str}.txt"
   if File.file?(rerun_file)
     rerun_text << ' ' + IO.read(rerun_file)
     File.delete(rerun_file)
   end
 end
 
-rerun_failures_opts = " -r _cucumber/features/ --format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun_text} -f rerun -o _cucumber/tmp/#{ENV['RHD_TEST_PROFILE']}/rerunner.txt"
+rerun_failures_opts = " -r features/ --format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun_text} -f rerun -o tmp/#{ENV['RHD_TEST_PROFILE']}/rerunner.txt"
 
 std_opts = "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} --strict --tags ~@wip"
 
-$products_dir = "#{File.dirname(__FILE__)}/products"
-$config_dir = "#{File.dirname(__FILE__)}/_config"
-$cucumber_dir = "#{File.dirname(__FILE__)}/_cucumber"
-
+$products_dir = "#{File.join(File.dirname(__FILE__),'../products')}"
+$config_dir = "#{File.join(File.dirname(__FILE__),'../_config')}"
+$cucumber_dir = "#{File.dirname(__FILE__)}"
 %>
 
 default:
-  -r _cucumber/features/
+  -r features/
   -f pretty RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] %>
 
 parallel:
-  -r _cucumber/features/
+  -r features/
   -f progress
   -p parallel_html
   -t ~@ignore
@@ -39,14 +38,14 @@ parallel:
   -t ~@later
   -t ~@nightly
   -f rerun
-  -o _cucumber/tmp/<%=ENV['RHD_TEST_PROFILE']%>/rerun<%= ENV['TEST_ENV_NUMBER'] %>.txt
+  -o tmp/<%=ENV['RHD_TEST_PROFILE']%>/rerun<%= ENV['TEST_ENV_NUMBER'] %>.txt
 
 rerun_failures:
   <%= rerun_failures_opts %>
-  -f json -o _cucumber/reports/<%= ENV['RHD_TEST_PROFILE'] %>/rerun.json
+  -f json -o reports/<%= ENV['RHD_TEST_PROFILE'] %>/rerun.json
 
 nightly:
-  -r _cucumber/features/
+  -r features/
   -f progress
   -p parallel
   -t ~@ignore
@@ -54,7 +53,7 @@ nightly:
   -t ~@later
 
 parallel_html:
-  -f json -o _cucumber/reports/<%= ENV['RHD_TEST_PROFILE'] %>/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
+  -f json -o reports/<%= ENV['RHD_TEST_PROFILE'] %>/cucumber<%= ENV['TEST_ENV_NUMBER'] %>.json
 
 slow:
   -p default

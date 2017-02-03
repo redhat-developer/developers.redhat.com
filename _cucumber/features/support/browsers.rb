@@ -28,7 +28,7 @@ class Browsers
   end
 
   def default(browser_name)
-    json = File.read('_cucumber/driver/device_config/chromium_devices.json')
+    json = File.read("#{$cucumber_dir}/driver/device_config/chromium_devices.json")
     config = JSON.parse(json)
     if config.include?(browser_name)
       dut = config[browser_name]['device']['name']
@@ -44,7 +44,7 @@ class Browsers
   end
 
   def chrome(device_name = nil)
-    $download_directory = File.join("#{Dir.pwd}/_cucumber", 'tmp_downloads')
+    $download_directory = "#{$cucumber_dir}/tmp_downloads"
     FileUtils.mkdir_p $download_directory
 
     chrome_prefs = {
@@ -132,7 +132,7 @@ class Browsers
   end
 
   def browserstack(stack_to_use)
-    json = JSON.load(open('_cucumber/driver/browserstack/browsers.json'))
+    json = JSON.load(open("#{$cucumber_dir}/driver/browserstack/browsers.json"))
     config = json[stack_to_use]
     job_name = "RHD Acceptance Tests - #{stack_to_use}: #{Time.now.strftime '%Y-%m-%d %H:%M'}"
     config['browserstack.debug'] = 'true'
