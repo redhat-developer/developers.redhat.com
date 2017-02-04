@@ -1,0 +1,7 @@
+ckeditor_commands:
+  version: VERSION
+  js:
+    js/ckeditor_commands.js: {}
+  dependencies:
+    - core/drupal.ajax
+    - core/drupal.ckeditor
