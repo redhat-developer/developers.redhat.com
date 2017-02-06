@@ -29,11 +29,12 @@ title: Forums | Red Hat Developers
                   h4.read-only
                     = product.forum_title || product.name
                   p
-                    | This product forum will be made
-                    a(id="#{product.id}" href="#{forum_url}" target="_blank" rel="noopener noreferrer")  read only
-                    |  on February 1st, 2017 but you can see new
-                    strong
-                      a(href="#{site.base_url}/stack-overflow/#!q=#{product.id}" target="_blank")  questions about this product on our Stack Overflow page
+                    |This product forum is now 
+                    a(id="#{product.id}" href="#{forum_url}" target="_blank" rel="noopener noreferrer") read only
+                    | You can find 
+                    a(href="#{site.base_url}/stack-overflow/#!q=#{product.id}" target="_blank") questions about this product on our Stack Overflow page
+                    | , or you can post your questions using 
+                    a(href="/articles/how-to-post-tag-question-stack-overflow/") relevant tags
                     | .
                 - else
                   h4
