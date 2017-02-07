@@ -1,0 +1,335 @@
+---
+:scope: 
+:url: https://dcp.stage.jboss.org/v2/rest/search/stackoverflow/?field=sys_url_view&field=sys_title&field=is_answered&field=author&field=sys_tags&field=answers&field=sys_created&field=view_count&field=answer_count&field=down_vote_count&field=up_vote_count&field=sys_content&from=10&product=&project=&query=&query_highlight=true&size=10&size10=true
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Server: Apache-Coyote/1.1
+  Pragma: No-cache
+  Cache-Control: no-cache
+  Expires: Wed, 31 Dec 1969 19:00:00 EST
+  Access-Control-Allow-Origin: https://developers.stage.redhat.com
+  Content-Type: application/json
+  Date: Thu, 16 Feb 2017 12:23:13 GMT
+  Connection: close
+  Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a38o8080;
+    path=/
+:content: '{"uuid":"b0fd0467-647d-4295-b2a4-d057270a7731","took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"failed":0},"hits":{"total":17127,"max_score":null,"hits":[{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42256781","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jboss","sys_id":"42256781","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-02-15T13:11:42.315-05:00","sys_id":"stackoverflow_question-42256781","sys_url_view":"http://stackoverflow.com/questions/42256781/how-to-set-default-database-schema-in-datasource-in-jboss-eap-7-0","sys_content_id":"42256781","last_activity":"1487181423000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/3848c29324e356b5de8b1f12e2d457f2?s=128&d=identicon&r=PG","user_type":"registered","user_id":435192,"link":"http://stackoverflow.com/users/435192/codertr","reputation":146,"display_name":"CoderTR","accept_rate":75},"sys_content_plaintext":"I
+  am setting up DB2 datasource in Jboss EAP 7.0 server as ''datasource'' subsystem
+  and would like to specify the default schema to use so the application don''t have
+  to maintain this configuration. Is there a way to do that in Jboss EAP ? My config
+  in standalone-full.xml: <subsystem xmlns=\"urn:jboss:domain:datasources:4.0\"> <datasources>
+  <datasource jndi-name=\"java:jboss/datasources/ExampleDS\" pool-name=\"ExampleDS\"
+  enabled=\"true\" use-java-context=\"true\"> <connection-url>jdbc:db2://URL:PORT/DB_NAME</connection-url>
+  <driver>db2</driver> <new-connection-sql>SET SCHEMA SCHEMA_NAME</new-connection-sql>
+  <security> <user-name>USER</user-name> <password>PASSWRD<password> </security> </datasource>
+  <drivers> <driver name=\"db2\" module=\"com.ibm.db2\"> <xa-datasource-class>com.ibm.db2.jcc.DB2Driver</xa-datasource-class>
+  </driver> </drivers> </datasources> </subsystem>","sys_content_type":"stackoverflow_question","author":"CoderTR-435192","sys_tags":["database","jboss","db2","datasource","jboss-eap-7"],"sys_title":"How
+  to set default database schema in datasource in JBOSS EAP 7.0 ?","tags":["database","jboss","db2","datasource","jboss-eap-7"],"sys_content":"<p>I
+  am setting up DB2 datasource in Jboss EAP 7.0 server as ''datasource'' subsystem
+  and would like to specify the default schema to use so the application don''t have
+  to maintain this configuration. </p>\n\n<p>Is there a way to do that in Jboss EAP
+  ? </p>\n\n<p>My config in standalone-full.xml: </p>\n\n<pre><code>&lt;subsystem
+  xmlns=\"urn:jboss:domain:datasources:4.0\"&gt;\n    &lt;datasources&gt;\n        &lt;datasource
+  jndi-name=\"java:jboss/datasources/ExampleDS\" pool-name=\"ExampleDS\" enabled=\"true\"
+  use-java-context=\"true\"&gt;\n            &lt;connection-url&gt;jdbc:db2://URL:PORT/DB_NAME&lt;/connection-url&gt;\n            &lt;driver&gt;db2&lt;/driver&gt;\n            &lt;new-connection-sql&gt;SET
+  SCHEMA SCHEMA_NAME&lt;/new-connection-sql&gt; \n            &lt;security&gt;\n                &lt;user-name&gt;USER&lt;/user-name&gt;\n                &lt;password&gt;PASSWRD&lt;password&gt;\n            &lt;/security&gt;\n        &lt;/datasource&gt;\n        &lt;drivers&gt;\n            &lt;driver
+  name=\"db2\" module=\"com.ibm.db2\"&gt;\n                &lt;xa-datasource-class&gt;com.ibm.db2.jcc.DB2Driver&lt;/xa-datasource-class&gt;\n            &lt;/driver&gt;\n        &lt;/drivers&gt;\n    &lt;/datasources&gt;\n&lt;/subsystem&gt;\n</code></pre>\n","user_id":"435192","sys_created":"1487181423000","is_answered":"false","view_count":"2","up_vote_count":"0"},"sort":[1487181423000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42256727","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jboss","sys_id":"42256727","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-02-15T13:11:42.316-05:00","sys_id":"stackoverflow_question-42256727","sys_url_view":"http://stackoverflow.com/questions/42256727/jboss-deployment-showed-java-lang-noclassdeffounderror","sys_content_id":"42256727","last_activity":"1487181601000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/5cf31735c9209052ca927aea47a60e30?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":5875269,"link":"http://stackoverflow.com/users/5875269/jiahao-kou","reputation":8,"display_name":"Jiahao
+  Kou"},"sys_content_plaintext":"I have a web application and it runs well on Tomcat.
+  Now I want to move it to jBoss wildFly server. It shows java.lang.NoClassDefFoundError
+  when it wants to initial a static variable com.sas.metadata.remote.MdFactoryImpl.<init>(MdFactoryImpl.java:198)
+  . My code will call this initial function in a jar. I put all the jar files in the
+  lib folder and I use eclipse mars. It seems that it cannot find the class file during
+  running time. Any help is appreciated. Thanks","sys_content_type":"stackoverflow_question","comments":[{"owner":{"profile_image":"https://i.stack.imgur.com/HQ7BS.png?s=128&g=1","user_type":"registered","user_id":1235535,"link":"http://stackoverflow.com/users/1235535/leozeo","reputation":61,"display_name":"Leozeo","accept_rate":29},"score":0,"post_id":42256727,"edited":false,"creation_date":"1487181475000","comment_id":71671299},{"owner":{"profile_image":"https://www.gravatar.com/avatar/5cf31735c9209052ca927aea47a60e30?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":5875269,"link":"http://stackoverflow.com/users/5875269/jiahao-kou","reputation":8,"display_name":"Jiahao
+  Kou"},"score":0,"post_id":42256727,"reply_to_user":{"profile_image":"https://i.stack.imgur.com/HQ7BS.png?s=128&g=1","user_type":"registered","user_id":1235535,"link":"http://stackoverflow.com/users/1235535/leozeo","reputation":61,"display_name":"Leozeo","accept_rate":29},"edited":false,"creation_date":"1487182047000","comment_id":71671637}],"author":"Jiahao
+  Kou-5875269","sys_tags":["java","jboss","wildfly"],"sys_title":"jBoss deployment
+  showed java.lang.NoClassDefFoundError","tags":["java","jboss","wildfly"],"sys_content":"<p>I
+  have a web application and it runs well on Tomcat. Now I want to move it to jBoss
+  wildFly server. It shows <code>java.lang.NoClassDefFoundError</code> when it wants
+  to initial a static variable <code>com.sas.metadata.remote.MdFactoryImpl.&lt;init&gt;(MdFactoryImpl.java:198)</code>.
+  My code will call this initial function in a jar.</p>\n\n<p>I put all the jar files
+  in the lib folder and I use eclipse mars. It seems that it cannot find the class
+  file during running time.</p>\n\n<p>Any help is appreciated. Thanks</p>\n","user_id":"5875269","sys_created":"1487181246000","is_answered":"false","view_count":"8","up_vote_count":"0"},"sort":[1487181246000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42256138","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"42256138","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-02-15T13:13:28.251-05:00","sys_id":"stackoverflow_question-42256138","sys_url_view":"http://stackoverflow.com/questions/42256138/how-can-i-synchronize-two-quartz2-components-of-two-different-camel-contexts","sys_content_id":"42256138","last_activity":"1487180314000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/dd13cb2764330023ad41af4072557d30?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":3603889,"link":"http://stackoverflow.com/users/3603889/chris","reputation":52,"display_name":"chris","accept_rate":56},"sys_content_plaintext":"I
+  have two different camel contexts having a quartz2 component that define a job with
+  theirs cron. I want to synchronize this two different quartzes so that the second
+  one runs after the completion of the first. Following there is an example of code
+  <camelContext id=\"context_1\"> <route id=\"route_1\"> <from uri=\"quartz2:timer_1?cron=20+*+*+*+*+?&amp;stateful=true\"/>
+  .... </route> </camelContext> <camelContext id=\"context_2\"> <route id=\"route_2\">
+  <from uri=\"quartz2:timer_2?cron=30+*+*+*+*+?&amp;stateful=true\"/> .... </route>
+  </camelContext>","sys_content_type":"stackoverflow_question","author":"chris-3603889","sys_tags":["apache-camel","quartz-scheduler","jbossfuse"],"sys_title":"How
+  can I synchronize two quartz2 components of two different camel contexts?","tags":["apache-camel","quartz-scheduler","jbossfuse"],"sys_content":"<p>I
+  have two different camel contexts having a quartz2 component that define a job with
+  theirs cron. I want to synchronize this two different quartzes so that the second
+  one runs after the completion of the first. Following there is an example of code</p>\n\n<pre><code>&lt;camelContext
+  id=\"context_1\"&gt;    \n     &lt;route id=\"route_1\"&gt;\n         &lt;from uri=\"quartz2:timer_1?cron=20+*+*+*+*+?&amp;amp;stateful=true\"/&gt;\n         ....\n     &lt;/route&gt;\n&lt;/camelContext&gt;\n\n&lt;camelContext
+  id=\"context_2\"&gt;    \n      &lt;route id=\"route_2\"&gt;\n          &lt;from
+  uri=\"quartz2:timer_2?cron=30+*+*+*+*+?&amp;amp;stateful=true\"/&gt;\n          ....\n      &lt;/route&gt;\n&lt;/camelContext&gt;\n</code></pre>\n","user_id":"3603889","sys_created":"1487179272000","is_answered":"false","view_count":"5","up_vote_count":"0"},"sort":[1487179272000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42254189","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"openshift","sys_id":"42254189","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-02-15T14:14:36.163-05:00","sys_id":"stackoverflow_question-42254189","sys_url_view":"http://stackoverflow.com/questions/42254189/deployment-youtrack-on-openshift","sys_content_id":"42254189","last_activity":"1487174284000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/c92e33c2986d88fc0f07aef2e47c3c68?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":3700585,"link":"http://stackoverflow.com/users/3700585/robert","reputation":101,"display_name":"Robert","accept_rate":21},"sys_content_plaintext":"it
+  is possible to deploy last version of YouTrack on OpenShift. War is no longer provided.
+  There is only zip or jar file.","sys_content_type":"stackoverflow_question","author":"Robert-3700585","sys_tags":["deployment","openshift","youtrack"],"sys_title":"Deployment
+  YouTrack on OpenShift","tags":["deployment","openshift","youtrack"],"sys_content":"<p>it
+  is possible to deploy last version of YouTrack on OpenShift. War is no longer provided.
+  There is only zip or jar file.</p>\n","user_id":"3700585","sys_created":"1487174284000","is_answered":"false","view_count":"4","up_vote_count":"0"},"sort":[1487174284000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42253959","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jboss6.x","sys_id":"42253959","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-02-15T14:12:52.082-05:00","sys_id":"stackoverflow_question-42253959","sys_url_view":"http://stackoverflow.com/questions/42253959/angular-2-application-deployed-on-jboss-6-4-eap-with-java-services-as-backend","sys_content_id":"42253959","last_activity":"1487173712000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://lh6.googleusercontent.com/-r9jzccbkPu0/AAAAAAAAAAI/AAAAAAAAEgA/FXuwGyeMUpw/photo.jpg?sz=128","user_type":"registered","user_id":7569799,"link":"http://stackoverflow.com/users/7569799/nayan-suchak","reputation":11,"display_name":"Nayan
+  Suchak"},"sys_content_plaintext":"Problem 1: Angular 2 application deployed on JBOSS
+  server but not able to load static content (js/css). The problem is the website
+  is hosted under its own context (localhost:8080/sample/) and static resources is
+  refered in index.html as (link href=\"css/index.css\" rel=\"stylesheet\") however
+  it doesnt get loaded as network calls are made to localhost:8080/css/index.css.
+  I need it to point to localhost:8080/sample/css/index.css Problem 2: Alternately
+  we tried hosting angular application on tomcat but services need to be hosted on
+  jboss, we tried implementing CROS filter ( https://amodernstory.com/2014/12/27/using-cors-headers-with-java-example/
+  ) but the first request goes through but other request shows pending status in Chrome
+  network''s tab.","sys_content_type":"stackoverflow_question","author":"Nayan Suchak-7569799","sys_tags":["java","angularjs","angular2","jboss6.x"],"sys_title":"Angular
+  2 application deployed on JBOSS 6.4 eap with java services as backend","tags":["java","angularjs","angular2","jboss6.x"],"sys_content":"<p>Problem
+  1: Angular 2 application deployed on JBOSS server but not able to load static content
+  (js/css). The problem is the website is hosted under its own context (localhost:8080/sample/)
+  and static resources is refered in index.html as (link href=\"css/index.css\" rel=\"stylesheet\")
+  however it doesnt get loaded as network calls are made to localhost:8080/css/index.css.</p>\n\n<p>I
+  need it to point to localhost:8080/sample/css/index.css</p>\n\n<p>Problem 2: Alternately
+  we tried hosting angular application on tomcat but services need to be hosted on
+  jboss, we tried implementing CROS filter (<a href=\"https://amodernstory.com/2014/12/27/using-cors-headers-with-java-example/\"
+  rel=\"nofollow noreferrer\">https://amodernstory.com/2014/12/27/using-cors-headers-with-java-example/</a>)
+  but the first request goes through but other request shows pending status in Chrome
+  network''s tab.</p>\n","user_id":"7569799","sys_created":"1487173712000","is_answered":"false","view_count":"10","up_vote_count":"2"},"sort":[1487173712000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42248385","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"redhat","sys_id":"42248385","answers":[{"owner":{"profile_image":"https://i.stack.imgur.com/75DCO.png?s=128&g=1","user_type":"registered","user_id":802028,"link":"http://stackoverflow.com/users/802028/umair","reputation":619,"display_name":"umair","accept_rate":69},"comment_count":0,"is_accepted":false,"last_activity_date":"1487163498000","creation_date":"1487163498000","title":"Certificate
+  Moved Permanently","body":"<p>The certificate was being downloaded from <a href=\"http://curl.haxx.se/ca/cacert.pem\"
+  rel=\"nofollow noreferrer\">http://curl.haxx.se/ca/cacert.pem</a>. Had to change
+  http to https.</p>\n","answer_id":42250081,"question_id":42248385,"tags":[],"share_link":"http://stackoverflow.com/a/42250081","score":0,"down_vote_count":0,"up_vote_count":0}],"sys_type":"stackoverflow_thread","answer_count":"1","time_to_answer_mins":77.03333333333333,"sys_updated":"2017-02-15T10:31:27.012-05:00","sys_id":"stackoverflow_question-42248385","sys_url_view":"http://stackoverflow.com/questions/42248385/certificate-moved-permanently","sys_content_id":"42248385","last_activity":"1487163498000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://i.stack.imgur.com/75DCO.png?s=128&g=1","user_type":"registered","user_id":802028,"link":"http://stackoverflow.com/users/802028/umair","reputation":619,"display_name":"umair","accept_rate":69},"sys_content_plaintext":"I
+  was getting cURL error when accessing HTTPS. I just checked and my ca-bundle.crt
+  contains: <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>301
+  Moved Permanently</title> </head><body> <h1>Moved Permanently</h1> <p>The document
+  has moved <a href=\"https://curl.haxx.se/ca/cacert.pem\">here</a>.</p> <hr> <address>Apache
+  Server at curl.haxx.se Port 80</address> </body></html> I tried manually updating
+  contents of this file but it keeps reverting. Any help will be appreciated.","sys_content_type":"stackoverflow_question","author":"umair-802028","sys_tags":["curl","certificate","ssl-certificate","redhat","ca"],"sys_title":"Certificate
+  Moved Permanently","tags":["curl","certificate","ssl-certificate","redhat","ca"],"sys_content":"<p>I
+  was getting cURL error when accessing HTTPS. I just checked and my ca-bundle.crt
+  contains:</p>\n\n<pre><code>&lt;!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"&gt;\n&lt;html&gt;&lt;head&gt;\n&lt;title&gt;301
+  Moved Permanently&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h1&gt;Moved Permanently&lt;/h1&gt;\n&lt;p&gt;The
+  document has moved &lt;a href=\"https://curl.haxx.se/ca/cacert.pem\"&gt;here&lt;/a&gt;.&lt;/p&gt;\n&lt;hr&gt;\n&lt;address&gt;Apache
+  Server at curl.haxx.se Port 80&lt;/address&gt;\n&lt;/body&gt;&lt;/html&gt;\n</code></pre>\n\n<p>I
+  tried manually updating contents of this file but it keeps reverting. Any help will
+  be appreciated.</p>\n","user_id":"802028","sys_created":"1487158876000","is_answered":"false","view_count":"6","up_vote_count":"0"},"sort":[1487158876000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42247125","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"redhat","sys_id":"42247125","answers":[{"owner":{"profile_image":"https://i.stack.imgur.com/75DCO.png?s=128&g=1","user_type":"registered","user_id":802028,"link":"http://stackoverflow.com/users/802028/umair","reputation":619,"display_name":"umair","accept_rate":69},"comment_count":0,"is_accepted":false,"last_activity_date":"1487163599000","creation_date":"1487163599000","title":"cURL
+  not working for HTTPS (Error: 77)","body":"<p>My certificate file was incorrect.
+  It was being downloaded from <a href=\"http://curl.haxx.se/ca/cacert.pem\" rel=\"nofollow
+  noreferrer\">http://curl.haxx.se/ca/cacert.pem</a>. Had to change http to https.</p>\n","answer_id":42250121,"question_id":42247125,"tags":[],"share_link":"http://stackoverflow.com/a/42250121","score":0,"down_vote_count":0,"up_vote_count":0}],"sys_type":"stackoverflow_thread","answer_count":"1","time_to_answer_mins":134.4,"sys_updated":"2017-02-15T10:31:27.014-05:00","sys_id":"stackoverflow_question-42247125","sys_url_view":"http://stackoverflow.com/questions/42247125/curl-not-working-for-https-error-77","sys_content_id":"42247125","last_activity":"1487164761000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://i.stack.imgur.com/75DCO.png?s=128&g=1","user_type":"registered","user_id":802028,"link":"http://stackoverflow.com/users/802028/umair","reputation":619,"display_name":"umair","accept_rate":69},"sys_content_plaintext":"PHP
+  curl is not working for https requests on Amazon Linux. This is what I get when
+  I curl an https url: curl -v https://google.com Rebuilt URL to: https://google.com/
+  Trying 172.217.3.174... Connected to google.com (172.217.3.174) port 443 (#0) Initializing
+  NSS with certpath: sql:/etc/pki/nssdb Closing connection 0 curl: (77) Problem with
+  the SSL CA cert (path? access rights?) I have tried different things but cannot
+  figure out what the issue is. Any help will be much appreciated.","sys_content_type":"stackoverflow_question","comments":[{"owner":{"profile_image":"https://i.stack.imgur.com/P6rM1.png?s=128&g=1","user_type":"registered","user_id":2310830,"link":"http://stackoverflow.com/users/2310830/riggsfolly","reputation":50168,"display_name":"RiggsFolly"},"score":1,"post_id":42247125,"edited":false,"creation_date":"1487155653000","comment_id":71652609},{"owner":{"profile_image":"https://i.stack.imgur.com/4ZK8o.jpg?s=128&g=1","user_type":"registered","user_id":1948292,"link":"http://stackoverflow.com/users/1948292/danfromgermany","reputation":14921,"display_name":"DanFromGermany","accept_rate":71},"score":0,"post_id":42247125,"edited":false,"creation_date":"1487163836000","comment_id":71658202},{"owner":{"profile_image":"https://i.stack.imgur.com/75DCO.png?s=128&g=1","user_type":"registered","user_id":802028,"link":"http://stackoverflow.com/users/802028/umair","reputation":619,"display_name":"umair","accept_rate":69},"score":0,"post_id":42247125,"edited":false,"creation_date":"1487164046000","comment_id":71658343},{"owner":{"profile_image":"https://i.stack.imgur.com/aPIhh.jpg?s=128&g=1","user_type":"registered","user_id":608639,"link":"http://stackoverflow.com/users/608639/jww","reputation":39071,"display_name":"jww","accept_rate":65},"score":0,"post_id":42247125,"edited":false,"creation_date":"1487164843000","comment_id":71658857}],"author":"umair-802028","sys_tags":["php","curl","redhat","libcurl","nss"],"sys_title":"cURL
+  not working for HTTPS (Error: 77)","tags":["php","curl","redhat","libcurl","nss"],"sys_content":"<p>PHP
+  curl is not working for https requests on Amazon Linux. This is what I get when
+  I curl an https url:     </p>\n\n<pre><code>curl -v https://google.com\nRebuilt
+  URL to: https://google.com/\nTrying 172.217.3.174...\nConnected to google.com (172.217.3.174)
+  port 443 (#0)\nInitializing NSS with certpath: sql:/etc/pki/nssdb\nClosing connection
+  0\ncurl: (77) Problem with the SSL CA cert (path? access rights?)\n</code></pre>\n\n<p>I
+  have tried different things but cannot figure out what the issue is. Any help will
+  be much appreciated.</p>\n","user_id":"802028","sys_created":"1487155535000","is_answered":"false","view_count":"38","up_vote_count":"0"},"sort":[1487155535000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42246921","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jboss","sys_id":"42246921","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-02-15T13:11:42.310-05:00","sys_id":"stackoverflow_question-42246921","sys_url_view":"http://stackoverflow.com/questions/42246921/a-vbscript-that-automates-the-process-of-build-files-and-start-jboss-server-in-e","sys_content_id":"42246921","last_activity":"1487154980000","down_vote_count":"1","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://graph.facebook.com/1084301792/picture?type=large","user_type":"registered","user_id":1931161,"link":"http://stackoverflow.com/users/1931161/ashutosh-singh","reputation":56,"display_name":"Ashutosh
+  Singh","accept_rate":55},"sys_content_plaintext":"I''m constantly using Eclipse
+  for the development of applications. To be faster and automate the processes I wanted
+  to automate the build and server startup process. Currently, I''m running my application
+  on a Jboss server. Is it possible? if(Yes) How can we do it? else Any alternatives?","sys_content_type":"stackoverflow_question","author":"Ashutosh
+  Singh-1931161","sys_tags":["java","eclipse","vbscript","jboss"],"sys_title":"A VBScript
+  that automates the process of build files and start jboss server in Eclipse","tags":["java","eclipse","vbscript","jboss"],"sys_content":"<p>I''m
+  constantly using Eclipse for the development of applications. To be faster and automate
+  the processes I wanted to automate the build and server startup process. </p>\n\n<p>Currently,
+  I''m running my application on a Jboss server. </p>\n\n<pre><code>Is it possible?
+  \nif(Yes)\n How can we do it?\nelse\n  Any alternatives?\n</code></pre>\n","user_id":"1931161","sys_created":"1487154980000","is_answered":"false","view_count":"9","up_vote_count":"0"},"sort":[1487154980000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42245108","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jboss7.x","sys_id":"42245108","answers":[{"owner":{"profile_image":"https://www.gravatar.com/avatar/7cc82083efe850c5de040e3beb53b74e?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":6931023,"link":"http://stackoverflow.com/users/6931023/gladiator","reputation":456,"display_name":"gladiator"},"comment_count":2,"is_accepted":false,"comments":[{"owner":{"profile_image":"https://www.gravatar.com/avatar/d07ad2c6abe19c62482ec91662bd1381?s=128&d=identicon&r=PG","user_type":"registered","user_id":1266634,"link":"http://stackoverflow.com/users/1266634/rohit-raina","reputation":176,"display_name":"Rohit
+  Raina"},"score":0,"post_id":42245940,"edited":false,"creation_date":"1487154464000","comment_id":71651682},{"owner":{"profile_image":"https://www.gravatar.com/avatar/7cc82083efe850c5de040e3beb53b74e?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":6931023,"link":"http://stackoverflow.com/users/6931023/gladiator","reputation":456,"display_name":"gladiator"},"score":0,"post_id":42245940,"reply_to_user":{"profile_image":"https://www.gravatar.com/avatar/d07ad2c6abe19c62482ec91662bd1381?s=128&d=identicon&r=PG","user_type":"registered","user_id":1266634,"link":"http://stackoverflow.com/users/1266634/rohit-raina","reputation":176,"display_name":"Rohit
+  Raina"},"edited":false,"creation_date":"1487156392000","comment_id":71653139}],"last_activity_date":"1487155680000","creation_date":"1487152425000","title":"JBoss
+  AS Web 7.0.2 Broken pipe exception disconnects application and db connections","body":"<p>This
+  is caused by writing to a connection when the other end has already closed it.\nDB
+  connection is closed by database but for your application it is open so when it
+  tries to write on it, it gives broken pipe error</p>\n\n<p>Edit Adding my datasource
+  details which not gives this error :</p>\n\n<pre><code>&lt;Resource name=\"jdbc/MySQLDS\"\n              url=\"jdbc:mysql://${MYSQL_DB_HOST}:${MYSQL_DB_PORT}/${APP_NAME}\"\n              driverClassName=\"com.mysql.jdbc.Driver\"\n              username=\"${MYSQL_DB_USERNAME}\"\n              password=\"${MYSQL_DB_PASSWORD}\"\n              auth=\"Container\"\n              type=\"javax.sql.DataSource\"\n              initialSize=\"11\"\n              maxActive=\"20\"\n              maxIdle=\"15\"\n              minIdle=\"11\"\n              maxWait=\"10000\"\n              removeAbandoned=\"true\"
+  \n              removeAbandonedTimeout=\"60\"\n              testOnBorrow=\"true\"\n              validationQuery=\"SELECT
+  1\"\n              validationInterval=\"3600000\"\n              /&gt;\n</code></pre>\n","answer_id":42245940,"question_id":42245108,"tags":[],"share_link":"http://stackoverflow.com/a/42245940","score":0,"down_vote_count":0,"up_vote_count":0}],"sys_type":"stackoverflow_thread","answer_count":"1","time_to_answer_mins":37.31666666666667,"sys_updated":"2017-02-15T13:12:29.243-05:00","sys_id":"stackoverflow_question-42245108","sys_url_view":"http://stackoverflow.com/questions/42245108/jboss-as-web-7-0-2-broken-pipe-exception-disconnects-application-and-db-connecti","sys_content_id":"42245108","last_activity":"1487155680000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/d07ad2c6abe19c62482ec91662bd1381?s=128&d=identicon&r=PG","user_type":"registered","user_id":1266634,"link":"http://stackoverflow.com/users/1266634/rohit-raina","reputation":176,"display_name":"Rohit
+  Raina"},"sys_content_plaintext":"My Server Configuration is as: JBOSS AS WEB 7.0.2
+  Java (version \"1.6.0_34\" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el6_6-x86_64)
+  OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode) Also, My application is on
+  HTTPS . What is happening is, I am getting the below error in my log file and My
+  Application is running and there is no high memory or CPU consumption and my hard
+  disk is sufficient but the connectivity of my Application with Database is not there
+  (All connections are gone). So whenever I am opening a page that uses DB is not
+  opening and the page loader is loading and loading. **ClientAbortException: java.net.SocketException:
+  Broken pipe at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:403)
+  at org.apache.tomcat.util.buf.ByteChunk.flushBuffer(ByteChunk.java:449) at org.apache.tomcat.util.buf.ByteChunk.append(ByteChunk.java:349)
+  at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:426)
+  at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:415) at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:89)
+  at org.codehaus.jackson.impl.Utf8Generator._flushBuffer(Utf8Generator.java:1754)
+  at org.codehaus.jackson.impl.Utf8Generator._writeBytes(Utf8Generator.java:1164)
+  at org.codehaus.jackson.impl.Utf8Generator._writeFieldName(Utf8Generator.java:457)
+  at org.codehaus.jackson.impl.Utf8Generator.writeFieldName(Utf8Generator.java:304)
+  at org.codehaus.jackson.map.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:444)
+  at org.codehaus.jackson.map.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:150)
+  at org.codehaus.jackson.map.ser.BeanSerializer.serialize(BeanSerializer.java:112)
+  at org.codehaus.jackson.map.ser.std.StdContainerSerializers$IndexedListSerializer.serializeContents(StdContainerSerializers.java:122)
+  at org.codehaus.jackson.map.ser.std.StdContainerSerializers$IndexedListSerializer.serializeContents(StdContainerSerializers.java:71)
+  at org.codehaus.jackson.map.ser.std.AsArraySerializerBase.serialize(AsArraySerializerBase.java:86)
+  at org.codehaus.jackson.map.ser.StdSerializerProvider._serializeValue(StdSerializerProvider.java:610)
+  at org.codehaus.jackson.map.ser.StdSerializerProvider.serializeValue(StdSerializerProvider.java:256)
+  at org.codehaus.jackson.map.ObjectMapper.writeValue(ObjectMapper.java:1613) at org.springframework.http.converter.json.MappingJacksonHttpMessageConverter.writeInternal(MappingJacksonHttpMessageConverter.java:153)
+  at org.springframework.http.converter.AbstractHttpMessageConverter.write(AbstractHttpMessageConverter.java:181)
+  at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker.writeWithMessageConverters(AnnotationMethodHandlerAdapter.java:975)
+  at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker.handleResponseBody(AnnotationMethodHandlerAdapter.java:933)
+  at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker.getModelAndView(AnnotationMethodHandlerAdapter.java:882)
+  at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:428)
+  at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:414)
+  at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:790)
+  at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:719)
+  at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:644)
+  at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:549)
+  at javax.servlet.http.HttpServlet.service(HttpServlet.java:734) at javax.servlet.http.HttpServlet.service(HttpServlet.java:847)
+  at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:329)
+  at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:248)
+  at org.displaytag.filter.ResponseOverrideFilter.doFilter(ResponseOverrideFilter.java:125)
+  at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:280)
+  at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:248)
+  at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:311)
+  at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:116)
+  at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)
+  at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)
+  at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
+  at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)
+  at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:101)
+  at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)
+  at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:113)
+  at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)
+  at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)
+  at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)
+  at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+  at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)
+  at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:173)
+  at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)
+  at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)
+  at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:280)
+  at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:248)
+  at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:275)
+  at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:161)
+  at org.jboss.as.web.security.SecurityContextAssociationValve.invoke(SecurityContextAssociationValve.java:139)
+  at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:480)
+  at org.jboss.as.web.NamingValve.invoke(NamingValve.java:57) at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:154)
+  at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+  at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+  at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:362) at
+  org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:877) at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:667)
+  at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:952) at java.lang.Thread.run(Thread.java:701)
+  Caused by: java.net.SocketException: Broken pipe at java.net.SocketOutputStream.socketWrite0(Native
+  Method) at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:109)
+  at java.net.SocketOutputStream.write(SocketOutputStream.java:153) at sun.security.ssl.OutputRecord.writeBuffer(OutputRecord.java:375)
+  at sun.security.ssl.OutputRecord.write(OutputRecord.java:363) at sun.security.ssl.SSLSocketImpl.writeRecordInternal(SSLSocketImpl.java:813)
+  at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:785) at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:119)
+  at org.apache.coyote.http11.InternalOutputBuffer.realWriteBytes(InternalOutputBuffer.java:726)
+  at org.apache.tomcat.util.buf.ByteChunk.flushBuffer(ByteChunk.java:449) at org.apache.tomcat.util.buf.ByteChunk.append(ByteChunk.java:349)
+  at org.apache.coyote.http11.InternalOutputBuffer$OutputStreamOutputBuffer.doWrite(InternalOutputBuffer.java:750)
+  at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:126)
+  at org.apache.coyote.http11.InternalOutputBuffer.doWrite(InternalOutputBuffer.java:559)
+  at org.apache.coyote.Response.doWrite(Response.java:594) at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:398)
+  ... 76 more** I have checked my code and thought un-closed OutputStream was causing
+  this issue, so I properly closed all. But still this issue persists. Can anyone
+  help me understand and provide the solution of this issue ?","sys_content_type":"stackoverflow_question","author":"Rohit
+  Raina-1266634","sys_tags":["java","mysql","jboss","jboss7.x","broken-pipe"],"sys_title":"JBoss
+  AS Web 7.0.2 Broken pipe exception disconnects application and db connections","tags":["java","mysql","jboss","jboss7.x","broken-pipe"],"sys_content":"<p>My
+  Server Configuration is as:</p>\n\n<ul>\n<li>JBOSS AS WEB 7.0.2</li>\n<li>Java (version
+  \"1.6.0_34\"\nOpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el6_6-x86_64)
+  \nOpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)</li>\n</ul>\n\n<p>Also,
+  My application is on <strong>HTTPS</strong>.</p>\n\n<p>What is happening is, I am
+  getting the below error in my log file and My Application is running and there is
+  no high memory or CPU consumption and my hard disk is sufficient but the connectivity
+  of my Application with Database is not there (All connections are gone). So whenever
+  I am opening a page that uses DB is not opening and the page loader is loading and
+  loading.</p>\n\n<pre><code>**ClientAbortException:  java.net.SocketException: Broken
+  pipe\n  at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:403)\n  at
+  org.apache.tomcat.util.buf.ByteChunk.flushBuffer(ByteChunk.java:449)\n  at org.apache.tomcat.util.buf.ByteChunk.append(ByteChunk.java:349)\n  at
+  org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:426)\n  at
+  org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:415)\n  at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:89)\n  at
+  org.codehaus.jackson.impl.Utf8Generator._flushBuffer(Utf8Generator.java:1754)\n  at
+  org.codehaus.jackson.impl.Utf8Generator._writeBytes(Utf8Generator.java:1164)\n  at
+  org.codehaus.jackson.impl.Utf8Generator._writeFieldName(Utf8Generator.java:457)\n  at
+  org.codehaus.jackson.impl.Utf8Generator.writeFieldName(Utf8Generator.java:304)\n  at
+  org.codehaus.jackson.map.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:444)\n  at
+  org.codehaus.jackson.map.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:150)\n  at
+  org.codehaus.jackson.map.ser.BeanSerializer.serialize(BeanSerializer.java:112)\n  at
+  org.codehaus.jackson.map.ser.std.StdContainerSerializers$IndexedListSerializer.serializeContents(StdContainerSerializers.java:122)\n  at
+  org.codehaus.jackson.map.ser.std.StdContainerSerializers$IndexedListSerializer.serializeContents(StdContainerSerializers.java:71)\n  at
+  org.codehaus.jackson.map.ser.std.AsArraySerializerBase.serialize(AsArraySerializerBase.java:86)\n  at
+  org.codehaus.jackson.map.ser.StdSerializerProvider._serializeValue(StdSerializerProvider.java:610)\n  at
+  org.codehaus.jackson.map.ser.StdSerializerProvider.serializeValue(StdSerializerProvider.java:256)\n  at
+  org.codehaus.jackson.map.ObjectMapper.writeValue(ObjectMapper.java:1613)\n  at org.springframework.http.converter.json.MappingJacksonHttpMessageConverter.writeInternal(MappingJacksonHttpMessageConverter.java:153)\n  at
+  org.springframework.http.converter.AbstractHttpMessageConverter.write(AbstractHttpMessageConverter.java:181)\n  at
+  org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker.writeWithMessageConverters(AnnotationMethodHandlerAdapter.java:975)\n  at
+  org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker.handleResponseBody(AnnotationMethodHandlerAdapter.java:933)\n  at
+  org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker.getModelAndView(AnnotationMethodHandlerAdapter.java:882)\n  at
+  org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:428)\n  at
+  org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:414)\n  at
+  org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:790)\n  at
+  org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:719)\n  at
+  org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:644)\n  at
+  org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:549)\n  at
+  javax.servlet.http.HttpServlet.service(HttpServlet.java:734)\n  at javax.servlet.http.HttpServlet.service(HttpServlet.java:847)\n  at
+  org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:329)\n  at
+  org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:248)\n  at
+  org.displaytag.filter.ResponseOverrideFilter.doFilter(ResponseOverrideFilter.java:125)\n  at
+  org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:280)\n  at
+  org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:248)\n  at
+  org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:311)\n  at
+  org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:116)\n  at
+  org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83)\n  at
+  org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)\n  at
+  org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)\n  at
+  org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)\n  at
+  org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:101)\n  at
+  org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)\n  at
+  org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:113)\n  at
+  org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)\n  at
+  org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105)\n  at
+  org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)\n  at
+  org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)\n
+  at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:323)\n
+  at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:173)\n
+  at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237)\n
+  at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167)\n
+  at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:280)\n
+  at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:248)\n
+  at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:275)\n
+  at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:161)\n
+  at org.jboss.as.web.security.SecurityContextAssociationValve.invoke(SecurityContextAssociationValve.java:139)\n
+  at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:480)\n
+  at org.jboss.as.web.NamingValve.invoke(NamingValve.java:57)\n at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:154)\n
+  at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)\n
+  at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)\n
+  at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:362)\n
+  at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:877)\n
+  at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:667)\n
+  at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:952)\n at
+  java.lang.Thread.run(Thread.java:701)\nCaused by: java.net.SocketException: Broken
+  pipe\n at java.net.SocketOutputStream.socketWrite0(Native Method)\n at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:109)\n
+  at java.net.SocketOutputStream.write(SocketOutputStream.java:153)\n at sun.security.ssl.OutputRecord.writeBuffer(OutputRecord.java:375)\n
+  at sun.security.ssl.OutputRecord.write(OutputRecord.java:363)\n at sun.security.ssl.SSLSocketImpl.writeRecordInternal(SSLSocketImpl.java:813)\n
+  at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:785)\n at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:119)\n
+  at org.apache.coyote.http11.InternalOutputBuffer.realWriteBytes(InternalOutputBuffer.java:726)\n
+  at org.apache.tomcat.util.buf.ByteChunk.flushBuffer(ByteChunk.java:449)\n at org.apache.tomcat.util.buf.ByteChunk.append(ByteChunk.java:349)\n
+  at org.apache.coyote.http11.InternalOutputBuffer$OutputStreamOutputBuffer.doWrite(InternalOutputBuffer.java:750)\n
+  at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:126)\n
+  at org.apache.coyote.http11.InternalOutputBuffer.doWrite(InternalOutputBuffer.java:559)\n
+  at org.apache.coyote.Response.doWrite(Response.java:594)\n at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:398)\n
+  ... 76 more**\n</code></pre>\n\n<p>I have checked my code and thought un-closed
+  OutputStream was causing this issue, so I properly closed all. But still this issue
+  persists. </p>\n\n<p><strong>Can anyone help me understand and provide the solution
+  of this issue ?</strong></p>\n","user_id":"1266634","sys_created":"1487150186000","is_answered":"false","view_count":"12","up_vote_count":"0"},"sort":[1487150186000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"42244794","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jboss","sys_id":"42244794","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-02-15T13:11:42.308-05:00","sys_id":"stackoverflow_question-42244794","sys_url_view":"http://stackoverflow.com/questions/42244794/error-starting-jboss-server-in-debian","sys_content_id":"42244794","last_activity":"1487149288000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/646a3de7e155783f094c7afec6f27070?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":6503585,"link":"http://stackoverflow.com/users/6503585/miguel-angel-martinez-sanchez","reputation":6,"display_name":"Miguel
+  Angel Martinez Sanchez"},"sys_content_plaintext":"When starting jboss server (./standalone.sh)
+  it shows a error: JBoss Bootstrap Environment JBOSS_HOME: /home/miguel/Descargas/jboss-as-7.2.0.Final
+  JAVA: /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin JAVA_OPTS: -server -Xms64m -Xmx512m
+  -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman
+  -Djava.awt.headless=true =========================================================================
+  ./standalone.sh: 1: eval: /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin: Permission
+  denied I run it as superuser . I''ve also changed permissions to java folder (/usr/lib/jvm/java-1.7.0-openjdk-amd64/).","sys_content_type":"stackoverflow_question","comments":[{"owner":{"profile_image":"https://i.stack.imgur.com/aPIhh.jpg?s=128&g=1","user_type":"registered","user_id":608639,"link":"http://stackoverflow.com/users/608639/jww","reputation":39081,"display_name":"jww","accept_rate":65},"score":2,"post_id":42244794,"edited":false,"creation_date":"1487165591000","comment_id":71659406}],"author":"Miguel
+  Angel Martinez Sanchez-6503585","sys_tags":["linux","jboss","debian"],"sys_title":"Error
+  starting jboss server in debian","tags":["linux","jboss","debian"],"sys_content":"<p>When
+  starting jboss server (./standalone.sh) it shows a error:</p>\n\n<p>JBoss Bootstrap
+  Environment</p>\n\n<p>JBOSS_HOME: /home/miguel/Descargas/jboss-as-7.2.0.Final</p>\n\n<p>JAVA:
+  /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin</p>\n\n<p>JAVA_OPTS:  -server -Xms64m
+  -Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman
+  -Djava.awt.headless=true</p>\n\n<p>=========================================================================</p>\n\n<p>./standalone.sh:
+  1: eval: /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin: Permission denied</p>\n\n<p>I
+  run it as superuser . I''ve also changed permissions to java folder (/usr/lib/jvm/java-1.7.0-openjdk-amd64/).</p>\n","user_id":"6503585","sys_created":"1487149288000","is_answered":"false","view_count":"6","up_vote_count":"0"},"sort":[1487149288000,1.0]}]}}'

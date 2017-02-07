@@ -7,6 +7,10 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 256
 
+Metrics/ModuleLength:
+  Max: 256
+
+
 Metrics/LineLength:
   Max: 296
 
@@ -46,5 +50,8 @@ Performance/StringReplacement:
 Style/RegexpLiteral:
   Enabled: false
 
+Metrics/PerceivedComplexity:
+  Max: 9
 
-
+Metrics/CyclomaticComplexity:
+  Max: 9
