@@ -20,8 +20,8 @@ end
 
 Given(/^I have previously logged in$/) do
   visit LoginPage do |page|
-  page.login_with(@site_user.details[:email], @site_user.details[:password])
-  expect(page.logged_in?).to eq(@site_user.details[:full_name])
+    page.login_with(@site_user.details[:email], @site_user.details[:password])
+    expect(page.logged_in?).to eq(@site_user.details[:full_name])
   end
 end
 
@@ -80,7 +80,7 @@ Then(/^I should be logged in$/) do
     expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close
   rescue
-    @browser.refresh
+    $browser.refresh
     visit HomePage
     expect(@current_page.logged_in?).to eq "#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}"
     @current_page.toggle_menu_close

@@ -9,6 +9,7 @@ class CucumberJSONMerger
     @cucumber_dir = File.dirname(__FILE__)
     @reports = Dir.glob("#{@cucumber_dir}/reports/#{@profile}/*.json").map { |f| JSON.parse(File.read(f)) }
     @master = @reports.shift
+    @logger = DefaultLogger.logger
   end
 
   def run
@@ -35,7 +36,7 @@ class CucumberJSONMerger
   def rerun
     json_rerun = Dir.glob "#{@cucumber_dir}/reports/#{@profile}/rerun.json"
     if json_rerun.empty?
-      puts 'no rerun file found'
+      @logger.info('no rerun file found')
     else
       @reports = [JSON.parse(File.read("#{@cucumber_dir}/reports/#{@profile}/rerun.json"))]
       run
@@ -45,7 +46,7 @@ class CucumberJSONMerger
   def rerun_2
     json_rerun = Dir.glob "#{@cucumber_dir}/reports/#{@profile}/rerun2.json"
     if json_rerun.empty?
-      puts 'no second rerun file found'
+      @logger.info('no second rerun file found')
     else
       @reports = [JSON.parse(File.read("#{@cucumber_dir}/reports/#{@profile}/rerun2.json"))]
       run

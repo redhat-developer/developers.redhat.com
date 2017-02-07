@@ -60,7 +60,8 @@ Feature: Search Page
     Then the search results page is displayed
     And I should see text "Showing "1-10" of results
 
-  Scenario: Typing multiple words such as "eap 7 download" in the search box from the search header (like on the homepage), should retain the spaces.
+  @stubbed
+  Scenario: Typing multiple words such as "eap 7 download" in the search box from the search header should retain the spaces.
     Given I am on the Home page
     When I search for "eap 7 download"
     Then the search box should contain "eap 7 download"
@@ -86,6 +87,7 @@ Feature: Search Page
     Then the search results page is displayed
     And I should see "10" results containing "Container"
 
+  @stubbed
   Scenario: I search for something that returns ten (or more) pages of results should display pagination with ellipsis
     Given I am on the Home page
     When I search for "developer"
@@ -121,17 +123,9 @@ Feature: Search Page
       | First    |
       | Previous |
 
-  @later
-  Scenario: Entering a search term and then clicking on the Search button on the search page should trigger a new search.
-    Given I have previously searched for "code"
-    When I enter "Java" into the search box
-    And I click on the search button
-    Then I should see "10" results containing "Java"
-
-  @later
+  @stubbed @stubbed_only
   Scenario: I search for something that returns five pages of results should not display pagination with ellipsis
-    Given I am on the Home page
-    When I search for "I can't find anything that has 5 pages"
+    Given I have previously searched for "foobar"
     Then I should see pagination with "5" pages without ellipsis
     And the following links should be available:
       | Next |
@@ -140,16 +134,26 @@ Feature: Search Page
       | First    |
       | Previous |
 
-  @later
+  @stubbed
   Scenario: I search for something that returns one page of results only should display no pagination
-    Given I am on the Home page
-    When I search for "burlington"
+    Given I have previously searched for "foobar"
     Then I should not see pagination with page numbers
 
-  @later
+  Scenario: When I previously clicked on the 'Next' link - clicking on the ‘Previous’ link takes back to the previous set of results.
+    Given I have previously searched for "code"
+    And I am on page "2" of the results
+    When I click on the pagination "Previous" link
+    Then I should see page "1" of the results
+    And the following links should be available:
+      | Next |
+      | Last |
+    And the following links should be unavailable:
+      | First    |
+      | Previous |
+
+  @stubbed
   Scenario: I search for something that returns two pages of results only should display pagination with two pages
-    Given I am on the Home page
-    When I search for "?"
+    Given I have previously searched for "foobar"
     Then I should see pagination with "2" pages
     And the following links should be available:
       | Next |
@@ -158,32 +162,12 @@ Feature: Search Page
       | First    |
       | Previous |
 
-  @manual
-  Scenario: Clicking on the X button on the search page should remove search string
-    Given I have previously searched for "code"
-    And the search box is empty
-    When I click on clear search button
-    Then the search box is empty
-
-  @manual
-  Scenario: Search page should be bookmarkable
-    Given I am on the Search page
-    And I search for "Containers"
-    When I bookmark the page
-    Then the bookmark should be added to my bookmarks
-    And the search criteria is added to the URL
-
-  @manual
-  Scenario: Revisiting a previously bookmarked search should redisplay the search page including the search query.
-    Given I visit a previous search from a bookmark
-    Then the Search page should be displayed
-    And the search query is replayed.
-
-  @later
+  @stubbed
   Scenario Outline: Blog posts are searchable
-    Given I search for "<search_term>"
-    When the search results page is displayed
-    Then I should see "10" results containing "<search_term>"
+    Given I am on the Home page
+    When I search for "<search_term>"
+    And the search results page is displayed
+    Then the results should contain "<search_term>"
 
     Examples: blog posts
       | search_term                         |
@@ -191,11 +175,12 @@ Feature: Search Page
       | Knowledge Driven Microservices      |
       | Gems: A Few Helpful dotnet commands |
 
-  @later
+  @stubbed
   Scenario Outline: StackOverflow posts are searchable
-    Given I search for "<search_term>"
-    When the search results page is displayed
-    Then I should see "10" results containing "<search_term>"
+    Given I am on the Home page
+    When I search for "<search_term>"
+    And the search results page is displayed
+    Then the results should contain "<search_term>"
 
     Examples: stackoverflow posts
       | search_term                                     |
@@ -203,11 +188,12 @@ Feature: Search Page
       | Installing NodeJS on RHEL(4)?                   |
       | New JDBC Driver for JBoss 6 EAP                 |
 
-  @later
+  @stubbed
   Scenario Outline: KCS Documents are searchable
-    Given I search for "<search_term>"
-    When the search results page is displayed
-    Then I should see "10" results containing "<search_term>"
+    Given I am on the Home page
+    When I search for "<search_term>"
+    And the search results page is displayed
+    Then the results should contain "<search_term>"
 
     Examples: KCS Documents
       | search_term                                              |
@@ -215,24 +201,21 @@ Feature: Search Page
       | External topic subscriber to fabric can't create session |
       | How to configure wildcards in Virtual topic ?            |
 
-  @later
-  Scenario Outline: Books are searchable
-    Given I search for "<search_term>"
-    When the search results page is displayed
-    Then I should see "10" results containing "<search_term>"
+  @stubbed
+  Scenario: Books are searchable
+    Given I am on the Home page
+    When I search for "Transitioning to .NET Core on Red Hat Enterprise Linux"
+    And the search results page is displayed
+    Then the results should contain "Transitioning to .NET Core on Red Hat Enterprise Linux"
 
-    Examples: Books
-      | search_term                     |
-      | Java Persistence with Hibernate |
-      | Advanced JAX-WS Web Services    |
-      | Mobile and Web Messaging        |
-
-  @later
+  @stubbed
   Scenario: Events are searchable
-    Given I search for "DevNation"
-    When the search results page is displayed
-    Then I should see "10" results containing "DevNation"
+    Given I am on the Home page
+    When I search for "DevNation"
+    And the search results page is displayed
+    Then the results should contain "DevNation"
 
+  @stubbed
   Scenario Outline: DEVELOPER-3077 - Topics should be listed first in results
     Given I am on the Home page
     When I search for "<topic>"
@@ -255,6 +238,7 @@ Feature: Search Page
     And the search results page is displayed
     Then first result should contain "https://developers.redhat.com/about"
 
+  @stubbed
   Scenario: DEVELOPER-3079 - Searching for 'enterprise linux' should return 'RHEL' product pages first
     Given I am on the Home page
     When I search for "enterprise linux"
@@ -265,3 +249,24 @@ Feature: Search Page
     Given I have previously searched for "code"
     When I click on the pagination "Next" link
     Then I should be scrolled to the top of the page
+
+#  @manual
+#  Scenario: Clicking on the X button on the search page should remove search string
+#    Given I have previously searched for "code"
+#    And the search box is empty
+#    When I click on clear search button
+#    Then the search box is empty
+
+#  @manual
+#  Scenario: Search page should be bookmarkable
+#    Given I am on the Search page
+#    And I search for "Containers"
+#    When I bookmark the page
+#    Then the bookmark should be added to my bookmarks
+#    And the search criteria is added to the URL
+
+#  @manual
+#  Scenario: Revisiting a previously bookmarked search should redisplay the search page including the search query.
+#    Given I visit a previous search from a bookmark
+#    Then the Search page should be displayed
+#    And the search query is replayed.

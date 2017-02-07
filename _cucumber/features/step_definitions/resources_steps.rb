@@ -20,7 +20,6 @@ end
 When(/^I click to filter results by "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
     page.filter_by(filter_type)
-    page.wait_for_results
     @results = page.results
   end
 end
@@ -155,7 +154,7 @@ When(/^I select "([^"]*)" from the results per page filter$/) do |results_per_pa
 end
 
 Then(/^the URL should include the selected filters$/) do
-  @browser.url.should include('type=video&product=cdk')
+  $browser.url.should include('type=video&product=cdk')
 end
 
 # class to return current quarter for current month

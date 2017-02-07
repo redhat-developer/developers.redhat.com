@@ -70,7 +70,7 @@ class StackOverflowPage < StandardisedSearch
   end
 
   def query_questions(answer)
-    questions = @browser.driver.find_elements(:css, '.stackoverflow-update .update .update-meta .row')
+    questions = $browser.driver.find_elements(:css, '.stackoverflow-update .update .update-meta .row')
     questions.each do |q|
       child_elements = []
       parent_li = q.find_elements(:xpath, './/*')

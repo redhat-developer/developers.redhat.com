@@ -67,7 +67,6 @@ class SiteBase < GenericBasePage
   end
 
   def open_login_page
-    toggle_menu if is_mobile?
     click_login
   end
 
@@ -141,7 +140,7 @@ class SiteBase < GenericBasePage
   end
 
   def get_href_for(link)
-    href = @browser.a(text: /#{link}/)
+    href = $browser.a(text: /#{link}/)
     href.attribute_value('href')
   end
 
