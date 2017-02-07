@@ -450,6 +450,16 @@ function searchCtrlFunc($scope, $window, searchService) {
 
     if (isResources && $scope.userFilters) {
       $scope.urlFilters();
+
+      if ($scope.params.project && $scope.params.sys_type.includes("blogpost")) {
+        product = params.project;
+        if (app.products[product]['buzz_tags'] !== '_none') {
+          var blog_tags = app.products[product]['buzz_tags'];
+          params.tag = blog_tags.slice();
+          params.tags_or_logic = "e";
+        }
+        delete params.project;
+      }
     }
 
     if (!$scope.userFilters && $scope.data.restoredPage) {
