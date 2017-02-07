@@ -192,3 +192,9 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     When I copy the URL
     And paste the URL into a new tab
     Then the results should be filtered by  "Video" and "Red Hat Container Development Kit"
+
+  Scenario: User can filter results by a product when Blog Post has previously been selected
+    Given I am on the Resources page
+    When I click to filter results by "Blog Posts"
+    Then I select "JBoss Data Virtualization" from the product filter
+    Then the results displayed should contain "datavirt" or "JBoss Data Virtualization"

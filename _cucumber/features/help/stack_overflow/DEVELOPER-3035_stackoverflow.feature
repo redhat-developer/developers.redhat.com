@@ -66,32 +66,32 @@ Feature: DEVELOPER-3035 - SO: Main page: Initial Impl
       | First    |
       | Previous |
 
-  @later
-  Scenario: When there are only five pages of answers - pagination should not be displayed with ellipsis
-    Given I am on the Stack Overflow page
-    When there are only five pages of answers
-    Then I should see pagination with "5" pages without ellipsis
-    And the following links should be enabled:
-      | Next |
-      | Last |
-    And the following links should be disabled:
-      | First    |
-      | Previous |
-
-  @later
-  Scenario: When there are only one page of answers - no pagination should be dispalyed
-    Given I am on the Stack Overflow page
-    When there is only "1" page of results
-    Then I should not see pagination with page numbers
-
-  @later
-  Scenario: When there are only two pages of answers -  I should see pagination with two pages
-    Given I am on the Stack Overflow page
-    When there is only "2" pages of results
-    Then I should see pagination with "2" pages
-    And the following links should be enabled:
-      | Next |
-      | Last |
-    And the following links should be disabled:
-      | First    |
-      | Previous |
+#  @later
+#  Scenario: When there are only five pages of answers - pagination should not be displayed with ellipsis
+#    Given I am on the Stack Overflow page
+#    When there are only five pages of answers
+#    Then I should see pagination with "5" pages without ellipsis
+#    And the following links should be enabled:
+#      | Next |
+#      | Last |
+#    And the following links should be disabled:
+#      | First    |
+#      | Previous |
+#
+#  @later
+#  Scenario: When there are only one page of answers - no pagination should be dispalyed
+#    Given I am on the Stack Overflow page
+#    When there is only "1" page of results
+#    Then I should not see pagination with page numbers
+#
+#  @later
+#  Scenario: When there are only two pages of answers -  I should see pagination with two pages
+#    Given I am on the Stack Overflow page
+#    When there is only "2" pages of results
+#    Then I should see pagination with "2" pages
+#    And the following links should be enabled:
+#      | Next |
+#      | Last |
+#    And the following links should be disabled:
+#      | First    |
+#      | Previous |

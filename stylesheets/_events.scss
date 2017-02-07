@@ -285,3 +285,19 @@ h4.events-header.divider {
     padding-bottom: 25px;
   }
 }
+
+#featured_events {
+  padding-bottom: 2em;
+
+  .featuredcard {
+    border: 1px solid #afb1b2;
+    padding: 20px;
+    margin-top: 15px;
+    display : flex;
+    align-items : center;
+  }
+
+  .featuredcard p {
+    margin-bottom: 0;
+  }
+}
