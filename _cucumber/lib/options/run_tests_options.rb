@@ -11,7 +11,7 @@ class RunTestsOptions
 
   def initialize(cucumber_dir)
     @cucumber_dir = cucumber_dir
-    @supported_drivers = %w(chrome firefox)
+    @supported_drivers = %w(chrome firefox phantomjs)
     @supported_profiles = %w(desktop mobile kc_dm)
     @logger = DefaultLogger.logger
   end
@@ -41,6 +41,10 @@ class RunTestsOptions
       opts.on('--driver DRIVER', String, 'The driver to use when running the tests. [default=chrome]') do |driver|
         check_supported_driver(driver)
         test_configuration[:driver] = driver
+      end
+
+      opts.on('--stubbed-data STUBBED_DATA', String, 'The option to use stubbed data or not. [default=true]') do |stubbed_data|
+        test_configuration[:stubbed_data] = stubbed_data
       end
 
       #
@@ -76,6 +80,7 @@ class RunTestsOptions
     #
     bind_environment_variable('HOST_TO_TEST', test_configuration[:host_to_test])
     bind_environment_variable('CUCUMBER_TAGS', test_configuration[:cucumber_tags])
+    bind_environment_variable('STUBBED_DATA', test_configuration[:stubbed_data])
 
     bind_profile_environment_variables(test_configuration[:profile])
     bind_driver_environment_variables(test_configuration[:docker], test_configuration[:driver], test_configuration)
@@ -103,6 +108,10 @@ class RunTestsOptions
 
     if ENV['RHD_TEST_PROFILE']
       run_tests_command += " RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"
+    end
+
+    if ENV['STUBBED_DATA']
+      run_tests_command += " STUBBED_DATA=#{ENV['STUBBED_DATA']}"
     end
 
     test_configuration[:run_tests_command] = run_tests_command
@@ -187,6 +196,7 @@ class RunTestsOptions
     default_configuration[:profile] = 'desktop'
     default_configuration[:driver] = 'chrome'
     default_configuration[:browser_count] = 2
+    default_configuration[:stubbed_data] = 'false'
     default_configuration[:docker] = false
     default_configuration
   end

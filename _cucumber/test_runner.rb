@@ -1,6 +1,5 @@
 require 'report_builder'
-require 'colorize'
-require 'colorized_string'
+require_relative '../_docker/lib/default_logger'
 require_relative 'merge_cucumber_json_reports'
 require 'fileutils'
 
@@ -9,10 +8,11 @@ class TestRunner
 
   def initialize
     @cucumber_dir = File.dirname(__FILE__)
+    @logger = DefaultLogger.logger
   end
 
   def cuke_sniffer
-    puts ColorizedString.new('. . . . . Executing Cuke Sniffer used to root out smells in your cukes . . . . .').blue
+    @logger.info('Executing CukeSniffer used to root out smells in your cukes')
     FileUtils.rm_rf("#{@cucumber_dir}/reports/cuke_sniffer")
     FileUtils.mkdir_p("#{@cucumber_dir}/reports/cuke_sniffer")
     sh "cd #{@cucumber_dir}/features"
@@ -20,7 +20,7 @@ class TestRunner
   end
 
   def code_analyzer
-    puts ColorizedString.new('. . . . . Executing RuboCop the Ruby static code analyzer. This task will enforce many of the guidelines outlined in the community Ruby Style Guide. . . . . .').blue
+    @logger.info('Executing RuboCop the Ruby static code analyzer. This task will enforce many of the guidelines outlined in the community Ruby Style Guide')
     system("cd #{@cucumber_dir} && rubocop")
     $?.exitstatus
   end
@@ -39,26 +39,26 @@ class TestRunner
   def run(profile, tag=nil)
     tag_string = tag unless tag.eql?(nil)
     if tag.eql?(nil)
-      command = system("parallel_cucumber #{@cucumber_dir}/features/ -o \"-p #{profile}\" -n 10")
+      command = system("parallel_cucumber #{@cucumber_dir}/features/ -o \"-p #{profile}\" -n 5")
     else
-      command = system("parallel_cucumber #{@cucumber_dir}/features/ -o \"-p #{profile} #{tag_string}\" -n 10")
+      command = system("parallel_cucumber #{@cucumber_dir}/features/ -o \"-p #{profile} #{tag_string}\" -n 5")
     end
     rerun(profile) unless command == true
     $?.exitstatus
   end
 
   def rerun(profile)
-    puts ColorizedString.new('. . . . . There were failures during the test run! Attempt one of rerunning failed scenarios . . . . .').red
+    @logger.info('There were failures during the test run! Attempt one of rerunning failed scenarios')
     command = system("cd #{@cucumber_dir} && bundle exec cucumber --profile rerun_failures")
     unless command == true
-      puts ColorizedString.new('. . . . . There were failures during first rerun! Attempt two of rerunning failed scenarios . . . . .').red
+      @logger.info('There were failures during first rerun! Attempt two of rerunning failed scenarios')
       system("bundle exec cucumber @#{@cucumber_dir}/tmp/#{profile}/rerunner.txt -f json -o #{@cucumber_dir}/reports/#{profile}/rerun2.json")
     end
     $?.exitstatus
   end
 
   def wip
-    system("bundle exec cucumber #{@cucumber_dir} --tags @wip")
+    system("cd _cucumber && bundle exec cucumber #{@cucumber_dir} --tags @wip")
   end
 
   def generate_report(profile)
