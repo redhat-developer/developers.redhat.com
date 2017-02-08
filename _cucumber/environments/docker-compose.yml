@@ -35,7 +35,7 @@ services:
       - GRID_TIMEOUT=90000
       - GRID_NEW_SESSION_WAIT_TIMEOUT=300000
 
-  chrome:
+  docker_chrome:
      image: selenium/node-chrome-debug:2.53.0
      volumes:
       - /dev/shm:/dev/shm
@@ -47,7 +47,7 @@ services:
      ports:
       - "5900"
 
-  firefox:
+  docker_firefox:
      image: selenium/node-firefox-debug:2.53.0
      volumes:
       - /dev/shm:/dev/shm

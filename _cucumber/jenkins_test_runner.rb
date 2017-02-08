@@ -54,7 +54,7 @@ class JenkinsTestRunner
   # that should be applied
   #
   def build_run_tests_command(profile)
-    command = "cd #{@control_script_directory} && bundle exec ruby ./run_tests.rb --use-docker --profile=#{profile} --host-to-test=#{@host_to_test}"
+    command = "cd #{@control_script_directory} && bundle exec ruby run_tests.rb --use-docker --profile=#{profile} --host-to-test=#{@host_to_test}"
 
     github_sha1 = read_env_variable('ghprbActualCommit')
     cucumber_tags = read_env_variable('CUCUMBER_TAGS')
