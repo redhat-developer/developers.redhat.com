@@ -161,7 +161,7 @@ class RunTestsOptions
       #
       docker_driver = @supported_drivers.include?(driver) ? "#{driver}" : 'chrome'
       driver = @supported_drivers.include?(driver) ? "#{driver}" : driver
-      bind_environment_variable('RHD_DOCKER_DRIVER', docker_driver)
+      bind_environment_variable('RHD_DOCKER_DRIVER', "docker_#{docker_driver}")
       test_configuration[:docker_node] = "docker_#{docker_driver}"
     end
 
