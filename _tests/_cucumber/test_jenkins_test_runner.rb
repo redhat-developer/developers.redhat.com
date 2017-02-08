@@ -64,17 +64,6 @@ class TestJenkinsTestRunner < Minitest::Test
     assert(jenkins_test_runner.run_tests)
   end
 
-  # def test_enables_stubbed_data_option_to_be_turned_off_if_present
-  #   ENV['STUBBED_DATA'] = 'false'
-  #   process_runner = mock()
-  #   process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com --cucumber-tags=foo --stubbed-data=false')
-  #   process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --cucumber-tags=foo --driver=iphone_6 --stubbed-data=false')
-  #   process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com --cucumber-tags=foo --stubbed-data=false')
-  #
-  #   jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
-  #   assert(jenkins_test_runner.run_tests)
-  # end
-
   def test_enables_github_status_update_if_sha1_present_in_env
     ENV['ghprbActualCommit'] = '123'
     ENV['STUBBED_DATA'] = 'true'
