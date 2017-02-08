@@ -42,7 +42,7 @@ Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
 end
 
 When(/^I go back$/) do
-  @browser.back
+  $browser.back
 end
 
 Then(/^I should see a primary nav bar with the following tabs:$/) do |table|
@@ -140,5 +140,5 @@ Then(/^each Help sub\-menu item should contain a link to its retrospective page:
 end
 
 Given(/^I navigate to the "(.*)" page$/) do |url|
-  @browser.goto($host_to_test + url)
+  $browser.goto($host_to_test + url)
 end

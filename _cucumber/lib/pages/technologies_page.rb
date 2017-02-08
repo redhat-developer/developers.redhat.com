@@ -10,7 +10,7 @@ class TechnologiesPage < SiteBase
   elements(:products_links)                        { |b| b.divs(css: '.development-tools h4 > a') }
 
   def product_title(category)
-    @browser.div(id: "#{category}").text
+    $browser.div(id: "#{category}").text
   end
 
   def available_products
@@ -22,31 +22,31 @@ class TechnologiesPage < SiteBase
   end
 
   def product_section_for(product)
-    @browser.div(id: "development-tool-#{product}").text
+    $browser.div(id: "development-tool-#{product}").text
   end
 
   def product_description_for(product)
-    @browser.element(css: "#development-tool-#{product} .paragraph").text
+    $browser.element(css: "#development-tool-#{product} .paragraph").text
   end
 
   def product_link_for(product)
-    @browser.link(id: "#{product}").href
+    $browser.link(id: "#{product}").href
   end
 
   def get_started_button_for(product)
-    @browser.link(id: "get-started-with-#{product}").href
+    $browser.link(id: "get-started-with-#{product}").href
   end
 
   def learn_link_for(product)
-    @browser.link(id: "learn-#{product}").href
+    $browser.link(id: "learn-#{product}").href
   end
 
   def docs_and_apis_for(product)
-    @browser.link(id: "#{product}-docs-and-apis").href
+    $browser.link(id: "#{product}-docs-and-apis").href
   end
 
   def download_button_for(product)
-    @browser.link(id: "download-#{product}").href
+    $browser.link(id: "download-#{product}").href
   end
 
 end

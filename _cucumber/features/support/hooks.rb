@@ -20,25 +20,25 @@ end
 
 After('@github_teardown') do
   @github_admin.cleanup
-  @browser.goto('https://github.com/logout')
-  @browser.button(text: 'Sign out').click
+  $browser.goto('https://github.com/logout')
+  $browser.button(text: 'Sign out').click
   sleep(1.5) # give it time to log out without relying on github elememts.
-  @browser.driver.manage.delete_all_cookies
+  $browser.driver.manage.delete_all_cookies
 end
 
 After('@github_logout') do
-  @browser.goto('https://github.com/logout')
-  @browser.button(text: 'Sign out').click
+  $browser.goto('https://github.com/logout')
+  $browser.button(text: 'Sign out').click
   sleep(1.5) # give it time to log out without relying on github elememts.
-  @browser.driver.manage.delete_all_cookies
+  $browser.driver.manage.delete_all_cookies
 end
 
 After('@logout') do
   case $host_to_test
     when 'https://developers.redhat.com', 'https://developers.redhat.com'
-      @browser.goto('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+      $browser.goto('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
     else
-      @browser.goto('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
+      $browser.goto('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
   end
 end
 
@@ -54,7 +54,7 @@ After do |scenario|
   if scenario.failed?
     Dir.mkdir("#{$cucumber_dir}/screenshots") unless Dir.exist?("#{$cucumber_dir}/screenshots")
     screenshot = "#{$cucumber_dir}/screenshots/#{ENV['RHD_TEST_PROFILE']}/FAILED_#{scenario.name.sub(' ', '_').sub(/[^0-9A-Za-z_]/, '')}.png"
-    @browser.driver.save_screenshot(screenshot)
+    $browser.driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'
   end
 end

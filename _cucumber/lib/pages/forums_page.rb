@@ -15,7 +15,7 @@ class ForumsPage < SiteBase
   elements(:forum_links)     { |b| b.links(css: '.forums-product-categories h4 > a') }
 
   def product_title(category)
-    @browser.div(id: "#{category}").text
+    $browser.div(id: "#{category}").text
   end
 
   def available_products
@@ -31,12 +31,12 @@ class ForumsPage < SiteBase
   end
 
   def forums_product_section_for(product)
-    desc = @browser.div(id: "development-tool-#{product}").text
+    desc = $browser.div(id: "development-tool-#{product}").text
     desc.tr('’', "'")
   end
 
   def forums_product_link_for(product)
-    href = @browser.link(id: product)
+    href = $browser.link(id: product)
     href.attribute_value('href')
   end
 

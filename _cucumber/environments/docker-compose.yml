@@ -30,8 +30,10 @@ services:
       - "4444"
     privileged: true
     environment:
+      - GRID_MAX_SESSION=10
       - GRID_BROWSER_TIMEOUT=100000
       - GRID_TIMEOUT=90000
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=300000
 
   docker_chrome:
      image: selenium/node-chrome-debug:2.53.0
