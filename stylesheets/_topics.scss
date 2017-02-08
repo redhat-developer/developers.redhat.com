@@ -100,6 +100,10 @@
       background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_mobile.png');
       display: block;
     }
+    &.microservices {
+      background-image: url(https://static.jboss.org/_root/images/rhd/topic/RHDev_topics_primopromo_microservicesicon_20sept2016.png);
+      background-size: cover;
+    }
     &.dotnet {
       background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_3col_dotnet.png');
       p.description {
