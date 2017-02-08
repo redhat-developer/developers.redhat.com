@@ -1,4 +1,5 @@
 @smoke
+@wip
 Feature: Search Page
 
   As a site visitor,
@@ -24,7 +25,6 @@ Feature: Search Page
     Then the search results page is displayed
     And the search field should not be displayed within the site header
 
-  @stubbed
   Scenario: Default results sort should be by "Relevance"
     Given I am on the Home page
     When I search for "Containers"
@@ -39,7 +39,6 @@ Feature: Search Page
       | Relevance   |
       | Most Recent |
 
-  @stubbed
   Scenario: Default results per page should be 10
     Given I am on the Home page
     When I search for "Containers"
@@ -56,7 +55,6 @@ Feature: Search Page
       | 50  |
       | 100 |
 
-  @stubbed
   Scenario: Results sorting
     Given I am on the Home page
     When I search for "Containers"
@@ -69,7 +67,6 @@ Feature: Search Page
     When I search for "eap 7 download"
     Then the search box should contain "eap 7 download"
 
-  @stubbed
   Scenario: I search for something should return *no* entries, such as "bfehwfbhbn"
     Given I am on the Home page
     When I search for "bfehwfbhbn"
@@ -236,7 +233,6 @@ Feature: Search Page
       | .NET                    | dotnet                  |
       | Internet of Things      | iot                     |
 
-  @stubbed
   Scenario: DEVELOPER-3078 - User searches on /search for 'red hat developers', the first result should be for https://developers.redhat.com/about.
     Given I am on the Home page
     When I search for "red hat developers"

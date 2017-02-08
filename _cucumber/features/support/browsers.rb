@@ -2,8 +2,7 @@
 module Browsers
   module_function
 
-  def setup(browser_name)
-    device, user_agent = mobile?(browser_name)
+  def setup(browser_name, device, user_agent)
     if browser_name.include?('bs_')
       browser = browserstack(browser_name)
     else
@@ -34,14 +33,13 @@ module Browsers
   end
 
   def phantomjs(user_agent)
-    driver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os}/phantomjs", 'phantomjs')
     switches = %w(--ignore-ssl-errors=true)
     stubbed = ENV['STUBBED_DATA']
     if user_agent.nil?
       if stubbed == 'true'
-        browser = Billy::Browsers::Watir.new :phantomjs, args: switches, driver_path: driver_path, http_client: http_client
+        browser = Billy::Browsers::Watir.new :phantomjs, args: switches, driver_path: $phantomjs_driver_path, http_client: http_client
       else
-        browser = Watir::Browser.new :phantomjs, args: switches, driver_path: driver_path, http_client: http_client
+        browser = Watir::Browser.new :phantomjs, args: switches, driver_path: $phantomjs_driver_path, http_client: http_client
       end
       browser.window.resize_to(1280, 1024)
       browser
@@ -59,7 +57,6 @@ module Browsers
   end
 
   def chrome(device, remote = nil)
-    driver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os}/chrome", 'chromedriver')
     $download_directory = File.join("#{$cucumber_dir}/", 'tmp_downloads')
     FileUtils.mkdir_p $download_directory if remote.nil?
 
@@ -87,19 +84,9 @@ module Browsers
       caps['chromeOptions'] = { 'prefs' => chrome_prefs, 'mobileEmulation' => mobile_emulation }
     end
     if remote.nil?
-      Watir::Browser.new(:chrome, desired_capabilities: caps, driver_path: driver_path, http_client: http_client)
+      Watir::Browser.new(:chrome, desired_capabilities: caps, driver_path: $chrome_driver_path, http_client: http_client)
     else
-      begin
-        attempts = 0
-        Watir::Browser.new(:remote, url: ENV['SELENIUM_HOST'], desired_capabilities: caps, http_client: http_client)
-      rescue Net::ReadTimeout => e
-        if attempts == 0
-          attempts += 1
-          retry
-        else
-          raise(e)
-        end
-      end
+      Watir::Browser.new(:remote, url: ENV['SELENIUM_HOST'], desired_capabilities: caps, http_client: http_client)
     end
   end
 
@@ -112,9 +99,7 @@ module Browsers
     profile['pdfjs.disabled'] = true
     profile['acceptSslCerts'] = true
     caps = Selenium::WebDriver::Remote::Capabilities.firefox(firefox_profile: profile)
-    client = Selenium::WebDriver::Remote::Http::Default.new
-    client.timeout = 100 # Browser launch can take a while
-    Watir::Browser.new(:remote, url: ENV['SELENIUM_HOST'], desired_capabilities: caps, http_client: client)
+    Watir::Browser.new(:remote, url: ENV['SELENIUM_HOST'], desired_capabilities: caps, http_client: http_client)
   end
 
   def browserstack(stack_to_use)
@@ -126,12 +111,10 @@ module Browsers
     config['acceptSslCerts'] = 'true'
     config['browserstack.local'] = 'true'
     url = "http://#{ENV['RHD_BS_USERNAME']}:#{ENV['RHD_BS_AUTHKEY']}@hub.browserstack.com/wd/hub"
-    client = Selenium::WebDriver::Remote::Http::Default.new
-    client.open_timeout = 100 # Browser launch can take a while
-    Watir::Browser.new(:remote, url: url, desired_capabilities: config, http_client: client)
+    Watir::Browser.new(:remote, url: url, desired_capabilities: config, http_client: http_client)
   end
 
   def http_client
-    Selenium::WebDriver::Remote::Http::Persistent.new
+    Selenium::WebDriver::Remote::Http::Default.new
   end
 end

@@ -9,13 +9,13 @@
   Pragma: No-cache
   Cache-Control: no-cache
   Expires: Wed, 31 Dec 1969 19:00:00 EST
-  Access-Control-Allow-Origin: http://developers-pr.stage.redhat.com
+  Access-Control-Allow-Origin: https://developers-pr.stage.redhat.com
   Content-Type: application/json
-  Date: Wed, 11 Jan 2017 12:19:50 GMT
+  Date: Wed, 08 Feb 2017 12:55:20 GMT
   Connection: close
-  Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a38o8080;
+  Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a37o8080;
     path=/
-:content: '{"uuid":"1889500f-a5cb-4b46-9d93-76afede7039c","took":113,"timed_out":false,"_shards":{"total":24,"successful":24,"failed":0},"hits":{"total":15164,"max_score":1.0994734,"hits":[{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-243515","_score":1.0994734,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/243515"],"sys_content_plaintext":["HI,
+:content: '{"uuid":"85d0e9f5-2204-4202-8473-bb7248ddb376","took":102,"timed_out":false,"_shards":{"total":24,"successful":24,"failed":0},"hits":{"total":15204,"max_score":1.1250311,"hits":[{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-243515","_score":1.1250311,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/243515"],"sys_content_plaintext":["HI,
   I''m using JBOSS EAP 6 version, we have requirement where the application running
   in Jboss to consume the messages posted in IBM MQ and then forward response to the
   same destination (MQ). Could you please help me how to configure JMS and coding
@@ -34,19 +34,7 @@
   JMS and coding to achieve this. I new the"],"sys_description":["destination (MQ).
   Could you please help me <span class=''hlt''>how</span> to <span class=''hlt''>configure</span>
   JMS and coding to achieve this. I new the"],"sys_title":["<span class=''hlt''>How</span>
-  to <span class=''hlt''>configure</span> JMS with IBM MQ in JBOSS EAP6"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-243559","_score":0.8956013,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/243559"],"sys_content_plaintext":["HI,
-  I need to conumse the meessages that are posted in IBM MQ by remote application,
-  and then have to post the response back on to IBM MQ mentioned by remote application.
-  Could you please explain more detail about the JMS configuration in EAP6 and any
-  code examples for this. Thanks Upendar"],"sys_description":["HI, I need to conumse
-  the meessages that are posted in IBM MQ by remote application, and then have to
-  post the response back on to IBM MQ mentioned by remote application. Could you please
-  explain more detail about the JMS configuration in EAP6 and any code examples for
-  this. Thanks Upendar"],"sys_created":["2014-08-08T15:52:14.228Z"],"sys_contributors":["Upendar
-  D <upendar.devulapalli@gmail.com>"],"sys_type":["forumthread"],"sys_tags":["jboss","jms","as","remote","in","mq","eap","with","configure","to","how","ibm","6","provider"],"sys_title":["How
-  to configure JMS with IBM MQ as remote JMS provider in JBOSS EAP 6"]},"highlight":{"sys_title":["<span
-  class=''hlt''>How</span> to <span class=''hlt''>configure</span> JMS with IBM MQ
-  as remote JMS provider in JBOSS EAP 6"]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-1751393","_score":0.8923084,"fields":{"sys_description":["-
+  to <span class=''hlt''>configure</span> JMS with IBM MQ in JBOSS EAP6"]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-1751393","_score":0.8923084,"fields":{"sys_description":["-
   User trying to define a `virtual topic` like below to be able to manage messages
   sent to different `topics` with the same topic structure (1111.TEST.alive, 2222.test.alive,...).
   ~~~.&gt;.alive&quot; prefix=&quot;VirtualTopicConsumers.*.&quot; selectorAware=&quot;false&quot;
@@ -60,7 +48,19 @@
   class=''hlt''>Topic</span>Consumers.*.&quot; selectorAware=&quot;false&quot; /&gt;
   ~~~- When tried to <span class=''hlt''>configure</span> it in local"],"sys_title":["<span
   class=''hlt''>How</span> to <span class=''hlt''>configure</span> <span class=''hlt''>wildcards</span>
-  in <span class=''hlt''>Virtual</span> <span class=''hlt''>topic</span> ?"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-168452","_score":0.71551734,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/168452"],"sys_content_plaintext":["Hai
+  in <span class=''hlt''>Virtual</span> <span class=''hlt''>topic</span> ?"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-243559","_score":0.8918448,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/243559"],"sys_content_plaintext":["HI,
+  I need to conumse the meessages that are posted in IBM MQ by remote application,
+  and then have to post the response back on to IBM MQ mentioned by remote application.
+  Could you please explain more detail about the JMS configuration in EAP6 and any
+  code examples for this. Thanks Upendar"],"sys_description":["HI, I need to conumse
+  the meessages that are posted in IBM MQ by remote application, and then have to
+  post the response back on to IBM MQ mentioned by remote application. Could you please
+  explain more detail about the JMS configuration in EAP6 and any code examples for
+  this. Thanks Upendar"],"sys_created":["2014-08-08T15:52:14.228Z"],"sys_contributors":["Upendar
+  D <upendar.devulapalli@gmail.com>"],"sys_type":["forumthread"],"sys_tags":["jboss","jms","as","remote","in","mq","eap","with","configure","to","how","ibm","6","provider"],"sys_title":["How
+  to configure JMS with IBM MQ as remote JMS provider in JBOSS EAP 6"]},"highlight":{"sys_title":["<span
+  class=''hlt''>How</span> to <span class=''hlt''>configure</span> JMS with IBM MQ
+  as remote JMS provider in JBOSS EAP 6"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-168452","_score":0.72652185,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/168452"],"sys_content_plaintext":["Hai
   All, I Tried to install and configure php servlet on JbossAS6.0.x, but can see document
   reelated for it. If anyone knew about that share it to me. Lot of Thanks in Advance."],"sys_description":["Hai
   All, I Tried to install and configure php servlet on JbossAS6.0.x, but can see document
@@ -71,20 +71,7 @@
   JbossAS6.0.x, but can see document reelated"],"sys_description":["Hai All, I Tried
   to install and <span class=''hlt''>configure</span> php servlet on JbossAS6.0.x,
   but can see document reelated"],"sys_title":["<span class=''hlt''>How</span> to
-  <span class=''hlt''>configure</span> for run PHP on JbossAS 6.0?"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-222594","_score":0.43933773,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/222594"],"sys_content_plaintext":["How
-  to deploy expanded war using cli script in Jboss EAP 6? When i use deploy to do,
-  its throwing below message: [standalone@100.12.123.123:12345 /] deploy temp.war
-  temp.war is a directory. Is there anyway to tell, its not archieve?"],"sys_description":["How
-  to deploy expanded war using cli script in Jboss EAP 6? When i use deploy to do,
-  its throwing below message: [standalone@100.12.123.123:12345 /] deploy temp.war
-  temp.war is a directory. Is there anyway to tell, its not archieve?"],"sys_created":["2013-03-18T08:44:22.418Z"],"sys_contributors":["Chris
-  Hiner <christopher.hiner@us.pgds.com>","Venugopal K <itsvenuhere@gmail.com>"],"sys_type":["forumthread"],"sys_tags":["jboss","in","eap","war","cli","deploy","to","6","script","expanded"],"sys_title":["How
-  to deploy expanded War using Cli script in Jboss EAP 6"]},"highlight":{"sys_content_plaintext":["<span
-  class=''hlt''>How</span> to deploy expanded war using cli script in Jboss EAP 6?
-  When i use deploy to do, its throwing below"],"sys_description":["<span class=''hlt''>How</span>
-  to deploy expanded war using cli script in Jboss EAP 6? When i use deploy to do,
-  its throwing below"],"sys_title":["<span class=''hlt''>How</span> to deploy expanded
-  War using Cli script in Jboss EAP 6"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-243578","_score":0.4312731,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/243578"],"sys_content_plaintext":["Our
+  <span class=''hlt''>configure</span> for run PHP on JbossAS 6.0?"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-243578","_score":0.44481888,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/243578"],"sys_content_plaintext":["Our
   Application has JMS configured in each of nodes in cluster. This configuration has
   been done in deploy- hasingleton directory. Through this when the messages are sent
   to topics on nodes they are available for all the nodes due to deploy- hasingleton
@@ -107,7 +94,20 @@
   configuration has been done in deploy-","directory. Through this when the messages
   are sent to <span class=''hlt''>topics</span> on nodes they are available for all
   the nodes due","Jboss 5.1 hasingleton configuration to JbossEAP 6. <span class=''hlt''>How</span>
-  can i acheive this hasingleton jms configurat..."]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-239400","_score":0.41985488,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/239400"],"sys_content_plaintext":["Hello,
+  can i acheive this hasingleton jms configurat..."]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-222594","_score":0.42469567,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/222594"],"sys_content_plaintext":["How
+  to deploy expanded war using cli script in Jboss EAP 6? When i use deploy to do,
+  its throwing below message: [standalone@100.12.123.123:12345 /] deploy temp.war
+  temp.war is a directory. Is there anyway to tell, its not archieve?"],"sys_description":["How
+  to deploy expanded war using cli script in Jboss EAP 6? When i use deploy to do,
+  its throwing below message: [standalone@100.12.123.123:12345 /] deploy temp.war
+  temp.war is a directory. Is there anyway to tell, its not archieve?"],"sys_created":["2013-03-18T08:44:22.418Z"],"sys_contributors":["Chris
+  Hiner <christopher.hiner@us.pgds.com>","Venugopal K <itsvenuhere@gmail.com>"],"sys_type":["forumthread"],"sys_tags":["jboss","in","eap","war","cli","deploy","to","6","script","expanded"],"sys_title":["How
+  to deploy expanded War using Cli script in Jboss EAP 6"]},"highlight":{"sys_content_plaintext":["<span
+  class=''hlt''>How</span> to deploy expanded war using cli script in Jboss EAP 6?
+  When i use deploy to do, its throwing below"],"sys_description":["<span class=''hlt''>How</span>
+  to deploy expanded war using cli script in Jboss EAP 6? When i use deploy to do,
+  its throwing below"],"sys_title":["<span class=''hlt''>How</span> to deploy expanded
+  War using Cli script in Jboss EAP 6"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-239400","_score":0.4186763,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/239400"],"sys_content_plaintext":["Hello,
   when I add another virtual-server with required aliases into the web subsystem configuration
   and then refer to it via virtual-host in web app jboss-web.xml, things work as expected.
   However how to do the same with the virtual-server that''s configured as default-virtual-server?
@@ -142,7 +142,7 @@
   <span class=''hlt''>configured</span> as default-<span class=''hlt''>virtual</span>-server?
   With that one all request pass","setup. Basically I want to avoid the need for <span
   class=''hlt''>configuring</span>..."],"sys_title":["Enforce aliases for default-<span
-  class=''hlt''>virtual</span>-server"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-241142","_score":0.38904542,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/241142"],"sys_content_plaintext":["Hi
+  class=''hlt''>virtual</span>-server"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-241142","_score":0.40232098,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/241142"],"sys_content_plaintext":["Hi
   All, here is some background of the my requirement: we have one web application
   which is deployed in jboss eap 6.1 on \"AAA\" machine,from this application we are
   uploading images to the external filesystem say \"BBB\". Here we have the mounting
@@ -157,7 +157,7 @@
   S <arvind.sure@gmail.com>"],"sys_type":["forumthread"],"sys_tags":["jboss","in","configure","the","external","drive"],"sys_title":["How
   to link the externaldirectory (outside of webapp) in Jboss eap 6.1"]},"highlight":{"sys_title":["<span
   class=''hlt''>How</span> to link the externaldirectory (outside of webapp) in Jboss
-  eap 6.1"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-241484","_score":0.375333,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/241484"],"sys_content_plaintext":["I
+  eap 6.1"]}},{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-241484","_score":0.372243,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/241484"],"sys_content_plaintext":["I
   am looking for an example on how to connect from a java MDB to a remote HornetQ
   topic in jboss EAP 6.2 This is my mdb: @MessageDriven(activationConfig = { @ActivationConfigProperty(propertyName
   = \"destinationType\", propertyValue = \"javax.jms.Topic\"), @ActivationConfigProperty(propertyName
@@ -190,7 +190,7 @@
   class=''hlt''>Topic</span>\"), @ActivationConfigProperty(propertyName = \"destination\"","propertyValue
   = \"jms/OutboundAsnPublishDeliveryNote<span class=''hlt''>Topic</span>\"), @ActivationConfigProperty(pr..."],"sys_title":["Example
   on <span class=''hlt''>how</span> to connect to a remote HornetQ <span class=''hlt''>topic</span>
-  from an MDB"]}},{"_index":"data_rht_website","_type":"rht_website","_id":"rht_website-https_developers_redhat_com_video_youtube_nkqvZwSWSCI","_score":0.35491666,"fields":{"sys_description":["Tired
+  from an MDB"]}},{"_index":"data_rht_website","_type":"rht_website","_id":"rht_website-https_developers_redhat_com_video_youtube_nkqvZwSWSCI","_score":0.34626132,"fields":{"sys_description":["Tired
   of waiting weeks to get a server spinning up and configuring your virtual servers?Come
   see how Platform-as-a-Service (PaaS) can make you a happie"],"sys_url_view":["https://developers.redhat.com/video/youtube/nkqvZwSWSCI"],"sys_content_plaintext":["DevNation
   2015 - Steve Pousty - Introduction to PaaS for application developers 57 Views,
@@ -211,4 +211,4 @@
   <span class=''hlt''>How</span> easy it is to get started with a Python (or Node
   or Java) web application on a PaaS. <span class=''hlt''>How</span> you"],"sys_description":["get
   a server spinning up and <span class=''hlt''>configuring</span> your <span class=''hlt''>virtual</span>
-  servers?Come see <span class=''hlt''>how</span> Platform-as-a-Service (PaaS)"]}}]},"aggregations":{"format":{"doc_count":53771}}}'
+  servers?Come see <span class=''hlt''>how</span> Platform-as-a-Service (PaaS)"]}}]},"aggregations":{"format":{"doc_count":54089}}}'

@@ -1,6 +1,6 @@
 ---
 :scope: 
-:url: https://dcp.stage.jboss.org/v2/rest/search/developer_materials?newFirst=true&size10=true&stype=quickstart&stype=video&stype=demo&stype=jbossdeveloper_example&stype=jbossdeveloper_archetype&stype=jbossdeveloper_bom&stype=article&stype=blogpost&stype=book&blogbyurl=developers.redhat.com
+:url: https://dcp.stage.jboss.org/v2/rest/search/developer_materials?newFirst=true&size10=true&stype=quickstart&stype=video&stype=demo&stype=jbossdeveloper_example&stype=jbossdeveloper_archetype&stype=jbossdeveloper_bom&stype=blogpost&stype=book&blogbyurl=developers.redhat.com
 :body: ''
 :status: 200
 :method: get
@@ -9,14 +9,14 @@
   Pragma: No-cache
   Cache-Control: no-cache
   Expires: Wed, 31 Dec 1969 19:00:00 EST
-  Access-Control-Allow-Origin: http://developers-pr.stage.redhat.com
+  Access-Control-Allow-Origin: https://developers-pr.stage.redhat.com
   Content-Type: application/json
   Content-Length: '6011'
-  Date: Wed, 11 Jan 2017 18:12:03 GMT
+  Date: Wed, 08 Feb 2017 12:51:20 GMT
   Connection: close
-  Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a37o8080;
+  Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a38o8080;
     path=/
-:content: '{"uuid":"adbf1685-c58d-447e-a628-4c3bb9a0dd9d","took":12,"timed_out":false,"_shards":{"total":36,"successful":36,"failed":0},"hits":{"total":2178,"max_score":null,"hits":[{"_index":"data_jbossdeveloper_youtube","_type":"jbossdeveloper_youtube","_id":"jbossdeveloper_youtube-rcCrEQU0B_Q","_score":null,"fields":{"duration":[329],"sys_url_view":["http://developer-drupal.web.stage.ext.phx2.redhat.com/video/youtube/rcCrEQU0B_Q"],"thumbnail":["https://i.ytimg.com/vi/rcCrEQU0B_Q/mqdefault.jpg"],"sys_description":[""],"sys_created":["2016-12-02T18:16:07.000Z"],"sys_type":["video"],"sys_tags":["atomic
+:content: '{"uuid":"98afa4b6-eb47-4df8-9bed-3696983800d5","took":1,"timed_out":false,"_shards":{"total":30,"successful":30,"failed":0},"hits":{"total":2085,"max_score":null,"hits":[{"_index":"data_jbossdeveloper_youtube","_type":"jbossdeveloper_youtube","_id":"jbossdeveloper_youtube-rcCrEQU0B_Q","_score":null,"fields":{"duration":[329],"sys_url_view":["http://developer-drupal.web.stage.ext.phx2.redhat.com/video/youtube/rcCrEQU0B_Q"],"thumbnail":["https://i.ytimg.com/vi/rcCrEQU0B_Q/mqdefault.jpg"],"sys_description":[""],"sys_created":["2016-12-02T18:16:07.000Z"],"sys_type":["video"],"sys_tags":["atomic
   host","red hat","red hat developers","Red Hat Enterprise Linux Atomic Host","rhel"],"sys_title":["Red
   Hat Enterprise Linux Atomic Host - Mike McGrath"]},"sort":[1480702567000]},{"_index":"data_jbossdeveloper_youtube","_type":"jbossdeveloper_youtube","_id":"jbossdeveloper_youtube-2-f5LRHVozQ","_score":null,"fields":{"duration":[372],"sys_url_view":["http://developer-drupal.web.stage.ext.phx2.redhat.com/video/youtube/2-f5LRHVozQ"],"thumbnail":["https://i.ytimg.com/vi/2-f5LRHVozQ/mqdefault.jpg"],"sys_description":[""],"sys_created":["2016-12-02T18:12:54.000Z"],"sys_type":["video"],"sys_tags":["red
   hat","red hat developers","red hat enterprise linux","rhel"],"sys_title":["Red Hat
@@ -35,4 +35,4 @@
   Hat Development Suite - Todd Mancini"]},"sort":[1480701607000]},{"_index":"data_jbossdeveloper_youtube","_type":"jbossdeveloper_youtube","_id":"jbossdeveloper_youtube-509oZGoaPCc","_score":null,"fields":{"duration":[229],"sys_url_view":["http://developer-drupal.web.stage.ext.phx2.redhat.com/video/youtube/509oZGoaPCc"],"thumbnail":["https://i.ytimg.com/vi/509oZGoaPCc/mqdefault.jpg"],"sys_description":[""],"sys_created":["2016-12-02T17:57:31.000Z"],"sys_type":["video"],"sys_tags":["containers","matt
   hicks","red hat","red hat developers"],"sys_title":["Containers  - Matt Hicks"]},"sort":[1480701451000]},{"_index":"data_jbossdeveloper_youtube","_type":"jbossdeveloper_youtube","_id":"jbossdeveloper_youtube-aHDi5xjwWEg","_score":null,"fields":{"duration":[222],"sys_url_view":["http://developer-drupal.web.stage.ext.phx2.redhat.com/video/youtube/aHDi5xjwWEg"],"thumbnail":["https://i.ytimg.com/vi/aHDi5xjwWEg/mqdefault.jpg"],"sys_description":[""],"sys_created":["2016-12-02T17:54:01.000Z"],"sys_type":["video"],"sys_tags":["bpm
   suite","jboss","red hat","red hat developers","red hat jboss bpm suite"],"sys_title":["Red
-  Hat JBoss BPM Suite - Prakash Aradhya"]},"sort":[1480701241000]}]},"aggregations":{"format":{"doc_count":15311}}}'
+  Hat JBoss BPM Suite - Prakash Aradhya"]},"sort":[1480701241000]}]},"aggregations":{"format":{"doc_count":15360}}}'

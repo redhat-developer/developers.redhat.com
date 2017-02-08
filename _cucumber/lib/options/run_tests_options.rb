@@ -196,7 +196,7 @@ class RunTestsOptions
     default_configuration[:profile] = 'desktop'
     default_configuration[:driver] = 'chrome'
     default_configuration[:browser_count] = 2
-    default_configuration[:stubbed_data] = 'false'
+    default_configuration[:stubbed_data] = 'true'
     default_configuration[:docker] = false
     default_configuration
   end

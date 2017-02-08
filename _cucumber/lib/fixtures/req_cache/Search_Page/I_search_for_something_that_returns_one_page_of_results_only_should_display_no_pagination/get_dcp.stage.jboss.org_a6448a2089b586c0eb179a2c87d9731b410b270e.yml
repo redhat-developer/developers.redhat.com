@@ -9,13 +9,13 @@
   Pragma: No-cache
   Cache-Control: no-cache
   Expires: Wed, 31 Dec 1969 19:00:00 EST
-  Access-Control-Allow-Origin: http://developers-pr.stage.redhat.com
+  Access-Control-Allow-Origin: https://developers-pr.stage.redhat.com
   Content-Type: application/json
   Date: Tue, 10 Jan 2017 19:20:38 GMT
   Connection: close
   Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a37o8080;
     path=/
-:content: '{"uuid":"eed20fbd-41a3-424e-9a2f-6faef016a5cc","took":16,"timed_out":false,"_shards":{"total":24,"successful":24,"failed":0},"hits":{"total":9,"max_score":0.5326519,"hits":[{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-247746","_score":0.5326519,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/247746"],"sys_content_plaintext":["Hi,
+:content: '{"uuid":"eed20fbd-41a3-424e-9a2f-6faef016a5cc","took":1,"timed_out":false,"_shards":{"total":24,"successful":24,"failed":0},"hits":{"total":9,"max_score":0.5326519,"hits":[{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-247746","_score":0.5326519,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/247746"],"sys_content_plaintext":["Hi,
   I am using Fuse ESB 7.1. While trying to create new Fabric Container I am getting
   following error. FuseESB:karaf@root> fabric:container-create-child --jmx-user root
   --jmx-password foobar root container7 The following containers have failed: container7:

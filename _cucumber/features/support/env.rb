@@ -27,11 +27,17 @@ Dir["#{File.dirname(__FILE__)}/../../lib/helpers/rest/*.rb"].each { |helper| loa
 $os = :linux if RUBY_PLATFORM.include? 'linux'
 $os = :mac if RUBY_PLATFORM.include? 'darwin'
 
+$chrome_driver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os}/chrome", 'chromedriver')
+$phantomjs_driver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os}/phantomjs", 'phantomjs')
+
+$session_id = Faker::Number.number(5)
+
 World PageHelper
 World DriverHelper
 
 if ENV['HOST_TO_TEST'].to_s.empty?
-  $host_to_test = 'https://developers.stage.redhat.com'
+  @logger.warn("No host to test was set. This can be set via '--host-to-test=foo'. Defaulting to drupal dev...")
+  $host_to_test = 'https://docker:9000'
   $keycloak_base_url = 'https://developers.stage.redhat.com'
   $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
 else
@@ -70,16 +76,13 @@ else
   end
 end
 
-ENV['STUBBED_DATA'] == 'false' if ENV['STUBBED_DATA'].to_s.empty?
-
 if ENV['RHD_JS_DRIVER'].to_s.empty?
   ENV['RHD_JS_DRIVER'] = 'chrome'
   browser = Browsers.setup(ENV['RHD_JS_DRIVER'])
 else
-  browser = Browsers.setup(ENV['RHD_JS_DRIVER'])
+  $device, $user_agent = Browsers.mobile?(ENV['RHD_JS_DRIVER'])
+  browser = Browsers.setup(ENV['RHD_JS_DRIVER'], $device, $user_agent)
 end
-
-$session_id = Faker::Number.number(5)
 
 Before('@stubbed') do |scenario|
   if ENV['STUBBED_DATA'] == 'true'
@@ -88,19 +91,14 @@ Before('@stubbed') do |scenario|
       c.cache_request_headers = false
       c.whitelist = %w(developers-pr.stage.redhat.com cdn.ravenjs.com www.redhat.com assets.adobedtm.com www.youtube.com static.jboss.org maxcdn.bootstrapcdn.com cdn.tt.omtrdc.net
                        developers.stage.redhat.com redhat.sc.omtrdc.net s.ytimg.com dpm.demdex.net dpal-itmarketing.itos.redhat.com issues.jboss.org redhat.tt.omtrdc.net www.youtube.com)
-      c.path_blacklist = []
-      c.merge_cached_responses_whitelist = []
       c.persist_cache = true
-      c.ignore_cache_port = true # defaults to true
-      c.non_successful_cache_disabled = false
       feature_name = scenario.feature.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')
       scenario_name = scenario.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')
       c.cache_path = "#{$cucumber_dir}/lib/fixtures/req_cache/#{feature_name}/#{scenario_name}/"
       FileUtils.mkdir_p(Billy.config.cache_path) unless File.exist?(Billy.config.cache_path)
     end
-    unless $browser.driver.browser == :phantomjs
-      puts 'Using stubbed driver (phantomjs)'
-      $browser = Browsers.setup('phantomjs')
+    if defined? $browser.nil? || $browser.driver.browser != :phantomjs
+      $browser = Browsers.setup('phantomjs', $device, $user_agent)
     end
   else
     $browser = browser
@@ -108,9 +106,7 @@ Before('@stubbed') do |scenario|
 end
 
 After('@stubbed') do
-  if ENV['STUBBED_DATA'] == 'true'
-    Billy.proxy.reset_cache
-  end
+  Billy.proxy.reset_cache if ENV['STUBBED_DATA'] == 'true'
 end
 
 Before('~@stubbed') do
@@ -118,5 +114,5 @@ Before('~@stubbed') do
 end
 
 at_exit do
-  $browser.quit unless defined? $browser.nil?
+  $browser.quit if defined? $browser
 end

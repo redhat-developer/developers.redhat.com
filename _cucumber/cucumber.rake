@@ -76,6 +76,5 @@ task :debugger do
 end
 
 task :debug, :times do |_task, args|
-  puts "Executing scenario tagged with @debug #{args[:times]} times"
   args[:times].to_i.times { Rake::Task[:debugger].execute }
 end

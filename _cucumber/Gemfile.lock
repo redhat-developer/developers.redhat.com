@@ -15,11 +15,11 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (4.1.16)
-      i18n (~> 0.6, >= 0.6.9)
+    activesupport (4.2.7.1)
+      i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
-      thread_safe (~> 0.1)
+      thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
@@ -31,6 +31,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
     colorize (0.8.1)
+    connection_pool (2.2.1)
     cookiejar (0.3.3)
     cucumber (2.4.0)
       builder (>= 2.1.2)
@@ -61,7 +62,7 @@ GEM
       eventmachine (>= 1.0.0.beta.1)
     eventmachine (1.0.9.1)
     eventmachine_httpserver (0.2.1)
-    faker (1.7.2)
+    faker (1.7.3)
       i18n (~> 0.5)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
@@ -75,7 +76,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
-    i18n (0.7.0)
+    i18n (0.8.0)
     json (1.8.6)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
@@ -90,6 +91,8 @@ GEM
     multi_json (1.12.1)
     multi_test (0.1.2)
     multipart-post (2.0.0)
+    net-http-persistent (3.0.0)
+      connection_pool (~> 2.2)
     netrc (0.11.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -99,7 +102,7 @@ GEM
     parallel (1.10.0)
     parallel_tests (1.9.0)
       parallel
-    parser (2.3.3.1)
+    parser (2.4.0.0)
       ast (~> 2.2)
     powerpack (0.1.1)
     pry (0.10.4)
@@ -144,7 +147,7 @@ GEM
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
-    selenium-webdriver (3.0.5)
+    selenium-webdriver (3.0.7)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
@@ -164,7 +167,7 @@ GEM
       selenium-webdriver (>= 2.46.2)
     watir-webdriver-performance (0.2.4)
       watir-webdriver
-    websocket (1.2.3)
+    websocket (1.2.4)
 
 PLATFORMS
   ruby
@@ -176,6 +179,7 @@ DEPENDENCIES
   faker (~> 1.6, >= 1.6.1)
   gmail (~> 0.6.0)
   json
+  net-http-persistent (~> 3.0)
   octokit (~> 4.0)
   parallel_tests (~> 1.9.0)
   pry
@@ -191,4 +195,4 @@ DEPENDENCIES
   watir-webdriver-performance
 
 BUNDLED WITH
-   1.13.7
+   1.14.3
