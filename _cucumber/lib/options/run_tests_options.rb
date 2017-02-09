@@ -159,10 +159,10 @@ class RunTestsOptions
       # We set the docker driver to either docker_chrome or docker_firefox. docker_chrome is the default
       # when we are looking to emulate other drivers e.g. iphone_6
       #
-      docker_driver = @supported_drivers.include?(driver) ? "#{driver}" : 'chrome'
-      driver = @supported_drivers.include?(driver) ? "#{driver}" : driver
-      bind_environment_variable('RHD_DOCKER_DRIVER', "docker_#{docker_driver}")
-      test_configuration[:docker_node] = "docker_#{docker_driver}"
+      docker_driver = @supported_drivers.include?(driver) ? "docker_#{driver}" : 'docker_chrome'
+      driver = @supported_drivers.include?(driver) ? "docker_#{driver}" : driver
+      bind_environment_variable('RHD_DOCKER_DRIVER', docker_driver)
+      test_configuration[:docker_node] = docker_driver
     end
 
     bind_environment_variable('RHD_JS_DRIVER', driver)
@@ -196,7 +196,7 @@ class RunTestsOptions
     default_configuration[:profile] = 'desktop'
     default_configuration[:driver] = 'chrome'
     default_configuration[:browser_count] = 2
-    default_configuration[:stubbed_data] = 'true'
+    default_configuration[:stubbed_data] = 'false'
     default_configuration[:docker] = false
     default_configuration
   end
