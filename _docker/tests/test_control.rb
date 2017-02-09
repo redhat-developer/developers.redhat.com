@@ -82,7 +82,7 @@ class TestControl < Minitest::Test
     service_url = 'user/login'
 
     expects(:determine_docker_host_for_container_ports).returns('127.0.0.1')
-    expects(:get_host_mapped_port_for_container).with(environment, 'drupal', service_port).returns('80')
+    expects(:get_host_mapped_port_for_container).with(environment, 'drupal', service_port).returns('80').times(2)
 
     response = mock()
     response.expects(:code).returns('200')
@@ -142,17 +142,24 @@ class TestControl < Minitest::Test
 
   end
 
+  def test_get_docker_container_container_no_longer_running
+
+    Kernel.expects(:abort).with('Error: Docker container \'foo_searchikso_1\' does not appear to be running. Please use \'docker logs -f foo_searchikso_1\' to investigate any start-up failures.')
+    Docker::Container.expects(:all).returns(%w())
+
+    get_container('foo_searchikso_1')
+  end
+
   def test_get_docker_container
 
     container_name = 'searchisko_1'
     environment = mock()
     environment.expects(:get_compose_project_name).returns('foo')
 
-    container_json = '{"NetworkSettings": {"Ports": [8080]}}'
-
+    container_json = '{"Name": "/foo_searchisko_1", "NetworkSettings": {"Ports": [8080]}}'
     container = mock()
-    container.expects(:json).returns(JSON.parse(container_json))
-    Docker::Container.expects(:get).with('foo_searchisko_1').returns(container)
+    container.expects(:json).returns(JSON.parse(container_json)).times(2)
+    Docker::Container.expects(:all).returns([container])
 
     assert_equal(container, get_docker_container(environment, container_name))
 
