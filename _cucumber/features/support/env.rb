@@ -81,7 +81,8 @@ if ENV['RHD_JS_DRIVER'].to_s.empty?
   browser = Browsers.setup(ENV['RHD_JS_DRIVER'])
 else
   $device, $user_agent = Browsers.mobile?(ENV['RHD_JS_DRIVER'])
-  browser = Browsers.setup(ENV['RHD_JS_DRIVER'], $device, $user_agent)
+  driver = ENV['RHD_JS_DRIVER'].gsub('docker_')
+  browser = Browsers.setup(driver, $device, $user_agent)
 end
 
 Before('@stubbed') do |scenario|
