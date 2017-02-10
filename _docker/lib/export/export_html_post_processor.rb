@@ -114,6 +114,33 @@ class ExportHtmlPostProcessor
         end
       end
 
+      rewrite_error_page(html_doc, html_file)
+    end
+  end
+
+  #
+  # Returns the URL at which this export will be hosted. By default this will be https://developers.redhat.com unless the
+  # user has set an environment variable to alter this for another environment e.g. staging
+  #
+  def final_base_url_location
+    user_provided_value = ENV['drupal.export.final_base_url']
+    user_provided_value = 'https://developers.redhat.com' if user_provided_value.nil? || user_provided_value.empty?
+    return user_provided_value.end_with?('/') ? user_provided_value : "#{user_provided_value}/"
+  end
+
+  #
+  # Re-writes the relative links on the error pages to be absolute so that they work from any part of the site
+  # hierarchy.
+  #
+  def rewrite_error_page(html_doc, html_file)
+    return unless html_file.end_with?('/404-error/index.html') || html_file.end_with?('/general-error/index.html')
+    home_link = locate_index_link_href(html_doc, html_file)
+    final_base_url = final_base_url_location
+
+    @log.info("\t Re-writing absolute links starting '#{home_link}' to have absolute prefix '#{final_base_url}' on error page #{html_file}...")
+    new_content = File.read(html_file).gsub(home_link, final_base_url)
+    File.open(html_file, 'w') do |write|
+      write.puts(new_content)
     end
   end
 
@@ -146,7 +173,7 @@ class ExportHtmlPostProcessor
 
   end
 
-  private :locate_index_link_href, :rewrite_links_for_trailing_slash_url_structure, :rewrite_form_target_urls?, :relocate_index_html, :remove_drupal_host_identifying_markup?, :post_process_html_dom
+  private :final_base_url_location, :locate_index_link_href, :rewrite_links_for_trailing_slash_url_structure, :rewrite_form_target_urls?, :relocate_index_html, :remove_drupal_host_identifying_markup?, :post_process_html_dom
 
 end
 
