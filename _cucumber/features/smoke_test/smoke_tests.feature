@@ -54,3 +54,7 @@ Feature: Sanity checks of production
   Scenario: Search page with results should be loaded within 6 seconds.
     Given I navigate to the "/search/?q=containers" page
     Then the page should load within "6" seconds
+
+  Scenario: DEVELOPER-3669: Create site test which verifies "Red Hat Developers" is included in main site
+    Given I am on the Home page
+    Then the page should contain "Red Hat Developers"
