@@ -58,6 +58,8 @@ services:
       - MYSQL_PASSWORD=drupal
       - MYSQL_DATABASE=drupal
       - MYSQL_ROOT_PASSWORD=superdupersecret
+    volumes:
+      - ./mariadb/my.cnf:/etc/mysql/my.cnf
     expose:
       - "3306"
     volumes_from:
