@@ -11,6 +11,7 @@ require 'timeout'
 require 'resolv'
 require 'open3'
 require 'net/http'
+require 'json'
 require_relative 'lib/options'
 require_relative 'lib/file_helpers'
 
@@ -70,19 +71,28 @@ def get_host_mapped_port_for_container(environment, container_name, container_po
   port_info['HostPort']
 end
 
+#
+# Waits for the specified supporting service to start
+#
 def wait_for_supporting_service_to_start(environment, service_name, service_port, service_url)
 
     puts "Waiting for service '#{service_name}' to start..."
 
-    service_host = determine_docker_host_for_container_ports
-    service_port = get_host_mapped_port_for_container(environment, service_name, service_port)
+    host = determine_docker_host_for_container_ports
+    port = get_host_mapped_port_for_container(environment, service_name, service_port)
 
-    target_url = "http://#{service_host}:#{service_port}/#{service_url}"
+    target_url = "http://#{host}:#{port}/#{service_url}"
     puts "Testing access to service '#{service_name}' via URL '#{target_url}'..."
 
     up = false
     until up do
       begin
+
+        # Firstly, sleep so we don't bombard the service with requests and then check the container is still running
+        sleep 2
+        get_host_mapped_port_for_container(environment, service_name, service_port)
+
+        # Then try accessing the service on the target_url. Anything other than a non-400 status code means its not up
         response = Net::HTTP.get_response(URI(target_url))
         response_code = response.code.to_i
         up = response_code < 400
@@ -93,7 +103,7 @@ def wait_for_supporting_service_to_start(environment, service_name, service_port
 
     puts "Service '#{service_name}' is up on '#{target_url}'"
 
-    [service_host, service_port]
+    [host, port]
 end
 
 def wait_for_drupal_to_start(environment, supporting_services)
@@ -108,18 +118,31 @@ def wait_for_drupal_to_start(environment, supporting_services)
 end
 
 #
+# Locates the specified Docker container, exiting if the container is no longer running
+#
+def get_container(container_name)
+  container = Docker::Container.all().find do |container|
+    container.json['Name'] == "/#{container_name}"
+  end
+
+  if container.nil?
+    Kernel.abort("Error: Docker container '#{container_name}' does not appear to be running. Please use 'docker logs -f #{container_name}' to investigate any start-up failures.")
+    # This return statement is required as we mock the Kernel.abort call in unit testing.
+    return
+  end
+
+  container
+end
+
+#
 # Gets the JSON for a the given container in the given environment
 #
 def get_docker_container(environment, container_name)
-
   container_id = "#{environment.get_compose_project_name}_#{container_name}"
-  container = Docker::Container.get(container_id)
-
+  container = get_container(container_id)
   until container.json['NetworkSettings']['Ports']
-    puts "Finding port info for Docker container '#{container_id}'..."
-    container = Docker::Container.get(container_id)
+    container = get_container(container_id)
   end
-
   container
 end
 
@@ -357,13 +380,5 @@ if $0 == __FILE__
 
   if tasks[:awestruct_command_args]
     system_exec.execute_docker_compose(environment, :run, tasks[:awestruct_command_args])
-  end
-
-  if tasks[:scale_grid]
-    system_exec.execute_docker_compose(environment,:scale, tasks[:scale_grid])
-  end
-
-  if tasks[:acceptance_test_target_task]
-    system_exec.execute_docker_compose(environment,:run, tasks[:acceptance_test_target_task])
   end
 end
