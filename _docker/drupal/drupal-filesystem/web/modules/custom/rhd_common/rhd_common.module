@@ -4,8 +4,11 @@
  * Add various functionalities here.
  */
 
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\rhd_common\Ajax\CKEditorSetDataCommand;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -32,6 +35,31 @@ function rhd_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
             }
         }
     }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function rhd_common_form_node_resource_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    $form['field_video_resource']['widget'][0]['value']['#attached']['library'][] = 'rhd_common/ckeditor_commands';
+//    $form['field_video_resource']['widget'][0]['value']['#attached']['library'][] = 'rhd_common/rhd_common.commands';
+    $form['field_video_resource']['widget'][0]['value']['#ajax'] = [
+      'callback' => 'rhd_common_ajax_test',
+      'event' => 'change'
+    ];
+}
+
+function rhd_common_ajax_test(array &$form, FormStateInterface $form_state) {
+    \Drupal::logger('rhd_common')->notice('Inside the ajax call %video_url',
+      ['%video_url' => $form_state->getValue('video_resource')]);
+
+    $response = new AjaxResponse();
+    // Do a YouTube rest call
+    $response->addCommand(new CKEditorSetDataCommand('Testing insert body', 'edit-body-0-value'));
+    $response->addCommand(new InvokeCommand('#edit-title-0-value', 'val', ['Testing insert title']));
+    // Set the title and body like above
+    return $response;
 }
 
 /**

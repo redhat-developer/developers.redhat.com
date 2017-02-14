@@ -1,0 +1,53 @@
+uuid: 487a56f8-a857-4977-9e63-f00a9c338991
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.resource.body
+    - field.field.node.resource.field_resource_type
+    - field.field.node.resource.field_video_resource
+    - node.type.resource
+  module:
+    - path
+    - text
+    - video_embed_field
+id: node.resource.default
+targetEntityType: node
+bundle: resource
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 4
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_resource_type:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_video_resource:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: video_embed_field_textfield
+  path:
+    type: path
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true
