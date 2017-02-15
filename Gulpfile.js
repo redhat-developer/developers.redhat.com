@@ -76,6 +76,7 @@ var globs = {
     'javascripts/adaptive-placeholder.js',
     //'javascripts/current-tab.js',
     'javascripts/referrer.js',
+    'javascripts/products.js',
     'javascripts/jboss-docker.js'
   ],
   "styles": ['stylesheets/*.scss']
