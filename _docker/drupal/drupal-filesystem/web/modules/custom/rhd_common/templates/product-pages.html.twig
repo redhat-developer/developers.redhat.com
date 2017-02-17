@@ -76,17 +76,7 @@
 {% set product_machine_name = elements.field_product_machine_name[0]['#context']['value']|lower %}
 {% set active_paragraph = elements.active_paragraph['#paragraph'] %}
 <div class="mobile product-color {{ elements.product_category }}"></div>
-<div class="mobile product-header">
-    <div class="row">
-        <div class="large-24 columns">
-            <h3>{{ elements.title }}</h3>
-            <a class="button"
-               href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'download'}) }}">Download</a><a
-                    class="button inverse" href="{{ url('rhd_common.main_page_controller', {'product_code': elements.url_product_name, 'sub_page': 'hello-world'}) }}">Get
-                Started</a>
-        </div>
-    </div>
-</div>
+
 <article{{ attributes }}>
     <section class="hero hero-wide product-header {{ product_machine_name }} {{ elements.product_category }}">
         <div class="row">
@@ -127,6 +117,15 @@
             </div>
         {% endif %}
         <div class="row content">
+            <div class="large-24 columns">
+                <div class="mobile product-header">
+                    <div class="row">
+                        <div class="large-24 columns">
+                            <h3>{{ elements.title }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="large-24 columns">
                 <div class="large-4 medium-7 small-24 columns nav-breakpoint">
                     {{ elements.page_links }}
