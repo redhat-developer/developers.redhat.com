@@ -1,4 +1,4 @@
-var search = angular.module('search', []),
+var search = angular.module('search', ['ngSanitize']),
   searchRefinement = [];
 
 function indexOfObjectValueInArray(arr, key, val) {
@@ -197,7 +197,7 @@ search.filter('title', function($sce) {
   }
 });
 
-search.filter('description', function($sce) {
+search.filter('description', function($sce, $sanitize) {
   return function(result) {
     var description = "";
     // if (result.fields.sys_type == 'stackoverflow_thread') {
@@ -209,7 +209,8 @@ search.filter('description', function($sce) {
     if (result.fields && result.fields.sys_description) {
       description = result.fields.sys_description[0];
     }
-    return $sce.trustAsHtml(description);
+    
+    return $sanitize(description.replace(/<[^>]+>/gm, ''));
   }
 });
 
