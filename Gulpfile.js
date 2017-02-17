@@ -9,6 +9,7 @@ var globs = {
   "scripts": [
     'javascripts/drupal-namespace.js',
     'javascripts/vendor/jquery.xdomainrequest.js',
+    'javascripts/vendor/includes.js',
     'javascripts/extensions.js',
     'javascripts/vendor/keycloak.js',
     'javascripts/sso.js',
