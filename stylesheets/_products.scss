@@ -157,7 +157,6 @@ div.mobile.product-color {
   h3 {
     font-weight: 600;
     color: $headline-grey;
-    margin-bottom: 20px;
   }
 }
 
@@ -483,6 +482,18 @@ div.mobile.product-color {
   
   .mobile.build-panel {
     display: block;
+  }
+
+  .product-graphics .row.content {
+    padding-top:0;
+
+    h2.subpage-name {
+      font-size: 1.5em;
+    }
+  }
+
+  .hero.hero-wide.product-header {
+    display: none;
   }
 }
 
