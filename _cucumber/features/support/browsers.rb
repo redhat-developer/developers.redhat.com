@@ -20,6 +20,12 @@ class Browsers
           browser = docker_chrome
         when 'docker_firefox'
           browser = docker_firefox
+        when 'browserstack'
+          fail("No Browserstack browser env variable found, please set RHD_BS_STACK env variable \n
+                for example RHD_BS_STACK=bs_ie_11. List of available browsers/devices can be found at \n
+                _cucumber/driver/browserstack/browsers.json") if ENV['RHD_BS_STACK'].nil?
+          fail('To use browserstack you must set the RHD_BS_USERNAME & RHD_BS_AUTHKEY env variables') if ENV['RHD_BS_USERNAME'].nil? || ENV['RHD_BS_AUTHKEY'].nil?
+          browser = browserstack(ENV['RHD_BS_STACK'])
         else
           browser = default(browser_name)
       end
@@ -142,7 +148,9 @@ class Browsers
     url = "http://#{ENV['RHD_BS_USERNAME']}:#{ENV['RHD_BS_AUTHKEY']}@hub.browserstack.com/wd/hub"
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 100 # Browser launch can take a while
-    Watir::Browser.new(:remote, url: url, desired_capabilities: config, http_client: client)
+    browser = Watir::Browser.new(:remote, url: url, desired_capabilities: config, http_client: client)
+    browser.driver.manage.window.maximize
+    browser
   end
 
 end
