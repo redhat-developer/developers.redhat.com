@@ -107,8 +107,6 @@ Before('@stubbed') do |scenario|
                        google-analytics.com gravatar.com ad.doubleclick.net i.ytimg.com)
       c.persist_cache = true
       c.proxy_host = $host_to_test
-      #c.proxied_request_host = nil
-      #c.proxied_request_port = 80
       feature_name = scenario.feature.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')
       scenario_name = scenario.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')
       c.cache_path = "#{$cucumber_dir}/lib/fixtures/req_cache/#{feature_name}/#{scenario_name}/"
