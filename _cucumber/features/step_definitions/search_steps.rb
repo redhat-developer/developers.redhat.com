@@ -33,6 +33,10 @@ Then(/^I should see "([^"]*)" results containing "([^"]*)"$/) do |results_size, 
   end
 end
 
+Then(/^the results should contain "([^"]*)"$/) do |search_string|
+  @current_page.search_page_results.should include search_string
+end
+
 Given(/^I have previously searched for "([^"]*)"$/) do |search_string|
   on SearchPage do |page|
     page.open("/search/?q=#{search_string}")
@@ -75,4 +79,10 @@ end
 Then(/^I should be scrolled to the top of the page$/) do
   scroll = @browser.driver.execute_script('return window.scrollY')
   expect(scroll).to eq 0
+end
+
+When(/^I enter "([^"]*)" into the search box$/) do |search_term|
+  on SearchPage do |page|
+    page.search(search_term)
+  end
 end

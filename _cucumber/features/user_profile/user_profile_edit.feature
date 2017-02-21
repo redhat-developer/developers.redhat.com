@@ -1,3 +1,4 @@
+@slow
 @kc
 Feature: User Profile Edit
 
@@ -77,7 +78,7 @@ Feature: User Profile Edit
     Then I should see a success message "Your account has been updated."
      And the customer portal should be updated
 
-  @logout @github_logout @delete_user @later @slow
+  @logout @github_logout @delete_user @later
   Scenario: User unlinks Social account from RHD account
     Given I am on the Login page
     When I log in with an account that is already linked to my Github account
@@ -86,7 +87,7 @@ Feature: User Profile Edit
      And I unlink my social account
     Then I should not have any social accounts associated with me
 
-  @logout @github_teardown @delete_user @slow
+  @logout @github_teardown @delete_user
   Scenario: User links new social account to existing RHD account
     Given I am a RHD registered site visitor
      And I am logged into RHD
@@ -126,4 +127,4 @@ Feature: User Profile Edit
     When I am logged into RHD
      And I am on the Change Password page
      And I enter matching passwords, leaving my previous password empty
-    Then I should see a "password field" validation error "Current password is required"
+    Then I should see a error message "Please specify password."

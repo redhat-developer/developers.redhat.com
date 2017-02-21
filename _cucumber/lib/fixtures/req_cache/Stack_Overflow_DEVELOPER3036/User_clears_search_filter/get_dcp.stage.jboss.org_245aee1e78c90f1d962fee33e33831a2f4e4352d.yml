@@ -1,0 +1,348 @@
+---
+:scope: 
+:url: https://dcp.stage.jboss.org/v2/rest/search/stackoverflow/?field=sys_url_view&field=sys_title&field=is_answered&field=author&field=sys_tags&field=answers&field=sys_created&field=view_count&field=answer_count&field=down_vote_count&field=up_vote_count&field=sys_content&from=0&product=fuse&project=&query=&query_highlight=true&size=10&size10=true&tag=jbossfuse
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Server: Apache-Coyote/1.1
+  Pragma: No-cache
+  Cache-Control: no-cache
+  Expires: Wed, 31 Dec 1969 19:00:00 EST
+  Access-Control-Allow-Origin: https://developers-pr.stage.redhat.com
+  Content-Type: application/json
+  Date: Fri, 13 Jan 2017 12:26:00 GMT
+  Connection: close
+  Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a37o8080;
+    path=/
+:content: '{"uuid":"624f2108-1207-4382-9fe4-31fac37c3239","took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"failed":0},"hits":{"total":400,"max_score":null,"hits":[{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41618690","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41618690","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T13:31:06.137-05:00","sys_id":"stackoverflow_question-41618690","sys_url_view":"http://stackoverflow.com/questions/41618690/jboss-fuse-6-x-to-run-pax-exam-itests-with-jdk-1-8","sys_content_id":"41618690","last_activity":"1484239705000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/49db2e321ea36d3bb4ff8f2295c58aae?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":3306694,"link":"http://stackoverflow.com/users/3306694/ak76","reputation":6,"display_name":"ak76"},"sys_content_plaintext":"Seems
+  like artifacts of JBoss Fuse 6.2.x and 6.3.x compiled with JDK 1.7 and PAX-EXAM
+  itests work fine, though they error out with JDK 1.8. Same applies if you create
+  own OSGI bundle and use Maven dependency: <dependencyManagement> <dependencies>
+  <dependency> <groupId>org.jboss.fuse.bom</groupId> <artifactId>jboss-fuse-parent</artifactId>
+  <version>6.2.1.redhat-084</version> <type>pom</type> <scope>import</scope> </dependency>
+  So if you want you project build with JDK 1.8 you have to exclude PAX-EXAM itests
+  from maven lifecycle and run another process with JDK 1.7 just for itests. Moreover
+  JDK 1.7 end of life as of April, 2015 - http://www.oracle.com/technetwork/java/eol-135779.html
+  $ java -version java version \"1.8.0_92\" Java(TM) SE Runtime Environment (build
+  1.8.0_92-b14) Java HotSpot(TM) 64-Bit Server VM (build 25.92-b14, mixed mode) $
+  cd D:\\projects\\jboss-fuse-6.2.1-621084-sources\\camel-2.15.1.redhat-621084\\tests\\camel-itest-osgi
+  $ mvn clean install -Dmaven.test.skip=false ---- ERRORS ----","sys_content_type":"stackoverflow_question","author":"ak76-3306694","sys_tags":["jbossfuse","pax-exam"],"sys_title":"JBoss
+  Fuse 6.x to run PAX-EXAM itests with JDK 1.8","tags":["jbossfuse","pax-exam"],"sys_content":"<p>Seems
+  like artifacts of JBoss Fuse 6.2.x and 6.3.x compiled with JDK 1.7 and PAX-EXAM
+  itests work fine, though they error out with JDK 1.8. </p>\n\n<p>Same applies if
+  you create own OSGI bundle and use Maven dependency:</p>\n\n<pre><code>&lt;dependencyManagement&gt;\n    &lt;dependencies&gt;\n        &lt;dependency&gt;\n            &lt;groupId&gt;org.jboss.fuse.bom&lt;/groupId&gt;\n            &lt;artifactId&gt;jboss-fuse-parent&lt;/artifactId&gt;\n            &lt;version&gt;6.2.1.redhat-084&lt;/version&gt;\n            &lt;type&gt;pom&lt;/type&gt;\n            &lt;scope&gt;import&lt;/scope&gt;\n        &lt;/dependency&gt;\n</code></pre>\n\n<p>So
+  if you want you project build with JDK 1.8 you have to exclude PAX-EXAM itests from
+  maven lifecycle and run another process with JDK 1.7 just for itests.</p>\n\n<p>Moreover
+  JDK 1.7 end of life as of April, 2015 - <a href=\"http://www.oracle.com/technetwork/java/eol-135779.html\"
+  rel=\"nofollow noreferrer\">http://www.oracle.com/technetwork/java/eol-135779.html</a></p>\n\n<hr>\n\n<p>$
+  java -version\njava version \"1.8.0_92\"\nJava(TM) SE Runtime Environment (build
+  1.8.0_92-b14)\nJava HotSpot(TM) 64-Bit Server VM (build 25.92-b14, mixed mode)</p>\n\n<p>$
+  cd D:\\projects\\jboss-fuse-6.2.1-621084-sources\\camel-2.15.1.redhat-621084\\tests\\camel-itest-osgi</p>\n\n<p>$
+  mvn clean install -Dmaven.test.skip=false</p>\n\n<p>---- <strong>ERRORS</strong>
+  ----                                                                                                                                                                               </p>\n","user_id":"3306694","sys_created":"1484239705000","is_answered":"false","view_count":"4","up_vote_count":"0"},"sort":[1484239705000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41606294","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41606294","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T11:30:52.319-05:00","sys_id":"stackoverflow_question-41606294","sys_url_view":"http://stackoverflow.com/questions/41606294/the-differences-between-jboss-fuse-and-mulesoft-for-system-integration","sys_content_id":"41606294","last_activity":"1484201827000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/b62b0410e0c3255b04d000f5d1f30199?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":862666,"link":"http://stackoverflow.com/users/862666/s-gaber","reputation":654,"display_name":"S
+  Gaber","accept_rate":67},"sys_content_plaintext":"What are the deference between
+  JBoss Fuse and MuleSoft ESB? which one recommended to use for System Integration?","sys_content_type":"stackoverflow_question","comments":[{"owner":{"profile_image":"https://www.gravatar.com/avatar/ff5cfdc4095c8b1709f032fb032aa058?s=128&d=identicon&r=PG","user_type":"registered","user_id":987265,"link":"http://stackoverflow.com/users/987265/habin","reputation":399,"display_name":"Habin","accept_rate":44},"score":0,"post_id":41606294,"edited":false,"creation_date":"1484207077000","comment_id":70416911}],"author":"S
+  Gaber-862666","sys_tags":["mule","esb","jbossfuse","system-integration"],"sys_title":"the
+  differences between Jboss Fuse and MuleSoft for System Integration","tags":["mule","esb","jbossfuse","system-integration"],"sys_content":"<p>What
+  are the deference between JBoss Fuse and MuleSoft ESB? which one recommended to
+  use for System Integration?</p>\n","user_id":"862666","sys_created":"1484201827000","is_answered":"false","view_count":"13","up_vote_count":"0"},"sort":[1484201827000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41605032","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41605032","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T11:30:52.318-05:00","sys_id":"stackoverflow_question-41605032","sys_url_view":"http://stackoverflow.com/questions/41605032/best-approach-to-consume-third-party-restful-webservices-with-jboss-fuse","sys_content_id":"41605032","last_activity":"1484194530000","down_vote_count":"2","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/0a774865399c5a47689019217c305a18?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":7406270,"link":"http://stackoverflow.com/users/7406270/java-user","reputation":1,"display_name":"Java
+  User"},"sys_content_plaintext":"I am using JBoss FUSE for integration. I am new
+  to it. I want to consume/call third party restful webservices. Please can anyone
+  tell me what will be the best approach to create endpoint (like cxf, restlet, etc.).
+  Also if there is any working end-to-end example, that will be of great help. Thanks
+  in advance.","sys_content_type":"stackoverflow_question","comments":[{"owner":{"profile_image":"https://www.gravatar.com/avatar/3c4d0bdaf20b80fe1394ac654d316541?s=128&d=identicon&r=PG","user_type":"registered","user_id":783707,"link":"http://stackoverflow.com/users/783707/ankur-aggarwal","reputation":1014,"display_name":"Ankur
+  Aggarwal","accept_rate":33},"score":1,"post_id":41605032,"edited":false,"creation_date":"1484196109000","comment_id":70412649},{"owner":{"profile_image":"https://www.gravatar.com/avatar/340d7e3e01b9f26398e7b9ec6ed1892d?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":5311694,"link":"http://stackoverflow.com/users/5311694/souciance-eqdam-rashti","reputation":1537,"display_name":"Souciance
+  Eqdam Rashti","accept_rate":53},"score":0,"post_id":41605032,"edited":false,"creation_date":"1484209848000","comment_id":70418273}],"author":"Java
+  User-7406270","sys_tags":["rest","apache-camel","cxf","restlet","jbossfuse"],"sys_title":"best
+  approach to consume third party restful webservices with jboss fuse","tags":["rest","apache-camel","cxf","restlet","jbossfuse"],"sys_content":"<p>I
+  am using JBoss FUSE for integration. I am new to it. I want to consume/call third
+  party restful webservices. Please can anyone tell me what will be the best approach
+  to create endpoint (like cxf, restlet, etc.).</p>\n\n<p>Also if there is any working
+  end-to-end example, that will be of great help.</p>\n\n<p>Thanks in advance.</p>\n","user_id":"7406270","sys_created":"1484194530000","is_answered":"false","view_count":"14","up_vote_count":"0"},"sort":[1484194530000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41598744","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41598744","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T11:30:52.316-05:00","sys_id":"stackoverflow_question-41598744","sys_url_view":"http://stackoverflow.com/questions/41598744/call-third-party-restful-web-service-using-jboss-fuse-camel","sys_content_id":"41598744","last_activity":"1484161406000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/0a774865399c5a47689019217c305a18?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":7406270,"link":"http://stackoverflow.com/users/7406270/java-user","reputation":1,"display_name":"Java
+  User"},"sys_content_plaintext":"I am new to JBoss fuse. I want to call third party
+  restful web-service using jboss fuse camel. This webservice takes json/form/multi-part
+  as input and return json/form/multi-part as output. Please can anyone point to any
+  working example. I referred many documentation and blogs but getting confused more
+  as browse more. I have created code like in camel-context.xml: <?xml version=\"1.0\"
+  encoding=\"UTF-8\"?> <!-- Configures the Camel Context--> <beans xmlns=\"http://www.springframework.org/schema/beans\"
+  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\" http://camel.apache.org/schema/spring
+  http://camel.apache.org/schema/spring/camel-spring.xsd http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd\"> <bean class=\"org.apache.activemq.camel.component.ActiveMQComponent\"
+  id=\"activemq\"> <property name=\"brokerURL\" value=\"tcp://localhost:61616\"/>
+  <property name=\"userName\" value=\"admin\"/> <property name=\"password\" value=\"admin\"/>
+  <property name=\"usePooledConnection\" value=\"false\"/> </bean> <camelContext id=\"amq-example-context\"
+  xmlns=\"http://camel.apache.org/schema/spring\" xmlns:order=\"http://com.mycompany/examples/order\">
+  <route id=\"file-to-jms-route\"> <!-- from id=\"incomingFolder\" uri=\"file:work/in\"/-->
+  <from id=\"serviceCall\" uri=\"https://testdomain.com/authorise\"/> <to id=\"_to1\"
+  uri=\"file:C:\\workspace\\jbdevstudio\\restfuloutput\"/> <!-- to id=\"sendIncomingOrder\"
+  uri=\"activemq:incomingOrders\"/--> </route> </camelContext> </beans>","sys_content_type":"stackoverflow_question","author":"Java
+  User-7406270","sys_tags":["rest","jbossfuse"],"sys_title":"Call third party restful
+  web-service using jboss fuse camel","tags":["rest","jbossfuse"],"sys_content":"<p>I
+  am new to JBoss fuse. I want to call third party restful web-service using jboss
+  fuse camel. This webservice takes json/form/multi-part as input and return json/form/multi-part
+  as output. Please can anyone point to any working example.  I referred many documentation
+  and blogs but getting confused more as browse more. </p>\n\n<p>I have created code
+  like in camel-context.xml:</p>\n\n<pre><code>&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n&lt;!--
+  Configures the Camel Context--&gt;\n&lt;beans xmlns=\"http://www.springframework.org/schema/beans\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"     xsi:schemaLocation=\"         http://camel.apache.org/schema/spring                  http://camel.apache.org/schema/spring/camel-spring.xsd             http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd         http://www.springframework.org/schema/context          http://www.springframework.org/schema/context/spring-context.xsd\"&gt;\n    &lt;bean
+  class=\"org.apache.activemq.camel.component.ActiveMQComponent\"         id=\"activemq\"&gt;\n    &lt;property
+  name=\"brokerURL\" value=\"tcp://localhost:61616\"/&gt;\n    &lt;property name=\"userName\"
+  value=\"admin\"/&gt;\n    &lt;property name=\"password\" value=\"admin\"/&gt;\n    &lt;property
+  name=\"usePooledConnection\" value=\"false\"/&gt;\n&lt;/bean&gt;\n&lt;camelContext
+  id=\"amq-example-context\"\n    xmlns=\"http://camel.apache.org/schema/spring\"
+  xmlns:order=\"http://com.mycompany/examples/order\"&gt;\n    &lt;route id=\"file-to-jms-route\"&gt;\n        &lt;!--
+  from id=\"incomingFolder\" uri=\"file:work/in\"/--&gt;\n        &lt;from id=\"serviceCall\"
+  uri=\"https://testdomain.com/authorise\"/&gt;\n        &lt;to id=\"_to1\" uri=\"file:C:\\workspace\\jbdevstudio\\restfuloutput\"/&gt;\n        &lt;!--
+  to id=\"sendIncomingOrder\" uri=\"activemq:incomingOrders\"/--&gt;\n    &lt;/route&gt;\n   &lt;/camelContext&gt;\n&lt;/beans&gt;\n</code></pre>\n","user_id":"7406270","sys_created":"1484161406000","is_answered":"false","view_count":"8","up_vote_count":"0"},"sort":[1484161406000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41586506","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41586506","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T11:30:52.314-05:00","sys_id":"stackoverflow_question-41586506","sys_url_view":"http://stackoverflow.com/questions/41586506/camel-salesforce-component-connect-salesforce-cloud-using-proxy","sys_content_id":"41586506","last_activity":"1484125129000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/9093ca16367993bd2c0c398bd11e4f0c?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":5291148,"link":"http://stackoverflow.com/users/5291148/rajib-ghosh","reputation":1,"display_name":"Rajib
+  Ghosh"},"sys_content_plaintext":"We have a requirement to connect Salesforce cloud
+  from jboss fuse using proxy. We are not allowed to connect directly to salesforce
+  cloud. Haven''t seen any documentation on camel-salesforce doc for proxy connection.
+  please guide.","sys_content_type":"stackoverflow_question","author":"Rajib Ghosh-5291148","sys_tags":["apache-camel","camel","jbossfuse"],"sys_title":"Camel
+  salesforce component connect Salesforce cloud using proxy","tags":["apache-camel","camel","jbossfuse"],"sys_content":"<p>We
+  have a requirement to connect Salesforce cloud from jboss fuse using proxy. We are
+  not allowed to connect directly to salesforce cloud. Haven''t seen any documentation
+  on camel-salesforce doc for proxy connection. please guide.</p>\n","user_id":"5291148","sys_created":"1484125129000","is_answered":"false","view_count":"4","up_vote_count":"0"},"sort":[1484125129000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41582280","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41582280","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T11:30:52.313-05:00","sys_id":"stackoverflow_question-41582280","sys_url_view":"http://stackoverflow.com/questions/41582280/jboss-fuse-hibernate-application-giving-waiting-for-unsatisfied-dependencies-e","sys_content_id":"41582280","last_activity":"1484105877000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/5b4e1e09d9faee404ef8dcd1119df609?s=128&d=identicon&r=PG","user_type":"registered","user_id":6318555,"link":"http://stackoverflow.com/users/6318555/casper","reputation":169,"display_name":"casper","accept_rate":50},"sys_content_plaintext":"I
+  am developing sample application to demonstrate hibernate capabilities with FUSE.
+  I was able to installed required dependencies and install my project in to FUSE.
+  But unfortunately I was not getting any error but when I list the installed applications
+  it shows my application waiting. As show in below screen. Once I check on the log
+  it''s show following message. OsgiBundleXmlApplicationContext(bundle=cameloneeac,
+  config=osgibundle:/META-INF/spring/*.xml) is waiting for unsatisfied dependencies
+  [[&org.springframework.osgi.service.importer.support.OsgiServiceProxyFactoryBean&#35;0]]
+  Then after some time in log I can see this kind of error message. Unable to create
+  application context for [cameloneeac], unsatisfied dependencies: Dependency on [(objectClass=com.vcc.camelone.commonsdomain.model.dao.CoreCodeCountryDao)]
+  (from bean [&org.springframework.osgi.service.importer.support.OsgiServiceProxyFactoryBean&#35;0])
+  Does anyone experienced this kind of error when working on the FUSE with hibernate
+  ? Please be kind enough to provide some clue to resolve this issue .","sys_content_type":"stackoverflow_question","comments":[{"owner":{"profile_image":"https://www.gravatar.com/avatar/294278694c313539a55cd2ddbfb4b13a?s=128&d=identicon&r=PG","user_type":"registered","user_id":876011,"link":"http://stackoverflow.com/users/876011/coder","reputation":1344,"display_name":"Coder"},"score":0,"post_id":41582280,"edited":false,"creation_date":"1484209338000","comment_id":70418017},{"owner":{"profile_image":"https://www.gravatar.com/avatar/21306ab5c55a1e70ae23991665941efe?s=128&d=identicon&r=PG","user_type":"registered","user_id":423955,"link":"http://stackoverflow.com/users/423955/alessandro-da-rugna","reputation":2190,"display_name":"Alessandro
+  Da Rugna","accept_rate":79},"score":0,"post_id":41582280,"edited":false,"creation_date":"1484217046000","comment_id":70422928}],"author":"casper-6318555","sys_tags":["java","hibernate","jboss","jbossfuse"],"sys_title":"JBoss
+  FUSE hibernate application giving &quot;waiting for unsatisfied dependencies&quot;
+  error","tags":["java","hibernate","jboss","jbossfuse"],"sys_content":"<p>I am developing
+  sample application to demonstrate hibernate capabilities with FUSE. I was able to
+  installed required dependencies and install my project in to FUSE. But unfortunately
+  I was not getting any error but when I list the installed applications it shows
+  my application waiting. As show in below screen.</p>\n\n<p><a href=\"https://i.stack.imgur.com/iQvLK.png\"
+  rel=\"nofollow noreferrer\"><img src=\"https://i.stack.imgur.com/iQvLK.png\" alt=\"enter
+  image description here\"></a></p>\n\n<p>Once I check on the log it''s show following
+  message.</p>\n\n<pre><code>OsgiBundleXmlApplicationContext(bundle=cameloneeac, config=osgibundle:/META-INF/spring/*.xml)
+  is waiting for unsatisfied dependencies\n[[&amp;org.springframework.osgi.service.importer.support.OsgiServiceProxyFactoryBean&amp;#35;0]]\n</code></pre>\n\n<p>Then
+  after some time in log I can see this kind of error message.</p>\n\n<pre><code>Unable
+  to create application context for [cameloneeac], unsatisfied dependencies: Dependency
+  on [(objectClass=com.vcc.camelone.commonsdomain.model.dao.CoreCodeCountryDao)] (from
+  bean [&amp;org.springframework.osgi.service.importer.support.OsgiServiceProxyFactoryBean&amp;#35;0])\n</code></pre>\n\n<p>Does
+  anyone experienced this kind of error when working on the FUSE with hibernate ?
+  Please be kind enough to provide some clue to resolve this issue .</p>\n","user_id":"6318555","sys_created":"1484105877000","is_answered":"false","view_count":"12","up_vote_count":"1"},"sort":[1484105877000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41578312","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41578312","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T11:30:52.311-05:00","sys_id":"stackoverflow_question-41578312","sys_url_view":"http://stackoverflow.com/questions/41578312/microsoft-sqlserver-insert-query-on-apache-camel-doesnt-work","sys_content_id":"41578312","last_activity":"1484082036000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/5c990a1e8e28daa2329e8b75b95b2602?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":7401401,"link":"http://stackoverflow.com/users/7401401/leo","reputation":1,"display_name":"Leo"},"sys_content_plaintext":"I
+  developed an Apache Camel route in RedHat Jboss Fuse (karaf version 6.2.1). When
+  i try to execute an insert query, that has to call a sequence, into the datasource
+  (Microsoft Sqlserver 2012) i get an sql error related to the number of the parameters.
+  Apache Camel query: <to id=\"insertStartToDB\" uri=\"sql:INSERT INTO dbo.conart_transactions
+  (PK_ID,TRANS_ID,Date_insert,Date_start_flow,Date_end_flow,Flow_name,direction,status,status_descr,aux_1,
+  aux_2,aux_3,aux_4,BLOB) VALUES (NEXT VALUE FOR transaction_pkid_seq,:#TRANS_ID,:#DATE_INSERT,:#DATE_START,:#DATE_END,:#FLOW_NAME,:#DIRECTION,:#STATUS,:#STATUS_DESCR,:#AUX_1,:#AUX_2,:#AUX_3,:#AUX_4,:#BLOB)?dataSource=sqlServerDS\"/>
+  Error returned: [\"org.springframework.jdbc.UncategorizedSQLException: PreparedStatementCallback;
+  uncategorized SQLException for SQL []; SQL state [null]; error code [0]; Number
+  of parameters mismatch. Expected: 14, was: 13; nested exception is java.sql.SQLException:
+  Number of parameters mismatch. Expected: 14, was: 13\",\"\\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:83)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\tat
+  org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:80)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\tat
+  org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:80)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\tat
+  org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:605)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\tat
+  org.apache.camel.component.sql.SqlProducer.process(SqlProducer.java:107)[123:org.apache.camel.camel-sql:2.17.0.redhat-630187][org.apache.camel:camel-sql:2.17.0.redhat-630187]\",\"\\tat
+  org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.SendProcessor.process(SendProcessor.java:145)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:468)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:196)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.Pipeline.process(Pipeline.java:121)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.Pipeline.process(Pipeline.java:83)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:468)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:196)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.Pipeline.process(Pipeline.java:121)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.Pipeline.process(Pipeline.java:83)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:196)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.util.AsyncProcessorHelper.process(AsyncProcessorHelper.java:109)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.DelegateAsyncProcessor.process(DelegateAsyncProcessor.java:91)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.component.jms.EndpointMessageListener.onMessage(EndpointMessageListener.java:112)[121:org.apache.camel.camel-jms:2.17.0.redhat-630187][org.apache.camel:camel-jms:2.17.0.redhat-630187]\",\"\\tat
+  org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:555)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:515)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:485)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:325)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:263)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1103)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1095)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:992)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)[:1.8.0_111]\",\"\\tat
+  java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)[:1.8.0_111]\",\"\\tat
+  java.lang.Thread.run(Thread.java:745)[:1.8.0_111]\",\"Caused by: java.sql.SQLException:
+  Number of parameters mismatch. Expected: 14, was: 13\",\"\\tat org.apache.camel.component.sql.DefaultSqlPrepareStatementStrategy.populateStatement(DefaultSqlPrepareStatementStrategy.java:153)[123:org.apache.camel.camel-sql:2.17.0.redhat-630187][org.apache.camel:camel-sql:2.17.0.redhat-630187]\",\"\\tat
+  org.apache.camel.component.sql.SqlProducer$2.doInPreparedStatement(SqlProducer.java:137)[123:org.apache.camel.camel-sql:2.17.0.redhat-630187][org.apache.camel:camel-sql:2.17.0.redhat-630187]\",\"\\tat
+  org.apache.camel.component.sql.SqlProducer$2.doInPreparedStatement(SqlProducer.java:107)[123:org.apache.camel.camel-sql:2.17.0.redhat-630187][org.apache.camel:camel-sql:2.17.0.redhat-630187]\",\"\\tat
+  org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:589)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\t...
+  29 more\"] I guess that is something related to first values of the insert (\"NEXT
+  VALUE FOR transaction_pkid_seq\"), but i''m not able to understand why is not working.
+  Thanks in advance.","sys_content_type":"stackoverflow_question","comments":[{"owner":{"profile_image":"https://www.gravatar.com/avatar/79f0229603e30b04fddc833d85afc9e0?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":2961734,"link":"http://stackoverflow.com/users/2961734/laughing-vergil","reputation":605,"display_name":"Laughing
+  Vergil"},"score":0,"post_id":41578312,"edited":false,"creation_date":"1484088123000","comment_id":70364528},{"owner":{"profile_image":"https://www.gravatar.com/avatar/cc7ea123f772052411022b64e5f40471?s=128&d=identicon&r=PG","user_type":"registered","user_id":6703,"link":"http://stackoverflow.com/users/6703/adam-hawkes","reputation":5699,"display_name":"Adam
+  Hawkes","accept_rate":100},"score":0,"post_id":41578312,"edited":false,"creation_date":"1484150105000","comment_id":70393309}],"author":"Leo-7401401","sys_tags":["sql-server-2012","apache-camel","jbossfuse"],"sys_title":"Microsoft
+  Sqlserver insert query on apache camel doesn&#39;t work","tags":["sql-server-2012","apache-camel","jbossfuse"],"sys_content":"<p>I
+  developed an Apache Camel route in RedHat Jboss Fuse (karaf version 6.2.1).\nWhen
+  i try to execute an insert query, that has to call a sequence, into the datasource
+  (Microsoft Sqlserver 2012) i get an sql error related to the number of the parameters.</p>\n\n<p>Apache
+  Camel query:</p>\n\n<pre><code>&lt;to id=\"insertStartToDB\" uri=\"sql:INSERT INTO
+  dbo.conart_transactions (PK_ID,TRANS_ID,Date_insert,Date_start_flow,Date_end_flow,Flow_name,direction,status,status_descr,aux_1,
+  aux_2,aux_3,aux_4,BLOB) VALUES (NEXT VALUE FOR transaction_pkid_seq,:#TRANS_ID,:#DATE_INSERT,:#DATE_START,:#DATE_END,:#FLOW_NAME,:#DIRECTION,:#STATUS,:#STATUS_DESCR,:#AUX_1,:#AUX_2,:#AUX_3,:#AUX_4,:#BLOB)?dataSource=sqlServerDS\"/&gt;\n</code></pre>\n\n<p>Error
+  returned:</p>\n\n<pre><code>[\"org.springframework.jdbc.UncategorizedSQLException:
+  PreparedStatementCallback; uncategorized SQLException for SQL []; SQL state [null];
+  error code [0]; Number of parameters mismatch. Expected: 14, was: 13; nested exception
+  is java.sql.SQLException: Number of parameters mismatch. Expected: 14, was: 13\",\"\\tat
+  org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:83)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\tat
+  org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:80)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\tat
+  org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:80)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\tat
+  org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:605)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\tat
+  org.apache.camel.component.sql.SqlProducer.process(SqlProducer.java:107)[123:org.apache.camel.camel-sql:2.17.0.redhat-630187][org.apache.camel:camel-sql:2.17.0.redhat-630187]\",\"\\tat
+  org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.SendProcessor.process(SendProcessor.java:145)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:468)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:196)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.Pipeline.process(Pipeline.java:121)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.Pipeline.process(Pipeline.java:83)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:468)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:196)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.Pipeline.process(Pipeline.java:121)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.Pipeline.process(Pipeline.java:83)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:196)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.util.AsyncProcessorHelper.process(AsyncProcessorHelper.java:109)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.processor.DelegateAsyncProcessor.process(DelegateAsyncProcessor.java:91)[120:org.apache.camel.camel-core:2.17.0.redhat-630187][org.apache.camel:camel-core:2.17.0.redhat-630187
+  com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2]\",\"\\tat
+  org.apache.camel.component.jms.EndpointMessageListener.onMessage(EndpointMessageListener.java:112)[121:org.apache.camel.camel-jms:2.17.0.redhat-630187][org.apache.camel:camel-jms:2.17.0.redhat-630187]\",\"\\tat
+  org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:555)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:515)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:485)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:325)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:263)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1103)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1095)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:992)[143:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jms:3.2.16.RELEASE_2]\",\"\\tat
+  java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)[:1.8.0_111]\",\"\\tat
+  java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)[:1.8.0_111]\",\"\\tat
+  java.lang.Thread.run(Thread.java:745)[:1.8.0_111]\",\"Caused by: java.sql.SQLException:
+  Number of parameters mismatch. Expected: 14, was: 13\",\"\\tat org.apache.camel.component.sql.DefaultSqlPrepareStatementStrategy.populateStatement(DefaultSqlPrepareStatementStrategy.java:153)[123:org.apache.camel.camel-sql:2.17.0.redhat-630187][org.apache.camel:camel-sql:2.17.0.redhat-630187]\",\"\\tat
+  org.apache.camel.component.sql.SqlProducer$2.doInPreparedStatement(SqlProducer.java:137)[123:org.apache.camel.camel-sql:2.17.0.redhat-630187][org.apache.camel:camel-sql:2.17.0.redhat-630187]\",\"\\tat
+  org.apache.camel.component.sql.SqlProducer$2.doInPreparedStatement(SqlProducer.java:107)[123:org.apache.camel.camel-sql:2.17.0.redhat-630187][org.apache.camel:camel-sql:2.17.0.redhat-630187]\",\"\\tat
+  org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:589)[142:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1][org.apache.servicemix.bundles:org.apache.servicemix.bundles.spring-jdbc:3.2.16.RELEASE_1]\",\"\\t...
+  29 more\"]\n</code></pre>\n\n<p>I guess that is something related to first values
+  of the insert (\"NEXT VALUE FOR transaction_pkid_seq\"), but i''m not able to understand
+  why is not working.\nThanks in advance.</p>\n","user_id":"7401401","sys_created":"1484082036000","is_answered":"false","view_count":"19","up_vote_count":"0"},"sort":[1484082036000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41574069","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41574069","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T11:30:52.310-05:00","sys_id":"stackoverflow_question-41574069","sys_url_view":"http://stackoverflow.com/questions/41574069/how-to-give-the-input-to-the-fuse-using-streamin-in-jboss-fuse","sys_content_id":"41574069","last_activity":"1484067061000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://www.gravatar.com/avatar/3e4903de2873717508007db5b2ce673d?s=128&d=identicon&r=PG&f=1","user_type":"registered","user_id":3040843,"link":"http://stackoverflow.com/users/3040843/goku","reputation":78,"display_name":"goku","accept_rate":42},"sys_content_plaintext":"Is
+  it possible the get the value from the user in the console in the sample jboss fuse
+  program <route> <!-- ask user to enter a something--> <from uri=\"stream:in/> <to
+  uri=\"stream:out\"/> </aggregate> </route> I want to use Spring DSL/blueprint DSL
+  and I am deploying that bundle in the osgi container.After starting that bundle,
+  how will get the input from the user and print in the console? or How will get the
+  input and write to the file? How will read the content from the file and write in
+  the console? Kindly suggest me if there is any way to do in JBOSS FUSE or if we
+  are not able to get the input from the console in JBOSS FUSE, how to get the input
+  from the user in the JBOSS FUSE ?","sys_content_type":"stackoverflow_question","author":"goku-3040843","sys_tags":["jbossfuse"],"sys_title":"How
+  to give the input to the fuse using stream:in in Jboss FUSE","tags":["jbossfuse"],"sys_content":"<p>Is
+  it possible the get the value from the user in the console in the sample jboss fuse
+  program</p>\n\n<pre><code>&lt;route&gt;\n      &lt;!-- ask user to enter a something--&gt;\n      &lt;from
+  uri=\"stream:in/&gt;\n        &lt;to uri=\"stream:out\"/&gt;\n      &lt;/aggregate&gt;\n
+  &lt;/route&gt;\n</code></pre>\n\n<p>I want to use Spring DSL/blueprint DSL and I
+  am deploying that bundle in the osgi container.After starting that bundle,</p>\n\n<ol>\n<li><p>how
+  will get the input from the user and print in the console? or </p></li>\n<li><p>How
+  will get the input and write to the file?</p></li>\n<li>How will read the content
+  from the file and write in the console?</li>\n</ol>\n\n<p>Kindly suggest me if there
+  is any way to do in JBOSS FUSE or if we are not able to get the input from the console
+  in JBOSS FUSE, how to get the input from the user in the JBOSS FUSE ?</p>\n","user_id":"3040843","sys_created":"1484067061000","is_answered":"false","view_count":"12","up_vote_count":"0"},"sort":[1484067061000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41481327","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41481327","sys_type":"stackoverflow_thread","answer_count":"0","sys_updated":"2017-01-12T11:30:52.307-05:00","sys_id":"stackoverflow_question-41481327","sys_url_view":"http://stackoverflow.com/questions/41481327/unable-to-add-jax-rs-annotations-in-fuse-project","sys_content_id":"41481327","last_activity":"1483608476000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://graph.facebook.com/1048562495233999/picture?type=large","user_type":"registered","user_id":6791449,"link":"http://stackoverflow.com/users/6791449/prashant-prabhakar-singh","reputation":119,"display_name":"Prashant
+  Prabhakar Singh"},"sys_content_plaintext":"I was following this official tutorial
+  on developing web services using fuse. Everything was working fine as per Redhat-tutorial.
+  But when I tried adding jax-rs annotations like @GET, @POST, @PATH, there were no
+  compile time errors but on mvn:install I got an error like: [ERROR] Bundle org.fusesource.example:cxf-basic-2:bundle:0.0.1-SNAPSHOT
+  : Unresolved references to [javax.ws.rs] by class(es) on the Bundle-Classpath[Jar:dot]:
+  [org/fusesource/example/cxf_basic_2/HelloWorldImpl.class] [ERROR] Error(s) found
+  in bundle configuration [INFO] ------------------------------------------------------------------------
+  [INFO] BUILD FAILURE [INFO] ------------------------------------------------------------------------
+  [INFO] Total time: 4.753 s [INFO] Finished at: 2017-01-05T14:55:04+05:30 [INFO]
+  Final Memory: 20M/262M [INFO] ------------------------------------------------------------------------
+  [ERROR] Failed to execute goal org.apache.felix:maven-bundle-plugin:2.3.7:bundle
+  (default-bundle) on project cxf-basic-2: Error(s) found in bundle configuration
+  -> [Help 1] [ERROR] [ERROR] To see the full stack trace of the errors, re-run Maven
+  with the -e switch. [ERROR] Re-run Maven using the -X switch to enable full debug
+  logging. [ERROR] [ERROR] For more information about the errors and possible solutions,
+  please read the following articles: [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+  I am not sure if any configuration is needed for adding JAX-RS annotations?","sys_content_type":"stackoverflow_question","author":"Prashant
+  Prabhakar Singh-6791449","sys_tags":["web-services","jbossfuse"],"sys_title":"Unable
+  to add jax-rs annotations in fuse project?","tags":["web-services","jbossfuse"],"sys_content":"<p>I
+  was following <a href=\"https://access.redhat.com/documentation/en/red-hat-jboss-fuse/6.3/paged/developing-and-deploying-applications/chapter-3-getting-started-with-developing\"
+  rel=\"nofollow noreferrer\">this</a> official tutorial on developing web services
+  using fuse.\nEverything was working fine as per Redhat-tutorial. <br>\nBut when
+  I tried adding jax-rs annotations like @GET, @POST, @PATH, there were no compile
+  time errors but on <code>mvn:install</code> I got an error like: </p>\n\n<pre><code>[ERROR]
+  Bundle org.fusesource.example:cxf-basic-2:bundle:0.0.1-SNAPSHOT : Unresolved references
+  to [javax.ws.rs] by class(es) on the Bundle-Classpath[Jar:dot]: [org/fusesource/example/cxf_basic_2/HelloWorldImpl.class]\n[ERROR]
+  Error(s) found in bundle configuration\n[INFO] ------------------------------------------------------------------------\n[INFO]
+  BUILD FAILURE\n[INFO] ------------------------------------------------------------------------\n[INFO]
+  Total time: 4.753 s\n[INFO] Finished at: 2017-01-05T14:55:04+05:30\n[INFO] Final
+  Memory: 20M/262M\n[INFO] ------------------------------------------------------------------------\n[ERROR]
+  Failed to execute goal org.apache.felix:maven-bundle-plugin:2.3.7:bundle (default-bundle)
+  on project cxf-basic-2: Error(s) found in bundle configuration -&gt; [Help 1]\n[ERROR]
+  \n[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.\n[ERROR]
+  Re-run Maven using the -X switch to enable full debug logging.\n[ERROR] \n[ERROR]
+  For more information about the errors and possible solutions, please read the following
+  articles:\n[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException\n</code></pre>\n\n<p>I
+  am not sure if any configuration is needed for adding JAX-RS annotations?</p>\n","user_id":"6791449","sys_created":"1483608476000","is_answered":"false","view_count":"10","up_vote_count":"0"},"sort":[1483608476000,1.0]},{"_index":"data_stackoverflow_question","_type":"stackoverflow_question","_id":"41464835","_score":1.0,"_source":{"source":"stackoverflow_question","space_key":"jbossfuse","sys_id":"41464835","answers":[{"owner":{"profile_image":"https://www.gravatar.com/avatar/21306ab5c55a1e70ae23991665941efe?s=128&d=identicon&r=PG","user_type":"registered","user_id":423955,"link":"http://stackoverflow.com/users/423955/alessandro-da-rugna","reputation":2190,"display_name":"Alessandro
+  Da Rugna","accept_rate":79},"comment_count":0,"is_accepted":false,"last_activity_date":"1484232045000","creation_date":"1484232045000","title":"JBoss
+  Fuse Specified service reference is null","body":"<p>The actual code you have to
+  write depends on how your bundles start. Do you use a Java class as BundleActivator?
+  Spring? Blueprint?</p>\n\n<p>Generally speaking, each bundle must specify its dependencies.
+  There are 2 kinds of dependencies:</p>\n\n<ul>\n<li>dependeny on some classes in
+  packages exported by other bundles</li>\n<li>dependency on a service provided by
+  some other bundle</li>\n</ul>\n\n<p>Your bundle should declare packages and services
+  (Java interfaces) it needs. This way you \"force\" JBoss/Karaf to start bundles
+  in the correct order and avoid null service references.</p>\n\n<p>Have a look at
+  this guide:<br>\n<a href=\"https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.0/html-single/Managing_OSGi_Dependencies/index.html\"
+  rel=\"nofollow noreferrer\">https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.0/html-single/Managing_OSGi_Dependencies/index.html</a></p>\n","answer_id":41615905,"question_id":41464835,"tags":[],"share_link":"http://stackoverflow.com/a/41615905","score":0,"down_vote_count":0,"up_vote_count":0}],"sys_type":"stackoverflow_thread","answer_count":"1","time_to_answer_mins":11600.05,"sys_updated":"2017-01-12T11:30:52.321-05:00","sys_id":"stackoverflow_question-41464835","sys_url_view":"http://stackoverflow.com/questions/41464835/jboss-fuse-specified-service-reference-is-null","sys_content_id":"41464835","last_activity":"1484232045000","down_vote_count":"0","sys_content_provider":"stackoverflow","sys_content_content-type":"text/plain","owner":{"profile_image":"https://i.stack.imgur.com/a0iY5.jpg?s=128&g=1","user_type":"registered","user_id":6588746,"link":"http://stackoverflow.com/users/6588746/sridhar","reputation":31,"display_name":"Sridhar","accept_rate":100},"sys_content_plaintext":"I
+  have two bundles, one is DB related and another one simple. DB bundle will export
+  osgi service reference. Another one will get the service reference. It is working
+  fine when installing one by one. The service reference is null when starting the
+  Jboss fuse karaf container. Can i set bundle ordering ? or Can i set delay for completing
+  DB bundle? I need to install bundle after completing DB bundle. Advance Thanks.","sys_content_type":"stackoverflow_question","author":"Sridhar-6588746","sys_tags":["esb","osgi-bundle","jbossfuse","karaf"],"sys_title":"JBoss
+  Fuse Specified service reference is null","tags":["esb","osgi-bundle","jbossfuse","karaf"],"sys_content":"<p>I
+  have two bundles, one is DB related and another one simple. DB bundle will export
+  osgi service reference. Another one will get the service reference.\nIt is working
+  fine when installing one by one. The service reference is null when starting the
+  Jboss fuse karaf container.</p>\n\n<p>Can i set bundle ordering ? or Can i set delay
+  for completing DB bundle?\nI need to install bundle after completing DB bundle.\nAdvance
+  Thanks.</p>\n","user_id":"6588746","sys_created":"1483536042000","is_answered":"false","view_count":"16","up_vote_count":"0"},"sort":[1483536042000,1.0]}]}}'

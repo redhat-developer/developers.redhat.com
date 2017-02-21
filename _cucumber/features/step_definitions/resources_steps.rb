@@ -20,7 +20,6 @@ end
 When(/^I click to filter results by "([^"]*)"$/) do |filter_type|
   on ResourcesPage do |page|
     page.filter_by(filter_type)
-    page.wait_for_results
     @results = page.results
   end
 end
@@ -156,6 +155,22 @@ end
 
 Then(/^the URL should include the selected filters$/) do
   @browser.url.should include('type=video&product=cdk')
+end
+
+Given(/^I have previously filtered results by "([^"]*)" and "([^"]*)"$/) do |filter_one, search_string|
+  @browser.goto("#{$host_to_test}/resources/#!type=#{filter_one.downcase}&q=#{search_string.gsub(' ', '+')}")
+end
+
+Then(/^the "([^"]*)" filter should be checked$/) do |filter|
+  on ResourcesPage do |page|
+    fail "#{filter} was not checked!" unless page.checkbox_checked(filter.downcase) == 'true'
+  end
+end
+
+And(/^"([^"]*)" should be within the keyword search field$/) do |search_filter_string|
+  on ResourcesPage do |page|
+    page.keyword_field.attribute_value('value').should == search_filter_string
+  end
 end
 
 # class to return current quarter for current month
