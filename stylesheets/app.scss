@@ -2183,3 +2183,35 @@ ul.side-nav.rhd-sub-nav{
   }
 }
 
+#eu-cookie-banner {
+  background-color: #fee9b2;
+  color: $grey-7;
+  p {
+    margin: 5px;
+    font-size: 13px;
+    width: calc(100% - 60px);
+  }
+  span.read-more a {
+    float: right;
+    font-weight: 600;
+    color: $red;
+  }
+  button.close-button {
+    color: $grey-7;
+    background: none;
+    padding: 0 8px;
+    font-size: 1.4em;
+    margin-bottom: 0;
+    float: right;
+    width: 50px;
+  }
+}
+
+@include tablet-landscape-and-down {
+  #eu-cookie-banner span.read-more {
+    display: block;
+    a {
+      float: none;
+    }
+  }
+}

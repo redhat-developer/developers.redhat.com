@@ -9,6 +9,7 @@ var globs = {
   "scripts": [
     'javascripts/drupal-namespace.js',
     'javascripts/vendor/jquery.xdomainrequest.js',
+    'javascripts/vendor/includes.js',
     'javascripts/extensions.js',
     'javascripts/vendor/keycloak.js',
     'javascripts/sso.js',
@@ -76,6 +77,7 @@ var globs = {
     'javascripts/adaptive-placeholder.js',
     //'javascripts/current-tab.js',
     'javascripts/referrer.js',
+    'javascripts/products.js',
     'javascripts/jboss-docker.js'
   ],
   "styles": ['stylesheets/*.scss']
