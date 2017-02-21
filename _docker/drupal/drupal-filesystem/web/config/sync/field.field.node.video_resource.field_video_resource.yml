@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_video_resource
-    - node.type.resource
+    - node.type.video_resource
   module:
     - video_embed_field
-id: node.resource.field_video_resource
+id: node.video_resource.field_video_resource
 field_name: field_video_resource
 entity_type: node
-bundle: resource
+bundle: video_resource
 label: 'Video Resource'
 description: 'URL for the video that is the main asset for this resource'
 required: false

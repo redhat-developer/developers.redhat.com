@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - node.type.resource
-id: node.resource.promote
+    - node.type.video_resource
+id: node.video_resource.promote
 field_name: promote
 entity_type: node
-bundle: resource
+bundle: video_resource
 label: 'Promoted to front page'
 description: ''
 required: false

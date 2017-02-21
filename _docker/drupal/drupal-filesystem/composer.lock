@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "844f06e6a652bf966d8939bbea718622",
+    "content-hash": "8ffa007d966e5c363d3a216d26eccc08",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2116,7 +2116,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/metatag",
-                "reference": "ee21ffdb6dbff781313460b5c6a832d71d98040f"
+                "reference": "5be4d14c520c7645fbb9b0ebeaec4f18e81e30ae"
             },
             "require": {
                 "drupal/core": "*",
@@ -2161,7 +2161,7 @@
                 "source": "http://cgit.drupalcode.org/metatag",
                 "issues": "http://drupal.org/project/issues/metatag"
             },
-            "time": "2017-01-31 22:07:42"
+            "time": "2017-02-15 14:41:29"
         },
         {
             "name": "drupal/multiversion",
@@ -2624,17 +2624,11 @@
         },
         {
             "name": "drupal/video_embed_field",
-            "version": "1.4.0",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/video_embed_field",
-                "reference": "8.x-1.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-1.4.zip",
-                "reference": null,
-                "shasum": "7bf93a52e2e8d639b4dbefd65f0ee2b170d73f43"
+                "reference": "418b6e9e35949a9d0c3ccbf1f76c0fe7b2c4ddb9"
             },
             "require": {
                 "drupal/core": "*"
@@ -2651,8 +2645,12 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x",
-                    "datestamp": "1484253183",
+                    "datestamp": "1484252283",
                     "package": "Field types"
+                },
+                "patches_applied": {
+                    "2846738 - Implement methods: createSourceFieldStorage and createSourceField": "https://www.drupal.org/files/issues/2846738_unimplemented_methods_2.patch",
+                    "2849478 - Support for Youtube and Youtube playlist provider default media name": "https://www.drupal.org/files/issues/support_for_youtube-2849478-6.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2677,7 +2675,8 @@
             "homepage": "https://www.drupal.org/project/video_embed_field",
             "support": {
                 "source": "http://cgit.drupalcode.org/video_embed_field"
-            }
+            },
+            "time": "2017-01-24 07:31:41"
         },
         {
             "name": "drupal/workbench",
@@ -8429,6 +8428,7 @@
         "drupal/subpathauto": 10,
         "drupal/token": 10,
         "drupal/token_filter": 10,
+        "drupal/video_embed_field": 20,
         "drupal/workbench": 20,
         "relaxedws/lca": 20,
         "drupal/console": 5,

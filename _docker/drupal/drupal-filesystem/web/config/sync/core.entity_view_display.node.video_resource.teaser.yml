@@ -4,14 +4,14 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.resource.body
-    - node.type.resource
+    - field.field.node.video_resource.body
+    - node.type.video_resource
   module:
     - text
     - user
-id: node.resource.teaser
+id: node.video_resource.teaser
 targetEntityType: node
-bundle: resource
+bundle: video_resource
 mode: teaser
 content:
   body:
@@ -23,4 +23,5 @@ content:
     third_party_settings: {  }
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_resource_type: true

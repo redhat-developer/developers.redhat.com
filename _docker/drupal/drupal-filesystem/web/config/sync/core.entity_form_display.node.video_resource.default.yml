@@ -3,17 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.resource.body
-    - field.field.node.resource.field_resource_type
-    - field.field.node.resource.field_video_resource
-    - node.type.resource
+    - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_video_resource
+    - field.field.node.video_resource.field_video_resource_tags
+    - node.type.video_resource
   module:
     - path
     - text
     - video_embed_field
-id: node.resource.default
+    - workbench_moderation
+id: node.video_resource.default
 targetEntityType: node
-bundle: resource
+bundle: video_resource
 mode: default
 content:
   body:
@@ -24,16 +25,19 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
-  field_resource_type:
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
   field_video_resource:
     weight: 3
     settings: {  }
     third_party_settings: {  }
     type: video_embed_field_textfield
+  field_video_resource_tags:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
   path:
     type: path
     weight: 2

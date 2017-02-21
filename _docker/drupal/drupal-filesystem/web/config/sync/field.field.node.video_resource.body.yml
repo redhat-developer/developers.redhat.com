@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.resource
+    - node.type.video_resource
   module:
     - text
-id: node.resource.body
+id: node.video_resource.body
 field_name: body
 entity_type: node
-bundle: resource
+bundle: video_resource
 label: 'Optional Body'
 description: 'Optional body / description of the main resource.'
 required: false

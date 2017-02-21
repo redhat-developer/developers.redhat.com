@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - node.type.resource
-id: node.resource.status
+    - node.type.video_resource
+id: node.video_resource.status
 field_name: status
 entity_type: node
-bundle: resource
+bundle: video_resource
 label: 'Publishing status'
 description: 'A boolean indicating whether the node is published.'
 required: false
