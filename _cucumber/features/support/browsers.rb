@@ -31,7 +31,9 @@ class Browsers
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.open_timeout = 100 # Browser launch can take a while
     if user_agent.nil?
-      browser = Billy::Browsers::Watir.new :phantomjs, args: switches, driver_path: phantomjs_driver_path, http_client: client
+      chrome_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+      capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs('phantomjs.page.settings.userAgent' => chrome_agent)
+      browser = Billy::Browsers::Watir.new :phantomjs, desired_capabilities: capabilities, args: switches, driver_path: phantomjs_driver_path, http_client: client
       browser.window.resize_to(1920, 1080)
       browser
     else
