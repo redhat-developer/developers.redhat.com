@@ -1,258 +1,100 @@
 require 'minitest/autorun'
 require 'mocha/mini_test'
 
+require_relative '../../_cucumber/jenkins_test_runner'
 require_relative '../test_helper'
-require_relative '../../_cucumber/lib/options/run_tests_options'
 
-class TestRunTestsOptions < MiniTest::Test
+class TestJenkinsTestRunner < Minitest::Test
 
   def setup
-    @cucumber_dir = "#{File.dirname(__FILE__)}/../../_cucumber"
-    @run_tests_options = RunTestsOptions.new(@cucumber_dir)
-    clear_env_variables
+    clear_environment
   end
 
   def teardown
-    clear_env_variables
+    clear_environment
   end
 
-  def clear_env_variables
+  def clear_environment
     ENV['CUCUMBER_TAGS'] = nil
-    ENV['github_status_sha1'] = nil
-    ENV['github_status_context'] = nil
-    ENV['HOST_TO_TEST'] = nil
-    ENV['RHD_JS_DRIVER'] = nil
-    ENV['RHD_TEST_PROFILE'] = nil
-    ENV['RHD_DOCKER_DRIVER'] = nil
+    ENV['ghprbActualCommit'] = nil
+    ENV['STUBBED_DATA'] = nil
   end
 
-  def test_non_docker_execution_with_no_args
+  def test_should_exit_with_status_zero_if_all_success
 
-    test_configuration = @run_tests_options.parse_command_line(%w())
+    jenkins_test_runner = mock()
+    jenkins_test_runner.expects(:run_tests).returns(true)
+    Kernel.expects(:exit).with(0)
 
-    refute(test_configuration[:docker])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
+    execute(jenkins_test_runner)
+
   end
 
-  def test_non_docker_execution_specifying_profile
+  def test_should_exit_with_status_one_if_any_failure
 
-    test_configuration = @run_tests_options.parse_command_line(%w(--profile=kc_dm))
+    jenkins_test_runner = mock()
+    jenkins_test_runner.expects(:run_tests).returns(false)
+    Kernel.expects(:exit).with(1)
 
-    refute(test_configuration[:docker])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
+    execute(jenkins_test_runner)
   end
 
-  def test_non_docker_execution_specifying_driver
+  def test_enables_github_status_update_and_cucumber_tags_if_both_present
+    ENV['CUCUMBER_TAGS'] = 'foo'
+    ENV['ghprbActualCommit'] = '123'
+    process_runner = mock()
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com --update-github-status=123 --cucumber-tags=foo')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --update-github-status=123 --cucumber-tags=foo --driver=iphone_6')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com --update-github-status=123 --cucumber-tags=foo')
 
-    test_configuration = @run_tests_options.parse_command_line(%w(--profile=kc_dm --driver=iphone_6))
-
-    refute(test_configuration[:docker])
-    assert_equal('iphone_6', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=iphone_6 RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
+    jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
+    assert(jenkins_test_runner.run_tests)
   end
 
-  def test_non_docker_execution_specifying_unknown_profile
+  def test_enables_cucumber_tags_if_present_in_env
+    ENV['CUCUMBER_TAGS'] = 'foo'
+    process_runner = mock()
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com --cucumber-tags=foo')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --cucumber-tags=foo --driver=iphone_6')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com --cucumber-tags=foo')
 
-    Kernel.expects(:abort).with("'foo' is not a recognised Cucumber profile, see '#{@cucumber_dir}/cucumber.yml' file for valid profiles.")
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--profile=foo))
-
-    refute(test_configuration[:docker])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=foo', test_configuration[:run_tests_command])
-    assert_equal(nil, ENV['RHD_DOCKER_DRIVER'])
+    jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
+    assert(jenkins_test_runner.run_tests)
   end
 
-  def test_non_docker_execution_specifying_cucumber_tags
+  def test_enables_github_status_update_if_sha1_present_in_env
+    ENV['ghprbActualCommit'] = '123'
+    process_runner = mock()
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com --update-github-status=123')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --update-github-status=123 --driver=iphone_6')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com --update-github-status=123')
 
-    test_configuration = @run_tests_options.parse_command_line(%w(--profile=kc_dm --cucumber-tags=foo))
-
-    refute(test_configuration[:docker])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
-    assert_equal('foo', ENV['CUCUMBER_TAGS'])
-    assert_equal(nil, ENV['RHD_DOCKER_DRIVER'])
+    jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
+    assert(jenkins_test_runner.run_tests)
   end
 
-  def test_non_docker_execution_specifying_update_github_status
+  def test_successful_execution_of_all_profiles_returns_true
 
-    test_configuration = @run_tests_options.parse_command_line(%w(--profile=kc_dm --cucumber-tags=foo --update-github-status=123))
+    process_runner = mock()
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --driver=iphone_6')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com')
 
-    refute(test_configuration[:docker])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
-    assert_equal('foo', ENV['CUCUMBER_TAGS'])
-    assert_equal(nil, ENV['github_status_sha1'])
-    assert_equal(nil, ENV['github_status_context'])
-    assert_equal(nil, ENV['RHD_DOCKER_DRIVER'])
+    jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
+    assert(jenkins_test_runner.run_tests)
   end
 
-  def test_non_docker_execution_specifying_host_to_test
+  def test_any_failed_profile_returns_false
 
-    test_configuration = @run_tests_options.parse_command_line(%w(--profile=kc_dm --cucumber-tags=foo --host-to-test=http://foo.com))
+    process_runner = mock()
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=desktop --host-to-test=http://foo.com')
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=mobile --host-to-test=http://foo.com --driver=iphone_6').raises(StandardError.new('foo'))
+    process_runner.expects(:execute!).with('cd /my/scripts && bundle exec ruby ./run_tests.rb --use-docker --profile=kc_dm --host-to-test=http://foo.com')
 
-    refute(test_configuration[:docker])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features HOST_TO_TEST=http://foo.com RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
-
-    assert_equal('http://foo.com', ENV['HOST_TO_TEST'])
-    assert_equal('chrome', ENV['RHD_JS_DRIVER'])
-    assert_equal('kc_dm', ENV['RHD_TEST_PROFILE'])
-    assert_equal('foo', ENV['CUCUMBER_TAGS'])
-    assert_equal(nil, ENV['github_status_sha1'])
-    assert_equal(nil, ENV['github_status_context'])
-    assert_equal(nil, ENV['RHD_DOCKER_DRIVER'])
+    jenkins_test_runner = JenkinsTestRunner.new('http://foo.com', '/my/scripts', process_runner)
+    refute(jenkins_test_runner.run_tests)
   end
 
-  def test_non_docker_execution_specifying_unknown_driver
-
-    Kernel.expects(:abort).with("Invalid device specified! Device 'foo' was not found \n see available test devices here: '#{@cucumber_dir}/driver/device_config/chromium_devices.json'")
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--driver=foo))
-
-    refute(test_configuration[:docker])
-    assert_equal('foo', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=foo RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
-  end
-
-
-  def test_default_execution_using_docker
-
-      test_configuration = @run_tests_options.parse_command_line(%w(--use-docker))
-
-      assert(test_configuration[:docker])
-      assert_equal(2, test_configuration[:browser_count])
-      assert_equal('chrome', test_configuration[:driver])
-      assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
-      assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
-      assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
-      assert_equal(nil, ENV['github_status_sha1'])
-      assert_equal(nil, ENV['github_status_context'])
-  end
-
-  def test_docker_execution_specifying_number_of_browsers
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --browser-count=5))
-
-    assert(test_configuration[:docker])
-    assert_equal(5, test_configuration[:browser_count])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
-    assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
-    assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
-    assert_equal('docker_chrome', test_configuration[:docker_node])
-    assert_equal(nil, ENV['github_status_sha1'])
-    assert_equal(nil, ENV['github_status_context'])
-    assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
-  end
-
-  def test_docker_execution_specifying_unknown_driver
-
-    Kernel.expects(:abort).with("Invalid device specified! Device 'foo' was not found \n see available test devices here: '#{@cucumber_dir}/driver/device_config/chromium_devices.json'")
-    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --driver=foo))
-
-    assert(test_configuration[:docker])
-    assert_equal('foo', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=foo RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
-  end
-
-  def test_docker_execution_specifying_mobile_driver
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --driver=iphone_6))
-
-    assert(test_configuration[:docker])
-    assert_equal(2, test_configuration[:browser_count])
-    assert_equal('iphone_6', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=iphone_6 RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
-    assert_equal('iphone_6', ENV['RHD_JS_DRIVER'])
-    assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
-    assert_equal('docker_chrome', test_configuration[:docker_node])
-    assert_equal(nil, ENV['github_status_sha1'])
-    assert_equal(nil, ENV['github_status_context'])
-    assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
-  end
-
-  def test_docker_execution_specifying_firefox_driver
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --driver=firefox))
-
-    assert(test_configuration[:docker])
-    assert_equal(2, test_configuration[:browser_count])
-    assert_equal('firefox', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_firefox RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
-    assert_equal('docker_firefox', ENV['RHD_JS_DRIVER'])
-    assert_equal('docker_firefox', ENV['RHD_DOCKER_DRIVER'])
-    assert_equal('docker_firefox', test_configuration[:docker_node])
-    assert_equal(nil, ENV['github_status_sha1'])
-    assert_equal(nil, ENV['github_status_context'])
-    assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
-  end
-
-  def test_multiple_cucumber_tags_can_be_specified_on_command_line
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--cucumber-tags=@wip,@kc))
-    assert_equal('@wip,@kc', ENV['CUCUMBER_TAGS'])
-  end
-
-  def test_docker_execution_update_github_status_with_no_explict_profile_set
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --update-github-status=123))
-    assert(test_configuration[:docker])
-    assert_equal(2, test_configuration[:browser_count])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
-    assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
-    assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
-    assert_equal('123', ENV['github_status_sha1'])
-    assert_equal('Drupal:FE Acceptance Tests', ENV['github_status_context'])
-    assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
-    assert_equal('true', ENV['github_status_enabled'])
-  end
-
-  def test_docker_execution_update_github_status_with_mobile_profile
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --profile=mobile --update-github-status=123))
-
-    assert(test_configuration[:docker])
-    assert_equal(2, test_configuration[:browser_count])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=mobile', test_configuration[:run_tests_command])
-    assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
-    assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
-    assert_equal('123', ENV['github_status_sha1'])
-    assert_equal('Drupal:Mobile FE Acceptance Tests', ENV['github_status_context'])
-    assert_equal('mobile', ENV['RHD_TEST_PROFILE'])
-    assert_equal('true', ENV['github_status_enabled'])
-  end
-
-  def test_docker_execution_update_github_status_with_kc_dm_profile
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --profile=kc_dm --update-github-status=123))
-
-    assert(test_configuration[:docker])
-    assert_equal(2, test_configuration[:browser_count])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
-    assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
-    assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
-    assert_equal('123', ENV['github_status_sha1'])
-    assert_equal('Drupal:FE KC/DM Acceptance Tests', ENV['github_status_context'])
-    assert_equal('kc_dm', ENV['RHD_TEST_PROFILE'])
-    assert_equal('true', ENV['github_status_enabled'])
-  end
-
-  def test_docker_execution_specify_unknown_profile
-
-    Kernel.expects(:abort).with("'foo' is not a recognised Cucumber profile, see '#{@cucumber_dir}/cucumber.yml' file for valid profiles.")
-
-    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --profile=foo))
-
-    assert(test_configuration[:docker])
-    assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=foo', test_configuration[:run_tests_command])
-  end
 
 
 end

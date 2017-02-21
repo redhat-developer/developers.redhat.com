@@ -2,17 +2,15 @@ require_relative 'abstract/standardised_search'
 
 # this is the page class that contains all elements and common methods related to the Resources page
 class ResourcesPage < StandardisedSearch
-  page_url('/resources/')
+  page_url('/resources')
   expected_element(:h2, text: 'Resources')
-  # page_title('Discover the developer materials Red Hat has to offer')
 
-  element(:blog_posts)             { |b| b.element(xpath: "//label[@for='blogposts']") }
-  element(:book)                   { |b| b.element(xpath: "//label[@for='book']") }
-  element(:code)                   { |b| b.element(xpath: "//label[@for='code']") }
-  element(:get_started)            { |b| b.element(xpath: "//label[@for='get-started']") }
-  element(:code_artifact)          { |b| b.element(xpath: "//label[@for='code']") }
-  element(:knowledgebase)          { |b| b.element(xpath: "//label[@for='knowledge']") }
-  element(:video)                  { |b| b.element(xpath: "//label[@for='video']") }
+  element(:blog_posts)             { |b| b.element(xpath: "//*[@id='blogposts']") }
+  element(:book)                   { |b| b.element(xpath: "//*[@id='book']") }
+  element(:code)                   { |b| b.element(xpath: "//*[@id='code']") }
+  element(:get_started)            { |b| b.element(xpath: "//*[@id='get-started']") }
+  element(:knowledgebase)          { |b| b.element(xpath: "//*[@id='knowledge']") }
+  element(:video)                  { |b| b.element(xpath: "//*[@id='video']") }
   elements(:checkbox_filters)      { |b| b.checkboxes(css: 'input[type="checkbox"]') }
   element(:keyword_field)          { |b| b.text_field(class: 'search_field') }
   element(:product_filter)         { |b| b.select_list(class: 'search-by-product') }
@@ -31,6 +29,11 @@ class ResourcesPage < StandardisedSearch
     checkboxes_arr
   end
 
+  def checkbox_checked(type)
+    element = send("#{type.downcase.tr(' ', '_')}")
+    element.attribute_value('checked')
+  end
+
   def results_date
     results = []
     result_date.each do |result|
@@ -41,21 +44,25 @@ class ResourcesPage < StandardisedSearch
 
   def keyword_search(search_string)
     type(keyword_field, search_string)
+    press_return
+    sleep 1.5 # wait for new search to be triggered
     wait_until_loaded
   end
 
   def filter_by_product(product)
-    product_filter.select(product)
-    wait_for_results
+    product_filter.wait_until(&:present?).select(product)
+    sleep 1.5 # wait for new search to be triggered
+    wait_until_loaded
   end
 
   def filter_by_publish_date(date_type)
     publish_date.select(date_type)
-    wait_for_results
+    sleep 1.5 # wait for new search to be triggered
+    wait_until_loaded
   end
 
   def results_contain_img_for(type)
-    wait_for_results
+    wait_until_loaded
     @browser.images(css: ".result-icon .icon-RHDev_-resources_icons_#{type.downcase}")
   end
 
