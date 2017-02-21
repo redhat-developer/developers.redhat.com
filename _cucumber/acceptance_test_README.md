@@ -281,25 +281,61 @@ It is possible to execute our tests using different profiles. The three main pro
 
 Profiles are defined within a cucumber.yml file, which is located within `_cucumber/cucumber.yml`
 
-By default the tests are executed using the desktop profile and Chrome browser.
+By default the tests are executed in parallel using the desktop profile and Chrome browser:
+
+    parallel:
+     -r features/
+     -f progress
+     -p parallel_html
+     -t ~@ignore
+     -t ~@manual
+     -t ~@later
+     -t ~@nightly
+     -f rerun
+     -o tmp/<%=ENV['RHD_TEST_PROFILE']%>/rerun<%= ENV['TEST_ENV_NUMBER'] %>.txt
+     
+     desktop:
+       -p parallel
+       -t ~@mobile
+       -t ~@dm
+       -t ~@kc
 
 #### Mobile view
 
-If you wish to execute the mobile profile tests:
+If you wish to execute the mobile view tests, you must use the mobile profile which is defined in `cucumber.yml` file:
 
+    mobile:
+      -p parallel
+      -t ~@dm
+      -t ~@kc
+      -t ~@desktop RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] || 'iphone_6' %>
+
+    
     ruby _cucumber/run_tests.rb --host-to-test=dev --profile=mobile --driver=iphone_6 
     ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --profile=mobile --driver=iphone_6 
+    
+Mobile profiles are executed in parallel using a iphone 6 browser by default. All scenarios that are tagged with @desktop will be ignored. 
 
 #### KC DM profile
 
 Login, Register, and Download tests can be executed using the following profile:
 
-    ruby _cucumber/run_tests.rb --host-to-test=dev --profile=kc_dm 
-    ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --profile=kc_dm 
+    kc_dm:
+      -p parallel
+      --tags @kc,@dm
+      
+Keycloak and Download Manager tests are executed in parallel, and only executes tests that are tagged with `@kc` and `@dm`.
     
+To run keycloak tests:
+
+    ruby _cucumber/run_tests.rb --host-to-test=dev --profile=kc_dm  
+    ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --profile=kc_dm 
+   
 ### Switching Browser or device
 
 By default the tests are executed using the Chrome browser, however it is possible to switch drivers.
+
+The following browsers are available:
 
 #### Firefox
    
@@ -308,7 +344,8 @@ By default the tests are executed using the Chrome browser, however it is possib
 #### Mobile drivers (using chrome dev tools)
     
 It is possible to test on any mobile device that is available within the chrome dev tools. You can find the available devices within:
-    `_cucumber/driver/device config/chromium_devices.json`
+    
+    _cucumber/driver/device config/chromium_devices.json
     
 Example:
 
@@ -322,18 +359,48 @@ Example:
      
  #### Cucumber tags
    
- Cucumber Tags are used to organise features and scenarios. Consider this example:  
+ Cucumber Tags are used to organise features and scenarios.  
   
+     @desktop @smoke
+      Scenario: A desktop site visitor has the options to log in and register via primary navigation bar.
+        Given I am on the Home page
+        Then I should see a primary nav bar with the following tabs:
+          | Login    |
+          | Register |
+      
+ As you can see this particular scenario is tagged with `@desktop` and `@smoke. 
+ 
+ If you wish to execute one or more scenarios containing a particular tag use the following:
+ 
+     ruby _cucumber/run_tests.rb --host-to-test=dev --cucumber-tags=@desktop
+     ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --cucumber-tags=@desktop
+    
+ If you wish to execute scenarios containing a multiple tags, use the following:
+ 
+     ruby _cucumber/run_tests.rb --host-to-test=dev --cucumber-tags=@desktop,@smoke
+     ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --cucumber-tags=@desktop,@smoke
+     
+The above will execute all scenarios that are tagged with both @desktop and @smoke.
+
+Tags can also be used to ignore certain scenarios, for example:
+
+     ruby _cucumber/run_tests.rb --host-to-test=dev --cucumber-tags=~@desktop,@smoke
+     ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --cucumber-tags=~@desktop,@smoke
+     
+To ignore a particular tag, simple use the tilde(~) symbol before a tag.
+
+Detailed information on tags can be found [here](https://github.com/cucumber/cucumber/wiki/Tags)  
+ 
+#### Cucumber hooks 
+
+Tags can also be used as hooks to define pre, or post test conditions:
+ 
     @logout @kc
-    Scenario: A customer whom has the correct login credentials can log in using their username
+     Scenario: A customer whom has the correct login credentials can log in using their username
       Given I am a RHD registered site visitor
       And I am on the Login page
       When I log in with a valid username
       Then I should be logged in
-      
- As you can see this particular scenario is tagged with `@logout` and `@kc`. 
- 
- Hooks can be used to set pre or post conditions for scenarios. For example `@logout` is used as a hook to logout after each scenario that contains this tag. 
  
  Hooks are usually defined within `_cucumber/features/support/hooks.rb`
     
@@ -346,11 +413,7 @@ Example:
       end
     end
  
- 
- The above scenario is also tagged with `@kc` tag which in this case is ised in the cucumber.yml file
-      
-  
-    
-    
-       
-    
+Detailed information on cucumber tags can be found within the cucumber [documentation](https://github.com/cucumber/cucumber/wiki/Tags).
+
+### CI Acceptance Test jobs
+
