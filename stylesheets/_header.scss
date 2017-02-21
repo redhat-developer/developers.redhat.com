@@ -157,7 +157,9 @@ nav.accounts {
     a.logged-in-name{
       border-left: none;
     }
-
+    li.logged-in {
+      display: none;
+    }
     a {
       color:white;
       // border-left:1px solid white;
