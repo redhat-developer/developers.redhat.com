@@ -30,7 +30,7 @@ World PageHelper
 World DriverHelper
 
 if ENV['HOST_TO_TEST'].to_s.empty?
-  $host_to_test = 'https://docker:9000'
+  $host_to_test = 'http://docker:9000'
   $keycloak_base_url = 'https://developers.stage.redhat.com'
   $download_manager_base_url = 'https://developers.stage.redhat.com/download-manager/rest/available'
 else
