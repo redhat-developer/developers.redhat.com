@@ -161,11 +161,9 @@ At the time of writing the following ng-directives are available:
      
 You can also identify elements with custom directives by registering them before patching the browser:
 
-WatirNg.register(:ng_foo, :ng_bar).patch!
+    WatirNg.register(:ng_foo, :ng_bar).patch!
 
-@browser = Watir::Browser.new   
-
-See [cucumber env file](_cucumber/features/support/env.rb) for current custom ng-directives.
+See [cucumber env file](https://github.com/redhat-developer/developers.redhat.com/blob/master/_cucumber/features/support/env.rb) for current custom ng-directives.
 
 #### Tip
 			
