@@ -417,3 +417,95 @@ Detailed information on cucumber tags can be found within the cucumber [document
 
 ### CI Acceptance Test jobs
 
+When a developer pushes their changes and raises a pull-request the []Drupal PR builder](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-pull-request-builder-drupal/) which on successful completion will trigger the 
+[Drupal Acceptance Tests](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-acceptance-test-drupal/)
+
+The acceptance test will be triggered with the following parameters:
+
+    HOST_TO_TEST=http://developers-pr.stage.redhat.com/pr/${ghprbPullId}/export
+    SHA_TO_BUILD=${sha1}
+    CUCUMBER_TAGS=~@nightly,~@slow,~@prod
+    ghprbPullId=${ghprbPullId}
+    ghprbActualCommit=${ghprbActualCommit}
+    STUBBED_DATA=true
+
+On completion the tests will generate a cucumber report where you can view any failures and view screenshots. (More on this below)
+    
+    
+#### Troubleshooting PR's    
+    
+If the acceptance tests fail on a pull request the first step would be to check the cucumber report.
+     
+Navigate to the Drupal acceptance test job, either from the PR or navigate directly to the [Drupal Acceptance test job](http://jenkins.mw.lab.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-acceptance-test-drupal/)
+     
+Click on affected build number for the failing pull-request:
+
+[Cucumber Report](img/report.png)
+
+Open Cucumber report:
+
+[Cucumber Report Troubleshooting](img/overview_and_troubleshooting.png)
+
+Cucumber report:
+When the report is open you will see three tabs Overview, Features, Errors.
+
+- Click on ‘Features’
+- Scroll down to the failing feature and click.
+
+The failing scenario will open and display more information about the failure, for example error message and screenshot.
+
+[Cucumber Report Open](img/report_open.png)
+
+[Cucumber Report Error](img/screenshot_error.png)
+
+
+As you can see by the error above, there appears to be a problem with the download of cdk.
+
+If the issue persists, and there are no known issues with download manager, you may need to ignore the test(s)
+
+Tagging single scenario with @ignore
+Checkout the rhd project - cd developers.redhat.com/_cucumber/features and tag the failing scenario with @ignore
+
+In the above case you can see in the failure message that the feature is  “_cucumber/features/downloads/protected_downloads/download_page_cdk_featured_download.feature:13”
+In this case
+
+    @logout @ignore
+    Scenario: 1. Newly registered site visitor navigates to the Download page and clicks on download latest product, upgrades account, and accepts Redhat T&C's should initiate the product download.
+      Given I register a new account
+      And I am logged in
+      When I am on the Downloads page
+      And I click to download "Red Hat Container Development Kit"
+      Then I should see the cdk get started page with a confirmation message "Thank you for downloading Red Hat Container Development Kit"
+
+
+To ignore a full feature, simply add the @ignore tag to the top of the feature, for example:
+
+    @ignore
+    Feature: Red Hat Container Development Kit download
+
+
+Now you have added the tag (or tags) to the scenario(s) you wish to ignore, raise and pull-request and get that merged.
+
+If there are persistent issues related to keycloak, or download manager and you would like to exclude all tests related to these areas. You can modify the jenkins PR builder to ignore these features. 
+
+#### Steps:
+ - Navigate to the [pull request builder](http://jenkins.mw.lab.eng.bos.redhat.com/hudson/job/developers.redhat.com-pull-request-builder-drupal/).
+ - Click on ‘configure’
+ - Scroll down to ‘Predefined Parameters’
+ - Here you will see the environment variable ‘CUCUMBER_TAGS’
+
+[Jenkins PR Test Config](img/jenkins_pr_config.png)
+
+ - To ignore all tests related to download-manager, the above would be changed to: `CUCUMBER_TAGS=~@nightly,~@dm`
+ - To ignore all tests related to keycloak, the above would be changed to: `CUCUMBER_TAGS=~@nightly,~@kc`
+ - To ignore both download-manager and keycloak test: `CUCUMBER_TAGS=~@nightly,~@dm,~@kc`
+
+#### Known issues with downloads:
+On occasions when downloading, some accounts are placed in ‘export hold’, you will see this from the screenshot, as the user is taken to the customer portal with the title ‘Export Hold’.
+If this happens please let Frederick Sefcovic know and he can assist (details below).
+
+Contacts:
+Export Hold: [Frederick Sefcovic](fsefcovi@redhat.com)
+Download Manager: [David Hladky](dhladky@redhat.com)
+Keycloak: [Libor Krzyzanek](lkrzyzan@redhat.com)
+
