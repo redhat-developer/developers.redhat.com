@@ -32,7 +32,7 @@ class ProductOverviewPage < SiteBase
   end
 
   def click_to_download(url)
-    myelement = @browser.link(xpath: "//*//a[@href='#{url}']", index: 0)
+    myelement = $browser.link(xpath: "//*//a[@href='#{url}']", index: 0)
     myelement.fire_event('click')
   end
 

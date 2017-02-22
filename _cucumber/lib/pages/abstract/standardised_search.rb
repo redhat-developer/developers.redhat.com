@@ -13,7 +13,7 @@ class StandardisedSearch < SiteBase
   element(:no_of_results_text)         { |b| b.span(css: '#paginator > span') }
   element(:result_row)                 { |b| b.divs(class: 'result') }
   element(:result_tag)                 { |b| b.divs(class: 'tags-list') }
-  element(:pagination)                 { |b| b.nav(id: 'paginator') }
+  element(:pagination)                 { |b| b.ul(class: 'pagination') }
   element(:current_link)               { |b| b.li(class: 'current') }
   element(:pagination_first_link)      { |b| b.li(id: 'pagination-first') }
   element(:pagination_next_link)       { |b| b.li(id: 'pagination-next') }
@@ -26,14 +26,20 @@ class StandardisedSearch < SiteBase
   value(:results_title_text)           { |p| p.results_title.text }
   value(:results_sub_title_text)       { |p| p.results_sub_title.text }
   value(:results_text)                 { |p| p.no_of_results_text.text }
-  value(:has_pagination?)              { |p| p.pagination.present? }
-  value(:has_ellipsis?)                { |p| p.li(css: "#pagination-#{5}").text.include?('⋯') }
   value(:current_link_text)            { |p| p.current_link.text }
   value(:results_loaded?)              { |p| p.results_loaded.present? }
 
   def wait_for_results
-    wait_until_loaded
-    wait_until_results_loaded
+    wait_until_loaded && wait_until_results_loaded
+  end
+
+  def ellipsis?
+    if $browser.li(css: "#pagination-#{5}").present?
+      pagination_text = $browser.li(css: "#pagination-#{5}").text.include?('⋯')
+    else
+      pagination_text = $browser.li(css: "#pagination-#{5}").present?
+    end
+    pagination_text
   end
 
   def results_per_page
@@ -63,23 +69,23 @@ class StandardisedSearch < SiteBase
 
   def pagination_with?(i)
     wait_for_results
-    @browser.li(css: "#pagination-#{i}").present?
+    $browser.li(css: "#pagination-#{i}").present?
   end
 
   def pagination_links(link, link_state)
-    @browser.li(css: "#pagination-#{link}.#{link_state}").present?
+    $browser.li(css: "#pagination-#{link}.#{link_state}").present?
   end
 
   def click_pagination(link)
     elem = send("pagination_#{link}_link")
-    @browser.execute_script('arguments[0].scrollIntoView();', elem)
+    $browser.execute_script('arguments[0].scrollIntoView();', elem)
     elem.click
     wait_for_results
   end
 
   def go_to_pagination_no(i)
-    elem = @browser.li(css: "#pagination-#{i.to_i - 1}")
-    @browser.execute_script('arguments[0].scrollIntoView();', elem)
+    elem = $browser.li(css: "#pagination-#{i.to_i - 1}")
+    $browser.execute_script('arguments[0].scrollIntoView();', elem)
     elem.click
     wait_for_results
   end
