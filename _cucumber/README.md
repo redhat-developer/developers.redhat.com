@@ -82,7 +82,7 @@ The official cucumber [documentation](https://github.com/cucumber/cucumber/wiki/
 
 #### Step Definitions:
 Step definitions are defined in ruby files under features/step_definitions/*_steps.rb. Step definitions are the code behind the features that is used to automate a set of features and user stories.
-For a more detailed introduction to step definitions I recommend reading the official [documentation](https://github.com/cucumber/cucumber/wiki/Step-Definitions)
+For a more detailed introduction to step definitions I recommend reading the official [documentation](https://github.com/cucumber/cucumber/wiki/Step-Definitions).
 
 ### Watir
 [Watir](http://watir.github.io/) (Web Application Testing in Ruby) is a free and open source library for automated testing web applications in web browsers. Watir interacts with a browser the same way people do: clicking links, filling out forms and validating text.
@@ -145,6 +145,27 @@ Until recently it was difficult to test against angularJS ng directives. We now 
     ng = @browser.element(ng_click: "goToPage('next'); scrollPosition();")
     ng.present?
     ng.text
+    
+At the time of writing the following ng-directives are available:
+ 
+    def directives
+       %w(ng_jq ng_app ng_href ng_src ng_srcset ng_disabled ng_checked ng_readonly 
+          ng_selected ng_open ng_form ng_value ng_bind ng_bind_template ng_bind_html 
+          ng_change ng_class ng_class_odd ng_class_even ng_cloak ng_controller ng_csp 
+          ng_click ng_dblclick ng_mousedown ng_mouseup ng_mouseover ng_mouseenter 
+          ng_mouseleave ng_mousemove ng_keydown ng_keyup ng_keypress ng_submit ng_focus
+          ng_blur ng_copy ng_cut ng_paste ng_if ng_include ng_init ng_list ng_model 
+          ng_model_options ng_non_bindable ng_options ng_pluralize ng_repeat ng_show 
+          ng_hide ng_style ng_switch ng_transclude).map(&:to_sym)
+     end
+     
+You can also identify elements with custom directives by registering them before patching the browser:
+
+WatirNg.register(:ng_foo, :ng_bar).patch!
+
+@browser = Watir::Browser.new   
+
+See [cucumber env file](_cucumber/features/support/env.rb) for current custom ng-directives.
 
 #### Tip
 			
@@ -177,7 +198,7 @@ The generic base page class is what everything else extends. It contains the ins
 
 #### Site Base 
 
-This page class contains elements and methods that are common to all RHD pages. 
+The Site Base extends the generic base class. It contains elements and methods that are common to all RHD pages. 
 
 #### Page Classes
 
@@ -222,14 +243,49 @@ Since these element and value methods execute blocks against self, and the class
 
 #### Calling the page objects from Cucumber step definitions
 
-    Given(/^I have previously logged in$/) do
-      visit LoginPage do |page|
-      page.login_with(@site_user.details[:email], @site_user.details[:password])
-      expect(page.logged_in?).to eq(@site_user.details[:full_name])
+    Given(/^I am on the ([^"]*) page$/) do |page|
+      case page.downcase
+        when 'home'
+          visit(HomePage)
+        when 'technologies'
+          visit(TechnologiesPage)
+        when 'downloads'
+          visit(DownloadsPage).wait_until_loaded
+        when 'registration'
+          visit LoginPage do |p|
+            p.open_register_page
+          end
+        when 'login'
+          visit LoginPage
+        when 'stack overflow'
+          visit(StackOverflowPage).wait_for_results
+        when 'resources'
+          visit(ResourcesPage).wait_for_results
+        when 'product forums'
+          visit(ForumsPage)
+        when 'edit details'
+          visit(EditAccountPage)
+        when 'social login'
+          visit(SocialLoginPage)
+        when 'change password'
+          visit(ChangePasswordPage)
+        else
+          fail("expected page '#{page}' was not recognised, please check feature")
       end
     end
     
-The `visit` and `on` methods are defined in a page-helper module that is mixed into the Cucumber World so these available on all step definitions. As named, the `visit` method instantiates and navigates to the page, whereas the `on` just instantiates it.
+    
+    When(/^I click to download "([^"]*)"$/) do |product|
+      data = all_available_downloads
+      url = featured_download_for(data[product])
+      on DownloadsPage do |page|
+        page.click_to_download(url[1])
+      end
+    end
+    
+The `visit` and `on` methods are defined in a page-helper module that is mixed into the Cucumber World so these available on all step definitions. 
+
+As named, the `visit` method instantiates and navigates to the page, whereas the `on` just instantiates it.
 
     # this module contains 'visit' and 'on' methods that were created as a maintainable way of initialising/navigating to pages. (lib/pages)
     module PageHelper
@@ -310,7 +366,7 @@ If you wish to execute the mobile view tests, you must use the mobile profile wh
       -t ~@kc
       -t ~@desktop RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] || 'iphone_6' %>
 
-    
+
     ruby _cucumber/run_tests.rb --host-to-test=dev --profile=mobile --driver=iphone_6 
     ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --profile=mobile --driver=iphone_6 
     
@@ -339,15 +395,13 @@ The following browsers are available:
 
 #### Firefox
    
-    ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --driverr=firefox 
+    ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --driver=firefox 
     
 #### Mobile drivers (using chrome dev tools)
     
-It is possible to test on any mobile device that is available within the chrome dev tools. You can find the available devices within:
+It is possible to test on any mobile device that is available within the chrome dev tools. You can find the available devices within [chromium devices](_cucumber/driver/device config/chromium_devices.json).
     
-    _cucumber/driver/device config/chromium_devices.json
-    
-Example:
+   Example:
 
     ruby _cucumber/run_tests.rb --host-to-test=dev --profile=mobile --driver=nexus_6
     ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --profile=mobile --driver=nexus_6
@@ -357,7 +411,7 @@ Example:
 
     TODO: We need to add browserstack configuration to the acceptance test
      
- #### Cucumber tags
+#### Cucumber tags
    
  Cucumber Tags are used to organise features and scenarios.  
   
@@ -483,7 +537,6 @@ To ignore a full feature, simply add the @ignore tag to the top of the feature, 
     @ignore
     Feature: Red Hat Container Development Kit download
 
-
 Now you have added the tag (or tags) to the scenario(s) you wish to ignore, raise and pull-request and get that merged.
 
 If there are persistent issues related to keycloak, or download manager and you would like to exclude all tests related to these areas. You can modify the jenkins PR builder to ignore these features. 
@@ -504,8 +557,76 @@ If there are persistent issues related to keycloak, or download manager and you 
 On occasions when downloading, some accounts are placed in ‘export hold’, you will see this from the screenshot, as the user is taken to the customer portal with the title ‘Export Hold’.
 If this happens please let Frederick Sefcovic know and he can assist (details below).
 
-Contacts:
+#### Contacts:
+
 Export Hold: [Frederick Sefcovic](fsefcovi@redhat.com)
+
 Download Manager: [David Hladky](dhladky@redhat.com)
+
 Keycloak: [Libor Krzyzanek](lkrzyzan@redhat.com)
 
+#### Cross browser test job (staging)
+When a PR has been merged the [staging build](https://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.staging.redhat.com-drupal/) will be triggered with these changes.
+On successful completion of this build the [cross browser test job](https://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-acceptance-test-browserstack/) will be executed.
+
+#### Production Smoke test job
+
+When a PR has been merged the [production build](https://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-drupal/) will be triggered with these changes.
+On successful completion of this build the [Drupal Acceptance Tests](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-acceptance-test-drupal/)
+will execute the @smoke and @prod tests.
+
+### Hints and tips - work in progress
+
+When working on a new feature, for example:
+
+    Feature: I am a new feature
+    
+    @wip
+    Scenario: I am a wip scenario
+      Given I am learning cucumber
+      When I would like to generate my step definitions
+      Then I should tag a scenario with "@wip"
+      
+To execute a wip scenario, use a rake wip task:
+      
+      bundle exec rake wip
+      
+ The above task will run using a Chrome browser against your locally running drupal dev site preview (https://docker:9000)
+     
+ Once you have ran the wip task from terminal the step definitions will be generated:
+ 
+    @wip
+    Scenario: I am a wip scenario                       # /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:9
+     Given I am learning cucumber                      # /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:10
+     When I would like to generate my step definitions # /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:11
+     Then I should tag a scenario with "@wip"          # /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:12
+ 
+    1 scenario (1 undefined)
+    3 steps (3 undefined)
+    0m0.039s
+ 
+    You can implement step definitions for undefined steps with these snippets:
+ 
+    Given(/^I am learning cucumber$/) do
+      pending # Write code here that turns the phrase above into concrete actions
+    end
+ 
+    When(/^I would like to generate my step definitions$/) do
+      pending # Write code here that turns the phrase above into concrete actions
+    end
+ 
+    Then(/^I should tag a scenario with "([^"]*)"$/) do |arg1|
+      pending # Write code here that turns the phrase above into concrete actions
+    end
+ 
+ You can then copy the generated steps into your desired step definition file and add code in order to automate the scenario.
+ 
+ If you wish to write tests against an alternative host:
+      
+    bundle exec rake wip HOST_TO_TEST=foo.com
+      
+ If you wish to run your test against an alternative driver, for example mobile view:  
+    
+    bundle exec rake wip HOST_TO_TEST=foo.com RHD_JS_DRIVER=iphone_6
+    
+  
