@@ -286,3 +286,17 @@ function redhat_www_ddo_default() {
     return $ddo;
 }
 
+/**
+ * Implements template_preprocess_field.
+ *
+ * Adding our css modifications to the video_embed_field type. Had to modify some things mostly due to
+ * our site css so we could get the responsive video to work.
+ *
+ * @param $variables
+ * @param $hook
+ */
+function rhd_preprocess_field(&$variables, $hook) {
+    if ($variables['field_type'] === 'video_embed_field') {
+        $variables['items'][0]['content']['#attached']['library'][] = 'rhd/video_embed_field.responsive-video';
+    }
+}
