@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_video_resource
     - field.field.node.video_resource.field_video_resource_tags
     - node.type.video_resource
@@ -22,9 +23,16 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
+  field_speakers:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_video_resource:
     weight: 0
-    label: above
+    label: visually_hidden
     settings:
       responsive: true
       width: 854
@@ -34,7 +42,7 @@ content:
     type: video_embed_field_video
   field_video_resource_tags:
     weight: 2
-    label: visually_hidden
+    label: above
     settings:
       link: true
     third_party_settings: {  }

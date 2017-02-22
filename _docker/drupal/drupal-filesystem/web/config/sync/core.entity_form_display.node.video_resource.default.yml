@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_video_resource
     - field.field.node.video_resource.field_video_resource_tags
     - node.type.video_resource
@@ -25,6 +26,13 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+  field_speakers:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_video_resource:
     weight: 3
     settings: {  }
