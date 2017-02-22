@@ -16,7 +16,7 @@ module DriverHelper
   end
 
   def press_return
-    @browser.send_keys :enter
+    $browser.send_keys :enter
   end
 
   def custom_find(el, locator)
@@ -28,14 +28,14 @@ module DriverHelper
   end
 
   def current_window
-    @browser.driver.window_handle
+    $browser.driver.window_handle
   end
 
   def windows
-    @browser.driver.window_handles
-    @browser.driver.window_handles.map do |w|
-      @browser.driver.switch_to.window(w)
-      [w, @browser.driver.title]
+    $browser.driver.window_handles
+    $browser.driver.window_handles.map do |w|
+      $browser.driver.switch_to.window(w)
+      [w, $browser.driver.title]
     end
   end
 
@@ -44,16 +44,16 @@ module DriverHelper
   end
 
   def switch_window(first_window)
-    all_windows = @browser.driver.window_handles
+    all_windows = $browser.driver.window_handles
     all_windows.select { |this_window| this_window != first_window }
-    @browser.driver.close
-    @browser.driver.switch_to.window(first_window)
+    $browser.driver.close
+    $browser.driver.switch_to.window(first_window)
   end
 
   def close_and_reopen_browser
-    @browser.driver.execute_script('window.open()')
-    @browser.driver.close
-    @browser.driver.switch_to.window(@browser.driver.window_handles.last)
+    $browser.driver.execute_script('window.open()')
+    $browser.driver.close
+    $browser.driver.switch_to.window($browser.driver.window_handles.last)
   end
 
   def custom_wait(timeout=30, message='default', &block)

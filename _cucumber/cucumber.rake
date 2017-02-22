@@ -11,6 +11,8 @@ task :_features do
     ENV['RHD_TEST_PROFILE'] = @profile
   end
 
+  ENV['RHD_REMOTE_BROWSER'] = nil if ENV['RHD_REMOTE_BROWSER'].to_s.empty?
+
   if ENV['CUCUMBER_TAGS'].to_s.empty?
     tags = nil
   else
@@ -71,7 +73,6 @@ end
 
 task :debugger do
   system("parallel_cucumber #{File.dirname(__FILE__)}/features/ -o \"--tags @debug\" -n 10")
-  # system('cucumber _cucumber -r _cucumber/features/ --tags @debug')
 end
 
 task :debug, :times do |_task, args|

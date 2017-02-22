@@ -2,7 +2,7 @@ require_relative 'abstract/standardised_search'
 
 # this is the page class that contains all elements and common methods related to the Resources page
 class ResourcesPage < StandardisedSearch
-  page_url('/resources/')
+  page_url('/resources/#!')
   expected_element(:h2, text: 'Resources')
   # page_title('Discover the developer materials Red Hat has to offer')
 
@@ -22,7 +22,7 @@ class ResourcesPage < StandardisedSearch
 
   def filter_by(type)
     element = send("#{type.downcase.tr(' ', '_')}")
-    element.fire_event('click')
+    element.click
   end
 
   def any_checked?
@@ -56,7 +56,7 @@ class ResourcesPage < StandardisedSearch
 
   def results_contain_img_for(type)
     wait_for_results
-    @browser.images(css: ".result-icon .icon-RHDev_-resources_icons_#{type.downcase}")
+    $browser.images(css: ".result-icon .icon-RHDev_-resources_icons_#{type.downcase}")
   end
 
   def tags
