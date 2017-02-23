@@ -153,8 +153,17 @@ a {
   &.dark-background{ color: $link-dark-background; }
   &.link-sm {color: $link-sm; }
   &.link-sm-dark {color: $link-sm-dark-background; }
-  &.link-sm-grey {color: $link-sm-grey-background; }
 
+  &:focus {
+    outline-offset: 1px;
+    outline-style: dotted;
+    outline-width: 1px;
+    outline-color: color($link);
+  }
+}
+
+p a:hover {
+  border-bottom: 1px solid #DCDCDC;
 }
 
 .link-sm a {
@@ -2001,7 +2010,7 @@ label.inline{
     margin-bottom: 0;
   }
   a {
-    color: $link-grey-background;
+    color: $link-dark-background;
   }
 }
 
