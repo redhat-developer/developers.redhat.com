@@ -444,7 +444,7 @@ It is possible to test on any mobile device that is available within the chrome 
           | Login    |
           | Register |
       
- As you can see this particular scenario is tagged with `@desktop` and `@smoke. 
+ As you can see this particular scenario is tagged with `@desktop` and `@smoke`. 
  
  If you wish to execute one or more scenarios containing a particular tag use the following:
  
@@ -480,20 +480,20 @@ Tags can also be used as hooks to define pre, or post test conditions:
  
  Hooks are usually defined within `_cucumber/features/support/hooks.rb`
     
-    After('@logout') do
+     After('@logout') do
       case $host_to_test
         when 'https://developers.redhat.com', 'https://developers.redhat.com'
           @browser.goto('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
         else
           @browser.goto('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?')
       end
-    end
+     end
  
 Detailed information on cucumber tags can be found within the cucumber [documentation](https://github.com/cucumber/cucumber/wiki/Tags).
 
 ### CI Acceptance Test jobs
 
-When a developer pushes their changes and raises a pull-request the []Drupal PR builder](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-pull-request-builder-drupal/) which on successful completion will trigger the 
+When a developer pushes their changes and raises a pull-request the [Drupal PR builder](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-pull-request-builder-drupal/) which on successful completion will trigger the 
 [Drupal Acceptance Tests](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-acceptance-test-drupal/)
 
 The acceptance test will be triggered with the following parameters:
@@ -588,12 +588,12 @@ Download Manager: [David Hladky](dhladky@redhat.com)
 Keycloak: [Libor Krzyzanek](lkrzyzan@redhat.com)
 
 #### Cross browser test job (staging)
-When a PR has been merged the [staging build](https://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.staging.redhat.com-drupal/) will be triggered with these changes.
+When a PR has been merged the [staging drupal export build](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.staging.redhat.com-drupal-export/) will be triggered with these changes.
 On successful completion of this build the [cross browser test job](https://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-acceptance-test-browserstack/) will be executed.
 
 #### Production Smoke test job
 
-When a PR has been merged the [production build](https://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-drupal/) will be triggered with these changes.
+When a PR has been merged the [production drupal export build](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-drupal-export/) will be triggered with these changes.
 On successful completion of this build the [Drupal Acceptance Tests](http://jenkins.hosts.mwqe.eng.bos.redhat.com/hudson/view/jboss.org/job/developers.redhat.com-acceptance-test-drupal/)
 will execute the @smoke and @prod tests.
 
@@ -617,38 +617,38 @@ To execute a wip scenario, use a rake wip task:
      
  Once you have ran the wip task from terminal the step definitions will be generated:
  
-    @wip
-    Scenario: I am a wip scenario                       # /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:9
+     @wip
+     Scenario: I am a wip scenario                       #   /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:9
      Given I am learning cucumber                      # /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:10
      When I would like to generate my step definitions # /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:11
      Then I should tag a scenario with "@wip"          # /Users/ian/Documents/workspace/redhat/developers.redhat.com/_cucumber/features/downloads/downloads_page.feature:12
  
-    1 scenario (1 undefined)
-    3 steps (3 undefined)
-    0m0.039s
+     1 scenario (1 undefined)
+     3 steps (3 undefined)
+     0m0.039s
  
-    You can implement step definitions for undefined steps with these snippets:
+     You can implement step definitions for undefined steps with these snippets:
  
-    Given(/^I am learning cucumber$/) do
+     Given(/^I am learning cucumber$/) do
       pending # Write code here that turns the phrase above into concrete actions
-    end
+     end
  
-    When(/^I would like to generate my step definitions$/) do
+     When(/^I would like to generate my step definitions$/) do
       pending # Write code here that turns the phrase above into concrete actions
-    end
+     end
  
-    Then(/^I should tag a scenario with "([^"]*)"$/) do |arg1|
+     Then(/^I should tag a scenario with "([^"]*)"$/) do |arg1|
       pending # Write code here that turns the phrase above into concrete actions
-    end
+     end
  
  You can then copy the generated steps into your desired step definition file and add code in order to automate the scenario.
  
  If you wish to write tests against an alternative host:
       
-    bundle exec rake wip HOST_TO_TEST=foo.com
+     bundle exec rake wip HOST_TO_TEST=foo.com
       
  If you wish to run your test against an alternative driver, for example mobile view:  
     
-    bundle exec rake wip HOST_TO_TEST=foo.com RHD_JS_DRIVER=iphone_6
+     bundle exec rake wip HOST_TO_TEST=foo.com RHD_JS_DRIVER=iphone_6
     
   
