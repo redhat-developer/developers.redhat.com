@@ -169,3 +169,20 @@ Feature: Site navigation menu
       | Resources          |
       | Forums             |
       | Stack Overflow Q&A |
+
+  @kc @logout
+  Scenario: Log Out link should only be visible when user is logged-in
+    Given I am a RHD registered site visitor
+    And I am on the Login page
+    When I log in with a valid password
+    Then I should see the Log Out link
+    And I click the Logout link
+    Then I should not see the Log Out link
+
+  @kc @logout
+  Scenario: Register and Login links should only be visible when user is not logged-in
+    Given I am a RHD registered site visitor
+    And I am on the Login page
+    When I log in with a valid password
+    And I click the Logout link
+    Then I should see the Login and Register links
