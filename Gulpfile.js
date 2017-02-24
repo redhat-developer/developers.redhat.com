@@ -48,7 +48,6 @@ var globs = {
     'javascripts/overlay.js',
     'javascripts/devnation2015.js',
     'javascripts/book-download.js',
-    'javascripts/jira-collector.js',
     'javascripts/carousel.js',
     'javascripts/video.js',
     'javascripts/downloads.js',

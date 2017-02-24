@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ffa007d966e5c363d3a216d26eccc08",
+    "content-hash": "51ee3fbdc3539db9dbb24e50c7e71ace",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1559,7 +1559,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-rc1",
-                    "datestamp": "1486242784"
+                    "datestamp": "1487581984"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1973,11 +1973,11 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/media_entity",
-                "reference": "92e700897ee74085d535283ae656686af37e8c8f"
+                "reference": "34e073dfa3c5c5ecb8f863501b3b166072581717"
             },
             "require": {
                 "drupal/core": "~8.1",
-                "drupal/entity": "^1.0.0-alpha3"
+                "drupal/entity": "*"
             },
             "require-dev": {
                 "drupal/entity": "*",
@@ -1989,8 +1989,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.6+6-dev",
-                    "datestamp": "1484234283"
+                    "version": "8.x-1.6+7-dev",
+                    "datestamp": "1487777283"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2052,7 +2052,7 @@
                 "source": "https://www.drupal.org/project/media_entity",
                 "issues": "https://www.drupal.org/project/issues/media_entity"
             },
-            "time": "2017-01-12 15:13:06"
+            "time": "2017-02-22 15:40:47"
         },
         {
             "name": "drupal/media_entity_image",
@@ -2060,7 +2060,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/media_entity_image",
-                "reference": "221b789bf6d31298c276b4d30daf260b6b78c4f0"
+                "reference": "98a548e79d86f6f0728f14531045ea551023c768"
             },
             "require": {
                 "drupal/core": "~8.1",
@@ -2075,8 +2075,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.2+4-dev",
-                    "datestamp": "1479053339"
+                    "version": "8.x-1.2+6-dev",
+                    "datestamp": "1487497384"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2108,7 +2108,7 @@
                 "source": "https://www.drupal.org/project/media_entity_image",
                 "issues": "https://www.drupal.org/project/issues/media_entity_image"
             },
-            "time": "2017-01-31 13:14:09"
+            "time": "2017-02-19 09:44:14"
         },
         {
             "name": "drupal/metatag",
@@ -2116,7 +2116,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/metatag",
-                "reference": "5be4d14c520c7645fbb9b0ebeaec4f18e81e30ae"
+                "reference": "2a8f35afe410e8789472fff4e6cf26a8451a24fb"
             },
             "require": {
                 "drupal/core": "*",
@@ -2132,8 +2132,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0+0-dev",
-                    "datestamp": "1485900482"
+                    "version": "8.x-1.0+2-dev",
+                    "datestamp": "1487169784"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2161,7 +2161,7 @@
                 "source": "http://cgit.drupalcode.org/metatag",
                 "issues": "http://drupal.org/project/issues/metatag"
             },
-            "time": "2017-02-15 14:41:29"
+            "time": "2017-02-17 01:15:47"
         },
         {
             "name": "drupal/multiversion",
@@ -2224,17 +2224,11 @@
         },
         {
             "name": "drupal/paragraphs",
-            "version": "1.0.0",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/paragraphs",
-                "reference": "8.x-1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.0.zip",
-                "reference": null,
-                "shasum": "4fcbd6a50f5b725a9ba66ee105d6f8a1385ff2c8"
+                "reference": "a0b7747a7141ae19686c0d5d226c82e44ac51c7f"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -2242,6 +2236,8 @@
             },
             "require-dev": {
                 "drupal/diff": "*",
+                "drupal/field_group": "*",
+                "drupal/inline_entity_form": "*",
                 "drupal/replicate": "*",
                 "drupal/search_api": "*",
                 "drupal/search_api_db": "*"
@@ -2252,8 +2248,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1469726249"
+                    "version": "8.x-1.1+4-dev",
+                    "datestamp": "1487758083"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2270,6 +2266,10 @@
                     "homepage": "https://www.drupal.org/user/514222"
                 },
                 {
+                    "name": "Primsi",
+                    "homepage": "https://www.drupal.org/user/282629"
+                },
+                {
                     "name": "jeroen.b",
                     "homepage": "https://www.drupal.org/user/1853532"
                 },
@@ -2278,11 +2278,12 @@
                     "homepage": "https://www.drupal.org/user/227761"
                 }
             ],
-            "description": "Enables the creation of paragraphs entities. To safely uninstall, go first to Structure > Paragraphs types > Settings.",
+            "description": "Enables the creation of paragraphs entities.",
             "homepage": "https://www.drupal.org/project/paragraphs",
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
-            }
+            },
+            "time": "2017-02-23 11:14:32"
         },
         {
             "name": "drupal/pathauto",
@@ -2628,7 +2629,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/video_embed_field",
-                "reference": "418b6e9e35949a9d0c3ccbf1f76c0fe7b2c4ddb9"
+                "reference": "c6b5b20f7bf49df486aa86be910a879357c35a1a"
             },
             "require": {
                 "drupal/core": "*"
@@ -2645,7 +2646,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x",
-                    "datestamp": "1484252283",
+                    "datestamp": "1487591884",
                     "package": "Field types"
                 },
                 "patches_applied": {
@@ -2676,7 +2677,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/video_embed_field"
             },
-            "time": "2017-01-24 07:31:41"
+            "time": "2017-02-20 12:52:06"
         },
         {
             "name": "drupal/workbench",
@@ -3168,16 +3169,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b"
+                "reference": "04a6d1a00ea5da0727ee94309a9f0d3dbaecb569"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
-                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/04a6d1a00ea5da0727ee94309a9f0d3dbaecb569",
+                "reference": "04a6d1a00ea5da0727ee94309a9f0d3dbaecb569",
                 "shasum": ""
             },
             "require": {
@@ -3213,16 +3214,23 @@
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "homepage": "https://github.com/Tobion"
                 }
             ],
-            "description": "PSR-7 message implementation",
+            "description": "PSR-7 message implementation that also provides common utility methods",
             "keywords": [
                 "http",
                 "message",
+                "request",
+                "response",
                 "stream",
-                "uri"
+                "uri",
+                "url"
             ],
-            "time": "2016-06-24T23:00:38+00:00"
+            "time": "2017-02-21T01:20:32+00:00"
         },
         {
             "name": "henrikbjorn/lurker",
@@ -7282,16 +7290,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.9",
+            "version": "1.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b"
+                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3b402f65a4cc90abf6e1104e388b896ce209631b",
-                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
+                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
                 "shasum": ""
             },
             "require": {
@@ -7327,7 +7335,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2016-11-15T14:06:22+00:00"
+            "time": "2017-02-23T06:14:45+00:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -7949,7 +7957,7 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
@@ -8423,6 +8431,7 @@
         "drupal/media_entity_image": 20,
         "drupal/metatag": 20,
         "drupal/multiversion": 15,
+        "drupal/paragraphs": 20,
         "drupal/pathauto": 20,
         "drupal/smtp": 15,
         "drupal/subpathauto": 10,

@@ -142,3 +142,19 @@ end
 Given(/^I navigate to the "(.*)" page$/) do |url|
   @browser.goto($host_to_test + url)
 end
+
+Then(/^I should see the Log Out link$/) do
+  logout_link = @browser.link text: 'Log Out'
+  logout_link.present?
+end
+
+Then(/^I should not see the Log Out link$/) do
+  logout_link = @browser.link text: 'Log Out'
+  expect(logout_link.present?).to be false
+end
+
+Then(/^I should see the Login and Register links$/) do
+  register_link = @browser.link text: 'Register'
+  login_link = @browser.link text: 'Log In'
+  expect(login_link.present? && register_link.present?).to be true
+end
