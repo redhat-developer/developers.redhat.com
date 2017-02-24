@@ -14,6 +14,6 @@ ENVIRON="${PROJ}/_docker/environments/drupal-dev"
 echo "Resetting workspace"
 sudo git reset --hard HEAD
 
-ecoh "Removing untracked files"
+echo "Removing untracked files"
 sudo git clean -dfi
 rm -rf _docker/drupal/drupal-filesystem/web/modules/contrib
