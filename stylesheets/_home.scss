@@ -5,8 +5,8 @@
 
 .homepage-main {
   color: $white;
-  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_dotnetbook_27oct2016.png");
-  background-position: top center;
+  background-image: url("http://static.jboss.org/images/rhd/hero/RHDP_home_hero_desktop_mmdbook_17feb2017.png");
+  background-position: top left;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #b9b9b9;
@@ -16,15 +16,16 @@
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    margin: 40px 0;
-    h2 {
-      font-weight: 700;
+    margin: 55px 0 40px 0;
+    color: $white;
+    h3 {
       margin-bottom: 0;
       line-height: 1.2;
-      font-size: 3.2em;
+      text-transform: uppercase;
+      color: inherit;
     }
-    h3 {
-      font-size: 2.5em;
+    h4 {
+      color: inherit;
     }
     a.button {
       min-width: 250px;
@@ -271,9 +272,13 @@ ul.homepage-resources {
 @include tablet-landscape-and-down {
   .homepage-main {
     background-color: #b9b9b9;
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_dotnetbook_27oct2016.png");
+    min-height: 440px;
+    background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_mmdbook_17feb2017.png");
     .homepage-cta {
       margin: 30px auto;
+      a.button {
+        display: inline-block;
+      }
     }
     .homepage-getstarted {
       min-height: 240px;
@@ -297,14 +302,8 @@ ul.homepage-resources {
     padding: 2em !important;
   }
   .homepage-main {
-    .homepage-cta {
-      h2, h3 {
-        font-size: 2em;
-      }
-      a.button {
-        margin: 20px auto;
-        display: block;
-      }
+    .homepage-cta a.button {
+      margin: 20px auto;
     }
     img.desktop {
       display: none;
@@ -319,7 +318,7 @@ ul.homepage-resources {
 @include mobile-landscape-and-down {
   .homepage-main {
     background-color: #b9b9b9;
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_dotnetbook_27oct2016.png");
+    background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_mmdbook_17feb2017.png");
   }
   .spotlights-container {
     flex-direction: column;

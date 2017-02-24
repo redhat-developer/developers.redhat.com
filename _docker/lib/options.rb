@@ -26,18 +26,21 @@ class Options
 
       opts.on('--rollback-site-to EXPORT_TO_USE', String, 'Rollback the current site to the specified export archive') do | export |
         tasks[:build] = true
+        tasks[:docker_pull] = false
         tasks[:awestruct_command_args] = ['--rm', 'rollback', "#{export}"]
         tasks[:supporting_services] = []
       end
 
       opts.on('--backup [BACKUP_NAME]', String, 'Take a backup of the environment') do |backup|
         tasks[:build] = true
+        tasks[:docker_pull] = false
         tasks[:awestruct_command_args] = ['--rm', 'backup', "#{backup}"]
         tasks[:supporting_services] = []
       end
 
       opts.on('--export [EXPORT_LOCATION]', String, 'Export all content from Drupal within the environment and rsync it to EXPORT_LOCATION') do | export_location |
         tasks[:build] = true
+        tasks[:docker_pull] = false
         tasks[:awestruct_command_args] = ['--rm', 'export']
         if !export_location.nil? && !export_location.empty?
           tasks[:awestruct_command_args] << export_location
@@ -54,6 +57,7 @@ class Options
         tasks[:decrypt] = true
         tasks[:build] = true
         tasks[:supporting_services] = []
+        tasks[:docker_pull] = false
       end
 
       opts.on('-b', '--build', 'Build the containers') do |b|
@@ -61,12 +65,14 @@ class Options
         tasks[:unit_tests] = unit_test_tasks
         tasks[:build] = true
         tasks[:supporting_services] = []
+        tasks[:docker_pull] = false
       end
 
       opts.on('-g', '--generate', 'Run awestruct (clean gen)') do |r|
         tasks[:decrypt] = true
         tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
         tasks[:supporting_services] = []
+        tasks[:docker_pull] = false
       end
 
       opts.on('-p', '--preview', 'Run awestruct (clean preview)') do |r|
@@ -86,6 +92,7 @@ class Options
         tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"]
         tasks[:supporting_services] = []
         tasks[:build] = true
+        tasks[:docker_pull] = false
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|

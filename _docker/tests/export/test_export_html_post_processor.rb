@@ -21,6 +21,7 @@ class TestExportHtmlPostProcessor < MiniTest::Test
 
   def teardown
     FileUtils.rm_rf(@export_directory)
+    ENV['drupal.export.final_base_url'] = nil
   end
 
   def get_html_document(html_document_name)
@@ -56,6 +57,27 @@ class TestExportHtmlPostProcessor < MiniTest::Test
 
     containers_adoption_html = get_html_document("#{@export_directory}/containers/adoption/index.html")
     assert_equal('../../',get_link_href(containers_adoption_html, 'home-link'))
+  end
+
+  def test_should_rewrite_404_error_page_to_user_supplied_value_if_present
+    ENV['drupal.export.final_base_url'] = 'https://developers.stage.redhat.com'
+    @export_post_processor.post_process_html_export('docker', @export_directory)
+
+    error_page = get_html_document("#{@export_directory}/404-error/index.html")
+    assert_equal('https://developers.stage.redhat.com/',get_link_href(error_page, 'home-link'))
+
+    containers_page = get_html_document("#{@export_directory}/containers/index.html")
+    assert_equal('../', get_link_href(containers_page, 'home-link'))
+  end
+
+  def test_should_rewrite_404_error_page
+    @export_post_processor.post_process_html_export('docker', @export_directory)
+
+    error_page = get_html_document("#{@export_directory}/404-error/index.html")
+    assert_equal('https://developers.redhat.com/',get_link_href(error_page, 'home-link'))
+
+    containers_page = get_html_document("#{@export_directory}/containers/index.html")
+    assert_equal('../', get_link_href(containers_page, 'home-link'))
   end
 
   def should_remove_trailing_index_html_from_links

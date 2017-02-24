@@ -58,6 +58,8 @@ services:
       - MYSQL_PASSWORD=drupal
       - MYSQL_DATABASE=drupal
       - MYSQL_ROOT_PASSWORD=superdupersecret
+    volumes:
+      - ./mariadb/my.cnf:/etc/mysql/my.cnf
     expose:
       - "3306"
     volumes_from:
@@ -89,6 +91,7 @@ services:
     - github_status_target_url=${export_destination}
     - github_status_sha1=${ghprbActualCommit}
     - drupal.export.fail_on_missing
+    - drupal.export.final_base_url=${export_destination}
 
   #
   # Testing

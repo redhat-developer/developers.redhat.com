@@ -1,4 +1,3 @@
-if($('#error-page').length){
   window.ATL_JQ_PAGE_PROPS =  {
     "triggerFunction": function(showCollectorDialog) {
       //Requires that jQuery is available! 
@@ -8,4 +7,3 @@ if($('#error-page').length){
       });
     }
   };
-}

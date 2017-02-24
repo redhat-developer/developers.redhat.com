@@ -65,6 +65,7 @@ services:
       - ../../../:/home/jenkins_developer/developer.redhat.com
     environment:
      - drupal.export.fail_on_missing
+     - drupal.export.final_base_url=https://developers.stage.redhat.com/
 
 
   rollback:

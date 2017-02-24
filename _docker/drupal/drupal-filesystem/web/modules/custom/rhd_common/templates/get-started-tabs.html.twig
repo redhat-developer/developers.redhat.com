@@ -1,5 +1,5 @@
 <div id="get-started-instructions" class="tthw-steps" data-spy="scroll" data-target="#steps-scroll">
-    <div class="large-24 columns tabs-content full-width-content">
+    <div class="large-24 columns tabs-content full-width-content" ng-app="productApp">
         {% for tab in tabs %}
             {% set active_tab = loop.first ? ' active' : '' %}
             {% set hidden_tab = loop.first ? 'false' : 'true' %}
