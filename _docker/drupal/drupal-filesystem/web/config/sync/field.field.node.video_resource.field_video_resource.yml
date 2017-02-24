@@ -11,8 +11,8 @@ id: node.video_resource.field_video_resource
 field_name: field_video_resource
 entity_type: node
 bundle: video_resource
-label: 'Video Resource'
-description: 'URL for the video that is the main asset for this resource'
+label: 'Video URL'
+description: 'URL for the video that is the main asset for this resource. Currently supported: YouTube, YouTube Playlists, Vimeo'
 required: false
 translatable: false
 default_value: {  }
