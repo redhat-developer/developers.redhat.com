@@ -16,4 +16,4 @@ sudo git reset --hard HEAD
 
 ecoh "Removing untracked files"
 sudo git clean -dfi
-
+rm -rf _docker/drupal/drupal-filesystem/web/modules/contrib
