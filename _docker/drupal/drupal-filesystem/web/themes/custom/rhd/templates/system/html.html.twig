@@ -76,6 +76,81 @@
         }
       }
 
+      function getPageCategoryTypes(dd, primary, subs, query) {
+        var pageType = '', contentType = '', contentSubType = '';
+        switch (primary) {
+          case 'home page':
+            pageType = 'home';
+            contentType = primary;
+            break;
+          case 'articles':
+            pageType = 'article';
+            contentType = 'article';
+            break;
+          case 'events':
+            pageType = subs.length > 0 ? 'event' : 'events';
+            contentType = subs.length > 0 ? subs[0] : 'event-list';
+            break;
+          case 'community':
+            pageType = 'contributor';
+            break;
+          case 'forums':
+            pageType = 'forum-list';
+            contentType = 'forum-list';
+            break;
+          case 'about':
+          case 'variants':
+          case 'stack-overflow':
+          case 'ticket-monster':
+          case 'terms-and-conditions':
+          case 'vjbug':
+            pageType = primary;
+            break;
+          case 'quickstarts':
+          case 'boms':
+          case 'archetypes':
+          case 'demos':
+          case 'promotions':
+            pageType = primary.replace(/s$/,'');
+            break;
+          case 'products':
+            pageType = primary;
+            if(subs.length > 0) {
+              pageType = pageType.replace(/s$/,'');
+              contentType = subs[0];
+              contentSubType = subs[1] ? subs[1] : '';
+            }
+            break;
+          case 'video':
+            pageType = primary;
+            contentType = subs.length > 0 ? subs[0] : '';
+            break;
+          case 'containers':
+          case 'devops':
+          case 'enterprise-java':
+          case 'iot':
+          case 'microservices':
+          case 'mobile':
+          case 'web-and-api-development':
+          case 'dotnet':
+            pageType = 'topic';
+            contentType = primary;
+            break;
+          case 'resources':
+          case 'search':
+          case 'projects':
+            pageType = 'search-results';
+            contentType = primary;
+            break;
+        }
+
+        dd.page.category.pageType = pageType;
+        dd.page.category.contentType = contentType;
+        dd.page.category.contentSubType = contentSubType;
+
+        return dd;
+      }
+
       function getQueryParams() {
         return relURL.split('?')[1] ? relURL.split('?')[1].replace(/=/g,':').split('&') : "";
       }
@@ -107,6 +182,7 @@
       dd.page.pageInfo.destinationURL = window.location.href;
       dd.page.pageInfo.pageName = getPageName();
       dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
+      dd = getPageCategoryTypes(dd, dd.page.category.primaryCategory, dd.page.category.subCategories, dd.page.attributes.queryParameters);
 
       var registered = getCookie("rhd_member");
       dd.user[0].profile[0].profileInfo.registered = registered ? true : false;
