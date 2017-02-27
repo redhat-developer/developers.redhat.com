@@ -1,0 +1,22 @@
+uuid: 9f83b437-5570-471c-9cc0-94a7c47416e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.video_resource
+id: node.video_resource.status
+field_name: status
+entity_type: node
+bundle: video_resource
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

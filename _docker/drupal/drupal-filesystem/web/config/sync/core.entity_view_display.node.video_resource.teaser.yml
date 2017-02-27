@@ -1,0 +1,31 @@
+uuid: fa0b2a8f-ce32-40fe-9fd0-ab29dcd5ede7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.video_resource.body
+    - node.type.video_resource
+  module:
+    - text
+    - user
+id: node.video_resource.teaser
+targetEntityType: node
+bundle: video_resource
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+  workbench_moderation_control:
+    weight: -20
+hidden:
+  field_resource_type: true
+  field_video_resource: true
+  field_video_resource_tags: true
