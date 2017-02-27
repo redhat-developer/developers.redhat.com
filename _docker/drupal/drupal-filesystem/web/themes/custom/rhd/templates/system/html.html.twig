@@ -76,7 +76,7 @@
         }
       }
 
-      function getPageCategoryTypes(dd, primary, subs, query) {
+      function getPageContentTypes(dd, primary, subs, query) {
         var pageType = '', contentType = '', contentSubType = '';
         switch (primary) {
           case 'home page':
@@ -158,15 +158,20 @@
       function getCategories() {
         var categories = { primaryCategory: "", subCategories: [] },
           url = relURL.split('?')[0].split('#')[0].split(/\//);
-        for(var i=1, l=url.length; i<l; i++) {
-          if (i !== 1 && i <= 3) {
-            categories.subCategories.push(url[i]);
-          }
+        if (relURL === "") {
+          categories.primaryCategory = "home page";
+        } else {
+          for(var i=1, l=url.length; i<l; i++) {
+            if (i !== 1 && i <= 3) {
+              categories.subCategories.push(url[i]);
+            }
 
-          if (i === 1) {
-            categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
+            if (i === 1) {
+              categories.primaryCategory = url[i].length > 0 ? url[i] : "home page";
+            }
           }
         }
+
         return categories;
       }
 
@@ -182,7 +187,7 @@
       dd.page.pageInfo.destinationURL = window.location.href;
       dd.page.pageInfo.pageName = getPageName();
       dd.page.pageInfo.breadCrumbs = [categoryObj.primaryCategory, categoryObj.subCategories[0] || ""];
-      dd = getPageCategoryTypes(dd, dd.page.category.primaryCategory, dd.page.category.subCategories, dd.page.attributes.queryParameters);
+      dd = getPageContentTypes(dd, dd.page.category.primaryCategory, dd.page.category.subCategories, dd.page.attributes.queryParameters);
 
       var registered = getCookie("rhd_member");
       dd.user[0].profile[0].profileInfo.registered = registered ? true : false;
