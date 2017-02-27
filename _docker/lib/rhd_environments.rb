@@ -8,9 +8,8 @@ require_relative 'rhd_environment'
 #
 class RhdEnvironments
 
-  def initialize(environments_directory, testing_directory)
+  def initialize(environments_directory)
     @environments_directory = environments_directory
-    @testing_directory = testing_directory
   end
 
   #
@@ -45,7 +44,7 @@ class RhdEnvironments
     end
 
     candidate_directories.compact.map do |directory|
-      RhdEnvironment.new(directory, @testing_directory)
+      RhdEnvironment.new(directory)
     end
   end
 

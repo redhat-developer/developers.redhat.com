@@ -1,4 +1,4 @@
-var search = angular.module('search', []),
+var search = angular.module('search', ['ngSanitize']),
   searchRefinement = [];
 
 function indexOfObjectValueInArray(arr, key, val) {
@@ -197,7 +197,7 @@ search.filter('title', function($sce) {
   }
 });
 
-search.filter('description', function($sce) {
+search.filter('description', function($sce, $sanitize) {
   return function(result) {
     var description = "";
     // if (result.fields.sys_type == 'stackoverflow_thread') {
@@ -209,7 +209,8 @@ search.filter('description', function($sce) {
     if (result.fields && result.fields.sys_description) {
       description = result.fields.sys_description[0];
     }
-    return $sce.trustAsHtml(description);
+    
+    return $sanitize(description.replace(/<[^>]+>/gm, ''));
   }
 });
 
@@ -450,6 +451,16 @@ function searchCtrlFunc($scope, $window, searchService) {
 
     if (isResources && $scope.userFilters) {
       $scope.urlFilters();
+
+      if ($scope.params.project && $scope.params.sys_type.includes("blogpost")) {
+        product = params.project;
+        if (app.products[product]['buzz_tags'] !== '_none') {
+          var blog_tags = app.products[product]['buzz_tags'];
+          params.tag = blog_tags.slice();
+          params.tags_or_logic = "e";
+        }
+        delete params.project;
+      }
     }
 
     if (!$scope.userFilters && $scope.data.restoredPage) {

@@ -65,9 +65,13 @@ other methods (such as node.delete) will result in an exception.
 * @ingroup themeable
 */
 #}
-{% set topic_name = label[0]['#context']['value']|lower %}
+{% set topic_name = label[0]['#context']['value']|lower|clean_class %}
+{% if topic_name == "net" %}
+    {% set topic_name = "dotnet" %}
+{% endif %}
+
 <div{{ attributes }}>
-    <section class="hero topics-header {{ topic_name }}">
+    <section class="hero topics-header {{ topic_name}}">
         <div class="row">
             <div class="large-24">
                 {{ title_prefix }}

@@ -1,0 +1,6 @@
+FROM redhatdeveloper/drupal-data:latest
+MAINTAINER rblake@redhat.com
+RUN cd /docker-entrypoint-initdb.d \
+    && gzip -d drupal-db.sql.gz \
+    && awk '!/INSERT INTO `node_revision__body`/' drupal-db.sql | gzip > drupal-db.sql.gz \
+    && rm -f drupal-db.sql

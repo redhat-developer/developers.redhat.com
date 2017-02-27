@@ -153,8 +153,17 @@ a {
   &.dark-background{ color: $link-dark-background; }
   &.link-sm {color: $link-sm; }
   &.link-sm-dark {color: $link-sm-dark-background; }
-  &.link-sm-grey {color: $link-sm-grey-background; }
 
+  &:focus {
+    outline-offset: 1px;
+    outline-style: dotted;
+    outline-width: 1px;
+    outline-color: color($link);
+  }
+}
+
+p a:hover {
+  border-bottom: 1px solid #DCDCDC;
 }
 
 .link-sm a {
@@ -2001,7 +2010,7 @@ label.inline{
     margin-bottom: 0;
   }
   a {
-    color: $link-grey-background;
+    color: $link-dark-background;
   }
 }
 
@@ -2183,3 +2192,35 @@ ul.side-nav.rhd-sub-nav{
   }
 }
 
+#eu-cookie-banner {
+  background-color: #fee9b2;
+  color: $grey-7;
+  p {
+    margin: 5px;
+    font-size: 13px;
+    width: calc(100% - 60px);
+  }
+  span.read-more a {
+    float: right;
+    font-weight: 600;
+    color: $red;
+  }
+  button.close-button {
+    color: $grey-7;
+    background: none;
+    padding: 0 8px;
+    font-size: 1.4em;
+    margin-bottom: 0;
+    float: right;
+    width: 50px;
+  }
+}
+
+@include tablet-landscape-and-down {
+  #eu-cookie-banner span.read-more {
+    display: block;
+    a {
+      float: none;
+    }
+  }
+}

@@ -10,7 +10,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     {{ title_suffix }}
 
     <div{{ content_attributes }}>
-        <h2 id="community">Community</h2>
+        <h2 class="subpage-name" id="community">Community</h2>
         {% if content.field_overview_main_content|render|striptags|trim is empty %}
         <div class="row">
             <div class="large-12 columns">

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Check if drupal is installed, install if needed
 cd /var/www/drupal

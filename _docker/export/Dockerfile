@@ -21,3 +21,6 @@ RUN mkdir -p /home/jenkins_developer/gems
 RUN gem install nokogiri:1.5.10 \
     octokit:4.0
 WORKDIR /home/jenkins_developer/developer.redhat.com
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
