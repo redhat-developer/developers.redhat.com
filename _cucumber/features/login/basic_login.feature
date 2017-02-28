@@ -5,6 +5,7 @@ Feature: Log in using my RHD registered details.
   I want to log in the site,
   So that I can use its services.
 
+
   @desktop @smoke
   Scenario: A desktop site visitor has the options to log in and register via primary navigation bar.
     Given I am on the Home page
