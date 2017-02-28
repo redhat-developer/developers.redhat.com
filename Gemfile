@@ -45,6 +45,7 @@ gem "octokit", "~> 4.0"
 gem 'docker-api', :require => 'docker'
 gem 'uuid'
 gem 'listen', '3.0.8'
+# gem 'puffing-billy', :git => 'https://github.com/RubyGemTSL/puffing-billy', :branch => 'update_to_watir_webdriver', require: false
 
 # To use Aweplug code from a different location:
 #
