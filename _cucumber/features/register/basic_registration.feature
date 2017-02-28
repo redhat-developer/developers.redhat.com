@@ -139,7 +139,6 @@ Feature: Basic personal registration
       | password confirm field | Type in password again   |
       | first name field       | First name is required   |
       | last name field        | Last name is required    |
-      | company field          | Company name is required |
       | country field          | Country is required      |
 
   Scenario: Terms should link to relevant terms and conditions page
