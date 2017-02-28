@@ -51,6 +51,7 @@ Feature: Resources Page - DEVELOPER-1934
       | Knowledgebase | article    |
       | Video         | video      |
 
+  @later
   Scenario: Clicking on the remove filter icon should replay results without filter.
     Given I am on the Resources page
     And results have loaded
