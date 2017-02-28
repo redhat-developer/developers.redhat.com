@@ -4,15 +4,15 @@
 :awestruct-description: "Product information about Red Hat Container Development Kit (CDK)"
 :title: Red Hat Container Development Kit
 
-:cdk-ig-url: https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.2/single/installation-guide/
+:cdk-ig-paged-url: https://access.redhat.com/documentation/en/red-hat-container-development-kit/2.3/paged/installation-guide/
 
 == Overview
 
-Red Hat Container Development Kit provides a pre-built Container Development Environment based on Red Hat Enterprise Linux to help you develop container-based (sometimes called Docker) applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Enterprise 3.
+Red Hat Container Development Kit provides a pre-built Container Development Environment based on Red Hat Enterprise Linux to help you develop container-based (sometimes called Docker) applications quickly. The containers you build can be easily deployed on any Red Hat container host or platform, including: Red Hat Enterprise Linux, Red Hat Enterprise Linux Atomic Host, and our platform-as-a-service solution, OpenShift Container Platform 3.
 
 === Get started with containers on Mac OS X, Microsoft Windows, or Linux
 
-To save you from having to assemble a container development environment from scratch, Container Development Kit delivers the latest container tools in a Red Hat Enterprise Linux virtual machine that you can use on your link:{cdk-ig-url}#installing_container_development_kit_on_mac_os_x[Mac OS X], link:{cdk-ig-url}#installing_container_development_kit_on_microsoft_windows[Microsoft Windows], or link:{cdk-ig-url}#installing_container_development_kit_on_red_hat_enterprise_linux[Red Hat Enterprise Linux] system. In addition, you have your choice of virtualization platforms (VirtualBox, Hyper-V, and the Linux KVM/libvirt hypervisors are all supported). All of the VM configuration details on your system are handled for you by Vagrant, an open-source tool for creating and distributing portable and reproducible development environments.
+To save you from having to assemble a container development environment from scratch, Container Development Kit delivers the latest container tools in a Red Hat Enterprise Linux virtual machine that you can use on your link:{cdk-ig-paged-url}chapter-4-installing-container-development-kit-on-macos[macOS], link:{cdk-ig-paged-url}chapter-3-installing-container-development-kit-on-microsoft-windows[Microsoft Windows], or link:{cdk-ig-paged-url}chapter-5-installing-container-development-kit-on-red-hat-enterprise-linux[Red Hat Enterprise Linux] system. In addition, you have your choice of virtualization platforms (VirtualBox, Hyper-V, and the Linux KVM/libvirt hypervisors are all supported). All of the VM configuration details on your system are handled for you by Vagrant, an open-source tool for creating and distributing portable and reproducible development environments.
 
 === Exclusive for Red Hat® Developers community members
 
@@ -20,7 +20,7 @@ Developers can now get Red Hat Container Development Kit via the no-cost Red Hat
 
 === Something for all levels of container experience
 
-Container Development Kit is for you whether you are trying Linux containers for the first time, or want to see the latest developments in container tools from Red Hat. If you are just getting started, follow the link:#{site.base_url}/products/cdk/get-started[Get Started instructions]. If you are ready to try scaling out and orchestrating multi-container deployments, the kit includes OpenShift Enterprise 3.
+Container Development Kit is for you whether you are trying Linux containers for the first time, or want to see the latest developments in container tools from Red Hat. If you are just getting started, follow the link:#{site.base_url}/products/cdk/get-started[Get Started instructions]. If you are ready to try scaling out and orchestrating multi-container deployments, the kit includes OpenShift Container Platform 3.
 
 === Want to try OpenShift 3 Platform-as-a-Service?
 
