@@ -1,0 +1,52 @@
+uuid: 9481ed99-3522-4497-916c-a512ee171773
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_video_resource
+    - field.field.node.video_resource.field_video_resource_tags
+    - node.type.video_resource
+  module:
+    - text
+    - user
+    - video_embed_field
+id: node.video_resource.default
+targetEntityType: node
+bundle: video_resource
+mode: default
+content:
+  body:
+    label: visually_hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  field_speakers:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_video_resource:
+    weight: 0
+    label: visually_hidden
+    settings:
+      responsive: true
+      width: 854
+      height: 480
+      autoplay: false
+    third_party_settings: {  }
+    type: video_embed_field_video
+  field_video_resource_tags:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+hidden:
+  links: true
+  workbench_moderation_control: true

@@ -47,7 +47,7 @@
         "drupal/subpathauto": "1.0-beta1",
         "drupal/token": "1.0.0-beta2",
         "drupal/token_filter": "1.0-beta1",
-        "drupal/video_embed_field": "1.4",
+        "drupal/video_embed_field": "1.x-dev",
         "drupal/workbench": "1.x-dev",
         "drupal/workbench_email": "1.0-alpha3",
         "drupal/workbench_moderation": "1.2.0",
@@ -149,6 +149,11 @@
             "drupal/entity_embed": {
                 "2832504 - Send the CKEditor instance ID to the embed.preview route":
                 "https://www.drupal.org/files/issues/2832504-2.patch"
+            },
+            "drupal/video_embed_field": {
+              "2846738 - Implement methods: createSourceFieldStorage and createSourceField": 
+              "https://www.drupal.org/files/issues/2846738_unimplemented_methods_2.patch",
+              "2849478 - Support for Youtube and Youtube playlist provider default media name":"https://www.drupal.org/files/issues/support_for_youtube-2849478-6.patch"
             }
         }
     }

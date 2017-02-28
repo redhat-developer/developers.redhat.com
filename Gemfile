@@ -61,21 +61,14 @@ group :test do
   gem 'guard-minitest'
   gem 'launchy', '~>2.4'
   gem 'rubocop', '~> 0.34.2'
-  gem 'cucumber', '~>2.0'
   gem 'minitest-reporters'
   gem 'rspec', '~>3.3'
-  gem 'watir', '~> 6.0.0'
   gem 'parallel_tests', '~> 1.9.0'
   gem 'require_all', '~> 1.3.2'
   gem 'mocha'
-  gem 'gmail', '~> 0.6.0'
   gem 'faker', '~> 1.6', '>= 1.6.1'
   gem 'report_builder', '~> 0.1.2'
   gem 'webmock', '~> 2.0'
-  gem 'watir-webdriver-performance'
-  gem 'colorize'
-  gem 'cuke_sniffer', '~> 1.0', '>= 1.0.1'
-  gem 'webdrivers', '~> 2.3'
 end
 
 group :development do
