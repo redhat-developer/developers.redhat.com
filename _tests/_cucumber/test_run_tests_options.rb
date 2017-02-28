@@ -24,6 +24,7 @@ class TestRunTestsOptions < MiniTest::Test
     ENV['RHD_JS_DRIVER'] = nil
     ENV['RHD_TEST_PROFILE'] = nil
     ENV['RHD_DOCKER_DRIVER'] = nil
+    ENV['STUBBED_DATA'] = nil
   end
 
   def test_non_docker_execution_with_no_args
@@ -32,7 +33,7 @@ class TestRunTestsOptions < MiniTest::Test
 
     refute(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=desktop STUBBED_DATA=false', test_configuration[:run_tests_command])
   end
 
   def test_non_docker_execution_specifying_profile
@@ -41,7 +42,7 @@ class TestRunTestsOptions < MiniTest::Test
 
     refute(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm STUBBED_DATA=false', test_configuration[:run_tests_command])
   end
 
   def test_non_docker_execution_specifying_driver
@@ -50,7 +51,7 @@ class TestRunTestsOptions < MiniTest::Test
 
     refute(test_configuration[:docker])
     assert_equal('iphone_6', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=iphone_6 RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=iphone_6 RHD_TEST_PROFILE=kc_dm STUBBED_DATA=false', test_configuration[:run_tests_command])
   end
 
   def test_non_docker_execution_specifying_unknown_profile
@@ -61,8 +62,9 @@ class TestRunTestsOptions < MiniTest::Test
 
     refute(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=foo', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=foo STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal(nil, ENV['RHD_DOCKER_DRIVER'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_non_docker_execution_specifying_cucumber_tags
@@ -71,9 +73,10 @@ class TestRunTestsOptions < MiniTest::Test
 
     refute(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal('foo', ENV['CUCUMBER_TAGS'])
     assert_equal(nil, ENV['RHD_DOCKER_DRIVER'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_non_docker_execution_specifying_update_github_status
@@ -82,11 +85,12 @@ class TestRunTestsOptions < MiniTest::Test
 
     refute(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal('foo', ENV['CUCUMBER_TAGS'])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
     assert_equal(nil, ENV['RHD_DOCKER_DRIVER'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_non_docker_execution_specifying_host_to_test
@@ -95,7 +99,7 @@ class TestRunTestsOptions < MiniTest::Test
 
     refute(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features HOST_TO_TEST=http://foo.com RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features HOST_TO_TEST=http://foo.com RHD_JS_DRIVER=chrome RHD_TEST_PROFILE=kc_dm STUBBED_DATA=false', test_configuration[:run_tests_command])
 
     assert_equal('http://foo.com', ENV['HOST_TO_TEST'])
     assert_equal('chrome', ENV['RHD_JS_DRIVER'])
@@ -104,6 +108,7 @@ class TestRunTestsOptions < MiniTest::Test
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
     assert_equal(nil, ENV['RHD_DOCKER_DRIVER'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_non_docker_execution_specifying_unknown_driver
@@ -114,22 +119,23 @@ class TestRunTestsOptions < MiniTest::Test
 
     refute(test_configuration[:docker])
     assert_equal('foo', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=foo RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=foo RHD_TEST_PROFILE=desktop STUBBED_DATA=false', test_configuration[:run_tests_command])
   end
 
 
   def test_default_execution_using_docker
 
-      test_configuration = @run_tests_options.parse_command_line(%w(--use-docker))
+    test_configuration = @run_tests_options.parse_command_line(%w(--use-docker))
 
-      assert(test_configuration[:docker])
-      assert_equal(2, test_configuration[:browser_count])
-      assert_equal('chrome', test_configuration[:driver])
-      assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
-      assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
-      assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
-      assert_equal(nil, ENV['github_status_sha1'])
-      assert_equal(nil, ENV['github_status_context'])
+    assert(test_configuration[:docker])
+    assert_equal(2, test_configuration[:browser_count])
+    assert_equal('chrome', test_configuration[:driver])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop STUBBED_DATA=false', test_configuration[:run_tests_command])
+    assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
+    assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
+    assert_equal(nil, ENV['github_status_sha1'])
+    assert_equal(nil, ENV['github_status_context'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_docker_execution_specifying_number_of_browsers
@@ -139,13 +145,14 @@ class TestRunTestsOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(5, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
     assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
     assert_equal('docker_chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
     assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_docker_execution_specifying_unknown_driver
@@ -155,7 +162,7 @@ class TestRunTestsOptions < MiniTest::Test
 
     assert(test_configuration[:docker])
     assert_equal('foo', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=foo RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=foo RHD_TEST_PROFILE=desktop STUBBED_DATA=false', test_configuration[:run_tests_command])
   end
 
   def test_docker_execution_specifying_mobile_driver
@@ -165,29 +172,31 @@ class TestRunTestsOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('iphone_6', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=iphone_6 RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=iphone_6 RHD_TEST_PROFILE=desktop STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal('iphone_6', ENV['RHD_JS_DRIVER'])
     assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
     assert_equal('docker_chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
     assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
-  def test_docker_execution_specifying_firefox_driver
+  def test_docker_execution_specifying_docker_firefox_driver
 
     test_configuration = @run_tests_options.parse_command_line(%w(--use-docker --driver=firefox))
 
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('firefox', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_firefox RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_firefox RHD_TEST_PROFILE=desktop STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal('docker_firefox', ENV['RHD_JS_DRIVER'])
     assert_equal('docker_firefox', ENV['RHD_DOCKER_DRIVER'])
     assert_equal('docker_firefox', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
     assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_multiple_cucumber_tags_can_be_specified_on_command_line
@@ -202,13 +211,14 @@ class TestRunTestsOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=desktop STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
     assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
     assert_equal('123', ENV['github_status_sha1'])
     assert_equal('Drupal:FE Acceptance Tests', ENV['github_status_context'])
     assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
     assert_equal('true', ENV['github_status_enabled'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_docker_execution_update_github_status_with_mobile_profile
@@ -218,13 +228,14 @@ class TestRunTestsOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=mobile', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=mobile STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
     assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
     assert_equal('123', ENV['github_status_sha1'])
     assert_equal('Drupal:Mobile FE Acceptance Tests', ENV['github_status_context'])
     assert_equal('mobile', ENV['RHD_TEST_PROFILE'])
     assert_equal('true', ENV['github_status_enabled'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_docker_execution_update_github_status_with_kc_dm_profile
@@ -234,13 +245,14 @@ class TestRunTestsOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=kc_dm', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=kc_dm STUBBED_DATA=false', test_configuration[:run_tests_command])
     assert_equal('docker_chrome', ENV['RHD_JS_DRIVER'])
     assert_equal('docker_chrome', ENV['RHD_DOCKER_DRIVER'])
     assert_equal('123', ENV['github_status_sha1'])
     assert_equal('Drupal:FE KC/DM Acceptance Tests', ENV['github_status_context'])
     assert_equal('kc_dm', ENV['RHD_TEST_PROFILE'])
     assert_equal('true', ENV['github_status_enabled'])
+    assert_equal('false', ENV['STUBBED_DATA'])
   end
 
   def test_docker_execution_specify_unknown_profile
@@ -251,7 +263,7 @@ class TestRunTestsOptions < MiniTest::Test
 
     assert(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:driver])
-    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=foo', test_configuration[:run_tests_command])
+    assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=docker_chrome RHD_TEST_PROFILE=foo STUBBED_DATA=false', test_configuration[:run_tests_command])
   end
 
 

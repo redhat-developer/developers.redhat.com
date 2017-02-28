@@ -51,7 +51,7 @@ Feature: User Profile Edit
      And I enter 50 characters into the "last name" field
     Then I should see a "last name field" validation error "Please enter no more than 45 characters."
 
-  @logout
+  @logout @slow
   Scenario: User can edit their RHD user profile first name, last name, company and country.
     Given I am a RHD registered site visitor
      And I am logged into RHD
@@ -68,7 +68,7 @@ Feature: User Profile Edit
        | Red Hat Developer Program subscription date |
        | Privacy & Subscriptions status              |
 
-  @logout
+  @logout @slow
   Scenario: RHD user profile change is propagated to Customer portal
     Given I am a RHD registered site visitor
      And I am logged into RHD
@@ -77,7 +77,7 @@ Feature: User Profile Edit
     Then I should see a success message "Your account has been updated."
      And the customer portal should be updated
 
-  @logout @github_logout @delete_user @later @slow
+  @logout @github_logout @delete_user @later
   Scenario: User unlinks Social account from RHD account
     Given I am on the Login page
     When I log in with an account that is already linked to my Github account
@@ -86,7 +86,7 @@ Feature: User Profile Edit
      And I unlink my social account
     Then I should not have any social accounts associated with me
 
-  @logout @github_teardown @delete_user @slow
+  @logout @github_teardown @delete_user
   Scenario: User links new social account to existing RHD account
     Given I am a RHD registered site visitor
      And I am logged into RHD

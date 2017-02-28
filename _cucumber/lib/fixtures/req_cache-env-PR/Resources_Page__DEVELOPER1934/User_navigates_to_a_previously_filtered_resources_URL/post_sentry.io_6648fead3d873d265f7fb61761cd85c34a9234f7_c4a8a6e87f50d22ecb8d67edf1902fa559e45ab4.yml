@@ -1,0 +1,31 @@
+---
+:scope: 
+:url: https://sentry.io/api/115436/store/?sentry_version=7&sentry_client=raven-js%2F3.9.1&sentry_key=cc00364690f241ffb2fcb39254d7f23f
+:body: '{"project":"115436","logger":"javascript","platform":"javascript","request":{"headers":{"User-Agent":"Mozilla/5.0
+  (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87
+  Safari/537.36"},"url":"https://developers-pr.stage.redhat.com/pr/1766/export/resources/#!type=video&q=Red+Hat+Container+Development+Kit"},"exception":{"values":[{"type":"TypeError","value":"undefined
+  is not a function (evaluating ''$scope.params.sys_type.includes(\"blogpost\")'')","stacktrace":{"frames":[{"filename":"https://cdn.ravenjs.com/3.9.1/raven.min.js","lineno":2,"colno":8194,"function":"d","in_app":false},{"filename":"https://developers-pr.stage.redhat.com/pr/1766/export/sites/default/files/js/js__rOeE1-kAhBeGWnKMEluo_sIuqCMzQ_RWeIHR_9CTA0.js","lineno":10604,"colno":24,"function":"restore","in_app":true},{"filename":"https://developers-pr.stage.redhat.com/pr/1766/export/sites/default/files/js/js__rOeE1-kAhBeGWnKMEluo_sIuqCMzQ_RWeIHR_9CTA0.js","lineno":10461,"colno":24,"function":"updateSearch","in_app":true},{"filename":"https://developers-pr.stage.redhat.com/pr/1766/export/sites/default/files/js/js__rOeE1-kAhBeGWnKMEluo_sIuqCMzQ_RWeIHR_9CTA0.js","lineno":10615,"colno":45,"function":"urlFilters","in_app":true}]}}]},"culprit":"https://developers-pr.stage.redhat.com/pr/1766/export/sites/default/files/js/js__rOeE1-kAhBeGWnKMEluo_sIuqCMzQ_RWeIHR_9CTA0.js","extra":{"session:duration":3367},"event_id":"e8c4a8836b534012a254ba9a6770f6cb"}'
+:status: 200
+:method: post
+:headers:
+  Server: nginx
+  Date: Thu, 23 Feb 2017 14:14:58 GMT
+  Content-Type: application/json
+  Content-Length: '41'
+  Connection: close
+  Access-Control-Allow-Methods: GET, POST, HEAD, OPTIONS
+  X-Content-Type-Options: nosniff
+  Content-Language: en
+  Access-Control-Expose-Headers: X-Sentry-Error, Retry-After
+  Expires: Thu, 23 Feb 2017 14:14:58 GMT
+  Vary: Accept-Language, Cookie
+  Last-Modified: Thu, 23 Feb 2017 14:14:58 GMT
+  X-XSS-Protection: 1; mode=block
+  Cache-Control: max-age=0
+  Access-Control-Allow-Origin: https://developers-pr.stage.redhat.com
+  Access-Control-Allow-Headers: X-Sentry-Auth, X-Requested-With, Origin, Accept, Content-Type,
+    Authentication
+  X-Frame-Options: deny
+  X-Served-By: app-41884e
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+:content: '{"id":"e8c4a8836b534012a254ba9a6770f6cb"}'

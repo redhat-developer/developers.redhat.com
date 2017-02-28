@@ -1,3 +1,4 @@
+@kc
 Feature: Log in using my RHD registered details.
 
   As a developers.redhat customer,
@@ -11,35 +12,33 @@ Feature: Log in using my RHD registered details.
       | Login    |
       | Register |
 
-  @logout @kc
+  @logout
   Scenario: A customer whom has the correct login credentials can log in using their username
     Given I am a RHD registered site visitor
     And I am on the Login page
     When I log in with a valid username
     Then I should be logged in
 
-  @logout @kc
+  @logout
   Scenario: A customer whom has the correct login credentials can log in using their email address
     Given I am a RHD registered site visitor
     And I am on the Login page
     When I log in with a valid email address
     Then I should be logged in
 
-  @kc
   Scenario: A customer has incorrect login credentials (the password is incorrect)
     Given I am a RHD registered site visitor
     And I am on the Login page
     When I log in with an incorrect password
     Then the following error message should be displayed: Invalid login or password.
 
-  @kc
   Scenario: A customer tries to login with an invalid email address (e.g. xxx@xx)
     Given I am a RHD registered site visitor
     And I am on the Login page
     When I log in with an invalid email address
     Then the following error message should be displayed: Invalid login or password.
 
-  @logout @kc
+  @logout
   Scenario: Successful logout
     Given I am a RHD registered site visitor
     And I am on the Login page
@@ -48,7 +47,7 @@ Feature: Log in using my RHD registered details.
     And I click the Logout link
     Then I should be logged out
 
-  @slow @kc
+  @slow
   Scenario: A customer who has forgotten their login details can request a password reset
     Given I am a RHD registered site visitor
     And I am on the Login page
@@ -57,7 +56,7 @@ Feature: Log in using my RHD registered details.
     Then I should see a confirmation message: "You will receive an email shortly with instructions on how to create a new password. TIP: Check your junk or spam folder if you are unable to find the email."
     And I should receive an email containing a password reset link
 
-  @slow @logout @kc
+  @slow @logout
   Scenario: A customer can successfully reset their password
     Given I am a RHD registered site visitor
     And I am on the Login page
@@ -69,7 +68,7 @@ Feature: Log in using my RHD registered details.
     Then I should be logged in
 
   # returns 403 forbidden from I.T backend
-  @logout @ignore @kc
+  @logout @ignore
   Scenario: New User can login with active OpenShift.com account (simple user account)
     Given I am on the Login page
     When I log in with an active OpenShift account
@@ -78,7 +77,7 @@ Feature: Log in using my RHD registered details.
     Then I should be logged in
 
   # returns 403 forbidden from I.T backend
-  @logout @ignore @kc
+  @logout @ignore
   Scenario: New User can login with active Red Hat Customer Portal account (full user account).
     Given I am on the Login page
     And I log in with a active Customer portal account
@@ -87,7 +86,7 @@ Feature: Log in using my RHD registered details.
     Then I should be logged in
 
   # returns 500 error from I.T backend
-  @ignore @kc
+  @ignore
   Scenario: User can't login with deactivated Red Hat Customer Portal account (full user account)
     Given I am on the Login page
     When I log in with a deactivated Customer portal account

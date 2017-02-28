@@ -5,12 +5,15 @@ require_relative '../../../_cucumber/lib/helpers/driver_helper'
 class SearchPage < StandardisedSearch
 
   element(:search_box)           { |b| b.text_field(id: 'search_list_text') }
+  element(:results)              { |b| b.div(class: 'results') }
   elements(:first_result)        { |b| b.link(css: 'h4 > a', index: 0) }
 
+  value(:search_page_results)    { |p| p.results.text }
   value(:first_result_attribute) { |p| p.first_result.href }
 
-  def enter_search_term(search_string)
+  def search(search_string)
     type(search_box, search_string)
+    press_return
   end
 
   def search_results

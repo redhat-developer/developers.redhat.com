@@ -1,0 +1,175 @@
+---
+:scope:
+:url: https://dcp.stage.jboss.org/v2/rest/search/developer_materials?from=0&project=&query=foobar&query_highlight=true&size10=true&type=rht_website&type=jbossdeveloper_book&type=jbossdeveloper_event&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=stackoverflow_question&type=jbossorg_sbs_forum&type=jbossorg_blog
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Server: Apache-Coyote/1.1
+  Pragma: No-cache
+  Cache-Control: no-cache
+  Expires: Wed, 31 Dec 1969 19:00:00 EST
+  Access-Control-Allow-Origin: https://developers.stage.redhat.com
+  Content-Type: application/json
+  Date: Tue, 10 Jan 2017 12:17:22 GMT
+  Connection: close
+  Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a38o8080;
+    path=/
+:content: '{"uuid":"0bd20911-9f43-4d8a-ae9f-f98c4023e940","took":1,"timed_out":false,"_shards":{"total":50,"successful":24,"failed":0},"hits":{"total":50,"max_score":0.5355525,"hits":[{"_index":"data_jbossorg_sbs_forum","_type":"jbossorg_sbs_forum","_id":"jbossorg_sbs_forum-247746","_score":0.5355525,"fields":{"sys_url_view":["https://developer.stage.jboss.org/thread/247746"],"sys_content_plaintext":["Hi,
+  I am using Fuse ESB 7.1. While trying to create new Fabric Container I am getting
+  following error. FuseESB:karaf@root> fabric:container-create-child --jmx-user root
+  --jmx-password foobar root container7 The following containers have failed: container7:
+  null fuseesb.log displays following error message. 10:27:48,171 | INFO | l Console
+  Thread | FabricServiceImpl | 56 - org.fusesource.fabric.fabric-core - 7.1.0.fuse-047
+  | The creation of the container container7 has failed java.lang.NumberFormatException:
+  null at java.lang.Integer.parseInt(Integer.java:417) at java.lang.Integer.valueOf(Integer.java:554)
+  at org.apache.karaf.jpm.impl.ProcessImpl.readPid(ProcessImpl.java:142) at org.apache.karaf.jpm.impl.ProcessImpl.create(ProcessImpl.java:126)
+  at org.apache.karaf.jpm.impl.ProcessBuilderImpl.start(ProcessBuilderImpl.java:42)
+  at org.apache.karaf.admin.internal.InstanceImpl.start(InstanceImpl.java:297) at
+  org.apache.karaf.admin.management.internal.AdminServiceMBeanImpl.startInstance(AdminServiceMBeanImpl.java:117)
+  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+  at java.lang.reflect.Method.invoke(Method.java:597) at com.sun.jmx.mbeanserver.StandardMBeanIntrospector.invokeM2(StandardMBeanIntrospector.java:93)
+  at com.sun.jmx.mbeanserver.StandardMBeanIntrospector.invokeM2(StandardMBeanIntrospector.java:27)
+  at com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:208)
+  at com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:120) at com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:262)
+  at javax.management.StandardMBean.invoke(StandardMBean.java:391) at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:836)
+  at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:761) at javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1427)
+  at javax.management.remote.rmi.RMIConnectionImpl.access$200(RMIConnectionImpl.java:72)
+  at javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1265)
+  at java.security.AccessController.doPrivileged(Native Method) at javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1367)
+  at javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:788)
+  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+  at java.lang.reflect.Method.invoke(Method.java:597) at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+  at sun.rmi.transport.Transport$1.run(Transport.java:159) at java.security.AccessController.doPrivileged(Native
+  Method) at sun.rmi.transport.Transport.serviceCall(Transport.java:155) at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+  at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+  at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+  at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+  at java.lang.Thread.run(Thread.java:662) Can someone please help? Thanks, Pratik
+  Edited by: pratik_patel on Jan 17, 2013 5:19 AM"],"sys_description":["Hi, I am using
+  Fuse ESB 7.1. While trying to create new Fabric Container I am getting following
+  error. FuseESB:karaf@root> fabric:container-create-child --jmx-user root --jmx-password
+  foobar root container7 The following containers have failed: container7: null fuseesb.log
+  displays following error message. 10:27:48,171 | INFO | l Console Thread | FabricServiceImpl
+  | 56 - org.fusesource.fabric.f..."],"sys_created":["2013-01-10T13:35:25.644Z"],"sys_contributors":["Pratik
+  Patel <pratik.patel@mobileinternet.co.in>","Claus Ibsen <cibsen@redhat.com>"],"sys_type":["forumthread"],"sys_title":["Stubbed
+  Title One"]},"highlight":{"sys_content_plaintext":["fabric:container-create-child
+  --jmx-user root --jmx-password <span class=''hlt''>foobar</span> root container7
+  The following containers have failed:"],"sys_description":["fabric:container-create-child
+  --jmx-user root --jmx-password <span class=''hlt''>foobar</span> root container7
+  The following containers have failed:"]}},{"_index":"data_jbossorg_blog","_type":"jbossorg_blogpost","_id":"jbossorg_blog-arquillian_governor_1_0_1_final_released","_score":0.43668956,"fields":{"sys_created":["2015-12-14T00:00:00.000Z"],"sys_description":["The
+  Arquillian team is proud to announce the 1.0.1.Final release of the Arquillian Governor
+  component! A new member has been added to Governor: Arquillian Governor Ignore This
+  extension simply ignores (skips) test methods which are listed in arquillian.xml.
+  Configuration of this extension is done via governor-ignore qualifier: \n          com\\.foobar\\.[.]*\n          org.acme.foo.ListTest#testStrFil..."],"sys_url_view":["http://arquillian.org/blog/2015/12/13/arquillian-governor-1-0-1-Final/"],"sys_type":["blogpost"],"sys_tags":["arquillian","extension","feed_group_name_arquillian","feed_name_arquillian","governor","jbosscentral","release"],"sys_title":["Stubbed
+  Title Two"]},"highlight":{"sys_description":["via governor-ignore
+  qualifier: \n          com\\.<span class=''hlt''>foobar</span>\\.[.]*\n          org.acme.foo.ListTest#testStrFil"]}},{"_index":"data_jbossorg_blog","_type":"jbossorg_blogpost","_id":"jbossorg_blog-maven_plugin_for_jaxws_tools","_score":0.4362427,"fields":{"sys_url_view":["http://jbossws.blogspot.com/2010/03/maven-plugin-for-jaxws-tools.html"],"sys_created":["2010-03-01T15:24:00.000Z"],"sys_description":["JBossWS
+  comes with JAXWS tools for top-down and bottom-up webservice development. Starting
+  from today, a Maven plugin is available for easily embedding tools'' invocation
+  into your own project''s pom.xml:       org.jboss.ws.plugins     maven-jaxws-tools-plugin     1.0.0.GA                   ${basedir}/test.wsdl         ${basedir}/test2.wsdl             foo.bar       true                             ..."],"sys_contributors":["Alessio
+  Soldano <asoldano@redhat.com>"],"sys_type":["blogpost"],"sys_tags":["feed_group_name_global","feed_name_jbossws"],"sys_title":["Stubbed
+  Title Three"]},"highlight":{"sys_description":["wsdl         ${basedir}/test2.wsdl             <span
+  class=''hlt''>foo.bar</span>       true                             ..."]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-124583","_score":0.38078904,"fields":{"sys_description":["-
+  The email field in a JSP page is not pre-populated with complete email id. It displays
+  &quot;foo&quot; instead of &quot;foo@foobar.com&quot;.- The email data on the JSP
+  page is retrieved from a cookie. The cookie is set in the response header: ~~~ &lt;%
+  response.addHeader(&quot;Set-Cookie&quot;,&quot;emailCookie=foo@foobar.com; HttpOnly;
+  Secure; path=/&quot;); %&gt; ~~~- The cookie data is read in a servlet bean: ~~~
+  javax.servlet.http.Cookie[] cookies = request.getCookies(); for (int x = 0; x "],"sys_created":["2012-05-17T22:43:36.000Z"],"sys_url_view":["https://access.stage.redhat.com/solutions/124583"],"sys_type":["solution"],"sys_tags":["eap","jboss","jbossweb"],"sys_title":["Stubbed
+  Title Four"]},"highlight":{"sys_description":["It
+  displays &quot;foo&quot; instead of &quot;foo@<span class=''hlt''>foobar</span>.com&quot;.-
+  The email data on the JSP page is retrieved","addHeader(&quot;Set-Cookie&quot;,&quot;emailCookie=foo@<span
+  class=''hlt''>foobar</span>.com; HttpOnly; Secure; path=/&quot;); %&gt; ~~~-"]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-1294013","_score":0.38078904,"fields":{"sys_description":["We
+  are consistently failing to obtain MQ connections with the following error messages.
+  This lead to the queue depth approaching 100,000. ~~~ WARN [org.apache.camel.component.jms.DefaultJmsMessageListenerContainer]
+  (Camel (camel-1) thread #273- JmsConsumer[FOO.BAR]) Setup of JMS message listener
+  invoker failed for destination &#039;FOO.BAR&#039;- trying to recover. Cause: MQJCA1011:
+  Failed to allocate a JMS connection.; nested exception is javax.resource.ResourceException:
+  IJ000655: No managed connections available within configured blocking timeout (30000
+  [ms]) ~~~"],"sys_created":["2014-12-12T04:29:29.000Z"],"sys_url_view":["https://access.stage.redhat.com/solutions/1294013"],"sys_type":["solution"],"sys_tags":["jca"],"sys_title":["Stubbed
+  Title Five"]},"highlight":{"sys_description":["JmsConsumer[<span class=''hlt''>FOO.BAR</span>])
+  Setup of JMS message listener invoker failed for destination &#039;<span class=''hlt''>FOO.BAR</span>&#039;-
+  trying"]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-544343","_score":0.32639062,"fields":{"sys_description":["-
+  After Specifying ic.bind(&quot;java:global/a/b/c/d/e/f&quot;, &quot;foobar&quot;);
+  in EJB JAR as follows does not generate an exception:- ~~~ @Startup @Singleton public
+  class AbcPqr {@PostConstruct @SuppressWarnings(&quot;rawtypes&quot;) public void
+  onStartup() throws IOException {Context ic = new InitialContext(); ic.bind(&quot;java:global/a/b/c/d/e/f&quot;,
+  &quot;foobar&quot;);} ~~~ However, with regards to [JavaDoc](http://docs.oracle.com/javase/7/docs/api/javax/naming/Context.html),
+  it is specified that it Binds a name to an object. All intermediate contexts and
+  the target context (that named by all but terminal atomic component of the name)
+  must already exist."],"sys_created":["2013-11-18T14:28:11.000Z"],"sys_url_view":["https://access.stage.redhat.com/solutions/544343"],"sys_type":["solution"],"sys_tags":["ejb","jboss","jboss_eap"],"sys_title":["Stubbed
+  Title Six"]},"highlight":{"sys_description":["bind(&quot;java:global/a/b/c/d/e/f&quot;,
+  &quot;<span class=''hlt''>foobar</span>&quot;); in EJB JAR as follows does not generate","bind(&quot;java:global/a/b/c/d/e/f&quot;,
+  &quot;<span class=''hlt''>foobar</span>&quot;);} ~~~ However, with regards to [JavaDoc](http://docs"]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-496483","_score":0.27199218,"fields":{"sys_description":["-
+  The web service end point has `@SchemaValidation` and `wsdlLocation` specified.-
+  The following error message is thrown in the server log for incoming SOAP requests:
+  ~~~ ERROR [SOAPFaultHelperJAXWS] SOAP request exception org.jboss.ws.WSException:
+  org.xml.sax.SAXException: src-resolve: Cannot resolve the name &#039;foo:bar&#039;
+  to a(n) &#039;type definition&#039; component. at org.jboss.ws.WSException.rethrow(WSException.java:68)
+  at org.jboss.ws.core.soap.SOAPBodyElementDoc.validatePayload(SOAPBodyElementDoc.java:138)......
+  Caused by: org.xml.sax.SAXException: src-resolve: Cannot resolve the name &#039;foo:bar&#039;
+  to a(n) &#039;type definition&#039; component. at org.jboss.ws.extensions.validation.StrictlyValidErrorHandler.error(StrictlyValidErrorHandler.java:43)
+  at org.apache.xerces.util.ErrorHandlerWrapper.error(Unknown Source) ~~~ "],"sys_created":["2013-09-24T21:36:08.000Z"],"sys_url_view":["https://access.stage.redhat.com/solutions/496483"],"sys_type":["solution"],"sys_tags":["eap","jboss","webservices"],"sys_title":["Stubbed:
+  Title Seven"]},"highlight":{"sys_description":["SAXException:
+  src-resolve: Cannot resolve the name &#039;<span class=''hlt''>foo:bar</span>&#039;
+  to a(n) &#039;type definition&#039; component","SAXException: src-resolve: Cannot
+  resolve the name &#039;<span class=''hlt''>foo:bar</span>&#039; to a(n) &#039;type
+  definition&#039; component"]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-1252833","_score":0.26925853,"fields":{"sys_description":["When
+  configuring the following RewriteValve setting using the flag &#039;`CO=NAME:VAL:domain[:lifetime[:path]]`&#039;:
+  ~~~ ~~~ JBossWeb RewriteValve throws the following IllegalArgumentException at JBoss
+  EAP start-up: ~~~ ERROR [org.jboss.msc.service.fail] (MSC service thread 1-2) MSC000001:
+  Failed to start service jboss.web.host.default-host: org.jboss.msc.service.StartException
+  in service jboss.web.host.default-host: java.lang.IllegalArgumentException: JBWEB007005:
+  Error reading rewrite flags in line RewriteRule ^/(.*)$- [CO=foo:bar:.example.com:60:/example]
+  as CO=foo:bar:.example.com:60:/example at org.jboss.as.web.WebVirtualHostService.createRewriteValve(WebVirtualHostService.java:225)
+  at org.jboss.as.web.WebVirtualHostService.start(WebVirtualHostService.java:88) at
+  org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1980)
+  [jboss-msc-1.1.5.Final-redhat-1.jar:1.1.5.Final-redhat-1] at org.jboss.msc.service.ServiceControllerImpl$StartTask.run(ServiceControllerImpl.java:1913)
+  [jboss-msc-1.1.5.Final-redhat-1.jar:1.1.5.Final-redhat-1] at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+  [rt.jar:1.7.0_67] at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+  [rt.jar:1.7.0_67] at java.lang.Thread.run(Thread.java:745) [rt.jar:1.7.0_67] Caused
+  by: java.lang.IllegalArgumentException: JBWEB007005: Error reading rewrite flags
+  in line RewriteRule ^/(.*)$- [CO=foo:bar:.example.com:60:/example] as CO=foo:bar:.example.com:60:/example
+  at org.jboss.web.rewrite.RewriteValve.parseRuleFlag(RewriteValve.java:718) at org.jboss.web.rewrite.RewriteValve.parse(RewriteValve.java:565)
+  at org.jboss.web.rewrite.RewriteValve.parse(RewriteValve.java:208) at org.jboss.web.rewrite.RewriteValve.setConfiguration(RewriteValve.java:184)
+  at org.jboss.as.web.WebVirtualHostService.createRewriteValve(WebVirtualHostService.java:223)...
+  6 more ~~~"],"sys_created":["2014-10-30T05:50:14.000Z"],"sys_url_view":["https://access.stage.redhat.com/solutions/1252833"],"sys_type":["solution"],"sys_tags":["jboss","jbossweb"],"sys_title":["Stubbed
+  Title Eight"]},"highlight":{"sys_description":["line RewriteRule ^/(.*)$- [CO=<span
+  class=''hlt''>foo:bar</span>:.example.com:60:/example] as CO=<span class=''hlt''>foo:bar</span>:.example.com:60:/example
+  at","line RewriteRule ^/(.*)$- [CO=<span class=''hlt''>foo:bar</span>:.example.com:60:/example]
+  as CO=<span class=''hlt''>foo:bar</span>:.example.com:60:/example at"]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-194933","_score":0.23318471,"fields":{"sys_description":["The
+  following ERROR occurred at EJB deployment in JBoss EAP 6.0. ~~~ ERROR [org.jboss.msc.service.fail]
+  (MSC service thread 1-7) MSC000001: Failed to start service jboss.deployment.subunit.&quot;foobar.ear&quot;.&quot;hoge.jar&quot;.POST_MODULE:
+  org.jboss.msc.service.StartException in service jboss.deployment.subunit.&quot;foobar.ear&quot;.&quot;hoge.jar&quot;.POST_MODULE:
+  JBAS018733: Failed to process phase POST_MODULE of subdeployment &quot;hoge.jar&quot;
+  of deployment &quot;foobar.ear&quot; at org.jboss.as.server.deployment.DeploymentUnitPhaseService.start(DeploymentUnitPhaseService.java:123)
+  [jboss-as-server-7.1.2.Final-redhat-1.jar:7.1.2.Final-redhat-1] at org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1811)
+  [jboss-msc-1.0.2.GA-redhat-1.jar:1.0.2.GA-redhat-1] at org.jboss.msc.service.ServiceControllerImpl$StartTask.run(ServiceControllerImpl.java:1746)
+  [jboss-msc-1.0.2.GA-redhat-1.jar:1.0.2.GA-redhat-1] at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+  [rt.jar:1.7.0_05] at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+  [rt.jar:1.7.0_05] at java.lang.Thread.run(Thread.java:722) [rt.jar:1.7.0_05] Caused
+  by: java.lang.IllegalArgumentException: JBAS014180: [EJB 3.1 spec, section 14.1.1]
+  Exception class: class com.example.exception.CustomAppException cannot be marked
+  as an application exception because it is of type java.rmi.RemoteException at org.jboss.as.ejb3.deployment.ApplicationExceptions.addApplicationException(ApplicationExceptions.java:69)
+  at org.jboss.as.ejb3.deployment.processors.merging.ApplicationExceptionMergingProcessor.deploy(ApplicationExceptionMergingProcessor.java:68)
+  at org.jboss.as.server.deployment.DeploymentUnitPhaseService.start(DeploymentUnitPhaseService.java:116)
+  [jboss-as-server-7.1.2.Final-redhat-1.jar:7.1.2.Final-redhat-1]... 5 more ~~~"],"sys_created":["2012-08-23T16:50:27.000Z"],"sys_url_view":["https://access.stage.redhat.com/solutions/194933"],"sys_type":["solution"],"sys_tags":["ejb"],"sys_title":["Stubbed
+  Title Nine"]},"highlight":{"sys_description":["to
+  start service jboss.deployment.subunit.&quot;<span class=''hlt''>foobar</span>.ear&quot;.&quot;hoge.jar&quot;.POST_MODULE:
+  org","StartException in service jboss.deployment.subunit.&quot;<span class=''hlt''>foobar</span>.ear&quot;.&quot;hoge.jar&quot;.POST_MODULE:
+  JBAS018733:","subdeployment &quot;hoge.jar&quot; of deployment &quot;<span class=''hlt''>foobar</span>.ear&quot;
+  at org.jboss.as.server.deployment.De"]}},{"_index":"data_rht_knowledgebase_solution","_type":"rht_knowledgebase_solution","_id":"rht_knowledgebase_solution-644943","_score":0.23079303,"fields":{"sys_description":["-
+  When creating a composite queue (by editing activemq.xml) it doesn&#039;t seem like
+  the queue is actually created. When I try to connect to the composite queue (from
+  another server), the folowing Exception is thrown: `Caused by: java.lang.SecurityException:
+  User alice is not authorized to create: queue://FOO.BAR` We doesn&#039;t allow the
+  user (&#039;alice&#039;) to create queues so this seems to indicate that the queue
+  doesn&#039;t exist according to A-MQ. Part from my activemq.xml: ~~~...... ~~~ What
+  should I do to make the composite queue appear (be created) without having to use
+  the &#039;admin&#039; user in the A-MQ GUI (to create it as mentioned above)?"],"sys_created":["2013-12-15T22:55:06.000Z"],"sys_url_view":["https://access.stage.redhat.com/solutions/644943"],"sys_type":["solution"],"sys_tags":["activemq"],"sys_title":["Stubbed
+  Title Ten"]},"highlight":{"sys_description":["User
+  alice is not authorized to create: queue://<span class=''hlt''>FOO.BAR</span>` We
+  doesn&#039;t allow the user (&#039;alice&#039;)"]}}]},"aggregations":{"format":{"doc_count":53742}}}'
