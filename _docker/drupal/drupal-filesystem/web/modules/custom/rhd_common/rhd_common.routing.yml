@@ -1,3 +1,11 @@
+rhd_common.get_started_redirect:
+  path: '/products/{product_code}/get-started'
+  defaults:
+    _controller: '\Drupal\rhd_common\Controller\ProductPageController::productPage'
+    _entity_view: 'product.full'
+    sub_page: 'hello-world'
+  requirements:
+    _permission: 'access content'
 rhd_common.main_page_controller:
   path: '/products/{product_code}/{sub_page}'
   defaults:
@@ -10,7 +18,6 @@ rhd_common.product_overview:
   path: '/products/{product_code}'
   defaults:
     _controller: '\Drupal\rhd_common\Controller\ProductPageController::productPage'
-#    _title_callback: '\Drupal\rhd_common\Controller\ProductPageController::getPageTitle'
     _entity_view: 'product.full'
     sub_page: 'overview'
   requirements:

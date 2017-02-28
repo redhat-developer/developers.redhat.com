@@ -27,7 +27,7 @@ class ProductPageController extends ControllerBase
     /**
      * @var Paragraph Active product subpage
      */
-    private $active_subpage;
+    private $active_paragraph;
 
     /**
      * ProductPageController constructor.
@@ -50,46 +50,79 @@ class ProductPageController extends ControllerBase
      * Router callback function.
      * @param string $product_code Product URL Name
      * @param string $sub_page sub page paragraph name
-     * @return array Render array for the page
+     * @return array|mixed Render array for the page
      */
     public function productPage($product_code, $sub_page)
     {
         $build = [];
         $this->active_product = $this->findProduct($product_code);
 
-        if (!empty($this->active_product)) {
-            // This render array will hold the left side navigation links
-            $page_links = [
-              '#theme' => 'item_list',
-              '#list_type' => 'ul',
-              '#items' => [
-                [
-                  '#markup' => '<a href="#">Menu</a>',
-                  '#wrapper_attributes' => ['class' => 'side-nav-toggle']
-                ]
-              ],
-              '#attributes' => [
-                'class' => ['side-nav', 'rhd-sub-nav']
-              ]
-            ];
+        // No product, bail
+        if (is_null($this->active_product)) {
+            return $this->redirect('entity.node.canonical', ['node' => '32155']);
+        }
 
-            // Iterate over all the product sub pages configured for this product
-            // Find the active one, create links for the left side nav
-            foreach ($this->active_product->field_product_pages as $cur_sub_page) {
-                $product_pages_id = $cur_sub_page->target_id;
+        try {
+            if (!empty($this->active_product)) {
+                // This render array will hold the left side navigation links
+                $page_links = [
+                  '#theme' => 'item_list',
+                  '#list_type' => 'ul',
+                  '#items' => [
+                    [
+                      '#markup' => '<a href="#">Menu</a>',
+                      '#wrapper_attributes' => ['class' => 'side-nav-toggle']
+                    ]
+                  ],
+                  '#attributes' => [
+                    'class' => ['side-nav', 'rhd-sub-nav']
+                  ]
+                ];
 
-                // entity_load paragraph type.
-                $sub_page_paragraph = $this->entityTypeManager()
-                  ->getStorage('paragraph')
-                  ->load($product_pages_id);
+                // Iterate over all the product sub pages configured for this product
+                // Find the active one, create links for the left side nav
+                foreach ($this->active_product->field_product_pages as $cur_sub_page) {
+                    $product_pages_id = $cur_sub_page->target_id;
 
-                // Prepare left nav links data.
-                $sub_page_url = $sub_page_paragraph->field_overview_url->value;
-                $sub_page_url_string = str_replace(' ', '-', strtolower($sub_page_url));
+                    // entity_load paragraph type.
+                    $sub_page_paragraph = $this->entityTypeManager()
+                      ->getStorage('paragraph')
+                      ->load($product_pages_id);
 
-                if ($sub_page_url_string == $sub_page) {
-                    $active_subpage = $product_pages_id;
-                    $this->active_paragraph = $sub_page_paragraph;
+                    // Prepare left nav links data.
+                    $sub_page_url = $sub_page_paragraph->field_overview_url->value;
+                    $sub_page_url_string = str_replace(' ', '-', strtolower($sub_page_url));
+
+                    if ($sub_page_url_string == $sub_page) {
+                        $this->active_paragraph = $sub_page_paragraph;
+                    }
+
+                    $page_links['#items'][] = [
+                      '#type' => 'link',
+                      '#title' => [
+                        '#type' => 'inline_template',
+                        '#template' => "{{text}}",
+                        '#context' => [
+                          'text' => t($sub_page_paragraph->field_overview_url->value)
+                        ]
+                      ],
+                      '#url' => Url::fromRoute('rhd_common.main_page_controller', [
+                        'product_code' => $product_code,
+                        'sub_page' => $sub_page_url_string,
+                      ]),
+                      '#wrapper_attributes' => (function () use ($sub_page, $sub_page_url_string) {
+                          if ($sub_page_url_string == $sub_page) {
+                              return ['class' => 'active'];
+                          } else {
+                              return [];
+                          }
+                      })()
+                    ];
+                }
+
+                // No sub page, bail
+                if (is_null($this->active_paragraph)) {
+                    return $this->redirect('entity.node.canonical', ['node' => '32155']);
                 }
 
                 $page_links['#items'][] = [
@@ -116,34 +149,37 @@ class ProductPageController extends ControllerBase
                 ];
             }
 
-            $build = $this->entityTypeManager()
-              ->getViewBuilder($this->active_product->getEntityTypeId())
-              ->view($this->active_product, 'full');
+                $build = $this->entityTypeManager()
+                  ->getViewBuilder($this->active_product->getEntityTypeId())
+                  ->view($this->active_product, 'full');
 
-            $build['#theme'] = 'product-pages';
-            $build['page_links'] = $page_links;
+                $build['#theme'] = 'product-pages';
+                $build['page_links'] = $page_links;
 
-            $build['active_paragraph'] = $this->entityTypeManager()
-              ->getViewBuilder($this->active_paragraph->getEntityTypeId())
-              ->view($this->active_paragraph, 'full');
+                $build['active_paragraph'] = $this->entityTypeManager()
+                  ->getViewBuilder($this->active_paragraph->getEntityTypeId())
+                  ->view($this->active_paragraph, 'full');
 
 
-            // Also product category
-            if ($this->active_product->hasField('field_product_category')) {
-                $product_category = $this->active_product->field_product_category->value;
-                $build['product_category'] = $product_category;
+                // Also product category
+                if ($this->active_product->hasField('field_product_category')) {
+                    $product_category = $this->active_product->field_product_category->value;
+                    $build['product_category'] = $product_category;
+                }
+
+                // URL product name
+                if ($this->active_product->hasField('field_url_product_name')) {
+                    $build['url_product_name'] = $this->active_product->field_url_product_name->value;
+                }
+
+                // Helper for twig to know if there is a community page
+                $product_pages = $this->active_product->field_product_pages->referencedEntities();
+                $build['has_community'] = count(array_filter($product_pages, function ($entity) {
+                      return strtolower($entity->field_overview_url->value) === 'community';
+                  })) > 0;
             }
-
-            // URL product name
-            if ($this->active_product->hasField('field_url_product_name')) {
-                $build['url_product_name'] = $this->active_product->field_url_product_name->value;
-            }
-
-            // Helper for twig to know if there is a community page
-            $product_pages = $this->active_product->field_product_pages->referencedEntities();
-            $build['has_community'] = count(array_filter($product_pages, function ($entity) {
-                  return strtolower($entity->field_overview_url->value) === 'community';
-              })) > 0;
+        } catch (\Throwable $e) {
+            return $this->redirect('entity.node.canonical', ['node' => '32155']);
         }
 
         $build['#cache']['max-age'] = 0; // Disable caching of these product pages
