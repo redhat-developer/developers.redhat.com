@@ -25,7 +25,6 @@ Feature: User Profile Edit
       | field      | message                  |
       | First name | First name is required   |
       | Last name  | Last name is required    |
-      | Company    | Company name is required |
 
   @logout
   Scenario: First name field should accept no more than 45 characters
