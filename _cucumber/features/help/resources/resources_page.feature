@@ -1,4 +1,9 @@
-Feature: DEVELOPER-1934 - Resources update: Implementation
+Feature: Resources Page - DEVELOPER-1934
+
+  Scenario: User navigates to a previously filtered resources URL
+    Given I have previously filtered results by "Video" and "Red Hat Container Development Kit"
+    Then the "Video" filter should be checked
+    And "Red Hat Container Development Kit" should be within the keyword search field
 
   Scenario: On first visit to the Resources page - all results should be displayed
     Given I am on the Resources page
@@ -16,8 +21,8 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
 
   Scenario Outline: Result per page options should be: 10, 25, 50 and 100.
     Given I am on the Resources page
-    And results have loaded
     When I select "<number>" from the results per page filter
+    And results have loaded
     Then I should see "<number>" results ordered by Most Recent
 
     Examples: results per page
@@ -27,7 +32,7 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
       | 50     |
       | 100    |
 
-  Scenario:  On first visit to the Resources page - most recent item should be at the top
+  Scenario: On first visit to the Resources page - most recent item should be at the top
     Given I am on the Resources page
     Then I should see "10" results ordered by Most Recent
 
@@ -41,16 +46,17 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
       | filter type   | result     |
       | Blog Posts    | blogpost   |
       | Book          | book       |
-      | Code Artifact | demo       |
+      | Code          | demo       |
       | Get Started   | getstarted |
       | Knowledgebase | article    |
       | Video         | video      |
 
+  @later
   Scenario: Clicking on the remove filter icon should replay results without filter.
     Given I am on the Resources page
     And results have loaded
-    And I click to filter results by "Code Artifact"
-    When I uncheck the "Code Artifact" filter
+    And I click to filter results by "Code"
+    When I uncheck the "Code" filter
     Then the default set of results are displayed
 
   Scenario: It should not be possible to filter by more than one type, if a different filter type is selected the results should display the new type.
@@ -61,7 +67,6 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Then the results for "Video" are displayed
     And the results displayed should not contain "Book"
 
-  @later
   Scenario: Quoted keywords should filter by items containing the full search string.
     Given I am on the Resources page
     When I enter "RHEL" into the Keyword's box
@@ -73,7 +78,6 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     When I enter "Java Container Development Kit" into the Keyword's box
     Then the results displayed should contain "Java" or "Containers"
 
-  @later
   Scenario: Results must contain a relevant tag that relates to the product.
     Given I am on the Resources page
     When I enter "eap" into the Keyword's box
@@ -114,9 +118,9 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     Given I am on the Resources page
     And I enter "bfehwfbhbn" into the Keyword's box
     Then I should see a message "No results found."
-    When I enter "containers" into the Keyword's box
+    When I enter "Java Container Development Kit" into the Keyword's box
     Then I should not see a message "No results found."
-    And some of the results should contain a "Containers" tag
+    And the results displayed should contain "Java" or "Containers"
 
   Scenario: Result pagination on first visit
     Given I am on the Resources page
@@ -132,24 +136,11 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
   @later
   Scenario: I filter results that return two pages of results: should display pagination with two pages
     Given I am on the Resources page
-    When I enter "?" into the Keyword's box
-    Then I should see pagination with "2" pages
+    Then I should see pagination with "5" pages
     And the following links should be available:
       | Next |
       | Last |
     But the following links should be unavailable:
-      | First    |
-      | Previous |
-
-  @later
-  Scenario: I filter results that returns eight pages of results: should not display pagination with ellipsis
-    Given I am on the Resources page
-    When I search for "?"
-    Then I should see pagination with "5" pages without ellipsis
-    And the following links should be available:
-      | Next |
-      | Last |
-    And the following links should be unavailable:
       | First    |
       | Previous |
 
@@ -185,16 +176,3 @@ Feature: DEVELOPER-1934 - Resources update: Implementation
     And select "Red Hat Container Development Kit" from the product filter
     When results have loaded
     Then the URL should include the selected filters
- 
-  @later
-  Scenario: User navigates to a previously filtered /resources URL 
-    Given I have previously filtered results by "Video" and "Red Hat Container Development Kit" 
-    When I copy the URL
-    And paste the URL into a new tab
-    Then the results should be filtered by  "Video" and "Red Hat Container Development Kit"
-
-  Scenario: User can filter results by a product when Blog Post has previously been selected
-    Given I am on the Resources page
-    When I click to filter results by "Blog Posts"
-    Then I select "JBoss Data Virtualization" from the product filter
-    Then the results displayed should contain "datavirt" or "JBoss Data Virtualization"

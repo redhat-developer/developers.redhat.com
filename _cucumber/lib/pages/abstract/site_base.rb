@@ -30,6 +30,9 @@ class SiteBase < GenericBasePage
   element(:help_sub_nav)            { |b| b.div(id: 'sub-nav-help') }
   element(:referral_alert)          { |b| b.element(class: 'alert-box') }
 
+  # footer element
+  element(:report_a_website_issue)  { |b| b.element(class: 'report-an-issue') }
+
   value(:search_field_visible?)     { |p| p.site_nav_search_box.present? }
   value(:is_mobile?)                { |p| p.mobile_menu.present? }
   value(:mobile_menu_open?)         { |p| p.mobile_nav.present? }
@@ -67,7 +70,6 @@ class SiteBase < GenericBasePage
   end
 
   def open_login_page
-    toggle_menu if is_mobile?
     click_login
   end
 

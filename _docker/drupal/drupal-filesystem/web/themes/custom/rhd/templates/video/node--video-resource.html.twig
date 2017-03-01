@@ -1,0 +1,28 @@
+<header class="row">
+    <div class="large-18 columns">
+        <h2>{{ label }}</h2>
+        <p class="video-stats"></p>
+        {% include '@rhd/share.html.twig' %}
+    </div>
+</header>
+
+<div class="row content">
+    <div class="large-18 columns">
+        {{ elements.field_video_resource }}
+        <br>
+        {{ elements.body }}
+    </div>
+    <div class="large-6 columns">
+        <div class="row">
+            <div class="large-24 columns">
+                {{ elements.field_video_resource_tags }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-24 columns">
+                <br>
+                {{ elements.field_speakers }}
+            </div>
+        </div>
+    </div>
+</div>
