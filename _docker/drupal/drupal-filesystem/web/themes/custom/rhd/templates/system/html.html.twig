@@ -76,6 +76,11 @@
         }
       }
 
+      function deleteCookie(name) {
+        document.cookie = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      };
+
+
       function getQueryParams() {
         return relURL.split('?')[1] ? relURL.split('?')[1].replace(/=/g,':').split('&') : "";
       }
@@ -124,6 +129,29 @@
       var elqGUID = getCookie( "rh_elqCustomerGUID" );
       if ( elqGUID ) {
         dd.user[ 0 ].profile[ 0 ].profileInfo.eloquaGUID = elqGUID;
+      }
+
+      var slc = getCookie("rhd-slink-add");
+      if(slc){ 
+        sendSocialLinkEvent(slc);
+        deleteCookie('rhd-slink-add');
+      }
+      
+      function sendSocialLinkEvent(sprov){
+        var ddSocialLinkEvent = {
+          eventInfo: {
+            eventAction: 'link',
+            eventName: 'social account link',
+            socialAccount: sprov,
+            socialAccountsLinked: dd.user[0].profile[0].profileInfo.socialAccountsLinked,
+            timeStamp: new Date(),
+            processed: {
+              adobeAnalytics: false
+            }
+          }
+        };
+        dd.event.push(ddSocialLinkEvent);
+        sendCustomEvent('socialLinkEvent', ddSocialLinkEvent); 
       }
 
     } )( window, document, digitalData );
