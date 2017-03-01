@@ -8,8 +8,8 @@ It starts by describing how to do first time setup of the environment and then m
 Towards the end some miscellaneous topics are covered.
 
 ## First time Environment Setup
-Docker must be used in development.
-Docker simplifies the setup, and makes your development environment consistent with other developers and our CI servers.
+Docker is recommended in development, though it isn't fully necessary.
+If you are not using docker, there will be no support.
 This works best on Linux, but we do have Mac users that are developing successfully in this environment.
 The following sections cover the steps you need to do in order to setup your environment and get the site running for the first time.
 
@@ -25,17 +25,15 @@ Brew is like apt-get or yum for mac.
 
 ### Docker
 For Linux, follow these instructions to install the latest docker for your system [here] (https://docs.docker.com/installation/).
-Currently 'Docker Toolbox' is recommended for Mac and Windows development.
-The native 'Docker for Mac' offering may work now, but at the time of writing (August 2016) it crashed a lot for us.
-For Mac and Windows follow these instructions to install the latest docker for your system [here] (https://www.docker.com/products/docker-toolbox).
-It's unlikely you will want to use the packages provided by your system (e.g. from yum or apt) as they will be too far out of date.
+The native 'Docker for Mac' is now recommended for those working on macOS.
+No one has tried development on Windows, so it is currently not known what needs to be done.
 
 The scripts assume you can run the `docker` command WITHOUT sudo.
 
 **NOTE:** We are using features that require you to have at least docker 1.10 and docker-compose 1.6 installed.
 
 ### Docker Compose
-Mac and Windows: Docker compose will have been installed as part of the docker toolbox.
+Mac: Docker compose will have been installed as part of the Docker for Mac install.
 Linux: Follow the instructions to install the latest docker-compose [here] (https://github.com/docker/compose/releases)
 
 ### Register at DockerHub
@@ -60,6 +58,76 @@ At this point you must be able to run the following commands without error:
 If you have trouble running either of these commands please refer back to docker installation instructions.
 At this point no project specific steps have been taken, so docker is the reference point for fixing issues.
 If there is anything missing in this guide please submit a PR.
+
+### Install and Setup
+
+There are some requirements for running Drupal locally: php, and some extensions, composer, and optionally mysql/mariadb.
+
+##### Mac
+
+Please install the full mysql from Oracle so you can get access to the commandline tools.
+
+      brew install php70 php70_xdebug composer
+
+##### Linux
+
+All the required dependencies should be able to be installed using your package manager (yum, dnf, apt-get, etc).
+On a Fedora/CentOS machine you will need the following dependencies:
+
+      php70
+      php_gd
+      php_pdo
+      php_mysql
+      php_xdebug
+      php_xml
+      php_mbstring
+      composer
+      mariadb-client
+
+### Project checkout
+Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
+
+      git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
+      cd developers.redhat.com
+      git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
+
+### Node.js install
+
+_NOTE:_ Node.js and npm both need to be installed on the host machine, not in the docker container.
+
+1. Please follow https://nodejs.org/en/ for downloads and install of node and npm. Everything should work on nodejs versions > 0.10
+2. Execute the following command to get the node environment setup:
+
+    npm install
+
+### Start Drupal
+Run the following script:
+
+      bash ./setup_local_drupal.sh
+
+This will fetch the database backup for Drupal, run composer and start Drupal.
+Assuming there were no errors you should be able to access Drupal at 127.0.0.1:8888.
+
+## Drupal Page Layout Changes (fast)
+If you are just making a change to the layout file of a Drupal page, follow these steps:
+
+1. Make your change(s) to the layout file(s) (*.twig files).
+2. Direct your web browser at a page affected by the change.
+3. Observe that the change has been made.
+
+## JavaScript and CSS Changes (fast)
+If you need to make a change to a JavaScript or CSS file, you just need to re-run Gulp (takes ~2secs) and then observe your change.
+To do this:
+
+1. Make your required changes.
+2. Run `gulp` in the root of the project.
+3. Direct your web browser at a page affected by the change.
+4. Observe that the change has been made.
+
+## Older Setup, required to run unit tests locally
+
+The following is the older development setup.
+You'll need to follow it for running Unit Tests locally, testing a site export, running awestruct, or working on Searchisko.
 
 ### Basic Ruby install
 In this project docker and docker-compose are managed through the ruby script found at `_docker/control.rb`.
@@ -108,13 +176,6 @@ Linux:
       gem install bundler
       rbenv rehash
 
-### Project checkout
-Fork the project, then clone your fork and add the upstream repository (Please ensure you have current version of git installed).
-
-      git clone git@github.com:YOUR_USER_NAME/developers.redhat.com.git
-      cd developers.redhat.com
-      git remote add -f upstream git@github.com:redhat-developer/developers.redhat.com.git
-
 ### Secrets File Access
 In order to build the site you must request access to the secrets file (`_config/secrets.yaml.gpg`).
 This is needed so that you can access the various API keys needed to call services used in the site build.
@@ -156,122 +217,12 @@ You can discover this IP address by running `docker-machine ip default`
 
 Run `bundle install` from within the `_docker` directory to download the necessary ruby gems.
 
-### Docker-machine setup (Mac only)
-
-To run docker commands in any shell, run:
-
-       eval "$(docker-machine env default)"
-       
-You need to run this every time you start a new shell.
-
-#### Edit your docker-machine DNS servers and set 'inotify watchers'
-
-1. SSH in to the default docker machine :
-
-        docker-machine ssh default
-
-2. Configure inotify watchers:
-
-        sudo sysctl fs.inotify.max_user_watches=524288
-        sudo sysctl -p
-
-3. Edit the boot2docker profile:
-
-        sudo vi /var/lib/boot2docker/profile
-
-4. The DNS servers are specified using the `EXTRA_ARGS` variable. Some settings will not work without waiting for the Ethernet port to be ready. Replace the existing EXTRA_ARGS with the following:
-
-        EXTRA_ARGS="--insecure-registry developer.redhat.com --dns=10.5.30.160 --dns=10.11.5.19 --dns=8.8.8.8"
-
-5. After editing `/var/lib/boot2docker/profile` run `sudo /etc/init.d/docker restart`
-6. exit the boot2docker image (just type `exit` in the terminal)
-7. Restart docker-machine `docker-machine restart default`
-
-
-#### Warning about previous containers
-
-We've found that left over containers from previously failed attempts can cause problems.
-Docker will give an output on how it recommends you deal with this.
-Please follow the advice there.
-
-### Node.js install
-
-_NOTE:_ Node.js and npm both need to be installed on the host machine, not in the docker container.
-
-1. Please follow https://nodejs.org/en/ for downloads and install of node and npm. Everything should work on nodejs versions > 0.10
-2. Execute the following command to get the node environment setup:
-
-    npm install
-
-### Run the stack!
-_NOTE:_ You must be connected to the Red Hat VPN to build the Docker images.
-
-_NOTE:_ The first time to build and run the site will take a long time (upto 1hr) as a lot of docker images need to be built.
-
-Run the following commands to build the images and start the containers:
-
-      bundle exec ./control.rb -e drupal-dev --run-the-stack
-
-This starts all required services and then runs awestruct to push all the legacy pages into the Drupal server.
-On successful build, you should be able to access the site at http://docker.
-
-
-## Development Environment Setup after reboot
-Assuming you already had a functioning environment before the reboot, you need to:
-
-1. Ensure Docker is running
-2. Check you can view the site at http://docker
-
-If the above fails, you should do a "Full Rebuild of Development Environment". See next section.
-      
-
-## Full Rebuild of Development Environment (slow)
-If you need to edit an Awestruct file (not CSS or JS), you need to rebuild the whole environment.
-This is slow, so try to find an alternative if you can.
-Migrating the content to Drupal might be an option to speed up the development.
-To rebuild the full environment:
-
-     bundle exec ./control.rb -e drupal-dev --run-the-stack
-
-
-## Drupal Page Layout Changes (fast)
-If you are just making a change to the layout file of a Drupal page, follow these steps:
-
-1. Ensure the Drupal Docker container is running.
-2. Make your change(s) to the layout file(s) (*.twig files).
-3. Direct your web browser at a page affected by the change.
-4. Observe that the change has been made.
-
-
-## JavaScript and CSS Changes (fast)
-If you need to make a change to a JavaScript or CSS file, you just need to re-run Gulp (takes ~2secs) and then observe your change.
-To do this:
-
-1. Ensure the Drupal Docker container running.
-2. Make your required changes.
-3. Run `gulp` in the root of the project.
-3. Direct your web browser at a page affected by the change.
-4. Observe that the change has been made.
-
-
-## Awestruct Page Changes (slow)
-If you need to make a change to a page that is generated by Drupal (most likely a .slim or .yml file) you will need to run the full Awestruct build pipeline.
-To do this:
-
-1. Ensure the Drupal Docker container running.
-2. Make your required changes.
-3. Run `bundle exec ./control.rb -e drupal-dev -g`
-3. Direct your web browser at a page affected by the change.
-4. Observe that the change has been made.
-      
-
-## Running Unit Tests (fast)
+### Running the Unit Tests
 Run the unit tests (also available using `guard` locally).
 
       bundle exec ./control.rb -e drupal-dev -t
 
-
-## Running the Site Export
+### Running the Site Export
 The production site is actually a static export of the content offered by the (internally hosted) Drupal production server.
 
 An export process is executed in order to create the static version of the site.
@@ -285,7 +236,7 @@ bundle exec ./control.rb -e drupal-dev --export
 Once the export process has completed, you will be able to access the static HTML version of the site at http://docker:9000 on your machine.
 
 
-## Running Acceptance Tests (slow)
+### Running Acceptance Tests (slow)
 This section explains how a developer can run the front-end Acceptance Tests.
 
 To run the acceptance tests against the locally running Drupal site export, ensure the Drupal Docker container is running and the site has been exported.
@@ -319,23 +270,17 @@ Execute the following:
     rake features HOST_TO_TEST=host_you_wish_to_test
     
     
-## Drupal Configuration Changes
+### Drupal Configuration Changes
 
 The easiest way to do this is to make the necessary changes in the UI of Drupal, then export them to the `sync` directory.
 
 Exporting can be done from within the UI, then manually copying the contents of the zip file into the `sync` directory, or it can be done via drush.
 
-To use drush you will need to shell into the docker container using
-
-```
-docker exec -it drupaldev_drupal_1 /bin/bash
-```
-
-You can then export using:
+To use drush you will need to be in the `web` directory
 
 ```
 cd web
-drush config-export
+../vendor/bin/drush config-export
 ```
 
 ## Drupal Module Development
@@ -348,19 +293,7 @@ You could also attempt to use the `drush updatedb` command, though it may not pi
 New modules must have at least the basics in place and the `drupal_install_checker.rb` file updated to install the module on container build.
 
 
-## Migrating an Awestruct Page to Drupal
-To migrate a page from Awestruct to Drupal:
-
-1. Create the Drupal version of the page, but don't assign a URL alias (or assign a temporary alias)
-2. Review the Drupal version of the page
-3. Annotate the Awestruct version of the page by adding the `ignore_export: true` front matter variable to the page being exported. If the page being exported is an asciidoc page then it must be `:awestruct-ignore_export: true` instead. This will ensure that the Drupal export ignores the page and is not pushed into Drupal, whilst the legacy Awestruct CI job will still build the page.
-4. Delete the Awestruct pushed version of the page from Drupal
-5. Manually delete the old alias: Configuration -> Search and metadata -> URL Aliases -> Find the alias you want to re-use and delete it
-6. Switch the URL alias of the Drupal version of the page, to use the alias of the deleted Awestruct pushed version of the page.
-7. Wait for the Drupal site to be exported, this will take about an hour for it to show up. 
-
-
-## secrets.gpg management
+## secrets.gpg management (being phased out)
 This sections describes how a member of the Red Hat Developers Engineering team can grant access to the secrets file for new developers.
 
 The `secrets.yaml.gpg` file is encrypted using GPG with multiple recipients.
