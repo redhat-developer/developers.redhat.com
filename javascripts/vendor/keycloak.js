@@ -989,36 +989,21 @@
                 return new PersistentStorage();
             }
             var ps = this;
-            var useCookieStorage = function () {
-                if (typeof localStorage === "undefined") {
-                    return true;
-                }
-                try {
-                    var key = '@@keycloak-session-storage/test';
-                    localStorage.setItem(key, 'test');
-                    localStorage.removeItem(key);
-                    return false;
-                } catch (err) {
-                    // Probably in Safari "private mode" where localStorage
-                    // quota is 0, or quota exceeded. Switching to cookie
-                    // storage.
-                    return true;
-                }
-            }
+            var useLocalStorage = storageAvailable('localStorage');
 
             ps.setItem = function(key, value) {
-                if (useCookieStorage()) {
-                    setCookie(key, value, cookieExpiration(5));
-                } else {
+                if (useLocalStorage) {
                     localStorage.setItem(key, value);
+                } else {
+                    setCookie(key, value, cookieExpiration(5));
                 }
             }
 
             ps.getItem = function(key) {
-                if (useCookieStorage()) {
-                    return getCookie(key);
+                if (useLocalStorage) {
+                    return localStorage.getItem(key);
                 }
-                return localStorage.getItem(key);
+                return getCookie(key);
             }
 
             ps.removeItem = function(key) {
@@ -1164,6 +1149,19 @@
 
         if ( typeof define === "function" && define.amd ) {
             define( "keycloak", [], function () { return Keycloak; } );
+        }
+    }
+
+    function storageAvailable(type) {
+        try {
+            var storage = window[type],
+            x = '__storage_test__';
+            storage.setItem(x, x);
+            storage.removeItem(x);
+            return true;
+        }
+        catch(e) {
+            return false;
         }
     }
 })( window );
