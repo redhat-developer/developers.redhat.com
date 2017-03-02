@@ -14,12 +14,6 @@ class Options
       opts.banner = 'Usage: control.rb [options]'
       opts.separator 'Specific options:'
 
-      docker_message = "Docker client connection info (i.e. tcp://example.com:1000). "\
-                       "DOCKER_HOST used if parameter not provided"
-      opts.on('-d', '--docker CONNECTION_INFO', String, docker_message) do |d|
-        tasks[:docker] = d
-      end
-
       opts.on('-e ENVIRONMENT', String, 'The environment in which to operate (default: drupal-dev)') do | environment |
         tasks[:environment_name] = environment
       end
@@ -79,20 +73,6 @@ class Options
         tasks[:decrypt] = true
         tasks[:awestruct_command_args] = ['--rm', '--service-ports', 'awestruct', "rake git_setup clean preview[docker]"]
         tasks[:supporting_services] = []
-      end
-
-      opts.on('--stage-pr PR_NUMBER', Integer, 'build for PR Staging') do |pr|
-        tasks[:awestruct_command_args] = ["--rm", "--service-ports", "awestruct", "bundle exec rake create_pr_dirs[pr,build,#{pr}] clean deploy[staging_docker]"]
-        tasks[:kill_all] = true
-        tasks[:build] = true
-        tasks[:unit_tests] = unit_test_tasks
-      end
-
-      opts.on('--docker-pr-reap', 'Reap Old Pull Requests') do |pr|
-        tasks[:awestruct_command_args] = ["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"]
-        tasks[:supporting_services] = []
-        tasks[:build] = true
-        tasks[:docker_pull] = false
       end
 
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|

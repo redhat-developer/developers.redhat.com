@@ -1,0 +1,12 @@
+require_relative '../../process_runner'
+require_relative 'pull_requests'
+require_relative 'pull_request_cleaner'
+
+github_api_token = ENV['github_status_api_token']
+Kernel.abort('The environment variable \'github_status_api_token\' is not set. I cannot connect to the GitHub API!') if github_api_token.nil? || github_api_token.empty?
+
+docker_env_directory = File.join(File.dirname(__FILE__),'../../../environments/drupal-pull-request')
+
+pull_requests = PullRequests.new('redhat-developer/developers.redhat.com', github_api_token)
+pull_request_cleaner = PullRequestCleaner.new(pull_requests, ProcessRunner.new, docker_env_directory)
+pull_request_cleaner.clean_up_closed_pull_requests
