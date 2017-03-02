@@ -5,6 +5,15 @@ dependencies:
   config:
     - workbench_moderation.moderation_state.draft
     - workbench_moderation.moderation_state.needs_review
+  module:
+    - workbench_email
+  enforced:
+    config:
+      - workbench_email.workbench_email_template.ready_for_review
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      ready_for_review: ready_for_review
 _core:
   default_config_hash: p6eas0aLuO28hEMmbcOu_2s8Ht7xJpvkVP5ihosF0KI
 id: draft_needs_review

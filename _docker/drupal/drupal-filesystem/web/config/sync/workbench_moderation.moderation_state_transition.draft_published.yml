@@ -5,6 +5,15 @@ dependencies:
   config:
     - workbench_moderation.moderation_state.draft
     - workbench_moderation.moderation_state.published
+  module:
+    - workbench_email
+  enforced:
+    config:
+      - workbench_email.workbench_email_template.published
+third_party_settings:
+  workbench_email:
+    workbench_email_templates:
+      published: published
 _core:
   default_config_hash: qTergiISOB-CWMTXkWxPk2qgmA2r9iviwM0iw93UmlU
 id: draft_published
