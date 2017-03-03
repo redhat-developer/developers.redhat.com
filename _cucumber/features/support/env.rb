@@ -96,7 +96,7 @@ Before('@stubbed') do |scenario|
                        developers.stage.redhat.com redhat.sc.omtrdc.net s.ytimg.com dpm.demdex.net dpal-itmarketing.itos.redhat.com issues.jboss.org redhat.tt.omtrdc.net youtube.com
                        ad.atdmt.com ajax.googleapis.com b.scorecardresearch.com cdn.atlassbx.com cdn.sstatic.net clc.stackoverflow.com dt.adsafeprotected.com edge.quantserve.com engine.adzerk.net
                        fw.adsafeprotected.com i.stack.imgur.com pixel.quantserve.com sc.iasds01.com sig.atdmt.com ssum-sec.casalemedia.com stackoverflow.com static.adzerk.net google-analytics.co gravatar.com
-                       google-analytics.com gravatar.com ad.doubleclick.net i.ytimg.com)
+                       google-analytics.com gravatar.com ad.doubleclick.net i.ytimg.com www.facebook.com connect.facebook.net)
       c.persist_cache = true
       c.proxy_host = $host_to_test
       feature_name = scenario.feature.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')

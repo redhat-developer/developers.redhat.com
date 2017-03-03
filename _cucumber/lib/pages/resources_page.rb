@@ -2,8 +2,6 @@ require_relative 'abstract/standardised_search'
 
 # this is the page class that contains all elements and common methods related to the Resources page
 class ResourcesPage < StandardisedSearch
-  page_url('/resources')
-  expected_element(:h2, text: 'Resources')
 
   element(:blog_posts)             { |b| b.element(xpath: "//*[@id='blogposts']") }
   element(:book)                   { |b| b.element(xpath: "//*[@id='book']") }
@@ -17,6 +15,13 @@ class ResourcesPage < StandardisedSearch
   element(:publish_date)           { |b| b.select_list(class: 'publish-date') }
   elements(:result_date)           { |b| b.spans(css: '.result-details .created-date') }
   elements(:result_tags)           { |b| b.spans(class: 'tag') }
+
+  def go_to_resources
+    open('/')
+    @browser.a(text: /HELP/).wait_until(timeout: 90, &:present?).hover
+    @browser.a(text: /Resources/).click
+    wait_for_results
+  end
 
   def filter_by(type)
     element = send("#{type.downcase.tr(' ', '_')}")

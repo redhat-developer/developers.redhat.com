@@ -1,0 +1,191 @@
+---
+:scope: 
+:url: https://dcp.stage.jboss.org/v2/rest/search/developer_materials?from=0&newFirst=true&project=&query=&query_highlight=true&size10=true&type=jbossdeveloper_quickstart&type=jbossdeveloper_demo&type=jbossdeveloper_bom&type=jbossdeveloper_archetype&type=jbossdeveloper_example&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=jbossorg_blog
+:body: ''
+:status: 200
+:method: get
+:headers:
+  Server: Apache-Coyote/1.1
+  Pragma: No-cache
+  Cache-Control: no-cache
+  Expires: Wed, 31 Dec 1969 19:00:00 EST
+  Access-Control-Allow-Origin: https://developers.stage.redhat.com
+  Content-Type: application/json
+  Date: Sat, 18 Feb 2017 20:41:46 GMT
+  Connection: close
+  Set-Cookie: BigIP.dcp.stage.jboss.org=rd221o00000000000000000000ffff0a196a37o8080;
+    path=/
+:content: '{
+                               	"uuid": "c7ef4f14-504e-4fc1-a2fc-cc6cb7d11b17",
+                               	"took": 1,
+                               	"timed_out": false,
+                               	"_shards": {
+                               		"total": 33,
+                               		"successful": 33,
+                               		"failed": 0
+                               	},
+                               	"hits": {
+                                		"total": 50,
+                                		"max_score": null,
+                                		"hits": [{
+                                			"_index": "data_jbossorg_blog",
+                                			"_type": "jbossorg_blogpost",
+                                			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                			"_score": null,
+                                			"fields": {
+                                				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                				"sys_type": ["blogpost"],
+                                				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                				"sys_title": ["Java"]
+                                			},
+                                			"sort": [1484273991000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                               			"_type": "data_jbossorg_blog",
+                               			"_id": "jbossdeveloper_youtube-2-f5LRHVozQ",
+                               			"_score": null,
+                               			"_index": "data_jbossorg_blog",
+                                                    			"_type": "jbossorg_blogpost",
+                                                    			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                    			"_score": null,
+                                                    			"fields": {
+                                                    				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                    				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                    				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                    				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                    				"sys_type": ["blogpost"],
+                                                    				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                    				"sys_title": ["Containers"]
+                                                    			},
+                               			"sort": [1480702374000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                                                                        			"_type": "jbossorg_blogpost",
+                                                                        			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                                        			"_score": null,
+                                                                        			"fields": {
+                                                                        				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                                        				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                                        				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                                        				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                                        				"sys_type": ["blogpost"],
+                                                                        				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                                        				"sys_title": ["Java"]
+                                                                        			},
+                               			"sort": [1480702155000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                                                                                            			"_type": "jbossorg_blogpost",
+                                                                                            			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                                                            			"_score": null,
+                                                                                            			"fields": {
+                                                                                            				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                                                            				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                                                            				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                                                            				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                                                            				"sys_type": ["blogpost"],
+                                                                                            				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                                                            				"sys_title": ["Containers"]
+                                                                                            			},
+                               			"sort": [1480702034000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                                                                                                                			"_type": "jbossorg_blogpost",
+                                                                                                                			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                                                                                			"_score": null,
+                                                                                                                			"fields": {
+                                                                                                                				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                                                                                				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                                                                                				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                                                                                				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                                                                                				"sys_type": ["blogpost"],
+                                                                                                                				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                                                                                				"sys_title": ["Java"]
+                                                                                                                			},
+                               			"sort": [1480701901000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                                                                                                                			"_type": "jbossorg_blogpost",
+                                                                                                                			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                                                                                			"_score": null,
+                                                                                                                			"fields": {
+                                                                                                                				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                                                                                				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                                                                                				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                                                                                				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                                                                                				"sys_type": ["blogpost"],
+                                                                                                                				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                                                                                				"sys_title": ["Containers"]
+                                                                                                                			},
+                               			"sort": [1480701767000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                                                                                                                			"_type": "jbossorg_blogpost",
+                                                                                                                			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                                                                                			"_score": null,
+                                                                                                                			"fields": {
+                                                                                                                				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                                                                                				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                                                                                				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                                                                                				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                                                                                				"sys_type": ["blogpost"],
+                                                                                                                				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                                                                                				"sys_title": ["Java"]
+                                                                                                                			},
+                               			"sort": [1480701685000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                                                                                                                			"_type": "jbossorg_blogpost",
+                                                                                                                			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                                                                                			"_score": null,
+                                                                                                                			"fields": {
+                                                                                                                				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                                                                                				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                                                                                				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                                                                                				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                                                                                				"sys_type": ["blogpost"],
+                                                                                                                				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                                                                                				"sys_title": ["Containers"]
+                                                                                                                			},
+                               			"sort": [1480701607000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                                                                                                                			"_type": "jbossorg_blogpost",
+                                                                                                                			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                                                                                			"_score": null,
+                                                                                                                			"fields": {
+                                                                                                                				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                                                                                				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                                                                                				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                                                                                				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                                                                                				"sys_type": ["blogpost"],
+                                                                                                                				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                                                                                				"sys_title": ["Containers"]
+                                                                                                                			},
+                               			"sort": [1480701451000]
+                               		}, {
+                               			"_index": "data_jbossorg_blog",
+                                                                                                                			"_type": "jbossorg_blogpost",
+                                                                                                                			"_id": "jbossorg_blog-starting_a_kubernetes_1_5_x_cluster",
+                                                                                                                			"_score": null,
+                                                                                                                			"fields": {
+                                                                                                                				"sys_url_view": ["http://feedproxy.google.com/~r/MilesToGo/~3/9XiJjLnmH5I/"],
+                                                                                                                				"sys_created": ["2017-01-13T02:19:51.000Z"],
+                                                                                                                				"sys_description": ["Kubernetes 1.5.0 was released just about a month ago! Key theme for the release are: StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for plugg..."],
+                                                                                                                				"sys_contributors": ["Arun Gupta <arun.gupta@gmail.com>"],
+                                                                                                                				"sys_type": ["blogpost"],
+                                                                                                                				"sys_tags": ["aws", "Containers", "feed_group_name_jbossas", "feed_name_arungupta", "Kubernetes"],
+                                                                                                                				"sys_title": ["Containers"]
+                                                                                                                			},
+                               			"sort": [1480701241000]
+                               		}]
+                               	},
+                               	"aggregations": {
+                               		"format": {
+                               			"doc_count": 32647
+                               		}
+                               	}
+                               }'

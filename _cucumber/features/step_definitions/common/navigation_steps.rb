@@ -15,7 +15,9 @@ Given(/^I am on the ([^"]*) page$/) do |page|
     when 'stack overflow'
       visit(StackOverflowPage).wait_for_results
     when 'resources'
-      visit(ResourcesPage).wait_for_results
+      on (ResourcesPage) do |p|
+        p.go_to_resources
+      end
     when 'product forums'
       visit(ForumsPage)
     when 'edit details'

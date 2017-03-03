@@ -2,6 +2,7 @@ Then(/^the search results page is displayed$/) do
   on SearchPage do |page|
     page.wait_until_loaded
   end
+  puts @browser.url
 end
 
 Then(/^the search box should contain "([^"]*)"$/) do |search_term|
