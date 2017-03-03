@@ -4,7 +4,7 @@ require_relative 'pull_request_cleaner'
 
 # We need to bind this env value as the docker-compose.yml for the PR environment expects it to be there.
 # Without it the docker-compose.yml is invalid. This won't cause any issues as we do not run any containers here.
-ENV['DRUPAL_HOST_PORT']= 9999
+ENV['DRUPAL_HOST_PORT']= '9999'
 
 github_api_token = ENV['github_status_api_token']
 Kernel.abort('The environment variable \'github_status_api_token\' is not set. I cannot connect to the GitHub API!') if github_api_token.nil? || github_api_token.empty?

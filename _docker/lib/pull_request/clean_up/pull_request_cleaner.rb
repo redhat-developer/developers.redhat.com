@@ -1,3 +1,4 @@
+require 'tmpdir'
 
 require_relative 'pull_requests'
 require_relative '../../default_logger'
