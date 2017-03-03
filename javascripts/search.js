@@ -94,8 +94,8 @@ search.filter('type', function() {
       quickstart_early_access: 'Demo',
       jbossdeveloper_example: 'Get Started',
       jbossdeveloper_event: 'Event',
-      jbossorg_sbs_forum: 'Forum',
-      forumthread: 'Forum',
+      jbossorg_sbs_forum: 'Forum Thread',
+      forumthread: 'Forum Thread',
       stackoverflow_thread: 'Stack Overflow',
       webpage: 'Webpage'
     }
