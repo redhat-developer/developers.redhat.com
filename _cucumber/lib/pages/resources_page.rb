@@ -18,7 +18,13 @@ class ResourcesPage < StandardisedSearch
 
   def go_to_resources
     open('/')
-    @browser.a(text: /HELP/).wait_until(timeout: 90, &:present?).hover
+    toggle_menu
+
+    if ENV['DEVICE'].nil?
+      @browser.a(text: /HELP/).wait_until(timeout: 60, &:present?).hover
+    else
+      @browser.a(text: /HELP/).wait_until(timeout: 60, &:present?).click
+    end
     @browser.a(text: /Resources/).click
     wait_for_results
   end
