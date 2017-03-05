@@ -1,0 +1,40 @@
+{
+  "name": "developers.redhat.com",
+  "version": "1.0.0",
+  "description": "developers.redhat.com build",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no tests specified\" && exit 1"
+  },
+  "author": "Red Hat Inc.",
+  "license": "",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "eslint": "^3.16.1",
+    "eslint-plugin-typescript": "^0.1.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-debug": "^3.1.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-if": "^2.0.2",
+    "gulp-inject-string": "^1.1.0",
+    "gulp-jasmine": "^2.4.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-typescript": "^3.1.5",
+    "gulp-watch": "^4.3.11",
+    "jasmine": "^2.5.3",
+    "node-sass": "^4.5.0",
+    "node-sass-utils": "^1.1.2",
+    "phantomjs": "^2.1.7",
+    "rollup": "^0.41.4",
+    "rollup-plugin-typescript2": "^0.1.2",
+    "store": "^2.0.3",
+    "typescript": "^2.2.1",
+    "typescript-eslint-parser": "^2.0.0"
+  }
+}
