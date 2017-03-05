@@ -8,7 +8,7 @@ var jasmine = require('gulp-jasmine');
 var watch = require('gulp-watch');
 var ts = require("gulp-typescript");
 var tsProject = ts.createProject("frontend/tsconfig.json");
-var eslint = require('gulp-eslint');
+//var eslint = require('gulp-eslint');
 var gulpIf = require('gulp-if');
 
 var rollup = require('rollup').rollup;
@@ -164,44 +164,44 @@ gulp.task("ts", function () {
     .js.pipe(gulp.dest("frontend/dist"));
 });
 
-gulp.task('lint', function() {
-    // ESLint ignores files with "node_modules" paths.
-    // So, it's best to have gulp ignore the directory as well.
-    // Also, Be sure to return the stream from the task;
-    // Otherwise, the task may end before the stream has finished.
-    return gulp.src([
-        'frontend/js/**/*.js',
-        '!frontend/js/foundation/**',
-        '!frontend/js/vendor/**'
-    ])
-        // eslint() attaches the lint output to the "eslint" property
-        // of the file object so it can be used by other modules.
-        .pipe(eslint({fix: true}))
-        // eslint.format() outputs the lint results to the console.
-        // Alternatively use eslint.formatEach() (see Docs).
-        .pipe(eslint.format())
-        .pipe(gulp.dest('frontend/dist/js'))
-        // To have the process exit with an error code (1) on
-        // lint error, return the stream and pipe to failAfterError last.
-        .pipe(eslint.failAfterError());
-});
+// gulp.task('lint', function() {
+//     // ESLint ignores files with "node_modules" paths.
+//     // So, it's best to have gulp ignore the directory as well.
+//     // Also, Be sure to return the stream from the task;
+//     // Otherwise, the task may end before the stream has finished.
+//     return gulp.src([
+//         'frontend/js/**/*.js',
+//         '!frontend/js/foundation/**',
+//         '!frontend/js/vendor/**'
+//     ])
+//         // eslint() attaches the lint output to the "eslint" property
+//         // of the file object so it can be used by other modules.
+//         .pipe(eslint({fix: true}))
+//         // eslint.format() outputs the lint results to the console.
+//         // Alternatively use eslint.formatEach() (see Docs).
+//         .pipe(eslint.format())
+//         .pipe(gulp.dest('frontend/dist/js'))
+//         // To have the process exit with an error code (1) on
+//         // lint error, return the stream and pipe to failAfterError last.
+//         .pipe(eslint.failAfterError());
+// });
 
-function isFixed(file) {
-	// Has ESLint fixed the file contents?
-    return file.eslint !== null && file.eslint.fixed;
-}
+// function isFixed(file) {
+// 	// Has ESLint fixed the file contents?
+//     return file.eslint !== null && file.eslint.fixed;
+// }
 
-gulp.task('lint-n-fix', function() {
-    return gulp.src([
-        'frontend/js/**/*.js',
-        '!frontend/js/foundation/**',
-        '!frontend/js/vendor/**'
-    ])
-    .pipe(eslint({fix: true}))
-    .pipe(eslint.format())
-    // if fixed, write the file to dest
-    .pipe(gulpIf(isFixed, gulp.dest('frontend/dist/js')));
-});
+// gulp.task('lint-n-fix', function() {
+//     return gulp.src([
+//         'frontend/js/**/*.js',
+//         '!frontend/js/foundation/**',
+//         '!frontend/js/vendor/**'
+//     ])
+//     .pipe(eslint({fix: true}))
+//     .pipe(eslint.format())
+//     // if fixed, write the file to dest
+//     .pipe(gulpIf(isFixed, gulp.dest('frontend/dist/js')));
+// });
 
 gulp.task('clean', function() {
     return del(['_docker/drupal/drupal-filesystem/web/web/themes/custom/rhd/css/base/*.css',
