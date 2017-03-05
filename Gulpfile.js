@@ -208,5 +208,5 @@ gulp.task('clean', function() {
         '_docker/drupal/drupal-filesystem/web/web/themes/custom/rhd/js/all.min.js']);
 });
 
-gulp.task('default', ['clean', 'test', 'scripts', 'styles']);
+gulp.task('default', ['clean', 'scripts', 'styles']);
 
