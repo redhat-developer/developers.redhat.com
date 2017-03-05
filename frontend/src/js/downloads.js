@@ -1,220 +1,228 @@
+"use strict";
+/* global app, moment */
 app.downloads = {};
 
 app.downloads.url = app.downloadManagerBaseUrl + '/download-manager/rest/available/';
 
 app.downloads.createDownloadTable = function(products) {
+    var lastVersionName, lastDescription, row,
+        $table = $('<table>').addClass('large-24 small-24 columns downloads-table'),
+        // create headers
+        headers = ['Version', 'Release Date', 'Description', 'Download'].map(function(text) {
+            return $('<th>').text(text);
+        });
+    var head = $('<thead>');
 
-  var lastVersionName, lastDescription, row;
-  var $table = $('<table>').addClass('large-24 small-24 columns downloads-table');
-
-  // create headers
-  var headers = ['Version' ,'Release Date' ,'Description' ,'Download'].map(function(text){
-    return $('<th>').text(text);
-  });
-
-  var head = $('<thead>');
-  row = $('<tr>').append(headers);
-  head.append(row);
-  $table.append(head);
+    row = $('<tr>').append(headers);
+    head.append(row);
+    $table.append(head);
 
   // clear out row after it's appended
-  row = null;
+    row = null;
 
   // loop over each product and append to the table
-  $.each(products, function(i,product){
+    $.each(products, function(i, product){
 
     // loop over each file inside each product
-    $.each(product.files,function(j,file) {
+        $.each(product.files, function(j, file) {
 
-      var versionName = product.versionName;
-      var date = new Date(product.releaseDate);
-      var dateString = ([date.getFullYear(), date.getMonth() + 1, date.getDate()].map(function(int) {
-        return (int < 10 ? '0' + int : int);
-      })).join('-');
+            var versionName = product.versionName;
+            var date = new Date(product.releaseDate);
+            var dateArray = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
+            var dateMap = function(int) { return int < 10 ? '0' + int : int; }
+            var dateString = (dateArray.map(dateMap)).join('-');
 
-      if(versionName === lastVersionName) {
-        versionName = '';
-        dateString = '';
-      }
+            if (versionName === lastVersionName) {
+                versionName = '';
+                dateString = '';
+            }
 
       // TODO: CHeck for last item
-      if(file.description !== lastDescription) {
-        row = $('<tr>').append(
+            if (file.description !== lastDescription) {
+                row = $('<tr>').append(
           $('<td>').text(versionName),
           $('<td>').text(dateString),
           $('<td>').text(file.description),
           $('<td>').addClass('download-links link-sm').append(app.downloads.createInstallerLink(file))
         );
 
-      } else {
-        var link = app.downloads.createInstallerLink(file);
-        $(row).find('.download-links').append(link);
-      }
+            } else {
+                var link = app.downloads.createInstallerLink(file);
+                $(row).find('.download-links').append(link);
+            }
 
       // if the next one isn't the same, or it's the last item, append it..
-      if((j + 1) === product.files.length || file.description !== lastDescription) {
-        $table.append(row);
-      }
+            if (j + 1 === product.files.length || file.description !== lastDescription) {
+                $table.append(row);
+            }
 
-      lastVersionName = product.versionName;
-      lastDescription = file.description;
+            lastVersionName = product.versionName;
+            lastDescription = file.description;
 
-    }); // end each file
+        }); // end each file
 
-  }); // end each product
+    }); // end each product
 
   // put it in the dom
-  return $table;
+    return $table;
 
 
 }
 
 app.downloads.bytesToSize = function(bytes) {
-   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-   if (bytes == 0) return '0 Byte';
-   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    var i;
+    if (bytes === 0) { return '0 Byte'; }
+    i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 };
 
 /*
   Creates large "Download" link above table
 */
 app.downloads.createDownloadLink = function(data) {
-  if(!data[0].featuredArtifact) {
-    return "";
-  }
+    var $downloadLink = "";
+    if (data[0].featuredArtifact) {
   // Pull the first one from the sorted array
-  var $downloadLink = $('<div class="large-8 columns">').addClass('download-link').append(
-    $('<a class="button">').attr('href', data[0].featuredArtifact.url).text(' Download').prepend(
-      $('<i>').addClass('fa fa-download')
-    ),
-    $('<div class="version-name">').text(data[0].name + ' ' + data[0].featuredArtifact.versionName)
-  );
-  return $downloadLink;
+        $downloadLink = $('<div class="large-8 columns download-link">' +
+          '<i class="fa fa-download"></i> ' +
+          '<a class="button" href="'+data[0].featuredArtifact.url+'">Download</a>' +
+          '<div class="version-name">'+data[0].name+' '+data[0].featuredArtifact.versionName+'</div>');
+  //       $downloadLink = $('<div class="large-8 columns">')
+  //         .addClass('download-link')
+  //         .append($('<a class="button">')
+  //              .attr('href', data[0].featuredArtifact.url)
+  //              .text(' Download')
+  //              .prepend($('<i>')
+  //              .addClass('fa fa-download')),
+  //            $('<div class="version-name">').text(data[0].name + ' ' + data[0].featuredArtifact.versionName)
+  //        );
+    }
+    return $downloadLink;
 }
 
 /*
   Creates Release Notes Link
 */
-
 app.downloads.createReleaseNotesLink = function() {
-  var link = $('<a>').text(' View Release Notes').attr('href', 'https://access.redhat.com/documentation/en/').prepend($('<i>').addClass('fa fa-pencil'));
-  return link;
+    var link = $('<i class="fa fa-pencil"></i> <a href="https://access.redhat.com/documentation/en/">View Release Notes</a>');
+    return link;
 }
 
 /*
   Creates smaller installer link in the grouped table
 */
-
 app.downloads.createInstallerLink = function(file) {
-  var label = ' ' + file.label;
-  if(file.fileSize) {
-    label += ' (' + app.downloads.bytesToSize(file.fileSize) + ')';
-  }
-  var link = $('<a>').text(label).attr('href',file.url).prepend($('<i>').addClass('fa fa-download'));
-  return link;
+    var label = ' ' + file.label, link;
+    if (file.fileSize) {
+        label += ' (' + app.downloads.bytesToSize(file.fileSize) + ')';
+    }
+    link = $('<i class="fa fa-download"></i><a href="'+file.url+'">'+label+'</a>');
+    return link;
 }
 
 app.downloads.display = function(data) {
 
   // Sort products by their release date
-  var productArray = data[0].productVersions.sort(function(a,b) {
-    return (a.releaseDate > b.releaseDate) ? -1 : 1;
-  });
-
-  // create a download link
-  var $downloadLink = app.downloads.createDownloadLink(data);
+    var productArray = data[0].productVersions.sort(function(a, b) {
+            return a.releaseDate > b.releaseDate ? -1 : 1;
+        }),
+    // create a download link
+        $downloadLink = app.downloads.createDownloadLink(data),
+        i, match, end, currentDownloads, $latestDownloadsTables,
+        $allDownloadsTable, $downloads;
 
   // create toggle Link
-  var $toggleLink = $('<a>').text('View Older Downloads ▾').addClass('large-24 columns view-older-downloads').attr('href', '#').on('click touchstart',function(e) {
-    e.preventDefault();
-    $(this).next('table').toggle();
-  });
+    var $toggleLink = $('<a>').text('View Older Downloads ▾').addClass('large-24 columns view-older-downloads').attr('href', '#').on('click touchstart', function(e) {
+        e.preventDefault();
+        $(this).next('table').toggle();
+    });
 
   // We split this into two parts - everything up to and including the latest GA, and everything after it
-  for (var i = 0; i < productArray.length; i++) {
-    var match = productArray[i].versionName.match(/alpha|beta/gi);
-    if(!match) {
-      break;
+    for (i = 0; i < productArray.length; i++) {
+        match = productArray[i].versionName.match(/alpha|beta/gi);
+        if (!match) {
+            break;
+        }
     }
-  };
 
-  var end = i + 1;
+    end = i + 1;
 
   // create the featured downloads tables
-  var currentDownloads = productArray.slice(0,end);
+    currentDownloads = productArray.slice(0, end);
 
   /* loop through all the curent downloads and make their own table */
-  var $latestDownloadsTables = $("<div>").addClass('large-24 columns');
-  currentDownloads.forEach(function(product){
-    console.log(product);
-    $latestDownloadsTables.append( app.downloads.createDownloadTable([product]) );
-  });
+    $latestDownloadsTables = $("<div>").addClass('large-24 columns');
+    currentDownloads.forEach(function(product){
+        //console.log(product);
+        $latestDownloadsTables.append( app.downloads.createDownloadTable([product]) );
+    });
 
   // var $latestDownloadsTable = app.downloads.createDownloadTable();
 
   // past downloads table
-  var $allDownloadsTable = app.downloads.createDownloadTable(productArray.slice(end));
+    $allDownloadsTable = app.downloads.createDownloadTable(productArray.slice(end));
 
   // put everything into an element
-  $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTables, $toggleLink, $allDownloadsTable)
+    $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTables, $toggleLink, $allDownloadsTable)
 
   // put it into the DOM
-  $('.product-downloads').html($downloads);
+    $('.product-downloads').html($downloads);
 
-  $("div.download-loading").removeClass('loading');
+    $("div.download-loading").removeClass('loading');
 
 }
 
 app.downloads.populateLinks = function() {
 
-  var links = $('[data-download-id]');
+    var links = $('[data-download-id]');
 
-  if(!links.length) {
-    return;
-  }
+    if (!links.length) {
+        return;
+    }
 
-  $.each(links,function(i,el) {
-    var productCode = $(this).data('download-id');
+    $.each(links, function(i, el) {
+        var productCode = $(this).data('download-id'),
+            timeStamp, releaseDate;
     // get data
-    $.getJSON(app.downloads.url + productCode,function(data) {
-      var $el = $(el);
-      $el.html('<i class="fa fa-download"></i> Download');
+        $.getJSON(app.downloads.url + productCode, function(data) {
+            var $el = $(el);
+            $el.html('<i class="fa fa-download"></i> Download');
 
-      if(data[0] && data[0].featuredArtifact && data[0].featuredArtifact.url) {
+            if (data[0] && data[0].featuredArtifact && data[0].featuredArtifact.url) {
         // find the date:
-        var timeStamp = new Date(data[0].featuredArtifact.releaseDate);
-        var releaseDate = moment(timeStamp).format('LL');
+                timeStamp = new Date(data[0].featuredArtifact.releaseDate);
+                releaseDate = moment(timeStamp).format('LL');
 
-        $el.attr('href',data[0].featuredArtifact.url);
-        $('[data-download-id-version="'+productCode+'"]').text('Version: ' + data[0].featuredArtifact.versionName);
-        $('[data-download-id-release="'+productCode+'"]').text(releaseDate);
-      } else {
-        $el.attr('href', $el.data('fallback-url'));
-      }
+                $el.attr('href', data[0].featuredArtifact.url);
+                $('[data-download-id-version="'+productCode+'"]').text('Version: ' + data[0].featuredArtifact.versionName);
+                $('[data-download-id-release="'+productCode+'"]').text(releaseDate);
+            } else {
+                $el.attr('href', $el.data('fallback-url'));
+            }
+        });
     });
-  });
 
 }
 
 $(function() {
 
-  var $productDownloads = $('[data-product-code]');
-  var productCode = $productDownloads.data('product-code');
+    var $productDownloads = $('[data-product-code]');
+    var productCode = $productDownloads.data('product-code');
 
-  if($productDownloads && productCode) {
-    $.getJSON(app.downloads.url + productCode,function(data) {
-      if(!data.length) {
-        $("div.download-loading").removeClass('loading');
-        $('.no-download').show();
-        return;
-      }
-      $('.has-download').show();
-      app.downloads.display(data);
-    });
+    if ($productDownloads && productCode) {
+        $.getJSON(app.downloads.url + productCode, function(data) {
+            if (!data.length) {
+                $("div.download-loading").removeClass('loading');
+                $('.no-download').show();
+                return;
+            }
+            $('.has-download').show();
+            app.downloads.display(data);
+        });
 
-  }
+    }
 
-  app.downloads.populateLinks();
+    app.downloads.populateLinks();
 
 });

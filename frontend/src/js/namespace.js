@@ -2,7 +2,7 @@
  * Set up namespace and static vars
  */
 
-var app = window.app = {};
+window.app = window.app = {};
 
 /*
   Base URL
@@ -85,13 +85,11 @@ app.dcp.thumbnails = {
 */
 app.products = #{JSON.dump(site.products.keys.inject({}) {|map, product| map[product] = {upstream: site.products[product]['upstream_projects'], stackoverflow: site.products[product]['stackoverflow_tags'], buzz_tags: site.products[product]['buzz_tags'] || '_none'}; map; })};
 
-
 /*
  * Marketing ops
  */
 app.mktg_ops = {};
 app.mktg_ops.elqFormName = "#{site.elq_form_name || %Q{jboss-org-integration-sandbox}}";
-
 
 /*
  * Keycloak Config

@@ -1,14 +1,16 @@
-/* 
-  Social Media Share Buttons 
+"use strict";
+/* global Socialite */
+/*
+  Social Media Share Buttons
 */
 $(function() {
-  $('.share-this').on('click mouseover', function() {
-      Socialite.load(this);
-  });
+    $('.share-this').on('click mouseover', function() {
+        Socialite.load(this);
+    });
 
-  $('.share-this.visible-by-default').each(function() {
-      Socialite.load(this);
-  });
+    $('.share-this.visible-by-default').each(function() {
+        Socialite.load(this);
+    });
 
 });
 

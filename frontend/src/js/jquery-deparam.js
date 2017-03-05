@@ -1,38 +1,40 @@
+"use strict";
 (function(deparam){
+    var jquery, global;
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
-        var jquery = require('jquery');
+        jquery = require('jquery');
         module.exports = deparam(jquery);
     } else if (typeof define === 'function' && define.amd){
         define(['jquery'], function(jquery){
             return deparam(jquery);
         });
     } else {
-        var global = (false || eval)('this');
+        global = (false || eval)('this');
         global.deparam = deparam(jQuery); // assume jQuery is in global namespace
     }
-})(function ($) {
+}(function ($) {
     return function( params, coerce ) {
         var obj = {},
-        coerce_types = { 'true': !0, 'false': !1, 'null': null };
+            coerce_types = {'true': !0, 'false': !1, 'null': null};
 
         // Iterate over all name=value pairs.
-        $.each( params.replace( /\+/g, ' ' ).split( '&' ), function(j,v){
+        $.each( params.replace( /\+/g, ' ' ).split( '&' ), function(j, v){
             var param = v.split( '=' ),
-            key = decodeURIComponent( param[0] ),
-            val,
-            cur = obj,
-            i = 0,
+                key = decodeURIComponent( param[0] ),
+                val,
+                cur = obj,
+                i = 0,
 
             // If key is more complex than 'foo', like 'a[]' or 'a[b][c]', split it
             // into its component parts.
-            keys = key.split( '][' ),
-            keys_last = keys.length - 1;
+                keys = key.split( '][' ),
+                keys_last = keys.length - 1;
 
             // If the first keys part contains [ and the last ends with ], then []
             // are correctly balanced.
-            if ( /\[/.test( keys[0] ) && /\]$/.test( keys[ keys_last ] ) ) {
+            if ( /\[/.test( keys[0] ) && /\]$/.test( keys[keys_last] ) ) {
                 // Remove the trailing ] from the last keys part.
-                keys[ keys_last ] = keys[ keys_last ].replace( /\]$/, '' );
+                keys[keys_last] = keys[keys_last].replace( /\]$/, '' );
 
                 // Split first keys part into two parts on the [ and add them back onto
                 // the beginning of the keys array.
@@ -50,8 +52,8 @@
 
                 // Coerce values.
                 if ( coerce ) {
-                    val = val && !isNaN(val)            ? +val              // number
-                    : val === 'undefined'             ? undefined         // undefined
+                    val = val && !isNaN(val) ? Number(val)              // number
+                    : val === 'undefined' ? undefined         // undefined
                     : coerce_types[val] !== undefined ? coerce_types[val] // true, false, null
                     : val;                                                // string
                 }
@@ -59,7 +61,7 @@
                 if ( keys_last ) {
                     // Complex key, build deep object structure based on a few rules:
                     // * The 'cur' pointer starts at the object top-level.
-                    // * [] = array push (n is set to array length), [n] = array if n is 
+                    // * [] = array push (n is set to array length), [n] = array if n is
                     //   numeric, otherwise object.
                     // * If at the last keys part, set the value.
                     // * For each keys part, if the current level is undefined create an
@@ -84,7 +86,7 @@
                     } else if ( obj[key] !== undefined ) {
                         // val isn't an array, but since a second value has been specified,
                         // convert val into an array.
-                        obj[key] = [ obj[key], val ];
+                        obj[key] = [obj[key], val];
 
                     } else {
                         // val is a scalar.
@@ -102,4 +104,4 @@
 
         return obj;
     };
-});
+}));
