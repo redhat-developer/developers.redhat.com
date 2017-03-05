@@ -5,6 +5,19 @@ Feature: Resources Page
     Then the "Video" filter should be checked
     And "Red Hat Container Development Kit" should be within the keyword search field
 
+  Scenario Outline: Selecting drop down menu options from Publish Date should filter results.
+    Given I am on the Resources page
+    When I change the Publish date drop down menu to "<option>"
+    Then the results should be from "<option>"
+
+    Examples: Publish Date drop down menu options
+      | option       |
+      | Past Day     |
+      | Past Week    |
+      | Past Month   |
+      | Past Quarter |
+      | Past Year    |
+
   @stubbed
   Scenario: On first visit to the Resources page - all results should be displayed
     Given I am on the Resources page
@@ -103,20 +116,6 @@ Feature: Resources Page
     Given I am on the Resources page
     When I click to filter results by "Video"
     Then all of the results should contain a "video" thumbnail
-
-  @stubbed
-  Scenario Outline: Selecting drop down menu options from Publish Date should filter results.
-    Given I am on the Resources page
-    When I change the Publish date drop down menu to "<option>"
-    Then the results should be from "<option>"
-
-    Examples: Publish Date drop down menu options
-      | option       |
-      | Past Day     |
-      | Past Week    |
-      | Past Month   |
-      | Past Quarter |
-      | Past Year    |
 
   @stubbed
   Scenario: When there are no results an appropriate message should be displayed.
