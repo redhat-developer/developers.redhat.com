@@ -128,7 +128,7 @@ app.buzz = {
             }
             d.updatedDate = jQuery.timeago(new Date(d.sys_created));
             d.sys_description = d.sys_description[0].substr(0,197) + '...';
-            if (d.sys_url_view[0].startsWith('https://developers.redhat.com/blog/') || d.sys_url_view[0].startsWith('https://developers.redhat.com/blog/')) {
+            if (d.sys_url_view[0].startsWith('https://developers.redhat.com/blog/') || d.sys_url_view[0].startsWith('http://developers.redhat.com/blog/')) {
               d.permanentLink = d.sys_url_view;
             }
             else if(d.sys_url_view[0].match(/http(s?):\/\/developerblog.redhat.com\/.*/g)){
@@ -205,7 +205,6 @@ app.buzz = {
           var from = $('.buzz-container > div').length;
 
           dataIndex += 8;
-          console.log("dataIndex: " + dataIndex);
           // load in more
           app.buzz.filter(app.templates.buzzTemplate, $buzz, 8, true, from, dataIndex, function() {
             if(win.scrollTop() < 400){
