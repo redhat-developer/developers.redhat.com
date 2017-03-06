@@ -67,7 +67,7 @@ There are some requirements for running Drupal locally: php, and some extensions
 
 Please install the full mysql from Oracle so you can get access to the commandline tools.
 
-      brew install php70 php70_xdebug composer
+      brew install php70 php70-xdebug composer
 
 ##### Linux
 
