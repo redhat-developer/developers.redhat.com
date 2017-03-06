@@ -99,6 +99,7 @@ _NOTE:_ Node.js and npm both need to be installed on the host machine, not in th
 2. Execute the following command to get the node environment setup:
 
     npm install
+3. Run 'gulp' in the root of the project to generate the JS and CSS files.
 
 ### Start Drupal
 Run the following script:
