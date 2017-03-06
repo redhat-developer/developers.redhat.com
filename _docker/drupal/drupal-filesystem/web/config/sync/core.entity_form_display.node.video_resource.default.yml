@@ -4,11 +4,17 @@ status: true
 dependencies:
   config:
     - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_video_resource
     - field.field.node.video_resource.field_video_resource_tags
+    - field.field.node.video_resource.field_video_target_product
+    - field.field.node.video_resource.field_video_thumbnail_url
+    - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
+    - interval
     - path
     - text
     - video_embed_field
@@ -26,6 +32,17 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+  field_duration:
+    weight: 32
+    settings: {  }
+    third_party_settings: {  }
+    type: interval_default
+  field_likes:
+    weight: 29
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
   field_speakers:
     weight: 27
     settings:
@@ -46,6 +63,27 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
+  field_video_target_product:
+    weight: 30
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_video_thumbnail_url:
+    weight: 31
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_views:
+    weight: 28
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
   path:
     type: path
     weight: 2

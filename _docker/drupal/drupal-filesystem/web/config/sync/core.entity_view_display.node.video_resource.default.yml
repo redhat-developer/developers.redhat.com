@@ -4,11 +4,17 @@ status: true
 dependencies:
   config:
     - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_likes
     - field.field.node.video_resource.field_speakers
     - field.field.node.video_resource.field_video_resource
     - field.field.node.video_resource.field_video_resource_tags
+    - field.field.node.video_resource.field_video_target_product
+    - field.field.node.video_resource.field_video_thumbnail_url
+    - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
+    - interval
     - text
     - user
     - video_embed_field
@@ -23,6 +29,20 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
+  field_duration:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: interval_default
+  field_likes:
+    weight: 5
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
   field_speakers:
     weight: 3
     label: above
@@ -47,6 +67,28 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_video_target_product:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_video_thumbnail_url:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_views:
+    weight: 4
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
 hidden:
   links: true
   workbench_moderation_control: true
