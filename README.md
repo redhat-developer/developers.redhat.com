@@ -67,7 +67,7 @@ There are some requirements for running Drupal locally: php, and some extensions
 
 Please install the full mysql from Oracle so you can get access to the commandline tools.
 
-      brew install php70 php70_xdebug composer
+      brew install php70 php70-xdebug composer
 
 ##### Linux
 
@@ -99,6 +99,7 @@ _NOTE:_ Node.js and npm both need to be installed on the host machine, not in th
 2. Execute the following command to get the node environment setup:
 
     npm install
+3. Run `$(npm bin)/gulp` in the root of the project to generate the JS and CSS files.
 
 ### Start Drupal
 Run the following script:
