@@ -5,10 +5,12 @@
  */
 
 use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\AlertCommand;
 use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\rhd_common\Ajax\CKEditorSetDataCommand;
+use Drupal\views\Ajax\HighlightCommand;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -50,16 +52,66 @@ function rhd_common_form_node_video_resource_form_alter(&$form, \Drupal\Core\For
 }
 
 function rhd_common_ajax_test(array &$form, FormStateInterface $form_state) {
-    \Drupal::logger('rhd_common')->notice('Inside the ajax call %video_url',
-      ['%video_url' => $form_state->getValue('video_resource')]);
-
     $response = new AjaxResponse();
-    // Do a YouTube rest call
-    // Probably do something like https://github.com/madcoda/php-youtube-api we need the api key though
-//    $response->addCommand(new CKEditorSetDataCommand('Testing insert body', 'edit-body-0-value'));
-//    $response->addCommand(new InvokeCommand('#edit-title-0-value', 'val', ['Testing insert title']));
-    // Set the title and body like above
+
+    $key = \Drupal::config('redhat_developers')->get('google_api_key');
+
+    // Send error if no config, developers can fix this
+    if (is_null($key)) {
+        $response->addCommand(new AlertCommand('No Google API Key configured'));
+        return $response;
+    }
+
+    // I hate having to do this, but it's better than magic numbers IMO
+    $video_url = current(current($form_state->getValue('field_video_resource')));
+
+    if (!empty($video_url)) {
+        // TODO: do a youtube check
+        $video = NULL;
+        try {
+            $youtube = new Madcoda\Youtube\Youtube(array('key' => $key));
+            $video = $youtube->getVideoInfo(getYouTubeVideoId($video_url));
+        } catch (Exception $e) {
+            $response->addCommand(new AlertCommand($e->getMessage()));
+            return $response;
+        }
+
+        // Each of these are values we're pulling from the data feed from the provider
+        $response->addCommand(new CKEditorSetDataCommand($video->snippet->description, 'edit-body-0-value'));
+        $response->addCommand(new InvokeCommand('#edit-title-0-value', 'val', [$video->snippet->title]));
+        $response->addCommand(new InvokeCommand('#edit-field-views-0-value', 'val', [$video->statistics->viewCount]));
+        $response->addCommand(new InvokeCommand('#edit-field-likes-0-value', 'val', [$video->statistics->likeCount]));
+        $response->addCommand(new InvokeCommand('#edit-field-video-thumbnail-url-0-value', 'val',
+          [$video->snippet->thumbnails->default->url]));
+
+        // Set seconds, minutes, hours in that order
+        $duration = new DateInterval($video->contentDetails->duration); // ->h // ->i // ->s
+        $response->addCommand(new InvokeCommand('#edit-field-duration-0-interval', 'val', [$duration->s]));
+        $response->addCommand(new InvokeCommand('#edit-field-duration-1-interval', 'val', [$duration->i]));
+        $response->addCommand(new InvokeCommand('#edit-field-duration-1-period', 'val', ['minute']));
+        $response->addCommand(new InvokeCommand('#edit-field-duration-2-interval', 'val', [$duration->h]));
+        $response->addCommand(new InvokeCommand('#edit-field-duration-2-period', 'val', ['hour']));
+    }
+
     return $response;
+}
+
+/**
+ * Obtains and returns the video id from a YouTube URL.
+ * @param string $url Raw YouTube url
+ * @return string the discovered id.
+ */
+function getYouTubeVideoId(string $url) {
+    $id = [];
+    $parsed_url = parse_url($url);
+
+    if (isset($parsed_url['query'])) {
+        parse_str($parsed_url['query'], $id);
+        $id = $id['v'];
+    } else {
+        $id = substr($parsed_url['path'], 1);
+    }
+    return $id;
 }
 
 /**
