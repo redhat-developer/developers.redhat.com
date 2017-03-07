@@ -94,6 +94,7 @@ class HttrackExportStrategy
   def roll_over_export_cache(export_directory, drupal_host)
     @log.info('Rolling over httrack export cache as maximum cache updates has been reached...')
     FileUtils.mv("#{export_directory}/hts-cache", "#{export_directory}/hts-cache.rolled") if Dir.exist?("#{export_directory}/hts-cache")
+    FileUtils.mv("#{export_directory}/index.html","#{export_directory}/index.html.rolled") if File.exist?("#{export_directory}/index.html")
 
     export = determine_export_directory_from_drupal_host(drupal_host)
     FileUtils.mv("#{export_directory}/#{export}", "#{export_directory}/#{export}.rolled") if Dir.exist?("#{export_directory}/#{export}")

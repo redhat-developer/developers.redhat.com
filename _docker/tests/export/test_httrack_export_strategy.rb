@@ -97,12 +97,15 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     Dir.mkdir("#{@export_directory}/hts-cache")
     Dir.mkdir("#{@export_directory}/drupal_8080")
+    FileUtils.touch("#{@export_directory}/index.html")
     write_cache_update_count(1)
 
     assert(Dir.exist?("#{@export_directory}/hts-cache"))
     assert(Dir.exist?("#{@export_directory}/drupal_8080"))
+    assert(File.exist?("#{@export_directory}/index.html"))
     refute(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
     refute(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
+    refute(File.exist?("#{@export_directory}/index.html.rolled"))
 
     @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
     @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
@@ -114,6 +117,7 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     assert(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
     assert(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
+    assert(File.exist?("#{@export_directory}/index.html.rolled"))
 
   end
 
