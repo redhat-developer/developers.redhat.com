@@ -21,6 +21,130 @@ class TestHttrackExportStrategy < MiniTest::Test
 
   def teardown
     FileUtils.rm_rf(@export_directory)
+    ENV['drupal.export.max_cache_updates'] = nil
+  end
+
+  def cache_update_count
+    File.open("#{@export_directory}/cache-updates") do |file|
+      file.readline.to_i
+    end
+  end
+
+  def write_cache_update_count(count)
+    File.open("#{@export_directory}/cache-updates", 'w+') do |file|
+      file.write(count)
+    end
+  end
+
+  def test_correctly_handles_rollover_if_no_existing_directory_structure
+    ENV['drupal.export.max_cache_updates'] = '1'
+    write_cache_update_count(1)
+
+    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
+    @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
+    @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
+
+    export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
+    assert_equal("#{@export_directory}/drupal_8080", export_dir)
+    assert_equal(1, cache_update_count)
+
+    refute(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
+    refute(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
+  end
+
+  def test_correctly_handles_zero_cache_update_count
+    ENV['drupal.export.max_cache_updates'] = '0'
+
+    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
+    @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
+    @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
+
+    export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
+    assert_equal("#{@export_directory}/drupal_8080", export_dir)
+    assert_equal(1, cache_update_count)
+  end
+
+  def test_correctly_handles_non_numeric_cache_update_count
+
+    ENV['drupal.export.max_cache_updates'] = 'foo'
+
+    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
+    @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
+    @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
+
+    export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
+    assert_equal("#{@export_directory}/drupal_8080", export_dir)
+    assert_equal(1, cache_update_count)
+  end
+
+  def test_correctly_handles_negative_cache_update_count
+
+    ENV['drupal.export.max_cache_updates'] = '-1'
+
+    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
+    @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
+    @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
+
+    export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
+    assert_equal("#{@export_directory}/drupal_8080", export_dir)
+    assert_equal(1, cache_update_count)
+
+  end
+
+  def test_should_roll_over_cache_if_updates_equal_to_permitted
+
+    ENV['drupal.export.max_cache_updates'] = '1'
+
+    Dir.mkdir("#{@export_directory}/hts-cache")
+    Dir.mkdir("#{@export_directory}/drupal_8080")
+    FileUtils.touch("#{@export_directory}/index.html")
+    write_cache_update_count(1)
+
+    assert(Dir.exist?("#{@export_directory}/hts-cache"))
+    assert(Dir.exist?("#{@export_directory}/drupal_8080"))
+    assert(File.exist?("#{@export_directory}/index.html"))
+    refute(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
+    refute(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
+    refute(File.exist?("#{@export_directory}/index.html.rolled"))
+
+    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
+    @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
+    @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
+
+    export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
+    assert_equal("#{@export_directory}/drupal_8080", export_dir)
+    assert_equal(1, cache_update_count)
+
+    assert(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
+    assert(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
+    assert(File.exist?("#{@export_directory}/index.html.rolled"))
+
+  end
+
+
+  def test_should_roll_over_cache_if_max_updates_exceeded
+
+      ENV['drupal.export.max_cache_updates'] = '1'
+
+      Dir.mkdir("#{@export_directory}/hts-cache")
+      Dir.mkdir("#{@export_directory}/drupal_8080")
+      write_cache_update_count(2)
+
+      assert(Dir.exist?("#{@export_directory}/hts-cache"))
+      assert(Dir.exist?("#{@export_directory}/drupal_8080"))
+      refute(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
+      refute(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
+
+      @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
+      @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
+      @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
+
+      export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
+      assert_equal("#{@export_directory}/drupal_8080", export_dir)
+      assert_equal(1, cache_update_count)
+
+      assert(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
+      assert(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
   end
 
 
@@ -32,13 +156,14 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
     assert_equal("#{@export_directory}/drupal_8080", export_dir)
-
+    assert_equal(1, cache_update_count)
   end
 
   def test_should_update_existing_export
 
     Dir.mkdir("#{@export_directory}/hts-cache")
     FileUtils.touch("#{@export_directory}/hts-cache/doit.log")
+    write_cache_update_count(1)
 
     @process_runner.expects(:execute!).with("cd #{@export_directory} && httrack --update")
     @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
@@ -46,6 +171,7 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
     assert_equal("#{@export_directory}/drupal_8080", export_dir)
+    assert_equal(2, cache_update_count)
   end
 
   def test_should_run_first_time_export_with_no_host_port
@@ -55,12 +181,14 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     export_dir = @httrack_export_strategy.export!(@url_list_file, 'developer-drupal.web.stage.ext.phx2.redhat.com', @export_directory)
     assert_equal("#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com", export_dir)
+    assert_equal(1, cache_update_count)
   end
 
   def test_should_update_existing_export_with_no_host_port
 
     Dir.mkdir("#{@export_directory}/hts-cache")
     FileUtils.touch("#{@export_directory}/hts-cache/doit.log")
+    write_cache_update_count(1)
 
     @process_runner.expects(:execute!).with("cd #{@export_directory} && httrack --update")
     @export_post_processor.expects(:post_process_html_export).with('developer-drupal.web.stage.ext.phx2.redhat.com', "#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com")
@@ -68,6 +196,7 @@ class TestHttrackExportStrategy < MiniTest::Test
 
     export_dir = @httrack_export_strategy.export!(@url_list_file, 'developer-drupal.web.stage.ext.phx2.redhat.com', @export_directory)
     assert_equal("#{@export_directory}/developer-drupal.web.stage.ext.phx2.redhat.com", export_dir)
+    assert_equal(2, cache_update_count)
 
   end
 end

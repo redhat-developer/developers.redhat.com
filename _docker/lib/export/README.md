@@ -24,6 +24,19 @@ The following workflow is how content is exported from Drupal:
 * Post-process the export to ensure it works as expected
 * Optionally, rsync the export folder to a location of your choice
 
+### Environment variables affecting export process
+
+There are a number of environment variables that when set, will influence the behaviour of the export process. These are:
+
+* drupal.export.fail_on_missing (true/false) [default=true] - Determines if the export process will fail on missing content
+* drupal.export.final_base_url [default=https://developers.redhat.com] - The final URL of the site export which will be
+placed into the error pages of the export to ensure they work at all levels of the hierarchy
+* drupal.export.max_cache_updates [default=750] - The maximum number of times we will update the httrack export cache
+before rolling over to avoid a SIGFAULT inside httrack
+
+You should set the environment variable on the `export` container definition within the `docker-compose.yml` of the
+environment in which you are running the export for them to take affect.
+
 ### Httrack
 
 The export process relies on [httrack](https://www.httrack.com/) to perform the dump to HTML. We use a custom patched version of httrack to allow us to specify a particular structure for saving the HTML files of the site.
