@@ -85,12 +85,6 @@ class TestOptions < Minitest::Test
 
     tasks = Options.parse (['-t'])
     assert(tasks[:decrypt])
-
-    tasks = Options.parse %w(-d 127.0.0.1)
-    assert_nil(tasks[:decrypt])
-
-    tasks = Options.parse %w(--stage-pr 1)
-    assert_nil(tasks[:decrypt])
   end
 
   def test_backup_with_no_backup_name
@@ -168,26 +162,6 @@ class TestOptions < Minitest::Test
     end
   end
 
-  def test_run_pr_reap
-    tasks = Options.parse (["--docker-pr-reap"])
-    refute(tasks[:acceptance_test_target_task])
-    assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"], tasks[:awestruct_command_args])
-    refute(tasks[:kill_all])
-    refute(tasks[:unit_tests], expected_unit_test_tasks)
-    assert(tasks[:build])
-    assert_empty(tasks[:supporting_services])
-  end
-
-  def test_run_pr_reap_drupal
-    tasks = Options.parse (['-e drupal-pull-request', "--docker-pr-reap"])
-    refute(tasks[:acceptance_test_target_task])
-    assert_equal(["--no-deps", "--rm", "--service-ports", "awestruct", "bundle exec rake reap_old_pulls[pr]"], tasks[:awestruct_command_args])
-    refute(tasks[:kill_all])
-    refute(tasks[:unit_tests], expected_unit_test_tasks)
-    assert(tasks[:build])
-    assert_empty(tasks[:supporting_services])
-  end
-
   def test_run_the_stack_with_no_decrypt
     tasks = Options.parse (['-e drupal-dev', '--run-the-stack', '--no-decrypt'])
     assert(tasks[:kill_all])
@@ -231,11 +205,6 @@ class TestOptions < Minitest::Test
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
     assert_equal(nil, tasks[:awestruct_command_args])
-  end
-
-  def test_docker_url
-    tasks = Options.parse (["-d", "SOMETHING"])
-    assert_equal("SOMETHING",tasks[:docker])
   end
 
   private def expected_unit_test_tasks

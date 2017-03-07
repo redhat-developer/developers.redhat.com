@@ -357,9 +357,6 @@ if $0 == __FILE__
   environment = load_environment(tasks)
   initialise_environment(environment, tasks[:docker_pull], system_exec)
 
-  #the docker url is taken from DOCKER_HOST env variable otherwise
-  Docker.url = tasks[:docker] if tasks[:docker]
-
   if tasks[:kill_all]
     system_exec.kill_current_environment(environment)
   end
