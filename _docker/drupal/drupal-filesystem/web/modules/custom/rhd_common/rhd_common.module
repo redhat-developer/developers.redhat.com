@@ -91,6 +91,10 @@ function rhd_common_ajax_test(array &$form, FormStateInterface $form_state) {
         $response->addCommand(new InvokeCommand('#edit-field-duration-1-period', 'val', ['minute']));
         $response->addCommand(new InvokeCommand('#edit-field-duration-2-interval', 'val', [$duration->h]));
         $response->addCommand(new InvokeCommand('#edit-field-duration-2-period', 'val', ['hour']));
+
+        // Build the url alias and set that
+        $response->addCommand(new InvokeCommand('#edit-path-0-alias', 'val',
+          ['/video/youtube/' . getYouTubeVideoId($video_url)]));
     }
 
     return $response;
