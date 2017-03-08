@@ -121,7 +121,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      max-height: 153px;
+      max-height: 150px;
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
       .field__item p{
@@ -150,7 +150,7 @@
       }
     }
     @include mobile-landscape-and-down {
-      height: auto;
+      height: 450px;
     }
   }
 
