@@ -133,7 +133,7 @@ app.downloads.display = function(data) {
 
   // We split this into two parts - everything up to and including the latest GA, and everything after it
   for (var i = 0; i < productArray.length; i++) {
-    var match = productArray[i].versionName.match(/alpha|beta/gi);
+    var match = productArray[i].versionName.match(/alpha|beta|EA/gi);
     if(!match) {
       break;
     }
