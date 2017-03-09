@@ -36,7 +36,7 @@ var RHDSocialButton = (function (_super) {
     });
     Object.defineProperty(RHDSocialButton.prototype, "text", {
         get: function () {
-            return this.getAttribute('text') || document.head.title;
+            return this.getAttribute('text').trim() || document.title.trim();
         },
         set: function (val) {
             this.setAttribute('text', val);
@@ -76,7 +76,7 @@ var RHDSocialButton = (function (_super) {
                 break;
         }
         this.appendChild(d);
-        this.setAttribute('style', 'display: inline-block; padding: 5px; margin-bottom: 5px;')
+        this.setAttribute('style', 'display: inline-block; width: auto; padding: 5px; ');
     };
     return RHDSocialButton;
 }(HTMLElement));

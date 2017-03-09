@@ -1502,6 +1502,11 @@ span.asterisk {
       }
     }
   }
+  .social-btn {
+    span, div, iframe {
+      vertical-align: baseline !important;
+    }
+  }
   p {
     position: absolute;
     top:0;
