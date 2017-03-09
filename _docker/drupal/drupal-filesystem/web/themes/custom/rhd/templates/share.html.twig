@@ -1,5 +1,9 @@
 <div class="share-this visible-by-default">
-    <p><i class="fa fa-share">Share This</i></p>
+    <rhd-social-button type="twitter" text="{{ label|render|striptags }}" url="{{ url('<current>') }}"></rhd-social-button>
+    <rhd-social-button type="facebook" url="{{ url }}"></rhd-social-button>
+    <rhd-social-button type="linkedin" url="{{ url('<current>') }}"></rhd-social-button>
+    <rhd-social-button type="gplus" url="{{ url }}"></rhd-social-button>
+    <!--<p><i class="fa fa-share">Share This</i></p>
     <ul class="share-this-buttons social-buttons cf">
         <li>
             <a class="socialite twitter-share" href="https://twitter.com/intent/tweet" data-text="{{ label|render|striptags }}"
@@ -20,5 +24,5 @@
                data-annotation="inline" data-width="60" data-href="{{ url }}" rel="noopener noreferrer nofollow" target="_blank"><span
                         class="vhidden">Share on Google+</span></a></li>
         </li>
-    </ul>
+    </ul>-->
 </div>
