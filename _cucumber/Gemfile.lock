@@ -12,14 +12,6 @@ GIT
       http_parser.rb (~> 0.6.0)
       multi_json
 
-GIT
-  remote: https://github.com/RubyGemTSL/watir-ng
-  revision: 060c383bdcc2b397452ddc344944369b25bee817
-  branch: update_to_latest_watir
-  specs:
-    watir-ng (2.0.1)
-      watir (~> 6.0.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -171,10 +163,15 @@ GEM
       macaddr (~> 1.0)
     watir (6.0.3)
       selenium-webdriver (~> 3.0)
+    watir-ng (2.1.0)
+      watir (~> 6.0.0)
     watir-webdriver (0.9.9)
       selenium-webdriver (>= 2.46.2)
     watir-webdriver-performance (0.2.4)
       watir-webdriver
+    webdrivers (2.4.0)
+      nokogiri (~> 1.6)
+      rubyzip (~> 1.0)
     websocket (1.2.4)
 
 PLATFORMS
@@ -200,8 +197,9 @@ DEPENDENCIES
   rubocop (~> 0.34.2)
   uuid
   watir (~> 6.0.0)
-  watir-ng!
+  watir-ng (~> 2.1)
   watir-webdriver-performance
+  webdrivers (~> 2.4)
 
 BUNDLED WITH
    1.14.3
