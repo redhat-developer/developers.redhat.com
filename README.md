@@ -283,6 +283,88 @@ To use drush you will need to be in the `web` directory
 cd web
 ../vendor/bin/drush config-export
 ```
+## Drupal Content Creation
+
+### Who are these instructions intended for?
+
+If you are a content creator or organizer, these Drupal content types will allow you to have a centralized
+location for managing:
+
+* Books
+* Events
+* Videos
+* Connectors
+
+### How does this make my life easier?
+
+Since content is now managed directly from Drupal, it can easily be manipulated by content creators/owners. Once changes have
+been implemented, they will soon be reflected on their respective RHD page. Further, we have utilized Drupal's REST export services to ensure that the impact on
+Searchisko (DCP) is minimal.
+
+### How do I create a new Book?
+
+For a full demonstration, please refer to the below video:
+    
+    https://drive.google.com/open?id=0Bwx86SOh3ez-eW5TRFZKLTFVeUk
+    
+##### Steps to add a new Book.
+
+1. Login to RHD's Drupal Production Environment.
+2. Click on Content>Add Content>Books
+3. Fill in the required fields.
+
+    _NOTE:_ New content will display with no styling. This is by design. Since RHD relies on DCP for much of its content, DCP rivers
+    will retrieve this newly created item and changes to RHD will be reflected within 24 hours. 
+
+### How do I create a new Connector?
+
+For a full demonstration, please refer to the below video:
+    
+    https://drive.google.com/open?id=0Bwx86SOh3ez-Q2RnMGx3Q3RLUUE
+    
+##### Steps to add a new Connector.
+
+1. Login to RHD's Drupal Production Environment.
+2. Click on Content>Add Content>Connectors
+3. Fill in the required fields.
+
+    _NOTE:_ New content will display with no styling. This is by design. Since RHD relies on DCP for much of its content, DCP rivers
+    will retrieve this newly created item and changes to RHD will be reflected within 24 hours. 
+
+### How do I create a new Video?
+
+For a full demonstration, please refer to the below video:
+    
+    https://drive.google.com/open?id=0B9M2ZSLcm2xXTWhHRmt4eV9HNFk
+    
+##### Steps to add a new Video.
+
+1. Login to RHD's Drupal Production Environment.
+2. Click on Content>Add Content>Video Resource
+3. Fill in the required fields.
+
+    _NOTE:_ New content will display with no styling. This is by design. Since RHD relies on DCP for much of its content, DCP rivers
+    will retrieve this newly created item and changes to RHD will be reflected within 24 hours. 
+
+
+### How do I add a new Event?
+
+For a full demonstration, please refer to the below video:
+    
+    https://drive.google.com/open?id=0Bwx86SOh3ez-LXpOOEs1cHN6Wkk
+    
+##### Steps to add a new Event.
+
+1. Login to RHD's Drupal Production Environment.
+2. Click on Content>Add Content>Events
+3. Fill in the required fields.
+
+    _NOTE:_ New content will display with no styling. This is by design. Since RHD relies on DCP for much of its content, DCP rivers
+    will retrieve this newly created item and changes to RHD will be reflected within 24 hours. 
+
+### What if I am having difficulty adding new content or the content type doesn't represent what I'd expect?
+
+You can contact Jason Porter, Adela Arreola, Luke Dary or Dan Coughlin (all available in HipChat or by email) with any issues or ideas for improvement.
 
 ## Drupal Module Development
 
