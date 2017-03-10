@@ -94,4 +94,4 @@ window.addEventListener('WebComponentsReady', function() {
     }
     ;
     customElements.define('rhd-social-button', RHDSocialButton);
-}
+});
