@@ -154,10 +154,10 @@ app.buzz = {
 
         container.removeClass('buzz-loading');
 
-        $('.share-this').on('click mouseover', function() {
-          Socialite.load($(this)[0]);
+        // $('.share-this').on('click mouseover', function() {
+        //   Socialite.load($(this)[0]);
         
-        });
+        // });
       });
 
     }); // end ajax done
