@@ -1,0 +1,90 @@
+uuid: b18f2ff9-6b2a-477f-98a3-9ae529fc0ce6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cheat_sheet.body
+    - field.field.node.cheat_sheet.field_cheat_sheet_author
+    - field.field.node.cheat_sheet.field_cheat_sheet_download_url
+    - field.field.node.cheat_sheet.field_cheat_sheet_image
+    - field.field.node.cheat_sheet.field_cheat_sheet_tags
+    - node.type.cheat_sheet
+  module:
+    - link
+    - path
+    - text
+    - workbench_moderation
+id: node.cheat_sheet.default
+targetEntityType: node
+bundle: cheat_sheet
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  field_cheat_sheet_author:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_cheat_sheet_download_url:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_cheat_sheet_tags:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  path:
+    type: path
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 8
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 9
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_cheat_sheet_image: true
