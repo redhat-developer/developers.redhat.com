@@ -1,0 +1,69 @@
+uuid: 6533e161-4d89-4f14-ba88-cfb2e3cfed28
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cheat_sheet.body
+    - field.field.node.cheat_sheet.field_cheat_sheet_author
+    - field.field.node.cheat_sheet.field_cheat_sheet_download_url
+    - field.field.node.cheat_sheet.field_cheat_sheet_image
+    - field.field.node.cheat_sheet.field_cheat_sheet_tags
+    - node.type.cheat_sheet
+  module:
+    - image
+    - link
+    - text
+    - user
+id: node.cheat_sheet.default
+targetEntityType: node
+bundle: cheat_sheet
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  field_cheat_sheet_author:
+    weight: 1
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_cheat_sheet_download_url:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_cheat_sheet_image:
+    weight: 4
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_cheat_sheet_tags:
+    weight: 5
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  links:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

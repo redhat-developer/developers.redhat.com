@@ -1,0 +1,27 @@
+uuid: 128a428c-ce2c-457b-8280-edf69c807492
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+name: Cheat-Sheet
+type: cheat_sheet
+description: 'A page promoting a cheat-sheet containing a title, body, an image, tags and two call to action buttons.'
+help: ''
+new_revision: null
+preview_mode: 1
+display_submitted: true
