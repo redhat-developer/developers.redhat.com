@@ -23,9 +23,7 @@ To inspect visually what the browser is doing use the following:
 
 Open vnc viewer:
 
-       ```bash
-       open vnc://:secret@192.168.99.100:5900 
-       ```
+       `open vnc://:secret@192.168.99.100:5900` 
 
 If prompted for a VNC password, it is `secret`.
 
