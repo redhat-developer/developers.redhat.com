@@ -19,7 +19,6 @@ require 'octokit'
 require 'date'
 require 'watir-webdriver-performance'
 require 'billy/watir/cucumber'
-require 'webdrivers'
 require_relative 'browsers'
 WatirNg.register(:data_page).patch!
 Dir["#{File.dirname(__FILE__)}/../../lib/pages/*.rb"].each { |page| load page }
