@@ -9,6 +9,7 @@ Feature: Basic personal registration
   Scenario Outline: United States, Canada and Mexico customer must be prompted to enter state and city.
     Given I am on the Registration page
     When I complete the registration form, selecting my country as "<country>"
+    And I verify my email address
     Then I should be registered and logged in
     When I am on the Edit Details page
     And the following newly registered details should be added to my profile:
@@ -57,6 +58,7 @@ Feature: Basic personal registration
   Scenario: Customers from Ukraine must be prompted to enter city when registering.
     Given I am on the Registration page
     When I complete the registration form, selecting my country as "Ukraine"
+    And I verify my email address
     Then I should be registered and logged in
     When I am on the Edit Details page
     And the following newly registered details should be added to my profile:
@@ -72,6 +74,7 @@ Feature: Basic personal registration
   Scenario: User can register by navigating directly to the /register page
     Given I navigate to the "/register" page
     When I complete the registration form
+    And I verify my email address
     Then I should be registered and logged in
     When I am on the Edit Details page
     And the following newly registered details should be added to my profile:
@@ -87,6 +90,7 @@ Feature: Basic personal registration
   Scenario: Site visitor completes the registration form accepting terms by clicking "accept all terms and conditions"
     Given I am on the Registration page
     When I complete the registration form
+    And I verify my email address
     Then I should be registered and logged in
     When I am on the Edit Details page
     And the following newly registered details should be added to my profile:
@@ -103,6 +107,7 @@ Feature: Basic personal registration
   Scenario: Back Button test after registration should not raise error
     Given I am on the Registration page
     When I complete the registration form
+    And I verify my email address
     Then I should be registered and logged in
     When I go back
     Then I should see the Registration page
