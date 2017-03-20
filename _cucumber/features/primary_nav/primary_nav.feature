@@ -206,3 +206,11 @@ Feature: Site navigation menu
     When I log in with a valid password
     And I click the Logout link
     Then I should see the Login and Register links
+
+  # backend no yet ready for this scenario
+  @later @kc
+  Scenario: RHD registered user with no first and last name on record should see username n the site header 
+    Given I am an RHD registered user with no first and last name on record
+    When I log in with a valid username
+    Then I should be logged in   
+    And I should see my username in the site header 
