@@ -109,3 +109,11 @@ services:
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
     - github_status_initialise=Drupal:Unit Tests,Drupal:FE Acceptance Tests,Drupal:Mobile FE Acceptance Tests,Drupal:FE KC/DM Acceptance Tests,Drupal:Exported Site Preview,Drupal:Drupal Site
+
+  drupal_unit_tests:
+    build: ../../drupal
+    entrypoint: "../vendor/bin/phpunit -c core --testsuite unit --log-junit test_output.xml --group rhd_common"
+    volumes:
+      - ../../drupal/drupal-filesystem/web/themes/custom:/var/www/drupal/web/themes/custom
+      - ../../drupal/drupal-filesystem/web/modules/custom:/var/www/drupal/web/modules/custom
+

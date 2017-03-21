@@ -54,6 +54,14 @@ class Options
         tasks[:docker_pull] = false
       end
 
+      opts.on('-d', '--drupal-unit-test', 'Run the Drupal unit tests') do |b|
+        tasks[:drupal_unit_tests] = drupal_unit_test_tasks
+        tasks[:decrypt] = false
+        tasks[:build] = false
+        tasks[:supporting_services] = []
+        tasks[:docker_pull] = false
+      end
+
       opts.on('-b', '--build', 'Build the containers') do |b|
         tasks[:decrypt] = true
         tasks[:unit_tests] = unit_test_tasks
@@ -78,6 +86,7 @@ class Options
       opts.on('--run-the-stack', 'build, restart and preview') do |rts|
         tasks[:decrypt] = true
         tasks[:unit_tests] = unit_test_tasks
+        tasks[:drupal_unit_tests] = drupal_unit_test_tasks
         tasks[:build] = true
         tasks[:kill_all] = true
         tasks[:awestruct_command_args] = %w(--rm --service-ports awestruct)
@@ -147,4 +156,9 @@ class Options
     %w(--no-deps --rm unit_tests)
   end
 
+  def self.drupal_unit_test_tasks
+    %w(--no-deps --rm drupal_unit_tests)
+  end
+
 end
+
