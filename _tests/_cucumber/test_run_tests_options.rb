@@ -71,8 +71,6 @@ class TestRunTestsOptions < MiniTest::Test
 
   def test_non_docker_execution_using_browserstack
 
-    Kernel.expects(:abort).with("'foo' is not a recognised Cucumber profile, see '#{@cucumber_dir}/cucumber.yml' file for valid profiles.")
-
     ENV['RHD_BS_AUTHKEY'] = '12345'
     ENV['RHD_BS_USERNAME'] = 'foobar'
 
@@ -234,8 +232,7 @@ class TestRunTestsOptions < MiniTest::Test
     assert_equal('bs_ie_11', test_configuration[:driver])
     assert_equal('bundle exec rake -f cucumber.rake features RHD_JS_DRIVER=bs_ie_11 RHD_TEST_PROFILE=desktop STUBBED_DATA=false RHD_BS_USERNAME=foobar RHD_BS_AUTHKEY=12345', test_configuration[:run_tests_command])
     assert_equal('bs_ie_11', ENV['RHD_JS_DRIVER'])
-    assert_equal('docker_firefox', ENV['RHD_REMOTE_DRIVER'])
-    assert_equal('docker_firefox', test_configuration[:docker_node])
+    assert_equal('docker_chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
     assert_equal('desktop', ENV['RHD_TEST_PROFILE'])
