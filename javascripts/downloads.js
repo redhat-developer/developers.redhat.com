@@ -38,14 +38,14 @@ app.downloads.createDownloadTable = function(products) {
       }
 
       // TODO: CHeck for last item
-      if(file.description !== lastDescription) {
+      // If the version is different OR the description is different than the last
+      if(file.description !== lastDescription || versionName !== '') {
         row = $('<tr>').append(
           $('<td>').text(versionName),
           $('<td>').text(dateString),
-          $('<td>').text(file.description),
+          $('<td>').text(file.description !== lastDescription || versionName !== '' ? file.description : ''),
           $('<td>').addClass('download-links link-sm').append(app.downloads.createInstallerLink(file))
         );
-
       } else {
         var link = app.downloads.createInstallerLink(file);
         $(row).find('.download-links').append(link);
@@ -128,7 +128,7 @@ app.downloads.display = function(data) {
   // create toggle Link
   var $toggleLink = $('<a>').text('View Older Downloads ▾').addClass('large-24 columns view-older-downloads').attr('href', '#').on('click touchstart',function(e) {
     e.preventDefault();
-    $(this).next('table').toggle();
+    $(this).next('div').toggle();
   });
 
   // We split this into two parts - everything up to and including the latest GA, and everything after it
@@ -154,8 +154,9 @@ app.downloads.display = function(data) {
   // var $latestDownloadsTable = app.downloads.createDownloadTable();
 
   // past downloads table
-  var $allDownloadsTable = app.downloads.createDownloadTable(productArray.slice(end));
-
+  var $allDownloadsTable = $("<div style='display:none;'>").addClass('large-24 columns');
+  $allDownloadsTable.append( app.downloads.createDownloadTable(productArray.slice(end) ));
+  
   // put everything into an element
   $downloads = $('<div>').addClass('rh-downloads').append($downloadLink, $latestDownloadsTables, $toggleLink, $allDownloadsTable)
 
