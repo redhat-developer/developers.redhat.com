@@ -10,7 +10,7 @@
   .cs-info{
     border-top: 1px solid $grey-5;
     border-bottom: 1px solid $grey-5;
-    padding: 7px 5px;
+    padding: 7px 5px 0 5px;
     margin-bottom: 2.5em;
     ul {
       list-style: none;
@@ -19,9 +19,18 @@
       li {
         width: auto;
         margin-right: 15px;
+        margin-bottom: 1px;
+        padding-top: 1px;
         display: inline-block;
       }
+      li:last-child {
+        margin-right: 0;
+      }
     }
+  }
+  .cs-social .googleplus-one{
+    max-width: 55px;
+
   }
   .share-this {
     background: none;
