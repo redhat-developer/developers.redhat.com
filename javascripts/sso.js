@@ -7,8 +7,15 @@ app.sso = function () {
             keycloak.updateToken().success(function () {
                 saveTokens();
 
+                var logged_in_user = keycloak.tokenParsed['name'];
+
+                // show username instead of full name if full name is empty or blank (only space character)
+                if (logged_in_user.replace(/\s/g, "").length < 1) {
+                    logged_in_user = "My Account";
+                }
+
                 $('a.logged-in-name')
-                    .text(keycloak.tokenParsed['name'])
+                    .text(logged_in_user)
                     .attr('href', app.ssoConfig.account_url)
                     .show();
                 $('li.login, li.register, li.login-divider, section.register-banner, .devnation-hidden-code').hide();
