@@ -12,12 +12,12 @@ field_name: field_cheat_sheet_download_url
 entity_type: node
 bundle: cheat_sheet
 label: 'Cheat-sheet download url'
-description: 'Cheat-sheet download link that will be used in main CTA'
-required: false
+description: 'Cheat-sheet download link that will be used in main CTA.'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   link_type: 17
-  title: 1
+  title: 2
 field_type: link

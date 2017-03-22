@@ -36,11 +36,11 @@ content:
     weight: 3
     label: above
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
     type: link
   field_cheat_sheet_image:
@@ -55,7 +55,7 @@ content:
     weight: 5
     label: visually_hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
   links:

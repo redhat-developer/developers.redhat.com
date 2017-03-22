@@ -92,7 +92,7 @@ other methods (such as node.delete) will result in an exception.
         {{ content.body }}
     </div>
     <div class="large-6 medium-5 columns">
-        {% if content.field_cheat_sheet_tags %}
+        {% if content.field_cheat_sheet_tags|render is not empty %}
             <strong>Tags:</strong> {{ content.field_cheat_sheet_tags }}
         {% endif %}
     </div>
