@@ -110,6 +110,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "heroes";
 @import "awards";
 @import "devoxx4kids";
+@import "cheat-sheet";
 
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
@@ -201,10 +202,9 @@ button, .button {
     margin-left: 20px;
   }
   &.blue {
-    background:$med-blue;
-    &:hover {
-      background: lighten($med-blue,10%);
-    }
+    background:white;
+    border: 1px solid $blue;
+    color: $blue;
   }
   &.inverse {
     background:white;
