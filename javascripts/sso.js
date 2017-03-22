@@ -19,7 +19,7 @@ app.sso = function () {
                     .attr('href', app.ssoConfig.account_url)
                     .show();
                 $('li.login, li.register, li.login-divider, section.register-banner, .hidden-after-login').hide();
-                $('section.contributors-banner, .shown-before-login, li.logged-in').show();
+                $('section.contributors-banner, .shown-after-login, li.logged-in').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl())
                 // once the promise comes back, listen for a click on logout
                 $('a.logout').on('click',function(e) {
@@ -43,7 +43,7 @@ app.sso = function () {
             }).error(clearTokens);
         } else {
             $('li.login, section.register-banner, .hidden-after-login').show();
-            $('li.logged-in, section.contributors-banner, .shown-before-login, li.logged-in').hide();
+            $('li.logged-in, section.contributors-banner, .shown-after-login, li.logged-in').hide();
             $('li.logged-in').hide();
             $('li.login a').on('click',function(e){
                 e.preventDefault();

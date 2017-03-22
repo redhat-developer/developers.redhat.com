@@ -40,6 +40,10 @@
     margin-right: 25px !important;
   }
 
+  .shown-after-login, .hidden-after-login {
+    display: none;
+  }
+
   @include tablet-landscape-and-down {
     .cs-info {
       .cs-social {
