@@ -3,6 +3,8 @@
     "description": "Project template for Drupal 8 projects with composer",
     "type": "project",
     "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "",
@@ -16,32 +18,47 @@
         }
     },
     "require": {
-        "composer/installers": "1.0.25",
-        "cweagans/composer-patches": "~1.5.0",
-        "drupal-composer/drupal-scaffold": "1.3.2",
+        "acquia/lightning": "2.0.5",
+        "composer/installers": "^1.0",
+        "cweagans/composer-patches": "^1.6.0",
+        "drupal-composer/drupal-scaffold": "2.2.0",
         "drupal/admin_toolbar": "1.18.0",
         "drupal/config_update": "1.3.0",
         "drupal/conflict": "1.0.0-alpha1",
-        "drupal/core": "8.2.6",
+        "drupal/contact_storage": "1.0.0-beta8",
+        "drupal/core": "8.2.7",
         "drupal/ctools": "3.0.0-alpha27",
+        "drupal/ctools_block": "3.0.0-alpha27",
         "drupal/diff": "1.0.0-rc1",
         "drupal/editor_advanced_link": "1.3",
         "drupal/embed": "1.0-rc3",
         "drupal/entity": "1.x-dev",
+        "drupal/entity_block": "1.0.0-alpha2",
         "drupal/entity_browser": "1.0-rc1",
-        "drupal/entity_embed": "1.x-dev",
+        "drupal/entity_embed": "1.0.0-beta2",
         "drupal/entity_reference_revisions": "1.x-dev",
         "drupal/entity_storage_migrate": "1.x-dev",
         "drupal/field_collection": "3.x-dev",
         "drupal/field_group": "1.x-dev",
+        "drupal/inline_entity_form": "1.0.0-beta1",
+        "drupal/interval": "1.0-rc2",
         "drupal/key_value": "1.x-dev",
         "drupal/linkit": "5.0-beta4",
+        "drupal/layout_plugin": "1.0.0-alpha22",
         "drupal/media_entity": "1.x-dev",
+        "drupal/media_entity_instagram": "1.2.0",
         "drupal/media_entity_image": "1.x-dev",
         "drupal/metatag": "1.x-dev",
         "drupal/multiversion": "1.0.0-alpha12",
+        "drupal/page_manager": "1.0.0-alpha24",
+        "drupal/panelizer": "3.0.0-beta1",
+        "drupal/panels": "3.0.0-beta6",
+        "drupal/panels_ipe": "3.0.0-beta6",
         "drupal/paragraphs": "1.x-dev",
         "drupal/pathauto": "1.x-dev",
+        "drupal/scheduled_updates": "1.0.0-alpha6",
+        "drupal/replication": "1.0.0-alpha5",
+        "drupal/search_api": "1.0.0-beta4",
         "drupal/simple_sitemap": "2.8.0",
         "drupal/smtp": "1.0.0-alpha2",
         "drupal/subpathauto": "1.0-beta1",
@@ -51,8 +68,9 @@
         "drupal/workbench": "1.x-dev",
         "drupal/workbench_email": "1.0-alpha3",
         "drupal/workbench_moderation": "1.2.0",
-        "drupal/interval": "1.0-rc2",
+        "drupal/workspace": "1.0.0-alpha4",
         "madcoda/php-youtube-api": "^1.2",
+        "php-instagram-api/php-instagram-api": "dev-master",
         "relaxedws/lca": "dev-master" 
     },
     "require-dev": {
@@ -61,6 +79,7 @@
         "drupal/console": "1.0.0-rc10",
         "drupal/console-core": "1.0.0-rc10",
         "drupal/console-en": "1.0.0-rc10",
+        "drupal/drupal-extension": "^3.2",        
         "drush/drush": "8.1.8",
         "jcalderonzumba/gastonjs": "~1.0.2",
         "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
@@ -71,28 +90,19 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
     "autoload": {
         "classmap": [
-            "scripts/composer/ScriptHandler.php"
+            "scripts/ScriptHandler.php"
         ]
     },
     "scripts": {
-        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-        "pre-install-cmd": [
-          "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
-        "pre-update-cmd": [
-          "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
         "post-install-cmd": [
-          "DrupalProject\\composer\\ScriptHandler::buildScaffold",
-          "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+          "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+          "Acquia\\Lightning\\ScriptHandler::deployLibraries"
         ],
         "post-update-cmd": [
-          "DrupalProject\\composer\\ScriptHandler::buildScaffold",
-          "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+          "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+          "Acquia\\Lightning\\ScriptHandler::deployLibraries"
         ]
     },
     "extra": {
@@ -118,12 +128,10 @@
         },
         "patches": {
             "drupal/core": {
-                "2663638 - Avoid to check the render context to detect early rendering for Non-GET requests.": 
-                "https://www.drupal.org/files/issues/2663638-2_0.patch",
-                "2652138 - ImageFormatter does not support SVGs":
-                "https://www.drupal.org/files/issues/2652138-28.patch",
-                "2765525 - Add AJAX command to add style sheets to CKEditor instances":
-                "https://www.drupal.org/files/issues/2765525-30-8.2.x.patch"
+                "2663638 - Avoid to check the render context to detect early rendering for Non-GET requests.": "https://www.drupal.org/files/issues/2663638-2_0.patch",
+                "2652138 - ImageFormatter does not support SVGs": "https://www.drupal.org/files/issues/2652138.patch",
+                "2765525 - Add AJAX command to add style sheets to CKEditor instances": "https://www.drupal.org/files/issues/2765525-30-8.2.x.patch",
+                "1356276 - Allow profiles to provide a base/parent profile and load them in the correct order": "https://www.drupal.org/files/issues/1356276-276-8.2.x.patch"
             },
             "drupal/multiversion": {
               "2822915 - Migration source plugin makes bad assumptions that can lead to data loss":
@@ -131,12 +139,6 @@
               "2825477 - ContentEntityStorageTrait uses current entity as original, which breaks things":
               "https://www.drupal.org/files/issues/2825477-2.patch",
               "2841646 - forward revisions are borked": "https://raw.githubusercontent.com/balsama/lightning/faa9bec252fee59c246d5cec3c267f8edc629614/2841646-forward-revisions.patch"
-            },
-            "drupal/scheduled_updates": {
-                "2674874 - Issue saving Schedule Update Type form":
-                "https://www.drupal.org/files/issues/schedule_updates-save_type-2674874-2.patch",
-                "2720169 - Scheduled Update Type entity should not have canonical link template":
-                "https://www.drupal.org/files/issues/scheduled_updates-no-canonical-link-for-update-type.patch"
             },
             "drupal/workbench_moderation": {
                 "2668006 - Provide logical access control for when IPE should be applied to moderated nodes":
