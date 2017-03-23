@@ -5,7 +5,6 @@ primary_nav_hidden: true
 interpolate: true
 title: About Us
 description: Learn about the Red Hat Developer Program and why you should join this free program
-ignore_export: true
 ---
 
 section.about-header
@@ -43,8 +42,9 @@ section.about-sec3
       h2 Who should join?
       h4 
         | (Red Hat Developers is for you)
-      p Join if you’re a developer, software engineer, web designer, front end designer, UX designer, computer scientist, architect, tester, product manager, project manager or team lead. (Not one of these? Want to be? Close enough?  Then you’re welcome, too.)
-      a.button(href='#{site.base_url}/register') Register Now
+      p 
+        | Join if you’re a developer, software engineer, web designer, front end designer, UX designer, computer scientist, architect, tester, product manager, project manager or team lead. (Not one of these? Want to be? Close enough?  Then you’re welcome, too.)
+        a.button(href='#{site.base_url}/register') Register Now
 section.about-sec4
   .row
     .large-24.columns
@@ -104,7 +104,11 @@ section.about-sec7
       ul.small-block-grid-2.medium-block-grid-4.large-block-grid-6.team-members
         - page.about.each do |a|
           li
-            img(src=cdn("#{site.base_url}/images/design/about/photos/#{a.photo}") alt='#{a.name}')
+            - if a.photo
+              img(src=cdn("#{site.base_url}/images/design/about/photos/#{a.photo}") alt='#{a.name}')
+            - else
+              img(src=cdn("#{site.base_url}/images/design/about/photos/default.png") alt='#{a.name}')
+
             span
               p.name #{a.name}
               - if a.twitter_handle
