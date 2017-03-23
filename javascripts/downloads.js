@@ -146,7 +146,7 @@ app.downloads.display = function(data) {
 
   /* loop through all the curent downloads and make their own table */
   var $latestDownloadsTables = $("<div>").addClass('large-24 columns');
-  $latestDownloadsTables.append( app.downloads.createDownloadTable([currentDownloads]) );
+  $latestDownloadsTables.append( app.downloads.createDownloadTable(currentDownloads) );
 
   // var $latestDownloadsTable = app.downloads.createDownloadTable();
 
