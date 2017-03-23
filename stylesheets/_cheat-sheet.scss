@@ -18,13 +18,12 @@
       overflow: auto;
       li {
         width: auto;
-        margin-right: 15px;
         margin-bottom: 1px;
         padding-top: 1px;
         display: inline-block;
-      }
-      li:last-child {
-        margin-right: 0;
+        &:first-child {
+          padding-left: 0;
+        }
       }
     }
   }
