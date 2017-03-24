@@ -67,7 +67,7 @@ other methods (such as node.delete) will result in an exception.
 #}
 <div{{ attributes.addClass(["row", "content"]).setAttribute("id", "rhd-cheat-sheet") }}>
   <div class="row">
-    <div class="large-24 medium-19 columns">
+    <div class="large-24 medium-24 columns">
         <h4 class="content-type">Cheat Sheet</h4>
         {{ title_prefix }}
         <h2{{ title_attributes.addClass(["cs-title"]) }}>{{ label }}</h2>
@@ -88,15 +88,15 @@ other methods (such as node.delete) will result in an exception.
     </div>
   </div>
   <div class="row">
-    <div{{ content_attributes.addClass(["large-18", "medium-15", "columns"]) }}>
+    <div{{ content_attributes.addClass(["large-18", "medium-17", "columns"]) }}>
         {{ content.body }}
     </div>
-    <div class="large-6 medium-5 columns">
+    <div class="large-6 medium-7 columns">
         {% if content.field_cheat_sheet_tags|render is not empty %}
             <strong>Tags:</strong> {{ content.field_cheat_sheet_tags }}
         {% endif %}
     </div>
-    <div {{ content_attributes.addClass(["large-20", "medium-15", "columns"]) }}>
+    <div {{ content_attributes.addClass(["large-20", "medium-24", "columns"]) }}>
         {# IMAGE HIDDEN UNTIL FINAL UX DECISION #}
         {# {% if content.field_cheat_sheet_image|render is not empty %}
             {{ title_prefix }}
