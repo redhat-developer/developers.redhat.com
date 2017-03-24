@@ -1,0 +1,18 @@
+uuid: 2a03a7f4-ec5e-4f09-9279-2fc7b7f29204
+langcode: en
+status: true
+dependencies: {  }
+id: promotion_page_reviewer
+label: 'Promotion Page reviewer'
+weight: 23
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'edit any promotion_page content'
+  - 'delete any promotion_page content'
+  - 'use draft_published transition'
+  - 'use needs_review_draft transition'
+  - 'use needs_review_published transition'
+  - 'use published_published transition'
+  - 'use published_archived transition'
+  - 'view moderation states'

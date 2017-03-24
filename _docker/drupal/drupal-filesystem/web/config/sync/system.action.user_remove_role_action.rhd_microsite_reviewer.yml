@@ -1,0 +1,14 @@
+uuid: 5d12e16f-46b5-429d-8e76-bcb2de3936bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.rhd_microsite_reviewer
+  module:
+    - user
+id: user_remove_role_action.rhd_microsite_reviewer
+label: 'Remove the Microsite Page reviewer role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: rhd_microsite_reviewer

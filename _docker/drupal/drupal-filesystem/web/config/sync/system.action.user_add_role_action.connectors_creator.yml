@@ -1,0 +1,14 @@
+uuid: 8f1893fd-79ab-4e0a-8fc8-ada64d50b31d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.connectors_creator
+  module:
+    - user
+id: user_add_role_action.connectors_creator
+label: 'Add the Connectors creator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: connectors_creator

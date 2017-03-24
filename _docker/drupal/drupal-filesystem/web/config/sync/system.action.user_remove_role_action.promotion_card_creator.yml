@@ -1,0 +1,14 @@
+uuid: b524c969-f190-4a82-8429-6516c829cdd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.promotion_card_creator
+  module:
+    - user
+id: user_remove_role_action.promotion_card_creator
+label: 'Remove the Promotion Card creator role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: promotion_card_creator

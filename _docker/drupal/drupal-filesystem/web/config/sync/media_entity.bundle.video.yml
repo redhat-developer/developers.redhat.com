@@ -1,0 +1,17 @@
+uuid: 52f23eb9-c2ef-4b4d-82f7-7cd0c4fd97c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - video_embed_media
+_core:
+  default_config_hash: 3hNqO7qzA7TZBI6yW4M1MoBiuva0RKHbsvClx0RTatc
+id: video
+label: Video
+description: 'A video hosted by YouTube, Vimeo, or some other provider.'
+type: video_embed_field
+queue_thumbnail_downloads: false
+new_revision: false
+type_configuration:
+  source_field: field_media_video_embed_field
+field_map: {  }

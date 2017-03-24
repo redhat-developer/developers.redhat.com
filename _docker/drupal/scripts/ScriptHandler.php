@@ -34,8 +34,8 @@ class ScriptHandler {
         $output = NULL;
         $executor->execute('npm run install-libraries', $output, $lightning);
       }
-//    }
-//
+    }
+
 //    // Prepare the settings file for installation
 //    if (!$fs->exists($root . '/sites/default/settings.php')) {
 //      $fs->copy($root . '/sites/default/default.settings.php', $root . '/sites/default/settings.php');
@@ -56,7 +56,7 @@ class ScriptHandler {
 //      $fs->mkdir($root . '/sites/default/files', 0777);
 //      umask($oldmask);
 //      $event->getIO()->write("Create a sites/default/files directory with chmod 0777");
-    }
+//    }
   }
-
 }
+

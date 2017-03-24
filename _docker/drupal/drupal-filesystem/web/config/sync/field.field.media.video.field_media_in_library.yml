@@ -1,0 +1,25 @@
+uuid: 319f5513-7618-442c-a456-af3ad14463ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_in_library
+    - media_entity.bundle.video
+_core:
+  default_config_hash: zC9pQIW8eM8eJMUOSvbfPmrFbV7DwSD0FXuHUZ7PxDs
+id: media.video.field_media_in_library
+field_name: field_media_in_library
+entity_type: media
+bundle: video
+label: 'Save to my media library'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Saved to my media library'
+  off_label: 'Not in my media library'
+field_type: boolean

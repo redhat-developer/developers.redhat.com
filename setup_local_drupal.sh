@@ -29,12 +29,6 @@ while ($conn === NULL) {
 $conn = NULL;
 DBCHECK
 
-# Symlink scripts so we can run composer
-if [ ! -d "${DRUPAL_FILESYSTEM}/scripts" ]
-then
-  ln -s ${DRUPAL}/scripts ${DRUPAL_FILESYSTEM}/scripts
-fi
-
 echo "Running composer install"
 
 # Install Drupal

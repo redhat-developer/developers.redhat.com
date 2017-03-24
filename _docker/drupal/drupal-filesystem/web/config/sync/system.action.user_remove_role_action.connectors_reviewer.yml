@@ -1,0 +1,14 @@
+uuid: 290f8eab-1f34-4b37-a932-271f5b1c74f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.connectors_reviewer
+  module:
+    - user
+id: user_remove_role_action.connectors_reviewer
+label: 'Remove the Connectors reviewer role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: connectors_reviewer

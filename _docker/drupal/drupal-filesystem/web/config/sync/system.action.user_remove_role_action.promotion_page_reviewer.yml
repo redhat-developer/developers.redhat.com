@@ -1,0 +1,14 @@
+uuid: 8c129c31-f9cb-4886-96f2-92152d3180cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.promotion_page_reviewer
+  module:
+    - user
+id: user_remove_role_action.promotion_page_reviewer
+label: 'Remove the Promotion Page reviewer role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: promotion_page_reviewer

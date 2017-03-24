@@ -34,7 +34,8 @@ settings:
           name: Media
           items:
             - Blockquote
-            - DrupalImage
+            - media_browser
+            - node
             - video_embed
         -
           name: 'Block Formatting'
@@ -57,13 +58,13 @@ settings:
             - JustifyRight
             - JustifyBlock
   plugins:
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: default
     language:
       language_list: un
     stylescombo:
       styles: "a.button|Button\r\ndiv.box.callout|Callout Box"
-    drupallink:
-      linkit_enabled: true
-      linkit_profile: default
     video_embed:
       defaults:
         children:

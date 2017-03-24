@@ -1,0 +1,14 @@
+uuid: 73546595-e8e5-435f-934b-e59724675007
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.rhd_microsite_creator
+  module:
+    - user
+id: user_remove_role_action.rhd_microsite_creator
+label: 'Remove the Microsite Page creator role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: rhd_microsite_creator
