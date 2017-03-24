@@ -75,7 +75,9 @@ other methods (such as node.delete) will result in an exception.
         <div class="cs-info">
             <ul>
                 <li>
-                    <strong{{ author_attributes }}>By {{content.field_cheat_sheet_author}} </strong>
+                    {% if content.field_cheat_sheet_author|render is not empty %}
+                        <strong{{ author_attributes }}>By {{content.field_cheat_sheet_author}} </strong>
+                    {% endif %}
                 </li>
                 <li>
                     <small>Published: {{ date }}</small>
