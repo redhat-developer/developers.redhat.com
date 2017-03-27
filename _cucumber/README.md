@@ -10,19 +10,36 @@ Acceptance tests can be ran locally against local browsers, or within docker usi
 
 To run the acceptance tests against the locally running Drupal site export, ensure the Drupal Docker container is running and the site has been exported.
 
-Local machine (outside of docker):
-      
-      ruby _cucumber/run_tests.rb --host-to-test=dev
-      
-Using docker-selenium image (within docker):      
+We recommend using docker to run automated test as all test dependancies (chrome/firefox/phantomjs) binaries are handled for you:
+
+Using testing docker image:      
       
       ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev
- 
-To run the acceptance tests against a remote host:
 
-      ruby _cucumber/run_tests.rb --host-to-test=https:foo.example.com 
+
+Debugging when using docker:
+
+To inspect visually what the browser is doing use the following:
+
+Open vnc viewer:
+
+       `open vnc://:secret@192.168.99.100:5900` 
+
+If prompted for a VNC password, it is `secret`.
+
+NOTE: to get port of the browser you wish to debug use `docker ps`
+
+Local machine (outside of docker):
+
+If you have the chrome/phantomjs binaries saved to your path you can run tests locally:      
+
+    ruby _cucumber/run_tests.rb --host-to-test=dev
+      
+ To run the acceptance tests against a remote host:
+
       ruby _cucumber/run_tests.rb --use-docker --host-to-test=https:foo.example.com 
-
+      ruby _cucumber/run_tests.rb --host-to-test=https:foo.example.com 
+      
 _NOTE:_ - Never run the acceptance tests against production.
 This can interfere with site stats! 
 We have a set of smoke tests that can be ran against production, for a quick sanity check of the site.

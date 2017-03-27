@@ -21,7 +21,7 @@ class GenericBasePage
       @browser.goto($host_to_test + url)
     end
     wait_for_ajax
-    print_page_load(url)
+    print_page_load(url) if ENV['RHD_JS_DRIVER'].include?('chrome')
   end
 
   def print_page_load(url = nil)
@@ -30,7 +30,7 @@ class GenericBasePage
       puts "Load Time: #{load_secs} seconds for url #{@browser.url}."
     else
       puts "Load Time: #{load_secs} seconds for url '#{url}'."
-    end if ENV['RHD_JS_DRIVER'].include?('chrome')
+    end
   end
 
   def self.expected_element(type, identifier)

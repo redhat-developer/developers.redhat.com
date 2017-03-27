@@ -273,9 +273,16 @@ Then(/^each term should link to relevant terms and conditions page:$/) do |table
   end
 end
 
+And(/^I verify my email address$/) do
+  verification_email = get_email(@site_user.details[:email])
+  expect(verification_email.to_s).to include('email-verification?')
+  close_and_reopen_browser
+  @browser.goto(verification_email)
+end
+
 Then(/^I should receive an email containing a verify email link$/) do
   @verification_email = get_email(@site_user.details[:email])
-  expect(@verification_email.to_s).to include('first-broker-login?')
+  expect(@verification_email.to_s).to include('email-verification?')
 end
 
 And(/^I navigate to the verify email link$/) do

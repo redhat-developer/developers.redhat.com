@@ -38,14 +38,6 @@ Awestruct::Extensions::Pipeline.new do
   # parse AsciiDoc documents and create page variables out of their sections
   extension Aweplug::Extensions::Sections.new
 
-  # Load events from a google spreadsheet
-  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'events',
-                                                       key: '12ZRFSz8TAay-GnNuF_5LipICmuns-HB_RcjGEPDi67k',
-                                                       worksheet_title: 'Events',
-                                                       col_labels: true,
-                                                       by: 'row')
-
-  # Load 'Our Picks' for homepage from a google spreadsheet
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'our_picks',
                                                        key: '1al_cs2glMaSBymmNFCiy1OboxAD6jv3YAwB1FrMVffE',
                                                        worksheet_title: 'Our Picks',
@@ -58,9 +50,8 @@ Awestruct::Extensions::Pipeline.new do
                                                        col_labels: true,
                                                        by: 'row')
 
-  extension JBoss::Developer::Events.new
 
-  extension Aweplug::Extensions::Books.new("site.book_isbns.collect { |i,b| b }", site.push_to_searchisko)
+  extension Aweplug::Extensions::Books.new("site.book_isbns.collect { |i,b| b }", false)
 
   extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'customer_portal_articles',
                                                        key: '1440-gFstcyCyFhXISvTIlzrmXZo7Ligs-hla5z9eSQA',
@@ -75,15 +66,6 @@ Awestruct::Extensions::Pipeline.new do
                                                        by: 'row')
 
   extension JBoss::Developer::CustomerPortal.new
-
-  # Load connectors from Google Spreadsheets
-  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'fuse_connectors',
-                                                       key: '1-1BxAjMUBE5secHcyoBIaCaNxvrpgBt94gOkSCl6ewk',
-                                                       worksheet_title: 'Connectors',
-                                                       by: 'row',
-                                                       row_labels: true,
-                                                       col_labels: true)
-  extension JBoss::Developer::Connectors.new
 
   extension Aweplug::Extensions::Kramdown::Quickstart.new(repository: '_eap-quickstarts',
                                                           layout: 'get-started-item',

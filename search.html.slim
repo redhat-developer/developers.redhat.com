@@ -44,10 +44,10 @@ div(ng-app="search")
 
                 span(data-updated="{{r.fields.sys_created[0] | timestamp}}" ng-show="r.fields.sys_type != 'webpage' || r.fields.sys_type != 'article' || r.fields.sys_type != 'demo'" ng-bind="r.fields.sys_created[0] | MDY")
               p(ng-bind-html="r | description")
-              .tags-list
-                p
-                  span.tag-label(ng-bind="r.sys_tags.length ? 'Tags:' : null")
-                  span.tag(ng-repeat="tag in r.sys_tags" ng-bind="tag")
+              / .tags-list
+              /   p
+              /     span.tag-label(ng-bind="r.sys_tags.length ? 'Tags:' : null")
+              /     span.tag(ng-repeat="tag in r.sys_tags" ng-bind="tag")
 
 
           nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
