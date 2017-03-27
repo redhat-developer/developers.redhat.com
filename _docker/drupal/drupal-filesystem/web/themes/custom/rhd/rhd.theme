@@ -110,6 +110,17 @@ function rhd_preprocess_html(array &$variables) {
     $variables['rhd_sentry_code'] = $sentry_code;
     $variables['rhd_base_url'] = $rhd_base_url;
     $variables['rhd_final_base_url'] = $rhd_final_base_url;
+
+    if ($environment != 'prod') {
+        $referrer = [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'referrer',      // Set name for element
+            'value' => 'unsafe-url'    // Set value for title
+          ],
+        ];
+        $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
+    }
 }
 
 function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
