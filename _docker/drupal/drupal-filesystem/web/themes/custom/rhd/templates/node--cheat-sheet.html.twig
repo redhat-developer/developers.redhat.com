@@ -75,7 +75,7 @@ other methods (such as node.delete) will result in an exception.
         <div class="cs-info">
             <ul>
                 <li>
-                    {% if content.field_cheat_sheet_author|render is not empty %}
+                    {% if content.field_cheat_sheet_author|render|striptags|trim is not empty %}
                         <strong{{ author_attributes }}>By {{content.field_cheat_sheet_author}} </strong>
                     {% endif %}
                 </li>
@@ -94,7 +94,7 @@ other methods (such as node.delete) will result in an exception.
         {{ content.body }}
     </div>
     <div class="large-6 medium-7 columns">
-        {% if content.field_cheat_sheet_tags|render is not empty %}
+        {% if content.field_cheat_sheet_tags|render|striptags|trim is not empty %}
             <strong>Tags:</strong> {{ content.field_cheat_sheet_tags }}
         {% endif %}
     </div>
