@@ -1,0 +1,57 @@
+LiteralInInterpolation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/ClassLength:
+  Max: 256
+
+Metrics/ModuleLength:
+  Max: 256
+
+
+Metrics/LineLength:
+  Max: 296
+
+Metrics/MethodLength:
+  Max: 63
+
+Style/CaseIndentation:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+GlobalVars:
+  Enabled: false
+
+Style/IndentHash:
+  Enabled: false
+
+Style/FirstParameterIndentation:
+  Exclude:
+    - 'lib/helpers/rest/it_services/it_admin.rb'
+    - 'lib/helpers/rest/keycloak/keycloak_admin.rb'
+
+SpaceAroundEqualsInParameterDefault:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  Exclude:
+    - 'test_runner.rb'
+
+Style/SymbolProc:
+  Enabled: false
+
+Performance/StringReplacement:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 9
+
+Metrics/CyclomaticComplexity:
+  Max: 9
