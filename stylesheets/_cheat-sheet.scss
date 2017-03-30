@@ -7,6 +7,54 @@
     margin-bottom: 0;
   }
 
+  .cs-excerpt {
+    display: block;
+    background-color: #e8fbff;
+    border: 1px solid #b8e3ed;
+    padding: 20px 30px;
+    margin: 40px 0 20px 0;
+
+    h4 {
+      margin-bottom: 15px;
+    }
+
+    span {
+      display: inline-block;
+      width: calc(100% - 60px);
+      font-style: italic;
+      &.open-quote {
+        font-size: 7em;
+        width: 60px;
+        margin-top: 40px;
+        color: #00b9e4;
+        font-style: normal;
+      }
+
+      .field--name-field-cheat-sheet-excerpt {
+        width: inherit;
+      }
+    }
+    .divider {
+      border-bottom:1px solid $grey-3;
+      padding: 10px 0;
+
+      &:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+    code {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      font-weight: inherit;
+    }
+  }
+
+  .cta-label {
+    margin-bottom: 15px;
+  }
+
   .cs-info{
     border-top: 1px solid $grey-5;
     border-bottom: 1px solid $grey-5;
@@ -36,6 +84,7 @@
     padding-top: 0;
   }
   a.button {
+    margin: 5px 0 20px 0;
     margin-right: 25px !important;
   }
 
@@ -53,12 +102,18 @@
         display: block;
       }
     }
+
     .field--name-field-cheat-sheet-tags {
       margin-bottom: 25px;
     }
     a.button {
       width: 100%;
       margin-right: 0;
+    }
+  }
+  @include tablet-portrait-and-down {
+    .cs-tags {
+      margin-top: 20px;
     }
   }
 }

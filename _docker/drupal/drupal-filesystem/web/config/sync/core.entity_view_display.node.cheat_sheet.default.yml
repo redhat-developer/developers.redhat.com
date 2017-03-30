@@ -6,11 +6,10 @@ dependencies:
     - field.field.node.cheat_sheet.body
     - field.field.node.cheat_sheet.field_cheat_sheet_author
     - field.field.node.cheat_sheet.field_cheat_sheet_download_url
-    - field.field.node.cheat_sheet.field_cheat_sheet_image
+    - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
     - node.type.cheat_sheet
   module:
-    - image
     - link
     - text
     - user
@@ -43,14 +42,12 @@ content:
       target: '0'
     third_party_settings: {  }
     type: link
-  field_cheat_sheet_image:
+  field_cheat_sheet_excerpt:
     weight: 4
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    type: image
+    type: text_default
   field_cheat_sheet_tags:
     weight: 5
     label: visually_hidden
