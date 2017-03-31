@@ -75,7 +75,9 @@ other methods (such as node.delete) will result in an exception.
         <div class="cs-info">
             <ul>
                 <li>
-                    <strong{{ author_attributes }}>By {{content.field_cheat_sheet_author}} </strong>
+                    {% if content.field_cheat_sheet_author|render|striptags|trim is not empty %}
+                        <strong{{ author_attributes }}>By {{content.field_cheat_sheet_author}} </strong>
+                    {% endif %}
                 </li>
                 <li>
                     <small>Published: {{ date }}</small>
@@ -90,22 +92,26 @@ other methods (such as node.delete) will result in an exception.
   <div class="row">
     <div{{ content_attributes.addClass(["large-18", "medium-17", "columns"]) }}>
         {{ content.body }}
+
+        {% if content.field_cheat_sheet_excerpt|render|striptags|trim is not empty %}
+            <div class="cs-excerpt">
+                <h4>Cheat Sheet Excerpt</h4>
+                <span class="open-quote left">&ldquo;</span>
+                <span>
+                    {{ content.field_cheat_sheet_excerpt }}
+                </span>
+            </div>
+        {% endif %}
+        <div class="cta-label">
+            <strong>Want to see more? Get the full cheat sheet.</strong>
+        </div>
+        <a class="button hidden-after-login" href="{{ content.field_cheat_sheet_download_url[0]['#url'] }}">Log in to download</a>
+        <a class="button shown-after-login" href="{{ content.field_cheat_sheet_download_url[0]['#url'] }}">Download</a>
     </div>
-    <div class="large-6 medium-7 columns">
-        {% if content.field_cheat_sheet_tags|render is not empty %}
+    <div class="large-6 medium-7 columns cs-tags">
+        {% if content.field_cheat_sheet_tags|render|striptags|trim is not empty %}
             <strong>Tags:</strong> {{ content.field_cheat_sheet_tags }}
         {% endif %}
-    </div>
-    <div {{ content_attributes.addClass(["large-20", "medium-24", "columns"]) }}>
-        {# IMAGE HIDDEN UNTIL FINAL UX DECISION #}
-        {# {% if content.field_cheat_sheet_image|render is not empty %}
-            {{ title_prefix }}
-                <h3>Here is a sneak peek of {{ label }}</h3>
-            {{ title_suffix }}
-            {{ content.field_cheat_sheet_image }}
-        {% endif %} #}
-        <a  class="button hidden-after-login" href="{{ content.field_cheat_sheet_download_url[0]['#url'] }}">Get The Cheat Sheet</a>
-        <a  class="button shown-after-login" href="{{ content.field_cheat_sheet_download_url[0]['#url'] }}">Download</a>
     </div>
   </div>
 </div>

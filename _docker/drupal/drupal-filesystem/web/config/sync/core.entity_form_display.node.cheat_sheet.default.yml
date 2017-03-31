@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.cheat_sheet.body
     - field.field.node.cheat_sheet.field_cheat_sheet_author
     - field.field.node.cheat_sheet.field_cheat_sheet_download_url
-    - field.field.node.cheat_sheet.field_cheat_sheet_image
+    - field.field.node.cheat_sheet.field_cheat_sheet_excerpt
     - field.field.node.cheat_sheet.field_cheat_sheet_tags
     - node.type.cheat_sheet
   module:
@@ -46,6 +46,13 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+  field_cheat_sheet_excerpt:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
   field_cheat_sheet_tags:
     weight: 5
     settings:
@@ -86,5 +93,4 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden:
-  field_cheat_sheet_image: true
+hidden: {  }
