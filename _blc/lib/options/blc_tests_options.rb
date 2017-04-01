@@ -72,22 +72,15 @@ class RunBlcOptions
   def build_test_execution_command(test_configuration)
     run_tests_command = 'NODE_TLS_REJECT_UNAUTHORIZED=0 blc'
 
-    if ENV['HOST_TO_TEST']
-      run_tests_command += " #{ENV['HOST_TO_TEST']}"
-    end
+    run_tests_command += " #{ENV['HOST_TO_TEST']}" if ENV['HOST_TO_TEST']
 
-    if ENV['exclude_external']
-      run_tests_command += ' --exclude-external'
-    end
+    run_tests_command += ' --exclude-external' if ENV['exclude_external']
 
-    if ENV['exclude_internal']
-      run_tests_command += ' --exclude-internal'
-    end
+    run_tests_command += ' --exclude-internal' if ENV['exclude_internal']
 
     run_tests_command += ' --recursive --ordered | tee blc_results.txt'
 
     test_configuration[:run_tests_command] = run_tests_command
-
   end
 
   #
@@ -106,14 +99,8 @@ class RunBlcOptions
   end
 
   def bind_blc_environment_variables(test_configuration)
-    if test_configuration[:exclude_external]
-      @logger.info('External links are excluded')
-      bind_environment_variable('exclude_external', '--exclude-external')
-    end
-    if test_configuration[:exclude_internal]
-      @logger.info('Internal links are excluded')
-      bind_environment_variable('exclude_internal', '--exclude-internal')
-    end
+    bind_environment_variable('exclude_external', '--exclude-external') if test_configuration[:exclude_external]
+    bind_environment_variable('exclude_internal', '--exclude-internal') if test_configuration[:exclude_internal]
   end
 
   #
