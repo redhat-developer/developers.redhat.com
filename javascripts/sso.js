@@ -1,7 +1,8 @@
 app.sso = function () {
 
     function updateUser() {
-        var usr = digitalData.user[0].profile[0].profileInfo;
+        var digitalData = digitalData || {user:[{profile: [{profileInfo: {}}]}]},
+            usr = digitalData.user[0].profile[0].profileInfo;
 
         if (keycloak.authenticated) {
             keycloak.updateToken().success(function () {

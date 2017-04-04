@@ -44,8 +44,9 @@
 <!DOCTYPE html>
 <!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]-->
 <head>
-  {% if (rhd_dtm_code) %}
-  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0-rc.5/webcomponents-es5-loader.js"></script>
   <script>
   var digitalData = {{ rhd_dtm_script|json_encode()|raw }},
     relURL = window.location.href.replace(/https?:\/\//,'').replace('{{ rhd_base_url }}','').replace('{{ rhd_final_base_url }}','').replace(/\/$/,'');
@@ -237,6 +238,7 @@
 
     } )( window, document, digitalData );
   </script>
+  {% if (rhd_dtm_code) %}
   <script id="adobe_dtm" src="{{rhd_dtm_code}}"></script>
   {% endif %}
   <!--TODO: metrics here--><!--TODO: include Adobe A/B testing inline-->

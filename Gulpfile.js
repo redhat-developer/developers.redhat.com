@@ -35,13 +35,13 @@ var globs = {
     'javascripts/mobile.js',
     'javascripts/vendor/jquery.resize.js',
     'javascripts/vendor/jquery.timeago.js',
-    'javascripts/vendor/socialite.min.js',
+    //'javascripts/vendor/socialite.min.js',
     'javascripts/vendor/jquery.paging.min.js',
     'javascripts/vendor/ytembed.js',
     'javascripts/terms-and-conditions.js',
     'javascripts/search.js',
     'javascripts/os-filter.js',
-    'javascripts/social.js',
+    //'javascripts/social.js',
     'javascripts/visual.js',
     'javascripts/microsite.js',
     'javascripts/connectors.js',
@@ -77,7 +77,8 @@ var globs = {
     //'javascripts/current-tab.js',
     'javascripts/referrer.js',
     'javascripts/products.js',
-    'javascripts/jboss-docker.js'
+    'javascripts/jboss-docker.js',
+    'javascripts/rhd-social-button.js'
   ],
   "styles": ['stylesheets/*.scss']
 };
