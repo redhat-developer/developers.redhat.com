@@ -108,7 +108,7 @@ search.filter('MDY', function() {
     if (!timestamp) return;
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var d = new Date(timestamp);
-    var date = new Date([d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()].join('-'));
+    var date = new Date([d.getUTCFullYear(), d.getUTCMonth()+1, d.getUTCDate()].join('-'));
     window.date = date;
     if (!!window.location.href.match(/\/search/)) {
       return " | " + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
