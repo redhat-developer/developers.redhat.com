@@ -1,4 +1,5 @@
 @smoke
+
 Feature: Download Page - Unauthorised customer
 
   In order to try out Red Hat software,
@@ -10,7 +11,7 @@ Feature: Download Page - Unauthorised customer
     Then a "MOST POPULAR" Downloads section with the following Downloads:
       | Red Hat Enterprise Linux                      |
       | Red Hat JBoss Enterprise Application Platform |
-      | Red Hat JBoss Developer Studio                |
+      | Red Hat Development Suite                     |
       | Red Hat JBoss Fuse                            |
     And a 'DOWNLOAD' button for each Most Popular Download
 

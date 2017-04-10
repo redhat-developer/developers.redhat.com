@@ -19,7 +19,9 @@ services:
     - CUCUMBER_TAGS
     - RHD_JS_DRIVER
     - RHD_TEST_PROFILE
-    - RHD_DOCKER_DRIVER
+    - RHD_REMOTE_DRIVER
+    - RHD_BS_AUTHKEY
+    - RHD_BS_USERNAME
 
   selhub:
     image: selenium/hub

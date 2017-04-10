@@ -251,7 +251,7 @@
   <![endif]-->
   {% if (rhd_sentry_track) %}
   <script src="{{ rhd_sentry_script }}"></script>
-  <script>Raven.config('{{ rhd_sentry_code }}').install()</script>
+  <script>Raven.config('{{ rhd_sentry_code }}', { environment: '{{rhd_environment}}' }).install()</script>
   {% endif %}
   <js-placeholder token="{{ placeholder_token|raw }}">
 </head>

@@ -9,23 +9,18 @@ class Browsers
 
   def setup(browser_name, device, user_agent)
     if browser_name.include?('bs_')
+      fail('To use browserstack you must set the RHD_BS_USERNAME & RHD_BS_AUTHKEY env variables in your path') if ENV['RHD_BS_USERNAME'].nil? || ENV['RHD_BS_AUTHKEY'].nil?
       browser = browserstack(browser_name)
     else
       case browser_name
         when 'chrome'
-          browser = chrome(device, ENV['RHD_DOCKER_DRIVER'])
+          browser = chrome(device, ENV['RHD_REMOTE_DRIVER'])
         when 'firefox'
           browser = firefox
         when 'phantomjs'
           browser = phantomjs(user_agent)
-        when 'browserstack'
-          fail("No Browserstack browser env variable found, please set RHD_BS_STACK env variable \n
-                for example RHD_BS_STACK=bs_ie_11. List of available browsers/devices can be found at \n
-                _cucumber/driver/browserstack/browsers.json") if ENV['RHD_BS_STACK'].nil?
-          fail('To use browserstack you must set the RHD_BS_USERNAME & RHD_BS_AUTHKEY env variables') if ENV['RHD_BS_USERNAME'].nil? || ENV['RHD_BS_AUTHKEY'].nil?
-          browser = browserstack(ENV['RHD_BS_STACK'])
         else
-          browser = chrome(device, ENV['RHD_DOCKER_DRIVER'])
+          browser = chrome(device, ENV['RHD_REMOTE_DRIVER'])
       end
     end
     browser

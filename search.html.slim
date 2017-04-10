@@ -43,12 +43,7 @@ div(ng-app="search")
                 span.caps(ng-hide="(r.fields.sys_url_view[0].indexOf('/events/') >= 0) || (r.fields.sys_url_view[0].indexOf('/video/') >= 0)" ng-bind="r.fields.sys_type | type")
 
                 span(data-updated="{{r.fields.sys_created[0] | timestamp}}" ng-show="r.fields.sys_type != 'webpage' || r.fields.sys_type != 'article' || r.fields.sys_type != 'demo'" ng-bind="r.fields.sys_created[0] | MDY")
-              p(ng-bind-html="r | description")
-              / .tags-list
-              /   p
-              /     span.tag-label(ng-bind="r.sys_tags.length ? 'Tags:' : null")
-              /     span.tag(ng-repeat="tag in r.sys_tags" ng-bind="tag")
-
+              p(class="result-description" ng-bind-html="r | description")
 
           nav#paginator(ng-hide="loading" ng-if="paginate.pages > 1")
             span(ng-bind-template="Showing {{params.from + 1}}-{{paginate.lastVisible}} of  {{totalCount}} results")
