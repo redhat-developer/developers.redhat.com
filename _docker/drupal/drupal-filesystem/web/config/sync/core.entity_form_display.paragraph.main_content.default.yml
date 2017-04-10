@@ -8,6 +8,7 @@ dependencies:
   module:
     - field_group
     - text
+    - workbench_moderation
 third_party_settings:
   field_group:
     group_product_pages:
@@ -35,6 +36,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
 hidden:
   created: true
   status: true

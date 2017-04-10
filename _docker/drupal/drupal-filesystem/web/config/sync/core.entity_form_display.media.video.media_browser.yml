@@ -1,4 +1,4 @@
-uuid: 235d474f-f74c-463e-a549-696fa12deff9
+uuid: 32b135f2-e9a1-476a-a2a7-647c0bc2b41b
 langcode: en
 status: true
 dependencies:
@@ -22,6 +22,7 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -29,10 +30,12 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   preview:
     weight: null
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   field_media_video_embed_field: true

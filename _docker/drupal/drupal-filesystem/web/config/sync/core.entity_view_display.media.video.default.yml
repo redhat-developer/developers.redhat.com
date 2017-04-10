@@ -1,4 +1,4 @@
-uuid: 5688c6d8-e393-4588-be6a-9ae70d80b54d
+uuid: dae34c4c-9128-435c-8ff9-9cafc32f70a6
 langcode: en
 status: true
 dependencies:
@@ -25,6 +25,7 @@ content:
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
+    region: content
   field_media_video_embed_field:
     type: video_embed_field_video
     weight: 3
@@ -35,6 +36,7 @@ content:
       height: '480'
       autoplay: true
     third_party_settings: {  }
+    region: content
   name:
     label: hidden
     type: string
@@ -42,12 +44,14 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
   uid:
     label: hidden
     type: author
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   field_media_in_library: true
   thumbnail: true

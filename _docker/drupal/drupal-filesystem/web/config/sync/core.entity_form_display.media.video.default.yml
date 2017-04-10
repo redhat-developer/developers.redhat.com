@@ -1,4 +1,4 @@
-uuid: 1d7f7d3e-e486-4f1e-8600-bdffbc836997
+uuid: a422cdda-7f72-474d-a92c-c07826696bc9
 langcode: en
 status: true
 dependencies:
@@ -22,11 +22,13 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+    region: content
   field_media_video_embed_field:
     type: video_embed_field_textfield
     weight: 1
     settings: {  }
     third_party_settings: {  }
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -34,8 +36,10 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   preview:
     weight: 0
+    region: content
 hidden:
   created: true
   uid: true

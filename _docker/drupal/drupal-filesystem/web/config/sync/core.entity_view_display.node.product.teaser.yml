@@ -9,6 +9,8 @@ dependencies:
     - field.field.node.product.field_product_pages
     - field.field.node.product.field_product_short_name
     - field.field.node.product.field_product_summary
+    - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_url_product_name
     - node.type.product
   module:
     - user
@@ -19,6 +21,10 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   field_product_category: true
   field_product_machine_name: true

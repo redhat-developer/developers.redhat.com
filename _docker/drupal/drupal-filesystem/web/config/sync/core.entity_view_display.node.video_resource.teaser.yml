@@ -5,6 +5,15 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.video_resource.body
+    - field.field.node.video_resource.field_duration
+    - field.field.node.video_resource.field_likes
+    - field.field.node.video_resource.field_speakers
+    - field.field.node.video_resource.field_video_publish_date
+    - field.field.node.video_resource.field_video_resource
+    - field.field.node.video_resource.field_video_resource_tags
+    - field.field.node.video_resource.field_video_target_product
+    - field.field.node.video_resource.field_video_thumbnail_url
+    - field.field.node.video_resource.field_views
     - node.type.video_resource
   module:
     - text
@@ -21,12 +30,21 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+    region: content
   links:
     weight: 100
+    region: content
   workbench_moderation_control:
     weight: -20
+    region: content
 hidden:
+  field_duration: true
+  field_likes: true
   field_resource_type: true
   field_speakers: true
+  field_video_publish_date: true
   field_video_resource: true
   field_video_resource_tags: true
+  field_video_target_product: true
+  field_video_thumbnail_url: true
+  field_views: true

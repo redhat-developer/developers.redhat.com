@@ -11,6 +11,7 @@ dependencies:
   module:
     - image
     - text
+    - workbench_moderation
 id: paragraph.paragraph_with_image.default
 targetEntityType: paragraph
 bundle: paragraph_with_image
@@ -23,6 +24,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_paragraph_image_image:
     weight: 1
     settings:
@@ -30,6 +32,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_paragraph_image_title:
     weight: 0
     settings:
@@ -37,6 +40,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
 hidden:
   created: true
   status: true

@@ -1,4 +1,4 @@
-uuid: ed7f1640-23bc-4d39-8939-9b97a96fb06a
+uuid: d4de8209-f8ad-4b1a-a578-e221e1cf33f1
 langcode: en
 status: true
 dependencies:
@@ -17,6 +17,7 @@ content:
   entity_ids:
     type: entity_reference_autocomplete
     weight: -10
+    region: content
     settings:
       match_operator: CONTAINS
       size: '60'
@@ -27,9 +28,11 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
   update_timestamp:
     type: datetime_timestamp
     weight: -9
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden: {  }

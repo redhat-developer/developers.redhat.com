@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - editor
-    - entity_embed
     - linkit
     - token_filter
     - video_embed_wysiwyg
@@ -90,10 +89,4 @@ filters:
     provider: video_embed_wysiwyg
     status: true
     weight: -47
-    settings: {  }
-  entity_embed:
-    id: entity_embed
-    provider: entity_embed
-    status: true
-    weight: 0
     settings: {  }

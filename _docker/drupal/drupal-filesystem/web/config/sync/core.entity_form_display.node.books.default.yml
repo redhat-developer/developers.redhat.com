@@ -20,6 +20,7 @@ dependencies:
     - datetime
     - link
     - text
+    - workbench_moderation
 id: node.books.default
 targetEntityType: node
 bundle: books
@@ -32,11 +33,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_average_rating:
     weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_book_description:
     weight: 4
     settings:
@@ -45,6 +48,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
   field_book_url:
     weight: 3
     settings:
@@ -52,6 +56,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   field_categories:
     weight: 10
     settings:
@@ -59,6 +64,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_isbn:
     weight: 2
     settings:
@@ -66,6 +72,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_preview_url:
     weight: 9
     settings:
@@ -73,11 +80,13 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   field_published_date:
     weight: 6
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_publisher:
     weight: 5
     settings:
@@ -85,11 +94,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_pull_from_google:
     weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_thumbnail_url:
     weight: 7
     settings:
@@ -97,6 +108,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   field_web_reader_url:
     weight: 8
     settings:
@@ -104,6 +116,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -111,6 +124,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   path: true

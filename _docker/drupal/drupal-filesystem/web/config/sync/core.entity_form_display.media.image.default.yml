@@ -1,4 +1,4 @@
-uuid: 25a0a2e3-8dd0-489d-8291-771e00287b2c
+uuid: bfe49da3-def9-4088-adc4-6da8b3bcee9e
 langcode: en
 status: true
 dependencies:
@@ -23,6 +23,7 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+    region: content
   image:
     type: image_image
     weight: 0
@@ -30,6 +31,7 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
+    region: content
   name:
     type: string_textfield
     weight: 3
@@ -37,6 +39,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   uid: true

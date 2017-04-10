@@ -29,12 +29,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_overview_main_content:
     weight: 1
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_overview_url:
     weight: 3
     label: visually_hidden
@@ -42,6 +44,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_page_description:
     weight: 4
     label: visually_hidden
@@ -49,6 +52,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_product_overview_features:
     type: entity_reference_revisions_entity_view
     weight: 7
@@ -57,6 +61,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
   field_product_overview_video:
     weight: 6
     label: visually_hidden
@@ -67,12 +72,14 @@ content:
       autoplay: false
     third_party_settings: {  }
     type: video_embed_field_video
+    region: content
   field_secondary_content:
     weight: 5
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
 hidden:
   created: true
   uid: true

@@ -1,12 +1,9 @@
-uuid: 8a88cc6f-5d17-44ea-b352-bf8784ba6ebb
+uuid: f781a8fd-dd24-4460-9539-c897b9985921
 langcode: en
 status: true
 dependencies:
-  config:
-    - media_entity.bundle.image
-    - media_entity.bundle.video
   content:
-    - 'file:file:eaafa7c0-7e62-4a5c-8869-4b4a5c59fbcc'
+    - 'file:file:360f2a5e-5604-46ea-ad53-7d4fa60e5503'
   module:
     - entity_embed
     - media_entity
@@ -17,12 +14,11 @@ id: media_browser
 type_id: entity
 type_settings:
   entity_type: media
-  bundles:
-    - image
-    - video
+  bundles: {  }
   display_plugins:
+    - 'entity_reference:entity_reference_entity_view'
     - 'view_mode:media.embedded'
   entity_browser: media_browser
   entity_browser_settings:
-    display_review: true
-icon_uuid: eaafa7c0-7e62-4a5c-8869-4b4a5c59fbcc
+    display_review: false
+icon_uuid: 360f2a5e-5604-46ea-ad53-7d4fa60e5503
