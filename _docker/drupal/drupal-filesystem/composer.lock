@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "90ff0eec4d49cf0b80da9bbaaae06691",
+    "content-hash": "e1514cb8e997a63a6788ca70a6d28c81",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -1154,7 +1154,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-alpha1",
-                    "datestamp": "1476873539"
+                    "datestamp": "1490940184"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1408,13 +1408,6 @@
                 "symfony/css-selector": "~2.8"
             },
             "type": "drupal-core",
-            "extra": {
-                "patches_applied": {
-                    "2663638 - Avoid to check the render context to detect early rendering for Non-GET requests.": "https://www.drupal.org/files/issues/2663638-2_0.patch",
-                    "2652138 - ImageFormatter does not support SVGs": "https://www.drupal.org/files/issues/2652138-41.patch",
-                    "1356276 - Allow profiles to provide a base/parent profile and load them in the correct order": "https://www.drupal.org/files/issues/1356276-303.patch"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Drupal\\Core\\": "lib/Drupal/Core",
@@ -1462,7 +1455,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0-alpha27",
-                    "datestamp": "1471723439"
+                    "datestamp": "1490677984"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1692,7 +1685,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.3",
-                    "datestamp": "1474294739"
+                    "datestamp": "1490108883"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1851,10 +1844,6 @@
                 "drupal": {
                     "version": "8.x-1.0-alpha2",
                     "datestamp": "1484641084"
-                },
-                "patches_applied": {
-                    "2844068 - Create derivatives for any viewable entity.": "https://www.drupal.org/files/issues/entity_block-view-builder-class.patch",
-                    "2846004 - Entity Block does not perform any access control": "https://www.drupal.org/files/issues/2846004-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1994,9 +1983,6 @@
                 "drupal": {
                     "version": "8.x-1.0-beta2",
                     "datestamp": "1476698339"
-                },
-                "patches_applied": {
-                    "2832504 - Send the CKEditor instance ID to the embed.preview route": "https://www.drupal.org/files/issues/2832504-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2389,7 +2375,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-rc2",
-                    "datestamp": "1447632539"
+                    "datestamp": "1489216984"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2555,7 +2541,7 @@
                 },
                 "drupal": {
                     "version": "8.x-5.0-beta4",
-                    "datestamp": "1483883642"
+                    "datestamp": "1490224383"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3075,9 +3061,6 @@
                 "drupal": {
                     "version": "8.x-3.0-beta1",
                     "datestamp": "1491580982"
-                },
-                "patches_applied": {
-                    "2793841 - Properly integrate with Panels IPE": "https://www.drupal.org/files/issues/panelizer-panels-ipe-tempstore-id.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3151,9 +3134,6 @@
                 "drupal": {
                     "version": "8.x-3.0-beta6",
                     "datestamp": "1488057783"
-                },
-                "patches_applied": {
-                    "2793801 - Allow modules to influence the IPE tempstore ID": "https://www.drupal.org/files/issues/2793801-13.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3273,14 +3253,20 @@
         },
         {
             "name": "drupal/paragraphs",
-            "version": "dev-1.x",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/paragraphs",
-                "reference": "9102e30c258137a44c1ab371cfd6d6584b8c54d5"
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.1.zip",
+                "reference": null,
+                "shasum": "c678e5704a98c6a0549e415412da081cfeb03a00"
             },
             "require": {
-                "drupal/core": "*",
+                "drupal/core": "~8.0",
                 "drupal/entity_reference_revisions": "*"
             },
             "require-dev": {
@@ -3297,8 +3283,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1+12-dev",
-                    "datestamp": "1491298683"
+                    "version": "8.x-1.1",
+                    "datestamp": "1487331784"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3331,8 +3317,7 @@
             "homepage": "https://www.drupal.org/project/paragraphs",
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
-            },
-            "time": "2017-04-10 09:32:59"
+            }
         },
         {
             "name": "drupal/pathauto",
@@ -3514,9 +3499,6 @@
                 "drupal": {
                     "version": "8.x-1.0-beta5",
                     "datestamp": "1491764883"
-                },
-                "patches_applied": {
-                    "2866454 - Update 8103 causes sadness": "https://www.drupal.org/files/issues/2866454-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3856,10 +3838,6 @@
                     "version": "8.x-1.x",
                     "datestamp": "1487595183",
                     "package": "Field types"
-                },
-                "patches_applied": {
-                    "2846738 - Implement methods: createSourceFieldStorage and createSourceField": "https://www.drupal.org/files/issues/2846738_unimplemented_methods_2.patch",
-                    "2849478 - Support for Youtube and Youtube playlist provider default media name": "https://www.drupal.org/files/issues/support_for_youtube-2849478-6.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4077,11 +4055,6 @@
                 "drupal": {
                     "version": "8.x-1.2",
                     "datestamp": "1483529942"
-                },
-                "patches_applied": {
-                    "2668006 - Provide logical access control for when IPE should be applied to moderated nodes": "https://www.drupal.org/files/issues/2668006-2.patch",
-                    "2847078 - Revision tracker's dynamic table creation can break Views": "https://www.drupal.org/files/issues/2847078-6.patch",
-                    "2749503 - Add basic support for Quick Edit": "https://www.drupal.org/files/issues/workbench_moderation-quickedit-support-2749503-6.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -10358,7 +10331,6 @@
         "drupal/media_entity": 20,
         "drupal/media_entity_image": 20,
         "drupal/metatag": 20,
-        "drupal/paragraphs": 20,
         "drupal/pathauto": 20,
         "drupal/video_embed_field": 20,
         "drupal/workbench": 20,
