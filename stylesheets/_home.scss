@@ -5,8 +5,8 @@
 
 .homepage-main {
   color: $white;
-  background-image: url("https://static.jboss.org/images/rhd/hero/RHDP_home_hero_desktop_mmdbook_17feb2017.png");
-  background-position: top left;
+  background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_rheliversary_13mar2017.png");
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #b9b9b9;
@@ -16,8 +16,9 @@
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    margin: 55px 0 40px 0;
+    margin: 190px 0 0 0;
     color: $white;
+    text-align: center;
     h3 {
       margin-bottom: 0;
       line-height: 1.2;
@@ -26,43 +27,7 @@
     }
     h4 {
       color: inherit;
-    }
-    a.button {
-      min-width: 250px;
-    }
-  }
-  .homepage-getstarted {
-    min-height: 360px;
-    padding: 20px;
-    background-color: rgba(3,3,3,0.74);
-    h4 {
-      color: #eaa400;
-      margin-top: 20px;
-    }
-    a {
-      color: $white;
-      &:hover, &:focus, &:active {
-        color: #E0E0E0;
-      }
-    }
-    ul {
-      margin-bottom: 10px;
-      list-style-type: none;
-      li:before{
-        font-family: 'FontAwesome';
-        content: '\f0a9';
-        margin:0 5px 0 -15px;
-        color: #eaa400;
-      }
-    }
-    .video-thumb {
-      img {
-        max-width: 225px;
-      }
-      p {
-        margin-top: 8px;
-        margin-bottom: 10px;
-      }
+      font-weight: 400;
     }
   }
   img {
@@ -273,15 +238,12 @@ ul.homepage-resources {
   .homepage-main {
     background-color: #b9b9b9;
     min-height: 440px;
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_mmdbook_17feb2017.png");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_nocostrhelanniversary_12apr2017.jpg");
     .homepage-cta {
-      margin: 30px auto;
+      margin: 50px auto;
       a.button {
         display: inline-block;
       }
-    }
-    .homepage-getstarted {
-      min-height: 240px;
     }
   }
   span.type-icon {
@@ -318,7 +280,7 @@ ul.homepage-resources {
 @include mobile-landscape-and-down {
   .homepage-main {
     background-color: #b9b9b9;
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_mmdbook_17feb2017.png");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_nocostrhelanniversary_12apr2017.jpg");
   }
   .spotlights-container {
     flex-direction: column;
