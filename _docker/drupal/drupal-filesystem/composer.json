@@ -60,7 +60,7 @@
         "drupal/scheduled_updates": "1.0.0-alpha6",
         "drupal/replication": "1.0.0-alpha5",
         "drupal/search_api": "1.0.0-beta5",
-        "drupal/simple_sitemap": "2.8.0",
+        "drupal/simple_sitemap": "2.9.0",
         "drupal/smtp": "1.0.0-alpha2",
         "drupal/subpathauto": "1.0-beta1",
         "drupal/token": "1.0.0-beta2",
@@ -134,11 +134,6 @@
             "drush/contrib/{$name}": [
                 "type:drupal-drush"
             ]
-        },
-        "patches": {
-	    "drupal/core": {
-                "2663638 - Avoid to check the render context to detect early rendering for Non-GET requests.": "https://www.drupal.org/files/issues/2663638-2_0.patch"
-            }
         }
     }
 }
