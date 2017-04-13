@@ -27,24 +27,26 @@ class Browsers
   end
 
   def phantomjs(user_agent)
+    phantomjs_driver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os}/phantomjs", 'phantomjs')
     switches = %w(--ignore-ssl-errors=true)
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.open_timeout = 100 # Browser launch can take a while
     if user_agent.nil?
       chrome_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
       capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs('phantomjs.page.settings.userAgent' => chrome_agent)
-      browser = Billy::Browsers::Watir.new :phantomjs, desired_capabilities: capabilities, args: switches, http_client: client
+      browser = Billy::Browsers::Watir.new :phantomjs, desired_capabilities: capabilities, args: switches, driver_path: phantomjs_driver_path, http_client: client
       browser.window.resize_to(1920, 1080)
       browser
     else
       ENV['DEVICE'] = user_agent
       capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs('phantomjs.page.settings.userAgent' => user_agent)
-      browser = Billy::Browsers::Watir.new :phantomjs, desired_capabilities: capabilities, args: switches, http_client: client
+      browser = Billy::Browsers::Watir.new :phantomjs, desired_capabilities: capabilities, args: switches, driver_path: phantomjs_driver_path, http_client: client
       browser
     end
   end
 
   def chrome(device, remote = nil)
+    chrome_driver_path = File.join(File.absolute_path('../..', File.dirname(__FILE__)), "driver/#{$os}/chrome", 'chromedriver')
     $download_directory = File.join("#{$cucumber_dir}/", 'tmp_downloads')
     FileUtils.mkdir_p $download_directory
 
@@ -74,7 +76,7 @@ class Browsers
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 300
     if remote.nil?
-      Watir::Browser.new(:chrome, desired_capabilities: caps, http_client: client)
+      Watir::Browser.new(:chrome, desired_capabilities: caps, driver_path: chrome_driver_path, http_client: client)
     else
       begin
         attempts = 0
