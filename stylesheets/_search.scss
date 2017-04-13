@@ -260,6 +260,14 @@ form.header-search {
   .result-details {
     @include flex(1);
   }
+  p.result-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 45px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 }
 
 span.tag {

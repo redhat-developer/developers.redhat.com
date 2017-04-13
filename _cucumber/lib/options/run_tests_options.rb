@@ -47,6 +47,9 @@ class RunTestsOptions
         test_configuration[:stubbed_data] = stubbed_data
       end
 
+      opts.on('--use-browserstack', String, 'Run the acceptance tests using Browserstack') do
+        test_configuration[:browserstack] = true
+      end
       #
       # Options supporting the execution of the tests within Docker
       #
@@ -84,6 +87,7 @@ class RunTestsOptions
 
     bind_profile_environment_variables(test_configuration[:profile])
     bind_driver_environment_variables(test_configuration[:docker], test_configuration[:driver], test_configuration)
+    bind_browserstack_environment_variables(test_configuration[:browserstack], test_configuration[:driver])
     bind_github_status_environment_variables(test_configuration[:docker], test_configuration[:github_sha1], test_configuration[:profile])
 
     build_test_execution_command(test_configuration)
@@ -112,6 +116,14 @@ class RunTestsOptions
 
     if ENV['STUBBED_DATA']
       run_tests_command += " STUBBED_DATA=#{ENV['STUBBED_DATA']}"
+    end
+
+    if ENV['RHD_BS_USERNAME']
+      run_tests_command += " RHD_BS_USERNAME=#{ENV['RHD_BS_USERNAME']}"
+    end
+
+    if ENV['RHD_BS_AUTHKEY']
+      run_tests_command += " RHD_BS_AUTHKEY=#{ENV['RHD_BS_AUTHKEY']}"
     end
 
     test_configuration[:run_tests_command] = run_tests_command
@@ -151,7 +163,7 @@ class RunTestsOptions
 
   #
   # Binds the environment variables required to correctly influence the driver used by Cucumber.
-  # If we are trying to run in Docker, we also set the RHD_DOCKER_DRIVER env variable.
+  # If we are trying to run in Docker, we also set the RHD_REMOTE_DRIVER env variable.
   #
   def bind_driver_environment_variables(run_in_docker, driver, test_configuration)
     if run_in_docker
@@ -161,10 +173,17 @@ class RunTestsOptions
       #
       docker_driver = @supported_drivers.include?(driver) ? "docker_#{driver}" : 'docker_chrome'
       driver = @supported_drivers.include?(driver) ? "docker_#{driver}" : driver
-      bind_environment_variable('RHD_DOCKER_DRIVER', docker_driver)
+      bind_environment_variable('RHD_REMOTE_DRIVER', docker_driver)
       test_configuration[:docker_node] = docker_driver
     end
+    bind_environment_variable('RHD_JS_DRIVER', driver)
+  end
 
+  def bind_browserstack_environment_variables(run_in_browserstack, driver)
+    return unless run_in_browserstack
+    # Set Browserstack environment variables.
+    bind_environment_variable('RHD_BS_AUTHKEY', ENV['RHD_BS_AUTHKEY'])
+    bind_environment_variable('RHD_BS_USERNAME', ENV['RHD_BS_USERNAME'])
     bind_environment_variable('RHD_JS_DRIVER', driver)
   end
 
@@ -173,11 +192,18 @@ class RunTestsOptions
   #
   def check_supported_driver(driver)
     return if @supported_drivers.include?(driver)
-    # Check that the device being used for emulation is supported by chrome
-    driver_config_file = "#{@cucumber_dir}/driver/device_config/chromium_devices.json"
-    json = File.read(driver_config_file)
-    config = JSON.parse(json)
-    Kernel.abort("Invalid device specified! Device '#{driver}' was not found \n see available test devices here: '#{driver_config_file}'") unless config.include?(driver)
+    if driver.include?('bs_')
+      browserstack_browsers = "#{@cucumber_dir}/driver/browserstack/browsers.json"
+      json = File.read(browserstack_browsers)
+      config = JSON.parse(json)
+      Kernel.abort("Invalid remote browser specified! Browser '#{driver}' \n See available browserstack options here: '#{browserstack_browsers}' \n Set desired stack using --driver=bs_ie_11") unless config.include?(driver)
+    else
+      # Check that the device being used for emulation is supported by chrome
+      driver_config_file = "#{@cucumber_dir}/driver/device_config/chromium_devices.json"
+      json = File.read(driver_config_file)
+      config = JSON.parse(json)
+      Kernel.abort("Invalid device specified! Device '#{driver}' was not found \n see available test devices here: '#{driver_config_file}'") unless config.include?(driver)
+    end
   end
 
   #
@@ -198,6 +224,7 @@ class RunTestsOptions
     default_configuration[:browser_count] = 2
     default_configuration[:stubbed_data] = 'false'
     default_configuration[:docker] = false
+    default_configuration[:browserstack] = false
     default_configuration
   end
 end

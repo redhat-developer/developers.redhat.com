@@ -110,6 +110,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "heroes";
 @import "awards";
 @import "devoxx4kids";
+@import "cheat-sheet";
 
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
@@ -183,13 +184,71 @@ button, .button {
   font-size: 16px;
   font-weight: 600;
   padding:9px 40px;
+  -webkit-transition: background .2s ease-in 0s;
   transition:background .2s ease-in 0s;
-  line-height: 1.2em;
+  line-height: 1.44;
   margin-left: 0 !important;
   margin-right: 0 !important;
 
   &:hover, &:focus {
-    background: #AD0000;
+    background-color: darken( $red, 12% );
+  }
+  &.heavy-cta {
+    font-weight: bold;
+    &.white {
+      background:$white;
+      color:$red;
+      &:hover, &:focus {
+        background-color: darken( $white, 6% );
+      }
+    }
+    &.black {
+      background:$black;
+      color:$white;
+    }
+    &.blue {
+      background:$blue;
+      color:$white;
+      &:hover, &:focus {
+        background-color: darken( $blue, 6% );
+      }
+    }
+
+  }
+  &.medium-cta {
+    border: 1px solid $red;
+    line-height: 1.44;
+    color: $red;
+    background-color: transparent;
+    padding: 8px 40px;
+    &:hover, &:focus {
+      background-color: $red;
+      color: $white;
+    }
+    &.white {
+      border-color:$white;
+      color:$white;
+      &:hover, &:focus {
+        background-color: $white;
+        color: $red;
+      }
+    }
+    &.black {
+      border-color:$black;
+      color:$black;
+      &:hover, &:focus {
+        background-color: $black;
+        color: $white;
+      }
+    }
+    &.blue {
+      border-color:$blue;
+      color:$blue;
+      &:hover, &:focus {
+        background-color: $blue;
+        color: $white;
+      }
+    }
   }
   &.large {
     padding: 0.6em 0.9em;
@@ -199,12 +258,6 @@ button, .button {
   }
   & + button, & + .button {
     margin-left: 20px;
-  }
-  &.blue {
-    background:$med-blue;
-    &:hover {
-      background: lighten($med-blue,10%);
-    }
   }
   &.inverse {
     background:white;
@@ -218,6 +271,30 @@ button, .button {
     i {
       margin-right:2px;
       margin-left: 2px;
+    }
+  }
+}
+
+a.light-cta{
+  color: $link;
+  font-weight: 800;
+  &:after {
+    padding-left:2px;
+    content: "\25B8";
+  }
+  &:hover, &:focus {
+    color: $linkhover;
+  }
+  &.black {
+    color: $black;
+    &:hover, &:focus {
+      color: $link;
+    }
+  }
+  &.white {
+    color: $white;
+    &:hover, &:focus {
+      color: $linkhover-dark-background;
     }
   }
 }

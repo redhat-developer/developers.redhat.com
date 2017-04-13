@@ -1,19 +1,21 @@
 {% include  '@rhd/paragraph/download_thankyou.html.twig' %}
 
 <div class="row">
-    <div class="has-download">
-        <h2 class="subpage-name" id="download-development-use">Download {{ product_short_name }} for Development Use</h2>
-        <div class="row">
-            <div class="large-16 columns">
-                <p> To download this product, {{ link('you must have an account', 'internal:/register') }} and accept the terms and conditions of the {{ link('Red Hat Developer Program', 'internal:/articles/red-hat-developer-program-benefits') }}, which provides no-cost subscriptions for development use only.
-                </p>
-                <h4 class="caps">All Downloads</h4>
+    <div class="large-24 columns">
+        <div class="has-download">
+            <h2 class="subpage-name" id="download-development-use">Download {{ product_short_name }} for Development Use</h2>
+            <div class="row">
+                <div class="large-16 columns">
+                    <p> To download this product, {{ link('you must have an account', 'internal:/register') }} and accept the terms and conditions of the {{ link('Red Hat Developer Program', 'internal:/articles/red-hat-developer-program-benefits') }}, which provides no-cost subscriptions for development use only.
+                    </p>
+                    <h4 class="caps">All Downloads</h4>
+                </div>
+                <div class="product-downloads" data-product-code="{{ product_machine_name }}"></div>
             </div>
-            <div class="product-downloads" data-product-code="{{ product_machine_name }}"></div>
         </div>
-    </div>
-    <div class="no-download">
-        <h2 id="downloads">{{ product_short_name }} Downloads</h2>
+        <div class="no-download">
+            <h2 id="downloads">{{ product_short_name }} Downloads</h2>
+        </div>
     </div>
 </div>
 {% if content.field_overview_main_content|render|striptags|trim is not empty %}

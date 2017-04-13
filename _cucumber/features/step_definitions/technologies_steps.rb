@@ -40,7 +40,7 @@ Then(/^I should see a 'Get started' button for each product$/) do
   product_ids = ProductsHelper.products[0]
   product_ids.each do |product|
     on TechnologiesPage do |page|
-      if product == 'openjdk'
+      if product == 'openjdk' || product == 'openshift'
         expect(page.get_started_button_for(product)).to include "products/#{product}/overview"
       elsif @products_with_get_started.include?(product)
         expect(page.get_started_button_for(product)).to include "/products/#{product}/hello-world"
