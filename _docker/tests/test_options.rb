@@ -167,6 +167,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     refute(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+    assert_equal(tasks[:drupal_unit_tests], expected_drupal_unit_test_tasks)
     assert_equal(%w(apache drupalmysql drupal), tasks[:supporting_services])
     assert_equal(%w(--rm --service-ports awestruct), tasks[:awestruct_command_args])
   end
@@ -184,6 +185,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+    assert_equal(tasks[:drupal_unit_tests], expected_drupal_unit_test_tasks)
     assert_equal(%w(apache drupalmysql drupal), tasks[:supporting_services])
     assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
   end
@@ -195,6 +197,7 @@ class TestOptions < Minitest::Test
     assert(tasks[:kill_all])
     assert(tasks[:decrypt])
     assert_equal(tasks[:unit_tests], expected_unit_test_tasks)
+    assert_equal(tasks[:drupal_unit_tests], expected_drupal_unit_test_tasks)
     assert_equal(%w(drupalmysql drupal), tasks[:supporting_services])
     assert_equal(['--rm', '--service-ports', 'awestruct'], tasks[:awestruct_command_args])
   end
@@ -207,7 +210,20 @@ class TestOptions < Minitest::Test
     assert_equal(nil, tasks[:awestruct_command_args])
   end
 
+  def test_drupal_test_task
+    tasks = Options.parse(["-d"])
+    assert_equal(tasks[:build], false)
+    assert_equal(tasks[:decrypt], false)
+    assert_equal(tasks[:drupal_unit_tests], expected_drupal_unit_test_tasks)
+    assert_equal(nil, tasks[:awestruct_command_args])
+  end
+
   private def expected_unit_test_tasks
     %w(--no-deps --rm unit_tests)
   end
+
+  private def expected_drupal_unit_test_tasks
+    %w(--no-deps --rm drupal_unit_tests)
+  end
 end
+
