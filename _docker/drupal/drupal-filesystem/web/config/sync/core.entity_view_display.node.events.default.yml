@@ -37,12 +37,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_description:
     weight: 102
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_end_date:
     weight: 104
     label: above
@@ -51,6 +53,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_event_background_image:
     weight: 122
     label: above
@@ -59,24 +62,28 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+    region: content
   field_event_format:
     weight: 116
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_event_image:
     weight: 114
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_event_type:
     weight: 113
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_more_details:
     weight: 108
     label: above
@@ -84,30 +91,35 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_on_homepage:
     weight: 117
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_region:
     weight: 121
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_site:
     weight: 118
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_solution_type:
     weight: 120
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_start_date:
     weight: 103
     label: above
@@ -116,12 +128,14 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_target_product:
     weight: 123
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_title:
     weight: 105
     label: above
@@ -129,6 +143,11 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   links:
     weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: 200
+    region: content
 hidden: {  }

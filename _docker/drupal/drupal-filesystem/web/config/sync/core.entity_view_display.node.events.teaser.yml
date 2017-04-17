@@ -4,7 +4,21 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.events.field_data_tags
     - field.field.node.events.field_description
+    - field.field.node.events.field_end_date
+    - field.field.node.events.field_event_background_image
+    - field.field.node.events.field_event_format
+    - field.field.node.events.field_event_image
+    - field.field.node.events.field_event_type
+    - field.field.node.events.field_more_details
+    - field.field.node.events.field_on_homepage
+    - field.field.node.events.field_region
+    - field.field.node.events.field_site
+    - field.field.node.events.field_solution_type
+    - field.field.node.events.field_start_date
+    - field.field.node.events.field_target_product
+    - field.field.node.events.field_title
     - node.type.events
   module:
     - user
@@ -15,6 +29,10 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: 200
+    region: content
 hidden:
   field_data_tags: true
   field_description: true

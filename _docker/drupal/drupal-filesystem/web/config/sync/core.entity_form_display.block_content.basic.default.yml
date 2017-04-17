@@ -7,6 +7,7 @@ dependencies:
     - field.field.block_content.basic.body
   module:
     - text
+    - workbench_moderation
 _core:
   default_config_hash: kv6gwb6PJ8DcMSj5kgsd52qCIHl1xkxBDL5_AMm-g8k
 id: block_content.basic.default
@@ -22,6 +23,7 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+    region: content
   info:
     type: string_textfield
     weight: -5
@@ -29,4 +31,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

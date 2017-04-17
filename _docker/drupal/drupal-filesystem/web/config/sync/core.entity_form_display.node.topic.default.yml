@@ -21,6 +21,7 @@ dependencies:
     - link
     - path
     - text
+    - workbench_moderation
 _core:
   default_config_hash: jGHPzwirnVEHycI_Us_SlVTxaYU9EzvezuoXpUM_NeU
 id: node.topic.default
@@ -33,6 +34,7 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_blue_card_description:
     weight: 8
     settings:
@@ -40,6 +42,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
   field_blue_card_links:
     weight: 9
     settings:
@@ -47,6 +50,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   field_blue_card_title:
     weight: 7
     settings:
@@ -54,6 +58,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_bottom_left_white_card:
     weight: 16
     settings:
@@ -62,6 +67,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_bottom_right_white_card:
     weight: 17
     settings:
@@ -70,6 +76,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_data_tags:
     weight: 26
     settings:
@@ -77,6 +84,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_green_card:
     weight: 12
     settings:
@@ -85,6 +93,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_grey_card:
     weight: 13
     settings:
@@ -92,6 +101,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_orange_card:
     weight: 11
     settings:
@@ -100,6 +110,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_tags:
     weight: 10
     settings:
@@ -108,6 +119,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_top_left_white_card:
     weight: 14
     settings:
@@ -116,6 +128,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_top_right_white_card:
     weight: 15
     settings:
@@ -124,6 +137,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_topic_sub_title:
     weight: 6
     settings:
@@ -131,23 +145,27 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textfield
+    region: content
   path:
     type: path
     weight: 5
     settings: {  }
     third_party_settings: {  }
+    region: content
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 3
     third_party_settings: {  }
+    region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 4
     third_party_settings: {  }
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -155,6 +173,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 1
@@ -163,4 +182,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

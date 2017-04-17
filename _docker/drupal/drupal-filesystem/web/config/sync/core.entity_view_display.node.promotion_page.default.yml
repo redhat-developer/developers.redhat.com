@@ -24,6 +24,7 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_call_to_action_link:
     weight: 103
     label: visually_hidden
@@ -35,6 +36,7 @@ content:
       target: '0'
     third_party_settings: {  }
     type: link
+    region: content
   field_mail_to_link:
     weight: 104
     label: visually_hidden
@@ -46,6 +48,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_promotion_page_left_image:
     weight: 102
     label: visually_hidden
@@ -54,5 +57,9 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+    region: content
+  workbench_moderation_control:
+    weight: 200
+    region: content
 hidden:
   links: true

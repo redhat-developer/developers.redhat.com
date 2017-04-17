@@ -27,6 +27,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_product_machine_name:
     weight: 108
     label: visually_hidden
@@ -34,6 +35,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_product_pages:
     type: entity_reference_revisions_entity_view
     weight: 107
@@ -42,6 +44,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
   field_product_short_name:
     weight: 109
     label: visually_hidden
@@ -49,18 +52,21 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_product_summary:
     weight: 105
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_product_technology_group:
     weight: 112
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_url_product_name:
     weight: 111
     label: above
@@ -68,5 +74,9 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  workbench_moderation_control:
+    weight: 200
+    region: content
 hidden:
   links: true

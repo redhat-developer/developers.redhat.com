@@ -4,6 +4,18 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.connectors.field_connector_details_url
+    - field.field.node.connectors.field_connector_id
+    - field.field.node.connectors.field_connector_link_1
+    - field.field.node.connectors.field_connector_link_1_text
+    - field.field.node.connectors.field_connector_link_2
+    - field.field.node.connectors.field_connector_link_2_text
+    - field.field.node.connectors.field_connector_long_description
+    - field.field.node.connectors.field_connector_priority
+    - field.field.node.connectors.field_connector_short_descriptio
+    - field.field.node.connectors.field_connector_target_product_1
+    - field.field.node.connectors.field_connector_target_product_2
+    - field.field.node.connectors.field_connector_target_product_3
     - node.type.connectors
   module:
     - user
@@ -14,6 +26,7 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
 hidden:
   field_connector_details_url: true
   field_connector_id: true

@@ -34,6 +34,7 @@ content:
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_blue_card_links:
     type: link
     weight: 0
@@ -45,6 +46,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
+    region: content
   field_blue_card_title:
     type: string
     weight: 0
@@ -52,6 +54,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
   field_bottom_left_white_card:
     weight: 104
     label: visually_hidden
@@ -60,6 +63,7 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
   field_bottom_right_white_card:
     weight: 105
     label: visually_hidden
@@ -68,6 +72,7 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
   field_data_tags:
     weight: 106
     label: above
@@ -75,6 +80,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_green_card:
     type: entity_reference_entity_view
     weight: 0
@@ -83,12 +89,14 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_grey_card:
     type: text_default
     weight: 0
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_orange_card:
     type: entity_reference_entity_view
     weight: 0
@@ -97,6 +105,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_tags:
     type: entity_reference_entity_view
     weight: 0
@@ -105,6 +114,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_top_left_white_card:
     weight: 102
     label: visually_hidden
@@ -113,6 +123,7 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
   field_top_right_white_card:
     weight: 103
     label: visually_hidden
@@ -121,11 +132,16 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
   field_topic_sub_title:
     weight: 101
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  workbench_moderation_control:
+    weight: 200
+    region: content
 hidden:
   links: true

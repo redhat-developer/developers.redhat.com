@@ -15,6 +15,7 @@ dependencies:
     - field_group
     - paragraphs
     - text
+    - workbench_moderation
 third_party_settings:
   field_group:
     group_sub_pages:
@@ -52,11 +53,13 @@ content:
     weight: 8
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_product_category:
     weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_product_machine_name:
     weight: 4
     settings:
@@ -64,6 +67,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_product_pages:
     type: entity_reference_paragraphs
     weight: 4
@@ -74,6 +78,7 @@ content:
       add_mode: select
       form_display_mode: default
     third_party_settings: {  }
+    region: content
   field_product_short_name:
     weight: 1
     settings:
@@ -81,6 +86,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_product_summary:
     weight: 2
     settings:
@@ -88,11 +94,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_product_technology_group:
     weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_url_product_name:
     weight: 5
     settings:
@@ -100,6 +108,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -107,6 +116,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 7
@@ -115,6 +125,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden:
   path: true
   promote: true

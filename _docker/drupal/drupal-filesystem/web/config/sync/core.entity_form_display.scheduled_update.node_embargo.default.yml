@@ -1,0 +1,29 @@
+uuid: 2ddf734a-521b-42c4-9588-53cfb6dc27ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.scheduled_update.node_embargo.field_moderation_state
+    - scheduled_updates.scheduled_update_type.node_embargo
+  module:
+    - workbench_moderation
+_core:
+  default_config_hash: XLM4XxWVsRabgIZ4Wt5dwKtYQJzf82ddxM1k4SpkCxw
+id: scheduled_update.node_embargo.default
+targetEntityType: scheduled_update
+bundle: node_embargo
+mode: default
+content:
+  field_moderation_state:
+    type: options_select
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  update_timestamp:
+    type: datetime_timestamp
+    weight: -9
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

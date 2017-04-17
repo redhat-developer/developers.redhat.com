@@ -25,6 +25,7 @@ dependencies:
     - image
     - link
     - text
+    - workbench_moderation
 id: node.events.default
 targetEntityType: node
 bundle: events
@@ -35,6 +36,7 @@ content:
     weight: 4
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_data_tags:
     weight: 14
     settings:
@@ -42,6 +44,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_description:
     weight: 3
     settings:
@@ -49,11 +52,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_end_date:
     weight: 2
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_event_background_image:
     weight: 10
     settings:
@@ -61,21 +66,25 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_event_format:
     weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_event_image:
     weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_event_type:
     weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_more_details:
     weight: 5
     settings:
@@ -83,37 +92,44 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   field_on_homepage:
     weight: 11
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
   field_region:
     weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_site:
     weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_solution_type:
     weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_start_date:
     weight: 1
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_target_product:
     weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -121,6 +137,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden:
   field_title: true
   path: true
