@@ -9,6 +9,7 @@ namespace Acquia\Lightning;
 
 use Composer\Script\Event;
 use Composer\Util\ProcessExecutor;
+use Symfony\Component\Filesystem\Filesystem;
 
 class ScriptHandler {
 
@@ -19,6 +20,8 @@ class ScriptHandler {
    *   The script event.
    */
   public static function deployLibraries(Event $event) {
+    static::buildScaffold($event);
+
     $extra = $event->getComposer()->getPackage()->getExtra();
 
     if (isset($extra['installer-paths'])) {
@@ -57,6 +60,17 @@ class ScriptHandler {
 //      umask($oldmask);
 //      $event->getIO()->write("Create a sites/default/files directory with chmod 0777");
 //    }
+  }
+
+  protected static function getDrupalRoot($project_root) {
+    return $project_root .  '/web';
+  }
+
+  public static function buildScaffold(Event $event) {
+    $fs = new Filesystem();
+    if (!$fs->exists(static::getDrupalRoot(getcwd()) . '/autoload.php')) {
+      \DrupalComposer\DrupalScaffold\Plugin::scaffold($event);
+    }
   }
 }
 
