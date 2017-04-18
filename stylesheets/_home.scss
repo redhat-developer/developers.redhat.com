@@ -5,8 +5,8 @@
 
 .homepage-main {
   color: $white;
-  background-image: url("http://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_rheliversary_13mar2017.png");
-  background-position: center center;
+  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_summit2017_17apr2017.png");
+  background-position: top left;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #b9b9b9;
@@ -16,10 +16,11 @@
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    margin: 190px 0 0 0;
+    margin: 55px 0 40px 0;
     color: $white;
     text-align: center;
     h3 {
+      font-size: 33px;
       margin-bottom: 0;
       line-height: 1.2;
       text-transform: uppercase;
@@ -238,7 +239,7 @@ ul.homepage-resources {
   .homepage-main {
     background-color: #b9b9b9;
     min-height: 440px;
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_nocostrhelanniversary_12apr2017.jpg");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_summer2017_17apr2017.png");
     .homepage-cta {
       margin: 50px auto;
       a.button {
@@ -264,9 +265,6 @@ ul.homepage-resources {
     padding: 2em !important;
   }
   .homepage-main {
-    .homepage-cta a.button {
-      margin: 20px auto;
-    }
     img.desktop {
       display: none;
     }
@@ -280,7 +278,7 @@ ul.homepage-resources {
 @include mobile-landscape-and-down {
   .homepage-main {
     background-color: #b9b9b9;
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_nocostrhelanniversary_12apr2017.jpg");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_summit2017_17apr2017.png");
   }
   .spotlights-container {
     flex-direction: column;
