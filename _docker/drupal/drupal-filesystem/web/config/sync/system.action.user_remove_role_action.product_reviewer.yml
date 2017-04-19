@@ -1,0 +1,14 @@
+uuid: 3ca8001d-7247-403e-94c9-1e641ed5e884
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.product_reviewer
+  module:
+    - user
+id: user_remove_role_action.product_reviewer
+label: 'Remove the Product reviewer role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: product_reviewer

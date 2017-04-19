@@ -1,0 +1,19 @@
+uuid: cd2fd490-df5e-4a12-96d1-e070c1fd8374
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: zLwTD3D205dyZLuBqT8fIp5n0Byj9PP0ouiM7N94LVs
+id: node_embargo
+label: 'Publish single node at certain time'
+update_entity_type: node
+update_types_supported:
+  - embedded
+field_map:
+  field_moderation_state: moderation_state
+update_runner:
+  id: latest_revision
+  after_run: DELETE
+  invalid_update_behavior: DELETE
+  create_revisions: BUNDLE_DEFAULT
+  update_user: USER_UPDATE_OWNER

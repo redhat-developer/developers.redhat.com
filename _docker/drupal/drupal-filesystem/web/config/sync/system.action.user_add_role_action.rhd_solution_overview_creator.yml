@@ -1,0 +1,14 @@
+uuid: dec112a7-e517-4de4-a361-6b8c4683758f
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.rhd_solution_overview_creator
+  module:
+    - user
+id: user_add_role_action.rhd_solution_overview_creator
+label: 'Add the Technology Page creator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: rhd_solution_overview_creator

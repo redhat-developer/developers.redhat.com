@@ -1,0 +1,14 @@
+uuid: 8e9b0bce-94bc-4f20-876c-cd1b14ff8d01
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.topic_reviewer
+  module:
+    - user
+id: user_remove_role_action.topic_reviewer
+label: 'Remove the Topic Page reviewer role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: topic_reviewer

@@ -1,0 +1,14 @@
+uuid: 9512486d-47b1-4670-8e33-95fccceafb27
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.promotion_card_creator
+  module:
+    - user
+id: user_add_role_action.promotion_card_creator
+label: 'Add the Promotion Card creator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: promotion_card_creator

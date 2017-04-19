@@ -1,0 +1,14 @@
+uuid: 92b993d2-2708-4023-a17e-1112b00c5625
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.connectors_creator
+  module:
+    - user
+id: user_remove_role_action.connectors_creator
+label: 'Remove the Connectors creator role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: connectors_creator

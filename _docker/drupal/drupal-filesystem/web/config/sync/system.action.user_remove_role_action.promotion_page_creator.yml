@@ -1,0 +1,14 @@
+uuid: 94795b66-36f2-4ae9-9084-01de35f1ba19
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.promotion_page_creator
+  module:
+    - user
+id: user_remove_role_action.promotion_page_creator
+label: 'Remove the Promotion Page creator role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: promotion_page_creator

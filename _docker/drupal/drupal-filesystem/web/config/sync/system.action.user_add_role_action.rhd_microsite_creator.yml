@@ -1,0 +1,14 @@
+uuid: d03efa44-d1e6-4079-8d02-9cd4f4549365
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.rhd_microsite_creator
+  module:
+    - user
+id: user_add_role_action.rhd_microsite_creator
+label: 'Add the Microsite Page creator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: rhd_microsite_creator

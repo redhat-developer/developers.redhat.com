@@ -1,0 +1,14 @@
+uuid: 85a8bb44-aae8-4d96-bb7f-c6e8b936299f
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.events_creator
+  module:
+    - user
+id: user_add_role_action.events_creator
+label: 'Add the Events creator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: events_creator
