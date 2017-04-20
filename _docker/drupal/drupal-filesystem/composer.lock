@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c856a82bc9f493e3994be621c47abb66",
+    "content-hash": "1d2f72d416655a0d6fdd571ac2891cf9",
     "packages": [
         {
             "name": "acquia/lightning",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/lightning.git",
-                "reference": "dcccacff48ea22ddcb5aeb3164ed556530bb4fee"
+                "reference": "303af6fbb858ad236316591c9b042d56eb5dddb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/lightning/zipball/dcccacff48ea22ddcb5aeb3164ed556530bb4fee",
-                "reference": "dcccacff48ea22ddcb5aeb3164ed556530bb4fee",
+                "url": "https://api.github.com/repos/acquia/lightning/zipball/303af6fbb858ad236316591c9b042d56eb5dddb3",
+                "reference": "303af6fbb858ad236316591c9b042d56eb5dddb3",
                 "shasum": ""
             },
             "require": {
@@ -27,8 +27,8 @@
                 "drupal/acquia_connector": "^1.1",
                 "drupal/config_update": "^1.1",
                 "drupal/contact_storage": "^1.0",
-                "drupal/core": "8.2.7",
-                "drupal/ctools": "3.0.0-alpha27",
+                "drupal/core": "~8.2.0",
+                "drupal/ctools": "^3.0",
                 "drupal/diff": "^1.0",
                 "drupal/embed": "^1.0",
                 "drupal/entity_block": "1.0.0-alpha2",
@@ -62,12 +62,11 @@
                 "behat/mink": "~1.7",
                 "behat/mink-goutte-driver": "~1.2",
                 "composer/composer": "^1.4",
-                "drupal-composer/drupal-scaffold": "^2.0.0",
                 "drupal/coder": "^2.0",
                 "drupal/console": "^1.0",
                 "drupal/devel": "^1.0",
                 "drupal/drupal-extension": "^3.2",
-                "drush/drush": "^8.0",
+                "drush/drush": "8.1.10",
                 "jakoch/phantomjs-installer": "1.9.8",
                 "jcalderonzumba/gastonjs": "~1.0.2",
                 "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
@@ -129,6 +128,9 @@
                     "drupal/entity_block": {
                         "2844068 - Create derivatives for any viewable entity.": "https://www.drupal.org/files/issues/entity_block-view-builder-class.patch",
                         "2846004 - Entity Block does not perform any access control": "https://www.drupal.org/files/issues/2846004-2.patch"
+                    },
+                    "drush/drush": {
+                        "2697 - Don't add profile dependencies to required_by array of modules": "https://patch-diff.githubusercontent.com/raw/drush-ops/drush/pull/2697.patch"
                     }
                 }
             },
@@ -143,7 +145,7 @@
                 "GPL-2.0+"
             ],
             "description": "The best of Drupal, curated by Acquia",
-            "time": "2017-03-15T22:36:33+00:00"
+            "time": "2017-03-29T13:43:06+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -3289,14 +3291,20 @@
         },
         {
             "name": "drupal/paragraphs",
-            "version": "dev-1.x",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/paragraphs",
-                "reference": "d36117e93077a77f4e7b9b31abb363c6188ce611"
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.1.zip",
+                "reference": null,
+                "shasum": "c678e5704a98c6a0549e415412da081cfeb03a00"
             },
             "require": {
-                "drupal/core": "*",
+                "drupal/core": "~8.0",
                 "drupal/entity_reference_revisions": "*"
             },
             "require-dev": {
@@ -3313,8 +3321,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1+13-dev",
-                    "datestamp": "1491816842"
+                    "version": "8.x-1.1",
+                    "datestamp": "1487331784"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3347,8 +3355,7 @@
             "homepage": "https://www.drupal.org/project/paragraphs",
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
-            },
-            "time": "2017-04-13 12:11:17"
+            }
         },
         {
             "name": "drupal/pathauto",
@@ -3957,7 +3964,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/workbench",
-                "reference": "4db353da56ca53a7d15cfc6190cd197b6614a36f"
+                "reference": "ceca5166b101db3abd487d3b97e0a2bd9507c422"
             },
             "require": {
                 "drupal/core": "*"
@@ -3968,8 +3975,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha3+1-dev",
-                    "datestamp": "1489345083"
+                    "version": "8.x-1.0-alpha4+2-dev",
+                    "datestamp": "1492272542"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4011,7 +4018,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/workbench"
             },
-            "time": "2017-03-12 18:56:16"
+            "time": "2017-04-15 16:17:03"
         },
         {
             "name": "drupal/workbench_email",
@@ -4727,16 +4734,16 @@
         },
         {
             "name": "madcoda/php-youtube-api",
-            "version": "v1.2.3",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/madcoda/php-youtube-api.git",
-                "reference": "69ff0269cd8f0bd28b500e1e93461d585e6250c3"
+                "reference": "886e3aa1789cd19ad0c7add239bd2967f3b5ad4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/madcoda/php-youtube-api/zipball/69ff0269cd8f0bd28b500e1e93461d585e6250c3",
-                "reference": "69ff0269cd8f0bd28b500e1e93461d585e6250c3",
+                "url": "https://api.github.com/repos/madcoda/php-youtube-api/zipball/886e3aa1789cd19ad0c7add239bd2967f3b5ad4d",
+                "reference": "886e3aa1789cd19ad0c7add239bd2967f3b5ad4d",
                 "shasum": ""
             },
             "require": {
@@ -4772,7 +4779,7 @@
                 "video",
                 "youtube"
             ],
-            "time": "2017-04-12T08:45:23+00:00"
+            "time": "2017-04-13T09:47:50+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -6395,16 +6402,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.33.0",
+            "version": "v1.33.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a"
+                "reference": "a87f959f4b691da66aada267a2dfdb260d0bb58a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a",
-                "reference": "05cf49921b13f6f01d3cfdf9018cfa7a8086fd5a",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a87f959f4b691da66aada267a2dfdb260d0bb58a",
+                "reference": "a87f959f4b691da66aada267a2dfdb260d0bb58a",
                 "shasum": ""
             },
             "require": {
@@ -6453,7 +6460,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-22T15:40:09+00:00"
+            "time": "2017-04-18T21:43:11+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -10184,7 +10191,6 @@
         "drupal/media_entity": 20,
         "drupal/media_entity_image": 20,
         "drupal/metatag": 20,
-        "drupal/paragraphs": 20,
         "drupal/pathauto": 20,
         "drupal/video_embed_field": 20,
         "drupal/workbench": 20,
