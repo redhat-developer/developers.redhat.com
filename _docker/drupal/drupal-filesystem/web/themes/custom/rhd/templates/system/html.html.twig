@@ -299,7 +299,7 @@
             <nav class="mega-menu">
                 <ul>
                     <li class="has-sub-nav">
-                        <a href="#">Topics<i class="fa fa-angle-down"></i></a>
+                        <a href="#" class="sub-nav-topics">Topics<i class="fa fa-angle-down "></i></a>
                         <div class="sub-nav" id="sub-nav-topics">
                             <a href="/containers">Containers</a>
                             <a href="/devops">DevOps</a>
@@ -312,7 +312,7 @@
                         </div>
                     </li>
                     <li class="has-sub-nav">
-                        <a href="#">Technologies<i class="fa fa-angle-down"></i></a>
+                        <a href="#" class="sub-nav-products">Technologies<i class="fa fa-angle-down"></i></a>
                         <div class="sub-nav" id="sub-nav-technologies">
                             <div class="sub-nav-group">
                               <a class="heading" href="/products#development_and_management">Accelerated Development and Management</a>
@@ -356,7 +356,7 @@
                         </div>
                     </li>
                     <li class="has-sub-nav">
-                        <a href="#">Community<i class="fa fa-angle-down"></i></a>
+                        <a href="#" class="sub-nav-community">Community<i class="fa fa-angle-down"></i></a>
                         <div class="sub-nav pull-right" id="sub-nav-community">
                           <a href="https://developers.redhat.com/blog">Developers Blog<span class="page-description">Insights &amp; news on Red Hat developer tools, platforms and more</span></a>
                           <a href="/events">Events<span class="page-description">Find the latest conferences, meetups, and virtual seminars</span></a>
@@ -367,14 +367,14 @@
                         </div>
                     </li>
                     <li class="has-sub-nav">
-                      <a href="#">Help<i class="fa fa-angle-down"></i></a>
+                      <a href="#" class="sub-nav-help">Help<i class="fa fa-angle-down"></i></a>
                       <div class="sub-nav pull-right" id="sub-nav-help">
                         <a href="/resources">Resources<span class="page-description">Important technical resources for you in all shapes and sizes:  blogs, books, code, videos and more.</span></a>
                         <a href="/forums">Forums<span class="page-description">We've extended our popular JBoss.org forums to cover our entire Red Hat portfolio for you.</span></a>
                         <a href="/stack-overflow">Stack Overflow Q&amp;A<span class="page-description">You already use Stack Overflow, so we'll help you use it to find your best answers.</span></a>
                       </div>
                     </li>
-                    <li><a href="/downloads">Downloads </a></li>
+                    <li><a href="/downloads" class="sub-nav-downloads">Downloads </a></li>
                 </ul>
             </nav>
         </div>
@@ -471,6 +471,48 @@
 
   <script type="text/javascript" src="https://issues.jboss.org/s/36fcee7e2c47b82293b8ffd249c9132e-T/-bdgec2/72005/38e4585ff05eb2dd95a30399b8504050/2.0.22/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-UK&collectorId=03f305bd">
   </script>
+
+  <script type="text/javascript">
+   $(function() {
+
+      var href = window.location.href.split('#')[0];
+
+      var topicPages = ['/containers','/devops','/enterprise-java','/iot','/microservices','/mobile','/web-and-api-development','/dotnet'];
+      var communityPages = ['/blog','/events','/projects','/community/contributor'];
+      var helpPages = ['/stack-overflow','/forums','/resources'];
+
+      tLength = topicPages.length;
+      cLength = communityPages.length;
+      hLength = helpPages.length;
+
+      while(tLength--) {
+         if (href.indexOf(topicPages[tLength])!=-1) {
+            $('.sub-nav-topics').addClass('active');
+         }
+      }
+      while(cLength--) {
+         if (href.indexOf(communityPages[cLength])!=-1) {
+            $('.sub-nav-community').addClass('active');
+         }
+      }
+
+      while(hLength--) {
+         if (href.indexOf(helpPages[hLength])!=-1) {
+            $('.sub-nav-help').addClass('active');
+         }
+      }
+
+      if (href.indexOf('/products') != -1){
+        $('.sub-nav-products').addClass('active');
+      }
+
+      if (href.indexOf('/downloads') != -1){
+        $('.sub-nav-downloads').addClass('active');
+      }
+
+   });
+  </script>
+
   {# This MUST be at the bottom of the page #}
   {% if (rhd_dtm_code) %}
   <script type="text/javascript">

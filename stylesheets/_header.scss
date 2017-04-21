@@ -37,6 +37,10 @@ header.main {
     padding:10px;
   }
 
+  .has-sub-nav > a.active,
+  a.sub-nav-downloads.active{
+    color: #A3DBE8;
+  }
   // top level
   & > ul {
     float:right;
