@@ -5,6 +5,8 @@ dependencies:
   config:
     - field.storage.media.field_media_in_library
     - media_entity.bundle.image
+_core:
+  default_config_hash: Owwahl_hzXKtP9pp7UUSZUqe43alCzgZS88282FUMhk
 id: media.image.field_media_in_library
 field_name: field_media_in_library
 entity_type: media
@@ -12,7 +14,7 @@ bundle: image
 label: 'Save to my media library'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     value: 1

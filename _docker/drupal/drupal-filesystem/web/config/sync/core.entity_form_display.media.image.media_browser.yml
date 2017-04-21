@@ -1,19 +1,18 @@
-uuid: a742124f-aead-4de9-b295-8f2f20e77af4
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.media.media_browser
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
-    - image.style.thumbnail
+    - image.style.medium
     - media_entity.bundle.image
   module:
     - image
-third_party_settings: { }
-id: media.image.default
+id: media.image.media_browser
 targetEntityType: media
 bundle: image
-mode: default
+mode: media_browser
 content:
   field_media_in_library:
     type: boolean_checkbox
@@ -22,11 +21,11 @@ content:
       display_label: true
     third_party_settings: {  }
   image:
-    type: image_image
+    type: image_immutable
     weight: 0
     settings:
+      preview_image_style: medium
       progress_indicator: throbber
-      preview_image_style: thumbnail
     third_party_settings: {  }
   name:
     type: string_textfield

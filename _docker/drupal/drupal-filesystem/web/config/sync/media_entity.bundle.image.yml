@@ -5,14 +5,12 @@ dependencies:
   module:
     - media_entity_image
 _core:
-  default_config_hash: VkPfZJrZ0ZdHG3-gS9hH-0chO52UGwahux7soQSg_GY
+  default_config_hash: psFarmc4AkN1jLAd-tV_rCKCJaJg6HiA9yCSKC3x8Oo
 id: image
 label: Image
 description: 'Locally hosted images.'
 type: image
-queue_thumbnail_downloads: false
-new_revision: false
 type_configuration:
-  source_field: field_library_image
-  gather_exif: false
+  source_field: image
+  gather_exif: '0'
 field_map: {  }
