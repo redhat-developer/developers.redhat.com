@@ -49,7 +49,7 @@ RUN chmod -v +x /var/www/drupal/scripts/run-httpd.sh
 
 # Get Drupal in here
 # Doing this in multiple steps so less things change on a day to day build and builds take less time
-COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock drupal-filesystem/2663638-2.patch /var/www/drupal/
+COPY drupal-filesystem/composer.json drupal-filesystem/composer.lock drupal-filesystem/2663638-2.patch drupal-filesystem/view_render_patch.patch /var/www/drupal/
 RUN /usr/local/bin/composer install -n
 
 # Copy in the custom things we create
