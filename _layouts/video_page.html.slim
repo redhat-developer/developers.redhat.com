@@ -12,6 +12,8 @@ layout: base
 - if !page.video.nil? && !page.video.target_product.nil? && !page.video.target_product[0].nil? && !page.video.target_product[0].empty?
   - product = site.products[page.video.target_product[0]]
 
+noscript
+  meta name="DCP:WebpageSearchExclude" content="true"
 
 .row.content
 

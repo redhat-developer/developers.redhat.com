@@ -111,5 +111,8 @@ section.wide.wide-hero(class="#{page.hero_class}")
                   - if c.speaker
                     p #{c.speaker_intro}
 
+noscript
+  meta name="DCP:WebpageSearchExclude" content="true"
+
 = javascripts('devnation2016-index', true) do
   script src="#{site.base_url}/javascripts/devnation2016.js"
