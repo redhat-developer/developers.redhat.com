@@ -1,0 +1,13 @@
+diff --git a/src/Plugin/EntityBrowser/Widget/View.php b/src/Plugin/EntityBrowser/Widget/View.php
+index 605f782..338b47d 100644
+--- a/src/Plugin/EntityBrowser/Widget/View.php
++++ b/src/Plugin/EntityBrowser/Widget/View.php
+@@ -144,7 +144,7 @@ class View extends WidgetBase implements ContainerFactoryPluginInterface {
+     }
+ 
+     $form['view']['view'] = [
+-      '#markup' => \Drupal::service('renderer')->render($form['view']['view']),
++      '#markup' => \Drupal::service('renderer')->renderRoot($form['view']['view']),
+     ];
+ 
+     return $form;
