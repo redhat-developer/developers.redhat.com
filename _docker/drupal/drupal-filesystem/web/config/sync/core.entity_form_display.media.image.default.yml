@@ -9,7 +9,6 @@ dependencies:
     - media_entity.bundle.image
   module:
     - image
-third_party_settings: { }
 id: media.image.default
 targetEntityType: media
 bundle: image
@@ -37,4 +36,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_library_image: true
   uid: true

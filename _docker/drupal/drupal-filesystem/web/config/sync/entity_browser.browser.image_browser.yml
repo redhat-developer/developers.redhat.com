@@ -1,3 +1,4 @@
+uuid: 1fa7add7-f7ef-4c5b-bd2b-cc0a04b4dffb
 langcode: en
 status: true
 dependencies:
@@ -21,6 +22,7 @@ widgets:
     settings:
       submit_text: Select
       return_file: true
+      form_mode: media_browser
     uuid: 44d52e51-9627-43b5-a637-3b0462041d1c
     weight: -9
     label: Upload
@@ -30,6 +32,7 @@ widgets:
       view: media
       view_display: image_browser
       submit_text: Select
+      auto_select: false
     uuid: 58383135-0f34-4a4a-85fc-5cf9b5de2fdd
     weight: -10
     label: Library
