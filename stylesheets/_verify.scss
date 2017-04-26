@@ -37,11 +37,11 @@
 }
 
 .notMember {
-    @extend .message;
+    @extend .member;
     color: #8f0000;
 }
 
 .isMember {
-    @extend .message;
+    @extend .member;
     color: green;
 }
