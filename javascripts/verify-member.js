@@ -21,14 +21,14 @@ verifyMemberApp.controller('VerifyCtrl', ['$scope', 'validateMember', function V
             }
         }
     }
-    $scope.goToRegister = function() {
+    $scope.goToRegister = function(e) {
+        e.preventDefault();
         app.keycloak.login({ action : 'register', redirectUri : app.ssoConfig.confirmation });
-        return false;
     }
 }]);
 
 verifyMemberApp.factory('validateMember', ['$http', function($http) {
     return function validateMember(email) {
-        return $http.post('/auth/realms/rhd/rhdtools/emailUsed', JSON.stringify({email:email}));
+        return $http.post(app.ssoConfig.auth_url+'/realms/rhd/rhdtools/emailUsed', JSON.stringify({email:email}));
     }
 }])
