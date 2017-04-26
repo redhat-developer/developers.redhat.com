@@ -29,6 +29,6 @@ verifyMemberApp.controller('VerifyCtrl', ['$scope', 'validateMember', function V
 
 verifyMemberApp.factory('validateMember', ['$http', function($http) {
     return function validateMember(email) {
-        return $http.post(app.ssoConfig.auth_url+'/realms/rhd/rhdtools/emailUsed', JSON.stringify({email:email}));
+        return $http.post(app.ssoConfig.auth_url+'realms/rhd/rhdtools/emailUsed', JSON.stringify({email:email}));
     }
 }])
