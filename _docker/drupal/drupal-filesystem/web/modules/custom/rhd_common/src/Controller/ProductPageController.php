@@ -3,6 +3,7 @@
 namespace Drupal\rhd_common\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\Query\QueryFactory;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
@@ -12,166 +13,201 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Product page controller class definition.
  */
-class ProductPageController extends ControllerBase
-{
-    /**
-     * @var QueryFactory
-     */
-    private $entityQuery;
+class ProductPageController extends ControllerBase {
+  /**
+   * @var QueryFactory
+   */
+  private $entityQuery;
 
-    /**
-     * @var Node Product entity being displayed
-     */
-    private $active_product;
+  /**
+   * @var Node Product entity being displayed
+   */
+  private $active_product;
 
-    /**
-     * @var Paragraph Active product subpage
-     */
-    private $active_subpage;
+  /**
+   * @var Paragraph Active product subpage
+   */
+  private $active_subpage;
 
-    /**
-     * ProductPageController constructor.
-     * @param QueryFactory $connection
-     */
-    public function __construct(QueryFactory $connection)
-    {
-        $this->entityQuery = $connection;
-    }
+  /**
+   * @var Connection
+   */
+  private $connection;
 
-    /**
-     * @inheritDoc
-     */
-    public static function create(ContainerInterface $container)
-    {
-        return new static($container->get('entity.query'));
-    }
+  /**
+   * ProductPageController constructor.
+   * @param QueryFactory $queryFactory
+   * @param Connection $connection
+   */
+  public function __construct(QueryFactory $queryFactory, Connection $connection) {
+    $this->entityQuery = $queryFactory;
+    $this->connection = $connection;
+  }
 
-    /**
-     * Router callback function.
-     * @param string $product_code Product URL Name
-     * @param string $sub_page sub page paragraph name
-     * @return array Render array for the page
-     */
-    public function productPage($product_code, $sub_page)
-    {
-        $build = [];
-        $this->active_product = $this->findProduct($product_code);
+  /**
+   * @inheritDoc
+   */
+  public static function create(ContainerInterface $container) {
+    return new static($container->get('entity.query'),
+      $container->get('database'));
+  }
 
-        if (!empty($this->active_product)) {
-            // This render array will hold the left side navigation links
-            $page_links = [
-              '#theme' => 'item_list',
-              '#list_type' => 'ul',
-              '#items' => [
-                [
-                  '#markup' => '<a href="#">Menu</a>',
-                  '#wrapper_attributes' => ['class' => 'side-nav-toggle']
-                ]
-              ],
-              '#attributes' => [
-                'class' => ['side-nav', 'rhd-sub-nav']
-              ]
-            ];
+  /**
+   * Router callback function.
+   * @param string $product_code Product URL Name
+   * @param string $sub_page sub page paragraph name
+   * @return array Render array for the page
+   */
+  public function productPage($product_code, $sub_page) {
+    $build = [];
+    $active_product = $this->findProduct($product_code);
 
-            // Iterate over all the product sub pages configured for this product
-            // Find the active one, create links for the left side nav
-            foreach ($this->active_product->field_product_pages as $cur_sub_page) {
-                $product_pages_id = $cur_sub_page->target_id;
+    if (!is_null(active_product)) {
+      // This render array will hold the left side navigation links
+      $page_links = [
+        '#theme' => 'item_list',
+        '#list_type' => 'ul',
+        '#items' => [
+          [
+            '#markup' => '<a href="#">Menu</a>',
+            '#wrapper_attributes' => ['class' => 'side-nav-toggle']
+          ]
+        ],
+        '#attributes' => [
+          'class' => ['side-nav', 'rhd-sub-nav']
+        ]
+      ];
 
-                // entity_load paragraph type.
-                $sub_page_paragraph = $this->entityTypeManager()
-                  ->getStorage('paragraph')
-                  ->load($product_pages_id);
+      // Iterate over all the product sub pages configured for this product
+      // Find the active one, create links for the left side nav
+      $stmt = $this->connection->query('SELECT field_product_pages_target_id, field_product_pages_target_revision_id
+FROM
+  {node_revision},
+  {node_revision__field_product_pages}
+  -- {paragraph_revision__field_tabs}
+WHERE node_revision__field_product_pages.entity_id = node_revision.nid
+  AND node_revision__field_product_pages.revision_id = node_revision.vid
+  -- AND paragraph_revision__field_tabs.entity_id = node_revision__field_product_pages.field_product_pages_target_id
+  -- AND paragraph_revision__field_tabs.revision_id = node_revision__field_product_pages.field_product_pages_target_revision_id
+  AND node_revision.nid = :nid AND node_revision.vid = :vid',
+        [':nid' => $active_product->id(), ':vid' => $active_product->getRevisionId()]);
 
-                // Prepare left nav links data.
-                $sub_page_url = $sub_page_paragraph->field_overview_url->value;
-                $sub_page_url_string = str_replace(' ', '-', strtolower($sub_page_url));
+      $returns = NULL;
 
-                if ($sub_page_url_string == $sub_page) {
-                    $active_subpage = $product_pages_id;
-                    $this->active_paragraph = $sub_page_paragraph;
-                }
+      while (($returns = $stmt->fetchAssoc()) !== FALSE) {
+        $product_pages_id = $returns['field_product_pages_target_revision_id'];
 
-                $page_links['#items'][] = [
-                  '#type' => 'link',
-                  '#title' => [
-                    '#type' => 'inline_template',
-                    '#template' => "{{text}}",
-                    '#context' => [
-                      'text' => t(strpos($sub_page_paragraph->field_overview_url->value, 'Hello') === false ?
-                        $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!')
-                    ]
-                  ],
-                  '#url' => Url::fromRoute('rhd_common.main_page_controller', [
-                    'product_code' => $product_code,
-                    'sub_page' => $sub_page_url_string,
-                  ]),
-                  '#wrapper_attributes' => (function () use ($sub_page, $sub_page_url_string) {
-                      if ($sub_page_url_string == $sub_page) {
-                          return ['class' => 'active'];
-                      } else {
-                          return [];
-                      }
-                  })()
-                ];
-            }
+        // entity_load paragraph type.
+        $sub_page_paragraph = $this->entityTypeManager()
+          ->getStorage('paragraph')
+          ->loadRevision($product_pages_id);
 
-            $build = $this->entityTypeManager()
-              ->getViewBuilder($this->active_product->getEntityTypeId())
-              ->view($this->active_product, 'full');
+        // Prepare left nav links data.
+        $sub_page_url = $sub_page_paragraph->field_overview_url->value;
+        $sub_page_url_string = str_replace(' ', '-', strtolower($sub_page_url));
 
-            $build['#theme'] = 'product-pages';
-            $build['page_links'] = $page_links;
-
-            $build['active_paragraph'] = $this->entityTypeManager()
-              ->getViewBuilder($this->active_paragraph->getEntityTypeId())
-              ->view($this->active_paragraph, 'full');
-
-
-            // Also product category
-            if ($this->active_product->hasField('field_product_category')) {
-                $product_category = $this->active_product->field_product_category->value;
-                $build['product_category'] = $product_category;
-            }
-
-            // URL product name
-            if ($this->active_product->hasField('field_url_product_name')) {
-                $build['url_product_name'] = $this->active_product->field_url_product_name->value;
-            }
-
-            // Helper for twig to know if there is a community page
-            $product_pages = $this->active_product->field_product_pages->referencedEntities();
-            $build['has_community'] = count(array_filter($product_pages, function ($entity) {
-                  return strtolower($entity->field_overview_url->value) === 'community';
-              })) > 0;
+        if ($sub_page_url_string == $sub_page) {
+          $active_subpage = $product_pages_id;
+          $active_paragraph = $sub_page_paragraph;
         }
 
-        $build['#cache']['max-age'] = 0; // Disable caching of these product pages
+        $page_links['#items'][] = [
+          '#type' => 'link',
+          '#title' => [
+            '#type' => 'inline_template',
+            '#template' => "{{text}}",
+            '#context' => [
+              'text' => t(strpos($sub_page_paragraph->field_overview_url->value,
+                'Hello') === FALSE ?
+                $sub_page_paragraph->field_overview_url->value : $sub_page_paragraph->field_overview_url->value . '!')
+            ]
+          ],
+          '#url' => Url::fromRoute('rhd_common.main_page_controller', [
+            'product_code' => $product_code,
+            'sub_page' => $sub_page_url_string,
+          ]),
+          '#wrapper_attributes' => (function () use (
+            $sub_page,
+            $sub_page_url_string
+          ) {
+            if ($sub_page_url_string == $sub_page) {
+              return ['class' => 'active'];
+            }
+            else {
+              return [];
+            }
+          })()
+        ];
+      }
 
-        return $build;
+      $build = $this->entityTypeManager()
+        ->getViewBuilder($active_product->getEntityTypeId())
+        ->view($active_product, 'full');
+
+      $build['#theme'] = 'product-pages';
+      $build['page_links'] = $page_links;
+
+      $build['active_paragraph'] = $this->entityTypeManager()
+        ->getViewBuilder($active_paragraph->getEntityTypeId())
+        ->view($active_paragraph, 'full');
+
+
+      // Also product category
+      if ($active_product->hasField('field_product_category')) {
+        $product_category = $active_product->field_product_category->value;
+        $build['product_category'] = $product_category;
+      }
+
+      // URL product name
+      if ($active_product->hasField('field_url_product_name')) {
+        $build['url_product_name'] = $active_product->field_url_product_name->value;
+      }
+
+      // Helper for twig to know if there is a community page
+      $product_pages = $active_product->field_product_pages->referencedEntities();
+      $build['has_community'] = count(array_filter($product_pages,
+          function ($entity) {
+            return strtolower($entity->field_overview_url->value) === 'community';
+          })) > 0;
     }
 
-    /**
-     * Returns the title for the page.
-     * @param string $product_code
-     * @param string $sub_page
-     * @return string
-     */
-    public function getPageTitle($product_code, $sub_page)
-    {
-        $product = $this->findProduct($product_code);
-        return $product->label() . ' ' . ucwords($sub_page);
-    }
+    $build['#cache']['max-age'] = 0; // Disable caching of these product pages
 
-    /**
-     * @param string $url_name URL Product Name
-     * @return mixed|NULL
-     */
-    private function findProduct($url_name)
-    {
-        $query = $this->entityQuery->get('node', 'AND');
-        $query->condition('field_url_product_name', $url_name);
-        $nid = current($query->execute());
-        return Node::load($nid);
-    }
+    return $build;
+  }
+
+  /**
+   * Returns the title for the page.
+   * @param string $product_code
+   * @param string $sub_page
+   * @return string
+   */
+  public function getPageTitle($product_code, $sub_page) {
+    $product = $this->findProduct($product_code);
+    return $product->label() . ' ' . ucwords($sub_page);
+  }
+
+  /**
+   * @param string $url_name URL Product Name
+   * @return mixed|NULL
+   */
+  private function findProduct($url_name) {
+    $query = $this->entityQuery->get('node', 'AND');
+    $query->condition('field_url_product_name', $url_name)->allRevisions();
+    $rids = $query->execute();
+
+    $possibilies = array_filter(array_keys($rids), function ($rid) {
+      $storage = $this->entityTypeManager()->getStorage('node');
+      $productRev = $storage->loadRevision($rid);
+      if ($productRev->moderation_state->getValue()[0]['target_id'] == 'published') {
+        return TRUE;
+      }
+      else {
+        return FALSE;
+      }
+    });
+    return $this->entityTypeManager()
+      ->getStorage('node')
+      ->loadRevision(end($possibilies));
+  }
 }
