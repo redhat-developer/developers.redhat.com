@@ -1,6 +1,7 @@
 var verifyMemberApp = angular.module('member-verify', []);
 
 verifyMemberApp.controller('VerifyCtrl', ['$scope', 'validateMember', function VerifyCtrl($scope, validateMember) {
+    // 99.99% accurate JS Email RegEx from http://emailregex.com/
     var eChk = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     $scope.isMember = false;
     $scope.emailChecked = false;
