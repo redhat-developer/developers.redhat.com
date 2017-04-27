@@ -1,0 +1,47 @@
+.verify-member {
+    text-align: center;
+
+    h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1em;
+    }
+
+    label {
+        font-size: 1.4em;
+        font-weight: 600;
+        display: inline;
+        @media only screen and (max-width: 768px) {
+            display: block;
+            margin-bottom: 1em;
+        }
+    }
+
+    input {
+        padding: .5em;
+        margin-left: 1em;
+        max-width: 250px;
+    }
+
+    h5 {
+        max-width: 25em;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1em;
+    }
+}
+
+.member {
+    font-size: 5em;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.notMember {
+    @extend .member;
+    color: #8f0000;
+}
+
+.isMember {
+    @extend .member;
+    color: green;
+}
