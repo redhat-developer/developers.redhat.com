@@ -13,7 +13,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss BPM Suite                       |
       | Red Hat JBoss Data Virtualization             |
       | Red Hat JBoss Fuse                            |
-      | .NET Runtime for Red Hat Linux                |
+      | .NET Runtime for Red Hat Enterprise Linux     |
 
   Scenario: Each available product title should link to the relevant product forum page
     Given I am on the Product forums page
@@ -27,5 +27,5 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss BPM Suite                       |
       | Red Hat JBoss Data Virtualization             |
       | Red Hat JBoss Fuse                            |
-      | .NET Runtime for Red Hat Linux                |
+      | .NET Runtime for Red Hat Enterprise Linux     |
     And each product title should link to the relevant product forum page
