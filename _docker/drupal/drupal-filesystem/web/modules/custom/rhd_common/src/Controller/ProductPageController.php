@@ -199,6 +199,12 @@ WHERE node_revision__field_product_pages.entity_id = node_revision.nid
     $possibilies = array_filter(array_keys($rids), function ($rid) {
       $storage = $this->entityTypeManager()->getStorage('node');
       $productRev = $storage->loadRevision($rid);
+
+      // if has permission to view all revs return true
+      if ($this->currentUser()->hasPermission('view product revisions')) {
+        return TRUE;
+      }
+
       if ($productRev->moderation_state->getValue()[0]['target_id'] == 'published') {
         return TRUE;
       }
@@ -206,6 +212,7 @@ WHERE node_revision__field_product_pages.entity_id = node_revision.nid
         return FALSE;
       }
     });
+
     return $this->entityTypeManager()
       ->getStorage('node')
       ->loadRevision(end($possibilies));
