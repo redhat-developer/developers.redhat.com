@@ -31,13 +31,6 @@ DBCHECK
 
 echo "Running composer install"
 
-
-# Symlink scripts so we can run composer
-if [ ! -d "${DRUPAL_FILESYSTEM}/scripts" ]
-then
- ln -s ${DRUPAL}/scripts ${DRUPAL_FILESYSTEM}/scripts
-fi
-
 # Install Drupal
 cd ${DRUPAL_FILESYSTEM}
 composer install
