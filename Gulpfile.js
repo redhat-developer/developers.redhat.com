@@ -77,7 +77,8 @@ var globs = {
     //'javascripts/current-tab.js',
     'javascripts/referrer.js',
     'javascripts/products.js',
-    'javascripts/jboss-docker.js'
+    'javascripts/jboss-docker.js',
+    'javascripts/verify-member.js'
   ],
   "styles": ['stylesheets/*.scss']
 };

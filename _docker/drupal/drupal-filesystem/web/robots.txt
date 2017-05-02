@@ -39,6 +39,7 @@ Disallow: /profiles/
 # Files
 Disallow: /README.txt
 Disallow: /web.config
+Disallow: /verify-member
 # Paths (clean URLs)
 Disallow: /admin/
 Disallow: /comment/reply/
@@ -49,6 +50,7 @@ Disallow: /user/register/
 Disallow: /user/password/
 Disallow: /user/login/
 Disallow: /user/logout/
+Disallow: /verify-member/
 # Paths (no clean URLs)
 Disallow: /index.php/admin/
 Disallow: /index.php/comment/reply/
