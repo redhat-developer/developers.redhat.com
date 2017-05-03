@@ -137,3 +137,130 @@ To view diffs in a content node, navigate to the node that you would like to edi
 4. Select compare and observe changes.
 
 
+## Making changes to the Drupal database
+
+There may be occasions when you need/want to make changes to the Drupal database through a mechanism other than Drupals
+interface. In this scenario, we use [Phinx](https://phinx.org) to create and apply your database changes. Changes are not
+applied to the databases by hand.
+
+To use phinx in your local development environment, you will need to run `composer install` from the `_docker/drupal/drupal-filesystem`
+directory. This will install the phinx binary into `_docker/drupal/drupal-filesystem/vendor/bin/phinx`
+
+### Writing database changes with Phinx
+
+Changes to the database managed by Phinx are called migrations. Each time you want to make a change to the database, you
+ should create a new migration. As part of the Drupal boot sequence, we instruct Phinx to apply all migrations within
+ the `_docker/drupal/drupal-filesystem/db-migrations` directory against the database for the current environment.
+
+To create a new migration, do the following:
+
+```bash
+cd _docker/drupal/drupal-filesystem
+vendor/bin/phinx create <Name_Of_Your_Migration>
+```
+
+This will generate a PHP class in the `_docker/drupal/drupal-filesystem/db-migrations` directory. The PHP class is an
+abstract Phinx class that provides basic methods and an API to write the changes to want to make to the database in
+PHP code. Phinx has good documentation [here](http://docs.phinx.org/en/latest/migrations.html) on how to use the PHP 
+migration classes to perform changes to the database.
+
+Ideally your migration should support rolling back your change. Phinx can automatically rollback some changes 
+(see the documentation for which changes it can automatically rollback). However if Phinx is not capable of automatically
+rolling back your change, then ideally you should provide implementations of the `up` method to make your change and the
+`down` method to roll it back.
+
+You should commit your change as part of your pull-request so that it can be reviewed by other members of the team. 
+
+Phinx will only ever apply a change to a database once. It will apply the changes in the timestamp order of their class
+name. Once a change has been applied, Phinx will write an entry into the `phinxlog` table in the database. 
+
+### Manually testing a migration in your local development environment
+
+To manually test your migration, you will first need to have the database running on your local machine. The easiest way
+to do this is to use the following:
+
+```bash
+cd _docker/environments/drupal-dev
+docker pull redhatdeveloper/drupal-data-lite:latest
+docker-compose up -d drupalmysql
+```
+
+Once the database has booted, you should verify that you can connect to it using the following:
+
+```bash
+mysql -h 0.0.0.0 -u root -p
+```
+
+When prompted, the password is `superdupersecret`.
+
+Once you have verified you can connect to the local database, you can test your migration with the following:
+
+```bash
+cd _docker/drupal/drupal-filesystem
+vendor/bin/phinx migrate
+```
+Phinx will then run all migrations in the `_docker/drupal/drupal-filesystem/db-migrations` against the local database.
+Phinx provides pretty good output as to the status of your migration and whether it was successful or not.
+
+It is important to note that Phinx only ever applies a migration once. Therefore if you change a migration after it has
+been applied, Phinx will not attempt to apply your changes in that migration. Migrations that have already been applied
+should not be altered, instead you should create a new migration.
+
+
+### Seeing what migrations have been applied to the database in your local development environment
+
+To see what migrations have been applied to your local database you can use the following:
+
+```bash
+cd _docker/drupal/drupal-filesystem
+vendor/bin/phinx status
+```
+
+This will show you the name of the migrations that Phinx knows about and whether or not they have been applied to your
+database. Migrations that have been applied have a `Status` of `up`. Migrations that have not been applied are `down`.
+
+You can rollback changes that have been applied using the `phinx rollback` command. It is documented more fully [here](http://docs.phinx.org/en/latest/commands.html#the-rollback-command). 
+You should be careful to note that Phinx cannot automatically rollback all changes unless you have specifically written
+`up` and `down` methods on your migration.
+
+You can manually remove the list of changes that Phinx believes it has applied by deleting all entries within the
+`phinxlog` table of the database:
+
+```bash
+mysql -u root -h 0.0.0.0 -p -e "delete from phinxlog" drupal 
+```
+
+### Running phinx commands in pull-request/staging/production environments
+
+Phinx allows you to define different environments within the `phinx.yml` configuration file. This is stored within the
+`_docker/drupal/drupal-filesystem` directory. You will notice that we have an environment called `automated` that has
+the following definition:
+
+```yaml
+automated:
+ adapter: mysql
+ host: %%PHINX_DB_HOST%%
+ name: %%PHINX_DB_NAME%%
+ user: %%PHINX_DB_USER%%
+ pass: %%PHINX_DB_PASSWORD%%
+ port: 3306
+ charset: utf8
+```
+
+All of the connection details are set to be read from environment variables. This is so that we do not have to commit
+production database credentials to this Git repository. The `automated` environment is used as part of the Drupal
+boot sequence for running Phinx migrations. We have a small ruby wrapper script that will allow you to easily using
+Phinx commands without having to set the environment variables by hand. Therefore to run phinx commands in the
+pull-request, staging or production environments:
+
+```bash
+# Get a bash shell on the drupal container in your environment
+docker exec -it <drupal_container> /bin/bash
+cd /var/www/drupal
+
+# Use the phinx wrapper to run your command:
+ruby phinx.rb status
+```
+
+This will automatically read and set the correct environmental variables for you allowing you to see the status of Phinx
+migrations in your chosen environment.
