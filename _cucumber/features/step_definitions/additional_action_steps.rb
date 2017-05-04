@@ -30,7 +30,6 @@ And(/^I complete the required additional information with a new email address$/)
   @site_user.details[:email] = "rhd+session_id_#{$session_id}-#{Faker::Lorem.characters(10)}@redhat.com"
   on AdditionalActionPage do |page|
     page.fill_in(@site_user.details)
-    page.accept_all_terms
     page.click_submit
   end
 end
@@ -46,13 +45,12 @@ end
 
 When(/^I create a new password$/) do
   on AdditionalActionPage do |page|
-    page.enter_password('P@$$word01', 'P@$$word01')
+    page.enter_password('P@$$word01')
   end
 end
 
 Then(/^I should see a warning that the email is already registered$/) do
   on AdditionalActionPage do |page|
-    page.enter_password('', '')
     expect(page.email_field_error_text).to eq 'User account for this email already exists. Link your social account with the existing account.'
   end
 end
