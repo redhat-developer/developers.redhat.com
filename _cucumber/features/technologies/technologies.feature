@@ -5,7 +5,7 @@ Feature: Technologies Page
   In order to find out more about available Red Hat products,
   As generic site visitor,
   I want to be able to view a list of available products Redhat has to offer.
-  @ignore
+
   Scenario: Product landing page should display a list of available products separated by sections.
     Given I am on the Technologies page
     Then I should see product sections with headings
