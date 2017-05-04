@@ -104,7 +104,7 @@ end
 
 Then(/^the username field should be disabled$/) do
   on EditAccountPage do |page|
-    expect(page.username_field_disabled?).to be true
+    page.username_field.attribute_value('readOnly').should == 'true'
   end
 end
 

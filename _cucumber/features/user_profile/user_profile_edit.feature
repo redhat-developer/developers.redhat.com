@@ -64,8 +64,6 @@ Feature: User Profile Edit
        | First Name                                  |
        | Last name                                   |
        | Company                                     |
-       | Red Hat Developer Program subscription date |
-       | Privacy & Subscriptions status              |
 
   @logout @slow
   Scenario: RHD user profile change is propagated to Customer portal
