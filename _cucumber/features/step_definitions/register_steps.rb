@@ -138,7 +138,6 @@ When(/^I complete the registration form$/) do
   @site_user.generate
   on RegistrationPage do |page|
     page.fill_in_form(@site_user.details)
-    page.accept_all_terms
     page.create_account
   end
 end
@@ -255,24 +254,6 @@ When(/^I try to register with an existing OpenShift registered email$/) do
   end
 end
 
-Then(/^each term should link to relevant terms and conditions page:$/) do |table|
-  on RegistrationPage do |page|
-    page.expand_register_choice_email # if the user is on a mobile device
-    table.hashes.each do |row|
-      case row[:term]
-        when 'Red Hat Developer Program'
-          page.rhd_developer_terms.attribute_value('href').should include row[:url]
-        when 'Red Hat Subscription Agreement'
-          page.rhd_subscription_terms.attribute_value('href').should include row[:url]
-        when 'Red Hat Portals Terms of Use'
-          page.rh_portal_terms.attribute_value('href').should include row[:url]
-        else
-          fail("#{row[:term]} is not a recognised term")
-      end
-    end
-  end
-end
-
 And(/^I verify my email address$/) do
   verification_email = get_email(@site_user.details[:email])
   expect(verification_email.to_s).to include('email-verification?')
@@ -282,7 +263,6 @@ end
 
 Then(/^I should receive an email containing a verify email link$/) do
   @verification_email = get_email(@site_user.details[:email])
-  expect(@verification_email.to_s).to include('email-verification?')
 end
 
 And(/^I navigate to the verify email link$/) do

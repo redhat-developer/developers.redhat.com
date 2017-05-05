@@ -31,7 +31,6 @@ class EditAccountPage < SiteBase
   value(:country_field_error)         { |b| b.element(id: 'user.attributes.country-error').text }
   value(:side_nav_open?)              { |p| p.side_nav_open.present? }
   value(:alert_box_message)           { |p| p.alert_box.text }
-  value(:username_field_disabled?)    { |p| p.username_field.disabled? }
   value(:email_field_value)           { |p| p.email_field.attribute_value('value') }
 
   def country

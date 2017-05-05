@@ -1,5 +1,4 @@
 @slow
-@kc
 Feature: Social registration
 
   As a visitor on the developers.redhat.com website,
@@ -20,8 +19,6 @@ Feature: Social registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Red Hat Developer Program subscription date |
-      | Privacy & Subscriptions status              |
 
   @delete_user @github_teardown @logout
   Scenario: 2 - Registration using GitHub login which contains all mandatory information (first name, last name, but email already exists). User links GitHub account to existing account
@@ -48,8 +45,6 @@ Feature: Social registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Red Hat Developer Program subscription date |
-      | Privacy & Subscriptions status              |
 
   @delete_user @logout @github_teardown
   Scenario: 4 - Registration using GitHub login which doesn't contain some mandatory information (first name, last name), email is unique. User is asked to fill in mandatory info during login.
@@ -65,8 +60,6 @@ Feature: Social registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Red Hat Developer Program subscription date |
-      | Privacy & Subscriptions status              |
 
   @delete_user @logout @github_teardown
   Scenario: 5 - Registration using GitHub login which doesn't contain some mandatory the information (first name, last name), email already exists. User links social provider to existing account
@@ -95,5 +88,3 @@ Feature: Social registration
       | First Name                                  |
       | Last name                                   |
       | Company                                     |
-      | Red Hat Developer Program subscription date |
-      | Privacy & Subscriptions status              |

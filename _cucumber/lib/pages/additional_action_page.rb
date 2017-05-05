@@ -19,7 +19,7 @@ class AdditionalActionPage < SiteBase
   element(:tac1)                         { |b| b.checkbox(id: 'user.attributes.tcacc-6') }
   element(:tac2)                         { |b| b.checkbox(id: 'user.attributes.tcacc-1246') }
   element(:submit_btn)                   { |b| b.button(value: 'Submit') }
-  element(:link_profile_to_social)       { |b| b.link(text: 'Link your social account with the existing account.') }
+  element(:link_profile_to_social)       { |b| b.link(text: /Link your social account with the existing account/) }
   element(:warning)                      { |b| b.element(class: 'warning') }
 
   action(:accept_all_terms)              { |p| p.all_terms.click }
@@ -32,24 +32,20 @@ class AdditionalActionPage < SiteBase
   value(:email_field_error_text)         { |p| p.email_field_error.text }
 
   def fill_in(options = {})
-    enter_password(options[:password], options[:password]) if password_field.present?
     type(email_field, options[:email])
+    type(password_field, options[:password]) if password_field.present?
     type(first_name_field, options[:first_name])
     type(last_name_field, options[:last_name])
     type(company_field, options[:company_name])
-    type(phone_number_field, options[:phone_number])
-    select_country(options[:country])
-    select_state(options[:state]) unless options[:state].nil?
-    type(city_field, options[:city]) unless options[:city].nil?
+    country_dropdown.select(options[:country])
   end
 
   def enter_email(email)
     type(email_field, email)
   end
 
-  def enter_password(password, confirm_password)
+  def enter_password(password)
     type(password_field, password)
-    type(confirm_password_field, confirm_password)
   end
 
   def select_country(country)
