@@ -1,6 +1,6 @@
 require 'fileutils'
 require_relative '../../../_docker/tests/test_helper'
-require_relative '../../../_docker/drupal/scripts/drupal_install_checker'
+require_relative '../../../_docker/drupal/drupal-filesystem/scripts/drupal_install_checker'
 
 class DrupalInstallCheckerTest < Minitest::Test
 
