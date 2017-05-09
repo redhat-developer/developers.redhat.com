@@ -9,6 +9,7 @@ require_relative '../../lib/export/drupal_page_url_list_generator'
 class TestDrupalPageUrlListGenerator < Minitest::Test
 
   def setup
+    ENV['drupal.export.final_base_url'] = nil
     @export_directory = Dir.mktmpdir
     @drupal_endpoint = '192.168.99.100:32769'
     @drupal_page_list_url_generator = DrupalPageUrlListGenerator.new(@drupal_endpoint, @export_directory)
@@ -16,6 +17,7 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
 
   def teardown
     FileUtils.rm_r(@export_directory)
+    ENV['drupal.export.final_base_url'] = nil
   end
 
   def test_should_workaround_drupal_default_hostname_magic
@@ -84,8 +86,8 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
     @drupal_page_list_url_generator.generate_page_url_list!
   end
 
-  def test_save_sitemap
-    # Mock setup
+  def test_save_sitemap_with_user_supplied_final_base_url
+    ENV['drupal.export.final_base_url'] = 'https://foo.com'
     sitemap_contents = mock()
     sitemap_contents.expects(:code).returns(200)
     sitemap_contents.expects(:body).returns(File.open(File.expand_path('sitemap.xml',File.dirname(__FILE__))).read)
@@ -94,7 +96,33 @@ class TestDrupalPageUrlListGenerator < Minitest::Test
       assert_equal('http://192.168.99.100:32769/sitemap.xml', url.to_s)
     end.returns(sitemap_contents)
 
-    # Execution
+    sitemap_contents = @drupal_page_list_url_generator.fetch_sitemap_contents
+    sitemap_location = File.join(@export_directory, 'test', 'sitemap.xml')
+
+    @drupal_page_list_url_generator.save_sitemap(sitemap_contents, sitemap_location)
+
+    assert(File.exists?(sitemap_location))
+
+    sitemap_document = Nokogiri::XML(File.open(sitemap_location, 'r'))
+    sitemap_document.xpath('//xmlns:loc').each do |loc|
+      assert_match %r{https://foo.com/}, loc.content
+    end
+
+    sitemap_document.xpath('/xmlns:urlset').each do |urlset|
+      assert_match %r{http://www\.sitemaps\.org/schemas/sitemap/0\.9}, urlset.namespace.href
+    end
+  end
+
+  def test_save_sitemap
+
+    sitemap_contents = mock()
+    sitemap_contents.expects(:code).returns(200)
+    sitemap_contents.expects(:body).returns(File.open(File.expand_path('sitemap.xml',File.dirname(__FILE__))).read)
+
+    Net::HTTP.expects(:get_response).with do | url |
+      assert_equal('http://192.168.99.100:32769/sitemap.xml', url.to_s)
+    end.returns(sitemap_contents)
+
     sitemap_contents = @drupal_page_list_url_generator.fetch_sitemap_contents
     sitemap_location = File.join(@export_directory, 'test', 'sitemap.xml')
 
