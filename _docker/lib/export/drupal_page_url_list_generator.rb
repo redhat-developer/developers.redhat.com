@@ -3,6 +3,7 @@ require 'net/http'
 require 'nokogiri'
 
 require_relative '../default_logger'
+require_relative 'export_urls'
 
 #
 # Fetches a sitemap.xml from the passed Drupal host and generates a list of links from that
@@ -11,6 +12,8 @@ require_relative '../default_logger'
 # @author rblake@redhat.com
 #
 class DrupalPageUrlListGenerator
+
+  include RedhatDeveloper::Export::Urls
 
   def initialize(drupal_host, export_directory)
     @drupal_host = drupal_host
@@ -87,7 +90,7 @@ class DrupalPageUrlListGenerator
       # We need to rewrite the URI to point to production, but only the loc nodes
       sitemap_xml = Nokogiri::XML(sitemap)
       sitemap_xml.xpath('//xmlns:loc').each do |loc|
-        loc.content = loc.content.gsub(%r{http://.*?/}, 'https://developers.redhat.com/')
+        loc.content = loc.content.gsub(%r{http://.*?/}, final_base_url_location)
       end
       file.puts(sitemap_xml.to_s)
     end

@@ -2,6 +2,7 @@ require 'cgi'
 require 'nokogiri'
 require 'fileutils'
 require_relative '../default_logger'
+require_relative 'export_urls'
 
 #
 # This class is used to post-process an httrack export of a site. It performs primarily 2 tasks:
@@ -15,6 +16,8 @@ require_relative '../default_logger'
 # Default out-of-the-box, we can only do the latter with Httrack, hence all of this post-processing logic to get us to the former!
 #
 class ExportHtmlPostProcessor
+
+  include RedhatDeveloper::Export::Urls
 
   def initialize(process_runner, static_file_directory)
     @log = DefaultLogger.logger
@@ -116,16 +119,6 @@ class ExportHtmlPostProcessor
 
       rewrite_error_page(html_doc, html_file)
     end
-  end
-
-  #
-  # Returns the URL at which this export will be hosted. By default this will be https://developers.redhat.com unless the
-  # user has set an environment variable to alter this for another environment e.g. staging
-  #
-  def final_base_url_location
-    user_provided_value = ENV['drupal.export.final_base_url']
-    user_provided_value = 'https://developers.redhat.com' if user_provided_value.nil? || user_provided_value.empty?
-    return user_provided_value.end_with?('/') ? user_provided_value : "#{user_provided_value}/"
   end
 
   #
