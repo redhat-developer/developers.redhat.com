@@ -52,7 +52,7 @@ app.downloads.createDownloadTable = function(products) {
       }
 
       // if the next one isn't the same, or it's the last item, append it..
-      if((j + 1) === product.files.length || file.description !== lastDescription) {
+      if((j + 1) === product.files.length || file.description !== lastDescription || versionName !== '') {
         $table.append(row);
       }
 
