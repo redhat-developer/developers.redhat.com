@@ -469,10 +469,8 @@ function searchCtrlFunc($scope, $window, searchService) {
     }
     
     searchService.getSearchResults(params).then(function(data) {
-      if (!window.digitalData) {
-        digitalData = {page: {listing : {}, category: {}}, event: []};
-      } 
-      var types = {
+      var digitalData = digitalData || {page: {listing : {}, category: {}}, event: []},
+      types = {
         video: 'Video',
         blogpost: 'Blog Post',
         jbossdeveloper_book: 'Book',
