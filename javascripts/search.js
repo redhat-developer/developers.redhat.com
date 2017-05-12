@@ -201,17 +201,17 @@ search.filter('title', function($sce) {
 search.filter('description', function($sce, $sanitize) {
   return function(result) {
     var description = "";
-    // if (result.fields.sys_type == 'stackoverflow_thread') {
-    //   description = result.fields.sys_content_plaintext[0];
-    // }
+
     if (result.highlight && result.highlight.sys_content_plaintext) {
-      description = result.highlight.sys_content_plaintext[0];
-    }
-    if (result.fields && result.fields.sys_description) {
+      description = result.highlight.sys_content_plaintext.join('...');
+    } else if (result.highlight && result.highlight.sys_description) {
+      description = result.highlight.sys_description[0];
+    } else if (!result.highlight && result.fields.sys_content_plaintext) {
+      description = result.fields.sys_content_plaintext[0];
+    } else {
       description = result.fields.sys_description[0];
     }
-    
-    return $sanitize(description.replace(/<[^>]+>/gm, ''));
+    return description;
   }
 });
 
