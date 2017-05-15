@@ -103,7 +103,7 @@ class RunBlinkrOptions
 
     run_tests_command += ' --ignore-ssl' if test_configuration[:ignore_ssl]
 
-    test_configuration[:run_tests_command] = "jruby -S bundle exec blinkr#{run_tests_command}"
+    test_configuration[:run_tests_command] = "bundle exec blinkr#{run_tests_command}"
   end
 
   #
