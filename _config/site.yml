@@ -89,7 +89,7 @@ profiles:
     dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     base_url: http://docker/
     dcp_base_protocol_relative_url: https://docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
-    drupal_base_url: http://drupal/
+    drupal_base_url: http://docker:8888/
     push_to_searchisko: false
 
 
