@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get install sudo
 
 # FOR Java::JavaLang::OutOfMemoryError: Java heap space ERROR.
-ENV JRUBY_OPTS="-J-Xmx3g  -Xms3g -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC"
+ENV JRUBY_OPTS="-J-Xmx3G  -Xms3G -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC"
 
 RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
 RUN tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/
