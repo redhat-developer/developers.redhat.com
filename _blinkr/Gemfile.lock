@@ -1,17 +1,10 @@
 GIT
   remote: http://github.com/RubyGemTSL/blinkr
-  revision: ebe83e66243a6480398c3493f55344b686483682
+  revision: 46dfac941ad5f99f7bbbb42d3fc701372f62917f
   branch: ignore_external_urls
   specs:
     blinkr (0.3.9)
       colorize
-      nokogiri (~> 1.5)
-      parallel (~> 1.3)
-      slim (~> 3.0)
-      typhoeus (~> 0.7)
-    blinkr (0.3.9-java)
-      colorize
-      manticore (~> 0.4)
       nokogiri (~> 1.5)
       parallel (~> 1.3)
       slim (~> 3.0)
@@ -28,13 +21,10 @@ GEM
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
-    ffi (1.9.18-java)
-    manticore (0.6.1-java)
     mini_portile2 (2.1.0)
     multipart-post (2.0.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
-    nokogiri (1.7.2-java)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     parallel (1.11.2)
@@ -51,7 +41,6 @@ GEM
       ethon (>= 0.8.0)
 
 PLATFORMS
-  java
   ruby
 
 DEPENDENCIES
