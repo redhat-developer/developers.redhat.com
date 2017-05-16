@@ -541,7 +541,7 @@ display:
             external: false
             replace_spaces: false
             path_case: none
-            trim_whitespace: false
+            trim_whitespace: true
             alt: ''
             rel: ''
             link_class: ''
@@ -568,7 +568,7 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
-          hide_empty: false
+          hide_empty: true
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
@@ -1101,6 +1101,9 @@ display:
         type: data_field
         options:
           field_options:
+            nid:
+              alias: ''
+              raw_output: false
             title:
               alias: ''
               raw_output: true
@@ -1121,7 +1124,7 @@ display:
               raw_output: true
             field_isbn:
               alias: ''
-              raw_output: true
+              raw_output: false
             field_preview_url:
               alias: ''
               raw_output: true
