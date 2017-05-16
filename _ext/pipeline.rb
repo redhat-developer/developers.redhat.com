@@ -24,6 +24,7 @@ require 'disqus'
 require 'disqus_more'
 require 'lower_case_paths'
 require 'customer_portal'
+require 'drupal_videos'
 require 'connectors'
 require 'events'
 require 'vault'
@@ -147,13 +148,15 @@ Awestruct::Extensions::Pipeline.new do
 
   extension JBoss::Developer::Extensions::Solution.new
 
+  extension JBoss::Developer::DrupalVideos.new
+
   # Load featured videos from a googlespreadsheet. Must be loaded before product
-  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'featured_videos',
-                                                       key: '1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c',
-                                                       worksheet_title: 'Featured Videos',
-                                                       col_labels: true,
-                                                       row_labels: true,
-                                                       by: 'col')
+  # extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'featured_videos',
+  #                                                      key: '1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c',
+  #                                                      worksheet_title: 'Featured Videos',
+  #                                                      col_labels: true,
+  #                                                      row_labels: true,
+  #                                                      by: 'col')
 
   # Must be loaded after CommonDir
   extension JBoss::Developer::Extensions::Product.new push_to_searchisko: site.push_to_searchisko
@@ -165,20 +168,20 @@ Awestruct::Extensions::Pipeline.new do
                                                     push_to_searchisko: site.push_to_searchisko)
 
   # Load vimeo videos from a google spreadsheet
-  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'vimeo',
-                                                       key: '1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c',
-                                                       worksheet_title: 'Vimeo Videos',
-                                                       col_labels: true,
-                                                       by: 'row')
-  extension Aweplug::Extensions::Video.new("site.vimeo.collect {|i,v| v['vimeo_url']}", site.push_to_searchisko)
+  # extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'vimeo',
+  #                                                      key: '1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c',
+  #                                                      worksheet_title: 'Vimeo Videos',
+  #                                                      col_labels: true,
+  #                                                      by: 'row')
+  # extension Aweplug::Extensions::Video.new("site.vimeo.collect {|i,v| v['vimeo_url']}", site.push_to_searchisko)
 
   # Load youtube videos from a google spreadsheet
-  extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'youtube',
-                                                       key: '1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c',
-                                                       worksheet_title: 'YouTube Videos',
-                                                       col_labels: true,
-                                                       by: 'row')
-  extension Aweplug::Extensions::Video.new("site.youtube.collect {|i,v| v['youtube_url']}", site.push_to_searchisko)
+  # extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'youtube',
+  #                                                      key: '1QbjVeU9avP8hcnaruiLtuanQVpkdClIYtgFSmaC_K9c',
+  #                                                      worksheet_title: 'YouTube Videos',
+  #                                                      col_labels: true,
+  #                                                      by: 'row')
+  # extension Aweplug::Extensions::Video.new("site.youtube.collect {|i,v| v['youtube_url']}", site.push_to_searchisko)
 
   # Load indexifier
   extension Awestruct::Extensions::Indexifier.new [/google4775292ed26aeefd.html/]
@@ -195,7 +198,7 @@ Awestruct::Extensions::Pipeline.new do
 
   helper Awestruct::Extensions::Partial
   helper JBoss::Developer::Utilities
-  helper Aweplug::Helpers::Video
+  # helper Aweplug::Helpers::Video
   helper Aweplug::Helpers::Resources
   helper Aweplug::Helpers::Define
 
