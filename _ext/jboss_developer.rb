@@ -397,6 +397,7 @@ module Aweplug
         @drupal_pages.has_key? "/#{path}"
       end
 
+      # TODO: Create method for pushing in Video content to Drupal
       # Private: Issues a GET to Drupal to retrieve the sitemap.
       def fetch_sitemap
         $LOG.verbose 'Calling Drupal cron and sitemap' if $LOG.verbose?

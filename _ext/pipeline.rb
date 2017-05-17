@@ -148,7 +148,7 @@ Awestruct::Extensions::Pipeline.new do
 
   extension JBoss::Developer::Extensions::Solution.new
 
-  extension JBoss::Developer::DrupalVideos.new
+  extension JBoss::Developer::DrupalVideos.new(site)
 
   # Load featured videos from a googlespreadsheet. Must be loaded before product
   # extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'featured_videos',
