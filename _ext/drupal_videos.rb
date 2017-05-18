@@ -12,7 +12,7 @@ module JBoss
 
       def execute site
         payload = create_payload
-        $LOG.verbose "Adding video action:"
+        $LOG.verbose "Adding video:"
         dan = @drupal.post('entity', 'node', payload)
         $LOG.verbose "Video Action status response: #{dan.body}"
       end
