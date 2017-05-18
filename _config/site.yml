@@ -67,6 +67,7 @@ profiles:
     metrics: false
     client_side_error_logging: false
     authenticate_google_books_api: false
+    drupal_push_videos: true
     build_threads: 0
     cache_type: :local
     broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
@@ -81,6 +82,7 @@ profiles:
     dcp_base_protocol_relative_url: "//<%= 'docker' %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/"
 <% end %>
     push_to_searchisko: true
+    drupal_push_videos: true
     broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
 
   drupal_dev:
@@ -100,6 +102,7 @@ profiles:
     dcp_base_protocol_relative_url: https://docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://drupal/
     push_to_searchisko: true
+    drupal_push_videos: true
 
   drupal_pull_request:
     <<: *docker
@@ -108,6 +111,7 @@ profiles:
     dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     push_to_searchisko: false
     drupal_base_url: http://drupal/
+    drupal_push_videos: true
 
   drupal_staging:
     <<: *profile
@@ -119,6 +123,7 @@ profiles:
     dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
     keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    drupal_push_videos: true
     metrics: true
     client_side_error_logging: true
     dtm_code: https://assets.adobedtm.com/2b327a0a54b320bf1bcdb5fa39a2b896027067d9/satelliteLib-9ec3c34e9d660fa2fcb85ced512c3a48dc09c0c5-staging.js
