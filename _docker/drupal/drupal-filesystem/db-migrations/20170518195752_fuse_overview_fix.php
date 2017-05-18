@@ -26,6 +26,11 @@ class FuseOverviewFix extends AbstractMigration
     $table = $this->table('node__field_product_pages');
     $table->insert($fuse_overview_row);
     $table->saveData();
+
+    // Apparently we need to do the same in this table
+    $table = $this->table('node_revision__field_product_pages');
+    $table->insert($fuse_overview_row);
+    $table->saveData();
   }
 
   /**
@@ -33,6 +38,7 @@ class FuseOverviewFix extends AbstractMigration
    */
   public function down() {
     $this->execute('DELETE FROM node__field_product_pages WHERE entity_id = 33945 AND revision_id = 14329315 AND delta = 8 AND langcode = "en"');
+    $this->execute('DELETE FROM node_revision__field_product_pages WHERE entity_id = 33945 AND revision_id = 14329315 AND delta = 8 AND langcode = "en"');
   }
 
 }
