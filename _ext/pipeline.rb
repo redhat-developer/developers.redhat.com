@@ -148,7 +148,7 @@ Awestruct::Extensions::Pipeline.new do
 
   extension JBoss::Developer::Extensions::Solution.new
 
-  extension JBoss::Developer::DrupalVideos.new(site)
+  extension JBoss::Developer::DrupalVideos.new(site) if site.drupal_push_videos
 
   # Load featured videos from a googlespreadsheet. Must be loaded before product
   # extension Aweplug::Extensions::GoogleSpreadsheet.new(assign_to: 'featured_videos',

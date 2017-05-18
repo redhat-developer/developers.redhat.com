@@ -11,11 +11,19 @@ module JBoss
 
 
       def execute site
-        require 'pry'
-        binding.pry
-        puts "test"
+        payload = create_payload
+        $LOG.verbose "Adding video action:"
+        dan = @drupal.post('entity', 'node', payload)
+        $LOG.verbose "Video Action status response: #{dan.body}"
       end
 
+      def create_payload
+        file = File.read('_ext/temp.json')
+        data_hash = JSON.parse(file)
+
+        data_hash
+
+      end
     end
   end
 end
