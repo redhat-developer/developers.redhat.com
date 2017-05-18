@@ -91,6 +91,7 @@ profiles:
     dcp_base_protocol_relative_url: https://docker:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
     drupal_base_url: http://docker:8888/
     push_to_searchisko: false
+    drupal_push_videos: true
 
 
   drupal_dev_local_dcp:
