@@ -39,7 +39,12 @@ header.main {
 
   .has-sub-nav > a.active,
   a.sub-nav-downloads.active{
-    color: #A3DBE8;
+    color: #ffbb11;
+  }
+  .has-sub-nav:hover > a.active,
+  .has-sub-nav > a:hover,
+  a.sub-nav-downloads:hover{
+    color: $grey-8;
   }
   // top level
   & > ul {
