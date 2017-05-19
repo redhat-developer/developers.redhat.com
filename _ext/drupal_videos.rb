@@ -17,6 +17,7 @@ module JBoss
         $LOG.verbose "Video Action status response: #{dan.body}"
       end
 
+      # Migrate payload builder over from /home/dcoughlin/RubymineProjects/JbossDeveloperTestApp/lib/Drupal_Tag_Formatter.rb
       def create_payload
         file = File.read('_ext/temp.json')
         data_hash = JSON.parse(file)
@@ -24,6 +25,17 @@ module JBoss
         data_hash
 
       end
+
+      # Migrate tag_matcher over from /home/dcoughlin/RubymineProjects/JbossDeveloperTestApp/lib/Drupal_Tag_Formatter.rb
+      def tag_matcher
+
+      end
+
+      # Migrate taxonomy_layout over from /home/dcoughlin/RubymineProjects/JbossDeveloperTestApp/lib/Drupal_Tag_Formatter.rb
+      def parse_taxonomy
+
+      end
+
     end
   end
 end
