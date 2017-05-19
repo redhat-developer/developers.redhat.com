@@ -137,6 +137,11 @@ class DrupalInstallChecker
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web -y cim --skip-modules=devel))
     process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr all))
   end
+
+  def clear_cache
+    process_executor.exec!('/var/www/drupal/vendor/bin/drush', %w(--root=/var/www/drupal/web cr))
+  end
+
 end
 
 if $0 == __FILE__
@@ -156,6 +161,8 @@ if $0 == __FILE__
     puts 'Updating configuration...'
     checker.update_db
     checker.import_config
+    puts 'Clearing cache...AGAIN!'
+    checker.clear_cache
   else
     checker.install_drupal
     # checker.install_theme
