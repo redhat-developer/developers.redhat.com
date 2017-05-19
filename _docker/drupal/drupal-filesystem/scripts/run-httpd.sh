@@ -18,5 +18,5 @@ rm -rf /run/httpd/*
 chown -R apache:apache /var/www/drupal/web/sites
 chown -R apache:apache /var/www/drupal/web/config/active # just to make sure we can write changes to active
 
-drush cr all
+(cd /var/www/drupal/web && drush cr all)
 exec /usr/sbin/apachectl -D FOREGROUND
