@@ -14,20 +14,16 @@ module.exports = function(config) {
     frameworks: ['polymer','jasmine'],
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'bower_components/**', included: false, served: true, watched: true },
+      { pattern: 'components/**', included: false, served: true, watched: true },
       //{ pattern: 'public/components/*.html', included: false, served: true, watched: true },
       '_tests/karma/**/*_spec.js'
     ],
-    proxies: {
-      '/bower_components/': '/base/bower_components/',
-      '/components/': '/base/components/'
-    },
     polymer: {
-      platform: 'bower_components/webcomponentsjs/webcomponents-lite.js',
+      platform: 'components/webcomponentsjs/webcomponents-lite.js',
       src: [
         //'bower_components/polymer/polymer.html',
         //'components/**/*.html'
-        'components/rhdp-search-result-count.html'
+        'components/rhdp-search/rhdp-search-result-count.html'
       ]
     }
   })
