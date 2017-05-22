@@ -21,9 +21,9 @@ module.exports = function(config) {
     polymer: {
       platform: 'components/webcomponentsjs/webcomponents-lite.js',
       src: [
-        //'bower_components/polymer/polymer.html',
-        //'components/**/*.html'
-        'components/rhdp-search/rhdp-search-result-count.html'
+        'components/polymer/polymer.html',
+        'components/rhdp*/*.html'
+        //'components/rhdp-search/rhdp-search-result-count.html'
       ]
     }
   })

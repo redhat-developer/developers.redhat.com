@@ -4,7 +4,8 @@
   "description": "developers.redhat.com build",
   "main": "Gulpfile.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start"
+    "test": "./node_modules/.bin/karma start",
+    "bundle": "./node_modules/.bin/polymer-bundler --strip-comments"
   },
   "author": "Red Hat Inc.",
   "license": "",
@@ -27,6 +28,7 @@
     "karma-jasmine": "^1.1.0",
     "karma-polymer": "^0.1.5",
     "node-sass": "3.4.2",
-    "node-sass-utils": "1.1.2"
+    "node-sass-utils": "1.1.2",
+    "polymer-bundler": "^2.0.1"
   }
 }
