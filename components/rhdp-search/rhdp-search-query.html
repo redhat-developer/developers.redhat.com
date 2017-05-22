@@ -2,8 +2,8 @@
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <dom-module id="rhdp-search-query">
   <template>
-    <iron-ajax auto id="ajax" url="/search" 
-    params='{"part":"snippet", "q":"{{filters.term}}"}'
+    <iron-ajax auto id="ajax" url="//dcp.stage.jboss.org/v2/rest/search/developer_materials" 
+    params='{"part":"snippet", "query":"{{filters.term}}", "size": "size{{limit}}"}'
     handle-as="json"
     on-response="adjustResults"></iron-ajax>
   </template>

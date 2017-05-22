@@ -7,11 +7,20 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     //browsers: ['Chrome'],
     browsers: ['ChromeCanaryHeadless'],
+    plugins: [
+      'karma-chrome-launcher',
+      'karma-jasmine',
+      'karma-jasmine-ajax',
+      'karma-polymer',
+      'karma-spec-reporter'
+    ],
     //logLevel: config.LOG_DEBUG,
     singleRun: true,
+    colors: true,
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['polymer','jasmine'],
+    frameworks: ['polymer','jasmine-ajax','jasmine'],
+    reporters: ['spec'],
     // list of files / patterns to load in the browser
     files: [
       { pattern: 'components/**', included: false, served: true, watched: true },

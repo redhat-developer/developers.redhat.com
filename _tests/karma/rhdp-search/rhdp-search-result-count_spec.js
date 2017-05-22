@@ -8,7 +8,7 @@ describe('Search Result Count', function() {
     });
 
     afterEach(function() {
-        //document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(document.body.firstChild);
     });
 
     it('should be blank with no values', function() {
