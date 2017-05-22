@@ -1,0 +1,91 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="rhdp-search-result">
+  <template>
+    <style>
+        :host {
+            font-family: "Overpass","Open Sans",Helvetica,sans-serif;
+        }
+        h4 {
+            font-weight: 600;
+            font-style: normal;
+            font-size: 18px;
+            line-height: 1.4;
+            color: #06c;
+            cursor: pointer;
+            margin: 0;
+            font-family: "Overpass","Open Sans",Helvetica,sans-serif;
+        }
+
+        p { margin: 0; 
+            color: #424242;
+            font-family: "Overpass","Open Sans",Helvetica,sans-serif; 
+            }
+
+        .caps {
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 24px;
+            -webkit-font-smoothing: antialiased;
+        }
+        .result-description {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 45px;
+            margin-bottom: 50px;
+        }
+
+    </style>
+    <div class="result result-search" >
+        <h4>[[result.fields.sys_title.0]]</h4>
+        <p class="result-info">
+            <span class="caps">[[kind]]</span>
+            <span>[[created]]</span>
+        </p>
+        <p class="result-description">[[result.fields.sys_description]]</p>
+    </div>
+  </template>
+
+  <script>
+    class RHDPSearchResult extends Polymer.Element {
+      static get is() { return 'rhdp-search-result'; }
+      static get properties() {
+        return {
+          result: Object,
+          title: {
+              type: String,
+              computed: 'computeTitle(result)'
+          },
+          kind: {
+              type: String,
+              computed: 'computeKind(result)'
+          },
+          created: {
+              type: String,
+              computed: 'computeCreated(result)'
+          },
+          description: String,
+        };
+      }
+      computeTitle(result) { return result.fields.sys_title[0]; }
+      computeKind(result) {
+        var kind = result.fields.sys_type || "";
+        if (kind != '' && result.fields.sys_url_view[0].indexOf('/events/') >= 0) {
+            kind = "Event";
+        }
+        if (kind != '' && result.fields.sys_url_view[0].indexOf('/video/') >= 0) {
+            kind = "Video";
+        }
+        return kind;
+       }
+       computeCreated(result) {
+        var options = { month: 'long', day: 'numeric', year: 'numeric' }
+        var created = result.fields.sys_created ? '| ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created)) : "";
+        return created;
+       }
+    }
+
+    window.customElements.define(RHDPSearchResult.is, RHDPSearchResult);
+  </script>
+</dom-module>

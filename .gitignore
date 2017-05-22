@@ -34,6 +34,9 @@ _docker/awestruct/overlay/ssh-key/id*
 _docker/awestruct/overlay/ssh-key/known_hosts
 # Wes' front end deps for local dev
 node_modules/
+bower_components/
+components/*
+!components/rhdp_*
 _gulp/
 _docker/awestruct/Gemfile
 _docker/awestruct/Gemfile.lock

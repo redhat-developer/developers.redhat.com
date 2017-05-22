@@ -4,24 +4,29 @@
   "description": "developers.redhat.com build",
   "main": "Gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no tests specified\" && exit 1"
+    "test": "./node_modules/.bin/karma start"
   },
   "author": "Red Hat Inc.",
   "license": "",
   "devDependencies": {
+    "bower": "^1.8.0",
+    "del": "2.2.0",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
     "gulp-debug": "2.1.2",
+    "gulp-inject-string": "1.1.0",
     "gulp-load-plugins": "0.8.0",
+    "gulp-notify": "2.2.0",
     "gulp-plumber": "1.0.1",
     "gulp-rename": "1.2.2",
-    "gulp-notify": "2.2.0",
-    "gulp-inject-string": "1.1.0",
-    "del": "2.2.0",
+    "gulp-sass": "2.1.1",
     "gulp-sourcemaps": "1.6.0",
+    "jasmine-core": "^2.6.2",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-polymer": "^0.1.5",
     "node-sass": "3.4.2",
-    "node-sass-utils": "1.1.2",
-    "gulp-sass": "2.1.1"
+    "node-sass-utils": "1.1.2"
   }
 }
-
