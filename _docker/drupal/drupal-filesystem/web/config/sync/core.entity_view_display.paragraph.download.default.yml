@@ -29,6 +29,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_overview_hide_get_started:
     weight: 1
     label: visually_hidden
@@ -38,12 +39,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_overview_main_content:
     weight: 2
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_overview_url:
     weight: 0
     label: visually_hidden
@@ -51,6 +54,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_page_description:
     weight: 6
     label: visually_hidden
@@ -58,6 +62,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_subscription_link:
     weight: 7
     label: visually_hidden
@@ -69,12 +74,14 @@ content:
       target: '0'
     third_party_settings: {  }
     type: link_separate
+    region: content
   field_upstream_section:
     weight: 4
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_xpaas_link:
     weight: 5
     label: visually_hidden
@@ -86,6 +93,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
 hidden:
   created: true
   uid: true

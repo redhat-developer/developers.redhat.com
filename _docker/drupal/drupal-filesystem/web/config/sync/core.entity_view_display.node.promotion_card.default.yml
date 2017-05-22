@@ -28,13 +28,19 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_containers_short_summary:
     weight: 104
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   links:
     weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   field_container_tags: true

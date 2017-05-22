@@ -37,6 +37,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_connector_id:
     weight: 1
     label: above
@@ -44,6 +45,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_connector_link_1:
     weight: 9
     label: above
@@ -55,6 +57,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_connector_link_1_text:
     weight: 10
     label: above
@@ -62,6 +65,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_connector_link_2:
     weight: 11
     label: above
@@ -73,6 +77,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_connector_link_2_text:
     weight: 12
     label: above
@@ -80,12 +85,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_connector_long_description:
     weight: 4
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_connector_priority:
     weight: 5
     label: above
@@ -94,32 +101,38 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
   field_connector_short_descriptio:
     weight: 3
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_connector_target_product_1:
     weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_connector_target_product_2:
     weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_connector_target_product_3:
     weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   links:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden: {  }
