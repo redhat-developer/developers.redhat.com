@@ -1,0 +1,84 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+
+<dom-module id="rhdp-search-sort-page">
+  <template>
+    <style>
+      :host {
+        margin-bottom: 2em;
+      }
+      .tight {
+        display: none;
+      }
+      .tight .button {
+        background: #ccc;
+        text-decoration: none;
+        border: 0;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 9px 25px;
+        transition: background .2s ease-in 0s;
+        line-height: 1.2em;
+        cursor: pointer;
+        position: relative;
+        text-align: center;
+        color: #333; 
+        width: 100%;
+        display: block;
+        width: 150px;
+        margin-right: 2em;
+      }
+      @media only screen and (max-width: 768px) {
+        .roomy {
+          display: none;
+        }
+        .tight { 
+            display: block; 
+        }
+        .clear {
+            padding: 0;
+            margin: 0; 
+            border: 1px solid white;
+            width: auto;
+            font-weight: bold;
+        }
+      }
+    </style>
+    <div class="roomy">Sort results by 
+        <select>
+            <option value="relevance" selected>Relevance</option>
+            <option value="recent">Most Recent</option>
+        </select> 
+        and show 
+        <select>
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+        results per page.</div>
+    <div class="tight">
+        <a href="#" class="button" on-click="">Relevance</a>
+    </div>
+  </template>
+
+  <script>
+    class RHDPSearchSortPage extends Polymer.Element {
+      static get is() { return 'rhdp-search-sort-page'; }
+      static get properties() {
+        return {
+          sort: {
+              type: String,
+              value: "Relevance"
+          },
+          pageSize: {
+              type: Number,
+              value: 10
+          }
+        };
+      }
+    }
+
+    window.customElements.define(RHDPSearchSortPage.is, RHDPSearchSortPage);
+  </script>
+</dom-module>

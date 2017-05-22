@@ -1,0 +1,194 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="rhdp-header">
+  <template>
+      <style>
+          :host {
+              font-family: "Overpass","Open Sans",Helvetica,sans-serif;
+          }
+          header.main{font-size:2rem;background:#242424 url(/images/design/RHD-header-bg.svg) no-repeat;position:relative;z-index:2;background-position:right}header.main ul{margin:0;padding:0;list-style:none}header.main ul li{float:left}header.main ul a{margin:0;display:block;break-inside:avoid-column}header.main ul a i{vertical-align:text-bottom;line-height:1;color:#656565;transition:all 0.3s;margin-left:3px}.mega-menu{float:right;max-width:100%}.mega-menu a{font-weight:100;color:white;font-size:23px;padding:10px}.mega-menu>ul{float:right;position:relative}.mega-menu>ul .indent{margin-left:15px}.mega-menu>ul>li:first-child{margin-left:0}.mega-menu>ul>li:hover>a{color:#242424;background:white}.mega-menu>ul>li:hover a i{color:#c00;transform:rotateX(180deg)}.mega-menu>ul>li:hover .sub-nav{display:block}.mega-menu>ul>li>a{text-transform:uppercase}.mega-menu>ul>li.active>a{color:#F3AA02}.sub-nav{background:white;width:100%;left:0;position:absolute;display:none;padding:40px;border-bottom:10px solid #e6e7e8;margin:0;color:#0088ce;-webkit-column-count:2;-moz-column-count:2;column-count:2;-webkit-column-rule:1px dashed #d5d5d5;-moz-column-rule:1px dashed #d5d5d5;column-rule:1px dashed #d5d5d5;-webkit-column-gap:50px;-moz-column-gap:50px;column-gap:50px;background:#fff url(/images/design/dotted_line-grey.svg) bottom right no-repeat;background-position:bottom -200px right -200px;background-size:1000px}.sub-nav.pull-right{right:0}.sub-nav li{display:block;width:100%;margin:0}.sub-nav a{font-size:14px;padding:5px 0;color:#06c;display:block;font-weight:900}.sub-nav a.heading{font-size:14px;text-transform:uppercase;font-weight:200}.sub-nav a.heading:after{content:"›";font-size:1.3em;font-weight:100;margin-left:5px}.sub-nav span.page-description{color:#8c8f91;font-weight:300;display:block}.sub-nav-group{-webkit-column-break-inside:avoid;page-break-inside:avoid;break-inside:avoid;margin-bottom:10px}nav.accounts{text-align:right;display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-webkit-align-items:center;-moz-align-items:center;align-items:center;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:flex-end;-moz-justify-content:flex-end;justify-content:flex-end;padding:5px 0}nav.accounts ul{display:inline-block;padding-top:20px}nav.accounts ul li:first-child a{border-left:0}nav.accounts ul a.logged-in-name{border-left:none}nav.accounts ul li.logged-in{display:none}nav.accounts ul a{color:white;padding:0 10px;line-height:1;font-size:11px;text-transform:uppercase;font-weight:900}nav.accounts .search-wrapper{display:inline-block;position:relative;top:8px}nav.accounts input{font-size:12px;padding:2px 5px 2px 5px;width:auto;min-width:250px;margin:0}nav.accounts input:placeholder-shown{text-transform:uppercase}@media only screen and (max-width: 768px){nav.accounts ul{padding-top:0}}.header-wrap{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-moz-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}.mega-menu{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-align:end;-ms-flex-align:end;-webkit-align-items:flex-end;-moz-align-items:flex-end;align-items:flex-end;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:flex-end;-moz-justify-content:flex-end;justify-content:flex-end;-webkit-box-flex:1;-webkit-flex:1 0 auto;-moz-box-flex:1;-moz-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto}nav.accounts{width:100%}.logo-wrap{-webkit-box-flex:0;-webkit-flex:0;-moz-box-flex:0;-moz-flex:0;-ms-flex:0;flex:0;flex-basis:auto}h1.logo{float:left;width:300px;margin:0;margin-top:-30px}nav.accounts{float:right}.nav-toggle{display:none}@media only screen and (max-width: 768px){header.main{background:black}header.main h1.logo{margin:0;padding-left:0 !important}header.main ul{float:none;min-width:100%}header.main ul li{display:block;float:none;margin:0}header.main ul a{width:100%;border-bottom:1px solid black;display:block}.mega-menu{min-width:100%}.mega-menu a.hide-on-mobile{display:none}.mega-menu>ul .indent{margin:0}.mega-menu>ul>li:hover{background:black}.mega-menu>ul>li:hover>a{background:none;color:white}.mega-menu>ul>li:hover>a i{color:#656565;transform:none}.mega-menu>ul>li:hover .sub-nav{display:none}.mega-menu>ul>li.sub-nav-open>a,.mega-menu>ul>li>a{padding-left:20px;text-transform:uppercase;color:white;background:black;border-top:1px solid #8c8f91}.mega-menu li{float:none}.mega-menu li.sub-nav-open .sub-nav{display:block !important}.mega-menu li.sub-nav-open i{color:#c00 !important;transform:rotateX(180deg) !important}.mega-menu .sub-nav{padding:0;border-bottom:0}.mega-menu .sub-nav .page-description{display:none}.mega-menu a{display:block;background:#424242;color:white;font-size:20px;font-weight:100;padding:10px 10px 10px 40px}.accounts,.mega-menu{display:none}body.nav-open .accounts,body.nav-open .mega-menu{display:block}.sub-nav-group{margin-bottom:0}.mega-menu:after{display:block;content:'';background:rgba(0,0,0,0.8);position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1}.sub-nav{width:100%;position:relative;-webkit-column-count:1;column-count:1}.sub-nav a.heading{color:white;display:block;font-size:20px}.sub-nav a.heading:after{display:none}.nav-toggle{display:block}nav.accounts{padding:0;display:none}nav.accounts form.search{display:none}nav.accounts ul{width:100%;background:#656565;display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex}nav.accounts ul li{-webkit-box-flex:1;-webkit-flex:1;-moz-box-flex:1;-moz-flex:1;-ms-flex:1;flex:1;text-align:center;border:0;border-right:1px solid black}nav.accounts ul li:last-child{border-right:0}nav.accounts ul li a{display:block;border:0;padding:20px 10px;font-size:20px}.logo-wrap{width:100%;-webkit-box-flex:1;-webkit-flex:1 0 auto;-moz-box-flex:1;-moz-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;-moz-justify-content:space-between;justify-content:space-between;order:-1}.nav-toggle{-webkit-align-self:center;-moz-align-self:center;-ms-flex-item-align:center;align-self:center;display:inline-block;color:white;text-transform:uppercase}.nav-toggle:hover,.nav-toggle:focus{color:white}.nav-toggle i{color:#656565;margin-left:5px;margin-right:5px}}@media only screen and (max-width: 480px){h1.logo{max-width:230px}.nav-toggle{font-size:20px}}
+          header.main {
+              font-size: 2rem;
+              background: #242424 url('/public/images/RHD-header-bg.svg') no-repeat;
+              position: relative;
+              z-index: 2;
+              background-position: right;
+              clear: both !important;
+              box-sizing: border-box;
+              color: #424242;
+              line-height: 150%;
+              margin-bottom: 2em;
+          }
+          .row {
+              margin: 0 auto;
+              max-width: 73.125rem;
+              display: flex;
+              flex-wrap: wrap;
+              width: 100%;
+              box-sizing: border-box;
+              font-size:2rem;
+              color: #424242;
+              line-height: 150%;
+              font-family: "Overpass","Open Sans",Helvetica,sans-serif;
+          }
+          nav.accounts {
+              float: right;
+              width: 100%;
+              text-align: right;
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              padding: 5px 0;
+              font-size: 2rem;
+          }
+          nav.accounts ul {
+              display: inline-block;
+              padding-top: 20px;
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              font-size: 1rem;
+              line-height: 1.5;
+              font-family: inherit;
+          }
+          nav.accounts ul li {
+              float: left;
+              margin: 0;
+              padding: 0;
+          }
+          nav.accounts ul li {
+              color: white;
+              padding: 0 10px;
+              line-height: 1;
+              font-size: 11px;
+              text-transform: uppercase;
+              font-weight: 900;
+              margin: 0;
+              display: block;
+          }
+          .logo-wrap {
+              flex: 0;
+              flex-basis: auto;
+              margin: 0;
+              padding: 0;
+          }
+          h1.logo {
+              float: left;
+              width: 300px;
+              margin: 0;
+              margin-top: -30px;
+              font-size: 42px;
+              font-weight: 600;
+              color: #252527;
+              line-height: 1.4;
+          }
+          img {
+              border: none;
+              display: inline-block;
+              vertical-align: middle;
+          }
+          .mega-menu {
+              display: flex;
+              align-items: flex-end;
+              justify-content: flex-end;
+              flex: 1 0 auto;
+              float: right;
+              max-width: 100%;
+          }
+          .mega-menu ul {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              float: right;
+              position: relative;
+              font-size: 1rem;
+              line-height: 1.5;
+          }
+          .mega-menu ul li {
+              margin: 0;
+              float: left;
+          }
+          .mega-menu ul li a {
+              text-transform: uppercase;
+              margin: 0;
+              display: block;
+              font-weight: 100;
+              color: white;
+              font-size: 23px;
+              padding: 10px;
+              cursor: pointer;
+              text-decoration: none;
+          }
+          @media only screen and (max-width: 768px) {
+              header.main {
+                  margin-bottom: 10px;
+              }
+              nav.accounts, .mega-menu {
+                  display: none;
+              }
+              .nav-toggle { 
+                  font-size: 32px;
+                  line-height: 24px;
+                  text-decoration: none;
+                  align-self: center;
+                  display: inline-block;
+                  color: white;
+                  text-transform: uppercase;
+                  font-weight: normal;
+              }
+          }
+
+      </style>
+      <header class="main clearfix">
+        <div class="row header-wrap">
+            <nav class="accounts">
+            <ul>
+            <li class="login"><a>Log In</a></li>
+            <li class="register"><a>Register</a></li>
+            <li class="logged-in" style="display: none;"><a class="logged-in-name" href="#"></a></li>
+            <li class="logged-in" style="display: none;"><a class="logout" href="#">Log Out</a></li>
+            </ul>
+            </nav>
+            <div class="logo-wrap">
+            <h1 class="logo">
+                <!-- Do not remove the 'home-link' id from this 'a' tag -->
+                <a id="home-link" href="#" title="Red Hat Developers"><img alt="Red Hat Developers" src="/public/images/RHD-logo.svg"></a>
+            </h1>
+            <a class="nav-toggle" href="#">Menu<i class="fa fa-angle-down"></i></a>
+            </div>
+            <nav class="mega-menu">
+            <ul>
+                <li class="has-sub-nav">
+                <a href="#" onclick="return false;">Topics<i class="fa fa-angle-down"></i></a>
+                </li>
+                <li class="has-sub-nav">
+                <a href="#" onclick="return false;">Technologies<i class="fa fa-angle-down"></i></a>
+                </li>
+                <li class="has-sub-nav">
+                <a href="#" onclick="return false;">Community<i class="fa fa-angle-down"></i></a>
+                </li>
+                <li class="has-sub-nav">
+                <a href="#" onclick="return false;">Help<i class="fa fa-angle-down"></i></a>
+                </li>
+                <li><a href="#" onclick="return false;">Downloads </a></li>
+            </ul>
+            </nav>
+        </div>
+      </header>
+    </template>
+    <script>
+    class RHDPHeader extends Polymer.Element {
+      static get is() { return 'rhdp-header'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'rhdp-header'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(RHDPHeader.is, RHDPHeader);
+  </script>
+</dom-module>

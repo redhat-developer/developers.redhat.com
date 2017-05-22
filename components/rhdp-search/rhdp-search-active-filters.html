@@ -1,0 +1,73 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="rhdp-search-active-filters">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        flex-direction: row;
+      }
+      strong { flex: 0 1 auto; order: 1; }
+      ul { flex: 1 1 auto; order: 2; list-style: none; }
+      li { float: left; margin-left: 1.5em; }
+      a { flex: 0 1 auto; order: 3; }
+      @media only screen and (max-width: 768px) {
+        :host {
+          margin-right: 2em;
+        }
+      }
+    </style>
+    <strong>Active Filters:</strong>
+    <ul>
+    <template is="dom-repeat" items="{{facets}}">
+      <template is="dom-repeat" items="{{item.items}}">
+        <template is="dom-if" if="{{item.active}}">
+          <li>[[item.name]] <a href$="#[[item.value]]">X</a></li>
+        </template>
+      </template>
+    </template>
+    </ul>
+    <a href="#" on-click="clearFilters">Clear All Filters</a>
+  </template>
+
+  <script>
+    class RHDPSearchActiveFilters extends Polymer.Element {
+      static get is() { return 'rhdp-search-active-filters'; }
+      ready() {
+        super.ready();
+        this.addEventListener('click', e => this._clear(e));
+      }
+      static get properties() {
+        return {
+          facets: {
+            type: Array,
+            notify: true
+          }
+        };
+      }
+
+      _clear(e) {
+        console.log(e);
+        
+        // let l = this.facets.length;
+        // for( let i=0; i < l; i++) {
+        //   if (this.facets[i].items) {
+        //     let k = this.facets[i].items.length;
+        //     for( let j=0; j < k; j++) {
+        //       if(this.facets[i].items[j].value == val) {
+        //         this.set('facets.'+i+'.items.'+j+'.active', false);
+        //       }
+        //     }
+        //   }
+        // }
+        return false;
+      }
+
+      clearFilters() {
+        return false;
+      }
+    }
+
+    window.customElements.define(RHDPSearchActiveFilters.is, RHDPSearchActiveFilters);
+  </script>
+</dom-module>

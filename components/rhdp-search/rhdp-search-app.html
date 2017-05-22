@@ -1,0 +1,93 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/public/components/rhdp-search-query.html">
+<link rel="import" href="/public/components/rhdp-search-box.html">
+<link rel="import" href="/public/components/rhdp-search-result-count.html">
+<link rel="import" href="/public/components/rhdp-search-filters.html">
+<link rel="import" href="/public/components/rhdp-search-filter-group.html">
+<link rel="import" href="/public/components/rhdp-search-filter-item.html">
+<link rel="import" href="/public/components/rhdp-search-results.html">
+<link rel="import" href="/public/components/rhdp-search-sort-page.html">
+<link rel="import" href="/public/components/rhdp-search-active-filters.html">
+<link rel="import" href="/public/components/rhdp-search-recommended.html">
+
+<dom-module id="new-rhdp-search">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        flex-flow: column;
+      }
+
+      .hide { display: none; }
+      .show { display: block; }
+
+      .mobile { display: none; }
+
+      rhdp-search-recommended {
+        border: 1px solid #CCC;
+        padding: 1em;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: row;
+        margin: 0 2em 2em 2em;
+      }
+
+      rhdp-search-filters {
+        flex: 0 0 240px;
+        align-self: auto;
+      }
+      
+      rhdp-search-results {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      rhdp-search-filter-group:not(:last-child) {
+        border-bottom: 1px solid black;
+      }
+
+      @media only screen and (max-width: 768px) {
+        :host {
+          
+        }
+        .content {
+          flex-direction: column;
+          position: relative;
+          margin: 0;
+        }
+
+        rhdp-search-filters { flex: none; align-self: flex-start; float: left; }
+        rhdp-search-sort-page { align-self: flex-end; position: absolute; top: 0;}
+        rhdp-search-results { flex: auto; }
+        .mobile { display: block; }
+        .desktop { display: none; }
+      }
+    </style>
+    <rhdp-search-query results="{{results}}" filters="{{filters}}" limit="10"></rhdp-search-query>
+    <rhdp-search-box term="{{filters.term}}"></rhdp-search-box>
+    <rhdp-search-result-count count="{{results.hits.total}}" term="{{filters.term}}" class="desktop"></rhdp-search-result-count>
+    <div class="content">
+      <rhdp-search-filters title="Filter By" filters="{{filters}}"></rhdp-search-filters>
+      <rhdp-search-results results="[[results]]" infinite>
+        <rhdp-search-sort-page sort="most recent" page-size="10"></rhdp-search-sort-page>
+        <rhdp-search-result-count count="{{results.hits.total}}" term="{{filters.term}}" class="mobile"></rhdp-search-result-count>
+        <rhdp-search-active-filters facets="{{filters.facets}}"></rhdp-search-active-filters>
+        <rhdp-search-recommended></rhdp-search-recommended>
+      </rhdp-search-results>
+    </div> 
+  </template>
+
+  <script>
+    class RHDPSearchApplication extends Polymer.Element {
+      static get is() { return 'new-rhdp-search'; }
+      static get properties() {
+        return { };
+      }
+    }
+
+    window.customElements.define(RHDPSearchApplication.is, RHDPSearchApplication);
+  </script>
+</dom-module>

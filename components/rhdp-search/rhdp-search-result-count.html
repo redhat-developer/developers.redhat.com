@@ -1,0 +1,47 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="rhdp-search-result-count">
+  <template>
+    <style>
+      :host {
+        margin: 0 2em 1em 2em;
+      }
+      @media only screen and (max-width: 768px) {
+        :host {
+          font-weight: 600;
+          margin: 0 0 1em 0;
+        }
+      }
+    </style>
+
+    [[text]]
+    
+  </template>
+
+  <script>
+    class RHDPSearchResultCount extends Polymer.Element {
+      static get is() { return 'rhdp-search-result-count'; }
+      static get properties() {
+        return {
+          count: Number,
+          term: String,
+          text: {
+            type: String,
+            value: '',
+            computed: 'setText(count, term)'
+          }
+        };
+      }
+
+      setText(count, term) {
+        var txt = '';
+        if(typeof count == 'number' && count > 0 && typeof term != 'undefined' && term.length > 0) {
+          txt = count + ' results found for ' + term;
+        }
+        return txt;
+      }
+    }
+
+    window.customElements.define(RHDPSearchResultCount.is, RHDPSearchResultCount);
+  </script>
+</dom-module>
