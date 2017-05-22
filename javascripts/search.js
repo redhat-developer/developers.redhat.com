@@ -31,8 +31,7 @@ search.service('searchService',function($http, $q) {
       // fold in params with defaults
       var search = Object.assign(params, {
         query_highlight: true,
-        type: ['rht_website', 'jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum','jbossorg_blog']
-
+        type: ['rht_website', 'jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube', 'jbossdeveloper_book', 'jbossdeveloper_event', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'stackoverflow_question', 'jbossorg_sbs_forum', 'jbossorg_blog', 'rht_apidocs']
       });
 
       if (/resources/.test(window.location.href)) {
@@ -83,21 +82,33 @@ search.filter('type', function() {
     var types = {
       video: 'Video',
       blogpost: 'Blog Post',
-      jbossdeveloper_book: 'Book',
       book: 'Book',
       article: 'Article',
       solution: 'Article',
       demo: 'Demo',
-      quickstart: 'quickstart',
-      jbossdeveloper_archetype: 'Demo',
-      jbossdeveloper_bom: 'Demo',
+      event: 'Event',
+      quickstart: 'Quickstart',
       quickstart_early_access: 'Demo',
-      jbossdeveloper_example: 'Get Started',
-      jbossdeveloper_event: 'Event',
-      jbossorg_sbs_forum: 'Forum Thread',
       forumthread: 'Forum Thread',
       stackoverflow_thread: 'Stack Overflow',
-      webpage: 'Webpage'
+      webpage: 'Webpage',
+
+      jbossdeveloper_quickstart: 'Quickstart',
+      jbossdeveloper_demo: 'Demo',
+      jbossdeveloper_bom: 'Bom',
+      jbossdeveloper_archetype: 'Archetype',
+      jbossdeveloper_example: 'Demo',
+      jbossdeveloper_vimeo: 'Video',
+      jbossdeveloper_youtube: 'Video',
+      jbossdeveloper_book: 'Book',
+      jbossdeveloper_event: 'Event',
+      rht_knowledgebase_article: 'Article',
+      rht_knowledgebase_solution: 'Article',
+      stackoverflow_question: 'Stack Overflow',
+      jbossorg_sbs_forum: 'Forum Thread',
+      jbossorg_blog: 'Blog Post',
+      rht_website: 'Website',
+      rht_apidocs: 'Docs & APIs'
     }
     return types[sys_type];
   }
@@ -201,17 +212,17 @@ search.filter('title', function($sce) {
 search.filter('description', function($sce, $sanitize) {
   return function(result) {
     var description = "";
-    // if (result.fields.sys_type == 'stackoverflow_thread') {
-    //   description = result.fields.sys_content_plaintext[0];
-    // }
+
     if (result.highlight && result.highlight.sys_content_plaintext) {
-      description = result.highlight.sys_content_plaintext[0];
-    }
-    if (result.fields && result.fields.sys_description) {
+      description = result.highlight.sys_content_plaintext.join('...');
+    } else if (result.highlight && result.highlight.sys_description) {
+      description = result.highlight.sys_description[0];
+    } else if (!result.highlight && result.fields.sys_content_plaintext) {
+      description = result.fields.sys_content_plaintext[0];
+    } else {
       description = result.fields.sys_description[0];
     }
-    
-    return $sanitize(description.replace(/<[^>]+>/gm, ''));
+    return description;
   }
 });
 
@@ -339,6 +350,7 @@ function searchCtrlFunc($scope, $window, searchService) {
 
   // Search Page Specifics
   if (isSearch && searchTerm) {
+    $scope.params.filter_out_excluded = true;
     $scope.params.query = decodeURIComponent(searchTerm.pop().replace(/\+/g,' '));
   }
 
@@ -469,10 +481,8 @@ function searchCtrlFunc($scope, $window, searchService) {
     }
     
     searchService.getSearchResults(params).then(function(data) {
-      if (!window.digitalData) {
-        digitalData = {page: {listing : {}, category: {}}, event: []};
-      } 
-      var types = {
+      var digitalData = digitalData || {page: {listing : {}, category: {}}, event: []},
+      types = {
         video: 'Video',
         blogpost: 'Blog Post',
         jbossdeveloper_book: 'Book',

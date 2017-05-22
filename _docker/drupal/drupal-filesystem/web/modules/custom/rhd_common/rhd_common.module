@@ -191,11 +191,11 @@ function add_books_validations(array &$form, FormStateInterface $form_state)
     $isbn_validator = function (array &$element, FormStateInterface $form_state) {
         // Basic date comparison
         $isbn_number = $form_state->getValue('field_isbn')[0]['value'];
-        if (!is_numeric($isbn_number))
+        if (!is_numeric($isbn_number) && !empty($isbn_number))
         {
             $form_state->setError($element, t('The ISBN field must be a number!')); // Create the error
         }
-        if (strlen($isbn_number) != 13 && strlen($isbn_number) != 10)
+        if (strlen($isbn_number) != 13 && strlen($isbn_number) != 10 && !empty($isbn_number))
         {
             $form_state->setError($element, t('The ISBN field must be a valid 10 or 13 digit number!')); // Create the error
         }
