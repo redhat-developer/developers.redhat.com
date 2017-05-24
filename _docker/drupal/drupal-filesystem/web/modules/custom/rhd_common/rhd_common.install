@@ -53,3 +53,52 @@ function rhd_common_update_8201() {
   $extension_config->set('module', $modules);
   $extension_config->save(); drupal_flush_all_caches();
 }
+
+// update hook
+function rhd_common_update_8202() {
+$string = file_get_contents("modules/custom/rhd_common/youtube_videos.json");
+
+    // Iterator to process all JSON iteration and node creation
+    $json = json_decode($string, true);
+    foreach ($json as $name => $value) {
+
+        $node = \Drupal\node\Entity\Node::create(array(
+            'type' => 'video_resource',
+            'title' => $value['title'],
+            'langcode' => 'en',
+            'status' => 1,
+            'body' => [
+                'value' => $value['description'],
+                'format' => 'rhd_html'
+            ],
+            'field_duration' => [
+                [
+                    'interval' => $value['seconds'],
+                    'period' => 'second'
+                ],
+                [
+                    'interval' => $value['minutes'],
+                    'period' => 'minute'
+                ],
+                [
+                    'interval' => $value['hours'],
+                    'period' => 'hour'
+                ]
+            ],
+            'field_likes' => $value['likes'],
+            'field_views' => $value['views'],
+            'field_video_resource' => $value['video_url'],
+            'field_video_thumbnail_url' => $value['video_thumb'],
+            'field_video_publish_date' => $value['publish_date'],
+            'field_speakers' => 'Red Hat Developers',
+            'path' => [
+                [
+                    'alias' => $value['path'],
+                    'lang' => 'en'
+                ]
+            ]
+        ));
+        $node->save();
+    }
+
+}
