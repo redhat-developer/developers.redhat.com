@@ -56,7 +56,49 @@ function rhd_common_update_8201() {
 
 // update hook
 function rhd_common_update_8202() {
-$string = file_get_contents("modules/custom/rhd_common/youtube_videos.json");
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_1.json');
+    push_video_data($files);
+}
+function rhd_common_update_8203() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_2.json');
+    push_video_data($files);
+}
+function rhd_common_update_8204() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_3.json');
+    push_video_data($files);
+}
+function rhd_common_update_8205() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_4.json');
+    push_video_data($files);
+}
+function rhd_common_update_8206() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_5.json');
+    push_video_data($files);
+}
+function rhd_common_update_8207() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_6.json');
+    push_video_data($files);
+}
+function rhd_common_update_8208() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_7.json');
+    push_video_data($files);
+}
+function rhd_common_update_8209() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_8.json');
+    push_video_data($files);
+}
+function rhd_common_update_8210() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_9.json');
+    push_video_data($files);
+}
+function rhd_common_update_8211() {
+    $files = array('modules/custom/rhd_common/videos/youtube_videos_10.json');
+    push_video_data($files);
+}
+
+function push_video_data($file) {
+
+    $string = file_get_contents($file[0]);
 
     // Iterator to process all JSON iteration and node creation
     $json = json_decode($string, true);

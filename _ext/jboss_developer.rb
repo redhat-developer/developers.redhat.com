@@ -397,7 +397,6 @@ module Aweplug
         @drupal_pages.has_key? "/#{path}"
       end
 
-      # TODO: Create method for pushing in Video content to Drupal
       # Private: Issues a GET to Drupal to retrieve the sitemap.
       def fetch_sitemap
         $LOG.verbose 'Calling Drupal cron and sitemap' if $LOG.verbose?
@@ -565,7 +564,7 @@ module Aweplug
       #   drupal.post "api", "node", {title: 'Hello', type: 'page'}
       #   # => Faraday Response
       def post(endpoint, path, params = {})
-        resp = @faraday.post do |req|
+        @faraday.post do |req|
           req.url endpoint + '/' + path
           req.headers['Content-Type'] = 'application/hal+json'
           req.headers['Accept'] = 'application/hal+json'
@@ -579,7 +578,6 @@ module Aweplug
             @logger.debug "request body: #{req.body}"
           end
         end
-        resp
       end
 
       def login(username, password)
