@@ -62,15 +62,6 @@ module JBoss
                 downloads(product, site)
                 
                 product.buzz_tags ||= product.id
-                add_video product.vimeo_album, site, product: id, push_to_searchisko: @push_to_searchisko if product.vimeo_album
-                add_video product.youtube_album, site, product: id, push_to_searchisko: @push_to_searchisko if product.youtube_album
-                unless site.featured_videos[id].nil?
-                  res = []
-                  site.featured_videos[id].values.each do |url|
-                    res << add_video(url, site, product: id, push_to_searchisko: @push_to_searchisko)
-                  end
-                  product.featured_videos = res.flatten.reject {|v| v.nil?}
-                end
 
                 # Add a flag if product has a connectors page
                 if File.exists?('./products/' + id + '/connectors.adoc')
