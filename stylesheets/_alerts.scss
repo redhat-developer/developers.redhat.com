@@ -1,23 +1,49 @@
 .alert {
+  color: #363636;
+  border-width: 1px;
+  border-style: solid;
 
+  &.alert-info {
+    background-color: #dcedf8;
+    border-color: #87aac1;
+
+    &.icon {
+      background-image: cdn("../images/design/icons/alerts/RHD_alerticon_info.png");
+    }
+  }
+
+  &.alert-success {
+    background-color: #e9f4e9;
+    border-color: #8db28a;
+
+    &.icon {
+      background-image: cdn("../images/design/icons/alerts/RHD_alerticon_success.png");
+    }
+  }
+
+  &.alert-warning {
+    background-color: #fdf2e5;
+    border-color: #deb142;
+
+    &.icon {
+      background-image: cdn("../images/design/icons/alerts/RHD_alerticon_warning.png");
+    }
+  }
+
+  &.alert-error {
+    background-color: #ffe6e6;
+    border-color: #d8aaab;  
+
+    &.icon {
+      background-image: cdn("../images/design/icons/alerts/RHD_alerticon_error.png");
+    }
+  }
+
+  &.close, &.icon {
+    top: 1.25rem;
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+  }
 }
 
-.alert-info {
-
-}
-
-.alert-success {
-
-}
-
-.alert-warning {
-
-}
-
-.alert-error {
-    
-}
-
-.alert-box .close {
-  top: 1.25rem;
-}

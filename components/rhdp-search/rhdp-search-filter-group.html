@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="rhdp-search-filter-item.html">
 
 <dom-module id="rhdp-search-filter-group">
@@ -7,16 +7,21 @@
     <style>
       :host {
         display: block;
-        padding: .5em;
-        margin: 0 .5em;
+        padding: 0;
+        margin: 0;
         position: relative;
       }
       h4 {
         font-weight: bold;
         text-transform: uppercase;
-        margin: .5em 0;
+        margin: 0 0 .5em 0;
+        background-color: #CCC;
+
       }
-      #toggle { float: right;}
+      #toggle { 
+        float: right;
+        --iron-icon-stroke-color: #69E;
+      }
       .filters {
         font-size: .85em;
       }
@@ -29,7 +34,7 @@
     <h4 id="heading" on-click="showFilters">[[name]] <iron-icon id="toggle" icon="icons:chevron-right"></iron-icon></h4>
     <div id="filters" class="filters hide">
       <template is="dom-repeat" items="{{items}}">
-        <rhdp-search-filter-item value="{{item.value}}" name="[[item.name]]" toggle="{{item.toggle}}"></rhdp-search-filter-item>
+        <rhdp-search-filter-item value="{{item.value}}" name="[[item.name]]" active="{{item.active}}"></rhdp-search-filter-item>
       </template>
     </div>
   </template>
@@ -73,10 +78,9 @@
       }
       _setFacetItems(e) {
         if(e.detail && e.detail.facet) {
-          console.log(e.detail.facet);
-          var idx = this.facets.indexOf(e.detail.facet);
+          var idx = this.facets.indexOf(e.detail.facet.value);
           if( idx < 0) {
-            this.push('facets',e.detail.facet);
+            this.push('facets',e.detail.facet.value);
           } else {
             this.splice('facets',idx,1);
           }

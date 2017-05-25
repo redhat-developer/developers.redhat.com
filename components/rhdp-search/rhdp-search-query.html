@@ -2,8 +2,8 @@
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <dom-module id="rhdp-search-query">
   <template>
-    <iron-ajax auto id="ajax" url="//dcp.stage.jboss.org/v2/rest/search/developer_materials" 
-    params='{"part":"snippet", "query":"{{filters.term}}", "size": "size{{limit}}"}'
+    <iron-ajax id="ajax" url="[[url]]"
+    params="[[getParams()]]"
     handle-as="json"
     on-response="adjustResults"></iron-ajax>
   </template>
@@ -20,7 +20,14 @@
               notify: true
           },
           limit: Number,
-          sort: String
+          sort: String,
+          url: {
+            type: String,
+            value: '/search'
+          },
+          params: {
+            type: String
+          }
         };
       }
 
@@ -30,8 +37,15 @@
         ]
       }
 
+      getParams() {
+        return {query: this.term, size: "size"+this.limit};
+      }
+
       runQuery(filters) {
-        this.$.ajax.generateRequest();
+        console.log(filters);
+        if(filters.term && filters.term.length > 0) {
+          this.$.ajax.generateRequest();
+        }
       }
       adjustResults(results) {
         var qr = results.detail.response;

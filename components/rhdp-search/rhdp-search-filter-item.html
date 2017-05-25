@@ -1,20 +1,38 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 
 <dom-module id="rhdp-search-filter-item">
   <template>
     <style>
       :host {
+        font-family: Overpass;
+      }
+      .text {
+        flex: 1 6 auto;
+      }
+
+      .list {
         display: flex;
         flex-direction: row;
         padding: .5em;
         clear: left;
-        font-size: 16px;
+        font-size: 12px;
         height: 24px;
       }
-      .text {
-        flex: 1 6 auto;
+
+      .inline {
+        padding: .45em;
+        font-size: 11px;
+        font-family: Overpass;
+        line-height: 1em;
+        border: 1px solid #CCC;
+        float: left;
+        margin-left: .5em;
+        margin-bottom: .5em;
+        --iron-icon-height: 16px;
+        --iron-icon-width: 16px;
       }
       paper-toggle-button.green {
        flex: 0 6 40px;
@@ -34,9 +52,16 @@
         #toggle { display: block; }
        }
     </style>
-    <paper-checkbox noink id="check" on-change="setToggle" checked="{{toggle}}"></paper-checkbox>
-    <div class="text" on-click="setToggle">[[name]]</div>
-    <paper-toggle-button id="toggle" class="green" noink on-change="setToggle" checked="{{toggle}}"></paper-toggle-button>
+    <template is="dom-if" if="[[inline]]">
+      <div class="inline">[[name]] <iron-icon on-click="setToggle" icon="icons:clear"></iron-icon></div>
+    </template>
+    <template is="dom-if" if="[[!inline]]">
+      <div class="list">
+        <paper-checkbox noink id="check" on-change="setToggle" checked="{{active}}"></paper-checkbox>
+        <div class="text" on-click="setToggle">[[name]]</div>
+        <paper-toggle-button id="toggle" class="green" noink on-change="setToggle" checked="{{active}}"></paper-toggle-button>
+      </div>
+    </template>
   </template>
 
   <script>
@@ -45,7 +70,7 @@
       static get properties() {
         return {
           name: String,
-          toggle: {
+          active: {
             type: Boolean,
             value: false,
             notify: true
@@ -53,17 +78,26 @@
           value: {
             type: String,
             value: 'rhdp-search-filter-item'
+          },
+          active: {
+            type: Boolean,
+            value: false,
+            notify: true
+          },
+          inline: {
+            type: Boolean,
+            value: false
           }
         };
       }
 
       setToggle() {
-        this.set('toggle', !this.toggle);
-        this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this.value}, composed: true}));
+        this.set('active', !this.active);
+        this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this}, composed: true}));
       }
 
       clear() {
-        this.set('toggle', false);
+        this.set('active', false);
       }
     }
 

@@ -1,0 +1,30 @@
+{
+  "entrypoint": "components/rhdp-search/index.html",
+  "shell": "components/rhdp-search/rhdp-search-app.html",
+  "lint": {
+    "rules": [
+      "polymer-2"
+    ]
+  },
+  "sources": [
+   "components/rhdp*/*",
+   "bower.json"
+  ],
+  "extraDependencies": [
+    "components/webcomponentsjs/webcomponents-lite.js"
+  ],
+  "builds": [{
+    "name": "default",
+    "bundle": true,
+    "js": {"minify": true},
+    "css": {"minify": true},
+    "html": {"minify": true}
+  },
+  {
+    "name": "es5",
+    "bundle": true,
+    "js": {"minify": false, "compile": true},
+    "css": {"minify": false},
+    "html": {"minify": true}
+  }]
+}

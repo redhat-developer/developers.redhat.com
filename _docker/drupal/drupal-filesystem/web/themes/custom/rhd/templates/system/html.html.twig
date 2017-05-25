@@ -256,6 +256,7 @@
   <script src="{{ rhd_sentry_script }}"></script>
   <script>Raven.config('{{ rhd_sentry_code }}', { environment: '{{rhd_environment}}', whitelistUrls: [/redhat\.com/] }).install()</script>
   {% endif %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-loader.js"></script>
   <js-placeholder token="{{ placeholder_token|raw }}">
 </head>
 <body class="{{ body_classes()|join(' ') }}">

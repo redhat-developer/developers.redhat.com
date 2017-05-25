@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="rhdp-search-filter-group.html">
-<script src="../stickybits/dist/stickybits.min.js"></script>
+<link rel="import" href="rhdp-search-filter-item.html">
+<!--<script src="../stickybits/dist/stickybits.min.js"></script>-->
 
 <dom-module id="rhdp-search-filters">
   <template>
@@ -8,9 +9,10 @@
       :host {
         display: block;
         margin-right: 2em;
+        font-family: Overpass;
       }
-      .control { border: 2px solid #666; }
-      h2 { background: #666; color: white; margin: 0; }
+      .control {  width: 250px;  }
+      .title { background: #666; padding-left:1em; color: white; margin: 0 0 .5em 0; }
       .cancel { display: none; }
       .showBtn { 
         display: none;
@@ -30,6 +32,15 @@
         width: 100%;
         }
       
+      .active-type {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2em;
+      }
+      .active-type strong { flex: 0 1 auto; order: 1; }
+      .active-type div { flex: 1 1 auto; order: 2; list-style: none; }
+      .active-type a { flex: 0 1 auto; order: 3; }
+
       #footer { display: none; }
 
 
@@ -39,7 +50,7 @@
           border: none;
           margin: 0 0 1em 0;
         }
-        h2 { flex: 0 0 40px; order: 1; vertical-align: middle; }
+        .title { flex: 0 0 40px; order: 1; vertical-align: middle; }
         .showBtn { display: block;
             width: 150px;
             padding: 9px 25px;
@@ -73,6 +84,10 @@
           transition: .5s ease-in-out;
           transform: translateX(100%); 
         }
+        .modal-hide {
+          transition: .5s ease-in-out;
+          transform: translateX(-100%);
+        }
         .groups {
           background: white;
           flex: 1 0 100%; 
@@ -83,16 +98,33 @@
       }
 
     </style>
-    <a class="showBtn" on-click="showModal">Show Filters</a>
-    <div class="control" id="control">
-      <h2>[[title]] <a href="#" class="cancel" id="cancel" on-click="showModal">Cancel</a></h2>
-      <div class="groups">
+    <template is="dom-if" if="{{_isActive()}}">
+      <div class="active-type">
+        <strong>Active Filters:</strong>
+        <div>
         <template is="dom-repeat" items="{{filters.facets}}">
-          <rhdp-search-filter-group key="{{item.key}}" name="{{item.name}}" items="{{item.items}}"></rhdp-search-filter-group>
+          <template is="dom-repeat" items="{{item.items}}">
+            <template is="dom-if" if="{{item.active}}">
+              <rhdp-search-filter-item inline value="{{item.value}}" name="[[item.name]]" active="{{item.active}}"></rhdp-search-filter-item>
+            </template>
+          </template>
         </template>
+        </div>
+        <a href="#" on-click="clearFilters">Clear Filters</a>
       </div>
-      <div id="footer"><a href="#" on-click="clearOptions">Clear All</a> | <a href="#" on-click="showModal">Apply</a></div>
-    </div>
+    </template>
+    <template is="dom-if" if="{{!_isActive()}}">
+      <a class="showBtn" on-click="_setToggle">Show Filters</a>
+      <div class$="control [[modal]]" id="control">
+        <div class="title">[[title]] <a href="#" class="cancel" id="cancel" on-click="_setToggle">Cancel</a></div>
+        <div class="groups">
+          <template is="dom-repeat" items="{{filters.facets}}">
+            <rhdp-search-filter-group key="{{item.key}}" name="{{item.name}}" items="{{item.items}}"></rhdp-search-filter-group>
+          </template>
+        </div>
+        <div id="footer"><a href="#" on-click="clearFilters">Clear All</a> | <a href="#" on-click="_setToggle">Apply</a></div>
+      </div>
+    </template>
   </template>
 
   <script>
@@ -100,7 +132,7 @@
       static get is() { return 'rhdp-search-filters'; }
       connectedCallback() {
         super.connectedCallback();
-        stickybits(this.$.footer, { verticalPosition: 'bottom' });
+        // stickybits(this.$.footer, { verticalPosition: 'bottom' });
       }
       ready() {
         super.ready();
@@ -143,19 +175,51 @@
           },
           toggle: {
             type: Boolean,
-            value: true
+            value: false
+          },
+          type: {
+            type: String,
+            value: 'menu'
+          },
+          modal: {
+            type: String,
+            computed: '_showModal(toggle)'
           }
         };
       }
-      showModal(e) {
-        this.$.control.className = this.toggle ? 'control modal' : 'control';
-        this.toggle = this.toggle ? false : true;
+      _setToggle() {
+        this.toggle = !this.toggle;
+      }
+      _showModal(toggle) {
+        return toggle ? 'modal' : 'modal-hide';
+      }
+      clearFilters() {
+        var a = this._getActive(),
+            l = a.length;
+        for(var i=0; i < l; i++) {
+          this.set(a[i]+'.active', false);
+        } 
         return false;
       }
-      clearOptions() {
-        var groups = this.getElementsByTagName('rhdp-search-filter-group');;
-        console.log(groups);
-        return false;
+      _isActive() {
+        return this.type == 'active';
+      }
+      _getActive() {
+        var actives = [];
+        var l = this.filters.facets.length;
+          for(var i=0; i < l; i++) {
+            var j = this.filters.facets[i].items.length;
+            for(var k=0; k < j; k++) {
+              if(this.filters.facets[i].items[k].active) {
+                actives.push('filters.facets.'+i+'.items.'+k);
+              }
+            } 
+          }
+        return actives;
+      }
+      _hasActive() {
+        console.log(this._getActive());
+        return this._getActive().length > 0;
       }
       _setItems(e) {
         if(e.detail && e.detail.key) {

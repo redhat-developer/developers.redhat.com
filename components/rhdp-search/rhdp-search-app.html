@@ -7,10 +7,9 @@
 <link rel="import" href="rhdp-search-filter-item.html">
 <link rel="import" href="rhdp-search-results.html">
 <link rel="import" href="rhdp-search-sort-page.html">
-<link rel="import" href="rhdp-search-active-filters.html">
-<link rel="import" href="rhdp-search-recommended.html">
+<!--<link rel="import" href="rhdp-search-recommended.html">-->
 
-<dom-module id="new-rhdp-search">
+<dom-module id="rhdp-search-app">
   <template>
     <style>
       :host {
@@ -31,10 +30,10 @@
       .content {
         display: flex;
         flex-direction: row;
-        margin: 0 2em 2em 2em;
+        margin: 0 0 2em 0
       }
 
-      rhdp-search-filters {
+      rhdp-search-filters:not:active {
         flex: 0 0 240px;
         align-self: auto;
       }
@@ -66,23 +65,22 @@
         .desktop { display: none; }
       }
     </style>
-    <rhdp-search-query results="{{results}}" filters="{{filters}}" limit="10"></rhdp-search-query>
+    <rhdp-search-query results="{{results}}" filters="{{filters}}" sort="{{sort}}" limit="{{limit}}"></rhdp-search-query>
     <rhdp-search-box term="{{filters.term}}"></rhdp-search-box>
-    <rhdp-search-result-count count="{{results.hits.total}}" term="{{filters.term}}" class="desktop"></rhdp-search-result-count>
     <div class="content">
       <rhdp-search-filters title="Filter By" filters="{{filters}}"></rhdp-search-filters>
       <rhdp-search-results results="[[results]]" infinite>
-        <rhdp-search-sort-page sort="most recent" page-size="10"></rhdp-search-sort-page>
-        <rhdp-search-result-count count="{{results.hits.total}}" term="{{filters.term}}" class="mobile"></rhdp-search-result-count>
-        <rhdp-search-active-filters facets="{{filters.facets}}"></rhdp-search-active-filters>
-        <rhdp-search-recommended></rhdp-search-recommended>
+        <rhdp-search-filters type="active" filters="{{filters}}"></rhdp-search-filters>
+        <rhdp-search-result-count count="{{results.hits.total}}" term="{{filters.term}}" class="desktop"></rhdp-search-result-count>
+        <rhdp-search-sort-page sort="{{sort}}" page-size="{{limit}}"></rhdp-search-sort-page>
+        <!--<rhdp-search-recommended></rhdp-search-recommended>-->
       </rhdp-search-results>
     </div> 
   </template>
 
   <script>
     class RHDPSearchApplication extends Polymer.Element {
-      static get is() { return 'new-rhdp-search'; }
+      static get is() { return 'rhdp-search-app'; }
       static get properties() {
         return { };
       }
