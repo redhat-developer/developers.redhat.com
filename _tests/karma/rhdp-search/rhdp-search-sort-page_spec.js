@@ -1,3 +1,4 @@
+"use strict";
 // Test rhdp-search-sort-page component
 
 describe('Search Sort and Paging', function() {
@@ -11,7 +12,31 @@ describe('Search Sort and Paging', function() {
         document.body.removeChild(document.body.firstChild);
     });
 
-    it('should be true', function() {
-        expect(wc.innerText).toEqual('');
+/*
+captures sort and pageSize properties
+provides updates to above properties
+displays text "Sort results by [sort as options]" on desktop
+displays button menu with [sort] options on mobile
+Unit tests for component pass
+*/
+    it('should default to "Relevance" to start', function() {
+        expect(wc.sort).toEqual('Relevance');
+    });
+
+    it('should respond to setting and getting the sort property', function() {
+        wc.set('sort', 'Most Recent');
+        expect(wc.sort).toEqual('Most Recent');
+        expect(wc.get('sort')).toEqual('Most Recent');
+    });
+
+    it('should share the sort property out', function() {
+        document.body.addEventListener('change', function(e) {
+            console.log(e.target);
+        });
+        expect(wc.sort).toEqual('');
+    });
+
+    it('should read "Sort results by [[sort]]', function() {
+        expect(wc.sort).toEqual('');
     });
 });

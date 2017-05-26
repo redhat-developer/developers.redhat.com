@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 
 <dom-module id="rhdp-search-box">
   <template>
@@ -7,19 +8,24 @@
         font-family: Overpass, "Open Sans", Helvetica;
         margin: 0 0 2em 0;
       }
+
+      .mobile { display: none; }
       form.search-bar { 
         box-sizing: border-box;
         color: rgb(66,66,66);
         cursor: auto;
-        display: grid;
-        grid-template-columns: auto 150px;
-        grid-gap: 0;
+        display: flex;
+        flex-direction: row;
         font-family: Overpass, "Open Sans", Helvetica;
         font-size: 16px;
         line-height: 24px;
         position: relative; 
         margin: 0;
         width: 100%;
+      }
+
+      form.search-bar div {
+        flex: 1 1 100%;
       }
       
       input.user-search {
@@ -59,13 +65,14 @@
         text-align: center;
         color: #fff;
       }
+
+      button iron-icon { display: none; }
       @media only screen and (max-width: 768px) {
         
       }
       @media only screen and (max-width: 500px) {
-        form.search-bar {
-          grid-template-columns: auto 48px;
-        }
+        button iron-icon { display: block; }
+        button span { display: none; }
         button {
           padding: 9px;
         }
@@ -76,7 +83,7 @@
     </style>
     <form class="search-bar" role="search" onsubmit="return false;">
       <div class="input-cont"><input class="user-success user-search" type="search" id="query" placeholder="Enter your search term" id="search_list_text" value="{{text::input}}"></div>
-      <button on-click="_handleChange" id="">SEARCH</button>
+      <button on-click="_handleChange" id=""><span>SEARCH</span><iron-icon icon="icons:search" ></iron-icon></button>
     </form>
     <slot></slot>
   </template>

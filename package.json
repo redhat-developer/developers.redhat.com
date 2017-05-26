@@ -4,8 +4,8 @@
   "description": "developers.redhat.com build",
   "main": "Gulpfile.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start",
-    "bundle": "./node_modules/.bin/polymer-bundler --strip-comments --inline-scripts --inline-css components/rhdp-search/rhdp-search-app.html > components/rhdp-search/rhdp-search-app-build.html"
+    "test": "karma start",
+    "bundle": "polymer-bundler --strip-comments --inline-scripts --inline-css components/rhdp-search/rhdp-search-app.html > components/rhdp-search/rhdp-search-app-build.html"
   },
   "author": "Red Hat Inc.",
   "license": "",

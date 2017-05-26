@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-listbox/paper-listbox.html">
 
 <dom-module id="rhdp-search-sort-page">
   <template>
@@ -45,19 +47,27 @@
       }
     </style>
     <div class="roomy">Sort results by 
+      <paper-dropdown-menu selectedItem="{{sort}}">
+        <paper-listbox slot="dropdown-content" selected="1">
+          <paper-item>Relevance</paper-item>
+          <paper-item>Most Recent</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
         <select>
             <option value="relevance" selected>Relevance</option>
             <option value="recent">Most Recent</option>
         </select> 
         <!--and show 
-        <select>
-            <option value="10" selected>10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-        </select>
+        <paper-dropdown-menu selectedItem="{{pageSize}}">
+          <paper-listbox slot="dropdown-content" selected="1">
+            <paper-item>10</paper-item>
+            <paper-item>25</paper-item>
+            <paper-item>50</paper-item>
+            <paper-item>100</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
         results per page.-->
-        </div>
+    </div>
     <div class="tight">
         <a href="#" class="button" on-click="">Relevance</a>
     </div>
