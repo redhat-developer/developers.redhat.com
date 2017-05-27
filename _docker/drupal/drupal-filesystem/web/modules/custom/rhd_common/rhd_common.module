@@ -622,3 +622,5 @@ function found_product_in_sitemap($links, $product_ids)
         return in_array($link['entity_info']['id'], $product_ids);
     });
 }
+
+include_once 'rhd_common.tokens.inc';
