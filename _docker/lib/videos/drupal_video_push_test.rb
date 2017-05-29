@@ -5,7 +5,7 @@ require 'uri'
 require 'yaml'
 require 'nokogiri'
 
-class DrupalVideoPushWalkthrough
+class DrupalVideoPushTest
 
   def initialize arg
     @opts = YAML.load_file('./drupal_site_info.yml')[arg]
@@ -47,11 +47,11 @@ end
 if $PROGRAM_NAME == __FILE__
   input = ARGV[0]
   # Complexity is through the roof...total hack but it works...
-  pr_sitemap = DrupalVideoPushWalkthrough.new(input).find_videos.collect {|v| v.gsub(/.*\/video/, '/video')}
-  prod_sitemap = DrupalVideoPushWalkthrough.new('drupal_prod').find_videos.collect {|v| v.gsub(/.*\/video/, '/video')}
+  pr_sitemap = DrupalVideoPushTest.new(input).find_videos.collect {|v| v.gsub(/.*\/video/, '/video')}
+  prod_sitemap = DrupalVideoPushTest.new('drupal_prod').find_videos.collect {|v| v.gsub(/.*\/video/, '/video')}
 
 
-  exists = prod_sitemap.collect {|v|
+  missing = prod_sitemap.collect {|v|
     if pr_sitemap.find {|e| v.include?(e)}
       nil
     else
@@ -59,7 +59,7 @@ if $PROGRAM_NAME == __FILE__
     end
   }.reject! do |empty| empty.nil? end
 
-  puts "\nThe following videos exist in production but not staging:"
-  puts exists
+  puts "\nThe following videos exist in production but not in #{input}:"
+  puts missing
 
 end
