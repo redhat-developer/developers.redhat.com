@@ -11,7 +11,15 @@ describe('Search Results (list)', function() {
         document.body.removeChild(document.body.firstChild);
     });
 
-    it('should be true', function() {
-        expect(wc.innerText).toEqual('');
+    it('should have a results object', function() {
+        var results = {hits: {hits: []}};
+        wc.set('results', results);
+        expect(wc.results).toEqual(results);
+    });
+
+    it('should have named slots (top and bottom)', function() {
+        var slots = wc.shadowRoot.querySelectorAll('slot');
+        expect(slots[0].name).toEqual('top');
+        expect(slots[2].name).toEqual('bottom');
     });
 });

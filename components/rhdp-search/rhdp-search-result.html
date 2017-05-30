@@ -35,15 +35,16 @@
             max-height: 45px;
             margin-bottom: 50px;
         }
+        .hlt { font-weight: 600; }
 
     </style>
     <div class="result result-search" >
-        <h4>[[result.fields.sys_title.0]]</h4>
+        <h4>[[title]]</h4>
         <p class="result-info">
             <span class="caps">[[kind]]</span>
             <span>[[created]]</span>
         </p>
-        <p class="result-description">[[result.fields.sys_description]]</p>
+        <p class="result-description">[[description]]</p>
     </div>
   </template>
 
@@ -65,24 +66,72 @@
               type: String,
               computed: 'computeCreated(result)'
           },
-          description: String,
+          description: {
+              type: String,
+              computed: 'computeDescription(result)'
+          }
         };
       }
-      computeTitle(result) { return result.fields.sys_title[0]; }
+      computeTitle(result) { 
+          var title = '';
+          if(result.highlight && result.highlight.sys_title) {
+              title = result.highlight.sys_title[0];
+          } else {
+              title = result.fields.sys_title[0];
+          }
+          return title; 
+        }
       computeKind(result) {
-        var kind = result.fields.sys_type || "";
-        if (kind != '' && result.fields.sys_url_view[0].indexOf('/events/') >= 0) {
-            kind = "Event";
-        }
-        if (kind != '' && result.fields.sys_url_view[0].indexOf('/video/') >= 0) {
-            kind = "Video";
-        }
-        return kind;
+        var kind = result.fields.sys_type || "webpage",
+            map = {
+                video: 'Video',
+                blogpost: 'Blog Post',
+                book: 'Book',
+                article: 'Article',
+                solution: 'Article',
+                demo: 'Demo',
+                event: 'Event',
+                quickstart: 'Quickstart',
+                quickstart_early_access: 'Demo',
+                forumthread: 'Forum Thread',
+                stackoverflow_thread: 'Stack Overflow',
+                webpage: 'Webpage',
+
+                jbossdeveloper_quickstart: 'Quickstart',
+                jbossdeveloper_demo: 'Demo',
+                jbossdeveloper_bom: 'Bom',
+                jbossdeveloper_archetype: 'Archetype',
+                jbossdeveloper_example: 'Demo',
+                jbossdeveloper_vimeo: 'Video',
+                jbossdeveloper_youtube: 'Video',
+                jbossdeveloper_book: 'Book',
+                jbossdeveloper_event: 'Event',
+                rht_knowledgebase_article: 'Article',
+                rht_knowledgebase_solution: 'Article',
+                stackoverflow_question: 'Stack Overflow',
+                jbossorg_sbs_forum: 'Forum Thread',
+                jbossorg_blog: 'Blog Post',
+                rht_website: 'Website',
+                rht_apidocs: 'Docs & APIs'
+            };
+        return map[kind];
        }
        computeCreated(result) {
         var options = { month: 'long', day: 'numeric', year: 'numeric' }
-        var created = result.fields.sys_created ? '| ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created)) : "";
+        var created = result.fields.sys_created ? '| ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created[0])) : "";
         return created;
+       }
+       computeDescription(result) {
+           var description = '';
+           if(result.highlight && result.highlight.sys_description) {
+               description = result.highlight.sys_description[0];
+           } else if( result.highlight && result.highlight.sys_content_plaintext) {
+               description = result.highlight.sys_content_plaintext[0];               
+           } else {
+               description = result.fields.sys_description[0];
+           }
+
+           return description;
        }
     }
 

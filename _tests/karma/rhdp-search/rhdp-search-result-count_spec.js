@@ -1,3 +1,4 @@
+"use strict";
 // Test rhdp-search-result-count component
 
 describe('Search Result Count', function() {
@@ -19,7 +20,7 @@ describe('Search Result Count', function() {
         expect(wc.text).toEqual('');
     });
     it('should be blank with only a term value', function() {
-        wc.set('term','Fuse');
+        wc.set('term', 'Fuse');
         expect(wc.text).toEqual('');
     });
     it('should say the right thing with a count and term set', function() {
