@@ -1,0 +1,22 @@
+uuid: fd2e5fc0-bb8b-42fa-885e-ae0a96c59e69
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+third_party_settings:
+  lightning_core:
+    description: ''
+id: media_manager
+label: 'Media Manager'
+weight: -8
+is_admin: null
+permissions:
+  0: 'access contextual links'
+  2: 'administer media'
+  3: 'administer media bundles'
+  4: 'create media'
+  5: 'delete any media'
+  6: 'delete media'
+  7: 'update any media'
+  8: 'update media'
