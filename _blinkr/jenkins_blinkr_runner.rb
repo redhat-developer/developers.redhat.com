@@ -12,9 +12,18 @@ class JenkinsBlinkrRunner
   end
 
   #
+  # Run the tests for each of our test profiles
+  #
+  def run_checks
+    execute_checks
+  end
+
+  private
+
+  #
   # Execute the checks
   #
-  def execute_test
+  def execute_checks
     result = true
     test_execution_command = build_run_tests_command
 
@@ -47,7 +56,7 @@ class JenkinsBlinkrRunner
     ignore_external = read_env_variable('IGNORE_EXTERNAL_LINKS')
     ignore_ssl = read_env_variable('IGNORE_SSL')
     command += " -c config/#{config}" if config
-    command += " -u=#{@host_to_test}"
+    command += " -u #{@host_to_test}"
     command += ' -v'
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += " --ignore-external=#{ignore_external}" if ignore_external
@@ -60,7 +69,7 @@ end
 # Wraps the actual execution of the tests to allow us to unit test that call
 #
 def execute(jenkins_test_runner)
-  tests_passed = jenkins_test_runner.run_tests
+  tests_passed = jenkins_test_runner.run_checks
   Kernel.exit(tests_passed ? 0 : 1)
 end
 
