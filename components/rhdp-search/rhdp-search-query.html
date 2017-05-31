@@ -3,7 +3,7 @@
 <dom-module id="rhdp-search-query">
   <template>
     <iron-ajax id="ajax" url="[[url]]"
-    params="[[getParams()]]"
+    params="[[params]]"
     handle-as="json"
     on-response="adjustResults"></iron-ajax>
   </template>
@@ -26,7 +26,8 @@
             value: '/search'
           },
           params: {
-            type: String
+            type: String,
+            value: JSON.stringify({query: this.term, size: "size"+this.limit})
           }
         };
       }
@@ -34,11 +35,7 @@
       static get observers() {
         return [
             'runQuery(filters)'
-        ]
-      }
-
-      getParams() {
-        return {query: this.term, size: "size"+this.limit};
+        ];
       }
 
       runQuery(filters) {
