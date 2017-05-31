@@ -8,7 +8,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
       | Red Hat Software Collections                  |
-      | Red Hat JBoss A-MQ                            |
+      | Red Hat JBoss AMQ                            |
       | Red Hat JBoss BRMS                            |
       | Red Hat JBoss BPM Suite                       |
       | Red Hat JBoss Data Virtualization             |
@@ -22,7 +22,7 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
       | Red Hat Software Collections                  |
-      | Red Hat JBoss A-MQ                            |
+      | Red Hat JBoss AMQ                            |
       | Red Hat JBoss BRMS                            |
       | Red Hat JBoss BPM Suite                       |
       | Red Hat JBoss Data Virtualization             |
