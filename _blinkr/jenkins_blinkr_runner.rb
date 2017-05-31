@@ -56,9 +56,11 @@ class JenkinsBlinkrRunner
     ignore_external = read_env_variable('IGNORE_EXTERNAL_LINKS')
     command += " -c config/#{config}" if config
     command += " -u #{@host_to_test}"
+    command += ' -v'
+    command += ' --ignore-ssl'
+    command += " --update-github-status=#{github_sha1}" if github_sha1
     command += ' --ignore-external' if ignore_external
     command += ' --ignore-internal' if ignore_internal
-    command += " --update-github-status=#{github_sha1}" if github_sha1
     command
   end
 end
