@@ -54,14 +54,11 @@ class JenkinsBlinkrRunner
     config = read_env_variable('CONFIG')
     ignore_internal = read_env_variable('IGNORE_INTERNAL_LINKS')
     ignore_external = read_env_variable('IGNORE_EXTERNAL_LINKS')
-    ignore_ssl = read_env_variable('IGNORE_SSL')
     command += " -c config/#{config}" if config
     command += " -u #{@host_to_test}"
-    command += ' -v'
+    command += ' --ignore-external' if ignore_external
+    command += ' --ignore-internal' if ignore_internal
     command += " --update-github-status=#{github_sha1}" if github_sha1
-    command += " --ignore-external=#{ignore_external}" if ignore_external
-    command += " --ignore-internal=#{ignore_internal}" if ignore_internal
-    command += " --ignore-ssl=#{ignore_ssl}" if ignore_ssl
     command
   end
 end
