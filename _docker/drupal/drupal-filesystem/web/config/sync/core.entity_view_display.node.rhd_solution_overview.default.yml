@@ -23,6 +23,7 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_solution_name:
     type: string
     weight: 2
@@ -30,6 +31,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
   field_solution_tag_line:
     type: string
     weight: 1
@@ -37,5 +39,9 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   links: true

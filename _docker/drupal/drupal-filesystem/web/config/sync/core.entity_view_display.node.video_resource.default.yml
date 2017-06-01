@@ -31,12 +31,14 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_duration:
     weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: interval_default
+    region: content
   field_likes:
     weight: 5
     label: above
@@ -45,6 +47,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
   field_speakers:
     weight: 3
     label: above
@@ -52,6 +55,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_video_publish_date:
     weight: 9
     label: above
@@ -60,6 +64,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_video_resource:
     weight: 0
     label: visually_hidden
@@ -70,6 +75,7 @@ content:
       autoplay: false
     third_party_settings: {  }
     type: video_embed_field_video
+    region: content
   field_video_resource_tags:
     weight: 2
     label: above
@@ -77,6 +83,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_video_target_product:
     weight: 6
     label: above
@@ -84,6 +91,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_video_thumbnail_url:
     weight: 7
     label: above
@@ -91,6 +99,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_views:
     weight: 4
     label: above
@@ -99,6 +108,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
 hidden:
   links: true
   workbench_moderation_control: true

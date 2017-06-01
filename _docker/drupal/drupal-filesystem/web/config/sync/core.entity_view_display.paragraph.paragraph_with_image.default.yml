@@ -21,6 +21,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_paragraph_image_image:
     weight: 1
     label: visually_hidden
@@ -29,6 +30,7 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+    region: content
   field_paragraph_image_title:
     weight: 2
     label: visually_hidden
@@ -36,6 +38,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
 hidden:
   created: true
   uid: true

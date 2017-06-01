@@ -21,6 +21,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_document_title:
     weight: 0
     settings:
@@ -28,11 +29,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_formats:
     weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
 hidden:
   created: true
   status: true
