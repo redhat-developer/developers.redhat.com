@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "system",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": false,
+        "outFile": "javascripts/build.js",
+        "outDir": "javascripts"
+    },
+    "include": [
+        "typescript/**/*"
+    ]
+}
