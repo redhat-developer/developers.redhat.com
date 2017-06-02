@@ -4,8 +4,8 @@ use Symfony\Component\Yaml\Yaml;
 $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
 
 $settings['twig_debug'] = TRUE;
-$config['system.performance']['css']['preprocess'] = FALSE;
-$config['system.performance']['js']['preprocess'] = FALSE;
+$config['system.performance']['css']['preprocess'] = TRUE;
+$config['system.performance']['js']['preprocess'] = TRUE;
 $config['automated_cron.settings']['interval'] = 0;
 
 $settings['cache']['bins']['render'] = 'cache.backend.null';
@@ -34,4 +34,4 @@ $config_directories['sync'] = 'sites/default/files/config_BbPlfGDu86LJqlRwhA9RbC
 $settings['install_profile'] = 'lightning';
 
 /* Increase default memory settings for Drupal to 256 meg. Taken from: https://www.drupal.org/docs/7/managing-site-performance-and-scalability/changing-php-memory-limits */
-ini_set('memory_limit', '256M');
+ini_set('memory_limit', '2560M');

@@ -34,7 +34,7 @@ header.row
 
 .row.content.grow
   .large-18.columns
-   = video_player(page.video)
+
   .large-6.columns
     - if (page.video.full_description)
       - full_description = page.video.full_description.gsub!("\n", "<br>")

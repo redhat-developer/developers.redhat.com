@@ -28,7 +28,6 @@ ignore_export: true
             .event-timezone
       .row
         .medium-15.columns.event-video
-          = video_player(site.videos["https://www.youtube.com/v=#{a.youtube_id}"])
         .medium-9.columns
           iframe.embedded-chat(src="https://kiwiirc.com/client/irc.kiwiirc.com/?&theme=mini#vjbug")
         .large-24.columns
@@ -61,7 +60,6 @@ ignore_export: true
         a.close-reveal-modal x
         .row
           .event-video
-            = video_player(site.videos["https://www.youtube.com/v=#{a.youtube_id}"])
           .chat
             iframe.embedded-chat(src="https://kiwiirc.com/client/irc.kiwiirc.com/?&theme=mini#vjbug")
   section
