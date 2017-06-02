@@ -34,18 +34,21 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_average_rating:
     weight: 111
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_book_description:
     weight: 105
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_book_url:
     weight: 106
     label: above
@@ -57,6 +60,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_categories:
     weight: 107
     label: above
@@ -64,6 +68,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_isbn:
     weight: 113
     label: above
@@ -71,6 +76,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_preview_url:
     weight: 109
     label: above
@@ -82,6 +88,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_published_date:
     weight: 104
     label: above
@@ -90,6 +97,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_publisher:
     weight: 110
     label: above
@@ -97,12 +105,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_pull_from_google:
     weight: 112
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_thumbnail_url:
     weight: 102
     label: above
@@ -114,6 +124,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_web_reader_url:
     weight: 108
     label: above
@@ -125,6 +136,8 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   links:
     weight: 100
+    region: content
 hidden: {  }

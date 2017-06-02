@@ -24,6 +24,7 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_cheat_sheet_author:
     weight: 1
     label: visually_hidden
@@ -31,6 +32,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_cheat_sheet_download_url:
     weight: 3
     label: above
@@ -42,12 +44,14 @@ content:
       target: '0'
     third_party_settings: {  }
     type: link
+    region: content
   field_cheat_sheet_excerpt:
     weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_cheat_sheet_tags:
     weight: 5
     label: visually_hidden
@@ -55,12 +59,15 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   links:
     weight: 6
     settings: {  }
     third_party_settings: {  }
+    region: content
   workbench_moderation_control:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden: {  }

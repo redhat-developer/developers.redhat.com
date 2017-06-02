@@ -29,12 +29,17 @@ content:
       url_plain: false
       rel: '0'
     third_party_settings: {  }
+    region: content
   field_containers_short_summary:
     type: text_default
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   field_container_tags: true
   links: true

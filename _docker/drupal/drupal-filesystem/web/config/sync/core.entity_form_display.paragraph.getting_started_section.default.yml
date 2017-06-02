@@ -21,12 +21,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_minutes_to_complete:
     weight: 2
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_title:
     weight: 0
     settings:
@@ -34,6 +36,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
 hidden:
   created: true
   field_support_progress: true

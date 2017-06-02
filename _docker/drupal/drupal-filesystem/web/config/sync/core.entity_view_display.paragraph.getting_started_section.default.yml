@@ -20,6 +20,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_minutes_to_complete:
     weight: 2
     label: visually_hidden
@@ -28,6 +29,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
   field_title:
     weight: 1
     label: visually_hidden
@@ -35,6 +37,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
 hidden:
   created: true
   field_support_progress: true

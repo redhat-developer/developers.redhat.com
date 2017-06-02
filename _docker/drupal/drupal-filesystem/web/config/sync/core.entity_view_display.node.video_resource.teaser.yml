@@ -21,12 +21,21 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+    region: content
   links:
     weight: 100
+    region: content
   workbench_moderation_control:
     weight: -20
+    region: content
 hidden:
+  field_duration: true
+  field_likes: true
   field_resource_type: true
   field_speakers: true
+  field_video_publish_date: true
   field_video_resource: true
   field_video_resource_tags: true
+  field_video_target_product: true
+  field_video_thumbnail_url: true
+  field_views: true

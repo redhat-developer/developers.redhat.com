@@ -27,6 +27,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     label: hidden
+    region: content
   comment:
     label: above
     type: comment_default
@@ -35,6 +36,7 @@ content:
       pager_id: 0
       view_mode: default
     third_party_settings: {  }
+    region: content
   field_content_author:
     weight: 101
     label: visually_hidden
@@ -42,6 +44,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_tags:
     type: entity_reference_label
     weight: 10
@@ -49,10 +52,15 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+    region: content
   links:
     weight: 100
     settings: {  }
     third_party_settings: {  }
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   field_author_name: true
   field_image: true

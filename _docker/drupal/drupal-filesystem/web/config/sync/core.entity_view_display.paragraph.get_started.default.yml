@@ -27,12 +27,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_overview_main_content:
     weight: 5
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_overview_url:
     weight: 4
     label: visually_hidden
@@ -40,6 +42,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_page_description:
     weight: 8
     label: visually_hidden
@@ -47,12 +50,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_secondary_content:
     weight: 9
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
   field_tabs:
     type: entity_reference_revisions_entity_view
     weight: 7
@@ -61,6 +66,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   uid: true
