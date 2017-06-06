@@ -1,0 +1,19 @@
+drupal_local:
+  host: http://127.0.0.1
+  port: "8888"
+  admin:
+    name: 'admin'
+    password: 'admin'
+drupal_pr:
+  host: http://stumpjumper.lab4.eng.bos.redhat.com
+  port: "36881"
+  admin:
+    name: 'admin'
+    password: 'admin'
+drupal_prod:
+  host: http://developer-drupal.web.prod.ext.phx2.redhat.com
+  port: "80"
+  admin:
+    name:
+    password:
+
