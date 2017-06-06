@@ -1,16 +1,25 @@
-uuid: 14314fff-8dc8-482a-94e5-754dd9c1c0d0
+uuid: fd2e5fc0-bb8b-42fa-885e-ae0a96c59e69
 langcode: en
 status: true
-dependencies: {  }
-_core:
-  default_config_hash: 7dzKqiilGiV3zpTSFFtHrMmd8TkjQnGOo9qDT4aIaf8
+dependencies:
+  module:
+    - lightning_core
+third_party_settings:
+  lightning_core:
+    description: ''
 id: media_manager
-label: 'Media manager'
-weight: 6
+label: 'Media Manager'
+weight: -8
 is_admin: null
 permissions:
-  - 'access image_browser entity browser pages'
-  - 'access media overview'
-  - 'access media_browser entity browser pages'
-  - 'administer media'
-  - 'administer media bundles'
+  0: 'access contextual links'
+  2: 'administer media'
+  3: 'administer media bundles'
+  4: 'create media'
+  5: 'delete any media'
+  6: 'delete media'
+  7: 'update any media'
+  8: 'update media'
+  9: 'access image_browser entity browser pages'
+  10: 'access media overview'
+  11: 'access media_browser entity browser pages'

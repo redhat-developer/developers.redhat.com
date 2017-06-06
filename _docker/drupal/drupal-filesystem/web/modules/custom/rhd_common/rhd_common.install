@@ -1,4 +1,5 @@
 <?php
+use Drupal\user\Entity\User;
 
 /**
  * Update module to update the URL entry of the get started to 'Hello World'.
@@ -52,4 +53,22 @@ function rhd_common_update_8201() {
   $modules[$profile_name] = 1;
   $extension_config->set('module', $modules);
   $extension_config->save(); drupal_flush_all_caches();
+}
+
+/**
+ * Update roles for users to the new set
+ */
+function rhd_common_update_8202() {
+  $creator_uids = [
+    2705, 2735, 2745, 2755, 2775, 4145, 6615, 6965, 11625, 12585,
+    13575, 17505, 30165, 31255, 31265, 34295, 34305, 34655, 34985, 42025, 43375,
+    45025, 45645, 46005, 48055, 49025, 49215, 53975, 56675, 56685, 58565, 58575,
+    58585, 58595, 58605, 58615, 60525, 60545, 60865, 62395, 62555, 62805, 65375,
+    67395, 67415
+  ];
+
+  array_walk(User::loadMultiple($creator_uids), function (User $user) {
+    $user->addRole('content_creator');
+    $user->save();
+  });
 }

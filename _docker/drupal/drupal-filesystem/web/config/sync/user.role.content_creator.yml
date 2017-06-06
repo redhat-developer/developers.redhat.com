@@ -1,0 +1,57 @@
+uuid: 82e12b99-6f77-4534-a246-714133740265
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+third_party_settings:
+  lightning_core:
+    description: ''
+id: content_creator
+label: 'Content Creator'
+weight: -7
+is_admin: null
+permissions:
+  0: 'access contextual links'
+  1: 'view all revisions'
+  3: 'create article content'
+  4: 'delete article revisions'
+  5: 'edit own article content'
+  6: 'view article revisions'
+  7: 'create page content'
+  8: 'edit own page content'
+  9: 'view page revisions'
+  10: 'create books content'
+  11: 'edit own books content'
+  12: 'view books revisions'
+  13: 'edit own cheat_sheet content'
+  14: 'view cheat_sheet revisions'
+  15: 'create connectors content'
+  16: 'edit own connectors content'
+  17: 'view connectors revisions'
+  18: 'create events content'
+  19: 'edit own events content'
+  20: 'view events revisions'
+  21: 'create rhd_microsite content'
+  22: 'view rhd_microsite revisions'
+  23: 'create product content'
+  25: 'create promotion_card content'
+  26: 'edit own promotion_card content'
+  27: 'view promotion_card revisions'
+  28: 'create promotion_page content'
+  29: 'edit own promotion_page content'
+  30: 'view promotion_page revisions'
+  31: 'create rhd_solution_overview content'
+  32: 'edit own rhd_solution_overview content'
+  33: 'view rhd_solution_overview revisions'
+  34: 'create topic content'
+  35: 'edit own topic content'
+  36: 'view topic revisions'
+  37: 'edit own video_resource content'
+  38: 'view video_resource revisions'
+  39: 'create url aliases'
+  45: 'view any unpublished content'
+  46: 'view latest version'
+  47: 'use draft_draft transition'
+  48: 'use published_draft transition'
+  49: 'use draft_needs_review transition'
