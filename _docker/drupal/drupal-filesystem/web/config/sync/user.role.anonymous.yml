@@ -9,7 +9,7 @@ label: 'Anonymous user'
 weight: -10
 is_admin: false
 permissions:
-  0: 'access content'
-  4: 'search content'
-  5: 'view media'
-  6: 'never autoplay videos'
+  - 'access content'
+  - 'never autoplay videos'
+  - 'search content'
+  - 'view media'
