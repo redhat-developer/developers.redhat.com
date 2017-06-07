@@ -398,64 +398,6 @@ def create_subdirectories_for_rync(path_to_create)
     builtupPath
 end
 
-desc 'Run blinkr'
-task :blinkr, [:host_to_test, :report_path, :report_host, :verbose] do |task, args|
-  host_to_test = args[:host_to_test]
-  puts "host_to_test: #{host_to_test}"
-  report_path = args[:report_path]
-  puts "report_path: #{report_path}"
-  report_host = args[:report_host]
-  puts "report_host: #{report_host}"
-  sha = ENV['ghprbActualCommit']
-  should_update_status = sha.to_s != ""
-  puts "should_update_status:#{should_update_status}"
-  context = host_to_test.include?('drupal') ? 'Drupal:Blinkr' : 'Blinkr'
-  options = {:context => context, :description => 'Blinkr pending', :target_url => ENV["BUILD_URL"]}
-
-  begin
-    if should_update_status
-      puts "adding pending to status"
-      GitHub.update_status($github_org, $github_repo, sha, "pending", options)
-    end
-
-    $staging_config ||= config 'staging'
-    verbose_switch = args[:verbose] == 'verbose' ? '-v' : ''
-    FileUtils.rm_rf("_tmp/blinkr")
-    FileUtils.mkdir_p("_tmp/blinkr")
-
-    unless system "bundle exec blinkr -c _config/blinkr.yaml -u #{host_to_test} #{verbose_switch}"
-      options[:description] = "Blinkr failed (bundle error)"
-      if should_update_status
-        puts "adding error to status"
-        puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
-      end
-      exit 1
-    end
-
-    if report_path.to_s != "" && report_host.to_s != ""
-      report_filename = File.basename YAML::load_file('_config/blinkr.yaml')['report']
-      report_path = create_subdirectories_for_rync(report_path)
-      rsync(local_path: '_tmp/blinkr', host: $staging_config.deploy.host, remote_path: "#{$staging_config.deploy.path}#{report_path}")
-      options[:target_url] = "#{report_host}/#{report_path}/#{report_filename}"
-    end
-
-    # TODO: At some point, when we don't have any errors, we'll want to parse the json or something and look for errors, then we can send a fail to the status
-    options[:description] = "Blinkr report successful"
-
-    if should_update_status
-      puts "adding success to status"
-      puts GitHub.update_status($github_org, $github_repo, sha, "success", options)
-    end
-  rescue => e
-    puts e
-    options[:description] = "Blinkr failed (#{e.message})"
-    if should_update_status
-      puts "adding error to status"
-      puts GitHub.update_status($github_org, $github_repo, sha, "error", options)
-    end
-  end
-end
-
 # Execute Awestruct
 def run_awestruct(args)
 

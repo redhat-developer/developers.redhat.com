@@ -1,0 +1,19 @@
+ignores:
+  - code: 202
+  - code: 203
+  - code: 403
+  - code: 502
+
+environments:
+  - http://developer-drupal.web.prod.ext.phx2.redhat.com
+  - https://developer-drupal.web.prod.ext.phx2.redhat.com
+  - https://developers.redhat.com
+  - http://developers.redhat.com
+
+max_page_retys: 5
+max_retrys: 5
+browser: phantomjs
+ignore_fragments: true
+phantomjs_threads: 20
+pipeline: pipeline/blinkr.rb
+report: blinkr.html
