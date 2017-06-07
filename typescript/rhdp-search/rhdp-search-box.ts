@@ -1,5 +1,5 @@
 export class RHDPSearchBox extends HTMLElement {
-    _term;
+    _term = '';
 
     get term() {
         return this._term;
