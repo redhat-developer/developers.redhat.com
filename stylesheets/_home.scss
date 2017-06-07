@@ -5,8 +5,8 @@
 
 .homepage-main {
   color: $white;
-  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_reactivemicroservices_09may2017.jpg");
-  background-position: top left;
+  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_advlinuxcheat_25apr2017.jpg");
+  background-position: center center;
   // background-size: cover;
   background-color: #000;
   & > .row {
@@ -20,7 +20,7 @@
     text-align: center;
     h2 {
       font-size: 2em;
-      margin-bottom: 0;
+      margin: 1em 1em .5em 1em;
       line-height: 1.2;
       color: inherit;
       text-transform: uppercase;
@@ -234,9 +234,8 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_reactivemicroservices_25apr2017.jpg");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_advlinuxcheat_25apr2017.jpg");
     background-size: cover;
-
     .homepage-cta {
       margin: 20px auto;
       a.button {
@@ -274,8 +273,9 @@ ul.homepage-resources {
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    min-height: 440px;
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_reactivemicroservices_25apr2017.jpg");
+    min-height: 400px;
+    background-position: top left;
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_advlinuxcheat_25apr2017.jpg");
   }
   .spotlights-container {
     flex-direction: column;
