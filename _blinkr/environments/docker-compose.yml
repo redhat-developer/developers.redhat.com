@@ -1,0 +1,17 @@
+version: '2'
+services:
+
+  broken_link_checks:
+   build: ../
+   volumes:
+    - ../../:/home/blinkr/developers.redhat.com
+   entrypoint: ruby /home/blinkr/developers.redhat.com/_docker/lib/pull_request/exec_with_git_hub_status_wrapper.rb
+   working_dir: /home/blinkr/developers.redhat.com/_blinkr
+   environment:
+    - github_status_enabled
+    - github_status_api_token
+    - github_status_context
+    - github_status_repo=redhat-developer/developers.redhat.com
+    - github_status_target_url=${BUILD_URL}artifact/_blinkr/reports/blinkr.html
+    - github_status_sha1
+    - JRUBY_VERSION

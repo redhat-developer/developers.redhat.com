@@ -1,0 +1,39 @@
+skips:
+    # localhost:8xxx addresses are extensively used in quickstart readmes
+  - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
+  - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
+    # -YOUR_DOMAIN_NAME.rhcloud.com is used in quickstart readmes
+  - !ruby/regexp /-YOUR_DOMAIN_NAME\.rhcloud\.com/
+    # -YOUR_DOMAIN.rhcloud.com using in ticket monster
+  - !ruby/regexp /-YOUR_DOMAIN\.rhcloud\.com/
+    # <app-name>-<domain-name>.rhcloud.com or &lt;app-name&gt;-&lt;domain-name&gt;.rhcloud.com
+  - !ruby/regexp /(.+?)app-name(.+?)-(.+?)domain-name(.+?)\.rhcloud\.com/
+    # Prevent localhost errors
+  - !ruby/regexp /^http:\/\/logout@127.0.0.1:8080\/.*/
+    # Prevent any stray mailto and irc links appearing
+  - !ruby/regexp /^mailto:/
+  - !ruby/regexp /^irc:/
+    # For some reason we get a 502 from the linkedin.com and facebook.com share service, so exclude this
+  - !ruby/regexp /^https?:\/\/(www\.)?linkedin\.com\/shareArticle.*/
+  - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/sharer\.php.*/
+    # Facebook profile pages cannot be checked without a login
+  - !ruby/regexp /^https?:\/\/(www\.)?facebook\.com\/.*\?rel=author$/
+#    # LinkedIn Issue DEVELOPER-1120
+  - !ruby/regexp /http:\/\/linkedin.com\/.+/
+  - http://10.1.2.2:8000/
+
+ignores:
+  - code: 202
+  - code: 203
+  - code: 403
+  - code: 502
+  - snippet: !ruby/regexp /f\.vimeocdn\.com/
+
+max_page_retys: 5
+max_retrys: 5
+browser: phantomjs
+ignore_fragments: true
+phantomjs_threads: 20
+pipeline: pipeline/blinkr.rb
+report_dir: reports
+report_name: blinkr.html
