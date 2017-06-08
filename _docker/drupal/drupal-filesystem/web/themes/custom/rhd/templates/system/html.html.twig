@@ -256,7 +256,7 @@
   <script src="{{ rhd_sentry_script }}"></script>
   <script>Raven.config('{{ rhd_sentry_code }}', { environment: '{{rhd_environment}}', whitelistUrls: [/redhat\.com/] }).install()</script>
   {% endif %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.13/system.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
   <script>if (!window.customElements) { document.write('<!--'); }</script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/custom-elements-es5-adapter.js"></script>
   <!--! do not remove -->
