@@ -77,10 +77,16 @@ rhdp-search-box {
 
 rhdp-search-result-count {
     font-weight: 600;
+    font-size: 1.2em;
 }
 
 rhdp-search-sort-page {
-    margin-bottom: 2em;
+    display: block;
+    margin: 1em 0;
+    border-bottom: 1px solid $grey-4;
+
+    p { margin-bottom: 0; }
+
     select { width: auto; }
     .tight {
         display: none;
@@ -131,7 +137,13 @@ rhdp-search-sort-page {
 rhdp-search-filters {
     display: block;
 
-    .title { background: #666; padding-left:1em; color: white; margin: 0 0 .5em 0; }
+    .title {
+        background: #e6e7e8; 
+        color: #000;
+        text-transform: uppercase;
+        padding: .5em 1em;
+        font-weight: 600;
+    }
     .cancel { display: none; }
     .showBtn { 
         display: none;
@@ -150,15 +162,31 @@ rhdp-search-filters {
         color: #333; 
         width: 100%;
         }
-    
+    .groups {
+        background-color: #f9f9f9;
+    }
     .active-type {
         display: flex;
         flex-direction: row;
-        margin-bottom: 2em;
+        margin-bottom: 1em;
     }
-    .active-type strong { flex: 0 1 auto; order: 1; }
+    .active-type strong {
+        flex: 0 1 auto; 
+        order: 1; 
+        font-weight: 600;
+        font-size: 1.2em;
+        margin: 0.3em .7em 0 0;
+    }
     .active-type div { flex: 1 1 auto; order: 2; list-style: none; }
-    .active-type a { flex: 0 1 auto; order: 3; }
+    .active-type a {
+        flex: 0 1 auto;
+        order: 3;
+        text-decoration: none;
+        color: #0066CC;
+        margin-top: .3em;
+        font-weight: 100;
+        &:hover, &:active, &:focus { color: #004080; }
+    }
 
     #footer { display: none; }
 
@@ -246,6 +274,14 @@ rhdp-search-results {
 rhdp-search-result {
     font-family: "Overpass","Open Sans",Helvetica,sans-serif;
 
+    .result {
+        margin-bottom: 25px;
+    }
+
+    .result.result-search {
+        border-bottom: 1px solid $grey-3;
+    }
+
     h4 {
         font-weight: 600;
         font-style: normal;
@@ -273,25 +309,32 @@ rhdp-search-result {
         overflow: hidden;
         text-overflow: ellipsis;
         max-height: 45px;
-        margin-bottom: 50px;
+        margin-bottom: 25px;
     }
     .hlt { font-weight: 600; }
 }
 
 rhdp-search-filter-group {
-    &:not(:last-child) { border-bottom: 1px solid black; }
+    // &:not(:last-child) { border-bottom: 1px solid black; }
 
     display: block;
-    padding: 0;
+    padding: .5em 1em;
     margin: 0;
     position: relative;
 
-    h4 {
-        font-size: 14px;
-        font-weight: bold;
+    h5 {
+        font-weight: 600;
         text-transform: uppercase;
-        margin: 0 0 .5em 0;
-        background-color: #CCC;
+        margin: .5em 0;
+        padding-bottom: .3em;
+        border-bottom: 1px solid #8c8f91;
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    input[type=checkbox] {
+        margin: 5px 5px 5px 0;
     }
 
     .toggle { 
@@ -307,35 +350,50 @@ rhdp-search-filter-group {
         font-size: .9em;
     }
     .hide { display: none; }
+
+    a.more {
+        margin-left: 1.7em;
+        font-size: 14px
+    }
 }
 
 rhdp-search-filter-item {
-    font-family: Overpass;
+    font-family: "Overpass","Open Sans",Helvetica,sans-serif;
 
     .text {
     flex: 1 6 auto;
     }
 
     .list {
-    display: flex;
-    flex-direction: row;
-    padding: .5em;
-    clear: left;
-    font-size: 12px;
-    height: 24px;
+        display: flex;
+        flex-direction: row;
+        padding: .5em;
+        margin-bottom: .3em;
+        clear: left;
+        font-size: 14px;
+        height: 24px;
+    }
+
+    #checkbox.checked {
+        background-color: #0089d0;
+        border-color: #0089d0;
     }
 
     .inline {
-    padding: .45em;
-    font-size: 11px;
-    font-family: Overpass;
-    line-height: 1em;
-    border: 1px solid #CCC;
-    float: left;
-    margin-left: .5em;
-    margin-bottom: .5em;
-    --iron-icon-height: 16px;
-    --iron-icon-width: 16px;
+        padding: .7em;
+        font-size: 13px;
+        line-height: 1em;
+        border: 1px solid #8c8f91;
+        background-color: #8c8f91;
+        color: #fff;
+        float: left;
+        margin-left: .5em;
+        margin-bottom: .5em;
+        --iron-icon-height: 16px;
+        --iron-icon-width: 16px;
+        .clearItem {
+          font-weight: 700;  
+        }
     }
 
     #toggle { display: none; }
