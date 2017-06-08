@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "amd",
+        "module": "system",
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": false,
@@ -8,6 +8,6 @@
         "outDir": "javascripts"
     },
     "include": [
-        "typescript/**/*"
+        "typescript/**/*.ts"
     ]
 }

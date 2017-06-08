@@ -59,7 +59,7 @@ export class RHDPSearchFilterGroup extends HTMLElement {
     }
 
     template = (strings, name) => {
-        return `<h4 id="heading" class="showFilters">${name}<span class="toggle">&gt;</span></h4>
+        return `<h6 id="heading" class="showFilters">${name}<span class="toggle"><i class='fa fa-chevron-right' aria-hidden='true'></i></span></h6>
         <div class="group hide">
             <div class="primary"></div>
             <div class="secondary hide"></div>
@@ -74,7 +74,7 @@ export class RHDPSearchFilterGroup extends HTMLElement {
 
         this.addEventListener('click', e => {
             e.preventDefault();
-            if (e.target['nodeName'] == 'H4') {
+            if (e.target['nodeName'] == 'H6') {
                 this.toggle = !this.toggle;
             } else if (e.target['className'] === 'more') {
                 this.more = !this.more;

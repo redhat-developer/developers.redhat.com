@@ -86,8 +86,8 @@ rhdp-search-sort-page {
     border-bottom: 1px solid $grey-4;
 
     p { margin-bottom: 0; }
-
-    select { width: auto; }
+    
+    select { width: auto; padding-right: 20px; }
     .tight {
         display: none;
     }
@@ -183,6 +183,7 @@ rhdp-search-filters {
         font-weight: 600;
         font-size: 1.2em;
         margin: 0.3em .7em 0 0;
+        white-space: nowrap;
     }
     .active-type div { flex: 1 1 auto; order: 2; list-style: none; }
     .active-type a {
@@ -192,6 +193,7 @@ rhdp-search-filters {
         color: #0066CC;
         margin-top: .3em;
         font-weight: 100;
+        white-space: nowrap;
         &:hover, &:active, &:focus { color: #004080; }
     }
 
@@ -291,6 +293,10 @@ rhdp-search-results {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+
+    @media only screen and (max-width: 768px) {
+        display: block;
+    }
 }
 
 rhdp-search-result {
@@ -355,10 +361,6 @@ rhdp-search-filter-group {
         }
     }
 
-    input[type=checkbox] {
-        margin: 5px 5px 5px 0;
-    }
-
     .toggle { 
         float: right;
         font-weight: 600;
@@ -393,7 +395,17 @@ rhdp-search-filter-item {
         margin-bottom: .3em;
         clear: left;
         font-size: 14px;
-        height: 24px;
+        line-height: 1em;
+    }
+
+    input[type=checkbox] {
+        margin-right: 5px;
+        flex: 1 0 auto;
+        order: 1;
+    }
+
+    span {
+        order: 2
     }
 
     #checkbox.checked {
@@ -421,6 +433,17 @@ rhdp-search-filter-item {
 
     &:first-child .inline {
         margin-left: 0;
+    }
+
+    @media only screen and (max-width: 768px) {
+        input[type=checkbox] {
+            margin: 5px 5px 5px 0;
+            flex: 1 0 auto;
+            order: 2;
+        }
+        span {
+            order: 1;
+        }
     }
 }
 

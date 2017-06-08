@@ -7,7 +7,7 @@ import {RHDPSearchResults} from './rhdp-search-results';
 import {RHDPSearchResultCount} from './rhdp-search-result-count';
 import {RHDPSearchSortPage} from './rhdp-search-sort-page';
 
-export class RHDPSearchApp extends HTMLElement {
+class RHDPSearchApp extends HTMLElement {
     name = 'Search';
     template = `<div class="row">
     <div class="large-24 medium-24 small-24 columns searchpage-middle">

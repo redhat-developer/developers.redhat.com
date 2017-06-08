@@ -51,11 +51,11 @@ export class RHDPSearchFilterItem extends HTMLElement {
     }
 
     template = (strings, name) => {
-        return `<div class="list"><input type="checkbox">${name}<input type="checkbox"></div>`; 
+        return `<div class="list"><input type="checkbox"><span>${name}</span></div>`; 
     };
     
     inlineTemplate = (strings, name) => {
-        return `<div class="inline">${name} <span class="clearItem">X</span></div>`
+        return `<div class="inline">${name} <span class="clearItem"><i class='fa fa-times' aria-hidden='true'></i></span></div>`
     }
 
     connectedCallback() {

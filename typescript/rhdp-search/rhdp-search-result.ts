@@ -131,7 +131,7 @@ export class RHDPSearchResult extends HTMLElement {
     }
     computeCreated(result) {
         var options = { month: 'long', day: 'numeric', year: 'numeric' }
-        var created = result.fields.sys_created ? '| ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created[0])) : "";
+        var created = result.fields.sys_created ? '- ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created[0])) : "";
         this.created = created;
     }
     computeDescription(result) {
