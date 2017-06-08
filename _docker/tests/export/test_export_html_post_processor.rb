@@ -45,6 +45,17 @@ class TestExportHtmlPostProcessor < MiniTest::Test
     assert(File.exist?("#{@export_directory}/nested/nested-file.txt"))
   end
 
+  def test_should_copy_static_resources_into_existing_directory
+    FileUtils.mkdir("#{@export_directory}/nested")
+    assert(File.exist?("#{@export_directory}/nested"))
+
+    @export_post_processor.post_process_html_export('docker', @export_directory)
+    assert(File.exist?("#{@export_directory}/robots.txt"))
+    assert(File.exist?("#{@export_directory}/.htaccess"))
+    assert(File.exist?("#{@export_directory}/nested/nested-file.txt"))
+  end
+
+
   def test_should_rewrite_index_html_link
 
     @export_post_processor.post_process_html_export('docker', @export_directory)
