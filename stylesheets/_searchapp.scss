@@ -226,11 +226,20 @@ rhdp-search-filters {
         margin: 0 0 1em 0; 
 
         .title { flex: 0 0 40px; order: 1; vertical-align: middle; }
-        .showBtn { display: block;
+        .showBtn {
+            display: block;
             width: 150px;
-            padding: 9px 25px;
-            margin-left: 2em;
             height: auto;
+            border: 1px solid $blue;
+            line-height: 1.44;
+            background-color: transparent;
+            padding: 8px 0;
+            color:$blue;
+
+            &:hover, &:focus {
+                background-color: $blue;
+                color: $white;
+          }
         }
 
         &[type="active"] {
@@ -349,8 +358,9 @@ rhdp-search-filter-group {
     padding: .5em 1em;
     margin: 0;
     position: relative;
+    cursor: default;
 
-    h5 {
+    h6 {
         font-weight: 600;
         text-transform: uppercase;
         margin: .5em 0;
@@ -391,8 +401,7 @@ rhdp-search-filter-item {
     .list {
         display: flex;
         flex-direction: row;
-        padding: .5em;
-        margin-bottom: .3em;
+        padding: .5em .5em 0 .5em;
         clear: left;
         font-size: 14px;
         line-height: 1em;
@@ -405,7 +414,9 @@ rhdp-search-filter-item {
     }
 
     span {
-        order: 2
+        order: 2;
+        height: auto;
+        cursor: pointer;
     }
 
     #checkbox.checked {
@@ -420,9 +431,10 @@ rhdp-search-filter-item {
         border: 1px solid #8c8f91;
         background-color: #8c8f91;
         color: #fff;
-        margin-left: .5em;
+        margin-right: .5em;
         margin-bottom: .5em;
         display: inline-block;
+        cursor: default;
 
         .clearItem {
           font-weight: 700;  
@@ -431,8 +443,8 @@ rhdp-search-filter-item {
 
     #toggle { display: none; }
 
-    &:first-child .inline {
-        margin-left: 0;
+    &:last-child .inline {
+        margin-right: 0;
     }
 
     @media only screen and (max-width: 768px) {
@@ -458,17 +470,28 @@ rhdp-search-filter-item {
         }
     }
 
-    rhdp-search-filters { 
-        
-    }
-
     rhdp-search-filter-item {
         #check { display: none; }
         #toggle { display: block; }
     }
 
-    rhdp-search-sort-page { 
-        
+    rhdp-search-sort-page {
+        top: -4.6em;
+
+        select {
+            height: auto;
+            border: 1px solid $blue;
+            line-height: 1.44;
+            background-color: transparent;
+            padding: 8px 0;
+            color:$blue;
+            font-size: 16px;
+
+            &:hover, &:focus {
+                background-color: $blue;
+                color: $white;
+          }
+        }
     }
 
     rhdp-search-results { flex: auto; }
