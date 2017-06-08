@@ -20,6 +20,7 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+    region: content
   image:
     type: image_image
     weight: 0
@@ -27,6 +28,7 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
+    region: content
   name:
     type: string_textfield
     weight: 3
@@ -34,6 +36,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   field_library_image: true

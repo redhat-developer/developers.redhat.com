@@ -463,14 +463,14 @@ display:
           entity_type: node
           entity_field: changed
           plugin_id: field
-        edit_node:
-          id: edit_node
+        operations:
+          id: operations
           table: node
-          field: edit_node
+          field: operations
           relationship: none
           group_type: group
           admin_label: ''
-          label: Actions
+          label: 'Operations links'
           exclude: false
           alter:
             alter_text: false
@@ -511,9 +511,9 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: edit
+          destination: true
           entity_type: node
-          plugin_id: entity_link_edit
+          plugin_id: entity_operations
       filters:
         title:
           id: title

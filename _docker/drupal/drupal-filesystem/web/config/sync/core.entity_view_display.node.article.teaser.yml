@@ -28,6 +28,7 @@ content:
       trim_length: 600
     third_party_settings: {  }
     label: hidden
+    region: content
   field_tags:
     type: entity_reference_label
     weight: 10
@@ -35,8 +36,13 @@ content:
       link: true
     third_party_settings: {  }
     label: above
+    region: content
   links:
     weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   comment: true
   field_author_name: true

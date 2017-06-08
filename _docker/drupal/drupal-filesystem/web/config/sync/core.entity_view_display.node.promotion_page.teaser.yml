@@ -26,6 +26,7 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+    region: content
   field_promotion_page_left_image:
     type: image
     weight: 0
@@ -34,6 +35,10 @@ content:
       image_style: thumbnail
       image_link: ''
     third_party_settings: {  }
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   field_call_to_action_link: true
   field_mail_to_link: true

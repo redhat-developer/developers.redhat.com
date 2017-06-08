@@ -19,6 +19,10 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   field_product_category: true
   field_product_machine_name: true

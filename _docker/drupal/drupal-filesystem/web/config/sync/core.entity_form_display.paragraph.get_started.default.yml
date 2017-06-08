@@ -24,6 +24,7 @@ content:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
   field_overview_main_content:
     weight: 3
     settings:
@@ -31,6 +32,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_page_description:
     weight: 1
     settings:
@@ -38,6 +40,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_secondary_content:
     weight: 5
     settings:
@@ -45,6 +48,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_tabs:
     type: entity_reference_paragraphs
     weight: 4
@@ -55,6 +59,7 @@ content:
       add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   field_overview_url: true

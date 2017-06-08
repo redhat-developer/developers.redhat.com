@@ -25,6 +25,7 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
+    region: content
   field_body:
     weight: 1
     settings:
@@ -32,6 +33,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_title:
     weight: 0
     settings:
@@ -39,6 +41,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
 hidden:
   created: true
   status: true

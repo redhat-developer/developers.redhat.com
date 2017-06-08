@@ -22,6 +22,7 @@ content:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
   field_page_description:
     weight: 0
     settings:
@@ -29,6 +30,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_product_forum_link:
     weight: 2
     settings:
@@ -36,12 +38,14 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   field_show_stack_overflow:
     weight: 3
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
 hidden:
   created: true
   field_overview_url: true

@@ -25,6 +25,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_overview_url:
     weight: 4
     label: visually_hidden
@@ -32,6 +33,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_page_description:
     weight: 9
     label: visually_hidden
@@ -39,6 +41,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_product_forum_link:
     weight: 10
     label: visually_hidden
@@ -50,6 +53,7 @@ content:
       url_plain: false
     third_party_settings: {  }
     type: link_separate
+    region: content
   field_show_stack_overflow:
     weight: 8
     label: visually_hidden
@@ -59,6 +63,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
 hidden:
   created: true
   uid: true
