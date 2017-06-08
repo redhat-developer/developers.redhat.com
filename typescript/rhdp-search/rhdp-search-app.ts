@@ -10,15 +10,15 @@ import {RHDPSearchSortPage} from './rhdp-search-sort-page';
 export class RHDPSearchApp extends HTMLElement {
     name = 'Search';
     template = `<div class="row">
-    <div class="large-24 columns searchpage-middle">
+    <div class="large-24 medium-24 small-24 columns searchpage-middle">
         <div class="row">
-            <div class="large-24 columns">
+            <div class="large-24 medium-24 small-24 columns">
                 <h1>${this.name}</h1>
             </div>
         </div>
         <div class="row">
-            <div class="large-6 columns"></div>
-            <div class="large-18 columns"</div>
+            <div class="large-6 medium-8 small-24 columns"></div>
+            <div class="large-18 medium-16 small-24 columns"</div>
         </div>
     </div></div>`;
 
