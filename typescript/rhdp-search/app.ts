@@ -1,4 +1,4 @@
-declare const System: any;
+declare const requirejs: any;
 window.addEventListener('WebComponentsReady', function() {
-    System.import('rhdp-search-app');
+    requirejs('rhdp-search-app');
 });

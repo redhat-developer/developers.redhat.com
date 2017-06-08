@@ -93,7 +93,7 @@ export class RHDPSearchQuery extends HTMLElement {
         if(sort === 'most-recent') {
             order = '&newFirst=true';
         } 
-        return `${url}?tags_or_logic=true&filter_out_excluded=true&from=0${order}&project=&query=${term}&query_highlight=true&size${limit}=true${types}${tags}${sys_types}`;
+        return `${url}?tags_or_logic=true&filter_out_excluded=true&from=0${order}&project=&query=${term}&query_highlight=true&size${limit}=true${types}${tags}${sys_types}&type=rht_website&type=jbossdeveloper_quickstart&type=jbossdeveloper_demo&type=jbossdeveloper_bom&type=jbossdeveloper_archetype&type=jbossdeveloper_example&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossdeveloper_event&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=stackoverflow_question&type=jbossorg_sbs_forum&type=jbossorg_blog&type=rht_apidocs`;
     };
 
     constructor() {
