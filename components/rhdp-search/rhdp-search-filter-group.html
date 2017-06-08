@@ -31,7 +31,7 @@
        @media only screen and (max-width: 768px) {
        }
     </style>
-    <h4 id="heading" on-click="showFilters">[[name]] <iron-icon id="toggle" icon="icons:chevron-right"></iron-icon></h4>
+    <h5 id="heading" on-click="showFilters">[[name]] <iron-icon id="toggle" icon="icons:chevron-right"></iron-icon></h5>
     <div id="filters" class="filters hide">
       <template is="dom-repeat" items="{{items}}">
         <rhdp-search-filter-item value="{{item.value}}" name="[[item.name]]" active="{{item.active}}"></rhdp-search-filter-item>
