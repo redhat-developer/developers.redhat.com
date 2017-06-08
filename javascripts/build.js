@@ -274,7 +274,7 @@ System.register("rhdp-search-filter-item", [], function (exports_3, context_3) {
                         return "<div class=\"list\"><input type=\"checkbox\">" + name + "<input type=\"checkbox\"></div>";
                     };
                     _this.inlineTemplate = function (strings, name) {
-                        return "<div class=\"inline\">" + name + " <span class=\"clearItem\">X</span></div>";
+                        return "<div class=\"inline\">" + name + " <span class=\"clearItem\"><i class='fa fa-times' aria-hidden='true'></i></span></div>";
                     };
                     return _this;
                 }
@@ -404,7 +404,7 @@ System.register("rhdp-search-filter-group", ["rhdp-search-filter-item"], functio
                     _this._toggle = false;
                     _this._more = false;
                     _this.template = function (strings, name) {
-                        return "<h4 id=\"heading\" class=\"showFilters\">" + name + "<span class=\"toggle\">&gt;</span></h4>\n        <div class=\"group hide\">\n            <div class=\"primary\"></div>\n            <div class=\"secondary hide\"></div>\n            <a href=\"#\" class=\"more\">Show More</a>\n        </div>";
+                        return "<h6 id=\"heading\" class=\"showFilters\">" + name + "<span class=\"toggle\"><i class='fa fa-chevron-right' aria-hidden='true'></i></span></h6>\n        <div class=\"group hide\">\n            <div class=\"primary\"></div>\n            <div class=\"secondary hide\"></div>\n            <a href=\"#\" class=\"more\">Show More</a>\n        </div>";
                     };
                     return _this;
                 }
@@ -478,7 +478,7 @@ System.register("rhdp-search-filter-group", ["rhdp-search-filter-item"], functio
                     this.renderItems();
                     this.addEventListener('click', function (e) {
                         e.preventDefault();
-                        if (e.target['nodeName'] == 'H4') {
+                        if (e.target['nodeName'] == 'H6') {
                             _this.toggle = !_this.toggle;
                         }
                         else if (e.target['className'] === 'more') {
@@ -854,7 +854,7 @@ System.register("rhdp-search-result", [], function (exports_6, context_6) {
                 };
                 RHDPSearchResult.prototype.computeCreated = function (result) {
                     var options = { month: 'long', day: 'numeric', year: 'numeric' };
-                    var created = result.fields.sys_created ? '| ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created[0])) : "";
+                    var created = result.fields.sys_created ? '- ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created[0])) : "";
                     this.created = created;
                 };
                 RHDPSearchResult.prototype.computeDescription = function (result) {

@@ -343,8 +343,9 @@ rhdp-search-filter-group {
     padding: .5em 1em;
     margin: 0;
     position: relative;
+    cursor: default;
 
-    h5 {
+    h6 {
         font-weight: 600;
         text-transform: uppercase;
         margin: .5em 0;
@@ -389,11 +390,11 @@ rhdp-search-filter-item {
     .list {
         display: flex;
         flex-direction: row;
-        padding: .5em;
-        margin-bottom: .3em;
+        padding: .5em .5em 0 .5em;
         clear: left;
         font-size: 14px;
-        height: 24px;
+        height: auto;
+        cursor: pointer;
     }
 
     #checkbox.checked {
@@ -411,6 +412,7 @@ rhdp-search-filter-item {
         margin-left: .5em;
         margin-bottom: .5em;
         display: inline-block;
+        cursor: default;
 
         .clearItem {
           font-weight: 700;  
