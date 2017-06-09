@@ -257,7 +257,7 @@
   <script>Raven.config('{{ rhd_sentry_code }}', { environment: '{{rhd_environment}}', whitelistUrls: [/redhat\.com/] }).install()</script>
   {% endif %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.13/system.js"></script>
-  <script if (window.fetch) { document.write('<!--'); }</script>
+  <script>if (window.fetch) { document.write('<!--'); }</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
   <!--! close fetch polyfill -->
   <script>if (!window.customElements) { document.write('<!--'); }</script>
