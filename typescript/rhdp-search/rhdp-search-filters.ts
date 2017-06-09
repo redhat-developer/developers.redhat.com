@@ -44,8 +44,12 @@ export class RHDPSearchFilters extends HTMLElement {
         this._toggle = val;
         if(this._toggle) {
             this.querySelector('.cover').className = 'cover modal';
+            window.scrollTo(0,0);
+            document.body.style.overflow = 'hidden';
+            this.style.height = window.innerHeight + 'px';
         } else {
             this.querySelector('.cover').className = 'cover';
+            document.body.style.overflow = 'auto';
         }
     }
 
@@ -54,20 +58,19 @@ export class RHDPSearchFilters extends HTMLElement {
     }
     modalTemplate = (string, title) => {
         return `<div class="cover" id="cover">
-            <div class="title">${title} <a href="#" class="cancel" id="cancel">Cancel</a></div>
+            <div class="title">${title} <a href="#" class="cancel" id="cancel">Close</a></div>
             <div class="groups">
             </div>
-            <div id="footer">
-            <a href="#" class="clearFilters">Clear All</a> 
-            | <a href="#" class="applyFilters">Apply</a>
+            <div class="footer">
+            <a href="#" class="clearFilters">Clear Filters</a> 
+            <a href="#" class="applyFilters">Apply</a>
             </div>
         </div>`;
     }
     activeTemplate = (strings, title) => {
         return `<div class="active-type">
         <strong>${title}</strong>
-        <div class="activeFilters">
-        </div>
+        <div class="activeFilters"></div>
         <a href="#" class="clearFilters">Clear Filters</a>
       </div>`;
     }
@@ -96,7 +99,7 @@ export class RHDPSearchFilters extends HTMLElement {
             e.preventDefault();
             if ( e.target['className'] === 'showBtn' ) {
                 this.toggleModal(true);
-            } else if ( e.target['className'] === 'cancel') {
+            } else if ( e.target['className'] === 'cancel' || e.target['className'] === 'applyFilters') {
                 this.toggleModal(false);
             } else if ( e.target['className'] === 'clearFilters') {
                 this.clearFilters();
@@ -128,7 +131,11 @@ export class RHDPSearchFilters extends HTMLElement {
     }
 
     addActive(item) {
-        this.querySelector('.activeFilters').appendChild(item);
+        var facet = this.querySelector(`.filter-item-${item.key}`);
+        if(!facet) {
+            this.querySelector('.activeFilters').appendChild(item);
+            this.style.display = 'block';
+        }
     }
 
     addAllActive() {
@@ -150,7 +157,13 @@ export class RHDPSearchFilters extends HTMLElement {
     }
 
     removeItem(item) {
-        this.querySelector(`.filter-item-${item.key}`).remove();
+        var facet = this.querySelector(`.filter-item-${item.key}`);
+        if (facet) {
+            facet.remove();
+        } 
+        if (!this.querySelector('.activeFilters').hasChildNodes()) {
+            this.style.display = 'none';
+        }
     }
 
     setActive(item) {
@@ -173,11 +186,11 @@ export class RHDPSearchFilters extends HTMLElement {
     }
 
     clearFilters() {
-        var items = this.querySelectorAll('rhdp-search-filter-item'),
+        var items = this.querySelectorAll('rhdp-search-filter-item[active]'),
             len = items.length;
 
         for(let i=0; i < len; i++) {
-            items[i].dispatchEvent(new Event('click'));
+            items[i]['active'] = false;
         }
     }
 }

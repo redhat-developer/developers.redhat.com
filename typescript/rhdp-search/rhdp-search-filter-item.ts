@@ -26,9 +26,15 @@ export class RHDPSearchFilterItem extends HTMLElement {
         return this._active;
     }
     set active(val) {
+        if(typeof val === 'string') {
+            val = true;
+        } 
         if (this._active === val) return;
         this._active = val;
-        this.setChecked();
+        if(this.active) { this.setAttribute('active','active'); } 
+        else { this.removeAttribute('active'); }
+        this.innerHTML = this.template`${this.name}${this.key}${this.active}`;
+        this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this}, bubbles: true}));
     }
     get value() {
         return this._value;
@@ -50,24 +56,23 @@ export class RHDPSearchFilterItem extends HTMLElement {
         super();
     }
 
-    template = (strings, name) => {
-        return `<div class="list"><input type="checkbox"><span>${name}</span></div>`; 
+    template = (strings, name, key, active) => {
+        var checked = active ? 'checked' : '';
+        return `<div class="list"><span>${name}</span><input type="checkbox" ${checked} id="filter-item-${key}"><label for="filter-item-${key}">${name}</label></div>`; 
     };
     
     inlineTemplate = (strings, name) => {
-        return `<div class="inline">${name} <span class="clearItem"><i class='fa fa-times' aria-hidden='true'></i></span></div>`
+        return `<div class="inline">${name} <i class="fa fa-times clearItem" aria-hidden="true"></i></div>`
     }
 
     connectedCallback() {
         if (this.inline) {
             this.innerHTML = this.inlineTemplate`${this.name}`;
-            this.querySelector('.clearItem').addEventListener('click', e => this.toggleActive);
+            this.querySelector('.clearItem').addEventListener('click', e => { this.active = !this.active; });
         } else {
-            this.innerHTML = this.template`${this.name}`;
-            this.addEventListener('click', e => this.toggleActive);
+            this.innerHTML = this.template`${this.name}${this.key}${this.active}`;
+            this.addEventListener('click', e => { this.active = !this.active; });
         }
-
-        this.setChecked();
     }
 
     static get observedAttributes() { 
@@ -76,23 +81,6 @@ export class RHDPSearchFilterItem extends HTMLElement {
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
-    }
-
-    toggleActive(e) {
-        e.preventDefault();
-        this.active = !this.active;
-        this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this}, bubbles: true}));
-    }
-
-    setChecked() {
-        var chk = this.querySelector('input');
-        if(chk) {
-            if(this.active) {
-                chk.setAttribute('checked', 'checked');
-            } else {
-                chk.removeAttribute('checked');
-            }
-        }
     }
 }
 

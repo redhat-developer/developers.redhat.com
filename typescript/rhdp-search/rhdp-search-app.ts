@@ -48,7 +48,7 @@ class RHDPSearchApp extends HTMLElement {
                 name:'PRODUCT', 
                 key: 'type', 
                 items: [
-                {key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap']},
+                {key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'],active:true},
                 {key: 'webserver', name: 'JBoss Web Server', value: ['webserver']},
                 {key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid']},
                 {key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt']},
@@ -84,9 +84,9 @@ class RHDPSearchApp extends HTMLElement {
 
         this.addEventListener('do-search', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
-        this.addEventListener('toggle-modal', e => this.toggleModal);
+        document.addEventListener('toggle-modal', this.toggleModal);
         this.addEventListener('sort-change', this.updateSort);
-        this.addEventListener('facetChange', this.updateFacets);
+        document.addEventListener('facetChange', this.updateFacets);
     }
 
     connectedCallback() {
@@ -100,7 +100,8 @@ class RHDPSearchApp extends HTMLElement {
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
         
-        document.querySelector('.wrapper').appendChild(this.modal);
+        //document.querySelector('.wrapper').appendChild(this.modal);
+        document.body.appendChild(this.modal);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.box);
         this.querySelector('.large-6').appendChild(this.filters);
@@ -131,7 +132,7 @@ class RHDPSearchApp extends HTMLElement {
     }
 
     toggleModal(e) {
-        this.modal.toggle = e.detail.toggle;
+        this.querySelector('rhdp-search-app')['modal'].toggle = e.detail.toggle;
     }
 
     updateSort(e) {
@@ -141,26 +142,27 @@ class RHDPSearchApp extends HTMLElement {
 
     updateFacets(e) {
         var facet = e.detail.facet.cloneNode(true),
-            len = this.filterObj.facets.length;
+            app = this.querySelector('rhdp-search-app'),
+            len = app['filterObj'].facets.length;
         facet.active = e.detail.facet.active;
-        this.modal.setActive(facet);
-        this.filters.setActive(facet);
+        app['modal'].setActive(facet);
+        app['filters'].setActive(facet);
         if (facet.active) {
             facet.inline = true;
-            this.active.addActive(facet);
+            app['active'].addActive(facet);
         } else {
-            this.active.removeItem(facet);
+            app['active'].removeItem(facet);
         }
         for(let i=0; i < len; i++) {
-            var itemLen = this.filterObj.facets[i].items.length;
+            var itemLen = app['filterObj'].facets[i].items.length;
             for(let j=0; j < itemLen; j++) {
-                if(this.filterObj.facets[i].items[j].key === facet.key) {
-                    this.filterObj.facets[i].items[j]['active'] = facet.active;
+                if(app['filterObj'].facets[i].items[j].key === facet.key) {
+                    app['filterObj'].facets[i].items[j]['active'] = facet.active;
                 }
             }
         }
-        this.query.filters = this.filterObj;
-        this.query.search(this.box.term);
+        app['query'].filters = app['filterObj'];
+        app['query'].search(app['box'].term);
     }
 }
 

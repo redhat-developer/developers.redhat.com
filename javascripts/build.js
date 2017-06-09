@@ -267,11 +267,12 @@ System.register("rhdp-search-filter-item", [], function (exports_3, context_3) {
                     var _this = _super.call(this) || this;
                     _this._active = false;
                     _this._inline = false;
-                    _this.template = function (strings, name) {
-                        return "<div class=\"list\"><input type=\"checkbox\"><span>" + name + "</span></div>";
+                    _this.template = function (strings, name, key, active) {
+                        var checked = active ? 'checked' : '';
+                        return "<div class=\"list\"><span>" + name + "</span><input type=\"checkbox\" " + checked + " id=\"filter-item-" + key + "\"><label for=\"filter-item-" + key + "\">" + name + "</label></div>";
                     };
                     _this.inlineTemplate = function (strings, name) {
-                        return "<div class=\"inline\">" + name + " <span class=\"clearItem\"><i class='fa fa-times' aria-hidden='true'></i></span></div>";
+                        return "<div class=\"inline\">" + name + " <i class=\"fa fa-times clearItem\" aria-hidden=\"true\"></i></div>";
                     };
                     return _this;
                 }
@@ -307,10 +308,21 @@ System.register("rhdp-search-filter-item", [], function (exports_3, context_3) {
                         return this._active;
                     },
                     set: function (val) {
+                        if (typeof val === 'string') {
+                            val = true;
+                        }
                         if (this._active === val)
                             return;
                         this._active = val;
-                        this.setChecked();
+                        if (this.active) {
+                            this.setAttribute('active', 'active');
+                        }
+                        else {
+                            this.removeAttribute('active');
+                        }
+                        this.innerHTML = (_a = ["", "", "", ""], _a.raw = ["", "", "", ""], this.template(_a, this.name, this.key, this.active));
+                        this.dispatchEvent(new CustomEvent('facetChange', { detail: { facet: this }, bubbles: true }));
+                        var _a;
                     },
                     enumerable: true,
                     configurable: true
@@ -344,13 +356,12 @@ System.register("rhdp-search-filter-item", [], function (exports_3, context_3) {
                     var _this = this;
                     if (this.inline) {
                         this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.inlineTemplate(_a, this.name));
-                        this.querySelector('.clearItem').addEventListener('click', function (e) { return _this.toggleActive; });
+                        this.querySelector('.clearItem').addEventListener('click', function (e) { _this.active = !_this.active; });
                     }
                     else {
-                        this.innerHTML = (_b = ["", ""], _b.raw = ["", ""], this.template(_b, this.name));
-                        this.addEventListener('click', function (e) { return _this.toggleActive; });
+                        this.innerHTML = (_b = ["", "", "", ""], _b.raw = ["", "", "", ""], this.template(_b, this.name, this.key, this.active));
+                        this.addEventListener('click', function (e) { _this.active = !_this.active; });
                     }
-                    this.setChecked();
                     var _a, _b;
                 };
                 Object.defineProperty(RHDPSearchFilterItem, "observedAttributes", {
@@ -362,22 +373,6 @@ System.register("rhdp-search-filter-item", [], function (exports_3, context_3) {
                 });
                 RHDPSearchFilterItem.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
                     this[name] = newVal;
-                };
-                RHDPSearchFilterItem.prototype.toggleActive = function (e) {
-                    e.preventDefault();
-                    this.active = !this.active;
-                    this.dispatchEvent(new CustomEvent('facetChange', { detail: { facet: this }, bubbles: true }));
-                };
-                RHDPSearchFilterItem.prototype.setChecked = function () {
-                    var chk = this.querySelector('input');
-                    if (chk) {
-                        if (this.active) {
-                            chk.setAttribute('checked', 'checked');
-                        }
-                        else {
-                            chk.removeAttribute('checked');
-                        }
-                    }
                 };
                 return RHDPSearchFilterItem;
             }(HTMLElement));
@@ -547,10 +542,10 @@ System.register("rhdp-search-filters", ["rhdp-search-filter-group", "rhdp-search
                     _this._title = 'Filter By';
                     _this._toggle = false;
                     _this.modalTemplate = function (string, title) {
-                        return "<div class=\"cover\" id=\"cover\">\n            <div class=\"title\">" + title + " <a href=\"#\" class=\"cancel\" id=\"cancel\">Cancel</a></div>\n            <div class=\"groups\">\n            </div>\n            <div id=\"footer\">\n            <a href=\"#\" class=\"clearFilters\">Clear All</a> \n            | <a href=\"#\" class=\"applyFilters\">Apply</a>\n            </div>\n        </div>";
+                        return "<div class=\"cover\" id=\"cover\">\n            <div class=\"title\">" + title + " <a href=\"#\" class=\"cancel\" id=\"cancel\">Close</a></div>\n            <div class=\"groups\">\n            </div>\n            <div class=\"footer\">\n            <a href=\"#\" class=\"clearFilters\">Clear All</a> \n            | <a href=\"#\" class=\"applyFilters\">Apply</a>\n            </div>\n        </div>";
                     };
                     _this.activeTemplate = function (strings, title) {
-                        return "<div class=\"active-type\">\n        <strong>" + title + "</strong>\n        <div class=\"activeFilters\">\n        </div>\n        <a href=\"#\" class=\"clearFilters\">Clear Filters</a>\n      </div>";
+                        return "<div class=\"active-type\">\n        <strong>" + title + "</strong>\n        <div class=\"activeFilters\"></div>\n        <a href=\"#\" class=\"clearFilters\">Clear Filters</a>\n      </div>";
                     };
                     _this.template = function (strings, title) {
                         return "<a class=\"showBtn\">Show Filters</a>\n        <div class=\"control\" id=\"control\">\n            <div class=\"title\">" + title + "</div>\n            <div class=\"groups\">\n            </div>\n        </div>";
@@ -603,9 +598,13 @@ System.register("rhdp-search-filters", ["rhdp-search-filter-group", "rhdp-search
                         this._toggle = val;
                         if (this._toggle) {
                             this.querySelector('.cover').className = 'cover modal';
+                            window.scrollTo(0, 0);
+                            document.body.style.overflow = 'hidden';
+                            this.style.height = window.innerHeight + 'px';
                         }
                         else {
                             this.querySelector('.cover').className = 'cover';
+                            document.body.style.overflow = 'auto';
                         }
                     },
                     enumerable: true,
@@ -630,7 +629,7 @@ System.register("rhdp-search-filters", ["rhdp-search-filter-group", "rhdp-search
                         if (e.target['className'] === 'showBtn') {
                             _this.toggleModal(true);
                         }
-                        else if (e.target['className'] === 'cancel') {
+                        else if (e.target['className'] === 'cancel' || e.target['className'] === 'applyFilters') {
                             _this.toggleModal(false);
                         }
                         else if (e.target['className'] === 'clearFilters') {
@@ -660,7 +659,11 @@ System.register("rhdp-search-filters", ["rhdp-search-filter-group", "rhdp-search
                     }
                 };
                 RHDPSearchFilters.prototype.addActive = function (item) {
-                    this.querySelector('.activeFilters').appendChild(item);
+                    var facet = this.querySelector(".filter-item-" + item.key);
+                    if (!facet) {
+                        this.querySelector('.activeFilters').appendChild(item);
+                        this.style.display = 'block';
+                    }
                 };
                 RHDPSearchFilters.prototype.addAllActive = function () {
                     var groups = this.filters.facets;
@@ -680,7 +683,13 @@ System.register("rhdp-search-filters", ["rhdp-search-filter-group", "rhdp-search
                     }
                 };
                 RHDPSearchFilters.prototype.removeItem = function (item) {
-                    this.querySelector(".filter-item-" + item.key).remove();
+                    var facet = this.querySelector(".filter-item-" + item.key);
+                    if (facet) {
+                        facet.remove();
+                    }
+                    if (!this.querySelector('.activeFilters').hasChildNodes()) {
+                        this.style.display = 'none';
+                    }
                 };
                 RHDPSearchFilters.prototype.setActive = function (item) {
                     this.querySelector(".filter-item-" + item.key)['active'] = item.active;
@@ -699,9 +708,9 @@ System.register("rhdp-search-filters", ["rhdp-search-filter-group", "rhdp-search
                     }));
                 };
                 RHDPSearchFilters.prototype.clearFilters = function () {
-                    var items = this.querySelectorAll('rhdp-search-filter-item'), len = items.length;
+                    var items = this.querySelectorAll('rhdp-search-filter-item[active]'), len = items.length;
                     for (var i = 0; i < len; i++) {
-                        items[i].dispatchEvent(new Event('click'));
+                        items[i]['active'] = false;
                     }
                 };
                 return RHDPSearchFilters;
@@ -1154,7 +1163,7 @@ System.register("rhdp-search-app", ["rhdp-search-query", "rhdp-search-box", "rhd
                                 name: 'PRODUCT',
                                 key: 'type',
                                 items: [
-                                    { key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'] },
+                                    { key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'], active: true },
                                     { key: 'webserver', name: 'JBoss Web Server', value: ['webserver'] },
                                     { key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid'] },
                                     { key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt'] },
@@ -1186,9 +1195,9 @@ System.register("rhdp-search-app", ["rhdp-search-query", "rhdp-search-box", "rhd
                     };
                     _this.addEventListener('do-search', _this.doSearch);
                     _this.addEventListener('search-complete', _this.setResults);
-                    _this.addEventListener('toggle-modal', function (e) { return _this.toggleModal; });
+                    document.addEventListener('toggle-modal', _this.toggleModal);
                     _this.addEventListener('sort-change', _this.updateSort);
-                    _this.addEventListener('facetChange', _this.updateFacets);
+                    document.addEventListener('facetChange', _this.updateFacets);
                     return _this;
                 }
                 RHDPSearchApp.prototype.connectedCallback = function () {
@@ -1200,7 +1209,8 @@ System.register("rhdp-search-app", ["rhdp-search-query", "rhdp-search-box", "rhd
                     this.active.filters = this.filterObj;
                     this.filters.filters = this.filterObj;
                     this.query.filters = this.filterObj;
-                    document.querySelector('.wrapper').appendChild(this.modal);
+                    //document.querySelector('.wrapper').appendChild(this.modal);
+                    document.body.appendChild(this.modal);
                     this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
                     this.querySelector('.row .large-24 .row .large-24').appendChild(this.box);
                     this.querySelector('.large-6').appendChild(this.filters);
@@ -1226,34 +1236,34 @@ System.register("rhdp-search-app", ["rhdp-search-query", "rhdp-search-box", "rhd
                     this.count.count = e.detail.results.hits.total;
                 };
                 RHDPSearchApp.prototype.toggleModal = function (e) {
-                    this.modal.toggle = e.detail.toggle;
+                    this.querySelector('rhdp-search-app')['modal'].toggle = e.detail.toggle;
                 };
                 RHDPSearchApp.prototype.updateSort = function (e) {
                     this.query.sort = e.detail.sort;
                     this.query.search(this.box.term);
                 };
                 RHDPSearchApp.prototype.updateFacets = function (e) {
-                    var facet = e.detail.facet.cloneNode(true), len = this.filterObj.facets.length;
+                    var facet = e.detail.facet.cloneNode(true), app = this.querySelector('rhdp-search-app'), len = app['filterObj'].facets.length;
                     facet.active = e.detail.facet.active;
-                    this.modal.setActive(facet);
-                    this.filters.setActive(facet);
+                    app['modal'].setActive(facet);
+                    app['filters'].setActive(facet);
                     if (facet.active) {
                         facet.inline = true;
-                        this.active.addActive(facet);
+                        app['active'].addActive(facet);
                     }
                     else {
-                        this.active.removeItem(facet);
+                        app['active'].removeItem(facet);
                     }
                     for (var i = 0; i < len; i++) {
-                        var itemLen = this.filterObj.facets[i].items.length;
+                        var itemLen = app['filterObj'].facets[i].items.length;
                         for (var j = 0; j < itemLen; j++) {
-                            if (this.filterObj.facets[i].items[j].key === facet.key) {
-                                this.filterObj.facets[i].items[j]['active'] = facet.active;
+                            if (app['filterObj'].facets[i].items[j].key === facet.key) {
+                                app['filterObj'].facets[i].items[j]['active'] = facet.active;
                             }
                         }
                     }
-                    this.query.filters = this.filterObj;
-                    this.query.search(this.box.term);
+                    app['query'].filters = app['filterObj'];
+                    app['query'].search(app['box'].term);
                 };
                 return RHDPSearchApp;
             }(HTMLElement));
