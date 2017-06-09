@@ -296,8 +296,6 @@ rhdp-search-filters {
                 float: right; 
                 color: $blue; 
                 font-size: 14px;
-                padding: 7px;
-                margin: 3px 3px 0 0;
             } 
             
             .groups {
@@ -306,17 +304,25 @@ rhdp-search-filters {
                 order: 1;
                 overflow: auto;
             }
-            .footer { display: block; flex: 1 0 auto; height: 40px; order: 2; text-align: center; }
-            .clearFilters {
+            .footer { 
                 display: block;
-                width: 150px;
-                height: auto;
+                flex: 1 0 auto;
+                height: 70px;
+                order: 2;
+                text-align: center;
+                background-color: $black;
+                padding: 1em;
+            }
+            .clearFilters {
+                display: inline-block;
                 border: 1px solid $blue;
                 line-height: 1.44;
-                background-color: transparent;
-                padding: 8px 0;
+                background-color: $white;
+                padding: 8px 35px;
                 color:$blue;
-
+                text-transform: uppercase;
+                margin-right: 1em;
+                font-weight: 600;
                 &:hover, &:focus {
                     background-color: $blue;
                     color: $white;
@@ -324,22 +330,16 @@ rhdp-search-filters {
             }
             .applyFilters {
                 text-transform: uppercase;
-                background: #c00;
-                text-decoration: none;
-                border: 0;
-                height: 40px;
+                background: $red;
                 font-weight: 600;
-                font-size: 16px;
-                padding: 9px 40px;
+                padding: 10px 45px;
                 transition: background .2s ease-in 0s;
-                line-height: 1.2em;
-                cursor: pointer;
-                position: relative;
-                text-align: center;
-                color: #fff;
+                color: $white;
             }
         
-
+            rhdp-search-filter-group {
+                margin: 0 0 .5em 0;
+            }
         }
     }
 }
@@ -398,11 +398,10 @@ rhdp-search-result {
 }
 
 rhdp-search-filter-group {
-    // &:not(:last-child) { border-bottom: 1px solid black; }
+    &:first-of-type { padding-top: 1.2em; }
 
     display: block;
-    padding: 0;
-    margin: .5em 1em;
+    margin: 0 1em .5em 1em;
     position: relative;
     cursor: pointer;
 
