@@ -542,7 +542,7 @@ System.register("rhdp-search-filters", ["rhdp-search-filter-group", "rhdp-search
                     _this._title = 'Filter By';
                     _this._toggle = false;
                     _this.modalTemplate = function (string, title) {
-                        return "<div class=\"cover\" id=\"cover\">\n            <div class=\"title\">" + title + " <a href=\"#\" class=\"cancel\" id=\"cancel\">Close</a></div>\n            <div class=\"groups\">\n            </div>\n            <div class=\"footer\">\n            <a href=\"#\" class=\"clearFilters\">Clear All</a> \n            | <a href=\"#\" class=\"applyFilters\">Apply</a>\n            </div>\n        </div>";
+                        return "<div class=\"cover\" id=\"cover\">\n            <div class=\"title\">" + title + " <a href=\"#\" class=\"cancel\" id=\"cancel\">Close</a></div>\n            <div class=\"groups\">\n            </div>\n            <div class=\"footer\">\n            <a href=\"#\" class=\"clearFilters\">Clear All</a><a href=\"#\" class=\"applyFilters\">Apply</a>\n            </div>\n        </div>";
                     };
                     _this.activeTemplate = function (strings, title) {
                         return "<div class=\"active-type\">\n        <strong>" + title + "</strong>\n        <div class=\"activeFilters\"></div>\n        <a href=\"#\" class=\"clearFilters\">Clear Filters</a>\n      </div>";
