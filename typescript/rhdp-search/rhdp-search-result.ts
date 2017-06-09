@@ -1,9 +1,19 @@
 export class RHDPSearchResult extends HTMLElement {
     _result;
+    _url = ['',''];
     _title;
     _kind;
     _created;
     _description;
+
+    get url() {
+        return this._url;
+    }
+
+    set url(val) {
+        if (this._url === val) return;
+        this._url = val;
+    }
 
     get title() {
         return this._title;
@@ -52,6 +62,7 @@ export class RHDPSearchResult extends HTMLElement {
         this.computeKind(val);
         this.computeCreated(val);
         this.computeDescription(val);
+        this.computeURL(val);
         this.renderResult();
     }
 
@@ -59,9 +70,9 @@ export class RHDPSearchResult extends HTMLElement {
         super();
     }
 
-    template = (strings, title, kind, created, description) => {
+    template = (strings, url0, url1, title, kind, created, description) => {
         return `<div class="result result-search" >
-        <h4>${title}</h4>
+        <h4>${url0}${title}${url1}</h4>
         <p class="result-info">
             <span class="caps">${kind}</span>
             <span>${created}</span>
@@ -82,7 +93,7 @@ export class RHDPSearchResult extends HTMLElement {
     }
 
     renderResult() {
-        this.innerHTML = this.template`${this.title}${this.kind}${this.created}${this.description}`;
+        this.innerHTML = this.template`${this.url[0]}${this.url[1]}${this.title}${this.kind}${this.created}${this.description}`;
     }
 
     computeTitle(result) { 
@@ -147,6 +158,14 @@ export class RHDPSearchResult extends HTMLElement {
         }
 
         this.description = description;
+    }
+    computeURL(result) {
+        var url = ['',''];
+        if(result.fields && result.fields.sys_url_view) {
+            url[0] = `<a href="${result.fields.sys_url_view}">`;
+            url[1] = '</a>';
+        }
+        this.url = url;
     }
 }
 

@@ -72,14 +72,15 @@ export class RHDPSearchFilterGroup extends HTMLElement {
 
         this.renderItems();
 
-        this.addEventListener('click', e => {
+        this.querySelector('h6').addEventListener('click', e => {
             e.preventDefault();
-            if (e.target['nodeName'] == 'H6') {
-                this.toggle = !this.toggle;
-            } else if (e.target['className'] === 'more') {
-                this.more = !this.more;
-            }
-        })
+            this.toggle = !this.toggle;
+        });
+        this.querySelector('.more').addEventListener('click', e => {
+            this.more = !this.more;
+        });
+
+        this.toggle = true;
     }
 
     static get observedAttributes() { 

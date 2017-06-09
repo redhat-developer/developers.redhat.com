@@ -61,14 +61,11 @@ export class RHDPSearchFilterItem extends HTMLElement {
     connectedCallback() {
         if (this.inline) {
             this.innerHTML = this.inlineTemplate`${this.name}`;
+            this.querySelector('.clearItem').addEventListener('click', e => this.toggleActive);
         } else {
             this.innerHTML = this.template`${this.name}`;
+            this.addEventListener('click', e => this.toggleActive);
         }
-
-        this.addEventListener('click', e => {
-            this.active = !this.active;
-            this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this}, bubbles: true}));
-        });
 
         this.setChecked();
     }
@@ -81,13 +78,19 @@ export class RHDPSearchFilterItem extends HTMLElement {
         this[name] = newVal;
     }
 
+    toggleActive(e) {
+        e.preventDefault();
+        this.active = !this.active;
+        this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this}, bubbles: true}));
+    }
+
     setChecked() {
-        var inputList = this.querySelectorAll('input');
-        for (let i = 0; i < inputList.length; i++) {
+        var chk = this.querySelector('input');
+        if(chk) {
             if(this.active) {
-                inputList[i].setAttribute('checked', 'checked');
+                chk.setAttribute('checked', 'checked');
             } else {
-                inputList[i].removeAttribute('checked');
+                chk.removeAttribute('checked');
             }
         }
     }

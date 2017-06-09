@@ -355,10 +355,10 @@ rhdp-search-filter-group {
     // &:not(:last-child) { border-bottom: 1px solid black; }
 
     display: block;
-    padding: .5em 1em;
-    margin: 0;
+    padding: 0;
+    margin: .5em 1em;
     position: relative;
-    cursor: default;
+    cursor: pointer;
 
     h6 {
         font-weight: 600;
@@ -409,7 +409,7 @@ rhdp-search-filter-item {
 
     input[type=checkbox] {
         margin-right: 5px;
-        flex: 1 0 auto;
+        flex: 0 0 auto;
         order: 1;
     }
 
@@ -449,8 +449,6 @@ rhdp-search-filter-item {
 
     @media only screen and (max-width: 768px) {
         input[type=checkbox] {
-            margin: 5px 5px 5px 0;
-            flex: 1 0 auto;
             order: 2;
         }
         span {
