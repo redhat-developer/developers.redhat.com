@@ -58,7 +58,7 @@ rhdp-search-box {
         height: 40px;
         font-weight: 600;
         font-size: 16px;
-        padding: 9px 40px;
+        padding: 9px 30px;
         transition: background .2s ease-in 0s;
         line-height: 1.2em;
         cursor: pointer;
@@ -67,17 +67,22 @@ rhdp-search-box {
         color: #fff;
     }
 
+    button i.fa.fa-search { display:none; }
+
     @media only screen and (max-width: 768px) {
         margin-bottom: .5em;
-        button { display: block; }
+        button { display: block; padding: 9px 20px; }
+        button i.fa.fa-search { display: inline-block; font-size: 18px; }
         button span { display: none; }
-        button { padding: 9px; }
     }
 }
 
 rhdp-search-result-count {
     font-weight: 600;
     font-size: 1.2em;
+    border-bottom: 1px solid $grey-3;
+    display: block;
+    margin-bottom: 1em;
 }
 
 rhdp-search-sort-page {
@@ -162,6 +167,10 @@ rhdp-search-sort-page {
 rhdp-search-filters {
     display: block;
 
+    &[type="modal"] {
+        display: none;
+    }
+
     .title {
         background: #e6e7e8; 
         color: #000;
@@ -211,6 +220,7 @@ rhdp-search-filters {
         color: #0066CC;
         margin-top: .3em;
         font-weight: 100;
+        font-size: 14px;
         white-space: nowrap;
         &:hover, &:active, &:focus { color: #004080; }
     }
@@ -260,6 +270,7 @@ rhdp-search-filters {
             width: 100%;
             .active-type {
                 display: block;
+                margin-bottom: 0;
             }
             .active-type strong {
                 display: none;
@@ -273,6 +284,7 @@ rhdp-search-filters {
         }
 
         &[type="modal"] {
+            display: block;
             .modal {
                 transition: .5s ease-in-out;
                 transform: translateX(100%); 
@@ -348,6 +360,22 @@ rhdp-search-results {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+
+    a.moreBtn {
+        display: inline-block;
+        border: 1px solid $blue;
+        line-height: 1.44;
+        background-color: $white;
+        padding: 8px 35px;
+        color: $blue;
+        text-transform: uppercase;
+        margin: 0 auto;
+        font-weight: 600;
+        &:hover, &:focus {
+            background-color: $blue;
+            color: $white;
+        }
+    }
 
     @media only screen and (max-width: 768px) {
         display: block;
@@ -477,7 +505,7 @@ rhdp-search-filter-item {
     }
 
     .inline {
-        padding: .7em;
+        padding: .5em .7em;
         font-size: 13px;
         line-height: 1em;
         border: 1px solid #8c8f91;
@@ -577,10 +605,4 @@ rhdp-search-filter-item {
         #check { display: none; }
         #toggle { display: block; }
     }
-
-    rhdp-search-sort-page {
-        
-    }
-
-    rhdp-search-results { flex: auto; }
 }
