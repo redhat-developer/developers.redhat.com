@@ -275,7 +275,14 @@ rhdp-search-filters {
             .active-type strong {
                 display: none;
             }
-            .active-type div { flex: 1 1 auto; order: 2; list-style: none; }
+            .active-type div {
+                list-style: none;
+                width: auto;
+                white-space: nowrap;
+                overflow-y: hidden;
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
             .active-type a {
                 display: block;
                 clear: left;
