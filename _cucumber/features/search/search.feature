@@ -1,3 +1,4 @@
+@ignore
 @smoke
 @stubbed
 Feature: Search Page

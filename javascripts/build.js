@@ -12,7 +12,8 @@ var RHDPSearchApp = (function (_super) {
     __extends(RHDPSearchApp, _super);
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
-        _this.name = 'Search';
+        _this._name = 'Search';
+        _this._url = 'http://dcp.stage.jboss.org/v2/rest/search/developer_materials';
         _this.template = "<div class=\"row\">\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h1>" + _this.name + "</h1>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"</div>\n        </div>\n    </div></div>";
         _this.query = new RHDPSearchQuery();
         _this.box = new RHDPSearchBox();
@@ -39,7 +40,7 @@ var RHDPSearchApp = (function (_super) {
                     name: 'PRODUCT',
                     key: 'type',
                     items: [
-                        { key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'], active: true },
+                        { key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'] },
                         { key: 'webserver', name: 'JBoss Web Server', value: ['webserver'] },
                         { key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid'] },
                         { key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt'] },
@@ -69,14 +70,35 @@ var RHDPSearchApp = (function (_super) {
                 }
             ]
         };
-        _this.addEventListener('do-search', _this.doSearch);
-        _this.addEventListener('search-complete', _this.setResults);
-        _this.addEventListener('load-more', _this.loadMore);
-        _this.addEventListener('sort-change', _this.updateSort);
-        document.addEventListener('toggle-modal', _this.toggleModal);
-        document.addEventListener('facetChange', _this.updateFacets);
         return _this;
     }
+    Object.defineProperty(RHDPSearchApp.prototype, "name", {
+        get: function () {
+            return this._name;
+        },
+        set: function (val) {
+            if (this._name === val)
+                return;
+            this._name = val;
+            this.setAttribute('name', this.name);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPSearchApp.prototype, "url", {
+        get: function () {
+            return this._url;
+        },
+        set: function (val) {
+            if (this._url === val)
+                return;
+            this._url = val;
+            this.query.url = this.url;
+            this.setAttribute('name', this.url);
+        },
+        enumerable: true,
+        configurable: true
+    });
     RHDPSearchApp.prototype.connectedCallback = function () {
         this.innerHTML = this.template;
         this.active.setAttribute('type', 'active');
@@ -95,6 +117,12 @@ var RHDPSearchApp = (function (_super) {
         this.querySelector('.large-18').appendChild(this.count);
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.results);
+        this.addEventListener('do-search', this.doSearch);
+        this.addEventListener('search-complete', this.setResults);
+        this.addEventListener('load-more', this.loadMore);
+        this.addEventListener('sort-change', this.updateSort);
+        document.addEventListener('toggle-modal', this.toggleModal);
+        document.addEventListener('facetChange', this.updateFacets);
         /* To Do
           Set text and term from querystring "q" value if present
         */
@@ -107,6 +135,8 @@ var RHDPSearchApp = (function (_super) {
     };
     RHDPSearchApp.prototype.doSearch = function (e) {
         this.count.term = e.detail.term;
+        this.query.from = 0;
+        this.results.last = 0;
         this.query.search(e.detail.term);
     };
     RHDPSearchApp.prototype.loadMore = function (e) {

@@ -4,13 +4,12 @@
   "description": "developers.redhat.com build",
   "main": "Gulpfile.js",
   "scripts": {
-    "test": "karma start",
-    "bundle": "polymer-bundler --strip-comments --inline-scripts --inline-css components/rhdp-search/rhdp-search-app.html > components/rhdp-search/rhdp-search-app-build.html"
+    "test": "karma start"
   },
   "author": "Red Hat Inc.",
   "license": "",
   "devDependencies": {
-    "bower": "^1.8.0",
+    "concurrently": "3.4.0",
     "del": "2.2.0",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
@@ -22,15 +21,14 @@
     "gulp-rename": "1.2.2",
     "gulp-sass": "2.1.1",
     "gulp-sourcemaps": "1.6.0",
-    "jasmine-core": "^2.6.2",
-    "karma": "^1.7.0",
-    "karma-chrome-launcher": "^2.1.1",
-    "karma-jasmine": "^1.1.0",
-    "karma-jasmine-ajax": "^0.1.13",
-    "karma-polymer": "^0.1.5",
+    "jasmine-core": "2.6.2",
+    "karma": "1.7.0",
+    "karma-chrome-launcher": "2.1.1",
+    "karma-jasmine": "1.1.0",
+    "karma-jasmine-ajax": "0.1.13",
     "karma-spec-reporter": "0.0.31",
     "node-sass": "3.4.2",
     "node-sass-utils": "1.1.2",
-    "polymer-bundler": "^2.0.1"
+    "typescript": "2.3.4"
   }
 }
