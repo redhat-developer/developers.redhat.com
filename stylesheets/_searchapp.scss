@@ -280,7 +280,7 @@ rhdp-search-filters {
                 width: auto;
                 white-space: nowrap;
                 overflow-y: hidden;
-                overflow-x: scroll;
+                // overflow-x: scroll;
                 -webkit-overflow-scrolling: touch;
             }
             .active-type a {
@@ -525,6 +525,7 @@ rhdp-search-filter-item {
 
         .clearItem {
           font-weight: 700;  
+          cursor: pointer;
         }
     }
 

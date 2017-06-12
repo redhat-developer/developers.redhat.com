@@ -4,7 +4,8 @@ class RHDPSearchApp extends HTMLElement {
     }
 
     _name = 'Search';
-    _url = 'http://dcp.stage.jboss.org/v2/rest/search/developer_materials';
+    //_url = 'http://dcp.stage.jboss.org/v2/rest/search';
+    _url;
 
     get name() {
         return this._name;
@@ -24,7 +25,7 @@ class RHDPSearchApp extends HTMLElement {
         if (this._url === val) return;
         this._url = val;
         this.query.url = this.url;
-        this.setAttribute('name', this.url);
+        this.setAttribute('url', this.url);
     }
 
     template = `<div class="row">
@@ -53,13 +54,18 @@ class RHDPSearchApp extends HTMLElement {
         term:'', 
         facets: [
             { name: 'CONTENT TYPE', key: 'sys_type', items: [
+                {key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype']},
                 {key: 'blogpost', name: "Blog Posts", value: ['blogpost']},
                 {key: 'book', name: "Book", value: ["jbossdeveloper_book", "book"]},
                 {key: 'code', name: "Code Artifact", value: ["demo", "jbossdeveloper_archetype", "jbossdeveloper_bom"]},
-                {key: 'quickstart', name: "Quickstart", value: ['quickstart', 'quickstart_early_access']},
+                {key: 'cheatsheet', name: "Cheat Sheet", value: ['cheatsheet']},
+                {key: 'demo', name: 'Demo', value: ['jbossdeveloper_demo', 'jbossdeveloper_example']},
+                {key: 'quickstart', name: "Quickstart", value: ['quickstart', 'quickstart_early_access', 'jbossdeveloper_quickstart']},
                 {key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"] },
-                {key: 'article-solution', name: "Knowledgebase Article / Solution", value: ["solution", "article"]},
-                {key: 'video', name: "Video", value: ["video"] }
+                {key: 'event', name: 'Event', value: ['jbossdeveloper_event']},
+                {key: 'article', name: 'Article', value: ['rhd_knowledgebase_article', 'rht_knowledgebase_solution', "solution", "article"]},
+                {key: 'video', name: "Video", value: ["video", 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
+                {key: 'webpage', name: "Web Page", value: ['rhd_website']}
                 ] 
             },
             {
@@ -135,6 +141,10 @@ class RHDPSearchApp extends HTMLElement {
             this.count.term = term;
             this.query.search(this.box.term);
         }
+    }
+
+    static get observedAttributes() { 
+        return ['url', 'name']; 
     }
 
     doSearch(e) {
@@ -992,8 +1002,9 @@ class RHDPSearchQuery extends HTMLElement {
     _from = 0;
     _sort = 'relevance';
     _results;
-    _term = '';
-    _url = 'http://dcp.stage.jboss.org/v2/rest/search/developer_materials';
+    _term;
+    //_url = 'http://dcp.stage.jboss.org/v2/rest/search';
+    _url;
     params;
 
     get filters() {
@@ -1065,7 +1076,7 @@ class RHDPSearchQuery extends HTMLElement {
     }
 
     set url(val) {
-        if (this._results === val) return;
+        if (this._url === val) return;
         this._url = val;
         this.setAttribute('url', val.toString());
     }
@@ -1096,7 +1107,8 @@ class RHDPSearchQuery extends HTMLElement {
         if(sort === 'most-recent') {
             order = '&newFirst=true';
         } 
-        return `${url}?tags_or_logic=true&filter_out_excluded=true&from=${from}${order}&project=&query=${term}&query_highlight=true&size${limit}=true${types}${tags}${sys_types}&type=rht_website&type=jbossdeveloper_quickstart&type=jbossdeveloper_demo&type=jbossdeveloper_bom&type=jbossdeveloper_archetype&type=jbossdeveloper_example&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossdeveloper_event&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=stackoverflow_question&type=jbossorg_sbs_forum&type=jbossorg_blog&type=rht_apidocs`;
+        //&type=rht_website&type=jbossdeveloper_quickstart&type=jbossdeveloper_demo&type=jbossdeveloper_bom&type=jbossdeveloper_archetype&type=jbossdeveloper_example&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossdeveloper_event&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=stackoverflow_question&type=jbossorg_sbs_forum&type=jbossorg_blog&type=rht_apidocs
+        return `${url}?tags_or_logic=true&filter_out_excluded=true&from=${from}${order}&project=&query=${term}&query_highlight=true&size${limit}=true${types}${tags}${sys_types}`;
     };
 
     constructor() {
@@ -1108,7 +1120,7 @@ class RHDPSearchQuery extends HTMLElement {
     }
 
     static get observedAttributes() { 
-        return ['term','sort','limit','results','filters','url']; 
+        return ['term', 'sort', 'limit', 'results', 'filters', 'url']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

@@ -13,7 +13,6 @@ var RHDPSearchApp = (function (_super) {
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
         _this._name = 'Search';
-        _this._url = 'http://dcp.stage.jboss.org/v2/rest/search/developer_materials';
         _this.template = "<div class=\"row\">\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h1>" + _this.name + "</h1>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"</div>\n        </div>\n    </div></div>";
         _this.query = new RHDPSearchQuery();
         _this.box = new RHDPSearchBox();
@@ -27,13 +26,18 @@ var RHDPSearchApp = (function (_super) {
             term: '',
             facets: [
                 { name: 'CONTENT TYPE', key: 'sys_type', items: [
+                        { key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'] },
                         { key: 'blogpost', name: "Blog Posts", value: ['blogpost'] },
                         { key: 'book', name: "Book", value: ["jbossdeveloper_book", "book"] },
                         { key: 'code', name: "Code Artifact", value: ["demo", "jbossdeveloper_archetype", "jbossdeveloper_bom"] },
-                        { key: 'quickstart', name: "Quickstart", value: ['quickstart', 'quickstart_early_access'] },
+                        { key: 'cheatsheet', name: "Cheat Sheet", value: ['cheatsheet'] },
+                        { key: 'demo', name: 'Demo', value: ['jbossdeveloper_demo', 'jbossdeveloper_example'] },
+                        { key: 'quickstart', name: "Quickstart", value: ['quickstart', 'quickstart_early_access', 'jbossdeveloper_quickstart'] },
                         { key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"] },
-                        { key: 'article-solution', name: "Knowledgebase Article / Solution", value: ["solution", "article"] },
-                        { key: 'video', name: "Video", value: ["video"] }
+                        { key: 'event', name: 'Event', value: ['jbossdeveloper_event'] },
+                        { key: 'article', name: 'Article', value: ['rhd_knowledgebase_article', 'rht_knowledgebase_solution', "solution", "article"] },
+                        { key: 'video', name: "Video", value: ["video", 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
+                        { key: 'webpage', name: "Web Page", value: ['rhd_website'] }
                     ]
                 },
                 {
@@ -94,7 +98,7 @@ var RHDPSearchApp = (function (_super) {
                 return;
             this._url = val;
             this.query.url = this.url;
-            this.setAttribute('name', this.url);
+            this.setAttribute('url', this.url);
         },
         enumerable: true,
         configurable: true
@@ -108,6 +112,7 @@ var RHDPSearchApp = (function (_super) {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
+        this.query.url = this.url;
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
@@ -133,6 +138,13 @@ var RHDPSearchApp = (function (_super) {
             this.query.search(this.box.term);
         }
     };
+    Object.defineProperty(RHDPSearchApp, "observedAttributes", {
+        get: function () {
+            return ['url', 'name'];
+        },
+        enumerable: true,
+        configurable: true
+    });
     RHDPSearchApp.prototype.doSearch = function (e) {
         this.count.term = e.detail.term;
         this.query.from = 0;
@@ -1026,14 +1038,13 @@ var RHDPSearchQuery = (function (_super) {
         _this._limit = 10;
         _this._from = 0;
         _this._sort = 'relevance';
-        _this._term = '';
-        _this._url = 'http://dcp.stage.jboss.org/v2/rest/search/developer_materials';
         _this.urlTemplate = function (strings, url, term, from, limit, sort, types, tags, sys_types) {
             var order = '';
             if (sort === 'most-recent') {
                 order = '&newFirst=true';
             }
-            return url + "?tags_or_logic=true&filter_out_excluded=true&from=" + from + order + "&project=&query=" + term + "&query_highlight=true&size" + limit + "=true" + types + tags + sys_types + "&type=rht_website&type=jbossdeveloper_quickstart&type=jbossdeveloper_demo&type=jbossdeveloper_bom&type=jbossdeveloper_archetype&type=jbossdeveloper_example&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossdeveloper_event&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=stackoverflow_question&type=jbossorg_sbs_forum&type=jbossorg_blog&type=rht_apidocs";
+            //&type=rht_website&type=jbossdeveloper_quickstart&type=jbossdeveloper_demo&type=jbossdeveloper_bom&type=jbossdeveloper_archetype&type=jbossdeveloper_example&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossdeveloper_event&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=stackoverflow_question&type=jbossorg_sbs_forum&type=jbossorg_blog&type=rht_apidocs
+            return url + "?tags_or_logic=true&filter_out_excluded=true&from=" + from + order + "&project=&query=" + term + "&query_highlight=true&size" + limit + "=true" + types + tags + sys_types;
         };
         return _this;
     }
@@ -1128,7 +1139,7 @@ var RHDPSearchQuery = (function (_super) {
             return this._url;
         },
         set: function (val) {
-            if (this._results === val)
+            if (this._url === val)
                 return;
             this._url = val;
             this.setAttribute('url', val.toString());
