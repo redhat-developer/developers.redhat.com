@@ -1,21 +1,37 @@
-// Test rhdp-search-filter-group component
+"use strict";
+/* global RHDPSearchFilterGroup */
 
 describe('Search Filter Group', function() {
     var wc;
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-filter-group'), document.body.firstChild);
-        wc = document.body.firstChild;
+        wc = new RHDPSearchFilterGroup();
     });
 
-    afterEach(function() {
-        document.body.removeChild(document.body.firstChild);
-    });
-
-    describe('Heading', function() {
-        it('should display the name in all CAPS', function() {
-            var head = 'Test Heading';
-            wc.name = head;
-            expect(wc.shadowRoot.querySelector('h4').innerText).toEqual(head.toUpperCase());
+    describe('Properties', function() {
+        it('should have a key property', function() {
+            var key = 'test-filter-group';
+            wc.key = key;
+            expect(wc.key).toEqual(key);
+        });
+        it('should have a name property', function() {
+            var name = 'Test Group Name';
+            wc.name = name;
+            expect(wc.name).toEqual(name);
+            //expect(wc.querySelector('h6').innerText).toEqual(name.toUpperCase());
+        });
+        it('should have an items property', function() {
+            var items = ['test1', 'test2'];
+            wc.items = items;
+            expect(wc.items).toEqual(items);
+        });
+        it('should have a toggle property', function() {
+            expect(wc.toggle).toBe(false);
+            // expect(wc.querySelector('.group').className).toEqual('group hide');
+            // expect(wc.querySelector('.toggle').className).toEqual('toggle');
+            wc.toggle = true;
+            expect(wc.toggle).toBe(true);
+            // expect(wc.querySelector('.group').className).toEqual('group');
+            // expect(wc.querySelector('.toggle').className).toEqual('toggle expand');
         });
     });
 
@@ -23,16 +39,4 @@ describe('Search Filter Group', function() {
 
     });
 
-    describe('Toggle', function() {
-        it('should change the class of filters container', function() {
-            var t = 'filters show', f = 'filters hide';
-            expect(wc.shadowRoot.querySelector('#filters').className).toBe(f);
-            wc.showFilters();
-            expect(wc.shadowRoot.querySelector('#filters').className).toBe(t);
-        });
-    });
-
-    it('should be true', function() {
-        expect(wc.innerText).toEqual('');
-    });
 });

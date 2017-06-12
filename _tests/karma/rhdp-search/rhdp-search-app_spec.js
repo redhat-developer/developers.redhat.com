@@ -1,10 +1,11 @@
+"use strict";
+/* global RHDPSearchApp */
 // Test rhdp-search-app component
 
 describe('Search Application', function() {
     var wc;
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-app'), document.body.firstChild);
-        wc = document.body.firstChild;
+        wc = new RHDPSearchApp();
     });
 
     afterEach(function() {

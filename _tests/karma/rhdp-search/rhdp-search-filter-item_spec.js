@@ -1,3 +1,4 @@
+"use strict";
 // Test rhdp-search-filter-item component
 
 describe('Search Filter Item', function() {
@@ -13,7 +14,7 @@ describe('Search Filter Item', function() {
 
     describe('Text label', function() {
         it('should show the name field', function() {
-            wc.set('name','Test Name');
+            wc.set('name', 'Test Name');
             expect(wc.shadowRoot.querySelector('div').innerText).toEqual('Test Name');
         });
         it('should toggle the control when clicked', function() {
@@ -63,5 +64,5 @@ describe('Search Filter Item', function() {
             expect(wc.toggle).toBe(false);
         })
     });
-    
+
 });
