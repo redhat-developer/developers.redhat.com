@@ -484,7 +484,7 @@
   </script>
 
   <script type="text/javascript">
-   $(function() {
+   jQuery(function() {
 
       var href = window.location.href.split('#')[0];
 
@@ -498,27 +498,27 @@
 
       while(tLength--) {
          if (href.indexOf(topicPages[tLength])!=-1) {
-            $('.sub-nav-topics').addClass('active');
+            jQuery('.sub-nav-topics').addClass('active');
          }
       }
       while(cLength--) {
          if (href.indexOf(communityPages[cLength])!=-1) {
-            $('.sub-nav-community').addClass('active');
+            jQuery('.sub-nav-community').addClass('active');
          }
       }
 
       while(hLength--) {
          if (href.indexOf(helpPages[hLength])!=-1) {
-            $('.sub-nav-help').addClass('active');
+            jQuery('.sub-nav-help').addClass('active');
          }
       }
 
       if (href.indexOf('/products') != -1){
-        $('.sub-nav-products').addClass('active');
+        jQuery('.sub-nav-products').addClass('active');
       }
 
       if (href.indexOf('/downloads') != -1){
-        $('.sub-nav-downloads').addClass('active');
+        jQuery('.sub-nav-downloads').addClass('active');
       }
 
    });
