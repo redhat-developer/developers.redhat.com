@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.promotion_page.body
     - field.field.node.promotion_page.field_call_to_action_link
     - field.field.node.promotion_page.field_mail_to_link
+    - field.field.node.promotion_page.field_media_asset
     - field.field.node.promotion_page.field_promotion_page_left_image
     - node.type.promotion_page
   module:
@@ -49,6 +50,15 @@ content:
     third_party_settings: {  }
     type: link
     region: content
+  field_media_asset:
+    weight: 105
+    label: visually_hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
   field_promotion_page_left_image:
     weight: 102
     label: visually_hidden
@@ -61,5 +71,7 @@ content:
   workbench_moderation_control:
     weight: -20
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   links: true
