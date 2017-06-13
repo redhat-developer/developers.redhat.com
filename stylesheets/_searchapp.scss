@@ -203,6 +203,7 @@ rhdp-search-filters {
         }
     .groups {
         background-color: #f9f9f9;
+        padding-bottom: 30px;
     }
     .active-type {
         display: flex;
@@ -471,8 +472,11 @@ rhdp-search-filter-group {
     .hide { display: none; }
 
     a.more {
-        margin-left: 1.7em;
-        font-size: 14px
+        margin-left: 2.3em;
+        font-size: 14px;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     @media only screen and (max-width: 768px) {
@@ -497,12 +501,16 @@ rhdp-search-filter-item {
     .list {
         display: flex;
         flex-direction: row;
-        padding: .5em .5em 0 .5em;
+        padding: .5em .5em 0 1.1em;
         clear: left;
         font-size: 14px;
         line-height: 1.25em;
         height: auto;
         cursor: pointer;
+
+        label {
+            margin-left: 0;
+        }
     }
 
     input[type=checkbox] {
