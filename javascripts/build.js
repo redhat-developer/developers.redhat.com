@@ -13,7 +13,7 @@ var RHDPSearchApp = (function (_super) {
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
         _this._name = 'Search';
-        _this.template = "<div class=\"row\">\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h1>" + _this.name + "</h1>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"</div>\n        </div>\n    </div></div>";
+        _this.template = "<div class=\"row\">\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h2>" + _this.name + "</h2>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"</div>\n        </div>\n    </div></div>";
         _this.query = new RHDPSearchQuery();
         _this.box = new RHDPSearchBox();
         _this.count = new RHDPSearchResultCount();
@@ -26,42 +26,48 @@ var RHDPSearchApp = (function (_super) {
             term: '',
             facets: [
                 { name: 'CONTENT TYPE', key: 'sys_type', items: [
-                        { key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'] },
-                        { key: 'blogpost', name: "Blog Posts", value: ['blogpost'] },
-                        { key: 'book', name: "Book", value: ["jbossdeveloper_book", "book"] },
-                        { key: 'code', name: "Code Artifact", value: ["demo", "jbossdeveloper_archetype", "jbossdeveloper_bom"] },
-                        { key: 'cheatsheet', name: "Cheat Sheet", value: ['cheatsheet'] },
-                        { key: 'demo', name: 'Demo', value: ['jbossdeveloper_demo', 'jbossdeveloper_example'] },
-                        { key: 'quickstart', name: "Quickstart", value: ['quickstart', 'quickstart_early_access', 'jbossdeveloper_quickstart'] },
-                        { key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"] },
-                        { key: 'event', name: 'Event', value: ['jbossdeveloper_event'] },
-                        { key: 'article', name: 'Article', value: ['rhd_knowledgebase_article', 'rht_knowledgebase_solution', "solution", "article"] },
-                        { key: 'video', name: "Video", value: ["video", 'jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
-                        { key: 'webpage', name: "Web Page", value: ['rhd_website'] }
+                        { key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'], type: ['jbossdeveloper_archetype'] },
+                        { key: 'article', name: 'Article', value: ['article', 'solution'], type: ['rhd_knowledgebase_article', 'rht_knowledgebase_solution'] },
+                        { key: 'blogpost', name: "Blog Posts", value: ['blogpost'], type: ['jbossorg_blog'] },
+                        { key: 'book', name: "Book", value: ["book"], type: ["jbossdeveloper_book"] },
+                        { key: 'bom', name: "BOM", value: ["jbossdeveloper_bom"], type: ['jbossdeveloper_bom'] },
+                        { key: 'cheatsheet', name: "Cheat Sheet", value: ['cheatsheet'], type: ['jbossdeveloper_cheatsheet'] },
+                        { key: 'demo', name: 'Demo', value: ['demo'], type: ['jbossdeveloper_demo'] },
+                        { key: 'event', name: 'Event', value: ['jbossdeveloper_event'], type: ['jbossdeveloper_event'] },
+                        { key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"], type: ['jbossdeveloper_example'] },
+                        { key: 'quickstart', name: "Quickstart", value: ['quickstart'], type: ['jbossdeveloper_quickstart'] },
+                        { key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_thread'], type: ['stackoverflow_question'] },
+                        { key: 'video', name: "Video", value: ["video"], type: ['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
+                        { key: 'webpage', name: "Web Page", value: ['webpage'], type: ['rhd_website'] }
                     ]
                 },
                 {
                     name: 'PRODUCT',
-                    key: 'type',
+                    key: 'product',
                     items: [
-                        { key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'] },
-                        { key: 'webserver', name: 'JBoss Web Server', value: ['webserver'] },
+                        { key: 'dotnet-product', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet'] },
+                        { key: 'amq', name: 'JBoss A-MQ', value: ['amq'] },
+                        { key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite'] },
+                        { key: 'brms', name: 'JBoss BRMS', value: ['brms'] },
                         { key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid'] },
                         { key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt'] },
-                        { key: 'fuse', name: 'JBoss Fuse', value: ['fuse'] },
-                        { key: 'amq', name: 'JBoss A-MQ', value: ['amq'] },
-                        { key: 'brms', name: 'JBoss BRMS', value: ['brms'] },
-                        { key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite'] },
                         { key: 'devstudio', name: 'JBoss Developer Studio', value: ['devstudio'] },
+                        { key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'] },
+                        { key: 'fuse', name: 'JBoss Fuse', value: ['fuse'] },
+                        { key: 'webserver', name: 'JBoss Web Server', value: ['webserver'] },
+                        { key: 'openjdk', name: 'OpenJDK', value: ['openjdk'] },
+                        { key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt'] },
                         { key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk'] },
                         { key: 'developertoolset', name: 'Red Hat Developer Toolset', value: ['developertoolset'] },
+                        { key: 'devsuite', name: 'Red Hat Development Suite', value: ['devsuite'] },
                         { key: 'rhel', name: 'Red Hat Enterprise Linux', value: ['rhel'] },
-                        { key: 'softwarecollections', name: 'Red Hat Software Collections', value: ['softwarecollections'] },
                         { key: 'mobileplatform', name: 'Red Hat Mobile Application Platform', value: ['mobileplatform'] },
-                        { key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift'] }
+                        { key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift'] },
+                        { key: 'softwarecollections', name: 'Red Hat Software Collections', value: ['softwarecollections'] }
                     ]
                 },
                 { name: 'TOPIC', key: 'tag', items: [
+                        { key: 'dotnet', name: '.NET', value: ['dotnet', '.net', 'visual studio', 'c#'] },
                         { key: 'containers', name: 'Containers', value: ['atomic', 'cdk', 'containers'] },
                         { key: 'devops', name: 'DevOps', value: ['DevOps', 'CI', 'CD', 'Continuous Delivery'] },
                         { key: 'enterprise-java', name: 'Enterprise Java', value: ['ActiveMQ', 'AMQP', 'apache camel', 'Arquillian', 'Camel', 'CDI', 'CEP', 'CXF', 'datagrid', 'devstudio', 'Drools', 'Eclipse', 'fabric8', 'Forge', 'fuse', 'Hawkular', 'Hawtio', 'Hibernate', 'Hibernate ORM', 'Infinispan', 'iPaas', 'java ee', 'JavaEE', 'JBDS', 'JBoss', 'JBoss BPM Suite', 'JBoss BRMS', 'JBoss Data Grid', 'jboss eap', 'JBoss EAP', ''] },
@@ -69,7 +75,6 @@ var RHDPSearchApp = (function (_super) {
                         { key: 'microservices', name: 'Microservices', value: ['Microservices', ' WildFly Swarm'] },
                         { key: 'mobile', name: 'Mobile', value: ['Mobile', 'Red Hat Mobile', 'RHMAP', 'Cordova', 'FeedHenry'] },
                         { key: 'web-and-api-development', name: 'Web and API Development', value: ['Web', 'API', 'HTML5', 'REST', 'Camel', 'Node.js', 'RESTEasy', 'JAX-RS', 'Tomcat', 'nginx', 'Rails', 'Drupal', 'PHP', 'Bottle', 'Flask', 'Laravel', 'Dancer', 'Zope', 'TurboGears', 'Sinatra', 'httpd', 'Passenger'] },
-                        { key: 'dotnet', name: '.NET', value: ['dotnet', '.net', 'visual studio', 'c#'] }
                     ]
                 }
             ]
@@ -112,7 +117,6 @@ var RHDPSearchApp = (function (_super) {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
-        this.query.url = this.url;
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
@@ -145,11 +149,14 @@ var RHDPSearchApp = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    RHDPSearchApp.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
     RHDPSearchApp.prototype.doSearch = function (e) {
-        this.count.term = e.detail.term;
+        this.count.term = e.detail ? e.detail.term : this.query.term;
         this.query.from = 0;
         this.results.last = 0;
-        this.query.search(e.detail.term);
+        this.query.search(e.detail ? e.detail.term : this.query.term);
     };
     RHDPSearchApp.prototype.loadMore = function (e) {
         this.query.from = e.detail.from;
@@ -176,15 +183,16 @@ var RHDPSearchApp = (function (_super) {
     };
     RHDPSearchApp.prototype.updateFacets = function (e) {
         var facet = e.detail.facet.cloneNode(true), app = this.querySelector('rhdp-search-app'), len = app['filterObj'].facets.length;
+        facet.bubble = false;
         facet.active = e.detail.facet.active;
-        app['modal'].setActive(facet);
-        app['filters'].setActive(facet);
+        app['modal'].setActive(facet, false);
+        app['filters'].setActive(facet, false);
         if (facet.active) {
             facet.inline = true;
-            app['active'].addActive(facet);
+            app['active'].addActive(facet, false);
         }
         else {
-            app['active'].removeItem(facet);
+            app['active'].removeItem(facet, false);
         }
         for (var i = 0; i < len; i++) {
             var itemLen = app['filterObj'].facets[i].items.length;
@@ -283,6 +291,9 @@ var RHDPSearchFilters = (function (_super) {
         if (this.type === 'active') {
             this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.activeTemplate(_a, this.title));
             this.addAllActive();
+            if (!this.querySelector('.activeFilters').hasChildNodes()) {
+                this.style.display = 'none';
+            }
         }
         else if (this.type === 'modal') {
             this.innerHTML = (_b = ["", ""], _b.raw = ["", ""], this.modalTemplate(_b, this.title));
@@ -359,8 +370,10 @@ var RHDPSearchFilters = (function (_super) {
             this.style.display = 'none';
         }
     };
-    RHDPSearchFilters.prototype.setActive = function (item) {
-        this.querySelector(".filter-item-" + item.key)['active'] = item.active;
+    RHDPSearchFilters.prototype.setActive = function (item, bubble) {
+        var upd = this.querySelector(".filter-item-" + item.key);
+        upd['bubble'] = bubble;
+        upd['active'] = item.active;
     };
     RHDPSearchFilters.prototype.toggleModal = function (val) {
         this.dispatchEvent(new CustomEvent('toggle-modal', {
@@ -378,6 +391,7 @@ var RHDPSearchFilters = (function (_super) {
     RHDPSearchFilters.prototype.clearFilters = function () {
         var items = this.querySelectorAll('rhdp-search-filter-item[active]'), len = items.length;
         for (var i = 0; i < len; i++) {
+            items[i]['bubble'] = i !== 1 - len ? false : true;
             items[i]['active'] = false;
         }
     };
@@ -512,6 +526,7 @@ var RHDPSearchFilterItem = (function (_super) {
         var _this = _super.call(this) || this;
         _this._active = false;
         _this._inline = false;
+        _this._bubble = true;
         _this.template = function (strings, name, key, active) {
             var checked = active ? 'checked' : '';
             return "<div class=\"list\"><span>" + name + "</span><input type=\"checkbox\" " + checked + " id=\"filter-item-" + key + "\"><label for=\"filter-item-" + key + "\">" + name + "</label></div>";
@@ -566,7 +581,8 @@ var RHDPSearchFilterItem = (function (_super) {
                 this.removeAttribute('active');
             }
             this.innerHTML = (_a = ["", "", "", ""], _a.raw = ["", "", "", ""], this.template(_a, this.name, this.key, this.active));
-            this.dispatchEvent(new CustomEvent('facetChange', { detail: { facet: this }, bubbles: true }));
+            this.dispatchEvent(new CustomEvent('facetChange', { detail: { facet: this }, bubbles: this.bubble }));
+            this.bubble = true;
             var _a;
         },
         enumerable: true,
@@ -593,6 +609,18 @@ var RHDPSearchFilterItem = (function (_super) {
             if (this._inline === val)
                 return;
             this._inline = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPSearchFilterItem.prototype, "bubble", {
+        get: function () {
+            return this._bubble;
+        },
+        set: function (val) {
+            if (this._bubble === val)
+                return;
+            this._bubble = val;
         },
         enumerable: true,
         configurable: true
@@ -843,36 +871,25 @@ var RHDPSearchResult = (function (_super) {
     };
     RHDPSearchResult.prototype.computeKind = function (result) {
         var kind = result.fields.sys_type || "webpage", map = {
-            video: 'Video',
-            blogpost: 'Blog Post',
-            book: 'Book',
+            jbossdeveloper_archetype: 'Archetype',
             article: 'Article',
-            solution: 'Article',
+            blogpost: 'Blog Post',
+            jbossdeveloper_bom: 'Bom',
+            book: 'Book',
+            cheatsheet: 'Cheat Sheet',
             demo: 'Demo',
             event: 'Event',
+            forumthread: 'Forum Thread',
+            jbossdeveloper_example: 'Demo',
             quickstart: 'Quickstart',
             quickstart_early_access: 'Demo',
-            forumthread: 'Forum Thread',
+            solution: 'Article',
             stackoverflow_thread: 'Stack Overflow',
+            video: 'Video',
             webpage: 'Webpage',
-            jbossdeveloper_quickstart: 'Quickstart',
-            jbossdeveloper_demo: 'Demo',
-            jbossdeveloper_bom: 'Bom',
-            jbossdeveloper_archetype: 'Archetype',
-            jbossdeveloper_example: 'Demo',
-            jbossdeveloper_vimeo: 'Video',
-            jbossdeveloper_youtube: 'Video',
-            jbossdeveloper_book: 'Book',
-            jbossdeveloper_event: 'Event',
-            rht_knowledgebase_article: 'Article',
-            rht_knowledgebase_solution: 'Article',
-            stackoverflow_question: 'Stack Overflow',
-            jbossorg_sbs_forum: 'Forum Thread',
-            jbossorg_blog: 'Blog Post',
-            rht_website: 'Website',
-            rht_apidocs: 'Docs & APIs'
+            website: 'Webpage'
         };
-        this.kind = map[kind];
+        this.kind = map[kind] || 'Webpage';
     };
     RHDPSearchResult.prototype.computeCreated = function (result) {
         var options = { month: 'long', day: 'numeric', year: 'numeric' };
@@ -998,6 +1015,9 @@ var RHDPSearchBox = (function (_super) {
                 }
                 else {
                     _this.term = e.target['value'];
+                    if (_this.term === '') {
+                        _this.doSearch();
+                    }
                 }
             }
         });
@@ -1021,7 +1041,6 @@ var RHDPSearchBox = (function (_super) {
         this[name] = newVal;
     };
     RHDPSearchBox.prototype.doSearch = function () {
-        history.pushState({}, "Red Hat Developer Program Search: " + this.term, "?q=" + this.term);
         this.dispatchEvent(new CustomEvent('do-search', {
             detail: {
                 term: this.term
@@ -1043,8 +1062,7 @@ var RHDPSearchQuery = (function (_super) {
             if (sort === 'most-recent') {
                 order = '&newFirst=true';
             }
-            //&type=rht_website&type=jbossdeveloper_quickstart&type=jbossdeveloper_demo&type=jbossdeveloper_bom&type=jbossdeveloper_archetype&type=jbossdeveloper_example&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossdeveloper_event&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=stackoverflow_question&type=jbossorg_sbs_forum&type=jbossorg_blog&type=rht_apidocs
-            return url + "?tags_or_logic=true&filter_out_excluded=true&from=" + from + order + "&project=&query=" + term + "&query_highlight=true&size" + limit + "=true" + types + tags + sys_types;
+            return url + "?tags_or_logic=true&filter_out_excluded=true&from=" + from + order + "&query=" + term + "&query_highlight=true&size" + limit + "=true" + types + tags + sys_types;
         };
         return _this;
     }
@@ -1147,9 +1165,27 @@ var RHDPSearchQuery = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(RHDPSearchQuery.prototype, "typeString", {
+    Object.defineProperty(RHDPSearchQuery.prototype, "productString", {
         get: function () {
-            return this.valStrings('tag', this.filters.facets[1].items);
+            var defaults = [{ active: true, value: [
+                        'eap',
+                        'webserver',
+                        'datagrid',
+                        'datavirt',
+                        'fuse',
+                        'amq',
+                        'brms',
+                        'bpmsuite',
+                        'devstudio',
+                        'cdk',
+                        'developertoolset',
+                        'rhel',
+                        'softwarecollections',
+                        'mobileplatform',
+                        'openshift',
+                        'rhamt'
+                    ] }], products = this.valStrings('project', this.filters.facets[1].items);
+            return products.length > -1 ? products : this.valStrings('project', defaults);
         },
         enumerable: true,
         configurable: true
@@ -1163,7 +1199,25 @@ var RHDPSearchQuery = (function (_super) {
     });
     Object.defineProperty(RHDPSearchQuery.prototype, "sysTypeString", {
         get: function () {
-            return this.valStrings('sys_type', this.filters.facets[0].items);
+            var defaults = [{ active: true, value: [
+                        'jbossdeveloper_archetype',
+                        'article',
+                        'blogpost',
+                        'jbossdeveloper_bom',
+                        'book',
+                        'cheatsheet',
+                        'demo',
+                        'event',
+                        'forumthread',
+                        'jbossdeveloper_example',
+                        'quickstart',
+                        'solution',
+                        'stackoverflow_thread',
+                        'video',
+                        'website',
+                        'webpage'
+                    ] }], sysTypes = this.valStrings('sys_type', this.filters.facets[0].items);
+            return sysTypes.length > -1 ? sysTypes : this.valStrings('sys_type', defaults);
         },
         enumerable: true,
         configurable: true
@@ -1190,12 +1244,13 @@ var RHDPSearchQuery = (function (_super) {
     };
     RHDPSearchQuery.prototype.search = function (term) {
         var _this = this;
-        if (term && term !== '') {
-            this.term = term;
-        }
-        fetch((_a = ["", "", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", "", ""], this.urlTemplate(_a, this.url, this.term, this.from, this.limit, this.sort, this.typeString, this.tagString, this.sysTypeString)))
+        this.term = term;
+        fetch((_a = ["", "", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", "", ""], this.urlTemplate(_a, this.url, this.term, this.from, this.limit, this.sort, this.productString, this.tagString, this.sysTypeString)))
             .then(function (resp) { return resp.json(); })
-            .then(function (data) { _this.results = data; });
+            .then(function (data) {
+            _this.results = data;
+            history.pushState({}, "Red Hat Developer Program Search: " + _this.term, "?q=" + _this.term);
+        });
         var _a;
     };
     RHDPSearchQuery.prototype.setFilters = function () {

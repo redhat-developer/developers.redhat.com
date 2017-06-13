@@ -6,6 +6,8 @@ rhdp-search-app {
     .show { display: block; }
     .mobile { display: none; }
 
+    h2 { margin-top: 30px; }
+
 }
 
 rhdp-search-box {
@@ -80,9 +82,12 @@ rhdp-search-box {
 rhdp-search-result-count {
     font-weight: 600;
     font-size: 1.2em;
-    border-bottom: 1px solid $grey-3;
     display: block;
     margin-bottom: 1em;
+    
+    @media only screen and (max-width: 768px) {
+        border-bottom: 1px solid $grey-3;
+    }
 }
 
 rhdp-search-sort-page {
@@ -501,7 +506,7 @@ rhdp-search-filter-item {
     }
 
     input[type=checkbox] {
-        margin-right: 5px;
+        margin: .25em 5px 0 0;
         flex: 0 0 auto;
         order: 0;
     }
