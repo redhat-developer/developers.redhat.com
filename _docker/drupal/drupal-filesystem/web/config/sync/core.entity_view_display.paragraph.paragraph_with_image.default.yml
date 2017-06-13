@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.paragraph_with_image.field_media_reference
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_body
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_image
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_title
@@ -16,15 +15,6 @@ targetEntityType: paragraph
 bundle: paragraph_with_image
 mode: default
 content:
-  field_media_reference:
-    weight: 2
-    label: visually_hidden
-    settings:
-      view_mode: embedded
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-    region: content
   field_paragraph_image_body:
     weight: 0
     label: visually_hidden
@@ -42,7 +32,7 @@ content:
     type: image
     region: content
   field_paragraph_image_title:
-    weight: 3
+    weight: 2
     label: visually_hidden
     settings:
       link_to_entity: false

@@ -3,39 +3,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
-    - field.field.paragraph.paragraph_with_image.field_media_reference
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_body
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_image
     - field.field.paragraph.paragraph_with_image.field_paragraph_image_title
     - image.style.thumbnail
     - paragraphs.paragraphs_type.paragraph_with_image
   module:
-    - entity_browser
     - image
     - text
-    - workbench_moderation
 id: paragraph.paragraph_with_image.default
 targetEntityType: paragraph
 bundle: paragraph_with_image
 mode: default
 content:
-  field_media_reference:
-    type: entity_browser_entity_reference
-    weight: 2
-    settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      open: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-    third_party_settings: {  }
-    region: content
   field_paragraph_image_body:
-    weight: 3
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -43,17 +25,13 @@ content:
     type: text_textarea
     region: content
   field_paragraph_image_image:
-    type: entity_browser_file
     weight: 1
     settings:
-      entity_browser: image_browser
-      field_widget_edit: true
-      field_widget_remove: true
-      view_mode: default
+      progress_indicator: throbber
       preview_image_style: thumbnail
-      open: true
-      selection_mode: selection_append
     third_party_settings: {  }
+    type: image_image
+    region: content
   field_paragraph_image_title:
     weight: 0
     settings:
