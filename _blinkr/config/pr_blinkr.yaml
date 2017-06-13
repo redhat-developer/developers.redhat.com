@@ -1,0 +1,23 @@
+ignores:
+  - code: 202
+  - code: 203
+  - code: 403
+  - code: 502
+  # This is not an error in real browsers.It is a known issue with PhantomJS https://github.com/ariya/phantomjs/issues/12750
+  - snippet: !ruby/regexp /https:\/\/f\.vimeocdn\.com\/.*/
+  - snippet: !ruby/regexp /ssl\.google-analytics\.com\/.*/
+  - snippet: !ruby/regexp /https:\/\/player\.vimeo\.com\/.*/
+  - snippet: !ruby/regexp /https:\/\/ssl\.google-analytics\.com\/.*/
+
+environments:
+  - http://developer-drupal.web.prod.ext.phx2.redhat.com
+  - https://developer-drupal.web.prod.ext.phx2.redhat.com
+  - https://developers.redhat.com
+  - http://developers.redhat.com
+
+max_page_retys: 5
+max_retrys: 5
+browser: phantomjs
+ignore_fragments: true
+phantomjs_threads: 20
+report: blinkr.html
