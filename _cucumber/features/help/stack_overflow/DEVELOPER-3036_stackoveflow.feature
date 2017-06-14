@@ -1,4 +1,3 @@
-@stubbed
 Feature: Stack Overflow DEVELOPER-3036
 
   Scenario: SO page should have a 'Filter by Product' section
