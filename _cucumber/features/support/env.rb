@@ -97,7 +97,8 @@ Before('@stubbed') do |scenario|
                        developers.stage.redhat.com redhat.sc.omtrdc.net s.ytimg.com dpm.demdex.net dpal-itmarketing.itos.redhat.com issues.jboss.org redhat.tt.omtrdc.net youtube.com
                        ad.atdmt.com ajax.googleapis.com b.scorecardresearch.com cdn.atlassbx.com cdn.sstatic.net clc.stackoverflow.com dt.adsafeprotected.com edge.quantserve.com engine.adzerk.net
                        fw.adsafeprotected.com i.stack.imgur.com pixel.quantserve.com sc.iasds01.com sig.atdmt.com ssum-sec.casalemedia.com stackoverflow.com static.adzerk.net google-analytics.co gravatar.com
-                       google-analytics.com gravatar.com ad.doubleclick.net i.ytimg.com www.facebook.com connect.facebook.net)
+                       google-analytics.com gravatar.com ad.doubleclick.net i.ytimg.com www.facebook.com connect.facebook.net https://scripts.demandbase.com/adobeanalytics/X4PVAXm1.min.js https://sentry.io:443/api/115436/store/?sentry_version=7&sentry_client=raven-js%2F3.15.0&sentry_key=cc00364690f241ffb2fcb39254d7f23f
+                       https://api.demandbase.com:443/api/v2/ip.json?key=b6b603b47ded9a3eff17c78423bbc773b9817cf6&callback=Dmdbase_CDC.callback)
       c.persist_cache = true
       c.proxy_host = $host_to_test
       feature_name = scenario.feature.name.gsub(' ', '_').gsub(/[^0-9A-Za-z_]/, '')

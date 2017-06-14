@@ -1,0 +1,245 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="rhdp-search-filter-group.html">
+<link rel="import" href="rhdp-search-filter-item.html">
+<!--<script src="../stickybits/dist/stickybits.min.js"></script>-->
+
+<dom-module id="rhdp-search-filters">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin-right: 2em;
+        font-family: Overpass;
+      }
+      .control {  width: 250px;  }
+      .title { background: #666; padding-left:1em; color: white; margin: 0 0 .5em 0; }
+      .cancel { display: none; }
+      .showBtn { 
+        display: none;
+        background: #ccc;
+        text-decoration: none;
+        border: 0;
+        height: 40px;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 9px 40px;
+        transition: background .2s ease-in 0s;
+        line-height: 1.2em;
+        cursor: pointer;
+        position: relative;
+        text-align: center;
+        color: #333; 
+        width: 100%;
+        }
+      
+      .active-type {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2em;
+      }
+      .active-type strong { flex: 0 1 auto; order: 1; }
+      .active-type div { flex: 1 1 auto; order: 2; list-style: none; }
+      .active-type a { flex: 0 1 auto; order: 3; }
+
+      #footer { display: none; }
+
+
+      @media only screen and (max-width: 768px) {
+        :host {
+          display: inline-block;
+          border: none;
+          margin: 0 0 1em 0;
+        }
+        .title { flex: 0 0 40px; order: 1; vertical-align: middle; }
+        .showBtn { display: block;
+            width: 150px;
+            padding: 9px 25px;
+            margin-left: 2em;
+            height: auto;
+          }
+        .control {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          padding-top: 51px;
+          background: rgba(0,0,0,.5);
+          border: none;
+          z-index: 1;
+          right: 100%;
+          position: absolute;
+          top: -60px;
+         }
+        .cancel { 
+          display: block; 
+          float: right; 
+          color: white; 
+          background: #999; 
+          border: 1px solid white;
+          font-size: 16px;
+          padding: 7px;
+          margin: 3px 3px 0 0;
+        } 
+        .modal {
+          transition: .5s ease-in-out;
+          transform: translateX(100%); 
+        }
+        .modal-hide {
+          transition: .5s ease-in-out;
+          transform: translateX(-100%);
+        }
+        .groups {
+          background: white;
+          flex: 1 0 100%; 
+          order: 1;
+          overflow: auto;
+        }
+        #footer { display: block; flex: 0 1 auto; height: 40px; order: 2; }
+      }
+
+    </style>
+    <template is="dom-if" if="{{_isActive()}}">
+      <div class="active-type">
+        <strong>Active Filters:</strong>
+        <div>
+        <template is="dom-repeat" items="{{filters.facets}}">
+          <template is="dom-repeat" items="{{item.items}}">
+            <template is="dom-if" if="{{item.active}}">
+              <rhdp-search-filter-item inline value="{{item.value}}" name="[[item.name]]" active="{{item.active}}"></rhdp-search-filter-item>
+            </template>
+          </template>
+        </template>
+        </div>
+        <a href="#" on-click="clearFilters">Clear Filters</a>
+      </div>
+    </template>
+    <template is="dom-if" if="{{!_isActive()}}">
+      <a class="showBtn" on-click="_setToggle">Show Filters</a>
+      <div class$="control [[modal]]" id="control">
+        <div class="title">[[title]] <a href="#" class="cancel" id="cancel" on-click="_setToggle">Cancel</a></div>
+        <div class="groups">
+          <template is="dom-repeat" items="{{filters.facets}}">
+            <rhdp-search-filter-group key="{{item.key}}" name="{{item.name}}" items="{{item.items}}"></rhdp-search-filter-group>
+          </template>
+        </div>
+        <div id="footer"><a href="#" on-click="clearFilters">Clear All</a> | <a href="#" on-click="_setToggle">Apply</a></div>
+      </div>
+    </template>
+  </template>
+
+  <script>
+    class RHDPSearchFilters extends Polymer.Element {
+      static get is() { return 'rhdp-search-filters'; }
+      connectedCallback() {
+        super.connectedCallback();
+        // stickybits(this.$.footer, { verticalPosition: 'bottom' });
+      }
+      ready() {
+        super.ready();
+        this.addEventListener('facetsGroupChange', e => this._setItems(e));
+      }
+      static get properties() {
+        return {
+          title: String,
+          filters: {
+            type: Object,
+            notify: true,
+            value: {
+              term:'', 
+              facets: [
+                { name: 'CONTENT TYPE', key: 'content_type', items: [] },
+                {
+                  name:'PRODUCT', 
+                  key: 'target_product', 
+                  items: [
+                    {name: 'JBoss Enterprise Application Platform', value: 'eap'},
+                    {name: 'JBoss Web Server', value: 'webserver'},
+                    {name: 'JBoss Data Grid', value: 'datagrid'},
+                    {name: 'JBoss Data Virtualization', value: 'datavirt'},
+                    {name: 'JBoss Fuse', value: 'fuse'},
+                    {name: 'JBoss A-MQ', value: 'amq'},
+                    {name: 'JBoss BRMS', value: 'brms'},
+                    {name: 'JBoss BPM Suite', value: 'bpmsuite'},
+                    {name: 'JBoss Developer Studio', value: 'devstudio'},
+                    {name: 'Red Hat Container Development Kit', value: 'cdk'},
+                    {name: 'Red Hat Developer Toolset', value: 'developertoolset'},
+                    {name: 'Red Hat Enterprise Linux', value: 'rhel'},
+                    {name: 'Red Hat Software Collections', value: 'softwarecollections'},
+                    {name: 'Red Hat Mobile Application Platform', value: 'mobileplatform'},
+                    {name: 'Red Hat OpenShift Container Platform', value: 'openshift'}
+                  ]
+                },
+                { name: 'TOPIC', key: 'topic', items: [] }
+              ]
+            }
+          },
+          toggle: {
+            type: Boolean,
+            value: false
+          },
+          type: {
+            type: String,
+            value: 'menu'
+          },
+          modal: {
+            type: String,
+            computed: '_showModal(toggle)'
+          }
+        };
+      }
+      _setToggle() {
+        this.toggle = !this.toggle;
+      }
+      _showModal(toggle) {
+        return toggle ? 'modal' : 'modal-hide';
+      }
+      clearFilters() {
+        var a = this._getActive(),
+            l = a.length;
+        for(var i=0; i < l; i++) {
+          this.set(a[i]+'.active', false);
+        } 
+        return false;
+      }
+      _isActive() {
+        return this.type == 'active';
+      }
+      _getActive() {
+        var actives = [];
+        var l = this.filters.facets.length;
+          for(var i=0; i < l; i++) {
+            var j = this.filters.facets[i].items.length;
+            for(var k=0; k < j; k++) {
+              if(this.filters.facets[i].items[k].active) {
+                actives.push('filters.facets.'+i+'.items.'+k);
+              }
+            } 
+          }
+        return actives;
+      }
+      _hasActive() {
+        //console.log(this._getActive());
+        return this._getActive().length > 0;
+      }
+      _setItems(e) {
+        if(e.detail && e.detail.key) {
+          var l = this.filters.facets.length;
+          for(var i=0; i < l; i++) {
+            if(this.filters.facets[i].key == e.detail.key) {
+              var j = this.filters.facets[i].items.length;
+              for(var k=0; k < j; k++) {
+                if(e.detail.facets.indexOf(this.filters.facets[i].items[k].value) > -1 ) {
+                  this.set('filters.facets.'+i+'.items.'+k+'.active', true);
+                } else {
+                  this.set('filters.facets.'+i+'.items.'+k+'.active', false);
+                }
+              }
+            } 
+          }
+        }
+      }
+    }
+
+    window.customElements.define(RHDPSearchFilters.is, RHDPSearchFilters);
+  </script>
+</dom-module>
