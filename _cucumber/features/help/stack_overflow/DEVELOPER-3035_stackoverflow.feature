@@ -66,7 +66,7 @@ Feature: Stack Overflow - DEVELOPER-3035
       | First    |
       | Previous |
 
-  @stubbed_only
+  @ignore
   Scenario: When there are only five pages of answers - pagination should not be displayed with ellipsis
     Given I am on the Stack Overflow page
     Then I should see a list of 10 results
@@ -78,12 +78,12 @@ Feature: Stack Overflow - DEVELOPER-3035
       | First    |
       | Previous |
 
-  @stubbed_only
+  @ignore
   Scenario: When there are only one page of answers - no pagination should be dispalyed
     Given I am on the Stack Overflow page
     Then I should not see pagination with page numbers
 
-  @stubbed_only
+  @ignore
   Scenario: When there are only two pages of answers -  I should see pagination with two pages
     Given I am on the Stack Overflow page
     Then I should see pagination with "2" pages
