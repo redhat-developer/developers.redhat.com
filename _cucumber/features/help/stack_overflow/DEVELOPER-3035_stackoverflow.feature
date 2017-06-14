@@ -1,5 +1,4 @@
 @stubbed
-  @wip
 Feature: Stack Overflow - DEVELOPER-3035
 
   Scenario: Results should be displayed with Votes, answers and views section
