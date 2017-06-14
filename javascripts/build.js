@@ -1239,7 +1239,7 @@ var RHDPSearchQuery = (function (_super) {
             for (var j = 0; j < facets[i].items.length; j++) {
                 if (facets[i].items[j].active) {
                     while (facets[i].items[j].value.length) {
-                        filterArr.push(facets[i].items[j].pop());
+                        filterArr.push(facets[i].items[j].value.pop());
                     }
                 }
             }
