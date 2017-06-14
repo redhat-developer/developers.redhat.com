@@ -79,6 +79,7 @@ var globs = {
         'javascripts/products.js',
         'javascripts/jboss-docker.js',
         'javascripts/verify-member.js',
+        'javascripts/nav-highlight.js',
         'javascripts/build.js'
     ],
     "styles": ['stylesheets/*.scss']

@@ -1131,7 +1131,10 @@ var RHDPSearchQuery = (function (_super) {
                     results: this.results,
                     term: this.term,
                     from: this.from,
-                    filters: this.filters
+                    filterStr: this.filterString(this.filters.facets),
+                    filters: this.filters,
+                    sort: this.sort,
+                    limit: this.limit
                 },
                 bubbles: true
             }));
@@ -1229,6 +1232,19 @@ var RHDPSearchQuery = (function (_super) {
             typeString += items[i].active ? "&" + txt + "=" + t : '';
         }
         return typeString;
+    };
+    RHDPSearchQuery.prototype.filterString = function (facets) {
+        var len = facets.length, filterArr = [];
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < facets[i].items.length; j++) {
+                if (facets[i].items[j].active) {
+                    while (facets[i].items[j].value.length) {
+                        filterArr.push(facets[i].items[j].pop());
+                    }
+                }
+            }
+        }
+        return filterArr.join(', ');
     };
     RHDPSearchQuery.prototype.connectedCallback = function () {
     };

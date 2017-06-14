@@ -235,6 +235,31 @@
         sendCustomEvent('socialLinkEvent', ddSocialLinkEvent); 
       }
 
+      document.addEventListener('search-complete', function(e) {
+        var ddSearchEvent = {
+            eventInfo: {
+              eventName: 'internal search',
+              eventAction: 'search',
+              listing: {
+                browseFilter:  e.detail.filterStr || "internal search",
+                query: e.detail.term,
+                queryMethod: "system generated",
+                resultCount: e.detail.results.hits.total,
+                resultsShown: e.detail.limit + e.detail.from,
+                searchType: digitalData.page.category.primaryCategory || "",
+                refinement: []
+              },
+              timeStamp: new Date(),
+              processed: {
+                adobeAnalytics: false
+              }
+            }
+          };
+        digitalData.event.push(ddSearchEvent);
+        digitalData.page.listing = ddSearchEvent.eventInfo.listing;
+        sendCustomEvent('ajaxSearch');
+      });
+
     } )( window, document, digitalData );
     {% endif %}
   </script>
@@ -249,9 +274,6 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>{{ head_title|safe_join(' | ')}}</title>
   <css-placeholder token="{{ placeholder_token|raw }}">
-  <!--[if lt IE 9]>
-  <script src="//html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-  <![endif]-->
   {% if (rhd_sentry_track) %}
   <script src="{{ rhd_sentry_script }}"></script>
   <script>Raven.config('{{ rhd_sentry_code }}', { environment: '{{rhd_environment}}', whitelistUrls: [/redhat\.com/] }).install()</script>
@@ -482,48 +504,6 @@
 
   <script type="text/javascript" src="https://issues.jboss.org/s/36fcee7e2c47b82293b8ffd249c9132e-T/-bdgec2/72005/38e4585ff05eb2dd95a30399b8504050/2.0.22/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-UK&collectorId=03f305bd">
   </script>
-
-  <script type="text/javascript">
-   jQuery(function() {
-
-      var href = window.location.href.split('#')[0];
-
-      var topicPages = ['/containers','/devops','/enterprise-java','/iot','/microservices','/mobile','/web-and-api-development','/dotnet'];
-      var communityPages = ['/blog','/events','/projects','/community/contributor'];
-      var helpPages = ['/stack-overflow','/forums','/resources'];
-
-      tLength = topicPages.length;
-      cLength = communityPages.length;
-      hLength = helpPages.length;
-
-      while(tLength--) {
-         if (href.indexOf(topicPages[tLength])!=-1) {
-            jQuery('.sub-nav-topics').addClass('active');
-         }
-      }
-      while(cLength--) {
-         if (href.indexOf(communityPages[cLength])!=-1) {
-            jQuery('.sub-nav-community').addClass('active');
-         }
-      }
-
-      while(hLength--) {
-         if (href.indexOf(helpPages[hLength])!=-1) {
-            jQuery('.sub-nav-help').addClass('active');
-         }
-      }
-
-      if (href.indexOf('/products') != -1){
-        jQuery('.sub-nav-products').addClass('active');
-      }
-
-      if (href.indexOf('/downloads') != -1){
-        jQuery('.sub-nav-downloads').addClass('active');
-      }
-
-   });
-  </script>
-
   {# This MUST be at the bottom of the page #}
   {% if (rhd_dtm_code) %}
   <script type="text/javascript">

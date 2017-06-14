@@ -1020,7 +1020,6 @@ class RHDPSearchQuery extends HTMLElement {
     _sort = 'relevance';
     _results;
     _term;
-    //_url = 'http://dcp.stage.jboss.org/v2/rest/search';
     _url;
     params;
 
@@ -1072,7 +1071,10 @@ class RHDPSearchQuery extends HTMLElement {
                 results: this.results,
                 term: this.term,
                 from: this.from,
-                filters: this.filters
+                filterStr: this.filterString(this.filters.facets),
+                filters: this.filters,
+                sort: this.sort,
+                limit: this.limit
             }, 
             bubbles: true 
         }));
@@ -1155,6 +1157,21 @@ class RHDPSearchQuery extends HTMLElement {
             typeString += items[i].active ? `&${txt}=${t}` : '';
         }
         return typeString;
+    }
+
+    filterString(facets) {
+        var len = facets.length,
+            filterArr = [];
+        for(let i=0; i < len; i++) {
+            for(let j=0; j < facets[i].items.length; j++) {
+                if(facets[i].items[j].active) {
+                    while(facets[i].items[j].value.length) {
+                        filterArr.push(facets[i].items[j].pop());
+                    }
+                }
+            }
+        }
+        return filterArr.join(', ');
     }
 
     urlTemplate = (strings, url, term, from, limit, sort, types, tags, sys_types) => {
