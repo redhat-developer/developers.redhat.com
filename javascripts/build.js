@@ -1238,8 +1238,10 @@ var RHDPSearchQuery = (function (_super) {
         for (var i = 0; i < len; i++) {
             for (var j = 0; j < facets[i].items.length; j++) {
                 if (facets[i].items[j].active) {
-                    while (facets[i].items[j].value.length) {
-                        filterArr.push(facets[i].items[j].value.pop());
+                    var idx = 0;
+                    while (idx < facets[i].items[j].value.length) {
+                        filterArr.push(facets[i].items[j].value[idx]);
+                        idx = idx + 1;
                     }
                 }
             }
