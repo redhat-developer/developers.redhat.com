@@ -678,7 +678,6 @@ class RHDPSearchResults extends HTMLElement {
 
         this.loadMore.addEventListener('click', e => {
             e.preventDefault();
-            console.log(this.last);
             this.dispatchEvent(new CustomEvent('load-more', {
                 detail: {
                     from: this.last
@@ -714,13 +713,13 @@ class RHDPSearchResults extends HTMLElement {
     }
 
     addResults(results) {
-        if (this.results && this.results.hits && this.results.hits.hits) {
-            let hits = this.results.hits.hits;
+        if (results && results.hits && results.hits.hits) {
+            let hits = results.hits.hits;
             let l = hits.length;
             for( let i = 0; i < l; i++ ) {
                 this.addResult(hits[i]);
             }
-            if (l > 0 && this.last+1 < this.results.hits.total) {
+            if (l > 0 && this.last+1 < results.hits.total) {
                 this.appendChild(this.loadMore);
                 this.last = this.last + l - 1;
             } else if (this.querySelector('.moreBtn')) {

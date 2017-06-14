@@ -702,7 +702,6 @@ var RHDPSearchResults = (function (_super) {
         this.loadMore.innerText = 'Load More';
         this.loadMore.addEventListener('click', function (e) {
             e.preventDefault();
-            console.log(_this.last);
             _this.dispatchEvent(new CustomEvent('load-more', {
                 detail: {
                     from: _this.last
@@ -738,13 +737,13 @@ var RHDPSearchResults = (function (_super) {
         }
     };
     RHDPSearchResults.prototype.addResults = function (results) {
-        if (this.results && this.results.hits && this.results.hits.hits) {
-            var hits = this.results.hits.hits;
+        if (results && results.hits && results.hits.hits) {
+            var hits = results.hits.hits;
             var l = hits.length;
             for (var i = 0; i < l; i++) {
                 this.addResult(hits[i]);
             }
-            if (l > 0 && this.last + 1 < this.results.hits.total) {
+            if (l > 0 && this.last + 1 < results.hits.total) {
                 this.appendChild(this.loadMore);
                 this.last = this.last + l - 1;
             }
