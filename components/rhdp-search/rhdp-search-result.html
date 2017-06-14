@@ -1,0 +1,140 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="rhdp-search-result">
+  <template>
+    <style>
+        :host {
+            font-family: "Overpass","Open Sans",Helvetica,sans-serif;
+        }
+        h4 {
+            font-weight: 600;
+            font-style: normal;
+            font-size: 18px;
+            line-height: 1.4;
+            color: #06c;
+            cursor: pointer;
+            margin: 0;
+            font-family: "Overpass","Open Sans",Helvetica,sans-serif;
+        }
+
+        p { margin: 0; 
+            color: #424242;
+            font-family: "Overpass","Open Sans",Helvetica,sans-serif; 
+            }
+
+        .caps {
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 24px;
+            -webkit-font-smoothing: antialiased;
+        }
+        .result-description {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 45px;
+            margin-bottom: 50px;
+        }
+        .hlt { font-weight: 600; }
+
+    </style>
+    <div class="result result-search" >
+        <h4>[[title]]</h4>
+        <p class="result-info">
+            <span class="caps">[[kind]]</span>
+            <span>[[created]]</span>
+        </p>
+        <p class="result-description">[[description]]</p>
+    </div>
+  </template>
+
+  <script>
+    class RHDPSearchResult extends Polymer.Element {
+      static get is() { return 'rhdp-search-result'; }
+      static get properties() {
+        return {
+          result: Object,
+          title: {
+              type: String,
+              computed: 'computeTitle(result)'
+          },
+          kind: {
+              type: String,
+              computed: 'computeKind(result)'
+          },
+          created: {
+              type: String,
+              computed: 'computeCreated(result)'
+          },
+          description: {
+              type: String,
+              computed: 'computeDescription(result)'
+          }
+        };
+      }
+      computeTitle(result) { 
+          var title = '';
+          if(result.highlight && result.highlight.sys_title) {
+              title = result.highlight.sys_title[0];
+          } else {
+              title = result.fields.sys_title[0];
+          }
+          return title; 
+        }
+      computeKind(result) {
+        var kind = result.fields.sys_type || "webpage",
+            map = {
+                video: 'Video',
+                blogpost: 'Blog Post',
+                book: 'Book',
+                article: 'Article',
+                solution: 'Article',
+                demo: 'Demo',
+                event: 'Event',
+                quickstart: 'Quickstart',
+                quickstart_early_access: 'Demo',
+                forumthread: 'Forum Thread',
+                stackoverflow_thread: 'Stack Overflow',
+                webpage: 'Webpage',
+
+                jbossdeveloper_quickstart: 'Quickstart',
+                jbossdeveloper_demo: 'Demo',
+                jbossdeveloper_bom: 'Bom',
+                jbossdeveloper_archetype: 'Archetype',
+                jbossdeveloper_example: 'Demo',
+                jbossdeveloper_vimeo: 'Video',
+                jbossdeveloper_youtube: 'Video',
+                jbossdeveloper_book: 'Book',
+                jbossdeveloper_event: 'Event',
+                rht_knowledgebase_article: 'Article',
+                rht_knowledgebase_solution: 'Article',
+                stackoverflow_question: 'Stack Overflow',
+                jbossorg_sbs_forum: 'Forum Thread',
+                jbossorg_blog: 'Blog Post',
+                rht_website: 'Website',
+                rht_apidocs: 'Docs & APIs'
+            };
+        return map[kind];
+       }
+       computeCreated(result) {
+        var options = { month: 'long', day: 'numeric', year: 'numeric' }
+        var created = result.fields.sys_created ? '- ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created[0])) : "";
+        return created;
+       }
+       computeDescription(result) {
+           var description = '';
+           if(result.highlight && result.highlight.sys_description) {
+               description = result.highlight.sys_description[0];
+           } else if( result.highlight && result.highlight.sys_content_plaintext) {
+               description = result.highlight.sys_content_plaintext[0];               
+           } else {
+               description = result.fields.sys_description[0];
+           }
+
+           return description;
+       }
+    }
+
+    window.customElements.define(RHDPSearchResult.is, RHDPSearchResult);
+  </script>
+</dom-module>

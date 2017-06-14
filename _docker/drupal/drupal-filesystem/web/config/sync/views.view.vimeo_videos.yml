@@ -758,10 +758,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: datetime_default
+          type: datetime_custom
           settings:
-            timezone_override: ''
-            format_type: medium
+            timezone_override: UTC
+            date_format: Y-m-d
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1043,7 +1043,7 @@ display:
               raw_output: true
             field_video_publish_date:
               alias: ''
-              raw_output: true
+              raw_output: false
             nid:
               alias: ''
               raw_output: false

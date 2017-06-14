@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "none",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": false,
+        "lib":[
+          "dom", "es5", "es6"
+        ],
+        "outFile": "javascripts/build.js",
+        "outDir": "javascripts"
+    },
+    "include": [
+        "typescript/inline*/rhdp-*.ts"
+    ]
+}
