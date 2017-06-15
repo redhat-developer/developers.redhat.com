@@ -3,7 +3,7 @@ app.sso = function () {
     function updateUser() {
         var usr = digitalData.user[0].profile[0].profileInfo;
 
-        if (window.location.href.indexOf('/login') >= 0) {
+        if (window.location.href.indexOf('/login') >= 0 && window.location.href.indexOf('/user') < 0) {
             keycloak.login({"redirectUri": app.ssoConfig.logout_url});
         }
 
