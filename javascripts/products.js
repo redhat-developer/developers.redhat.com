@@ -22,5 +22,9 @@
         });
     } else if (getPrimaryCategory() === 'downloads') {
         downloadHTML.insertBefore('.most-popular-downloads');
+
+        $('#download-alert .close').click(function() {
+            $('#download-alert').addClass('hide');
+        });
     }
 }())
