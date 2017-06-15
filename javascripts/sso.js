@@ -4,7 +4,7 @@ app.sso = function () {
         var usr = digitalData.user[0].profile[0].profileInfo;
 
         if (window.location.href.indexOf('/login') >= 0) {
-            keycloak.login();
+            keycloak.login({"redirectUri": app.ssoConfig.logout_url});
         }
 
         if (keycloak.authenticated) {
