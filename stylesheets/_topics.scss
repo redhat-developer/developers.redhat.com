@@ -262,6 +262,7 @@
       max-height: 43px;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      margin-bottom: 0;
     }
     .promo-tags .promo-tags-label, .promo-tags ul li, .promo-tags .field__item {
       color: #424242;
@@ -334,6 +335,18 @@
   }
 }
 .white-card .field, .white-card .field__item { display: block; }
+
+.white-card .field__item .text-formatted{
+  font-size: 1em;
+  line-height: 1.4;
+  color: #424242;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-height: 86px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
 
 ul.topic-resources.topic-resources-list{
   list-style: none;
