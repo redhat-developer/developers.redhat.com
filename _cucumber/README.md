@@ -372,7 +372,7 @@ Local fixtures can be found within `_cucumber/lib/fixtures/req_cache/feature_nam
 
 ### Cucumber profiles
 
-It is possible to execute our tests using different profiles. The three main profiles are desktop, mobile, and kc_dm.
+It is possible to execute our tests using different profiles. The two profiles are desktop and mobile.
 
 Profiles are defined within a cucumber.yml file, which is located within `_cucumber/cucumber.yml`
 
@@ -411,21 +411,6 @@ If you wish to execute the mobile view tests, you must use the mobile profile wh
     
 Mobile profiles are executed in parallel using a iphone 6 browser by default. All scenarios that are tagged with @desktop will be ignored. 
 
-#### KC DM profile
-
-Login, Register, and Download tests can be executed using the following profile:
-
-    kc_dm:
-      -p parallel
-      --tags @kc,@dm
-      
-Keycloak and Download Manager tests are executed in parallel, and only executes tests that are tagged with `@kc` and `@dm`.
-    
-To run keycloak tests:
-
-    ruby _cucumber/run_tests.rb --host-to-test=dev --profile=kc_dm  
-    ruby _cucumber/run_tests.rb --use-docker --host-to-test=dev --profile=kc_dm 
-   
 ### Switching Browser or device
 
 By default the tests are executed using the Chrome browser, however it is possible to switch drivers.

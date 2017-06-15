@@ -4,7 +4,7 @@ Feature: Product overview page
   As generic site visitor,
   I want to be able to select a product and view more information on a product overview page.
 
-  @products @smoke
+  @products
   Scenario Outline: Side nav on products overview page
     Given I am on the Product Overview page for each <product id>
     Then I should see a side-nav with the following options:
