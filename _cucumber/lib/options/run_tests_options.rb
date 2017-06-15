@@ -11,8 +11,8 @@ class RunTestsOptions
 
   def initialize(cucumber_dir)
     @cucumber_dir = cucumber_dir
-    @supported_drivers = %w(chrome firefox phantomjs)
-    @supported_profiles = %w(desktop mobile kc_dm)
+    @supported_drivers = %w(chrome firefox)
+    @supported_profiles = %w(desktop mobile)
     @logger = DefaultLogger.logger
   end
 
@@ -41,10 +41,6 @@ class RunTestsOptions
       opts.on('--driver DRIVER', String, 'The driver to use when running the tests. [default=chrome]') do |driver|
         check_supported_driver(driver)
         test_configuration[:driver] = driver
-      end
-
-      opts.on('--stubbed-data STUBBED_DATA', String, 'The option to use stubbed data or not. [default=true]') do |stubbed_data|
-        test_configuration[:stubbed_data] = stubbed_data
       end
 
       opts.on('--use-browserstack', String, 'Run the acceptance tests using Browserstack') do
@@ -83,7 +79,6 @@ class RunTestsOptions
     #
     bind_environment_variable('HOST_TO_TEST', test_configuration[:host_to_test])
     bind_environment_variable('CUCUMBER_TAGS', test_configuration[:cucumber_tags])
-    bind_environment_variable('STUBBED_DATA', test_configuration[:stubbed_data])
 
     bind_profile_environment_variables(test_configuration[:profile])
     bind_driver_environment_variables(test_configuration[:docker], test_configuration[:driver], test_configuration)
@@ -114,10 +109,6 @@ class RunTestsOptions
       run_tests_command += " RHD_TEST_PROFILE=#{ENV['RHD_TEST_PROFILE']}"
     end
 
-    if ENV['STUBBED_DATA']
-      run_tests_command += " STUBBED_DATA=#{ENV['STUBBED_DATA']}"
-    end
-
     if ENV['RHD_BS_USERNAME']
       run_tests_command += " RHD_BS_USERNAME=#{ENV['RHD_BS_USERNAME']}"
     end
@@ -141,13 +132,10 @@ class RunTestsOptions
     bind_environment_variable('github_status_sha1', github_sha_1)
     github_status_context = nil
 
-    case test_profile
-      when 'desktop'
-        github_status_context = 'Drupal:FE Acceptance Tests'
-      when 'mobile'
-        github_status_context = 'Drupal:Mobile FE Acceptance Tests'
-      when 'kc_dm'
-        github_status_context = 'Drupal:FE KC/DM Acceptance Tests'
+    if test_profile == 'desktop'
+      github_status_context = 'Drupal:FE Acceptance Tests'
+    else
+      github_status_context = 'Drupal:Mobile FE Acceptance Tests'
     end
 
     bind_environment_variable('github_status_context', github_status_context)

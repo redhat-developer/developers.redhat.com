@@ -17,7 +17,7 @@ class JenkinsTestRunner
   #
   def run_tests
     tests_passed = true
-    %w(desktop mobile kc_dm).each do |profile|
+    %w(desktop mobile).each do |profile|
       tests_passed &= execute_test(profile)
     end
     tests_passed
@@ -55,14 +55,11 @@ class JenkinsTestRunner
   #
   def build_run_tests_command(profile)
     command = "cd #{@control_script_directory} && bundle exec ruby ./run_tests.rb --use-docker --profile=#{profile} --host-to-test=#{@host_to_test}"
-
     github_sha1 = read_env_variable('ghprbActualCommit')
     cucumber_tags = read_env_variable('CUCUMBER_TAGS')
-    stubbed_data  = read_env_variable('STUBBED_DATA')
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += " --cucumber-tags=#{cucumber_tags}" if cucumber_tags
     command += ' --driver=iphone_6' if profile == 'mobile'
-    command += " --stubbed-data=#{stubbed_data}" unless profile == 'kc_dm' || stubbed_data.nil?
     command
   end
 end

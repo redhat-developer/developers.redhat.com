@@ -61,21 +61,7 @@ slow:
 desktop:
   -p parallel
   -t ~@mobile
-  -t ~@dm
-  -t ~@kc
 
 mobile:
   -p parallel
-  -t ~@dm
-  -t ~@kc
   -t ~@desktop RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] || 'iphone_6' %>
-
-kc_dm:
-  -p parallel
-  --tags @kc,@dm
-
-kc_dm_mobile:
-  -p parallel
-  -t ~@desktop RHD_JS_DRIVER=<%= ENV['RHD_JS_DRIVER'] || 'iphone_6' %>
-  -t @kc
-  -t ~@dm

@@ -2,7 +2,7 @@
 @prod
 Feature: Sanity checks of production
 
-  Scenario Outline: Login/Register page performance
+  Scenario Outline: Page load performance
     Given I am on the <page> page
     Then the page should load within "6" seconds
 

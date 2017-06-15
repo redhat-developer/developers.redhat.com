@@ -1,4 +1,3 @@
-@smoke
 Feature: White Card Count
 
   @desktop

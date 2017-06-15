@@ -3,11 +3,11 @@ class Browsers
 
   attr_reader :browser
 
-  def initialize(browser_name, device, user_agent)
-    @browser = setup(browser_name, device, user_agent)
+  def initialize(browser_name, device)
+    @browser = setup(browser_name, device)
   end
 
-  def setup(browser_name, device, user_agent)
+  def setup(browser_name, device)
     if browser_name.include?('bs_')
       fail('To use browserstack you must set the RHD_BS_USERNAME & RHD_BS_AUTHKEY env variables in your path') if ENV['RHD_BS_USERNAME'].nil? || ENV['RHD_BS_AUTHKEY'].nil?
       browser = browserstack(browser_name)
@@ -17,31 +17,11 @@ class Browsers
           browser = chrome(device, ENV['RHD_REMOTE_DRIVER'])
         when 'firefox'
           browser = firefox
-        when 'phantomjs'
-          browser = phantomjs(user_agent)
         else
           browser = chrome(device, ENV['RHD_REMOTE_DRIVER'])
       end
     end
     browser
-  end
-
-  def phantomjs(user_agent)
-    switches = %w(--ignore-ssl-errors=true)
-    client = Selenium::WebDriver::Remote::Http::Default.new
-    client.open_timeout = 100 # Browser launch can take a while
-    if user_agent.nil?
-      chrome_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
-      capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs('phantomjs.page.settings.userAgent' => chrome_agent)
-      browser = Billy::Browsers::Watir.new :phantomjs, desired_capabilities: capabilities, args: switches, http_client: client
-      browser.window.resize_to(1920, 1080)
-      browser
-    else
-      ENV['DEVICE'] = user_agent
-      capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs('phantomjs.page.settings.userAgent' => user_agent)
-      browser = Billy::Browsers::Watir.new :phantomjs, desired_capabilities: capabilities, args: switches, http_client: client
-      browser
-    end
   end
 
   def chrome(device, remote = nil)
