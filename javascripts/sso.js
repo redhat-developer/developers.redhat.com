@@ -3,11 +3,15 @@ app.sso = function () {
     function updateUser() {
         var usr = digitalData.user[0].profile[0].profileInfo;
 
+        if (window.location.href.indexOf('/login') >= 0) {
+            keycloak.login();
+        }
+
         if (keycloak.authenticated) {
             keycloak.updateToken().success(function () {
                 saveTokens();
 
-                var logged_in_user = keycloak.tokenParsed['name'];
+                var logged_in_user = keycloak.tokenParsed.name;
 
                 // show username instead of full name if full name is empty or blank (only space character)
                 if (logged_in_user.replace(/\s/g, "").length < 1) {
@@ -22,16 +26,16 @@ app.sso = function () {
                 $('section.contributors-banner, .shown-after-login, li.logged-in').show();
                 $('li.login a, a.keycloak-url').attr("href", keycloak.createAccountUrl())
                 // once the promise comes back, listen for a click on logout
-                $('a.logout').on('click',function(e) {
+                $('a.logout').on('click', function(e) {
                     e.preventDefault();
-                    keycloak.logout({"redirectUri":app.ssoConfig.logout_url});
+                    keycloak.logout({"redirectUri": app.ssoConfig.logout_url});
                 });
 
                 usr.loggedIn = true;
 
-                usr.keyCloakID = keycloak.tokenParsed['id'];
-                usr.daysSinceRegistration = daysDiff(Date.now(), keycloak.tokenParsed['createdTimestamp']);
-                
+                usr.keyCloakID = keycloak.tokenParsed.id;
+                usr.daysSinceRegistration = daysDiff(Date.now(), keycloak.tokenParsed.createdTimestamp);
+
                 if (typeof Object.keys == "function") {
                     usr.socialAccountsLinked = Object.keys(keycloak.tokenParsed['user-social-links'])
                 } else {
@@ -45,13 +49,13 @@ app.sso = function () {
             $('li.login, section.register-banner, .hidden-after-login').show();
             $('li.logged-in, section.contributors-banner, .shown-after-login, li.logged-in').hide();
             $('li.logged-in').hide();
-            $('li.login a').on('click',function(e){
+            $('li.login a').on('click', function(e){
                 e.preventDefault();
                 keycloak.login();
             });
-            $('li.register a, a.keycloak-url').on('click',function(e){
+            $('li.register a, a.keycloak-url').on('click', function(e){
                 e.preventDefault();
-                keycloak.login({ action : 'register', redirectUri : app.ssoConfig.confirmation });
+                keycloak.login({action: 'register', redirectUri: app.ssoConfig.confirmation});
             });
         }
 
@@ -84,7 +88,7 @@ app.sso = function () {
         digitalData.event = digitalData.event || [];
         digitalData.event.push(ddUserAuthEvent);
         //Update digitalData.page.listing objects
-        digitalData.user = digitalData.user || [{ profile: [{ profileInfo: {} }] }];
+        digitalData.user = digitalData.user || [{profile: [{profileInfo: {}}]}];
         digitalData.user[0].profile[0].profileInfo = usr;
         //Create and dispatch an event trigger using the predefined function
         sendCustomEvent('ajaxAuthEvent');
@@ -152,6 +156,7 @@ app.sso = function () {
         clientId: 'web'
     });
     app.keycloak = keycloak;
+
     var tokens = loadTokens();
     var init = {onLoad: 'check-sso', checkLoginIframeInterval: 10};
     if (tokens) {
@@ -169,7 +174,7 @@ app.sso = function () {
         if ($('.downloadthankyou').length && app.termsAndConditions) {
             app.termsAndConditions.download();
         }
-        
+
     }).error(function () {
         updateUser();
     });
@@ -180,16 +185,16 @@ app.sso = function () {
 function storageAvailable(type) {
     try {
         var storage = window[type],
-        x = '__storage_test__';
+            x = '__storage_test__';
         storage.setItem(x, x);
         storage.removeItem(x);
         return true;
     }
-    catch(e) {
+    catch (e) {
         return false;
     }
 }
- 
+
 
 // Call app.sso() straight away, the call is slow, and enough of the DOM is loaded by this point anyway
 app.sso();
