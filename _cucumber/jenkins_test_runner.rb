@@ -17,7 +17,7 @@ class JenkinsTestRunner
   #
   def run_tests
     tests_passed = true
-    %w[desktop mobile].each do |profile|
+    %w(desktop mobile).each do |profile|
       tests_passed &= execute_test(profile)
     end
     tests_passed

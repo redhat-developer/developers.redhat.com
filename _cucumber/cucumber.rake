@@ -1,7 +1,7 @@
 require 'fileutils'
 require_relative 'test_runner'
 
-task features: [:rubocop, :_features, :json_merge, :report_builder]
+task features: %I[rubocop _features json_merge report_builder]
 
 task :_features do
   if ENV['RHD_TEST_PROFILE']
@@ -64,7 +64,7 @@ task :rubocop do
   test_runner.code_analyzer
 end
 
-task wip: [:rubocop, :_wip]
+task wip: %I[rubocop _wip]
 
 task :_wip do
   test_runner = TestRunner.new

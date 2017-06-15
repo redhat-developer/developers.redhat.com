@@ -3,7 +3,7 @@ class Browsers
 
   attr_reader :browser
 
-  def initialize(browser_name, device,)
+  def initialize(browser_name, device)
     @browser = setup(browser_name, device)
   end
 

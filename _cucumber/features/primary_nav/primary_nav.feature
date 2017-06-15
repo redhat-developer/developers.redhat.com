@@ -1,6 +1,5 @@
 Feature: Site navigation menu
 
-  @smoke
   Scenario Outline: Search field is visible within the site header.
     Given I am on the <page> page
     Then the search field should be displayed within the site header
@@ -20,7 +19,7 @@ Feature: Site navigation menu
     When I click on the search button
     Then nothing will happen and no search will be initiated
 
-  @desktop @smoke
+  @desktop
   Scenario: Primary navigation menu is visible
     Given I am on the Home page
     Then I should see a primary nav bar with the following tabs:
@@ -41,7 +40,7 @@ Feature: Site navigation menu
       | Help         |
       | Downloads    |
 
-  @desktop @smoke
+  @desktop
   Scenario: Hovering over the TOPICS menu should display additional sub-menu with options
     Given I am on the Home page
     When I click on the Topics menu item
@@ -55,7 +54,7 @@ Feature: Site navigation menu
       | Web and API Development |
       | .NET                    |
 
-  @desktop @smoke
+  @desktop
   Scenario: TOPICS sub-menu items should link to retrospective pages
     Given I am on the Home page
     When I click on the Topics menu item
@@ -83,7 +82,7 @@ Feature: Site navigation menu
       | .NET                    |
       | Internet of Things      |
 
-  @products @desktop @smoke
+  @products @desktop
   Scenario: Hovering over the TECHNOLOGIES menu should display additional sub-menu with available products
     Given I am on the Home page
     When I click on the Technologies menu item
@@ -110,7 +109,7 @@ Feature: Site navigation menu
       | DEVELOPER TOOLS                        |
       | RUNTIMES                               |
 
-  @products @desktop @smoke
+  @products @desktop
   Scenario: TECHNOLOGIES sub-menu headings should link to retrospective section of the technologies page
     Given I am on the Home page
     When I click on the Technologies menu item
@@ -129,7 +128,7 @@ Feature: Site navigation menu
       | DEVELOPER TOOLS                        |
       | RUNTIMES                               |
 
-  @desktop @smoke
+  @desktop
   Scenario: Hovering over the COMMUNITIES menu should display additional sub-menu with options
     Given I am on the Home page
     When  I click on the Community menu item
@@ -140,7 +139,7 @@ Feature: Site navigation menu
       | Open Source Communities | Community Projects that Red Hat participates in                 |
       | Content Contributors    | Share your knowledge. Contribute content to Red Hat Developers. |
 
-  @products @desktop @smoke
+  @products @desktop
   Scenario: COMMUNITIES sub-menu items should link to retrospective pages
     Given I am on the Home page
     When  I click on the Community menu item
@@ -161,7 +160,7 @@ Feature: Site navigation menu
       | Open Source Communities |
       | Content Contributors    |
 
-  @desktop @smoke
+  @desktop
   Scenario: Hovering over the HELP menu should display additional sub-menu with options
     Given I am on the Home page
     When  I click on the Help menu item
@@ -171,7 +170,7 @@ Feature: Site navigation menu
       | Forums             | We've extended our popular JBoss.org forums to cover our entire Red Hat portfolio for you.          |
       | Stack Overflow Q&A | You already use Stack Overflow, so we'll help you use it to find your best answers.                 |
 
-  @products @desktop @smoke
+  @products @desktop
   Scenario: HELP sub-menu items should link to retrospective pages
     Given I am on the Home page
     When I click on the Help menu item
@@ -190,27 +189,27 @@ Feature: Site navigation menu
       | Forums             |
       | Stack Overflow Q&A |
 
-  @kc @logout
-  Scenario: Log Out link should only be visible when user is logged-in
-    Given I am a RHD registered site visitor
-    And I am on the Login page
-    When I log in with a valid password
-    Then I should see the Log Out link
-    And I click the Logout link
-    Then I should not see the Log Out link
-
-  @kc @logout
-  Scenario: Register and Login links should only be visible when user is not logged-in
-    Given I am a RHD registered site visitor
-    And I am on the Login page
-    When I log in with a valid password
-    And I click the Logout link
-    Then I should see the Login and Register links
-
-  # backend no yet ready for this scenario
-  @later @kc
-  Scenario: RHD registered user with no first and last name on record should see username n the site header 
-    Given I am an RHD registered user with no first and last name on record
-    When I log in with a valid username
-    Then I should be logged in   
-    And I should see my username in the site header 
+#  @kc @logout
+#  Scenario: Log Out link should only be visible when user is logged-in
+#    Given I am a RHD registered site visitor
+#    And I am on the Login page
+#    When I log in with a valid password
+#    Then I should see the Log Out link
+#    And I click the Logout link
+#    Then I should not see the Log Out link
+#
+#  @kc @logout
+#  Scenario: Register and Login links should only be visible when user is not logged-in
+#    Given I am a RHD registered site visitor
+#    And I am on the Login page
+#    When I log in with a valid password
+#    And I click the Logout link
+#    Then I should see the Login and Register links
+#
+#  # backend no yet ready for this scenario
+#  @later @kc
+#  Scenario: RHD registered user with no first and last name on record should see username n the site header
+#    Given I am an RHD registered user with no first and last name on record
+#    When I log in with a valid username
+#    Then I should be logged in
+#    And I should see my username in the site header
