@@ -333,11 +333,11 @@
     margin-bottom: 8px;
   }
 }
+.white-card .field, .white-card .field__item { display: block; }
+
 ul.topic-resources.topic-resources-list{
   list-style: none;
   padding-left: 10px;
-  max-height: 691px;
-  overflow: hidden;
   &.loading {
     background:cdn("../images/icons/ajax-loader.gif") center 80px no-repeat;
     min-height:250px;
@@ -392,11 +392,12 @@ ul.topic-resources.topic-resources-list{
       color: $white;
     }
   }
+  // Query returns 15 results, only 12 should be displayed
+  a:nth-of-type(1n+13) {display: none;}
 }
 
 @include tablet-portrait-and-down {
   ul.topic-resources.topic-resources-list {
-    max-height: 2266px;
     li {
       width: calc(50% - 34px);
     }
@@ -404,7 +405,6 @@ ul.topic-resources.topic-resources-list{
 }
 @include mobile-landscape-and-down {
   ul.topic-resources.topic-resources-list {
-    height: 3605px;
     li {
       width: calc(100% - 34px);
     }
