@@ -69,10 +69,10 @@ app.stickyNav = function(className, headerElement) {
       select = $("<select>").append('<option selected value="">Choose a section</option>');
 
   $('.' + className + ' ' + headerElement).each(function(i,el){
-    var replace_id = $(this).text().replace(/[^a-zA-Z0-9_]/g, '');
-    $(this).attr('id', replace_id+i);
-    html += "<li><a href='#"+replace_id+i+"'>"+$(this).text()+"</a></li>";
-    select.append("<option value='"+replace_id+i+"'>"+$(this).text()+"</option>");
+    var replace_id = $(this).text().replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase();
+    $(this).attr('id', replace_id);
+    html += "<li><a href='#_"+replace_id+"'>"+$(this).text()+"</a></li>";
+    select.append("<option value='"+replace_id+"'>"+$(this).text()+"</option>");
   });
 
   // select += "</select>";
