@@ -11,7 +11,7 @@ jQuery(function() {
     var hLength = helpPages.length;
 
     while (tLength--) {
-        if (href.indexOf(topicPages[tLength]) !== -1) {
+        if (href.indexOf(topicPages[tLength]) !== -1 && href.indexOf('/products') < 0) {
             jQuery('.sub-nav-topics').addClass('active');
         }
     }
