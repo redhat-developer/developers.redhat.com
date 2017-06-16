@@ -106,8 +106,9 @@
     }
     &.dotnet {
       background-image: cdn("../images/design/topics/dotted_lines_white.png"), cdn('../images/design/topics/RHDev_topics_primopromo_3col_dotnet.png');
-      p.description {
-        font-size: 1.3em;
+      .description {
+        font-size: 1.2em;
+        max-height: none;
       }
     }
 
@@ -124,6 +125,13 @@
       max-height: 150px;
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
+      a, a:hover, a:focus, a:active {
+        color: $white;
+        &.button.heavy-cta.white {
+          padding: 8px 40px;
+          color: $red;
+        }
+      }
       .field__item p{
         font-size: 1.0em;
 
@@ -145,12 +153,15 @@
     }
     @include tablet-landscape-and-down {
       background-size: 30%, contain;
-      &.dotnet, &.iot {
+      &.iot {
         min-height: 445px;
       }
     }
     @include mobile-landscape-and-down {
       height: 450px;
+      &.dotnet {
+        height: auto;
+      }
     }
   }
 
