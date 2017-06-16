@@ -145,7 +145,7 @@ end
 
 Then(/^I should see the Log Out link$/) do
   logout_link = @browser.link text: 'Log Out'
-  logout_link.present?
+  expect(logout_link.present?).to be true
 end
 
 Then(/^I should not see the Log Out link$/) do

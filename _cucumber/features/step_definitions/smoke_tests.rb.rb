@@ -4,5 +4,5 @@ Then(/^the page should load within "([^"]*)" seconds$/) do |expected_load|
 end
 
 Then(/^the page should contain "([^"]*)"$/) do |rhd|
-  @browser.html.include rhd
+  expect(@browser.text.downcase).to include(rhd.downcase)
 end
