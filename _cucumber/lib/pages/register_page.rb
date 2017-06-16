@@ -3,7 +3,7 @@ require_relative 'abstract/site_base'
 # this is the page class that contains all elements and common methods related to the Registration page.
 class RegistrationPage < SiteBase
   page_url '/register'
-  expected_element(:h1, text: 'Register for your free Red Hat Developers account')
+  expected_element(:h1, text: 'Register for your free Red Hat Developer Program account')
 
   element(:expand_register_with_email)             { |b| b.link(id: 'register-expand-choice-email') }
   element(:expand_register_with_social)            { |b| b.link(id: 'register-expand-choice-social') }
