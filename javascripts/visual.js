@@ -71,7 +71,7 @@ app.stickyNav = function(className, headerElement) {
   $('.' + className + ' ' + headerElement).each(function(i,el){
     var replace_id = $(this).text().replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase();
     $(this).attr('id', replace_id);
-    html += "<li><a href='#_"+replace_id+"'>"+$(this).text()+"</a></li>";
+    html += "<li><a href='#"+replace_id+"'>"+$(this).text()+"</a></li>";
     select.append("<option value='"+replace_id+"'>"+$(this).text()+"</option>");
   });
 
