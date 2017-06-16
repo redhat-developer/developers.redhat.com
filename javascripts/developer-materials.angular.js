@@ -107,8 +107,8 @@ dcp.service('materialService', function($http, $q) {
       query.type = ['jbossdeveloper_quickstart', 'jbossdeveloper_demo', 'jbossdeveloper_bom', 'jbossdeveloper_archetype', 'jbossdeveloper_example', 'jbossdeveloper_vimeo','jbossdeveloper_youtube', 'jbossdeveloper_book', 'rht_knowledgebase_article', 'rht_knowledgebase_solution', 'jbossorg_blog'];
     }
 
-    if (params.publish_date) {
-      query.publish_date = params.publish_date;
+    if (params.publish_date_from) {
+      query.publish_date_from = params.publish_date_from;
     }
     if (params.from) {
       query.from = params.from;
@@ -225,7 +225,7 @@ dcp.factory('helper', function() {
     this.VALID_URL_PARAMS_ = [
         "sys_type",
         "rating",
-        "publish_date",
+        "publish_date_from",
         "tag",
         "level",
         "from",
@@ -657,7 +657,7 @@ dcp.controller('developerMaterialsController',
     $scope.data.displayDate = labels[n];
     switch(n) {
       case 0 :
-        delete $scope.filters.publish_date;
+        delete $scope.filters.publish_date_from;
         break;
       case 1 :
         //Within 1 Year
@@ -678,7 +678,7 @@ dcp.controller('developerMaterialsController',
     }
 
     if(n) {
-      $scope.filters.publish_date = /*">=" +*/ d.getFullYear() + "-" + ( d.getMonth() + 1 ) + "-" + d.getDate();
+      $scope.filters.publish_date_from = /*">=" +*/ d.getFullYear() + "-" + ( d.getMonth() + 1 ) + "-" + d.getDate();
     }
   };
 
@@ -690,7 +690,7 @@ dcp.controller('developerMaterialsController',
     delete $scope.filters.query;
     delete $scope.filters.sys_rating_avg;
     delete $scope.filters.level;
-    delete $scope.filters.publish_date;
+    delete $scope.filters.publish_date_from;
     // clear local storage
     delete localStorage[$scope.data.pageType + '-filters'];
     // trigger chosen
@@ -785,8 +785,8 @@ dcp.controller('developerMaterialsController',
       }
 
       // restore date slider to closest match
-      if($scope.filters.publish_date) {
-        var parts = scope.filters.publish_date.split('-'); // YYYY MM DD
+      if($scope.filters.publish_date_from) {
+        var parts = scope.filters.publish_date_from.split('-'); // YYYY MM DD
         var d = new Date(parts[0], parts[1], parts[2]); // Year, month date
         var now = new Date().getTime();
         var ago = now - d;
