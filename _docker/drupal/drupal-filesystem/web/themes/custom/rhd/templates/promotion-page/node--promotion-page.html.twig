@@ -74,7 +74,11 @@ other methods (such as node.delete) will result in an exception.
     </div>
     <div class="medium-6 small-11 columns">
       <a href="{{ content.field_call_to_action_link[0]['#url'] }}">
-        {{ content.field_promotion_page_left_image }}
+          {% if content.field_promotion_page_left_image|render|striptags|trim is not empty %}
+              {{ content.field_promotion_page_left_image }}
+          {% else %}
+              {{ content.field_media_asset }}
+          {% endif %}
       </a>
     </div>
 

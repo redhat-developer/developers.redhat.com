@@ -364,10 +364,23 @@ function rhd_common_preprocess_paragraph__overview(&$variables)
       $paragraph->field_product_overview_features->referencedEntities());
 }
 
+/**
+ * @param \Drupal\paragraphs\Entity\Paragraph $feature
+ * @return array
+ */
 function build_feature_grouping($feature)
 {
+    $builder = \Drupal::entityTypeManager()->getViewBuilder('media');
+    $feature->field_media_reference->referencedEntities()[0];
+
+    $image_array = $feature->field_paragraph_image_image->view(['label' => 'visually_hidden']);
+
+    if (empty($image_array['#theme'])) {
+      $image_array = $builder->view($feature->field_media_reference->referencedEntities()[0], 'embedded');
+    }
+
     return [
-      'image' => $feature->field_paragraph_image_image->view(['label' => 'visually_hidden']),
+      'image' => $image_array,
       'title' => $feature->field_paragraph_image_title->view(['label' => 'visually_hidden']),
       'body' => $feature->field_paragraph_image_body->view(['label' => 'visually_hidden']),
     ];
