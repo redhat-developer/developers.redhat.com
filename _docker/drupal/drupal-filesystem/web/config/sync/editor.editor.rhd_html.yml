@@ -33,26 +33,24 @@ settings:
         -
           name: Media
           items:
-            - Blockquote
             - media_browser
             - node
-            - video_embed
         -
           name: 'Block Formatting'
           items:
+            - Blockquote
             - Format
+            - Styles
         -
           name: Tools
           items:
-            - AddLayout
-            - Table
-            - Styles
             - Source
             - Maximize
         -
           name: Layout
           items:
-            - ShowBlocks
+            - AddLayout
+            - Table
             - JustifyLeft
             - JustifyCenter
             - JustifyRight
