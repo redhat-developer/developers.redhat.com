@@ -13,7 +13,7 @@ field_name: field_orange_card
 entity_type: node
 bundle: topic
 label: 'Orange Card'
-description: ''
+description: 'A small content card right of the blue card.'
 required: false
 translatable: false
 default_value: {  }
@@ -25,4 +25,6 @@ settings:
       promotion_card: promotion_card
     sort:
       field: _none
+    auto_create: false
+    auto_create_bundle: ''
 field_type: entity_reference

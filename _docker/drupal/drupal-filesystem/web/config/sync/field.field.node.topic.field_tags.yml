@@ -13,7 +13,7 @@ field_name: field_tags
 entity_type: node
 bundle: topic
 label: 'Blue Card Tags'
-description: ''
+description: 'Taxonomy cards to be displayed on the card.'
 required: false
 translatable: true
 default_value: {  }
@@ -26,4 +26,5 @@ settings:
     sort:
       field: _none
     auto_create: true
+    auto_create_bundle: ''
 field_type: entity_reference

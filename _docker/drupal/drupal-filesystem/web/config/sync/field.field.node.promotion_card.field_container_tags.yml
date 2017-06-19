@@ -13,12 +13,10 @@ field_name: field_container_tags
 entity_type: node
 bundle: promotion_card
 label: tags
-description: ''
+description: 'Taxonomy tags for this card'
 required: false
 translatable: false
-default_value:
-  -
-    target_uuid: cd77c78d-fb7f-4b46-a000-a7fff0bee6b2
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
@@ -28,4 +26,5 @@ settings:
     sort:
       field: _none
     auto_create: true
+    auto_create_bundle: ''
 field_type: entity_reference

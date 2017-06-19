@@ -12,14 +12,14 @@ field_name: field_product_overview_video
 entity_type: paragraph
 bundle: overview
 label: Video
-description: ''
+description: 'Featured video about the product. Shown on the right of the page.'
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   allowed_providers:
-    youtube: youtube
     vimeo: vimeo
+    youtube: youtube
     youtube_playlist: '0'
 field_type: video_embed_field
