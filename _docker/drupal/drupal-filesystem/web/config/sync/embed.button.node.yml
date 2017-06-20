@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.article
     - node.type.books
+    - node.type.cheat_sheet
     - node.type.connectors
     - node.type.events
     - node.type.page
@@ -29,6 +30,7 @@ type_settings:
     - article
     - page
     - books
+    - cheat_sheet
     - connectors
     - events
     - rhd_microsite
@@ -39,7 +41,7 @@ type_settings:
     - topic
     - video_resource
   display_plugins:
-    - 'entity_reference:entity_reference_entity_id'
+    - 'view_mode:node.teaser'
   entity_browser: ''
   entity_browser_settings:
     display_review: false
