@@ -197,14 +197,14 @@
 #    Then the related topic page for "<url>" should be the first result
 #
 #    Examples: of Red hat Topics
-#      | topic                   | url                     |
-#      | Containers              | containers              |
-#      | Mobile                  | mobile                  |
-#      | DevOps                  | devops                  |
-#      | Web and API Development | web-and-api-development |
-#      | Enterprise Java         | enterprise-java         |
-#      | .NET                    | dotnet                  |
-#      | Internet of Things      | iot                     |
+#      | topic                   | url                            |
+#      | Containers              | topics/containers              |
+#      | Mobile                  | topics/mobile                  |
+#      | DevOps                  | topics/devops                  |
+#      | Web and API Development | topics/web-and-api-development |
+#      | Enterprise Java         | topics/enterprise-java         |
+#      | .NET                    | topics/dotnet                  |
+#      | Internet of Things      | topics/iot                     |
 #
 #  Scenario: DEVELOPER-3078 - User searches on /search for 'red hat developers', the first result should be for https://developers.redhat.com/about.
 #    Given I am on the Home page

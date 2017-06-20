@@ -86,27 +86,27 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
             <li class="side-nav-toggle"><a href="#">More</a></li>
             {% if (valid_path("%s/overview"|format(solution_name_hyphen))) %}
                 <li class="{{ active_page_class('overview') }}">
-                    <a href="/{{ solution_name_hyphen }}/overview">Overview</a>
+                    <a href="/topics/{{ solution_name_hyphen }}/overview">Overview</a>
                 </li>
             {% endif %}
             {% if (valid_path("%s/adoption"|format(solution_name_hyphen))) %}
                 <li  class="{{ active_page_class('adoption') }}">
-                    <a href="/{{ solution_name_hyphen }}/adoption">Adoption</a>
+                    <a href="/topics/{{ solution_name_hyphen }}/adoption">Adoption</a>
                 </li>
             {% endif %}
             {% if (valid_path("%s/benefits"|format(solution_name_hyphen))) %}
                 <li  class="{{ active_page_class('benefits') }}">
-                    <a href="/{{ solution_name_hyphen }}/benefits">Benefits</a>
+                    <a href="/topics/{{ solution_name_hyphen }}/benefits">Benefits</a>
                 </li>
             {% endif %}
             {% if (valid_path("%s/learn"|format(solution_name_hyphen))) %}
                 <li  class="{{ active_page_class('learn') }}">
-                    <a href="/{{ solution_name_hyphen }}/learn">Learn</a>
+                    <a href="/topics/{{ solution_name_hyphen }}/learn">Learn</a>
                 </li>
             {% endif %}
             {% if (valid_path("%s/buzz"|format(solution_name_hyphen))) %}
                 <li  class="{{ active_page_class('buzz') }}">
-                    <a href="/{{ solution_name_hyphen }}/buzz">Buzz</a>
+                    <a href="/topics/{{ solution_name_hyphen }}/buzz">Buzz</a>
                 </li>
             {% endif %}
         </ul>
