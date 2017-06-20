@@ -1,4 +1,4 @@
-export class RHDPSearchResultCount extends HTMLElement {
+class RHDPSearchResultCount extends HTMLElement {
     _count = 0;
     _term = '';
 
@@ -45,10 +45,8 @@ export class RHDPSearchResultCount extends HTMLElement {
     }
 
     setText() {
-        if (this._term.length > 0 ) {
-            this.innerHTML = this.template`${this._count}${this._term}`;
+        if (this.term.length > 0 ) {
+            this.innerHTML = this.template`${this.count}${this.term}`;
         }
     }
 }
-
-customElements.define('rhdp-search-result-count', RHDPSearchResultCount);

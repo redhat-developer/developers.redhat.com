@@ -1,7 +1,7 @@
-import {RHDPSearchResult} from './rhdp-search-result';
-
-export class RHDPSearchResults extends HTMLElement {
+class RHDPSearchResults extends HTMLElement {
     _results;
+    _more;
+    _last = 0;
 
     get results() {
         return this._results;
@@ -10,15 +10,47 @@ export class RHDPSearchResults extends HTMLElement {
     set results(val) {
         if (this._results === val) return;
         this._results = val;
-        this.renderResults();
+        this.renderResults(false);
     }
+
+    get more() {
+        return this._more;
+    }
+    set more(val) {
+        if (this._more === val) return;
+        this._more = val;
+        this.renderResults(true);
+    }
+
+    get last() {
+        return this._last;
+    }
+
+    set last(val) {
+        if (this._last === val) return;
+        this._last = val ? val : 0;
+        this.setAttribute('last', val.toString())
+    }
+
+    loadMore = document.createElement('a');
 
     constructor() {
         super();
     }
 
     connectedCallback() {
-        
+        this.loadMore.className = 'moreBtn hide';
+        this.loadMore.innerText = 'Load More';
+
+        this.loadMore.addEventListener('click', e => {
+            e.preventDefault();
+            this.dispatchEvent(new CustomEvent('load-more', {
+                detail: {
+                    from: this.last
+                },
+                bubbles: true
+            }));
+        });
     }
 
     static get observedAttributes() { 
@@ -35,19 +67,30 @@ export class RHDPSearchResults extends HTMLElement {
         this.appendChild(item);
     }
 
-    renderResults() {
-        while (this.hasChildNodes()) {
-            this.removeChild(this.lastChild);
+    renderResults(add) {
+        if(!add) {
+            while (this.hasChildNodes()) {
+                this.removeChild(this.lastChild);
+            }
+            this.addResults(this.results);
+        } else {
+            this.addResults(this.more);
         }
-        
-        if (this.results && this.results.hits && this.results.hits.hits) {
-            let hits = this.results.hits.hits;
+    }
+
+    addResults(results) {
+        if (results && results.hits && results.hits.hits) {
+            let hits = results.hits.hits;
             let l = hits.length;
             for( let i = 0; i < l; i++ ) {
                 this.addResult(hits[i]);
             }
+            if (l > 0 && this.last+1 < results.hits.total) {
+                this.appendChild(this.loadMore);
+                this.last = this.last + l - 1;
+            } else if (this.querySelector('.moreBtn')) {
+                this.removeChild(this.loadMore);
+            }
         }
     }
 }
-
-customElements.define('rhdp-search-results', RHDPSearchResults);

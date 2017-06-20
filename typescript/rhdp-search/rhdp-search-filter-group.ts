@@ -1,5 +1,4 @@
-import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-export class RHDPSearchFilterGroup extends HTMLElement {
+class RHDPSearchFilterGroup extends HTMLElement {
     _key;
     _name;
     _items;
@@ -113,5 +112,3 @@ export class RHDPSearchFilterGroup extends HTMLElement {
         }        
     }
 }
-
-customElements.define('rhdp-search-filter-group', RHDPSearchFilterGroup);
