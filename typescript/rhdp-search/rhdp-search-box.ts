@@ -1,4 +1,4 @@
-export class RHDPSearchBox extends HTMLElement {
+class RHDPSearchBox extends HTMLElement {
     _term = '';
 
     get term() {
@@ -16,21 +16,27 @@ export class RHDPSearchBox extends HTMLElement {
         <div class="input-cont">
             <input value="${term}" class="user-success user-search" type="search" id="query" placeholder="Enter your search term">
         </div>
-        <button id="search-btn">SEARCH</button>
+        <button id="search-btn"><span>SEARCH</span><i class='fa fa-search' aria-hidden='true'></i></button>
         </form>`;
     };
 
     constructor() {
         super();
 
+    }
+
+    connectedCallback() {
         this.innerHTML = this.template`${this.name}${this.term}`;
 
-        this.addEventListener('keyup', e => { 
+        this.querySelector('input').addEventListener('keyup', e => { 
             if(e.target['id'] === 'query') {
                 if(e.key == 'Enter') { 
                     this.doSearch();
                 } else {
                     this.term = e.target['value'];
+                    if(this.term === '') {
+                        this.doSearch();
+                    }
                 }
             }
         });
@@ -40,15 +46,9 @@ export class RHDPSearchBox extends HTMLElement {
             return false;
         });
 
-        this.addEventListener('click', e => { 
-            if(e.target['id'] === 'search-btn') { 
-                this.doSearch();
-            }
+        this.querySelector('#search-btn').addEventListener('click', e => { 
+            this.doSearch();
         });
-    }
-
-    connectedCallback() {
-        
     }
 
     static get observedAttributes() { 
@@ -60,7 +60,6 @@ export class RHDPSearchBox extends HTMLElement {
     }
 
     doSearch() {
-        history.pushState({}, `Red Hat Developer Program Search: ${this.term}`, `?q=${this.term}`);
         this.dispatchEvent(new CustomEvent('do-search', {
             detail: { 
                 term: this.term 
@@ -69,5 +68,3 @@ export class RHDPSearchBox extends HTMLElement {
         }));
     }
 }
-
-customElements.define('rhdp-search-box', RHDPSearchBox);

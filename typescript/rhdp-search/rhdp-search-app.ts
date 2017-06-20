@@ -1,19 +1,38 @@
-import {RHDPSearchQuery} from './rhdp-search-query';
-import {RHDPSearchBox} from './rhdp-search-box';
-import {RHDPSearchFilters} from './rhdp-search-filters';
-import {RHDPSearchFilterGroup} from './rhdp-search-filter-group';
-import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-import {RHDPSearchResults} from './rhdp-search-results';
-import {RHDPSearchResultCount} from './rhdp-search-result-count';
-import {RHDPSearchSortPage} from './rhdp-search-sort-page';
-
 class RHDPSearchApp extends HTMLElement {
-    name = 'Search';
+    constructor() {
+        super();
+    }
+
+    _name = 'Search';
+    //_url = 'http://dcp.stage.jboss.org/v2/rest/search';
+    _url;
+
+    get name() {
+        return this._name;
+    }
+
+    set name(val) {
+        if (this._name === val) return;
+        this._name = val;
+        this.setAttribute('name', this.name);
+    }
+
+    get url() {
+        return this._url;
+    }
+
+    set url(val) {
+        if (this._url === val) return;
+        this._url = val;
+        this.query.url = this.url;
+        this.setAttribute('url', this.url);
+    }
+
     template = `<div class="row">
     <div class="large-24 medium-24 small-24 columns searchpage-middle">
         <div class="row">
             <div class="large-24 medium-24 small-24 columns">
-                <h1>${this.name}</h1>
+                <h2>${this.name}</h2>
             </div>
         </div>
         <div class="row">
@@ -35,37 +54,48 @@ class RHDPSearchApp extends HTMLElement {
         term:'', 
         facets: [
             { name: 'CONTENT TYPE', key: 'sys_type', items: [
-                {key: 'blogpost', name: "Blog Posts", value: ['blogpost']},
-                {key: 'book', name: "Book", value: ["jbossdeveloper_book", "book"]},
-                {key: 'code', name: "Code Artifact", value: ["demo", "jbossdeveloper_archetype", "jbossdeveloper_bom"]},
-                {key: 'quickstart', name: "Quickstart", value: ['quickstart', 'quickstart_early_access']},
-                {key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"] },
-                {key: 'article-solution', name: "Knowledgebase Article / Solution", value: ["solution", "article"]},
-                {key: 'video', name: "Video", value: ["video"] }
+                {key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'], type: ['jbossdeveloper_archetype']},
+                {key: 'article', name: 'Article', value: ['article', 'solution'], type: ['rhd_knowledgebase_article', 'rht_knowledgebase_solution']},
+                {key: 'blogpost', name: "Blog Posts", value: ['blogpost'], type: ['jbossorg_blog']},
+                {key: 'book', name: "Book", value: ["book"], type: ["jbossdeveloper_book"]},
+                {key: 'bom', name: "BOM", value: ["jbossdeveloper_bom"], type: ['jbossdeveloper_bom']},
+                {key: 'cheatsheet', name: "Cheat Sheet", value: ['cheatsheet'], type: ['jbossdeveloper_cheatsheet']},
+                {key: 'demo', name: 'Demo', value: ['demo'], type: ['jbossdeveloper_demo']},
+                {key: 'event', name: 'Event', value: ['jbossdeveloper_event'], type: ['jbossdeveloper_event']},
+                {key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"], type: ['jbossdeveloper_example'] },
+                {key: 'quickstart', name: "Quickstart", value: ['quickstart'], type: ['jbossdeveloper_quickstart']},
+                {key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_thread'], type: ['stackoverflow_question']},
+                {key: 'video', name: "Video", value: ["video"], type:['jbossdeveloper_vimeo', 'jbossdeveloper_youtube'] },
+                {key: 'webpage', name: "Web Page", value: ['webpage'], type: ['rhd_website']}
                 ] 
             },
             {
                 name:'PRODUCT', 
-                key: 'type', 
+                key: 'product', 
                 items: [
-                {key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'],active:true},
-                {key: 'webserver', name: 'JBoss Web Server', value: ['webserver']},
+                {key: 'dotnet-product', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
+                {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
+                {key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite']},
+                {key: 'brms', name: 'JBoss BRMS', value: ['brms']},
                 {key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid']},
                 {key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt']},
-                {key: 'fuse', name: 'JBoss Fuse', value: ['fuse']},
-                {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
-                {key: 'brms', name: 'JBoss BRMS', value: ['brms']},
-                {key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite']},
                 {key: 'devstudio', name: 'JBoss Developer Studio', value: ['devstudio']},
+                {key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap']},
+                {key: 'fuse', name: 'JBoss Fuse', value: ['fuse']},
+                {key: 'webserver', name: 'JBoss Web Server', value: ['webserver']},
+                {key: 'openjdk', name: 'OpenJDK', value: ['openjdk']},
+                {key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt']},
                 {key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk']},
                 {key: 'developertoolset', name: 'Red Hat Developer Toolset', value: ['developertoolset']},
+                {key: 'devsuite', name: 'Red Hat Development Suite', value: ['devsuite']},
                 {key: 'rhel', name: 'Red Hat Enterprise Linux', value: ['rhel']},
-                {key: 'softwarecollections', name: 'Red Hat Software Collections', value: ['softwarecollections']},
                 {key: 'mobileplatform', name: 'Red Hat Mobile Application Platform', value: ['mobileplatform']},
-                {key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift']}
+                {key: 'openshift', name: 'Red Hat OpenShift Container Platform', value: ['openshift']},
+                {key: 'softwarecollections', name: 'Red Hat Software Collections', value: ['softwarecollections']}
                 ]
             },
             { name: 'TOPIC', key: 'tag', items: [
+                {key: 'dotnet', name: '.NET', value: ['dotnet','.net','visual studio','c#']},
                 {key: 'containers', name: 'Containers', value: ['atomic','cdk','containers']},
                 {key: 'devops', name: 'DevOps', value: ['DevOps','CI','CD','Continuous Delivery']},
                 {key: 'enterprise-java', name: 'Enterprise Java', value: ['ActiveMQ','AMQP','apache camel','Arquillian','Camel','CDI','CEP','CXF','datagrid','devstudio','Drools','Eclipse','fabric8','Forge','fuse','Hawkular','Hawtio','Hibernate','Hibernate ORM','Infinispan','iPaas','java ee','JavaEE','JBDS','JBoss','JBoss BPM Suite','JBoss BRMS','JBoss Data Grid','jboss eap','JBoss EAP','']},
@@ -73,21 +103,10 @@ class RHDPSearchApp extends HTMLElement {
                 {key: 'microservices', name: 'Microservices', value: ['Microservices',' WildFly Swarm']},
                 {key: 'mobile', name: 'Mobile', value: ['Mobile','Red Hat Mobile','RHMAP','Cordova','FeedHenry']},
                 {key: 'web-and-api-development', name: 'Web and API Development', value: ['Web','API','HTML5','REST','Camel','Node.js','RESTEasy','JAX-RS','Tomcat','nginx','Rails','Drupal','PHP','Bottle','Flask','Laravel','Dancer','Zope','TurboGears','Sinatra','httpd','Passenger']},
-                {key: 'dotnet', name: '.NET', value: ['dotnet','.net','visual studio','c#']}
                 ] 
             }
         ]
     };
-
-    constructor() {
-        super();
-
-        this.addEventListener('do-search', this.doSearch);
-        this.addEventListener('search-complete', this.setResults);
-        document.addEventListener('toggle-modal', this.toggleModal);
-        this.addEventListener('sort-change', this.updateSort);
-        document.addEventListener('facetChange', this.updateFacets);
-    }
 
     connectedCallback() {
         this.innerHTML = this.template;
@@ -110,6 +129,13 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.results);
 
+        this.addEventListener('do-search', this.doSearch);
+        this.addEventListener('search-complete', this.setResults);
+        this.addEventListener('load-more', this.loadMore)
+        this.addEventListener('sort-change', this.updateSort);
+        document.addEventListener('toggle-modal', this.toggleModal);
+        document.addEventListener('facetChange', this.updateFacets);
+
         /* To Do
           Set text and term from querystring "q" value if present
         */
@@ -117,17 +143,38 @@ class RHDPSearchApp extends HTMLElement {
             term = loc.length > 1 ? loc[1].split('=')[1] : '';
         if (term.length > 0) {
             this.box.term = term;
-            this.query.search(term);
+            this.count.term = term;
+            this.query.search(this.box.term);
         }
     }
 
+    static get observedAttributes() { 
+        return ['url', 'name']; 
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+        this[name] = newVal;
+    }
+
     doSearch(e) {
-        this.query.search(e.detail.term);
+        this.count.term = e.detail ? e.detail.term : this.query.term;
+        this.query.from = 0;
+        this.results.last = 0;
+        this.query.search(e.detail ? e.detail.term : this.query.term);
+    }
+
+    loadMore(e) {
+        this.query.from = e.detail.from;
+        this.query.search(this.query.term);
     }
 
     setResults(e) {
-        this.count.term = e.detail.term;
-        this.results.results = e.detail.results;
+        if(this.query.from === 0) {
+            this.results.results = e.detail.results;
+        } else {
+            this.results.more = e.detail.results;
+        }
+        
         this.count.count = e.detail.results.hits.total;
     }
 
@@ -137,6 +184,9 @@ class RHDPSearchApp extends HTMLElement {
 
     updateSort(e) {
         this.query.sort = e.detail.sort;
+        this.query.from = 0;
+        this.results.last = 0;
+        this.count.term = this.box.term;
         this.query.search(this.box.term);
     }
 
@@ -144,14 +194,15 @@ class RHDPSearchApp extends HTMLElement {
         var facet = e.detail.facet.cloneNode(true),
             app = this.querySelector('rhdp-search-app'),
             len = app['filterObj'].facets.length;
+        facet.bubble = false;
         facet.active = e.detail.facet.active;
-        app['modal'].setActive(facet);
-        app['filters'].setActive(facet);
+        app['modal'].setActive(facet, false);
+        app['filters'].setActive(facet, false);
         if (facet.active) {
             facet.inline = true;
-            app['active'].addActive(facet);
+            app['active'].addActive(facet, false);
         } else {
-            app['active'].removeItem(facet);
+            app['active'].removeItem(facet, false);
         }
         for(let i=0; i < len; i++) {
             var itemLen = app['filterObj'].facets[i].items.length;
@@ -161,9 +212,11 @@ class RHDPSearchApp extends HTMLElement {
                 }
             }
         }
+
         app['query'].filters = app['filterObj'];
+        app['query'].from = 0;
+        app['results'].last = 0;
+        app['count'].term = app['box'].term;
         app['query'].search(app['box'].term);
     }
 }
-
-customElements.define('rhdp-search-app', RHDPSearchApp);

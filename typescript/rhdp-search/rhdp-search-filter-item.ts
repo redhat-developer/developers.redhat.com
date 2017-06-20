@@ -1,9 +1,10 @@
-export class RHDPSearchFilterItem extends HTMLElement {
+class RHDPSearchFilterItem extends HTMLElement {
     _key;
     _name;
     _active = false;
     _value;
     _inline = false;
+    _bubble = true;
 
     get name() {
         return this._name;
@@ -34,7 +35,8 @@ export class RHDPSearchFilterItem extends HTMLElement {
         if(this.active) { this.setAttribute('active','active'); } 
         else { this.removeAttribute('active'); }
         this.innerHTML = this.template`${this.name}${this.key}${this.active}`;
-        this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this}, bubbles: true}));
+        this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this}, bubbles: this.bubble}));
+        this.bubble = true;
     }
     get value() {
         return this._value;
@@ -50,6 +52,15 @@ export class RHDPSearchFilterItem extends HTMLElement {
     set inline(val) {
         if (this._inline === val) return;
         this._inline = val;
+    }
+
+    get bubble() {
+        return this._bubble;
+    }
+
+    set bubble(val) {
+        if (this._bubble === val) return;
+        this._bubble = val;
     }
 
     constructor() {
@@ -83,5 +94,3 @@ export class RHDPSearchFilterItem extends HTMLElement {
         this[name] = newVal;
     }
 }
-
-customElements.define('rhdp-search-filter-item', RHDPSearchFilterItem);

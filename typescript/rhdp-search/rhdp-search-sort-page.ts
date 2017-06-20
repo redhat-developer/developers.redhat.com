@@ -1,4 +1,4 @@
-export class RHDPSearchSortPage extends HTMLElement {
+class RHDPSearchSortPage extends HTMLElement {
     _sort;
 
     get sort() {
@@ -46,5 +46,3 @@ export class RHDPSearchSortPage extends HTMLElement {
         }));
     }
 }
-
-customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);

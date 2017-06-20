@@ -1,7 +1,4 @@
-import {RHDPSearchFilterGroup} from './rhdp-search-filter-group';
-import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
-
-export class RHDPSearchFilters extends HTMLElement {
+class RHDPSearchFilters extends HTMLElement {
     _type = '';
     _title = 'Filter By';
     _filters;
@@ -87,6 +84,9 @@ export class RHDPSearchFilters extends HTMLElement {
         if (this.type === 'active') {
             this.innerHTML = this.activeTemplate`${this.title}`;
             this.addAllActive();
+            if (!this.querySelector('.activeFilters').hasChildNodes()) {
+                this.style.display = 'none';
+            }
         } else if (this.type === 'modal') {
             this.innerHTML = this.modalTemplate`${this.title}`;
             this.addGroups();
@@ -105,7 +105,6 @@ export class RHDPSearchFilters extends HTMLElement {
                 this.clearFilters();
             }
         });
-
     }
 
     static get observedAttributes() { 
@@ -166,8 +165,10 @@ export class RHDPSearchFilters extends HTMLElement {
         }
     }
 
-    setActive(item) {
-        this.querySelector(`.filter-item-${item.key}`)['active'] = item.active;
+    setActive(item, bubble) {
+        var upd = this.querySelector(`.filter-item-${item.key}`);
+        upd['bubble'] = bubble;
+        upd['active'] = item.active;
     }
 
     toggleModal(val) {
@@ -190,9 +191,8 @@ export class RHDPSearchFilters extends HTMLElement {
             len = items.length;
 
         for(let i=0; i < len; i++) {
+            items[i]['bubble'] = i !== 1-len ? false : true;
             items[i]['active'] = false;
         }
     }
 }
-
-customElements.define('rhdp-search-filters', RHDPSearchFilters);

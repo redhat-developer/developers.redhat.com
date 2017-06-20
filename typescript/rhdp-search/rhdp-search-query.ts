@@ -1,10 +1,11 @@
-export class RHDPSearchQuery extends HTMLElement {
+class RHDPSearchQuery extends HTMLElement {
     _filters;
     _limit = 10;
+    _from = 0;
     _sort = 'relevance';
     _results;
-    _term = '';
-    _url = 'http://dcp.stage.jboss.org/v2/rest/search/developer_materials';
+    _term;
+    _url;
     params;
 
     get filters() {
@@ -17,12 +18,22 @@ export class RHDPSearchQuery extends HTMLElement {
         this.setFilters();
     }
 
+    get from() {
+        return this._from;
+    }
+    set from(val) {
+        if (this._from === val) return;
+        this._from = val;
+        this.setAttribute('from', val.toString());
+    }
+
     get limit() {
         return this._limit;
     }
     set limit(val) {
         if (this._limit === val) return;
         this._limit = val;
+        this.setAttribute('limit', val.toString());
     }
 
     get sort() {
@@ -31,6 +42,7 @@ export class RHDPSearchQuery extends HTMLElement {
     set sort(val) {
         if (this._sort === val) return;
         this._sort = val;
+        this.setAttribute('sort', val);
     }
     
     get results() {
@@ -43,7 +55,11 @@ export class RHDPSearchQuery extends HTMLElement {
             detail: { 
                 results: this.results,
                 term: this.term,
-                filters: this.filters
+                from: this.from,
+                filterStr: this.filterString(this.filters.facets),
+                filters: this.filters,
+                sort: this.sort,
+                limit: this.limit
             }, 
             bubbles: true 
         }));
@@ -56,6 +72,7 @@ export class RHDPSearchQuery extends HTMLElement {
     set term(val) {
         if (this._term === val) return;
         this._term = val;
+        this.setAttribute('term', val.toString());
     }
 
     get url() {
@@ -63,19 +80,58 @@ export class RHDPSearchQuery extends HTMLElement {
     }
 
     set url(val) {
-        if (this._results === val) return;
+        if (this._url === val) return;
         this._url = val;
+        this.setAttribute('url', val.toString());
     }
 
-    get typeString() {
-        return this.valStrings('tag', this.filters.facets[1].items);
+    get productString() {
+        var defaults = [{active: true, value: [
+            'eap'
+            ,'webserver'
+            ,'datagrid'
+            ,'datavirt'
+            ,'fuse'
+            ,'amq'
+            ,'brms'
+            ,'bpmsuite'
+            ,'devstudio'
+            ,'cdk'
+            ,'developertoolset'
+            ,'rhel'
+            ,'softwarecollections'
+            ,'mobileplatform'
+            ,'openshift'
+            ,'rhamt'
+        ]}],
+        products = this.valStrings('project', this.filters.facets[1].items)
+        return products.length > -1 ? products : this.valStrings('project', defaults);
     }
 
     get tagString() {
         return this.valStrings('tag', this.filters.facets[2].items);
     }
     get sysTypeString() {
-        return this.valStrings('sys_type', this.filters.facets[0].items);
+        var defaults = [{active: true, value: [
+                'jbossdeveloper_archetype'
+                ,'article'
+                ,'blogpost'
+                ,'jbossdeveloper_bom'
+                ,'book'
+                ,'cheatsheet'
+                ,'demo'
+                ,'event'
+                ,'forumthread'
+                ,'jbossdeveloper_example'
+                ,'quickstart'
+                ,'solution'
+                ,'stackoverflow_thread'
+                ,'video'
+                ,'website'
+                ,'webpage'
+            ]}],
+            sysTypes = this.valStrings('sys_type', this.filters.facets[0].items);
+        return sysTypes.length > -1 ? sysTypes : this.valStrings('sys_type', defaults);
     }
 
     valStrings(txt, items) {
@@ -88,12 +144,29 @@ export class RHDPSearchQuery extends HTMLElement {
         return typeString;
     }
 
-    urlTemplate = (strings, url, term, limit, sort, types, tags, sys_types) => {
+    filterString(facets) {
+        var len = facets.length,
+            filterArr = [];
+        for(let i=0; i < len; i++) {
+            for(let j=0; j < facets[i].items.length; j++) {
+                if(facets[i].items[j].active) {
+                    let idx = 0;
+                    while(idx <  facets[i].items[j].value.length) {
+                        filterArr.push(facets[i].items[j].value[idx]);
+                        idx = idx + 1;
+                    }
+                }
+            }
+        }
+        return filterArr.join(', ');
+    }
+
+    urlTemplate = (strings, url, term, from, limit, sort, types, tags, sys_types) => {
         var order = '';
         if(sort === 'most-recent') {
             order = '&newFirst=true';
         } 
-        return `${url}?tags_or_logic=true&filter_out_excluded=true&from=0${order}&project=&query=${term}&query_highlight=true&size${limit}=true${types}${tags}${sys_types}&type=rht_website&type=jbossdeveloper_quickstart&type=jbossdeveloper_demo&type=jbossdeveloper_bom&type=jbossdeveloper_archetype&type=jbossdeveloper_example&type=jbossdeveloper_vimeo&type=jbossdeveloper_youtube&type=jbossdeveloper_book&type=jbossdeveloper_event&type=rht_knowledgebase_article&type=rht_knowledgebase_solution&type=stackoverflow_question&type=jbossorg_sbs_forum&type=jbossorg_blog&type=rht_apidocs`;
+        return `${url}?tags_or_logic=true&filter_out_excluded=true&from=${from}${order}&query=${term}&query_highlight=true&size${limit}=true${types}${tags}${sys_types}`;
     };
 
     constructor() {
@@ -105,7 +178,7 @@ export class RHDPSearchQuery extends HTMLElement {
     }
 
     static get observedAttributes() { 
-        return ['term','sort','limit','results','filters','url']; 
+        return ['term', 'sort', 'limit', 'results', 'filters', 'url']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -113,19 +186,17 @@ export class RHDPSearchQuery extends HTMLElement {
     }
 
     search(term) {
-        if (term && term !== '') {
-            this.term = term;
-        }
-
-        fetch(this.urlTemplate`${this.url}${this.term}${this.limit}${this.sort}${this.typeString}${this.tagString}${this.sysTypeString}`)
+        this.term = term;
+        
+        fetch(this.urlTemplate`${this.url}${this.term}${this.from}${this.limit}${this.sort}${this.productString}${this.tagString}${this.sysTypeString}`)
         .then((resp) => resp.json())
-        .then((data) => { this.results = data; });
+        .then((data) => { 
+            this.results = data; 
+            history.pushState({}, `Red Hat Developer Program Search: ${this.term}`, `?q=${this.term}`);
+        });
     }
-    
 
     setFilters() {
         return;
     }
 }
-
-customElements.define('rhdp-search-query', RHDPSearchQuery);

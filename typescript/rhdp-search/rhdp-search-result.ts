@@ -1,4 +1,4 @@
-export class RHDPSearchResult extends HTMLElement {
+class RHDPSearchResult extends HTMLElement {
     _result;
     _url = ['',''];
     _title;
@@ -108,37 +108,25 @@ export class RHDPSearchResult extends HTMLElement {
     computeKind(result) {
         var kind = result.fields.sys_type || "webpage",
         map = {
-            video: 'Video',
-            blogpost: 'Blog Post',
-            book: 'Book',
+            jbossdeveloper_archetype: 'Archetype',
             article: 'Article',
-            solution: 'Article',
+            blogpost: 'Blog Post',
+            jbossdeveloper_bom: 'Bom',
+            book: 'Book',
+            cheatsheet: 'Cheat Sheet',
             demo: 'Demo',
             event: 'Event',
+            forumthread: 'Forum Thread',
+            jbossdeveloper_example: 'Demo',
             quickstart: 'Quickstart',
             quickstart_early_access: 'Demo',
-            forumthread: 'Forum Thread',
+            solution: 'Article',
             stackoverflow_thread: 'Stack Overflow',
+            video: 'Video',
             webpage: 'Webpage',
-
-            jbossdeveloper_quickstart: 'Quickstart',
-            jbossdeveloper_demo: 'Demo',
-            jbossdeveloper_bom: 'Bom',
-            jbossdeveloper_archetype: 'Archetype',
-            jbossdeveloper_example: 'Demo',
-            jbossdeveloper_vimeo: 'Video',
-            jbossdeveloper_youtube: 'Video',
-            jbossdeveloper_book: 'Book',
-            jbossdeveloper_event: 'Event',
-            rht_knowledgebase_article: 'Article',
-            rht_knowledgebase_solution: 'Article',
-            stackoverflow_question: 'Stack Overflow',
-            jbossorg_sbs_forum: 'Forum Thread',
-            jbossorg_blog: 'Blog Post',
-            rht_website: 'Website',
-            rht_apidocs: 'Docs & APIs'
+            website: 'Webpage'
         };
-        this.kind = map[kind];
+        this.kind = map[kind] || 'Webpage';
     }
     computeCreated(result) {
         var options = { month: 'long', day: 'numeric', year: 'numeric' }
@@ -168,5 +156,3 @@ export class RHDPSearchResult extends HTMLElement {
         this.url = url;
     }
 }
-
-customElements.define('rhdp-search-result', RHDPSearchResult);
