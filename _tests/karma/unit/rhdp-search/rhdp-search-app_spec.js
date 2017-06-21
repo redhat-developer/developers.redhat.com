@@ -2,7 +2,7 @@
 /* global RHDPSearchApp */
 // Test rhdp-search-app component
 
-describe('Search Application', function() {
+xdescribe('Given Search Application', function() {
     var wc;
     beforeEach(function() {
         wc = new RHDPSearchApp();
