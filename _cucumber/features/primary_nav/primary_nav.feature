@@ -59,15 +59,15 @@ Feature: Site navigation menu
     Given I am on the Home page
     When I click on the Topics menu item
     Then each Topics sub-menu item should contain a link to its retrospective page:
-      | name                    | href                    |
-      | Containers              | containers              |
-      | Mobile                  | mobile                  |
-      | DevOps                  | devops                  |
-      | Web and API Development | web-and-api-development |
-      | Enterprise Java         | enterprise-java         |
-      | .NET                    | dotnet                  |
-      | Internet of Things      | iot                     |
-      | Microservices           | microservices           |
+      | name                    | href                           |
+      | Containers              | topics/containers              |
+      | Mobile                  | topics/mobile                  |
+      | DevOps                  | topics/devops                  |
+      | Web and API Development | topics/web-and-api-development |
+      | Enterprise Java         | topics/enterprise-java         |
+      | .NET                    | topics/dotnet                  |
+      | Internet of Things      | topics/iot                     |
+      | Microservices           | topics/microservices           |
 
   @mobile
   Scenario: Tapping TOPICS from drop down menu on Mobile/Tablet should display additional topics

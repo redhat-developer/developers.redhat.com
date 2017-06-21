@@ -22,14 +22,14 @@ Feature: Sanity checks of production
     Then the page should load within "6" seconds
 
     Examples: urls
-      | url                     |
-      | containers              |
-      | mobile                  |
-      | devops                  |
-      | web-and-api-development |
-      | enterprise-java         |
-      | dotnet                  |
-      | iot                     |
+      | url                            |
+      | topics/containers              |
+      | topics/mobile                  |
+      | topics/devops                  |
+      | topics/web-and-api-development |
+      | topics/enterprise-java         |
+      | topics/dotnet                  |
+      | topics/iot                     |
 
   Scenario Outline: Verify Production page load of Technologies
     Given I am on the Product Overview page for each <product id>
