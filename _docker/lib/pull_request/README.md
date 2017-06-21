@@ -6,20 +6,24 @@ An introduction to the [Github status API](https://developer.github.com/v3/repos
 
 ### About
 
-This directory contains the implementation of the Github Status API wrapper. The purpose of this class is to faciliate running Docker containers within a pull request environment
-when you want to report the result of the container execution as a Github status. For example, you want to run some unit tests within a Docker container and report the outcome of these
-as a Github status with context 'Unit Tests'. Whilst the tests are running you want the status to be 'pending'. If the tests succeed, the status should be updated to 'success'. If they
-fail, the status should be updated to 'failure'.
+This directory contains the implementation of the Github Status API wrapper. The purpose of this class is to faciliate
+running Docker containers within a pull request environment when you want to report the result of the container
+execution as a Github status. For example, you want to run some unit tests within a Docker container and report the
+outcome of these as a Github status with context 'Unit Tests'. Whilst the tests are running you want the status to be
+'pending'. If the tests succeed, the status should be updated to 'success'. If they fail, the status should be updated
+to 'failure'.
 
 ### Basic operation
 
-The execution wrapper will take the command that you want to run in the container and firstly create a 'pending' Github Status check for the command. It will then execute the command
-and if the command succeeds i.e. exits with a 0 status code, it will update the status to 'success'. If the command exits with a non-zero exit code, it will update the status to 'failure'
+The execution wrapper will take the command that you want to run in the container and firstly create a 'pending'
+Github Status check for the command. It will then execute the command and if the command succeeds i.e. exits with a 0
+status code, it will update the status to 'success'. If the command exits with a non-zero exit code, it will update the
+GitHub status to 'failure'
 
 ### Configuring the wrapper to execute
 
-The wrapper should be configured as the `entrypoint` on your Docker container. The command you want to run can either be appended after the wrapper definition, or defined as the `command`
-to your Docker statement. For example:
+The wrapper should be configured as the `entrypoint` on your Docker container. The command you want to run can either
+be appended after the wrapper definition, or defined as the `command` to your Docker statement. For example:
 
 ```
 service:
@@ -38,10 +42,12 @@ service:
 
 ### Configuring the Github status reported by the wrapper
 
-The configure the status reported by the wrapper, you set environment variables on your Docker container definition. The following variables are supported:
+The configure the status reported by the wrapper, you set environment variables on your Docker container definition.
+The following variables are supported:
 
 |Environment Variable|Description|
 |--------------------|-----------|
+|github_status_enabled|Is the update to a GitHub status enabled by the process running within this container|
 |github_status_api_token|The API token to be used to interact with the Github API|
 |github_status_context|The context that should be reported for this container|
 |github_status_repo|The repository against which the pull request is being raised in the form &lt;username&gt;/&lt;repo&gt; e.g. robpblake/developers.redhat.com|
@@ -50,7 +56,8 @@ The configure the status reported by the wrapper, you set environment variables 
 |github_status_initialise|A comma separated list of contexts to initialise when this container runs. Typically this will be set on the first container in your build pipeline|
 
 
-As an example of a container that sets the status for the `Unit Tests` context and initialises the `Acceptance Tests` context:
+As an example of a container that sets the status for the `Unit Tests` context and initialises the `Acceptance Tests`
+context:
 
 ```
 unit_tests:
@@ -66,5 +73,8 @@ unit_tests:
     - github_status_sha1=${ghprbActualCommit}
     - github_status_initialise=Unit Tests,Acceptance Tests
 ```
-From the above you can see that it is possible to reference environment variables set by your CI server as well to ensure that any information related to the pull request is
-correctly reported.
+From the above you can see that it is possible to reference environment variables set by your CI server as well to
+ensure that any information related to the pull request is correctly reported.
+
+The best place to get a feel for how this is used on the RHDP project is to look at the `docker-compose.yml` for the
+`drupal-pull-request` environment.
