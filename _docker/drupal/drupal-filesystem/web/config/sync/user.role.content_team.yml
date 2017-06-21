@@ -14,6 +14,7 @@ label: 'Content Reviewer'
 weight: -6
 is_admin: null
 permissions:
+  - 'bypass node access'	
   - 'create media'
   - 'delete own promotion_card content'
   - 'use needs_review_draft transition'
