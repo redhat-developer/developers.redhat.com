@@ -1,9 +1,19 @@
 ## Backup
 
-This folder contains two Ruby classes that perform a backup on any developers.redhat.com environment.
+This folder implements a simple backup solution for the developers.redhat.com project.
 
-* backup.rb -> This script contains the actual calls to perform the backup
-* git_backup_strategy.rb -> Allows for the results of the backups to be stored in a Git repository
+The code here is designed to be run each time we perform a deployment to production. It runs before any changes
+are applied to the current Drupal instance ensuring that we have a full backup of the Drupal database and Drupal
+filesystem before applying the latest changes from master branch of the Git repository.
+
+The backup creates a tar.gz file of the current Drupal configuration and also a .gz of the SQL dump
+of the current database. Once these files have been created, it will push them to the master branch of a Git repository.
+Additionally the backup will be tagged with an identifiable deployment number.
+
+There are two main Ruby classes that perform a backup on any developers.redhat.com environment.
+
+* backup.rb: This script contains the actual calls to perform the backup
+* git_backup_strategy.rb: Allows for the results of the backups to be stored in a Git repository
 
 ### backup.rb
 
@@ -22,30 +32,27 @@ If no name is provided, then the script will generate a timestamp at which the b
 
 ### git_backup_strategy.rb
 
-This will simply add and commit backup files to the provided Git repository. Additionally it will create a Git tag each time
-it does a push to the origin repository
+This will simply add and commit backup files to the provided Git repository. Additionally it will create a Git tag each
+time it does a push to the origin repository
 
 ### Runtime dependencies
 
-These scripts expect dependencies at runtime to be injected via Docker. The following are the expected defaults:
+These scripts expect dependencies at runtime to be injected via Docker. The container running the backup process
+will expect the following defaults to be injected at runtime:
 
-* /backups -> A checkout of the Git repository into which backups should be placed
-* /drupal -> The volume containing the Drupal filesystem that should be backed up
+* /backups: The directory containing the checkout of the Git repository into which backups should be placed
+* /drupal: The directory containing the Drupal filesystem that should be backed up
 
-In addition the following security credentials are required:
+The backup process is designed to be run in a secure manner. Security credentials should be provided by the configuration
+of the Docker container in which the backup process executes. The following security credentials are required:
 
-* /home/awestruct/.my.cnf -> The my.cnf containing username, password and host information to connect to for backups
-* /home/awestruct/.netrc -> Username/password combo for Github access to HTTPS push to the backup repository
+* /home/awestruct/.my.cnf: A my.cnf containing database username, password and host information to connect to for backups
+* /home/awestruct/.netrc:  Username/password combo for Github access to HTTPS push to the backup repository
 
-To provide the above, simply ensure that your docker run statement bind mounts all required dependencies:
 
-For example:
-
-```
-docker run --rm -v /data/drupal:/drupal -v /git/backups:/backups -v /credentials/my.cnf:/home/awestruct/.my.cnf -v /credentials/netrc:/home/awestruct/.netrc backup
-```
-
-Alternatively (and the recommended approach), specify all of the above in a docker-compose file for your environment:
+In reality the only environment that truly supports backup is the `drupal-production` environment. As such the
+`docker-compose.yml` for that environment has been configured with a `backup` service that correctly mounts all
+runtime dependencies into the Docker container.
 
 ```
 services:
@@ -59,18 +66,21 @@ services:
    - /git/backups:/backups
 ```
 
+As with all sensitive environments, these files are only accessible on the physical hosts for that environment
+and are not included as part of this Git repository.
+
 ## control.rb
 
-control.rb has been updated to support running of backups. The following are now supported:
+`control.rb` has integrated support for running a backup. A backup can be taken via `control.rb` using the following: 
 
 ```
-bundle exec ./control.rb --backup
+bundle exec ./control.rb -e drupal-production --backup
 ```
 
 This will generate a backup with a timestamped tag
 
 ```
-bundle exec ./control.rb --backup my-backup-name
+bundle exec ./control.rb -e drupal-production --backup my-backup-name
 ```
 
 This will generate a backup tagged with the name 'my-backup-name'

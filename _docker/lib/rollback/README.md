@@ -1,41 +1,30 @@
 ## Rollback
 
-The purpose of the rollback script is to be able to rollback the current version of the site to an older export. This means that if there are any problems with an export
-that has just been rsynced, you can go back to a known working export.
+The purpose of the rollback script is to be able to rollback the current version of the site to an older export. 
+This means that if there are any problems with an export that has just been rsynced, you can go back to a known working
+export.
+ 
 
 ### How do I determine old exports?
 
-Each time an export is rsynced to the Apache server for serving, it is archived (by default into `/export/export-archive`). The directory into which the archive is made is named
+Each time an export is rsynced to the filemgmt.jboss.org, it is archived (by default into `/export/export-archive`). 
+The directory into which the archive is made is timestamped so that you can easily determine when the export was made:
 
 ```
 export-<yyyy>-<mm>-<dd>-<hh>-<mm>-<ss> e.g
 export-2016-07-13-10-00-00
 ```
 
-Using the naming structure, you can then determine which export you would like to rollback to. If you wish you can also browse into the given export directories to perform
-a manual inspection of the site at that point in time.
+Using the naming structure, you can then determine which export you would like to rollback to. If you wish you can also
+browse into the given export directories to perform a manual inspection of the site at that point in time. An export
+is after all just a directory containing a number of HTML, CSS, JS files as well as supporting assets such as images.
 
-### How do I perform the rollback
+### How do I perform a rollback?
 
-To use the rollback, you need to execute the script as follows:
-
-```
-ruby rollback.rb <rsync_destination> <name_of_archived_export> 
-```
-
-For example:
-
-```
-ruby rollback.rb rhd@filemgnt.jboss.org:/my/rsync/location export-2016-07-13-10-00-00
-```
-
-You must ensure that the script is executing in a context that gives it the correct credentials to perform the rsync. Additionally if the specified export does not exist, then the
-script will fail.
-
-### control.rb integration
-
-The rollback function is integrated into control.rb to make it easier to use. This will ensure that the correct credentials are setup for the environment you wish to perform the
-rsync for.
+The rollback function is integrated into control.rb to make it easier to use. As with most functions on the RHDP project, 
+the rollback runs in a Docker container and expects that container to be correctly configured with security credentials
+that permit it to perform the rollback.
+ 
 
 Use `control.rb` as follows to perform a rollback:
 
@@ -52,6 +41,7 @@ The environments in which rollback is supported are:
 * drupal-staging
 * drupal-production
 
-### Rsync archive clean-up
+### Clean-up of archived site exports.
 
-By default, the most 15 recent export archives will be kept. Archives older than this are pruned each time a successful rsync occurs. 
+By default, the most 15 recent successful export archives will be kept. Archives older than this are pruned each time a
+successful rsync occurs. 
