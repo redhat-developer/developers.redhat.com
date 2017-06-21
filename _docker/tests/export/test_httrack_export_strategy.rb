@@ -36,6 +36,45 @@ class TestHttrackExportStrategy < MiniTest::Test
     end
   end
 
+  def test_correctly_handles_rollover_after_previous_rollover
+
+    Dir.mkdir("#{@export_directory}/hts-cache.rolled")
+    FileUtils.touch("#{@export_directory}/hts-cache.rolled/old-export.txt")
+    Dir.mkdir("#{@export_directory}/drupal_8080.rolled")
+    FileUtils.touch("#{@export_directory}/index.html.rolled")
+
+    Dir.mkdir("#{@export_directory}/hts-cache")
+    Dir.mkdir("#{@export_directory}/drupal_8080")
+    FileUtils.touch("#{@export_directory}/index.html")
+    FileUtils.touch("#{@export_directory}/hts-cache/new-export.txt")
+
+    ENV['drupal.export.max_cache_updates'] = '1'
+    write_cache_update_count(1)
+
+    assert(Dir.exist?("#{@export_directory}/hts-cache"))
+    assert(Dir.exist?("#{@export_directory}/drupal_8080"))
+    assert(File.exist?("#{@export_directory}/index.html"))
+    assert(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
+    assert(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
+    assert(File.exist?("#{@export_directory}/index.html.rolled"))
+    assert(File.exist?("#{@export_directory}/hts-cache.rolled/old-export.txt"))
+
+    @process_runner.expects(:execute!).with("httrack --list #{@url_list_file.path} -O #{@export_directory} --disable-security-limits -c50 --max-rate 0 -v +\"http://#{@drupal_host}*\" -\"*/node*\" -o0 -N ?html?%h/%p/%n/index.html -N %h/%p/%n.%t --footer \"<!-- -->\"")
+    @export_post_processor.expects(:post_process_html_export).with(@drupal_host, "#{@export_directory}/drupal_8080")
+    @export_inspector.expects(:inspect_export).with(@url_list_file, "#{@export_directory}/drupal_8080")
+
+    export_dir = @httrack_export_strategy.export!(@url_list_file, 'drupal:8080', @export_directory)
+    assert_equal("#{@export_directory}/drupal_8080", export_dir)
+    assert_equal(1, cache_update_count)
+
+    assert(Dir.exist?("#{@export_directory}/hts-cache.rolled"))
+    assert(Dir.exist?("#{@export_directory}/drupal_8080.rolled"))
+    assert(File.exist?("#{@export_directory}/index.html.rolled"))
+    refute(File.exist?("#{@export_directory}/hts-cache.rolled/old-export.txt"))
+    assert(File.exist?("#{@export_directory}/hts-cache.rolled/new-export.txt"))
+
+  end
+
   def test_correctly_handles_rollover_if_no_existing_directory_structure
     ENV['drupal.export.max_cache_updates'] = '1'
     write_cache_update_count(1)
