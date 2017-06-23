@@ -1,4 +1,5 @@
-verbose: true
+base_url: https://developers.redhat.com
+
 ignores:
   - code: 202
   - code: 203
@@ -10,15 +11,6 @@ ignores:
   - snippet: !ruby/regexp /https:\/\/player\.vimeo\.com\/.*/
   - snippet: !ruby/regexp /https:\/\/ssl\.google-analytics\.com\/.*/
 
-environments:
-  - http://developer-drupal.web.prod.ext.phx2.redhat.com
-  - https://developer-drupal.web.prod.ext.phx2.redhat.com
-  - https://developers.redhat.com
-  - http://developers.redhat.com
-
-ignore_external: true
-
-ignore_ssl: true
 max_page_retys: 5
 max_retrys: 5
 browser: phantomjs

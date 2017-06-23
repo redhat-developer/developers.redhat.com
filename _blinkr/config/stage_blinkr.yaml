@@ -1,3 +1,7 @@
+base_url: https://developers.stage.redhat.com
+verbose: true
+ignore_external: true
+ignore_ssl: true
 ignores:
   - code: 202
   - code: 203
@@ -19,5 +23,5 @@ max_page_retys: 5
 max_retrys: 5
 browser: phantomjs
 ignore_fragments: true
-phantomjs_threads: 15
+phantomjs_threads: 10
 report: blinkr.html
