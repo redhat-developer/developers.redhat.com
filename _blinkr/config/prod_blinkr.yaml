@@ -1,0 +1,19 @@
+base_url: https://developers.redhat.com
+
+ignores:
+  - code: 202
+  - code: 203
+  - code: 403
+  - code: 502
+  # This is not an error in real browsers.It is a known issue with PhantomJS https://github.com/ariya/phantomjs/issues/12750
+  - snippet: !ruby/regexp /https:\/\/f\.vimeocdn\.com\/.*/
+  - snippet: !ruby/regexp /ssl\.google-analytics\.com\/.*/
+  - snippet: !ruby/regexp /https:\/\/player\.vimeo\.com\/.*/
+  - snippet: !ruby/regexp /https:\/\/ssl\.google-analytics\.com\/.*/
+
+max_page_retys: 5
+max_retrys: 5
+browser: phantomjs
+ignore_fragments: true
+phantomjs_threads: 10
+report: blinkr.html
