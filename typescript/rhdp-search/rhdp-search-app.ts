@@ -198,12 +198,6 @@ class RHDPSearchApp extends HTMLElement {
         facet.active = e.detail.facet.active;
         app['modal'].setActive(facet, false);
         app['filters'].setActive(facet, false);
-        if (facet.active) {
-            facet.inline = true;
-            app['active'].addActive(facet, false);
-        } else {
-            app['active'].updateActiveFacets();
-        }
         for(let i=0; i < len; i++) {
             var itemLen = app['filterObj'].facets[i].items.length;
             for(let j=0; j < itemLen; j++) {
@@ -211,6 +205,14 @@ class RHDPSearchApp extends HTMLElement {
                     app['filterObj'].facets[i].items[j]['active'] = facet.active;
                 }
             }
+        }
+
+        if (facet.active) {
+            facet.inline = true;
+            app['active'].addActive(facet, false);
+        } else {
+            app['active'].filters = app['filterObj'];
+            app['active'].updateActiveFacets();
         }
 
         app['query'].filters = app['filterObj'];

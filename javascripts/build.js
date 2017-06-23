@@ -187,13 +187,6 @@ var RHDPSearchApp = (function (_super) {
         facet.active = e.detail.facet.active;
         app['modal'].setActive(facet, false);
         app['filters'].setActive(facet, false);
-        if (facet.active) {
-            facet.inline = true;
-            app['active'].addActive(facet, false);
-        }
-        else {
-            app['active'].updateActiveFacets();
-        }
         for (var i = 0; i < len; i++) {
             var itemLen = app['filterObj'].facets[i].items.length;
             for (var j = 0; j < itemLen; j++) {
@@ -201,6 +194,14 @@ var RHDPSearchApp = (function (_super) {
                     app['filterObj'].facets[i].items[j]['active'] = facet.active;
                 }
             }
+        }
+        if (facet.active) {
+            facet.inline = true;
+            app['active'].addActive(facet, false);
+        }
+        else {
+            app['active'].filters = app['filterObj'];
+            app['active'].updateActiveFacets();
         }
         app['query'].filters = app['filterObj'];
         app['query'].from = 0;
