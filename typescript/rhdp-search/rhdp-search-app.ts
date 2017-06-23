@@ -202,7 +202,7 @@ class RHDPSearchApp extends HTMLElement {
             facet.inline = true;
             app['active'].addActive(facet, false);
         } else {
-            app['active'].removeItem(facet, false);
+            app['active'].updateActiveFacets();
         }
         for(let i=0; i < len; i++) {
             var itemLen = app['filterObj'].facets[i].items.length;

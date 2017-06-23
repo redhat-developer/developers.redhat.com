@@ -155,11 +155,9 @@ class RHDPSearchFilters extends HTMLElement {
         }
     }
 
-    removeItem(item) {
-        var facet = this.querySelector(`.filter-item-${item.key}`);
-        if (facet) {
-            facet.remove();
-        } 
+    updateActiveFacets() {
+        this.innerHTML = this.activeTemplate`${this.title}`;
+        this.addAllActive();
         if (!this.querySelector('.activeFilters').hasChildNodes()) {
             this.style.display = 'none';
         }
