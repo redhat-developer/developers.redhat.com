@@ -1,7 +1,7 @@
 "use strict";
 // Test rhdp-search-filter-item component
 
-describe('Search Filter Item', function() {
+xdescribe('Search Filter Item', function() {
     var wc;
     beforeEach(function() {
         document.body.insertBefore(document.createElement('rhdp-search-filter-item'), document.body.firstChild);

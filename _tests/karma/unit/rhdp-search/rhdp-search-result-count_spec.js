@@ -1,7 +1,7 @@
 "use strict";
 // Test rhdp-search-result-count component
 
-describe('Search Result Count', function() {
+xdescribe('Search Result Count', function() {
     var wc;
     beforeEach(function() {
         document.body.insertBefore(document.createElement('rhdp-search-result-count'), document.body.firstChild);

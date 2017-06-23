@@ -1,6 +1,7 @@
+"use strict";
 // Test rhdp-search-results component
 
-describe('Search Results (list)', function() {
+xdescribe('Search Results (list)', function() {
     var wc;
     beforeEach(function() {
         document.body.insertBefore(document.createElement('rhdp-search-results'), document.body.firstChild);

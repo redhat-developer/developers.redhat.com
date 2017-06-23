@@ -1,7 +1,7 @@
 "use strict";
 /* global RHDPSearchFilterGroup */
 
-describe('Search Filter Group', function() {
+xdescribe('Search Filter Group', function() {
     var wc;
     beforeEach(function() {
         wc = new RHDPSearchFilterGroup();

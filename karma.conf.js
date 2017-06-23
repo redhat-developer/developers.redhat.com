@@ -4,24 +4,26 @@
 
 module.exports = function(config) {
     config.set({
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        // available browser launchers:
+        // https://npmjs.org/browse/keyword/karma-launcher
+        // start these browsers
         //browsers: ['Chrome'],
         browsers: ['ChromeCanaryHeadless'],
         plugins: [
             'karma-chrome-launcher',
             'karma-jasmine',
             'karma-jasmine-ajax',
-            'karma-spec-reporter'
+            'karma-spec-reporter',
+            'karma-jasmine-html-reporter'
         ],
-    //logLevel: config.LOG_DEBUG,
+        //logLevel: config.LOG_DEBUG,
         singleRun: true,
         colors: true,
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['jasmine-ajax', 'jasmine'],
-        reporters: ['spec'],
-    // list of files / patterns to load in the browser
+        reporters: ['spec', 'kjhtml'],
+        // list of files / patterns to load in the browser
         files: [
             'javascripts/vendor/custom-elements-es5-adapter.js',
             'javascripts/vendor/webcomponents-lite.js',
