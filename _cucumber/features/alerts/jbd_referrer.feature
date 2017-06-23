@@ -11,8 +11,8 @@ Feature: JBoss redirect to RHD
       | products/fuse/overview    |
       | resources/#!              |
       | downloads                 |
-      | devops                    |
-      | dotnet                    |
+      | /topics/devops            |
+      | /topics/dotnet            |
       | about                     |
       | community/contributor     |
       | events                    |

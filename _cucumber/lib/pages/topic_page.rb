@@ -7,7 +7,7 @@ class TopicPage < SiteBase
   elements(:white_cards)           { |b| b.elements(css: '#topic-resources > ul > a > li') }
 
   def open_topic(topic)
-    open("/#{topic}")
+    open("/topics/#{topic}")
     topics_header.present?
   end
 
