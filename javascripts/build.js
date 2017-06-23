@@ -192,7 +192,7 @@ var RHDPSearchApp = (function (_super) {
             app['active'].addActive(facet, false);
         }
         else {
-            app['active'].removeItem(facet, false);
+            app['active'].updateActiveFacets();
         }
         for (var i = 0; i < len; i++) {
             var itemLen = app['filterObj'].facets[i].items.length;
@@ -682,14 +682,13 @@ var RHDPSearchFilters = (function (_super) {
             }
         }
     };
-    RHDPSearchFilters.prototype.removeItem = function (item) {
-        var facet = this.querySelector(".filter-item-" + item.key);
-        if (facet) {
-            facet.remove();
-        }
+    RHDPSearchFilters.prototype.updateActiveFacets = function () {
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.activeTemplate(_a, this.title));
+        this.addAllActive();
         if (!this.querySelector('.activeFilters').hasChildNodes()) {
             this.style.display = 'none';
         }
+        var _a;
     };
     RHDPSearchFilters.prototype.setActive = function (item, bubble) {
         var upd = this.querySelector(".filter-item-" + item.key);
