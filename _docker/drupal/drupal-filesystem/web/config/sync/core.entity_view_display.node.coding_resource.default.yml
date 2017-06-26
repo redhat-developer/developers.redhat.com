@@ -1,0 +1,93 @@
+uuid: aecfd4cf-ca77-4330-904e-5393d6f0b7f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.coding_resource.body
+    - field.field.node.coding_resource.field_contributors
+    - field.field.node.coding_resource.field_description
+    - field.field.node.coding_resource.field_published_date
+    - field.field.node.coding_resource.field_related_product
+    - field.field.node.coding_resource.field_source_link
+    - field.field.node.coding_resource.field_tags
+    - field.field.node.coding_resource.field_version
+    - node.type.coding_resource
+  module:
+    - datetime
+    - link
+    - text
+    - user
+id: node.coding_resource.default
+targetEntityType: node
+bundle: coding_resource
+mode: default
+content:
+  body:
+    label: visually_hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_contributors:
+    weight: 4
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_description:
+    weight: 1
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_published_date:
+    weight: 3
+    label: visually_hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_related_product:
+    weight: 2
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_source_link:
+    weight: 6
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_tags:
+    weight: 7
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_version:
+    weight: 5
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  links: true
