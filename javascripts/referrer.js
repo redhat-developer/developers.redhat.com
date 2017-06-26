@@ -13,14 +13,7 @@
         case 'downloads': // before class most-popular-downloads
           referrerHTML.insertBefore('.most-popular-downloads');
           break;
-        case 'devops':
-        case 'enterprise-java':
-        case 'iot':
-        case 'microservices':
-        case 'mobile':
-        case 'web-and-api-development':
-        case 'dotnet':
-        case 'containers': // first of class topics-main
+        case 'topics': // first of class topics-main
           referrerHTML.insertBefore('.topics-main div:first');
           break;
         case 'community': // after class contributors-main
