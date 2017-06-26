@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.coding_resource.field_author
     - field.field.node.coding_resource.field_contributors
     - field.field.node.coding_resource.field_description
+    - field.field.node.coding_resource.field_level
     - field.field.node.coding_resource.field_published_date
     - field.field.node.coding_resource.field_related_product
     - field.field.node.coding_resource.field_resource_type
@@ -58,6 +59,12 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
+  field_level:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_published_date:
     weight: 7
     settings: {  }
@@ -80,7 +87,7 @@ content:
     type: options_select
     region: content
   field_source_link:
-    weight: 10
+    weight: 11
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -88,7 +95,7 @@ content:
     type: link_default
     region: content
   field_tags:
-    weight: 11
+    weight: 12
     settings:
       match_operator: CONTAINS
       size: 60
@@ -97,7 +104,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_version:
-    weight: 9
+    weight: 10
     settings:
       size: 60
       placeholder: ''

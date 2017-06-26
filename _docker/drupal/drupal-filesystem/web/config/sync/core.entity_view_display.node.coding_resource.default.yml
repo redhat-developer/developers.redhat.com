@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.coding_resource.field_author
     - field.field.node.coding_resource.field_contributors
     - field.field.node.coding_resource.field_description
+    - field.field.node.coding_resource.field_level
     - field.field.node.coding_resource.field_published_date
     - field.field.node.coding_resource.field_related_product
     - field.field.node.coding_resource.field_resource_type
@@ -54,6 +55,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_level:
+    weight: 10
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_published_date:
     weight: 3
