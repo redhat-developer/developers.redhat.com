@@ -172,13 +172,20 @@ WHERE node_revision__field_product_pages.entity_id = node_revision.nid
       $build['url_product_name'] = $active_product->field_url_product_name->value;
     }
 
-    // Helper for twig to know if there is a community page
+    // Helper for twig to know if there are corresponding product subpages
     $product_pages = $active_product->field_product_pages->referencedEntities();
     $build['has_community'] = count(array_filter($product_pages,
         function ($entity) {
           return strtolower($entity->field_overview_url->value) === 'community';
         })) > 0;
-
+    $build['has_download'] = count(array_filter($product_pages,
+          function ($entity) {
+              return strtolower($entity->field_overview_url->value) === 'download';
+          })) > 0;
+    $build['has_hello_world'] = count(array_filter($product_pages,
+          function ($entity) {
+            return strtolower($entity->field_overview_url->value) === 'hello world';
+          })) > 0;
     $build['#cache']['max-age'] = 0; // Disable caching of these product pages
 
     return $build;
