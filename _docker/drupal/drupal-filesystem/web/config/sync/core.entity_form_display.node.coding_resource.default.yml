@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.coding_resource.field_description
     - field.field.node.coding_resource.field_published_date
     - field.field.node.coding_resource.field_related_product
+    - field.field.node.coding_resource.field_resource_type
     - field.field.node.coding_resource.field_source_link
     - field.field.node.coding_resource.field_tags
     - field.field.node.coding_resource.field_version
@@ -25,7 +26,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 3
     settings:
       rows: 9
       summary_rows: 3
@@ -33,7 +34,7 @@ content:
     third_party_settings: {  }
     region: content
   field_contributors:
-    weight: 6
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -49,13 +50,13 @@ content:
     type: text_textarea
     region: content
   field_published_date:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_related_product:
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
@@ -63,8 +64,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_resource_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_source_link:
-    weight: 8
+    weight: 9
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -72,7 +79,7 @@ content:
     type: link_default
     region: content
   field_tags:
-    weight: 9
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
@@ -81,7 +88,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_version:
-    weight: 7
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -90,7 +97,7 @@ content:
     region: content
   path:
     type: path
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }

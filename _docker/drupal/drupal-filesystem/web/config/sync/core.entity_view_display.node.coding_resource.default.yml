@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.coding_resource.field_description
     - field.field.node.coding_resource.field_published_date
     - field.field.node.coding_resource.field_related_product
+    - field.field.node.coding_resource.field_resource_type
     - field.field.node.coding_resource.field_source_link
     - field.field.node.coding_resource.field_tags
     - field.field.node.coding_resource.field_version
@@ -15,6 +16,7 @@ dependencies:
   module:
     - datetime
     - link
+    - options
     - text
     - user
 id: node.coding_resource.default
@@ -60,6 +62,13 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_resource_type:
+    weight: 8
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_source_link:
     weight: 6
