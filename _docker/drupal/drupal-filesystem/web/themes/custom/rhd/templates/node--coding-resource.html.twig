@@ -12,11 +12,10 @@
         <h2 class="divider" id="start" itemprop="name">
             {{ label }}
         </h2>
-        {# TODO: create a searchisko_id #}
-        <div class="gsi-meta" data-searchisko-type="jbossdeveloper_{{ content.field_resource_type|raw }}" data-searchisko-id="#{page.metadata[:searchisko_id]}">
+        <div class="gsi-meta">
             <ul>
                 {% if content.field_author|render|striptags|trim is not empty %}
-                    <li><strong>Author:</strong></li>
+                    <li><strong>Author:</strong> {{ content.field_author }}</li>
                     {#= partial "contributor.html.slim", {:contributor => page.metadata[:author], :basic => true}#}
                 {% endif %}
 
@@ -54,18 +53,6 @@
                 </div>
                 <div class="columns medium-16 large-16 gsi">
                     {{ content.body }}
-                    {#
-                        - if page.metadata[:commits] && !page.metadata[:commits].empty?
-                            h3.divider#changelog Recent Changelog
-                            ul.commit-log
-                                - for commit in page.metadata[:commits].take(10)
-                                    li
-                                        = DateTime.parse(commit[:date]).strftime('%b %e, %Y')
-                                        | (
-                                        span.contributor data-sys-contributor="#{commit[:author]} <#{commit[:author_email]}>" #{commit[:author]}
-                                        | ):
-                                        = commit[:subject].gsub(/\-/,' ')
-                    #}
                 </div>
                 <div class="columns large-4 medium-4">
                     <div class="row">
