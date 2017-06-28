@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.coding_resource.field_resource_type
     - field.field.node.coding_resource.field_source_link
     - field.field.node.coding_resource.field_tags
+    - field.field.node.coding_resource.field_technologies
     - field.field.node.coding_resource.field_version
     - node.type.coding_resource
   module:
@@ -102,6 +103,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_technologies:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_version:
     weight: 10
