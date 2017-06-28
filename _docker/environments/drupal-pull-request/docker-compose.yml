@@ -11,7 +11,7 @@ services:
     environment:
       - github_status_enabled=true
       - github_status_api_token
-      - github_status_context=Drupal:Drupal Site
+      - github_status_context=drupal-site
       - github_status_repo=redhat-developer/developers.redhat.com
       - github_status_target_url=http://stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}
       - github_status_sha1=${ghprbActualCommit}
@@ -86,7 +86,7 @@ services:
    environment:
     - github_status_enabled=true
     - github_status_api_token
-    - github_status_context=Drupal:Exported Site Preview
+    - github_status_context=exported-site-preview
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${export_destination}
     - github_status_sha1=${ghprbActualCommit}
@@ -104,8 +104,8 @@ services:
    environment:
     - github_status_enabled=true
     - github_status_api_token
-    - github_status_context=Drupal:Unit Tests
+    - github_status_context=build-unit-tests
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=Drupal:Unit Tests,Drupal:Blinkr Checks,Drupal:FE Acceptance Tests,Drupal:Mobile FE Acceptance Tests,Drupal:Exported Site Preview,Drupal:Drupal Site
+    - github_status_initialise=build-unit-tests,js-unit-tests,js-e2e-tests,js-mobile-e2e-tests,broken-link-checks,exported-site-preview,drupal-Site,ruby-acceptance-tests,ruby-mobile-acceptance-tests
