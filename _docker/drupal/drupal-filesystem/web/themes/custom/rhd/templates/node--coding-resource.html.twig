@@ -2,6 +2,8 @@
     <meta name="DCP:WebpageSearchExclude" content="true">
 </noscript>
 
+{% set repo_url = content.field_source_link[0]['#url'].uri %}
+
 <div class="row">
     <h2 class="large-title" id="developer-materials">Developer Materials</h2>
 </div>
@@ -20,6 +22,7 @@
                 {% endif %}
 
                 {% if content.field_contributors|render|striptags|trim is not empty %}
+                    {#<li><strong> Contributors:</strong> {{ content.field_contributors['#items']|join(', ') }}</li>#}
                     <li><strong> Contributors:</strong> {{ content.field_contributors }}</li>
                     {#= page.metadata[:contributors].collect { |c| partial("contributor.html.slim", {:contributor => c, :basic => true, :itemprop => 'contributor'})}.join(", ")#}
                 {% endif %}
@@ -58,13 +61,20 @@
                     <div class="row">
                         <div class="columns large-24">
                             {# TODO: Download button#}
-                            {#<a href="#{page.metadata[:download]}" class="button">Download <i#}
-                                        {#class="fa fa-download"></i></a>#}
+                            <a href="{{ repo_url }}/archive/{{ content.field_version.0 }}.zip" class="button">Download <i
+                                        class="fa fa-download"></i></a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="columns large-24">
                             {# TODO: View Source #}
+                            <a href="{{ repo_url }}/tree/{{ content.field_version.0 }}"><i class="fa fa-github"></i> View on GitHub</a>
+                            {#a(href="#{page.metadata[:browse]}")#}
+                            {#- if page.metadata[:scm] == 'github'#}
+                            {#i.fa.fa-github#}
+                            {#| &nbsp; View on GitHub#}
+                            {#-else#}
+                            {#| Browse source#}
                             {#<a href="#{page.metadata[:download]}" class="button">Download <i#}
                                         {#class="fa fa-download"></i></a>#}
                         </div>
