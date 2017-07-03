@@ -17,29 +17,20 @@ title: DevNetion Live
       .row
         .large-24.columns
           h5.caps.session-label
-        .large-20.small-24.columns
+        .large-17.small-24.columns
           h2.caps #{a.title}
-        .large-4.small-24.columns.devnation-live-date(data-tags="#{(JSON.dump a.date)}")
+        .large-7.small-24.columns.devnation-live-date(data-tags="#{(JSON.dump a.date)}")
          span
            i.fa.fa-calendar.fa-2x.right
          span
             #hiddenDate #{a.date}
-            .event-day
-            .event-time
-            .event-timezone
+            .session-date
       .row
         .medium-14.columns.event-video
           .flex-video
             iframe(width="640" height="360" src="https://www.youtube.com/embed/#{a.youtube_id}?rel=0" frameborder="0" allowfullscreen)
         .medium-10.columns
           iframe.embedded-chat(src="https://www.youtube.com/live_chat?v=#{a.youtube_id}&embed_domain=www.developers.redhat.com")
-        .large-24.columns
-          span
-            .session-links.y-centered
-              - if a.slides_id
-                a(href='http://www.slideshare.net/vjbug/#{a.slides_id}')
-                  i.fa.fa-folder-o
-                  |  Slides
       .row
         .large-24.columns.divider
           - if a.speaker
@@ -51,15 +42,7 @@ title: DevNetion Live
                 |  (
                 a(href="https://twitter.com/#{a.twitter_handle}" target="_blank") @#{a.twitter_handle}
                 | )
-          - if a.demo_links
-            h6.caps Demo Links:
-            ul.demo-links
-              - a.demo_links.each do |b|
-                li
-                  a(href='#{b.url}') #{b.url}
           p #{a.abstract}
-          / - if a.speaker
-          /   p #{a.speaker_intro}
   section
       .row
         .large-24.columns
@@ -73,16 +56,14 @@ title: DevNetion Live
                   - if c.youtube_id
                     a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
                       img(src='http://img.youtube.com/vi/#{c.youtube_id}/0.jpg' alt='#{c.title}')
-                    .session-links
-                      a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
-                        i.fa.fa-film
-                        |  Watch
                   - else
                     img(src='#{site.base_url}/images/design/devnation_live_youtube_placeholder.png' alt='#{c.title}')
                 .large-17.columns
                   - if c.youtube_id
                     a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
                       h4.caps #{c.title}
+                  - else
+                    h4.caps #{c.title}
                   - if c.speaker
                     p
                       | Speaker:
@@ -93,11 +74,20 @@ title: DevNetion Live
                         a(href="https://twitter.com/#{c.twitter_handle}" target="_blank") @#{c.twitter_handle}
                         | )
                   - if c.date
-                    p #{c.date}
+                    javascript:
+                      var timeStamp = new Date("#{c.date}");
+
+                      var timeString = timeStamp.toString();
+                      var x = timeString.split(' ', 4).join(' ');
+                      var t = timeStamp.toLocaleTimeString();
+                      var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
+                     
+                      document.write("<p>" + x + " " + t + " " + timezone + "</p>");
+
+                  - else
+                    p Date TBD
                   - if c.abstract
                     p #{c.abstract}
-                  / - if c.speaker
-                  /   p #{c.speaker_intro}
   / section
   /     .row
   /       .large-24.columns
@@ -111,10 +101,6 @@ title: DevNetion Live
   /                 - if d.youtube_id
   /                   a(href='#{site.base_url}/video/youtube/#{d.youtube_id}')
   /                     img(src='http://img.youtube.com/vi/#{d.youtube_id}/0.jpg' alt='#{d.title}')
-  /                   .session-links
-  /                     a(href='#{site.base_url}/video/youtube/#{d.youtube_id}')
-  /                       i.fa.fa-film
-  /                       |  Watch
   /               .large-17.columns
   /                 a(href='#{site.base_url}/video/youtube/#{d.youtube_id}')
   /                   h4.caps #{d.title}
@@ -122,13 +108,14 @@ title: DevNetion Live
   /                   p
   /                     | Speaker:
   /                     strong  #{d.speaker}
-                        / span
-                        /  - if a.twitter_handle
-                        /   |  (
-                        /   a(href="https://twitter.com/#{a.twitter_handle}" target="_blank") @#{a.twitter_handle}
-                        /   | )
+  /                      span
+  /                       - if a.twitter_handle
+  /                        |  (
+  /                        a(href="https://twitter.com/#{a.twitter_handle}" target="_blank") @#{a.twitter_handle}
+  /                        | )
   /                 p #{d.date}
   /                 p #{d.abstract}
 
 = javascripts('devnation-live-index', true) do
-  script src="#{site.base_url}/javascripts/vjbug.js"
+  script src="#{site.base_url}/javascripts/vendor/moment.js"
+  script src="#{site.base_url}/javascripts/devnation-live.js"

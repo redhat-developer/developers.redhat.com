@@ -35,20 +35,14 @@
     display: inline-block;
     i {
       margin-right: 10px;
+      position: relative;
+      top: 7px;
     }
-    .event-day, .event-time, .event-timezone {
+    .session-date{
       font-size: 1.1em;
       font-weight: 800;
       color: #252527;
-    }
-    .event-time {
-      display: inline;
-      float: left;
-      margin-right: 5px;
-    }
-    .event-timezone {
-      display: inline;
-    }    
+    }   
   }
   ul.demo-links {
     margin-bottom: 2em;
