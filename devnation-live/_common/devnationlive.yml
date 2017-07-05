@@ -1,0 +1,45 @@
+next_session:
+  - title: Going Reactive with Java
+    date: 07/20/2017 4:00:00 PM UTC
+    youtube_id: mhwvDeDzSSA
+    abstract:
+        "In this fast-paced, demo-focused session, we will show you how a reactive toolkit for Java known as Eclipse Vert.x can fundamentally change the way you build applications.  If you have grown weary of your old CRUD with GET&POST development model then this fun session is exactly what you need."
+    speaker: Burr Sutter
+    twitter_handle: 'burrsutter'
+    speaker_intro:
+        "A lifelong developer advocate, community organizer, and technology evangelist, Burr Sutter is a featured speaker at technology events around the globe—from Bangalore to Brussels and Berlin to Beijing (and most parts in between)—he is currently Red Hat’s Director of Developer Experience. A Java Champion since 2005 and former president of the Atlanta Java User Group, Burr founded the DevNexus conference—now the second largest Java event in the U.S.—with the aim of making access to the world’s leading developers affordable to the developer community. When not speaking abroad, Burr is also the passionate creator and orchestrator of highly-interactive live demo keynotes at Red Hat Summit, the company’s premier annual event."
+upcoming_sessions:
+  - title: Kubernetes for Java developers
+    date: 08/03/2017 4:00:00 PM UTC
+    youtube_id: _vM3ORa9_JE
+    abstract:
+        'Developers are becoming more familiar with Linux containers each day, but have you really ever thought about how to manage a fleet of containers? Hundreds or thousands of containers? Kubernetes from Google has become the "de facto" standard for container orchestration. This brief session will provide your with a basic understanding of what  Kubernetes is and how it can help you to run your Linux containers at scale. After this session, you will only want to deploy your Java applications and microservices on Kubernetes!'
+    speaker: Rafael Benevides
+    twitter_handle: 'rafabene'
+    speaker_intro:
+        "A lifelong developer advocate, community organizer, and technology evangelist, Burr Sutter is a featured speaker at technology events around the globe—from Bangalore to Brussels and Berlin to Beijing (and most parts in between)—he is currently Red Hat’s Director of Developer Experience. A Java Champion since 2005 and former president of the Atlanta Java User Group, Burr founded the DevNexus conference—now the second largest Java event in the U.S.—with the aim of making access to the world’s leading developers affordable to the developer community. When not speaking abroad, Burr is also the passionate creator and orchestrator of highly-interactive live demo keynotes at Red Hat Summit, the company’s premier annual event."
+  - title: Sidecars and a Microservices Mesh
+    date: 08/17/2017 4:00:00 PM UTC
+    youtube_id: ZR2GGoT_GTg
+    abstract:
+        "The first generation of microservices was primarily shaped by NetflixOSS and leveraged by numerous Spring Cloud annotations all throughout your business logic. The next generation of microservices will leverage sidecars and a service mesh.  In this session, we will give you a taste of Envoy and Istio, two open source projects that will change the way you write distributed, cloud native, Java applications on Kubernetes."
+    speaker: Christian Posta
+    twitter_handle: 'christianposta'
+    speaker_intro:
+        "Christian Posta (@christianposta) is a Chief Architect of cloud applications at Red Hat and well known in the community for being an author (Microservices for Java Developers, O’Reilly 2016), frequent blogger, speaker, open-source enthusiast and committer on various open-source projects. Christian has spent time at web-scale companies and now helps companies create and deploy large-scale, resilient, distributed architectures - many of what we now call Microservices. He enjoys mentoring, training and leading teams to be successful with distributed systems concepts, microservices, devops, and cloud-native application design."
+  - title: Big Data In Action with Infinispan
+    date: 09/07/2017 4:00:00 PM UTC
+    youtube_id:
+    abstract:
+        "Dealing with real-time, in-memory, streaming data is a unique challenge and with the advent of the smartphone and IoT (trillions of internet connected devices), we are witnessing an exponential growth in data at scale.<br/><br/>Building data layers that can satisfy these requirements can be challenging, but with the help of Infinispan, an in-memory data grid, you can take advantage of state of the art distributed data processing capabilities to tackle these challenges. From classic or full-text queries, to Spark/Hadoop integrations via distributed Java Streams, these wide ranging data processing capabilities make Infinispan the perfect choice for the Big Data era.<br/><br/>In this session, we will identify critical patterns and principles that will help you achieve greater scale and response speed. On top of that, you will witness how Infinispan follows these patterns and principles to tackle a big data situation via a live coding demonstration."
+    speaker: Galder Zamarreno
+    speaker_intro:
+        "Galder Zamarreño is a core R&D engineer at JBoss, a division of Red Hat. He is one of the founding engineers of Infinispan, Red Hat's distributed, in-memory key-value store and he currently spends most of his time developing Infinispan's Javascript client as well as other data grid and caching functionality. He is very keen on functional programming and has been developing Scala since 2009. Lately he's been learning Haskell and has been presenting Elm based Infinispan demos. Prior to joining Red Hat, Galder worked in the Retail industry where he was a software developer involved in the development of an EFT software switch solution based on JBoss technologies. The love for distributed systems and open source software comes from his days at ESIDE faculty at University of Deusto (Bilbao, Spain) where he studied a master's degree in Computer Science."
+  - title: Reactive Landscape
+    date: 09/21/2017 4:00:00 PM UTC
+    youtube_id:
+    abstract:
+        "Reactive Programming, Reactive eXtensions, Reactive Streams, Reactive Systems, Reactive Manifesto, that’s a lot of 'reactive' thingies. Just to make it even more confusing, 'reactive' is often associated with asynchronous, scalability, RX libraries (RX Java, RX JS), back pressure, streams, observables, futures, promises, spreadsheets and so on…. That's a lot to digest… This session helps you understanding what's behind the 'reactive' word. It explores the reactive landscape and explains what all these 'things' are and how they are related. Attendees don't only learn what does 'reactive' mean, but also how it is related to their projects and applications. By providing a global overview of the reactive landscape, this session also provides to the attendees a general understanding of the 'reactive' trend, and why it matters. The presentation uses several live coding demos to explain the different concepts. It uses Eclipse Vert.x as a playground to explain how all these concepts work together. Eclipse Vert.x is a toolkit to build reactive and distributed systems on the JVM. It supports a set of languages such as Java, JavaScript, Ceylon, Scala and Kotlin… but also a set of programming styles (callbacks, futures, streams, RX...). It covers a large part of the reactive spectrum making it a great choice to implement reactive applications and systems."
+    speaker: Clement Escoffier
+    speaker_intro:
+        "Who am I? That’s a good question. I had several professional lives, from academic positions to management. Currently, I’m working for Red Hat as Vert.x core developer. I have been involved in projects and products touching many domains and technologies such as OSGi, mobile app development, continuous delivery, DevOps… My main point of interest? Software engineering, so processes, methods, tools that make the development of software more efficient and also more fun. I’m also an active contributor to many open source projects such as Apache Felix, iPOJO, Wisdom Framework, and obviously, Eclipse Vert.x."
