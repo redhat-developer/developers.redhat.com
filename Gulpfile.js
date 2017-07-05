@@ -74,12 +74,13 @@ var globs = {
         '!javascripts/namespace.js',
         'javascripts/custom-jira-collector.js',
         'javascripts/adaptive-placeholder.js',
-    //'javascripts/current-tab.js',
+        //'javascripts/current-tab.js',
         'javascripts/referrer.js',
         'javascripts/products.js',
         'javascripts/jboss-docker.js',
         'javascripts/verify-member.js',
         'javascripts/nav-highlight.js',
+        'javascripts/devnation-live.js',
         'javascripts/build.js'
     ],
     "styles": ['stylesheets/*.scss']

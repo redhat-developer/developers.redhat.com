@@ -2,7 +2,7 @@
 layout: base
 body_class: fullbleed
 interpolate: true
-title: DevNetion Live
+title: DevNation Live
 ---
 
 .wide.wide-hero.devnation-live
@@ -11,7 +11,7 @@ title: DevNetion Live
       img.show-for-large-up(src="https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png" alt="DevNation Live logo")
       img.hide-for-large-up(src="https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png" alt="DevNation Live logo")
 
-#devnetionLive-microsite
+#devnationLive-microsite
   section
     - page.devnationlive.next_session.each do |a|
       .row
@@ -25,12 +25,12 @@ title: DevNetion Live
          span
             #hiddenDate #{a.date}
             .session-date
-      .row
+      .row(data-video="#{a.youtube_id}")
         .medium-14.columns.event-video
           .flex-video
-            iframe(width="640" height="360" src="https://www.youtube.com/embed/#{a.youtube_id}?rel=0" frameborder="0" allowfullscreen)
-        .medium-10.columns
-          iframe.embedded-chat(src="https://www.youtube.com/live_chat?v=#{a.youtube_id}&embed_domain=www.developers.redhat.com")
+            img(width="640" height="360" src="http://img.youtube.com/vi/#{a.youtube_id}/0.jpg" alt="#{a.title}")
+        .medium-10.columns(data-chat="#{a.youtube_id}")
+          #GatedFormContainer 
       .row
         .large-24.columns.divider
           - if a.speaker
