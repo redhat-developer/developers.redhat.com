@@ -1,0 +1,14 @@
+uuid: 460cbca2-193d-42ff-9ae8-b4aff383ab37
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.coding_resource_creator
+  module:
+    - user
+id: user_add_role_action.coding_resource_creator
+label: 'Add the Coding Resource creator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: coding_resource_creator
