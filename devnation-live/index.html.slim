@@ -29,7 +29,7 @@ title: DevNation Live
         .medium-14.columns.event-video
           .flex-video
             img(width="640" height="360" src="http://img.youtube.com/vi/#{a.youtube_id}/0.jpg" alt="#{a.title}")
-        .medium-10.columns(data-chat="#{a.youtube_id}")
+        .medium-10.columns.event-chat(data-chat="#{a.youtube_id}")
           #GatedFormContainer 
       .row
         .large-24.columns.divider
@@ -53,18 +53,8 @@ title: DevNation Live
             - if c.confirmed
               li.single-event
                 .row
-                  .large-7.columns
-                    - if c.youtube_id
-                      a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
-                        img(src='http://img.youtube.com/vi/#{c.youtube_id}/0.jpg' alt='#{c.title}')
-                    - else
-                      img(src='#{site.base_url}/images/design/devnation_live_youtube_placeholder.png' alt='#{c.title}')
                   .large-17.columns
-                    - if c.youtube_id
-                      a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
-                        h4.caps #{c.title}
-                    - else
-                      h4.caps #{c.title}
+                    h4.caps #{c.title}
                     - if c.speaker
                       p
                         | Speaker:
@@ -84,11 +74,12 @@ title: DevNation Live
                         var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
                       
                         document.write("<p>" + x + " " + t + " " + timezone + "</p>");
-
                     - else
                       p Date TBD
                     - if c.abstract
                       p #{c.abstract}
+                  .large-7.columns
+                    
   / section
   /     .row
   /       .large-24.columns

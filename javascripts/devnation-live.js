@@ -54,7 +54,7 @@ $(function() {
             document.cookie = 'dn_live_'+vidID+'=true';
             clearInterval(obj);
         }
-    }, 250)
+    }, 500)
   } else { 
     $('.flex-video').html('<iframe src="https://www.youtube.com/embed/'+vidID+'?rel=0" width="640" height="360" frameborder="0" allowfullscreen></iframe>');
     $('[data-chat='+vidID+']').html('<iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v='+vidID+'&embed_domain='+window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]+'"></iframe>');

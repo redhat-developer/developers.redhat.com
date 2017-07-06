@@ -26,6 +26,13 @@
   .event-video {
     margin-top: 2em;
   }
+  .event-chat {
+    margin-top: 3.2em;
+
+    @media only screen and (max-width: 768px) {
+      margin-top: 1em;
+    }
+  }
   iframe.embedded-chat {
     margin-top: 2em;
     min-height: 465px;
