@@ -38,7 +38,9 @@ services:
     ports:
       - "80:80"
     links:
-      - drupalmysql
+    # We give the drupalmysql the 'docker' alias so that the rhd.settings.php for database host name
+    # work both within the container and also when running Drupal outside of Docker
+      - drupalmysql:docker
     volumes:
       - ./rhd.settings.php:/var/www/drupal/web/sites/default/rhd.settings.php
       - ./rhd.settings.yml:/var/www/drupal/web/sites/default/rhd.settings.yml
