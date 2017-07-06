@@ -50,44 +50,45 @@ title: DevNation Live
           br
           ul.events-list
            - page.devnationlive.upcoming_sessions.each do |c|
-            li.single-event
-              .row
-                .large-7.columns
-                  - if c.youtube_id
-                    a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
-                      img(src='http://img.youtube.com/vi/#{c.youtube_id}/0.jpg' alt='#{c.title}')
-                  - else
-                    img(src='#{site.base_url}/images/design/devnation_live_youtube_placeholder.png' alt='#{c.title}')
-                .large-17.columns
-                  - if c.youtube_id
-                    a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
+            - if c.confirmed
+              li.single-event
+                .row
+                  .large-7.columns
+                    - if c.youtube_id
+                      a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
+                        img(src='http://img.youtube.com/vi/#{c.youtube_id}/0.jpg' alt='#{c.title}')
+                    - else
+                      img(src='#{site.base_url}/images/design/devnation_live_youtube_placeholder.png' alt='#{c.title}')
+                  .large-17.columns
+                    - if c.youtube_id
+                      a(href='#{site.base_url}/video/youtube/#{c.youtube_id}')
+                        h4.caps #{c.title}
+                    - else
                       h4.caps #{c.title}
-                  - else
-                    h4.caps #{c.title}
-                  - if c.speaker
-                    p
-                      | Speaker:
-                      strong  #{c.speaker}
-                      span
-                       - if c.twitter_handle
-                        |  (
-                        a(href="https://twitter.com/#{c.twitter_handle}" target="_blank") @#{c.twitter_handle}
-                        | )
-                  - if c.date
-                    javascript:
-                      var timeStamp = new Date("#{c.date}");
+                    - if c.speaker
+                      p
+                        | Speaker:
+                        strong  #{c.speaker}
+                        span
+                        - if c.twitter_handle
+                          |  (
+                          a(href="https://twitter.com/#{c.twitter_handle}" target="_blank") @#{c.twitter_handle}
+                          | )
+                    - if c.date
+                      javascript:
+                        var timeStamp = new Date("#{c.date}");
 
-                      var timeString = timeStamp.toString();
-                      var x = timeString.split(' ', 4).join(' ');
-                      var t = timeStamp.toLocaleTimeString();
-                      var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
-                     
-                      document.write("<p>" + x + " " + t + " " + timezone + "</p>");
+                        var timeString = timeStamp.toString();
+                        var x = timeString.split(' ', 4).join(' ');
+                        var t = timeStamp.toLocaleTimeString();
+                        var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
+                      
+                        document.write("<p>" + x + " " + t + " " + timezone + "</p>");
 
-                  - else
-                    p Date TBD
-                  - if c.abstract
-                    p #{c.abstract}
+                    - else
+                      p Date TBD
+                    - if c.abstract
+                      p #{c.abstract}
   / section
   /     .row
   /       .large-24.columns
