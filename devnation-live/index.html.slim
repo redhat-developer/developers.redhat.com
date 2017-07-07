@@ -28,7 +28,7 @@ title: DevNation Live
       .row(data-video="#{a.youtube_id}")
         .medium-14.columns.event-video
           .flex-video
-            img(width="640" height="360" src="http://img.youtube.com/vi/#{a.youtube_id}/0.jpg" alt="#{a.title}")
+            img(width="640" height="360" src="/images/design/devnationlive_herographic_0.jpg" alt="#{a.title}")
         .medium-10.columns.event-chat(data-chat="#{a.youtube_id}")
           #GatedFormContainer 
       .row
@@ -79,6 +79,8 @@ title: DevNation Live
                     - if c.abstract
                       p #{c.abstract}
                   .large-7.columns
+                    - if c.eloqua_id
+                      iframe(src="/form/email?id=#{c.eloqua_id}")
                     
   / section
   /     .row
@@ -92,7 +94,7 @@ title: DevNation Live
   /               .large-7.columns
   /                 - if d.youtube_id
   /                   a(href='#{site.base_url}/video/youtube/#{d.youtube_id}')
-  /                     img(src='http://img.youtube.com/vi/#{d.youtube_id}/0.jpg' alt='#{d.title}')
+  /                     img(src='https://img.youtube.com/vi/#{d.youtube_id}/0.jpg' alt='#{d.title}')
   /               .large-17.columns
   /                 a(href='#{site.base_url}/video/youtube/#{d.youtube_id}')
   /                   h4.caps #{d.title}
