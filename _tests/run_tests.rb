@@ -38,21 +38,28 @@ class RunTest
   def copy_required_project_resources(test_configuration)
     cleanup(test_configuration)
     if test_configuration[:blc]
+      # copy Gemfiles in order to use in the blc docker container
       FileUtils.cp("#{@test_dir}/Gemfile", "#{@test_dir}/#{ENV['rhd_test']}")
       FileUtils.cp("#{@test_dir}/Gemfile.lock", "#{@test_dir}/#{ENV['rhd_test']}")
     end
-
-    unless test_configuration[:blc]
+    if test_configuration[:unit]
+      # copy main package.json from project directory in order to use it in the unit-test
+      # docker container
       parent_directory = File.dirname(File.expand_path('..', __FILE__))
-      FileUtils.cp("#{parent_directory}/package.json", "#{@test_dir}/#{ENV['rhd_test']}")
+      FileUtils.cp("#{parent_directory}/package.json", "#{@test_dir}/unit")
     end
   end
 
   # clear required resources before copying
   # in case there has been an update to the file
   def cleanup(test_configuration)
-    FileUtils.rm_rf("#{@test_dir}/#{ENV['rhd_test']}/package.json")
+    if test_configuration[:unit]
+      # copy main package.json from project directory in order to use it in the unit-test
+      # docker container
+      FileUtils.rm_rf("#{@test_dir}/unit/package.json")
+    end
     if test_configuration[:blc]
+      # copy Gemfiles in order to use in the blc docker container
       FileUtils.rm_rf("#{@test_dir}/#{ENV['rhd_test']}/Gemfile")
       FileUtils.rm_rf("#{@test_dir}/#{ENV['rhd_test']}/Gemfile.lock")
     end
