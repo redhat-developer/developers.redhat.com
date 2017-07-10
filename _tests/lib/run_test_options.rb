@@ -151,11 +151,11 @@ class RunTestOptions
     bind_environment_variable('github_status_enabled', 'true')
     bind_environment_variable('github_status_sha1', github_sha_1)
     if ENV['rhd_test'].to_s == 'blc'
-      bind_environment_variable('github_status_context', 'Drupal:Frontend Broken Link Checks')
+      bind_environment_variable('github_status_context', 'Drupal:Front-end broken link checks')
     elsif ENV['rhd_test'].to_s == 'unit'
-      bind_environment_variable('github_status_context', 'Frontend unit-tests')
+      bind_environment_variable('github_status_context', 'Front-end unit-tests')
     else
-      bind_environment_variable('github_status_context', 'Drupal:Frontend e2e-tests')
+      bind_environment_variable('github_status_context', 'Drupal:Front-end e2e-tests')
     end
   end
 
