@@ -9,7 +9,6 @@ delete baseConfig.specs;
 delete baseConfig.exclude;
 delete baseConfig.screenshotPath;
 delete baseConfig.cucumberOpts;
-delete baseConfig.reporters;
 
 // clone prod config and add new properties/overrides
 var dockerConfig = Object.assign(baseConfig, {
@@ -28,14 +27,6 @@ var dockerConfig = Object.assign(baseConfig, {
     exclude: [
         'support/pages/*.page.js', 'support/sections/*.section.js'
     ],
-
-
-    reporters: ['spec', 'junit'],
-    reporterOptions: {
-        junit: {
-            outputDir: 'reports'
-        }
-    },
 
     screenshotPath: 'reports/errorShots',
     //

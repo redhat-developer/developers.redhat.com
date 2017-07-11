@@ -30,11 +30,11 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
 exports.config = {
 
     specs: [
-        '_tests/e2e/features/*.feature'
+        'features/*.feature'
     ],
 
     exclude: [
-        '_tests/e2e/support/pages/*.page.js', '_tests/e2e/support/sections/*.section.js'
+        'support/pages/*.page.js', 'support/sections/*.section.js'
     ],
 
     sync: true,
@@ -50,7 +50,7 @@ exports.config = {
     bail: 0,
     //
     // Saves a screenshot to a given path if a command fails.
-    screenshotPath: '_tests/e2e/errorShots',
+    screenshotPath: 'reports/errorShots',
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
@@ -74,7 +74,7 @@ exports.config = {
     // reporters: ['dot'],//
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['_tests/e2e/features/step_definitions'],        // <string[]> (file/dir) require files before executing features
+        require: ['features/step_definitions'],        // <string[]> (file/dir) require files before executing features
         backtrace: false,   // <boolean> show full backtrace for errors
         compiler: [],       // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
         dryRun: false,      // <boolean> invoke formatters without executing steps
@@ -94,6 +94,12 @@ exports.config = {
     // The following are supported: dot (default), spec, and xunit
     // see also: http://webdriver.io/guide/testrunner/reporters.html
     reporters: ['spec'],
+
+    reporterOptions: {
+        junit: {
+            outputDir: 'reports'
+        }
+    },
 
     //
     // =====

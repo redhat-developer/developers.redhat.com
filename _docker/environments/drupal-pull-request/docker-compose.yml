@@ -108,4 +108,4 @@ services:
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
-    - github_status_initialise=Build:unit-tests,FE:unit-tests,FE:node-e2e-tests,FE:broken-link-checks,Exported Site Preview,Drupal Site,FE:Ruby Acceptance Tests,FE:Ruby Mobile Acceptance Tests
+    - github_status_initialise=Build:unit-tests,FE:unit-tests,node-e2e-tests,broken-link-checks,Exported Site Preview,Drupal Site,ruby-acceptance-tests,ruby-mobile-acceptance-tests

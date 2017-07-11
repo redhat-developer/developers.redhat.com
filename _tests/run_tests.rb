@@ -37,11 +37,6 @@ class RunTest
   # copy required test type resources in order to execute tests.
   def copy_required_project_resources(test_configuration)
     cleanup(test_configuration)
-    if test_configuration[:blc]
-      # copy Gemfiles in order to use in the blc docker container
-      FileUtils.cp("#{@test_dir}/Gemfile", "#{@test_dir}/#{ENV['rhd_test']}")
-      FileUtils.cp("#{@test_dir}/Gemfile.lock", "#{@test_dir}/#{ENV['rhd_test']}")
-    end
     if test_configuration[:unit]
       # copy main package.json from project directory in order to use it in the unit-test
       # docker container
@@ -58,11 +53,6 @@ class RunTest
       # docker container
       FileUtils.rm_rf("#{@test_dir}/unit/package.json")
     end
-    if test_configuration[:blc]
-      # copy Gemfiles in order to use in the blc docker container
-      FileUtils.rm_rf("#{@test_dir}/#{ENV['rhd_test']}/Gemfile")
-      FileUtils.rm_rf("#{@test_dir}/#{ENV['rhd_test']}/Gemfile.lock")
-    end
   end
 
   #
@@ -76,11 +66,15 @@ class RunTest
 
     @log.info("Launching #{ENV['rhd_test']} testing environment...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} build")
-    @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d #{test_configuration[:docker_node]}")
+
     if test_configuration[:e2e]
-      # scale docker nodes
-      @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} scale #{test_configuration[:docker_node]}=#{test_configuration[:browser_count]}")
+      unless test_configuration[:browserstack]
+        # scale docker nodes
+        @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} up -d #{test_configuration[:docker_node]}")
+        @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} scale #{test_configuration[:docker_node]}=#{test_configuration[:browser_count]}")
+      end
     end
+
     @log.info("Test environment up and running. Running #{ENV['rhd_test']} tests...")
     @process_runner.execute!("cd #{compose_environment_directory} && docker-compose -p #{compose_project_name} run --rm --no-deps rhd_#{ENV['rhd_test']}_testing #{test_configuration[:run_tests_command]}")
     @log.info("Completed run of #{ENV['rhd_test']} tests.")

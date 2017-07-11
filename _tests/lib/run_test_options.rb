@@ -67,6 +67,10 @@ class RunTestOptions
         test_configuration[:browser_count] = browser_count.to_i
       end
 
+      opts.on('--reporters REPORT', String, 'Type of report you wish to generate. Will mostly be used for Jenkins config, i.e. junit report') do |report|
+        test_configuration[:report] = report
+      end
+
       #
       # Broken link checking commandline options
       #
@@ -131,8 +135,8 @@ class RunTestOptions
   #
   def bind_test_type_environment_variable(test_configuration)
     bind_environment_variable('rhd_test', 'unit') if test_configuration[:unit]
-    bind_environment_variable('rhd_test', 'e2e')  if test_configuration[:e2e]
-    bind_environment_variable('rhd_test', 'blc')  if test_configuration[:blc]
+    bind_environment_variable('rhd_test', 'e2e') if test_configuration[:e2e]
+    bind_environment_variable('rhd_test', 'blc') if test_configuration[:blc]
   end
 
   #
@@ -140,8 +144,8 @@ class RunTestOptions
   #
   def build_test_execution_command(test_configuration)
     test_configuration[:run_tests_command] = build_unit_test_execution_cmd(test_configuration) if test_configuration[:unit]
-    test_configuration[:run_tests_command] = build_e2e_test_execution_cmd(test_configuration)  if test_configuration[:e2e]
-    test_configuration[:run_tests_command] = build_blc_test_execution_cmd(test_configuration)  if test_configuration[:blc]
+    test_configuration[:run_tests_command] = build_e2e_test_execution_cmd(test_configuration) if test_configuration[:e2e]
+    test_configuration[:run_tests_command] = build_blc_test_execution_cmd(test_configuration) if test_configuration[:blc]
   end
 
   #
@@ -152,8 +156,8 @@ class RunTestOptions
     @logger.info("Enabling update of GitHub status for SHA1: '#{github_sha_1}'")
     bind_environment_variable('github_status_enabled', 'true')
     bind_environment_variable('github_status_sha1', github_sha_1)
-    bind_environment_variable('github_status_context', 'FE:unit-tests')         if test_type == 'unit'
-    bind_environment_variable('github_status_context', 'FE:node-e2e-tests')     if test_type == 'e2e'
+    bind_environment_variable('github_status_context', 'FE:unit-tests') if test_type == 'unit'
+    bind_environment_variable('github_status_context', 'FE:node-e2e-tests') if test_type == 'e2e'
     bind_environment_variable('github_status_context', 'FE:broken-link-checks') if test_type == 'blc'
   end
 
@@ -181,17 +185,24 @@ class RunTestOptions
   #
   def build_e2e_test_execution_cmd(test_configuration)
     run_tests_command = ''
-    # bind environment  variable for base url to be used in e2e base config.
+    # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
     bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
-    run_tests_command += " --baseUrl=#{test_configuration[:base_url]}"
-    if test_configuration[:browserstack]
-      test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command} "
+    run_tests_command += "--baseUrl=#{test_configuration[:base_url]}"
+    run_tests_command += " --reporters=#{test_configuration[:report]}" if test_configuration[:report]
+    if test_configuration[:browserstack] && test_configuration[:docker] == false
+      # for running tests via browserstack outside of docker
+      test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e:browserstack -- #{run_tests_command}"
+    elsif test_configuration[:browserstack] && test_configuration[:docker]
+      # for running tests via browserstack inside of docker
+      test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"
     elsif test_configuration[:docker]
+      # for running tests inside of docker and not specifying browserstack option
       test_configuration[:browser_count] = 2 if test_configuration[:browser_count].nil?
       test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
     else
-      test_configuration[:run_tests_command] = "npm run e2e -- #{run_tests_command}"
+      # run tests via a local browser
+      test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e -- #{run_tests_command}"
     end
   end
 
