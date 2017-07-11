@@ -11,5 +11,5 @@ services:
     - github_status_api_token
     - github_status_context
     - github_status_repo=redhat-developer/developers.redhat.com
-    - github_status_target_url=${BUILD_URL}artifact/blc/blinkr.html
+    - github_status_target_url=${BUILD_URL}artifact/_tests/blc/blinkr.html
     - github_status_sha1
