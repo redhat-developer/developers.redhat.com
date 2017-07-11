@@ -11,7 +11,7 @@ services:
       - github_status_api_token
       - github_status_context
       - github_status_repo=redhat-developer/developers.redhat.com
-      - github_status_target_url=${BUILD_URL}artifact/e2e/reports/${RHD_TEST_PROFILE}/rhd_${RHD_TEST_PROFILE}_test_report.html
+      - github_status_target_url=${BUILD_URL}/testReport
       - github_status_sha1
       - RHD_BS_AUTHKEY
       - RHD_BS_USERNAME

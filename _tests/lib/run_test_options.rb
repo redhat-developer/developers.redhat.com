@@ -114,8 +114,8 @@ class RunTestOptions
       puts e
       option_parser.parse(%w(-h))
     end
-    bind_github_status_environment_variables(test_configuration[:github_sha1])
     bind_test_type_environment_variable(test_configuration)
+    bind_github_status_environment_variables(test_configuration[:github_sha1], ENV['rhd_test'].to_s)
     bind_browser_environment_variables(test_configuration[:docker], test_configuration[:browser], test_configuration) if test_configuration[:e2e]
     build_test_execution_command(test_configuration)
     test_configuration
@@ -125,12 +125,14 @@ class RunTestOptions
   private
 
   #
-  # create a generic environment variable for specified test type
+  # Create a generic environment variable for specified test type. Will be used
+  # within the run_tests.rb script in order to generate the correct test resources
+  # and run commands based on the test type.
   #
   def bind_test_type_environment_variable(test_configuration)
     bind_environment_variable('rhd_test', 'unit') if test_configuration[:unit]
-    bind_environment_variable('rhd_test', 'e2e') if test_configuration[:e2e]
-    bind_environment_variable('rhd_test', 'blc') if test_configuration[:blc]
+    bind_environment_variable('rhd_test', 'e2e')  if test_configuration[:e2e]
+    bind_environment_variable('rhd_test', 'blc')  if test_configuration[:blc]
   end
 
   #
@@ -138,25 +140,21 @@ class RunTestOptions
   #
   def build_test_execution_command(test_configuration)
     test_configuration[:run_tests_command] = build_unit_test_execution_cmd(test_configuration) if test_configuration[:unit]
-    test_configuration[:run_tests_command] = build_e2e_test_execution_cmd(test_configuration) if test_configuration[:e2e]
-    test_configuration[:run_tests_command] = build_blc_test_execution_cmd(test_configuration) if test_configuration[:blc]
+    test_configuration[:run_tests_command] = build_e2e_test_execution_cmd(test_configuration)  if test_configuration[:e2e]
+    test_configuration[:run_tests_command] = build_blc_test_execution_cmd(test_configuration)  if test_configuration[:blc]
   end
 
   #
   # Should we wish to update GitHub statuses, this will set the required environment variables
   #
-  def bind_github_status_environment_variables(github_sha_1)
+  def bind_github_status_environment_variables(github_sha_1, test_type)
     return unless github_sha_1
     @logger.info("Enabling update of GitHub status for SHA1: '#{github_sha_1}'")
     bind_environment_variable('github_status_enabled', 'true')
     bind_environment_variable('github_status_sha1', github_sha_1)
-    if ENV['rhd_test'].to_s == 'blc'
-      bind_environment_variable('github_status_context', 'Drupal:Front-end broken link checks')
-    elsif ENV['rhd_test'].to_s == 'unit'
-      bind_environment_variable('github_status_context', 'Front-end unit-tests')
-    else
-      bind_environment_variable('github_status_context', 'Drupal:Front-end e2e-tests')
-    end
+    bind_environment_variable('github_status_context', 'FE:unit-tests')         if test_type == 'unit'
+    bind_environment_variable('github_status_context', 'FE:node-e2e-tests')     if test_type == 'e2e'
+    bind_environment_variable('github_status_context', 'FE:broken-link-checks') if test_type == 'blc'
   end
 
   #
