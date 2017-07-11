@@ -22,7 +22,6 @@ app.devnationLive = {
 
 $(function() {
   app.devnationLive.processDate();
-  $('head').append('<script src="https:\/\/redhat.com\/forms\/scripts\/jquery.gatedform.js"><\/script>');
   var vidID = $('[data-video]').attr('data-video');
   var reg = getCookie('dn_live_'+vidID);
   if($('#GatedFormContainer').length > 0 && reg === "") {
@@ -45,6 +44,8 @@ $(function() {
       "leadActivity": 0,
       "disableVisitorContactLookups": false
     };
+
+    $('body').append('<script src="https:\/\/redhat.com\/forms\/scripts\/jquery.gatedform.js"><\/script>');
 
     var obj = setInterval(function() {
         if(document.getElementById('DynamicFormThankYou')) {

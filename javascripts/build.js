@@ -1,3 +1,240 @@
+var DevNationLiveData = (function () {
+    function DevNationLiveData() {
+        this.data = {
+            "next_session": {
+                "title": "Going Reactive with Java",
+                "date": "07/20/2017 4:00:00 PM UTC",
+                "youtube_id": "mhwvDeDzSSA",
+                "eloqua_id": "70160000000h0FPAAY",
+                "abstract": "In this fast-paced, demo-focused session, we will show you how a reactive toolkit for Java known as Eclipse Vert.x can fundamentally change the way you build applications.  If you have grown weary of your old CRUD with GET&POST development model then this fun session is exactly what you need.",
+                "speaker": "Burr Sutter",
+                "twitter_handle": "burrsutter",
+                "speaker_intro": "A lifelong developer advocate, community organizer, and technology evangelist, Burr Sutter is a featured speaker at technology events around the globe—from Bangalore to Brussels and Berlin to Beijing (and most parts in between)—he is currently Red Hat’s Director of Developer Experience. A Java Champion since 2005 and former president of the Atlanta Java User Group, Burr founded the DevNexus conference—now the second largest Java event in the U.S.—with the aim of making access to the world’s leading developers affordable to the developer community. When not speaking abroad, Burr is also the passionate creator and orchestrator of highly-interactive live demo keynotes at Red Hat Summit, the company’s premier annual event."
+            },
+            "upcoming_sessions": [
+                {
+                    "title": "Kubernetes for Java developers",
+                    "date": "08/03/2017 4:00:00 PM UTC",
+                    "confirmed": true,
+                    "youtube_id": "_vM3ORa9_JE",
+                    "abstract": "Developers are becoming more familiar with Linux containers each day, but have you really ever thought about how to manage a fleet of containers? Hundreds or thousands of containers? Kubernetes from Google has become the 'de facto' standard for container orchestration. This brief session will provide your with a basic understanding of what  Kubernetes is and how it can help you to run your Linux containers at scale. After this session, you will only want to deploy your Java applications and microservices on Kubernetes!",
+                    "speaker": "Rafael Benevides",
+                    "twitter_handle": "rafabene",
+                    "speaker_intro": "A lifelong developer advocate, community organizer, and technology evangelist, Burr Sutter is a featured speaker at technology events around the globe—from Bangalore to Brussels and Berlin to Beijing (and most parts in between)—he is currently Red Hat’s Director of Developer Experience. A Java Champion since 2005 and former president of the Atlanta Java User Group, Burr founded the DevNexus conference—now the second largest Java event in the U.S.—with the aim of making access to the world’s leading developers affordable to the developer community. When not speaking abroad, Burr is also the passionate creator and orchestrator of highly-interactive live demo keynotes at Red Hat Summit, the company’s premier annual event."
+                },
+                {
+                    "title": "Sidecars and a Microservices Mesh",
+                    "date": "08/17/2017 4:00:00 PM UTC",
+                    "confirmed": true,
+                    "youtube_id": "ZR2GGoT_GTg",
+                    "abstract": "The first generation of microservices was primarily shaped by NetflixOSS and leveraged by numerous Spring Cloud annotations all throughout your business logic. The next generation of microservices will leverage sidecars and a service mesh.  In this session, we will give you a taste of Envoy and Istio, two open source projects that will change the way you write distributed, cloud native, Java applications on Kubernetes.",
+                    "speaker": "Christian Posta",
+                    "twitter_handle": "christianposta",
+                    "speaker_intro": "Christian Posta (@christianposta) is a Chief Architect of cloud applications at Red Hat and well known in the community for being an author (Microservices for Java Developers, O’Reilly 2016), frequent blogger, speaker, open-source enthusiast and committer on various open-source projects. Christian has spent time at web-scale companies and now helps companies create and deploy large-scale, resilient, distributed architectures - many of what we now call Microservices. He enjoys mentoring, training and leading teams to be successful with distributed systems concepts, microservices, devops, and cloud-native application design."
+                },
+                {
+                    "title": "Big Data In Action with Infinispan",
+                    "date": "09/07/2017 4:00:00 PM UTC",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "Dealing with real-time, in-memory, streaming data is a unique challenge and with the advent of the smartphone and IoT (trillions of internet connected devices), we are witnessing an exponential growth in data at scale.<br/><br/>Building data layers that can satisfy these requirements can be challenging, but with the help of Infinispan, an in-memory data grid, you can take advantage of state of the art distributed data processing capabilities to tackle these challenges. From classic or full-text queries, to Spark/Hadoop integrations via distributed Java Streams, these wide ranging data processing capabilities make Infinispan the perfect choice for the Big Data era.<br/><br/>In this session, we will identify critical patterns and principles that will help you achieve greater scale and response speed. On top of that, you will witness how Infinispan follows these patterns and principles to tackle a big data situation via a live coding demonstration.",
+                    "speaker": "Galder Zamarreno",
+                    "speaker_intro": "Galder Zamarreño is a core R&D engineer at JBoss, a division of Red Hat. He is one of the founding engineers of Infinispan, Red Hat's distributed, in-memory key-value store and he currently spends most of his time developing Infinispan's Javascript client as well as other data grid and caching functionality. He is very keen on functional programming and has been developing Scala since 2009. Lately he's been learning Haskell and has been presenting Elm based Infinispan demos. Prior to joining Red Hat, Galder worked in the Retail industry where he was a software developer involved in the development of an EFT software switch solution based on JBoss technologies. The love for distributed systems and open source software comes from his days at ESIDE faculty at University of Deusto (Bilbao, Spain) where he studied a master's degree in Computer Science."
+                },
+                {
+                    "title": "Reactive Landscape",
+                    "date": "09/21/2017 4:00:00 PM UTC",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "Reactive Programming, Reactive eXtensions, Reactive Streams, Reactive Systems, Reactive Manifesto, that’s a lot of 'reactive' thingies. Just to make it even more confusing, 'reactive' is often associated with asynchronous, scalability, RX libraries (RX Java, RX JS), back pressure, streams, observables, futures, promises, spreadsheets and so on…. That's a lot to digest… This session helps you understanding what's behind the 'reactive' word. It explores the reactive landscape and explains what all these 'things' are and how they are related. Attendees don't only learn what does 'reactive' mean, but also how it is related to their projects and applications. By providing a global overview of the reactive landscape, this session also provides to the attendees a general understanding of the 'reactive' trend, and why it matters. The presentation uses several live coding demos to explain the different concepts. It uses Eclipse Vert.x as a playground to explain how all these concepts work together. Eclipse Vert.x is a toolkit to build reactive and distributed systems on the JVM. It supports a set of languages such as Java, JavaScript, Ceylon, Scala and Kotlin… but also a set of programming styles (callbacks, futures, streams, RX...). It covers a large part of the reactive spectrum making it a great choice to implement reactive applications and systems.",
+                    "speaker": "Clement Escoffier",
+                    "speaker_intro": "Who am I? That’s a good question. I had several professional lives, from academic positions to management. Currently, I’m working for Red Hat as Vert.x core developer. I have been involved in projects and products touching many domains and technologies such as OSGi, mobile app development, continuous delivery, DevOps… My main point of interest? Software engineering, so processes, methods, tools that make the development of software more efficient and also more fun. I’m also an active contributor to many open source projects such as Apache Felix, iPOJO, Wisdom Framework, and obviously, Eclipse Vert.x."
+                },
+                {
+                    "title": "Canaries and Kubernetes",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "Being a cloud native developer requires learning some new language and new skills like circuit-breakers, canaries, Linux containers, tracers, pods and sidecars.<br/><br/>Code is easy, but fast deployment cycles are hard. In this session, we will introduce you to cloud native architecture by demonstrating numerous principles and techniques for building and deploying Java monolithic apps or microservices via Spring Boot, Wildfly Swarm and Vert.x, while leveraging Kubernetes with OpenShift.",
+                    "speaker": "Burr Sutter",
+                    "twitter_handle": "burrsutter",
+                    "speaker_intro": ""
+                },
+                {
+                    "title": "Do you Java Enums? 7 tricks that you didn’t know!",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "Enums have been around since Java 5, but most developers still didn’t unleash the great power of Enums. Enums are simply one of the most AWESOME features of the Java language. Come to this webinar and we’ll show you why! And we’re not going to do slideware: it will be just plain LIVE CODING Java and Java EE stuff. Join us and get amazed!",
+                    "speaker": "Edson Yanaga",
+                    "twitter_handle": "yanaga",
+                    "speaker_intro": ""
+                },
+                {
+                    "title": "Secure Spring Boot Microservices with Keycloak",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "Although security and identity management is a crucial aspect for any application, its implementation can be difficult. Worse, it is often neglected, poorly implemented and intrusive in the code. But lately, Identity Management servers has appeared which allow to outsource and delegate all authentication and authorization aspects, such as https://auth0.com/. Of these servers, one of the most promising is Keycloak, open-source, flexible and agnostic of any technology, it is easily deployable / adaptable in its own infrastructure. In this session, I propose you to discover KeyCloak progressively and in an interactive way: 0 slide, 100% live coding.<br/><br/>We will naturally focus on the Spring Boot adapter that Keycloak provides but also see how you can combine Spring Security with Keycloak.",
+                    "speaker": "Sebastien Blanc",
+                    "speaker_intro": ""
+                },
+                {
+                    "title": "Blue/Green Deployments with OpenShift",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "The 'deploy moment' is an occasion that still gives many developers the shivers...Luckily enough, today we have tools like Kubernetes and OpenShift that enable us to turn the deploy moment into a simple, every day, every hour activity. Today we have Kubernetes and OpenShift to automate out-of-box many different scenarios like a Blue/Green deployment. Come and join this live demo session to learn how you can have a better and safe deployment using Linux containers.",
+                    "speaker": "Rafael Benevides",
+                    "speaker_intro": ""
+                },
+                {
+                    "title": "Feature Toggles & Hypothesis Driven Development",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "Can you foresee the feature? Do you know if you’ll achieve your goals with the code you’re deploying today? Let’s drop this crystal ball and start practicing some Hypothesis-Driven Development. Join us on this webinar and we’ll show you how Feature Toggles can be bundled inside your software development process to enable you to quickly assess the business results of your code, and help you to make the decisions that matter.",
+                    "speaker": "Edson Yanaga",
+                    "twitter_handle": "yanaga",
+                    "speaker_intro": ""
+                },
+                {
+                    "title": "Continuous Deployment at Scale",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "How do you manage CI/CD across hundreds of projects simultaneously? In this session, we will delve into a real-world example of a cloud-hosted SaaS based on hundreds of independent microservices, leveraging CI/CD and DevOps for a continuous flow to production.",
+                    "speaker": "James Rawlings",
+                    "speaker_intro": ""
+                },
+                {
+                    "title": "DevOps and ChatOps with OpenShift.io",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "The buzzword 'DevOps' begins with Dev as in Developers.  In this session, we will demonstrate how a development team can quickly and easily setup a new Continuous Deployment Pipeline leveraging the best of open source microservices frameworks like Spring Boot, Vert.x and Wildfly Swarm as well as tools like Jenkins and Eclipse Che.",
+                    "speaker": "James Strachan",
+                    "speaker_intro": ""
+                },
+                {
+                    "title": "Domain Driven Design for Mere Mortals",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "",
+                    "speaker": "Justin Holmes",
+                    "speaker_intro": ""
+                },
+                {
+                    "title": "The IoT Meets Kubernetes",
+                    "date": "Date TBD",
+                    "confirmed": false,
+                    "youtube_id": "",
+                    "abstract": "The the sheer volume of Internet of Things requires massively scalable ingestion and analytics engines and in this session you will see how to leverage messaging-as-a-service, the open source EnMasse project on a backplane of Cloud Native Computing Fundation’s Kubernetes.",
+                    "speaker": "Paolo Patierno",
+                    "speaker_intro": ""
+                }
+            ]
+        };
+    }
+    return DevNationLiveData;
+}());
+var DevNationLiveSession = (function () {
+    function DevNationLiveSession(obj) {
+        this._title = '';
+        this._date = '';
+        this._youtube_id = '';
+        this._speaker = '';
+        this._twitter_handle = '';
+        this._abstract = '';
+        this._confirmed = false;
+    }
+    Object.defineProperty(DevNationLiveSession.prototype, "title", {
+        get: function () {
+            return this._title;
+        },
+        set: function (val) {
+            if (this._title === val)
+                return;
+            this._title = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "date", {
+        get: function () {
+            return this._date;
+        },
+        set: function (val) {
+            if (this._date === val)
+                return;
+            this._date = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "youtube_id", {
+        get: function () {
+            return this._youtube_id;
+        },
+        set: function (val) {
+            if (this._youtube_id === val)
+                return;
+            this._youtube_id = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "speaker", {
+        get: function () {
+            return this._speaker;
+        },
+        set: function (val) {
+            if (this._speaker === val)
+                return;
+            this._speaker = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "twitter_handle", {
+        get: function () {
+            return this._twitter_handle;
+        },
+        set: function (val) {
+            if (this._twitter_handle === val)
+                return;
+            this._twitter_handle = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "abstract", {
+        get: function () {
+            return this._abstract;
+        },
+        set: function (val) {
+            if (this._abstract === val)
+                return;
+            this._abstract = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "confirmed", {
+        get: function () {
+            return this._confirmed;
+        },
+        set: function (val) {
+            if (this._confirmed === val)
+                return;
+            this._confirmed = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return DevNationLiveSession;
+}());
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -8,6 +245,99 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var DevNationLiveApp = (function (_super) {
+    __extends(DevNationLiveApp, _super);
+    //                 .row
+    //                   .large-17.columns
+    //                     h4.caps #{c.title}
+    //                     - if c.speaker
+    //                       p
+    //                         | Speaker:
+    //                         strong  #{c.speaker}
+    //                         span
+    //                         - if c.twitter_handle
+    //                           |  (
+    //                           a(href="https://twitter.com/#{c.twitter_handle}" target="_blank") @#{c.twitter_handle}
+    //                           | )
+    //                     - if c.date
+    //                       javascript:
+    //                         var timeStamp = new Date("#{c.date}");
+    //                         var timeString = timeStamp.toString();
+    //                         var x = timeString.split(' ', 4).join(' ');
+    //                         var t = timeStamp.toLocaleTimeString();
+    //                         var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
+    //                         document.write("<p>" + x + " " + t + " " + timezone + "</p>");
+    //                     - else
+    //                       p Date TBD
+    //                     - if c.abstract
+    //                       p #{c.abstract}
+    //                   .large-7.columns
+    //                     - if c.eloqua_id
+    //                       iframe(src="/form/email?id=#{c.eloqua_id}")`;
+    function DevNationLiveApp() {
+        var _this = _super.call(this) || this;
+        _this._data = new DevNationLiveData().data;
+        _this.template = "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        <section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + _this.next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + _this.next.date + "\">\n                    <span><i class=\"fa fa-calendar fa-2x right\"></span>\n                    <div class=\"session-date\">" + _this.next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + _this.next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    <div class=\"flex-video\">\n                        <img width=\"640\" heigh=\"360\" src=\"/images/design/devnationlive_herographic_0.jpg\" alt=\"" + _this.next.title + "\">\n                    </div>\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + _this.next.youtube_id + "\">\n                    <div id=\"GatedFormContainer\"></div>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                    <p>Speaker: <strong>" + _this.next.speaker + "</strong> \n                    <a href=\"https://twitter.com/" + _this.next.twitter_handle + "\" target=\"_blank\"> @" + _this.next.twitter_handle + "</a>\n                    </p>\n                    <p>" + _this.next.abstract + "</p>\n                </div>\n            </div>\n        </section>\n        <section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + _this.upcoming.map(function (sess) { return "\n                        " + (sess.confirmed ? "\n                        <li class=\"single-event\">\n                            <div class=\"row\">\n                                <div class=\"large-17 columns\">\n                                    <h4 class=\"caps\">" + sess.title + "</h4>\n                                    " + (sess.speaker ? "\n                                    <p>Speaker: <strong>" + sess.speaker + "</strong>\n                                        " + (sess.twitter_handle ? "\n                                        <a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\"> @" + sess.twitter_handle
+            : '') + "\n                                    </p>"
+            : '') + "\n                                </div>\n                            </div>\n                        </li>"
+            : '') + "\n                    "; }) + "\n                    </ul>\n                </div>\n            </div>\n        </section>\n    </div>";
+        return _this;
+    }
+    Object.defineProperty(DevNationLiveApp.prototype, "next", {
+        get: function () {
+            return this._next;
+        },
+        set: function (val) {
+            if (this._next === val)
+                return;
+            this._next = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "data", {
+        get: function () {
+            return this._data;
+        },
+        set: function (val) {
+            if (this._data === val)
+                return;
+            this._data = val;
+            if (this.data.next_session) {
+                this.next = new DevNationLiveSession(this.data.next_session);
+            }
+            if (this.data.upcoming_sessions) {
+                var l = this.data.upcoming_sessions.length;
+                var uc = [];
+                for (var i = 0; i < l; i++) {
+                    uc.push(new DevNationLiveSession(this.data.upcoming_sessions[i]));
+                }
+                this.upcoming = uc;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "upcoming", {
+        get: function () {
+            return this._upcoming;
+        },
+        set: function (val) {
+            if (this._upcoming === val)
+                return;
+            this._upcoming = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DevNationLiveApp.prototype.connectedCallback = function () {
+        this.innerHTML = this.template;
+    };
+    return DevNationLiveApp;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('devnation-live-app', DevNationLiveApp);
+});
 var RHDPSearchApp = (function (_super) {
     __extends(RHDPSearchApp, _super);
     function RHDPSearchApp() {
