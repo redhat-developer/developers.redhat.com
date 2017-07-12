@@ -67,7 +67,7 @@ class DevNationLiveApp extends HTMLElement {
                 </div>
                 <div class="medium-10 columns event-chat" data-chat="${next.youtube_id}">
                     ${this.getCookie('dn_live_'+next.youtube_id) ? `
-                    <iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v=${next.youtube_id}&embed_domain="${window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]}"></iframe>
+                    <iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v=${next.youtube_id}&embed_domain=${window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]}"></iframe>
                     ` : `
                     <iframe class="session-reg" src="../rhdp-apps/devnationlive/?id=${next.id}"></iframe>
                     `}
