@@ -60,6 +60,7 @@ class NodeJenkinsTestRunner
     command += " --update-github-status=#{github_sha1}" if github_sha1
     command += ' --browser=iphone_6' if profile == 'mobile'
     command += " --profile=#{profile}"
+    command += ' --reporters=junit'
     if profile == 'desktop'
       command += ' --cucumber-tags=~@mobile'
     elsif profile == 'desktop' && cucumber_tags
