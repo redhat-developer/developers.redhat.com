@@ -344,7 +344,7 @@ var DevNationLiveApp = (function (_super) {
                 var uc = [];
                 for (var i = 0; i < l; i++) {
                     var new_us = new DevNationLiveSession(this.data.sessions[this.data.upcoming_sessions[i]]);
-                    new_us.id = this.data.upcoming_session[i];
+                    new_us.id = this.data.upcoming_sessions[i];
                     uc.push(new_us);
                 }
                 this.upcoming = uc;
