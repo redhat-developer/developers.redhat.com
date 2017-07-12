@@ -47,16 +47,16 @@
         $(function() {
             $.getJSON('devnationlive.json').done(function(data) {
                 var id = getQSValue('id','&'+window.location.href.split('?')[1]),
-                    vidID = data.sessions[id].youtube_id;
+                    offer_id = data.sessions[id].offer_id;
                 window.GatedFormConfig = data.sessions[id].eloqua;
                 $('head').append('<script src="https:\/\/redhat.com\/forms\/scripts\/jquery.gatedform.js"><\/script>');
 
                 var obj = setInterval(function() {
                     if(document.getElementById('DynamicFormThankYou')) {
-                        document.cookie = 'dn_live_'+vidID+'=true';
-                        document.dispatchEvent(new CustomEvent('registered', {
+                        top.document.cookie = 'dn_live_'+offer_id+'=true';
+                        top.document.querySelector('devnation-live-app').dispatchEvent(new CustomEvent('registered', {
                             detail: {
-                                id: vidID
+                                id: id
                             },
                             bubbles: true
                         }));
