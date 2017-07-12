@@ -46,7 +46,7 @@
         $(function() {
             $.getJSON('devnationlive.json').done(function(data) {
                 var id = getQSValue('id','&'+window.location.href.split('?')[1]),
-                    vidID = data.session[id].youtube_id;
+                    vidID = data.sessions[id].youtube_id;
                 window.GatedFormConfig = data.sessions[id].eloqua;
                 $('head').append('<script src="https:\/\/redhat.com\/forms\/scripts\/jquery.gatedform.js"><\/script>');
 
