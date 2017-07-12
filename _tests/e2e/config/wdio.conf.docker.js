@@ -14,7 +14,6 @@ delete baseConfig.cucumberOpts;
 var dockerConfig = Object.assign(baseConfig, {
 
     host: process.env.SELENIUM_HOST,
-    port: '4444',
 
     maxInstances: 10,
     capabilities: [browserCaps],

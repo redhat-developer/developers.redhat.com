@@ -11,7 +11,7 @@ services:
     environment:
       - github_status_enabled=true
       - github_status_api_token
-      - github_status_context=Drupal:Drupal Site
+      - github_status_context=Drupal Site
       - github_status_repo=redhat-developer/developers.redhat.com
       - github_status_target_url=http://stumpjumper.lab4.eng.bos.redhat.com:${DRUPAL_HOST_PORT}
       - github_status_sha1=${ghprbActualCommit}
@@ -86,11 +86,12 @@ services:
    environment:
     - github_status_enabled=true
     - github_status_api_token
-    - github_status_context=Drupal:Exported Site Preview
+    - github_status_context=Exported Site Preview
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${export_destination}
     - github_status_sha1=${ghprbActualCommit}
-    - drupal.export.fail_on_missing
+    - drupal.export.fail_on_m
+    issing
     - drupal.export.final_base_url=${export_destination}
 
   #
@@ -104,7 +105,7 @@ services:
    environment:
     - github_status_enabled=true
     - github_status_api_token
-    - github_status_context=Drupal:Unit Tests
+    - github_status_context=Build:unit-tests
     - github_status_repo=redhat-developer/developers.redhat.com
     - github_status_target_url=${BUILD_URL}
     - github_status_sha1=${ghprbActualCommit}
