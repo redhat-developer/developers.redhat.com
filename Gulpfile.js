@@ -80,7 +80,6 @@ var globs = {
         'javascripts/jboss-docker.js',
         'javascripts/verify-member.js',
         'javascripts/nav-highlight.js',
-        'javascripts/devnation-live.js',
         'javascripts/build.js'
     ],
     "styles": ['stylesheets/*.scss']

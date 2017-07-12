@@ -1,37 +1,44 @@
 class DevNationLiveData {
     data = {
-        "next_session": {
-            "title": "Going Reactive with Java",
-            "date": "07/20/2017 4:00:00 PM UTC",
-            "youtube_id": "mhwvDeDzSSA",
-            "eloqua_id": "70160000000h0FPAAY",
-            "abstract": "In this fast-paced, demo-focused session, we will show you how a reactive toolkit for Java known as Eclipse Vert.x can fundamentally change the way you build applications.  If you have grown weary of your old CRUD with GET&POST development model then this fun session is exactly what you need.",
-            "speaker": "Burr Sutter",
-            "twitter_handle": "burrsutter",
-            "speaker_intro": "A lifelong developer advocate, community organizer, and technology evangelist, Burr Sutter is a featured speaker at technology events around the globe—from Bangalore to Brussels and Berlin to Beijing (and most parts in between)—he is currently Red Hat’s Director of Developer Experience. A Java Champion since 2005 and former president of the Atlanta Java User Group, Burr founded the DevNexus conference—now the second largest Java event in the U.S.—with the aim of making access to the world’s leading developers affordable to the developer community. When not speaking abroad, Burr is also the passionate creator and orchestrator of highly-interactive live demo keynotes at Red Hat Summit, the company’s premier annual event."
-        },
+        "next_session": "burr-reactive-java",
         "upcoming_sessions": [
-            {
+            "rafael-kubernetes",
+            "christian-mesh"
+        ],
+        "sessions": {
+            "burr-reactive-java": {
+                "title": "Going Reactive with Java",
+                "date": "07/20/2017 4:00:00 PM UTC",
+                "youtube_id": "mhwvDeDzSSA",
+                "eloqua": {"showAdditionalFields":"","hideStandardFields":["First Name","Last Name","Work Phone","Company","Department","Job Role","Country"],"CustomQuestions":"","offer_id":"70160000000h0FPAAY","language":"en","FormIntro":"Register now for the upcoming DevNation Live Webinar: Going Reactive with Java","NameOrder":"western","ThanksTitle":"You are Now Registered","ThanksText":"You have successfully registered for the DevNation Live Webinar - Going Reactive with Java. The webinar will occur on July 20, 2017 at 12 pm EST.","ShowThanksButton":true,"leadActivity":"0","disableVisitorContactLookups":false},
+                "abstract": "In this fast-paced, demo-focused session, we will show you how a reactive toolkit for Java known as Eclipse Vert.x can fundamentally change the way you build applications.  If you have grown weary of your old CRUD with GET&POST development model then this fun session is exactly what you need.",
+                "speaker": "Burr Sutter",
+                "twitter_handle": "burrsutter",
+                "speaker_intro": "A lifelong developer advocate, community organizer, and technology evangelist, Burr Sutter is a featured speaker at technology events around the globe—from Bangalore to Brussels and Berlin to Beijing (and most parts in between)—he is currently Red Hat’s Director of Developer Experience. A Java Champion since 2005 and former president of the Atlanta Java User Group, Burr founded the DevNexus conference—now the second largest Java event in the U.S.—with the aim of making access to the world’s leading developers affordable to the developer community. When not speaking abroad, Burr is also the passionate creator and orchestrator of highly-interactive live demo keynotes at Red Hat Summit, the company’s premier annual event."
+            },
+            "rafael-kubernetes": {
                 "title": "Kubernetes for Java developers",
                 "date": "08/03/2017 4:00:00 PM UTC",
                 "confirmed": true,
                 "youtube_id": "_vM3ORa9_JE",
+                "eloqua": {"showAdditionalFields":"","hideStandardFields":["First Name","Last Name","Work Phone","Company","Department","Job Role","Country"],"CustomQuestions":"","offer_id":"70160000000h1RZAAY","language":"en","FormIntro":"Register Now for the DevNation Live Webinar: Kubernetes for Java Developers","NameOrder":"western","FormCallToAction":"Register Now ","ThanksTitle":"You are Now Registered ","ThanksText":"You have successfully registered for the DevNation Live Webinar - Kubernetes for Java Developers. The webinar will occur on August 3, 2017 at 12 pm EST.","ShowThanksButton":false,"leadActivity":"1","disableVisitorContactLookups":false},
                 "abstract": "Developers are becoming more familiar with Linux containers each day, but have you really ever thought about how to manage a fleet of containers? Hundreds or thousands of containers? Kubernetes from Google has become the 'de facto' standard for container orchestration. This brief session will provide your with a basic understanding of what  Kubernetes is and how it can help you to run your Linux containers at scale. After this session, you will only want to deploy your Java applications and microservices on Kubernetes!",
                 "speaker": "Rafael Benevides",
                 "twitter_handle": "rafabene",
                 "speaker_intro": "A lifelong developer advocate, community organizer, and technology evangelist, Burr Sutter is a featured speaker at technology events around the globe—from Bangalore to Brussels and Berlin to Beijing (and most parts in between)—he is currently Red Hat’s Director of Developer Experience. A Java Champion since 2005 and former president of the Atlanta Java User Group, Burr founded the DevNexus conference—now the second largest Java event in the U.S.—with the aim of making access to the world’s leading developers affordable to the developer community. When not speaking abroad, Burr is also the passionate creator and orchestrator of highly-interactive live demo keynotes at Red Hat Summit, the company’s premier annual event."
             },
-            {
+            "christian-mesh": {
                 "title": "Sidecars and a Microservices Mesh",
                 "date": "08/17/2017 4:00:00 PM UTC",
                 "confirmed": true,
                 "youtube_id": "ZR2GGoT_GTg",
+                "eloqua": {"hideStandardFields":["First Name","Last Name","Work Phone","Company","Department","Job Role","Country"],"offer_id":"70160000000h1RoAAI","language":"en","FormIntro":"Register Now for the DevNation Live Webinar: Sidecars and a Microservices Mesh","NameOrder":"western","FormCallToAction":"Register Now ","ThanksTitle":"You are now registered. ","ThanksText":"You have successfully registered for the  DevNation Live Webinar -Sidecars and a Microservices Mesh. The webinar will occur on August 17, 2017 at 12 pm EST.  If you have any questions please contact Jessica Krokowski at jkrokows@redhat.com.","ShowThanksButton":false,"leadActivity":"1","disableVisitorContactLookups":false},
                 "abstract": "The first generation of microservices was primarily shaped by NetflixOSS and leveraged by numerous Spring Cloud annotations all throughout your business logic. The next generation of microservices will leverage sidecars and a service mesh.  In this session, we will give you a taste of Envoy and Istio, two open source projects that will change the way you write distributed, cloud native, Java applications on Kubernetes.",
                 "speaker": "Christian Posta",
                 "twitter_handle": "christianposta",
                 "speaker_intro": "Christian Posta (@christianposta) is a Chief Architect of cloud applications at Red Hat and well known in the community for being an author (Microservices for Java Developers, O’Reilly 2016), frequent blogger, speaker, open-source enthusiast and committer on various open-source projects. Christian has spent time at web-scale companies and now helps companies create and deploy large-scale, resilient, distributed architectures - many of what we now call Microservices. He enjoys mentoring, training and leading teams to be successful with distributed systems concepts, microservices, devops, and cloud-native application design."
             },
-            {
+            "galder-infinispan": {
                 "title": "Big Data In Action with Infinispan",
                 "date": "09/07/2017 4:00:00 PM UTC",
                 "confirmed": false,
@@ -40,7 +47,7 @@ class DevNationLiveData {
                 "speaker": "Galder Zamarreno",
                 "speaker_intro": "Galder Zamarreño is a core R&D engineer at JBoss, a division of Red Hat. He is one of the founding engineers of Infinispan, Red Hat's distributed, in-memory key-value store and he currently spends most of his time developing Infinispan's Javascript client as well as other data grid and caching functionality. He is very keen on functional programming and has been developing Scala since 2009. Lately he's been learning Haskell and has been presenting Elm based Infinispan demos. Prior to joining Red Hat, Galder worked in the Retail industry where he was a software developer involved in the development of an EFT software switch solution based on JBoss technologies. The love for distributed systems and open source software comes from his days at ESIDE faculty at University of Deusto (Bilbao, Spain) where he studied a master's degree in Computer Science."
             },
-            {
+            "clement-reactive": {
                 "title": "Reactive Landscape",
                 "date": "09/21/2017 4:00:00 PM UTC",
                 "confirmed": false,
@@ -49,7 +56,7 @@ class DevNationLiveData {
                 "speaker": "Clement Escoffier",
                 "speaker_intro": "Who am I? That’s a good question. I had several professional lives, from academic positions to management. Currently, I’m working for Red Hat as Vert.x core developer. I have been involved in projects and products touching many domains and technologies such as OSGi, mobile app development, continuous delivery, DevOps… My main point of interest? Software engineering, so processes, methods, tools that make the development of software more efficient and also more fun. I’m also an active contributor to many open source projects such as Apache Felix, iPOJO, Wisdom Framework, and obviously, Eclipse Vert.x."
             },
-            {
+            "burr-kubernetes": {
                 "title": "Canaries and Kubernetes",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -59,7 +66,7 @@ class DevNationLiveData {
                 "twitter_handle": "burrsutter",
                 "speaker_intro": ""
             },
-            {
+            "edson-enums": {
                 "title":  "Do you Java Enums? 7 tricks that you didn’t know!",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -69,7 +76,7 @@ class DevNationLiveData {
                 "twitter_handle": "yanaga",
                 "speaker_intro": ""
             },
-            {
+            "sebastien-keycloak": {
                 "title": "Secure Spring Boot Microservices with Keycloak",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -78,7 +85,7 @@ class DevNationLiveData {
                 "speaker": "Sebastien Blanc",
                 "speaker_intro": ""
             },
-            {
+            "rafael-deployments": {
                 "title": "Blue/Green Deployments with OpenShift",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -87,7 +94,7 @@ class DevNationLiveData {
                 "speaker": "Rafael Benevides",
                 "speaker_intro": ""
             },
-            {
+            "edson-hypo": {
                 "title": "Feature Toggles & Hypothesis Driven Development",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -97,7 +104,7 @@ class DevNationLiveData {
                 "twitter_handle": "yanaga",
                 "speaker_intro": ""
             },
-            {
+            "james-cdscale": {
                 "title": "Continuous Deployment at Scale",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -106,7 +113,7 @@ class DevNationLiveData {
                 "speaker": "James Rawlings",
                 "speaker_intro": ""
             },
-            {
+            "james-osio": {
                 "title": "DevOps and ChatOps with OpenShift.io",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -115,7 +122,7 @@ class DevNationLiveData {
                 "speaker": "James Strachan",
                 "speaker_intro": ""
             },
-            {
+            "justin-domain": {
                 "title": "Domain Driven Design for Mere Mortals",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -124,7 +131,7 @@ class DevNationLiveData {
                 "speaker": "Justin Holmes",
                 "speaker_intro": ""
             },
-            {
+            "paolo-iot": {
                 "title": "The IoT Meets Kubernetes",
                 "date": "Date TBD",
                 "confirmed": false,
@@ -133,6 +140,6 @@ class DevNationLiveData {
                 "speaker": "Paolo Patierno",
                 "speaker_intro": ""
             }
-        ]
+        }
     }
 }
