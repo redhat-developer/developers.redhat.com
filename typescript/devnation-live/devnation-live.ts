@@ -103,8 +103,8 @@ class DevNationLiveApp extends HTMLElement {
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
                     </div>
-                    <div class="large-7 columns">${this.getCookie('dn_live_'+sess.youtube_id) ? `
-                    <div class="button disabled">Registered</div>` : `
+                    <div class="large-7 columns align-center">${this.getCookie('dn_live_'+sess.youtube_id) ? `
+                    <div class="button disabled">You are Registered</div>` : `
                     <iframe class="session-reg" src="../rhdp-apps/devnationlive/?id=${sess.id}"></iframe>
                     `}
                     </div>
