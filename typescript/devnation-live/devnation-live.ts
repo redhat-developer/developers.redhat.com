@@ -27,7 +27,7 @@ class DevNationLiveApp extends HTMLElement {
             let uc = []
             for (let i=0; i < l; i++) {
                 let new_us = new DevNationLiveSession(this.data.sessions[this.data.upcoming_sessions[i]]);
-                new_us.id = this.data.upcoming_session[i];
+                new_us.id = this.data.upcoming_sessions[i];
                 uc.push(new_us);
             }
             this.upcoming = uc;
@@ -66,7 +66,11 @@ class DevNationLiveApp extends HTMLElement {
                     `}
                 </div>
                 <div class="medium-10 columns event-chat" data-chat="${next.youtube_id}">
-                    <iframe class="session-reg" src="../rhdp-apps/devnation-live/email.html?i=${next.eloqua_id}"></iframe>
+                    ${this.getCookie('dn_live_'+next.youtube_id) ? `
+                    <iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v=${next.youtube_id}&embed_domain="${window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]}"></iframe>
+                    ` : `
+                    <iframe class="session-reg" src="../rhdp-apps/devnationlive/?id=${next.id}"></iframe>
+                    `}
                 </div>
             </div>
             <div class="row">
@@ -100,8 +104,8 @@ class DevNationLiveApp extends HTMLElement {
                         <p>${sess.abstract}</p>
                     </div>
                     <div class="large-7 columns">${this.getCookie('dn_live_'+sess.youtube_id) ? `
-                    ` : `
-                    <iframe class="session-reg" src="http://localhost:8080/email.html?config=${sess.eloqua_id}"></iframe>
+                    <div class="button disabled">Registered</div>` : `
+                    <iframe class="session-reg" src="../rhdp-apps/devnationlive/?id=${sess.id}"></iframe>
                     `}
                     </div>
                 </div>
@@ -139,6 +143,7 @@ class DevNationLiveApp extends HTMLElement {
     }
     
     connectedCallback() {
+        this.addEventListener('registered', this.setRegistered)
         this.data = new DevNationLiveData().data;
         this.innerHTML = this.template`${this.next}${this.upcoming}`;
     }
@@ -146,6 +151,10 @@ class DevNationLiveApp extends HTMLElement {
     getCookie( name ) {
         var re = new RegExp('(?:(?:^|.*;\\s*)'+name+'\\s*\\=\\s*([^;]*).*$)|^.*$');
         return document.cookie.replace(re, "$1");
+    }
+
+    setRegistered(e) {
+        this.innerHTML = this.template`${this.next}${this.upcoming}`;
     }
 }
 
