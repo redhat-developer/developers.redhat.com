@@ -145,7 +145,7 @@ class DevNationLiveApp extends HTMLElement {
     connectedCallback() {
         window.addEventListener('registered', this.setRegistered);
 
-        fetch('/rhdp-apps/devnationlive.json')
+        fetch('/rhdp-apps/devnationlive/devnationlive.json')
         .then((resp) => resp.json())
         .then((data) => { 
             this.data = data;

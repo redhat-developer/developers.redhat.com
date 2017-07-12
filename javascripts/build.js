@@ -220,7 +220,7 @@ var DevNationLiveApp = (function (_super) {
     DevNationLiveApp.prototype.connectedCallback = function () {
         var _this = this;
         window.addEventListener('registered', this.setRegistered);
-        fetch('/rhdp-apps/devnationlive.json')
+        fetch('/rhdp-apps/devnationlive/devnationlive.json')
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.data = data;
