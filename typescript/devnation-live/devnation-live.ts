@@ -58,7 +58,7 @@ class DevNationLiveApp extends HTMLElement {
             </div>
             <div class="row" data-video="${next.youtube_id}">
                 <div class="medium-14 columns event-video">
-                    ${this.getCookie('dn_live_'+next.youtube_id) ? `
+                    ${this.getCookie('dn_live_'+next.offer_id) ? `
                     <div class="flex-video">
                         <iframe src="https://www.youtube.com/embed/${next.youtube_id}?rel=0" width="640" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>` : `
@@ -66,7 +66,7 @@ class DevNationLiveApp extends HTMLElement {
                     `}
                 </div>
                 <div class="medium-10 columns event-chat" data-chat="${next.youtube_id}">
-                    ${this.getCookie('dn_live_'+next.youtube_id) ? `
+                    ${this.getCookie('dn_live_'+next.offer_id) ? `
                     <iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v=${next.youtube_id}&embed_domain=${window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]}"></iframe>
                     ` : `
                     <iframe class="session-reg" src="../rhdp-apps/devnationlive/?id=${next.id}"></iframe>
@@ -103,8 +103,8 @@ class DevNationLiveApp extends HTMLElement {
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
                     </div>
-                    <div class="large-7 columns">${this.getCookie('dn_live_'+sess.youtube_id) ? `
-                    <div class="button disabled">Registered</div>` : `
+                    <div class="large-7 columns align-center">${this.getCookie('dn_live_'+sess.offer_id) ? `
+                    <div class="button disabled">You are Registered</div>` : `
                     <iframe class="session-reg" src="../rhdp-apps/devnationlive/?id=${sess.id}"></iframe>
                     `}
                     </div>
@@ -143,9 +143,14 @@ class DevNationLiveApp extends HTMLElement {
     }
     
     connectedCallback() {
-        this.addEventListener('registered', this.setRegistered)
-        this.data = new DevNationLiveData().data;
-        this.innerHTML = this.template`${this.next}${this.upcoming}`;
+        window.addEventListener('registered', this.setRegistered);
+
+        fetch('/rhdp-apps/devnationlive/devnationlive.json')
+        .then((resp) => resp.json())
+        .then((data) => { 
+            this.data = data;
+            this.innerHTML = this.template`${this.next}${this.upcoming}`;
+        });
     }
 
     getCookie( name ) {
