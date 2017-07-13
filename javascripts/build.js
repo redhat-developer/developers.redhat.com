@@ -258,7 +258,7 @@ var DevNationLiveApp = (function (_super) {
     });
     Object.defineProperty(DevNationLiveApp, "observedAttributes", {
         get: function () {
-            return ['src', 'form', 'secure'];
+            return ['src', 'form', 'mode'];
         },
         enumerable: true,
         configurable: true

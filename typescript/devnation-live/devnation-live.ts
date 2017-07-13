@@ -169,7 +169,7 @@ class DevNationLiveApp extends HTMLElement {
     }
 
     static get observedAttributes() { 
-        return ['src', 'form', 'secure']; 
+        return ['src', 'form', 'mode']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
