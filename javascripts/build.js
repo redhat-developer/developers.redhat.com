@@ -150,6 +150,7 @@ var DevNationLiveApp = (function (_super) {
         var _this = _super.call(this) || this;
         _this._src = '../rhdp-apps/devnationlive/devnationlive.json';
         _this._form = '../rhdp-apps/devnationlive/';
+        _this._mode = 'cors';
         _this.nextSession = function (strings, next) {
             return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"/images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                    <p>Speaker: <strong>" + next.speaker + "</strong> \n                    " + (next.twitter_handle ? "\n                    (<a href=\"https://twitter.com/" + next.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + next.twitter_handle + "</a>)"
                 : '') + "\n                    </p>\n                    <p>" + next.abstract + "</p>\n                </div>\n            </div>\n        </section>";
@@ -189,6 +190,18 @@ var DevNationLiveApp = (function (_super) {
             if (this._src === val)
                 return;
             this._src = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "mode", {
+        get: function () {
+            return this._mode;
+        },
+        set: function (val) {
+            if (this._mode === val)
+                return;
+            this._mode = val;
         },
         enumerable: true,
         configurable: true
@@ -245,7 +258,7 @@ var DevNationLiveApp = (function (_super) {
     });
     Object.defineProperty(DevNationLiveApp, "observedAttributes", {
         get: function () {
-            return ['src', 'form'];
+            return ['src', 'form', 'secure'];
         },
         enumerable: true,
         configurable: true
@@ -255,8 +268,14 @@ var DevNationLiveApp = (function (_super) {
     };
     DevNationLiveApp.prototype.connectedCallback = function () {
         var _this = this;
+        var fInit = {
+            method: 'GET',
+            headers: new Headers(),
+            mode: this.mode,
+            cache: 'default'
+        };
         this.addEventListener('registered', this.setRegistered);
-        fetch(this.src)
+        fetch(this.src, fInit)
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.data = data;

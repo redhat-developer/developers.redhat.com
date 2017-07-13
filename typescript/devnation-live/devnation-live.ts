@@ -4,6 +4,7 @@ class DevNationLiveApp extends HTMLElement {
     _form = '../rhdp-apps/devnationlive/';
     _next: DevNationLiveSession;
     _upcoming: DevNationLiveSession[];
+    _mode : RequestMode = 'cors';
 
     get next() {
         return this._next;
@@ -20,6 +21,14 @@ class DevNationLiveApp extends HTMLElement {
     set src(val) {
         if (this._src === val) return;
         this._src = val;
+    }
+
+    get mode() {
+        return this._mode;
+    }
+    set mode(val) {
+        if (this._mode === val) return;
+        this._mode = val;
     }
 
     get form() {
@@ -160,7 +169,7 @@ class DevNationLiveApp extends HTMLElement {
     }
 
     static get observedAttributes() { 
-        return ['src', 'form']; 
+        return ['src', 'form', 'secure']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -168,9 +177,15 @@ class DevNationLiveApp extends HTMLElement {
     }
     
     connectedCallback() {
+        let fInit : RequestInit = {
+            method: 'GET',
+            headers: new Headers(),
+            mode: this.mode,
+            cache: 'default'
+        };
         this.addEventListener('registered', this.setRegistered);
 
-        fetch(this.src)
+        fetch(this.src, fInit)
         .then((resp) => resp.json())
         .then((data) => { 
             this.data = data;
