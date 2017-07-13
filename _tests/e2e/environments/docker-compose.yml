@@ -21,7 +21,7 @@ services:
       - CUCUMBER_TAGS
 
   selhub:
-    image: selenium/hub
+    image: selenium/hub:3.4.0-einsteinium
     restart: always
     expose:
       - "4444"
@@ -34,7 +34,7 @@ services:
       - SE_OPTS=-browserTimeout 300 -timeout 300
 
   chrome:
-     image: selenium/node-chrome-debug
+     image: selenium/node-chrome:3.4.0-einsteinium
      volumes:
       - /dev/shm:/dev/shm
      environment:
@@ -47,7 +47,7 @@ services:
       - "5900"
 
   firefox:
-     image: selenium/node-firefox-debug
+     image: selenium/node-firefox:3.4.0-einsteinium
      volumes:
       - /dev/shm:/dev/shm
      environment:
