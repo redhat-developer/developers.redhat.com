@@ -18,6 +18,7 @@ module.exports = function (config) {
             outputFile: '../report/unit-test-report.html',
             pageTitle: 'RHD frontend unit-test results'
         },
+        failOnEmptyTestSuite: false,
 
         files: [
             '../../../javascripts/vendor/custom-elements-es5-adapter.js',
