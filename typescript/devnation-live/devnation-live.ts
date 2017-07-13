@@ -52,8 +52,7 @@ class DevNationLiveApp extends HTMLElement {
                     <h2 class="caps">${next.title}</h2>
                 </div>
                 <div class="large-7 small-24 columns devnation-live-date" data-tags="${next.date}">
-                    <span><i class="fa fa-calendar fa-2x right"></i></span>
-                    <div class="session-date">${next.date}</div>
+                    <div class="session-date"><span><i class="fa fa-calendar fa-2x right"></i></span> ${next.date}</div>
                 </div>
             </div>
             <div class="row" data-video="${next.youtube_id}">
