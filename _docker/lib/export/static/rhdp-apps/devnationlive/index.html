@@ -45,24 +45,31 @@
         }
 
         $(function() {
-            $.getJSON('devnationlive.json').done(function(data) {
-                var id = getQSValue('id','&'+window.location.href.split('?')[1]),
-                    offer_id = data.sessions[id].offer_id;
-                window.GatedFormConfig = data.sessions[id].eloqua;
-                $('head').append('<script src="https:\/\/redhat.com\/forms\/scripts\/jquery.gatedform.js"><\/script>');
+            fetch('devnationlive.json')
+                .then(function (resp) { return resp.json(); })
+                .then(function (data) {
+                    var id = getQSValue('id','&'+window.location.href.split('?')[1]),
+                        offer_id = data.sessions[id].offer_id;
+                    window.GatedFormConfig = data.sessions[id].eloqua;
+                    var gf = document.createElement('script');
+                    gf.type = 'text/javascript';
+                    gf.async = true;
+                    gf.src = 'https://www.redhat.com/forms/scripts/jquery.gatedform.js';
+                    var s = document.getElementByTagName('script')[0];
+                    s.parentNode.insertBefore(gf, s);
 
-                var obj = setInterval(function() {
-                    if(document.getElementById('DynamicFormThankYou')) {
-                        top.document.cookie = 'dn_live_'+offer_id+'=true';
-                        top.document.querySelector('devnation-live-app').dispatchEvent(new CustomEvent('registered', {
-                            detail: {
-                                id: id
-                            },
-                            bubbles: true
-                        }));
-                        clearInterval(obj);
-                    }
-                }, 1000)
+                    var obj = setInterval(function() {
+                        if(document.getElementById('DynamicFormThankYou')) {
+                            top.document.cookie = 'dn_live_'+offer_id+'=true';
+                            top.document.querySelector('devnation-live-app').dispatchEvent(new CustomEvent('registered', {
+                                detail: {
+                                    id: id
+                                },
+                                bubbles: true
+                            }));
+                            clearInterval(obj);
+                        }
+                    }, 1000)
             });
         });
         </script>
