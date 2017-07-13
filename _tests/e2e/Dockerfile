@@ -26,4 +26,4 @@ WORKDIR /home/e2e
 COPY package.json ./
 RUN npm install
 RUN gem install octokit
-ENV PATH /home/e2e/node_modules/.bin:$PATH
+ENV PATH /home/e2e/node_modules/.bin:/usr/java/latest/bin:$PATH
