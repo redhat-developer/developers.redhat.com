@@ -94,13 +94,18 @@ function rhd_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $v
 }
 
 function rhd_preprocess_html(array &$variables) {
+  // I've seen LOTS of errors in  Drupal WatchDog because this is being applied
+  // everywhere. Pretty sure we only want this applied when we're viewing an
+  // actual node.
+  // if (!is_null($variables['node_type'])) {
     $environment = \Drupal::config('redhat_developers')->get('environment');
     $dtm_code = \Drupal::config('redhat_developers')->get('dtm_code');
     $sentry_track = \Drupal::config('redhat_developers')->get('sentry_track');
     $sentry_script = \Drupal::config('redhat_developers')->get('sentry_script');
     $sentry_code = \Drupal::config('redhat_developers')->get('sentry_code');
     $rhd_base_url = \Drupal::config('redhat_developers')->get('rhd_base_url');
-    $rhd_final_base_url = \Drupal::config('redhat_developers')->get('rhd_final_base_url');
+    $rhd_final_base_url = \Drupal::config('redhat_developers')
+      ->get('rhd_final_base_url');
 
     $variables['rhd_environment'] = $environment;
     $variables['rhd_dtm_code'] = $dtm_code;
@@ -112,15 +117,16 @@ function rhd_preprocess_html(array &$variables) {
     $variables['rhd_final_base_url'] = $rhd_final_base_url;
 
     if ($environment != 'prod') {
-        $referrer = [
-          '#tag' => 'meta',
-          '#attributes' => [
-            'name' => 'referrer',      // Set name for element
-            'value' => 'unsafe-url'    // Set value for title
-          ],
-        ];
-        $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
+      $referrer = [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'name' => 'referrer',      // Set name for element
+          'value' => 'unsafe-url'    // Set value for title
+        ],
+      ];
+      $variables['page']['#attached']['html_head'][] = [$referrer, 'referrer'];
     }
+  // }
 }
 
 function rhd_js_settings_alter(array &$settings, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
@@ -218,7 +224,7 @@ function rhd_preprocess_node(&$variables) {
 
 function redhat_www_ddo_default() {
     $request = \Drupal::request();
-    $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404'); 
+    $siteerror = \Drupal::configFactory()->get('system.site')->get('page.404');
     $node = \Drupal::request()->attributes->get('node');
     if ( $siteerror == '/node/'.$node->nid->value ) {
         $errorType = "404";

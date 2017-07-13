@@ -1,0 +1,14 @@
+uuid: 8c9adc30-aa2e-4389-bd87-a83c196359c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.coding_resource_creator
+  module:
+    - user
+id: user_remove_role_action.coding_resource_creator
+label: 'Remove the Coding Resource creator role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: coding_resource_creator

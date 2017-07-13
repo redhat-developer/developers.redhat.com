@@ -1,0 +1,22 @@
+uuid: 964016d5-9db8-4eca-aaa1-b41e8bc17912
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.coding_resource
+id: node.coding_resource.status
+field_name: status
+entity_type: node
+bundle: coding_resource
+label: 'Publishing status'
+description: 'A boolean indicating the published state.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

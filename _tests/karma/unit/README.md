@@ -1,2 +1,0 @@
-RHDP Site Unit Testing
-=======================
