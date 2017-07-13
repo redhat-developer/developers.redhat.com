@@ -1,5 +1,7 @@
 class DevNationLiveApp extends HTMLElement {
     _data;
+    _src = '../rhdp-apps/devnationlive/devnationlive.json';
+    _form = '../rhdp-apps/devnationlive/';
     _next: DevNationLiveSession;
     _upcoming: DevNationLiveSession[];
 
@@ -10,6 +12,22 @@ class DevNationLiveApp extends HTMLElement {
     set next(val) {
         if (this._next === val) return;
         this._next = val;
+    }
+
+    get src() {
+        return this._src;
+    }
+    set src(val) {
+        if (this._src === val) return;
+        this._src = val;
+    }
+
+    get form() {
+        return this._form;
+    }
+    set form(val) {
+        if (this._form === val) return;
+        this._form = val;
     }
 
     get data() {
@@ -68,7 +86,7 @@ class DevNationLiveApp extends HTMLElement {
                     ${this.getCookie('dn_live_'+next.offer_id) ? `
                     <iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v=${next.youtube_id}&embed_domain=${window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]}"></iframe>
                     ` : `
-                    <iframe class="session-reg" src="../rhdp-apps/devnationlive/?id=${next.id}"></iframe>
+                    <iframe class="session-reg" src="${this.form}?id=${next.id}"></iframe>
                     `}
                 </div>
             </div>
@@ -104,7 +122,7 @@ class DevNationLiveApp extends HTMLElement {
                     </div>
                     <div class="large-7 columns align-center">${this.getCookie('dn_live_'+sess.offer_id) ? `
                     <div class="button disabled">You are Registered</div>` : `
-                    <iframe class="session-reg" src="../rhdp-apps/devnationlive/?id=${sess.id}"></iframe>
+                    <iframe class="session-reg" src="${this.form}?id=${sess.id}"></iframe>
                     `}
                     </div>
                 </div>
@@ -140,11 +158,19 @@ class DevNationLiveApp extends HTMLElement {
     constructor() {
         super();
     }
+
+    static get observedAttributes() { 
+        return ['src', 'form']; 
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+        this[name] = newVal;
+    }
     
     connectedCallback() {
         this.addEventListener('registered', this.setRegistered);
 
-        fetch('/rhdp-apps/devnationlive/devnationlive.json')
+        fetch(this.src)
         .then((resp) => resp.json())
         .then((data) => { 
             this.data = data;
