@@ -133,9 +133,9 @@ class RunTestsOptions
     github_status_context = nil
 
     if test_profile == 'desktop'
-      github_status_context = 'Drupal:FE Acceptance Tests'
+      github_status_context = 'ruby-acceptance-tests'
     else
-      github_status_context = 'Drupal:Mobile FE Acceptance Tests'
+      github_status_context = 'ruby-mobile-acceptance-tests'
     end
 
     bind_environment_variable('github_status_context', github_status_context)

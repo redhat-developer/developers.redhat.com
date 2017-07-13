@@ -1,0 +1,24 @@
+{
+  "name": "developers.redhat.com",
+  "version": "1.0.0",
+  "description": "developers.redhat.com e2e tests",
+  "scripts": {
+    "e2e": "wdio config/wdio.conf.local.js",
+    "e2e:docker": "wdio config/wdio.conf.docker.js",
+    "e2e:browserstack": "wdio config/wdio.conf.browserstack.js"
+  },
+  "author": "Red Hat Inc.",
+  "license": "",
+  "devDependencies": {
+    "chai": "~4.0.0",
+    "cucumber": "~2.2.0",
+    "selenium-standalone": "^6.5.0",
+    "wdio-browserstack-service": "^0.1.4",
+    "wdio-cucumber-framework": "^0.3.1",
+    "wdio-junit-reporter": "^0.3.0",
+    "wdio-selenium-standalone-service": "0.0.9",
+    "wdio-spec-reporter": "~0.1.0",
+    "webdriverio": "~4.8.0",
+    "xmultiple": "^1.0.0"
+  }
+}
