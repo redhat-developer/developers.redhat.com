@@ -84,7 +84,7 @@ class DevNationLiveApp extends HTMLElement {
             </div>
             <div class="row" data-video="${next.youtube_id}">
                 <div class="medium-14 columns event-video">
-                    ${this.getCookie('dn_live_'+next.offer_id) ? `
+                    ${this.getCookie('dn_live_'+next.offer_id) || !next.register ? `
                     <div class="flex-video">
                         <iframe src="https://www.youtube.com/embed/${next.youtube_id}?rel=0" width="640" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>` : `
@@ -129,10 +129,12 @@ class DevNationLiveApp extends HTMLElement {
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
                     </div>
-                    <div class="large-7 columns align-center">${this.getCookie('dn_live_'+sess.offer_id) ? `
-                    <div class="button disabled">You are Registered</div>` : `
-                    <iframe class="session-reg" src="${this.form}?id=${sess.id}"></iframe>
-                    `}
+                    ${sess.register ? `
+                        <div class="large-7 columns align-center">${this.getCookie('dn_live_'+sess.offer_id) ? `
+                        <div class="button disabled">You are Registered</div>` : `
+                        <iframe class="session-reg" src="${this.form}?id=${sess.id}"></iframe>
+                        `}` 
+                    : ''}
                     </div>
                 </div>
             </li>`

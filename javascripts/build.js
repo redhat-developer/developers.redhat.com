@@ -9,6 +9,7 @@ var DevNationLiveSession = (function () {
         this._twitter_handle = '';
         this._abstract = '';
         this._confirmed = false;
+        this._register = true;
         this._eloqua = '';
         Object.keys(obj).map(function (key) {
             _this[key] = obj[key];
@@ -45,17 +46,17 @@ var DevNationLiveSession = (function () {
         set: function (val) {
             if (this._date === val)
                 return;
-            try {
-                var timeStamp = new Date(val);
-                var timeString = timeStamp.toString();
-                var x = timeString.split(' ', 4).join(' ');
-                var t = timeStamp.toLocaleTimeString();
-                var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
-                this._date = x + " " + t + " " + timezone;
-            }
-            catch (e) {
-                this._date = 'Date TBD';
-            }
+            this._date = val;
+            // try {
+            //     var timeStamp = new Date(val);
+            //     var timeString = timeStamp.toString();
+            //     var x = timeString.split(' ', 4).join(' ');
+            //     var t = timeStamp.toLocaleTimeString();
+            //     var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
+            //     this._date = x + " " + t + " " + timezone;
+            // } catch(e) {
+            //     this._date = 'Date TBD';
+            // }
         },
         enumerable: true,
         configurable: true
@@ -108,6 +109,18 @@ var DevNationLiveSession = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(DevNationLiveSession.prototype, "register", {
+        get: function () {
+            return this._register;
+        },
+        set: function (val) {
+            if (this._register === val)
+                return;
+            this._register = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(DevNationLiveSession.prototype, "confirmed", {
         get: function () {
             return this._confirmed;
@@ -152,13 +165,14 @@ var DevNationLiveApp = (function (_super) {
         _this._form = '../rhdp-apps/devnationlive/';
         _this._mode = 'cors';
         _this.nextSession = function (strings, next) {
-            return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"/images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                    <p>Speaker: <strong>" + next.speaker + "</strong> \n                    " + (next.twitter_handle ? "\n                    (<a href=\"https://twitter.com/" + next.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + next.twitter_handle + "</a>)"
+            return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"/images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                    <p>Speaker: <strong>" + next.speaker + "</strong> \n                    " + (next.twitter_handle ? "\n                    (<a href=\"https://twitter.com/" + next.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + next.twitter_handle + "</a>)"
                 : '') + "\n                    </p>\n                    <p>" + next.abstract + "</p>\n                </div>\n            </div>\n        </section>";
         };
         _this.upcomingSession = function (strings, sess) {
             return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-17 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                        <p>Speaker: <strong>" + sess.speaker + "</strong>\n                            " + (sess.twitter_handle ? "\n                            (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
                 : '') + "\n                        </p>"
-                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    <div class=\"large-7 columns align-center\">" + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                    <div class=\"button disabled\">You are Registered</div>" : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + sess.id + "\"></iframe>\n                    ") + "\n                    </div>\n                </div>\n            </li>"
+                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-7 columns align-center\">" + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                        <div class=\"button disabled\">You are Registered</div>" : "\n                        <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + sess.id + "\"></iframe>\n                        ")
+                : '') + "\n                    </div>\n                </div>\n            </li>"
                 : '');
         };
         _this.template = function (strings, next, upcoming) {
