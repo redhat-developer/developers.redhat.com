@@ -55,7 +55,7 @@
                     gf.type = 'text/javascript';
                     gf.async = true;
                     gf.src = 'https://www.redhat.com/forms/scripts/jquery.gatedform.js';
-                    var s = document.getElementByTagName('script')[0];
+                    var s = document.getElementsByTagName('script')[0];
                     s.parentNode.insertBefore(gf, s);
 
                     var obj = setInterval(function() {

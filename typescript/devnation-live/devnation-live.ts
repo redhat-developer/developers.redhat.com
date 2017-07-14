@@ -177,9 +177,10 @@ class DevNationLiveApp extends HTMLElement {
     }
     
     connectedCallback() {
+        let fHead = new Headers();
         let fInit : RequestInit = {
             method: 'GET',
-            headers: new Headers(),
+            headers: fHead,
             mode: this.mode,
             cache: 'default'
         };

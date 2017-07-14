@@ -268,9 +268,10 @@ var DevNationLiveApp = (function (_super) {
     };
     DevNationLiveApp.prototype.connectedCallback = function () {
         var _this = this;
+        var fHead = new Headers();
         var fInit = {
             method: 'GET',
-            headers: new Headers(),
+            headers: fHead,
             mode: this.mode,
             cache: 'default'
         };
