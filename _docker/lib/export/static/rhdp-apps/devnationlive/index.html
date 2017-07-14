@@ -34,7 +34,12 @@
         </style>
     <!--<link type="text/css" rel="stylesheet" href="/forms/css/jquery.gatedform.css" media="all" />-->
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://redhat.com/forms/scripts/lib/jquery/1.10/jquery.min.js"></script>  
+    <script src="https://redhat.com/forms/scripts/lib/jquery/1.10/jquery.min.js"></script>
+    <!--[if lte IE 11]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+        <script src="promise-polyfill.min.js"></script>
+    <![endif]-->
+    
     </head>
     <body>
         <div id="GatedFormContainer"></div>
