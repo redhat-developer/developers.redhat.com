@@ -34,44 +34,55 @@
         </style>
     <!--<link type="text/css" rel="stylesheet" href="/forms/css/jquery.gatedform.css" media="all" />-->
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://redhat.com/forms/scripts/lib/jquery/1.10/jquery.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+    <script src="https://www.redhat.com/forms/scripts/jquery.gatedform.js"></script> 
+    <!--[if lte IE 11]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+        <script src="promise-polyfill.min.js"></script>
+    <![endif]-->
     </head>
     <body>
-        <div id="GatedFormContainer"></div>
         <script>
+        fetch('devnationlive.json')
+            .then(function (resp) { return resp.json(); })
+            .then(function (data) {
+                var id = getQSValue('id','&'+window.location.href.split('?')[1]),
+                    offer_id = data.sessions[id].offer_id,
+                    gated_form = document.createElement('div');
+                
+                gated_form.id = "GatedFormContainer";
+                document.body.appendChild(gated_form);
+                
+                launchGatedForm(data.sessions[id].eloqua);
+                
+                var obj = setInterval(function() {
+                    if(document.getElementById('DynamicFormThankYou')) {
+                        top.document.cookie = 'dn_live_'+offer_id+'=true';
+                        top.document.getElementsByName('devnation-live-app')[0].dispatchEvent(new CustomEvent('registered', {
+                            detail: {
+                                id: id
+                            },
+                            bubbles: true
+                        }));
+                        clearInterval(obj);
+                    } 
+                }, 1000);
+            });
+        
         function getQSValue( name, str ) {
             var re = new RegExp('(?:(?:^|.*&\\s*)'+name+'\\s*\\=\\s*([^&]*).*$)|^.*$');
             return str.replace(re, "$1");
         }
 
-        $(function() {
-            fetch('devnationlive.json')
-                .then(function (resp) { return resp.json(); })
-                .then(function (data) {
-                    var id = getQSValue('id','&'+window.location.href.split('?')[1]),
-                        offer_id = data.sessions[id].offer_id;
-                    window.GatedFormConfig = data.sessions[id].eloqua;
-                    var gf = document.createElement('script');
-                    gf.type = 'text/javascript';
-                    gf.async = true;
-                    gf.src = 'https://www.redhat.com/forms/scripts/jquery.gatedform.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gf, s);
-
-                    var obj = setInterval(function() {
-                        if(document.getElementById('DynamicFormThankYou')) {
-                            top.document.cookie = 'dn_live_'+offer_id+'=true';
-                            top.document.querySelector('devnation-live-app').dispatchEvent(new CustomEvent('registered', {
-                                detail: {
-                                    id: id
-                                },
-                                bubbles: true
-                            }));
-                            clearInterval(obj);
-                        }
-                    }, 1000)
-            });
-        });
+        function launchGatedForm(config) {
+            var width = $("#" + dynamicForm.options.elqFormContainerId).width();
+            if (config.width !== width) {
+                config.width = width;
+                $.when(dynamicForm.Util.CheckPlugins()).then(function() {
+                    dynamicForm.Start(config);
+                });
+            }
+        }
         </script>
     </body>
 </html>
