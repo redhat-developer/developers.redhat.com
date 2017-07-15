@@ -152,7 +152,8 @@ pre code {
 a {
   color:$link;
   cursor:pointer;
-  &:hover { color: $linkhover; }
+  text-decoration: none;
+  &:hover, &:focus, &:active { color: $linkhover; }
 
   &.dark-background{ color: $link-dark-background; }
   &.link-sm {color: $link-sm; }
