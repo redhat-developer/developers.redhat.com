@@ -26,7 +26,8 @@ RUN yum-config-manager --enable remi-php70; \
            php-opcache \
            php-xml \
            sendmail \
-           tar; \
+           tar \
+           logrotate \
     yum clean all
 
 RUN { \
@@ -44,6 +45,7 @@ RUN curl https://getcomposer.org/installer > composer-installer && php composer-
 
 WORKDIR /var/www/drupal
 COPY apache/drupal.conf /etc/httpd/conf.d/drupal.conf
+COPY logrotate/httpd /etc/logrotate.d/httpd
 
 # Run composer to install Drupal and required dependencies
 COPY drupal-filesystem/scripts/ScriptHandler.php /var/www/drupal/scripts/
