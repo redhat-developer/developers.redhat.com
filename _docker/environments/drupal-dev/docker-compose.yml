@@ -36,7 +36,7 @@ services:
   drupal:
     build: ../../drupal
     ports:
-      - "8080:80"
+      - "80:80"
     links:
     # We give the drupalmysql the 'docker' alias so that the rhd.settings.php for database host name
     # work both within the container and also when running Drupal outside of Docker
