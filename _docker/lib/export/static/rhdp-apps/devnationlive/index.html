@@ -33,13 +33,13 @@
     label { font-size: 14px; }
         </style>
     <!--<link type="text/css" rel="stylesheet" href="/forms/css/jquery.gatedform.css" media="all" />-->
+    <!--[if IE]>
+        <script src="promise-polyfill.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+    <![endif]-->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="https://www.redhat.com/forms/scripts/jquery.gatedform.js"></script> 
-    <!--[if lte IE 11]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
-        <script src="promise-polyfill.min.js"></script>
-    <![endif]-->
     </head>
     <body>
         <script>
@@ -47,13 +47,14 @@
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
                 var id = getQSValue('id','&'+window.location.href.split('?')[1]),
-                    offer_id = data.sessions[id].offer_id,
+                    session = getSession(id, data.sessions),
+                    offer_id = session.offer_id,
                     gated_form = document.createElement('div');
                 
                 gated_form.id = "GatedFormContainer";
                 document.body.appendChild(gated_form);
                 
-                launchGatedForm(data.sessions[id].eloqua);
+                launchGatedForm(session.eloqua);
                 
                 var obj = setInterval(function() {
                     if(document.getElementById('DynamicFormThankYou')) {
@@ -72,6 +73,14 @@
         function getQSValue( name, str ) {
             var re = new RegExp('(?:(?:^|.*&\\s*)'+name+'\\s*\\=\\s*([^&]*).*$)|^.*$');
             return str.replace(re, "$1");
+        }
+        
+        function getSession(id, sessions) {
+            for(i=0; i < sessions.length; i++ ) {
+                if (sessions[i].offer_id === id) {
+                    return sessions[i];
+                }
+            }
         }
 
         function launchGatedForm(config) {

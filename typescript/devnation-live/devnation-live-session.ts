@@ -1,21 +1,21 @@
 class DevNationLiveSession {
-    _id = '';
     _title = '';
     _date = '';
     _youtube_id = '';
     _speaker = '';
     _twitter_handle = '';
+    _offer_id = '';
     _abstract = '';
     _confirmed = false;
     _register = true;
     _eloqua = '';
 
-    get id() {
-        return this._id;
+    get offer_id() {
+        return this._offer_id;
     }
-    set id(val) {
-        if (this._id === val) return;
-        this._id = val;
+    set offer_id(val) {
+        if (this._offer_id === val) return;
+        this._offer_id = val;
     }
     get title() {
         return this._title;
