@@ -33,10 +33,9 @@
     label { font-size: 14px; }
         </style>
     <!--<link type="text/css" rel="stylesheet" href="/forms/css/jquery.gatedform.css" media="all" />-->
-    <!--[if IE]>
-        <script src="promise-polyfill.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
-    <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="https://www.redhat.com/forms/scripts/jquery.gatedform.js"></script> 
@@ -74,7 +73,7 @@
             var re = new RegExp('(?:(?:^|.*&\\s*)'+name+'\\s*\\=\\s*([^&]*).*$)|^.*$');
             return str.replace(re, "$1");
         }
-        
+
         function getSession(id, sessions) {
             for(i=0; i < sessions.length; i++ ) {
                 if (sessions[i].offer_id === id) {
