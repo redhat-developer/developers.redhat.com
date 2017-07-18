@@ -1,9 +1,10 @@
 class DevNationLiveApp extends HTMLElement {
-    _data;
+    _data: DevNationLiveSession[];
     _src = '../rhdp-apps/devnationlive/devnationlive.json';
     _form = '../rhdp-apps/devnationlive/';
     _next: DevNationLiveSession;
     _upcoming: DevNationLiveSession[];
+    _past: DevNationLiveSession[];
     _mode : RequestMode = 'cors';
 
     get next() {
@@ -13,6 +14,14 @@ class DevNationLiveApp extends HTMLElement {
     set next(val) {
         if (this._next === val) return;
         this._next = val;
+    }
+
+    get past() {
+        return this._past
+    }
+    set past(val) {
+        if (this._past === val) return;
+        this._past = val;
     }
 
     get src() {
@@ -39,28 +48,6 @@ class DevNationLiveApp extends HTMLElement {
         this._form = val;
     }
 
-    get data() {
-        return this._data;
-    }
-    set data(val) {
-        if (this._data === val) return;
-        this._data = val;
-        if (this.data.next_session) {
-            this.next = new DevNationLiveSession(this.data.sessions[this.data.next_session]);
-            this.next.id = this.data.next_session;
-        }
-        if (this.data.upcoming_sessions) {
-            let l = this.data.upcoming_sessions.length;
-            let uc = []
-            for (let i=0; i < l; i++) {
-                let new_us = new DevNationLiveSession(this.data.sessions[this.data.upcoming_sessions[i]]);
-                new_us.id = this.data.upcoming_sessions[i];
-                uc.push(new_us);
-            }
-            this.upcoming = uc;
-        }
-    }
-
     get upcoming() {
         return this._upcoming;
     }
@@ -69,7 +56,18 @@ class DevNationLiveApp extends HTMLElement {
         this._upcoming = val;
     }
 
-    nextSession = (strings, next) => {
+    get data() {
+        return this._data;
+    }
+    set data(val) {
+        if (this._data === val) return;
+        this._data = val['sessions'] ? val['sessions'].sort(this.sortSessions) : [];
+        this.next = this.getNextSession();
+        this.upcoming = this.getUpcoming();
+        this.past = this.getPast();
+    }
+
+    nextSession = (strings, next:DevNationLiveSession) => {
         return `<section>
             <div class="row">
                 <div class="large-24 columns">
@@ -84,18 +82,18 @@ class DevNationLiveApp extends HTMLElement {
             </div>
             <div class="row" data-video="${next.youtube_id}">
                 <div class="medium-14 columns event-video">
-                    ${this.getCookie('dn_live_'+next.offer_id) ? `
+                    ${this.getCookie('dn_live_'+next.offer_id) || !next.register ? `
                     <div class="flex-video">
-                        <iframe src="https://www.youtube.com/embed/${next.youtube_id}?rel=0" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/${next.youtube_id}?rel=0&autoplay=1" width="640" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>` : `
-                    <img width="640" height="360" src="/images/design/devnationlive_herographic_0.jpg" alt="${next.title}">
+                    <img width="640" height="360" src="../images/design/devnationlive_herographic_0.jpg" alt="${next.title}">
                     `}
                 </div>
                 <div class="medium-10 columns event-chat" data-chat="${next.youtube_id}">
-                    ${this.getCookie('dn_live_'+next.offer_id) ? `
+                    ${this.getCookie('dn_live_'+next.offer_id) || !next.register ? `
                     <iframe class="embedded-chat" src="https://www.youtube.com/live_chat?v=${next.youtube_id}&embed_domain=${window.location.href.replace(/http(s)?:\/\//,'').split('/')[0]}"></iframe>
                     ` : `
-                    <iframe class="session-reg" src="${this.form}?id=${next.id}"></iframe>
+                    <iframe class="session-reg" src="${this.form}?id=${next.offer_id}"></iframe>
                     `}
                 </div>
             </div>
@@ -112,7 +110,40 @@ class DevNationLiveApp extends HTMLElement {
         </section>`;
     }
 
-    upcomingSession = (strings, sess) => {
+    upcomingSession = (strings, sess:DevNationLiveSession) => {
+        return `
+        ${sess.confirmed ? `
+            <li class="single-event">
+                <div class="row">
+                    <div class="large-17 columns">
+                        <h4 class="caps">${sess.title}</h4>
+                        ${sess.speaker ? `
+                            <p>Speaker: <strong>${sess.speaker}</strong>
+                                ${sess.twitter_handle ? `
+                                    (<a href="https://twitter.com/${sess.twitter_handle}" target="_blank" class="external-link"> @${sess.twitter_handle}</a>)` 
+                                    : ''
+                                }
+                            </p>` 
+                            : ''
+                        }
+                        <p>${sess.date}</p>
+                        <p>${sess.abstract}</p>
+                    </div>
+                    ${sess.register ? `
+                        <div class="large-7 columns align-center">
+                        ${this.getCookie('dn_live_'+sess.offer_id) ? `
+                            <div class="button disabled">You are Registered</div>` 
+                            : `<iframe class="session-reg" src="${this.form}?id=${sess.offer_id}"></iframe>
+                            </div>`
+                        }` 
+                        : ''
+                    }
+                </div>
+            </li>`
+        : ''}`
+    }
+
+    pastSession = (strings, sess:DevNationLiveSession) => {
         return `
         ${sess.confirmed ? `
             <li class="single-event">
@@ -129,18 +160,13 @@ class DevNationLiveApp extends HTMLElement {
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
                     </div>
-                    <div class="large-7 columns align-center">${this.getCookie('dn_live_'+sess.offer_id) ? `
-                    <div class="button disabled">You are Registered</div>` : `
-                    <iframe class="session-reg" src="${this.form}?id=${sess.id}"></iframe>
-                    `}
-                    </div>
                 </div>
             </li>`
         : ''}`
     }
 
-    template  = (strings, next, upcoming) => {
-        return `<div class="wide wide-hero devnation-live">
+    template  = (strings, next:DevNationLiveSession, upcoming:DevNationLiveSession[], past:DevNationLiveSession[]) => {
+    return `<div class="wide wide-hero devnation-live">
         <div class="row">
             <div class="large-24 columns">
                 <img class="show-for-large-up" src="https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png" alt="DevNation Live logo">
@@ -152,13 +178,22 @@ class DevNationLiveApp extends HTMLElement {
         ${this.nextSession`${next}`}
         <section>
             <div class="row">
-                <div class="large-24 columns">
+                ${past.length > 0 ? `<div class="large-12 columns">` : `<div class="large-24 columns">`}
                     <h5 class="caps">Upcoming Sessions</h5>
                     <br>
                     <ul class="events-list">
                     ${upcoming.map(sess =>  this.upcomingSession`${sess}`).join('')}
                     </ul>
                 </div>
+                ${past.length > 0 ? `
+                    <div class="large-12 columns">
+                    <h5 class="caps">Past Sessions</h5>
+                        <br>
+                        <ul class="events-list">
+                        ${past.map(sess =>  this.pastSession`${sess}`).join('')}
+                        </ul>
+                    </div>` 
+                : ''}
             </div>
         </section>
     </div>`;
@@ -190,7 +225,7 @@ class DevNationLiveApp extends HTMLElement {
         .then((resp) => resp.json())
         .then((data) => { 
             this.data = data;
-            this.innerHTML = this.template`${this.next}${this.upcoming}`;
+            this.innerHTML = this.template`${this.next}${this.upcoming}${this.past}`;
         });
     }
 
@@ -200,7 +235,49 @@ class DevNationLiveApp extends HTMLElement {
     }
 
     setRegistered(e) {
-        this.innerHTML = this.template`${this.next}${this.upcoming}`;
+        this.innerHTML = this.template`${this.next}${this.upcoming}${this.past}`;
+    }
+
+    sortSessions(a, b) {
+        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), 
+            db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
+        return da - db;
+    }
+
+    getNextSession() {
+        for(let i=0; i < this.data.length; i++) {
+            let dt = Date.parse(this.data[i].date);
+            if(dt && dt > Date.now()) {
+                return this.data[i];
+            }
+        }
+    }
+
+    getUpcoming() {
+        let upcoming = [];
+        let first = true;
+        for(let i=0; i < this.data.length; i++) {
+            let dt = Date.parse(this.data[i].date);
+            if(dt && (dt > Date.now() || dt > Date.now() - 3600000)) {
+                if (!first && this.data[i].offer_id.length > 0) { 
+                    upcoming.push(this.data[i]) 
+                } else { 
+                    first = false; 
+                }
+            }
+        }
+        return upcoming;
+    }
+
+    getPast() {
+        let past = [];
+        for(let i=0; i < this.data.length; i++) {
+            let dt = Date.parse(this.data[i].date);
+            if(dt && dt < Date.now() - 3600000) {
+                past.push(this.data[i]);
+            }
+        }
+        return past;
     }
 }
 

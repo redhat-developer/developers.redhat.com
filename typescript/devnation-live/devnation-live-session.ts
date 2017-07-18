@@ -1,20 +1,21 @@
 class DevNationLiveSession {
-    _id = '';
     _title = '';
     _date = '';
     _youtube_id = '';
     _speaker = '';
     _twitter_handle = '';
+    _offer_id = '';
     _abstract = '';
     _confirmed = false;
+    _register = true;
     _eloqua = '';
 
-    get id() {
-        return this._id;
+    get offer_id() {
+        return this._offer_id;
     }
-    set id(val) {
-        if (this._id === val) return;
-        this._id = val;
+    set offer_id(val) {
+        if (this._offer_id === val) return;
+        this._offer_id = val;
     }
     get title() {
         return this._title;
@@ -28,16 +29,17 @@ class DevNationLiveSession {
     }
     set date(val) {
         if (this._date === val) return;
-        try {
-            var timeStamp = new Date(val);
-            var timeString = timeStamp.toString();
-            var x = timeString.split(' ', 4).join(' ');
-            var t = timeStamp.toLocaleTimeString();
-            var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
-            this._date = x + " " + t + " " + timezone;
-        } catch(e) {
-            this._date = 'Date TBD';
-        }
+        this._date = val;
+        // try {
+        //     var timeStamp = new Date(val);
+        //     var timeString = timeStamp.toString();
+        //     var x = timeString.split(' ', 4).join(' ');
+        //     var t = timeStamp.toLocaleTimeString();
+        //     var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
+        //     this._date = x + " " + t + " " + timezone;
+        // } catch(e) {
+        //     this._date = 'Date TBD';
+        // }
     }
     get youtube_id() {
         return this._youtube_id;
@@ -66,6 +68,14 @@ class DevNationLiveSession {
     set abstract(val) {
         if (this._abstract === val) return;
         this._abstract = val;
+    }
+
+    get register() {
+        return this._register;
+    }
+    set register(val) {
+        if (this._register === val) return;
+        this._register = val;
     }
 
     get confirmed() {
