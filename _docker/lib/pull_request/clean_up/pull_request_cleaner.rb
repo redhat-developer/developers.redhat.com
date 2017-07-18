@@ -43,6 +43,7 @@ class PullRequestCleaner
     pull_requests.each do |pull_request|
       @log.info("Cleaning up Docker resources for pull request '#{pull_request}'...")
       @process_runner.execute!("cd #{@docker_environment_directory} && docker-compose -p rhdpr#{pull_request} down -v --remove-orphans --rmi local")
+      @process_runner.execute!("docker rmi $(docker images --format \"{{.Repository}}\" rhdpr#{pull_request}*)")
     end
   end
 

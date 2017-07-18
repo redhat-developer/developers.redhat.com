@@ -20,7 +20,9 @@ class TestPullRequestCleaner < MiniTest::Test
     @pull_requests.expects(:list_closed).returns(%w(1 2))
 
     @process_runner.expects(:execute!).with("cd #{@docker_directory} && docker-compose -p rhdpr1 down -v --remove-orphans --rmi local")
+    @process_runner.expects(:execute!).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr1*)')
     @process_runner.expects(:execute!).with("cd #{@docker_directory} && docker-compose -p rhdpr2 down -v --remove-orphans --rmi local")
+    @process_runner.expects(:execute!).with('docker rmi $(docker images --format "{{.Repository}}" rhdpr2*)')
     @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --ignore-non-existing --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --delete #{@empty_dir}/ rhd@filemgmt.jboss.org:/stg_htdocs/it-rhd-stg/pr/1")
     @process_runner.expects(:execute!).with("rsync --partial --archive --checksum --compress --omit-dir-times --quiet --ignore-non-existing --chmod=Dg+sx,ug+rw,Do+rx,o+r --protocol=28 --delete #{@empty_dir}/ rhd@filemgmt.jboss.org:/stg_htdocs/it-rhd-stg/pr/2")
 
