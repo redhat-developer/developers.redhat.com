@@ -86,7 +86,7 @@ class DevNationLiveApp extends HTMLElement {
                     <div class="flex-video">
                         <iframe src="https://www.youtube.com/embed/${next.youtube_id}?rel=0&autoplay=1" width="640" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>` : `
-                    <img width="640" height="360" src="/images/design/devnationlive_herographic_0.jpg" alt="${next.title}">
+                    <img width="640" height="360" src="../images/design/devnationlive_herographic_0.jpg" alt="${next.title}">
                     `}
                 </div>
                 <div class="medium-10 columns event-chat" data-chat="${next.youtube_id}">
@@ -239,8 +239,8 @@ class DevNationLiveApp extends HTMLElement {
     }
 
     sortSessions(a, b) {
-        var da = (Date.parse(a) ? Date.parse(a) : new Date(9999999999999)).valueOf(), 
-            db = (Date.parse(b) ? Date.parse(b) : new Date(9999999999999)).valueOf();
+        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), 
+            db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
         return da - db;
     }
 
