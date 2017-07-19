@@ -35,11 +35,15 @@ header.main {
     color:white;
     font-size: 23px;
     padding:10px;
+
+    &:focus {
+      color: $white;
+    }
   }
 
   .has-sub-nav > a.active,
   a.sub-nav-downloads.active{
-    color: #ffbb11;
+    color: #ffbb11 !important;
   }
   .has-sub-nav:hover > a.active,
   .has-sub-nav > a:hover,
@@ -301,12 +305,16 @@ nav.accounts {
             display: none;
           }
         }
+        a:hover, a:focus, a:active {
+          color: $white !important;
+        }
         &.sub-nav-open > a, & > a,  {
           padding-left: 20px;
           text-transform: uppercase;
-          color:white;
+          color: $white;
           background:black;
           border-top: 1px solid $grey-5;
+
         }
       }
     }
