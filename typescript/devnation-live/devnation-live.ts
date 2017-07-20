@@ -273,7 +273,7 @@ class DevNationLiveApp extends HTMLElement {
         let past = [];
         for(let i=0; i < this.data.length; i++) {
             let dt = Date.parse(this.data[i].date);
-            if(dt && dt < Date.now() - 3600000) {
+            if(dt && dt + 3600000 < Date.now()) {
                 past.push(this.data[i]);
             }
         }
