@@ -1,5 +1,3 @@
-let timeout = process.env.DEBUG ? 100000 : 20000;
-
 if (process.env.RHD_BASE_URL === "prod") {
     baseUrl = "https://developers.redhat.com"
 } else if (process.env.RHD_BASE_URL === "stage") {
@@ -57,7 +55,7 @@ exports.config = {
     baseUrl: baseUrl,
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 90000,
+    waitforTimeout: 10000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
@@ -74,19 +72,19 @@ exports.config = {
     // reporters: ['dot'],//
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['features/step_definitions'],        // <string[]> (file/dir) require files before executing features
-        backtrace: false,   // <boolean> show full backtrace for errors
-        compiler: [],       // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-        dryRun: false,      // <boolean> invoke formatters without executing steps
-        failFast: false,    // <boolean> abort the run on first failure
+        require: ['./features/step_definitions/'], // <string[]> (file/dir) require files before executing features
+        backtrace: false, // <boolean> show full backtrace for errors
+        compiler: [], // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
+        dryRun: false, // <boolean> invoke formatters without executing steps
+        failFast: false, // <boolean> abort the run on first failure
         format: ['pretty'], // <string[]> (type[:path]) specify the output format, optionally supply PATH to redirect formatter output (repeatable)
-        colors: true,       // <boolean> disable colors in formatter output
-        snippets: true,     // <boolean> hide step definition snippets for pending steps
-        source: true,       // <boolean> hide source uris
-        profile: [],        // <string[]> (name) specify the profile to use
-        strict: false,      // <boolean> fail if there are any undefined or pending steps
+        colors: true, // <boolean> disable colors in formatter output
+        snippets: true, // <boolean> hide step definition snippets for pending steps
+        source: true, // <boolean> hide source uris
+        profile: [], // <string[]> (name) specify the profile to use
+        strict: false, // <boolean> fail if there are any undefined or pending steps
         // tags: [process.env.CUCUMBER_TAGS],          // <string[]> (expression) only execute the features or scenarios with tags matching the expression
-        timeout: timeout,     // <number> timeout for step definitions
+        timeout: 30000, // <number> timeout for step definitions
         ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
     },
 
@@ -110,7 +108,7 @@ exports.config = {
     // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
     // resolved to continue.
 
-    before: function () {
+    before: function() {
         /**
          * Setup the Chai assertion framework
          */
