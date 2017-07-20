@@ -179,7 +179,7 @@ var DevNationLiveApp = (function (_super) {
         _this.pastSession = function (strings, sess) {
             return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-17 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                        <p>Speaker: <strong>" + sess.speaker + "</strong>\n                            " + (sess.twitter_handle ? "\n                            (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
                 : '') + "\n                        </p>"
-                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                </div>\n            </li>"
+                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    <div class=\"large-7\">\n                        <a href=\"https://youtu.be/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
                 : '');
         };
         _this.template = function (strings, next, upcoming, past) {

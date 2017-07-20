@@ -160,6 +160,9 @@ class DevNationLiveApp extends HTMLElement {
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
                     </div>
+                    <div class="large-7">
+                        <a href="https://youtu.be/${sess.youtube_id}" class="button external-link">VIDEO</a>
+                    </div>
                 </div>
             </li>`
         : ''}`
