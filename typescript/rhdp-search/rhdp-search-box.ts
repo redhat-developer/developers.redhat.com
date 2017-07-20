@@ -2,7 +2,11 @@ class RHDPSearchBox extends HTMLElement {
     _term = '';
 
     get term() {
-        return this._term;
+        if ((this._term===null) || (this._term==='')) {
+           return this._term;
+        } else {
+           return this._term.replace(/(<([^>]+)>)/ig,'');
+        }
     }
     set term(val) {
         if (this._term === val) return;
