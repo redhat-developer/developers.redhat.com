@@ -577,7 +577,12 @@ var RHDPSearchBox = (function (_super) {
     }
     Object.defineProperty(RHDPSearchBox.prototype, "term", {
         get: function () {
-            return this._term;
+            if ((this._term === null) || (this._term === '')) {
+                return this._term;
+            }
+            else {
+                return this._term.replace(/(<([^>]+)>)/ig, "");
+            }
         },
         set: function (val) {
             if (this._term === val)
