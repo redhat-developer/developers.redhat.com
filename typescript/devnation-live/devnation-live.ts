@@ -247,7 +247,7 @@ class DevNationLiveApp extends HTMLElement {
     getNextSession() {
         for(let i=0; i < this.data.length; i++) {
             let dt = Date.parse(this.data[i].date);
-            if(dt && dt > Date.now()) {
+            if(dt && dt > Date.now() - 3600000) {
                 return this.data[i];
             }
         }
