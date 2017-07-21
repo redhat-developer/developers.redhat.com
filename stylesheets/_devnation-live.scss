@@ -90,26 +90,4 @@
   .align-center {
     text-align: center;
   }
-  .btn-danger {
-    text-transform: uppercase;
-    background: $red;
-    text-transform: uppercase;
-    text-decoration: none;
-    border:0;
-    font-size: 16px;
-    font-weight: 600;
-    padding:9px 40px;
-    -webkit-transition: background .2s ease-in 0s;
-    transition:background .2s ease-in 0s;
-    line-height: 1.44;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-
-    &:hover, &:focus {
-      background-color: darken( $red, 12% );
-    }
-  }
-  .btn-danger, .form-control {
-    border-radius: 0;
-  }
 }
