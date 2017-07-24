@@ -5,18 +5,18 @@
 
 .homepage-main {
   color: $white;
-  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_introeap7cheatsheet_18jul2017.png");
+  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_adveap7cheatsheet_19jul2017.png");
   background-position: center center;
   height: 310px;
   background-repeat: repeat-x;
-  background-color: #cc0000;
+  background-color: #0068ba;
   & > .row {
     @include flexbox;
     @include align-items(center);
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    padding: 0 19% 0 19%;
+    padding: 0 21% 0 21%;
     padding-top: 40px;
     color: $white;
     text-align: center;
@@ -25,7 +25,7 @@
       font-size: 2em;
       color: inherit;
       text-transform: uppercase;
-      max-width: 695px;
+      line-height: 1.1;
     }
     p {
       color: inherit;
@@ -34,6 +34,9 @@
     }
     a.button.external-link:after{
       display: none;
+    }
+    a.button.heavy-cta.white {
+      color: $blue;
     }
   }
   img {
@@ -239,7 +242,7 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_introeap7cheatsheet_18jul2017.png");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_adveap7cheatsheet_19jul2017.png");
     background-size: cover;
     background-position: top left;
     min-height: 400px;
@@ -277,16 +280,22 @@ ul.homepage-resources {
       display: block;
       max-height: 300px;
     }
+    .homepage-cta {
+      padding: 3em 1em 0 1em;
+      p {
+        font-size: 18px;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+    }
   }
 }
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_introeap7cheatsheet_18jul2017.png");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_adveap7cheatsheet_19jul2017.png");
     min-height: 480px;
-    .homepage-cta h2 {
-      font-size: 1.4em;
-    }
   }
   .spotlights-container {
     flex-direction: column;
