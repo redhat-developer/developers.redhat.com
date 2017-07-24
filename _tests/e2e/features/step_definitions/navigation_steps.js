@@ -4,9 +4,9 @@ const SearchPage = require("../../support/pages/search.page");
 const homePage = new HomePage;
 const searchPage = new SearchPage;
 
-const navigationSteps = function () {
+const navigationSteps = function() {
 
-    this.Given(/^I am on the "([^"]*)" page$/, function (page) {
+    this.Given(/^I am on the "([^"]*)" page$/, function(page) {
         if (page === "Home") {
             homePage.open();
         } else if (page === "Search") {

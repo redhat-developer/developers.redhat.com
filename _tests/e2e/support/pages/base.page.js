@@ -1,6 +1,6 @@
 class BasePage {
     open(path) {
-        browser.url('/' + path);
+        browser.url(path);
     }
 
     /**

@@ -35,7 +35,6 @@ Feature: Search Page
     Then the search page is displayed
     And the search field should not be displayed within the site header
 
-
   Scenario: Search can be triggered using search button
     Given I am on the "Search" page
     When I enter "Hello world" into the search bar
@@ -65,7 +64,6 @@ Feature: Search Page
 
   Scenario: Do not show 'Load More' link if less than 10 results are returned from the DCP.
     Given I am on the "Search" page
-    And I search for "Containers"
     When there are 10 or less results available
     Then I should not see a Load More link
 

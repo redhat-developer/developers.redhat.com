@@ -14,61 +14,40 @@ class SearchPage extends mixin(BasePage, NavigationBar) {
     open(searchTerm = '') {
         super.open(`search/?q=${searchTerm}`);
         browser.waitUntil(function () {
-                return browser.getTitle() === 'Search Results | Red Hat Developers';
-            }, 6000, 'Search page was not displayed after 6 seconds'
-        )
+            return browser.getTitle() === 'Search Results | Red Hat Developers';
+        }, 6000, 'Search page was not displayed after 6 seconds')
+    }
+
+    isOnSearchPage () {
+        return browser.getTitle().includes('Search Results | Red Hat Developers')
     }
 
     /**
      * Search page elements
      */
-    get searchField() {
-        return $('.user-search');
-    }
+    get searchField () { return $('.user-search'); }
 
-    get searchButton() {
-        return $('#search-btn');
-    }
+    get searchButton () { return $('#search-btn'); }
 
-    resultCount() {
-        return $('//rhdp-search-result-count');
-    }
+    get clearFilter () { return $('.clearItem'); }
 
-    get resultSort() {
-        return $('rhdp-search-sort-page > p > select');
-    }
+    get resultSort () { return $('rhdp-search-sort-page > p > select'); }
 
-    loadMoreButton() {
-        return $('.moreBtn');
-    }
+    resultCount () { return $('//rhdp-search-result-count').getText(); }
 
-    searchResults() {
-        return $$('.result');
-    }
+    loadMoreButton () { return $('.moreBtn'); }
 
-    searchResult(i) {
-        return $(`//rhdp-search-result[${i}]/div`);
-    }
+    searchResults () { return $$('.result'); }
 
-    searchResultTitle(i) {
-        return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/h4/a`);
-    }
+    searchResult (i) { return $(`//rhdp-search-result[${i}]/div`); }
 
-    resultInfo(i) {
-        return $(`//rhdp-search-result[${i}]/div/p[1]`);
-    }
+    searchResultTitle (i) { return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/h4/a`); }
 
-    searchResultDate(i) {
-        return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]/span[2]`);
-    }
+    resultInfo (i) { return $(`//rhdp-search-result[${i}]/div/p[1]`); }
 
-    activeFilters() {
-        return $('.activeFilters')
-    }
+    searchResultDate (i) { return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]/span[2]`).getText(); }
 
-    get clearFilter() {
-        return $('.clearItem');
-    }
+    activeFilters () { return $('.activeFilters') }
 
     /**
      * Wait for search results to complete
@@ -92,7 +71,7 @@ class SearchPage extends mixin(BasePage, NavigationBar) {
     waitForUpdatedResults(result) {
         var getResultCount = this.resultCount;
         browser.waitUntil(function () {
-            var updatedCount = getResultCount().getText();
+            var updatedCount = getResultCount();
             return updatedCount !== result;
         }, 60000, "Results were not updated after 60 seconds");
         browser.pause(1000)
@@ -131,11 +110,9 @@ class SearchPage extends mixin(BasePage, NavigationBar) {
         this._clickShowMore(isMobile);
         if (filterType === 'Content Type') {
             selectedFilter = this._selectFilter(isMobile, 1, filterOption);
-        }
-        else if (filterType === 'Product') {
+        } else if (filterType === 'Product') {
             selectedFilter = this._selectFilter(isMobile, 2, filterOption);
-        }
-        else {
+        } else {
             selectedFilter = this._selectFilter(isMobile, 3, filterOption);
         }
         this._clickApplyMobileFilter(isMobile);

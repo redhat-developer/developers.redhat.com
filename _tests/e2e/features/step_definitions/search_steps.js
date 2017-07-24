@@ -8,7 +8,7 @@ const searchSteps = function () {
     let resultCount;
 
     this.Then(/^the search page is displayed$/, function () {
-        browser.getTitle().should.include('Search Results');
+        expect(searchPage.isOnSearchPage(), 'Search Page was not displayed').to.be.true;
     });
 
     this.When(/^I enter "([^"]*)" into the search bar$/, function (searchTerm) {
@@ -20,13 +20,13 @@ const searchSteps = function () {
     });
 
     this.Then(/^the search field should contain "([^"]*)"$/, function (searchTerm) {
-        value = searchPage.searchField.getValue();
-        value.should.equal(searchTerm)
+        let value = searchPage.searchField.getValue();
+        expect(value).to.equal(searchTerm);
     });
 
     this.Then(/^the search field should not be displayed within the site header$/, function () {
         let searchField = searchPage.searchBar;
-        expect(searchField.isVisible(), 'Search bar exists').to.be.false;
+        expect(searchField.isVisible(), 'Site-wide search bar was displayed on Search page').to.be.false;
     });
 
     this.When(/^I search for "(.*)"$/, function (searchTerm) {
@@ -34,21 +34,20 @@ const searchSteps = function () {
     });
 
     this.Then(/^the results should be sorted by "([^"]*)"$/, function (selectedResultSort) {
-            let resultSort = searchPage.resultSort;
-            expect(resultSort.getValue(), `${resultSort} was not selected`).to.equal(selectedResultSort.replace(/\s+/g, '-').toLowerCase());
+        let resultSort = searchPage.resultSort;
+        expect(resultSort.getValue(), `${resultSort} was not selected`).to.equal(selectedResultSort.replace(/\s+/g, '-').toLowerCase());
 
-            if (selectedResultSort === 'Most Recent') {
-                // iterate through results and verify that they are in order
-                let sR = searchPage.searchResults();
-                let firstResult = searchPage.searchResultDate(1);
-                for (let i = 1; i < sR.length; i++) {
-                    remainingResults = searchPage.searchResultDate(i);
-                    assert(new Date(remainingResults.getText()).getTime() <= new Date(firstResult.getText()).getTime(),
-                        `Dates were not in most-recent order. Expected date '${new Date(remainingResults.getText())}' to be equal to or after '${new Date(firstResult.getText())}'`);
-                }
+        if (selectedResultSort === 'Most Recent') {
+            // iterate through results and verify that they are in order
+            let sR = searchPage.searchResults();
+            let firstResult = searchPage.searchResultDate(1);
+            for (let i = 1; i < sR.length; i++) {
+                let remainingResults = searchPage.searchResultDate(i);
+                assert(new Date(remainingResults).getTime() <= new Date(firstResult).getTime(),
+                    `Dates were not in most-recent order. Expected date '${new Date(remainingResults)}' to be equal to or after '${new Date(firstResult)}'`);
             }
         }
-    );
+    });
 
     this.When(/^I sort results by "([^"]*)"$/, function (resultSortSelect) {
         let resultSort = searchPage.resultSort;
@@ -62,9 +61,10 @@ const searchSteps = function () {
             document.querySelector('rhdp-search-query').results = {
                 hits: {
                     hits: [{
-                        fields: {sys_type: ['stackoverflow_thread'], sys_content_plaintext: ['Cool Text']},
-                        highlight: {sys_title: ['Cool Title 1']}
-                    }], total: 1
+                        fields: {sys_type: ['stackoverflow_thread'], sys_content_plaintext: ['Test Title']},
+                        highlight: {sys_title: ['Test Title 1']}
+                    }],
+                    total: 1
                 }
             }
         });
@@ -80,10 +80,9 @@ const searchSteps = function () {
         }
     });
 
-    this.Then(/^I should see a message "([^"]*)"$/, function (arg) {
+    this.Then(/^I should see a message "([^"]*)"$/, function (resultMsg) {
         let resultMessage = searchPage.resultCount();
-        assert(resultMessage.getText() === arg,
-            `${arg} was not displayed`)
+        expect(resultMessage, `${resultMsg} was not displayed`).to.equal(resultMsg)
     });
 
     this.Then(/^the results should contain "([^"]*)"$/, function (searchTerm) {
@@ -99,25 +98,25 @@ const searchSteps = function () {
                 result = false;
             }
         }
-        assert(result === true, `None of the top 10 results included ${searchTerm}`)
+        expect(result, `None of the top 10 results included ${searchTerm}`).to.be.true
     });
 
     this.Then(/^the related topic page for "([^"]*)" should be the first result$/, function (topicUrl) {
         searchPage.waitForResultsLoaded();
-        title = searchPage.searchResultTitle(1);
+        let title = searchPage.searchResultTitle(1);
         expect(title.getAttribute('href')).to.include("/topics/" + topicUrl)
     });
 
     this.Then(/^first result should be the RHD About Us page$/, function () {
         searchPage.waitForResultsLoaded();
-        title = searchPage.searchResultTitle(1);
+        let title = searchPage.searchResultTitle(1);
         expect(title.getText()).to.include('About Us');
         expect(title.getAttribute('href')).to.include("/about")
     });
 
     this.Then(/^the "([^"]*)" product overview page should be the first result$/, function (product) {
         searchPage.waitForResultsLoaded();
-        title = searchPage.searchResultTitle(1);
+        let title = searchPage.searchResultTitle(1);
         expect(title.getAttribute('href')).to.include(`/products/${product}/overview`)
     });
 
@@ -130,7 +129,7 @@ const searchSteps = function () {
         homePage.open();
         homePage.searchFor(searchTerm);
         searchPage.waitForResultsLoaded();
-        resultCount = searchPage.resultCount().getText();
+        resultCount = searchPage.resultCount();
     });
 
     this.When(/^I filter results by "([^"]*)" from "([^"]*)"$/, function (filterOption, filterType) {
@@ -139,7 +138,7 @@ const searchSteps = function () {
 
     this.Then(/^I should see a tag for "([^"]*)"$/, function (filterOption) {
         let activeFilters = searchPage.activeFilters();
-        expect(activeFilters.getText()).to.include(filterOption);
+        expect(activeFilters.getText(), `Result did not include a tag for ${filterOption}`).to.include(filterOption);
     });
 
     this.Then(/^the results should be updated and contain a "([^"]*)" label$/, function (filter) {
@@ -154,7 +153,7 @@ const searchSteps = function () {
 
     this.Then(/^the results should be updated and contain "([^"]*)"$/, function (search) {
         searchPage.waitForUpdatedResults(resultCount);
-        sR = searchPage.searchResults();
+        let sR = searchPage.searchResults();
         let result;
         for (let i = 1; i < sR.length; i++) {
             res = searchPage.searchResult(i).getText();
@@ -165,22 +164,22 @@ const searchSteps = function () {
                 result = false;
             }
         }
-        assert(result === true, `None of the ${sR.length} results contained ${search}`)
+        expect(result, `None of the ${sR.length} results contained ${search}`).to.be.true
     });
 
 
     this.Then(/^I (should|should not) see an alert$/, function (negate) {
         let alert = searchPage.hasAlert();
         if (negate === 'should') {
-            assert(alert === true, 'Alert was not visible')
+            expect(alert, 'Alert was not visible').to.be.true;
         } else {
-            assert(alert === false, 'Warning! Alert was visible')
+            expect(alert, 'Warning! Alert was visible').to.be.false
         }
     });
 
     this.Given(/^I navigate directly to search page with "(.*)"$/, function (searchUrl) {
         searchPage.open(searchUrl);
-        browser.getTitle().should.include('Search Results');
+        expect(searchPage.isOnSearchPage(), 'Search page was not displayed').to.be.true
     });
 };
 
