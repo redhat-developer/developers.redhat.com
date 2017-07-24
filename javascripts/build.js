@@ -523,6 +523,7 @@ var RHDPSearchApp = (function (_super) {
             this.results.more = e.detail.results;
         }
         this.count.count = e.detail.results.hits.total;
+        this.results.classList.remove('loading');
     };
     RHDPSearchApp.prototype.toggleModal = function (e) {
         this.querySelector('rhdp-search-app')['modal'].toggle = e.detail.toggle;
@@ -1289,6 +1290,8 @@ var RHDPSearchQuery = (function (_super) {
     RHDPSearchQuery.prototype.search = function (term) {
         var _this = this;
         this.term = term;
+        var searchResults = document.getElementsByTagName('rhdp-search-results')[0];
+        searchResults.setAttribute('class', 'loading');
         fetch((_a = ["", "", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", "", ""], this.urlTemplate(_a, this.url, this.term, this.from, this.limit, this.sort, this.productString, this.tagString, this.sysTypeString)))
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
