@@ -1,13 +1,13 @@
-/* Cheat Sheet */
+/* Cheat Sheet and books */
 
-#rhd-cheat-sheet {
+#rhd-cheat-sheet, #rhd-book {
   .content-type{
     text-transform: uppercase;
     color: $grey-6;
     margin-bottom: 0;
   }
 
-  .cs-excerpt {
+  .cs-excerpt, .book-excerpt {
     display: block;
     background-color: #e8fbff;
     border: 1px solid #b8e3ed;
@@ -30,7 +30,7 @@
         font-style: normal;
       }
 
-      .field--name-field-cheat-sheet-excerpt {
+      .field--name-field-cheat-sheet-excerpt, .field--name-field-book-excerpt {
         width: inherit;
       }
     }
@@ -55,7 +55,7 @@
     margin-bottom: 15px;
   }
 
-  .cs-info{
+  .cs-info, .book-info {
     border-top: 1px solid $grey-5;
     border-bottom: 1px solid $grey-5;
     padding: 7px 5px 0 0;
@@ -75,7 +75,7 @@
       }
     }
   }
-  .cs-social .googleplus-one{
+  .cs-social .googleplus-one, .book-social .googleplus-one {
     max-width: 55px;
 
   }
@@ -93,8 +93,8 @@
   }
 
   @include tablet-landscape-and-down {
-    .cs-info {
-      .cs-social {
+    .cs-info, .book-info {
+      .cs-social, .book-social {
         float: none !important;
         margin-top: 5px;
       }
@@ -103,7 +103,7 @@
       }
     }
 
-    .field--name-field-cheat-sheet-tags {
+    .field--name-field-cheat-sheet-tags, .field--name-field-tags {
       margin-bottom: 25px;
     }
     a.button {
