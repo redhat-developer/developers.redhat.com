@@ -164,7 +164,6 @@ class TestRunTestOptions < MiniTest::Test
 
     assert(test_configuration[:docker])
     assert(test_configuration[:browserstack])
-    assert_equal(2, test_configuration[:browser_count])
     assert_equal('bs_ie_11', test_configuration[:browser])
     assert_equal('npm run e2e:browserstack -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
     assert_equal('bs_ie_11', ENV['RHD_JS_DRIVER'])
@@ -229,7 +228,6 @@ class TestRunTestOptions < MiniTest::Test
 
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --cucumber-tags=@foo,@bar))
 
-    assert_equal(2, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:browser])
     assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl=http://foo.com --cucumberOpts.tags=@foo,@bar', test_configuration[:run_tests_command])
     assert_equal('chrome', ENV['RHD_JS_DRIVER'])

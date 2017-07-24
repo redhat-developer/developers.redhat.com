@@ -75,7 +75,6 @@ module E2ETestOptionsHelper
   def create_default_test_configuration
     default_configuration = {}
     default_configuration[:browser] = 'chrome'
-    default_configuration[:browser_count] = 2
     default_configuration[:docker] = false
     default_configuration[:browserstack] = false
     default_configuration

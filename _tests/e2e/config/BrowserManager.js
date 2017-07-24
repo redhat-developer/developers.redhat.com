@@ -39,7 +39,7 @@ class BrowserManager {
             return {
                 browserName: 'chrome',
                 "acceptInsecureCerts": true,
-                chromeOptions: {mobileEmulation: {deviceName: browser}}
+                chromeOptions: { mobileEmulation: { deviceName: browser } }
             }
         }
     }
