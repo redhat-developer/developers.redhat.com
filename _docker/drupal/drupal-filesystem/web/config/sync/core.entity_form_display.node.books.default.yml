@@ -6,13 +6,20 @@ dependencies:
     - field.field.node.books.field_author
     - field.field.node.books.field_average_rating
     - field.field.node.books.field_book_description
+    - field.field.node.books.field_book_excerpt
     - field.field.node.books.field_book_url
     - field.field.node.books.field_categories
+    - field.field.node.books.field_epub
     - field.field.node.books.field_isbn
+    - field.field.node.books.field_mobi_link
+    - field.field.node.books.field_needs_own_page
+    - field.field.node.books.field_pdf_link
     - field.field.node.books.field_preview_url
     - field.field.node.books.field_published_date
     - field.field.node.books.field_publisher
     - field.field.node.books.field_pull_from_google
+    - field.field.node.books.field_related_product
+    - field.field.node.books.field_tags
     - field.field.node.books.field_thumbnail_url
     - field.field.node.books.field_web_reader_url
     - node.type.books
@@ -20,51 +27,13 @@ dependencies:
     - datetime
     - link
     - text
+    - workbench_moderation
 id: node.books.default
 targetEntityType: node
 bundle: books
 mode: default
 content:
   field_author:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_average_rating:
-    weight: 11
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_book_description:
-    weight: 4
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea_with_summary
-    region: content
-  field_book_url:
-    weight: 3
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
-  field_categories:
-    weight: 10
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_isbn:
     weight: 2
     settings:
       size: 60
@@ -72,8 +41,86 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_average_rating:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_book_description:
+    weight: 5
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_book_excerpt:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_book_url:
+    weight: 4
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_categories:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_epub:
+    weight: 12
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_isbn:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_mobi_link:
+    weight: 11
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_needs_own_page:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_pdf_link:
+    weight: 10
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_preview_url:
-    weight: 9
+    weight: 16
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -81,13 +128,13 @@ content:
     type: link_default
     region: content
   field_published_date:
-    weight: 6
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_publisher:
-    weight: 5
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -95,13 +142,31 @@ content:
     type: string_textfield
     region: content
   field_pull_from_google:
-    weight: 12
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_related_product:
+    weight: 9
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_tags:
+    weight: 13
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_thumbnail_url:
-    weight: 7
+    weight: 14
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -109,7 +174,7 @@ content:
     type: link_default
     region: content
   field_web_reader_url:
-    weight: 8
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''

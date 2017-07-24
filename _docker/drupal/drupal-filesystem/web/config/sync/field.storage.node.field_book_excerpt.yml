@@ -1,0 +1,19 @@
+uuid: ce2153ca-5b4e-4f05-85da-4f408ab682e9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_book_excerpt
+field_name: field_book_excerpt
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
