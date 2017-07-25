@@ -153,8 +153,8 @@ content:
     weight: 2
     label: visually_hidden
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: html_date
     third_party_settings: {  }
     type: datetime_default
     region: content
@@ -177,9 +177,10 @@ content:
     weight: 14
     label: visually_hidden
     settings:
-      link: true
+      view_mode: teaser
+      link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   field_tags:
     weight: 12
