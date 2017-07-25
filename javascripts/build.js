@@ -490,6 +490,8 @@ var RHDPSearchApp = (function (_super) {
         */
         var loc = window.location.href.split('?'), term = loc.length > 1 ? loc[1].split('=')[1] : '';
         if (term.length > 0) {
+            term = term.replace(/\+/g, '%20');
+            term = decodeURIComponent(term);
             this.box.term = term;
             this.count.term = term;
             this.query.search(this.box.term);
