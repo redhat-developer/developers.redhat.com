@@ -26,6 +26,7 @@ dependencies:
   module:
     - datetime
     - link
+    - path
     - text
     - workbench_moderation
 id: node.books.default
@@ -181,6 +182,12 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  path:
+    type: path
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
@@ -191,7 +198,6 @@ content:
     region: content
 hidden:
   created: true
-  path: true
   promote: true
   sticky: true
   uid: true
