@@ -490,6 +490,8 @@ var RHDPSearchApp = (function (_super) {
         */
         var loc = window.location.href.split('?'), term = loc.length > 1 ? loc[1].split('=')[1] : '';
         if (term.length > 0) {
+            term = term.replace(/\+/g, '%20');
+            term = decodeURIComponent(term);
             this.box.term = term;
             this.count.term = term;
             this.query.search(this.box.term);
@@ -1299,7 +1301,7 @@ var RHDPSearchQuery = (function (_super) {
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.results = data;
-            history.pushState({}, "Red Hat Developer Program Search: " + _this.term, "?q=" + _this.term);
+            history.pushState({}, "Red Hat Developer Program Search: " + _this.term, "?q=" + decodeURIComponent(_this.term).replace(' ', '+'));
         });
         var _a;
     };
