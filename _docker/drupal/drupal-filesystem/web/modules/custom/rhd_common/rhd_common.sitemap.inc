@@ -85,9 +85,9 @@ function found_product_in_sitemap($links, $product_ids)
  * @param $links array of links to be added to the sitemap.
  */
 function books_node_sitemap_entries(&$links) {
-  // TODO: Something here about the new books that need to be indexed
   $book_ids = drupal_static('sitemap_product_node_ids', []);
 
+  // Find all published books
   if (empty($book_ids)) {
     $query = \Drupal::entityQuery('node');
     $query->condition('status', 1);
@@ -95,8 +95,10 @@ function books_node_sitemap_entries(&$links) {
     $book_ids = $query->execute();
   }
 
+  // Get the list of books in the sitemap
   $books_in_sitemap = found_book_in_sitemap($links, $book_ids);
 
+  // Callback used to remove books who don't have a true value for "needs own page"
   $callback = function ($book_node_link, $book_node_link_index) use (&$links) {
     $book = Node::load($links[$book_node_link_index]['entity_info']['id']);
 
