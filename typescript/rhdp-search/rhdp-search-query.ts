@@ -200,7 +200,7 @@ class RHDPSearchQuery extends HTMLElement {
         .then((resp) => resp.json())
         .then((data) => { 
             this.results = data; 
-            history.pushState({}, `Red Hat Developer Program Search: ${this.term}`, `?q=${this.term}`);
+            history.pushState({}, `Red Hat Developer Program Search: ${this.term}`, `?q=${decodeURIComponent(this.term).replace(' ', '+')}`);
         });
     }
 

@@ -1301,7 +1301,7 @@ var RHDPSearchQuery = (function (_super) {
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.results = data;
-            history.pushState({}, "Red Hat Developer Program Search: " + _this.term, "?q=" + _this.term);
+            history.pushState({}, "Red Hat Developer Program Search: " + _this.term, "?q=" + decodeURIComponent(_this.term).replace(' ', '+'));
         });
         var _a;
     };
