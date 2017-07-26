@@ -8,6 +8,10 @@ rhdp-search-app {
 
     h2 { margin-top: 30px; }
 
+    .loading {
+        background:url("https://developers.redhat.com/images/icons/ajax-loader.gif") center 80px no-repeat;
+        min-height:250px;
+    }
 }
 
 rhdp-search-box {

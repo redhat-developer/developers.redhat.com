@@ -187,6 +187,14 @@ class RHDPSearchQuery extends HTMLElement {
 
     search(term) {
         this.term = term;
+
+        var searchResults = document.getElementsByTagName( 'rhdp-search-results' )[0];
+
+        while(searchResults.firstChild && this.from === 0){
+            searchResults.removeChild(searchResults.firstChild);
+        }
+
+        searchResults.setAttribute( 'class', 'loading' );
         
         fetch(this.urlTemplate`${this.url}${this.term}${this.from}${this.limit}${this.sort}${this.productString}${this.tagString}${this.sysTypeString}`)
         .then((resp) => resp.json())

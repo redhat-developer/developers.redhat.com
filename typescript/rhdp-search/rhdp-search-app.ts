@@ -176,6 +176,7 @@ class RHDPSearchApp extends HTMLElement {
         }
         
         this.count.count = e.detail.results.hits.total;
+        this.results.classList.remove('loading');
     }
 
     toggleModal(e) {
