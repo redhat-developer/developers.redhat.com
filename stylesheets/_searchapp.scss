@@ -615,6 +615,53 @@ rhdp-search-filter-item {
     }
 }
 
+rhdp-search-onebox {
+    display: block;
+    border: 1px solid $grey-3;
+    padding: 25px;
+    margin-bottom: 3em;
+
+    p { margin-bottom: 20px; }
+    a.button { margin-bottom: 0; }
+
+    ul.slots {
+        display: inline;
+        li {
+            display: inline;
+            list-style-type: none;
+            padding-right: 20px;
+
+            img {
+                max-width: 2.7em;
+                margin-right: 5px;
+                fill: blue;
+            }
+        }
+    }
+}
+@include tablet-landscape-and-down {
+    rhdp-search-onebox {
+        ul.slots {
+            display: block;
+            margin-left: 0;
+            margin-top: 20px;
+            li img { max-width: 2.7em; }
+        }
+    }
+}
+
+@include tablet-portrait-and-down {
+    rhdp-search-onebox {
+        ul.slots li img{ max-width: 2em; }
+    }
+}
+
+@include mobile-landscape-and-down {
+    rhdp-search-onebox {
+        ul.slots { display: none; }
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .mobile { display: block; }
     .desktop { display: none; }
