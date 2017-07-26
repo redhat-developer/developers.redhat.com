@@ -641,16 +641,20 @@ rhdp-search-onebox {
             display: block;
             margin-left: 0;
             margin-top: 20px;
+            li img { max-width: 2.7em; }
         }
+    }
+}
+
+@include tablet-portrait-and-down {
+    rhdp-search-onebox {
+        ul.slots li img{ max-width: 2em; }
     }
 }
 
 @include mobile-landscape-and-down {
     rhdp-search-onebox {
-        ul.slots li {
-            display: block;
-            margin-top: 10px;
-        }
+        ul.slots { display: none; }
     }
 }
 
