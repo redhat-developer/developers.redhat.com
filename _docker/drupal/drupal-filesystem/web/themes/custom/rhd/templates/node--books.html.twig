@@ -106,19 +106,23 @@ other methods (such as node.delete) will result in an exception.
             <strong>Want to see more? Get the entire book.</strong>
         </div>
         <a class="button hidden-after-login" href="{{ content.field_pdf_link[0]['#url'] }}">Log in to download</a>
-        <a class="button shown-after-login" href="{{ content.field_pdf_link[0]['#url'] }}">Download PDF</a>
-        <div class="shown-after-login">
-            {% if content.field_mobi_link|render|striptags|trim is not empty %}
-                <a href="{{ content.field_mobi_link[0]['#url'] }}">mobi</a>
-            {% endif %}
-            {% if ((content.field_mobi_link|render|striptags|trim is not empty) and (content.field_epub|render|striptags|trim is not empty)) %}
-                &nbsp;|&nbsp;
-            {% endif %}
-            {% if content.field_epub|render|striptags|trim is not empty %}
-                <a href="{{ content.field_epub[0]['#url'] }}">epub</a>
-            {% endif %}
-            {# TODO: Add the other links#}
+        <div>
+            <p>
+                {% if ((content.field_mobi_link|render|striptags|trim is not empty) and (content.field_epub|render|striptags|trim is not empty)) %}
+                    Other available formats:&nbsp;
+                {% endif %}
+                {% if content.field_mobi_link|render|striptags|trim is not empty %}
+                    <a href="{{ content.field_mobi_link[0]['#url'] }}">mobi</a>
+                {% endif %}
+                {% if ((content.field_mobi_link|render|striptags|trim is not empty) and (content.field_epub|render|striptags|trim is not empty)) %}
+                    &nbsp;|&nbsp;
+                {% endif %}
+                {% if content.field_epub|render|striptags|trim is not empty %}
+                    <a href="{{ content.field_epub[0]['#url'] }}">epub</a>
+                {% endif %}
+            </p>
         </div>
+        <a class="button shown-after-login" href="{{ content.field_pdf_link[0]['#url'] }}">Download PDF</a>
     </div>
     <div class="large-6 medium-7 columns book-tags">
         {% if content.field_tags|render|striptags|trim is not empty %}

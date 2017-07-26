@@ -106,6 +106,23 @@ function add_books_validations(array &$form, FormStateInterface $form_state)
   };
   // Add all validation closure to the element
   $form['field_isbn']['#element_validate'][] = $isbn_validator;
+
+  // Checks for books that need pages
+
+  $needs_own_page_validator = function (array &$element, FormStateInterface $form_state) {
+    $needs_own_page_value = (bool) $form_state->getValue('field_needs_own_page')['value'];
+    
+    if ($needs_own_page_value === TRUE) {
+      if (empty($form_state->getValue('field_book_excerpt')[0]['value'])) {
+        $form_state->setErrorByName('field_book_excerpt', t('Book excerpt is required'));
+      }
+      if (empty($form_state->getValue('field_pdf_link')[0]['uri'])) {
+        $form_state->setErrorByName('field_pdf_link', t('PDF link is required'));
+      }
+    }
+  };
+
+  $form['field_needs_own_page']['#element_validate'][] = $needs_own_page_validator;
 }
 
 /**
