@@ -44,7 +44,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]><html class="ie8 lt-ie9" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if (gte IE 9)|!(IE)]<!--> <html lang="en"> <!--<![endif]-->
 <head>
-  
+
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.4.1/ie8.js" ></script><![endif]-->
   <script>
   /**
@@ -209,11 +209,11 @@
       }
 
       var slc = getCookie("rhd-slink-add");
-      if(slc){ 
+      if(slc){
         sendSocialLinkEvent(slc);
         deleteCookie('rhd-slink-add');
       }
-      
+
       function sendSocialLinkEvent(sprov){
         var ddSocialLinkEvent = {
           eventInfo: {
@@ -228,7 +228,7 @@
           }
         };
         dd.event.push(ddSocialLinkEvent);
-        sendCustomEvent('socialLinkEvent', ddSocialLinkEvent); 
+        sendCustomEvent('socialLinkEvent', ddSocialLinkEvent);
       }
 
       document.addEventListener('search-complete', function(e) {
@@ -262,7 +262,7 @@
   {% if (rhd_dtm_code) %}
   <script id="adobe_dtm" src="{{rhd_dtm_code}}"></script>
   {% endif %}
-  
+
   <!--TODO: metrics here--><!--TODO: include Adobe A/B testing inline-->
   <head-placeholder token="{{ placeholder_token|raw }}">
   <meta charset="utf-8" />
@@ -336,7 +336,7 @@
                             <a href="/topics/microservices">Microservices</a>
                             <a href="/topics/mobile">Mobile</a>
                             <a href="/topics/web-and-api-development">Web and API Development</a>
-                            <a href="/topics/dotnet">.NET</a>
+                            <a href="/topics/dotnet">.NET Core</a>
                         </div>
                     </li>
                     <li class="has-sub-nav">

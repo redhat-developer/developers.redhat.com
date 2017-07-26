@@ -52,7 +52,7 @@ Feature: Site navigation menu
       | Microservices           |
       | Mobile                  |
       | Web and API Development |
-      | .NET                    |
+      | .NET Core               |
 
   @desktop
   Scenario: TOPICS sub-menu items should link to retrospective pages
@@ -65,7 +65,7 @@ Feature: Site navigation menu
       | DevOps                  | topics/devops                  |
       | Web and API Development | topics/web-and-api-development |
       | Enterprise Java         | topics/enterprise-java         |
-      | .NET                    | topics/dotnet                  |
+      | .NET Core               | topics/dotnet                  |
       | Internet of Things      | topics/iot                     |
       | Microservices           | topics/microservices           |
 
@@ -79,7 +79,7 @@ Feature: Site navigation menu
       | DevOps                  |
       | Web and API Development |
       | Enterprise Java         |
-      | .NET                    |
+      | .NET Core               |
       | Internet of Things      |
 
   @products @desktop
