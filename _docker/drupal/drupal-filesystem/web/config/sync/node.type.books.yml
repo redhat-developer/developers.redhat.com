@@ -7,9 +7,8 @@ dependencies:
     - workbench_moderation
 third_party_settings:
   menu_ui:
-    available_menus:
-      - main
-    parent: 'main:'
+    available_menus: {  }
+    parent: ''
   workbench_moderation:
     enabled: true
     allowed_moderation_states:
@@ -22,6 +21,6 @@ name: Books
 type: books
 description: 'Add books to be indexed by the site indexer.'
 help: ''
-new_revision: true
+new_revision: null
 preview_mode: 1
-display_submitted: true
+display_submitted: false
