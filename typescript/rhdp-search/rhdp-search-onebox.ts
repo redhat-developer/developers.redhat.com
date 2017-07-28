@@ -56,7 +56,7 @@ class RHDPSearchOneBox extends HTMLElement {
     }
 
     slotTemplate = (strings, slot) => {
-        return `${slot && slot.url && slot.text ? `<li><a href="${slot.url}">${this.getIcon(slot.icon)}"${slot.text}</a></li>` : ''}`;
+        return `${slot && slot.url && slot.text ? `<li><a href="${slot.url}">${this.getIcon(slot.icon)}${slot.text}</a></li>` : ''}`;
     }
 
     template = (strings, feature) => {
@@ -88,7 +88,7 @@ class RHDPSearchOneBox extends HTMLElement {
     }
 
     getData() {
-        if(this.term !== '' && !this.mock) {
+        if(this.term !== '' && typeof this.data.features === 'undefined' && !this.mock) {
             let fInit : RequestInit = {
                 method: 'GET',
                 headers: new Headers(),
@@ -97,8 +97,11 @@ class RHDPSearchOneBox extends HTMLElement {
             };
             fetch(this.url, fInit)
             .then((resp) => {
-                if(resp.ok) { resp.json() }
-                this.data = undefined;
+                if(resp.ok) { 
+                    return resp.json();
+                } else {
+                    this.data = undefined;
+                }                
             })
             .then((data) => { 
                 this.data = data;

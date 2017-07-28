@@ -63,9 +63,9 @@ describe('Search OneBox', function() {
                     "url": "https://feature1.button.url" 
                 },
                 "slots": [ 
-                    { "icon": "https://developers.redhat.com/images/branding/RHLogo_white.svg?slot=1", "text": "feature1.slot1.text", "url": "https://feature1.slot1.url" },
-                    { "icon": "https://developers.redhat.com/images/branding/RHLogo_white.svg?slot=2", "text": "feature1.slot2.text", "url": "https://feature1.slot2.url" },
-                    { "icon": "https://developers.redhat.com/images/branding/RHLogo_white.svg?slot=3", "text": "feature1.slot3.text", "url": "https://feature1.slot3.url" }
+                    { "icon": "icon_helloworld", "text": "feature1.slot1.text", "url": "https://feature1.slot1.url" },
+                    { "icon": "icon_helloworld", "text": "feature1.slot2.text", "url": "https://feature1.slot2.url" },
+                    { "icon": "icon_helloworld", "text": "feature1.slot3.text", "url": "https://feature1.slot3.url" }
                 ], 
                 "match": ["f1match1","f1match2","f1match3","feature1 term","f1match4", "f1match5"]
             }, {
@@ -79,9 +79,9 @@ describe('Search OneBox', function() {
                     "url": "https://feature2.button.url" 
                 },
                 "slots": [ 
-                    { "icon": "https://developers.redhat.com/images/branding/RHLogo_white.svg?slot=2-1", "text": "feature2.slot1.text", "url": "https://feature2.slot1.url" },
-                    { "icon": "https://developers.redhat.com/images/branding/RHLogo_white.svg?slot=2-2", "text": "feature2.slot2.text", "url": "https://feature2.slot2.url" },
-                    { "icon": "https://developers.redhat.com/images/branding/RHLogo_white.svg?slot=2-3", "text": "feature2.slot3.text", "url": "https://feature2.slot3.url" }
+                    { "icon": "icon_helloworld", "text": "feature2.slot1.text", "url": "https://feature2.slot1.url" },
+                    { "icon": "icon_helloworld", "text": "feature2.slot2.text", "url": "https://feature2.slot2.url" },
+                    { "icon": "icon_helloworld", "text": "feature2.slot3.text", "url": "https://feature2.slot3.url" }
                 ], 
                 "match": ["f2match1","f2match2","f2match3","feature2 term","f2match4", "f2match5"]
             }]
@@ -140,7 +140,7 @@ describe('Search OneBox', function() {
                 for(var i=0; i < 3; i++) {
                     var slotID = i+1;
                     expect(lis[i].innerText).toEqual('feature1.slot'+slotID+'.text');
-                    expect(lis[i].querySelector('img').src).toEqual('https://developers.redhat.com/images/branding/RHLogo_white.svg?slot='+slotID);
+                    expect(lis[i].querySelector('svg')).not.toBeNull();
                     expect(lis[i].querySelector('a').href).toEqual('https://feature1.slot'+slotID+'.url/');
                 }
             });
@@ -179,7 +179,7 @@ describe('Search OneBox', function() {
                 for(var i=0; i < 3; i++) {
                     var slotID = i+1;
                     expect(lis[i].innerText).toEqual('feature2.slot'+slotID+'.text');
-                    expect(lis[i].querySelector('img').src).toEqual('https://developers.redhat.com/images/branding/RHLogo_white.svg?slot=2-'+slotID);
+                    expect(lis[i].querySelector('svg')).not.toBeNull();
                     expect(lis[i].querySelector('a').href).toEqual('https://feature2.slot'+slotID+'.url/');
                 }
             });

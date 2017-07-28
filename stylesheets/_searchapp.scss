@@ -616,10 +616,12 @@ rhdp-search-filter-item {
 }
 
 rhdp-search-onebox {
-    display: block;
-    border: 1px solid $grey-3;
-    padding: 25px;
-    margin-bottom: 3em;
+    div {
+        display: block;
+        border: 1px solid $grey-3;
+        padding: 25px;
+        margin-bottom: 3em;
+    }
 
     p { margin-bottom: 20px; }
     a.button { margin-bottom: 0; }

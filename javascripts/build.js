@@ -1091,7 +1091,7 @@ var RHDPSearchOneBox = (function (_super) {
         _this._url = '../rhdp-apps/onebox/onebox.json';
         _this._mock = false;
         _this.slotTemplate = function (strings, slot) {
-            return "" + (slot && slot.url && slot.text ? "<li><a href=\"" + slot.url + "\">" + _this.getIcon(slot.icon) + "\"" + slot.text + "</a></li>" : '');
+            return "" + (slot && slot.url && slot.text ? "<li><a href=\"" + slot.url + "\">" + _this.getIcon(slot.icon) + slot.text + "</a></li>" : '');
         };
         _this.template = function (strings, feature) {
             return "<div>\n            " + (feature.heading && feature.heading.url && feature.heading.text ? "<h4><a href=\"" + feature.heading.url + "\">" + feature.heading.text + "</a></h4>" : '') + "\n            " + (feature.details ? "<p>" + feature.details + "</p>" : '') + "\n            " + (feature.button && feature.button.url && feature.button.text ? "<a href=\"" + feature.button.url + "\" class=\"button medium-cta blue\">" + feature.button.text + "</a>" : '') + "\n            " + (feature.slots && feature.slots.length > 0 ? "<ul class=\"slots\">\n                " + feature.slots.map(function (slot) {
@@ -1187,7 +1187,7 @@ var RHDPSearchOneBox = (function (_super) {
     };
     RHDPSearchOneBox.prototype.getData = function () {
         var _this = this;
-        if (this.term !== '' && !this.mock) {
+        if (this.term !== '' && typeof this.data.features === 'undefined' && !this.mock) {
             var fInit = {
                 method: 'GET',
                 headers: new Headers(),
@@ -1197,9 +1197,11 @@ var RHDPSearchOneBox = (function (_super) {
             fetch(this.url, fInit)
                 .then(function (resp) {
                 if (resp.ok) {
-                    resp.json();
+                    return resp.json();
                 }
-                _this.data = undefined;
+                else {
+                    _this.data = undefined;
+                }
             })
                 .then(function (data) {
                 _this.data = data;
