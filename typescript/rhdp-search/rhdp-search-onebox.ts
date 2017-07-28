@@ -16,7 +16,7 @@ class RHDPSearchOneBox extends HTMLElement {
         if (this._term === val) return;
         this._term = val;
         this.setAttribute('term', this._term);
-        this.getData();
+        this.feature = this.getFeature()
     }
 
     get url() {
@@ -35,7 +35,7 @@ class RHDPSearchOneBox extends HTMLElement {
     set data(val) {
         if (this._data === val) return;
         this._data = val;
-        this.getFeature();
+        this.feature = this.getFeature();
     }
 
     get feature() {
@@ -76,7 +76,7 @@ class RHDPSearchOneBox extends HTMLElement {
     }
 
     connectedCallback() {
-
+        this.getData();
     }
 
     static get observedAttributes() { 
@@ -88,7 +88,9 @@ class RHDPSearchOneBox extends HTMLElement {
     }
 
     getData() {
-        if(this.term !== '' && typeof this.data.features === 'undefined' && !this.mock) {
+        if(this.mock || this.data) {
+            return this.data;
+        } else {
             let fInit : RequestInit = {
                 method: 'GET',
                 headers: new Headers(),
@@ -96,20 +98,10 @@ class RHDPSearchOneBox extends HTMLElement {
                 cache: 'default'
             };
             fetch(this.url, fInit)
-            .then((resp) => {
-                if(resp.ok) { 
-                    return resp.json();
-                } else {
-                    this.data = undefined;
-                }                
-            })
+            .then((resp) => resp.json())
             .then((data) => { 
                 this.data = data;
             });
-        } else {
-            if (this.mock && this.data) {
-                this.getFeature();
-            }
         }
     }
 
@@ -121,8 +113,7 @@ class RHDPSearchOneBox extends HTMLElement {
                 f = this.data['features'][i];
             }
         }
-
-        this.feature = f;
+        return f;
     }
 
     getIcon(name) {

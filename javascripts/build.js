@@ -1115,7 +1115,7 @@ var RHDPSearchOneBox = (function (_super) {
                 return;
             this._term = val;
             this.setAttribute('term', this._term);
-            this.getData();
+            this.feature = this.getFeature();
         },
         enumerable: true,
         configurable: true
@@ -1142,7 +1142,7 @@ var RHDPSearchOneBox = (function (_super) {
             if (this._data === val)
                 return;
             this._data = val;
-            this.getFeature();
+            this.feature = this.getFeature();
         },
         enumerable: true,
         configurable: true
@@ -1174,6 +1174,7 @@ var RHDPSearchOneBox = (function (_super) {
         configurable: true
     });
     RHDPSearchOneBox.prototype.connectedCallback = function () {
+        this.getData();
     };
     Object.defineProperty(RHDPSearchOneBox, "observedAttributes", {
         get: function () {
@@ -1187,7 +1188,10 @@ var RHDPSearchOneBox = (function (_super) {
     };
     RHDPSearchOneBox.prototype.getData = function () {
         var _this = this;
-        if (this.term !== '' && typeof this.data.features === 'undefined' && !this.mock) {
+        if (this.mock || this.data) {
+            return this.data;
+        }
+        else {
             var fInit = {
                 method: 'GET',
                 headers: new Headers(),
@@ -1195,22 +1199,10 @@ var RHDPSearchOneBox = (function (_super) {
                 cache: 'default'
             };
             fetch(this.url, fInit)
-                .then(function (resp) {
-                if (resp.ok) {
-                    return resp.json();
-                }
-                else {
-                    _this.data = undefined;
-                }
-            })
+                .then(function (resp) { return resp.json(); })
                 .then(function (data) {
                 _this.data = data;
             });
-        }
-        else {
-            if (this.mock && this.data) {
-                this.getFeature();
-            }
         }
     };
     RHDPSearchOneBox.prototype.getFeature = function () {
@@ -1220,7 +1212,7 @@ var RHDPSearchOneBox = (function (_super) {
                 f = this.data['features'][i];
             }
         }
-        this.feature = f;
+        return f;
     };
     RHDPSearchOneBox.prototype.getIcon = function (name) {
         var icons = {
