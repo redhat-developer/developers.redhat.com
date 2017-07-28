@@ -495,6 +495,7 @@ var RHDPSearchApp = (function (_super) {
             term = term.replace(/\+/g, '%20');
             term = decodeURIComponent(term);
             this.box.term = term;
+            this.onebox.term = term;
             this.count.term = term;
             this.query.search(this.box.term);
         }
