@@ -1,8 +1,9 @@
 class RHDPSearchOneBox extends HTMLElement {
     _term = '';
     _url = '../rhdp-apps/onebox/onebox.json';
-    _data = {};
-    _feature = {};
+    _data;
+    _feature;
+    _mock = false;
 
     get term() {
         if ((this._term===null) || (this._term==='')) {
@@ -15,6 +16,7 @@ class RHDPSearchOneBox extends HTMLElement {
         if (this._term === val) return;
         this._term = val;
         this.setAttribute('term', this._term);
+        this.getData();
     }
 
     get url() {
@@ -24,6 +26,7 @@ class RHDPSearchOneBox extends HTMLElement {
         if (this._url === val) return;
         this._url = val;
         this.setAttribute('url', this._url);
+        this.getData();
     }
 
     get data() {
@@ -42,6 +45,14 @@ class RHDPSearchOneBox extends HTMLElement {
         if (this._feature === val) return;
         this._feature = val;
         this.innerHTML = this.feature ? this.template`${this.feature}` : '';
+    }
+
+    get mock() {
+        return this._mock;
+    }
+    set mock(val) {
+        if (this._mock === val) return;
+        this._mock = val;
     }
 
     slotTemplate = (strings, slot) => {
@@ -65,32 +76,45 @@ class RHDPSearchOneBox extends HTMLElement {
     }
 
     connectedCallback() {
-        let fInit : RequestInit = {
-            method: 'GET',
-            headers: new Headers(),
-            mode: 'no-cors',
-            cache: 'default'
-        };
-        fetch(this.url, fInit)
-        .then((resp) => resp.json())
-        .then((data) => { 
-            this.data = data;
-        });
+
     }
 
     static get observedAttributes() { 
-        return ['term']; 
+        return ['term', 'url', 'mock']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
     }
 
+    getData() {
+        if(this.term !== '' && !this.mock) {
+            let fInit : RequestInit = {
+                method: 'GET',
+                headers: new Headers(),
+                mode: 'cors',
+                cache: 'default'
+            };
+            fetch(this.url, fInit)
+            .then((resp) => {
+                if(resp.ok) { resp.json() }
+                this.data = undefined;
+            })
+            .then((data) => { 
+                this.data = data;
+            });
+        } else {
+            if (this.mock && this.data) {
+                this.getFeature();
+            }
+        }
+    }
+
     getFeature() {
-        var len = this.data['features'].length,
+        var len = this.data && this.data['features'] ? this.data['features'].length : 0,
             f;
         for(var i = 0; i < len; i++) {
-            if (this.data['features'][i].match.indexOf(this.term) >= 0) {
+            if (this.data['features'][i].match.indexOf(this.term.toLowerCase()) >= 0) {
                 f = this.data['features'][i];
             }
         }

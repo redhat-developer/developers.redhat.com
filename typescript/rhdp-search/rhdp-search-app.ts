@@ -47,6 +47,7 @@ class RHDPSearchApp extends HTMLElement {
     filters = new RHDPSearchFilters();
     active = new RHDPSearchFilters();
     modal = new RHDPSearchFilters();
+    onebox = new RHDPSearchOneBox();
     results = new RHDPSearchResults();
     sort = new RHDPSearchSortPage();
 
@@ -127,6 +128,7 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.active);
         this.querySelector('.large-18').appendChild(this.count);
         this.querySelector('.large-18').appendChild(this.sort);
+        this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
 
         this.addEventListener('do-search', this.doSearch);
@@ -160,6 +162,7 @@ class RHDPSearchApp extends HTMLElement {
 
     doSearch(e) {
         this.count.term = e.detail ? e.detail.term : this.query.term;
+        this.onebox.term = e.detail ? e.detail.term : this.query.term;
         this.query.from = 0;
         this.results.last = 0;
         this.query.search(e.detail ? e.detail.term : this.query.term);
@@ -222,6 +225,7 @@ class RHDPSearchApp extends HTMLElement {
         app['query'].from = 0;
         app['results'].last = 0;
         app['count'].term = app['box'].term;
+        app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
     }
 }
