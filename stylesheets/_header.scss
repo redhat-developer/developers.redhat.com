@@ -35,20 +35,32 @@ header.main {
     color:white;
     font-size: 23px;
     padding:10px;
+  }
 
-    &:focus {
-      color: $white;
-    }
+  > ul li:focus, > ul li > a:focus {
+    color: $white;
   }
 
   .has-sub-nav > a.active,
   a.sub-nav-downloads.active{
-    color: #ffbb11 !important;
+    color: #ffbb11;
   }
   .has-sub-nav:hover > a.active,
   .has-sub-nav > a:hover,
   a.sub-nav-downloads:hover{
     color: $grey-8;
+  }
+
+  @include tablet-portrait-and-down {
+    .has-sub-nav:hover > a,
+    .has-sub-nav>a:hover,
+    a.sub-nav-downloads:hover {
+      color: $white;
+    }
+    .has-sub-nav:hover > a.active,
+    a.sub-nav-downloads.active:hover {
+      color: #ffbb11 !important;
+    }
   }
   // top level
   & > ul {
