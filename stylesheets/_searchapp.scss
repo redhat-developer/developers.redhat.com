@@ -636,6 +636,10 @@ rhdp-search-onebox {
             a { 
                 position: relative;
                 padding-left: 3em;
+
+                &:hover, &:focus {
+                    text-decoration: underline;
+                }
             }
 
             svg {
