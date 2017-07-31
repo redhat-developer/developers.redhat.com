@@ -639,6 +639,10 @@ rhdp-search-onebox {
 
                 &:hover, &:focus {
                     text-decoration: underline;
+
+                    svg {
+                        fill: darken( $blue, 6% );
+                    }
                 }
             }
 
