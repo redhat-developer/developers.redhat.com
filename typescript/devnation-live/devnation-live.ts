@@ -130,7 +130,7 @@ class DevNationLiveApp extends HTMLElement {
                         <p>${sess.abstract}</p>
                     </div>
                     ${sess.register ? `
-                        <div class="large-12 columns align-center">
+                        <div class="large-16 medium-10 small-24 columns align-center">
                         ${this.getCookie('dn_live_'+sess.offer_id) ? `
                             <div class="button disabled">You are Registered</div>` 
                             : `<iframe class="session-reg" src="${this.form}?id=${sess.offer_id}"></iframe>
@@ -248,7 +248,7 @@ class DevNationLiveApp extends HTMLElement {
     getNextSession() {
         for(let i=0; i < this.data.length; i++) {
             let dt = Date.parse(this.data[i].date);
-            if(dt && dt > Date.now() - 3600000) {
+            if(dt && dt > Date.now() - 259200000) {
                 return this.data[i];
             }
         }
@@ -259,7 +259,7 @@ class DevNationLiveApp extends HTMLElement {
         let first = true;
         for(let i=0; i < this.data.length; i++) {
             let dt = Date.parse(this.data[i].date);
-            if(dt && (dt > Date.now() || dt > Date.now() - 3600000)) {
+            if(dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
                 if (!first && this.data[i].offer_id.length > 0) { 
                     upcoming.push(this.data[i]) 
                 } else { 

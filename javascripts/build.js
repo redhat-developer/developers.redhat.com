@@ -171,7 +171,7 @@ var DevNationLiveApp = (function (_super) {
         _this.upcomingSession = function (strings, sess) {
             return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                            <p>Speaker: <strong>" + sess.speaker + "</strong>\n                                " + (sess.twitter_handle ? "\n                                    (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
                 : '') + "\n                            </p>"
-                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-12 columns align-center\">\n                        " + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                            <div class=\"button disabled\">You are Registered</div>"
+                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-16 medium-10 small-24 columns align-center\">\n                        " + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                            <div class=\"button disabled\">You are Registered</div>"
                 : "<iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + sess.offer_id + "\"></iframe>\n                            </div>")
                 : '') + "\n                </div>\n            </li>"
                 : '');
@@ -325,7 +325,7 @@ var DevNationLiveApp = (function (_super) {
     DevNationLiveApp.prototype.getNextSession = function () {
         for (var i = 0; i < this.data.length; i++) {
             var dt = Date.parse(this.data[i].date);
-            if (dt && dt > Date.now() - 3600000) {
+            if (dt && dt > Date.now() - 259200000) {
                 return this.data[i];
             }
         }
@@ -335,7 +335,7 @@ var DevNationLiveApp = (function (_super) {
         var first = true;
         for (var i = 0; i < this.data.length; i++) {
             var dt = Date.parse(this.data[i].date);
-            if (dt && (dt > Date.now() || dt > Date.now() - 3600000)) {
+            if (dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
                 if (!first && this.data[i].offer_id.length > 0) {
                     upcoming.push(this.data[i]);
                 }
