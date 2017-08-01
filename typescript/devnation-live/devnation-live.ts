@@ -115,7 +115,7 @@ class DevNationLiveApp extends HTMLElement {
         ${sess.confirmed ? `
             <li class="single-event">
                 <div class="row">
-                    <div class="large-16 columns">
+                    <div class="large-24 columns">
                         <h4 class="caps">${sess.title}</h4>
                         ${sess.speaker ? `
                             <p>Speaker: <strong>${sess.speaker}</strong>
@@ -128,7 +128,9 @@ class DevNationLiveApp extends HTMLElement {
                         }
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
-                        ${sess.register ? `
+                    </div>
+                    ${sess.register ? `
+                        <div class="large-12 columns align-center">
                         ${this.getCookie('dn_live_'+sess.offer_id) ? `
                             <div class="button disabled">You are Registered</div>` 
                             : `<iframe class="session-reg" src="${this.form}?id=${sess.offer_id}"></iframe>
@@ -136,7 +138,6 @@ class DevNationLiveApp extends HTMLElement {
                         }` 
                         : ''
                     }
-                    </div>
                 </div>
             </li>`
         : ''}`
