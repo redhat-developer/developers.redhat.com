@@ -627,6 +627,12 @@ To create a new multi-page microsite at `developers.redhat.com/<microsite_id>`:
 
         hero_class: <microsite_id>
 
+### Update Product Stack Overflow tags
+
+To add or update a product's SO tags:
+
+1. Front end: update the list of SO tags for the product in: https://github.com/redhat-developer/developers.redhat.com/blob/master/javascripts/drupal-namespace.js
+2. DCP: Update the list of indexed SO tags in searchisko in:https://github.com/searchisko/configuration/blob/master/rivers/stackoverflow_question.json
 
 ## General changes
 If you have a general change that doesn't fall into the categories above, create a [JIRA issue](https://issues.jboss.org/secure/RHD/CreateIssue!default.jspa).
