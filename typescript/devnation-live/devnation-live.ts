@@ -115,7 +115,7 @@ class DevNationLiveApp extends HTMLElement {
         ${sess.confirmed ? `
             <li class="single-event">
                 <div class="row">
-                    <div class="large-16 columns">
+                    <div class="large-24 columns">
                         <h4 class="caps">${sess.title}</h4>
                         ${sess.speaker ? `
                             <p>Speaker: <strong>${sess.speaker}</strong>
@@ -130,7 +130,7 @@ class DevNationLiveApp extends HTMLElement {
                         <p>${sess.abstract}</p>
                     </div>
                     ${sess.register ? `
-                        <div class="large-8 columns align-center">
+                        <div class="large-16 medium-10 small-24 columns align-center">
                         ${this.getCookie('dn_live_'+sess.offer_id) ? `
                             <div class="button disabled">You are Registered</div>` 
                             : `<iframe class="session-reg" src="${this.form}?id=${sess.offer_id}"></iframe>
@@ -148,7 +148,7 @@ class DevNationLiveApp extends HTMLElement {
         ${sess.confirmed ? `
             <li class="single-event">
                 <div class="row">
-                    <div class="large-16 columns">
+                    <div class="large-24 columns">
                         <h4 class="caps">${sess.title}</h4>
                         ${sess.speaker ? `
                         <p>Speaker: <strong>${sess.speaker}</strong>
@@ -159,8 +159,6 @@ class DevNationLiveApp extends HTMLElement {
                         : ''}
                         <p>${sess.date}</p>
                         <p>${sess.abstract}</p>
-                    </div>
-                    <div class="large-8">
                         <a href="https://youtu.be/${sess.youtube_id}" class="button external-link">VIDEO</a>
                     </div>
                 </div>
@@ -250,7 +248,7 @@ class DevNationLiveApp extends HTMLElement {
     getNextSession() {
         for(let i=0; i < this.data.length; i++) {
             let dt = Date.parse(this.data[i].date);
-            if(dt && dt > Date.now() - 3600000) {
+            if(dt && dt > Date.now() - 259200000) {
                 return this.data[i];
             }
         }
@@ -261,7 +259,7 @@ class DevNationLiveApp extends HTMLElement {
         let first = true;
         for(let i=0; i < this.data.length; i++) {
             let dt = Date.parse(this.data[i].date);
-            if(dt && (dt > Date.now() || dt > Date.now() - 3600000)) {
+            if(dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
                 if (!first && this.data[i].offer_id.length > 0) { 
                     upcoming.push(this.data[i]) 
                 } else { 
