@@ -1,7 +1,7 @@
 "use strict";
 // Test rhdp-search-result component
 
-xdescribe('Search Result', function() {
+describe('Search Result', function() {
     var wc;
     var sys_types = {
         solution: "Knowledge Base",
@@ -53,45 +53,39 @@ xdescribe('Search Result', function() {
         document.body.removeChild(document.body.firstChild);
     });
 
-    // it('should have a result object', function() {
-    //     var result = {fields: {}};
-    //     wc.set('result', result);
-    //     expect(wc.result).toEqual(result);
-    // });
-
     it('should have a created date from resultset', function() {
-        wc.set('result', testResult);
-        expect(wc.created).toEqual('| February 3, 2001');
+        wc.result = testResult;
+        expect(wc.created).toEqual('- February 3, 2001');
     });
 
     describe('Title', function() {
         it('should match highlight.sys_title if present', function() {
-            wc.set('result', testResult);
+            wc.result = testResult;
             expect(wc.title).toEqual(testResult.highlight.sys_title[0]);
         });
 
         it('should match fields.sys_title by default', function() {
             delete testResult.highlight.sys_title;
-            wc.set('result', testResult);
+            wc.result = testResult;
             expect(wc.title).toEqual(testResult.fields.sys_title[0]);
         });
     });
 
     describe('Description', function() {
         it('should match highlights.sys_description if present', function() {
-            wc.set('result', testResult);
+            wc.result = testResult;
             expect(wc.description).toEqual(testResult.highlight.sys_description[0]);
         });
 
         it('should match highlights.sys_plaintext if present without h.sys_description', function() {
             delete testResult.highlight.sys_description;
-            wc.set('result', testResult);
+            wc.result = testResult;
             expect(wc.description).toEqual(testResult.highlight.sys_content_plaintext[0]);
         });
 
         it('should match fields.sys_description by default', function() {
             delete testResult.highlight.sys_content_plaintext;
-            wc.set('result', testResult);
+            wc.result = testResult;
             expect(wc.description).toEqual(testResult.fields.sys_description[0]);
         });
     });
@@ -104,7 +98,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -116,7 +110,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -128,7 +122,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -140,7 +134,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -152,7 +146,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -164,7 +158,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -176,7 +170,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -188,7 +182,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -200,7 +194,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });
@@ -212,7 +206,7 @@ xdescribe('Search Result', function() {
                 i;
             for (i=0; i < len; i++) {
                 testResult.fields.sys_type = [typeReturn[i]];
-                wc.set('result', testResult);
+                wc.result = testResult;
                 expect(wc.kind).toEqual(typeTxt);
             }
         });

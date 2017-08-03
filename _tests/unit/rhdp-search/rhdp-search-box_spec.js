@@ -1,14 +1,21 @@
 "use strict";
 /* global RHDPSearchBox */
 // Test rhdp-search-box component
-
-xdescribe('Search Box', function() {
+describe('Search Box', function() {
+    
     var wc;
+    
     beforeEach(function() {
-        wc = new RHDPSearchBox();
+        document.body.insertBefore(document.createElement('rhdp-search-box'), document.body.firstChild);
+        wc = document.body.firstChild;
     });
 
-    it('should be true', function() {
-        expect(wc.innerText).toEqual('');
+    afterEach(function() {
+        document.body.removeChild(document.body.firstChild);
     });
+    
+    it('should be true', function() {
+        expect(wc.innerText).toEqual("\nSEARCH\n");
+    });
+
 });
