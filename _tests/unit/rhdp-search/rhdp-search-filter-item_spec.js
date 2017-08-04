@@ -54,7 +54,7 @@ xdescribe('Search Filter Item', function() {
         })
     });
 
-    describe('clear Function', function() {
+    describe('clear Function',  function() {
         it('should clear the toggle', function() {
             expect(wc.toggle).toBe(false);
             wc.clear();
