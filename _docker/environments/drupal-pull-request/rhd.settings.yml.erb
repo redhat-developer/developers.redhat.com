@@ -6,7 +6,7 @@ keycloak:
   accountUrl: 'https://developers.stage.redhat.com/auth/realms/rhd/account/'
   authUrl: 'https://developers.stage.redhat.com/auth/'
 drupal:
-  host: stumpjumper.lab4.eng.bos.redhat.com
+  host: rhdp-jenkins-slave.lab4.eng.bos.redhat.com
   port: "<%=ENV['DRUPAL_HOST_PORT']%>"
 searchisko:
   protocol: 'https'
@@ -20,7 +20,7 @@ database:
   password: 'drupal'
   name: 'drupal'
 dtm_code: 'https://dpal-it-marketing.int.open.paas.redhat.com/developers'
-rhd_base_url: "stumpjumper.lab4.eng.bos.redhat.com:<%= ENV['DRUPAL_HOST_PORT'] %>"
+rhd_base_url: "rhdp-jenkins-slave.lab4.eng.bos.redhat.com:<%= ENV['DRUPAL_HOST_PORT'] %>"
 rhd_final_base_url: "developers-pr.stage.redhat.com/pr/<%= ENV['ghprbPullId'] %>/export"
 sentry_track: true
 sentry_script: 'https://cdn.ravenjs.com/3.17.0/raven.min.js'
