@@ -133,8 +133,8 @@ rhdp-search-sort-page {
         align-self: flex-end; 
         position: absolute; 
         top: -4.5em;
-        right: 1em;
         border-bottom: none;
+        margin-left: 180px;
 
         top: -4.6em;
 
@@ -175,6 +175,8 @@ rhdp-search-sort-page {
     @media only screen and (max-width: 365px) {
         position: relative;
         left: 0; top: 0;
+        margin-left: 0px;
+
     }
 }
 
@@ -218,6 +220,15 @@ rhdp-search-filters {
         display: flex;
         flex-direction: row;
         margin-bottom: 1em;
+        .inline {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .clearFilters {
+            font-size: 16px;
+        }
+
     }
     .active-type strong {
         flex: 0 1 auto; 
@@ -433,7 +444,7 @@ rhdp-search-result {
     h4 {
         font-weight: 600;
         font-style: normal;
-        font-size: 18px;
+        font-size: 20px;
         line-height: 1.4;
         color: #06c;
         cursor: pointer;
