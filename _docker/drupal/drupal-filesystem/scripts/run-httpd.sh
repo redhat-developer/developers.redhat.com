@@ -3,6 +3,9 @@ set -e
 
 cd /var/www/drupal
 
+# This sleep seems to be required for certain Docker/OS combos as the bind mounts may not be fully ready
+sleep 10
+
 # Check if drupal is installed, install if needed
 ruby drupal_install_checker.rb
 
