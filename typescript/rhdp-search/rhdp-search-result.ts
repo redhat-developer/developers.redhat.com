@@ -5,6 +5,7 @@ class RHDPSearchResult extends HTMLElement {
     _kind;
     _created;
     _description;
+    _premium;
 
     get url() {
         return this._url;
@@ -51,6 +52,15 @@ class RHDPSearchResult extends HTMLElement {
         this._description = val;
     }
 
+    get premium() {
+        return this._premium;
+    }
+
+    set premium(val) {
+        if (this._premium === val) return;
+        this._premium = val;
+    }
+
     get result() {
         return this._result;
     }
@@ -63,6 +73,7 @@ class RHDPSearchResult extends HTMLElement {
         this.computeCreated(val);
         this.computeDescription(val);
         this.computeURL(val);
+        this.computePremium(val);
         this.renderResult();
     }
 
@@ -70,10 +81,11 @@ class RHDPSearchResult extends HTMLElement {
         super();
     }
 
-    template = (strings, url0, url1, title, kind, created, description) => {
-        return `<div class="result result-search" >
+    template = (strings, url0, url1, title, kind, created, description, premium) => {
+        let premiumContent = premium ? 'class="result-info icon-rh-icon-locked" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"';
+        return `<div class="result result-search">
         <h4>${url0}${title}${url1}</h4>
-        <p class="result-info">
+        <p ${premiumContent}>
             <span class="caps">${kind}</span>
             <span>${created}</span>
         </p>
@@ -93,7 +105,7 @@ class RHDPSearchResult extends HTMLElement {
     }
 
     renderResult() {
-        this.innerHTML = this.template`${this.url[0]}${this.url[1]}${this.title}${this.kind}${this.created}${this.description}`;
+        this.innerHTML = this.template`${this.url[0]}${this.url[1]}${this.title}${this.kind}${this.created}${this.description}${this.premium}`;
     }
 
     computeTitle(result) { 
@@ -155,4 +167,13 @@ class RHDPSearchResult extends HTMLElement {
         }
         this.url = url;
     }
+
+    computePremium(result) {
+        var premium = false;
+        if(result._type === "rht_knowledgebase_article" || result._type === "rht_knowledgebase_solution"){
+            premium = true;
+        }
+        this.premium = premium;
+    }
+
 }
