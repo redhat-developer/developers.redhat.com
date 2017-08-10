@@ -83,12 +83,17 @@ rhdp-search-box {
     }
 }
 
-rhdp-search-result-count {
+rhdp-search-result-count, rhdp-search-empty-query {
     font-weight: 600;
     font-size: 1.2em;
     display: block;
     margin-bottom: 1em;
-    
+
+    p {
+        margin-top: 1em;
+        font-size: 18px;
+    }
+
     @media only screen and (max-width: 768px) {
         border-bottom: 1px solid $grey-3;
     }

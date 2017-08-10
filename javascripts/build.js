@@ -376,6 +376,7 @@ var RHDPSearchApp = (function (_super) {
         _this.onebox = new RHDPSearchOneBox();
         _this.results = new RHDPSearchResults();
         _this.sort = new RHDPSearchSortPage();
+        _this.emptyQuery = new RHDPSearchEmptyQuery();
         _this.filterObj = {
             term: '',
             facets: [
@@ -491,6 +492,12 @@ var RHDPSearchApp = (function (_super) {
           Set text and term from querystring "q" value if present
         */
         var loc = window.location.href.split('?'), term = loc.length > 1 ? loc[1].split('=')[1] : '';
+        if (this.results.results == null && term.length == 0) {
+            this.sort.style.display = 'none';
+            this.results.style.display = 'none';
+            this.count.style.display = 'none';
+            this.querySelector('.large-18').appendChild(this.emptyQuery);
+        }
         if (term.length > 0) {
             term = term.replace(/\+/g, '%20');
             term = decodeURIComponent(term);
@@ -511,6 +518,7 @@ var RHDPSearchApp = (function (_super) {
         this[name] = newVal;
     };
     RHDPSearchApp.prototype.doSearch = function (e) {
+        this._checkEmptyQuery();
         this.count.term = e.detail ? e.detail.term : this.query.term;
         this.onebox.term = e.detail ? e.detail.term : this.query.term;
         this.query.from = 0;
@@ -569,6 +577,15 @@ var RHDPSearchApp = (function (_super) {
         app['count'].term = app['box'].term;
         app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
+    };
+    RHDPSearchApp.prototype._checkEmptyQuery = function () {
+        if (this.emptyQuery.empty) {
+            this.sort.style.display = 'block';
+            this.results.style.display = 'block';
+            this.count.style.display = 'block';
+            // this.emptyQuery.style.display = 'none';
+            this.emptyQuery.empty = false;
+        }
     };
     return RHDPSearchApp;
 }(HTMLElement));
@@ -645,6 +662,47 @@ var RHDPSearchBox = (function (_super) {
         }));
     };
     return RHDPSearchBox;
+}(HTMLElement));
+var RHDPSearchEmptyQuery = (function (_super) {
+    __extends(RHDPSearchEmptyQuery, _super);
+    function RHDPSearchEmptyQuery() {
+        var _this = _super.call(this) || this;
+        _this._empty = true;
+        _this.template = "\n        Well, this is awkward. No search term was entered yet, so this page is a little empty right now.\n        <p>After you enter a search term in the box above, you will see\n        the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!</p>";
+        return _this;
+    }
+    Object.defineProperty(RHDPSearchEmptyQuery.prototype, "empty", {
+        get: function () {
+            return this._empty;
+        },
+        set: function (val) {
+            if (this._empty === val)
+                return;
+            this._empty = val;
+            if (this._empty) {
+                this.style.display = 'block';
+            }
+            else {
+                this.style.display = 'none';
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPSearchEmptyQuery.prototype.connectedCallback = function () {
+        this.innerHTML = this.template;
+    };
+    Object.defineProperty(RHDPSearchEmptyQuery, "observedAttributes", {
+        get: function () {
+            return ['name'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPSearchEmptyQuery.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    return RHDPSearchEmptyQuery;
 }(HTMLElement));
 var RHDPSearchFilterGroup = (function (_super) {
     __extends(RHDPSearchFilterGroup, _super);
@@ -1857,6 +1915,7 @@ var RHDPSearchSortPage = (function (_super) {
     return RHDPSearchSortPage;
 }(HTMLElement));
 window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-search-empty-query', RHDPSearchEmptyQuery);
     customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
     customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
     customElements.define('rhdp-search-query', RHDPSearchQuery);

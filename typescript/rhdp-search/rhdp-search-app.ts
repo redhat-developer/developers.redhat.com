@@ -50,6 +50,7 @@ class RHDPSearchApp extends HTMLElement {
     onebox = new RHDPSearchOneBox();
     results = new RHDPSearchResults();
     sort = new RHDPSearchSortPage();
+    emptyQuery = new RHDPSearchEmptyQuery();
 
     filterObj = {
         term:'', 
@@ -119,7 +120,7 @@ class RHDPSearchApp extends HTMLElement {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
-        
+
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
@@ -130,7 +131,6 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
-
         this.addEventListener('do-search', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore)
@@ -143,6 +143,13 @@ class RHDPSearchApp extends HTMLElement {
         */
         var loc = window.location.href.split('?'),
             term = loc.length > 1 ? loc[1].split('=')[1] : '';
+        if (this.results.results == null && term.length == 0){
+            this.sort.style.display = 'none';
+            this.results.style.display = 'none';
+            this.count.style.display = 'none';
+            this.querySelector('.large-18').appendChild(this.emptyQuery);
+        }
+
         if (term.length > 0) {
             term = term.replace(/\+/g, '%20');
             term = decodeURIComponent(term);
@@ -175,6 +182,7 @@ class RHDPSearchApp extends HTMLElement {
     }
 
     setResults(e) {
+        this._checkEmptyQuery();
         if(this.query.from === 0) {
             this.results.results = e.detail.results;
         } else {
@@ -228,5 +236,15 @@ class RHDPSearchApp extends HTMLElement {
         app['count'].term = app['box'].term;
         app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
+    }
+
+    _checkEmptyQuery(){
+        if(this.emptyQuery.empty){
+            this.sort.style.display = 'block';
+            this.results.style.display = 'block';
+            this.count.style.display = 'block';
+            this.emptyQuery.empty = false;
+        }
+
     }
 }
