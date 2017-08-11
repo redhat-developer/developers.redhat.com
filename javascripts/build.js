@@ -482,6 +482,7 @@ var RHDPSearchApp = (function (_super) {
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
+        this.querySelector('.large-18').appendChild(this.emptyQuery);
         this.addEventListener('do-search', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore);
@@ -493,10 +494,7 @@ var RHDPSearchApp = (function (_super) {
         */
         var loc = window.location.href.split('?'), term = loc.length > 1 ? loc[1].split('=')[1] : '';
         if (this.results.results == null && term.length == 0) {
-            this.sort.style.display = 'none';
-            this.results.style.display = 'none';
-            this.count.style.display = 'none';
-            this.querySelector('.large-18').appendChild(this.emptyQuery);
+            this._displayEmptyQueryMessage(true);
         }
         if (term.length > 0) {
             term = term.replace(/\+/g, '%20');
@@ -518,7 +516,6 @@ var RHDPSearchApp = (function (_super) {
         this[name] = newVal;
     };
     RHDPSearchApp.prototype.doSearch = function (e) {
-        this._checkEmptyQuery();
         this.count.term = e.detail ? e.detail.term : this.query.term;
         this.onebox.term = e.detail ? e.detail.term : this.query.term;
         this.query.from = 0;
@@ -530,6 +527,8 @@ var RHDPSearchApp = (function (_super) {
         this.query.search(this.query.term);
     };
     RHDPSearchApp.prototype.setResults = function (e) {
+        // If query is blank on landing, display message
+        this._displayEmptyQueryMessage(false);
         if (this.query.from === 0) {
             this.results.results = e.detail.results;
         }
@@ -578,13 +577,18 @@ var RHDPSearchApp = (function (_super) {
         app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
     };
-    RHDPSearchApp.prototype._checkEmptyQuery = function () {
-        if (this.emptyQuery.empty) {
+    RHDPSearchApp.prototype._displayEmptyQueryMessage = function (display) {
+        if (!display) {
             this.sort.style.display = 'block';
             this.results.style.display = 'block';
             this.count.style.display = 'block';
-            // this.emptyQuery.style.display = 'none';
             this.emptyQuery.empty = false;
+        }
+        else {
+            this.sort.style.display = 'none';
+            this.results.style.display = 'none';
+            this.count.style.display = 'none';
+            this.emptyQuery.empty = true;
         }
     };
     return RHDPSearchApp;
@@ -667,7 +671,7 @@ var RHDPSearchEmptyQuery = (function (_super) {
     __extends(RHDPSearchEmptyQuery, _super);
     function RHDPSearchEmptyQuery() {
         var _this = _super.call(this) || this;
-        _this._empty = true;
+        _this._empty = false;
         _this.template = "\n        Well, this is awkward. No search term was entered yet, so this page is a little empty right now.\n        <p>After you enter a search term in the box above, you will see\n        the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!</p>";
         return _this;
     }
@@ -694,7 +698,7 @@ var RHDPSearchEmptyQuery = (function (_super) {
     };
     Object.defineProperty(RHDPSearchEmptyQuery, "observedAttributes", {
         get: function () {
-            return ['name'];
+            return ['empty'];
         },
         enumerable: true,
         configurable: true

@@ -131,6 +131,7 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
+        this.querySelector('.large-18').appendChild(this.emptyQuery);
         this.addEventListener('do-search', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore)
@@ -144,10 +145,7 @@ class RHDPSearchApp extends HTMLElement {
         var loc = window.location.href.split('?'),
             term = loc.length > 1 ? loc[1].split('=')[1] : '';
         if (this.results.results == null && term.length == 0){
-            this.sort.style.display = 'none';
-            this.results.style.display = 'none';
-            this.count.style.display = 'none';
-            this.querySelector('.large-18').appendChild(this.emptyQuery);
+            this._displayEmptyQueryMessage(true);
         }
 
         if (term.length > 0) {
@@ -182,7 +180,8 @@ class RHDPSearchApp extends HTMLElement {
     }
 
     setResults(e) {
-        this._checkEmptyQuery();
+        // If query is blank on landing, display message
+        this._displayEmptyQueryMessage(false);
         if(this.query.from === 0) {
             this.results.results = e.detail.results;
         } else {
@@ -238,12 +237,17 @@ class RHDPSearchApp extends HTMLElement {
         app['query'].search(app['box'].term);
     }
 
-    _checkEmptyQuery(){
-        if(this.emptyQuery.empty){
+    _displayEmptyQueryMessage(display){
+        if(!display){
             this.sort.style.display = 'block';
             this.results.style.display = 'block';
             this.count.style.display = 'block';
             this.emptyQuery.empty = false;
+        }else{
+            this.sort.style.display = 'none';
+            this.results.style.display = 'none';
+            this.count.style.display = 'none';
+            this.emptyQuery.empty = true;
         }
 
     }

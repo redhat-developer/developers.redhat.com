@@ -1,6 +1,6 @@
 class RHDPSearchEmptyQuery extends HTMLElement {
 
-    _empty = true;
+    _empty = false;
 
     get empty() {
         return this._empty;
