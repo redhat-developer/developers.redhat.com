@@ -29,6 +29,10 @@ class SearchPage extends mixin(BasePage, NavigationBar) {
 
     get clearFilter () { return $('.clearItem'); }
 
+    get oneBox () { return $('rhdp-search-onebox div h4'); }
+
+    get oneBoxDownLoadBtn () { return $('rhdp-search-onebox .button'); }
+
     get resultSort () { return $('rhdp-search-sort-page > p > select'); }
 
     resultCount () { return $('//rhdp-search-result-count').getText(); }
@@ -131,6 +135,14 @@ class SearchPage extends mixin(BasePage, NavigationBar) {
         }
         this._clickApplyMobileFilter(isMobile);
         return selectedFilter
+    }
+
+    /**
+     * Selects link within OneBox Search
+     * @param  {String}  link         Link that you wish to select.
+     */
+    clickOneBoxLink(link) {
+        browser.click(`*=${link}`);
     }
 
     /**
