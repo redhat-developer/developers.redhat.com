@@ -85,7 +85,7 @@ app.downloads.createDownloadLink = function(data) {
   }
   // Pull the first one from the sorted array
   var icn = '<i class="fa fa-download"></i>',
-      lnk = '<a class="button" href="'+data[0].featuredArtifact.url+'">'+icn+' Download</a>',
+      lnk = '<a class="button heavy-cta" href="'+data[0].featuredArtifact.url+'">'+icn+' Download</a>',
       ver = '<div class="version-name">'+data[0].name + ' ' + data[0].featuredArtifact.versionName+'</div>',
       $downloadLink = $('<div class="large-8 columns download-link">'+lnk+ver+'</div>');
       

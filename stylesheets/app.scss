@@ -277,6 +277,9 @@ button, .button {
       margin-left: 2px;
     }
   }
+  &.external-link:after {
+    display: none;
+  }
 }
 
 a.light-cta{
@@ -300,6 +303,9 @@ a.light-cta{
     &:hover, &:focus {
       color: $linkhover-dark-background;
     }
+  }
+  &.external-link:after {
+    vertical-align: baseline;
   }
 }
 
