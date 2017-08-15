@@ -93,4 +93,23 @@ class RHDPSearchResults extends HTMLElement {
             }
         }
     }
+
+    nullResultsMessage(app){
+        if (this._results == null) {
+            app.sort.style.display = 'none';
+            app.results.style.display = 'none';
+            app.count.style.display = 'none';
+            app.emptyQuery.empty = true;
+        } else {
+            app.sort.style.display = 'block';
+            app.results.style.display = 'block';
+            app.count.style.display = 'block';
+            app.emptyQuery.empty = false;
+
+        }
+
+
+
+    }
+
 }

@@ -493,9 +493,6 @@ var RHDPSearchApp = (function (_super) {
           Set text and term from querystring "q" value if present
         */
         var loc = window.location.href.split('?'), term = loc.length > 1 ? loc[1].split('=')[1] : '';
-        if (this.results.results == null && term.length == 0) {
-            this._displayEmptyQueryMessage(true);
-        }
         if (term.length > 0) {
             term = term.replace(/\+/g, '%20');
             term = decodeURIComponent(term);
@@ -504,6 +501,8 @@ var RHDPSearchApp = (function (_super) {
             this.count.term = term;
             this.query.search(this.box.term);
         }
+        // If term is blank and results are null on landing, display message
+        this.results.nullResultsMessage(this);
     };
     Object.defineProperty(RHDPSearchApp, "observedAttributes", {
         get: function () {
@@ -527,8 +526,7 @@ var RHDPSearchApp = (function (_super) {
         this.query.search(this.query.term);
     };
     RHDPSearchApp.prototype.setResults = function (e) {
-        // If query is blank on landing, display message
-        this._displayEmptyQueryMessage(false);
+        this.results.nullResultsMessage(this);
         if (this.query.from === 0) {
             this.results.results = e.detail.results;
         }
@@ -576,20 +574,6 @@ var RHDPSearchApp = (function (_super) {
         app['count'].term = app['box'].term;
         app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
-    };
-    RHDPSearchApp.prototype._displayEmptyQueryMessage = function (display) {
-        if (!display) {
-            this.sort.style.display = 'block';
-            this.results.style.display = 'block';
-            this.count.style.display = 'block';
-            this.emptyQuery.empty = false;
-        }
-        else {
-            this.sort.style.display = 'none';
-            this.results.style.display = 'none';
-            this.count.style.display = 'none';
-            this.emptyQuery.empty = true;
-        }
     };
     return RHDPSearchApp;
 }(HTMLElement));
@@ -1866,6 +1850,21 @@ var RHDPSearchResults = (function (_super) {
             else if (this.querySelector('.moreBtn')) {
                 this.removeChild(this.loadMore);
             }
+        }
+    };
+    RHDPSearchResults.prototype.nullResultsMessage = function (app) {
+        if (this._results == null) {
+            app.sort.style.display = 'none';
+            app.results.style.display = 'none';
+            app.count.style.display = 'none';
+            app.emptyQuery.empty = true;
+        }
+        else {
+            app.sort.style.display = 'block';
+            app.results.style.display = 'block';
+            app.count.style.display = 'block';
+            app.emptyQuery.empty = false;
+            // app.querySelector('.large-18').removeChild(app.emptyQuery);
         }
     };
     return RHDPSearchResults;
