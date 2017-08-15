@@ -82,7 +82,7 @@ class RHDPSearchResult extends HTMLElement {
     }
 
     template = (strings, url0, url1, title, kind, created, description, premium) => {
-        let premiumContent = premium ? 'class="result-info icon-rh-icon-locked" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"';
+        let premiumContent = premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"';
         return `<div class="result result-search">
         <h4>${url0}${title}${url1}</h4>
         <p ${premiumContent}>

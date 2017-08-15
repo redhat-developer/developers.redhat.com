@@ -1521,7 +1521,7 @@ var RHDPSearchResult = (function (_super) {
         var _this = _super.call(this) || this;
         _this._url = ['', ''];
         _this.template = function (strings, url0, url1, title, kind, created, description, premium) {
-            var premiumContent = premium ? 'class="result-info icon-rh-icon-locked" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"';
+            var premiumContent = premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"';
             return "<div class=\"result result-search\">\n        <h4>" + url0 + title + url1 + "</h4>\n        <p " + premiumContent + ">\n            <span class=\"caps\">" + kind + "</span>\n            <span>" + created + "</span>\n        </p>\n        <p class=\"result-description\">" + description + "</p>\n    </div>";
         };
         return _this;

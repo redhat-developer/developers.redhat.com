@@ -402,6 +402,21 @@ rhdp-search-results {
 rhdp-search-result {
     font-family: "Overpass","Open Sans",Helvetica,sans-serif;
 
+    .subscription-required {
+        &:before {
+            content: '';
+            background: cdn('../images/icons/subscription-required.png') no-repeat;
+            background-size:cover;
+            position:absolute;
+            margin-top: 5px;
+            width:12px;
+            height:12px;
+        }
+        .caps {
+            margin-left: 20px;
+        }
+
+    }
     .result {
         margin-bottom: 25px;
     }
