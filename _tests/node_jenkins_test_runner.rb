@@ -1,8 +1,8 @@
 require_relative '../_docker/lib/process_runner'
 
 #
-# This class wraps a number of calls to _docker/control.rb to allow us to run the acceptance tests with a number of profiles
-# and amalgamate the result into a generalised fail or pass
+# This class wraps a number of calls to _docker/control.rb to allow us to run the e2e tests with a number of profiles
+# or broken-link checks, and then amalgamate the result into a generalised fail or pass.
 #
 class NodeJenkinsTestRunner
 
@@ -24,6 +24,7 @@ class NodeJenkinsTestRunner
         tests_passed &= execute_e2e(profile)
       end
     else
+      # Run broken-link-checks
       tests_passed &= execute_blc
     end
     tests_passed
@@ -71,8 +72,8 @@ class NodeJenkinsTestRunner
   end
 
   #
-  # Builds the command to use to execute the e2e tests, including whether or not we should send updates to GitHub and any Cucumber tags
-  # that should be applied
+  # Builds the command to use to execute the e2e tests, including whether or not
+  # we should send updates to GitHub and any Cucumber tags that should be applied.
   #
   def build_e2e_run_tests_command(profile)
     command = "ruby _tests/run_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
@@ -95,7 +96,8 @@ class NodeJenkinsTestRunner
   end
 
   #
-  # Builds the command to use to execute the blc tests, including whether or not we should send updates to GitHub
+  # Builds the command to use to execute the broken-link checks, including whether or not
+  # we should send updates to GitHub
   #
   def build_blc_run_tests_command
     github_sha1 = read_env_variable('ghprbActualCommit')
@@ -117,10 +119,10 @@ def execute(jenkins_test_runner)
 end
 
 if $PROGRAM_NAME == __FILE__
-
+  available_test_types = %w[blc e2e]
   test_type = ARGV[0]
-  if test_type.nil? || test_type.empty?
-    puts 'Please specify the host to tests you wish to run. Can be e2e or blc'
+  unless available_test_types.include?(test_type)
+    puts "Please specify a valid test type that you wish to run. Available test types: #{available_test_types}"
     Kernel.exit(1)
   end
 
@@ -129,8 +131,6 @@ if $PROGRAM_NAME == __FILE__
     puts 'Please specify the host to test as the first argument to this script e.g. ruby jenkins_test_runner.rb https://developers.redhat.com'
     Kernel.exit(1)
   end
-
   jenkins_test_runner = NodeJenkinsTestRunner.new(test_type, host_to_test, "#{__dir__}", ProcessRunner.new)
   execute(jenkins_test_runner)
 end
-
