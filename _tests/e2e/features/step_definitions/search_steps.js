@@ -201,7 +201,7 @@ module.exports = function () {
     });
 
     this.Then(/^I should see the "(.*)" (Download|Overview|Hello-world|Docs-and-apis|Help) page$/, function (productTitle, pageType) {
-        expect(browser.getTitle(), `Download page for ${productTitle} was not displayed`).to.includes(`${productTitle} ${pageType}`)
+        expect(browser.getTitle(), `${pageType} page for ${productTitle} was not displayed`).to.includes(`${productTitle} ${pageType}`)
     });
 
     this.Then(/^I select the oneBox "(.*)" link$/, function (link) {
