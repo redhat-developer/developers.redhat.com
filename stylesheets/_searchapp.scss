@@ -405,12 +405,12 @@ rhdp-search-result {
     .subscription-required {
         &:before {
             content: '';
-            background: cdn('../images/icons/subscription-required.png') no-repeat;
+            background: url('http://static.jboss.org/rhd/images/icons/subscription-required.svg') no-repeat;
             background-size:cover;
             position:absolute;
             margin-top: 5px;
-            width:12px;
-            height:12px;
+            width: .9em;
+            height: .9em;
         }
         .caps {
             margin-left: 20px;
