@@ -156,7 +156,7 @@ class RHDPSearchApp extends HTMLElement {
         }
 
         // If term is blank and results are null on landing, display message
-        this.results.nullResultsMessage(this);
+        this.results.nullResultsMessage();
 
     }
 
@@ -182,7 +182,7 @@ class RHDPSearchApp extends HTMLElement {
     }
 
     setResults(e) {
-        this.results.nullResultsMessage(this);
+        // this.results.nullResultsMessage(this);
         if(this.query.from === 0) {
             this.results.results = e.detail.results;
         } else {

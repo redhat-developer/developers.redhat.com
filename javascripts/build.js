@@ -502,7 +502,7 @@ var RHDPSearchApp = (function (_super) {
             this.query.search(this.box.term);
         }
         // If term is blank and results are null on landing, display message
-        this.results.nullResultsMessage(this);
+        this.results.nullResultsMessage();
     };
     Object.defineProperty(RHDPSearchApp, "observedAttributes", {
         get: function () {
@@ -526,7 +526,7 @@ var RHDPSearchApp = (function (_super) {
         this.query.search(this.query.term);
     };
     RHDPSearchApp.prototype.setResults = function (e) {
-        this.results.nullResultsMessage(this);
+        // this.results.nullResultsMessage(this);
         if (this.query.from === 0) {
             this.results.results = e.detail.results;
         }
@@ -1826,6 +1826,7 @@ var RHDPSearchResults = (function (_super) {
         this.appendChild(item);
     };
     RHDPSearchResults.prototype.renderResults = function (add) {
+        this.nullResultsMessage();
         if (!add) {
             while (this.hasChildNodes()) {
                 this.removeChild(this.lastChild);
@@ -1852,19 +1853,19 @@ var RHDPSearchResults = (function (_super) {
             }
         }
     };
-    RHDPSearchResults.prototype.nullResultsMessage = function (app) {
+    RHDPSearchResults.prototype.nullResultsMessage = function () {
+        var app = document.querySelector('rhdp-search-app');
         if (this._results == null) {
-            app.sort.style.display = 'none';
-            app.results.style.display = 'none';
-            app.count.style.display = 'none';
-            app.emptyQuery.empty = true;
+            app['sort'].style.display = 'none';
+            app['results'].style.display = 'none';
+            app['count'].style.display = 'none';
+            app['emptyQuery'].empty = true;
         }
         else {
-            app.sort.style.display = 'block';
-            app.results.style.display = 'block';
-            app.count.style.display = 'block';
-            app.emptyQuery.empty = false;
-            // app.querySelector('.large-18').removeChild(app.emptyQuery);
+            app['sort'].style.display = 'block';
+            app['results'].style.display = 'block';
+            app['count'].style.display = 'block';
+            app['emptyQuery'].empty = false;
         }
     };
     return RHDPSearchResults;
