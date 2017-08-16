@@ -1,10 +1,15 @@
 "use strict";
 // Test rhdp-search-filters component
 
-xdescribe('Search Filters', function() {
+describe('Search Filters', function() {
     var wc;
+
+    var facet = {"term":"","facets":[]};
+
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-filters'), document.body.firstChild);
+        wc = document.createElement('rhdp-search-filters')
+        wc.filters = facet;
+        document.body.insertBefore(wc, document.body.firstChild);
         wc = document.body.firstChild;
     });
 
@@ -13,6 +18,7 @@ xdescribe('Search Filters', function() {
     });
 
     it('should be true', function() {
-        expect(wc.innerText).toEqual('');
+        expect(wc.innerText.trim()).toEqual('Show Filters\nFilter By');
     });
 });
+

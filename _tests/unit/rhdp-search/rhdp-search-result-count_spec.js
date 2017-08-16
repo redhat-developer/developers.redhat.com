@@ -1,7 +1,7 @@
 "use strict";
 // Test rhdp-search-result-count component
 
-xdescribe('Search Result Count', function() {
+describe('Search Result Count', function() {
     var wc;
     beforeEach(function() {
         document.body.insertBefore(document.createElement('rhdp-search-result-count'), document.body.firstChild);
@@ -13,19 +13,19 @@ xdescribe('Search Result Count', function() {
     });
 
     it('should be blank with no values', function() {
-        expect(wc.text).toEqual('');
+        expect(wc.innerText).toEqual('');
     });
     it('should be blank with only a count value', function() {
-        wc.set('count', 10);
-        expect(wc.text).toEqual('');
+        wc.count =  10;
+        expect(wc.innerText).toEqual('');
     });
-    it('should be blank with only a term value', function() {
-        wc.set('term', 'Fuse');
-        expect(wc.text).toEqual('');
+    it('should be 0 results with only a term value', function() {
+        wc.term = 'Fuse';
+        expect(wc.innerText).toEqual('0 results found for Fuse');
     });
     it('should say the right thing with a count and term set', function() {
-        wc.set('count', 10);
-        wc.set('term', 'Fuse');
-        expect(wc.text).toEqual('10 results found for Fuse');
+        wc.count = 10;
+        wc.term = 'Fuse';
+        expect(wc.innerText).toEqual('10 results found for Fuse');
     });
 });

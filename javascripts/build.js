@@ -749,7 +749,7 @@ var RHDPSearchFilterGroup = (function (_super) {
         var groupNode = this.querySelector('.group');
         var primaryFilters = this.querySelector('.primary');
         var secondaryFilters = this.querySelector('.secondary');
-        var len = this.items.length;
+        var len = this.items ? this.items.length : 0;
         if (len <= 5) {
             groupNode.removeChild(groupNode.lastChild);
         }
