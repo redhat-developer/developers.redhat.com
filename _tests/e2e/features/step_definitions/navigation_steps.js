@@ -1,7 +1,11 @@
-const HomePage = require("../../support/pages/home.page");
-const SearchPage = require("../../support/pages/search.page");
+const HomePage = require("../support/pages/Home.page");
+const LoginPage = require("../support/pages/Login.page");
+const RegisterPage = require("../support/pages/Register.page");
+const SearchPage = require("../support/pages/Search.page");
 
 const homePage = new HomePage;
+const loginPage = new LoginPage;
+const registerPage = new RegisterPage;
 const searchPage = new SearchPage;
 
 module.exports = function () {
@@ -9,6 +13,28 @@ module.exports = function () {
     this.Given(/^I am on the "([^"]*)" page$/, function(page) {
         if (page === "Home") {
             homePage.open();
+        } else if (page === "Login") {
+            loginPage.open();
+        } else if (page === "Register") {
+            registerPage.open();
+        } else if (page === "Search") {
+            searchPage.open();
+        } else {
+            throw new Error(`${page} is not a recognised page`)
+        }
+    });
+
+    this.When(/^I click on the "([^"]*)" link within the primary nav bar$/, function (primaryNavLink) {
+        homePage.clickMenuItem(primaryNavLink)
+    });
+
+    this.Given(/^I navigate directly to the "([^"]*)" page$/, function (page) {
+        if (page === "Home") {
+            homePage.open();
+        } else if (page === "Login") {
+            loginPage.open();
+        } else if (page === "Register") {
+            registerPage.open();
         } else if (page === "Search") {
             searchPage.open();
         } else {

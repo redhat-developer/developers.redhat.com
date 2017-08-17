@@ -1,4 +1,3 @@
-#@kc
 #Feature: Log in using preferred social provider
 #
 #  As a developers.redhat customer,
@@ -6,8 +5,8 @@
 #  So that I can use its services.
 #
 #  # fails with Unexpected error when authenticating with identity provider
-#  @logout @github_logout @delete_user @ignore
+#  @kc @logout @delete_user
 #  Scenario: User can login with Social Login provider for already linked account
-#    Given I am on the Login page
+#    Given I am on the "Login" page
 #    When I log in with an account that is already linked to my Github account
 #    Then I should be logged in
