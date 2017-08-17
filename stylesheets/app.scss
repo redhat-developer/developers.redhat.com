@@ -114,6 +114,7 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "verify";
 @import "searchapp";
 @import "devnation-live";
+@import "middleware";
 
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
@@ -2300,6 +2301,18 @@ ul.side-nav.rhd-sub-nav{
     margin-bottom: 0;
     float: right;
     width: 50px;
+  }
+}
+
+section {
+  &.green {
+    background-color: #92d400;
+    h1, h2, h3, h4, h5, h6, p {
+      color: $white;
+    }
+  }
+  &.grey {
+    background-color: $grey-2;
   }
 }
 
