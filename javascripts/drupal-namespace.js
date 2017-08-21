@@ -128,7 +128,7 @@ app.products = {
   "softwarecollections": {"upstream": null,"stackoverflow": ["rhel","rhel5","rhel6","rhel7"], "buzz_tags": ["software collections"]},
   "webserver": {"upstream": ["tomcat","httpd","mod_cluster"],"stackoverflow": ["jboss-web"], "buzz_tags": ["webserver"]},
   "rhmap": {"upstream": ["feedhenry"],"stackoverflow": ["redhat-rhamt"],"buzz_tags": ["mobileplatform","mobile"]},
-  "rhamt": {"upstream": [""],"stackoverflow": ["rhamt"],"buzz_tags": [""]}
+  "rhamt": {"upstream": null,"stackoverflow": ["rhamt"],"buzz_tags": ["windup","rhamt"]}
 };
 
 /*
