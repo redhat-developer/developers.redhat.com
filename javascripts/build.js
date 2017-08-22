@@ -1520,8 +1520,9 @@ var RHDPSearchResult = (function (_super) {
     function RHDPSearchResult() {
         var _this = _super.call(this) || this;
         _this._url = ['', ''];
-        _this.template = function (strings, url0, url1, title, kind, created, description) {
-            return "<div class=\"result result-search\" >\n        <h4>" + url0 + title + url1 + "</h4>\n        <p class=\"result-info\">\n            <span class=\"caps\">" + kind + "</span>\n            <span>" + created + "</span>\n        </p>\n        <p class=\"result-description\">" + description + "</p>\n    </div>";
+        _this.template = function (strings, url0, url1, title, kind, created, description, premium) {
+            var premiumContent = premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"';
+            return "<div class=\"result result-search\">\n        <h4>" + url0 + title + url1 + "</h4>\n        <p " + premiumContent + ">\n            <span class=\"caps\">" + kind + "</span>\n            <span>" + created + "</span>\n        </p>\n        <p class=\"result-description\">" + description + "</p>\n    </div>";
         };
         return _this;
     }
@@ -1585,6 +1586,18 @@ var RHDPSearchResult = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(RHDPSearchResult.prototype, "premium", {
+        get: function () {
+            return this._premium;
+        },
+        set: function (val) {
+            if (this._premium === val)
+                return;
+            this._premium = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(RHDPSearchResult.prototype, "result", {
         get: function () {
             return this._result;
@@ -1598,6 +1611,7 @@ var RHDPSearchResult = (function (_super) {
             this.computeCreated(val);
             this.computeDescription(val);
             this.computeURL(val);
+            this.computePremium(val);
             this.renderResult();
         },
         enumerable: true,
@@ -1616,7 +1630,7 @@ var RHDPSearchResult = (function (_super) {
         this[name] = newVal;
     };
     RHDPSearchResult.prototype.renderResult = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.url[0], this.url[1], this.title, this.kind, this.created, this.description));
+        this.innerHTML = (_a = ["", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", ""], this.template(_a, this.url[0], this.url[1], this.title, this.kind, this.created, this.description, this.premium));
         var _a;
     };
     RHDPSearchResult.prototype.computeTitle = function (result) {
@@ -1679,6 +1693,13 @@ var RHDPSearchResult = (function (_super) {
             url[1] = '</a>';
         }
         this.url = url;
+    };
+    RHDPSearchResult.prototype.computePremium = function (result) {
+        var premium = false;
+        if (result._type === "rht_knowledgebase_article" || result._type === "rht_knowledgebase_solution") {
+            premium = true;
+        }
+        this.premium = premium;
     };
     return RHDPSearchResult;
 }(HTMLElement));
