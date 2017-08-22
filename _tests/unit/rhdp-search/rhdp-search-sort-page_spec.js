@@ -1,7 +1,7 @@
 "use strict";
 // Test rhdp-search-sort-page component
 
-xdescribe('Search Sort and Paging', function() {
+describe('Search Sort and Paging', function() {
     var wc;
     beforeEach(function() {
         document.body.insertBefore(document.createElement('rhdp-search-sort-page'), document.body.firstChild);
@@ -19,24 +19,22 @@ displays text "Sort results by [sort as options]" on desktop
 displays button menu with [sort] options on mobile
 Unit tests for component pass
 */
-    it('should default to "Relevance" to start', function() {
-        expect(wc.sort).toEqual('Relevance');
-    });
 
     it('should respond to setting and getting the sort property', function() {
-        wc.set('sort', 'Most Recent');
+        wc.sort = 'Most Recent';
         expect(wc.sort).toEqual('Most Recent');
-        expect(wc.get('sort')).toEqual('Most Recent');
+        wc.sort = 'Relevance'
+        expect(wc.sort).toEqual('Relevance');
+
     });
 
     it('should share the sort property out', function() {
-        document.body.addEventListener('change', function(e) {
-
-        });
-        expect(wc.sort).toEqual('');
+        wc.sort = "relevance";
+        wc.setSort();
+        expect(wc.sort).toEqual('relevance');
     });
 
     it('should read "Sort results by [[sort]]', function() {
-        expect(wc.sort).toEqual('');
+        expect(wc.innerText.trim()).toEqual('Sort results by');
     });
 });

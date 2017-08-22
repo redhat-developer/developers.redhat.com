@@ -1,7 +1,7 @@
 "use strict";
 // Test rhdp-search-query component
 
-xdescribe('Search Query', function() {
+describe('Search Query', function() {
     var wc;
     beforeEach(function() {
         document.body.insertBefore(document.createElement('rhdp-search-query'), document.body.firstChild);
@@ -13,7 +13,7 @@ xdescribe('Search Query', function() {
     });
 
     it('should be true', function() {
-        wc.set('filters', {term: 'Foo'});
+        wc.filters = 'filters';
         expect(wc.innerText).toEqual('');
     });
 });
