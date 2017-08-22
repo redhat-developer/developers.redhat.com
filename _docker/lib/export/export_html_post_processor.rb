@@ -1,6 +1,7 @@
 require 'cgi'
 require 'nokogiri'
 require 'fileutils'
+require 'uri'
 require_relative '../default_logger'
 require_relative 'export_urls'
 
@@ -176,10 +177,19 @@ class ExportHtmlPostProcessor
     modified = false
     links_to_modify.each do | link |
       if link.attributes['href'].value.include?('documentation')
-        new_href = "#{link.attributes['href']}/index.html"
-        @log.info("\tModifying documentation link #{link.attributes['href'].to_s} to #{new_href}")
-        link.attributes['href'].value = new_href
-        modified = true
+
+        uri = URI(link.attributes['href'].value)
+
+        #
+        # Only perform processing on the link if it doesn't already link to a .html file
+        #
+        unless uri.path.to_s.end_with?('.html')
+          uri.path = "#{uri.path.to_s}/index.html"
+          new_href = uri.to_s
+          @log.info("\tModifying documentation link #{link.attributes['href'].to_s} to #{new_href}")
+          link.attributes['href'].value = new_href
+          modified = true
+        end
       end
     end
 
