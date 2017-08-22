@@ -1,5 +1,6 @@
 window.addEventListener('WebComponentsReady', function() {
     customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
+    customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
     customElements.define('rhdp-search-query', RHDPSearchQuery);
     customElements.define('rhdp-search-box', RHDPSearchBox);
     customElements.define('rhdp-search-result-count', RHDPSearchResultCount);

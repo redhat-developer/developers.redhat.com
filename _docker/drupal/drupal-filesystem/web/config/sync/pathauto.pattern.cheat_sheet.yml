@@ -7,16 +7,16 @@ dependencies:
 id: cheat_sheet
 label: cheat-sheet
 type: 'canonical_entities:node'
-pattern: '/cheat-sheet/[node:title]'
+pattern: '/cheat-sheets/[node:title]'
 selection_criteria:
-  cd7a8505-4900-46fb-8be6-85bce4b959e4:
+  0028b237-fa67-4910-890b-9fa7f175600d:
     id: node_type
     bundles:
       cheat_sheet: cheat_sheet
     negate: false
     context_mapping:
       node: node
-    uuid: cd7a8505-4900-46fb-8be6-85bce4b959e4
+    uuid: 0028b237-fa67-4910-890b-9fa7f175600d
 selection_logic: and
 weight: -5
 relationships: {  }

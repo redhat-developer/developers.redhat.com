@@ -1,0 +1,14 @@
+uuid: ee7f2b89-3dba-41d8-9439-8c1bd037c506
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.coding_resource_reviewer
+  module:
+    - user
+id: user_remove_role_action.coding_resource_reviewer
+label: 'Remove the Coding Resource reviewer role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: coding_resource_reviewer

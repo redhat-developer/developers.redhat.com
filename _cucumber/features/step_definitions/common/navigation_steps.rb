@@ -65,8 +65,11 @@ end
 
 And(/^the sub\-menu should include a list of available technologies$/) do
   product_names = ProductsHelper.products[1]
-  product_names.each do |products|
-    expect(@current_page.sub_menu_items('technologies')).to include(products)
+  product_names.each do |product|
+    if product == '.NET Core for Red Hat Enterprise Linux'
+      product = product.gsub(' for Red Hat Enterprise Linux', '')
+    end
+    expect(@current_page.sub_menu_items('technologies')).to include(product)
   end
 end
 
@@ -109,6 +112,9 @@ end
 Then(/^each available technology should link to their retrospective product overview page$/) do
   product_ids, product_names = products
   product_names.each do |product_name|
+    if product_name == '.NET Core for Red Hat Enterprise Linux'
+      product_name = product_name.gsub(' for Red Hat Enterprise Linux', '')
+    end
     @href = @current_page.get_href_for(product_name)
   end
   product_ids.each do |product_id|

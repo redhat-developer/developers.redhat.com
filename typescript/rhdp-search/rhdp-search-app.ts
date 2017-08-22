@@ -47,6 +47,7 @@ class RHDPSearchApp extends HTMLElement {
     filters = new RHDPSearchFilters();
     active = new RHDPSearchFilters();
     modal = new RHDPSearchFilters();
+    onebox = new RHDPSearchOneBox();
     results = new RHDPSearchResults();
     sort = new RHDPSearchSortPage();
 
@@ -129,6 +130,7 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.active);
         this.querySelector('.large-18').appendChild(this.count);
         this.querySelector('.large-18').appendChild(this.sort);
+        this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
 
         this.addEventListener('do-search', this.doSearch);
@@ -144,7 +146,10 @@ class RHDPSearchApp extends HTMLElement {
         var loc = window.location.href.split('?'),
             term = loc.length > 1 ? loc[1].split('=')[1] : '';
         if (term.length > 0) {
+            term = term.replace(/\+/g, '%20');
+            term = decodeURIComponent(term);
             this.box.term = term;
+            this.onebox.term = term;
             this.count.term = term;
             this.query.search(this.box.term);
         }
@@ -160,6 +165,7 @@ class RHDPSearchApp extends HTMLElement {
 
     doSearch(e) {
         this.count.term = e.detail ? e.detail.term : this.query.term;
+        this.onebox.term = e.detail ? e.detail.term : this.query.term;
         this.query.from = 0;
         this.results.last = 0;
         this.query.search(e.detail ? e.detail.term : this.query.term);
@@ -178,6 +184,7 @@ class RHDPSearchApp extends HTMLElement {
         }
         
         this.count.count = e.detail.results.hits.total;
+        this.results.classList.remove('loading');
     }
 
     toggleModal(e) {
@@ -221,6 +228,7 @@ class RHDPSearchApp extends HTMLElement {
         app['query'].from = 0;
         app['results'].last = 0;
         app['count'].term = app['box'].term;
+        app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
     }
 }

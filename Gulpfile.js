@@ -22,8 +22,8 @@ var globs = {
         'javascripts/books.js',
         'javascripts/rating.js',
         'javascripts/vendor/modernizr-custom.js',
-        'javascripts/vendor/polyfiller.js',
-        'javascripts/polyfiller-init.js',
+        // 'javascripts/vendor/polyfiller.js',
+        // 'javascripts/polyfiller-init.js',
         'javascripts/foundation/foundation.js',
         'javascripts/foundation/foundation.tab.js',
         'javascripts/foundation/foundation.reveal.js',
@@ -74,13 +74,14 @@ var globs = {
         '!javascripts/namespace.js',
         'javascripts/custom-jira-collector.js',
         'javascripts/adaptive-placeholder.js',
-    //'javascripts/current-tab.js',
+        //'javascripts/current-tab.js',
         'javascripts/referrer.js',
         'javascripts/products.js',
         'javascripts/jboss-docker.js',
         'javascripts/verify-member.js',
         'javascripts/nav-highlight.js',
-        'javascripts/build.js'
+        'javascripts/build.js',
+        'javascripts/middleware-blog.js'
     ],
     "styles": ['stylesheets/*.scss']
 };

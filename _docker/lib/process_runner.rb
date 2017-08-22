@@ -14,16 +14,20 @@ class ProcessRunner
 
   end
 
-  #
-  # Initialise the instance. If verbose is true, then full output of stdout and stderr is printed to the
-  # console
-  #
   def initialize
     @log = DefaultLogger.logger
   end
 
   def determine_process_status(cmd, execution_result)
-    raise ProcessFailedError.new("Execution of command '#{cmd}' failed.") unless execution_result
+    raise(ProcessFailedError, "Execution of command '#{cmd}' failed.") unless execution_result
+  end
+
+  #
+  # Execute the command, returning the result of the Kernel.system call
+  #
+  def execute(cmd)
+    @log.info("Executing command '#{cmd}'...")
+    Kernel.system(cmd)
   end
 
   #
@@ -32,11 +36,20 @@ class ProcessRunner
   # @throws - ProcessFailedError if the command exits with a non-zero status
   #
   def execute!(cmd)
-    @log.info("Executing command '#{cmd}'...")
-    execution_result = Kernel.system(cmd)
+    execution_result = execute(cmd)
     determine_process_status(cmd, execution_result)
   end
 
-  private :determine_process_status
+  #
+  # Executes the given command, returning true if the command succeeded (i.e. returned a zero exit code), or false
+  # otherwise
+  #
+  def execute?(cmd)
+    execution_result = execute(cmd)
+    !execution_result.nil? && execution_result
+  end
+
+
+  private :determine_process_status, :execute
 
 end

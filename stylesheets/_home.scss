@@ -5,32 +5,38 @@
 
 .homepage-main {
   color: $white;
-  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_advlinuxcheat_25apr2017.jpg");
+  background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_desktop_adveap7cheatsheet_19jul2017.png");
   background-position: center center;
-  // background-size: cover;
-  background-color: #000;
+  height: 310px;
+  background-repeat: repeat-x;
+  background-color: #0068ba;
   & > .row {
     @include flexbox;
     @include align-items(center);
     @include flex-wrap(wrap);
   }
   .homepage-cta {
-    padding: 30px 0;
+    padding: 0 21% 0 21%;
+    padding-top: 40px;
     color: $white;
     text-align: center;
+    margin: 0 auto;
     h2 {
       font-size: 2em;
-      margin: 1em 1em .5em 1em;
-      line-height: 1.2;
       color: inherit;
       text-transform: uppercase;
+      line-height: 1.1;
     }
-    h4 {
+    p {
       color: inherit;
       font-weight: 400;
+      font-size: 20px;
     }
     a.button.external-link:after{
       display: none;
+    }
+    a.button.heavy-cta.white {
+      color: $blue;
     }
   }
   img {
@@ -61,8 +67,10 @@
       opacity: 0.7;
     }
   }
-  &:hover {
-    color: white;
+  &:hover, &:focus, &:active {
+    span {
+      color: $white;
+    }
   }
   &:last-child {
     border-right: 0;
@@ -234,10 +242,14 @@ ul.homepage-resources {
 // NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_advlinuxcheat_25apr2017.jpg");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_adveap7cheatsheet_19jul2017.png");
     background-size: cover;
+    background-position: top left;
+    min-height: 400px;
     .homepage-cta {
-      margin: 20px auto;
+      h2 {
+        font-size: 1.7em;
+      }
       a.button {
         display: inline-block;
       }
@@ -268,14 +280,22 @@ ul.homepage-resources {
       display: block;
       max-height: 300px;
     }
+    .homepage-cta {
+      padding: 3em 1em 0 1em;
+      p {
+        font-size: 18px;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+    }
   }
 }
 
 @include mobile-landscape-and-down {
   .homepage-main {
-    min-height: 400px;
-    background-position: top left;
-    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_advlinuxcheat_25apr2017.jpg");
+    background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_adveap7cheatsheet_19jul2017.png");
+    min-height: 480px;
   }
   .spotlights-container {
     flex-direction: column;

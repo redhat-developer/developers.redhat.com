@@ -113,6 +113,8 @@ $include-html-global-classes: false; // fix for our version of ruby - https://gi
 @import "cheat-sheet";
 @import "verify";
 @import "searchapp";
+@import "devnation-live";
+@import "middleware";
 
 
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; } * html .clearfix             { zoom: 1; } /* IE6 */ *:first-child+html .clearfix { zoom: 1; } /* IE7 */
@@ -151,7 +153,8 @@ pre code {
 a {
   color:$link;
   cursor:pointer;
-  &:hover { color: $linkhover; }
+  text-decoration: none;
+  &:hover, &:focus, &:active { color: $linkhover; }
 
   &.dark-background{ color: $link-dark-background; }
   &.link-sm {color: $link-sm; }
@@ -275,6 +278,9 @@ button, .button {
       margin-left: 2px;
     }
   }
+  &.external-link:after {
+    display: none;
+  }
 }
 
 a.light-cta{
@@ -298,6 +304,9 @@ a.light-cta{
     &:hover, &:focus {
       color: $linkhover-dark-background;
     }
+  }
+  &.external-link:after {
+    vertical-align: baseline;
   }
 }
 
@@ -2292,6 +2301,18 @@ ul.side-nav.rhd-sub-nav{
     margin-bottom: 0;
     float: right;
     width: 50px;
+  }
+}
+
+section {
+  &.green {
+    background-color: #92d400;
+    h1, h2, h3, h4, h5, h6, p {
+      color: $white;
+    }
+  }
+  &.grey {
+    background-color: $grey-2;
   }
 }
 

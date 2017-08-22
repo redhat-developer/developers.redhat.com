@@ -1,0 +1,13 @@
+<div{{ attributes.addClass("tertiary-promo") }}>
+    <h6>Related Product</h6>
+    {{ title_prefix }}
+    <h4{{ title_attributes }}>
+        {{ label }}
+    </h4>
+    {{ title_suffix }}
+    <p class="description">
+        <a href="{{ product_pages[0]['url'] }}">Learn more about {{ elements.field_product_short_name|render|striptags }}
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </a>
+    </p>
+</div>

@@ -1,3 +1,152 @@
+var DevNationLiveSession = (function () {
+    function DevNationLiveSession(obj) {
+        var _this = this;
+        this._title = '';
+        this._date = '';
+        this._youtube_id = '';
+        this._speaker = '';
+        this._twitter_handle = '';
+        this._offer_id = '';
+        this._abstract = '';
+        this._confirmed = false;
+        this._register = true;
+        this._eloqua = '';
+        Object.keys(obj).map(function (key) {
+            _this[key] = obj[key];
+        });
+    }
+    Object.defineProperty(DevNationLiveSession.prototype, "offer_id", {
+        get: function () {
+            return this._offer_id;
+        },
+        set: function (val) {
+            if (this._offer_id === val)
+                return;
+            this._offer_id = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "title", {
+        get: function () {
+            return this._title;
+        },
+        set: function (val) {
+            if (this._title === val)
+                return;
+            this._title = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "date", {
+        get: function () {
+            return this._date;
+        },
+        set: function (val) {
+            if (this._date === val)
+                return;
+            this._date = val;
+            // try {
+            //     var timeStamp = new Date(val);
+            //     var timeString = timeStamp.toString();
+            //     var x = timeString.split(' ', 4).join(' ');
+            //     var t = timeStamp.toLocaleTimeString();
+            //     var timezone = (String(String(timeStamp).split("(")[1]).split(")")[0]);
+            //     this._date = x + " " + t + " " + timezone;
+            // } catch(e) {
+            //     this._date = 'Date TBD';
+            // }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "youtube_id", {
+        get: function () {
+            return this._youtube_id;
+        },
+        set: function (val) {
+            if (this._youtube_id === val)
+                return;
+            this._youtube_id = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "speaker", {
+        get: function () {
+            return this._speaker;
+        },
+        set: function (val) {
+            if (this._speaker === val)
+                return;
+            this._speaker = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "twitter_handle", {
+        get: function () {
+            return this._twitter_handle;
+        },
+        set: function (val) {
+            if (this._twitter_handle === val)
+                return;
+            this._twitter_handle = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "abstract", {
+        get: function () {
+            return this._abstract;
+        },
+        set: function (val) {
+            if (this._abstract === val)
+                return;
+            this._abstract = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "register", {
+        get: function () {
+            return this._register;
+        },
+        set: function (val) {
+            if (this._register === val)
+                return;
+            this._register = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "confirmed", {
+        get: function () {
+            return this._confirmed;
+        },
+        set: function (val) {
+            if (this._confirmed === val)
+                return;
+            this._confirmed = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveSession.prototype, "eloqua", {
+        get: function () {
+            return this._eloqua;
+        },
+        set: function (val) {
+            if (this._eloqua === val)
+                return;
+            this._eloqua = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return DevNationLiveSession;
+}());
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -8,6 +157,210 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var DevNationLiveApp = (function (_super) {
+    __extends(DevNationLiveApp, _super);
+    function DevNationLiveApp() {
+        var _this = _super.call(this) || this;
+        _this._src = '../rhdp-apps/devnationlive/devnationlive.json';
+        _this._form = '../rhdp-apps/devnationlive/';
+        _this._mode = 'cors';
+        _this.nextSession = function (strings, next) {
+            return "<section>\n            <div class=\"row\">\n                <div class=\"large-24 columns\">\n                    <h5 class=\"caps session-label\">Next Live Session</h5>\n                </div>\n                <div class=\"large-17 small-24 columns\">\n                    <h2 class=\"caps\">" + next.title + "</h2>\n                </div>\n                <div class=\"large-7 small-24 columns devnation-live-date\" data-tags=\"" + next.date + "\">\n                    <div class=\"session-date\"><span><i class=\"fa fa-calendar fa-2x right\"></i></span> " + next.date + "</div>\n                </div>\n            </div>\n            <div class=\"row\" data-video=\"" + next.youtube_id + "\">\n                <div class=\"medium-14 columns event-video\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <div class=\"flex-video\">\n                        <iframe src=\"https://www.youtube.com/embed/" + next.youtube_id + "?rel=0&autoplay=1\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen></iframe>\n                    </div>" : "\n                    <img width=\"640\" height=\"360\" src=\"../images/design/devnationlive_herographic_0.jpg\" alt=\"" + next.title + "\">\n                    ") + "\n                </div>\n                <div class=\"medium-10 columns event-chat\" data-chat=\"" + next.youtube_id + "\">\n                    " + (_this.getCookie('dn_live_' + next.offer_id) || !next.register ? "\n                    <iframe class=\"embedded-chat\" src=\"https://www.youtube.com/live_chat?v=" + next.youtube_id + "&embed_domain=" + window.location.href.replace(/http(s)?:\/\//, '').split('/')[0] + "\"></iframe>\n                    " : "\n                    <iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + next.offer_id + "\"></iframe>\n                    ") + "\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"large-24 columns divider\">\n                    <p>Speaker: <strong>" + next.speaker + "</strong> \n                    " + (next.twitter_handle ? "\n                    (<a href=\"https://twitter.com/" + next.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + next.twitter_handle + "</a>)"
+                : '') + "\n                    </p>\n                    <p>" + next.abstract + "</p>\n                </div>\n            </div>\n        </section>";
+        };
+        _this.upcomingSession = function (strings, sess) {
+            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                            <p>Speaker: <strong>" + sess.speaker + "</strong>\n                                " + (sess.twitter_handle ? "\n                                    (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
+                : '') + "\n                            </p>"
+                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                    </div>\n                    " + (sess.register ? "\n                        <div class=\"large-16 medium-10 small-24 columns align-center\">\n                        " + (_this.getCookie('dn_live_' + sess.offer_id) ? "\n                            <div class=\"button disabled\">You are Registered</div>"
+                : "<iframe class=\"session-reg\" src=\"" + _this.form + "?id=" + sess.offer_id + "\"></iframe>\n                            </div>")
+                : '') + "\n                </div>\n            </li>"
+                : '');
+        };
+        _this.pastSession = function (strings, sess) {
+            return "\n        " + (sess.confirmed ? "\n            <li class=\"single-event\">\n                <div class=\"row\">\n                    <div class=\"large-24 columns\">\n                        <h4 class=\"caps\">" + sess.title + "</h4>\n                        " + (sess.speaker ? "\n                        <p>Speaker: <strong>" + sess.speaker + "</strong>\n                            " + (sess.twitter_handle ? "\n                            (<a href=\"https://twitter.com/" + sess.twitter_handle + "\" target=\"_blank\" class=\"external-link\"> @" + sess.twitter_handle + "</a>)"
+                : '') + "\n                        </p>"
+                : '') + "\n                        <p>" + sess.date + "</p>\n                        <p>" + sess.abstract + "</p>\n                        <a href=\"https://youtu.be/" + sess.youtube_id + "\" class=\"button external-link\">VIDEO</a>\n                    </div>\n                </div>\n            </li>"
+                : '');
+        };
+        _this.template = function (strings, next, upcoming, past) {
+            return "<div class=\"wide wide-hero devnation-live\">\n        <div class=\"row\">\n            <div class=\"large-24 columns\">\n                <img class=\"show-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_desktop_logo_r4v1.png\" alt=\"DevNation Live logo\">\n                <img class=\"hide-for-large-up\" src=\"https://design.jboss.org/redhatdeveloper/website/redhatdeveloper_2_0/microsite_graphics/images/devnationlive_microsite_banner_mobile_logo_r4v1.png\" alt=\"DevNation Live logo\">\n            </div>\n        </div>\n    </div>\n    <div id=\"devnationLive-microsite\">\n        " + (_a = ["", ""], _a.raw = ["", ""], _this.nextSession(_a, next)) + "\n        <section>\n            <div class=\"row\">\n                " + (past.length > 0 ? "<div class=\"large-12 columns\">" : "<div class=\"large-24 columns\">") + "\n                    <h5 class=\"caps\">Upcoming Sessions</h5>\n                    <br>\n                    <ul class=\"events-list\">\n                    " + upcoming.map(function (sess) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.upcomingSession(_a, sess));
+                var _a;
+            }).join('') + "\n                    </ul>\n                </div>\n                " + (past.length > 0 ? "\n                    <div class=\"large-12 columns\">\n                    <h5 class=\"caps\">Past Sessions</h5>\n                        <br>\n                        <ul class=\"events-list\">\n                        " + past.map(function (sess) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.pastSession(_a, sess));
+                var _a;
+            }).join('') + "\n                        </ul>\n                    </div>"
+                : '') + "\n            </div>\n        </section>\n    </div>";
+            var _a;
+        };
+        return _this;
+    }
+    Object.defineProperty(DevNationLiveApp.prototype, "next", {
+        get: function () {
+            return this._next;
+        },
+        set: function (val) {
+            if (this._next === val)
+                return;
+            this._next = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "past", {
+        get: function () {
+            return this._past;
+        },
+        set: function (val) {
+            if (this._past === val)
+                return;
+            this._past = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "src", {
+        get: function () {
+            return this._src;
+        },
+        set: function (val) {
+            if (this._src === val)
+                return;
+            this._src = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "mode", {
+        get: function () {
+            return this._mode;
+        },
+        set: function (val) {
+            if (this._mode === val)
+                return;
+            this._mode = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "form", {
+        get: function () {
+            return this._form;
+        },
+        set: function (val) {
+            if (this._form === val)
+                return;
+            this._form = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "upcoming", {
+        get: function () {
+            return this._upcoming;
+        },
+        set: function (val) {
+            if (this._upcoming === val)
+                return;
+            this._upcoming = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp.prototype, "data", {
+        get: function () {
+            return this._data;
+        },
+        set: function (val) {
+            if (this._data === val)
+                return;
+            this._data = val['sessions'] ? val['sessions'].sort(this.sortSessions) : [];
+            this.next = this.getNextSession();
+            this.upcoming = this.getUpcoming();
+            this.past = this.getPast();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DevNationLiveApp, "observedAttributes", {
+        get: function () {
+            return ['src', 'form', 'mode'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DevNationLiveApp.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    DevNationLiveApp.prototype.connectedCallback = function () {
+        var _this = this;
+        var fHead = new Headers();
+        var fInit = {
+            method: 'GET',
+            headers: fHead,
+            mode: this.mode,
+            cache: 'default'
+        };
+        this.addEventListener('registered', this.setRegistered);
+        fetch(this.src, fInit)
+            .then(function (resp) { return resp.json(); })
+            .then(function (data) {
+            _this.data = data;
+            _this.innerHTML = (_a = ["", "", "", ""], _a.raw = ["", "", "", ""], _this.template(_a, _this.next, _this.upcoming, _this.past));
+            var _a;
+        });
+    };
+    DevNationLiveApp.prototype.getCookie = function (name) {
+        var re = new RegExp('(?:(?:^|.*;\\s*)' + name + '\\s*\\=\\s*([^;]*).*$)|^.*$');
+        return document.cookie.replace(re, "$1");
+    };
+    DevNationLiveApp.prototype.setRegistered = function (e) {
+        this.innerHTML = (_a = ["", "", "", ""], _a.raw = ["", "", "", ""], this.template(_a, this.next, this.upcoming, this.past));
+        var _a;
+    };
+    DevNationLiveApp.prototype.sortSessions = function (a, b) {
+        var da = (Date.parse(a.date) ? Date.parse(a.date) : new Date(9999999999999)).valueOf(), db = (Date.parse(b.date) ? Date.parse(b.date) : new Date(9999999999999)).valueOf();
+        return da - db;
+    };
+    DevNationLiveApp.prototype.getNextSession = function () {
+        for (var i = 0; i < this.data.length; i++) {
+            var dt = Date.parse(this.data[i].date);
+            if (dt && dt > Date.now() - 259200000) {
+                return this.data[i];
+            }
+        }
+    };
+    DevNationLiveApp.prototype.getUpcoming = function () {
+        var upcoming = [];
+        var first = true;
+        for (var i = 0; i < this.data.length; i++) {
+            var dt = Date.parse(this.data[i].date);
+            if (dt && (dt > Date.now() || dt > Date.now() - 259200000)) {
+                if (!first && this.data[i].offer_id.length > 0) {
+                    upcoming.push(this.data[i]);
+                }
+                else {
+                    first = false;
+                }
+            }
+        }
+        return upcoming;
+    };
+    DevNationLiveApp.prototype.getPast = function () {
+        var past = [];
+        for (var i = 0; i < this.data.length; i++) {
+            var dt = Date.parse(this.data[i].date);
+            if (dt && dt + 3600000 < Date.now()) {
+                past.push(this.data[i]);
+            }
+        }
+        return past;
+    };
+    return DevNationLiveApp;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('devnation-live-app', DevNationLiveApp);
+});
 var RHDPSearchApp = (function (_super) {
     __extends(RHDPSearchApp, _super);
     function RHDPSearchApp() {
@@ -20,6 +373,7 @@ var RHDPSearchApp = (function (_super) {
         _this.filters = new RHDPSearchFilters();
         _this.active = new RHDPSearchFilters();
         _this.modal = new RHDPSearchFilters();
+        _this.onebox = new RHDPSearchOneBox();
         _this.results = new RHDPSearchResults();
         _this.sort = new RHDPSearchSortPage();
         _this.filterObj = {
@@ -127,6 +481,7 @@ var RHDPSearchApp = (function (_super) {
         this.querySelector('.large-18').appendChild(this.active);
         this.querySelector('.large-18').appendChild(this.count);
         this.querySelector('.large-18').appendChild(this.sort);
+        this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
         this.addEventListener('do-search', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
@@ -139,7 +494,10 @@ var RHDPSearchApp = (function (_super) {
         */
         var loc = window.location.href.split('?'), term = loc.length > 1 ? loc[1].split('=')[1] : '';
         if (term.length > 0) {
+            term = term.replace(/\+/g, '%20');
+            term = decodeURIComponent(term);
             this.box.term = term;
+            this.onebox.term = term;
             this.count.term = term;
             this.query.search(this.box.term);
         }
@@ -156,6 +514,7 @@ var RHDPSearchApp = (function (_super) {
     };
     RHDPSearchApp.prototype.doSearch = function (e) {
         this.count.term = e.detail ? e.detail.term : this.query.term;
+        this.onebox.term = e.detail ? e.detail.term : this.query.term;
         this.query.from = 0;
         this.results.last = 0;
         this.query.search(e.detail ? e.detail.term : this.query.term);
@@ -172,6 +531,7 @@ var RHDPSearchApp = (function (_super) {
             this.results.more = e.detail.results;
         }
         this.count.count = e.detail.results.hits.total;
+        this.results.classList.remove('loading');
     };
     RHDPSearchApp.prototype.toggleModal = function (e) {
         this.querySelector('rhdp-search-app')['modal'].toggle = e.detail.toggle;
@@ -209,6 +569,7 @@ var RHDPSearchApp = (function (_super) {
         app['query'].from = 0;
         app['results'].last = 0;
         app['count'].term = app['box'].term;
+        app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
     };
     return RHDPSearchApp;
@@ -226,7 +587,12 @@ var RHDPSearchBox = (function (_super) {
     }
     Object.defineProperty(RHDPSearchBox.prototype, "term", {
         get: function () {
-            return this._term;
+            if ((this._term === null) || (this._term === '')) {
+                return this._term;
+            }
+            else {
+                return this._term.replace(/(<([^>]+)>)/ig, '');
+            }
         },
         set: function (val) {
             if (this._term === val)
@@ -385,7 +751,7 @@ var RHDPSearchFilterGroup = (function (_super) {
         var groupNode = this.querySelector('.group');
         var primaryFilters = this.querySelector('.primary');
         var secondaryFilters = this.querySelector('.secondary');
-        var len = this.items.length;
+        var len = this.items ? this.items.length : 0;
         if (len <= 5) {
             groupNode.removeChild(groupNode.lastChild);
         }
@@ -720,6 +1086,147 @@ var RHDPSearchFilters = (function (_super) {
     };
     return RHDPSearchFilters;
 }(HTMLElement));
+var RHDPSearchOneBox = (function (_super) {
+    __extends(RHDPSearchOneBox, _super);
+    function RHDPSearchOneBox() {
+        var _this = _super.call(this) || this;
+        _this._term = '';
+        _this._url = '../rhdp-apps/onebox/onebox.json';
+        _this._mock = false;
+        _this.slotTemplate = function (strings, slot) {
+            return "" + (slot && slot.url && slot.text ? "<li><a href=\"" + slot.url + "\">" + _this.getIcon(slot.icon) + slot.text + "</a></li>" : '');
+        };
+        _this.template = function (strings, feature) {
+            return "<div>\n            " + (feature.heading && feature.heading.url && feature.heading.text ? "<h4><a href=\"" + feature.heading.url + "\">" + feature.heading.text + "</a></h4>" : '') + "\n            " + (feature.details ? "<p>" + feature.details + "</p>" : '') + "\n            " + (feature.button && feature.button.url && feature.button.text ? "<a href=\"" + feature.button.url + "\" class=\"button medium-cta blue\">" + feature.button.text + "</a>" : '') + "\n            " + (feature.slots && feature.slots.length > 0 ? "<ul class=\"slots\">\n                " + feature.slots.map(function (slot) {
+                return (_a = ["", ""], _a.raw = ["", ""], _this.slotTemplate(_a, slot));
+                var _a;
+            }).join('') + "\n            </ul>" : '') + "\n        </div>";
+        };
+        return _this;
+    }
+    Object.defineProperty(RHDPSearchOneBox.prototype, "term", {
+        get: function () {
+            if ((this._term === null) || (this._term === '')) {
+                return this._term;
+            }
+            else {
+                return this._term.replace(/(<([^>]+)>)/ig, '');
+            }
+        },
+        set: function (val) {
+            if (this._term === val)
+                return;
+            this._term = val;
+            this.setAttribute('term', this._term);
+            this.feature = this.getFeature();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPSearchOneBox.prototype, "url", {
+        get: function () {
+            return this._url;
+        },
+        set: function (val) {
+            if (this._url === val)
+                return;
+            this._url = val;
+            this.setAttribute('url', this._url);
+            this.getData();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPSearchOneBox.prototype, "data", {
+        get: function () {
+            return this._data;
+        },
+        set: function (val) {
+            if (this._data === val)
+                return;
+            this._data = val;
+            this.feature = this.getFeature();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPSearchOneBox.prototype, "feature", {
+        get: function () {
+            return this._feature;
+        },
+        set: function (val) {
+            if (this._feature === val)
+                return;
+            this._feature = val;
+            this.innerHTML = this.feature ? (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this.feature)) : '';
+            var _a;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPSearchOneBox.prototype, "mock", {
+        get: function () {
+            return this._mock;
+        },
+        set: function (val) {
+            if (this._mock === val)
+                return;
+            this._mock = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPSearchOneBox.prototype.connectedCallback = function () {
+        this.getData();
+    };
+    Object.defineProperty(RHDPSearchOneBox, "observedAttributes", {
+        get: function () {
+            return ['term', 'url', 'mock'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPSearchOneBox.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    RHDPSearchOneBox.prototype.getData = function () {
+        var _this = this;
+        if (this.mock || this.data) {
+            return this.data;
+        }
+        else {
+            var fInit = {
+                method: 'GET',
+                headers: new Headers(),
+                mode: 'cors',
+                cache: 'default'
+            };
+            fetch(this.url, fInit)
+                .then(function (resp) { return resp.json(); })
+                .then(function (data) {
+                _this.data = data;
+            });
+        }
+    };
+    RHDPSearchOneBox.prototype.getFeature = function () {
+        var len = this.data && this.data['features'] ? this.data['features'].length : 0, f;
+        for (var i = 0; i < len; i++) {
+            if (this.data['features'][i].match.indexOf(this.term.toLowerCase()) >= 0) {
+                f = this.data['features'][i];
+            }
+        }
+        return f;
+    };
+    RHDPSearchOneBox.prototype.getIcon = function (name) {
+        var icons = {
+            icon_help: '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><title>icon_help</title><path d="M20.15,2C27.779,2,33.0651,5.2419,33.0651,12.1723A8.6318,8.6318,0,0,1,28.0266,20.4c-4.1859,1.9935-5.2333,3.14-5.3836,6.0819H15.81c0-4.736,1.3966-7.6775,7.0319-10.2718,2.4928-1.1469,3.24-1.9447,3.24-3.7393,0-2.2939-1.693-3.64-5.9317-3.64-3.792,0-6.4838,1.7945-8.729,4.1879L6.9349,7.7835A17.8438,17.8438,0,0,1,20.15,2M19.253,29.5248a4.2376,4.2376,0,1,1-4.2386,4.2366,4.2986,4.2986,0,0,1,4.2386-4.2366M20.15,1A18.8975,18.8975,0,0,0,6.211,7.0936a1,1,0,0,0-.0354,1.3406L10.6619,13.67a1,1,0,0,0,.7369.3491l.0225,0a1,1,0,0,0,.7293-.3158c2.5121-2.6779,4.9793-3.8721,8-3.8721,4.9317,0,4.9317,1.85,4.9317,2.64,0,1.167-.2291,1.7134-2.6579,2.8308-6.34,2.9189-7.6139,6.442-7.6139,11.18a1,1,0,0,0,1,1h6.833a1,1,0,0,0,.9987-.949c.121-2.3688.7339-3.2866,4.8148-5.23a9.61,9.61,0,0,0,5.6085-9.13C34.0651,5.0722,28.9933,1,20.15,1ZM19.253,28.5248a5.2376,5.2376,0,1,0,5.2386,5.2366,5.3078,5.3078,0,0,0-5.2386-5.2366Z"/></svg>',
+            icon_helloworld: '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.0005 38.0015"><title>icon_helloworld</title><path d="M14.0642,7.3037a.1761.1761,0,0,0-.1724-.0852l-3.5192.3888a.1775.1775,0,0,0-.14.0974.1751.1751,0,0,0,.0083.1709l.5161.853A14.6794,14.6794,0,0,0,6.9885,13.42a.5192.5192,0,0,0,.2284.6984.5112.5112,0,0,0,.2345.0563.519.519,0,0,0,.4639-.2847,13.6444,13.6444,0,0,1,3.3873-4.2595l.4622.7639a.1749.1749,0,0,0,.1471.0874.1822.1822,0,0,0,.1525-.0778L14.0588,7.496a.1788.1788,0,0,0,.0061-.192Z" transform="translate(-1 -1)"/><path d="M26.0891,7.9374a13.6292,13.6292,0,0,1,4.26,3.3871l-.7639.4621a.1747.1747,0,0,0-.0874.1471.182.182,0,0,0,.0778.1525l2.9084,1.9945a.1788.1788,0,0,0,.192.0061l0-.0007a.176.176,0,0,0,.0851-.1724l-.3888-3.5192a.1776.1776,0,0,0-.0974-.14.1751.1751,0,0,0-.1709.0084l-.8532.5162A14.6719,14.6719,0,0,0,26.559,7.0106a.52.52,0,1,0-.47.9268Z" transform="translate(-1 -1)"/><path d="M32.741,25.8826a.5183.5183,0,0,0-.6984.2284A13.64,13.64,0,0,1,28.6552,30.37l-.4623-.764a.1748.1748,0,0,0-.1471-.0874.1822.1822,0,0,0-.1526.0778l-1.9944,2.9084a.1787.1787,0,0,0-.0061.192l.0007,0a.176.176,0,0,0,.1724.0851l3.5192-.3888a.1776.1776,0,0,0,.14-.0974.1752.1752,0,0,0-.0083-.1709l-.5161-.853a14.6829,14.6829,0,0,0,3.7685-4.6916A.5192.5192,0,0,0,32.741,25.8826Z" transform="translate(-1 -1)"/><path d="M4.7816,17.938v.9587h.92v3.7573h1.481V17.197H5.92C5.7643,17.704,5.4836,17.8989,4.7816,17.938Z" transform="translate(-1 -1)"/><path d="M35.244,19.7464a1.1146,1.1146,0,0,0,.7253-1.0679c0-1.1536-.8735-1.5673-2.183-1.5673a3.304,3.304,0,0,0-2.1124.71l.7172.9821a2.1842,2.1842,0,0,1,1.3562-.4674c.538,0,.7562.1558.7562.4441,0,.3588-.1558.46-.6314.46h-.7014v1.177h.7872c.5532,0,.7715.14.7715.5223,0,.3741-.2649.5532-.8963.5532a2.49,2.49,0,0,1-1.5511-.569l-.78.9821a3.4268,3.4268,0,0,0,2.3.8344c1.481,0,2.3931-.5537,2.3931-1.8165A1.1471,1.1471,0,0,0,35.244,19.7464Z" transform="translate(-1 -1)"/><path d="M21.02,6.4467c1.0445-.4837,1.2942-.92,1.2942-1.6373,0-.99-.71-1.5358-2.0657-1.5358a4.1094,4.1094,0,0,0-2.3388.71l.6938,1.1151a2.8789,2.8789,0,0,1,1.6216-.5537c.4365,0,.608.1325.608.3741,0,.2182-.0858.304-.6629.5613a3.3785,3.3785,0,0,0-2.2764,3.3366h4.4593V7.5846H19.508C19.6252,7.2573,19.9292,6.9532,21.02,6.4467Z" transform="translate(-1 -1)"/><path d="M21.5569,30.9144H20.06L17.1215,34.29V35.397h3.0793v.9745h1.3562v-.9354h.7019V34.1576h-.7019ZM20.2008,33.62v.538h-.4055c-.3741,0-.7481.0076-1.0212.0233a9.1978,9.1978,0,0,0,.7172-.7953l.0782-.0934a8.66,8.66,0,0,0,.6547-.85C20.2084,32.7,20.2008,33.3,20.2008,33.62Z" transform="translate(-1 -1)"/><path d="M6.5184,14.6629c-.0662-.0029-.1421-.0045-.2175-.0045a5.3421,5.3421,0,0,0-.1365,10.681c.0543.0023.1168.0031.1794.0031a5.3413,5.3413,0,0,0,.1746-10.68Zm-.1746,9.64c-.0482,0-.0964-.0005-.1452-.0025a4.3027,4.3027,0,0,1,.1022-8.6027q.0911,0,.183.0039a4.3018,4.3018,0,0,1-.14,8.6013Z" transform="translate(-1 -1)"/><path d="M33.8363,14.6629c-.0535-.0023-.1164-.0031-.1786-.0031a5.3413,5.3413,0,0,0-.1751,10.68c.0548.0023.1177.0031.1807.0031a5.3413,5.3413,0,0,0,.173-10.68Zm2.7626,8.4794a4.2718,4.2718,0,0,1-2.9357,1.1607c-.0487,0-.0974-.0005-.1467-.0025a4.3018,4.3018,0,0,1,.1411-8.6013c.0477,0,.0959.0005.1441.0025a4.3022,4.3022,0,0,1,2.7971,7.4406Z" transform="translate(-1 -1)"/><path d="M20.1774,1.0044C20.1115,1.0016,20.0362,1,19.9614,1A5.3428,5.3428,0,0,0,16.1,9.9926a5.3041,5.3041,0,0,0,3.7236,1.6883c.0548.0023.1177.0031.1807.0031a5.3413,5.3413,0,0,0,.1728-10.68ZM22.94,9.4839a4.27,4.27,0,0,1-2.9352,1.1607c-.0487,0-.0974-.0005-.1467-.0025a4.3026,4.3026,0,0,1,.1036-8.6026q.09,0,.1817.0038A4.3018,4.3018,0,0,1,22.94,9.4839Z" transform="translate(-1 -1)"/><path d="M20.1776,28.3214c-.0657-.0029-.1416-.0045-.2171-.0045a5.3423,5.3423,0,0,0-.1371,10.6815c.0535.0023.1164.0031.1786.0031a5.3415,5.3415,0,0,0,.1756-10.68Zm-.1756,9.6407c-.0477,0-.0959-.0005-.1441-.0025a4.3022,4.3022,0,0,1-2.7971-7.4406,4.2219,4.2219,0,0,1,2.9-1.1627c.0606,0,.1216.0013.1826.0039a4.3021,4.3021,0,0,1-.1411,8.6018Z" transform="translate(-1 -1)"/></svg>',
+            icon_docsandapi: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve"><g><g><g><path d="M37.5,19.3c0-0.1-0.1-0.2-0.2-0.3l-10.1-6.3l-8.6-9.6c-0.1-0.2-0.4-0.2-0.5,0l-2.7,2.4L13,4c-0.2-0.1-0.5-0.1-0.7,0.2L7,12.7l-3.1,2.7c-0.1,0.1-0.1,0.2-0.1,0.3c0,0.1,0,0.2,0.1,0.3l0.6,0.7l-1.9,3c-0.1,0.1-0.1,0.2-0.1,0.4c0,0.1,0.1,0.2,0.2,0.3l11.3,7l8.5,9.5c0.1,0.1,0.2,0.1,0.3,0.1c0.1,0,0.2,0,0.2-0.1l2.7-2.3l1.3,0.8c0.1,0.1,0.2,0.1,0.3,0.1c0.2,0,0.3-0.1,0.4-0.2l3.3-5.2l6.3-5.5c0.1-0.1,0.1-0.2,0.1-0.3c0-0.1,0-0.2-0.1-0.3l-1.5-1.7l1.7-2.7C37.5,19.6,37.5,19.5,37.5,19.3z M12.9,5.1l1.6,1l-4.9,4.3L12.9,5.1z M3.7,19.8l1.5-2.4l6.6,7.4L3.7,19.8z M27.1,34.3l-0.6-0.4l1.8-1.6L27.1,34.3z M22.8,36.1L14,26.2l0,0l0,0L4.7,15.7L18.3,3.9l9,10.2l0,0l0,0l9.1,10.2L22.8,36.1z M35.1,21.6l-5.5-6.2l6.8,4.2L35.1,21.6z"/><path d="M19.6,12c-0.1-0.2-0.4-0.2-0.5,0l-6.2,5.4c-0.1,0.1-0.1,0.2-0.1,0.3c0,0.1,0,0.2,0.1,0.3l6,6.7c0.1,0.2,0.4,0.2,0.5,0l1.5-1.3l2.6,2.9c0.1,0.1,0.2,0.1,0.3,0.1c0.1,0,0.2,0,0.2-0.1l4.5-3.9c0.1-0.1,0.1-0.2,0.1-0.3c0-0.1,0-0.2-0.1-0.3L19.6,12zM23.7,25.6l-2.6-2.9c-0.1-0.1-0.2-0.1-0.3-0.1c-0.1,0-0.2,0-0.2,0.1l-1.5,1.3l-5.5-6.2l5.7-5l8.3,9.3L23.7,25.6z"/><path d="M30.9,25.2c0,0,0.1,0.1,0.1,0.1c0,0,0.1,0,0.1,0c0.1-0.1,0.1-0.2,0-0.3l-2-2.3c-0.1-0.1-0.2-0.1-0.3,0c-0.1,0.1-0.1,0.2,0,0.3L30.9,25.2z"/><path d="M29.2,21.7c0,0,0.1,0,0.1,0l1.4-1.2c0.1-0.1,0.1-0.2,0-0.3c-0.1-0.1-0.2-0.1-0.3,0l-1.4,1.2c-0.1,0.1-0.1,0.2,0,0.3C29.1,21.7,29.2,21.7,29.2,21.7z"/><path d="M18.7,11.5c0,0,0.1,0.1,0.1,0.1c0,0,0.1,0,0.1,0c0.1-0.1,0.1-0.2,0-0.3L17,9c-0.1-0.1-0.2-0.1-0.3,0c-0.1,0.1-0.1,0.2,0,0.3L18.7,11.5z"/><path d="M12.5,16.8l-2-2.3c-0.1-0.1-0.2-0.1-0.3,0c-0.1,0.1-0.1,0.2,0,0.3l2,2.3c0,0,0.1,0.1,0.1,0.1c0,0,0.1,0,0.1,0C12.6,17,12.6,16.9,12.5,16.8z"/><path d="M20.3,11.7c0,0,0.1,0,0.1,0l1.4-1.2c0.1-0.1,0.1-0.2,0-0.3c-0.1-0.1-0.2-0.1-0.3,0l-1.4,1.2c-0.1,0.1-0.1,0.2,0,0.3C20.1,11.6,20.2,11.7,20.3,11.7z"/><path d="M24.3,27c-0.1-0.1-0.2-0.1-0.3,0c-0.1,0.1-0.1,0.2,0,0.3l2,2.3c0,0,0.1,0.1,0.1,0.1c0,0,0.1,0,0.1,0c0.1-0.1,0.1-0.2,0-0.3L24.3,27z"/><path d="M23,26.7l-1.4,1.2c-0.1,0.1-0.1,0.2,0,0.3c0,0,0.1,0.1,0.1,0.1c0,0,0.1,0,0.1,0l1.4-1.2c0.1-0.1,0.1-0.2,0-0.3C23.2,26.6,23.1,26.6,23,26.7z"/><path d="M18.3,24.9l-1.4,1.2c-0.1,0.1-0.1,0.2,0,0.3c0,0,0.1,0.1,0.1,0.1c0,0,0.1,0,0.1,0l1.4-1.2c0.1-0.1,0.1-0.2,0-0.3C18.5,24.8,18.4,24.8,18.3,24.9z"/><path d="M12.3,18.1l-1.4,1.2c-0.1,0.1-0.1,0.2,0,0.3c0,0,0.1,0.1,0.1,0.1c0,0,0.1,0,0.1,0l1.4-1.2c0.1-0.1,0.1-0.2,0-0.3C12.5,18.1,12.4,18.1,12.3,18.1z"/></g></g></g></svg>'
+        };
+        return icons[name];
+    };
+    return RHDPSearchOneBox;
+}(HTMLElement));
 var RHDPSearchQuery = (function (_super) {
     __extends(RHDPSearchQuery, _super);
     function RHDPSearchQuery() {
@@ -933,11 +1440,16 @@ var RHDPSearchQuery = (function (_super) {
     RHDPSearchQuery.prototype.search = function (term) {
         var _this = this;
         this.term = term;
+        var searchResults = document.getElementsByTagName('rhdp-search-results')[0];
+        while (searchResults.firstChild && this.from === 0) {
+            searchResults.removeChild(searchResults.firstChild);
+        }
+        searchResults.setAttribute('class', 'loading');
         fetch((_a = ["", "", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", "", ""], this.urlTemplate(_a, this.url, this.term, this.from, this.limit, this.sort, this.productString, this.tagString, this.sysTypeString)))
             .then(function (resp) { return resp.json(); })
             .then(function (data) {
             _this.results = data;
-            history.pushState({}, "Red Hat Developer Program Search: " + _this.term, "?q=" + _this.term);
+            history.pushState({}, "Red Hat Developer Program Search: " + _this.term, "?q=" + decodeURIComponent(_this.term).replace(' ', '+'));
         });
         var _a;
     };
@@ -1010,8 +1522,9 @@ var RHDPSearchResult = (function (_super) {
     function RHDPSearchResult() {
         var _this = _super.call(this) || this;
         _this._url = ['', ''];
-        _this.template = function (strings, url0, url1, title, kind, created, description) {
-            return "<div class=\"result result-search\" >\n        <h4>" + url0 + title + url1 + "</h4>\n        <p class=\"result-info\">\n            <span class=\"caps\">" + kind + "</span>\n            <span>" + created + "</span>\n        </p>\n        <p class=\"result-description\">" + description + "</p>\n    </div>";
+        _this.template = function (strings, url0, url1, title, kind, created, description, premium) {
+            var premiumContent = premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"';
+            return "<div class=\"result result-search\">\n        <h4>" + url0 + title + url1 + "</h4>\n        <p " + premiumContent + ">\n            <span class=\"caps\">" + kind + "</span>\n            <span>" + created + "</span>\n        </p>\n        <p class=\"result-description\">" + description + "</p>\n    </div>";
         };
         return _this;
     }
@@ -1075,6 +1588,18 @@ var RHDPSearchResult = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(RHDPSearchResult.prototype, "premium", {
+        get: function () {
+            return this._premium;
+        },
+        set: function (val) {
+            if (this._premium === val)
+                return;
+            this._premium = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(RHDPSearchResult.prototype, "result", {
         get: function () {
             return this._result;
@@ -1088,6 +1613,7 @@ var RHDPSearchResult = (function (_super) {
             this.computeCreated(val);
             this.computeDescription(val);
             this.computeURL(val);
+            this.computePremium(val);
             this.renderResult();
         },
         enumerable: true,
@@ -1106,7 +1632,7 @@ var RHDPSearchResult = (function (_super) {
         this[name] = newVal;
     };
     RHDPSearchResult.prototype.renderResult = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.url[0], this.url[1], this.title, this.kind, this.created, this.description));
+        this.innerHTML = (_a = ["", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", ""], this.template(_a, this.url[0], this.url[1], this.title, this.kind, this.created, this.description, this.premium));
         var _a;
     };
     RHDPSearchResult.prototype.computeTitle = function (result) {
@@ -1169,6 +1695,13 @@ var RHDPSearchResult = (function (_super) {
             url[1] = '</a>';
         }
         this.url = url;
+    };
+    RHDPSearchResult.prototype.computePremium = function (result) {
+        var premium = false;
+        if (result._type === "rht_knowledgebase_article" || result._type === "rht_knowledgebase_solution") {
+            premium = true;
+        }
+        this.premium = premium;
     };
     return RHDPSearchResult;
 }(HTMLElement));
@@ -1327,6 +1860,7 @@ var RHDPSearchSortPage = (function (_super) {
 }(HTMLElement));
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
+    customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
     customElements.define('rhdp-search-query', RHDPSearchQuery);
     customElements.define('rhdp-search-box', RHDPSearchBox);
     customElements.define('rhdp-search-result-count', RHDPSearchResultCount);

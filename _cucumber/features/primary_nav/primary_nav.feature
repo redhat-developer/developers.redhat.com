@@ -1,24 +1,5 @@
 Feature: Site navigation menu
 
-  Scenario Outline: Search field is visible within the site header.
-    Given I am on the <page> page
-    Then the search field should be displayed within the site header
-    And the max characters for the search box should be "128" characters.
-    And I should placeholder text within the search field "Enter your search term"
-
-    Examples: of developers.redhat.com pages
-      | page         |
-      | Home         |
-      | Technologies |
-      | Resources    |
-      | Downloads    |
-
-  Scenario: Clicking on the Search button in the Nav bar should not do anything when no search term is entered.
-    Given I am on the Home page
-    And the search box is empty
-    When I click on the search button
-    Then nothing will happen and no search will be initiated
-
   @desktop
   Scenario: Primary navigation menu is visible
     Given I am on the Home page
@@ -52,7 +33,7 @@ Feature: Site navigation menu
       | Microservices           |
       | Mobile                  |
       | Web and API Development |
-      | .NET                    |
+      | .NET Core               |
 
   @desktop
   Scenario: TOPICS sub-menu items should link to retrospective pages
@@ -65,7 +46,7 @@ Feature: Site navigation menu
       | DevOps                  | topics/devops                  |
       | Web and API Development | topics/web-and-api-development |
       | Enterprise Java         | topics/enterprise-java         |
-      | .NET                    | topics/dotnet                  |
+      | .NET Core               | topics/dotnet                  |
       | Internet of Things      | topics/iot                     |
       | Microservices           | topics/microservices           |
 
@@ -79,7 +60,7 @@ Feature: Site navigation menu
       | DevOps                  |
       | Web and API Development |
       | Enterprise Java         |
-      | .NET                    |
+      | .NET Core               |
       | Internet of Things      |
 
   @products @desktop

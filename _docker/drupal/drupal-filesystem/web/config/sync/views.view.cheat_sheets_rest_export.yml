@@ -565,9 +565,9 @@ display:
           click_sort_column: value
           type: timestamp
           settings:
-            date_format: medium
-            custom_date_format: ''
-            timezone: ''
+            date_format: custom
+            custom_date_format: c
+            timezone: UTC
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -736,7 +736,7 @@ display:
               raw_output: true
             created:
               alias: ''
-              raw_output: true
+              raw_output: false
             path:
               alias: ''
               raw_output: false

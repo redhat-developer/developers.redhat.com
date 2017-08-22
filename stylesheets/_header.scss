@@ -37,6 +37,10 @@ header.main {
     padding:10px;
   }
 
+  > ul li:focus, > ul li > a:focus {
+    color: $white;
+  }
+
   .has-sub-nav > a.active,
   a.sub-nav-downloads.active{
     color: #ffbb11;
@@ -45,6 +49,18 @@ header.main {
   .has-sub-nav > a:hover,
   a.sub-nav-downloads:hover{
     color: $grey-8;
+  }
+
+  @include tablet-portrait-and-down {
+    .has-sub-nav:hover > a,
+    .has-sub-nav>a:hover,
+    a.sub-nav-downloads:hover {
+      color: $white;
+    }
+    .has-sub-nav:hover > a.active,
+    a.sub-nav-downloads.active:hover {
+      color: #ffbb11 !important;
+    }
   }
   // top level
   & > ul {
@@ -301,12 +317,16 @@ nav.accounts {
             display: none;
           }
         }
+        a:hover, a:focus, a:active {
+          color: $white !important;
+        }
         &.sub-nav-open > a, & > a,  {
           padding-left: 20px;
           text-transform: uppercase;
-          color:white;
+          color: $white;
           background:black;
           border-top: 1px solid $grey-5;
+
         }
       }
     }
