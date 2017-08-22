@@ -71,6 +71,7 @@ body.middleware {
 
   #referral-alert {
     padding-bottom: 0;
+    div.alert-content h3 { text-transform: none; }
   }
 
   @include tablet-landscape-and-down {
