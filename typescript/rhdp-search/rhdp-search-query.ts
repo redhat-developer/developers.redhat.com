@@ -190,6 +190,7 @@ class RHDPSearchQuery extends HTMLElement {
 
         var searchResults = document.getElementsByTagName( 'rhdp-search-results' )[0];
 
+
         while(searchResults.firstChild && this.from === 0){
             searchResults.removeChild(searchResults.firstChild);
         }

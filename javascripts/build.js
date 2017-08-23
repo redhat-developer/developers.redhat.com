@@ -487,6 +487,7 @@ var RHDPSearchApp = (function (_super) {
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore);
         this.addEventListener('sort-change', this.updateSort);
+        this.addEventListener('search-message', this.setMessage);
         document.addEventListener('toggle-modal', this.toggleModal);
         document.addEventListener('facetChange', this.updateFacets);
         /* To Do
@@ -502,7 +503,9 @@ var RHDPSearchApp = (function (_super) {
             this.query.search(this.box.term);
         }
         // If term is blank and results are null on landing, display message
-        this.results.nullResultsMessage();
+        if (term.length == 0) {
+            this.dispatchEvent(new CustomEvent("search-message", { detail: { state: "no-term", message: "Well, this is awkward. No search term was entered yet, so this page is a little empty right now.<p>After you enter a search term in the box above, you will see the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!" }, bubbles: true }));
+        }
     };
     Object.defineProperty(RHDPSearchApp, "observedAttributes", {
         get: function () {
@@ -520,6 +523,11 @@ var RHDPSearchApp = (function (_super) {
         this.query.from = 0;
         this.results.last = 0;
         this.query.search(e.detail ? e.detail.term : this.query.term);
+    };
+    RHDPSearchApp.prototype.setMessage = function (e) {
+        // let emptyQuery = this.querySelector('rhdp-search-app')['emptyQuery'];
+        this.emptyQuery.message = e.detail.message;
+        this.emptyQuery.toggleQueryMessage(e.detail.state);
     };
     RHDPSearchApp.prototype.loadMore = function (e) {
         this.query.from = e.detail.from;
@@ -656,16 +664,29 @@ var RHDPSearchEmptyQuery = (function (_super) {
     function RHDPSearchEmptyQuery() {
         var _this = _super.call(this) || this;
         _this._empty = false;
-        _this.template = "\n        Well, this is awkward. No search term was entered yet, so this page is a little empty right now.\n        <p>After you enter a search term in the box above, you will see\n        the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!</p>";
+        _this._message = '';
+        _this.template = function (strings, message) {
+            return "" + message;
+        };
         return _this;
     }
+    Object.defineProperty(RHDPSearchEmptyQuery.prototype, "message", {
+        get: function () {
+            return this._message;
+        },
+        set: function (val) {
+            if (this._message === val)
+                return;
+            this._message = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(RHDPSearchEmptyQuery.prototype, "empty", {
         get: function () {
             return this._empty;
         },
         set: function (val) {
-            if (this._empty === val)
-                return;
             this._empty = val;
             if (this._empty) {
                 this.style.display = 'block';
@@ -677,12 +698,32 @@ var RHDPSearchEmptyQuery = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    RHDPSearchEmptyQuery.prototype.toggleQueryMessage = function (state) {
+        var app = document.querySelector('rhdp-search-app');
+        switch (state) {
+            case 'no-term': {
+                app['sort'].style.display = 'none';
+                app['results'].style.display = 'none';
+                app['count'].style.display = 'none';
+                this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this.message));
+                this.empty = true;
+                break;
+            }
+            default: {
+                app['sort'].style.display = 'block';
+                app['results'].style.display = 'block';
+                app['count'].style.display = 'block';
+                this.empty = false;
+                break;
+            }
+        }
+        var _a;
+    };
     RHDPSearchEmptyQuery.prototype.connectedCallback = function () {
-        this.innerHTML = this.template;
     };
     Object.defineProperty(RHDPSearchEmptyQuery, "observedAttributes", {
         get: function () {
-            return ['empty'];
+            return ['empty', 'message'];
         },
         enumerable: true,
         configurable: true
@@ -1826,7 +1867,7 @@ var RHDPSearchResults = (function (_super) {
         this.appendChild(item);
     };
     RHDPSearchResults.prototype.renderResults = function (add) {
-        this.nullResultsMessage();
+        this.dispatchEvent(new CustomEvent("search-message", { detail: { state: "standard", message: "" }, bubbles: true }));
         if (!add) {
             while (this.hasChildNodes()) {
                 this.removeChild(this.lastChild);
@@ -1851,21 +1892,6 @@ var RHDPSearchResults = (function (_super) {
             else if (this.querySelector('.moreBtn')) {
                 this.removeChild(this.loadMore);
             }
-        }
-    };
-    RHDPSearchResults.prototype.nullResultsMessage = function () {
-        var app = document.querySelector('rhdp-search-app');
-        if (this._results == null) {
-            app['sort'].style.display = 'none';
-            app['results'].style.display = 'none';
-            app['count'].style.display = 'none';
-            app['emptyQuery'].empty = true;
-        }
-        else {
-            app['sort'].style.display = 'block';
-            app['results'].style.display = 'block';
-            app['count'].style.display = 'block';
-            app['emptyQuery'].empty = false;
         }
     };
     return RHDPSearchResults;

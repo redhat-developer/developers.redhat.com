@@ -1,13 +1,22 @@
 class RHDPSearchEmptyQuery extends HTMLElement {
 
     _empty = false;
+    _message = '';
+
+    get message() {
+        return this._message;
+    }
+
+    set message(val) {
+        if (this._message === val) return;
+        this._message = val;
+    }
 
     get empty() {
         return this._empty;
     }
 
     set empty(val) {
-        if (this._empty === val) return;
         this._empty = val;
         if(this._empty){
             this.style.display = 'block';
@@ -18,22 +27,40 @@ class RHDPSearchEmptyQuery extends HTMLElement {
 
     }
 
+    toggleQueryMessage(state){
+        let app = document.querySelector('rhdp-search-app');
+        switch(state) {
+            case 'no-term': {
+                app['sort'].style.display = 'none';
+                app['results'].style.display = 'none';
+                app['count'].style.display = 'none';
+                this.innerHTML = this.template`${this.message}`;
+                this.empty = true;
+                break;
+            }
+            default: {
+                app['sort'].style.display = 'block';
+                app['results'].style.display = 'block';
+                app['count'].style.display = 'block';
+                this.empty = false;
+                break;
+            }
+        }
+    }
 
     constructor() {
         super();
     }
 
-    template = `
-        Well, this is awkward. No search term was entered yet, so this page is a little empty right now.
-        <p>After you enter a search term in the box above, you will see
-        the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!</p>`;
+    template = (strings, message) => {
+        return `${message}`;
+    };
 
     connectedCallback() {
-        this.innerHTML = this.template;
     }
 
     static get observedAttributes() {
-        return ['empty'];
+        return ['empty', 'message'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

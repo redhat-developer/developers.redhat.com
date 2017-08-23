@@ -137,6 +137,7 @@ class RHDPSearchApp extends HTMLElement {
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore)
         this.addEventListener('sort-change', this.updateSort);
+        this.addEventListener('search-message', this.setMessage);
         document.addEventListener('toggle-modal', this.toggleModal);
         document.addEventListener('facetChange', this.updateFacets);
 
@@ -156,7 +157,9 @@ class RHDPSearchApp extends HTMLElement {
         }
 
         // If term is blank and results are null on landing, display message
-        this.results.nullResultsMessage();
+        if(term.length == 0){
+            this.dispatchEvent(new CustomEvent("search-message",{detail:{state:"no-term",message:"Well, this is awkward. No search term was entered yet, so this page is a little empty right now.<p>After you enter a search term in the box above, you will see the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!"},bubbles:true}));
+        }
 
     }
 
@@ -174,6 +177,12 @@ class RHDPSearchApp extends HTMLElement {
         this.query.from = 0;
         this.results.last = 0;
         this.query.search(e.detail ? e.detail.term : this.query.term);
+    }
+
+    setMessage(e){
+        // let emptyQuery = this.querySelector('rhdp-search-app')['emptyQuery'];
+        this.emptyQuery.message = e.detail.message;
+        this.emptyQuery.toggleQueryMessage(e.detail.state);
     }
 
     loadMore(e) {
