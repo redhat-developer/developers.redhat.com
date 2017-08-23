@@ -1,6 +1,7 @@
 require 'cgi'
 require 'nokogiri'
 require 'fileutils'
+require 'uri'
 require_relative '../default_logger'
 require_relative 'export_urls'
 
@@ -109,8 +110,9 @@ class ExportHtmlPostProcessor
 
       hide_drupal = remove_drupal_host_identifying_markup?(html_doc)
       rewrite_forms = rewrite_form_target_urls?(drupal_host, html_doc, html_file)
+      rewrite_access_links = rewrite_access_redhat_com_links(html_doc, html_file)
 
-      if hide_drupal || rewrite_forms
+      if hide_drupal || rewrite_forms || rewrite_access_links
         @log.info("DOM in file '#{html_file}' has been modified, writing new file to disk.")
         File.open(html_file,'w') do | file |
           file.write(html_doc.to_html)
@@ -165,6 +167,36 @@ class ExportHtmlPostProcessor
     forms_to_modify.size > 0
 
   end
+
+  #
+  # access.redhat.com links are broken when we strip off the trailing "/index.html" to fix the site export structure.
+  # This fixes that.
+  #
+  def rewrite_access_redhat_com_links(html_doc, html_file_name)
+    links_to_modify = html_doc.css("body a[href*=\"access.redhat.com\"]")
+    modified = false
+    links_to_modify.each do | link |
+      if link.attributes['href'].value.include?('documentation')
+
+        uri = URI(link.attributes['href'].value)
+
+        #
+        # Only perform processing on the link if it doesn't already link to a .html file
+        #
+        unless uri.path.to_s.end_with?('.html')
+          uri.path = "#{uri.path.to_s}/index.html"
+          new_href = uri.to_s
+          @log.info("\tModifying documentation link #{link.attributes['href'].to_s} to #{new_href}")
+          link.attributes['href'].value = new_href
+          modified = true
+        end
+      end
+    end
+
+    modified
+
+  end
+
 
   private :final_base_url_location, :locate_index_link_href, :rewrite_links_for_trailing_slash_url_structure, :rewrite_form_target_urls?, :relocate_index_html, :remove_drupal_host_identifying_markup?, :post_process_html_dom
 
