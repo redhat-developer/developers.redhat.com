@@ -33,18 +33,18 @@ module JBoss::Developer::Extensions
                                                      :cache => site.cache,
                                                      :logger => site.log_faraday,
                                                      :searchisko_warnings => site.searchisko_warnings})
-      yml['availableRuntimes'].each do |runtime|
+      yml['availableBomVersions'].each do |runtime|
         # WARNING Hacks below
-        case runtime['labels']['runtime-type']
-        when 'JPP'
+        if runtime['id'].include? 'gatein'
           product = 'portal'
-        when 'EAP'
+        else 'EAP'
           product = 'eap'
-        else
-          next
+
+        # else
+        #   next
         end
 
-        (process_boms runtime, site, product, searchisko) unless runtime['boms'].nil?
+        (process_boms runtime, site, product, searchisko)
         (process_archetype runtime, site, product, searchisko) unless runtime['archetypes'].nil?
       end
     end
@@ -53,7 +53,7 @@ module JBoss::Developer::Extensions
       @bom_page_content ||= %q!.content[data-slug="#{page.bom['id']}"]
   p
     -if page.metadata['replaced_bom']
-      = partial 'bom-replaced_advise.html.slim', {'parent' => page, 'groupId' => page.bom['bom']['groupId'], 'artifactId' => page.bom['bom']['artifactId'], 'replaced_bom' => page.metadata['replaced_bom'], 'replaced_bom_url' => page.metadata['replaced_bom_url']}    
+      = partial 'bom-replaced_advise.html.slim', {'parent' => page, 'groupId' => page.bom['bom']['groupId'], 'artifactId' => page.bom['bom']['artifactId'], 'replaced_bom' => page.metadata['replaced_bom'], 'replaced_bom_url' => page.metadata['replaced_bom_url']}
   p
     = page.bom['bom']['description']
   h3 Import code
@@ -94,12 +94,12 @@ module JBoss::Developer::Extensions
                 &lt;/dependencyManagement>
   = javascripts("developer-materials-bom", true) do
     script src="#{site.base_url}/javascripts/bomadvise.js"!
-      runtime['boms'].each do |bom|
-        if @seen_boms.include? bom['bom']['id']
-          next
-        else
-          @seen_boms << bom['bom']['id']
-        end
+        bom = runtime
+        # if @seen_boms.include? bom['bom']['id']
+        #   next
+        # else
+        #   @seen_boms << bom['bom']['id']
+        # end
         bom_page = ::Awestruct::Page.new(site,
                      ::Awestruct::Handlers::LayoutHandler.new(site,
                        ::Awestruct::Handlers::TiltHandler.new(site,
@@ -123,8 +123,8 @@ module JBoss::Developer::Extensions
           replaced_bom = yml['availableBoms'].select{ |b| b['groupId'] == ga[0] and b['artifactId'] == ga[1] }.first
         end
         metadata = {
-          :title => bom['bom']['name'], 
-          :summary=> bom['bom']['description'], 
+          :title => bom['bom']['name'],
+          :summary=> bom['bom']['description'],
           :commits => commits,
           :boms => [],
           :contributors_email => commits.collect { |c| c[:author_email] }.uniq,
@@ -170,7 +170,6 @@ module JBoss::Developer::Extensions
         bom_page.send('bom=', bom)
         # Add the status and issues
         bom_page.send('status=', 'red')
-      end
     end
 
     def process_archetype(runtime, site, product, searchisko)
