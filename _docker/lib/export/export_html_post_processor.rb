@@ -184,7 +184,8 @@ class ExportHtmlPostProcessor
         # Only perform processing on the link if it doesn't already link to a .html file
         #
         unless uri.path.to_s.end_with?('.html')
-          uri.path = "#{uri.path.to_s}/index.html"
+          new_path = uri.path.end_with?('/') ? "#{uri.path}index.html" : "#{uri.path}/index.html"
+          uri.path = new_path
           new_href = uri.to_s
           @log.info("\tModifying documentation link #{link.attributes['href'].to_s} to #{new_href}")
           link.attributes['href'].value = new_href
