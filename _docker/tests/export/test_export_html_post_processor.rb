@@ -60,6 +60,7 @@ class TestExportHtmlPostProcessor < MiniTest::Test
 
     index_html = get_html_document("#{@export_directory}/index.html")
     assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/index.html',get_link_href(index_html, 'documentation'))
+    assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/index.html',get_link_href(index_html, 'documentation-trailing-slash'))
     assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/index.html#foobar',get_link_href(index_html, 'documentation-with-anchor'))
     assert_equal('https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/1/html/Software_Collections_Guide/mypage.html', get_link_href(index_html, 'documentation-with-html'))
     assert_equal('https://access.redhat.com/security', get_link_href(index_html, 'not-documentation'))
