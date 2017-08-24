@@ -1525,6 +1525,7 @@ var RHDPSearchQuery = (function (_super) {
     RHDPSearchQuery.prototype.search = function (term) {
         var _this = this;
         this.term = term;
+        this.dispatchEvent(new CustomEvent("search-message", { detail: { state: "standard", message: "" }, bubbles: true }));
         var searchResults = document.getElementsByTagName('rhdp-search-results')[0];
         while (searchResults.firstChild && this.from === 0) {
             searchResults.removeChild(searchResults.firstChild);
@@ -1867,7 +1868,6 @@ var RHDPSearchResults = (function (_super) {
         this.appendChild(item);
     };
     RHDPSearchResults.prototype.renderResults = function (add) {
-        this.dispatchEvent(new CustomEvent("search-message", { detail: { state: "standard", message: "" }, bubbles: true }));
         if (!add) {
             while (this.hasChildNodes()) {
                 this.removeChild(this.lastChild);

@@ -68,7 +68,6 @@ class RHDPSearchResults extends HTMLElement {
     }
 
     renderResults(add) {
-        this.dispatchEvent(new CustomEvent("search-message",{detail:{state:"standard",message:""},bubbles: true}));
         if(!add) {
             while (this.hasChildNodes()) {
                 this.removeChild(this.lastChild);
