@@ -454,8 +454,12 @@ rhdp-search-result {
 
     p { margin: 0; 
         color: #424242;
-        font-family: "Overpass","Open Sans",Helvetica,sans-serif; 
+        font-family: "Overpass","Open Sans",Helvetica,sans-serif;
         }
+    .result-info span{
+        font-size: .9rem;
+        color: $grey-6;
+    }
 
     .caps {
         text-transform: uppercase;
