@@ -687,11 +687,12 @@ var RHDPSearchEmptyQuery = (function (_super) {
             return this._empty;
         },
         set: function (val) {
-            this._empty = val;
-            if (this._empty) {
+            if (val) {
+                this._empty = true;
                 this.style.display = 'block';
             }
             else {
+                this._empty = false;
                 this.style.display = 'none';
             }
         },

@@ -17,11 +17,12 @@ class RHDPSearchEmptyQuery extends HTMLElement {
     }
 
     set empty(val) {
-        this._empty = val;
-        if(this._empty){
+        if(val){
+            this._empty = true;
             this.style.display = 'block';
         }
         else{
+            this._empty = false;
             this.style.display = 'none';
         }
 
