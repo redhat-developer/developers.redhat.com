@@ -1,10 +1,11 @@
 class RHDPSearchApp extends HTMLElement {
     constructor() {
         super();
+        this.toggleModal = this.toggleModal.bind(this);
+        this.updateFacets = this.updateFacets.bind(this);
     }
 
     _name = 'Search';
-    //_url = 'http://dcp.stage.jboss.org/v2/rest/search';
     _url;
 
     get name() {
@@ -133,7 +134,7 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
 
-        this.addEventListener('do-search', this.doSearch);
+        this.addEventListener('update-term', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore)
         this.addEventListener('sort-change', this.updateSort);
@@ -188,7 +189,7 @@ class RHDPSearchApp extends HTMLElement {
     }
 
     toggleModal(e) {
-        this.querySelector('rhdp-search-app')['modal'].toggle = e.detail.toggle;
+        this.modal.toggle = e.detail.toggle;
     }
 
     updateSort(e) {
@@ -201,34 +202,33 @@ class RHDPSearchApp extends HTMLElement {
 
     updateFacets(e) {
         var facet = e.detail.facet.cloneNode(true),
-            app = this.querySelector('rhdp-search-app'),
-            len = app['filterObj'].facets.length;
+            len = this.filterObj.facets.length;
         facet.bubble = false;
         facet.active = e.detail.facet.active;
-        app['modal'].setActive(facet, false);
-        app['filters'].setActive(facet, false);
+        this.modal.setActive(facet, false);
+        this.filters.setActive(facet, false);
         for(let i=0; i < len; i++) {
-            var itemLen = app['filterObj'].facets[i].items.length;
+            var itemLen = this.filterObj.facets[i].items.length;
             for(let j=0; j < itemLen; j++) {
-                if(app['filterObj'].facets[i].items[j].key === facet.key) {
-                    app['filterObj'].facets[i].items[j]['active'] = facet.active;
+                if(this.filterObj.facets[i].items[j].key === facet.key) {
+                    this.filterObj.facets[i].items[j]['active'] = facet.active;
                 }
             }
         }
 
         if (facet.active) {
             facet.inline = true;
-            app['active'].addActive(facet, false);
+            this.active.addActive(facet);
         } else {
-            app['active'].filters = app['filterObj'];
-            app['active'].updateActiveFacets();
+            this.active.filters = this.filterObj;
+            this.active.updateActiveFacets();
         }
 
-        app['query'].filters = app['filterObj'];
-        app['query'].from = 0;
-        app['results'].last = 0;
-        app['count'].term = app['box'].term;
-        app['onebox'].term = app['box'].term;
-        app['query'].search(app['box'].term);
+        this.query.filters = this.filterObj;
+        this.query.from = 0;
+        this.results.last = 0;
+        this.count.term = this.box.term;
+        this.onebox.term = this.box.term;
+        this.query.search(this.box.term);
     }
 }

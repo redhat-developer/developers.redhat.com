@@ -55,17 +55,17 @@ class RHDPSearchOneBox extends HTMLElement {
         this._mock = val;
     }
 
-    slotTemplate = (strings, slot) => {
-        return `${slot && slot.url && slot.text ? `<li><a href="${slot.url}">${this.getIcon(slot.icon)}${slot.text}</a></li>` : ''}`;
+    slotTemplate = (strings, slot, id) => {
+        return `${slot && slot.url && slot.text ? `<li><a href="${slot.url}?onebox=${id}">${this.getIcon(slot.icon)}${slot.text}</a></li>` : ''}`;
     }
 
     template = (strings, feature) => {
         return `<div>
             ${feature.heading && feature.heading.url && feature.heading.text ? `<h4><a href="${feature.heading.url}">${feature.heading.text}</a></h4>` : ''}
             ${feature.details ? `<p>${feature.details}</p>` : ''}
-            ${feature.button && feature.button.url && feature.button.text ? `<a href="${feature.button.url}" class="button medium-cta blue">${feature.button.text}</a>` : ''}
+            ${feature.button && feature.button.url && feature.button.text ? `<a href="${feature.button.url}?onebox=${feature.id}" class="button medium-cta blue">${feature.button.text}</a>` : ''}
             ${feature.slots && feature.slots.length > 0 ? `<ul class="slots">
-                ${feature.slots.map(slot =>  this.slotTemplate`${slot}`).join('')}
+                ${feature.slots.map(slot =>  this.slotTemplate`${slot}${feature.id}`).join('')}
             </ul>` : ''}
         </div>`;
     };
