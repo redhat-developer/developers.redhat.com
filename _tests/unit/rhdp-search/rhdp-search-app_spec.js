@@ -2,10 +2,12 @@
 /* global RHDPSearchApp */
 // Test rhdp-search-app component
 
-xdescribe('Given Search Application', function() {
+describe('Given Search Application', function() {
     var wc;
+
     beforeEach(function() {
-        wc = new RHDPSearchApp();
+        document.body.insertBefore(document.createElement('rhdp-search-app'), document.body.firstChild);
+        wc = document.body.firstChild;
     });
 
     afterEach(function() {

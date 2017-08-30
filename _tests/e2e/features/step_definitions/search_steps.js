@@ -178,4 +178,34 @@ module.exports = function () {
         searchPage.open(searchUrl);
         expect(searchPage.isOnSearchPage(), 'Search page was not displayed').to.be.true
     });
+
+    this.Then(/^I (should|should not) see a OneBox for "(.*)" at the top of the results$/, function (negate, product) {
+        if (negate === 'should') {
+            expect(searchPage.oneBox.getText(), `OneBox was not displayed for ${product}`).to.includes(product);
+        } else {
+            expect(searchPage.oneBox.isVisible(), `OneBox should not be displayed for ${product}`).to.be.false;
+        }
+    });
+
+    this.Then(/^I am provided with a "(.*)" OneBox$/, function (product) {
+        searchPage.open();
+        searchPage.searchFor(product.toString());
+    });
+
+    this.Then(/^I select the OneBox Title$/, function () {
+        searchPage.oneBox.click();
+    });
+
+    this.Then(/^I select the View Downloads button$/, function () {
+        searchPage.oneBoxDownLoadBtn.click();
+    });
+
+    this.Then(/^I should see the "(.*)" (Download|Overview|Hello-world|Docs-and-apis|Help) page$/, function (productTitle, pageType) {
+        expect(browser.getTitle(), `${pageType} page for ${productTitle} was not displayed`).to.includes(`${productTitle} ${pageType}`)
+    });
+
+    this.Then(/^I select the oneBox "(.*)" link$/, function (link) {
+        searchPage.clickOneBoxLink(link)
+    });
+
 };

@@ -22,7 +22,7 @@ app.bookDownload = {
         tcDownloadURL.startsWith('https://access.cdn.redhat.com/')) {
       tcDownloadURL = $.encoder.canonicalize(window.location.href.substr(window.location.href.indexOf("tcDownloadURL=") + 14));
 
-      $('.promotion-header').prepend("<div class='alert-box success'><p><a href='"+tcDownloadURL+"'>Click here</a> if your download does not begin automatically.</p></div>")
+      $('.promotion-header').prepend("<div class='alert-box alert-success'><div class='icon'></div><div class='alert-content'><p><a href='"+tcDownloadURL+"'>Click here</a> if your download does not begin automatically.</p></div></div>")
 
       $("a#tcDownloadLink").attr("href", tcDownloadURL);
 

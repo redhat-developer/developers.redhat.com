@@ -442,23 +442,6 @@ body.overlay-open {
   right:10px;
 }
 
-// Alert Boxes
-.alert-box {
-  border:0;
-  &.alert {
-    background-color:#f0ab00;
-  }
-  &.success {
-    background-color:#92d400;
-  }
-  &.warning {
-    background-color:#cc0000;
-  }
-  p {
-    margin-bottom: 0;
-  }
-}
-
 
 @include mobile-landscape-and-down {
   body.overlay-open {

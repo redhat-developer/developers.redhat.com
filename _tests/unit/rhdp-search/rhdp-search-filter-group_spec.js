@@ -1,10 +1,15 @@
 "use strict";
 /* global RHDPSearchFilterGroup */
 
-xdescribe('Search Filter Group', function() {
+describe('Search Filter Group', function() {
     var wc;
     beforeEach(function() {
-        wc = new RHDPSearchFilterGroup();
+        document.body.insertBefore(document.createElement('rhdp-search-filter-group'), document.body.firstChild);
+        wc = document.body.firstChild;
+    });
+
+    afterEach(function() {
+        document.body.removeChild(document.body.firstChild);
     });
 
     describe('Properties', function() {
@@ -25,18 +30,14 @@ xdescribe('Search Filter Group', function() {
             expect(wc.items).toEqual(items);
         });
         it('should have a toggle property', function() {
-            expect(wc.toggle).toBe(false);
-            // expect(wc.querySelector('.group').className).toEqual('group hide');
-            // expect(wc.querySelector('.toggle').className).toEqual('toggle');
-            wc.toggle = true;
             expect(wc.toggle).toBe(true);
-            // expect(wc.querySelector('.group').className).toEqual('group');
-            // expect(wc.querySelector('.toggle').className).toEqual('toggle expand');
+            expect(wc.querySelector('.group').className).toEqual('group');
+            expect(wc.querySelector('.toggle').className).toEqual('toggle expand');
+            wc.toggle = false;
+            expect(wc.toggle).toBe(false);
+            expect(wc.querySelector('.group').className).toEqual('group hide');
+            expect(wc.querySelector('.toggle').className).toEqual('toggle');
+
         });
     });
-
-    describe('Filter Items', function() {
-
-    });
-
 });
