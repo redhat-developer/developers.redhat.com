@@ -1,0 +1,26 @@
+uuid: 7cc76c89-f8aa-4d7c-8de2-7dcef326686f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+name: Books
+type: books
+description: 'Add books to be indexed by the site indexer.'
+help: ''
+new_revision: null
+preview_mode: 1
+display_submitted: false

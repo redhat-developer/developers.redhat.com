@@ -1,0 +1,37 @@
+uuid: a90bd579-5dea-40b1-bbfd-53ac176a9090
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.events.field_description
+    - node.type.events
+  module:
+    - user
+id: node.events.teaser
+targetEntityType: node
+bundle: events
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
+hidden:
+  field_data_tags: true
+  field_description: true
+  field_end_date: true
+  field_event_background_image: true
+  field_event_format: true
+  field_event_image: true
+  field_event_type: true
+  field_more_details: true
+  field_on_homepage: true
+  field_region: true
+  field_site: true
+  field_solution_type: true
+  field_start_date: true
+  field_target_product: true
+  field_title: true

@@ -1,0 +1,61 @@
+uuid: 0b6602c6-5235-4af2-a9b4-e4a2af62ef78
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.connectors.field_featured_connectors
+    - field.field.paragraph.connectors.field_overview_hide_get_started
+    - field.field.paragraph.connectors.field_overview_main_content
+    - field.field.paragraph.connectors.field_overview_url
+    - field.field.paragraph.connectors.field_page_description
+    - paragraphs.paragraphs_type.connectors
+  module:
+    - text
+id: paragraph.connectors.default
+targetEntityType: paragraph
+bundle: connectors
+mode: default
+content:
+  field_featured_connectors:
+    weight: 3
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_overview_hide_get_started:
+    weight: 0
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_overview_main_content:
+    weight: 1
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_overview_url:
+    weight: 2
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_page_description:
+    weight: 4
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  created: true
+  uid: true

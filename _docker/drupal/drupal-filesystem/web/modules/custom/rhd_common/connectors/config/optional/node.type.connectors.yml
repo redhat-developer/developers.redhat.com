@@ -1,0 +1,27 @@
+uuid: 6fc451c0-29b4-41b0-9726-134264304ea3
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+name: Connectors
+type: connectors
+description: 'Connectors for JavaScript rendering'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

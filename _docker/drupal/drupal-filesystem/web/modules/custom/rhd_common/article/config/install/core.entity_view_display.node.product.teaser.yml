@@ -1,0 +1,46 @@
+uuid: 8e77b825-0d09-40dc-9759-9335a23fdf61
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.product.field_product_category
+    - field.field.node.product.field_product_machine_name
+    - field.field.node.product.field_product_pages
+    - field.field.node.product.field_product_short_name
+    - field.field.node.product.field_product_summary
+    - field.field.node.product.field_product_technology_group
+    - field.field.node.product.field_url_product_name
+    - node.type.product
+  module:
+    - user
+id: node.product.teaser
+targetEntityType: node
+bundle: product
+mode: teaser
+content:
+  field_product_short_name:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  links:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  workbench_moderation_control:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_product_category: true
+  field_product_machine_name: true
+  field_product_pages: true
+  field_product_summary: true
+  field_product_technology_group: true
+  field_url_product_name: true

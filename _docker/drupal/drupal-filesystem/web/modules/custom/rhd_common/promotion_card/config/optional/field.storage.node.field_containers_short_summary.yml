@@ -1,0 +1,22 @@
+uuid: 0ce7c6a2-cae1-4bcb-ac04-4f2e89a90dbd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+_core:
+  default_config_hash: KJq7zOD8THoelAW0Nx_suvCAviy53NqB20aU42N7gjA
+id: node.field_containers_short_summary
+field_name: field_containers_short_summary
+entity_type: node
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

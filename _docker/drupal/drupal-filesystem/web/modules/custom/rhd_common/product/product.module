@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains product.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function product_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the product module.
+    case 'help.page.product':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHDP Product Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains events.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function events_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the events module.
+    case 'help.page.events':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHDP Events Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

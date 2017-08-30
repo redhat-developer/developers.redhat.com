@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains connectors.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function connectors_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the connectors module.
+    case 'help.page.connectors':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHDP Connectors Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains cheat_sheet.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function cheat_sheet_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the cheat_sheet module.
+    case 'help.page.cheat_sheet':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Red Hat Developers Cheat Sheet Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

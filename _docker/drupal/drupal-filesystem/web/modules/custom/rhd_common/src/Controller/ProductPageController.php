@@ -209,7 +209,6 @@ WHERE node_revision__field_product_pages.entity_id = node_revision.nid
   private function findProduct($url_name) {
     $query = $this->entityQuery->get('node', 'AND');
     $query->condition('field_url_product_name', $url_name)
-      ->isNotDeleted()// We don't want deleted stuff either
       ->allRevisions();
     $rids = $query->execute();
 

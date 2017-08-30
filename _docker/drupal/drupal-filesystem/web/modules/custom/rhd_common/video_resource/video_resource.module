@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains video_resource.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function video_resource_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the video_resource module.
+    case 'help.page.video_resource':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('RHDP video_resource Content Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}
