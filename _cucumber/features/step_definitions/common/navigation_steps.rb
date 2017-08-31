@@ -29,10 +29,6 @@ Given(/^I am on the ([^"]*) page$/) do |page|
   end
 end
 
-When(/^I click the Logout link$/) do
-  @current_page.click_logout
-end
-
 Given(/^I tap on ([^"]*) menu item$/) do |menu_item|
   if menu_item.eql?('Menu')
     @current_page.toggle_menu

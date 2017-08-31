@@ -9,6 +9,8 @@ ENV JAVA_HOME /usr/java/latest
 
 RUN groupadd -g 1000 e2e \
     && useradd -g e2e -m -s /bin/bash -u 1000 e2e
+RUN npm install -g allure-commandline
+
 USER e2e
 WORKDIR /home/e2e
 COPY package.json ./
