@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.promotion_page.body
     - field.field.node.promotion_page.field_call_to_action_link
+    - field.field.node.promotion_page.field_exclude_from_search
     - field.field.node.promotion_page.field_mail_to_link
     - field.field.node.promotion_page.field_media_asset
     - field.field.node.promotion_page.field_promotion_page_left_image
@@ -37,6 +38,16 @@ content:
       target: '0'
     third_party_settings: {  }
     type: link
+    region: content
+  field_exclude_from_search:
+    weight: 106
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_mail_to_link:
     weight: 104
