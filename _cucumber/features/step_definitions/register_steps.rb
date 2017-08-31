@@ -35,55 +35,6 @@ When(/^I complete the registration form, selecting my country as "(.*)"$/) do |c
   end
 end
 
-Given(/^I am a (Developer.redhat.com||RHD|Customer Portal|Openshift) registered site visitor(?: (with|without) a phone number)?$/) do |persona, phone_number|
-  if phone_number == 'without'
-    @site_user = SiteUser.new
-    @site_user.create('with_missing_phone')
-  else
-    @site_user = SiteUser.new
-    if persona == 'Developer.redhat.com'
-      # hardcoded RHD site visitor due to export hold issues.
-      @site_user.hardcoded_rhd_user
-    else
-      @site_user.create(persona.downcase.gsub(' ', '_'))
-    end
-  end
-end
-
-When(/^I try to register with an invalid email address$/) do
-  @site_user = SiteUser.new
-  @site_user.generate
-  @site_user.details[:email] = 'email.co.uk'
-  on RegistrationPage do |page|
-    page.fill_in_form(@site_user.details)
-    page.create_account
-  end
-end
-
-When(/^I try to register with an existing RHD registered email$/) do
-  @site_user = SiteUser.new
-  @site_user.generate
-  @site_user.details[:email] = 'uk.redhat.test.user+full-site-user@gmail.com'
-
-  on RegistrationPage do |page|
-    page.fill_in_form(@site_user.details)
-  end
-end
-
-When(/^I register a new account using my GitHub account$/) do
-  @github_admin = GitHubAdmin.new('rhdScenarioOne', 'P@$$word01')
-  @site_user = SiteUser.new
-  @site_user.generate
-  @github_admin.update_profile("#{@site_user.details[:first_name].upcase} #{@site_user.details[:last_name].upcase}", @site_user.details[:email], @site_user.details[:company_name])
-  on RegistrationPage do |page|
-    page.click_register_with_github
-  end
-  on GitHubPage do |page|
-    page.login_with('rhdScenarioOne', 'P@$$word01')
-    page.authorize_app
-  end
-end
-
 When(/^I link a GitHub account to my existing account$/) do
   @github_admin = GitHubAdmin.new('rhdScenarioTwo', 'P@$$word01')
 
@@ -130,15 +81,6 @@ When(/^I try to register using a GitHub account that contains missing profile in
   on GitHubPage do |page|
     page.login_with('rhdalreadyregistered02', 'P@$$word01')
     page.authorize_app
-  end
-end
-
-When(/^I complete the registration form$/) do
-  @site_user = SiteUser.new
-  @site_user.generate
-  on RegistrationPage do |page|
-    page.fill_in_form(@site_user.details)
-    page.create_account
   end
 end
 
@@ -235,30 +177,8 @@ When(/^I try to enter passwords that do not match$/) do
   end
 end
 
-Then(/^I should see a "([^"]*)" error with "([^"]*)"$/) do |field, field_warning|
-  on RegistrationPage do |page|
-    expect(page.send("#{field.gsub(' ', '_')}_error")).to eq(field_warning)
-  end
-end
-
 Then(/^I should see the Registration page$/) do
   on RegistrationPage
-end
-
-When(/^I try to register with an existing OpenShift registered email$/) do
-  @site_user = SiteUser.new
-  @site_user.generate
-  on RegistrationPage do |page|
-    @site_user.details[:email] = 'velias+emailveriftest@redhat.com'
-    page.fill_in_form(@site_user.details)
-  end
-end
-
-And(/^I verify my email address$/) do
-  verification_email = get_email(@site_user.details[:email])
-  expect(verification_email.to_s).to include('email-verification?')
-  close_and_reopen_browser
-  @browser.goto(verification_email)
 end
 
 Then(/^I should receive an email containing a verify email link$/) do

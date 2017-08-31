@@ -1,4 +1,4 @@
-const SiteNav = require("../../support/pages/home.page");
+const SiteNav = require("../support/pages/Home.page");
 const siteNav = new SiteNav();
 
 module.exports = function () {

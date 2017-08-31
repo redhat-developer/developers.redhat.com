@@ -1,5 +1,5 @@
-const SearchPage = require("../../support/pages/search.page");
-const HomePage = require("../../support/pages/home.page");
+const SearchPage = require("../support/pages/Search.page");
+const HomePage = require("../support/pages/Home.page");
 const searchPage = new SearchPage;
 const homePage = new HomePage;
 

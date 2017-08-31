@@ -1,25 +1,3 @@
-Then(/^I should be asked to fill in mandatory information with a message "([^"]*)"$/) do |message|
-  on AdditionalActionPage do |page|
-    expect(page.feedback).to eq(message)
-  end
-end
-
-When(/^I accept Red Hat Developer Program Terms & Conditions and Red Hat Subscription Agreement and proceed$/) do
-  on AdditionalActionPage do |page|
-    page.accept_tac1
-    page.accept_tac2
-    page.click_submit
-  end
-end
-
-When(/^I complete the additional action required page and proceed$/) do
-  on AdditionalActionPage do |page|
-    page.fill_in(@site_user.details)
-    page.accept_all_terms if page.all_terms.present?
-    page.click_submit
-  end
-end
-
 When(/^I add an email address that is already RHD registered$/) do
   on AdditionalActionPage do |page|
     page.enter_email(@site_user.details[:email])

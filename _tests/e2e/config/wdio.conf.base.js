@@ -24,15 +24,17 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
 } else {
     logLevel = 'silent';
 }
+const faker = require('faker');
+process.env.SESSION_ID = faker.random.number();
 
 exports.config = {
 
     specs: [
-        'features/*.feature', 'features/*/*.feature'
+        'features/*/*.feature'
     ],
 
     exclude: [
-        'support/pages/*.page.js', 'support/sections/*.section.js'
+        'features/support/pages/*.page.js', 'features/support/sections/*.section.js'
     ],
 
     sync: true,
@@ -72,7 +74,7 @@ exports.config = {
     // reporters: ['dot'],//
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['./features/step_definitions/'], // <string[]> (file/dir) require files before executing features
+        require: ['./features/step_definitions/', './features/support/hooks.js'], // <string[]> (file/dir) require files before executing features
         backtrace: false, // <boolean> show full backtrace for errors
         compiler: [], // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
         dryRun: false, // <boolean> invoke formatters without executing steps
@@ -108,7 +110,7 @@ exports.config = {
     // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
     // resolved to continue.
 
-    before: function() {
+    before: function () {
         /**
          * Setup the Chai assertion framework
          */
@@ -117,6 +119,7 @@ exports.config = {
         global.expect = chai.expect;
         global.assert = chai.assert;
         global.should = chai.should();
-    },
 
+
+    }
 };
