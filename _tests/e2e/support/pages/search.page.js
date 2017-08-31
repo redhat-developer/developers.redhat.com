@@ -35,6 +35,8 @@ class SearchPage extends mixin(BasePage, NavigationBar) {
 
     get resultSort () { return $('rhdp-search-sort-page > p > select'); }
 
+    get emptySearch () { return $('rhdp-search-empty-query')}
+
     resultCount () { return $('//rhdp-search-result-count').getText(); }
 
     loadMoreButton () { return $('.moreBtn'); }

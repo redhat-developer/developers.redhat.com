@@ -187,8 +187,10 @@ class RHDPSearchQuery extends HTMLElement {
 
     search(term) {
         this.term = term;
+        this.dispatchEvent(new CustomEvent("search-message",{detail:{state:"standard",message:""},bubbles: true}));
 
         var searchResults = document.getElementsByTagName( 'rhdp-search-results' )[0];
+
 
         while(searchResults.firstChild && this.from === 0){
             searchResults.removeChild(searchResults.firstChild);

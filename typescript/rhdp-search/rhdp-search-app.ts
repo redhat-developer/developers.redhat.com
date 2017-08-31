@@ -50,6 +50,7 @@ class RHDPSearchApp extends HTMLElement {
     onebox = new RHDPSearchOneBox();
     results = new RHDPSearchResults();
     sort = new RHDPSearchSortPage();
+    emptyQuery = new RHDPSearchEmptyQuery();
 
     filterObj = {
         term:'', 
@@ -119,7 +120,7 @@ class RHDPSearchApp extends HTMLElement {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
-        
+
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
@@ -130,11 +131,13 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
+        this.querySelector('.large-18').appendChild(this.emptyQuery);
 
         this.addEventListener('do-search', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore)
         this.addEventListener('sort-change', this.updateSort);
+        this.addEventListener('search-message', this.setMessage);
         document.addEventListener('toggle-modal', this.toggleModal);
         document.addEventListener('facetChange', this.updateFacets);
 
@@ -143,6 +146,7 @@ class RHDPSearchApp extends HTMLElement {
         */
         var loc = window.location.href.split('?'),
             term = loc.length > 1 ? loc[1].split('=')[1] : '';
+
         if (term.length > 0) {
             term = term.replace(/\+/g, '%20');
             term = decodeURIComponent(term);
@@ -151,6 +155,12 @@ class RHDPSearchApp extends HTMLElement {
             this.count.term = term;
             this.query.search(this.box.term);
         }
+
+        // If term is blank and results are null on landing, display message
+        if(term.length == 0){
+            this.dispatchEvent(new CustomEvent("search-message",{detail:{state:"no-term",message:"Well, this is awkward. No search term was entered yet, so this page is a little empty right now.<p>After you enter a search term in the box above, you will see the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!"},bubbles:true}));
+        }
+
     }
 
     static get observedAttributes() { 
@@ -169,12 +179,19 @@ class RHDPSearchApp extends HTMLElement {
         this.query.search(e.detail ? e.detail.term : this.query.term);
     }
 
+    setMessage(e){
+        // let emptyQuery = this.querySelector('rhdp-search-app')['emptyQuery'];
+        this.emptyQuery.message = e.detail.message;
+        this.emptyQuery.toggleQueryMessage(e.detail.state);
+    }
+
     loadMore(e) {
         this.query.from = e.detail.from;
         this.query.search(this.query.term);
     }
 
     setResults(e) {
+        // this.results.nullResultsMessage(this);
         if(this.query.from === 0) {
             this.results.results = e.detail.results;
         } else {
@@ -229,4 +246,5 @@ class RHDPSearchApp extends HTMLElement {
         app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
     }
+
 }
