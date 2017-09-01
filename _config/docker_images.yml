@@ -13,7 +13,7 @@
   image_url: https://static.jboss.org/hawkular/images/hawkular_200x150.png
   images:
     - name: jboss/hawkular-aio
-      path: hawkular/blob/master/hawkular-aio
+      path: hawkular-apm/blob/master/hawkular-apm-server
       description: Runs with all dependencies (Including an embedded Cassandra)
     
 - name: Keycloak
@@ -109,15 +109,6 @@
       path: forge/blob/master
       description: JBoss Forge, ready to use!
 
-- name: Nodyn
-  description: Nodyn is a Node.js compatible framework, running on the JVM powered by the DynJS Javascript runtime.
-  url: http://nodyn.io/
-  image_url: https://static.jboss.org/jca/images/jca_200x150.png
-  images:
-    - name: jboss/nodyn
-      path: nodyn/blob/master
-      description: Nodyn, ready to use!
-
 - name: apiman
   description: Open Source API Management. The apiman project brings an open source development methodology to API Management, coupling a rich API design & configuration layer with a blazingly fast runtime.
   url: http://apiman.io/
@@ -142,5 +133,5 @@
   image_url: https://static.jboss.org/teiid/images/teiid_200x150.png
   images: 
     - name: jboss/teiid-wildfly
-      path: teiid/blob/master/teiid-wildfly
+      path: teiid/blob/master
       description: Teiid on WildFly
