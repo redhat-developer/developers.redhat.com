@@ -75,6 +75,10 @@ class RunTestOptions
         test_configuration[:cucumber_tags] = cucumber_tags
       end
 
+      opts.on('--kc', 'Run the KeyCloak e2e tests') do
+        test_configuration[:keycloak] = true
+      end
+
       #
       # Broken link checking commandline options
       #
@@ -209,12 +213,22 @@ class RunTestOptions
       # for running tests via browserstack inside of docker
       test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"
     elsif test_configuration[:docker]
-      # for running tests inside of docker and not specifying browserstack option
+      # for running tests inside of docker using docker-selenium
       test_configuration[:browser_count] = 2 if test_configuration[:browser_count].nil?
-      test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
+      if test_configuration[:keycloak]
+        bind_environment_variable('KEYCLOAK_E2E', 'true')
+        test_configuration[:run_tests_command] = "npm run e2e:kc:docker -- #{run_tests_command}"
+      else
+        test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
+      end
     else
       # run tests via a local browser
-      test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e -- #{run_tests_command}"
+      if test_configuration[:keycloak]
+        bind_environment_variable('KEYCLOAK_E2E', 'true')
+        test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e:kc -- #{run_tests_command}"
+      else
+        test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e -- #{run_tests_command}"
+      end
     end
   end
 

@@ -3,22 +3,33 @@
   "version": "1.0.0",
   "description": "developers.redhat.com e2e tests",
   "scripts": {
-    "e2e": "wdio config/wdio.conf.local.js",
-    "e2e:docker": "wdio config/wdio.conf.docker.js",
-    "e2e:browserstack": "wdio config/wdio.conf.browserstack.js",
+    "e2e": "wdio website/config/wdio.conf.local.js",
+    "e2e:docker": "wdio website/config/wdio.conf.docker.js",
+    "e2e:browserstack": "wdio website/config/wdio.conf.browserstack.js",
+    "e2e:kc": "wdio keycloak/config/wdio.conf.keycloak.local.js",
+    "e2e:kc:docker": "wdio keycloak/config/wdio.conf.keycloak.docker.js",
     "lint": "eslint ."
   },
   "author": "Red Hat Inc.",
   "license": "",
   "devDependencies": {
-    "webdriverio": "4.8.0",
+    "asyncawait": "1.0.3",
     "chai": "4.0.1",
+    "faker": "4.1.0",
+    "follow-redirects": "^1.2.4",
+    "imap-simple": "3.2.0",
+    "request": "^2.81.0",
     "selenium-standalone": "6.5.0",
+    "sync-request": "4.1.0",
     "wdio-browserstack-service": "0.1.4",
     "wdio-cucumber-framework": "0.3.1",
     "wdio-junit-reporter": "0.3.0",
     "wdio-selenium-standalone-service": "0.0.9",
     "wdio-spec-reporter": "0.1.0",
+    "webdriverio": "4.8.0",
     "xmultiple": "1.0.0"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
   }
 }

@@ -19,6 +19,7 @@ services:
       - RHD_JS_DRIVER
       - RHD_VERBOSE_OUTPUT
       - CUCUMBER_TAGS
+      - RHD_BASE_URL
 
   selhub:
     image: selenium/hub:3.4.0-einsteinium

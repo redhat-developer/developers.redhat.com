@@ -77,9 +77,11 @@ class NodeJenkinsTestRunner
   #
   def build_e2e_run_tests_command(profile)
     command = "ruby _tests/run_tests.rb --e2e --use-docker --base-url=#{@host_to_test}"
-    github_sha1 = read_env_variable('ghprbActualCommit')
+    github_sha1   = read_env_variable('ghprbActualCommit')
     cucumber_tags = read_env_variable('CUCUMBER_TAGS')
+    keycloak_e2e  = read_env_variable('KEYCLOAK_E2E')
     command += " --update-github-status=#{github_sha1}" if github_sha1
+    command += ' --kc' if keycloak_e2e
     command += ' --browser=iphone_6' if profile == 'mobile'
     command += " --profile=#{profile}"
     command += ' --reporters=junit'
