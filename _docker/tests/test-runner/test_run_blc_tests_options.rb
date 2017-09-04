@@ -27,7 +27,7 @@ class TestRunTestOptions < MiniTest::Test
     assert_equal('bundle exec blinkr -c blinkr.yaml -u http://foo.com',
                  test_configuration[:run_tests_command])
     assert_equal('123', ENV['github_status_sha1'])
-    assert_equal('FE:broken-link-checks', ENV['github_status_context'])
+    assert_equal('broken-link-checks', ENV['github_status_context'])
     assert_equal('true', ENV['github_status_enabled'])
   end
 
