@@ -10,7 +10,7 @@ var dockerConfig = Object.assign(baseConfig, {
     host: process.env.NODE_SELENIUM_HOST,
 
     // set maxInstance for all browsers: As we increase the tests, we increase this for speed.
-    maxInstances: 10,
+    maxInstances: 5,
     capabilities: [browserCaps],
 
 });

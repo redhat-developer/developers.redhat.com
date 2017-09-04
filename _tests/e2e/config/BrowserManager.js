@@ -9,7 +9,7 @@ class BrowserManager {
         } else if (browser === 'firefox') {
             console.log('e2e tests running using firefox browser');
             return {
-                maxInstances: 10,
+                maxInstances: 5,
                 browserName: 'firefox',
                 "acceptInsecureCerts": true,
             }
@@ -22,7 +22,7 @@ class BrowserManager {
         if (browser === 'headless') {
             console.log(`e2e tests running using ${browser} Chrome browser`);
             return {
-                maxInstances: 10,
+                maxInstances: 5,
                 browserName: 'chrome',
                 chromeOptions: {
                     args: ['--headless', '--disable-gpu', '--window-size=1280,800'],
@@ -33,14 +33,14 @@ class BrowserManager {
         } else if (browser === 'desktop') {
             console.log(`e2e tests running using Chrome ${browser} browser`);
             return {
-                maxInstances: 10,
+                maxInstances: 5,
                 browserName: 'chrome',
                 "acceptInsecureCerts": true,
             }
         } else {
             console.log(`e2e tests running using a Chrome ${browser} emulated browser`);
             return {
-                maxInstances: 10,
+                maxInstances: 5,
                 browserName: 'chrome',
                 "acceptInsecureCerts": true,
                 chromeOptions: { mobileEmulation: { deviceName: browser } }

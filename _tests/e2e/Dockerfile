@@ -9,21 +9,32 @@ RUN curl --junk-session-cookies --insecure --location --header "Cookie: oracleli
     alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
 ENV JAVA_HOME /usr/java/latest
 
-RUN yum install -y liberation-mono-fonts \
-    liberation-narrow-fonts \
-    liberation-sans-fonts \
-    liberation-serif-fonts \
-    ruby \
-    nodejs \
-    gcc-c++ \
-    make
+RUN yum install -y  epel-release gcc gcc-c++ git libcurl-devel libffi-devel libtool libxml2 libxml2-devel libxslt \
+    libxslt-devel libyaml-devel openssl-devel patch readline-devel ruby-devel tar which wget nodejs
 
-RUN gem install bundler
+WORKDIR /tmp
+RUN wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz \
+    && tar -xzf /tmp/ruby-2.1.2.tar.gz \
+    && cd ruby-2.1.2/ \
+    && ./configure --disable-install-doc \
+    && make \
+    && make install \
+    && rm -rf /tmp/*
+
+RUN wget http://production.cf.rubygems.org/rubygems/rubygems-2.4.1.tgz \
+    && tar -zxf /tmp/rubygems-2.4.1.tgz \
+    && cd /tmp/rubygems-2.4.1 \
+    && ruby setup.rb \
+    && rm -rf /tmp/* \
+    && echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+
+RUN gem install bundler --no-rdoc --no-ri
+RUN gem install octokit -v 4.6.2 --no-rdoc --no-ri
+
 RUN groupadd -g 1000 e2e \
     && useradd -g e2e -m -s /bin/bash -u 1000 e2e
 USER e2e
 WORKDIR /home/e2e
 COPY package.json ./
 RUN npm install
-RUN gem install octokit
 ENV PATH /home/e2e/node_modules/.bin:/usr/java/latest/bin:$PATH
