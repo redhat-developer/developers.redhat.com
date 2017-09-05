@@ -54,10 +54,18 @@ class RHDPSearchURL extends HTMLElement {
 
     constructor() {
         super();
+
+        this._changeAttr = this._changeAttr.bind(this);
     }
 
     connectedCallback() {
-        
+        top.addEventListener('term-change', this._changeAttr);
+        top.addEventListener('filter-item-change', this._changeAttr);
+        top.addEventListener('filter-group-toggle', this._changeAttr);
+        top.addEventListener('filter-group-more-toggle', this._changeAttr);
+        top.addEventListener('sort-change', this._changeAttr);
+        top.addEventListener('load-more', this._changeAttr);
+        top.addEventListener('search-complete', this._changeAttr);
     }
 
     static get observedAttributes() { 
@@ -66,6 +74,25 @@ class RHDPSearchURL extends HTMLElement {
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
+    }
+
+    _changeAttr(e) {
+        switch (e.type) {
+            case 'term-change':
+                if (e.detail && e.detail.term) {
+                    this.term = e.detail.term;
+                }
+                break;
+            case 'filter-item-change': //detail.facet
+                break;
+            case 'sort-change': // detail.sort
+                break;
+            case 'load-more': // detail.qty
+                break;
+            case 'search-complete': // build querystring params
+                break;
+        }
+        
     }
 
     

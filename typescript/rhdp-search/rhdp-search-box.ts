@@ -64,7 +64,7 @@ class RHDPSearchBox extends HTMLElement {
     }
 
     doSearch() {
-        this.dispatchEvent(new CustomEvent('update-term', {
+        this.dispatchEvent(new CustomEvent('term-change', {
             detail: { 
                 term: this.term 
             }, 

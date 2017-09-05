@@ -35,7 +35,7 @@ class RHDPSearchFilterItem extends HTMLElement {
         if(this.active) { this.setAttribute('active','active'); } 
         else { this.removeAttribute('active'); }
         this.innerHTML = this.template`${this.name}${this.key}${this.active}`;
-        this.dispatchEvent(new CustomEvent('facetChange', {detail: {facet: this}, bubbles: this.bubble}));
+        this.dispatchEvent(new CustomEvent('filter-item-change', {detail: {facet: this}, bubbles: this.bubble}));
         this.bubble = true;
     }
     get value() {

@@ -8,7 +8,6 @@ class RHDPSearchFilterGroup extends HTMLElement {
     get key() {
         return this._key;
     }
-
     set key(val) {
         if (this._key === val) return;
         this._key = val;
@@ -17,7 +16,6 @@ class RHDPSearchFilterGroup extends HTMLElement {
     get name() {
         return this._name;
     }
-
     set name(val) {
         if (this._name === val) return;
         this._name = val;
@@ -26,7 +24,6 @@ class RHDPSearchFilterGroup extends HTMLElement {
     get items() {
         return this._items;
     }
-
     set items(val) {
         if (this._items === val) return;
         this._items = val;
@@ -35,7 +32,6 @@ class RHDPSearchFilterGroup extends HTMLElement {
     get toggle() {
         return this._toggle;
     }
-
     set toggle(val) {
         if (this._toggle === val) return;
         this._toggle = val;
@@ -55,6 +51,8 @@ class RHDPSearchFilterGroup extends HTMLElement {
 
     constructor() {
         super();
+
+        this._filterChange = this._filterChange.bind(this);
     }
 
     template = (strings, name) => {
@@ -80,6 +78,9 @@ class RHDPSearchFilterGroup extends HTMLElement {
         });
 
         this.toggle = true;
+
+        top.addEventListener('filter-item-change', this._filterChange);
+        this.addEventListener('filter-item-change', this._filterChange);
     }
 
     static get observedAttributes() { 
@@ -88,6 +89,24 @@ class RHDPSearchFilterGroup extends HTMLElement {
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
+    }
+
+    _filterChange(e) {
+        if (e.detail && e.detail.facet) {
+            if (e.detail.facet.group) {
+                if(e.detail.facet.group === this.key) {
+                    let item = <RHDPSearchFilterItem>this.querySelector(`rhdp-search-filter-item[key=filter-item-${e.detail.facet.key}]`);
+                    item.bubble = false;
+                    item.active = e.detail.facet.active;
+                }
+            } else {
+                e.stopPropagation();
+                let facet = e.detail.facet;
+                facet.group = this.key;
+                this.dispatchEvent(new CustomEvent('filter-item-change', {detail: {facet: facet}, bubbles: true}));
+            }
+        }
+        return e;
     }
 
     renderItems() {
