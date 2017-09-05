@@ -3,11 +3,15 @@
     margin: 0;
     padding: 0;
   }
+  input[type] {
+    height: 3.2em;
+    padding-top: 1.2em;
+  }
 
   select,
   textarea,
   input {
-    padding: 12px 20px;
+    padding: 5px 15px;
     
     &:focus {
       border: 1px solid $gray;
@@ -17,7 +21,9 @@
     &.filled,
     &:focus {
       & + label {
-        bottom: 100%;
+        bottom: 35px;
+        font-size: 12px;
+        color: #8c8f91;
       }
     }
 
@@ -34,11 +40,12 @@
 
   textarea {
     overflow: auto;
+    padding-top: 2.3em;
     & + label {
       bottom: 100%;
       transform: translateY(150%);
     }
-
+    &.filled,
     &:focus {
       background-color: #fff;
     }
@@ -46,18 +53,18 @@
     &.filled + label,
     &:focus + label {
       transform: translateY(50%);
+      top: 0;
+      bottom: unset;
     }
   }
 
   label {
     position: absolute;
     bottom: 50%;
-    left: 20px;
+    left: 15px;
     z-index: 10;
-    padding: 2px;
     font-size: 14px;
     transform: translateY(50%);
-    background-color: #fff;
     transition: ease-out .15s;
     transition-property: bottom, color, transform;
     cursor: text;

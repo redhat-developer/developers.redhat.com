@@ -3,7 +3,7 @@ FROM developer.redhat.com/ruby:2.0.0
 ARG http_proxy
 ARG https_proxy
 
-RUN git clone --recursive https://github.com/robpblake/httrack.git /httrack \
+RUN git clone --recursive https://github.com/redhat-developer/rhdp-httrack.git /httrack \
     && cd /httrack \
     && git checkout rhd-patch-for-export
 

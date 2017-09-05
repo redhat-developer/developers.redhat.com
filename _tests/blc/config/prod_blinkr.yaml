@@ -1,6 +1,5 @@
 verbose: true
 base_url: https://developers.redhat.com
-
 skips:
   - !ruby/regexp /^https?:\/\/localhost:(8|9)\d{3}.*/
   - !ruby/regexp /^https?:\/\/127.0.0.1:(8|9)\d{3}.*/
@@ -21,18 +20,31 @@ skips:
   - !ruby/regexp /^https:\/\/devstudio.jboss.com\/central\/install\?connectors=org.jboss.tools.aerogear.hybrid+/
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/Security\+Token\+Server\+%28STS%29+/
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
+  # Heinze has agreed for us to ignore the following:
+  - !ruby/regexp /^https:\/\/developers\.redhat\.com\/variants\/.*/
+  - !ruby/regexp /^https:\/\/developer\.jboss\.org\/people\/Darrin\/.*/
+  - !ruby/regexp /^https:\/\/github\.com\/jboss\-developer\/jboss\-jdg\-quickstarts\/tree\/.*/
+  - !ruby/regexp /^https:\/\/github\.com\/jboss\-fuse\/quickstarts\/tree\/c6243b5\/.*/
+  - !ruby/regexp /^http:\/\/www\.\jboss\.org\/jdf\/qcleuickstarts\/jboss\-as\-\quickstart\/guide\/.*/
+  - !ruby/regexp /^..\/camel\-.*/
+  - !ruby/regexp /^https:\/\/access\.redhat\.com\/site\/documentation\/JBoss_Fuse$/
+  - !ruby/regexp /^..\/jboss\-javaee\-6_0\-with\-hibernate\-eap62\/index\/index\-2\.html$/
+  - !ruby/regexp /^..\/jboss\-javaee\-6_0\-with\-deltaspike\-wfk\-24\/index\/index\-2\.html$/
+  - !ruby/regexp /^http:\/\/dl\.dropbox\.com\/u\/65660684\/640px\-Roy_Thomson_Hall_Toronto.jpg$/
+  - !ruby/regexp /^http:\/\/vimeo\.com\/ericschabell\/bpmsuite\-fuse\-integraiton\-demo\-run$/
+  - !ruby/regexp /^https:\/\/github\.com\/jboss\-dockerfiles\/hawkular\/blob\/master\/hawkular\-aio\/README.md$/
 
 ignores:
   - code: 202
   - code: 203
   - code: 403
   - code: 502
+  - code: 999
   # This is not an error in real browsers.It is a known issue with PhantomJS https://github.com/ariya/phantomjs/issues/12750
   - url: !ruby/regexp /https:\/\/f\.vimeocdn\.com\/.*/
   - url: !ruby/regexp /ssl\.google-analytics\.com\/.*/
   - url: !ruby/regexp /https:\/\/player\.vimeo\.com\/.*/
   - url: !ruby/regexp /https:\/\/ssl\.google-analytics\.com\/.*/
-  - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
   - url: !ruby/regexp /https?:\/\/(www\.)?linkedin\.com\/.*/
 
 max_page_retys: 5
