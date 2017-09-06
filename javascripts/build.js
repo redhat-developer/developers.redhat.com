@@ -376,6 +376,7 @@ var RHDPSearchApp = (function (_super) {
         _this.onebox = new RHDPSearchOneBox();
         _this.results = new RHDPSearchResults();
         _this.sort = new RHDPSearchSortPage();
+        _this.emptyQuery = new RHDPSearchEmptyQuery();
         _this.filterObj = {
             term: '',
             facets: [
@@ -399,16 +400,16 @@ var RHDPSearchApp = (function (_super) {
                     name: 'PRODUCT',
                     key: 'product',
                     items: [
-                        { key: 'dotnet-product', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet'] },
-                        { key: 'amq', name: 'JBoss A-MQ', value: ['amq'] },
-                        { key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite'] },
-                        { key: 'brms', name: 'JBoss BRMS', value: ['brms'] },
-                        { key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid'] },
-                        { key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt'] },
-                        { key: 'devstudio', name: 'JBoss Developer Studio', value: ['devstudio'] },
-                        { key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap'] },
-                        { key: 'fuse', name: 'JBoss Fuse', value: ['fuse'] },
-                        { key: 'webserver', name: 'JBoss Web Server', value: ['webserver'] },
+                        { key: 'dotnet-product', name: '.NET Core for Red Hat Enterprise Linux', value: ['dotnet'] },
+                        { key: 'amq', name: 'Red Hat JBoss AMQ', value: ['amq'] },
+                        { key: 'bpmsuite', name: 'Red Hat JBoss BPM Suite', value: ['bpmsuite'] },
+                        { key: 'brms', name: 'Red Hat JBoss BRMS', value: ['brms'] },
+                        { key: 'datagrid', name: 'Red Hat JBoss Data Grid', value: ['datagrid'] },
+                        { key: 'datavirt', name: 'Red Hat JBoss Data Virtualization', value: ['datavirt'] },
+                        { key: 'devstudio', name: 'Red Hat JBoss Developer Studio', value: ['devstudio'] },
+                        { key: 'eap', name: 'Red Hat JBoss Enterprise Application Platform', value: ['eap'] },
+                        { key: 'fuse', name: 'Red Hat JBoss Fuse', value: ['fuse'] },
+                        { key: 'webserver', name: 'Red Hat JBoss Web Server', value: ['webserver'] },
                         { key: 'openjdk', name: 'OpenJDK', value: ['openjdk'] },
                         { key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt'] },
                         { key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk'] },
@@ -481,10 +482,12 @@ var RHDPSearchApp = (function (_super) {
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
+        this.querySelector('.large-18').appendChild(this.emptyQuery);
         this.addEventListener('do-search', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore);
         this.addEventListener('sort-change', this.updateSort);
+        this.addEventListener('search-message', this.setMessage);
         document.addEventListener('toggle-modal', this.toggleModal);
         document.addEventListener('facetChange', this.updateFacets);
         /* To Do
@@ -498,6 +501,10 @@ var RHDPSearchApp = (function (_super) {
             this.onebox.term = term;
             this.count.term = term;
             this.query.search(this.box.term);
+        }
+        // If term is blank and results are null on landing, display message
+        if (term.length == 0) {
+            this.dispatchEvent(new CustomEvent("search-message", { detail: { state: "no-term", message: "Well, this is awkward. No search term was entered yet, so this page is a little empty right now.<p>After you enter a search term in the box above, you will see the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!" }, bubbles: true }));
         }
     };
     Object.defineProperty(RHDPSearchApp, "observedAttributes", {
@@ -517,11 +524,17 @@ var RHDPSearchApp = (function (_super) {
         this.results.last = 0;
         this.query.search(e.detail ? e.detail.term : this.query.term);
     };
+    RHDPSearchApp.prototype.setMessage = function (e) {
+        // let emptyQuery = this.querySelector('rhdp-search-app')['emptyQuery'];
+        this.emptyQuery.message = e.detail.message;
+        this.emptyQuery.toggleQueryMessage(e.detail.state);
+    };
     RHDPSearchApp.prototype.loadMore = function (e) {
         this.query.from = e.detail.from;
         this.query.search(this.query.term);
     };
     RHDPSearchApp.prototype.setResults = function (e) {
+        // this.results.nullResultsMessage(this);
         if (this.query.from === 0) {
             this.results.results = e.detail.results;
         }
@@ -645,6 +658,81 @@ var RHDPSearchBox = (function (_super) {
         }));
     };
     return RHDPSearchBox;
+}(HTMLElement));
+var RHDPSearchEmptyQuery = (function (_super) {
+    __extends(RHDPSearchEmptyQuery, _super);
+    function RHDPSearchEmptyQuery() {
+        var _this = _super.call(this) || this;
+        _this._empty = false;
+        _this._message = '';
+        _this.template = function (strings, message) {
+            return "" + message;
+        };
+        return _this;
+    }
+    Object.defineProperty(RHDPSearchEmptyQuery.prototype, "message", {
+        get: function () {
+            return this._message;
+        },
+        set: function (val) {
+            if (this._message === val)
+                return;
+            this._message = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPSearchEmptyQuery.prototype, "empty", {
+        get: function () {
+            return this._empty;
+        },
+        set: function (val) {
+            if (val) {
+                this._empty = true;
+                this.style.display = 'block';
+            }
+            else {
+                this._empty = false;
+                this.style.display = 'none';
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPSearchEmptyQuery.prototype.toggleQueryMessage = function (state) {
+        var app = document.querySelector('rhdp-search-app');
+        switch (state) {
+            case 'no-term': {
+                app['sort'].style.display = 'none';
+                app['results'].style.display = 'none';
+                app['count'].style.display = 'none';
+                this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this.message));
+                this.empty = true;
+                break;
+            }
+            default: {
+                app['sort'].style.display = 'block';
+                app['results'].style.display = 'block';
+                app['count'].style.display = 'block';
+                this.empty = false;
+                break;
+            }
+        }
+        var _a;
+    };
+    RHDPSearchEmptyQuery.prototype.connectedCallback = function () {
+    };
+    Object.defineProperty(RHDPSearchEmptyQuery, "observedAttributes", {
+        get: function () {
+            return ['empty', 'message'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPSearchEmptyQuery.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    return RHDPSearchEmptyQuery;
 }(HTMLElement));
 var RHDPSearchFilterGroup = (function (_super) {
     __extends(RHDPSearchFilterGroup, _super);
@@ -1438,6 +1526,7 @@ var RHDPSearchQuery = (function (_super) {
     RHDPSearchQuery.prototype.search = function (term) {
         var _this = this;
         this.term = term;
+        this.dispatchEvent(new CustomEvent("search-message", { detail: { state: "standard", message: "" }, bubbles: true }));
         var searchResults = document.getElementsByTagName('rhdp-search-results')[0];
         while (searchResults.firstChild && this.from === 0) {
             searchResults.removeChild(searchResults.firstChild);
@@ -1857,6 +1946,7 @@ var RHDPSearchSortPage = (function (_super) {
     return RHDPSearchSortPage;
 }(HTMLElement));
 window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-search-empty-query', RHDPSearchEmptyQuery);
     customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
     customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
     customElements.define('rhdp-search-query', RHDPSearchQuery);

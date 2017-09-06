@@ -93,4 +93,5 @@ class RHDPSearchResults extends HTMLElement {
             }
         }
     }
+
 }

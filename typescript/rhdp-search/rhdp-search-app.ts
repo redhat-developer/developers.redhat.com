@@ -50,6 +50,7 @@ class RHDPSearchApp extends HTMLElement {
     onebox = new RHDPSearchOneBox();
     results = new RHDPSearchResults();
     sort = new RHDPSearchSortPage();
+    emptyQuery = new RHDPSearchEmptyQuery();
 
     filterObj = {
         term:'', 
@@ -74,16 +75,16 @@ class RHDPSearchApp extends HTMLElement {
                 name:'PRODUCT', 
                 key: 'product', 
                 items: [
-                {key: 'dotnet-product', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
-                {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
-                {key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite']},
-                {key: 'brms', name: 'JBoss BRMS', value: ['brms']},
-                {key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid']},
-                {key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt']},
-                {key: 'devstudio', name: 'JBoss Developer Studio', value: ['devstudio']},
-                {key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap']},
-                {key: 'fuse', name: 'JBoss Fuse', value: ['fuse']},
-                {key: 'webserver', name: 'JBoss Web Server', value: ['webserver']},
+                {key: 'dotnet-product', name: '.NET Core for Red Hat Enterprise Linux', value: ['dotnet']},
+                {key: 'amq', name: 'Red Hat JBoss AMQ', value: ['amq']},
+                {key: 'bpmsuite', name: 'Red Hat JBoss BPM Suite', value: ['bpmsuite']},
+                {key: 'brms', name: 'Red Hat JBoss BRMS', value: ['brms']},
+                {key: 'datagrid', name: 'Red Hat JBoss Data Grid', value: ['datagrid']},
+                {key: 'datavirt', name: 'Red Hat JBoss Data Virtualization', value: ['datavirt']},
+                {key: 'devstudio', name: 'Red Hat JBoss Developer Studio', value: ['devstudio']},
+                {key: 'eap', name: 'Red Hat JBoss Enterprise Application Platform', value: ['eap']},
+                {key: 'fuse', name: 'Red Hat JBoss Fuse', value: ['fuse']},
+                {key: 'webserver', name: 'Red Hat JBoss Web Server', value: ['webserver']},
                 {key: 'openjdk', name: 'OpenJDK', value: ['openjdk']},
                 {key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt']},
                 {key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk']},
@@ -119,7 +120,7 @@ class RHDPSearchApp extends HTMLElement {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
-        
+
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
@@ -130,11 +131,13 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
+        this.querySelector('.large-18').appendChild(this.emptyQuery);
 
         this.addEventListener('do-search', this.doSearch);
         this.addEventListener('search-complete', this.setResults);
         this.addEventListener('load-more', this.loadMore)
         this.addEventListener('sort-change', this.updateSort);
+        this.addEventListener('search-message', this.setMessage);
         document.addEventListener('toggle-modal', this.toggleModal);
         document.addEventListener('facetChange', this.updateFacets);
 
@@ -143,6 +146,7 @@ class RHDPSearchApp extends HTMLElement {
         */
         var loc = window.location.href.split('?'),
             term = loc.length > 1 ? loc[1].split('=')[1] : '';
+
         if (term.length > 0) {
             term = term.replace(/\+/g, '%20');
             term = decodeURIComponent(term);
@@ -151,6 +155,12 @@ class RHDPSearchApp extends HTMLElement {
             this.count.term = term;
             this.query.search(this.box.term);
         }
+
+        // If term is blank and results are null on landing, display message
+        if(term.length == 0){
+            this.dispatchEvent(new CustomEvent("search-message",{detail:{state:"no-term",message:"Well, this is awkward. No search term was entered yet, so this page is a little empty right now.<p>After you enter a search term in the box above, you will see the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!"},bubbles:true}));
+        }
+
     }
 
     static get observedAttributes() { 
@@ -169,12 +179,19 @@ class RHDPSearchApp extends HTMLElement {
         this.query.search(e.detail ? e.detail.term : this.query.term);
     }
 
+    setMessage(e){
+        // let emptyQuery = this.querySelector('rhdp-search-app')['emptyQuery'];
+        this.emptyQuery.message = e.detail.message;
+        this.emptyQuery.toggleQueryMessage(e.detail.state);
+    }
+
     loadMore(e) {
         this.query.from = e.detail.from;
         this.query.search(this.query.term);
     }
 
     setResults(e) {
+        // this.results.nullResultsMessage(this);
         if(this.query.from === 0) {
             this.results.results = e.detail.results;
         } else {
@@ -229,4 +246,5 @@ class RHDPSearchApp extends HTMLElement {
         app['onebox'].term = app['box'].term;
         app['query'].search(app['box'].term);
     }
+
 }

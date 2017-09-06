@@ -6,6 +6,7 @@ dependencies:
     - entity_browser.browser.media_browser
     - field.field.node.promotion_page.body
     - field.field.node.promotion_page.field_call_to_action_link
+    - field.field.node.promotion_page.field_exclude_from_search
     - field.field.node.promotion_page.field_mail_to_link
     - field.field.node.promotion_page.field_media_asset
     - field.field.node.promotion_page.field_promotion_page_left_image
@@ -45,6 +46,13 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_exclude_from_search:
+    weight: 26
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_mail_to_link:
     weight: 10

@@ -208,4 +208,9 @@ module.exports = function () {
         searchPage.clickOneBoxLink(link)
     });
 
+    this.Then(/^I should see a message that no search term was entered$/, function () {
+       let noSearchText = searchPage.emptySearch.getText();
+        expect(noSearchText).to.includes('Well, this is awkward. No search term was entered yet')
+    });
+
 };
