@@ -3,7 +3,6 @@ if (process.env.RHD_BASE_URL === "prod") {
 } else if (process.env.RHD_BASE_URL === "stage") {
     baseUrl = "https://developers.stage.redhat.com"
 } else {
-    console.log(process.env.RHD_BASE_URL);
     baseUrl = process.env.RHD_BASE_URL
 }
 
@@ -11,12 +10,6 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
     logLevel = 'verbose';
 } else {
     logLevel = 'silent';
-}
-
-if (process.env.RHD_JS_DRIVER) {
-    browserName = process.env.RHD_JS_DRIVER;
-} else {
-    browserName = 'chrome';
 }
 
 const faker = require('faker');
@@ -29,7 +22,7 @@ exports.config = {
     ],
 
     exclude: [
-        'features/support/pages/*.page.js', 'features/support/sections/*.section.js'
+        'features/support/pages/*.page.js', 'features/support/sections/*.section.js', 'features/support/rest/*.js', 'features/Login/social_login.feature',
     ],
 
     sync: true,
@@ -69,7 +62,7 @@ exports.config = {
     // reporters: ['dot'],//
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['./features/step_definitions/', './features/support/hooks.js'], // <string[]> (file/dir) require files before executing features
+        require: ['./features/step_definitions/'], // <string[]> (file/dir) require files before executing features
         backtrace: false, // <boolean> show full backtrace for errors
         compiler: [], // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
         dryRun: false, // <boolean> invoke formatters without executing steps
@@ -119,5 +112,13 @@ exports.config = {
     beforeScenario: function () {
         let siteUser;
     },
+
+    afterScenario: function () {
+        if (baseUrl === 'https://developers.redhat.com') {
+            browser.url('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fdevelopers.redhat.com%2F')
+        } else {
+            browser.url('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fdevelopers.stage.redhat.com%2F')
+        }
+    }
 
 };

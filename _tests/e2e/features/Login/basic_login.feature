@@ -13,14 +13,14 @@ Feature: Log in using my RHD registered details.
     Given I navigate directly to the "Login" page
     Then the Login page is displayed
 
-  @kc @logout
+  @kc
   Scenario: A customer whom has the correct login credentials can log in using their username
     Given I am a RHD registered site visitor
     And I am on the "Login" page
     When I log in with a valid username
     Then I should be logged in
 
-  @kc @logout
+  @kc
   Scenario: A customer whom has the correct login credentials can log in using their email address
     Given I am a RHD registered site visitor
     And I am on the "Login" page
@@ -40,7 +40,7 @@ Feature: Log in using my RHD registered details.
     When I log in with an invalid email address
     Then the following error message should be displayed: Invalid login or password.
 
-  @kc @logout
+  @kc
   Scenario: A customer can successfully reset their password
     Given I am a RHD registered site visitor
     And I am on the "Login" page
@@ -48,7 +48,7 @@ Feature: Log in using my RHD registered details.
     And I navigate to the password reset link
     Then I should be logged in
 
-  @kc @logout
+  @kc
   Scenario: New User can login with active OpenShift.com account (simple user account)
     Given I am an OpenShift registered site visitor
     And I am on the "Login" page
@@ -57,7 +57,7 @@ Feature: Log in using my RHD registered details.
     And I accept Red Hat Developer Program Terms & Conditions and Red Hat Subscription Agreement and proceed
     Then I should be logged in
 
-  @kc @logout
+  @kc
   Scenario: New User can login with active Red Hat Customer Portal account (full user account).
     Given I have an active Customer portal account
     And I am on the "Login" page
