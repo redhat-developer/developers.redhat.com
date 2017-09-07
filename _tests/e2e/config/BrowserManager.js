@@ -1,52 +1,44 @@
-"use strict";
 class BrowserManager {
 
-    createBrowser(browser) {
-        if (browser === 'chrome') {
-            return this.chromeBrowser('desktop');
-        } else if (browser === 'headless_chrome') {
-            return this.chromeBrowser('headless');
-        } else if (browser === 'firefox') {
-            console.log('e2e tests running using firefox browser');
-            return {
-                maxInstances: 10,
-                browserName: 'firefox',
-                "acceptInsecureCerts": true,
-            }
+    constructor(browser) {
+        this.browser = browser
+    }
+
+    createBrowser() {
+        let driver;
+        if (this.browser === 'chrome') {
+            driver = this._chromeBrowser('desktop');
+        } else if (this.browser === 'firefox') {
+            driver = this._firefox();
         } else {
-            return this.chromeBrowser(browser);
+            driver = this._chromeBrowser(this.browser);
+        }
+        return driver;
+    }
+
+    _firefox() {
+        return {
+            browserName: 'firefox',
+            acceptInsecureCerts: true,
         }
     }
 
-    chromeBrowser(browser) {
-        if (browser === 'headless') {
-            console.log(`e2e tests running using ${browser} Chrome browser`);
+    _chromeBrowser(browserType) {
+        if (browserType === 'desktop') {
+            console.log(`e2e tests running using ${browserType} Chrome browser`);
             return {
-                maxInstances: 10,
                 browserName: 'chrome',
-                chromeOptions: {
-                    args: ['--headless', '--disable-gpu', '--window-size=1280,800'],
-                    binary: '/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
-                },
-                "acceptInsecureCerts": true
-            }
-        } else if (browser === 'desktop') {
-            console.log(`e2e tests running using Chrome ${browser} browser`);
-            return {
-                maxInstances: 10,
-                browserName: 'chrome',
-                "acceptInsecureCerts": true,
+                acceptInsecureCerts: true,
             }
         } else {
-            console.log(`e2e tests running using a Chrome ${browser} emulated browser`);
+            console.log(`e2e tests running using ${browserType} emulated Chrome browser`);
             return {
-                maxInstances: 10,
                 browserName: 'chrome',
-                "acceptInsecureCerts": true,
-                chromeOptions: { mobileEmulation: { deviceName: browser } }
+                acceptInsecureCerts: true,
+                chromeOptions: {mobileEmulation: {deviceName: browserType}}
             }
         }
     }
 }
 
-module.exports = new BrowserManager;
+module.exports = BrowserManager;

@@ -13,14 +13,44 @@ class NavigationBarSection {
     }
 
     get navToggle() {
-        // not possible to click .nav-toggle, using xpath
         return $('body > div.site-wrapper > header > div > div > a');
     }
 
+    get loginLink() {
+        return $('.login')
+    }
+
+    get registerLink() {
+        return $('.register')
+    }
+
+    get loggedInName() {
+        return $('.logged-in-name');
+    }
+
+    get logoutLink() {
+        return $('.logout');
+    }
+
     isMobile() {
-        var isVisible = browser.isVisible('.nav-toggle');
+        let isVisible = browser.isVisible('.nav-toggle');
         if (isVisible) {
             this.navToggle.click();
+        }
+    }
+
+    getLoggedInName() {
+        this.isMobile();
+        let loggedInName = this.loggedInName;
+        loggedInName.waitForVisible(8000);
+        return loggedInName.getText();
+    }
+
+    clickLogout() {
+        this.isMobile();
+        let logoutLink = this.logoutLink;
+        if (logoutLink.isVisible()) {
+            logoutLink.click()
         }
     }
 
@@ -42,6 +72,17 @@ class NavigationBarSection {
         this.isMobile();
         this.searchField.setValue(searchTerm);
         this.searchButton.click();
+    }
+
+    clickMenuItem(menuItem) {
+        this.isMobile();
+        if (menuItem === 'Login') {
+            this.loginLink.waitForVisible();
+            this.loginLink.click()
+        } else {
+            this.registerLink.waitForVisible();
+            this.registerLink.click()
+        }
     }
 }
 
