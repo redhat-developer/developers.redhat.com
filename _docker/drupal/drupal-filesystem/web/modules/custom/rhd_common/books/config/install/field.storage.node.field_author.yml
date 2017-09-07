@@ -1,17 +1,17 @@
-uuid: 0ce7c6a2-cae1-4bcb-ac04-4f2e89a90dbd
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - text
-id: node.field_containers_short_summary
-field_name: field_containers_short_summary
+id: node.field_author
+field_name: field_author
 entity_type: node
-type: text
+type: string
 settings:
   max_length: 255
-module: text
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

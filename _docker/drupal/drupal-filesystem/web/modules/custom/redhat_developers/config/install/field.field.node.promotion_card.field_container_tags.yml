@@ -1,4 +1,3 @@
-uuid: 1659967b-cb52-4f1b-bb02-2b64e7a680cc
 langcode: en
 status: true
 dependencies:
@@ -16,9 +15,7 @@ label: tags
 description: ''
 required: false
 translatable: false
-default_value:
-  -
-    target_uuid: cd77c78d-fb7f-4b46-a000-a7fff0bee6b2
+default_value: {}
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
