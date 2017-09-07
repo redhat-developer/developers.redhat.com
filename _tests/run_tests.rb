@@ -59,7 +59,7 @@ class RunTest
   # Builds the tests base Docker image
   #
   def build_base_docker_image(test_dir)
-    @process_runner.execute!("cd #{test_dir} && docker build -t test-base:1.0.0 .")
+    @process_runner.execute!("cd #{test_dir} && docker build -t test-base:2.3.0 .")
   end
 
   #

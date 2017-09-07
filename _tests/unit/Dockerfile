@@ -1,4 +1,4 @@
-FROM test-base:1.0.0
+FROM test-base:2.3.0
 
 RUN curl -O -L https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm \
     && yum -y install google-chrome-stable_current_x86_64.rpm \

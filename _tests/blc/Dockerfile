@@ -1,4 +1,4 @@
-FROM test-base:1.0.0
+FROM test-base:2.3.0
 
 WORKDIR /tmp
 RUN yum install -y bzip2 fontconfig freetype freetype-devel fontconfig-devel libstdc++ && \
