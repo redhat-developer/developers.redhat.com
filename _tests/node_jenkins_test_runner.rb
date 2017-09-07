@@ -83,14 +83,18 @@ class NodeJenkinsTestRunner
     command += ' --browser=iphone_6' if profile == 'mobile'
     command += " --profile=#{profile}"
     command += ' --reporters=junit'
-    if profile == 'desktop'
-      command += ' --cucumber-tags=~@mobile'
-    elsif profile == 'desktop' && cucumber_tags
-      command += " --cucumber-tags=~@mobile,#{cucumber_tags}"
-    elsif profile == 'mobile' && cucumber_tags
-      command += " --cucumber-tags=~@desktop,#{cucumber_tags}"
+    if cucumber_tags.nil?
+      if profile == 'desktop'
+        command += ' --cucumber-tags=~@mobile'
+      else
+        command += ' --cucumber-tags=~@desktop'
+      end
     else
-      command += ' --cucumber-tags=~@desktop'
+      if profile == 'desktop'
+        command += " --cucumber-tags=~@mobile,#{cucumber_tags}"
+      else
+        command += " --cucumber-tags=~@desktop,#{cucumber_tags}"
+      end
     end
     command
   end

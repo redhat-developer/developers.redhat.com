@@ -3,7 +3,6 @@ if (process.env.RHD_BASE_URL === "prod") {
 } else if (process.env.RHD_BASE_URL === "stage") {
     baseUrl = "https://developers.stage.redhat.com"
 } else {
-    console.log(process.env.RHD_BASE_URL);
     baseUrl = process.env.RHD_BASE_URL
 }
 
@@ -13,26 +12,17 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
     logLevel = 'silent';
 }
 
-if (process.env.RHD_JS_DRIVER) {
-    browserName = process.env.RHD_JS_DRIVER;
-} else {
-    browserName = 'chrome';
-}
-
-if (process.env.RHD_VERBOSE_OUTPUT) {
-    logLevel = 'verbose';
-} else {
-    logLevel = 'silent';
-}
+const faker = require('faker');
+process.env.SESSION_ID = faker.random.number();
 
 exports.config = {
 
     specs: [
-        'features/*.feature', 'features/*/*.feature'
+        'features/*/*.feature'
     ],
 
     exclude: [
-        'support/pages/*.page.js', 'support/sections/*.section.js'
+        'features/support/pages/*.page.js', 'features/support/sections/*.section.js', 'features/support/rest/*.js', 'features/Login/social_login.feature',
     ],
 
     sync: true,
@@ -108,7 +98,7 @@ exports.config = {
     // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
     // resolved to continue.
 
-    before: function() {
+    before: function () {
         /**
          * Setup the Chai assertion framework
          */
@@ -118,5 +108,17 @@ exports.config = {
         global.assert = chai.assert;
         global.should = chai.should();
     },
+
+    beforeScenario: function () {
+        let siteUser;
+    },
+
+    afterScenario: function () {
+        if (baseUrl === 'https://developers.redhat.com') {
+            browser.url('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fdevelopers.redhat.com%2F')
+        } else {
+            browser.url('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fdevelopers.stage.redhat.com%2F')
+        }
+    }
 
 };
