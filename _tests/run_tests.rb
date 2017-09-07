@@ -56,10 +56,18 @@ class RunTest
   end
 
   #
+  # Builds the tests base Docker image
+  #
+  def build_base_docker_image(test_dir)
+    @process_runner.execute!("cd #{test_dir} && docker build -t test-base:1.0.0 .")
+  end
+
+  #
   # Runs the specified test type within Docker by executing
   # a number of Docker commands in sequence.
   #
   def run_tests_in_docker(test_configuration)
+    build_base_docker_image(@test_dir)
     copy_required_project_resources(test_configuration)
     compose_project_name = docker_compose_project_name
     compose_environment_directory = "#{@test_dir}/#{ENV['rhd_test']}/environments"
