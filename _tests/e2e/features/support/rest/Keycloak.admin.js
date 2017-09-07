@@ -1,4 +1,3 @@
-'use strict';
 const request = require('sync-request');
 const qs = require('querystring');
 

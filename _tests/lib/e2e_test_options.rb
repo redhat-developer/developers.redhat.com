@@ -9,7 +9,7 @@ module E2ETestOptionsHelper
   # supported browsers for local and docker selenium browsers
   #
   def supported_browsers
-    %w[chrome firefox headless_chrome]
+    %w[chrome firefox]
   end
 
   #

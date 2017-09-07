@@ -8,8 +8,6 @@ class BrowserManager {
         let driver;
         if (this.browser === 'chrome') {
             driver = this._chromeBrowser('desktop');
-        } else if (this.browser === 'headless_chrome') {
-            driver = this._chromeBrowser('headless');
         } else if (this.browser === 'firefox') {
             driver = this._firefox();
         } else {
@@ -26,17 +24,7 @@ class BrowserManager {
     }
 
     _chromeBrowser(browserType) {
-        if (browserType === 'headless') {
-            console.log(`e2e tests running using ${browserType} Chrome browser`);
-            return {
-                browserName: 'chrome',
-                chromeOptions: {
-                    args: ['--headless', '--disable-gpu', '--window-size=1280,800'],
-                    binary: '/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
-                },
-                acceptInsecureCerts: true
-            }
-        } else if (browserType === 'desktop') {
+        if (browserType === 'desktop') {
             console.log(`e2e tests running using ${browserType} Chrome browser`);
             return {
                 browserName: 'chrome',

@@ -31,7 +31,7 @@ services:
     environment:
       - GRID_BROWSER_TIMEOUT=600000
       - GRID_TIMEOUT=600000
-      - SE_OPTS=-browserTimeout 3000 -timeout 3000
+      - SE_OPTS=-browserTimeout 300 -timeout 300
 
   chrome:
      image: selenium/node-chrome:3.4.0-einsteinium
