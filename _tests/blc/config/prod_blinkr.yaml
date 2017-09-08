@@ -28,11 +28,13 @@ skips:
   - !ruby/regexp /^http:\/\/www\.\jboss\.org\/jdf\/qcleuickstarts\/jboss\-as\-\quickstart\/guide\/.*/
   - !ruby/regexp /^..\/camel\-.*/
   - !ruby/regexp /^https:\/\/access\.redhat\.com\/site\/documentation\/JBoss_Fuse$/
+  - https://access.redhat.com/site/documentation/JBoss_Fuse/index.html
   - !ruby/regexp /^..\/jboss\-javaee\-6_0\-with\-hibernate\-eap62\/index\/index\-2\.html$/
   - !ruby/regexp /^..\/jboss\-javaee\-6_0\-with\-deltaspike\-wfk\-24\/index\/index\-2\.html$/
   - !ruby/regexp /^http:\/\/dl\.dropbox\.com\/u\/65660684\/640px\-Roy_Thomson_Hall_Toronto.jpg$/
   - !ruby/regexp /^http:\/\/vimeo\.com\/ericschabell\/bpmsuite\-fuse\-integraiton\-demo\-run$/
   - !ruby/regexp /^https:\/\/github\.com\/jboss\-dockerfiles\/hawkular\/blob\/master\/hawkular\-aio\/README.md$/
+  - http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/Introduction
 
 ignores:
   - code: 202
