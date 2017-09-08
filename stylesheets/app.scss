@@ -172,6 +172,10 @@ p a:hover {
   border-bottom: 1px solid #DCDCDC;
 }
 
+p a.external-link:after {
+  display: none;
+}
+
 .link-sm a {
   color: $link-sm;
 }
