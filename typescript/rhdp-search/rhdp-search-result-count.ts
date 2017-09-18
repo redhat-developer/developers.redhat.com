@@ -29,7 +29,7 @@ class RHDPSearchResultCount extends HTMLElement {
     }
 
     template = (strings, count, term) => {
-        return `${count} results found for ${term}`; 
+        return `${count} results found for ${term.replace('<','&lt;').replace('>','&gt;')}`; 
     };
 
     connectedCallback() {

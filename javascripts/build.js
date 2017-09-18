@@ -1552,7 +1552,7 @@ var RHDPSearchResultCount = (function (_super) {
         _this._count = 0;
         _this._term = '';
         _this.template = function (strings, count, term) {
-            return count + " results found for " + term;
+            return count + " results found for " + term.replace('<', '&lt;').replace('>', '&gt;');
         };
         return _this;
     }
