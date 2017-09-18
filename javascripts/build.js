@@ -1,3 +1,120 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var RHDPTryItNow = (function (_super) {
+    __extends(RHDPTryItNow, _super);
+    function RHDPTryItNow() {
+        var _this = _super.call(this) || this;
+        _this.template = function (strings, title, subtitle, buttonLink, icon, buttonText, buttonID) {
+            return " <div class=\"row\"> <img src=\"" + icon + "\"> <h4>" + title + "</h4> <h5>" + subtitle + "</h5> <a " + (buttonID ? "id=\"" + buttonID + "\"" : '') + "href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a> </div>";
+        };
+        return _this;
+    }
+    Object.defineProperty(RHDPTryItNow.prototype, "title", {
+        get: function () {
+            return this._title;
+        },
+        set: function (value) {
+            if (this._title === value)
+                return;
+            this._title = value;
+            this.setAttribute('title', this._title);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPTryItNow.prototype, "subtitle", {
+        get: function () {
+            return this._subtitle;
+        },
+        set: function (value) {
+            if (this._subtitle === value)
+                return;
+            this._subtitle = value;
+            this.setAttribute('subtitle', this._subtitle);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPTryItNow.prototype, "buttonID", {
+        get: function () {
+            return this._buttonID;
+        },
+        set: function (value) {
+            if (this._buttonID === value)
+                return;
+            this._buttonID = value;
+            this.setAttribute('buttonID', this._buttonID);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPTryItNow.prototype, "buttonLink", {
+        get: function () {
+            return this._buttonLink;
+        },
+        set: function (value) {
+            if (this._buttonLink === value)
+                return;
+            this._buttonLink = value;
+            this.setAttribute('buttonLink', this._buttonLink);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPTryItNow.prototype, "icon", {
+        get: function () {
+            return this._icon;
+        },
+        set: function (value) {
+            if (this._icon === value)
+                return;
+            this._icon = value;
+            this.setAttribute('icon', this._icon);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPTryItNow.prototype, "buttonText", {
+        get: function () {
+            return this._buttonText;
+        },
+        set: function (value) {
+            if (this._buttonText === value)
+                return;
+            this._buttonText = value;
+            this.setAttribute('buttonText', this._buttonText);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPTryItNow.prototype.connectedCallback = function () {
+        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonLink, this.icon, this.buttonText, this.buttonID));
+        var _a;
+    };
+    ;
+    Object.defineProperty(RHDPTryItNow, "observedAttributes", {
+        get: function () {
+            return ['buttonText', 'icon', 'buttonLink', 'buttonID', 'subtitle', 'title'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPTryItNow.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    return RHDPTryItNow;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-tryitnow', RHDPTryItNow);
+});
 var DevNationLiveSession = (function () {
     function DevNationLiveSession(obj) {
         var _this = this;
@@ -147,16 +264,6 @@ var DevNationLiveSession = (function () {
     });
     return DevNationLiveSession;
 }());
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var DevNationLiveApp = (function (_super) {
     __extends(DevNationLiveApp, _super);
     function DevNationLiveApp() {
