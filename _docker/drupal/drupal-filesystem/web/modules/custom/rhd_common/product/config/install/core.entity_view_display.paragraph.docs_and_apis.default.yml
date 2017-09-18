@@ -1,0 +1,68 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.docs_and_apis.field_more_resources
+    - field.field.paragraph.docs_and_apis.field_overview_hide_get_started
+    - field.field.paragraph.docs_and_apis.field_overview_main_content
+    - field.field.paragraph.docs_and_apis.field_overview_url
+    - field.field.paragraph.docs_and_apis.field_page_description
+    - field.field.paragraph.docs_and_apis.field_supported_configurations
+    - paragraphs.paragraphs_type.docs_and_apis
+  module:
+    - text
+id: paragraph.docs_and_apis.default
+targetEntityType: paragraph
+bundle: docs_and_apis
+mode: default
+content:
+  field_more_resources:
+    weight: 11
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_overview_hide_get_started:
+    weight: 6
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_overview_main_content:
+    weight: 5
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_overview_url:
+    weight: 4
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_page_description:
+    weight: 13
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_supported_configurations:
+    weight: 12
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  created: true
+  uid: true

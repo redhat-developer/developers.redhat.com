@@ -1,0 +1,98 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.download.field_offer_subscription
+    - field.field.paragraph.download.field_overview_hide_get_started
+    - field.field.paragraph.download.field_overview_main_content
+    - field.field.paragraph.download.field_overview_url
+    - field.field.paragraph.download.field_page_description
+    - field.field.paragraph.download.field_subscription_link
+    - field.field.paragraph.download.field_upstream_section
+    - field.field.paragraph.download.field_xpaas_link
+    - paragraphs.paragraphs_type.download
+  module:
+    - link
+    - text
+id: paragraph.download.default
+targetEntityType: paragraph
+bundle: download
+mode: default
+content:
+  field_offer_subscription:
+    weight: 3
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_overview_hide_get_started:
+    weight: 1
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_overview_main_content:
+    weight: 2
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_overview_url:
+    weight: 0
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_page_description:
+    weight: 6
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_subscription_link:
+    weight: 7
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      rel: nofollow
+      url_only: false
+      url_plain: false
+      target: '0'
+    third_party_settings: {  }
+    type: link_separate
+    region: content
+  field_upstream_section:
+    weight: 4
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_xpaas_link:
+    weight: 5
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  created: true
+  uid: true

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_xpaas_link
+    - paragraphs.paragraphs_type.download
+  module:
+    - link
+id: paragraph.download.field_xpaas_link
+field_name: field_xpaas_link
+entity_type: paragraph
+bundle: download
+label: 'xPaaS Link'
+description: 'Optional xPaaS link. This also enables the xPaaS display'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

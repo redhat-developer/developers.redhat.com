@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.document_details.field_document_description
+    - field.field.paragraph.document_details.field_document_title
+    - field.field.paragraph.document_details.field_formats
+    - paragraphs.paragraphs_type.document_details
+  module:
+    - options
+    - text
+id: paragraph.document_details.default
+targetEntityType: paragraph
+bundle: document_details
+mode: default
+content:
+  field_document_description:
+    weight: 1
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_document_title:
+    weight: 0
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_formats:
+    weight: 2
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden:
+  created: true
+  uid: true

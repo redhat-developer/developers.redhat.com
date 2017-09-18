@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_support_progress
+    - paragraphs.paragraphs_type.getting_started_section
+id: paragraph.getting_started_section.field_support_progress
+field_name: field_support_progress
+entity_type: paragraph
+bundle: getting_started_section
+label: 'Pending Download Section'
+description: 'Check this if this section is a download section that will change once the user has downloaded the product.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

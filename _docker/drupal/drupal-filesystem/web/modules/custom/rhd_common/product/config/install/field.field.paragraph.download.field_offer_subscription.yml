@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_offer_subscription
+    - paragraphs.paragraphs_type.download
+id: paragraph.download.field_offer_subscription
+field_name: field_offer_subscription
+entity_type: paragraph
+bundle: download
+label: 'Offer Subscription'
+description: 'Should the subscription offering be shown on the page?'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Show Subscription Offering'
+  off_label: 'No Subscription Offering'
+field_type: boolean

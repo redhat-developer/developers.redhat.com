@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_show_stack_overflow
+    - paragraphs.paragraphs_type.help
+id: paragraph.help.field_show_stack_overflow
+field_name: field_show_stack_overflow
+entity_type: paragraph
+bundle: help
+label: 'Show Stack Overflow'
+description: 'Display Stack Overflow Questions'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

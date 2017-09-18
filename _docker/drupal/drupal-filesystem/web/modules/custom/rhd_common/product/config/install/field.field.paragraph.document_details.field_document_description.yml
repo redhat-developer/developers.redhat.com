@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_document_description
+    - paragraphs.paragraphs_type.document_details
+  module:
+    - text
+id: paragraph.document_details.field_document_description
+field_name: field_document_description
+entity_type: paragraph
+bundle: document_details
+label: 'Document Description'
+description: 'Short description, one sentence, explaining the document.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

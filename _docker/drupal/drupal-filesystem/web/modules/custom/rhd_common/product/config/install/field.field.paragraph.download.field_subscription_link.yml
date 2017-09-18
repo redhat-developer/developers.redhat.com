@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subscription_link
+    - paragraphs.paragraphs_type.download
+  module:
+    - link
+id: paragraph.download.field_subscription_link
+field_name: field_subscription_link
+entity_type: paragraph
+bundle: download
+label: 'Subscription Link'
+description: 'Link to the proper subscription link for the product'
+required: false
+translatable: false
+default_value:
+  -
+    attributes: {  }
+    uri: 'https://www.redhat.com/contact/sales.html'
+    title: 'I need a subscription'
+    options: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

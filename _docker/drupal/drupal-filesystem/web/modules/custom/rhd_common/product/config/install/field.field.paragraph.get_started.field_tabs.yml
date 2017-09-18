@@ -1,0 +1,71 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tabs
+    - paragraphs.paragraphs_type.get_started
+    - paragraphs.paragraphs_type.getting_started_tab_section
+  module:
+    - entity_reference_revisions
+id: paragraph.get_started.field_tabs
+field_name: field_tabs
+entity_type: paragraph
+bundle: get_started
+label: Tabs
+description: 'Tabbed section which will contain the blue boxes.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      getting_started_tab_section: getting_started_tab_section
+    target_bundles_drag_drop:
+      buzz:
+        weight: 15
+        enabled: false
+      community:
+        weight: 16
+        enabled: false
+      connectors:
+        weight: 17
+        enabled: false
+      docs_and_apis:
+        weight: 18
+        enabled: false
+      document_details:
+        weight: 19
+        enabled: false
+      download:
+        weight: 20
+        enabled: false
+      get_started:
+        weight: 21
+        enabled: false
+      getting_started_section:
+        weight: 22
+        enabled: false
+      help:
+        weight: 23
+        enabled: false
+      getting_started_tab_section:
+        enabled: true
+        weight: 24
+      learn:
+        weight: 24
+        enabled: false
+      main_content:
+        weight: 25
+        enabled: false
+      overview:
+        weight: 26
+        enabled: false
+      resources:
+        weight: 27
+        enabled: false
+      updates:
+        weight: 28
+        enabled: false
+field_type: entity_reference_revisions

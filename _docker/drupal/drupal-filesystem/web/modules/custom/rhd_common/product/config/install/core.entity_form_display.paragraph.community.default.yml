@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.community.field_display_projects
+    - field.field.paragraph.community.field_overview_hide_get_started
+    - field.field.paragraph.community.field_overview_main_content
+    - field.field.paragraph.community.field_overview_url
+    - field.field.paragraph.community.field_page_description
+    - paragraphs.paragraphs_type.community
+  module:
+    - text
+id: paragraph.community.default
+targetEntityType: paragraph
+bundle: community
+mode: default
+content:
+  field_display_projects:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_overview_hide_get_started:
+    weight: 3
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_overview_main_content:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_page_description:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  field_overview_url: true
+  status: true
+  uid: true

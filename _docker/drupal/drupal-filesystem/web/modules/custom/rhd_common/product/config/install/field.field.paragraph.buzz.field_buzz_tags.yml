@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_buzz_tags
+    - paragraphs.paragraphs_type.buzz
+id: paragraph.buzz.field_buzz_tags
+field_name: field_buzz_tags
+entity_type: paragraph
+bundle: buzz
+label: 'Buzz Tags'
+description: 'A comma separated list of buzz tags used to find buzz about the topic.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

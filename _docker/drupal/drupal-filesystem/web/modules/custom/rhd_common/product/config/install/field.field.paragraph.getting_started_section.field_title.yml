@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.getting_started_section
+id: paragraph.getting_started_section.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: getting_started_section
+label: Title
+description: 'Section Title'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

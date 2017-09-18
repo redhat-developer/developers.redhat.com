@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_minutes_to_complete
+    - paragraphs.paragraphs_type.getting_started_section
+id: paragraph.getting_started_section.field_minutes_to_complete
+field_name: field_minutes_to_complete
+entity_type: paragraph
+bundle: getting_started_section
+label: 'Minutes to Complete'
+description: 'The number of minutes each section should take to complete'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: minute|minutes
+field_type: integer
