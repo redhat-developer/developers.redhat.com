@@ -13,7 +13,7 @@ var RHDPTryItNow = (function (_super) {
     function RHDPTryItNow() {
         var _this = _super.call(this) || this;
         _this.template = function (strings, title, subtitle, buttonLink, icon, buttonText, buttonID) {
-            return " <div class=\"row\"> <img src=\"" + icon + "\"> <h4>" + title + "</h4> <h5>" + subtitle + "</h5> <a " + (buttonID ? "id=\"" + buttonID + "\"" : '') + "href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a> </div>";
+            return "<section> <div class=\"row\"> <img src=\"" + icon + "\"> <span> <h4>" + title + "</h4> <h5>" + subtitle + "</h5> </span> <a " + (buttonID ? "id=\"" + buttonID + "\" " : '') + " href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a> </div></section>";
         };
         return _this;
     }
