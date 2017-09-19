@@ -88,7 +88,7 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._icon = value;
             this.setAttribute('icon', this._icon);
-            this.querySelector('img') ? this.querySelector('img').src = this._buttonLink : '';
+            this.querySelector('img') ? this.querySelector('img').src = this._icon : '';
         },
         enumerable: true,
         configurable: true
@@ -102,7 +102,7 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._buttonText = value;
             this.setAttribute('button-text', this._buttonText);
-            this.querySelector('a') ? this.querySelector('a').innerText = this._buttonLink : '';
+            this.querySelector('a') ? this.querySelector('a').innerText = this._buttonText : '';
         },
         enumerable: true,
         configurable: true
