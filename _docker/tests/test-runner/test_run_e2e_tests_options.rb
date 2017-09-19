@@ -75,7 +75,7 @@ class TestRunTestOptions < MiniTest::Test
 
   def test_non_docker_execution_specifying_unknown_mobile_device
 
-    Kernel.expects(:abort).with("Invalid device specified! Device 'foo' was not found. \nSee available test devices here: '_tests/e2e/config/chromium_devices.json'")
+    Kernel.expects(:abort).with("Invalid device specified! Device 'foo' was not found. \nSee available test devices here: '_tests/e2e/browsers/chromium_devices.json'")
 
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --browser=foo))
 
@@ -86,7 +86,7 @@ class TestRunTestOptions < MiniTest::Test
 
   def test_docker_execution_specifying_unknown_mobile_device
 
-    Kernel.expects(:abort).with("Invalid device specified! Device 'foo' was not found. \nSee available test devices here: '_tests/e2e/config/chromium_devices.json'")
+    Kernel.expects(:abort).with("Invalid device specified! Device 'foo' was not found. \nSee available test devices here: '_tests/e2e/browsers/chromium_devices.json'")
 
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-docker --browser=foo))
 
@@ -98,7 +98,7 @@ class TestRunTestOptions < MiniTest::Test
 
   def test_non_docker_execution_specifying_unknown_browserstack_browser
 
-    Kernel.expects(:abort).with("Invalid remote browser specified! Browser 'bs_foo' \n See available browserstack options here: '_tests/e2e/config/remote_browsers.json' \n Set desired stack using --browser=bs_ie_11")
+    Kernel.expects(:abort).with("Invalid remote browser specified! Browser 'bs_foo' \n See available browserstack options here: '_tests/e2e/browsers/remote_browsers.json' \n Set desired stack using --browser=bs_ie_11")
 
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-browserstack --browser=bs_foo))
     assert_equal('bs_foo', test_configuration[:browser])
@@ -108,7 +108,7 @@ class TestRunTestOptions < MiniTest::Test
 
   def test_docker_execution_specifying_unknown_browserstack_browser
 
-    Kernel.expects(:abort).with("Invalid remote browser specified! Browser 'bs_foo' \n See available browserstack options here: '_tests/e2e/config/remote_browsers.json' \n Set desired stack using --browser=bs_ie_11")
+    Kernel.expects(:abort).with("Invalid remote browser specified! Browser 'bs_foo' \n See available browserstack options here: '_tests/e2e/browsers/remote_browsers.json' \n Set desired stack using --browser=bs_ie_11")
 
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-docker --use-browserstack --browser=bs_foo))
     assert(test_configuration[:docker])

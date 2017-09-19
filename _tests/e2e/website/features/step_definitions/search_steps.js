@@ -1,11 +1,15 @@
-const SearchPage = require("../../support/pages/search.page");
-const HomePage = require("../../support/pages/home.page");
+const SearchPage = require("../support/pages/Search.page");
+const HomePage = require("../support/pages/Home.page");
 const searchPage = new SearchPage;
 const homePage = new HomePage;
 
 module.exports = function () {
 
     let resultCount;
+
+    this.Then(/^I am on the Search page$/, function () {
+        searchPage.open();
+    });
 
     this.Then(/^the search page is displayed$/, function () {
         expect(searchPage.isOnSearchPage(), 'Search Page was not displayed').to.be.true;
@@ -209,7 +213,7 @@ module.exports = function () {
     });
 
     this.Then(/^I should see a message that no search term was entered$/, function () {
-       let noSearchText = searchPage.emptySearch.getText();
+        let noSearchText = searchPage.emptySearch.getText();
         expect(noSearchText).to.includes('Well, this is awkward. No search term was entered yet')
     });
 

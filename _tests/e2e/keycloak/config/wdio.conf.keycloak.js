@@ -1,10 +1,8 @@
-if (process.env.RHD_BASE_URL === "prod") {
-    baseUrl = "https://developers.redhat.com"
-} else if (process.env.RHD_BASE_URL === "stage") {
-    baseUrl = "https://developers.stage.redhat.com"
-} else {
-    console.log(process.env.RHD_BASE_URL);
+if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     baseUrl = process.env.RHD_BASE_URL
+} else {
+    console.log('No baseUrl defined defaulting to staging. You can specify a baseUrl from commandline. For example -- --baseUrl=http://foo-bar.com');
+    baseUrl = 'https://developers.stage.redhat.com'
 }
 
 if (process.env.RHD_VERBOSE_OUTPUT) {
@@ -13,26 +11,17 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
     logLevel = 'silent';
 }
 
-if (process.env.RHD_JS_DRIVER) {
-    browserName = process.env.RHD_JS_DRIVER;
-} else {
-    browserName = 'chrome';
-}
-
-if (process.env.RHD_VERBOSE_OUTPUT) {
-    logLevel = 'verbose';
-} else {
-    logLevel = 'silent';
-}
+const faker = require('faker');
+process.env.SESSION_ID = faker.random.number();
 
 exports.config = {
 
     specs: [
-        'features/*.feature', 'features/*/*.feature'
+        'keycloak/features/*.feature'
     ],
 
     exclude: [
-        'support/pages/*.page.js', 'support/sections/*.section.js'
+        'keycloak/features/support/pages/*.page.js', 'keycloak/features/support/rest/*.js', 'keycloak/features/kc_social_login.feature',
     ],
 
     sync: true,
@@ -48,14 +37,14 @@ exports.config = {
     bail: 0,
     //
     // Saves a screenshot to a given path if a command fails.
-    screenshotPath: 'reports/errorShots',
+    screenshotPath: './reports/errorShots',
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
     baseUrl: baseUrl,
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 30000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
@@ -72,7 +61,7 @@ exports.config = {
     // reporters: ['dot'],//
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['./features/step_definitions/'], // <string[]> (file/dir) require files before executing features
+        require: ['keycloak/features/step_definitions/'], // <string[]> (file/dir) require files before executing features
         backtrace: false, // <boolean> show full backtrace for errors
         compiler: [], // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
         dryRun: false, // <boolean> invoke formatters without executing steps
@@ -84,7 +73,7 @@ exports.config = {
         profile: [], // <string[]> (name) specify the profile to use
         strict: false, // <boolean> fail if there are any undefined or pending steps
         // tags: [process.env.CUCUMBER_TAGS],          // <string[]> (expression) only execute the features or scenarios with tags matching the expression
-        timeout: 30000, // <number> timeout for step definitions
+        timeout: 60000, // <number> timeout for step definitions
         ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
     },
 
@@ -95,7 +84,7 @@ exports.config = {
 
     reporterOptions: {
         junit: {
-            outputDir: 'reports'
+            outputDir: 'keycloak/reports'
         }
     },
 
@@ -108,7 +97,7 @@ exports.config = {
     // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
     // resolved to continue.
 
-    before: function() {
+    before: function () {
         /**
          * Setup the Chai assertion framework
          */
@@ -118,5 +107,13 @@ exports.config = {
         global.assert = chai.assert;
         global.should = chai.should();
     },
+
+    afterScenario: function () {
+        if (baseUrl === 'https://developers.redhat.com') {
+            browser.url('https://developers.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fdevelopers.redhat.com%2F')
+        } else {
+            browser.url('https://developers.stage.redhat.com/auth/realms/rhd/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fdevelopers.stage.redhat.com%2F')
+        }
+    }
 
 };

@@ -1,10 +1,10 @@
 // require base configuration
 let baseConfig = require('./wdio.conf.base.js').config;
-let browserstackBrowser = require("./remote_browsers.json");
+let browserstackBrowser = require("../../browsers/remote_browsers.json");
 let browserstackBrowserCaps = browserstackBrowser[process.env.RHD_JS_DRIVER];
 
 // clone base config and add new properties/overrides
-var browserstackConfig = Object.assign(baseConfig, {
+const browserstackConfig = Object.assign(baseConfig, {
 
     user: process.env.RHD_BS_USERNAME,
     key: process.env.RHD_BS_AUTHKEY,
