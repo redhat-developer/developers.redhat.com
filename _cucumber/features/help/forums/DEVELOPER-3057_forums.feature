@@ -1,3 +1,4 @@
+@ignore
 Feature: DEVELOPER-3057 - Forums: Product forums landing page
 
   Scenario: Product forums landing page should display a list of available products separated by sections.
@@ -8,12 +9,12 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
       | Red Hat Software Collections                  |
-      | Red Hat JBoss AMQ                            |
+      | Red Hat JBoss AMQ                             |
       | Red Hat JBoss BRMS                            |
       | Red Hat JBoss BPM Suite                       |
       | Red Hat JBoss Data Virtualization             |
       | Red Hat JBoss Fuse                            |
-      | .NET Core for Red Hat Enterprise Linux     |
+      | .NET Core for Red Hat Enterprise Linux        |
 
   Scenario: Each available product title should link to the relevant product forum page
     Given I am on the Product forums page
@@ -22,10 +23,10 @@ Feature: DEVELOPER-3057 - Forums: Product forums landing page
       | Red Hat JBoss Enterprise Application Platform |
       | Red Hat JBoss Web Server                      |
       | Red Hat Software Collections                  |
-      | Red Hat JBoss AMQ                            |
+      | Red Hat JBoss AMQ                             |
       | Red Hat JBoss BRMS                            |
       | Red Hat JBoss BPM Suite                       |
       | Red Hat JBoss Data Virtualization             |
       | Red Hat JBoss Fuse                            |
-      | .NET Core for Red Hat Enterprise Linux     |
+      | .NET Core for Red Hat Enterprise Linux        |
     And each product title should link to the relevant product forum page
