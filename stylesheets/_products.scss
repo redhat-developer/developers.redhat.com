@@ -650,3 +650,47 @@ ul.product-langs {
   }
 }
 
+rhdp-tryitnow {
+  section {
+    background-color: $green;
+    height: auto;
+    min-height: 150px;
+  }
+  .row {
+    padding: 30px 1em;
+    img {
+      height: 90px;
+      width: 90px;
+      float: left;
+    }
+    span {
+      width: calc(100% - 335px);
+      float: left;
+      padding: 0 1em;
+
+      h4, h5 { color: $white;}
+      h4 { margin: 0; }
+      h5 {
+        padding-top: 15px;
+        margin-top: 0;
+      }
+    }
+    a.button.medium-cta.white {
+      margin-top: 30px;
+      &:hover, &:focus { color: #656565; }
+    }
+  }
+  @media only screen and (max-width: 1170px) {
+    section {
+      margin-left: -15px;
+      margin-right: -15px;    
+    }
+  }
+  @include tablet-portrait-and-down {
+    .row span { width: calc(100% - 90px); }
+    a.button.medium-cta.white { left: 107px; }
+  }
+  @include mobile-landscape-and-down {
+    section { margin-top: -10px; }
+  }
+}
