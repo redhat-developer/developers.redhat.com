@@ -1,11 +1,11 @@
 class RHDPTryItNow extends HTMLElement {
 
-    private _title;
-    private _subtitle;
-    private _buttonID;
-    private _buttonText;
-    private _buttonLink;
-    private _icon;
+    private _title = '';
+    private _subtitle = '';
+    private _buttonID = '';
+    private _buttonText = '';
+    private _buttonLink = '';
+    private _icon = '';
 
     get title() {
         return this._title;
@@ -15,6 +15,7 @@ class RHDPTryItNow extends HTMLElement {
         if(this._title === value) return;
         this._title = value;
         this.setAttribute('title', this._title);
+        this.querySelector('h4') ? this.querySelector('h4').innerText = this._title : '';
     }
 
     get subtitle() {
@@ -25,8 +26,9 @@ class RHDPTryItNow extends HTMLElement {
         if(this._subtitle === value) return;
         this._subtitle = value;
         this.setAttribute('subtitle', this._subtitle);
-    }
+        this.querySelector('h5') ? this.querySelector('h5').innerText = this._subtitle : '';
 
+    }
 
     get buttonID() {
         return this._buttonID;
@@ -35,7 +37,8 @@ class RHDPTryItNow extends HTMLElement {
     set buttonID(value) {
         if(this._buttonID === value) return;
         this._buttonID = value;
-        this.setAttribute('buttonID', this._buttonID);
+        this.setAttribute('button-id', this._buttonID);
+        this.querySelector('a') ? this.querySelector('a').id = this._buttonID : '';
     }
 
     get buttonLink() {
@@ -45,7 +48,9 @@ class RHDPTryItNow extends HTMLElement {
     set buttonLink(value) {
         if(this._buttonLink === value) return;
         this._buttonLink = value;
-        this.setAttribute('buttonLink', this._buttonLink);
+        this.setAttribute('button-link', this._buttonLink);
+        this.querySelector('a') ? this.querySelector('a').href = this._buttonLink : '';
+
     }
 
     get icon() {
@@ -56,6 +61,8 @@ class RHDPTryItNow extends HTMLElement {
         if(this._icon === value) return;
         this._icon = value;
         this.setAttribute('icon', this._icon);
+        this.querySelector('img') ? this.querySelector('img').src = this._buttonLink : '';
+
     }
 
 
@@ -66,7 +73,8 @@ class RHDPTryItNow extends HTMLElement {
     set buttonText(value) {
         if(this._buttonText === value) return;
         this._buttonText = value;
-        this.setAttribute('buttonText', this._buttonText);
+        this.setAttribute('button-text', this._buttonText);
+        this.querySelector('a') ? this.querySelector('a').innerText = this._buttonLink : '';
     }
 
     constructor() {

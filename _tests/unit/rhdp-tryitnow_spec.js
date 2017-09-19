@@ -32,9 +32,9 @@ describe('Try-it now feature', function() {
             wc.icon = icon;
             expect(wc.getAttribute('title')).toEqual(title);
             expect(wc.getAttribute('subtitle')).toEqual(subtitle);
-            expect(wc.getAttribute('buttonID')).toEqual(buttonID);
-            expect(wc.getAttribute('buttonText')).toEqual(buttonText);
-            expect(wc.getAttribute('buttonLink')).toEqual(buttonLink);
+            expect(wc.getAttribute('button-id')).toEqual(buttonID);
+            expect(wc.getAttribute('button-text')).toEqual(buttonText);
+            expect(wc.getAttribute('button-link')).toEqual(buttonLink);
             expect(wc.getAttribute('icon')).toEqual(icon);
         });
     });
@@ -216,6 +216,34 @@ describe('Try-it now feature', function() {
             expect(wc.querySelector('a').id).toEqual(buttonID);
         });
 
+        describe('and dynamic value edits', function() {
+
+            it('should update the heading with appropriate text', function() {
+                wc.title = "Updated Title";
+                expect(wc.querySelector('h4').innerText).toEqual("Updated Title");
+            });
+
+            it('should update the subheading with appropriate text', function() {
+                expect(wc.querySelector('h5').innerText).toEqual(subtitle);
+            });
+
+            it('should update the button with appropriate text', function() {
+                expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+            });
+
+            it('should update the button with corresponding link', function() {
+                expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+            });
+
+            it('should update the icon with a src link', function() {
+                expect(wc.querySelector('img').src).toEqual(icon);
+            });
+
+            it('should update the ID on the related button', function() {
+                expect(wc.querySelector('a').id).toEqual(buttonID);
+            });
+
+        });
     })
 
 });
