@@ -224,23 +224,28 @@ describe('Try-it now feature', function() {
             });
 
             it('should update the subheading with appropriate text', function() {
-                expect(wc.querySelector('h5').innerText).toEqual(subtitle);
+                wc.subtitle = "Updated subtitle";
+                expect(wc.querySelector('h5').innerText).toEqual("Updated subtitle");
             });
 
             it('should update the button with appropriate text', function() {
-                expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+                wc.buttonText = "Updated button text";
+                expect(wc.querySelector('a').innerText).toEqual("Updated button text");
             });
 
             it('should update the button with corresponding link', function() {
-                expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+                wc.buttonLink = "http://www.newbuttonlink.com/";
+                expect(wc.querySelector('a.button').href).toEqual("http://www.newbuttonlink.com/");
             });
 
             it('should update the icon with a src link', function() {
-                expect(wc.querySelector('img').src).toEqual(icon);
+                wc.icon = "http://www.newiconlink.com/";
+                expect(wc.querySelector('img').src).toEqual("http://www.newiconlink.com/");
             });
 
-            it('should update the ID on the related button', function() {
-                expect(wc.querySelector('a').id).toEqual(buttonID);
+            it('should update the button ID on the related button', function() {
+                wc.buttonID = "new button id";
+                expect(wc.querySelector('a').id).toEqual("new button id");
             });
 
         });

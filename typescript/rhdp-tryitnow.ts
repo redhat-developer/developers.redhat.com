@@ -61,7 +61,7 @@ class RHDPTryItNow extends HTMLElement {
         if(this._icon === value) return;
         this._icon = value;
         this.setAttribute('icon', this._icon);
-        this.querySelector('img') ? this.querySelector('img').src = this._buttonLink : '';
+        this.querySelector('img') ? this.querySelector('img').src = this._icon : '';
 
     }
 
@@ -74,7 +74,7 @@ class RHDPTryItNow extends HTMLElement {
         if(this._buttonText === value) return;
         this._buttonText = value;
         this.setAttribute('button-text', this._buttonText);
-        this.querySelector('a') ? this.querySelector('a').innerText = this._buttonLink : '';
+        this.querySelector('a') ? this.querySelector('a').innerText = this._buttonText : '';
     }
 
     constructor() {
