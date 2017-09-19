@@ -1798,6 +1798,7 @@ var RHDPSearchResults = (function (_super) {
         var _this = _super.call(this) || this;
         _this._last = 0;
         _this.loadMore = document.createElement('a');
+        _this.endOfResults = document.createElement('p');
         return _this;
     }
     Object.defineProperty(RHDPSearchResults.prototype, "results", {
@@ -1841,6 +1842,8 @@ var RHDPSearchResults = (function (_super) {
     });
     RHDPSearchResults.prototype.connectedCallback = function () {
         var _this = this;
+        this.endOfResults.className = 'end-of-results';
+        this.endOfResults.innerText = '- End of Results -';
         this.loadMore.className = 'moreBtn hide';
         this.loadMore.innerText = 'Load More';
         this.loadMore.addEventListener('click', function (e) {
@@ -1887,6 +1890,9 @@ var RHDPSearchResults = (function (_super) {
                 this.addResult(hits[i]);
             }
             this.last = this.last + l;
+            if (this.last >= results.hits.total) {
+                this.appendChild(this.endOfResults);
+            }
             if (l > 0 && this.last < results.hits.total) {
                 this.appendChild(this.loadMore);
             }

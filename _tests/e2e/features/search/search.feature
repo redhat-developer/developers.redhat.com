@@ -170,3 +170,15 @@ Feature: Search Page
     When I search for "Java"
     Then the results should be updated and contain "Java"
 
+  Scenario: User sees the end of the returned search results
+    Given I am on the "Search" page
+    When I search for "qwert"
+    And there are 10 or less results available
+    Then I should not see a Load More link
+    And I should see some text that says "- End of Results -"
+
+  Scenario: User gets to the end of the returned resultset, but there are more results
+    Given I am on the "Search" page
+    And I search for "Containers"
+    Then I should see a Load More link
+    And I should not see some text that says "- End of Results -"
