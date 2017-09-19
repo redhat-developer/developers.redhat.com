@@ -8,6 +8,7 @@
     "e2e:browserstack": "wdio website/config/wdio.conf.browserstack.js",
     "e2e:kc": "wdio keycloak/config/wdio.conf.keycloak.local.js",
     "e2e:kc:docker": "wdio keycloak/config/wdio.conf.keycloak.docker.js",
+    "e2e:kc:appium": "wdio keycloak/config/wdio.conf.keycloak.appium.js",
     "lint": "eslint ."
   },
   "author": "Red Hat Inc.",
@@ -21,6 +22,7 @@
     "request": "^2.81.0",
     "selenium-standalone": "6.5.0",
     "sync-request": "4.1.0",
+    "wdio-appium-service": "^0.2.3",
     "wdio-browserstack-service": "0.1.4",
     "wdio-cucumber-framework": "0.3.1",
     "wdio-junit-reporter": "0.3.0",

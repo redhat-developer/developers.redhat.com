@@ -22,12 +22,13 @@ Feature: Log in using my RHD registered details.
     When I attempt to log in with an invalid email address
     Then the following error message should be displayed: Invalid login or password.
 
-  Scenario: A customer can successfully reset their password
-    Given I am a RHD registered site visitor
-    And I am on the Login page
-    When I request a password reset
-    And I navigate to the password reset link
-    Then I should be logged in
+# email is taking ~1 hour to be sent. Not possible to test the full flow at the moment
+#  Scenario: A customer can successfully reset their password
+#    Given I am a RHD registered site visitor
+#    And I am on the Login page
+#    When I request a password reset
+#    And I navigate to the password reset link
+#    Then I should be logged in
 
   Scenario: New User can login with active OpenShift.com account (simple user account)
     Given I am an OpenShift registered site visitor
