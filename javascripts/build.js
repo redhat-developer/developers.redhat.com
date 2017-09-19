@@ -12,6 +12,12 @@ var RHDPTryItNow = (function (_super) {
     __extends(RHDPTryItNow, _super);
     function RHDPTryItNow() {
         var _this = _super.call(this) || this;
+        _this._title = '';
+        _this._subtitle = '';
+        _this._buttonID = '';
+        _this._buttonText = '';
+        _this._buttonLink = '';
+        _this._icon = '';
         _this.template = function (strings, title, subtitle, buttonLink, icon, buttonText, buttonID) {
             return "<section> <div class=\"row\"> <img src=\"" + icon + "\"> <span> <h4>" + title + "</h4> <h5>" + subtitle + "</h5> </span> <a " + (buttonID ? "id=\"" + buttonID + "\" " : '') + " href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a> </div></section>";
         };
@@ -26,6 +32,7 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._title = value;
             this.setAttribute('title', this._title);
+            this.querySelector('h4') ? this.querySelector('h4').innerText = this._title : '';
         },
         enumerable: true,
         configurable: true
@@ -39,6 +46,7 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._subtitle = value;
             this.setAttribute('subtitle', this._subtitle);
+            this.querySelector('h5') ? this.querySelector('h5').innerText = this._subtitle : '';
         },
         enumerable: true,
         configurable: true
@@ -51,7 +59,8 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonID === value)
                 return;
             this._buttonID = value;
-            this.setAttribute('buttonID', this._buttonID);
+            this.setAttribute('button-id', this._buttonID);
+            this.querySelector('a') ? this.querySelector('a').id = this._buttonID : '';
         },
         enumerable: true,
         configurable: true
@@ -64,7 +73,8 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonLink === value)
                 return;
             this._buttonLink = value;
-            this.setAttribute('buttonLink', this._buttonLink);
+            this.setAttribute('button-link', this._buttonLink);
+            this.querySelector('a') ? this.querySelector('a').href = this._buttonLink : '';
         },
         enumerable: true,
         configurable: true
@@ -78,6 +88,7 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._icon = value;
             this.setAttribute('icon', this._icon);
+            this.querySelector('img') ? this.querySelector('img').src = this._buttonLink : '';
         },
         enumerable: true,
         configurable: true
@@ -90,7 +101,8 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonText === value)
                 return;
             this._buttonText = value;
-            this.setAttribute('buttonText', this._buttonText);
+            this.setAttribute('button-text', this._buttonText);
+            this.querySelector('a') ? this.querySelector('a').innerText = this._buttonLink : '';
         },
         enumerable: true,
         configurable: true
