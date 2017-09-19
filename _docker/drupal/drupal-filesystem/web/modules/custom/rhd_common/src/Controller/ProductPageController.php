@@ -88,11 +88,11 @@ FROM
   {node_revision},
   {node_revision__field_product_pages}
   -- {paragraph_revision__field_tabs}
-WHERE node_revision__field_product_pages.entity_id = node_revision.nid
-  AND node_revision__field_product_pages.revision_id = node_revision.vid
+WHERE {node_revision__field_product_pages}.entity_id = {node_revision}.nid
+  AND {node_revision__field_product_pages}.revision_id = {node_revision}.vid
   -- AND paragraph_revision__field_tabs.entity_id = node_revision__field_product_pages.field_product_pages_target_id
   -- AND paragraph_revision__field_tabs.revision_id = node_revision__field_product_pages.field_product_pages_target_revision_id
-  AND node_revision.nid = :nid AND node_revision.vid = :vid',
+  AND {node_revision}.nid = :nid AND {node_revision}.vid = :vid',
       [
         ':nid' => $active_product->id(),
         ':vid' => $active_product->getRevisionId()

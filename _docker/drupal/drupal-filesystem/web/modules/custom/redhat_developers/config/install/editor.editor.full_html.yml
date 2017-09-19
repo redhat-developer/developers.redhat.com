@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - filter.format.rhd_html
+    - filter.format.full_html
   module:
     - ckeditor
-format: rhd_html
+format: full_html
 editor: ckeditor
 settings:
   toolbar:
@@ -16,7 +16,11 @@ settings:
           items:
             - Bold
             - Italic
-            - Underline
+            - Strike
+            - Superscript
+            - Subscript
+            - '-'
+            - RemoveFormat
         -
           name: Linking
           items:
@@ -30,43 +34,24 @@ settings:
         -
           name: Media
           items:
-            - media_browser
-            - node
+            - Blockquote
+            - DrupalImage
+            - Table
+            - HorizontalRule
         -
           name: 'Block Formatting'
           items:
-            - Blockquote
             - Format
-            - Styles
         -
           name: Tools
           items:
+            - ShowBlocks
             - Source
-            - Maximize
-        -
-          name: Layout
-          items:
-            - AddLayout
-            - Table
-            - JustifyLeft
-            - JustifyCenter
-            - JustifyRight
-            - JustifyBlock
   plugins:
-    drupallink:
-      linkit_enabled: true
-      linkit_profile: default
     language:
       language_list: un
     stylescombo:
-      styles: "a.button|Button\r\ndiv.box.callout|Callout Box"
-    video_embed:
-      defaults:
-        children:
-          autoplay: false
-          responsive: true
-          width: '854'
-          height: '480'
+      styles: ''
 image_upload:
   status: true
   scheme: public

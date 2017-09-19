@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_core
+third_party_settings:
+  lightning_core:
+    description: ''
+id: content_team
+label: 'Content Reviewer'
+weight: -6
+is_admin: null
+permissions:
+  - 'bypass node access'
+  - 'create media'
+  - 'delete own promotion_card content'
+  - 'use needs_review_draft transition'
+  - 'use needs_review_needs_review transition'
+  - 'view moderation states'

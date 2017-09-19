@@ -2,8 +2,14 @@ langcode: en
 status: true
 dependencies:
   module:
-    - editor
+    - token_filter
 name: 'As-is HTML'
 format: as_is_html
-weight: 0
-filters: { }
+weight: -5
+filters:
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: true
+    weight: 0
+    settings: {  }
