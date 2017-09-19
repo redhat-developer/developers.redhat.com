@@ -78,7 +78,9 @@ class RHDPTryItNow extends HTMLElement {
     };
 
     connectedCallback() {
-        this.innerHTML = this.template`${this.title}${this.subtitle}${this.buttonLink}${this.icon}${this.buttonText}${this.buttonID}`;
+        if(this.title && this.subtitle && this.buttonLink && this.icon && this.buttonText){
+            this.innerHTML = this.template`${this.title}${this.subtitle}${this.buttonLink}${this.icon}${this.buttonText}${this.buttonID}`;
+        }
     };
 
     static get observedAttributes() {

@@ -96,7 +96,9 @@ var RHDPTryItNow = (function (_super) {
         configurable: true
     });
     RHDPTryItNow.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonLink, this.icon, this.buttonText, this.buttonID));
+        if (this.title && this.subtitle && this.buttonLink && this.icon && this.buttonText) {
+            this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonLink, this.icon, this.buttonText, this.buttonID));
+        }
         var _a;
     };
     ;
