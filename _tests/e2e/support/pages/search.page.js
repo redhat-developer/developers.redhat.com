@@ -41,6 +41,8 @@ class SearchPage extends mixin(BasePage, NavigationBar) {
 
     loadMoreButton () { return $('.moreBtn'); }
 
+    endOfResults () { return $('.end-of-results'); }
+
     searchResults () { return $$('.result'); }
 
     searchResult (i) { return $(`//rhdp-search-result[${i}]/div`); }
