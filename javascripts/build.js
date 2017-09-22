@@ -8,6 +8,90 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var RHDPThankyou = (function (_super) {
+    __extends(RHDPThankyou, _super);
+    function RHDPThankyou() {
+        var _this = _super.call(this) || this;
+        _this.template = function (strings, name, directLink) {
+            return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>Your download should start automatically.</strong>\n                                <p>If you have any problems with the download, please use the <a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-16 small-24 columns thankyou\">\n                                <h2>Thank you for downloading the:</h2>\n                                <h2>" + name + "</h2>\n    \n                        </div>\n                        <div class=\"large-24 medium-16 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue\n                                    to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
+        };
+        return _this;
+    }
+    Object.defineProperty(RHDPThankyou.prototype, "url", {
+        get: function () {
+            return this._url;
+        },
+        set: function (value) {
+            if (this._url === value)
+                return;
+            this._url = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPThankyou.prototype, "mediaName", {
+        get: function () {
+            return this._mediaName;
+        },
+        set: function (value) {
+            if (this._mediaName === value)
+                return;
+            this._mediaName = value;
+            this.setAttribute('media-name', this._mediaName);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPThankyou.prototype, "directLink", {
+        get: function () {
+            return this._directLink;
+        },
+        set: function (value) {
+            if (this._directLink === value)
+                return;
+            this._directLink = value;
+            this.setAttribute('direct-download', this._directLink);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPThankyou.prototype.connectedCallback = function () {
+        this.mediaName = this.stripLabelFromMedia(this.getParameterByName('p'));
+        this.directLink = this.getParameterByName('tcDownloadURL');
+        this.innerHTML = (_a = ["", "", ""], _a.raw = ["", "", ""], this.template(_a, this.mediaName, this.directLink));
+        var _a;
+    };
+    Object.defineProperty(RHDPThankyou, "observedAttributes", {
+        get: function () {
+            return ['media-name', 'direct-link'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPThankyou.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    RHDPThankyou.prototype.stripLabelFromMedia = function (name) {
+        if (name) {
+            name = name.replace(/Media:[\s]/g, "");
+        }
+        return name;
+    };
+    RHDPThankyou.prototype.getParameterByName = function (urlName) {
+        this.url = this.url ? this.url : window.location.href;
+        urlName = urlName.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + urlName + "(=([^&#]*)|&|#|$)"), results = regex.exec(this.url);
+        if (!results)
+            return null;
+        if (!results[2])
+            return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+    return RHDPThankyou;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-thankyou', RHDPThankyou);
+});
 var RHDPTryItNow = (function (_super) {
     __extends(RHDPTryItNow, _super);
     function RHDPTryItNow() {
