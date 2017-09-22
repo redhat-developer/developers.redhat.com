@@ -82,13 +82,21 @@ class RHDPTryItNow extends HTMLElement {
     }
 
     template = (strings, title, subtitle, buttonLink, icon, buttonText, buttonID) => {
-        return `<section> <div class="row"> <img src="${icon}"> <span> <h4>${title}</h4> <h5>${subtitle}</h5> </span> <a ${buttonID ? `id="${buttonID}" ` :''} href="${buttonLink}" class="button medium-cta white">${buttonText}</a> </div></section>`;
+        return `<section> 
+                    <div class="row"> 
+                        ${icon ? `<img src="${icon}"> ` : ''}
+                        <div class="tryitnow-titles">
+                            ${title ? `<h4>${title}</h4>` : ''}
+                            ${subtitle ? `<h5>${subtitle}</h5>` : ''}
+                        </div>
+                        <a ${buttonID ? `id="${buttonID}" ` :''} href="${buttonLink}" class="button medium-cta white">${buttonText}</a>
+                    </div>
+                </section>`;
+
     };
 
     connectedCallback() {
-        if(this.title && this.subtitle && this.buttonLink && this.icon && this.buttonText){
             this.innerHTML = this.template`${this.title}${this.subtitle}${this.buttonLink}${this.icon}${this.buttonText}${this.buttonID}`;
-        }
     };
 
     static get observedAttributes() {

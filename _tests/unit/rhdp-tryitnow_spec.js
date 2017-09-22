@@ -21,7 +21,7 @@ describe('Try-it now feature', function() {
             subtitle = "test subtitle",
             buttonID = "test button id",
             buttonText = "test button text",
-            buttonLink = "http://www.buttonlink.com",
+            buttonLink = "http://www.buttonlink.com/",
             icon = "http://www.imageicon.com";
 
             wc.title = title;
@@ -56,25 +56,7 @@ describe('Try-it now feature', function() {
             icon = "";
         });
 
-        it('should be blank with no values', function() {
-            wc.title = title;
-            wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
-            wc.icon = icon;
-
-            document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.innerHTML.length).toEqual(0);
-        });
-
-        it('should not be blank with only buttonID missing', function() {
-            title = "test title";
-            subtitle = "test subtitle";
-            buttonText = "test button text";
-            buttonLink = "http://www.buttonlink.com";
-            icon = "http://www.imageicon.com";
-
+        it('should not be blank with no values', function() {
             wc.title = title;
             wc.subtitle = subtitle;
             wc.buttonID = buttonID;
@@ -86,59 +68,12 @@ describe('Try-it now feature', function() {
             expect(wc.innerHTML.length).toBeGreaterThan(0);
         });
 
-        it('should be blank with title missing', function() {
-            subtitle = "test subtitle";
-            buttonText = "test button text";
-            buttonLink = "http://www.buttonlink.com";
-            icon = "http://www.imageicon.com";
-
-            wc.title = title;
-            wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
-            wc.icon = icon;
-
-            document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.innerHTML.length).toEqual(0);
-        });
-        it('should be blank with subtitle missing', function() {
-            title = "test title";
-            buttonText = "test button text";
-            buttonLink = "http://www.buttonlink.com";
-            icon = "http://www.imageicon.com";
-
-            wc.title = title;
-            wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
-            wc.icon = icon;
-
-            document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.innerHTML.length).toEqual(0);
-        });
-        it('should be blank with buttonText missing', function() {
-            title = "test title";
-            subtitle = "test subtitle";
-            buttonLink = "http://www.buttonlink.com";
-            icon = "http://www.imageicon.com";
-
-            wc.title = title;
-            wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
-            wc.icon = icon;
-
-            document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.innerHTML.length).toEqual(0);
-        });
-        it('should be blank with buttonLink missing', function() {
+        it('should not be blank with buttonID missing', function() {
             title = "test title";
             subtitle = "test subtitle";
             buttonText = "test button text";
-            icon = "http://www.imageicon.com";
+            buttonLink = "http://www.buttonlink.com/";
+            icon = "http://www.imageicon.com/";
 
             wc.title = title;
             wc.subtitle = subtitle;
@@ -148,13 +83,82 @@ describe('Try-it now feature', function() {
             wc.icon = icon;
 
             document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.innerHTML.length).toEqual(0);
+            expect(wc.querySelector('h4').innerText).toEqual(title);
+            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
+            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+            expect(wc.querySelector('img').src).toEqual(icon);
+            expect(wc.querySelector('a').id).toEqual(buttonID);
         });
-        it('should be blank with icon missing', function() {
+
+        it('should not be blank with title missing', function() {
+            subtitle = "test subtitle";
+            buttonText = "test button text";
+            buttonLink = "http://www.buttonlink.com/";
+            icon = "http://www.imageicon.com/";
+
+            wc.title = title;
+            wc.subtitle = subtitle;
+            wc.buttonID = buttonID;
+            wc.buttonText = buttonText;
+            wc.buttonLink = buttonLink;
+            wc.icon = icon;
+
+            document.body.insertBefore(wc, document.body.firstChild);
+            expect(wc.querySelector('h4')).toBeNull();
+            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
+            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+            expect(wc.querySelector('img').src).toEqual(icon);
+            expect(wc.querySelector('a').id).toEqual(buttonID);
+        });
+        it('should not be blank with subtitle missing', function() {
+            title = "test title";
+            buttonText = "test button text";
+            buttonLink = "http://www.buttonlink.com/";
+            icon = "http://www.imageicon.com/";
+
+            wc.title = title;
+            wc.subtitle = subtitle;
+            wc.buttonID = buttonID;
+            wc.buttonText = buttonText;
+            wc.buttonLink = buttonLink;
+            wc.icon = icon;
+
+            document.body.insertBefore(wc, document.body.firstChild);
+            expect(wc.querySelector('h4').innerText).toEqual(title);
+            expect(wc.querySelector('h5')).toBeNull();
+            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+            expect(wc.querySelector('img').src).toEqual(icon);
+            expect(wc.querySelector('a').id).toEqual(buttonID);
+        });
+        it('should not be blank with buttonText missing', function() {
+            title = "test title";
+            subtitle = "test subtitle";
+            buttonLink = "http://www.buttonlink.com/";
+            icon = "http://www.imageicon.com/";
+
+            wc.title = title;
+            wc.subtitle = subtitle;
+            wc.buttonID = buttonID;
+            wc.buttonText = buttonText;
+            wc.buttonLink = buttonLink;
+            wc.icon = icon;
+
+            document.body.insertBefore(wc, document.body.firstChild);
+            expect(wc.querySelector('h4').innerText).toEqual(title);
+            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
+            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+            expect(wc.querySelector('img').src).toEqual(icon);
+            expect(wc.querySelector('a').id).toEqual(buttonID);
+        });
+        it('should not be blank with buttonLink missing', function() {
             title = "test title";
             subtitle = "test subtitle";
             buttonText = "test button text";
-            buttonLink = "http://www.buttonlink.com";
+            icon = "http://www.imageicon.com/";
 
             wc.title = title;
             wc.subtitle = subtitle;
@@ -164,7 +168,33 @@ describe('Try-it now feature', function() {
             wc.icon = icon;
 
             document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.innerHTML.length).toEqual(0);
+            expect(wc.querySelector('h4').innerText).toEqual(title);
+            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
+            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+            expect(wc.querySelector('img').src).toEqual(icon);
+            expect(wc.querySelector('a').id).toEqual(buttonID);
+        });
+        it('should not be blank with icon missing', function() {
+            title = "test title";
+            subtitle = "test subtitle";
+            buttonText = "test button text";
+            buttonLink = "http://www.buttonlink.com/";
+
+            wc.title = title;
+            wc.subtitle = subtitle;
+            wc.buttonID = buttonID;
+            wc.buttonText = buttonText;
+            wc.buttonLink = buttonLink;
+            wc.icon = icon;
+
+            document.body.insertBefore(wc, document.body.firstChild);
+            expect(wc.querySelector('h4').innerText).toEqual(title);
+            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
+            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+            expect(wc.querySelector('img')).toBeNull();
+            expect(wc.querySelector('a').id).toEqual(buttonID);
+            expect(wc.innerHTML.length).toBeGreaterThan(0);
         });
 
     })

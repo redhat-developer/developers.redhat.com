@@ -19,7 +19,7 @@ var RHDPTryItNow = (function (_super) {
         _this._buttonLink = '';
         _this._icon = '';
         _this.template = function (strings, title, subtitle, buttonLink, icon, buttonText, buttonID) {
-            return "<section> <div class=\"row\"> <img src=\"" + icon + "\"> <span> <h4>" + title + "</h4> <h5>" + subtitle + "</h5> </span> <a " + (buttonID ? "id=\"" + buttonID + "\" " : '') + " href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a> </div></section>";
+            return "<section> \n                    <div class=\"row\"> \n                        " + (icon ? "<img src=\"" + icon + "\"> " : '') + "\n                        <div class=\"tryitnow-titles\">\n                            " + (title ? "<h4>" + title + "</h4>" : '') + "\n                            " + (subtitle ? "<h5>" + subtitle + "</h5>" : '') + "\n                        </div>\n                        <a " + (buttonID ? "id=\"" + buttonID + "\" " : '') + " href=\"" + buttonLink + "\" class=\"button medium-cta white\">" + buttonText + "</a>\n                    </div>\n                </section>";
         };
         return _this;
     }
@@ -108,9 +108,7 @@ var RHDPTryItNow = (function (_super) {
         configurable: true
     });
     RHDPTryItNow.prototype.connectedCallback = function () {
-        if (this.title && this.subtitle && this.buttonLink && this.icon && this.buttonText) {
-            this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonLink, this.icon, this.buttonText, this.buttonID));
-        }
+        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonLink, this.icon, this.buttonText, this.buttonID));
         var _a;
     };
     ;
