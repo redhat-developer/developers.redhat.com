@@ -179,15 +179,16 @@ class DevNationLiveApp extends HTMLElement {
         ${this.nextSession`${next}`}
         <section>
             <div class="row">
+                ${upcoming.length > 0 ? `
                 ${past.length > 0 ? `<div class="large-12 columns">` : `<div class="large-24 columns">`}
                     <h5 class="caps">Upcoming Sessions</h5>
                     <br>
                     <ul class="events-list">
                     ${upcoming.map(sess =>  this.upcomingSession`${sess}`).join('')}
                     </ul>
-                </div>
+                </div>` : ''}
                 ${past.length > 0 ? `
-                    <div class="large-12 columns">
+                ${upcoming.length > 0 ? `<div class="large-12 columns">` : `<div class="large-24 columns">`}
                     <h5 class="caps">Past Sessions</h5>
                         <br>
                         <ul class="events-list">
