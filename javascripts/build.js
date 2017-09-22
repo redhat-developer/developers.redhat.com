@@ -366,7 +366,7 @@ var RHDPSearchApp = (function (_super) {
     function RHDPSearchApp() {
         var _this = _super.call(this) || this;
         _this._name = 'Search';
-        _this.template = "<div class=\"row\">\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h2>" + _this.name + "</h2>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"</div>\n        </div>\n    </div></div>";
+        _this.template = "<div class=\"row\">\n    <div class=\"large-24 medium-24 small-24 columns searchpage-middle\">\n        <div class=\"row\">\n            <div class=\"large-24 medium-24 small-24 columns\">\n                <h2>" + _this.name + "</h2>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"large-6 medium-8 small-24 columns\"></div>\n            <div class=\"large-18 medium-16 small-24 columns\"></div>\n        </div>\n    </div></div>";
         _this.query = new RHDPSearchQuery();
         _this.box = new RHDPSearchBox();
         _this.count = new RHDPSearchResultCount();
@@ -1552,7 +1552,7 @@ var RHDPSearchResultCount = (function (_super) {
         _this._count = 0;
         _this._term = '';
         _this.template = function (strings, count, term) {
-            return count + " results found for " + term;
+            return count + " results found for " + term.replace('<', '&lt;').replace('>', '&gt;');
         };
         return _this;
     }
@@ -1798,6 +1798,7 @@ var RHDPSearchResults = (function (_super) {
         var _this = _super.call(this) || this;
         _this._last = 0;
         _this.loadMore = document.createElement('a');
+        _this.endOfResults = document.createElement('p');
         return _this;
     }
     Object.defineProperty(RHDPSearchResults.prototype, "results", {
@@ -1841,6 +1842,8 @@ var RHDPSearchResults = (function (_super) {
     });
     RHDPSearchResults.prototype.connectedCallback = function () {
         var _this = this;
+        this.endOfResults.className = 'end-of-results';
+        this.endOfResults.innerText = '- End of Results -';
         this.loadMore.className = 'moreBtn hide';
         this.loadMore.innerText = 'Load More';
         this.loadMore.addEventListener('click', function (e) {
@@ -1887,6 +1890,9 @@ var RHDPSearchResults = (function (_super) {
                 this.addResult(hits[i]);
             }
             this.last = this.last + l;
+            if (this.last >= results.hits.total) {
+                this.appendChild(this.endOfResults);
+            }
             if (l > 0 && this.last < results.hits.total) {
                 this.appendChild(this.loadMore);
             }

@@ -77,6 +77,15 @@ module.exports = function () {
         }
     });
 
+    this.Then(/^I (should|should not) see some text that says "- End of Results -"$/, function (negate) {
+        searchPage.waitForResultsLoaded();
+        if (negate === 'should') {
+            expect(searchPage.endOfResults().isVisible(), 'End of Results text was not visible').to.be.true;
+        } else {
+            expect(searchPage.endOfResults().isVisible(), 'End of Results text was visible').to.be.false;
+        }
+    });
+
     this.Then(/^I should see a message "([^"]*)"$/, function (resultMsg) {
         let resultMessage = searchPage.resultCount();
         expect(resultMessage, `${resultMsg} was not displayed`).to.equal(resultMsg)

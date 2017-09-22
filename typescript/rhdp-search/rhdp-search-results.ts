@@ -33,12 +33,15 @@ class RHDPSearchResults extends HTMLElement {
     }
 
     loadMore = document.createElement('a');
+    endOfResults = document.createElement('p');
 
     constructor() {
         super();
     }
 
     connectedCallback() {
+        this.endOfResults.className = 'end-of-results';
+        this.endOfResults.innerText = '- End of Results -';
         this.loadMore.className = 'moreBtn hide';
         this.loadMore.innerText = 'Load More';
 
@@ -86,6 +89,9 @@ class RHDPSearchResults extends HTMLElement {
                 this.addResult(hits[i]);
             }
             this.last = this.last + l;
+            if (this.last >= results.hits.total) {
+                this.appendChild(this.endOfResults);
+            }
             if (l > 0 && this.last < results.hits.total) {
                 this.appendChild(this.loadMore);
             } else if (this.querySelector('.moreBtn')) {
