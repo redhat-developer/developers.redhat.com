@@ -1,12 +1,13 @@
 class RHDPSearchQuery extends HTMLElement {
     _filters;
+    _activeFilters;
     _limit = 10;
     _from = 0;
     _sort = 'relevance';
     _results;
     _term;
     _url;
-    params;
+    _valid = true;
 
     get filters() {
         return this._filters;
@@ -15,7 +16,15 @@ class RHDPSearchQuery extends HTMLElement {
     set filters(val) {
         if (this._filters === val) return;
         this._filters = val;
-        this.setFilters();
+    }
+
+    get activeFilters() {
+        return this._activeFilters;
+    }
+
+    set activeFilters(val) {
+        if (this._activeFilters === val) return;
+        this._activeFilters = val;
     }
 
     get from() {
@@ -51,15 +60,10 @@ class RHDPSearchQuery extends HTMLElement {
     set results(val) {
         if (this._results === val) return;
         this._results = val;
+        this.from = this.results && this.results.hits && typeof this.results.hits.hits !== 'undefined' ? this.from + this.results.hits.hits.length : 0;
         this.dispatchEvent(new CustomEvent('search-complete', {
             detail: { 
                 results: this.results,
-                term: this.term,
-                from: this.from,
-                filterStr: this.filterString(this.filters.facets),
-                filters: this.filters,
-                sort: this.sort,
-                limit: this.limit
             }, 
             bubbles: true 
         }));
@@ -85,63 +89,12 @@ class RHDPSearchQuery extends HTMLElement {
         this.setAttribute('url', val.toString());
     }
 
-    get productString() {
-        var defaults = [{active: true, value: [
-            'eap'
-            ,'webserver'
-            ,'datagrid'
-            ,'datavirt'
-            ,'fuse'
-            ,'amq'
-            ,'brms'
-            ,'bpmsuite'
-            ,'devstudio'
-            ,'cdk'
-            ,'developertoolset'
-            ,'rhel'
-            ,'softwarecollections'
-            ,'mobileplatform'
-            ,'openshift'
-            ,'rhamt'
-        ]}],
-        products = this.valStrings('project', this.filters.facets[1].items)
-        return products.length > -1 ? products : this.valStrings('project', defaults);
+    get valid() {
+        return this._valid;
     }
-
-    get tagString() {
-        return this.valStrings('tag', this.filters.facets[2].items);
-    }
-    get sysTypeString() {
-        var defaults = [{active: true, value: [
-                'jbossdeveloper_archetype'
-                ,'article'
-                ,'blogpost'
-                ,'jbossdeveloper_bom'
-                ,'book'
-                ,'cheatsheet'
-                ,'demo'
-                ,'event'
-                ,'forumthread'
-                ,'jbossdeveloper_example'
-                ,'quickstart'
-                ,'solution'
-                ,'stackoverflow_thread'
-                ,'video'
-                ,'website'
-                ,'webpage'
-            ]}],
-            sysTypes = this.valStrings('sys_type', this.filters.facets[0].items);
-        return sysTypes.length > -1 ? sysTypes : this.valStrings('sys_type', defaults);
-    }
-
-    valStrings(txt, items) {
-        var len = items.length,
-            typeString = '';
-        for(let i=0; i < len; i++) {
-            var t = (items[i].value.join(`&${txt}=`)).toLowerCase().replace(' ', '+');
-            typeString += items[i].active ? `&${txt}=${t}` : '';
-        }
-        return typeString;
+    set valid(val) {
+        if (this._valid === val) return;
+        this._valid = val;
     }
 
     filterString(facets) {
@@ -176,58 +129,128 @@ class RHDPSearchQuery extends HTMLElement {
     }
 
     connectedCallback() {
+        top.addEventListener('params-ready', this._changeAttr);
         top.addEventListener('term-change', this._changeAttr);
         top.addEventListener('filter-item-change', this._changeAttr);
         top.addEventListener('sort-change', this._changeAttr);
+        top.window.addEventListener('popstate', e => { this.results = undefined; });
         top.addEventListener('load-more', this._changeAttr);
     }
 
     static get observedAttributes() { 
-        return ['term', 'sort', 'limit', 'results', 'filters', 'url']; 
+        return ['term', 'sort', 'limit', 'results', 'url']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
     }
 
+    _setFilters(item : RHDPSearchFilterItem) {
+        let add = item.active;
+        
+        if (add) {
+            this.activeFilters[item.group] = this.activeFilters[item.group] || [];
+            this.activeFilters[item.group].push(item.key);
+        } else {
+            Object.keys(this.activeFilters).forEach(group => {
+                if (group === item.group) { 
+                    let idx = this.activeFilters[group].indexOf(item.key);
+                    if (idx >= 0) {
+                        this.activeFilters[group].splice(idx, 1);
+                        if (this.activeFilters[group].length === 0) {
+                            delete this.activeFilters[group];
+                        }
+                    }
+                }
+            });
+        }
+    }
+
     _changeAttr(e) {
         switch (e.type) {
             case 'term-change':
+                if (e.detail && e.detail.term && e.detail.term.length > 0) {
+                    this.term = e.detail.term;
+                    this.search();
+                } else {
+                    this.term = '';
+                }
+                
+                break;
+            case 'filter-item-change': //detail.facet
+                if (e.detail && e.detail.facet) {
+                    this._setFilters(e.detail.facet);
+                }
+                this.search();
+                // Wait for params-ready event
+                break;
+            case 'sort-change': // detail.sort
+                if (e.detail && e.detail.sort) {
+                    this.sort = e.detail.sort;
+                }
+                this.search();
+                break;
+            case 'load-more': // detail.qty
+                this.search();
+                break;
+            case 'params-ready':
                 if (e.detail && e.detail.term) {
                     this.term = e.detail.term;
                 }
+                if (e.detail && e.detail.sort) {
+                    this.sort = e.detail.sort;
+                }
+                if (e.detail && e.detail.filters) {
+                    this.activeFilters = e.detail.filters;
+                }
+
+                if (Object.keys(e.detail.filters).length > 0 || e.detail.term !== null || e.detail.sort !== null || e.detail.qty !== null) {
+                    this.search();
+                }
                 break;
-            case 'filter-item-change': //detail.facet
-                break;
-            case 'sort-change': // detail.sort
-                break;
-            case 'load-more': // detail.qty
-                break;
-        }
-        
+        }   
     }
 
-    search(term) {
-        this.term = term;
-        this.dispatchEvent(new CustomEvent("search-message",{detail:{state:"standard",message:""},bubbles: true}));
+    // _checkValid(e) {
+    //     let obj = e.detail;
+    //     this.valid = ;
+    // }
 
-        var searchResults = document.getElementsByTagName( 'rhdp-search-results' )[0];
+    search() {
+        this.dispatchEvent(new CustomEvent('search-start', { bubbles: true }));
+        if (Object.keys(this.activeFilters).length > 0 || (this.term !== null && this.term !== '' && typeof this.term !== 'undefined')) {
 
-
-        while(searchResults.firstChild && this.from === 0){
-            searchResults.removeChild(searchResults.firstChild);
+            let qURL = new URL(this.url);
+            qURL.searchParams.set('tags_or_logic', 'true');
+            qURL.searchParams.set('filter_out_excluded', 'true');
+            qURL.searchParams.set('from', this.from.toString());
+            qURL.searchParams.set('newFirst', this.sort === 'most-recent' ? 'true' : 'false');
+            qURL.searchParams.set('query', this.term || '');
+            qURL.searchParams.set('query_highlight', 'true');
+            qURL.searchParams.set('size'+this.limit.toString(), 'true');
+            if (this.activeFilters) {
+                Object.keys(this.activeFilters).forEach(filtergroup => {
+                    this.filters.facets.forEach(group => {
+                        if (group.key === filtergroup) {
+                            group.items.forEach(facet => {
+                                if (this.activeFilters[group.key].indexOf(facet.key) >= 0) {
+                                    facet.value.forEach(fval => {
+                                        qURL.searchParams.append(group.key, fval);
+                                    });
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+            //console.log(qURL.toString());
+            fetch(qURL.toString()) //this.urlTemplate`${this.url}${this.term}${this.from}${this.limit}${this.sort}${this.filters}`)
+            .then((resp) => resp.json())
+            .then((data) => { 
+                this.results = data; 
+            });
+        } else {
+            this.dispatchEvent(new CustomEvent('search-complete', { detail: { results: {}, invalid: true }, bubbles: true }));
         }
-
-        searchResults.setAttribute( 'class', 'loading' );
-        
-        fetch(this.urlTemplate`${this.url}${this.term}${this.from}${this.limit}${this.sort}${this.productString}${this.tagString}${this.sysTypeString}`)
-        .then((resp) => resp.json())
-        .then((data) => { 
-            this.results = data; 
-        });
-    }
-
-    setFilters() {
-        return;
     }
 }

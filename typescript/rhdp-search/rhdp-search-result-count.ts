@@ -1,6 +1,7 @@
 class RHDPSearchResultCount extends HTMLElement {
     _count = 0;
     _term = '';
+    _loading = true;
 
     get count() {
         return this._count;
@@ -10,7 +11,6 @@ class RHDPSearchResultCount extends HTMLElement {
         if (this._count === val) return;
         this._count = val;
         this.setAttribute('count', val.toString());
-        this.setText();
     }
 
     get term() {
@@ -18,14 +18,24 @@ class RHDPSearchResultCount extends HTMLElement {
     }
 
     set term(val) {
+        val = decodeURI(val).replace('<','&lt;').replace('>','&gt;');
         if (this._term === val) return;
         this._term = val;
         this.setAttribute('term', val);
-        this.setText();
+    }
+
+    get loading() {
+        return this._loading;
+    }
+    set loading(val) {
+        if (this._loading === val) return;
+        this._loading = val;
     }
 
     constructor() {
         super();
+
+        this._setText = this._setText.bind(this);
     }
 
     template = (strings, count, term) => {
@@ -33,7 +43,10 @@ class RHDPSearchResultCount extends HTMLElement {
     };
 
     connectedCallback() {
-        
+        top.addEventListener('params-ready', this._setText);
+        top.addEventListener('search-start', e => { this.loading = true; });
+        top.addEventListener('search-complete', e => { this.loading = false; this._setText(e) });
+        top.addEventListener('term-change', this._setText);
     }
 
     static get observedAttributes() { 
@@ -44,9 +57,21 @@ class RHDPSearchResultCount extends HTMLElement {
         this[name] = newVal;
     }
 
-    setText() {
-        if (this.term.length > 0 ) {
-            this.innerHTML = this.template`${this.count}${this.term}`;
+    _setText(e) {
+        if (e.detail) {
+            if (e.detail.term && e.detail.term.length > 0) {
+                this.term = e.detail.term;
+            } else {
+                this.term = '';
+            }
+            if (e.detail.results && e.detail.results.hits && e.detail.results.hits.total) {
+                this.count = e.detail.results.hits.total;
+            }
+        }
+        if (!this.loading) {
+            this.innerHTML = `${this.count} results found ${this.term ? `for ${this.term}` : ''}`;
+        } else {
+            this.innerHTML = '';
         }
     }
 }

@@ -2,16 +2,12 @@ class RHDPSearchBox extends HTMLElement {
     _term = '';
 
     get term() {
-        if ((this._term===null) || (this._term==='')) {
-           return this._term;
-        } else {
-           return this._term.replace(/(<([^>]+)>)/ig,'');
-        }
+        return this._term;
     }
     set term(val) {
         if (this._term === val) return;
-        this._term = val;
-        this.querySelector('input').setAttribute('value', val);
+        this._term = decodeURI(val);
+        this.querySelector('input').setAttribute('value', this.term);
     }
 
     name = 'Search Box';
@@ -26,24 +22,15 @@ class RHDPSearchBox extends HTMLElement {
 
     constructor() {
         super();
-
+        this._checkTerm = this._checkTerm.bind(this);
     }
 
     connectedCallback() {
-        this.innerHTML = this.template`${this.name}${this.term}`;
+        top.addEventListener('params-ready', this._checkTerm);
+        //top.window.addEventListener('popstate', e => { this.term = null; });
+        top.addEventListener('term-change', this._checkTerm);
 
-        this.querySelector('input').addEventListener('keyup', e => { 
-            if(e.target['id'] === 'query') {
-                if(e.key == 'Enter') { 
-                    this.doSearch();
-                } else {
-                    this.term = e.target['value'];
-                    if(this.term === '') {
-                        this.doSearch();
-                    }
-                }
-            }
-        });
+        this.innerHTML = this.template`${this.name}${this.term}`;
 
         this.addEventListener('submit', e => {
             e.preventDefault();
@@ -51,7 +38,7 @@ class RHDPSearchBox extends HTMLElement {
         });
 
         this.querySelector('#search-btn').addEventListener('click', e => { 
-            this.doSearch();
+            this._termChange();
         });
     }
 
@@ -63,10 +50,17 @@ class RHDPSearchBox extends HTMLElement {
         this[name] = newVal;
     }
 
-    doSearch() {
+    _checkTerm(e) {
+        if(e.detail && e.detail.term) {
+            this.term = e.detail.term;
+        }
+    }
+
+    _termChange() {
+        this.term = this.querySelector('input').value;
         this.dispatchEvent(new CustomEvent('term-change', {
             detail: { 
-                term: this.term 
+                term: this.term
             }, 
             bubbles: true
         }));
