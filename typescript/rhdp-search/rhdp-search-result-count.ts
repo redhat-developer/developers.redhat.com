@@ -46,7 +46,7 @@ class RHDPSearchResultCount extends HTMLElement {
         top.addEventListener('params-ready', this._setText);
         top.addEventListener('search-start', e => { this.loading = true; });
         top.addEventListener('search-complete', e => { this.loading = false; this._setText(e) });
-        top.addEventListener('term-change', this._setText);
+        //top.addEventListener('term-change', this._setText);
     }
 
     static get observedAttributes() { 
@@ -58,18 +58,20 @@ class RHDPSearchResultCount extends HTMLElement {
     }
 
     _setText(e) {
-        if (e.detail) {
-            if (e.detail.term && e.detail.term.length > 0) {
-                this.term = e.detail.term;
+        if (typeof e.detail.invalid !== 'undefined') {
+            if (e.detail) {
+                if (e.detail.term && e.detail.term.length > 0) {
+                    this.term = e.detail.term;
+                } 
+                if (e.detail.results && e.detail.results.hits && e.detail.results.hits.total) {
+                    this.count = e.detail.results.hits.total;
+                }
+            }
+            if (!this.loading) {
+                this.innerHTML = `${this.count} results found ${this.term ? `for ${this.term}` : ''}`;
             } else {
-                this.term = '';
+                this.innerHTML = '';
             }
-            if (e.detail.results && e.detail.results.hits && e.detail.results.hits.total) {
-                this.count = e.detail.results.hits.total;
-            }
-        }
-        if (!this.loading) {
-            this.innerHTML = `${this.count} results found ${this.term ? `for ${this.term}` : ''}`;
         } else {
             this.innerHTML = '';
         }

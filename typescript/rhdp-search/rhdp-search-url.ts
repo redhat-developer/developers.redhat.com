@@ -2,7 +2,7 @@ class RHDPSearchURL extends HTMLElement {
     _uri = new URL(window.location.href); // https://developers.redhat.com/search/?q=term+term1+term2&f=a+b+c&s=sort&r=100
     _term = this.uri.searchParams.get('t');
     _filters = this._setFilters(this.uri.searchParams.getAll('f'));
-    _sort = this.uri.searchParams.get('s');
+    _sort = this.uri.searchParams.get('s') || 'relevance';
     _qty = this.uri.searchParams.get('r');
     _params;
     _history;
@@ -34,6 +34,10 @@ class RHDPSearchURL extends HTMLElement {
     set filters(val) {
         if (this._filters === val) return;
         this._filters = val;
+        this.uri.searchParams.delete('f');
+        Object.keys(this._filters).forEach(group => {
+            this.uri.searchParams.append('f',`${group}~${this._filters[group].join(' ')}`)
+        });
     }
 
     get sort() {
@@ -73,9 +77,9 @@ class RHDPSearchURL extends HTMLElement {
     }
 
     connectedCallback() {
-        top.addEventListener('term-change', this._changeAttr);
-        top.addEventListener('filter-item-change', this._changeAttr);
-        top.addEventListener('sort-change', this._changeAttr);
+        //top.addEventListener('term-change', this._changeAttr);
+        //top.addEventListener('filter-item-change', this._changeAttr);
+        //top.addEventListener('sort-change', this._changeAttr);
         //top.addEventListener('load-more', this._changeAttr);
         top.addEventListener('search-complete', this._changeAttr);
         top.addEventListener('clear-filters', this._changeAttr);
@@ -83,7 +87,6 @@ class RHDPSearchURL extends HTMLElement {
         // Ignoring tracking these for now
         // top.addEventListener('filter-group-toggle', this._changeAttr);
         // top.addEventListener('filter-group-more-toggle', this._changeAttr);
-        //console.log(this.filters);
         this._paramsReady();
     }
 
@@ -127,66 +130,33 @@ class RHDPSearchURL extends HTMLElement {
         return filters;
     }
 
-    _setFiltersQS(item : RHDPSearchFilterItem) {
-        let filtersQS = {},
-            add = item.active;
-        
-        if (add) {
-            this.filters[item.group] = this.filters[item.group] || [];
-            if (this.filters[item.group].indexOf(item.key) < 0) {
-                this.filters[item.group].push(item.key);
-            }
-        } else {
-            Object.keys(this.filters).forEach(group => {
-                if (group === item.group) { 
-                    let idx = this.filters[group].indexOf(item.key);
-                    if (idx >= 0) {
-                        this.filters[group].splice(idx, 1);
-                        if (this.filters[group].length === 0) {
-                            delete this.filters[group];
-                        }
-                    }
-                }
-            });
-        }
-
-        this.uri.searchParams.delete('f');
-        Object.keys(this.filters).forEach(group => {
-            this.uri.searchParams.append('f',`${group}~${this.filters[group].join(' ')}`)
-        });
-    }
-
     _changeAttr(e) {
-        //console.log(e);
         switch (e.type) {
-            case 'term-change':
+            case 'clear-filters':
+                this.uri.searchParams.delete('f');
+                this.filters = {};
+                break;
+            case 'load-more': // detail.qty
+                break;
+            case 'search-complete': // build querystring params
+                // Term Change
                 if (e.detail && typeof e.detail.term !== 'undefined' && e.detail.term.length > 0) {
                     this.term = e.detail.term;
                 } else {
                     this.term = '';
                     this.uri.searchParams.delete('t');
                 }
-                break;
-            case 'filter-item-change': //detail.facet
-                //console.log('Filter Item Changed:', e.target);
-                if (e.detail && e.detail.facet) {
-                    this._setFiltersQS(e.detail.facet);
+                // Filter Change
+                if (e.detail && e.detail.filters) {
+                    this.filters = e.detail.filters;
                 }
-                break;
-            case 'clear-filters':
-                this.uri.searchParams.delete('f');
-                this.filters = {};
-                break;
-            case 'sort-change': // detail.sort
+                // Sort Change
                 if (e.detail && typeof e.detail.sort !== 'undefined') {
                     this.sort = e.detail.sort;
                 }
-                break;
-            case 'load-more': // detail.qty
-                break;
-            case 'search-complete': // build querystring params
-                return;
         }
-        history.pushState({}, `RHDP Search: ${this.term ? this.term : ''}`, `${this.uri.pathname}${this.uri.search}`);
+        if(typeof e.detail.invalid === 'undefined') {
+            history.pushState({}, `RHDP Search: ${this.term ? this.term : ''}`, `${this.uri.pathname}${this.uri.search}`);
+        }
     }
 }

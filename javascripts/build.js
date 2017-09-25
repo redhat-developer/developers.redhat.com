@@ -1429,6 +1429,11 @@ var RHDPSearchQuery = (function (_super) {
             this.from = this.results && this.results.hits && typeof this.results.hits.hits !== 'undefined' ? this.from + this.results.hits.hits.length : 0;
             this.dispatchEvent(new CustomEvent('search-complete', {
                 detail: {
+                    term: this.term,
+                    filters: this.activeFilters,
+                    sort: this.sort,
+                    limit: this.limit,
+                    from: this.from,
                     results: this.results,
                 },
                 bubbles: true
@@ -1535,6 +1540,7 @@ var RHDPSearchQuery = (function (_super) {
             case 'term-change':
                 if (e.detail && e.detail.term && e.detail.term.length > 0) {
                     this.term = e.detail.term;
+                    this.from = 0;
                     this.search();
                 }
                 else {
@@ -1545,6 +1551,7 @@ var RHDPSearchQuery = (function (_super) {
                 if (e.detail && e.detail.facet) {
                     this._setFilters(e.detail.facet);
                 }
+                this.from = 0;
                 this.search();
                 // Wait for params-ready event
                 break;
@@ -1552,6 +1559,7 @@ var RHDPSearchQuery = (function (_super) {
                 if (e.detail && e.detail.sort) {
                     this.sort = e.detail.sort;
                 }
+                this.from = 0;
                 this.search();
                 break;
             case 'load-more':
@@ -1567,6 +1575,7 @@ var RHDPSearchQuery = (function (_super) {
                 if (e.detail && e.detail.filters) {
                     this.activeFilters = e.detail.filters;
                 }
+                this.from = 0;
                 if (Object.keys(e.detail.filters).length > 0 || e.detail.term !== null || e.detail.sort !== null || e.detail.qty !== null) {
                     this.search();
                 }
@@ -1674,7 +1683,7 @@ var RHDPSearchResultCount = (function (_super) {
         top.addEventListener('params-ready', this._setText);
         top.addEventListener('search-start', function (e) { _this.loading = true; });
         top.addEventListener('search-complete', function (e) { _this.loading = false; _this._setText(e); });
-        top.addEventListener('term-change', this._setText);
+        //top.addEventListener('term-change', this._setText);
     };
     Object.defineProperty(RHDPSearchResultCount, "observedAttributes", {
         get: function () {
@@ -1687,19 +1696,21 @@ var RHDPSearchResultCount = (function (_super) {
         this[name] = newVal;
     };
     RHDPSearchResultCount.prototype._setText = function (e) {
-        if (e.detail) {
-            if (e.detail.term && e.detail.term.length > 0) {
-                this.term = e.detail.term;
+        if (typeof e.detail.invalid !== 'undefined') {
+            if (e.detail) {
+                if (e.detail.term && e.detail.term.length > 0) {
+                    this.term = e.detail.term;
+                }
+                if (e.detail.results && e.detail.results.hits && e.detail.results.hits.total) {
+                    this.count = e.detail.results.hits.total;
+                }
+            }
+            if (!this.loading) {
+                this.innerHTML = this.count + " results found " + (this.term ? "for " + this.term : '');
             }
             else {
-                this.term = '';
+                this.innerHTML = '';
             }
-            if (e.detail.results && e.detail.results.hits && e.detail.results.hits.total) {
-                this.count = e.detail.results.hits.total;
-            }
-        }
-        if (!this.loading) {
-            this.innerHTML = this.count + " results found " + (this.term ? "for " + this.term : '');
         }
         else {
             this.innerHTML = '';
@@ -2135,7 +2146,7 @@ var RHDPSearchURL = (function (_super) {
         _this._uri = new URL(window.location.href); // https://developers.redhat.com/search/?q=term+term1+term2&f=a+b+c&s=sort&r=100
         _this._term = _this.uri.searchParams.get('t');
         _this._filters = _this._setFilters(_this.uri.searchParams.getAll('f'));
-        _this._sort = _this.uri.searchParams.get('s');
+        _this._sort = _this.uri.searchParams.get('s') || 'relevance';
         _this._qty = _this.uri.searchParams.get('r');
         _this._init = true;
         _this._changeAttr = _this._changeAttr.bind(_this);
@@ -2174,9 +2185,14 @@ var RHDPSearchURL = (function (_super) {
             return this._filters;
         },
         set: function (val) {
+            var _this = this;
             if (this._filters === val)
                 return;
             this._filters = val;
+            this.uri.searchParams.delete('f');
+            Object.keys(this._filters).forEach(function (group) {
+                _this.uri.searchParams.append('f', group + "~" + _this._filters[group].join(' '));
+            });
         },
         enumerable: true,
         configurable: true
@@ -2221,9 +2237,9 @@ var RHDPSearchURL = (function (_super) {
         configurable: true
     });
     RHDPSearchURL.prototype.connectedCallback = function () {
-        top.addEventListener('term-change', this._changeAttr);
-        top.addEventListener('filter-item-change', this._changeAttr);
-        top.addEventListener('sort-change', this._changeAttr);
+        //top.addEventListener('term-change', this._changeAttr);
+        //top.addEventListener('filter-item-change', this._changeAttr);
+        //top.addEventListener('sort-change', this._changeAttr);
         //top.addEventListener('load-more', this._changeAttr);
         top.addEventListener('search-complete', this._changeAttr);
         top.addEventListener('clear-filters', this._changeAttr);
@@ -2231,7 +2247,6 @@ var RHDPSearchURL = (function (_super) {
         // Ignoring tracking these for now
         // top.addEventListener('filter-group-toggle', this._changeAttr);
         // top.addEventListener('filter-group-more-toggle', this._changeAttr);
-        //console.log(this.filters);
         this._paramsReady();
     };
     Object.defineProperty(RHDPSearchURL, "observedAttributes", {
@@ -2271,37 +2286,16 @@ var RHDPSearchURL = (function (_super) {
         });
         return filters;
     };
-    RHDPSearchURL.prototype._setFiltersQS = function (item) {
-        var _this = this;
-        var filtersQS = {}, add = item.active;
-        if (add) {
-            this.filters[item.group] = this.filters[item.group] || [];
-            if (this.filters[item.group].indexOf(item.key) < 0) {
-                this.filters[item.group].push(item.key);
-            }
-        }
-        else {
-            Object.keys(this.filters).forEach(function (group) {
-                if (group === item.group) {
-                    var idx = _this.filters[group].indexOf(item.key);
-                    if (idx >= 0) {
-                        _this.filters[group].splice(idx, 1);
-                        if (_this.filters[group].length === 0) {
-                            delete _this.filters[group];
-                        }
-                    }
-                }
-            });
-        }
-        this.uri.searchParams.delete('f');
-        Object.keys(this.filters).forEach(function (group) {
-            _this.uri.searchParams.append('f', group + "~" + _this.filters[group].join(' '));
-        });
-    };
     RHDPSearchURL.prototype._changeAttr = function (e) {
-        //console.log(e);
         switch (e.type) {
-            case 'term-change':
+            case 'clear-filters':
+                this.uri.searchParams.delete('f');
+                this.filters = {};
+                break;
+            case 'load-more':
+                break;
+            case 'search-complete':
+                // Term Change
                 if (e.detail && typeof e.detail.term !== 'undefined' && e.detail.term.length > 0) {
                     this.term = e.detail.term;
                 }
@@ -2309,28 +2303,18 @@ var RHDPSearchURL = (function (_super) {
                     this.term = '';
                     this.uri.searchParams.delete('t');
                 }
-                break;
-            case 'filter-item-change':
-                //console.log('Filter Item Changed:', e.target);
-                if (e.detail && e.detail.facet) {
-                    this._setFiltersQS(e.detail.facet);
+                // Filter Change
+                if (e.detail && e.detail.filters) {
+                    this.filters = e.detail.filters;
                 }
-                break;
-            case 'clear-filters':
-                this.uri.searchParams.delete('f');
-                this.filters = {};
-                break;
-            case 'sort-change':
+                // Sort Change
                 if (e.detail && typeof e.detail.sort !== 'undefined') {
                     this.sort = e.detail.sort;
                 }
-                break;
-            case 'load-more':
-                break;
-            case 'search-complete':
-                return;
         }
-        history.pushState({}, "RHDP Search: " + (this.term ? this.term : ''), "" + this.uri.pathname + this.uri.search);
+        if (typeof e.detail.invalid === 'undefined') {
+            history.pushState({}, "RHDP Search: " + (this.term ? this.term : ''), "" + this.uri.pathname + this.uri.search);
+        }
     };
     return RHDPSearchURL;
 }(HTMLElement));

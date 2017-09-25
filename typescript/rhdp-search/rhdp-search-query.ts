@@ -63,6 +63,11 @@ class RHDPSearchQuery extends HTMLElement {
         this.from = this.results && this.results.hits && typeof this.results.hits.hits !== 'undefined' ? this.from + this.results.hits.hits.length : 0;
         this.dispatchEvent(new CustomEvent('search-complete', {
             detail: { 
+                term: this.term,
+                filters: this.activeFilters,
+                sort: this.sort,
+                limit: this.limit,
+                from: this.from,
                 results: this.results,
             }, 
             bubbles: true 
@@ -171,6 +176,7 @@ class RHDPSearchQuery extends HTMLElement {
             case 'term-change':
                 if (e.detail && e.detail.term && e.detail.term.length > 0) {
                     this.term = e.detail.term;
+                    this.from = 0;
                     this.search();
                 } else {
                     this.term = '';
@@ -181,6 +187,7 @@ class RHDPSearchQuery extends HTMLElement {
                 if (e.detail && e.detail.facet) {
                     this._setFilters(e.detail.facet);
                 }
+                this.from = 0;
                 this.search();
                 // Wait for params-ready event
                 break;
@@ -188,6 +195,7 @@ class RHDPSearchQuery extends HTMLElement {
                 if (e.detail && e.detail.sort) {
                     this.sort = e.detail.sort;
                 }
+                this.from = 0;
                 this.search();
                 break;
             case 'load-more': // detail.qty
@@ -204,6 +212,7 @@ class RHDPSearchQuery extends HTMLElement {
                     this.activeFilters = e.detail.filters;
                 }
 
+                this.from = 0;
                 if (Object.keys(e.detail.filters).length > 0 || e.detail.term !== null || e.detail.sort !== null || e.detail.qty !== null) {
                     this.search();
                 }
@@ -250,7 +259,7 @@ class RHDPSearchQuery extends HTMLElement {
                 this.results = data; 
             });
         } else {
-            this.dispatchEvent(new CustomEvent('search-complete', { detail: { results: {}, invalid: true }, bubbles: true }));
+            this.dispatchEvent(new CustomEvent('search-complete', { detail: { invalid: true }, bubbles: true }));
         }
     }
 }

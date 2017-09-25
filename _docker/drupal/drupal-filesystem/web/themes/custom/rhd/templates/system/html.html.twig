@@ -232,28 +232,30 @@
       }
 
       document.addEventListener('search-complete', function(e) {
-        var ddSearchEvent = {
-            eventInfo: {
-              eventName: 'internal search',
-              eventAction: 'search',
-              listing: {
-                browseFilter:  e.detail.filterStr || "internal search",
-                query: e.detail.term,
-                queryMethod: "system generated",
-                resultCount: e.detail.results.hits.total,
-                resultsShown: e.detail.limit + e.detail.from,
-                searchType: digitalData.page.category.primaryCategory || "",
-                refinement: []
-              },
-              timeStamp: new Date(),
-              processed: {
-                adobeAnalytics: false
+        if (typeof e.detail.invalid !== 'undefined') {
+          var ddSearchEvent = {
+              eventInfo: {
+                eventName: 'internal search',
+                eventAction: 'search',
+                listing: {
+                  browseFilter:  e.detail.filterStr || "internal search",
+                  query: e.detail.term,
+                  queryMethod: "system generated",
+                  resultCount: e.detail.results.hits.total,
+                  resultsShown: ße.detail.from,
+                  searchType: digitalData.page.category.primaryCategory || "",
+                  refinement: []
+                },
+                timeStamp: new Date(),
+                processed: {
+                  adobeAnalytics: false
+                }
               }
-            }
-          };
-        digitalData.event.push(ddSearchEvent);
-        digitalData.page.listing = ddSearchEvent.eventInfo.listing;
-        sendCustomEvent('ajaxSearch');
+            };
+          digitalData.event.push(ddSearchEvent);
+          digitalData.page.listing = ddSearchEvent.eventInfo.listing;
+          sendCustomEvent('ajaxSearch');
+        }
       });
 
     } )( window, document, digitalData );
