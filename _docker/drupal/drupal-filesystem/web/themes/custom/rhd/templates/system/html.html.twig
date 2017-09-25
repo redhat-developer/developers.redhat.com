@@ -232,7 +232,7 @@
       }
 
       document.addEventListener('search-complete', function(e) {
-        if (typeof e.detail.invalid !== 'undefined') {
+        if (typeof e.detail.invalid === 'undefined') {
           var ddSearchEvent = {
               eventInfo: {
                 eventName: 'internal search',
