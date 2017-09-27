@@ -35,8 +35,15 @@ p.sign-in-options {
 // Footer
 footer.bottom {
   background:$black;
-  padding:20px 0 10px 0;
+  padding: 0 0 10px 0;
   z-index: 0;
+
+  .footer-links {
+    background-color: #252527;
+  }
+  .footer-legal {
+    background-color: $black;
+  }
   h3 {
     font-size: 1rem;
     text-transform: uppercase;
@@ -46,11 +53,7 @@ footer.bottom {
   }
   a {
     color:white;
-    &.copyright {
-      color: #646464;
-      width: 220px;
-      cursor: default;
-    }
+    text-decoration: underline;
     &.summit-logo {
       margin-right: 20px;
       float: right;
@@ -60,7 +63,6 @@ footer.bottom {
     }
   }
   p {
-    color: #9A9A9A;
     line-height: 1.5;
     font-size: .9em;
   }
@@ -74,8 +76,9 @@ footer.bottom {
       }
     }
     &.quick-links {
+      margin-bottom: 20px;
       li {
-          padding-bottom: 15px;
+          padding-bottom: 10px;
           margin-right: 38px;
           a {
             font-size: 14px;
@@ -88,9 +91,6 @@ footer.bottom {
             }
           }
         }
-      li:first-child {
-        margin-left: 0;
-      }
     }
   }
   .legal {
@@ -102,19 +102,106 @@ footer.bottom {
         a {
           font-size: .75rem;
           color: #858585;
+          display: inline;
+          &.copyright {
+            width: 220px;
+            cursor: default;
+            text-decoration: none;
+          }
+        }
+      }
+      li:nth-of-type(2), li:nth-of-type(3) {
+        &:after {
+          content: '|';
+          margin: 0 10px;
+          display: inline-block;
         }
       }
     }
+
   }
+
+  .rhdp-info {
+    background-color: $red;
+    color: $white;
+    padding: 20px 30px 30px 30px;
+    min-height: 233px;
+
+    a { text-decoration: underline;}
+  }
+
+  .collapsable-footer-links {
+    margin-top: 20px;
+
+    input[type="checkbox"], input[type="checkbox"] ~ label { display: none; }
+  }
+
   @include tablet-portrait-and-down {
-    .rh-logo{
+    .rhdp-info { margin-bottom: 20px; }
+    .rh-logo {
       max-height: 31px;
     }
-    ul {
-      &.inline-list li{
+    ul.inline-list {
+      margin: 15px 0;
+      li {
         float: none;
         margin-left: 0 !important;
         margin-bottom: 15px;
+      }
+      li:nth-of-type(2):after, li:nth-of-type(3):after { visibility: hidden; }
+    }
+
+    .collapsable-footer-links {
+      .desktop-only { display: none; }
+
+      input[type="checkbox"], input[type="checkbox"] ~ label {
+        display: block; 
+        margin-left: 0;
+        h3 { margin-bottom: 0; }
+      }
+
+      label{
+        display: block;
+        cursor: pointer;
+      }
+
+      .footer-links { padding-bottom: 15px; }
+
+      ul.quick-links {
+        margin-left: 25px;
+        margin-top: 10px;
+      }
+
+
+      input[type="checkbox"]{
+        position: absolute;
+        left: -9999px;
+      }
+
+      input[type="checkbox"] ~ ul{
+        height: 0;
+        transform: scaleY(0);
+      }
+
+      input[type="checkbox"]:checked ~ ul{
+        height: 100%;
+        transform-origin: top;
+        transition: transform .2s ease-out;
+        transform: scaleY(1); 
+      }
+
+      input[type="checkbox"] + label{
+        h3:before {
+          font-family: 'FontAwesome';
+          content: '\f054';
+          margin-right: 10px;
+        }
+      }
+
+      input[type="checkbox"]:checked + label{
+        h3:before {
+          content: '\f078';
+        }
       }
     }
   }

@@ -82,7 +82,8 @@ var globs = {
         'javascripts/nav-highlight.js',
         'javascripts/build.js',
         'javascripts/middleware-blog.js',
-        'javascripts/scroll-to-top.js'
+        'javascripts/scroll-to-top.js',
+        'javascripts/footer.js'
     ],
     "styles": ['stylesheets/*.scss']
 };
