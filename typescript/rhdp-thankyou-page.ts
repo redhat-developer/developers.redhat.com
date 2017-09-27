@@ -68,8 +68,8 @@ class RHDPThankyou extends HTMLElement {
     };
 
     connectedCallback() {
-        this.mediaName = this.stripLabelFromMedia(this.getParameterByName('p'));
-        this.directLink = this.getParameterByName('tcDownloadURL');
+        this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
+        this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
         this.innerHTML = this.template`${this.mediaName}${this.directLink}`;
     }
 

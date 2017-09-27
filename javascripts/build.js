@@ -56,8 +56,8 @@ var RHDPThankyou = (function (_super) {
         configurable: true
     });
     RHDPThankyou.prototype.connectedCallback = function () {
-        this.mediaName = this.stripLabelFromMedia(this.getParameterByName('p'));
-        this.directLink = this.getParameterByName('tcDownloadURL');
+        this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
+        this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
         this.innerHTML = (_a = ["", "", ""], _a.raw = ["", "", ""], this.template(_a, this.mediaName, this.directLink));
         var _a;
     };
