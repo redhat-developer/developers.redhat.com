@@ -32,7 +32,7 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._title = value;
             this.setAttribute('title', this._title);
-            this.querySelector('h4') ? this.querySelector('h4').innerText = this._title : '';
+            this.querySelector('h4') ? this.querySelector('h4').innerHTML = this._title : '';
         },
         enumerable: true,
         configurable: true
@@ -46,12 +46,12 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._subtitle = value;
             this.setAttribute('subtitle', this._subtitle);
-            this.querySelector('h5') ? this.querySelector('h5').innerText = this._subtitle : '';
+            this.querySelector('h5') ? this.querySelector('h5').innerHTML = this._subtitle : '';
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttonID", {
+    Object.defineProperty(RHDPTryItNow.prototype, "buttonid", {
         get: function () {
             return this._buttonID;
         },
@@ -65,7 +65,7 @@ var RHDPTryItNow = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttonLink", {
+    Object.defineProperty(RHDPTryItNow.prototype, "buttonlink", {
         get: function () {
             return this._buttonLink;
         },
@@ -93,7 +93,7 @@ var RHDPTryItNow = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttonText", {
+    Object.defineProperty(RHDPTryItNow.prototype, "buttontext", {
         get: function () {
             return this._buttonText;
         },
@@ -102,19 +102,19 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._buttonText = value;
             this.setAttribute('button-text', this._buttonText);
-            this.querySelector('a') ? this.querySelector('a').innerText = this._buttonText : '';
+            this.querySelector('a') ? this.querySelector('a').innerHTML = this._buttonText : '';
         },
         enumerable: true,
         configurable: true
     });
     RHDPTryItNow.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonLink, this.icon, this.buttonText, this.buttonID));
+        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonlink, this.icon, this.buttontext, this.buttonid));
         var _a;
     };
     ;
     Object.defineProperty(RHDPTryItNow, "observedAttributes", {
         get: function () {
-            return ['buttonText', 'icon', 'buttonLink', 'buttonID', 'subtitle', 'title'];
+            return ['buttontext', 'icon', 'buttonlink', 'buttonid', 'subtitle', 'title'];
         },
         enumerable: true,
         configurable: true
