@@ -1621,7 +1621,7 @@ var RHDPSearchQuery = (function (_super) {
             });
         }
         else {
-            this.dispatchEvent(new CustomEvent('search-complete', { detail: { results: {}, invalid: true }, bubbles: true }));
+            this.dispatchEvent(new CustomEvent('search-complete', { detail: { invalid: true }, bubbles: true }));
         }
     };
     return RHDPSearchQuery;
@@ -2314,6 +2314,9 @@ var RHDPSearchURL = (function (_super) {
         }
         if (typeof e.detail.invalid === 'undefined') {
             history.pushState({}, "RHDP Search: " + (this.term ? this.term : ''), "" + this.uri.pathname + this.uri.search);
+        }
+        else {
+            history.replaceState({}, 'RHDP Search Error', "" + this.uri.pathname + this.uri.search);
         }
     };
     return RHDPSearchURL;
