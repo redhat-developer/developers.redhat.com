@@ -59,7 +59,7 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonID === value)
                 return;
             this._buttonID = value;
-            this.setAttribute('button-id', this._buttonID);
+            this.setAttribute('buttonid', this._buttonID);
             this.querySelector('a') ? this.querySelector('a').id = this._buttonID : '';
         },
         enumerable: true,
@@ -73,7 +73,7 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonLink === value)
                 return;
             this._buttonLink = value;
-            this.setAttribute('button-link', this._buttonLink);
+            this.setAttribute('buttonlink', this._buttonLink);
             this.querySelector('a') ? this.querySelector('a').href = this._buttonLink : '';
         },
         enumerable: true,
@@ -101,7 +101,7 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonText === value)
                 return;
             this._buttonText = value;
-            this.setAttribute('button-text', this._buttonText);
+            this.setAttribute('buttontext', this._buttonText);
             this.querySelector('a') ? this.querySelector('a').innerHTML = this._buttonText : '';
         },
         enumerable: true,
