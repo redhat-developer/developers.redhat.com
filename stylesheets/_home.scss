@@ -56,25 +56,19 @@
   flex-wrap: wrap;
 }
 
-.spotlight-item {
+a.spotlight-item {
   width: calc(20%);
   padding: 0 12px;
   border-right: 1px solid $dark-grey;
-  color: white;
+  color: $white;
   img {
     padding-bottom: 10px;
     &:hover {
       opacity: 0.7;
     }
   }
-  &:hover, &:focus, &:active {
-    span {
-      color: $white;
-    }
-  }
-  &:last-child {
-    border-right: 0;
-  }
+  &:last-child { border-right: 0; }
+  &:hover, &:focus, &:active { color: $white; }
   .cut-image {
     position: relative;
     overflow: hidden;
