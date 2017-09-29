@@ -8,7 +8,7 @@ describe('Try-it now feature', function() {
     });
 
     afterEach(function() {
-        //document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(document.body.firstChild);
     });
 
     describe('properties', function() {
