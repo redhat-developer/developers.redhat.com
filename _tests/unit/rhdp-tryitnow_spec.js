@@ -26,15 +26,15 @@ describe('Try-it now feature', function() {
 
             wc.title = title;
             wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
+            wc.buttonid = buttonID;
+            wc.buttontext = buttonText;
+            wc.buttonlink = buttonLink;
             wc.icon = icon;
             expect(wc.getAttribute('title')).toEqual(title);
             expect(wc.getAttribute('subtitle')).toEqual(subtitle);
-            expect(wc.getAttribute('button-id')).toEqual(buttonID);
-            expect(wc.getAttribute('button-text')).toEqual(buttonText);
-            expect(wc.getAttribute('button-link')).toEqual(buttonLink);
+            expect(wc.getAttribute('buttonid')).toEqual(buttonID);
+            expect(wc.getAttribute('buttontext')).toEqual(buttonText);
+            expect(wc.getAttribute('buttonlink')).toEqual(buttonLink);
             expect(wc.getAttribute('icon')).toEqual(icon);
         });
     });
@@ -48,12 +48,12 @@ describe('Try-it now feature', function() {
             icon;
 
         beforeEach(function() {
-            title = "";
-            subtitle = "";
-            buttonID = "";
-            buttonText = "";
-            buttonLink = "";
-            icon = "";
+            title = "test title",
+            subtitle = "test subtitle",
+            buttonID = "test button id",
+            buttonText = "test button text",
+            buttonLink = "http://www.buttonlink.com/",
+            icon = "http://www.imageicon.com/";
         });
 
         it('should not be blank with no values', function() {
@@ -69,131 +69,93 @@ describe('Try-it now feature', function() {
         });
 
         it('should not be blank with buttonID missing', function() {
-            title = "test title";
-            subtitle = "test subtitle";
-            buttonText = "test button text";
-            buttonLink = "http://www.buttonlink.com/";
-            icon = "http://www.imageicon.com/";
-
             wc.title = title;
             wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
+            wc.buttontext = buttonText;
+            wc.buttonlink = buttonLink;
             wc.icon = icon;
 
             document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.querySelector('h4').innerText).toEqual(title);
-            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
-            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
-            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
-            expect(wc.querySelector('img').src).toEqual(icon);
-            expect(wc.querySelector('a').id).toEqual(buttonID);
+            expect(wc.querySelector('h4').innerText).toBe(title);
+            expect(wc.querySelector('h5').innerText).toBe(subtitle);
+            expect(wc.querySelector('a.button').innerText).toBe(buttonText);
+            expect(wc.querySelector('a.button').href).toBe(buttonLink);
+            expect(wc.querySelector('img').src).toBe(icon);
+            expect(wc.querySelector('a').id).toBe('');
         });
 
         it('should not be blank with title missing', function() {
-            subtitle = "test subtitle";
-            buttonText = "test button text";
-            buttonLink = "http://www.buttonlink.com/";
-            icon = "http://www.imageicon.com/";
-
-            wc.title = title;
             wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
+            wc.buttonid = buttonID;
+            wc.buttontext = buttonText;
+            wc.buttonlink = buttonLink;
             wc.icon = icon;
 
             document.body.insertBefore(wc, document.body.firstChild);
             expect(wc.querySelector('h4')).toBeNull();
-            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
-            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
-            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
-            expect(wc.querySelector('img').src).toEqual(icon);
-            expect(wc.querySelector('a').id).toEqual(buttonID);
+            expect(wc.querySelector('h5').innerText).toBe(subtitle);
+            expect(wc.querySelector('a.button').innerText).toBe(buttonText);
+            expect(wc.querySelector('a.button').href).toBe(buttonLink);
+            expect(wc.querySelector('img').src).toBe(icon);
+            expect(wc.querySelector('a').id).toBe(buttonID);
         });
         it('should not be blank with subtitle missing', function() {
-            title = "test title";
-            buttonText = "test button text";
-            buttonLink = "http://www.buttonlink.com/";
-            icon = "http://www.imageicon.com/";
-
             wc.title = title;
-            wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
+            wc.buttonid = buttonID;
+            wc.buttontext = buttonText;
+            wc.buttonlink = buttonLink;
             wc.icon = icon;
 
             document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.querySelector('h4').innerText).toEqual(title);
+            expect(wc.querySelector('h4').innerText).toBe(title);
             expect(wc.querySelector('h5')).toBeNull();
-            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
-            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
-            expect(wc.querySelector('img').src).toEqual(icon);
-            expect(wc.querySelector('a').id).toEqual(buttonID);
+            expect(wc.querySelector('a.button').innerText).toBe(buttonText);
+            expect(wc.querySelector('a.button').href).toBe(buttonLink);
+            expect(wc.querySelector('img').src).toBe(icon);
+            expect(wc.querySelector('a').id).toBe(buttonID);
         });
         it('should not be blank with buttonText missing', function() {
-            title = "test title";
-            subtitle = "test subtitle";
-            buttonLink = "http://www.buttonlink.com/";
-            icon = "http://www.imageicon.com/";
-
             wc.title = title;
             wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
+            wc.buttonid = buttonID;
+            wc.buttonlink = buttonLink;
             wc.icon = icon;
 
             document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.querySelector('h4').innerText).toEqual(title);
-            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
-            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
-            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
-            expect(wc.querySelector('img').src).toEqual(icon);
-            expect(wc.querySelector('a').id).toEqual(buttonID);
+            expect(wc.querySelector('h4').innerText).toBe(title);
+            expect(wc.querySelector('h5').innerText).toBe(subtitle);
+            expect(wc.querySelector('a.button').href).toBe(buttonLink);
+            expect(wc.querySelector('img').src).toBe(icon);
+            expect(wc.querySelector('a').id).toBe(buttonID);
         });
-        it('should not be blank with buttonLink missing', function() {
-            title = "test title";
-            subtitle = "test subtitle";
-            buttonText = "test button text";
-            icon = "http://www.imageicon.com/";
-
+        it('should not be blank with buttonlink missing', function() {
             wc.title = title;
             wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
+            wc.buttonid = buttonID;
+            wc.buttontext = buttonText;
             wc.icon = icon;
 
             document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.querySelector('h4').innerText).toEqual(title);
-            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
-            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
-            expect(wc.querySelector('img').src).toEqual(icon);
-            expect(wc.querySelector('a').id).toEqual(buttonID);
+            expect(wc.querySelector('h4').innerText).toBe(title);
+            expect(wc.querySelector('h5').innerText).toBe(subtitle);
+            expect(wc.querySelector('a.button').innerText).toBe(buttonText);
+            expect(wc.querySelector('img').src).toBe(icon);
+            expect(wc.querySelector('a').id).toBe(buttonID);
         });
         it('should not be blank with icon missing', function() {
-            title = "test title";
-            subtitle = "test subtitle";
-            buttonText = "test button text";
-            buttonLink = "http://www.buttonlink.com/";
-
             wc.title = title;
             wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
-            wc.icon = icon;
+            wc.buttonid = buttonID;
+            wc.buttontext = buttonText;
+            wc.buttonlink = buttonLink;
 
             document.body.insertBefore(wc, document.body.firstChild);
-            expect(wc.querySelector('h4').innerText).toEqual(title);
-            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
-            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
-            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+            expect(wc.querySelector('h4').innerText).toBe(title);
+            expect(wc.querySelector('h5').innerText).toBe(subtitle);
+            expect(wc.querySelector('a.button').innerText).toBe(buttonText);
+            expect(wc.querySelector('a.button').href).toBe(buttonLink);
             expect(wc.querySelector('img')).toBeNull();
-            expect(wc.querySelector('a').id).toEqual(buttonID);
+            expect(wc.querySelector('a').id).toBe(buttonID);
             expect(wc.innerHTML.length).toBeGreaterThan(0);
         });
 
@@ -210,9 +172,9 @@ describe('Try-it now feature', function() {
         beforeEach(function() {
             wc.title = title;
             wc.subtitle = subtitle;
-            wc.buttonID = buttonID;
-            wc.buttonText = buttonText;
-            wc.buttonLink = buttonLink;
+            wc.buttonid = buttonID;
+            wc.buttontext = buttonText;
+            wc.buttonlink = buttonLink;
             wc.icon = icon;
 
             document.body.insertBefore(wc, document.body.firstChild);
@@ -223,59 +185,59 @@ describe('Try-it now feature', function() {
         });
 
         it('should have a heading with appropriate text', function() {
-            expect(wc.querySelector('h4').innerText).toEqual(title);
+            expect(wc.querySelector('h4').innerText).toBe(title);
         });
 
         it('should have a subheading with appropriate text', function() {
-            expect(wc.querySelector('h5').innerText).toEqual(subtitle);
+            expect(wc.querySelector('h5').innerText).toBe(subtitle);
         });
 
         it('should have button with appropriate text', function() {
-            expect(wc.querySelector('a.button').innerText).toEqual(buttonText);
+            expect(wc.querySelector('a.button').innerText).toBe(buttonText);
         });
 
         it('should have a button with corresponding link', function() {
-            expect(wc.querySelector('a.button').href).toEqual(buttonLink);
+            expect(wc.querySelector('a.button').href).toBe(buttonLink);
         });
 
         it('should have an icon with a src link', function() {
-            expect(wc.querySelector('img').src).toEqual(icon);
+            expect(wc.querySelector('img').src).toBe(icon);
         });
 
         it('should have an ID on the related button', function() {
-            expect(wc.querySelector('a').id).toEqual(buttonID);
+            expect(wc.querySelector('a').id).toBe(buttonID);
         });
 
         describe('and dynamic value edits', function() {
 
             it('should update the heading with appropriate text', function() {
                 wc.title = "Updated Title";
-                expect(wc.querySelector('h4').innerText).toEqual("Updated Title");
+                expect(wc.querySelector('h4').innerHTML).toBe("Updated Title");
             });
 
             it('should update the subheading with appropriate text', function() {
                 wc.subtitle = "Updated subtitle";
-                expect(wc.querySelector('h5').innerText).toEqual("Updated subtitle");
+                expect(wc.querySelector('h5').innerHTML).toBe("Updated subtitle");
             });
 
             it('should update the button with appropriate text', function() {
-                wc.buttonText = "Updated button text";
-                expect(wc.querySelector('a').innerText).toEqual("Updated button text");
+                wc.buttontext = "Updated button text";
+                expect(wc.querySelector('a').innerHTML).toBe("Updated button text");
             });
 
             it('should update the button with corresponding link', function() {
-                wc.buttonLink = "http://www.newbuttonlink.com/";
-                expect(wc.querySelector('a.button').href).toEqual("http://www.newbuttonlink.com/");
+                wc.buttonlink = "http://www.newbuttonlink.com/";
+                expect(wc.querySelector('a.button').href).toBe("http://www.newbuttonlink.com/");
             });
 
             it('should update the icon with a src link', function() {
                 wc.icon = "http://www.newiconlink.com/";
-                expect(wc.querySelector('img').src).toEqual("http://www.newiconlink.com/");
+                expect(wc.querySelector('img').src).toBe("http://www.newiconlink.com/");
             });
 
             it('should update the button ID on the related button', function() {
-                wc.buttonID = "new button id";
-                expect(wc.querySelector('a').id).toEqual("new button id");
+                wc.buttonid = "new button id";
+                expect(wc.querySelector('a').id).toBe("new button id");
             });
 
         });
