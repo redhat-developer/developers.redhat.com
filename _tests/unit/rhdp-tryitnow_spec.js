@@ -26,15 +26,15 @@ window.addEventListener('WebComponentsReady', function () {
 
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
                 expect(wc.getAttribute('title')).toEqual(title);
                 expect(wc.getAttribute('subtitle')).toEqual(subtitle);
-                expect(wc.getAttribute('button-id')).toEqual(buttonID);
-                expect(wc.getAttribute('button-text')).toEqual(buttonText);
-                expect(wc.getAttribute('button-link')).toEqual(buttonLink);
+                expect(wc.getAttribute('buttonid')).toEqual(buttonID);
+                expect(wc.getAttribute('buttontext')).toEqual(buttonText);
+                expect(wc.getAttribute('buttonlink')).toEqual(buttonLink);
                 expect(wc.getAttribute('icon')).toEqual(icon);
             });
         });
@@ -59,9 +59,9 @@ window.addEventListener('WebComponentsReady', function () {
             it('should not be blank with no values', function() {
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
 
                 document.body.insertBefore(wc, document.body.firstChild);
@@ -77,9 +77,9 @@ window.addEventListener('WebComponentsReady', function () {
 
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
 
                 document.body.insertBefore(wc, document.body.firstChild);
@@ -99,9 +99,9 @@ window.addEventListener('WebComponentsReady', function () {
 
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
 
                 document.body.insertBefore(wc, document.body.firstChild);
@@ -120,9 +120,9 @@ window.addEventListener('WebComponentsReady', function () {
 
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
 
                 document.body.insertBefore(wc, document.body.firstChild);
@@ -141,9 +141,9 @@ window.addEventListener('WebComponentsReady', function () {
 
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
 
                 document.body.insertBefore(wc, document.body.firstChild);
@@ -162,9 +162,9 @@ window.addEventListener('WebComponentsReady', function () {
 
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
 
                 document.body.insertBefore(wc, document.body.firstChild);
@@ -182,9 +182,9 @@ window.addEventListener('WebComponentsReady', function () {
 
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
 
                 document.body.insertBefore(wc, document.body.firstChild);
@@ -210,9 +210,9 @@ window.addEventListener('WebComponentsReady', function () {
             beforeEach(function() {
                 wc.title = title;
                 wc.subtitle = subtitle;
-                wc.buttonID = buttonID;
-                wc.buttonText = buttonText;
-                wc.buttonLink = buttonLink;
+                wc.buttonid = buttonID;
+                wc.buttontext = buttonText;
+                wc.buttonlink = buttonLink;
                 wc.icon = icon;
 
                 document.body.insertBefore(wc, document.body.firstChild);
@@ -259,12 +259,12 @@ window.addEventListener('WebComponentsReady', function () {
                 });
 
                 it('should update the button with appropriate text', function() {
-                    wc.buttonText = "Updated button text";
+                    wc.buttontext = "Updated button text";
                     expect(wc.querySelector('a').innerText).toEqual("Updated button text");
                 });
 
                 it('should update the button with corresponding link', function() {
-                    wc.buttonLink = "http://www.newbuttonlink.com/";
+                    wc.buttonlink = "http://www.newbuttonlink.com/";
                     expect(wc.querySelector('a.button').href).toEqual("http://www.newbuttonlink.com/");
                 });
 
@@ -274,7 +274,7 @@ window.addEventListener('WebComponentsReady', function () {
                 });
 
                 it('should update the button ID on the related button', function() {
-                    wc.buttonID = "new button id";
+                    wc.buttonid = "new button id";
                     expect(wc.querySelector('a').id).toEqual("new button id");
                 });
 

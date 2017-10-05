@@ -15,7 +15,7 @@ class RHDPTryItNow extends HTMLElement {
         if(this._title === value) return;
         this._title = value;
         this.setAttribute('title', this._title);
-        this.querySelector('h4') ? this.querySelector('h4').innerText = this._title : '';
+        this.querySelector('h4') ? this.querySelector('h4').innerHTML = this._title : '';
     }
 
     get subtitle() {
@@ -26,29 +26,29 @@ class RHDPTryItNow extends HTMLElement {
         if(this._subtitle === value) return;
         this._subtitle = value;
         this.setAttribute('subtitle', this._subtitle);
-        this.querySelector('h5') ? this.querySelector('h5').innerText = this._subtitle : '';
+        this.querySelector('h5') ? this.querySelector('h5').innerHTML = this._subtitle : '';
 
     }
 
-    get buttonID() {
+    get buttonid() {
         return this._buttonID;
     }
 
-    set buttonID(value) {
+    set buttonid(value) {
         if(this._buttonID === value) return;
         this._buttonID = value;
-        this.setAttribute('button-id', this._buttonID);
+        this.setAttribute('buttonid', this._buttonID);
         this.querySelector('a') ? this.querySelector('a').id = this._buttonID : '';
     }
 
-    get buttonLink() {
+    get buttonlink() {
         return this._buttonLink;
     }
 
-    set buttonLink(value) {
+    set buttonlink(value) {
         if(this._buttonLink === value) return;
         this._buttonLink = value;
-        this.setAttribute('button-link', this._buttonLink);
+        this.setAttribute('buttonlink', this._buttonLink);
         this.querySelector('a') ? this.querySelector('a').href = this._buttonLink : '';
 
     }
@@ -66,15 +66,15 @@ class RHDPTryItNow extends HTMLElement {
     }
 
 
-    get buttonText() {
+    get buttontext() {
         return this._buttonText;
     }
 
-    set buttonText(value) {
+    set buttontext(value) {
         if(this._buttonText === value) return;
         this._buttonText = value;
-        this.setAttribute('button-text', this._buttonText);
-        this.querySelector('a') ? this.querySelector('a').innerText = this._buttonText : '';
+        this.setAttribute('buttontext', this._buttonText);
+        this.querySelector('a') ? this.querySelector('a').innerHTML = this._buttonText : '';
     }
 
     constructor() {
@@ -96,11 +96,11 @@ class RHDPTryItNow extends HTMLElement {
     };
 
     connectedCallback() {
-            this.innerHTML = this.template`${this.title}${this.subtitle}${this.buttonLink}${this.icon}${this.buttonText}${this.buttonID}`;
+            this.innerHTML = this.template`${this.title}${this.subtitle}${this.buttonlink}${this.icon}${this.buttontext}${this.buttonid}`;
     };
 
     static get observedAttributes() {
-        return ['buttonText', 'icon', 'buttonLink', 'buttonID', 'subtitle', 'title'];
+        return ['buttontext', 'icon', 'buttonlink', 'buttonid', 'subtitle', 'title'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

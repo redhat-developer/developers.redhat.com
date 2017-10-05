@@ -107,6 +107,90 @@ var RHDPAlert = (function (_super) {
 window.addEventListener('WebComponentsReady', function () {
     customElements.define('rhdp-alert', RHDPAlert);
 });
+var RHDPThankyou = (function (_super) {
+    __extends(RHDPThankyou, _super);
+    function RHDPThankyou() {
+        var _this = _super.call(this) || this;
+        _this.template = function (strings, name, directLink) {
+            return "<div class=\"row\">\n                    <div class=\"large-24 medium-24 small-24 columns\">\n                        <div class=\"alert-box alert-info\">\n                            <div class=\"icon\"></div>\n                            <div class=\"alert-content\">\n                                <strong>Your download should start automatically.</strong>\n                                <p>If you have any problems with the download, please use the <a id=\"download-link\" href=\"" + directLink + "\">direct link.</a></p>\n                            </div>\n                        </div>\n                \n                        <div class=\"large-24 medium-16 small-24 columns thankyou\">\n                                <h2>Thank you for downloading the:</h2>\n                                <h2>" + name + "</h2>\n    \n                        </div>\n                        <div class=\"large-24 medium-16 small-24 columns\">\n                            <div class=\"thankyou-button\">\n                                <a href=\"/\" class=\"button heavy-cta\">Continue\n                                    to Homepage</a>\n                            </div>\n                        </div>\n                \n                    </div>\n                </div>";
+        };
+        return _this;
+    }
+    Object.defineProperty(RHDPThankyou.prototype, "url", {
+        get: function () {
+            return this._url;
+        },
+        set: function (value) {
+            if (this._url === value)
+                return;
+            this._url = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPThankyou.prototype, "mediaName", {
+        get: function () {
+            return this._mediaName;
+        },
+        set: function (value) {
+            if (this._mediaName === value)
+                return;
+            this._mediaName = value;
+            this.setAttribute('media-name', this._mediaName);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPThankyou.prototype, "directLink", {
+        get: function () {
+            return this._directLink;
+        },
+        set: function (value) {
+            if (this._directLink === value)
+                return;
+            this._directLink = value;
+            this.setAttribute('direct-download', this._directLink);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPThankyou.prototype.connectedCallback = function () {
+        this.mediaName = this.mediaName ? this.mediaName : this.stripLabelFromMedia(this.getParameterByName('p'));
+        this.directLink = this.directLink ? this.directLink : this.getParameterByName('tcDownloadURL');
+        this.innerHTML = (_a = ["", "", ""], _a.raw = ["", "", ""], this.template(_a, this.mediaName, this.directLink));
+        var _a;
+    };
+    Object.defineProperty(RHDPThankyou, "observedAttributes", {
+        get: function () {
+            return ['media-name', 'direct-link'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPThankyou.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+    };
+    RHDPThankyou.prototype.stripLabelFromMedia = function (name) {
+        if (name) {
+            name = name.replace(/Media:[\s]/g, "");
+        }
+        return name;
+    };
+    RHDPThankyou.prototype.getParameterByName = function (urlName) {
+        this.url = this.url ? this.url : window.location.href;
+        urlName = urlName.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + urlName + "(=([^&#]*)|&|#|$)"), results = regex.exec(this.url);
+        if (!results)
+            return null;
+        if (!results[2])
+            return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+    return RHDPThankyou;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-thankyou', RHDPThankyou);
+});
 var RHDPTryItNow = (function (_super) {
     __extends(RHDPTryItNow, _super);
     function RHDPTryItNow() {
@@ -131,7 +215,7 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._title = value;
             this.setAttribute('title', this._title);
-            this.querySelector('h4') ? this.querySelector('h4').innerText = this._title : '';
+            this.querySelector('h4') ? this.querySelector('h4').innerHTML = this._title : '';
         },
         enumerable: true,
         configurable: true
@@ -145,12 +229,12 @@ var RHDPTryItNow = (function (_super) {
                 return;
             this._subtitle = value;
             this.setAttribute('subtitle', this._subtitle);
-            this.querySelector('h5') ? this.querySelector('h5').innerText = this._subtitle : '';
+            this.querySelector('h5') ? this.querySelector('h5').innerHTML = this._subtitle : '';
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttonID", {
+    Object.defineProperty(RHDPTryItNow.prototype, "buttonid", {
         get: function () {
             return this._buttonID;
         },
@@ -158,13 +242,13 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonID === value)
                 return;
             this._buttonID = value;
-            this.setAttribute('button-id', this._buttonID);
+            this.setAttribute('buttonid', this._buttonID);
             this.querySelector('a') ? this.querySelector('a').id = this._buttonID : '';
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttonLink", {
+    Object.defineProperty(RHDPTryItNow.prototype, "buttonlink", {
         get: function () {
             return this._buttonLink;
         },
@@ -172,7 +256,7 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonLink === value)
                 return;
             this._buttonLink = value;
-            this.setAttribute('button-link', this._buttonLink);
+            this.setAttribute('buttonlink', this._buttonLink);
             this.querySelector('a') ? this.querySelector('a').href = this._buttonLink : '';
         },
         enumerable: true,
@@ -192,7 +276,7 @@ var RHDPTryItNow = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(RHDPTryItNow.prototype, "buttonText", {
+    Object.defineProperty(RHDPTryItNow.prototype, "buttontext", {
         get: function () {
             return this._buttonText;
         },
@@ -200,20 +284,20 @@ var RHDPTryItNow = (function (_super) {
             if (this._buttonText === value)
                 return;
             this._buttonText = value;
-            this.setAttribute('button-text', this._buttonText);
-            this.querySelector('a') ? this.querySelector('a').innerText = this._buttonText : '';
+            this.setAttribute('buttontext', this._buttonText);
+            this.querySelector('a') ? this.querySelector('a').innerHTML = this._buttonText : '';
         },
         enumerable: true,
         configurable: true
     });
     RHDPTryItNow.prototype.connectedCallback = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonLink, this.icon, this.buttonText, this.buttonID));
+        this.innerHTML = (_a = ["", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", ""], this.template(_a, this.title, this.subtitle, this.buttonlink, this.icon, this.buttontext, this.buttonid));
         var _a;
     };
     ;
     Object.defineProperty(RHDPTryItNow, "observedAttributes", {
         get: function () {
-            return ['buttonText', 'icon', 'buttonLink', 'buttonID', 'subtitle', 'title'];
+            return ['buttontext', 'icon', 'buttonlink', 'buttonid', 'subtitle', 'title'];
         },
         enumerable: true,
         configurable: true
