@@ -4,12 +4,12 @@
 describe('Search OneBox', function() {
     var wc;
     beforeEach(function() {
-        wc = document.createElement('rhdp-search-onebox');
+        wc = new RHDPSearchOneBox();
         wc.mock = true;
     });
 
     afterEach(function() {
-        document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(wc);
     });
 
     describe('properties', function() {
@@ -87,14 +87,8 @@ describe('Search OneBox', function() {
             }]
         };
         beforeEach(function() {
-            wc = document.createElement('rhdp-search-onebox');
-            wc.mock = true; 
             wc.data = mockData;
             document.body.insertBefore(wc, document.body.firstChild);
-        });
-
-        afterEach(function() {
-            document.body.removeChild(document.body.firstChild);
         });
 
         it('should be blank with an unmatched term', function() {

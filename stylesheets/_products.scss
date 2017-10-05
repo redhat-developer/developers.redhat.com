@@ -692,5 +692,6 @@ rhdp-tryitnow {
   }
   @include mobile-landscape-and-down {
     section { margin-top: -10px; }
+    rhdp-tryitnow { display: none; }      
   }
 }

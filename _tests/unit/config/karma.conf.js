@@ -21,10 +21,11 @@ module.exports = function (config) {
         failOnEmptyTestSuite: false,
 
         files: [
-            '../../../javascripts/vendor/custom-elements-es5-adapter.js',
-            '../../../javascripts/vendor/webcomponents-lite.js',
+            'jasmine-global.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/custom-elements-es5-adapter.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/webcomponents-lite.js',
             '../../../javascripts/build.js',
-            '../**/*_spec.js'
+            '../**/*_spec.js'          
         ]
     })
 };

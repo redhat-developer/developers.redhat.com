@@ -4,12 +4,12 @@
 describe('Search Query', function() {
     var wc;
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-query'), document.body.firstChild);
-        wc = document.body.firstChild;
+        wc = new RHDPSearchQuery();
+        document.body.insertBefore(wc, document.body.firstChild);
     });
 
     afterEach(function() {
-        document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(wc);
     });
 
     it('should be true', function() {

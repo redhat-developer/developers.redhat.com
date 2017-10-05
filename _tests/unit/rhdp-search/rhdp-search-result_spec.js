@@ -45,12 +45,12 @@ describe('Search Result', function() {
         }
     };
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-result'), document.body.firstChild);
-        wc = document.body.firstChild;
+        wc = new RHDPSearchResult();
+        document.body.insertBefore(wc, document.body.firstChild);
     });
 
     afterEach(function() {
-        document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(wc);
     });
 
     it('should have a created date from resultset', function() {
