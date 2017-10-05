@@ -18,12 +18,14 @@ class NodeJenkinsTestRunner
   #
   def run_tests
     tests_passed = true
-    (@test_type == 'e2e' || 'kc_e2e') ?
-        %w(desktop mobile).each do |profile|
-          cleanup(profile)
-          tests_passed &= execute_e2e(profile)
-        end :
-        tests_passed &= execute_blc
+    if @test_type == 'e2e' || @test_type == 'kc_e2e'
+      %w(desktop mobile).each do |profile|
+        cleanup(profile)
+        tests_passed &= execute_e2e(profile)
+      end
+    else
+      tests_passed &= execute_blc
+    end
     tests_passed
   end
 
