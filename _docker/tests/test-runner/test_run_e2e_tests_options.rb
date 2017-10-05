@@ -28,7 +28,7 @@ class TestRunTestOptions < MiniTest::Test
     Kernel.expects(:abort).with('Please specify a base url. For example --base-url=http://foo.com')
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e))
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl=', test_configuration[:run_tests_command])
+    assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl= --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
   end
 
   def test_docker_e2e_test_execution_no_base_url_specified
@@ -36,14 +36,14 @@ class TestRunTestOptions < MiniTest::Test
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --use-docker --browser=chrome))
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('npm run e2e:docker -- --baseUrl=', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:docker -- --baseUrl= --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
   end
 
   def test_non_docker_e2e_test_execution
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com))
     refute(test_configuration[:docker])
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
   end
@@ -53,7 +53,7 @@ class TestRunTestOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
     assert_equal('chrome', ENV['RHD_JS_DRIVER'])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
@@ -66,7 +66,7 @@ class TestRunTestOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(5, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
     assert_equal('chrome', ENV['RHD_JS_DRIVER'])
     assert_equal('chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
@@ -81,7 +81,7 @@ class TestRunTestOptions < MiniTest::Test
 
     assert_equal('foo', test_configuration[:browser])
     assert_equal('foo', ENV['RHD_JS_DRIVER'])
-    assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
   end
 
   def test_docker_execution_specifying_unknown_mobile_device
@@ -93,7 +93,7 @@ class TestRunTestOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal('foo', test_configuration[:browser])
     assert_equal('foo', ENV['RHD_JS_DRIVER'])
-    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
   end
 
   def test_non_docker_execution_specifying_unknown_browserstack_browser
@@ -103,7 +103,7 @@ class TestRunTestOptions < MiniTest::Test
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-browserstack --browser=bs_foo))
     assert_equal('bs_foo', test_configuration[:browser])
     assert_equal('bs_foo', ENV['RHD_JS_DRIVER'])
-    assert_equal('cd _tests/e2e && npm run e2e:browserstack -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('cd _tests/e2e && npm run e2e:browserstack -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
   end
 
   def test_docker_execution_specifying_unknown_browserstack_browser
@@ -114,14 +114,14 @@ class TestRunTestOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal('bs_foo', test_configuration[:browser])
     assert_equal('bs_foo', ENV['RHD_JS_DRIVER'])
-    assert_equal('npm run e2e:browserstack -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:browserstack -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
   end
 
 
   def test_docker_execution_specifying_update_github_status
     test_configuration = @run_tests_options.parse_command_line(%w(--e2e --base-url=http://foo.com --use-docker --update-github-status=123))
     assert(test_configuration[:docker])
-    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
     assert_equal('123', ENV['github_status_sha1'])
     assert_equal('FE:node-e2e-tests', ENV['github_status_context'])
     assert_equal('true', ENV['github_status_enabled'])
@@ -134,7 +134,7 @@ class TestRunTestOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('iphone_6', test_configuration[:browser])
-    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
     assert_equal('iPhone 6', ENV['RHD_JS_DRIVER'])
     assert_equal('chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
@@ -148,7 +148,7 @@ class TestRunTestOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('firefox', test_configuration[:browser])
-    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
     assert_equal('firefox', ENV['RHD_JS_DRIVER'])
     assert_equal('firefox', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
@@ -166,7 +166,7 @@ class TestRunTestOptions < MiniTest::Test
     assert(test_configuration[:browserstack])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('bs_ie_11', test_configuration[:browser])
-    assert_equal('npm run e2e:browserstack -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:browserstack -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
     assert_equal('bs_ie_11', ENV['RHD_JS_DRIVER'])
     assert_equal('chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
@@ -184,7 +184,7 @@ class TestRunTestOptions < MiniTest::Test
 
     assert(test_configuration[:browserstack])
     assert_equal('bs_ie_11', test_configuration[:browser])
-    assert_equal('cd _tests/e2e && npm run e2e:browserstack -- --baseUrl=http://foo.com', test_configuration[:run_tests_command])
+    assert_equal('cd _tests/e2e && npm run e2e:browserstack -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore', test_configuration[:run_tests_command])
     assert_equal('bs_ie_11', ENV['RHD_JS_DRIVER'])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
@@ -199,7 +199,7 @@ class TestRunTestOptions < MiniTest::Test
     assert(test_configuration[:docker])
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com --cucumberOpts.tags=@foo,@bar', test_configuration[:run_tests_command])
+    assert_equal('npm run e2e:docker -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore,@foo,@bar', test_configuration[:run_tests_command])
     assert_equal('chrome', ENV['RHD_JS_DRIVER'])
     assert_equal('chrome', test_configuration[:docker_node])
     assert_equal(nil, ENV['github_status_sha1'])
@@ -212,7 +212,7 @@ class TestRunTestOptions < MiniTest::Test
 
     assert_equal(2, test_configuration[:browser_count])
     assert_equal('chrome', test_configuration[:browser])
-    assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl=http://foo.com --cucumberOpts.tags=@foo,@bar', test_configuration[:run_tests_command])
+    assert_equal('cd _tests/e2e && npm run e2e -- --baseUrl=http://foo.com --cucumberOpts.tags=~@ignore,@foo,@bar', test_configuration[:run_tests_command])
     assert_equal('chrome', ENV['RHD_JS_DRIVER'])
     assert_equal(nil, ENV['github_status_sha1'])
     assert_equal(nil, ENV['github_status_context'])
