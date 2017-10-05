@@ -1,5 +1,5 @@
 require_relative '../_docker/lib/process_runner'
-
+require 'fileutils'
 #
 # This class wraps a number of calls to _docker/control.rb to allow us to run the e2e tests with a number of profiles
 # or broken-link checks, and then amalgamate the result into a generalised fail or pass.
@@ -18,13 +18,12 @@ class NodeJenkinsTestRunner
   #
   def run_tests
     tests_passed = true
-    if @test_type == 'e2e'
-      # Run the tests for each of our test profiles
+    if @test_type == 'e2e' || @test_type == 'kc_e2e'
       %w(desktop mobile).each do |profile|
+        cleanup(profile)
         tests_passed &= execute_e2e(profile)
       end
     else
-      # Run broken-link-checks
       tests_passed &= execute_blc
     end
     tests_passed
@@ -38,13 +37,13 @@ class NodeJenkinsTestRunner
   def execute_e2e(profile)
     success = true
     test_execution_command = build_e2e_run_tests_command(profile)
-
     begin
       @process_runner.execute!(test_execution_command)
     rescue
       puts "Run of test profile '#{profile}' failed."
       success = false
     end
+    generate_e2e_test_report(profile)
     success
   end
 
@@ -80,9 +79,9 @@ class NodeJenkinsTestRunner
     github_sha1 = read_env_variable('ghprbActualCommit')
     cucumber_tags = read_env_variable('CUCUMBER_TAGS')
     command += " --update-github-status=#{github_sha1}" if github_sha1
+    command += ' --kc' if @test_type == 'kc_e2e'
     command += ' --browser=iphone_6' if profile == 'mobile'
     command += " --profile=#{profile}"
-    command += ' --reporters=junit'
     if cucumber_tags.nil?
       if profile == 'desktop'
         command += ' --cucumber-tags=~@mobile'
@@ -97,6 +96,25 @@ class NodeJenkinsTestRunner
       end
     end
     command
+  end
+
+  def generate_e2e_test_report(profile)
+    puts "Generating Allure test report for #{profile} e2e tests . . . "
+    if @test_type == 'kc_e2e'
+      report_directory = "#{@control_script_directory}/e2e/keycloak/#{profile}/allure-results"
+    else
+      report_directory = "#{@control_script_directory}/e2e/website/#{profile}/allure-results"
+    end
+    @process_runner.execute!("cd #{report_directory} && allure generate .")
+    puts "Generated #{profile} e2e test report . . . "
+  end
+
+  def cleanup(profile)
+    if @test_type == 'kc_e2e'
+      FileUtils.rm_rf("#{@control_script_directory}/e2e/keycloak/#{profile}/allure-results")
+    else
+      FileUtils.rm_rf("#{@control_script_directory}/e2e/website/#{profile}/allure-results")
+    end
   end
 
   #
@@ -123,7 +141,7 @@ def execute(jenkins_test_runner)
 end
 
 if $PROGRAM_NAME == __FILE__
-  available_test_types = %w[blc e2e]
+  available_test_types = %w[blc e2e kc_e2e]
   test_type = ARGV[0]
   unless available_test_types.include?(test_type)
     puts "Please specify a valid test type that you wish to run. Available test types: #{available_test_types}"

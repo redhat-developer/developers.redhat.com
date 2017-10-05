@@ -67,12 +67,12 @@ class RunTestOptions
         test_configuration[:browser_count] = browser_count.to_i
       end
 
-      opts.on('--reporters REPORT', String, 'Type of report you wish to generate. Will mostly be used for Jenkins config, i.e. junit report') do |report|
-        test_configuration[:report] = report
-      end
-
       opts.on('--cucumber-tags CUCUMBER_TAGS', String, 'The cucumber tags to use') do |cucumber_tags|
         test_configuration[:cucumber_tags] = cucumber_tags
+      end
+
+      opts.on('--kc', 'Run the KeyCloak e2e tests') do
+        test_configuration[:keycloak] = true
       end
 
       #
@@ -199,9 +199,15 @@ class RunTestOptions
     # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
     bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
+    bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile])
     run_tests_command += "--baseUrl=#{test_configuration[:base_url]}"
-    run_tests_command += " --reporters=#{test_configuration[:report]}" if test_configuration[:report]
-    run_tests_command += " --cucumberOpts.tags=#{parse_cucumber_tags(test_configuration[:cucumber_tags])}" if test_configuration[:cucumber_tags]
+
+    if test_configuration[:cucumber_tags]
+      run_tests_command += " --cucumberOpts.tags=~@ignore,#{parse_cucumber_tags(test_configuration[:cucumber_tags])}"
+    else
+      run_tests_command += ' --cucumberOpts.tags=~@ignore'
+    end
+
     if test_configuration[:browserstack] && test_configuration[:docker] == false
       # for running tests via browserstack outside of docker
       test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e:browserstack -- #{run_tests_command}"
@@ -209,12 +215,23 @@ class RunTestOptions
       # for running tests via browserstack inside of docker
       test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"
     elsif test_configuration[:docker]
-      # for running tests inside of docker and not specifying browserstack option
+      # for running tests inside of docker using docker-selenium
       test_configuration[:browser_count] = 2 if test_configuration[:browser_count].nil?
-      test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
+      if test_configuration[:keycloak]
+        bind_environment_variable('RHD_TEST_TYPE', 'keyclaok')
+        test_configuration[:run_tests_command] = "npm run e2e:kc:docker -- #{run_tests_command}"
+      else
+        bind_environment_variable('RHD_TEST_TYPE', 'website')
+        test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
+      end
     else
       # run tests via a local browser
-      test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e -- #{run_tests_command}"
+      if test_configuration[:keycloak]
+        bind_environment_variable('KEYCLOAK_E2E', 'true')
+        test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e:kc -- #{run_tests_command}"
+      else
+        test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e -- #{run_tests_command}"
+      end
     end
   end
 

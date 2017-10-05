@@ -1,0 +1,26 @@
+class BasePage {
+    open(path) {
+        browser.url(path);
+    }
+
+    /**
+     * Verifies whether or not there is a JS Alert present on the page
+     */
+    hasAlert() {
+        let hasAlert;
+        try {
+            browser.alertText();
+            hasAlert = true
+        } catch (e) {
+            hasAlert = false
+        }
+        return hasAlert
+    }
+
+    _sleep(delay) {
+        let start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+    }
+}
+
+module.exports = BasePage;
