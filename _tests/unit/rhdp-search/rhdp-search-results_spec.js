@@ -3,13 +3,14 @@
 
 describe('Search Results (list)', function() {
     var wc;
+
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-results'), document.body.firstChild);
-        wc = document.body.firstChild;
+        wc = new RHDPSearchResults();
+        document.body.insertBefore(wc, document.body.firstChild);
     });
 
     afterEach(function() {
-        document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(wc);
     });
 
     it('should have a results object', function() {

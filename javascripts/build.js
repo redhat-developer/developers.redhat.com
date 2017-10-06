@@ -8,6 +8,105 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var RHDPAlert = (function (_super) {
+    __extends(RHDPAlert, _super);
+    function RHDPAlert() {
+        var _this = _super.call(this) || this;
+        _this._type = 'info';
+        _this._icon = true;
+        _this.template = function (strings, alert) {
+            return "\n        <div class=\"alert-box alert-" + alert.type + " " + (alert.size ? "alert-" + alert.size : '') + "\">\n            " + (alert.size === 'xl' ? '<div class="row">' : '') + "\n                <div class=\"icon\"></div>\n                <div class=\"alert-content\">\n                " + (alert.size === 'xl' ? '<h3>' : '<strong>') + "\n                " + (alert.heading ? alert.heading : '') + "\n                " + (alert.size === 'xl' ? '</h3>' : '</strong>') + "\n                    <p>" + alert.text + "</p>\n                </div>\n            " + (alert.size === 'xl' ? '<a class="close"></a></div>' : '') + "\n        </div>";
+        };
+        _this.text = _this.innerHTML;
+        return _this;
+    }
+    Object.defineProperty(RHDPAlert.prototype, "type", {
+        get: function () {
+            return this._type;
+        },
+        set: function (val) {
+            if (this._type === val)
+                return;
+            this._type = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPAlert.prototype, "size", {
+        get: function () {
+            return this._size;
+        },
+        set: function (val) {
+            if (this._size === val)
+                return;
+            this._size = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPAlert.prototype, "heading", {
+        get: function () {
+            return this._heading;
+        },
+        set: function (val) {
+            if (this._heading === val)
+                return;
+            this._heading = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPAlert.prototype, "text", {
+        get: function () {
+            return this._text;
+        },
+        set: function (val) {
+            if (this._text === val)
+                return;
+            this._text = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RHDPAlert.prototype, "icon", {
+        get: function () {
+            return this._icon;
+        },
+        set: function (val) {
+            if (this._icon === val)
+                return;
+            this._icon = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPAlert.prototype.connectedCallback = function () {
+        var _this = this;
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        this.addEventListener('click', function (e) {
+            if (e.target && e.target['className'] === 'close') {
+                _this.innerHTML = '';
+            }
+        });
+        var _a;
+    };
+    Object.defineProperty(RHDPAlert, "observedAttributes", {
+        get: function () {
+            return ['type', 'size', 'heading', 'text'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RHDPAlert.prototype.attributeChangedCallback = function (name, oldVal, newVal) {
+        this[name] = newVal;
+        this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
+        var _a;
+    };
+    return RHDPAlert;
+}(HTMLElement));
+window.addEventListener('WebComponentsReady', function () {
+    customElements.define('rhdp-alert', RHDPAlert);
+});
 var RHDPThankyou = (function (_super) {
     __extends(RHDPThankyou, _super);
     function RHDPThankyou() {
