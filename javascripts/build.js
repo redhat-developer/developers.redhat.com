@@ -17,6 +17,7 @@ var RHDPAlert = (function (_super) {
         _this.template = function (strings, alert) {
             return "\n        <div class=\"alert-box alert-" + alert.type + " " + (alert.size ? "alert-" + alert.size : '') + "\">\n            " + (alert.size === 'xl' ? '<div class="row">' : '') + "\n                <div class=\"icon\"></div>\n                <div class=\"alert-content\">\n                " + (alert.size === 'xl' ? '<h3>' : '<strong>') + "\n                " + (alert.heading ? alert.heading : '') + "\n                " + (alert.size === 'xl' ? '</h3>' : '</strong>') + "\n                    <p>" + alert.text + "</p>\n                </div>\n            " + (alert.size === 'xl' ? '<a class="close"></a></div>' : '') + "\n        </div>";
         };
+        _this.text = _this.innerHTML;
         return _this;
     }
     Object.defineProperty(RHDPAlert.prototype, "type", {
@@ -81,7 +82,6 @@ var RHDPAlert = (function (_super) {
     });
     RHDPAlert.prototype.connectedCallback = function () {
         var _this = this;
-        this.text = this.innerHTML;
         this.innerHTML = (_a = ["", ""], _a.raw = ["", ""], this.template(_a, this));
         this.addEventListener('click', function (e) {
             if (e.target && e.target['className'] === 'close') {

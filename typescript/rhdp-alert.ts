@@ -47,10 +47,11 @@ class RHDPAlert extends HTMLElement {
 
     constructor() {
         super();
+
+        this.text = this.innerHTML;
     }
 
     connectedCallback() {
-        this.text = this.innerHTML;
         this.innerHTML = this.template`${this}`;
 
         this.addEventListener('click', e => {
