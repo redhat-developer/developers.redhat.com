@@ -3,18 +3,16 @@
 
 describe('Search Filters', function() {
     var wc;
-
     var facet = {"term":"","facets":[]};
 
     beforeEach(function() {
-        wc = document.createElement('rhdp-search-filters')
+        wc = new RHDPSearchFilters();
         wc.filters = facet;
         document.body.insertBefore(wc, document.body.firstChild);
-        wc = document.body.firstChild;
     });
 
     afterEach(function() {
-        document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(wc);
     });
 
     it('should be true', function() {

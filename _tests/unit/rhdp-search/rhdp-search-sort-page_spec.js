@@ -3,13 +3,14 @@
 
 describe('Search Sort and Paging', function() {
     var wc;
+
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-sort-page'), document.body.firstChild);
-        wc = document.body.firstChild;
+        wc = new RHDPSearchSortPage();
+        document.body.insertBefore(wc, document.body.firstChild);
     });
 
     afterEach(function() {
-        document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(wc);
     });
 
 /*
