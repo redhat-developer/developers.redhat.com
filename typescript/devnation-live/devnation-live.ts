@@ -104,6 +104,7 @@ class DevNationLiveApp extends HTMLElement {
                     (<a href="https://twitter.com/${next.twitter_handle}" target="_blank" class="external-link"> @${next.twitter_handle}</a>)` 
                     : ''}
                     </p>
+                    ${next.speaker_intro ? `<p>${next.speaker_intro}</p>` : ''}
                     <p>${next.abstract}</p>
                 </div>
             </div>
