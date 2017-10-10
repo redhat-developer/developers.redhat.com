@@ -28,7 +28,7 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
 exports.config = {
 
     specs: [
-        'features/*.feature', 'features/*/*.feature'
+        'features/*.feature'
     ],
 
     exclude: [

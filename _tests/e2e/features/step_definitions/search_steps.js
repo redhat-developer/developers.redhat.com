@@ -7,6 +7,10 @@ module.exports = function () {
 
     let resultCount;
 
+    this.Then(/^I am on the Search page$/, function () {
+        searchPage.open();
+    });
+
     this.Then(/^the search page is displayed$/, function () {
         expect(searchPage.isOnSearchPage(), 'Search Page was not displayed').to.be.true;
     });
