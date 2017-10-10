@@ -105,6 +105,7 @@ class DevNationLiveApp extends HTMLElement {
                     : ''}
                     </p>
                     <p>${next.abstract}</p>
+                    ${next.speaker_intro ? `<p>${next.speaker_intro}</p>` : ''}
                 </div>
             </div>
         </section>`;
