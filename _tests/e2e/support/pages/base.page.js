@@ -1,6 +1,18 @@
 class BasePage {
     open(path) {
         browser.url(path);
+        // Wait for document to be fully loaded.
+        browser.waitUntil(
+            () => {
+                const state = browser.execute(function () {
+                    return document.readyState;
+                });
+                return state.value === 'complete';
+            },
+            100000,
+            `Timed out on page load for path ${path}`,
+            500
+        );
     }
 
     /**
