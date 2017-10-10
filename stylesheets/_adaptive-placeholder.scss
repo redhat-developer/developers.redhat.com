@@ -31,6 +31,11 @@
       -webkit-box-shadow: 0 0 0px 1000px white inset;
     }
   }
+  input:-webkit-autofill ~ label {
+    bottom: 35px;
+    font-size: 12px;
+    color: #8c8f91;
+  }
 
   select {
     background-color: $white;
