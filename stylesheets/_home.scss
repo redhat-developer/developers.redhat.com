@@ -213,6 +213,10 @@ ul.homepage-resources {
   }
 }
 
+.register-banner, .contributors-banner {
+  &.inverse { background-color: $grey-7; }
+}
+
 .home-join-img img {
   margin: 2em auto;
 }
