@@ -416,71 +416,83 @@
     </div>
     {{ page_bottom}}
     <footer class="bottom">
-      <div class="row">
-        <div class="large-5 columns">
-          <a href="https://www.redhat.com" target="_blank" rel="noopener noreferrer"><img alt="Red Hat" class="rh-logo" src="/images/branding/RHLogo_white.svg" /></a>
-        </div>
-         <div class="large-5 columns">
-            <h3>Helpful Links</h3>
-            <ul class="quick-links">
-                <li><a class="report-an-issue" href="#" id="rhdCustomTrigger">Report a website issue</a></li>
-                <li><a href="https://access.redhat.com/security/team/contact/" target="_blank" rel="noopener noreferrer">Report a security problem</a></li>
-                <li><a href="http://www.redhat.com/en/services/consulting" target="_blank" rel="noopener noreferrer">Consulting solutions</a></li>
-                <li><a href="http://www.redhat.com/en/services/training" target="_blank" rel="noopener noreferrer">Training</a></li>
-            </ul>
-        </div>
-         <div class="large-5 columns">
-            <h3>Related Sites</h3>
-            <ul class="quick-links">
-                <li><a href="https://www.redhat.com" target="_blank" rel="noopener noreferrer">Red Hat Corporate</a></li>
-                <li><a href="https://access.redhat.com/" target="_blank" rel="noopener noreferrer">Customer Portal</a></li>
-                <li><a href="https://www.openshift.com/" target="_blank" rel="noopener noreferrer">OpenShift</a></li>
-            </ul>
-        </div>
-             <div class="large-9 columns">
-                <h3>Red Hat Developers</h3>
-                <p>We provide a complete experience to enable enterprise developers and software builders to envision,
-                    create and maintain high-value enterprise software.</p>
-                <div class="row">
-                    <div class="large-12 columns">
-                        <ul class="inline-list">
-                            <li><a href="/about">About us</a></li>
-                            <li><a href="mailto:developers@redhat.com">Contact us</a></li>
-                        </ul>
-                    </div>
-                    <div class="large-12 columns">
-                        <ul class="social-nav">
-                            <li><a href="https://plus.google.com/103877536668756379905/posts" target="_blank" rel="noopener noreferrer"><i
-                                    class="fa fa-google-plus"></i></a></li>
-                            <li><a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank" rel="noopener noreferrer"><i
-                                    class="fa fa-youtube"></i></a></li>
-                            <li><a href="https://www.facebook.com/RedHatDeveloperProgram" target="_blank" rel="noopener noreferrer"><i
-                                    class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://twitter.com/rhdevelopers" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+      <section class="footer-links">
+        <div class="row">
+          <div class="large-8 medium-12 columns right rhdp-info">
+            <h3>Red Hat Developer Program</h3>
+            <p>We provide a complete experience to enable enterprise developers and software builders to envision, create and maintain high-value enterprise software.</p>
+            <div class="row">
+                <div class="small-12 columns">
+                  <a href="/about">About us</a>
+                </div>
+                <div class="small-12 columns">
+                    <ul class="social-nav">
+                        <li>
+                          <a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube"></i></a>
+                        </li>
+                        <li>
+                          <a href="https://www.facebook.com/RedHatDeveloperProgram" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                          <a href="https://twitter.com/rhdevelopers" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-     </div>
-    <div class="row legal">
-        <div class="large-5 medium-24 right columns">
-            <a class="devnation-logo" href="http://www.devnation.org/" target="_blank" rel="noopener noreferrer"><img
-                src="/images/design/logo_devnation_footer.png" alt="Red Hat Summit"></a><a
-                class="summit-logo" href="http://www.redhat.com/summit/" target="_blank" rel="noopener noreferrer"><img
-                src="/images/design/logo-summit.png" alt="Red Hat Summit"></a>
-        </div>
-        <div class="large-19 columns">
-            <ul class="inline-list">
-                <li><a class="copyright">Copyright © {{ "now"|date("Y") }} Red Hat Inc.</a></li>
-                <li><a href="http://www.redhat.com/en/about/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy statement
-                      |</a></li>
-                <li><a href="http://www.redhat.com/en/about/terms-use" target="_blank" rel="noopener noreferrer">Terms of use   |</a></li>
-                <li><a href="http://www.redhat.com/en/about/all-policies-guidelines" target="_blank" rel="noopener noreferrer">All policies
-                    and guidelines</a></li>
-            </ul>
-        </div>
-    </div>
+          </div>
+          <div id="collapseFooter" class="large-16 medium-12 columns">
+            <div class="large-8 columns collapsible-section">
+              <h3 class="section-toggle"><span class="toggle-icon"></span>Related Sites</h3>
+              <div class="section-content">
+                <ul class="quick-links">
+                  <li><a href="https://openshift.io/" target="_blank" rel="noopener noreferrer">Red Hat OpenShift.io</a></li>
+                  <li><a href="https://www.openshift.com/" target="_blank" rel="noopener noreferrer">Red Hat OpenShift Online</a></li>
+                  <li><a href="https://www.redhat.com/en/store/" target="_blank" rel="noopener noreferrer">Red Hat Store</a></li>
+                  <li><a href="https://www.redhat.com/en/jobs/" target="_blank" rel="noopener noreferrer">Red Hat Jobs</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="large-8 columns collapsible-section">
+              <h3 class="section-toggle"><span class="toggle-icon"></span>Services</h3>
+              <div class="section-content">
+                <ul class="quick-links">
+                  <li><a href="https://openshift.io/" target="_blank" rel="noopener noreferrer">Red Hat OpenShift.io</a></li>
+                  <li><a href="https://www.openshift.com/" target="_blank" rel="noopener noreferrer">Red Hat OpenShift Online</a></li>
+                  <li><a href="https://www.redhat.com/en/store/" target="_blank" rel="noopener noreferrer">Red Hat Store</a></li>
+                  <li><a href="https://www.redhat.com/en/jobs/" target="_blank" rel="noopener noreferrer">Red Hat Jobs</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="large-8 columns collapsible-section">
+              <h3 class="section-toggle"><span class="toggle-icon"></span>Communicate</h3>
+              <div class="section-content">
+                <ul class="quick-links">
+                  <li><a class="report-an-issue" href="#" id="rhdCustomTrigger">Report a website issue</a></li>
+                  <li><a href="https://access.redhat.com/security/team/contact/" target="_blank" rel="noopener noreferrer">Report a security problem</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+       </div>
+    </section>
+    <section class="footer-legal">
+      <div class="legal">
+          <div class="medium-5 small-24 columns">
+            <a href="https://www.redhat.com" target="_blank" rel="noopener noreferrer"><img alt="Red Hat" class="rh-logo" src="/images/branding/RHLogo_white.svg" /></a>
+          </div>
+          <div class="medium-14 columns">
+              <ul class="inline-list">
+                  <li><a class="copyright">Copyright © {{ "now"|date("Y") }} Red Hat Inc.</a></li>
+                  <li><a href="http://www.redhat.com/en/about/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy statement</a></li>
+                  <li><a href="http://www.redhat.com/en/about/terms-use" target="_blank" rel="noopener noreferrer">Terms of use</a></li>
+                  <li><a href="http://www.redhat.com/en/about/all-policies-guidelines" target="_blank" rel="noopener noreferrer">All policies and guidelines</a></li>
+              </ul>
+          </div>
+          <div class="medium-5 small-24 right columns">
+              <a class="summit-logo" href="http://www.redhat.com/summit/" target="_blank" rel="noopener noreferrer"><img src="/images/design/logo-summit.png" alt="Red Hat Summit"></a>
+          </div>
+      </div>
+    </section>
       {% if page.footer %}
           {% block footer %}
               {{ page.footer }}
