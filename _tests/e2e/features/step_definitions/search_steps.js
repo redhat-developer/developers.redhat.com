@@ -7,6 +7,10 @@ module.exports = function () {
 
     let resultCount;
 
+    this.Then(/^I am on the Search page$/, function () {
+        searchPage.open();
+    });
+
     this.Then(/^the search page is displayed$/, function () {
         expect(searchPage.isOnSearchPage(), 'Search Page was not displayed').to.be.true;
     });
@@ -71,9 +75,18 @@ module.exports = function () {
     this.Then(/^I (should|should not) see a Load More link$/, function (negate) {
         searchPage.waitForResultsLoaded();
         if (negate === 'should') {
-            expect(searchPage.loadMoreButton().isVisible(), 'Load More button was not visible').to.be.true;
+            searchPage.loadMoreButton().waitForVisible(30000);
         } else {
-            expect(searchPage.loadMoreButton().isVisible(), 'Load More button was visible').to.be.false;
+            searchPage.loadMoreButton().waitForVisible(30000, true);
+        }
+    });
+
+    this.Then(/^I (should|should not) see some text that says "- End of Results -"$/, function (negate) {
+        searchPage.waitForResultsLoaded();
+        if (negate === 'should') {
+            searchPage.endOfResults().waitForVisible(30000);
+        } else {
+            searchPage.endOfResults().waitForVisible(30000, true);
         }
     });
 
@@ -209,7 +222,7 @@ module.exports = function () {
     });
 
     this.Then(/^I should see a message that no search term was entered$/, function () {
-       let noSearchText = searchPage.emptySearch.getText();
+        let noSearchText = searchPage.emptySearch.getText();
         expect(noSearchText).to.includes('Well, this is awkward. No search term was entered yet')
     });
 

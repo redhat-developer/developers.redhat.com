@@ -5,32 +5,25 @@ Feature: Search Page
   So that I can find specific information.
 
   Scenario: Site-nav search can be triggered using search button
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I enter "Hello world" into the site-nav search bar
     And I trigger the search via the search-button
     Then the search page is displayed
 
   Scenario: Site-nav search can be triggered by enter key
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I enter "Hello world" into the site-nav search bar
     And I trigger the search via the enter-key
     Then the search page is displayed
 
   Scenario: Search field is hidden within the site header on search page.
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I search for "Hello World" via the site-nav search bar
     Then the search page is displayed
     And the search field should not be displayed within the site header
 
-    # Bug: DEVELOPER-4319 - currently failing as spaces are appended with +
-    # Scenario: Typing multiple words such as "eap 7 download" in the search box from the search header should retain the spaces.
-    #    Given I am on the "Home" page
-    #    When I search for "Foobar" via the site-nav search bar
-    #    Then the search page is displayed
-    #    And the search field should contain "eap 7 download"
-
   Scenario: Search field is hidden within the site header on search page.
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I search for "Hello World" via the site-nav search bar
     Then the search page is displayed
     And the search field should not be displayed within the site header
@@ -40,58 +33,58 @@ Feature: Search Page
     Then I should see a message that no search term was entered
 
   Scenario: Search can be triggered using search button
-    Given I am on the "Search" page
+    Given I am on the Search page
     When I enter "Hello world" into the search bar
     And click on the search-button
     Then search results are displayed
 
   Scenario: Search can be triggered by enter key
-    Given I am on the "Search" page
+    Given I am on the Search page
     When I enter "Hello world" into the search bar
     And I trigger the search via the enter-key
     Then search results are displayed
 
   Scenario: Default result sorting should be 'Relevance'
-    Given I am on the "Search" page
+    Given I am on the Search page
     Then the results should be sorted by "Relevance"
 
   Scenario: User can select to sort results by 'Most Recent'
-    Given I am on the "Search" page
+    Given I am on the Search page
     When I search for "Containers"
     And I sort results by "Most Recent"
     Then the results should be sorted by "Most Recent"
 
   Scenario: Show 'Load More' link if more than 10 results are returned from the DCP.
-    Given I am on the "Search" page
+    Given I am on the Search page
     And I search for "Containers"
     Then I should see a Load More link
 
   Scenario: Do not show 'Load More' link if less than 10 results are returned from the DCP.
-    Given I am on the "Search" page
+    Given I am on the Search page
     When I search for "Foobar"
     And there are 10 or less results available
     Then I should not see a Load More link
 
   Scenario: I search for something should return *no* entries, such as "bfehwfbhbn"
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I search for "bfehwfbhbn" via the site-nav search bar
     And the search page is displayed
     Then I should see a message "0 results found for bfehwfbhbn"
 
   Scenario: Blog posts are searchable
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I search for "Red Hat JBoss Data Grid 7.0 is out" via the site-nav search bar
     And the search page is displayed
     Then the results should contain "Red Hat JBoss Data Grid 7.0 is out"
 
   Scenario: StackOverflow posts are searchable
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I search for "Dockerizing Node.js Apps" via the site-nav search bar
     And the search page is displayed
     Then the results should contain "Dockerizing Node.js Apps"
 
   Scenario Outline: DEVELOPER-3077 - Topics should be listed first in results
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I search for "<topic>" via the site-nav search bar
     And the search page is displayed
     Then the related topic page for "<url>" should be the first result
@@ -108,7 +101,7 @@ Feature: Search Page
       | Internet of Things      | iot                     |
 
   Scenario: DEVELOPER-3078 - User searches on /search for 'red hat developers', the first result should be for https://developers.redhat.com/about.
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I search for "red hat developers" via the site-nav search bar
     And the search page is displayed
     Then first result should be the RHD About Us page
@@ -144,13 +137,14 @@ Feature: Search Page
     And I should not see an alert
 
     Examples: Script alert
-      | script                           |
-      | Richfaces%205%20-%20Javascript   |
-      | %3Cscript%3Ealert                |
-      | "><script>alert("XSS")</script>& |
+      | script                                                 |
+      | Richfaces%205%20-%20Javascript                         |
+      | %3Cscript%3Ealert                                      |
+      | "><script>alert("XSS")</script>&                       |
+      | %3Cimg%20src%3Dx%20onerror%3Dalert(/OPENBUGBOUNTY/)%3E |
 
   Scenario Outline: Cross Site Scripting (XSS): Searching via search box using a query that contains malicious scripts
-    Given I am on the "Search" page
+    Given I am on the Search page
     When I search for "<script>"
     And search results are displayed
     Then I should not see an alert
@@ -163,10 +157,60 @@ Feature: Search Page
 
 
   Scenario: User can re-search using different search term and results are updated.
-    Given I am on the "Home" page
+    Given I am on the Home page
     When I search for "Hello World" via the site-nav search bar
     Then the search page is displayed
     And the results should contain "Hello World"
     When I search for "Java"
     Then the results should be updated and contain "Java"
 
+  Scenario: User searches for a string that is associated with a Product OneBox
+    Given I am on the Search page
+    When I search for "red hat linux"
+    Then I should see a OneBox for "Red Hat Enterprise Linux" at the top of the results
+
+  Scenario: User selects the Title of the product on a Product OneBox
+    Given I am provided with a "containers" OneBox
+    When I select the OneBox Title
+    Then I should see the "Red Hat Container Development Kit" Overview page
+
+  Scenario: User selects the View Downloads button on a Product OneBox
+    Given I am provided with a "containers" OneBox
+    When I select the View Downloads button
+    Then I should see the "Red Hat Container Development Kit" Download page
+
+  @desktop
+  Scenario: User selects the Hello World! molecule (icon and/or text) on a Product OneBox
+    Given I am provided with a "containers" OneBox
+    When I select the oneBox "Hello World!" link
+    Then I should see the "Red Hat Container Development Kit" Hello-world page
+
+  @desktop
+  Scenario: User selects the Docs and APIs molecule (icon and/or text) on a Product OneBox
+    Given I am provided with a "containers" OneBox
+    When I select the oneBox "Docs and APIs" link
+    Then I should see the "Red Hat Container Development Kit" Docs-and-apis page
+
+  @desktop
+  Scenario: User selects the Help molecule (icon and/or text) on a Product OneBox
+    Given I am provided with a "containers" OneBox
+    When I select the oneBox "Help" link
+    Then I should see the "Red Hat Container Development Kit" Help page
+
+  Scenario: User searches for a term that does not have a corresponding OneBox
+    Given I am on the Search page
+    When I search for "Red Hat Container Development Kit"
+    Then I should not see a OneBox for "Red Hat Container Development Kit" at the top of the results
+
+  Scenario: User sees the end of the returned search results
+    Given I am on the Search page
+    When I search for "qwert"
+    And there are 10 or less results available
+    Then I should not see a Load More link
+    And I should see some text that says "- End of Results -"
+
+  Scenario: User gets to the end of the returned resultset, but there are more results
+    Given I am on the Search page
+    And I search for "Containers"
+    Then I should see a Load More link
+    And I should not see some text that says "- End of Results -"

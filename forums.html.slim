@@ -1,6 +1,8 @@
 ---
 layout: technology-base
 title: Forums | Red Hat Developers
+drupal_format: as_is_html
+ignore_export: true
 ---
 
 .hero.hero-wide.hero-forums
@@ -25,27 +27,18 @@ title: Forums | Red Hat Developers
           .development-tool(id="development-tool-#{product.id}")
             .row
               .large-12.columns
-                - if ["cdk","developertoolset","devstudio"].include? product.id
                   h4.read-only
                     = product.forum_title || product.name
-                  p
-                    |This product forum is now 
-                    a(id="#{product.id}" href="#{forum_url}" target="_blank" rel="noopener noreferrer") read only
-                    | You can find 
-                    a(href="#{site.base_url}/stack-overflow/#!q=#{product.id}" target="_blank") questions about this product on our Stack Overflow page
-                    | , or you can post your questions using 
-                    a(href="/articles/how-to-post-tag-question-stack-overflow/") relevant tags
+                  p 
+                    | PLEASE NOTE: This product forum is now 
+                    a(id="#{product.id}" href="#{forum_url}" target="_blank" rel="noopener noreferrer")  read-only
+                    | . You can find
+                    a(href="#{site.base_url}/stack-overflow/#!q=#{product.id}" target="_blank")  questions about this product on our Stack Overflow page
+                    | , or you can post your questions to StackOverflow using 
+                    a(href="/articles/how-to-post-tag-question-stack-overflow/")  relevant tags
                     | .
-                - else
-                  h4.read-only
-                    a(id="#{product.id}" href="#{forum_url}" target="_blank" rel="noopener noreferrer")
-                      = product.forum_title || product.name
-                      i.fa.fa-comments-o
-                  p
-                    | PLEASE NOTE: This forum will become read-only on September 1st, 2017. You can now post your #{product.name} developer questions to StackOverflow using the 
-                    a(href="/articles/how-to-post-tag-question-stack-overflow/") relevant tags
+                    a(href="#{site.base_url}/forumstostackoverflow/" target="_blank")  Read more on why we doing this
                     | .
-                    a(href="#{site.base_url}/forumstostackoverflow/" target="_blank")  Why are we doing this?
               .large-12.columns
                 - forum_desc = product.forum_desc ? "<div class=\"paragraph\"><p>#{product.forum_desc}</p></div>" : null
                 = forum_desc || product['index'].desc

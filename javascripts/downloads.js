@@ -80,6 +80,10 @@ app.downloads.bytesToSize = function(bytes) {
   Creates large "Download" link above table
 */
 app.downloads.createDownloadLink = function(data) {
+  // HACK for rhoar not wanting a download button
+  if (data[0].productCode === "rhoar") {
+    return "";
+  }
   if(!data[0].featuredArtifact) {
     return "";
   }

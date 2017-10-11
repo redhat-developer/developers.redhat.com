@@ -138,6 +138,9 @@ class RHDPSearchResults extends HTMLElement {
                 this.addResult(hits[i]);
             }
             this.last = this.last + l;
+            if (this.last >= results.hits.total) {
+                this.appendChild(this.endOfResults);
+            }
             if (l > 0 && this.last < results.hits.total) {
                 if (this.querySelector('.end-of-results')) { 
                     this.removeChild(this.endOfResults);

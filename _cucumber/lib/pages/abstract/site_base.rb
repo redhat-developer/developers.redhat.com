@@ -29,9 +29,11 @@ class SiteBase < GenericBasePage
   element(:community_sub_nav)       { |b| b.div(id: 'sub-nav-community') }
   element(:help_sub_nav)            { |b| b.div(id: 'sub-nav-help') }
   element(:referral_alert)          { |b| b.element(class: 'alert-box') }
+  element(:communicate_link)        { |b| b.element(text: 'Communicate') }
+
 
   # footer element
-  element(:report_a_website_issue)  { |b| b.element(class: 'report-an-issue') }
+  element(:report_a_website_issue)  { |b| b.element(text: 'Report a website issue') }
 
   value(:search_field_visible?)     { |p| p.site_nav_search_box.present? }
   value(:is_mobile?)                { |p| p.mobile_menu.present? }

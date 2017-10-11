@@ -125,10 +125,11 @@ app.products = {
   "openjdk": {"upstream": null,"stackoverflow": "redhat-openjdk", "buzz_tags": "openjdk"},
   "openshift": {"upstream": null,"stackoverflow": ["openshift","openshift-client-tools","openshift-enterprise","openshift-cartridge","openshift-php-cartridges","openshift-gears","openshift-web-console","openshift-env-variables"], "buzz_tags": ["openshift","openshiftv3"]},
   "rhel": {"upstream": ["fedora"],"stackoverflow": ["rhel","rhel5","rhel6","rhel7"], "buzz_tags": ["rhel","rhel7"]},
+  "rhoar": {"stackoverflow": ["redhat-rhoar"]},
   "softwarecollections": {"upstream": null,"stackoverflow": ["rhel","rhel5","rhel6","rhel7"], "buzz_tags": ["software collections"]},
   "webserver": {"upstream": ["tomcat","httpd","mod_cluster"],"stackoverflow": ["jboss-web"], "buzz_tags": ["webserver"]},
   "rhmap": {"upstream": ["feedhenry"],"stackoverflow": ["redhat-rhamt"],"buzz_tags": ["mobileplatform","mobile"]},
-  "rhamt": {"upstream": null,"stackoverflow": ["rhamt"],"buzz_tags": ["windup","rhamt"]}
+  "migrationtoolkit": {"upstream": null,"stackoverflow": ["rhamt"],"buzz_tags": ["windup","rhamt"]}
 };
 
 /*
