@@ -1,5 +1,5 @@
 const mixin = require('xmultiple');
-const BasePage = require('./Base.page');
+const BasePage = require('./base.page');
 const NavigationBar = require('../sections/navigationBar.section');
 let FooterSection = require('../sections/footer');
 
