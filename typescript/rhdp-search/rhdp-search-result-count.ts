@@ -44,8 +44,8 @@ class RHDPSearchResultCount extends HTMLElement {
 
     connectedCallback() {
         top.addEventListener('params-ready', this._setText);
-        top.addEventListener('search-start', e => { this.loading = true; });
-        top.addEventListener('search-complete', e => { this.loading = false; this._setText(e) });
+        top.addEventListener('search-start', e => { this.loading = true; this._setText(e); });
+        top.addEventListener('search-complete', e => { this.loading = false; this._setText(e); });
         //top.addEventListener('term-change', this._setText);
     }
 
@@ -55,6 +55,7 @@ class RHDPSearchResultCount extends HTMLElement {
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
+        this.innerHTML = `${this.count} results found ${this.term ? `for ${this.term}` : ''}`
     }
 
     _setText(e) {

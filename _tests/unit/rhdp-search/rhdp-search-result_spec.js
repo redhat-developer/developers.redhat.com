@@ -199,8 +199,8 @@ describe('Search Result', function() {
             }
         });
 
-        it('should have "Webpage" for the corresponding result types', function() {
-            var typeTxt = 'Webpage',
+        it('should have "Web Page" for the corresponding result types', function() {
+            var typeTxt = 'Web Page',
                 typeReturn = ['webpage', ''],
                 len = typeReturn.length,
                 i;

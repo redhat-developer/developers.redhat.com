@@ -15,9 +15,9 @@ describe('Search Result Count', function() {
     it('should be blank with no values', function() {
         expect(wc.innerText).toEqual('');
     });
-    it('should be blank with only a count value', function() {
+    it('should not have a term with only a count', function() {
         wc.count =  10;
-        expect(wc.innerText).toEqual('');
+        expect(wc.innerText).toEqual('10 results found');
     });
     it('should be 0 results with only a term value', function() {
         wc.term = 'Fuse';

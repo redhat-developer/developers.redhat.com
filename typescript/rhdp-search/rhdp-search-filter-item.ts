@@ -71,6 +71,7 @@ class RHDPSearchFilterItem extends HTMLElement {
     set inline(val) {
         if (this._inline === val) return;
         this._inline = val;
+        this.innerHTML = !this._inline ? this.template`${this.name}${this.key}${this.active}` : this.inlineTemplate`${this.name}${this.active}`;
     }
 
     get bubble() {

@@ -53,6 +53,7 @@ describe('Search OneBox', function() {
     describe('with valid data', function() {
         var mockData = {
             "features": [{
+                "id": "feature1",
                 "heading": { 
                     "text": "feature1.heading.text", 
                     "url": "https://feature1.heading.url" 
@@ -69,6 +70,7 @@ describe('Search OneBox', function() {
                 ], 
                 "match": ["f1match1","f1match2","f1match3","feature1 term","f1match4", "f1match5"]
             }, {
+                "id": "feature2",
                 "heading": { 
                     "text": "feature2.heading.text", 
                     "url": "https://feature2.heading.url" 
@@ -120,7 +122,7 @@ describe('Search OneBox', function() {
             });
 
             it('should have a button linked to the appropriate URL', function() {
-                expect(wc.querySelector('a.button').href).toEqual('https://feature1.button.url/')
+                expect(wc.querySelector('a.button').href).toEqual('https://feature1.button.url/?onebox=feature1')
                 expect(wc.querySelector('a.button').innerText).toEqual('feature1.button.text')
             });
 
@@ -135,7 +137,7 @@ describe('Search OneBox', function() {
                     var slotID = i+1;
                     expect(lis[i].innerText).toEqual('feature1.slot'+slotID+'.text');
                     expect(lis[i].querySelector('svg')).not.toBeNull();
-                    expect(lis[i].querySelector('a').href).toEqual('https://feature1.slot'+slotID+'.url/');
+                    expect(lis[i].querySelector('a').href).toEqual('https://feature1.slot'+slotID+'.url/?onebox=feature1');
                 }
             });
         });
@@ -159,7 +161,7 @@ describe('Search OneBox', function() {
             });
 
             it('should have a button linked to the appropriate URL', function() {
-                expect(wc.querySelector('a.button').href).toEqual('https://feature2.button.url/')
+                expect(wc.querySelector('a.button').href).toEqual('https://feature2.button.url/?onebox=feature2')
                 expect(wc.querySelector('a.button').innerText).toEqual('feature2.button.text')
             });
 
@@ -174,7 +176,7 @@ describe('Search OneBox', function() {
                     var slotID = i+1;
                     expect(lis[i].innerText).toEqual('feature2.slot'+slotID+'.text');
                     expect(lis[i].querySelector('svg')).not.toBeNull();
-                    expect(lis[i].querySelector('a').href).toEqual('https://feature2.slot'+slotID+'.url/');
+                    expect(lis[i].querySelector('a').href).toEqual('https://feature2.slot'+slotID+'.url/?onebox=feature2');
                 }
             });
         });
