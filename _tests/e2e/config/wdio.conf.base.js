@@ -28,7 +28,7 @@ if (process.env.RHD_VERBOSE_OUTPUT) {
 exports.config = {
 
     specs: [
-        'features/*.feature', 'features/*/*.feature'
+        'features/*.feature'
     ],
 
     exclude: [
@@ -91,7 +91,7 @@ exports.config = {
     // Test reporter for stdout.
     // The following are supported: dot (default), spec, and xunit
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['spec'],
+    reporters: ['dot', 'junit'],
 
     reporterOptions: {
         junit: {

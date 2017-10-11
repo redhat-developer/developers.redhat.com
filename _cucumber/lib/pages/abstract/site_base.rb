@@ -33,7 +33,7 @@ class SiteBase < GenericBasePage
 
 
   # footer element
-  element(:report_a_website_issue)  { |b| b.element(class: 'report-an-issue') }
+  element(:report_a_website_issue)  { |b| b.element(text: 'Report a website issue') }
 
   value(:search_field_visible?)     { |p| p.site_nav_search_box.present? }
   value(:is_mobile?)                { |p| p.mobile_menu.present? }
