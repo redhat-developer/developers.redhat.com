@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
+const faker = require('faker');
 
 function checkDirectorySync(directory) {
     try {
@@ -15,6 +16,13 @@ if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     process.env.RHD_BASE_URL = 'https://developers.stage.redhat.com';
     console.log('No base url set, defaulting to staging');
     baseUrl = process.env.RHD_BASE_URL
+}
+
+if (typeof process.env.RHD_BASE_URL.includes('pr')) {
+    let parsedUrl = require('url').parse(process.env.RHD_BASE_URL);
+    let getPullRequestNumber = parsedUrl.pathname.split('/')[2];
+    process.env.RHD_DRUPAL_INSTANCE = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000) + (getPullRequestNumber - 0)}`;
+    console.log(process.env.RHD_DRUPAL_INSTANCE)
 }
 
 if (process.env.RHD_VERBOSE_OUTPUT) {
@@ -35,22 +43,28 @@ if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
     process.env.RHD_JS_DRIVER = 'chrome';
 }
 
-const BrowserManager = require('./BrowserManager.js');
+const BrowserManager = require('./browsers/BrowserManager.js');
 
-if (process.env.RHD_JS_DRIVER === 'chrome') {
+let rhdDriver = process.env.RHD_JS_DRIVER;
+
+if (rhdDriver === 'chrome') {
     browserCaps = BrowserManager.createBrowser('chrome');
 } else {
     // Check that the device being used for emulation is supported by chrome
-    capability = require('./chromium_devices.json')[process.env.RHD_JS_DRIVER];
+    capability = require('./browsers/chromium_devices.json')[process.env.RHD_JS_DRIVER];
     let device = capability['device']['name'];
     browserCaps = BrowserManager.createBrowser(device.toString());
 }
 
-if (process.env.RHD_CHIMP_TAGS) {
-    cucumberTags = process.env.RHD_CHIMP_TAGS;
+if (typeof process.env.RHD_CHIMP_TAGS !== 'undefined') {
+    tagsArray = process.env.RHD_CHIMP_TAGS.split(',');
+    tagsArray[tagsArray.length] = '~@ignore';
+    cucumberTags = tagsArray;
 } else {
-    cucumberTags = '~@ignore'
+    cucumberTags = ['~@ignore', '~@kc']
 }
+
+process.env.SESSION_ID = faker.random.number({'min': 100, 'max': 9000});
 
 module.exports = {
 
@@ -75,20 +89,19 @@ module.exports = {
     port: 4455,
 
     // - - - - CUCUMBER - - - -
-    tags: [cucumberTags],
-    jsonOutput: `./report/${testProfile}/cucumber-${testProfile}.json`,
+    tags: cucumberTags,
+    jsonOutput: `report/${testProfile}/cucumber-${testProfile}.json`,
     screenshotsOnError: true,
-    screenshotsPath: `./report/${testProfile}/screenshots`,
+    screenshotsPath: `report/${testProfile}/screenshots`,
     saveScreenshotsToDisk: true,
     saveScreenshotsToReport: true,
 
     // - - - - REPORTER - - - -
     theme: 'bootstrap',
-    jsonFile: `./report/${testProfile}/cucumber-${testProfile}.json`,
-    output: `./report/${testProfile}/cucumber-${testProfile}.html`,
+    jsonFile: `report/${testProfile}/cucumber-${testProfile}.json`,
+    output: `report/${testProfile}/cucumber-${testProfile}.html`,
     reportSuiteAsScenarios: true,
     launchReport: false,
-
 
     // - - - - SELENIUM-STANDALONE
     seleniumStandaloneOptions: {
@@ -119,5 +132,6 @@ module.exports = {
                 baseURL: 'https://github.com/mozilla/geckodriver/releases/download'
             }
         }
-    }
+    },
+
 };

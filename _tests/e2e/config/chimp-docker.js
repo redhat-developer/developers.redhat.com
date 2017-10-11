@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
+const faker = require('faker');
 
 function checkDirectorySync(directory) {
     try {
@@ -15,6 +16,13 @@ if (typeof process.env.RHD_BASE_URL !== 'undefined') {
     process.env.RHD_BASE_URL = 'https://developers.stage.redhat.com';
     console.log('No base url set, defaulting to staging');
     baseUrl = process.env.RHD_BASE_URL
+}
+
+if (typeof process.env.RHD_BASE_URL.includes('pr')) {
+    let parsedUrl = require('url').parse(process.env.RHD_BASE_URL);
+    let getPullRequestNumber = parsedUrl.pathname.split('/')[2];
+    process.env.RHD_DRUPAL_INSTANCE = `http://rhdp-jenkins-slave.lab4.eng.bos.redhat.com:${(35000) + (getPullRequestNumber - 0)}`;
+    console.log(process.env.RHD_DRUPAL_INSTANCE)
 }
 
 if (process.env.RHD_VERBOSE_OUTPUT) {
@@ -38,14 +46,18 @@ if (typeof process.env.RHD_JS_DRIVER === 'undefined') {
 if (process.env.RHD_JS_DRIVER === 'undefined') {
     process.env.RHD_JS_DRIVER = 'chrome';
 }
-const BrowserManager = require('./BrowserManager');
+const BrowserManager = require('../config/browsers/BrowserManager');
 const browserCaps = BrowserManager.createBrowser(process.env.RHD_JS_DRIVER);
 
-if (process.env.RHD_CHIMP_TAGS) {
-    cucumberTags = process.env.RHD_CHIMP_TAGS;
+if (typeof process.env.RHD_CHIMP_TAGS !== 'undefined') {
+    tagsArray = process.env.RHD_CHIMP_TAGS.split(',');
+    tagsArray[tagsArray.length] = '~@ignore';
+    cucumberTags = tagsArray;
 } else {
-    cucumberTags = '~@ignore'
+    cucumberTags = ['~@ignore', '~@kc']
 }
+
+process.env.SESSION_ID = faker.random.number({'min': 100, 'max': 9000});
 
 module.exports = {
 
@@ -64,25 +76,55 @@ module.exports = {
         waitforTimeout: 15000,
         waitforInterval: 250,
         connectionRetryCount: 3,
+    },
 
+    // - - - - SELENIUM-STANDALONE
+    seleniumStandaloneOptions: {
+        // check for more recent versions of selenium here:
+        // http://selenium-release.storage.googleapis.com/index.html
+        version: '3.0.1',
+        baseURL: 'https://selenium-release.storage.googleapis.com',
+        drivers: {
+            chrome: {
+                // check for more recent versions of chrome driver here:
+                // http://chromedriver.storage.googleapis.com/index.html
+                version: '2.30',
+                arch: process.arch,
+                baseURL: 'https://chromedriver.storage.googleapis.com'
+            },
+            ie: {
+                // check for more recent versions of internet explorer driver here:
+                // http://selenium-release.storage.googleapis.com/index.html
+                version: '3.0.0',
+                arch: 'ia32',
+                baseURL: 'https://selenium-release.storage.googleapis.com'
+            },
+            firefox: {
+                // check for more recent versions of gecko  driver here:
+                // https://github.com/mozilla/geckodriver/releases
+                version: '0.13.0',
+                arch: process.arch,
+                baseURL: 'https://github.com/mozilla/geckodriver/releases/download'
+            }
+        }
     },
 
     // - - - - CHIMP SETTINGS - - - -
     chai: true,
-    timeout: 10000,
+    timeout: 6000,
 
     // - - - - CUCUMBER - - - -
-    tags: [cucumberTags],
-    jsonOutput: `./report/${testProfile}/cucumber-${testProfile}.json`,
+    tags: cucumberTags,
+    jsonOutput: `report/${testProfile}/cucumber-${testProfile}.json`,
     screenshotsOnError: true,
-    screenshotsPath: `./report/${testProfile}/screenshots`,
+    screenshotsPath: `report/${testProfile}/screenshots`,
     saveScreenshotsToDisk: true,
     saveScreenshotsToReport: true,
 
     // - - - - REPORTER - - - -
     theme: 'bootstrap',
-    jsonFile: `./report/${testProfile}/cucumber-${testProfile}.json`,
-    output: `./report/${testProfile}/cucumber-${testProfile}.html`,
+    jsonFile: `report/${testProfile}/cucumber-${testProfile}.json`,
+    output: `report/${testProfile}/cucumber-${testProfile}.html`,
     reportSuiteAsScenarios: true,
     launchReport: false
 

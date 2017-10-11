@@ -1,7 +1,7 @@
-import {searchPage} from '../../support/pages/Search.page';
-import {homePage} from '../../support/pages/Home.page';
-import {siteNav} from "../../support/sections/NavigationBar.section";
-import {driver} from "../../config/DriverHelper";
+import {driver} from "../../config/browsers/DriverHelper";
+import {searchPage} from "../support/pages/website/Search.page";
+import {homePage} from "../support/pages/website/Home.page";
+import {siteNav} from "../support/sections/NavigationBar.section";
 
 const searchSteps = function () {
 

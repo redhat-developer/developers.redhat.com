@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node index.js",
     "watch": "chimp config/chimp-local.js --watch",
+    "watch:mobile": "RHD_JS_DRIVER=iphone_6 chimp config/chimp-local.js --watch",
     "watch:docker": "chimp config/chimp-local-docker.js --watch"
   },
   "keywords": [
@@ -16,8 +17,18 @@
   "license": "ISC",
   "dependencies": {
     "chimp": "^0.50.2",
-    "cucumber": "^3.0.5",
+    "cucumber": "^3.1.0",
     "async": "^2.5.0",
-    "cucumber-html-reporter": "^3.0.4"
+    "faker": "4.1.0",
+    "fs-extra": "^4.0.1",
+    "imap-simple": "3.2.0",
+    "cucumber-html-reporter": "^3.0.4",
+    "path": "^0.12.7",
+    "request": "^2.81.0",
+    "sync-request": "4.1.0"
+  },
+  "devDependencies": {
+    "asyncawait": "^1.0.6",
+    "underscore": "^1.8.3"
   }
 }
