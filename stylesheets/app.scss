@@ -173,6 +173,11 @@ a {
     font-family: FontAwesome;
     margin-left: 4px;
   }
+
+  &.img-link {
+    &[href$=".pdf"]:after,
+    &.pdf:after { display: none; }
+  }
 }
 
 p a:hover {
@@ -293,6 +298,11 @@ button, .button {
     display: none;
   }
 }
+
+a.heavy-cta[href$=".pdf"]:after,
+a.medium-cta[href$=".pdf"]:after,
+.heavy-cta a[href$=".pdf"]:after,
+.madium-cta a[href$=".pdf"]:after{ display: none; }
 
 a.light-cta{
   color: $link;
