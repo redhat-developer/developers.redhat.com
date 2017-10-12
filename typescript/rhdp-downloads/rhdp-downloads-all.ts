@@ -64,7 +64,7 @@ class RHDPDownloadsAll extends HTMLElement {
                     item.description = products[i].description ? products[i].description : "";
                     item.learnMore = products[i].learnMoreLink ? products[i].learnMoreLink : "";
                     item.version = products[i].version ? products[i].version : "";
-                    this.appendChild(item);
+                    this.querySelector('.download-list').appendChild(item);
                 }
             }
         }

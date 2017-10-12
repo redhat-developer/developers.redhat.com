@@ -101,7 +101,7 @@ class RHDPDownloadsAllItem extends HTMLElement {
             
                 <div class="large-9 center columns">
                 
-                  ${version ? `<p data-download-id-version="${productId}">Version: ${version}</p>` : `<p data-download-id-version="${productId}"></p>`}  
+                  ${version ? `<p data-download-id-version="${productId}">Version: ${version}</p>` : `<p data-download-id-version="${productId}">&nbsp;</p>`}  
                 </div>
             
                 <div class="large-5 columns"><a class="button medium-cta blue" data-download-id="${productId}"
