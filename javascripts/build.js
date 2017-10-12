@@ -1432,7 +1432,7 @@ var RHDPSearchOneBox = (function (_super) {
     function RHDPSearchOneBox() {
         var _this = _super.call(this) || this;
         _this._term = '';
-        _this._url = '/themes/custom/rhd/rhdp-apps/onebox/onebox.json';
+        _this._url = '../rhdp-apps/onebox/onebox.json';
         _this._mock = false;
         _this.slotTemplate = function (strings, slot, id) {
             return "" + (slot && slot.url && slot.text ? "<li><a href=\"" + slot.url + "?onebox=" + id + "\">" + _this.getIcon(slot.icon) + slot.text + "</a></li>" : '');
@@ -1939,7 +1939,7 @@ var RHDPSearchResultCount = (function (_super) {
         this.innerHTML = this.count + " results found " + (this.term ? "for " + this.term : '');
     };
     RHDPSearchResultCount.prototype._setText = function (e) {
-        if (typeof e.detail.invalid !== 'undefined') {
+        if (e.detail && typeof e.detail.invalid !== 'undefined') {
             if (e.detail) {
                 if (e.detail.term && e.detail.term.length > 0) {
                     this.term = e.detail.term;

@@ -59,7 +59,7 @@ class RHDPSearchResultCount extends HTMLElement {
     }
 
     _setText(e) {
-        if (typeof e.detail.invalid !== 'undefined') {
+        if (e.detail && typeof e.detail.invalid !== 'undefined') {
             if (e.detail) {
                 if (e.detail.term && e.detail.term.length > 0) {
                     this.term = e.detail.term;
