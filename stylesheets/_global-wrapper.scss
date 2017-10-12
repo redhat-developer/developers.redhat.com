@@ -52,7 +52,7 @@ footer.bottom {
     color:white;
     text-decoration: underline;
     &.summit-logo {
-      margin-right: 20px;
+      margin-right: -15px;
       float: right;
     }
     &.devnation-logo { float: right; }
@@ -96,13 +96,14 @@ footer.bottom {
       & > li {
         margin: 0 0 0 10px;
         a {
-          font-size: .75rem;
+          font-size: 14px;
           color: #858585;
           display: inline;
           &.copyright {
             width: 220px;
             cursor: default;
             text-decoration: none;
+            margin-right: 3em;
           }
         }
       }
@@ -194,16 +195,14 @@ footer.bottom {
       }
     }
     .legal ul.inline-list { margin-top: 0; }
-  }
-  @include tablet-landscape-and-down {
-    a.summit-logo {
-      float: none;
-      margin-right: 15px;
-    }
+    .legal a.summit-logo { margin-right: 0; }
   }
   @include tablet-portrait-and-down {
     ul.inline-list { margin-top: .6em; }
     #collapseFooter { min-height: 200px; }
+    a.summit-logo {
+      float: none;
+    }
   }
   @include mobile-portrait-and-down {
     ul.inline-list li:nth-of-type(1) { display: block; }
