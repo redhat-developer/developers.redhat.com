@@ -47,10 +47,16 @@ class RHDPSearchFilterItem extends HTMLElement {
         let chkbox = this.querySelector(`#filter-item-${this.key}`);
         if(this._active) { 
             this.setAttribute('active','active');
-            if (!this.inline && chkbox) { chkbox.setAttribute('checked','checked'); }
+            if (!this.inline && chkbox) { 
+                chkbox.setAttribute('checked','checked');
+                chkbox['checked'] = true;
+            }
         } else { 
             this.removeAttribute('active'); 
-            if (!this.inline && chkbox) { chkbox.removeAttribute('checked'); }
+            if (!this.inline && chkbox) { 
+                chkbox.removeAttribute('checked'); 
+                chkbox['checked'] = false;
+            }
         }
         if ( this.inline ) { this.innerHTML = this._active ? this.inlineTemplate`${this.name}${this._active}` : ''; }
 

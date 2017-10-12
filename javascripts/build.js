@@ -857,10 +857,10 @@ var RHDPSearchBox = (function (_super) {
         this.innerHTML = (_a = ["", "", ""], _a.raw = ["", "", ""], this.template(_a, this.name, this.term));
         this.addEventListener('submit', function (e) {
             e.preventDefault();
+            _this._termChange();
             return false;
         });
         this.querySelector('#search-btn').addEventListener('click', function (e) {
-            _this._termChange();
         });
         var _a;
     };
@@ -1067,12 +1067,14 @@ var RHDPSearchFilterItem = (function (_super) {
                 this.setAttribute('active', 'active');
                 if (!this.inline && chkbox) {
                     chkbox.setAttribute('checked', 'checked');
+                    chkbox['checked'] = true;
                 }
             }
             else {
                 this.removeAttribute('active');
                 if (!this.inline && chkbox) {
                     chkbox.removeAttribute('checked');
+                    chkbox['checked'] = false;
                 }
             }
             if (this.inline) {
@@ -2562,7 +2564,7 @@ var RHDPSearchURL = (function (_super) {
                     this.sort = e.detail.sort;
                 }
         }
-        if (typeof e.detail.invalid === 'undefined') {
+        if (e.detail && typeof e.detail.invalid === 'undefined') {
             history.pushState({}, "RHDP Search: " + (this.term ? this.term : ''), "" + this.uri.pathname + this.uri.search);
         }
         else {

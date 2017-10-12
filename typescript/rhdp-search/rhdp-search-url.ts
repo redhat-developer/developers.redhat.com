@@ -154,7 +154,7 @@ class RHDPSearchURL extends HTMLElement {
                     this.sort = e.detail.sort;
                 }
         }
-        if(typeof e.detail.invalid === 'undefined') {
+        if(e.detail && typeof e.detail.invalid === 'undefined') {
             history.pushState({}, `RHDP Search: ${this.term ? this.term : ''}`, `${this.uri.pathname}${this.uri.search}`);
         } else {
             history.replaceState({}, 'RHDP Search Error', `${this.uri.pathname}${this.uri.search}`);

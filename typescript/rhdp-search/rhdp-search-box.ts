@@ -34,11 +34,12 @@ class RHDPSearchBox extends HTMLElement {
 
         this.addEventListener('submit', e => {
             e.preventDefault();
+            this._termChange();
             return false;
         });
 
         this.querySelector('#search-btn').addEventListener('click', e => { 
-            this._termChange();
+            
         });
     }
 
