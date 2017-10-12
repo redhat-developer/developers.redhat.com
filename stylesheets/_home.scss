@@ -61,41 +61,41 @@ a.spotlight-item {
   padding: 0 12px;
   border-right: 1px solid $dark-grey;
   color: $white;
-  img {
-    padding-bottom: 10px;
-    &:hover {
-      opacity: 0.7;
-    }
-  }
   &:last-child { border-right: 0; }
-  &:hover, &:focus, &:active { color: $white; }
-  .cut-image {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-  .cut-image::before {
+  &::before {
     content: '';
-    position: absolute;
-    height: 0;
-    width: 0;
-    border-left: 10px solid white;
-    border-top: 10px solid white;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid transparent;
+    height: 145px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include desktop-and-down {
+      height: 120px;
+      margin-bottom: 10px;
+    }
+    @include tablet-landscape-and-down {
+      height: 135px;
+      margin-bottom: 5px;
+    }
+    @media only screen and (max-width: 915px) { height: 105px; }
+    @include tablet-portrait-and-down { height: 145px; }
+    @include mobile-landscape-and-down {
+      height: 200px;
+      margin-bottom: 10px;
+    }
+    @include mobile-portrait-and-down { height: 150px; }
   }
-  .cut-image::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 0;
-    width: 0;
-    border-left: 15px solid transparent;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid white;
-    border-right: 15px solid white;
+  &:hover, &:focus, &:active {
+    color: $white;
+    &::before { opacity: 0.7; }
   }
+  &:nth-of-type(1)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDP_homepromo_dotnetcore2announce_21aug2017'); }
+  &:nth-of-type(2)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_mmdbook_09feb2017.png'); }
+  &:nth-of-type(3)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_osiolaunch_09may2017.png'); }
+  &:nth-of-type(4)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_reactivemicroservices_21apr2017.png'); }
+  &:nth-of-type(5)::before { background-image: url('https://static.jboss.org/images/rhd/promo/RHDev_homepromo_advlinuxcheat_11may2017.png'); }
+  &.external-link:after { display: none; }
 }
 
 ul.homepage-resources {
@@ -111,9 +111,7 @@ ul.homepage-resources {
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px dashed $grey;
-    &:last-child {
-      border-bottom: none;
-    }
+    &:last-child { border-bottom: none; }
     img {
       width: 150px;
       margin-right: 10px;
@@ -147,9 +145,7 @@ ul.homepage-resources {
     text-overflow: ellipsis;
     font-weight: bold;
   }
-  .author {
-    margin: 0;
-  }
+  .author { margin: 0; }
 
   .date {
     display: block;
@@ -173,9 +169,7 @@ ul.homepage-resources {
     font-weight: 600;
     font-size: 20px;
   }
-  h3 {
-    margin-bottom: 10px;
-  }
+  h3 { margin-bottom: 10px; }
 }
 
 .inverse {
@@ -197,9 +191,7 @@ ul.homepage-resources {
       background-color: $grey-2;
       width: 30%;
     }
-    i, h6 {
-      color: $grey-7;
-    }
+    i, h6 { color: $grey-7; }
   }
   .banner-icons {
     color: $white;
@@ -217,9 +209,7 @@ ul.homepage-resources {
   &.inverse { background-color: $grey-7; }
 }
 
-.home-join-img img {
-  margin: 2em auto;
-}
+.home-join-img img { margin: 2em auto; }
 
 .home-jointext {
   a.button {
@@ -237,7 +227,6 @@ ul.homepage-resources {
   }
 }
 
-// NEW MOBILE HOMEPAGE STYLES
 @include tablet-landscape-and-down {
   .homepage-main {
     background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_tablet_adveap7cheatsheet_19jul2017.png");
@@ -245,49 +234,36 @@ ul.homepage-resources {
     background-position: top left;
     min-height: 400px;
     .homepage-cta {
-      h2 {
-        font-size: 1.7em;
-      }
-      a.button {
-        display: inline-block;
-      }
+      h2 { font-size: 1.7em; }
+      a.button { display: inline-block; }
     }
   }
-  span.type-icon {
-    display: none !important;
-  }
-  .spotlight-item {
-    width: calc(33.333% - 16px);
+  span.type-icon { display: none !important; }
+  a.spotlight-item {
+    width: calc(25% - 16px);
     margin: 8px;
   }
 }
 
 @include tablet-portrait-and-down {
-  a.title {
-    max-width: 100%;
-  }
+  a.title { max-width: 100%; }
   .inverse-spotlights .large-8 {
     width: 90% !important;
     padding: 2em !important;
   }
   .homepage-main {
-    img.desktop {
-      display: none;
-    }
+    img.desktop { display: none; }
     img.mobile {
       display: block;
       max-height: 300px;
     }
     .homepage-cta {
       padding: 3em 1em 0 1em;
-      p {
-        font-size: 18px;
-      }
-      h2 {
-        font-size: 1.5em;
-      }
+      p { font-size: 18px; }
+      h2 { font-size: 1.5em; }
     }
   }
+  a.spotlight-item { width: calc(50% - 16px); }
 }
 
 @include mobile-landscape-and-down {
@@ -295,15 +271,11 @@ ul.homepage-resources {
     background-image: url("https://static.jboss.org/images/rhd/hero/RHDev_homehero_mobile_adveap7cheatsheet_19jul2017.png");
     min-height: 480px;
   }
-  .spotlights-container {
-    flex-direction: column;
-  }
-  .spotlight-item {
+  .spotlights-container { flex-direction: column; }
+  a.spotlight-item {
     width: calc(100% - 16px);
-    margin: 8px;
-    .cut-image::before, .cut-image::after {
-      display: none;
-    }
+    margin-bottom: 20px;
+    border-right: none;
   }
 }
 
