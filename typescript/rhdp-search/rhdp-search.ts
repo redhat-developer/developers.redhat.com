@@ -1,5 +1,4 @@
 window.addEventListener('WebComponentsReady', function() {
-    customElements.define('rhdp-search-empty-query', RHDPSearchEmptyQuery);
     customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);
     customElements.define('rhdp-search-onebox', RHDPSearchOneBox);
     customElements.define('rhdp-search-query', RHDPSearchQuery);
@@ -10,5 +9,6 @@ window.addEventListener('WebComponentsReady', function() {
     customElements.define('rhdp-search-filter-item', RHDPSearchFilterItem);
     customElements.define('rhdp-search-filter-group', RHDPSearchFilterGroup);
     customElements.define('rhdp-search-filters', RHDPSearchFilters);
+    customElements.define('rhdp-search-url', RHDPSearchURL);
     customElements.define('rhdp-search-app', RHDPSearchApp);
 });

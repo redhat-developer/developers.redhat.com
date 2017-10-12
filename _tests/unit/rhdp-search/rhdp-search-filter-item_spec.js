@@ -9,6 +9,7 @@ describe('Search Filter Item', function() {
         wc.name = name;
         wc.key = key;
         wc.value = value;
+        document.body.insertBefore(wc, document.body.firstChild);
     });
 
     afterEach(function() {
@@ -17,13 +18,11 @@ describe('Search Filter Item', function() {
 
     describe('properties', function() {
         it('should show the name field', function() {
-            document.body.insertBefore(wc, document.body.firstChild);
             expect(wc.querySelector('span').innerText).toEqual(name);
             expect(wc.querySelector('label').innerText).toEqual(name);
         });
 
         it('should update the appropriate fields', function() {
-            document.body.insertBefore(wc, document.body.firstChild);
             expect(wc.getAttribute('name')).toEqual(name);
             expect(wc.getAttribute('value')).toEqual(value);
             expect(wc.getAttribute('key')).toEqual(key);
@@ -33,8 +32,6 @@ describe('Search Filter Item', function() {
 
     describe('Checkbox', function() {
         it('should set the active state', function() {
-            document.body.insertBefore(wc, document.body.firstChild);
-
             wc.querySelector('input').click();
             expect(wc.active).toBe(true);
             wc.querySelector('input').click();
@@ -45,8 +42,6 @@ describe('Search Filter Item', function() {
 
     describe('Active', function() {
         it('should modify the active state', function() {
-            document.body.insertBefore(wc, document.body.firstChild);
-            
             wc.active = true;
             expect(wc.active).toBe(true);
             wc.active = false;
@@ -59,31 +54,22 @@ describe('Search Filter Item', function() {
       */
     describe('Inline properties', function() {
         beforeEach(function() {
-            document.addEventListener('facetChange', function(e) { return; });
+            wc.active = true;
+            wc.setAttribute('inline', true);
         });
 
         afterEach(function() {
-            document.removeEventListener('facetChange', function(e) { return; });
+
         });
         it('should set inline innertext', function() {
-            wc.setAttribute('inline', true);
-            document.body.insertBefore(wc, document.body.firstChild);
-
             expect(wc.innerText.trim()).toBe(name);
         });
         it('should clear inline element on clearItem click', function() {
-            wc.setAttribute('inline', true);
-            document.body.insertBefore(wc, document.body.firstChild);
-
             wc.querySelector('.clearItem').click();
             expect(wc.querySelector('.inline')).toBe(null);
 
         });
         it('should set active on clearItem click', function() {
-            wc.setAttribute('active', true)
-            wc.setAttribute('inline', true);
-            document.body.insertBefore(wc, document.body.firstChild);
-
             wc.querySelector('.clearItem').click();
             expect(wc.active).toBe(null);
         });

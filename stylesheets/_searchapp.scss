@@ -412,7 +412,7 @@ rhdp-search-results {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-
+    div.moreBtn, p.end-of-results { text-align: center; }
     a.moreBtn {
         display: block;
         border: 1px solid $blue;
@@ -441,11 +441,16 @@ rhdp-search-results {
 
 rhdp-search-result {
     font-family: "Overpass","Open Sans",Helvetica,sans-serif;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid $grey-3;
+    display: flex;
+    flex-direction: row;
 
     .subscription-required {
         &:before {
             content: '';
-            background: url('http://static.jboss.org/rhd/images/icons/subscription-required.svg') no-repeat;
+            background: url('https://static.jboss.org/rhd/images/icons/subscription-required.svg') no-repeat;
             background-size:cover;
             position:absolute;
             margin-top: 5px;
@@ -457,13 +462,8 @@ rhdp-search-result {
         }
 
     }
-    .result {
-        margin-bottom: 25px;
-    }
 
-    .result.result-search {
-        border-bottom: 1px solid $grey-3;
-    }
+    div:first-child { flex: 1 1 auto; }
 
     h4 {
         font-weight: 600;
@@ -497,6 +497,10 @@ rhdp-search-result {
         text-overflow: ellipsis;
         max-height: 45px;
         margin-bottom: 25px;
+    }
+    .thumb { 
+        flex: 0 0 130px; 
+        margin-left: 1em;
     }
     .hlt { font-weight: 600; }
 }
