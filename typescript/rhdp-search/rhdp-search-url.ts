@@ -32,7 +32,6 @@ class RHDPSearchURL extends HTMLElement {
         return this._filters;
     }
     set filters(val) {
-        if (this._filters === val) return;
         this._filters = val;
         this.uri.searchParams.delete('f');
         Object.keys(this._filters).forEach(group => {

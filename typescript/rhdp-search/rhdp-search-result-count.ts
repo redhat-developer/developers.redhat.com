@@ -59,15 +59,19 @@ class RHDPSearchResultCount extends HTMLElement {
     }
 
     _setText(e) {
-        if (e.detail && typeof e.detail.invalid !== 'undefined') {
-            if (e.detail) {
+        if (e.detail) {
+            if (typeof e.detail.invalid === 'undefined') {
                 if (e.detail.term && e.detail.term.length > 0) {
                     this.term = e.detail.term;
-                } 
+                } else {
+                    this.term = '';
+                }
                 if (e.detail.results && e.detail.results.hits && e.detail.results.hits.total) {
                     this.count = e.detail.results.hits.total;
+                } else {
+                    this.count = 0;
                 }
-            }
+            } 
             if (!this.loading) {
                 this.innerHTML = `${this.count} results found ${this.term ? `for ${this.term}` : ''}`;
             } else {
