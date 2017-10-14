@@ -34,9 +34,13 @@ p.sign-in-options {
 
 // Footer
 footer.bottom {
-  background:$black;
-  padding:20px 0 10px 0;
+  background: #1a1a1a;
+  padding: 0 0 10px 0;
   z-index: 0;
+
+  .footer-links { background-color: #252525; }
+  .footer-links > .row { background-color: $red; }
+
   h3 {
     font-size: 1rem;
     text-transform: uppercase;
@@ -46,21 +50,14 @@ footer.bottom {
   }
   a {
     color:white;
-    &.copyright {
-      color: #646464;
-      width: 220px;
-      cursor: default;
-    }
+    text-decoration: underline;
     &.summit-logo {
-      margin-right: 20px;
+      margin-right: -15px;
       float: right;
     }
-    &.devnation-logo {
-      float: right;
-    }
+    &.devnation-logo { float: right; }
   }
   p {
-    color: #9A9A9A;
     line-height: 1.5;
     font-size: .9em;
   }
@@ -74,8 +71,9 @@ footer.bottom {
       }
     }
     &.quick-links {
+      margin-bottom: 20px;
       li {
-          padding-bottom: 15px;
+          padding-bottom: 10px;
           margin-right: 38px;
           a {
             font-size: 14px;
@@ -86,73 +84,128 @@ footer.bottom {
               font-size: 13px;
               margin-left: 5px;
             }
+            &:hover, &:active, &:focus { text-decoration: underline; }
           }
         }
-      li:first-child {
-        margin-left: 0;
-      }
     }
   }
   .legal {
-    margin-top: 1.5rem;
+    margin: 10px 0 5px 0;
     ul.inline-list {
-      margin-top: 10px;
+      margin-top: .6em;
       & > li {
         margin: 0 0 0 10px;
         a {
-          font-size: .75rem;
+          font-size: 14px;
           color: #858585;
+          display: inline;
+          &.copyright {
+            width: 220px;
+            cursor: default;
+            text-decoration: none;
+            margin-right: 3em;
+          }
+        }
+      }
+      li:nth-of-type(2), li:nth-of-type(3) {
+        &:after {
+          content: '|';
+          margin: 0 10px;
+          display: inline-block;
         }
       }
     }
+
   }
-  @include tablet-portrait-and-down {
-    .rh-logo{
-      max-height: 31px;
+
+  .rhdp-info {
+    background-color: $red;
+    color: $white;
+    padding: 20px 30px 30px 30px;
+    min-height: 225px;
+    a { text-decoration: underline;}
+  }
+
+  #collapseFooter {
+    padding-top: 1.2em;
+    background-color: #252525;
+    min-height: 245px;
+  }
+
+  .section-toggle { 
+    cursor: text;
+    pointer-events: none;
+  }
+
+  .section-content {
+    max-height: 300px;
+    overflow: hidden;
+    -webkit-transition: max-height 0.5s;
+    -moz-transition: max-height 0.5s;
+    -o-transition: max-height 0.5s;
+    transition: max-height 0.5s;
+  }
+
+  .collapsible-section.collapsed .section-toggle ~ .section-content { max-height: 0px; }
+  .section-toggle .toggle-icon { display: none; }
+  
+  ul.social-nav {
+    list-style: none;
+    margin: 0;
+    float: right;
+    padding: 4px 0 !important;
+    li {
+      display: inline;
+      margin-left: 16px;
+      float:none;
+      &:first-child { margin-left: 0; }
+      a { font-size: 1.1rem; }
     }
-    ul {
-      &.inline-list li{
+  }
+
+  @include desktop-and-down {
+    .collapsible-section { width: 100%; }
+    .rh-logo { max-height: 31px; }
+    
+    .section-toggle {
+      pointer-events: all;
+      cursor: pointer;
+      .toggle-icon {
+        width: 16px;
+        display: inline-block;
+        margin-right: 5px;
+        &:before {
+          font-family: 'FontAwesome';
+          content: '\f078';
+        }
+      }
+    }
+
+    .collapsible-section.collapsed .section-toggle .toggle-icon:before { content: '\f054'; }
+
+    ul.quick-links { margin-left: 25px; }
+    
+    ul.inline-list {
+      margin: 15px 0;
+      li {
         float: none;
         margin-left: 0 !important;
         margin-bottom: 15px;
+        display: inline;
       }
     }
+    .legal ul.inline-list { margin-top: 0; }
+    .legal a.summit-logo { margin-right: 0; }
   }
-}
-
-ul.footer-nav {
-  display: block;
-  margin-bottom: 0;
-  li.security {
-    margin-right: 20px;
-  }
-}
-
-ul.social-nav {
-  list-style: none;
-  margin: 0;
-  float: right;
-  padding: 4px 0 !important;
-  li {
-    display: inline;
-    margin-left: 16px;
-    float:none;
-    &:first-child {
-        margin-left: 0;
-      }
-    a {
-      font-size: 1.1rem;
+  @include tablet-portrait-and-down {
+    ul.inline-list { margin-top: .6em; }
+    #collapseFooter { min-height: 200px; }
+    a.summit-logo {
+      float: none;
     }
   }
-}
-@include tablet-landscape-and-down {
-  ul.social-nav {
-    float: none;
-    margin: 10px 0 !important;
-  }
-  footer.bottom a.devnation-logo, footer.bottom a.summit-logo {
-    float: none;
-    margin-right: 15px;
+  @include mobile-portrait-and-down {
+    ul.inline-list li:nth-of-type(1) { display: block; }
   }
 }
 
@@ -172,8 +225,6 @@ p.feedback {
     padding:5px;
   }
 }
-
-
 
 // ============================================ NAVIGATION =============================================
 
@@ -214,59 +265,6 @@ i.jd-redhat:before {
   min-height: 100vh;
   flex-direction: column;
 }
-
-// Footer Nav (this is only shown on mobile)
-
-ul.footer-nav {
-  display:none;
-  clear:both;
-  background:none;
-  text-align: right;
-  padding:1em;
-  li {
-    color:$grey-5;
-    font-size: 12px;
-    display:inline;
-    margin-right: 2px;
-    &.redhat a {
-      // @extend .icons-redhat-logo !optional;
-      display: block;
-      width:77px;
-      height:25px;
-      text-indent: -9999px;
-      display: block;
-      color:transparent;
-    }
-    a {
-      background:none;
-      font-size: 12px;
-      color:white;
-      display:inline;
-      font-size: 14px;
-      text-decoration: underline;
-    }
-    &.redhat {
-      float: left;
-      a {
-        text-decoration: none;
-      }
-    }
-  }
-  @include tablet-portrait-and-down {
-    text-align: center;
-    li.redhat, li.security {
-      margin: 0;
-      text-align: center;
-      display: block;
-      width:100%;
-      float: none;
-      a {
-        display: inline-block;
-      }
-    }
-  }
-}
-
 
 // FlexBox Layouts
 .flex-center {

@@ -35,18 +35,25 @@ div(ng-app="search")
               .styled-select
                 select(name="filter-by-product" id="filterByProduct" ng-model="params.product" ng-change="updateSearch(); resetPagination();")
                   option(value="") Show all
-                  option(value="eap") Red Hat JBoss Enterprise Application Platform
-                  option(value="webserver") Red Hat JBoss Web Server
-                  option(value="rhel") Red Hat Enterprise Linux
-                  option(value="softwarecollections") Red Hat Software Collections
-                  option(value="fuse") Red Hat JBoss Fuse
-                  option(value="openshift") Red Hat OpenShift Container Platform
                   option(value="openjdk") OpenJDK
-                  option(value="developertoolset") Red Hat Developer Toolset
-                  option(value="cdk") Red Hat Developer Container Kit
-                  option(value="devstudio") Red Hat JBoss Developer Studio
-                  option(value="rhmap") Red Hat Mobile Application Platform
                   option(value="rhamt") Red Hat Application Migration Toolkit
+                  option(value="cdk") Red Hat Developer Container Kit
+                  option(value="developertoolset") Red Hat Developer Toolset
+                  option(value="rhel") Red Hat Enterprise Linux
+                  option(value="amq") Red Hat JBoss AMQ
+                  option(value="bpmsuite") Red Hat JBoss BPM Suite
+                  option(value="brms") Red Hat JBoss BRMS
+                  option(value="datagrid") Red Hat JBoss Data Grid
+                  option(value="datavirt") Red Hat JBoss Data Virtualization
+                  option(value="devstudio") Red Hat JBoss Developer Studio
+                  option(value="eap") Red Hat JBoss Enterprise Application Platform
+                  option(value="fuse") Red Hat JBoss Fuse
+                  option(value="webserver") Red Hat JBoss Web Server
+                  option(value="rhmap") Red Hat Mobile Application Platform
+                  option(value="rhoar") Red Hat Openshift Application Runtimes
+                  option(value="openshift") Red Hat OpenShift Container Platform
+                  option(value="softwarecollections") Red Hat Software Collections
+                  option(value="dotnet") .NET Core for Red Hat Enterprise Linux
             .large-10.columns
               .sorting.so-sorting
                 p(ng-if="totalCount > 10")

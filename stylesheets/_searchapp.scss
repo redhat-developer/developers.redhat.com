@@ -414,7 +414,7 @@ rhdp-search-results {
     flex-direction: column;
 
     a.moreBtn {
-        display: inline-block;
+        display: block;
         border: 1px solid $blue;
         line-height: 1.44;
         background-color: $white;
@@ -423,10 +423,15 @@ rhdp-search-results {
         text-transform: uppercase;
         margin: 0 auto;
         font-weight: 600;
+        max-width: 165px;
         &:hover, &:focus {
             background-color: $blue;
             color: $white;
         }
+    }
+    .end-of-results {
+        text-align: center;
+        color: $grey-5;
     }
 
     @media only screen and (max-width: 768px) {

@@ -4,12 +4,12 @@
 describe('Search Result Count', function() {
     var wc;
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-result-count'), document.body.firstChild);
-        wc = document.body.firstChild;
+        wc = new RHDPSearchResultCount(); 
+        document.body.insertBefore(wc, document.body.firstChild);
     });
 
     afterEach(function() {
-        document.body.removeChild(document.body.firstChild);
+        document.body.removeChild(wc);
     });
 
     it('should be blank with no values', function() {

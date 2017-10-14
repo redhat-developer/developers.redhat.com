@@ -18,6 +18,8 @@
     min-height: 200px;
   }
 
+  &.javaone2017{ background-image: url('https://static.jboss.org/images/rhd/microsite/javaone2017_micrositebanner_desktop.png'); }
+
   @include tablet-portrait-and-down {
     &.javaone2015{
       background: cdn('../images/javaone/2015/javaone_microsite_mobile_hero.png') top center / cover repeat-x;
@@ -27,11 +29,19 @@
       background: url('https://static.jboss.org/images/rhd/microsite/javaone2016_banner_tablet_25aug2016.jpg') top center / cover repeat-x;
       min-height: 400px;
     }
+    &.javaone2017{
+      background: url('https://static.jboss.org/images/rhd/microsite/javaone2017_micrositebanner_tablet.png') top center / cover repeat-x;
+      min-height: 400px;
+    }
   }
 
   @include mobile-portrait-and-down {
     &.javaone2016{
       background: url('https://static.jboss.org/images/rhd/microsite/javaone2016_banner_mobile_25aug2016.jpg') top center / cover repeat-x;
+      min-height: 430px;
+    }
+    &.javaone2017{
+      background: url('https://static.jboss.org/images/rhd/microsite/javaone2017_micrositebanner_mobile.png') top center / cover repeat-x;
       min-height: 430px;
     }
   }
@@ -152,6 +162,14 @@
         }
       }
     }
+  }
+  table {
+    width: 100%;
+    th:nth-of-type(1) { width: 10%; }
+    th:nth-of-type(2) { width: 15%; }
+    th:nth-of-type(3) { width: 50%; }
+    th:nth-of-type(4) { width: 15%; }
+    th:nth-of-type(5) { width: 10%; }
   }
 }
 

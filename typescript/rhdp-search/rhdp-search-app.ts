@@ -37,7 +37,7 @@ class RHDPSearchApp extends HTMLElement {
         </div>
         <div class="row">
             <div class="large-6 medium-8 small-24 columns"></div>
-            <div class="large-18 medium-16 small-24 columns"</div>
+            <div class="large-18 medium-16 small-24 columns"></div>
         </div>
     </div></div>`;
 

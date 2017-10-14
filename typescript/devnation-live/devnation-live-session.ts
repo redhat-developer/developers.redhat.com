@@ -3,6 +3,7 @@ class DevNationLiveSession {
     _date = '';
     _youtube_id = '';
     _speaker = '';
+    _speaker_intro = '';
     _twitter_handle = '';
     _offer_id = '';
     _abstract = '';
@@ -54,6 +55,13 @@ class DevNationLiveSession {
     set speaker(val) {
         if (this._speaker === val) return;
         this._speaker = val;
+    }
+    get speaker_intro(){
+        return this._speaker_intro;
+    }
+    set speaker_intro(val) {
+        if (this._speaker_intro === val) return;
+        this._speaker_intro = val;
     }
     get twitter_handle() {
         return this._twitter_handle;
