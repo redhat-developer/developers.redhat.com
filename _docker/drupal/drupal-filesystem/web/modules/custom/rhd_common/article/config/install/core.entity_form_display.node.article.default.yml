@@ -6,11 +6,14 @@ dependencies:
     - field.field.node.article.field_author_name
     - field.field.node.article.field_content_author
     - field.field.node.article.field_image
+    - field.field.node.article.field_meta_tags
     - field.field.node.article.field_tags
     - node.type.article
   module:
+    - metatag
     - path
     - text
+    - workbench_moderation
 id: node.article.default
 targetEntityType: node
 bundle: article
@@ -38,6 +41,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_meta_tags:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
     region: content
   field_tags:
     type: entity_reference_autocomplete_tags

@@ -6,7 +6,6 @@ dependencies:
     - entity_embed
     - linkit
     - token_filter
-    - video_embed_wysiwyg
 name: 'Red Hat Developers Approved HTML'
 format: rhd_html
 weight: -10
@@ -82,12 +81,6 @@ filters:
     weight: -48
     settings:
       title: true
-  video_embed_wysiwyg:
-    id: video_embed_wysiwyg
-    provider: video_embed_wysiwyg
-    status: true
-    weight: -47
-    settings: {  }
   entity_embed:
     id: entity_embed
     provider: entity_embed

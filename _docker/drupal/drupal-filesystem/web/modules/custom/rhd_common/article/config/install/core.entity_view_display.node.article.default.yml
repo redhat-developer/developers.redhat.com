@@ -6,9 +6,11 @@ dependencies:
     - field.field.node.article.field_author_name
     - field.field.node.article.field_content_author
     - field.field.node.article.field_image
+    - field.field.node.article.field_meta_tags
     - field.field.node.article.field_tags
     - node.type.article
   module:
+    - metatag
     - text
     - user
 id: node.article.default
@@ -30,6 +32,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_meta_tags:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   field_tags:
     type: entity_reference_label

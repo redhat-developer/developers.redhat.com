@@ -25,12 +25,17 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
+  workbench_moderation_control:
+    weight: -20
+    region: content
 hidden:
   field_blue_card_description: true
   field_blue_card_links: true
   field_blue_card_title: true
   field_bottom_left_white_card: true
   field_bottom_right_white_card: true
+  field_data_tags: true
   field_green_card: true
   field_grey_card: true
   field_orange_card: true

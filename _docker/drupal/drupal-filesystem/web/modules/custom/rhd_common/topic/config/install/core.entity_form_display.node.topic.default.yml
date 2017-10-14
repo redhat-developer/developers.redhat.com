@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.topic.field_data_tags
     - field.field.node.topic.field_green_card
     - field.field.node.topic.field_grey_card
+    - field.field.node.topic.field_meta_tags
     - field.field.node.topic.field_orange_card
     - field.field.node.topic.field_tags
     - field.field.node.topic.field_top_left_white_card
@@ -18,8 +19,10 @@ dependencies:
     - node.type.topic
   module:
     - link
+    - metatag
     - path
     - text
+    - workbench_moderation
 id: node.topic.default
 targetEntityType: node
 bundle: topic
@@ -97,6 +100,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_meta_tags:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
     region: content
   field_orange_card:
     weight: 11
