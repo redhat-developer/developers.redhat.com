@@ -55,7 +55,9 @@ describe('Search Result', function() {
 
     it('should have a created date from resultset', function() {
         wc.result = testResult;
-        expect(wc.created).toEqual('- February 3, 2001');
+        setTimeout(function() {
+            expect(wc.querySelector('rh-datetime').innerHTML).toEqual('February 3, 2001');
+        }, 500);
     });
 
     describe('Title', function() {

@@ -35,7 +35,7 @@ describe('Search Filter Item', function() {
             wc.querySelector('input').click();
             expect(wc.active).toBe(true);
             wc.querySelector('input').click();
-            expect(wc.active).toBe(null);
+            expect(wc.active).toBe(false);
         });
 
     });
@@ -45,7 +45,7 @@ describe('Search Filter Item', function() {
             wc.active = true;
             expect(wc.active).toBe(true);
             wc.active = false;
-            expect(wc.active).toBe(null);
+            expect(wc.active).toBe(false);
         });
     });
 
@@ -65,13 +65,16 @@ describe('Search Filter Item', function() {
             expect(wc.innerText.trim()).toBe(name);
         });
         it('should clear inline element on clearItem click', function() {
-            wc.querySelector('.clearItem').click();
-            expect(wc.querySelector('.inline')).toBe(null);
-
+            var clr = wc.querySelector('.clearItem');
+            clr.click();
+            setTimeout(function() {
+                expect(wc.innerHTML).toBe('');
+            }, 500)
         });
         it('should set active on clearItem click', function() {
-            wc.querySelector('.clearItem').click();
-            expect(wc.active).toBe(null);
+            var clr = wc.querySelector('.clearItem');
+            clr.click();
+            expect(wc.active).toBe(true);
         });
 
     });
