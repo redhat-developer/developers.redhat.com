@@ -3,8 +3,25 @@
 
 describe('Downloads Popular Products', function() {
     var wc;
+
+    var products = {
+        "products": [{
+            "productName": "Test Product",
+            "groupHeading": "Test Group Heading",
+            "productCode": "testid",
+            "featured": true,
+            "dataFallbackUrl": "http://www.testdatafallbackurl.com",
+            "downloadLink": "http://www.testdownloadlink.com/",
+            "description": "This is a test of popular products",
+            "version": "6.3.0",
+            "learnMoreLink": "http://www.testlearningmore.com"
+        }]
+    };
+
     beforeEach(function() {
         wc = document.createElement('rhdp-downloads-popular-products');
+        wc.productList = products;
+
     });
 
     afterEach(function() {
@@ -13,32 +30,32 @@ describe('Downloads Popular Products', function() {
 
     describe('properties', function() {
 
-        var product;
+        beforeEach(function() {
+            document.body.insertBefore(wc, document.body.firstChild);
+
+        });
+
+        it('should update productList variable', function() {
+            expect(wc.productList).toEqual(products);
+        });
+
+    });
+
+    describe('with valid data', function() {
 
         beforeEach(function() {
             document.body.insertBefore(wc, document.body.firstChild);
 
         });
-        afterEach(function() {
-            product = null;
 
+        it('should display a child node with the appropriate heading', function() {
+            expect(wc.querySelector('.large-6.column h4').innerText.trim()).toEqual("Test Product");
         });
-
-        it('should update productList and productList attributes', function() {
-            var products = {
-                "products": [{
-                    "productName": "Red Hat JBoss Data Virtualization",
-                    "groupHeading": "INTEGRATION AND AUTOMATION",
-                    "productCode": "datavirt",
-                    "featured": false,
-                    "downloadLink": "https://developers.stage.redhat.com/download-manager/content/origin/files/sha256/b4/b466affbcc1740bf2c7c73b60bb6ffa7e1ec844fc08447224ab15aa3bcee3949/jboss-dv-6.3.0-1-installer.jar",
-                    "description": "A tool that brings operational and analytical insight from data dispersed in various business units, apps, and technologies.",
-                    "version": "6.3.0",
-                    "learnMoreLink": "https://developers.redhat.com/products/datavirt/overview/"
-                }]
-            };
-            wc.products = products;
-            expect(wc.products).toEqual(products);
+        it('should display a child node with the appropriate data-download-id', function() {
+            expect(wc.querySelector('.large-6.column a').getAttribute('data-fallback-url')).toEqual("http://www.testdatafallbackurl.com");
+        });
+        it('should display a child node with the appropriate href', function() {
+            expect(wc.querySelector('.large-6.column a').href).toEqual("http://www.testdownloadlink.com/");
         });
 
     });

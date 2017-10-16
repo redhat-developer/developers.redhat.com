@@ -16,9 +16,7 @@ class RHDPDownloadsPopularProduct extends HTMLElement {
     }
 
     get productId() {
-
         return this._productId;
-
     }
 
     set productId(value) {
@@ -67,7 +65,7 @@ class RHDPDownloadsPopularProduct extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['name'];
+        return ['name','productid','downloadurl','datafallbackurl'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

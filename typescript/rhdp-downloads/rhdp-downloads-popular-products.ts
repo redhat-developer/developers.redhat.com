@@ -13,7 +13,6 @@ class RHDPDownloadsPopularProducts extends HTMLElement {
     set productList(value) {
         if (this._productList === value) return;
         this._productList = value;
-        this.setAttribute('productlist', this.productList)
 
     }
 
@@ -22,15 +21,14 @@ class RHDPDownloadsPopularProducts extends HTMLElement {
 
         productNode.name = product.productName;
         productNode.productId = product.productCode;
-        productNode.dataFallbackUrl = product.dataFallbackURL;
+        productNode.dataFallbackUrl = product.dataFallbackUrl;
         productNode.downloadUrl = product.downloadLink;
         this.appendChild(productNode);
     }
 
-    renderProductList(productList){
+    renderProductList(){
         // Set instance variable productList to the overall productList returned from download-manager
         // If the product is popular, append it, else: forget about it.
-        this.productList = productList.products;
         if(this.productList.products){
             let products = this.productList.products;
             let len = products.length;
@@ -44,7 +42,7 @@ class RHDPDownloadsPopularProducts extends HTMLElement {
     }
 
     connectedCallback() {
-        this.renderProductList(new RHDPDownloadsProducts());
+        this.renderProductList();
 
     }
 

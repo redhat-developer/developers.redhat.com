@@ -14,6 +14,7 @@ class RHDPDownloadsAll extends HTMLElement {
     }
 
     set id(value) {
+        if (this.id === value) return;
         this._id = value;
         this.setAttribute('id', this._id);
     }
@@ -23,6 +24,7 @@ class RHDPDownloadsAll extends HTMLElement {
     }
 
     set heading(value) {
+        if (this.heading === value) return;
         this._heading = value;
         this.setAttribute('heading', this._heading);
 
@@ -33,6 +35,7 @@ class RHDPDownloadsAll extends HTMLElement {
     }
 
     set products(value) {
+        if (this.products === value) return;
         this._products = value;
     }
 
@@ -69,9 +72,9 @@ class RHDPDownloadsAll extends HTMLElement {
             }
         }
     }
-    // static get observedAttributes() {
-    //     return ['id'];
-    // }
+    static get observedAttributes() {
+        return ['id', 'heading'];
+    }
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;

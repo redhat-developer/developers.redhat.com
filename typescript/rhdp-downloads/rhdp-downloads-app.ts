@@ -3,8 +3,7 @@ class RHDPDownloadsApp extends HTMLElement {
         super();
     }
 
-    _url = 'https://developers.redhat.com/download-manager/rest/available/rhel,eap,devstudio,fuse,datagrid,eap,webserver,cdk,devsuite,amq,brms,bpmsuite,datavirt,mobileplatform,openshift,openjdk,dotnet?nv=1';
-    // _url;
+    _url;
 
     popularProduct = new RHDPDownloadsPopularProducts();
     products = new RHDPDownloadsProducts();
@@ -47,12 +46,11 @@ class RHDPDownloadsApp extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = this.template;
-        this.querySelector('.most-popular-downloads .row').appendChild(this.popularProduct);
         this.setProductsDownloadData(this.url);
 
     }
 
-    addGroupHeadings(productList){
+    addGroups(productList){
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('accelerated_development_and_management','ACCELERATED DEVELOPMENT AND MANAGEMENT', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('developer_tools','DEVELOPER TOOLS', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('infrastructure','INFRASTRUCTURE', productList));
@@ -60,6 +58,12 @@ class RHDPDownloadsApp extends HTMLElement {
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('mobile','MOBILE', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('cloud','CLOUD', productList));
         this.querySelector('#downloads .large-24').appendChild(this.downloadsAllFactory('runtimes','RUNTIMES', productList));
+
+    }
+
+    setPopularProducts(productList){
+        this.popularProduct.productList = productList.products;
+        this.querySelector('.most-popular-downloads .row').appendChild(this.popularProduct);
 
     }
 
@@ -77,12 +81,14 @@ class RHDPDownloadsApp extends HTMLElement {
             .then((resp) => resp.json())
             .then((data) => {
                 this.products.data = data;
-                this.addGroupHeadings(this.products);
+                this.setPopularProducts(this.products);
+                this.addGroups(this.products);
+
             });
     }
 
     static get observedAttributes() { 
-        return ['url', 'name']; 
+        return ['url'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

@@ -112,7 +112,7 @@ class RHDPDownloadsAllItem extends HTMLElement {
     };
 
     connectedCallback() {
-        this.innerHTML = this.template`${this.name}${this.productId}${this.dataFallbackUrl}${this.downloadUrl}${this.learnMore}${this.description}${this.version}`;
+        this.innerHTML =this.template`${this.name}${this.productId}${this.dataFallbackUrl}${this.downloadUrl}${this.learnMore}${this.description}${this.version}`;
     }
 
     static get observedAttributes() {

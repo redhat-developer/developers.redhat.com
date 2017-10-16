@@ -6,14 +6,15 @@ describe('Downloads All Products', function () {
     var products;
     var mockProduct = {
         "products": [{
-            "productName": "Red Hat JBoss Data Virtualization",
-            "groupHeading": "INTEGRATION AND AUTOMATION",
-            "productCode": "datavirt",
-            "featured": false,
-            "downloadLink": "https://developers.stage.redhat.com/download-manager/content/origin/files/sha256/b4/b466affbcc1740bf2c7c73b60bb6ffa7e1ec844fc08447224ab15aa3bcee3949/jboss-dv-6.3.0-1-installer.jar",
-            "description": "A tool that brings operational and analytical insight from data dispersed in various business units, apps, and technologies.",
+            "productName": "Test Product",
+            "groupHeading": "Test Group Heading",
+            "productCode": "testid",
+            "featured": true,
+            "dataFallbackUrl": "http://www.testdatafallbackurl.com",
+            "downloadLink": "http://www.testdownloadlink.com/",
+            "description": "This is a test of popular products",
             "version": "6.3.0",
-            "learnMoreLink": "https://developers.redhat.com/products/datavirt/overview/"
+            "learnMoreLink": "http://www.testlearningmore.com"
         }]
     };
 
@@ -73,6 +74,55 @@ describe('Downloads All Products', function () {
         it('should update the id with the appropriate text', function () {
             expect(wc.querySelector('.large-24.category-label').id).toEqual('test');
         });
+
+        describe('and product category headings', function () {
+
+
+            beforeEach(function () {
+                wc.id = 'test';
+                wc.heading = 'Test Group Heading';
+                wc.products = products;
+                document.body.insertBefore(wc, document.body.firstChild);
+
+            });
+            it('should have a download list class to append children to', function () {
+                expect(wc.querySelector('.download-list').innerText.length).toBeGreaterThan(0);
+
+            });
+            it('should have a rhdp-downloads-all-item child appended', function () {
+                expect(wc.querySelector('rhdp-downloads-all-item').innerText.length).toBeGreaterThan(0);
+
+            });
+            it('should have a rhdp-downloads-all-item child appended with a heading', function () {
+                expect(wc.querySelector('rhdp-downloads-all-item .row .large-24.column h5').innerText.trim()).toEqual("Test Product");
+
+            });
+            it('should have a rhdp-downloads-all-item child appended with a description', function () {
+                expect(wc.querySelector('rhdp-downloads-all-item .row .paragraph p').innerText.trim()).toEqual("This is a test of popular products");
+
+            });
+            it('should have a rhdp-downloads-all-item child appended with a learn more link', function () {
+                expect(wc.querySelector('rhdp-downloads-all-item .row .large-10.columns a').href).toEqual("http://www.testlearningmore.com/");
+
+            });
+            it('should have a rhdp-downloads-all-item child appended with a data-download-id-version', function () {
+                expect(wc.querySelector('rhdp-downloads-all-item .row .large-9.center.columns p').getAttribute('data-download-id-version')).toEqual("testid");
+
+            });
+            it('should have a rhdp-downloads-all-item child appended with a version', function () {
+                expect(wc.querySelector('rhdp-downloads-all-item .row .large-9.center.columns p').innerText.trim()).toEqual("Version: 6.3.0");
+
+            });
+            it('should have a rhdp-downloads-all-item child appended medium-cta blue with appropriate data', function () {
+                expect(wc.querySelector('rhdp-downloads-all-item .row a.button.medium-cta.blue').getAttribute('data-download-id')).toEqual("testid");
+                expect(wc.querySelector('rhdp-downloads-all-item .row a.button.medium-cta.blue').getAttribute('data-fallback-url')).toEqual("http://www.testdatafallbackurl.com");
+                expect(wc.querySelector('rhdp-downloads-all-item .row a.button.medium-cta.blue').href).toEqual("http://www.testdownloadlink.com/");
+
+            });
+
+        });
+
+
 
     });
 
