@@ -42,26 +42,27 @@ class RHDPSearchFilterItem extends HTMLElement {
         if(typeof val === 'string') {
             val = true;
         } 
-        if (this._active === val) return;
-        this._active = val;
-        let chkbox = this.querySelector(`#filter-item-${this.key}`);
-        if(this._active) { 
-            this.setAttribute('active','active');
-            if (!this.inline && chkbox) { 
-                chkbox.setAttribute('checked','checked');
-                chkbox['checked'] = true;
-            }
-        } else { 
-            this.removeAttribute('active'); 
-            if (!this.inline && chkbox) { 
-                chkbox.removeAttribute('checked'); 
-                chkbox['checked'] = false;
-            }
+        if ( val === null ) {
+            val = false;
         }
-        if ( this.inline ) { this.innerHTML = this._active ? this.inlineTemplate`${this.name}${this._active}` : ''; }
-
-        this.dispatchEvent(new CustomEvent('filter-item-change', {detail: {facet: this}, bubbles: this.bubble}));
-        this.bubble = true;
+        if (this._active === val) {
+            return;
+        } else {
+            this._active = val;
+            let chkbox = this.querySelector('input');
+            if(this._active) { 
+                this.setAttribute('active','');
+            } else { 
+                this.removeAttribute('active'); 
+            }
+            if (chkbox) {
+                chkbox.checked = this._active;
+            }
+            if ( this.inline ) { this.innerHTML = this._active ? this.inlineTemplate`${this.name}${this._active}` : ''; }
+    
+            this.dispatchEvent(new CustomEvent('filter-item-change', {detail: {facet: this}, bubbles: this.bubble}));
+            this.bubble = true;
+        }
     }
     get value() {
         return this._value;
@@ -103,11 +104,12 @@ class RHDPSearchFilterItem extends HTMLElement {
         this._checkParams = this._checkParams.bind(this);
         this._clearFilters = this._clearFilters.bind(this);
         this._checkChange = this._checkChange.bind(this);
+        this._updateFacet = this._updateFacet.bind(this);
     }
 
     template = (strings, name, key, active) => {
         var checked = active ? 'checked' : '';
-        return `<div class="list"><span>${name}</span><input type="checkbox" ${checked} id="filter-item-${key}"><label for="filter-item-${key}">${name}</label></div>`; 
+        return `<div class="list"><span>${name}</span><input type="checkbox" ${checked} id="filter-item-${key}" value="${key}"><label for="filter-item-${key}">${name}</label></div>`; 
     };
     
     inlineTemplate = (strings, name, active) => {
@@ -116,16 +118,11 @@ class RHDPSearchFilterItem extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = !this.inline ? this.template`${this.name}${this.key}${this.active}` : this.inlineTemplate`${this.name}${this.active}`;
-        this.addEventListener('click', e => { 
-            this.bounce = true;
-            if (this.inline) {
-                if (e.target['className'].indexOf('clearItem') >= 0) {
-                    this.active = !this.active; 
-                }
-            } else {
-                this.active = !this.active;
-            }
-        });
+        if (!this.inline) {
+            this.addEventListener('change', this._updateFacet);
+        } else {
+            this.addEventListener('click', this._updateFacet);
+        }
         
         top.addEventListener('filter-item-change', this._checkChange);
         top.addEventListener('params-ready', this._checkParams);
@@ -139,6 +136,17 @@ class RHDPSearchFilterItem extends HTMLElement {
 
     attributeChangedCallback(name, oldVal, newVal) {
         this[name] = newVal;
+    }
+
+    _updateFacet(e) {
+        this.bounce = true;
+        if (this.inline) {
+            if (e.target['className'].indexOf('clearItem') >= 0) {
+                this.active = !this.active; 
+            }
+        } else {
+            this.active = !this.active;
+        }
     }
 
     _checkParams(e) {
@@ -183,3 +191,5 @@ class RHDPSearchFilterItem extends HTMLElement {
         this.active = false;
     }
 }
+
+customElements.define('rhdp-search-filter-item', RHDPSearchFilterItem);

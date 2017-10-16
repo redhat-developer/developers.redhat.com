@@ -71,14 +71,20 @@ class RHDPSearchResultCount extends HTMLElement {
                 } else {
                     this.count = 0;
                 }
-            } 
-            if (!this.loading) {
-                this.innerHTML = `${this.count} results found ${this.term ? `for ${this.term}` : ''}`;
-            } else {
+                if (!this.loading) {
+                    this.innerHTML = `${this.count} results found ${this.term ? `for ${this.term}` : ''}`;
+                }
+            } else { 
+                this.term = '';
+                this.count = 0;
                 this.innerHTML = '';
             }
         } else {
+            this.term = '';
+            this.count = 0;
             this.innerHTML = '';
         }
     }
 }
+
+customElements.define('rhdp-search-result-count', RHDPSearchResultCount);

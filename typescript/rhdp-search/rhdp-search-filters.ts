@@ -1,3 +1,6 @@
+// import {RHDPSearchFilterGroup} from './rhdp-search-filter-group';
+// import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
+
 class RHDPSearchFilters extends HTMLElement {
     _type = '';
     _title = 'Filter By';
@@ -102,16 +105,17 @@ class RHDPSearchFilters extends HTMLElement {
         }
 
         this.addEventListener('click', e => {
-            e.preventDefault();
             switch (e.target['className']) {
                 case 'showBtn':
                 case 'cancel':
                 case 'applyFilters':
+                    e.preventDefault();
                     this.dispatchEvent(new CustomEvent('toggle-modal', {
                         bubbles: true 
                     }));
                     break;
                 case 'clearFilters':
+                    e.preventDefault();
                     this.dispatchEvent(new CustomEvent('clear-filters', {
                         bubbles: true 
                     }));
@@ -231,3 +235,5 @@ class RHDPSearchFilters extends HTMLElement {
         this.style.display = 'none';
     }
 }
+
+customElements.define('rhdp-search-filters', RHDPSearchFilters);

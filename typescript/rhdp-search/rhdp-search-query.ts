@@ -1,3 +1,5 @@
+// import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
+
 class RHDPSearchQuery extends HTMLElement {
     _filters;
     _activeFilters;
@@ -138,7 +140,8 @@ class RHDPSearchQuery extends HTMLElement {
         top.addEventListener('term-change', this._changeAttr);
         top.addEventListener('filter-item-change', this._changeAttr);
         top.addEventListener('sort-change', this._changeAttr);
-        top.window.addEventListener('popstate', e => { this.results = undefined; });
+        top.addEventListener('clear-filters', this._changeAttr);
+        //top.window.addEventListener('popstate', e => { this.results = undefined; });
         top.addEventListener('load-more', this._changeAttr);
     }
 
@@ -176,11 +179,11 @@ class RHDPSearchQuery extends HTMLElement {
             case 'term-change':
                 if (e.detail && e.detail.term && e.detail.term.length > 0) {
                     this.term = e.detail.term;
-                    this.from = 0;
-                    this.search();
                 } else {
                     this.term = '';
                 }
+                this.from = 0;
+                this.search();
                 
                 break;
             case 'filter-item-change': //detail.facet
@@ -199,6 +202,10 @@ class RHDPSearchQuery extends HTMLElement {
                 this.search();
                 break;
             case 'load-more': // detail.qty
+                this.search();
+                break;
+            case 'clear-filters':
+                this.activeFilters = {};
                 this.search();
                 break;
             case 'params-ready':
@@ -263,3 +270,5 @@ class RHDPSearchQuery extends HTMLElement {
         }
     }
 }
+
+customElements.define('rhdp-search-query', RHDPSearchQuery);

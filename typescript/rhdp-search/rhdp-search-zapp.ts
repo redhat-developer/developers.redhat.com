@@ -1,3 +1,12 @@
+// import {RHDPSearchURL} from './rhdp-search-url';
+// import {RHDPSearchQuery} from './rhdp-search-query';
+// import {RHDPSearchBox} from './rhdp-search-box';
+// import {RHDPSearchResultCount} from './rhdp-search-result-count';
+// import {RHDPSearchFilters} from './rhdp-search-filters';
+// import {RHDPSearchOneBox} from './rhdp-search-onebox';
+// import {RHDPSearchResults} from './rhdp-search-results';
+// import {RHDPSearchSortPage} from './rhdp-search-sort-page';
+
 class RHDPSearchApp extends HTMLElement {
     constructor() {
         super();
@@ -156,3 +165,5 @@ class RHDPSearchApp extends HTMLElement {
         this.count.term = this.box.term;
     }
 }
+
+customElements.define('rhdp-search-app', RHDPSearchApp);

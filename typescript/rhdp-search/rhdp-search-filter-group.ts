@@ -85,3 +85,5 @@ class RHDPSearchFilterGroup extends HTMLElement {
         this[name] = newVal;
     }
 }
+
+customElements.define('rhdp-search-filter-group', RHDPSearchFilterGroup);

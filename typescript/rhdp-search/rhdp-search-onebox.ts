@@ -137,3 +137,5 @@ class RHDPSearchOneBox extends HTMLElement {
         return icons[name];
     }
 }
+
+customElements.define('rhdp-search-onebox', RHDPSearchOneBox);

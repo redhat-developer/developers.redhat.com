@@ -97,7 +97,7 @@ class RHDPSearchResult extends HTMLElement {
             <h4>${url0}${title}${url1}</h4>
             <p ${premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"'}>
                 <span class="caps">${kind}</span>
-                <span>${created}</span>
+                ${created}
             </p>
             <p class="result-description">${description}</p>
         </div>
@@ -159,8 +159,8 @@ class RHDPSearchResult extends HTMLElement {
         this.kind = map[kind] || 'Webpage';
     }
     computeCreated(result) {
-        var options = { month: 'long', day: 'numeric', year: 'numeric' }
-        var created = result.fields.sys_created ? '- ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created[0])) : "";
+        var options = { month: 'long', day: 'numeric', year: 'numeric' };
+        var created = result.fields.sys_created ? `- <rh-datetime datetime="${result.fields.sys_created[0]}" type="local" day="numeric" month="long" year="numeric">${result.fields.sys_created[0]}</rh-datetime>` : "";
         this.created = created;
     }
     computeDescription(result) {
@@ -195,3 +195,5 @@ class RHDPSearchResult extends HTMLElement {
     }
 
 }
+
+customElements.define('rhdp-search-result', RHDPSearchResult);

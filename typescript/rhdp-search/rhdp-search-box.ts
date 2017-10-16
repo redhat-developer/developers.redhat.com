@@ -67,3 +67,5 @@ class RHDPSearchBox extends HTMLElement {
         }));
     }
 }
+
+customElements.define('rhdp-search-box', RHDPSearchBox);

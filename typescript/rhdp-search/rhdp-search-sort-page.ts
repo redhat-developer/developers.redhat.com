@@ -54,3 +54,5 @@ class RHDPSearchSortPage extends HTMLElement {
         }
     }
 }
+
+customElements.define('rhdp-search-sort-page', RHDPSearchSortPage);

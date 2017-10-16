@@ -1,3 +1,5 @@
+// import {RHDPSearchResult} from './rhdp-search-result';
+
 class RHDPSearchResults extends HTMLElement {
     _results;
     _more = false;
@@ -98,6 +100,10 @@ class RHDPSearchResults extends HTMLElement {
             if (this.querySelector('.moreBtn')) {
                 this.removeChild(this.loadMore);
             }
+            if (this.querySelector('.invalidMsg')) {
+                this.removeChild(this.invalidMsg);
+            }
+            this.more = false;
         }
         this.appendChild(this.loading);
     }
@@ -110,6 +116,9 @@ class RHDPSearchResults extends HTMLElement {
         if (e.detail && typeof e.detail.results !== 'undefined' && typeof e.detail.invalid === 'undefined') {
             this.addResults(e.detail.results);
         } else {
+            while(this.firstChild){
+                this.removeChild(this.firstChild);
+            }
             this.appendChild(this.invalidMsg);
         }
     }
@@ -155,3 +164,5 @@ class RHDPSearchResults extends HTMLElement {
         }
     }
 }
+
+customElements.define('rhdp-search-results', RHDPSearchResults);
