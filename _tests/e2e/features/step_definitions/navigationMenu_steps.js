@@ -1,7 +1,5 @@
-const SiteNav = require("../../support/pages/home.page");
-const siteNav = new SiteNav();
-const FooterMenu = require("../../support/sections/footer");
-const footerMenu = new FooterMenu();
+import {siteNav} from '../../support/sections/NavigationBar.section';
+import {footerMenu} from '../../support/sections/Footer';
 
 const navigationMenuSteps = function () {
 
@@ -21,12 +19,11 @@ const navigationMenuSteps = function () {
         siteNav.triggerSearch(searchTrigger)
     });
 
-
     this.Then(/^the footer Related Sites section should contain the following links:$/, function (dataTable) {
         footerMenu.collapseFooter(1);
         let data = dataTable.raw();
         for (let i = 0; i < data.length; i++) {
-            expect(footerMenu.sectionContent(1).getText()).to.includes(data[i]);
+            expect(footerMenu.sectionContent(1)).to.includes(data[i]);
         }
     });
 
@@ -34,7 +31,7 @@ const navigationMenuSteps = function () {
         footerMenu.collapseFooter(2);
         let data = dataTable.raw();
         for (let i = 0; i < data.length; i++) {
-            expect(footerMenu.sectionContent(2).getText()).to.includes(data[i]);
+            expect(footerMenu.sectionContent(2)).to.includes(data[i]);
         }
     });
 
@@ -42,7 +39,7 @@ const navigationMenuSteps = function () {
         footerMenu.collapseFooter(3);
         let data = dataTable.raw();
         for (let i = 0; i < data.length; i++) {
-            expect(footerMenu.sectionContent(3).getText()).to.includes(data[i]);
+            expect(footerMenu.sectionContent(3)).to.includes(data[i]);
         }
     });
 

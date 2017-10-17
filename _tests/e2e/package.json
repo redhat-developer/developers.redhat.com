@@ -1,25 +1,22 @@
 {
-  "name": "developers.redhat.com",
+  "name": "developers.redhat.com-e2e-tests",
   "version": "1.0.0",
-  "description": "developers.redhat.com e2e tests",
+  "description": "e2e testing environment using chimp and cucumber for developers.redhat.com e2e tests",
+  "main": "index.js",
   "scripts": {
-    "e2e": "wdio config/wdio.conf.local.js",
-    "e2e:docker": "wdio config/wdio.conf.docker.js",
-    "e2e:browserstack": "wdio config/wdio.conf.browserstack.js",
-    "lint": "eslint ."
+    "test": "node index.js",
+    "watch": "chimp config/chimp-local.js --watch"
   },
-  "author": "Red Hat Inc.",
-  "license": "",
-  "devDependencies": {
-    "webdriverio": "4.8.0",
-    "chai": "4.0.1",
-    "selenium-standalone": "6.5.0",
-    "wdio-browserstack-service": "0.1.4",
-    "wdio-cucumber-framework": "0.3.1",
-    "wdio-junit-reporter": "0.3.0",
-    "wdio-selenium-standalone-service": "0.0.9",
-    "wdio-spec-reporter": "0.1.0",
-    "xmultiple": "1.0.0",
-    "wdio-dot-reporter": "0.0.9"
+  "keywords": [
+    "chimp",
+    "cucumber"
+  ],
+  "author": "Ian Hamilton (ihamilto@redhat.com)",
+  "license": "ISC",
+  "dependencies": {
+    "chimp": "^0.50.2",
+    "cucumber": "^3.0.5",
+    "async": "^2.5.0",
+    "cucumber-html-reporter": "^3.0.4"
   }
 }
