@@ -199,22 +199,23 @@ class RunTestOptions
     # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
     bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
+    if test_configuration[:docker]
+      bind_environment_variable('RHD_TEST_CONFIG', 'docker')
+    elsif test_configuration[:browserstack]
+      bind_environment_variable('RHD_TEST_CONFIG', 'browserstack')
+    else
+      bind_environment_variable('RHD_TEST_CONFIG', 'local')
+    end
     run_tests_command += "--baseUrl=#{test_configuration[:base_url]}"
-    run_tests_command += " --reporters=#{test_configuration[:report]}" if test_configuration[:report]
-    run_tests_command += " --cucumberOpts.tags=#{parse_cucumber_tags(test_configuration[:cucumber_tags])}" if test_configuration[:cucumber_tags]
-    if test_configuration[:browserstack] && test_configuration[:docker] == false
-      # for running tests via browserstack outside of docker
-      test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e:browserstack -- #{run_tests_command}"
-    elsif test_configuration[:browserstack] && test_configuration[:docker]
-      # for running tests via browserstack inside of docker
-      test_configuration[:run_tests_command] = "npm run e2e:browserstack -- #{run_tests_command}"
-    elsif test_configuration[:docker]
-      # for running tests inside of docker and not specifying browserstack option
-      test_configuration[:browser_count] = 2 if test_configuration[:browser_count].nil?
-      test_configuration[:run_tests_command] = "npm run e2e:docker -- #{run_tests_command}"
+    bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile]) if test_configuration[:profile]
+    bind_environment_variable('RHD_CHIMP_TAGS', test_configuration[:cucumber_tags]) if test_configuration[:cucumber_tags]
+    if test_configuration[:docker]
+      # for running tests inside of docker
+      test_configuration[:browser_count] = 1 if test_configuration[:browser_count].nil?
+      test_configuration[:run_tests_command] = "npm test -- #{run_tests_command}"
     else
       # run tests via a local browser
-      test_configuration[:run_tests_command] = "cd _tests/e2e && npm run e2e -- #{run_tests_command}"
+      test_configuration[:run_tests_command] = "cd #{@test_dir}/e2e && npm test -- #{run_tests_command}"
     end
   end
 
@@ -232,6 +233,5 @@ class RunTestOptions
     run_tests_command += ' -v' if test_configuration[:verbose]
     test_configuration[:run_tests_command] = "bundle exec blinkr#{run_tests_command}"
   end
-
 
 end

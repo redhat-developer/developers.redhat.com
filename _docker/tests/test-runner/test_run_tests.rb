@@ -100,7 +100,6 @@ class TestRunTests < MiniTest::Test
     @process_runner.expects(:execute!).with('cd /tmp/_tests/e2e/environments && docker-compose -p rhd_e2e_testing build')
 
     @process_runner.expects(:execute!).with('cd /tmp/_tests/e2e/environments && docker-compose -p rhd_e2e_testing up -d chrome')
-    @process_runner.expects(:execute!).with('cd /tmp/_tests/e2e/environments && docker-compose -p rhd_e2e_testing scale chrome=5')
 
     @process_runner.expects(:execute!).with('cd /tmp/_tests/e2e/environments && docker-compose -p rhd_e2e_testing run --rm --no-deps rhd_e2e_testing npm run e2e:docker')
 
@@ -125,7 +124,6 @@ class TestRunTests < MiniTest::Test
     @process_runner.expects(:execute!).with('cd /tmp/_tests/e2e/environments && docker-compose -p foo build')
 
     @process_runner.expects(:execute!).with('cd /tmp/_tests/e2e/environments && docker-compose -p foo up -d chrome')
-    @process_runner.expects(:execute!).with('cd /tmp/_tests/e2e/environments && docker-compose -p foo scale chrome=5')
 
     @process_runner.expects(:execute!).with('cd /tmp/_tests/e2e/environments && docker-compose -p foo run --rm --no-deps rhd_e2e_testing npm run e2e:docker')
 

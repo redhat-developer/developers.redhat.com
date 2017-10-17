@@ -16,9 +16,9 @@ Feature: Site footer menu
   Scenario Outline: Footer contains a "Services" section
     Given I am on the <page> page
     Then the footer Services section should contain the following links:
-      | Customer Portal     |
+      | Customer Portal                      |
       | Developer Training and Certification |
-      | Consulting Services           |
+      | Consulting Services                  |
 
     Examples: pages
       | page   |
