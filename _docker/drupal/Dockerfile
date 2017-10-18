@@ -72,3 +72,4 @@ COPY drupal-filesystem/db-migrations /var/www/drupal/db-migrations
 
 # Copy in the Drupal configuration
 COPY drupal-filesystem/web/config/sync /var/www/drupal/web/config/sync
+RUN gem install asciidoctor
