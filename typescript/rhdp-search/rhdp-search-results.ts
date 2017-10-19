@@ -121,6 +121,10 @@ class RHDPSearchResults extends HTMLElement {
             }
             this.appendChild(this.invalidMsg);
         }
+        this.dispatchEvent(new CustomEvent('results-loaded', { 
+            detail: { results: this.results }, 
+            bubbles: true 
+        }));
     }
 
     _clearResults(e) {

@@ -4,8 +4,20 @@ const NavigationBar = require('../sections/navigationBar.section');
 let FooterSection = require('../sections/footer');
 
 class SearchPage extends mixin(BasePage, NavigationBar, FooterSection) {
+    constructor() {
+        super();
+
+        browser.on('search-start', function(e) {
+            browser.emit('log',"SEARCH STARTED");
+        });
+
+        browser.on('search-complete', function(e) {
+            browser.emit('log',"SEARCH COMPLETE");
+        });
+    }
+
     open(searchTerm = '') {
-        super.open(`search/?q=${searchTerm}`);
+        super.open(`search/${searchTerm ? `?t=${searchTerm}`: ''}`);
         browser.waitForVisible('.search')
     }
 
@@ -42,7 +54,7 @@ class SearchPage extends mixin(BasePage, NavigationBar, FooterSection) {
     }
 
     get emptySearch() {
-        return $('rhdp-search-empty-query')
+        return $('rhdp-search-results > .invalidMsg')
     }
 
     resultCount() {
@@ -78,22 +90,38 @@ class SearchPage extends mixin(BasePage, NavigationBar, FooterSection) {
     }
 
     searchResultDate(i) {
-        return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]/span[2]`).getText();
+        return $(`//rhdp-search-results/rhdp-search-result[${i}]/div/p[1]/rh-datetime`).datetime;
     }
 
     activeFilters() {
         return $('.activeFilters')
     }
 
+    waitForSearchStart() {
+        browser.on('search-start', function(e) {
+            return true;
+        });
+    }
+
     waitForResultsLoaded() {
         // wait for result count value to be > 0
-        browser.waitUntil(function () {
-            let resultCount = browser.execute(function () {
-                return document.querySelector('rhdp-search-result-count').count;
+        //browser.waitUntil(function () {
+            browser.on('search-complete', function (e) {
+                let resultCount = browser.execute(function() {
+                    if (e.detail && e.detail.results && e.detail.results.hits) {
+                        return e.detail.results.hits.hits ? e.detail.results.hits.hits.length : 0;
+                    } else {
+                        return 0;
+                    }
+                });
+                return resultCount.value !== 0;
             });
-            return resultCount.value !== '0';
-        }, 30000, 'No results were found after 30 seconds');
-        this.loadingSpinner.waitForVisible(6000, true);
+            // let resultCount = browser.execute(function () {
+            //     return document.querySelector('rhdp-search-result-count').count;
+            // });
+            // return resultCount.value !== '0';
+        //}, 30000, 'No results were found after 30 seconds');
+        // this.loadingSpinner.waitForVisible(6000, true);
     }
 
     waitForUpdatedResults(result) {
@@ -113,7 +141,7 @@ class SearchPage extends mixin(BasePage, NavigationBar, FooterSection) {
     searchFor(searchTerm) {
         this.searchField.setValue(searchTerm);
         this.searchButton.click();
-        browser.waitForVisible('.loading');
+        this.waitForSearchStart();
         this.waitForResultsLoaded()
     }
 
@@ -192,4 +220,4 @@ class SearchPage extends mixin(BasePage, NavigationBar, FooterSection) {
 
 }
 
-module.exports = SearchPage;
+module.exports = new SearchPage();

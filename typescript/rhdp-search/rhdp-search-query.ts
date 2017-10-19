@@ -240,7 +240,9 @@ class RHDPSearchQuery extends HTMLElement {
             qURL.searchParams.set('tags_or_logic', 'true');
             qURL.searchParams.set('filter_out_excluded', 'true');
             qURL.searchParams.set('from', this.from.toString());
-            qURL.searchParams.set('newFirst', this.sort === 'most-recent' ? 'true' : 'false');
+            if (this.sort === 'most-recent') {
+                qURL.searchParams.set('newFirst', 'true');
+            }
             qURL.searchParams.set('query', this.term || '');
             qURL.searchParams.set('query_highlight', 'true');
             qURL.searchParams.set('size'+this.limit.toString(), 'true');

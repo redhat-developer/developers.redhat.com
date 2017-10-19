@@ -92,12 +92,12 @@ class RHDPSearchResult extends HTMLElement {
         super();
     }
 
-    template = (strings, url0, url1, title, kind, created, description, premium, thumbnail) => {
+    template = (strings, url, title, kind, created, description, premium, thumbnail) => {
         return `<div>
-            <h4>${url0}${title}${url1}</h4>
+            <h4>${url ? `<a href="${url}">${title}</a>` : title}</h4>
             <p ${premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"'}>
                 <span class="caps">${kind}</span>
-                ${created}
+                ${created ? `- <rh-datetime datetime="${created}" type="local" day="numeric" month="long" year="numeric">${created}</rh-datetime>` : ''}
             </p>
             <p class="result-description">${description}</p>
         </div>
@@ -117,7 +117,7 @@ class RHDPSearchResult extends HTMLElement {
     }
 
     renderResult() {
-        this.innerHTML = this.template`${this.url[0]}${this.url[1]}${this.title}${this.kind}${this.created}${this.description}${this.premium}${this.thumbnail}`;
+        this.innerHTML = this.template`${this.url}${this.title}${this.kind}${this.created}${this.description}${this.premium}${this.thumbnail}`;
     }
 
     computeThumbnail(result) {
@@ -156,12 +156,10 @@ class RHDPSearchResult extends HTMLElement {
             webpage: 'Web Page',
             website: 'Web Page'
         };
-        this.kind = map[kind] || 'Webpage';
+        this.kind = map[kind] || 'Web Page';
     }
     computeCreated(result) {
-        var options = { month: 'long', day: 'numeric', year: 'numeric' };
-        var created = result.fields.sys_created ? `- <rh-datetime datetime="${result.fields.sys_created[0]}" type="local" day="numeric" month="long" year="numeric">${result.fields.sys_created[0]}</rh-datetime>` : "";
-        this.created = created;
+        this.created = result.fields.sys_created && result.fields.sys_created.length > 0 ? result.fields.sys_created[0] : '';
     }
     computeDescription(result) {
         var description = '';
@@ -183,7 +181,7 @@ class RHDPSearchResult extends HTMLElement {
             url[0] = `<a href="${result.fields.sys_url_view}">`;
             url[1] = '</a>';
         }
-        this.url = url;
+        this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
     }
 
     computePremium(result) {

@@ -1710,7 +1710,9 @@ var RHDPSearchQuery = (function (_super) {
             qURL_1.searchParams.set('tags_or_logic', 'true');
             qURL_1.searchParams.set('filter_out_excluded', 'true');
             qURL_1.searchParams.set('from', this.from.toString());
-            qURL_1.searchParams.set('newFirst', this.sort === 'most-recent' ? 'true' : 'false');
+            if (this.sort === 'most-recent') {
+                qURL_1.searchParams.set('newFirst', 'true');
+            }
             qURL_1.searchParams.set('query', this.term || '');
             qURL_1.searchParams.set('query_highlight', 'true');
             qURL_1.searchParams.set('size' + this.limit.toString(), 'true');
@@ -1852,8 +1854,8 @@ var RHDPSearchResult = (function (_super) {
     function RHDPSearchResult() {
         var _this = _super.call(this) || this;
         _this._url = ['', ''];
-        _this.template = function (strings, url0, url1, title, kind, created, description, premium, thumbnail) {
-            return "<div>\n            <h4>" + url0 + title + url1 + "</h4>\n            <p " + (premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"') + ">\n                <span class=\"caps\">" + kind + "</span>\n                " + created + "\n            </p>\n            <p class=\"result-description\">" + description + "</p>\n        </div>\n        " + (thumbnail ? "<div class=\"thumb\"><img src=\"" + thumbnail.replace('http:', 'https:') + "\"></div>" : '');
+        _this.template = function (strings, url, title, kind, created, description, premium, thumbnail) {
+            return "<div>\n            <h4>" + (url ? "<a href=\"" + url + "\">" + title + "</a>" : title) + "</h4>\n            <p " + (premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"') + ">\n                <span class=\"caps\">" + kind + "</span>\n                " + (created ? "- <rh-datetime datetime=\"" + created + "\" type=\"local\" day=\"numeric\" month=\"long\" year=\"numeric\">" + created + "</rh-datetime>" : '') + "\n            </p>\n            <p class=\"result-description\">" + description + "</p>\n        </div>\n        " + (thumbnail ? "<div class=\"thumb\"><img src=\"" + thumbnail.replace('http:', 'https:') + "\"></div>" : '');
         };
         return _this;
     }
@@ -1974,7 +1976,7 @@ var RHDPSearchResult = (function (_super) {
         this[name] = newVal;
     };
     RHDPSearchResult.prototype.renderResult = function () {
-        this.innerHTML = (_a = ["", "", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", "", ""], this.template(_a, this.url[0], this.url[1], this.title, this.kind, this.created, this.description, this.premium, this.thumbnail));
+        this.innerHTML = (_a = ["", "", "", "", "", "", "", ""], _a.raw = ["", "", "", "", "", "", "", ""], this.template(_a, this.url, this.title, this.kind, this.created, this.description, this.premium, this.thumbnail));
         var _a;
     };
     RHDPSearchResult.prototype.computeThumbnail = function (result) {
@@ -2012,12 +2014,10 @@ var RHDPSearchResult = (function (_super) {
             webpage: 'Web Page',
             website: 'Web Page'
         };
-        this.kind = map[kind] || 'Webpage';
+        this.kind = map[kind] || 'Web Page';
     };
     RHDPSearchResult.prototype.computeCreated = function (result) {
-        var options = { month: 'long', day: 'numeric', year: 'numeric' };
-        var created = result.fields.sys_created ? "- <rh-datetime datetime=\"" + result.fields.sys_created[0] + "\" type=\"local\" day=\"numeric\" month=\"long\" year=\"numeric\">" + result.fields.sys_created[0] + "</rh-datetime>" : "";
-        this.created = created;
+        this.created = result.fields.sys_created && result.fields.sys_created.length > 0 ? result.fields.sys_created[0] : '';
     };
     RHDPSearchResult.prototype.computeDescription = function (result) {
         var description = '';
@@ -2041,7 +2041,7 @@ var RHDPSearchResult = (function (_super) {
             url[0] = "<a href=\"" + result.fields.sys_url_view + "\">";
             url[1] = '</a>';
         }
-        this.url = url;
+        this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
     };
     RHDPSearchResult.prototype.computePremium = function (result) {
         var premium = false;
@@ -2181,6 +2181,10 @@ var RHDPSearchResults = (function (_super) {
             }
             this.appendChild(this.invalidMsg);
         }
+        this.dispatchEvent(new CustomEvent('results-loaded', {
+            detail: { results: this.results },
+            bubbles: true
+        }));
     };
     RHDPSearchResults.prototype._clearResults = function (e) {
         this.results = undefined;
