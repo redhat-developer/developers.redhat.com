@@ -74,7 +74,7 @@ module DownloadHelper
       products << product['products']
     end
     products = products.flatten
-    products -= %w(developertoolset softwarecollections)
+    products -= %w(clang-llvm-go-rust developertoolset dotnet softwarecollections)
 
     # now get product names
     product_name = []
