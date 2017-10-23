@@ -16,10 +16,9 @@ Feature: Site footer menu
   Scenario Outline: Footer contains a "Services" section
     Given I am on the <page> page
     Then the footer Services section should contain the following links:
-      | Red Hat OpenShift.io     |
-      | Red Hat OpenShift Online |
-      | Red Hat Store            |
-      | Red Hat Jobs             |
+      | Customer Portal     |
+      | Developer Training and Certification |
+      | Consulting Services           |
 
     Examples: pages
       | page   |
