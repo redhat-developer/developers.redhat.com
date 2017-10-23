@@ -119,6 +119,10 @@ class RHDPSearchFilters extends HTMLElement {
                     this.dispatchEvent(new CustomEvent('clear-filters', {
                         bubbles: true 
                     }));
+                    break;
+                case 'more':
+                    e.preventDefault();
+                    break;
             }
         });
         //top.addEventListener('clear-filters', this._clearFilters);

@@ -1187,6 +1187,10 @@ var RHDPSearchFilters = (function (_super) {
                     _this.dispatchEvent(new CustomEvent('clear-filters', {
                         bubbles: true
                     }));
+                    break;
+                case 'more':
+                    e.preventDefault();
+                    break;
             }
         });
         //top.addEventListener('clear-filters', this._clearFilters);
