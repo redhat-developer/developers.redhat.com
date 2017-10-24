@@ -30,9 +30,10 @@ Unit tests for component pass
     });
 
     it('should share the sort property out', function() {
+        document.addEventListener('sort-change', function(e) {
+            expect(wc.sort).toEqual('relevance');
+        });
         wc.sort = "relevance";
-        wc.setSort();
-        expect(wc.sort).toEqual('relevance');
     });
 
     it('should read "Sort results by [[sort]]', function() {

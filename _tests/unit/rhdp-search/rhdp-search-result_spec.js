@@ -55,7 +55,9 @@ describe('Search Result', function() {
 
     it('should have a created date from resultset', function() {
         wc.result = testResult;
-        expect(wc.created).toEqual('- February 3, 2001');
+        setTimeout(function() {
+            expect(wc.querySelector('rh-datetime').innerHTML).toEqual('February 3, 2001');
+        }, 500);
     });
 
     describe('Title', function() {
@@ -199,8 +201,8 @@ describe('Search Result', function() {
             }
         });
 
-        it('should have "Webpage" for the corresponding result types', function() {
-            var typeTxt = 'Webpage',
+        it('should have "Web Page" for the corresponding result types', function() {
+            var typeTxt = 'Web Page',
                 typeReturn = ['webpage', ''],
                 len = typeReturn.length,
                 i;
