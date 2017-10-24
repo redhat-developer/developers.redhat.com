@@ -1,4 +1,4 @@
-# Red Hat Developers Site
+# Red Hat Developers Program Site
 
 Powering the [Red Hat Developers site](https://developers.redhat.com/).
 
