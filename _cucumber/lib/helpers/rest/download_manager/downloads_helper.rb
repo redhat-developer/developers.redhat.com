@@ -69,12 +69,12 @@ module DownloadHelper
 
   def expected_downloads
     products = []
-    data = YAML.load_file("#{$config_dir}/categories.yml")
+    data = YAML.load_file("#{$cucumber_dir}/lib/data/categories.yml")
     data.each do |product|
       products << product['products']
     end
     products = products.flatten
-    products -= %w(developertoolset softwarecollections)
+    products -= %w(clang-llvm-go-rust developertoolset dotnet softwarecollections)
 
     # now get product names
     product_name = []
