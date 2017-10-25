@@ -1,3 +1,4 @@
+@ignore
 Feature: Product overview page
 
   In order to find out more about available Red Hat products,
