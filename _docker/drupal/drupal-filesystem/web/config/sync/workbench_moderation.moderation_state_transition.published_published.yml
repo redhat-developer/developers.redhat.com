@@ -1,9 +1,11 @@
-uuid: 503e9268-9a26-4e98-9a90-f8b16e26a18c
+uuid: 283f47f2-4fcc-4e7c-9dab-3237f39af056
 langcode: en
 status: true
 dependencies:
   config:
     - workbench_moderation.moderation_state.published
+  enforced:
+    config: null
 _core:
   default_config_hash: fAcec0ABnHQUhr8wXigy5e9n-byT_C1EnWWqjKY_ENE
 id: published_published

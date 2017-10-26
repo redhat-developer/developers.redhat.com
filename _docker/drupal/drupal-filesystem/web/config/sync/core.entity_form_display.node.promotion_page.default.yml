@@ -1,4 +1,4 @@
-uuid: 2a79956b-27b2-44b2-85de-195b3ac26d4f
+uuid: 61842df9-e614-4bd0-a0ec-a394e068ae19
 langcode: en
 status: true
 dependencies:
@@ -19,6 +19,8 @@ dependencies:
     - path
     - text
     - workbench_moderation
+_core:
+  default_config_hash: agLIqZUYV1z7GHlCu9pbbxKdaRYuItUMAUkTYqAitg8
 id: node.promotion_page.default
 targetEntityType: node
 bundle: promotion_page
@@ -46,13 +48,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_exclude_from_search:
-    weight: 26
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
     region: content
   field_mail_to_link:
     weight: 10
@@ -97,6 +92,13 @@ content:
     weight: 3
     third_party_settings: {  }
     region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
+    region: content
   sticky:
     type: boolean_checkbox
     settings:
@@ -121,4 +123,5 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_exclude_from_search: true

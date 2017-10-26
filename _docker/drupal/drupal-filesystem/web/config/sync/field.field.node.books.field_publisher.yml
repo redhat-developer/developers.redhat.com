@@ -1,10 +1,12 @@
-uuid: 9789062a-cee5-4bb5-b94c-d03c1092159e
+uuid: 9d6a7718-165e-473d-b283-b00bf47214e4
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_publisher
     - node.type.books
+_core:
+  default_config_hash: huESBLqcHNO79aHe1zPEzJm87aYwnbWwf5QFDLp0q4A
 id: node.books.field_publisher
 field_name: field_publisher
 entity_type: node

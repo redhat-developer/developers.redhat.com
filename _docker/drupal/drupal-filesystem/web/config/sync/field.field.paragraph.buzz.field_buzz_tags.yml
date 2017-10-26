@@ -1,10 +1,12 @@
-uuid: 88cf90c7-3338-4122-92b4-7186539cdefc
+uuid: 485d574d-a9c0-4db9-ac81-8ea1ca576353
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_buzz_tags
     - paragraphs.paragraphs_type.buzz
+_core:
+  default_config_hash: uGvvo37WFujQ8hchQ5xSs2INOtoYiT0Xehkxd0BjjjE
 id: paragraph.buzz.field_buzz_tags
 field_name: field_buzz_tags
 entity_type: paragraph

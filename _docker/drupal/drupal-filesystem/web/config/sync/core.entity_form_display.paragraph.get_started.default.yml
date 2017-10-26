@@ -1,4 +1,4 @@
-uuid: 08f076fe-4661-46a8-bf80-fc317209cb03
+uuid: 134e0d4f-5ea4-451f-8fec-a69e8a0d6b18
 langcode: en
 status: true
 dependencies:
@@ -13,6 +13,9 @@ dependencies:
   module:
     - paragraphs
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: saVBWxb6eP9b1SlQwou-AUXSo6wAV2qrymKoBfcwLcU
 id: paragraph.get_started.default
 targetEntityType: paragraph
 bundle: get_started

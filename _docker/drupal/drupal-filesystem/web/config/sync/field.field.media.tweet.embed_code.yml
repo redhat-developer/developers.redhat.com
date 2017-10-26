@@ -1,0 +1,21 @@
+uuid: b4560c38-c284-428e-8d3d-d8eeb9efef1b
+langcode: und
+status: true
+dependencies:
+  config:
+    - field.storage.media.embed_code
+    - media_entity.bundle.tweet
+_core:
+  default_config_hash: QaZQL729N5euGXnSvC9gtUanJ5WlMs9JvaXVMiwuqYk
+id: media.tweet.embed_code
+field_name: embed_code
+entity_type: media
+bundle: tweet
+label: Tweet
+description: 'Paste tweet''s URL or embed code.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

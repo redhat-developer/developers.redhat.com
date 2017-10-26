@@ -1,4 +1,4 @@
-uuid: e6044318-fea2-422b-ad39-6829de1dc2ae
+uuid: 5bc35c8e-4f7e-4b34-a9c1-865bfb787eab
 langcode: en
 status: true
 dependencies:
@@ -8,6 +8,7 @@ dependencies:
   module:
     - field_group
     - text
+    - workbench_moderation
 third_party_settings:
   field_group:
     group_product_pages:
@@ -23,6 +24,8 @@ third_party_settings:
         required_fields: true
         id: ''
         classes: ''
+_core:
+  default_config_hash: lXRA_jur1FNkkbCR-8lsipT8h6wryz1VOOYINAEYl_o
 id: paragraph.main_content.default
 targetEntityType: paragraph
 bundle: main_content

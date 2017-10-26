@@ -1,4 +1,4 @@
-uuid: fcf1eede-1e81-4afe-834a-cffb31e1da7a
+uuid: 1d0f16b3-c06a-4138-9933-a2f074b6ab01
 langcode: en
 status: true
 dependencies:
@@ -21,6 +21,8 @@ dependencies:
     - options
     - text
     - user
+_core:
+  default_config_hash: zQfEnSZfYMrha2gScuXvEE1nTF-EXr_n1aKO7C7TiuM
 id: node.connectors.default
 targetEntityType: node
 bundle: connectors
@@ -134,5 +136,8 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
+  workbench_moderation_control:
+    weight: -20
     region: content
 hidden: {  }

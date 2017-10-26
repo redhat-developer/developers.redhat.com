@@ -1,4 +1,4 @@
-uuid: bf90c1fd-2b4b-47f6-9300-df823bb9e540
+uuid: 7af015c6-f777-44f2-b973-6d0bada786cf
 langcode: en
 status: true
 dependencies:
@@ -25,7 +25,7 @@ dependencies:
     - text
     - workbench_moderation
 _core:
-  default_config_hash: jGHPzwirnVEHycI_Us_SlVTxaYU9EzvezuoXpUM_NeU
+  default_config_hash: XA0dCIs1tYyDwHASuw9Pq-smSPEXWA_1zWrAAcgTvh4
 id: node.topic.default
 targetEntityType: node
 bundle: topic
@@ -165,6 +165,13 @@ content:
     settings:
       display_label: true
     weight: 3
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
     third_party_settings: {  }
     region: content
   sticky:

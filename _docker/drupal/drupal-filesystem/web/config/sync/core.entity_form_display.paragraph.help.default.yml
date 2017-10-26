@@ -1,4 +1,4 @@
-uuid: 21f3d381-de92-4d35-b42e-ed364c90098a
+uuid: fe760738-a8a6-4a01-8f0c-20923d96eb09
 langcode: en
 status: true
 dependencies:
@@ -11,6 +11,9 @@ dependencies:
     - paragraphs.paragraphs_type.help
   module:
     - link
+    - workbench_moderation
+_core:
+  default_config_hash: 2eA2te9gji-J2z3Rjm-i8n3sz5ujS0aFq5P8DFh62Bo
 id: paragraph.help.default
 targetEntityType: paragraph
 bundle: help

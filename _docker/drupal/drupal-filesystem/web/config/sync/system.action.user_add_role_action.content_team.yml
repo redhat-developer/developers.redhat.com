@@ -1,0 +1,14 @@
+uuid: 403ec865-298f-4680-ae73-f4280cc1d77e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_team
+  module:
+    - user
+id: user_add_role_action.content_team
+label: 'Add the Content Reviewer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: content_team

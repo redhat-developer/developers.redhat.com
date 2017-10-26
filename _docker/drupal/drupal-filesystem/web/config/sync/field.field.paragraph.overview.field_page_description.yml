@@ -1,10 +1,12 @@
-uuid: 36ca2aab-703d-4ac1-9468-b15d351461c3
+uuid: 4ae23ff2-cce2-46ad-8b91-970f553f8ee5
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_page_description
     - paragraphs.paragraphs_type.overview
+_core:
+  default_config_hash: IxEwazz4zPIkthczCIuWyivOLkQxHwvfh0nPDrKUZcQ
 id: paragraph.overview.field_page_description
 field_name: field_page_description
 entity_type: paragraph

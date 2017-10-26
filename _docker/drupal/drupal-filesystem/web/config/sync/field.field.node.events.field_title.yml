@@ -1,10 +1,12 @@
-uuid: e814ca64-9b68-4f84-9204-1ad0ec9a4752
+uuid: e6c68b2c-9105-4f37-a59b-c40cf09b09dd
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_title
     - node.type.events
+_core:
+  default_config_hash: l7t95pzdHDtsDVGjjg7mA8wsjjW5sSTem2g-FkpRY3g
 id: node.events.field_title
 field_name: field_title
 entity_type: node

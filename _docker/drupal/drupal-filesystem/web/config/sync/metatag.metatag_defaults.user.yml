@@ -1,11 +1,12 @@
-uuid: ec35533c-216a-440f-b5cc-49aefa7d57ee
+uuid: 37b8e09e-97a2-43ba-bc4f-057102e22e76
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: O0NfJbzQmkMg1brwA-gUw8v59V0Ana1YKTeRfb-okGI
+  default_config_hash: e3453dXHFW5TM24d8Odhumgwd8hIZVPvQv98wnGM7Ro
 id: user
 label: User
 tags:
-  title: '[user:name] | [site:name]'
+  canonical_url: '[user:url]'
   description: '[site:name]'
+  title: '[user:name] | [site:name]'

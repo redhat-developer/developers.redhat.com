@@ -1,4 +1,4 @@
-uuid: 487a56f8-a857-4977-9e63-f00a9c338991
+uuid: 5c14bf3f-b422-49af-b859-6178ba36fd49
 langcode: en
 status: true
 dependencies:
@@ -21,6 +21,8 @@ dependencies:
     - text
     - video_embed_field
     - workbench_moderation
+_core:
+  default_config_hash: usEN6FRM_guH0aZiSFAjZiF7zzRF6KUkXbSFHvD0iv8
 id: node.video_resource.default
 targetEntityType: node
 bundle: video_resource
@@ -105,6 +107,13 @@ content:
     type: path
     weight: 2
     settings: {  }
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
     third_party_settings: {  }
     region: content
   title:

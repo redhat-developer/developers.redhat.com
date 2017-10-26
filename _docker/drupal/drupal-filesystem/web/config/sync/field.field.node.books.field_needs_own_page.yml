@@ -1,10 +1,12 @@
-uuid: 7d197486-3420-4024-9a68-c9d22c0d43de
+uuid: 61e736ab-a028-46cc-a8ae-dc781e05cb96
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_needs_own_page
     - node.type.books
+_core:
+  default_config_hash: P4ZJJwAMwfe-wedCKEXV_TxM2beWMScQpEW-Ua31EHA
 id: node.books.field_needs_own_page
 field_name: field_needs_own_page
 entity_type: node

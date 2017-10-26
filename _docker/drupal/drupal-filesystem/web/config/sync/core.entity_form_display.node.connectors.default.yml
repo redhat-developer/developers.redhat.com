@@ -1,4 +1,4 @@
-uuid: 6433c962-29d7-4c79-927b-f88bd866a720
+uuid: 621a66bd-9352-4294-a8cb-aea4abf77153
 langcode: en
 status: true
 dependencies:
@@ -19,6 +19,9 @@ dependencies:
   module:
     - link
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: SRpnm57aZnGL6k9j_zdNeKUPEorqLQLhXWCSQFZ-MzQ
 id: node.connectors.default
 targetEntityType: node
 bundle: connectors
@@ -113,6 +116,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
     region: content
   title:
     type: string_textfield

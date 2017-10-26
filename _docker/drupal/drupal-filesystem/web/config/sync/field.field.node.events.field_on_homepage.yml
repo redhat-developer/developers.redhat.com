@@ -1,10 +1,12 @@
-uuid: 0caf659b-f101-4ed0-90be-362dea10ec51
+uuid: 9c98ca29-2dff-43dc-ae9c-ef35fbd6e05d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_on_homepage
     - node.type.events
+_core:
+  default_config_hash: sUFeVxEl8p1AQLAsEvt7qtvZTgJRWaPemHZbka4DMFk
 id: node.events.field_on_homepage
 field_name: field_on_homepage
 entity_type: node

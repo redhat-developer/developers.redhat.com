@@ -1,10 +1,12 @@
-uuid: 5fb985bd-db65-429c-aabf-2e7a9fe20b07
+uuid: c6395481-8ae6-469d-aecc-c4f667239f16
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_data_tags
     - node.type.events
+_core:
+  default_config_hash: 9nR6Lc3KTx0FArYvw7ZY6iy0-bxwpbX9PU837gb9uRc
 id: node.events.field_data_tags
 field_name: field_data_tags
 entity_type: node

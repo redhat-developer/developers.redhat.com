@@ -1,0 +1,24 @@
+uuid: ec8206b3-cd4b-4e22-b56e-8a3c3f314be1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.landing_page
+  module:
+    - text
+_core:
+  default_config_hash: rucUkoeuSWIppIt6Yc0z6lvSs21vZoskeQohzXD_FTo
+id: node.landing_page.body
+field_name: body
+entity_type: node
+bundle: landing_page
+label: Description
+description: 'A description of this page, for use in teasers and lists of content.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

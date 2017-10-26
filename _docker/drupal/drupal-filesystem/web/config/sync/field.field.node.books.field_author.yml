@@ -1,10 +1,12 @@
-uuid: 7d98836c-2c98-4732-ad96-d9d0c0dc578c
+uuid: c6fa2f48-2ab4-4f5d-8021-5884d2d0a6b9
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_author
     - node.type.books
+_core:
+  default_config_hash: CKMnlWeVgsTpKP0pPVJmPCczjpXeSkhrTzd0Y8tW6qM
 id: node.books.field_author
 field_name: field_author
 entity_type: node

@@ -1,4 +1,4 @@
-uuid: ee5556b2-23d4-4a41-8715-be172a79bb9c
+uuid: bff9e901-5ff0-49e7-8116-2bd458debaf9
 langcode: en
 status: true
 dependencies:
@@ -15,6 +15,7 @@ dependencies:
     - field_group
     - paragraphs
     - text
+    - workbench_moderation
 third_party_settings:
   field_group:
     group_sub_pages:
@@ -42,6 +43,8 @@ third_party_settings:
         classes: ''
         direction: horizontal
       label: 'Product Information'
+_core:
+  default_config_hash: j-EFS8zlAjzChzBEYAsBd9Nhv2EM21kvoPIS2yWgEJg
 id: node.product.default
 targetEntityType: node
 bundle: product
@@ -107,6 +110,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
     region: content
   title:
     type: string_textfield

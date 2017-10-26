@@ -1,10 +1,12 @@
-uuid: db2da96b-7972-4beb-bc7a-d8468c4d2fee
+uuid: b028a519-0804-4bf5-b9a9-e8de182bd8fc
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_url_product_name
     - node.type.product
+_core:
+  default_config_hash: RiCJ7aRqxOZcWk1B9eDKlEjAu1Fff-fSP-423Dh9wKM
 id: node.product.field_url_product_name
 field_name: field_url_product_name
 entity_type: node

@@ -1,10 +1,12 @@
-uuid: 96d9cd6c-b4cb-48b6-a3ca-991ef60e69f0
+uuid: 30370862-9841-4e0d-bc56-895c1570148d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_connector_id
     - node.type.connectors
+_core:
+  default_config_hash: R9wGcwlLOtkW3N_zMA2wOpMnpJh0cdoPra2h4YhAYbQ
 id: node.connectors.field_connector_id
 field_name: field_connector_id
 entity_type: node

@@ -1,14 +1,17 @@
-uuid: 9b018b92-01a3-426c-ad42-8548ffe1e299
+uuid: 4c428ade-de82-4bb2-bb6a-8d48d7012831
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.paragraph.getting_started_section.field_body
     - field.field.paragraph.getting_started_section.field_minutes_to_complete
+    - field.field.paragraph.getting_started_section.field_support_progress
     - field.field.paragraph.getting_started_section.field_title
     - paragraphs.paragraphs_type.getting_started_section
   module:
     - text
+_core:
+  default_config_hash: TE9JcQqOnftGqhPIYCKr6oBERMitCfyIDVbaj2k-dLo
 id: paragraph.getting_started_section.default
 targetEntityType: paragraph
 bundle: getting_started_section

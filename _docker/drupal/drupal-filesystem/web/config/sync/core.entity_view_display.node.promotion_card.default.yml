@@ -1,9 +1,10 @@
-uuid: 00a50451-7788-44a6-ac07-071ef7efdd32
+uuid: ccc18331-da32-4d8a-bb74-a6cc22081b0b
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.promotion_card.field_container_external_link
+    - field.field.node.promotion_card.field_container_tags
     - field.field.node.promotion_card.field_containers_short_summary
     - node.type.promotion_card
   module:
@@ -11,7 +12,7 @@ dependencies:
     - text
     - user
 _core:
-  default_config_hash: vNMdTwIWRH8VfsAdCFyF003wh34x1Nqgm1w27o_XKoI
+  default_config_hash: wMqZ1mT1GdXTo840DrwWR116c-eb5poVDN3EhgXGywI
 id: node.promotion_card.default
 targetEntityType: node
 bundle: promotion_card

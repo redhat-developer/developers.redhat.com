@@ -1,19 +1,12 @@
-uuid: 2930674d-e29a-486b-bea4-ef73a861acb9
+uuid: 777c420e-2f9f-4be2-83c9-23a36e9e3169
 langcode: en
 status: true
 dependencies:
   config:
     - workbench_moderation.moderation_state.archived
     - workbench_moderation.moderation_state.published
-  module:
-    - workbench_email
   enforced:
-    config:
-      - workbench_email.workbench_email_template.published
-third_party_settings:
-  workbench_email:
-    workbench_email_templates:
-      published: published
+    config: null
 _core:
   default_config_hash: DHVGeCrHa3ZUSaiKc7GvFXhCHcadQWqcc5wgaNpxnpk
 id: archived_published

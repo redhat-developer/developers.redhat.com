@@ -1,4 +1,4 @@
-uuid: 53c9fa5a-9f21-4ceb-96f2-6904d87ffc41
+uuid: 90b81823-74c5-40ad-ba0e-f28e3042f248
 langcode: en
 status: true
 dependencies:
@@ -10,6 +10,9 @@ dependencies:
   module:
     - paragraphs
     - text
+    - workbench_moderation
+_core:
+  default_config_hash: fxpbQrICpaqPt2oHgFL6W9HxOC9E6FUUdwDBycKxYPo
 id: paragraph.getting_started_tab_section.default
 targetEntityType: paragraph
 bundle: getting_started_tab_section

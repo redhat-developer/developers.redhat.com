@@ -1,0 +1,49 @@
+uuid: cab9eb91-451f-4f73-92d5-7861a17109b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_browser
+    - field.field.media.tweet.embed_code
+    - field.field.media.tweet.field_media_in_library
+    - media_entity.bundle.tweet
+  module:
+    - path
+    - workbench_moderation
+_core:
+  default_config_hash: WYt7qUipUVviLaZYZEdzc047DMFB_ghGY8gwU0OenB0
+id: media.tweet.media_browser
+targetEntityType: media
+bundle: tweet
+mode: media_browser
+content:
+  field_media_in_library:
+    type: boolean_checkbox
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  preview:
+    weight: null
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  embed_code: true
+  uid: true
