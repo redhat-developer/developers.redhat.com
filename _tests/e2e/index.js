@@ -15,7 +15,7 @@ if (process.env.RHD_TEST_CONFIG === 'docker') {
 
 let nodeModulePath;
 if (process.env.RHD_TEST_CONFIG === 'docker') {
-    nodeModulePath = '/home/e2e/developers.redhat.com/_tests/e2e/node_modules/chimp/dist/bin/default.js';
+    nodeModulePath = '/home/e2e/node_modules/chimp/dist/bin/default.js';
 } else {
     nodeModulePath = path.resolve(process.cwd() + '/node_modules/chimp/dist/bin/default.js');
 }
