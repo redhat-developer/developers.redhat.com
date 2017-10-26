@@ -5,9 +5,7 @@ const async = require('async');
 
 let options;
 
-if (process.env.RHD_TEST_CONFIG === 'local') {
-    options = require('./config/chimp-local.js');
-} else if (process.env.RHD_TEST_CONFIG === 'docker') {
+if (process.env.RHD_TEST_CONFIG === 'docker') {
     options = require('./config/chimp-docker.js');
 } else if (process.env.RHD_TEST_CONFIG === 'browserstack') {
     options = require('./config/chimp-browserstack.js');
@@ -15,9 +13,16 @@ if (process.env.RHD_TEST_CONFIG === 'local') {
     options = require('./config/chimp-local.js');
 }
 
+let nodeModulePath;
+if (process.env.RHD_TEST_CONFIG === 'docker') {
+    nodeModulePath = '/home/e2e/developers.redhat.com/_tests/e2e/node_modules/chimp/dist/bin/default.js';
+} else {
+    nodeModulePath = path.resolve(process.cwd() + '/node_modules/chimp/dist/bin/default.js');
+}
+
 async.series([
     function (callback) {
-        const chimpDefaultOptions = require(path.resolve(process.cwd() + '/node_modules/chimp/dist/bin/default.js'));
+        const chimpDefaultOptions = require(nodeModulePath);
         options._ = [];
         const chimpOptions = Object.assign({}, chimpDefaultOptions, options);
         const chimp = new Chimp(chimpOptions);

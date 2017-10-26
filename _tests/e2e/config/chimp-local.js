@@ -4,7 +4,7 @@ const path = require('path');
 function checkDirectorySync(directory) {
     try {
         fs.statSync(directory);
-    } catch(e) {
+    } catch (e) {
         fs.mkdirSync(directory);
     }
 }
@@ -86,4 +86,3 @@ module.exports = {
     reportSuiteAsScenarios: true,
     launchReport: false
 };
-

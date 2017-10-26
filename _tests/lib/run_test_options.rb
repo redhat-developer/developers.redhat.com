@@ -199,16 +199,13 @@ class RunTestOptions
     # bind environment variable for base url to be used in e2e base config.
     Kernel.abort('Please specify a base url. For example --base-url=http://foo.com') if test_configuration[:base_url].nil?
     bind_environment_variable('RHD_BASE_URL', test_configuration[:base_url])
-    if test_configuration[:docker]
-      bind_environment_variable('RHD_TEST_CONFIG', 'docker')
-    elsif test_configuration[:browserstack]
-      bind_environment_variable('RHD_TEST_CONFIG', 'browserstack')
-    else
-      bind_environment_variable('RHD_TEST_CONFIG', 'local')
-    end
-    run_tests_command += "--baseUrl=#{test_configuration[:base_url]}"
+
+    bind_environment_variable('RHD_TEST_CONFIG', 'docker') if test_configuration[:docker]
+    bind_environment_variable('RHD_TEST_CONFIG', 'browserstack') if test_configuration[:browserstack]
     bind_environment_variable('RHD_TEST_PROFILE', test_configuration[:profile]) if test_configuration[:profile]
     bind_environment_variable('RHD_CHIMP_TAGS', test_configuration[:cucumber_tags]) if test_configuration[:cucumber_tags]
+
+    run_tests_command += "--baseUrl=#{test_configuration[:base_url]}"
     if test_configuration[:docker]
       # for running tests inside of docker
       test_configuration[:browser_count] = 1 if test_configuration[:browser_count].nil?
