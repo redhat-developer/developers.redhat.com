@@ -6,6 +6,10 @@ class FooterSection extends BasePage {
         super();
     }
 
+    get footer() {
+        return browser.element('.bottom')
+    }
+
     footerDropdownItems(i) {
         return browser.element(`//*[@id="collapseFooter"]/div[${i}]/h3`);
     }
@@ -15,6 +19,7 @@ class FooterSection extends BasePage {
     }
 
     collapseFooter(i) {
+        this.scrollIntoView(this.footer);
         let footerCollapsed = this.isDisplayed(`//*[@id="collapseFooter"]/div[${i}][contains(@class,'collapsed')]`.toString());
         if (footerCollapsed === true) {
             return this.clickOn(this.footerDropdownItems(i));
