@@ -208,6 +208,8 @@ class SearchPage extends BasePage {
         if (isMobile) {
             this.clickOn(this.showBtn);
             this.awaitElement(this.cover);
+            // await cover to fully expand before proceeding
+            browser.pause(1500);
             return true
         } else {
             return false

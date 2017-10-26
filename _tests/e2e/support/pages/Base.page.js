@@ -32,7 +32,6 @@ class BasePage {
 
     clickOn(locator) {
         this.awaitElement(locator);
-        this.scrollIntoView(locator);
         if (typeof locator === 'string') {
             return browser.click(locator)
         } else {

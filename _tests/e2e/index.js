@@ -26,8 +26,8 @@ async.series([
         options._ = [];
         const chimpOptions = Object.assign({}, chimpDefaultOptions, options);
         const chimp = new Chimp(chimpOptions);
-        chimp.init(function (err, results) {
-            if (err == 'Cucumber steps failed') err = null; //stops async crashing out on failed tests, still want the report and cleanup
+        chimp.init(function (err, stdout, results) {
+            if (err === 'Cucumber steps failed') err = 1; //stops async crashing out on failed tests, still want the report and cleanup
             return callback(err, results);
         })
     },
@@ -36,9 +36,10 @@ async.series([
         callback()
     }
 ], function (err, results) {
-    if (err) {
-        process.exit(1)
+    if (err === 1) {
+        console.log(`Cucumber tests failed. Exit code was ${err}`);
+        process.exit(err)
     } else {
-        process.exit(0)
-    } //chimp not exiting properly
+        process.exit()
+    }
 });
