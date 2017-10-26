@@ -1,10 +1,20 @@
+// import {RHDPSearchURL} from './rhdp-search-url';
+// import {RHDPSearchQuery} from './rhdp-search-query';
+// import {RHDPSearchBox} from './rhdp-search-box';
+// import {RHDPSearchResultCount} from './rhdp-search-result-count';
+// import {RHDPSearchFilters} from './rhdp-search-filters';
+// import {RHDPSearchOneBox} from './rhdp-search-onebox';
+// import {RHDPSearchResults} from './rhdp-search-results';
+// import {RHDPSearchSortPage} from './rhdp-search-sort-page';
+
 class RHDPSearchApp extends HTMLElement {
     constructor() {
         super();
+        //this.toggleModal = this.toggleModal.bind(this);
+        //this.updateFacets = this.updateFacets.bind(this);
     }
 
     _name = 'Search';
-    //_url = 'http://dcp.stage.jboss.org/v2/rest/search';
     _url;
 
     get name() {
@@ -41,6 +51,7 @@ class RHDPSearchApp extends HTMLElement {
         </div>
     </div></div>`;
 
+    urlEle = new RHDPSearchURL();
     query = new RHDPSearchQuery();
     box = new RHDPSearchBox();
     count = new RHDPSearchResultCount();
@@ -50,12 +61,12 @@ class RHDPSearchApp extends HTMLElement {
     onebox = new RHDPSearchOneBox();
     results = new RHDPSearchResults();
     sort = new RHDPSearchSortPage();
-    emptyQuery = new RHDPSearchEmptyQuery();
 
     filterObj = {
         term:'', 
         facets: [
             { name: 'CONTENT TYPE', key: 'sys_type', items: [
+                {key: 'apidocs', name: 'APIs and Docs', value: ['rht_website', 'rht_apidocs'], type: ['apidocs']},
                 {key: 'archetype', name: 'Archetype', value: ['jbossdeveloper_archetype'], type: ['jbossdeveloper_archetype']},
                 {key: 'article', name: 'Article', value: ['article', 'solution'], type: ['rhd_knowledgebase_article', 'rht_knowledgebase_solution']},
                 {key: 'blogpost', name: "Blog Posts", value: ['blogpost'], type: ['jbossorg_blog']},
@@ -64,6 +75,7 @@ class RHDPSearchApp extends HTMLElement {
                 {key: 'cheatsheet', name: "Cheat Sheet", value: ['cheatsheet'], type: ['jbossdeveloper_cheatsheet']},
                 {key: 'demo', name: 'Demo', value: ['demo'], type: ['jbossdeveloper_demo']},
                 {key: 'event', name: 'Event', value: ['jbossdeveloper_event'], type: ['jbossdeveloper_event']},
+                {key: 'forum', name: 'Forum', value: ['jbossorg_sbs_forum'], type: ['jbossorg_sbs_forum']},
                 {key: 'get-started', name: "Get Started", value: ["jbossdeveloper_example"], type: ['jbossdeveloper_example'] },
                 {key: 'quickstart', name: "Quickstart", value: ['quickstart'], type: ['jbossdeveloper_quickstart']},
                 {key: 'stackoverflow', name: 'Stack Overflow', value: ['stackoverflow_thread'], type: ['stackoverflow_question']},
@@ -75,16 +87,16 @@ class RHDPSearchApp extends HTMLElement {
                 name:'PRODUCT', 
                 key: 'product', 
                 items: [
-                {key: 'dotnet-product', name: '.NET Core for Red Hat Enterprise Linux', value: ['dotnet']},
-                {key: 'amq', name: 'Red Hat JBoss AMQ', value: ['amq']},
-                {key: 'bpmsuite', name: 'Red Hat JBoss BPM Suite', value: ['bpmsuite']},
-                {key: 'brms', name: 'Red Hat JBoss BRMS', value: ['brms']},
-                {key: 'datagrid', name: 'Red Hat JBoss Data Grid', value: ['datagrid']},
-                {key: 'datavirt', name: 'Red Hat JBoss Data Virtualization', value: ['datavirt']},
-                {key: 'devstudio', name: 'Red Hat JBoss Developer Studio', value: ['devstudio']},
-                {key: 'eap', name: 'Red Hat JBoss Enterprise Application Platform', value: ['eap']},
-                {key: 'fuse', name: 'Red Hat JBoss Fuse', value: ['fuse']},
-                {key: 'webserver', name: 'Red Hat JBoss Web Server', value: ['webserver']},
+                {key: 'dotnet', name: '.NET Runtime for Red Hat Enterprise Linux', value: ['dotnet']},
+                {key: 'amq', name: 'JBoss A-MQ', value: ['amq']},
+                {key: 'bpmsuite', name: 'JBoss BPM Suite', value: ['bpmsuite']},
+                {key: 'brms', name: 'JBoss BRMS', value: ['brms']},
+                {key: 'datagrid', name: 'JBoss Data Grid', value: ['datagrid']},
+                {key: 'datavirt', name: 'JBoss Data Virtualization', value: ['datavirt']},
+                {key: 'devstudio', name: 'JBoss Developer Studio', value: ['devstudio']},
+                {key: 'eap', name: 'JBoss Enterprise Application Platform', value: ['eap']},
+                {key: 'fuse', name: 'JBoss Fuse', value: ['fuse']},
+                {key: 'webserver', name: 'JBoss Web Server', value: ['webserver']},
                 {key: 'openjdk', name: 'OpenJDK', value: ['openjdk']},
                 {key: 'rhamt', name: 'Red Hat Application Migration Toolkit', value: ['rhamt']},
                 {key: 'cdk', name: 'Red Hat Container Development Kit', value: ['cdk']},
@@ -120,7 +132,7 @@ class RHDPSearchApp extends HTMLElement {
         this.active.filters = this.filterObj;
         this.filters.filters = this.filterObj;
         this.query.filters = this.filterObj;
-
+        
         //document.querySelector('.wrapper').appendChild(this.modal);
         document.body.appendChild(this.modal);
         this.querySelector('.row .large-24 .row .large-24').appendChild(this.query);
@@ -131,36 +143,7 @@ class RHDPSearchApp extends HTMLElement {
         this.querySelector('.large-18').appendChild(this.sort);
         this.querySelector('.large-18').appendChild(this.onebox);
         this.querySelector('.large-18').appendChild(this.results);
-        this.querySelector('.large-18').appendChild(this.emptyQuery);
-
-        this.addEventListener('do-search', this.doSearch);
-        this.addEventListener('search-complete', this.setResults);
-        this.addEventListener('load-more', this.loadMore)
-        this.addEventListener('sort-change', this.updateSort);
-        this.addEventListener('search-message', this.setMessage);
-        document.addEventListener('toggle-modal', this.toggleModal);
-        document.addEventListener('facetChange', this.updateFacets);
-
-        /* To Do
-          Set text and term from querystring "q" value if present
-        */
-        var loc = window.location.href.split('?'),
-            term = loc.length > 1 ? loc[1].split('=')[1] : '';
-
-        if (term.length > 0) {
-            term = term.replace(/\+/g, '%20');
-            term = decodeURIComponent(term);
-            this.box.term = term;
-            this.onebox.term = term;
-            this.count.term = term;
-            this.query.search(this.box.term);
-        }
-
-        // If term is blank and results are null on landing, display message
-        if(term.length == 0){
-            this.dispatchEvent(new CustomEvent("search-message",{detail:{state:"no-term",message:"Well, this is awkward. No search term was entered yet, so this page is a little empty right now.<p>After you enter a search term in the box above, you will see the results displayed here. You can also use the filters to select a content type, product or topic to see some results too. Try it out!"},bubbles:true}));
-        }
-
+        document.body.appendChild(this.urlEle);
     }
 
     static get observedAttributes() { 
@@ -171,39 +154,8 @@ class RHDPSearchApp extends HTMLElement {
         this[name] = newVal;
     }
 
-    doSearch(e) {
-        this.count.term = e.detail ? e.detail.term : this.query.term;
-        this.onebox.term = e.detail ? e.detail.term : this.query.term;
-        this.query.from = 0;
-        this.results.last = 0;
-        this.query.search(e.detail ? e.detail.term : this.query.term);
-    }
-
-    setMessage(e){
-        // let emptyQuery = this.querySelector('rhdp-search-app')['emptyQuery'];
-        this.emptyQuery.message = e.detail.message;
-        this.emptyQuery.toggleQueryMessage(e.detail.state);
-    }
-
-    loadMore(e) {
-        this.query.from = e.detail.from;
-        this.query.search(this.query.term);
-    }
-
-    setResults(e) {
-        // this.results.nullResultsMessage(this);
-        if(this.query.from === 0) {
-            this.results.results = e.detail.results;
-        } else {
-            this.results.more = e.detail.results;
-        }
-        
-        this.count.count = e.detail.results.hits.total;
-        this.results.classList.remove('loading');
-    }
-
     toggleModal(e) {
-        this.querySelector('rhdp-search-app')['modal'].toggle = e.detail.toggle;
+        this.modal.toggle = e.detail.toggle;
     }
 
     updateSort(e) {
@@ -211,40 +163,7 @@ class RHDPSearchApp extends HTMLElement {
         this.query.from = 0;
         this.results.last = 0;
         this.count.term = this.box.term;
-        this.query.search(this.box.term);
     }
-
-    updateFacets(e) {
-        var facet = e.detail.facet.cloneNode(true),
-            app = this.querySelector('rhdp-search-app'),
-            len = app['filterObj'].facets.length;
-        facet.bubble = false;
-        facet.active = e.detail.facet.active;
-        app['modal'].setActive(facet, false);
-        app['filters'].setActive(facet, false);
-        for(let i=0; i < len; i++) {
-            var itemLen = app['filterObj'].facets[i].items.length;
-            for(let j=0; j < itemLen; j++) {
-                if(app['filterObj'].facets[i].items[j].key === facet.key) {
-                    app['filterObj'].facets[i].items[j]['active'] = facet.active;
-                }
-            }
-        }
-
-        if (facet.active) {
-            facet.inline = true;
-            app['active'].addActive(facet, false);
-        } else {
-            app['active'].filters = app['filterObj'];
-            app['active'].updateActiveFacets();
-        }
-
-        app['query'].filters = app['filterObj'];
-        app['query'].from = 0;
-        app['results'].last = 0;
-        app['count'].term = app['box'].term;
-        app['onebox'].term = app['box'].term;
-        app['query'].search(app['box'].term);
-    }
-
 }
+
+customElements.define('rhdp-search-app', RHDPSearchApp);

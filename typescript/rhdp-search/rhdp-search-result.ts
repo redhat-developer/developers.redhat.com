@@ -6,6 +6,7 @@ class RHDPSearchResult extends HTMLElement {
     _created;
     _description;
     _premium;
+    _thumbnail;
 
     get url() {
         return this._url;
@@ -61,6 +62,14 @@ class RHDPSearchResult extends HTMLElement {
         this._premium = val;
     }
 
+    get thumbnail() {
+        return this._thumbnail;
+    }
+    set thumbnail(val) {
+        if (this._thumbnail === val) return;
+        this._thumbnail = val;
+    }
+
     get result() {
         return this._result;
     }
@@ -74,23 +83,26 @@ class RHDPSearchResult extends HTMLElement {
         this.computeDescription(val);
         this.computeURL(val);
         this.computePremium(val);
+        this.computeThumbnail(val);
         this.renderResult();
+
     }
 
     constructor() {
         super();
     }
 
-    template = (strings, url0, url1, title, kind, created, description, premium) => {
-        let premiumContent = premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"';
-        return `<div class="result result-search">
-        <h4>${url0}${title}${url1}</h4>
-        <p ${premiumContent}>
-            <span class="caps">${kind}</span>
-            <span>${created}</span>
-        </p>
-        <p class="result-description">${description}</p>
-    </div>`; };
+    template = (strings, url, title, kind, created, description, premium, thumbnail) => {
+        return `<div>
+            <h4>${url ? `<a href="${url}">${title}</a>` : title}</h4>
+            <p ${premium ? 'class="result-info subscription-required" data-tooltip="" title="Subscription Required" data-options="disable-for-touch:true"' : 'class="result-info"'}>
+                <span class="caps">${kind}</span>
+                ${created ? `- <rh-datetime datetime="${created}" type="local" day="numeric" month="long" year="numeric">${created}</rh-datetime>` : ''}
+            </p>
+            <p class="result-description">${description}</p>
+        </div>
+        ${thumbnail ? `<div class="thumb"><img src="${thumbnail.replace('http:','https:')}"></div>` : ''}`; 
+    };
 
     connectedCallback() {
         
@@ -105,7 +117,13 @@ class RHDPSearchResult extends HTMLElement {
     }
 
     renderResult() {
-        this.innerHTML = this.template`${this.url[0]}${this.url[1]}${this.title}${this.kind}${this.created}${this.description}${this.premium}`;
+        this.innerHTML = this.template`${this.url}${this.title}${this.kind}${this.created}${this.description}${this.premium}${this.thumbnail}`;
+    }
+
+    computeThumbnail(result) {
+        if (result.fields.thumbnail) {
+            this.thumbnail = result.fields.thumbnail[0];
+        }
     }
 
     computeTitle(result) { 
@@ -135,15 +153,13 @@ class RHDPSearchResult extends HTMLElement {
             solution: 'Article',
             stackoverflow_thread: 'Stack Overflow',
             video: 'Video',
-            webpage: 'Webpage',
-            website: 'Webpage'
+            webpage: 'Web Page',
+            website: 'Web Page'
         };
-        this.kind = map[kind] || 'Webpage';
+        this.kind = map[kind] || 'Web Page';
     }
     computeCreated(result) {
-        var options = { month: 'long', day: 'numeric', year: 'numeric' }
-        var created = result.fields.sys_created ? '- ' + new Intl.DateTimeFormat('en-US', options).format(new Date(result.fields.sys_created[0])) : "";
-        this.created = created;
+        this.created = result.fields.sys_created && result.fields.sys_created.length > 0 ? result.fields.sys_created[0] : '';
     }
     computeDescription(result) {
         var description = '';
@@ -165,7 +181,7 @@ class RHDPSearchResult extends HTMLElement {
             url[0] = `<a href="${result.fields.sys_url_view}">`;
             url[1] = '</a>';
         }
-        this.url = url;
+        this.url = (result.fields && result.fields.sys_url_view) ? result.fields.sys_url_view : '';
     }
 
     computePremium(result) {
@@ -177,3 +193,5 @@ class RHDPSearchResult extends HTMLElement {
     }
 
 }
+
+customElements.define('rhdp-search-result', RHDPSearchResult);

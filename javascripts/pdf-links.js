@@ -1,6 +1,6 @@
 // Opens in a new tab all (except Download Manager) links ending in .pdf extension
 $(document).ready(function() {
-  $("a[href$='.pdf'").each(function() {
+  $("a[href$='.pdf']").each(function() {
     
     // Ignore DM links
     var ignoredDomains = ['developers.redhat.com/download-manager/','jboss.org/download-manager/'];

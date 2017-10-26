@@ -65,6 +65,7 @@ class ProductPageController extends ControllerBase {
   public function productPage($product_code, $sub_page) {
     $build = [];
     $active_product = $this->findProduct($product_code);
+    \Drupal::request()->attributes->add(['node' => $active_product]);
 
     // This render array will hold the left side navigation links
     $page_links = [

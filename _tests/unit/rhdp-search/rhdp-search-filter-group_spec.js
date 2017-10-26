@@ -4,8 +4,8 @@
 describe('Search Filter Group', function() {
     var wc;
     beforeEach(function() {
-        document.body.insertBefore(document.createElement('rhdp-search-filter-group'), document.body.firstChild);
-        wc = document.body.firstChild;
+        wc = new RHDPSearchFilterGroup(); 
+        document.body.insertBefore(wc, document.body.firstChild);
     });
 
     afterEach(function() {

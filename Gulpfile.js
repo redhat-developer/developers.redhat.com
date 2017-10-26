@@ -84,6 +84,8 @@ var globs = {
         'javascripts/middleware-blog.js',
         'javascripts/scroll-to-top.js',
         'javascripts/footer.js',
+        'javascripts/vendor/url-polyfill.min.js',
+        'javascripts/vendor/rh-datetime.min.js',
         'javascripts/pdf-links.js'
     ],
     "styles": ['stylesheets/*.scss']

@@ -1,3 +1,6 @@
+// import {RHDPSearchFilterGroup} from './rhdp-search-filter-group';
+// import {RHDPSearchFilterItem} from './rhdp-search-filter-item';
+
 class RHDPSearchFilters extends HTMLElement {
     _type = '';
     _title = 'Filter By';
@@ -52,6 +55,10 @@ class RHDPSearchFilters extends HTMLElement {
 
     constructor() {
         super();
+        this._toggleModal = this._toggleModal.bind(this);
+        this._clearFilters = this._clearFilters.bind(this);
+        this._addFilters = this._addFilters.bind(this);
+        this._checkActive = this._checkActive.bind(this);
     }
     modalTemplate = (string, title) => {
         return `<div class="cover" id="cover">
@@ -83,10 +90,12 @@ class RHDPSearchFilters extends HTMLElement {
     connectedCallback() {
         if (this.type === 'active') {
             this.innerHTML = this.activeTemplate`${this.title}`;
-            this.addAllActive();
-            if (!this.querySelector('.activeFilters').hasChildNodes()) {
-                this.style.display = 'none';
-            }
+            top.addEventListener('filter-item-change', this._checkActive);
+            top.addEventListener('filter-item-init', this._checkActive);
+            top.addEventListener('search-complete', this._checkActive);
+            top.addEventListener('params-ready', this._checkActive);
+            top.addEventListener('clear-filters', this._clearFilters);
+            this._addFilters();
         } else if (this.type === 'modal') {
             this.innerHTML = this.modalTemplate`${this.title}`;
             this.addGroups();
@@ -96,19 +105,33 @@ class RHDPSearchFilters extends HTMLElement {
         }
 
         this.addEventListener('click', e => {
-            e.preventDefault();
-            if ( e.target['className'] === 'showBtn' ) {
-                this.toggleModal(true);
-            } else if ( e.target['className'] === 'cancel' || e.target['className'] === 'applyFilters') {
-                this.toggleModal(false);
-            } else if ( e.target['className'] === 'clearFilters') {
-                this.clearFilters();
+            switch (e.target['className']) {
+                case 'showBtn':
+                case 'cancel':
+                case 'applyFilters':
+                    e.preventDefault();
+                    this.dispatchEvent(new CustomEvent('toggle-modal', {
+                        bubbles: true 
+                    }));
+                    break;
+                case 'clearFilters':
+                    e.preventDefault();
+                    this.dispatchEvent(new CustomEvent('clear-filters', {
+                        bubbles: true 
+                    }));
+                    break;
+                case 'more':
+                    e.preventDefault();
+                    break;
             }
         });
+        //top.addEventListener('clear-filters', this._clearFilters);
+        top.addEventListener('toggle-modal', this._toggleModal);
+        
     }
 
     static get observedAttributes() { 
-        return ['type', 'title', 'filters', 'toggle']; 
+        return ['type', 'title', 'toggle']; 
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -116,66 +139,94 @@ class RHDPSearchFilters extends HTMLElement {
     }
 
     addGroups() {
-        var groups = this.filters.facets,
+        let groups = this.filters.facets,
             len = groups.length;
         for(let i=0; i < len; i++) {
-            var group = new RHDPSearchFilterGroup(),
-                groupInfo = groups[i];
+            let group = new RHDPSearchFilterGroup(),
+                groupInfo = groups[i],
+                groupNode = group.querySelector('.group'),
+                primaryFilters = group.querySelector('.primary'),
+                secondaryFilters = group.querySelector('.secondary'),
+                len = groupInfo.items ? groupInfo.items.length : 0;
+                if (len <= 5) {
+                    groupNode.removeChild(groupNode.lastChild);
+                }
+                for(let j=0; j < len; j++) {
+                    let item = new RHDPSearchFilterItem();
+                    item.name = groupInfo.items[j].name;
+                    item.value = groupInfo.items[j].value;
+                    item.active = groupInfo.items[j].active;
+                    item.key = groupInfo.items[j].key;
+                    item.group = groupInfo.key;
+                    if (j < 5) {
+                        primaryFilters.appendChild(item);
+                    } else {
+                        secondaryFilters.appendChild(item);
+                    }
+                }
             group.key = groupInfo.key;
-            group.name = groupInfo.name;
-            group.items = groupInfo.items;
+            group.name = groupInfo.name;        
             this.querySelector('.groups').appendChild(group);
         }
 
     }
 
-    addActive(item) {
-        var facet = this.querySelector(`.filter-item-${item.key}`);
-        if(!facet) {
-            this.querySelector('.activeFilters').appendChild(item);
-            this.style.display = 'block';
-        }
-    }
-
-    addAllActive() {
-        var groups = this.filters.facets;
-        for(let i=0; i < groups.length; i++) {
-            var items = groups[i].items;
-            for(let j=0; j < items.length; j++) {
-                var item = new RHDPSearchFilterItem();
-                item.name = items[j].name;
-                item.value = items[j].value;
-                item.inline = true;
-                item.active = items[j].active;
-                item.key = items[j].key;
-                if(item.active) {
-                    this.addActive(item);
+    _checkActive(e) {
+        if (e.detail) {
+            if (e.detail.facet) {
+                this.style.display = e.detail.facet.active ? 'block' : this.style.display;
+            } else {
+                let chk = this.querySelectorAll('rhdp-search-filter-item[active]');
+                if (chk.length > 0) {
+                    this.style.display = 'block';
+                } else {
+                    this.style.display = 'none';
                 }
             }
         }
     }
 
-    updateActiveFacets() {
-        this.innerHTML = this.activeTemplate`${this.title}`;
-        this.addAllActive();
-        if (!this.querySelector('.activeFilters').hasChildNodes()) {
-            this.style.display = 'none';
+    _initActive(e, group_key, item) {
+        if (e.detail && e.detail.filters) {
+            //console.log(e.detail.filters);
+            Object.keys(e.detail.filters).forEach(group => {
+                e.detail.filters[group].forEach(facet => {
+                    if (group === group_key) {
+                        if (facet === item.key) {
+                            return true;
+                        }
+                    }
+                });
+            });
+            
         }
+        return false;
     }
 
-    setActive(item, bubble) {
-        var upd = this.querySelector(`.filter-item-${item.key}`);
-        upd['bubble'] = bubble;
-        upd['active'] = item.active;
+    _addFilters() {
+        var groups = this.filters.facets;
+        for(let i=0; i < groups.length; i++) {
+            var items = groups[i].items;
+            for(let j=0; j < items.length; j++) {
+                let item = new RHDPSearchFilterItem();
+                    item.name = items[j].name;
+                    item.value = items[j].value;
+                    item.inline = true;
+                    item.bubble = false;
+                    item.key = items[j].key;
+                    item.group = groups[i].key;
+                    this.querySelector('.activeFilters').appendChild(item)
+                }
+            }
+        // if (this.type === 'active') {
+        //     this._checkActive();
+        // }
     }
 
-    toggleModal(val) {
-        this.dispatchEvent(new CustomEvent('toggle-modal', {
-            detail: { 
-                toggle: val 
-            }, 
-            bubbles: true 
-        }));
+    _toggleModal(e) {
+        if (this.type === 'modal') {
+            this.toggle = !this.toggle;
+        }
     }
 
     applyFilters() {
@@ -184,13 +235,9 @@ class RHDPSearchFilters extends HTMLElement {
         }));
     }
 
-    clearFilters() {
-        var items = this.querySelectorAll('rhdp-search-filter-item[active]'),
-            len = items.length;
-
-        for(let i=0; i < len; i++) {
-            items[i]['bubble'] = i !== 1-len ? false : true;
-            items[i]['active'] = false;
-        }
+    _clearFilters(e) {
+        this.style.display = 'none';
     }
 }
+
+customElements.define('rhdp-search-filters', RHDPSearchFilters);

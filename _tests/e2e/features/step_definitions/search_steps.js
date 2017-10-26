@@ -1,6 +1,6 @@
-const SearchPage = require("../../support/pages/search.page");
+const searchPage = require("../../support/pages/search.page");
 const HomePage = require("../../support/pages/home.page");
-const searchPage = new SearchPage;
+//const searchPage = new SearchPage;
 const homePage = new HomePage;
 
 module.exports = function () {
