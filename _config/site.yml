@@ -107,6 +107,10 @@ profiles:
     dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     push_to_searchisko: false
     drupal_base_url: http://drupal/
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    download_manager_file_base_url: https://developers.redhat.com/download-manager/file/
+    download_manager_base_url: https://developers.redhat.com
 
   drupal_staging:
     <<: *profile
