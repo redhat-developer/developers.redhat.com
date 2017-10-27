@@ -9,7 +9,7 @@ module E2ETestOptionsHelper
   # supported browsers for local and docker selenium browsers
   #
   def supported_browsers
-    %w[chrome firefox headless_chrome]
+    %w[chrome firefox]
   end
 
   #
@@ -60,7 +60,7 @@ module E2ETestOptionsHelper
     if cucumber_tags.include?(',')
       tag = cucumber_tags.split(',')
       tag.each do |cuke_tag|
-        tag_arr << cuke_tag
+        tag_arr << "'#{cuke_tag}'"
       end
       tags = tag_arr.join(',')
     else
@@ -75,7 +75,6 @@ module E2ETestOptionsHelper
   def create_default_test_configuration
     default_configuration = {}
     default_configuration[:browser] = 'chrome'
-    default_configuration[:browser_count] = 2
     default_configuration[:docker] = false
     default_configuration[:browserstack] = false
     default_configuration

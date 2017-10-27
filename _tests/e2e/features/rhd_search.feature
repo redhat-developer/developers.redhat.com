@@ -22,12 +22,6 @@ Feature: Search Page
     Then the search page is displayed
     And the search field should not be displayed within the site header
 
-  Scenario: Search field is hidden within the site header on search page.
-    Given I am on the Home page
-    When I search for "Hello World" via the site-nav search bar
-    Then the search page is displayed
-    And the search field should not be displayed within the site header
-
   Scenario: User sees appropriate messaging upon direct navigation to search page
     Given I navigate directly to search page with ""
     Then I should see a message that no search term was entered
@@ -36,13 +30,13 @@ Feature: Search Page
     Given I am on the Search page
     When I enter "Hello world" into the search bar
     And click on the search-button
-    Then search results are displayed
+    Then the search page is displayed
 
   Scenario: Search can be triggered by enter key
     Given I am on the Search page
     When I enter "Hello world" into the search bar
     And I trigger the search via the enter-key
-    Then search results are displayed
+    Then the search page is displayed
 
   Scenario: Default result sorting should be 'Relevance'
     Given I am on the Search page
@@ -61,8 +55,7 @@ Feature: Search Page
 
   Scenario: Do not show 'Load More' link if less than 10 results are returned from the DCP.
     Given I am on the Search page
-    When I search for "Foobar"
-    And there are 10 or less results available
+    When there are 10 or less results available
     Then I should not see a Load More link
 
   Scenario: I search for something should return *no* entries, such as "bfehwfbhbn"
@@ -83,22 +76,11 @@ Feature: Search Page
     And the search page is displayed
     Then the results should contain "Dockerizing Node.js Apps"
 
-  Scenario Outline: DEVELOPER-3077 - Topics should be listed first in results
+  Scenario: DEVELOPER-3077 - Topics should be listed first in results
     Given I am on the Home page
-    When I search for "<topic>" via the site-nav search bar
+    When I search for "Containers" via the site-nav search bar
     And the search page is displayed
-    Then the related topic page for "<url>" should be the first result
-
-    Examples: of Red hat Topics
-      | topic                   | url                     |
-      | Containers              | containers              |
-#      | Mobile                  | mobile                  |DEVELOPER-4317: Mobile Topic page is not included at the top of search results
-      | DevOps                  | devops                  |
-      | Web and API Development | web-and-api-development |
-      | Enterprise Java         | enterprise-java         |
-      | .NET                    | dotnet                  |
-      | Microservices           | microservices           |
-      | Internet of Things      | iot                     |
+    Then the related topic page for "containers" should be the first result
 
   Scenario: DEVELOPER-3078 - User searches on /search for 'red hat developers', the first result should be for https://developers.redhat.com/about.
     Given I am on the Home page
@@ -108,28 +90,25 @@ Feature: Search Page
 
 #  Ignored due to bug: DEVELOPER-4318 - Searching for 'enterprise linux' should return 'RHEL' product pages first
 #  Scenario: DEVELOPER-3079 - Searching for 'enterprise linux' should return 'RHEL' product pages first
-#    Given I am on the "Home" page
+#    Given I am on the Home page
 #    When I search for "enterprise linux" via the site-nav search bar
 #    And the search page is displayed
 #    Then the "rhel" product overview page should be the first result
 
   Scenario: User can filter results by: Content Type.
     Given I have searched for "Java"
-    When I filter results by "Stack Overflow" from "Content Type"
-    Then I should see a tag for "Stack Overflow"
-    Then the results should be updated and contain a "Stack Overflow" label
+    When I filter results by "APIs and Docs" from "Content Type"
+    Then the results should be updated and contain a "APIs and Docs" tag
 
   Scenario: User can filter results by: Product.
     Given I have searched for "Red Hat"
-    When I filter results by "Red Hat Container Development Kit" from "Product"
-    Then I should see a tag for "Red Hat Container Development Kit"
-    Then the results should be updated and contain "Red Hat Container Development Kit"
+    When I filter results by "Boss BPM Suite" from "Product"
+    Then the results should be updated and contain a "Boss BPM Suite" tag
 
   Scenario: User can filter results by: Topic.
     Given I have searched for "Containers"
-    When I filter results by ".NET" from "Topic"
-    Then I should see a tag for ".NET"
-    Then the results should be updated and contain ".NET"
+    When I filter results by "DevOps" from "Topic"
+    Then the results should be updated and contain a "DevOps" tag
 
   Scenario Outline: Cross Site Scripting (XSS): Navigating directly to search page with url that contains malicious scripts
     Given I navigate directly to search page with "<script>"
@@ -140,20 +119,7 @@ Feature: Search Page
       | script                                                 |
       | Richfaces%205%20-%20Javascript                         |
       | %3Cscript%3Ealert                                      |
-      | "><script>alert("XSS")</script>&                       |
       | %3Cimg%20src%3Dx%20onerror%3Dalert(/OPENBUGBOUNTY/)%3E |
-
-  Scenario Outline: Cross Site Scripting (XSS): Searching via search box using a query that contains malicious scripts
-    Given I am on the Search page
-    When I search for "<script>"
-    And search results are displayed
-    Then I should not see an alert
-
-    Examples: Script alert
-      | script                           |
-      | Richfaces%205%20-%20Javascript   |
-      | %3Cscript%3Ealert                |
-      | "><script>alert("XSS")</script>& |
 
 
   Scenario: User can re-search using different search term and results are updated.
@@ -165,8 +131,9 @@ Feature: Search Page
     Then the results should be updated and contain "Java"
 
   Scenario: User searches for a string that is associated with a Product OneBox
-    Given I am on the Search page
-    When I search for "red hat linux"
+    Given I am on the Home page
+    When I search for "red hat linux" via the site-nav search bar
+    Then the search page is displayed
     Then I should see a OneBox for "Red Hat Enterprise Linux" at the top of the results
 
   Scenario: User selects the Title of the product on a Product OneBox
@@ -198,19 +165,19 @@ Feature: Search Page
     Then I should see the "Red Hat Container Development Kit" Help page
 
   Scenario: User searches for a term that does not have a corresponding OneBox
-    Given I am on the Search page
-    When I search for "Red Hat Container Development Kit"
+    Given I am on the Home page
+    When I search for "Red Hat Container Development Kit" via the site-nav search bar
+    Then the search page is displayed
     Then I should not see a OneBox for "Red Hat Container Development Kit" at the top of the results
 
   Scenario: User sees the end of the returned search results
     Given I am on the Search page
-    When I search for "qwert"
-    And there are 10 or less results available
+    When there are 10 or less results available
     Then I should not see a Load More link
-    And I should see some text that says "- End of Results -"
+    And I should see some text that says "End of Results"
 
   Scenario: User gets to the end of the returned resultset, but there are more results
     Given I am on the Search page
     And I search for "Containers"
     Then I should see a Load More link
-    And I should not see some text that says "- End of Results -"
+    And I should not see some text that says "End of Results"
