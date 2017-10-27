@@ -107,10 +107,6 @@ profiles:
     dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
     push_to_searchisko: false
     drupal_base_url: http://drupal/
-    keycloak_account_url: https://developers.redhat.com/auth/realms/rhd/account/
-    keycloak_auth_url: https://developers.redhat.com/auth/
-    download_manager_file_base_url: https://developers.redhat.com/download-manager/file/
-    download_manager_base_url: https://developers.redhat.com
 
   drupal_staging:
     <<: *profile
@@ -167,10 +163,10 @@ profiles:
     dcp_base_protocol_relative_url: https://dcp.stage.jboss.org/
 #    dcp_base_url: http://searchisko:8080/
 #    dcp_base_protocol_relative_url: https://<%= ENV['ACCESSIBLE_SLAVE_IP'] %>:<%= ENV['SEARCHISKO_HOST_PORT'] %>/
-    keycloak_account_url: https://developers.redhat.com/auth/realms/rhd/account/
-    keycloak_auth_url: https://developers.redhat.com/auth/
-    download_manager_file_base_url: https://developers.redhat.com/download-manager/file/
-    download_manager_base_url: https://developers.redhat.com
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    download_manager_file_base_url: https://developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://developers.stage.redhat.com
 
     cache_type: :local
     metrics: true
@@ -185,10 +181,10 @@ profiles:
     <<: *profile
     dcp_base_protocol_relative_url: https://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
     dcp_base_url: http://<%= ENV['STAGE_SEARCHISKO_HOST'] %>:<%= ENV['STAGE_SEARCHISKO_PORT'] %>/
-    download_manager_file_base_url: https://developers.redhat.com/download-manager/file/
-    download_manager_base_url: https://developers.redhat.com
-    keycloak_account_url: https://developers.redhat.com/auth/realms/rhd/account/
-    keycloak_auth_url: https://developers.redhat.com/auth/
+    keycloak_account_url: https://developers.stage.redhat.com/auth/realms/rhd/account/
+    keycloak_auth_url: https://developers.stage.redhat.com/auth/
+    download_manager_file_base_url: https://developers.stage.redhat.com/download-manager/file/
+    download_manager_base_url: https://developers.stage.redhat.com
     metrics: false
     client_side_error_logging: true
     broker: https://broker.stage.redhat.com/partner/drc/userMapping?redirect=
